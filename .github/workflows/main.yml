@@ -13,13 +13,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Set up ruby
         uses: actions/setup-ruby@v1
-        # with:
-        #     ruby-version: '3.2.x' # Version range or exact version of a Ruby version to use, using semvers version range syntax.
-        
+        with:
+            ruby-version: '3.2'
+
       - name: Install dependencies
         run: 
             bundle install
