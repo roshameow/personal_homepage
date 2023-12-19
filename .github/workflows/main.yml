@@ -1,0 +1,41 @@
+name: Homepage Project Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - dev
+
+permissions:
+  contents: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up ruby
+        uses: actions/setup-ruby@v1
+        with:
+            ruby-version: '3.2.2' # Version range or exact version of a Ruby version to use, using semvers version range syntax.
+        
+      - name: Install dependencies
+        run: 
+            gem install bundler
+            bundler install
+
+      - name: Build and deploy
+        run: |
+          jekyll serve
+          echo 'personal-homepage' > dist/CNAME
+          cp dist/index.html dist/404.html
+        env:
+          BASE_URL: '/personal-homepage/'  # Adjust this based on your repository name
+
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@releases/v3
+        with:
+          GITHUB_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
+          BRANCH: gh-pages
+          FOLDER: dist
