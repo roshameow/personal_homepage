@@ -9,20 +9,31 @@ permissions:
   contents: write
 
 jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Set up ruby
-        uses: actions/setup-ruby@v1
+    test:
+        runs-on: ubuntu-latest
+        steps:
+        - uses: actions/checkout@v4
+        - uses: ruby/setup-ruby@v1
         with:
-            ruby-version: '3.2'
+            ruby-version: '3.2' # Not needed with a .ruby-version file
+            bundler-cache: true # runs 'bundle install' and caches installed gems automatically
+        - run: bundle exec rake
 
-      - name: Install dependencies
-        run: 
-            bundle install
+jobs:
+  deploy:
+    # runs-on: ubuntu-latest
+    # steps:
+    #   - name: Checkout repository
+    #     uses: actions/checkout@v4
+
+    #   - name: Set up ruby
+    #     uses: actions/setup-ruby@v1
+    #     with:
+    #         ruby-version: '3.2'
+
+    #   - name: Install dependencies
+    #     run: 
+    #         bundle install
 
       - name: Build and deploy
         run: |
