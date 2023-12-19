@@ -26,6 +26,7 @@ jobs:
             bundle exec jekyll build
             echo 'personal-homepage' > _site/CNAME
             cp _site/index.html _site/404.html
+            touch _site/.nojekyll
         env:
             BASE_URL: '/personal-homepage/'  # Adjust this based on your repository name
 
