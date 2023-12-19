@@ -21,13 +21,13 @@ jobs:
           ruby-version: '3.2' # Not needed with a .ruby-version file
           bundler-cache: true # runs 'bundle install' and caches installed gems automatically
 
-    #   - name: Build and deploy
-    #     run: |
-    #         bundle exec jekyll serve
-    #         echo 'personal-homepage' > dist/CNAME
-    #         cp dist/index.html dist/404.html
-    #     env:
-    #         BASE_URL: '/personal-homepage/'  # Adjust this based on your repository name
+      - name: Build and deploy
+        run: |
+            bundle exec jekyll build
+            echo 'personal-homepage' > dist/CNAME
+            cp dist/index.html dist/404.html
+        env:
+            BASE_URL: '/personal-homepage/'  # Adjust this based on your repository name
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@releases/v3
