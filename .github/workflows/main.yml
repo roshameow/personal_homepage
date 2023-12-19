@@ -20,7 +20,7 @@ jobs:
 
       - name: Build and deploy
         run: |
-            jekyll serve
+            bundle exec jekyll serve
             echo 'personal-homepage' > dist/CNAME
             cp dist/index.html dist/404.html
         env:
