@@ -24,8 +24,8 @@ jobs:
       - name: Build and deploy
         run: |
             bundle exec jekyll build
-            echo 'personal-homepage' > dist/CNAME
-            cp dist/index.html dist/404.html
+            echo 'personal-homepage' > _site/CNAME
+            cp _site/index.html _site/404.html
         env:
             BASE_URL: '/personal-homepage/'  # Adjust this based on your repository name
 
@@ -34,5 +34,5 @@ jobs:
         with:
             GITHUB_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
             BRANCH: gh-pages
-            FOLDER: dist
+            FOLDER: _site
     
