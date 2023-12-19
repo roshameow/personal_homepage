@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Set up ruby
         uses: actions/setup-ruby@v1
@@ -22,8 +22,7 @@ jobs:
         
       - name: Install dependencies
         run: 
-            gem install bundler
-            bundler install
+            bundle install
 
       - name: Build and deploy
         run: |
