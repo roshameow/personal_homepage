@@ -9,43 +9,61 @@ permissions:
   contents: write
 
 jobs:
-    test:
-        runs-on: ubuntu-latest
-        steps:
-        - uses: actions/checkout@v4
-        - uses: ruby/setup-ruby@v1
+    deploy:
+      runs-on: ubuntu-latest
+      steps:
+      - uses: actions/checkout@v4
+      - uses: ruby/setup-ruby@v1
         with:
-            ruby-version: '3.2' # Not needed with a .ruby-version file
-            bundler-cache: true # runs 'bundle install' and caches installed gems automatically
-        - run: bundle exec rake
+          ruby-version: '3.2' # Not needed with a .ruby-version file
+          bundler-cache: true # runs 'bundle install' and caches installed gems automatically
+      - run: bundle exec rake
 
-jobs:
-  deploy:
-    # runs-on: ubuntu-latest
-    # steps:
-    #   - name: Checkout repository
-    #     uses: actions/checkout@v4
-
-    #   - name: Set up ruby
-    #     uses: actions/setup-ruby@v1
-    #     with:
-    #         ruby-version: '3.2'
-
-    #   - name: Install dependencies
-    #     run: 
-    #         bundle install
 
       - name: Build and deploy
         run: |
-          jekyll serve
-          echo 'personal-homepage' > dist/CNAME
-          cp dist/index.html dist/404.html
+            jekyll serve
+            echo 'personal-homepage' > dist/CNAME
+            cp dist/index.html dist/404.html
         env:
-          BASE_URL: '/personal-homepage/'  # Adjust this based on your repository name
+            BASE_URL: '/personal-homepage/'  # Adjust this based on your repository name
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@releases/v3
         with:
-          GITHUB_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
-          BRANCH: gh-pages
-          FOLDER: dist
+            GITHUB_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
+            BRANCH: gh-pages
+            FOLDER: dist
+    
+# jobs:
+#   deploy:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Checkout repository
+#         uses: actions/checkout@v4
+
+#       - name: Set up ruby
+#         uses: actions/setup-ruby@v1
+#         with:
+#           ruby-version: '3.2' # Not needed with a .ruby-version file
+#           bundler-cache: true # runs 'bundle install' and caches installed gems automatically
+#       - run: bundle exec rake
+
+#       - name: Install dependencies
+#         run: 
+#             bundle install
+
+#       - name: Build and deploy
+#         run: |
+#           jekyll serve
+#           echo 'personal-homepage' > dist/CNAME
+#           cp dist/index.html dist/404.html
+#         env:
+#           BASE_URL: '/personal-homepage/'  # Adjust this based on your repository name
+
+#       - name: Deploy to GitHub Pages
+#         uses: JamesIves/github-pages-deploy-action@releases/v3
+#         with:
+#           GITHUB_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
+#           BRANCH: gh-pages
+#           FOLDER: dist
