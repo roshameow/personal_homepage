@@ -18,7 +18,8 @@ figure.highlight {
   position: relative;
   margin-bottom: 1em;
   font-family: $monospace-font-family;
-  line-height: 1.8;
+  font-size: 0.5;
+  line-height: 1.2;
 
   > pre,
   pre.highlight {
