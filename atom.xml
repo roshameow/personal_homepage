@@ -1,4 +1,245 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="https://roshameow.github.io//personal_homepage/atom.xml" rel="self" type="application/atom+xml" /><link href="https://roshameow.github.io//personal_homepage/" rel="alternate" type="text/html" /><updated>2023-12-19T13:11:32+00:00</updated><id>https://roshameow.github.io//personal_homepage/atom.xml</id><title type="html">My Awesome Site</title><subtitle>It really is the best.</subtitle><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;nil, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name></author><entry><title type="html">Hidden Post</title><link href="https://roshameow.github.io//personal_homepage/docs/hidden-post/" rel="alternate" type="text/html" title="Hidden Post" /><published>2018-02-25T00:00:00+00:00</published><updated>2018-02-25T00:00:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/hidden-post</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/hidden-post/"><![CDATA[<p>This post has YAML Front Matter of <code class="language-plaintext highlighter-rouge">hidden: true</code> and should not appear in <code class="language-plaintext highlighter-rouge">paginator.posts</code>.</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;nil, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name></author><category term="docs" /><summary type="html"><![CDATA[This post has YAML Front Matter of hidden: true and should not appear in paginator.posts.]]></summary></entry><entry><title type="html">MathJax Example</title><link href="https://roshameow.github.io//personal_homepage/docs/mathjax-example/" rel="alternate" type="text/html" title="MathJax Example" /><published>2015-08-10T12:08:50+00:00</published><updated>2015-08-10T12:08:50+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/mathjax-example</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/mathjax-example/"><![CDATA[<p><a href="http://www.mathjax.org/">MathJax</a> is a simple, yet powerful, way of
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="https://roshameow.github.io//personal_homepage/atom.xml" rel="self" type="application/atom+xml" /><link href="https://roshameow.github.io//personal_homepage/" rel="alternate" type="text/html" /><updated>2023-12-21T18:38:36+00:00</updated><id>https://roshameow.github.io//personal_homepage/atom.xml</id><title type="html">Liu, Wen’s Home Page</title><subtitle>Work, Experiments and Ideas.</subtitle><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;nil, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name></author><entry><title type="html">小红书学到的几种图片调色</title><link href="https://roshameow.github.io//personal_homepage/docs/photo/photo-color/" rel="alternate" type="text/html" title="小红书学到的几种图片调色" /><published>2023-12-21T00:00:00+00:00</published><updated>2023-12-22T09:53:56+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/photo/photo-color</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/photo/photo-color/"><![CDATA[<p>感觉共同点是：为了追求画面简洁有冲击力，不约而同的压缩了亮度和颜色的动态范围。</p>
+<h2 id="版画滤镜">版画滤镜</h2>
+
+<p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020231221113525.png" alt="Pasted image 20231221113525.png" width="400" />  <img src="/personal_homepage/docs/attachment/Pasted%20image%2020231221113539.png" alt="Pasted image 20231221113539.png" width="400" /></p>
+<ul>
+  <li>醒图4个滤镜依次叠加，透明度依次减小
+    <ul>
+      <li>千禧-&gt;幻想蝴蝶</li>
+      <li>新中式-&gt;空谷</li>
+      <li>千禧-&gt;数字彩虹</li>
+      <li>新中式-&gt;烟霞</li>
+    </ul>
+  </li>
+  <li>实际实验结果
+    <ul>
+      <li><img src="/personal_homepage/docs/attachment/Pasted%20image%2020231221114420.png" alt="Pasted image 20231221114420.png" width="400" /></li>
+      <li>调整亮度曲线如图，暗部切断，亮部反色，压缩动态范围</li>
+      <li>添加噪声</li>
+      <li>去掉图片原有颜色</li>
+      <li>按照亮暗调节新的颜色</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="白夜之树">白夜之树</h2>
+
+<ul>
+  <li>
+    <p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020231221121648.png" alt="Pasted image 20231221121648.png" width="400" />  <img src="/personal_homepage/docs/attachment/Pasted%20image%2020231221121655.png" alt="Pasted image 20231221121655.png" width="400" /></p>
+  </li>
+  <li>
+    <p>方法：</p>
+    <ul>
+      <li>醒图滤镜：千禧-&gt;午夜 把照片变成蓝色，就是为了伪造天空部分吧？</li>
+      <li>曲线反色：画面要避开一些常见的物品，不然很容易看出其实是反色，就感觉出戏了</li>
+      <li>光感-100：作用是，把有颜色的部分变暗？</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="单色涂鸦">单色涂鸦</h2>
+
+<p><img src="/personal_homepage/docs/attachment/IMG_8192.jpg" alt="IMG_8192.jpg" width="400" />   <img src="/personal_homepage/docs/attachment/IMG_8193.jpg" alt="IMG_8193.jpg" width="400" /></p>
+
+<ul>
+  <li>方法：
+    <ul>
+      <li>醒图特效：单色填充：可能是根据饱和度？把饱和度高的部分填充了粉色。因为图片里红色和蓝色都被填充了，所以不是根据主体色识别。其他位置变为灰度图</li>
+      <li>醒图特效：单色涂鸦：检测边缘，设置白边
+        <ul>
+          <li>可能是检测闭合的部分，处理成涂鸦的斜线</li>
+          <li>检测线条少的位置加文字</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;nil, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name></author><category term="docs" /><category term="photo" /><category term="content" /><category term="醒图" /><summary type="html"><![CDATA[感觉共同点是：为了追求画面简洁有冲击力，不约而同的压缩了亮度和颜色的动态范围。 版画滤镜]]></summary></entry><entry><title type="html">用 jekyll+obsidian生成个人主页并部署到 github pages的工作流</title><link href="https://roshameow.github.io//personal_homepage/docs/webpage/jekyll-blog-deploy/" rel="alternate" type="text/html" title="用 jekyll+obsidian生成个人主页并部署到 github pages的工作流" /><published>2023-12-20T00:00:00+00:00</published><updated>2023-12-22T09:47:48+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/webpage/jekyll-blog-deploy</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/webpage/jekyll-blog-deploy/"><![CDATA[<p>用jekyll的原因无需多说。这样配置好工作流之后，除了编写内容基本没有什么麻烦的操作(登录在线网页，换编辑器之类在我看来都很麻烦。。)。</p>
+<h3 id="ruby的环境管理包管理方式">Ruby的环境管理，包管理方式</h3>
+
+<ul>
+  <li><strong>管理顺序：</strong> churby -&gt; ruby -&gt; bundle -&gt; gem -&gt; jekyll
+    <ul>
+      <li><strong>ruby：</strong> 是经常在 web 开发中使用的一种动态语言。</li>
+      <li><strong>churby：</strong> Ruby 的环境管理工具，用于管理不同版本的 Ruby。</li>
+      <li><strong>gem：</strong> Ruby 编写的软件包的统称，Jekyll 也是一个 gem。</li>
+      <li><strong>bundler：</strong> 用于管理项目 gem 的工具，根据 Gemfile 管理不同版本的 gem。bundler自己本身也是gem。</li>
+    </ul>
+  </li>
+</ul>
+
+<p>如果用 Python 来类比，关系大概是这样：</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">ruby</th>
+      <th style="text-align: center">python</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">churby 版本号</code></td>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">conda create -n my_env python=版本号;</code><br /> <code class="language-plaintext highlighter-rouge">conda activate my_env</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">gem install 某个包</code></td>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">pip install 某个包</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">bundler install</code></td>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">pip install -r requirements.txt</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="具体配置流程">具体配置流程</h3>
+
+<ol>
+  <li><strong>安装ruby</strong>
+    <ul>
+      <li>按照 <a href="https://jekyllrb.com/docs/installation/macos/">Jekyll 网站</a> 的方法，安装 Chruby 和 Ruby-install。</li>
+      <li>切换到对应版本的 Ruby。</li>
+      <li>在 macOS 中我遇到的问题是系统中已经安装了 Miniforge3，其中包含了 OpenSSL，但不能正常使用。通过 <a href="https://medium.com/@canerten/building-ruby-3-1-3-fails-with-openssl-1-0-2o-1-on-m1-apple-silicon-mac-with-brew-89d7e550420b">Homebrew 安装 OpenSSL@1.1</a> 解决。</li>
+    </ul>
+  </li>
+  <li><strong>本地配置</strong>
+    <ul>
+      <li>选择一个博客主题，例如 <a href="https://github.com/mmistakes/so-simple-theme">So Simple</a>，fork 对应主题的 GitHub 代码，然后根据自己的需要修改 <code class="language-plaintext highlighter-rouge">_config.yml</code>。</li>
+      <li>运行 <code class="language-plaintext highlighter-rouge">bundler install</code> 安装项目所需的 gem。</li>
+      <li>运行 <code class="language-plaintext highlighter-rouge">bundle exec jekyll serve</code>，此时可以在本地进行预览。</li>
+    </ul>
+  </li>
+  <li><strong>利用 GitHub Actions 部署到 GitHub Pages</strong>
+    <ul>
+      <li>将下面的 Action 脚本添加到项目的 <code class="language-plaintext highlighter-rouge">.github/workflows/main.yml</code> 文件。等待执行完成，可以通过浏览器访问 <code class="language-plaintext highlighter-rouge">http://name.github.io/base_url/</code>。</li>
+    </ul>
+
+    <div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="na">name</span><span class="pi">:</span> <span class="s">Homepage Project Deploy to GitHub Pages</span>
+	
+ <span class="na">on</span><span class="pi">:</span>
+   <span class="na">push</span><span class="pi">:</span>
+     <span class="na">branches</span><span class="pi">:</span>
+       <span class="pi">-</span> <span class="s">master</span> <span class="c1">#设置每次将代码推送到 master 分支时自动执行</span>
+<span class="err">	</span>
+ <span class="na">permissions</span><span class="pi">:</span>
+   <span class="na">contents</span><span class="pi">:</span> <span class="s">write</span>
+	
+ <span class="na">jobs</span><span class="pi">:</span>
+     <span class="na">deploy</span><span class="pi">:</span>
+       <span class="na">runs-on</span><span class="pi">:</span> <span class="s">ubuntu-latest</span>
+       <span class="na">steps</span><span class="pi">:</span>
+       <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Checkout repository</span>
+         <span class="na">uses</span><span class="pi">:</span> <span class="s">actions/checkout@v4</span>
+	
+       <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Set up ruby and gems</span>
+         <span class="na">uses</span><span class="pi">:</span> <span class="s">ruby/setup-ruby@v1</span> <span class="c1">#如果用ruby install的话好像没法切换版本</span>
+         <span class="na">with</span><span class="pi">:</span>
+           <span class="na">ruby-version</span><span class="pi">:</span> <span class="s1">'</span><span class="s">3.2'</span> <span class="c1"># Not needed with a .ruby-version file</span>
+           <span class="na">bundler-cache</span><span class="pi">:</span> <span class="kc">true</span> <span class="c1"># runs 'bundle install' and caches installed gems automatically</span>
+<span class="err">	</span>
+       <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Build and deploy</span>
+         <span class="na">run</span><span class="pi">:</span> <span class="pi">|</span>
+             <span class="s">bundle exec jekyll build</span>
+             <span class="s">echo 'personal-homepage' &gt; _site/CNAME</span>
+             <span class="s">cp _site/index.html _site/404.html</span>
+             <span class="s">touch _site/.nojekyll #必须的，gh-pages分支没有环境，必须要跳过build</span>
+         <span class="na">env</span><span class="pi">:</span>
+             <span class="na">BASE_URL</span><span class="pi">:</span> <span class="s1">'</span><span class="s">/personal-homepage/'</span>  <span class="c1"># Adjust this based on your repository name</span>
+<span class="err">	</span>
+       <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Deploy to GitHub Pages</span>
+         <span class="na">uses</span><span class="pi">:</span> <span class="s">JamesIves/github-pages-deploy-action@releases/v3</span>
+         <span class="na">with</span><span class="pi">:</span>
+             <span class="na">GITHUB_TOKEN</span><span class="pi">:</span> <span class="s">$</span>
+             <span class="na">BRANCH</span><span class="pi">:</span> <span class="s">gh-pages</span>
+             <span class="na">FOLDER</span><span class="pi">:</span> <span class="s">_site</span>
+</code></pre></div>    </div>
+    <ul>
+      <li>因为actions里有写入操作，需要先去账户生成一个有权限的token。具体参考<a href="https://docs.github.com/zh/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens">github文档</a></li>
+      <li>还需要在repo setting里把gh-pages<a href="https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site">设置为pages对应的branch</a> 。</li>
+    </ul>
+  </li>
+  <li><strong>更新内容：</strong>
+    <ul>
+      <li>在 <code class="language-plaintext highlighter-rouge">docs/_posts</code> 中更新内容。因为我平时笔记都是在 Obsidian 中编辑的，决定在 Obsidian 中设置一个文件夹，然后将每篇笔记同步到 <code class="language-plaintext highlighter-rouge">docs/_posts</code> 文件夹中。</li>
+      <li>用obsidian的优点：
+        <ul>
+          <li>Markdown 格式, 包括Front Matter在 Obsidian 中显示非常舒适。</li>
+          <li>
+            <p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020231221194128.png" alt="Pasted image 20231221194128.png" width="600" /></p>
+          </li>
+          <li>利用 Obsidian 的<a href="https://github.com/beaussan/update-time-on-edit-obsidian"><code class="language-plaintext highlighter-rouge">update-time-on-edit</code></a> 插件，可以自动更新 <code class="language-plaintext highlighter-rouge">last_modified_date</code>。</li>
+          <li>利用 Obsidian 的 <code class="language-plaintext highlighter-rouge">unique note</code> 插件，可以通过点击生成符合格式的笔记模板。</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><strong>同步：</strong>
+    <ul>
+      <li>大部分 Obsidian 的 Markdown 格式是直接兼容的。为了同步，我编写了一个 Bash 脚本<code class="language-plaintext highlighter-rouge">sync_homepage.sh</code> ，把双链改成 Markdown 链接，并将文章中链接的图片同步到 <code class="language-plaintext highlighter-rouge">docs/attachment</code> 文件夹下。</li>
+      <li>注意代码块可能会解析错误，所以在脚本里把ruby的代码块都替换成Liquid语法。</li>
+      <li>问题：目前不支持增量同步，每次同步都需要遍历所有文件，但由于都是文本文件，影响较小。</li>
+    </ul>
+  </li>
+  <li><strong>和raycast联动:</strong>
+    <ul>
+      <li>然后给脚本设置raycast的标记。这样每次在obsidian里面编辑完，直接用raycast快捷键同步。
+ <img src="/personal_homepage/docs/attachment/Pasted%20image%2020231221195227.png" alt="Pasted image 20231221195227.png" width="600" /></li>
+    </ul>
+  </li>
+</ol>
+
+<p><code class="language-plaintext highlighter-rouge">sync_homepage.sh</code> 示范：</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby">	<span class="c1">#!/bin/bash</span>
+	
+	<span class="c1"># Required parameters:</span>
+	<span class="c1"># @raycast.schemaVersion 1</span>
+	<span class="c1"># @raycast.title sync_homepage</span>
+	<span class="c1"># @raycast.mode compact</span>
+	
+	<span class="c1"># obsidian文件夹路径</span>
+	<span class="n">source_folder</span><span class="o">=</span><span class="s2">"..."</span>
+	
+	<span class="c1"># homepage项目doc/_post文件夹路径</span>
+	<span class="n">target_folder</span><span class="o">=</span><span class="s2">".../docs/_posts"</span>
+	
+	<span class="c1"># 附件源文件夹路径</span>
+	<span class="n">attachment_source</span><span class="o">=</span><span class="s2">"..."</span>
+	
+	<span class="c1"># 附件目标文件夹路径</span>
+	<span class="n">attachment_target</span><span class="o">=</span><span class="s2">".../docs/attachment"</span>
+	
+	<span class="c1"># 检查附件目标文件夹是否存在，如果不存在则创建</span>
+	<span class="k">if</span> <span class="p">[</span> <span class="o">!</span> <span class="o">-</span><span class="n">d</span> <span class="s2">"$attachment_target"</span> <span class="p">];</span> <span class="k">then</span>
+		<span class="n">mkdir</span> <span class="o">-</span><span class="nb">p</span> <span class="s2">"$attachment_target"</span>
+	<span class="n">fi</span>
+	
+	<span class="c1"># 遍历源文件夹中的所有 .md 文件</span>
+	<span class="k">for</span> <span class="n">file</span> <span class="k">in</span> <span class="s2">"$source_folder"</span><span class="o">/*</span><span class="p">.</span><span class="nf">md</span><span class="p">;</span> <span class="k">do</span>
+		<span class="c1"># 获取文件名（不包含路径）</span>
+		<span class="n">filename</span><span class="o">=</span><span class="err">$</span><span class="p">(</span><span class="n">basename</span> <span class="s2">"$file"</span><span class="p">)</span>
+		
+		<span class="c1"># 复制 .md 文件到目标文件夹</span>
+		<span class="n">cp</span> <span class="s2">"$file"</span> <span class="s2">"$target_folder/$filename"</span>
+		<span class="n">echo</span> <span class="s2">"Copying $file to $target_folder/$filename"</span>
+		<span class="c1"># 遍历文件中的每个匹配的图片链接，提取图片文件名</span>
+		<span class="n">grep</span> <span class="o">-</span><span class="n">oE</span> <span class="s2">"!</span><span class="se">\[\[</span><span class="s2">([^]]+)</span><span class="se">\]\]</span><span class="s2">"</span> <span class="s2">"$target_folder/$filename"</span> <span class="o">|</span> <span class="k">while</span> <span class="no">IFS</span><span class="o">=</span> <span class="n">read</span> <span class="o">-</span><span class="n">r</span> <span class="n">image_link</span><span class="p">;</span> <span class="k">do</span>
+	
+	
+			<span class="n">image_name</span><span class="o">=</span><span class="err">$</span><span class="p">(</span><span class="n">echo</span> <span class="s2">"$image_link"</span> <span class="o">|</span> <span class="n">sed</span> <span class="o">-</span><span class="no">E</span> <span class="s1">'s/!\[\[([^|]+)\|[^]]+\]\]/\1/g'</span><span class="p">)</span> 
+			<span class="n">image_width</span><span class="o">=</span><span class="err">$</span><span class="p">(</span><span class="n">echo</span> <span class="s2">"$image_link"</span> <span class="o">|</span> <span class="n">grep</span> <span class="o">-</span><span class="n">o</span> <span class="o">-</span><span class="no">E</span> <span class="s1">'\|\d+'</span> <span class="o">|</span> <span class="n">sed</span> <span class="s1">'s/|//'</span><span class="p">)</span>
+	
+			<span class="n">sed</span> <span class="o">-</span><span class="n">i</span> <span class="s1">''</span> <span class="o">-</span><span class="no">E</span> <span class="s1">'s/!\[\[([^|]+)\|([^]]+)\]\]/\!\[\1\]\({{ '</span><span class="p">\</span><span class="s1">''</span><span class="p">\</span><span class="sr">/docs\/attachment\/\1'\'' | relative_url }}\){:width="'${image_width}'"}/</span><span class="n">g</span><span class="err">'</span> <span class="s2">"$target_folder/$filename"</span>
+	
+			<span class="c1"># 复制附件文件到目标附件文件夹</span>
+			<span class="n">cp</span> <span class="s2">"$attachment_source/$image_name"</span> <span class="s2">"$attachment_target/"</span>
+			<span class="n">echo</span> <span class="s2">"Copying $attachment_source/$image_name to $attachment_target/"</span>
+		<span class="n">done</span>
+		<span class="c1"># 替换ruby 代码块为Liquid语法</span>
+		<span class="o">...</span>
+	<span class="n">done</span>
+	</code></pre></figure>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;nil, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name></author><category term="docs" /><category term="WebPage" /><category term="content" /><category term="jekyll" /><category term="markup" /><category term="obsidian" /><summary type="html"><![CDATA[用jekyll的原因无需多说。这样配置好工作流之后，除了编写内容基本没有什么麻烦的操作(登录在线网页，换编辑器之类在我看来都很麻烦。。)。 Ruby的环境管理，包管理方式]]></summary></entry><entry><title type="html">Hidden Post</title><link href="https://roshameow.github.io//personal_homepage/docs/hidden-post/" rel="alternate" type="text/html" title="Hidden Post" /><published>2018-02-25T00:00:00+00:00</published><updated>2018-02-25T00:00:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/hidden-post</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/hidden-post/"><![CDATA[<p>This post has YAML Front Matter of <code class="language-plaintext highlighter-rouge">hidden: true</code> and should not appear in <code class="language-plaintext highlighter-rouge">paginator.posts</code>.</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;nil, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name></author><category term="docs" /><summary type="html"><![CDATA[This post has YAML Front Matter of hidden: true and should not appear in paginator.posts.]]></summary></entry><entry><title type="html">MathJax Example</title><link href="https://roshameow.github.io//personal_homepage/docs/mathjax-example/" rel="alternate" type="text/html" title="MathJax Example" /><published>2015-08-10T12:08:50+00:00</published><updated>2015-08-10T12:08:50+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/mathjax-example</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/mathjax-example/"><![CDATA[<p><a href="http://www.mathjax.org/">MathJax</a> is a simple, yet powerful, way of
 including Tex/LaTex/MathML based mathematics in HTML webpages.</p>
 
 <h2 id="usage">Usage</h2>
@@ -1042,65 +1283,4 @@ Capitalized text
     <td>
     </td>
   </tr>
-</table>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;nil, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name></author><category term="docs" /><category term="Markup" /><category term="html" /><category term="markup" /><category term="post" /><category term="title" /><summary type="html"><![CDATA[Putting special characters in the title should have no adverse effect on the layout or functionality.]]></summary></entry><entry><title type="html">Markup: Text Readability Test</title><link href="https://roshameow.github.io//personal_homepage/docs/markup-text-readability/" rel="alternate" type="text/html" title="Markup: Text Readability Test" /><published>2012-05-22T00:00:00+00:00</published><updated>2017-03-09T17:26:59+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/markup-text-readability</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/markup-text-readability/"><![CDATA[<p>Portland in shoreditch Vice, labore typewriter pariatur hoodie fap sartorial Austin. Pinterest literally occupy Schlitz forage. Odio ad blue bottle vinyl, 90’s narwhal commodo bitters pour-over nostrud. Ugh est hashtag in, fingerstache adipisicing laboris esse Pinterest shabby chic Portland. Shoreditch bicycle rights anim, flexitarian laboris put a bird on it vinyl cupidatat narwhal. Hashtag artisan skateboard, flannel Bushwick nesciunt salvia aute fixie do plaid post-ironic dolor McSweeney’s. Cliche pour-over chambray nulla four loko skateboard sapiente hashtag.</p>
-
-<p>Vero laborum commodo occupy. Semiotics voluptate mumblecore pug. Cosby sweater ullamco quinoa ennui assumenda, sapiente occupy delectus lo-fi. Ea fashion axe Marfa cillum aliquip. Retro Bushwick keytar cliche. Before they sold out sustainable gastropub Marfa readymade, ethical Williamsburg skateboard brunch qui consectetur gentrify semiotics. Mustache cillum irony, fingerstache magna pour-over keffiyeh tousled selfies.</p>
-
-<h2 id="cupidatat-90s-lo-fi-authentic-try-hard">Cupidatat 90’s lo-fi authentic try-hard</h2>
-
-<p>In pug Portland incididunt mlkshk put a bird on it vinyl quinoa. Terry Richardson shabby chic +1, scenester Tonx excepteur tempor fugiat voluptate fingerstache aliquip nisi next level. Farm-to-table hashtag Truffaut, Odd Future ex meggings gentrify single-origin coffee try-hard 90’s.</p>
-
-<ul>
-  <li>Sartorial hoodie</li>
-  <li>Labore viral forage</li>
-  <li>Tote bag selvage</li>
-  <li>DIY exercitation et id ugh tumblr church-key</li>
-</ul>
-
-<p>Incididunt umami sriracha, ethical fugiat VHS ex assumenda yr irure direct trade. Marfa Truffaut bicycle rights, kitsch placeat Etsy kogi asymmetrical. Beard locavore flexitarian, kitsch photo booth hoodie plaid ethical readymade leggings yr.</p>
-
-<p>Aesthetic odio dolore, meggings disrupt qui readymade stumptown brunch Terry Richardson pour-over gluten-free. Banksy american apparel in selfies, biodiesel flexitarian organic meh wolf quinoa gentrify banjo kogi. Readymade tofu ex, scenester dolor umami fingerstache occaecat fashion axe Carles jean shorts minim. Keffiyeh fashion axe nisi Godard mlkshk dolore. Lomo you probably haven’t heard of them eu non, Odd Future Truffaut pug keytar meggings McSweeney’s Pinterest cred. Etsy literally aute esse, eu bicycle rights qui meggings fanny pack. Gentrify leggings pug flannel duis.</p>
-
-<h2 id="forage-occaecat-cardigan-qui">Forage occaecat cardigan qui</h2>
-
-<p>Fashion axe hella gastropub lo-fi kogi 90’s aliquip +1 veniam delectus tousled. Cred sriracha locavore gastropub kale chips, iPhone mollit sartorial. Anim dolore 8-bit, pork belly dolor photo booth aute flannel small batch. Dolor disrupt ennui, tattooed whatever salvia Banksy sartorial roof party selfies raw denim sint meh pour-over. Ennui eu cardigan sint, gentrify iPhone cornhole.</p>
-
-<blockquote>
-  <p>Whatever velit occaecat quis deserunt gastropub, leggings elit tousled roof party 3 wolf moon kogi pug blue bottle ea. Fashion axe shabby chic Austin quinoa pickled laborum bitters next level, disrupt deep v accusamus non fingerstache.</p>
-</blockquote>
-
-<p>Tote bag asymmetrical elit sunt. Occaecat authentic Marfa, hella McSweeney’s next level irure veniam master cleanse. Sed hoodie letterpress artisan wolf leggings, 3 wolf moon commodo ullamco. Anim occupy ea labore Terry Richardson. Tofu ex master cleanse in whatever pitchfork banh mi, occupy fugiat fanny pack Austin authentic. Magna fugiat 3 wolf moon, labore McSweeney’s sustainable vero consectetur. Gluten-free disrupt enim, aesthetic fugiat jean shorts trust fund keffiyeh magna try-hard.</p>
-
-<h2 id="hoodie-duis">Hoodie Duis</h2>
-
-<p>Actually salvia consectetur, hoodie duis lomo YOLO sunt sriracha. Aute pop-up brunch farm-to-table odio, salvia irure occaecat. Sriracha small batch literally skateboard. Echo Park nihil hoodie, aliquip forage artisan laboris. Trust fund reprehenderit nulla locavore. Stumptown raw denim kitsch, keffiyeh nulla twee dreamcatcher fanny pack ullamco 90’s pop-up est culpa farm-to-table. Selfies 8-bit do pug odio.</p>
-
-<h3 id="thundercats-ho">Thundercats Ho!</h3>
-
-<p>Fingerstache thundercats Williamsburg, deep v scenester Banksy ennui vinyl selfies mollit biodiesel duis odio pop-up. Banksy 3 wolf moon try-hard, sapiente enim stumptown deep v ad letterpress. Squid beard brunch, exercitation raw denim yr sint direct trade. Raw denim narwhal id, flannel DIY McSweeney’s seitan. Letterpress artisan bespoke accusamus, meggings laboris consequat Truffaut qui in seitan. Sustainable cornhole Schlitz, twee Cosby sweater banh mi deep v forage letterpress flannel whatever keffiyeh. Sartorial cred irure, semiotics ethical sed blue bottle nihil letterpress.</p>
-
-<p>Occupy et selvage squid, pug brunch blog nesciunt hashtag mumblecore skateboard yr kogi. Ugh small batch swag four loko. Fap post-ironic qui tote bag farm-to-table american apparel scenester keffiyeh vero, swag non pour-over gentrify authentic pitchfork. Schlitz scenester lo-fi voluptate, tote bag irony bicycle rights pariatur vero Vice freegan wayfarers exercitation nisi shoreditch. Chambray tofu vero sed. Street art swag literally leggings, Cosby sweater mixtape PBR lomo Banksy non in pitchfork ennui McSweeney’s selfies. Odd Future Banksy non authentic.</p>
-
-<p>Aliquip enim artisan dolor post-ironic. Pug tote bag Marfa, deserunt pour-over Portland wolf eu odio intelligentsia american apparel ugh ea. Sunt viral et, 3 wolf moon gastropub pug id. Id fashion axe est typewriter, mlkshk Portland art party aute brunch. Sint pork belly Cosby sweater, deep v mumblecore kitsch american apparel. Try-hard direct trade tumblr sint skateboard. Adipisicing bitters excepteur biodiesel, pickled gastropub aute veniam.</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;nil, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name></author><category term="docs" /><category term="sample post" /><category term="readability" /><category term="test" /><summary type="html"><![CDATA[A large amount of sample text to test readability of a text heavy page.]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://roshameow.github.io//personal_homepage/images/so-simple-sample-image-2.jpg" /><media:content medium="image" url="https://roshameow.github.io//personal_homepage/images/so-simple-sample-image-2.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Layout: Author Override</title><link href="https://roshameow.github.io//personal_homepage/docs/layout-author-override/" rel="alternate" type="text/html" title="Layout: Author Override" /><published>2012-03-14T00:00:00+00:00</published><updated>2012-03-14T00:00:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/layout-author-override</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/layout-author-override/"><![CDATA[<p>Sites that may have content authored from various individuals can be accommodated by using <a href="https://jekyllrb.com/docs/datafiles/">data files</a>.</p>
-
-<p>To attribute an author to a post or page that is different from the site author specified in <code class="language-plaintext highlighter-rouge">_config.yml</code>:</p>
-
-<p><strong>Step 1.</strong> Create <code class="language-plaintext highlighter-rouge">_data/authors.yml</code> and add authors using the following format. Anything variables found under <code class="language-plaintext highlighter-rouge">author</code> in <code class="language-plaintext highlighter-rouge">_config.yml</code> can be used (e.g. <code class="language-plaintext highlighter-rouge">name</code>, <code class="language-plaintext highlighter-rouge">avatar</code>, <code class="language-plaintext highlighter-rouge">uri</code>, social media profiles, etc.).</p>
-
-<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># /_data/authors.yml</span>
-
-<span class="na">Billy Rick</span><span class="pi">:</span>
-  <span class="na">name</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Billy</span><span class="nv"> </span><span class="s">Rick"</span>
-  <span class="na">picture</span><span class="pi">:</span> <span class="s2">"</span><span class="s">/images/bio-photo-2.jpg"</span>
-
-<span class="na">Cornelius Fiddlebone</span><span class="pi">:</span>
-  <span class="na">name</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Cornelius</span><span class="nv"> </span><span class="s">Fiddlebone"</span>
-  <span class="na">picture</span><span class="pi">:</span> <span class="s2">"</span><span class="s">/images/bio-photo.jpg"</span>
-</code></pre></div></div>
-
-<p><strong>Step 2.</strong> Assign one of the authors in <code class="language-plaintext highlighter-rouge">authors.yml</code> to a post or page you wish to override the <code class="language-plaintext highlighter-rouge">site.author</code> with.</p>
-
-<p>Example: To assign <code class="language-plaintext highlighter-rouge">Billy Rick</code> as an author for a post the following YAML Front Matter would be applied:</p>
-
-<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">author</span><span class="pi">:</span> <span class="s">Billy Rick</span>
-</code></pre></div></div>]]></content><author><name>Billy Rick</name></author><category term="docs" /><summary type="html"><![CDATA[A post to test author overrides using a data file.]]></summary></entry></feed>
+</table>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;nil, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name></author><category term="docs" /><category term="Markup" /><category term="html" /><category term="markup" /><category term="post" /><category term="title" /><summary type="html"><![CDATA[Putting special characters in the title should have no adverse effect on the layout or functionality.]]></summary></entry></feed>

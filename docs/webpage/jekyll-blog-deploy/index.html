@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<!--
+    So Simple Jekyll Theme 3.2.0
+    Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+    Free for personal and commercial use under the MIT license
+    https://github.com/mmistakes/so-simple-theme/blob/master/LICENSE
+-->
+<html lang="en-US" class="no-js">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  
+
+  
+    
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>用 jekyll+obsidian生成个人主页并部署到 github pages的工作流 | Liu, Wen’s Home Page</title>
+<meta name="generator" content="Jekyll v4.3.2" />
+<meta property="og:title" content="用 jekyll+obsidian生成个人主页并部署到 github pages的工作流" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="用jekyll的原因无需多说。这样配置好工作流之后，除了编写内容基本没有什么麻烦的操作(登录在线网页，换编辑器之类在我看来都很麻烦。。)。 Ruby的环境管理，包管理方式" />
+<meta property="og:description" content="用jekyll的原因无需多说。这样配置好工作流之后，除了编写内容基本没有什么麻烦的操作(登录在线网页，换编辑器之类在我看来都很麻烦。。)。 Ruby的环境管理，包管理方式" />
+<link rel="canonical" href="https://roshameow.github.io//personal_homepage/docs/webpage/jekyll-blog-deploy/" />
+<meta property="og:url" content="https://roshameow.github.io//personal_homepage/docs/webpage/jekyll-blog-deploy/" />
+<meta property="og:site_name" content="Liu, Wen’s Home Page" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-12-20T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="用 jekyll+obsidian生成个人主页并部署到 github pages的工作流" />
+<meta name="twitter:site" content="@" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-12-22T09:47:48+00:00","datePublished":"2023-12-20T00:00:00+00:00","description":"用jekyll的原因无需多说。这样配置好工作流之后，除了编写内容基本没有什么麻烦的操作(登录在线网页，换编辑器之类在我看来都很麻烦。。)。 Ruby的环境管理，包管理方式","headline":"用 jekyll+obsidian生成个人主页并部署到 github pages的工作流","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/docs/webpage/jekyll-blog-deploy/"},"url":"https://roshameow.github.io//personal_homepage/docs/webpage/jekyll-blog-deploy/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  
+
+  <script>
+    /* Cut the mustard */
+    if ( 'querySelector' in document && 'addEventListener' in window ) {
+      document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + 'js';
+    }
+  </script>
+
+  <link rel="stylesheet" href="/personal_homepage/assets/css/main.css">
+  <link rel="stylesheet" href="/personal_homepage/assets/css/skins/default.css">
+  
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,700,700i|Lora:400,400i,700,700i">
+  <link rel="alternate" type="application/atom+xml" title="Liu, Wen&#39;s Home Page" href="/personal_homepage/atom.xml">
+<!-- start custom head snippets -->
+
+<!-- insert favicons. use http://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+</head>
+
+
+  <body class="layout--post  用-jekyll-obsidian生成个人主页并部署到-github-pages的工作流">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#primary-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+  <div class="navigation-wrapper">
+    <a href="#menu-toggle" id="menu-toggle">Menu</a>
+    <nav id="primary-nav" class="site-nav animated drop">
+      <ul><li><a href="/personal_homepage/">Home</a></li><li><a href="/personal_homepage/posts/">Posts</a></li><li><a href="/personal_homepage/categories/">Categories</a></li><li><a href="/personal_homepage/tags/">Tags</a></li><li><a href="/personal_homepage/recipes/">Family</a></li><li><a href="/personal_homepage/search/">Search</a></li></ul>
+    </nav>
+  </div><!-- /.navigation-wrapper -->
+
+
+    <header class="masthead">
+  <div class="wrap">
+    
+    
+    
+      
+        <div class="site-title animated fadeIn"><a href="/personal_homepage/">Liu, Wen's Home Page</a></div>
+      
+      <p class="site-description animated fadeIn" itemprop="description">Work, Experiments and Ideas.</p>
+    
+  </div>
+</header><!-- /.masthead -->
+
+
+    <main id="main" class="main-content" aria-label="Content">
+  <article class="h-entry">
+    
+
+    <div class="page-wrapper">
+      <header class="page-header">
+        
+        
+        <h1 id="page-title" class="page-title p-name">用 jekyll+obsidian生成个人主页并部署到 github pages的工作流
+</h1>
+        
+      </header>
+
+      <div class="page-sidebar">
+        <div class="page-author h-card p-author"><div class="author-info"><ul class="author-links"><li class="author-link">
+            <a class="u-url" rel="me" href=""><i class="fas fa-link fa-lg" title=""></i></a>
+          </li></ul>
+
+<span class="read-time">1 min read</span>
+
+    <time class="page-date dt-published" datetime="2023-12-20T00:00:00+00:00"><a class="u-url" href="">December 20, 2023</a>
+</time>
+
+  </div>
+</div>
+
+        
+  <h3 class="page-taxonomies-title">Categories</h3>
+  
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a class="p-category" href="/personal_homepage/categories/#webpage" title="Pages filed under WebPage">WebPage</a></li><li class="page-taxonomy"><a class="p-category" href="/personal_homepage/categories/#docs" title="Pages filed under docs">docs</a></li>
+  </ul>
+
+
+        
+  <h3 class="page-taxonomies-title">Tags</h3>
+  
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a href="/personal_homepage/tags/#content" title="Pages tagged content" rel="tag">content</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#jekyll" title="Pages tagged jekyll" rel="tag">jekyll</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#markup" title="Pages tagged markup" rel="tag">markup</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#obsidian" title="Pages tagged obsidian" rel="tag">obsidian</a></li>
+  </ul>
+
+
+      </div>
+
+      <div class="page-content">
+        <div class="e-content">
+          <p>用jekyll的原因无需多说。这样配置好工作流之后，除了编写内容基本没有什么麻烦的操作(登录在线网页，换编辑器之类在我看来都很麻烦。。)。</p>
+<h3 id="ruby的环境管理包管理方式">Ruby的环境管理，包管理方式</h3>
+
+<ul>
+  <li><strong>管理顺序：</strong> churby -&gt; ruby -&gt; bundle -&gt; gem -&gt; jekyll
+    <ul>
+      <li><strong>ruby：</strong> 是经常在 web 开发中使用的一种动态语言。</li>
+      <li><strong>churby：</strong> Ruby 的环境管理工具，用于管理不同版本的 Ruby。</li>
+      <li><strong>gem：</strong> Ruby 编写的软件包的统称，Jekyll 也是一个 gem。</li>
+      <li><strong>bundler：</strong> 用于管理项目 gem 的工具，根据 Gemfile 管理不同版本的 gem。bundler自己本身也是gem。</li>
+    </ul>
+  </li>
+</ul>
+
+<p>如果用 Python 来类比，关系大概是这样：</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">ruby</th>
+      <th style="text-align: center">python</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">churby 版本号</code></td>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">conda create -n my_env python=版本号;</code><br /> <code class="language-plaintext highlighter-rouge">conda activate my_env</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">gem install 某个包</code></td>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">pip install 某个包</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">bundler install</code></td>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">pip install -r requirements.txt</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="具体配置流程">具体配置流程</h3>
+
+<ol>
+  <li><strong>安装ruby</strong>
+    <ul>
+      <li>按照 <a href="https://jekyllrb.com/docs/installation/macos/">Jekyll 网站</a> 的方法，安装 Chruby 和 Ruby-install。</li>
+      <li>切换到对应版本的 Ruby。</li>
+      <li>在 macOS 中我遇到的问题是系统中已经安装了 Miniforge3，其中包含了 OpenSSL，但不能正常使用。通过 <a href="https://medium.com/@canerten/building-ruby-3-1-3-fails-with-openssl-1-0-2o-1-on-m1-apple-silicon-mac-with-brew-89d7e550420b">Homebrew 安装 OpenSSL@1.1</a> 解决。</li>
+    </ul>
+  </li>
+  <li><strong>本地配置</strong>
+    <ul>
+      <li>选择一个博客主题，例如 <a href="https://github.com/mmistakes/so-simple-theme">So Simple</a>，fork 对应主题的 GitHub 代码，然后根据自己的需要修改 <code class="language-plaintext highlighter-rouge">_config.yml</code>。</li>
+      <li>运行 <code class="language-plaintext highlighter-rouge">bundler install</code> 安装项目所需的 gem。</li>
+      <li>运行 <code class="language-plaintext highlighter-rouge">bundle exec jekyll serve</code>，此时可以在本地进行预览。</li>
+    </ul>
+  </li>
+  <li><strong>利用 GitHub Actions 部署到 GitHub Pages</strong>
+    <ul>
+      <li>将下面的 Action 脚本添加到项目的 <code class="language-plaintext highlighter-rouge">.github/workflows/main.yml</code> 文件。等待执行完成，可以通过浏览器访问 <code class="language-plaintext highlighter-rouge">http://name.github.io/base_url/</code>。</li>
+    </ul>
+
+    <div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="na">name</span><span class="pi">:</span> <span class="s">Homepage Project Deploy to GitHub Pages</span>
+	
+ <span class="na">on</span><span class="pi">:</span>
+   <span class="na">push</span><span class="pi">:</span>
+     <span class="na">branches</span><span class="pi">:</span>
+       <span class="pi">-</span> <span class="s">master</span> <span class="c1">#设置每次将代码推送到 master 分支时自动执行</span>
+<span class="err">	</span>
+ <span class="na">permissions</span><span class="pi">:</span>
+   <span class="na">contents</span><span class="pi">:</span> <span class="s">write</span>
+	
+ <span class="na">jobs</span><span class="pi">:</span>
+     <span class="na">deploy</span><span class="pi">:</span>
+       <span class="na">runs-on</span><span class="pi">:</span> <span class="s">ubuntu-latest</span>
+       <span class="na">steps</span><span class="pi">:</span>
+       <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Checkout repository</span>
+         <span class="na">uses</span><span class="pi">:</span> <span class="s">actions/checkout@v4</span>
+	
+       <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Set up ruby and gems</span>
+         <span class="na">uses</span><span class="pi">:</span> <span class="s">ruby/setup-ruby@v1</span> <span class="c1">#如果用ruby install的话好像没法切换版本</span>
+         <span class="na">with</span><span class="pi">:</span>
+           <span class="na">ruby-version</span><span class="pi">:</span> <span class="s1">'</span><span class="s">3.2'</span> <span class="c1"># Not needed with a .ruby-version file</span>
+           <span class="na">bundler-cache</span><span class="pi">:</span> <span class="kc">true</span> <span class="c1"># runs 'bundle install' and caches installed gems automatically</span>
+<span class="err">	</span>
+       <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Build and deploy</span>
+         <span class="na">run</span><span class="pi">:</span> <span class="pi">|</span>
+             <span class="s">bundle exec jekyll build</span>
+             <span class="s">echo 'personal-homepage' &gt; _site/CNAME</span>
+             <span class="s">cp _site/index.html _site/404.html</span>
+             <span class="s">touch _site/.nojekyll #必须的，gh-pages分支没有环境，必须要跳过build</span>
+         <span class="na">env</span><span class="pi">:</span>
+             <span class="na">BASE_URL</span><span class="pi">:</span> <span class="s1">'</span><span class="s">/personal-homepage/'</span>  <span class="c1"># Adjust this based on your repository name</span>
+<span class="err">	</span>
+       <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Deploy to GitHub Pages</span>
+         <span class="na">uses</span><span class="pi">:</span> <span class="s">JamesIves/github-pages-deploy-action@releases/v3</span>
+         <span class="na">with</span><span class="pi">:</span>
+             <span class="na">GITHUB_TOKEN</span><span class="pi">:</span> <span class="s">$</span>
+             <span class="na">BRANCH</span><span class="pi">:</span> <span class="s">gh-pages</span>
+             <span class="na">FOLDER</span><span class="pi">:</span> <span class="s">_site</span>
+</code></pre></div>    </div>
+    <ul>
+      <li>因为actions里有写入操作，需要先去账户生成一个有权限的token。具体参考<a href="https://docs.github.com/zh/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens">github文档</a></li>
+      <li>还需要在repo setting里把gh-pages<a href="https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site">设置为pages对应的branch</a> 。</li>
+    </ul>
+  </li>
+  <li><strong>更新内容：</strong>
+    <ul>
+      <li>在 <code class="language-plaintext highlighter-rouge">docs/_posts</code> 中更新内容。因为我平时笔记都是在 Obsidian 中编辑的，决定在 Obsidian 中设置一个文件夹，然后将每篇笔记同步到 <code class="language-plaintext highlighter-rouge">docs/_posts</code> 文件夹中。</li>
+      <li>用obsidian的优点：
+        <ul>
+          <li>Markdown 格式, 包括Front Matter在 Obsidian 中显示非常舒适。</li>
+          <li>
+            <p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020231221194128.png" alt="Pasted image 20231221194128.png" width="600" /></p>
+          </li>
+          <li>利用 Obsidian 的<a href="https://github.com/beaussan/update-time-on-edit-obsidian"><code class="language-plaintext highlighter-rouge">update-time-on-edit</code></a> 插件，可以自动更新 <code class="language-plaintext highlighter-rouge">last_modified_date</code>。</li>
+          <li>利用 Obsidian 的 <code class="language-plaintext highlighter-rouge">unique note</code> 插件，可以通过点击生成符合格式的笔记模板。</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><strong>同步：</strong>
+    <ul>
+      <li>大部分 Obsidian 的 Markdown 格式是直接兼容的。为了同步，我编写了一个 Bash 脚本<code class="language-plaintext highlighter-rouge">sync_homepage.sh</code> ，把双链改成 Markdown 链接，并将文章中链接的图片同步到 <code class="language-plaintext highlighter-rouge">docs/attachment</code> 文件夹下。</li>
+      <li>注意代码块可能会解析错误，所以在脚本里把ruby的代码块都替换成Liquid语法。</li>
+      <li>问题：目前不支持增量同步，每次同步都需要遍历所有文件，但由于都是文本文件，影响较小。</li>
+    </ul>
+  </li>
+  <li><strong>和raycast联动:</strong>
+    <ul>
+      <li>然后给脚本设置raycast的标记。这样每次在obsidian里面编辑完，直接用raycast快捷键同步。
+ <img src="/personal_homepage/docs/attachment/Pasted%20image%2020231221195227.png" alt="Pasted image 20231221195227.png" width="600" /></li>
+    </ul>
+  </li>
+</ol>
+
+<p><code class="language-plaintext highlighter-rouge">sync_homepage.sh</code> 示范：</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby">	<span class="c1">#!/bin/bash</span>
+	
+	<span class="c1"># Required parameters:</span>
+	<span class="c1"># @raycast.schemaVersion 1</span>
+	<span class="c1"># @raycast.title sync_homepage</span>
+	<span class="c1"># @raycast.mode compact</span>
+	
+	<span class="c1"># obsidian文件夹路径</span>
+	<span class="n">source_folder</span><span class="o">=</span><span class="s2">"..."</span>
+	
+	<span class="c1"># homepage项目doc/_post文件夹路径</span>
+	<span class="n">target_folder</span><span class="o">=</span><span class="s2">".../docs/_posts"</span>
+	
+	<span class="c1"># 附件源文件夹路径</span>
+	<span class="n">attachment_source</span><span class="o">=</span><span class="s2">"..."</span>
+	
+	<span class="c1"># 附件目标文件夹路径</span>
+	<span class="n">attachment_target</span><span class="o">=</span><span class="s2">".../docs/attachment"</span>
+	
+	<span class="c1"># 检查附件目标文件夹是否存在，如果不存在则创建</span>
+	<span class="k">if</span> <span class="p">[</span> <span class="o">!</span> <span class="o">-</span><span class="n">d</span> <span class="s2">"$attachment_target"</span> <span class="p">];</span> <span class="k">then</span>
+		<span class="n">mkdir</span> <span class="o">-</span><span class="nb">p</span> <span class="s2">"$attachment_target"</span>
+	<span class="n">fi</span>
+	
+	<span class="c1"># 遍历源文件夹中的所有 .md 文件</span>
+	<span class="k">for</span> <span class="n">file</span> <span class="k">in</span> <span class="s2">"$source_folder"</span><span class="o">/*</span><span class="p">.</span><span class="nf">md</span><span class="p">;</span> <span class="k">do</span>
+		<span class="c1"># 获取文件名（不包含路径）</span>
+		<span class="n">filename</span><span class="o">=</span><span class="err">$</span><span class="p">(</span><span class="n">basename</span> <span class="s2">"$file"</span><span class="p">)</span>
+		
+		<span class="c1"># 复制 .md 文件到目标文件夹</span>
+		<span class="n">cp</span> <span class="s2">"$file"</span> <span class="s2">"$target_folder/$filename"</span>
+		<span class="n">echo</span> <span class="s2">"Copying $file to $target_folder/$filename"</span>
+		<span class="c1"># 遍历文件中的每个匹配的图片链接，提取图片文件名</span>
+		<span class="n">grep</span> <span class="o">-</span><span class="n">oE</span> <span class="s2">"!</span><span class="se">\[\[</span><span class="s2">([^]]+)</span><span class="se">\]\]</span><span class="s2">"</span> <span class="s2">"$target_folder/$filename"</span> <span class="o">|</span> <span class="k">while</span> <span class="no">IFS</span><span class="o">=</span> <span class="n">read</span> <span class="o">-</span><span class="n">r</span> <span class="n">image_link</span><span class="p">;</span> <span class="k">do</span>
+	
+	
+			<span class="n">image_name</span><span class="o">=</span><span class="err">$</span><span class="p">(</span><span class="n">echo</span> <span class="s2">"$image_link"</span> <span class="o">|</span> <span class="n">sed</span> <span class="o">-</span><span class="no">E</span> <span class="s1">'s/!\[\[([^|]+)\|[^]]+\]\]/\1/g'</span><span class="p">)</span> 
+			<span class="n">image_width</span><span class="o">=</span><span class="err">$</span><span class="p">(</span><span class="n">echo</span> <span class="s2">"$image_link"</span> <span class="o">|</span> <span class="n">grep</span> <span class="o">-</span><span class="n">o</span> <span class="o">-</span><span class="no">E</span> <span class="s1">'\|\d+'</span> <span class="o">|</span> <span class="n">sed</span> <span class="s1">'s/|//'</span><span class="p">)</span>
+	
+			<span class="n">sed</span> <span class="o">-</span><span class="n">i</span> <span class="s1">''</span> <span class="o">-</span><span class="no">E</span> <span class="s1">'s/!\[\[([^|]+)\|([^]]+)\]\]/\!\[\1\]\({{ '</span><span class="p">\</span><span class="s1">''</span><span class="p">\</span><span class="sr">/docs\/attachment\/\1'\'' | relative_url }}\){:width="'${image_width}'"}/</span><span class="n">g</span><span class="err">'</span> <span class="s2">"$target_folder/$filename"</span>
+	
+			<span class="c1"># 复制附件文件到目标附件文件夹</span>
+			<span class="n">cp</span> <span class="s2">"$attachment_source/$image_name"</span> <span class="s2">"$attachment_target/"</span>
+			<span class="n">echo</span> <span class="s2">"Copying $attachment_source/$image_name to $attachment_target/"</span>
+		<span class="n">done</span>
+		<span class="c1"># 替换ruby 代码块为Liquid语法</span>
+		<span class="o">...</span>
+	<span class="n">done</span>
+	</code></pre></figure>
+
+
+        </div>
+
+        
+
+        
+
+        <nav class="page-pagination" role="navigation">
+  
+    <a class="page-previous" href="/personal_homepage/docs/hidden-post/">
+      <h4 class="page-pagination-label">Previous</h4>
+      <span class="page-pagination-title">
+        <i class="fas fa-arrow-left"></i> Hidden Post
+
+      </span>
+    </a>
+  
+
+  
+    <a class="page-next" href="/personal_homepage/docs/photo/photo-color/">
+      <h4 class="page-pagination-label">Next</h4>
+      <span class="page-pagination-title">
+        小红书学到的几种图片调色
+ <i class="fas fa-arrow-right"></i>
+      </span>
+    </a>
+  
+</nav>
+
+      </div>
+    </div>
+  </article>
+</main>
+
+    <footer id="footer" class="site-footer">
+  <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+<div class="social-icons"><a class="social-icon" href="/personal_homepage/atom.xml"><i class="fas fa-rss-square fa-2x" title="Feed"></i></a></div><div class="copyright">
+    
+      <p>&copy; 2023 Liu, Wen's Home Page. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://github.com/mmistakes/so-simple-theme" rel="nofollow">So Simple</a>.</p>
+    
+  </div>
+</footer>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <script src="/personal_homepage/assets/js/main.min.js"></script>
+  <script src="https://use.fontawesome.com/releases/v5.0.12/js/all.js"></script>
+
+
+<!-- MathJax -->
+
+<script>
+// http://docs.mathjax.org/en/latest/upgrading/v2.html
+MathJax = {
+  tex: {
+      tags: "ams"    // eq numbering options: none, ams, all
+  },
+  options: {
+    renderActions: {
+      // for mathjax 3, handle <script "math/tex"> blocks inserted by kramdown
+      find: [10, function (doc) {
+        for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+          const display = !!node.type.match(/; *mode=display/);
+          const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+          const text = document.createTextNode('');
+          node.parentNode.replaceChild(text, node);
+          math.start = {node: text, delim: '', n: 0};
+          math.end = {node: text, delim: '', n: 0};
+          doc.math.push(math);
+        }
+      }, '']
+    }
+  }
+}
+</script>
+
+<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+  </body>
+
+</html>

@@ -16,7 +16,7 @@
   
     
     <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>Theme Setup | My Awesome Site</title>
+<title>Theme Setup | Liu, Wen’s Home Page</title>
 <meta name="generator" content="Jekyll v4.3.2" />
 <meta property="og:title" content="Theme Setup" />
 <meta property="og:locale" content="en_US" />
@@ -24,7 +24,7 @@
 <meta property="og:description" content="Instructions on how to install and use the Jekyll theme So Simple." />
 <link rel="canonical" href="https://roshameow.github.io//personal_homepage/theme-setup/" />
 <meta property="og:url" content="https://roshameow.github.io//personal_homepage/theme-setup/" />
-<meta property="og:site_name" content="My Awesome Site" />
+<meta property="og:site_name" content="Liu, Wen’s Home Page" />
 <meta property="og:type" content="website" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Theme Setup" />
@@ -47,7 +47,7 @@
   <link rel="stylesheet" href="/personal_homepage/assets/css/skins/default.css">
   
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,700,700i|Lora:400,400i,700,700i">
-  <link rel="alternate" type="application/atom+xml" title="My Awesome Site" href="/personal_homepage/atom.xml">
+  <link rel="alternate" type="application/atom+xml" title="Liu, Wen&#39;s Home Page" href="/personal_homepage/atom.xml">
 <!-- start custom head snippets -->
 
 <!-- insert favicons. use http://realfavicongenerator.net/ -->
@@ -71,7 +71,7 @@
   <div class="navigation-wrapper">
     <a href="#menu-toggle" id="menu-toggle">Menu</a>
     <nav id="primary-nav" class="site-nav animated drop">
-      <ul><li><a href="/personal_homepage/">Home</a></li></ul>
+      <ul><li><a href="/personal_homepage/">Home</a></li><li><a href="/personal_homepage/posts/">Posts</a></li><li><a href="/personal_homepage/categories/">Categories</a></li><li><a href="/personal_homepage/tags/">Tags</a></li><li><a href="/personal_homepage/recipes/">Family</a></li><li><a href="/personal_homepage/search/">Search</a></li></ul>
     </nav>
   </div><!-- /.navigation-wrapper -->
 
@@ -82,9 +82,9 @@
     
     
       
-        <div class="site-title animated fadeIn"><a href="/personal_homepage/">My Awesome Site</a></div>
+        <div class="site-title animated fadeIn"><a href="/personal_homepage/">Liu, Wen's Home Page</a></div>
       
-      <p class="site-description animated fadeIn" itemprop="description">It really is the best.</p>
+      <p class="site-description animated fadeIn" itemprop="description">Work, Experiments and Ideas.</p>
     
   </div>
 </header><!-- /.masthead -->
@@ -458,7 +458,7 @@ bundle <span class="nb">exec </span>jekyll serve
 <!-- end custom footer snippets -->
 <div class="social-icons"><a class="social-icon" href="/personal_homepage/atom.xml"><i class="fas fa-rss-square fa-2x" title="Feed"></i></a></div><div class="copyright">
     
-      <p>&copy; 2023 My Awesome Site. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://github.com/mmistakes/so-simple-theme" rel="nofollow">So Simple</a>.</p>
+      <p>&copy; 2023 Liu, Wen's Home Page. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://github.com/mmistakes/so-simple-theme" rel="nofollow">So Simple</a>.</p>
     
   </div>
 </footer>
@@ -467,6 +467,35 @@ bundle <span class="nb">exec </span>jekyll serve
   <script src="/personal_homepage/assets/js/main.min.js"></script>
   <script src="https://use.fontawesome.com/releases/v5.0.12/js/all.js"></script>
 
+
+<!-- MathJax -->
+
+<script>
+// http://docs.mathjax.org/en/latest/upgrading/v2.html
+MathJax = {
+  tex: {
+      tags: "ams"    // eq numbering options: none, ams, all
+  },
+  options: {
+    renderActions: {
+      // for mathjax 3, handle <script "math/tex"> blocks inserted by kramdown
+      find: [10, function (doc) {
+        for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+          const display = !!node.type.match(/; *mode=display/);
+          const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+          const text = document.createTextNode('');
+          node.parentNode.replaceChild(text, node);
+          math.start = {node: text, delim: '', n: 0};
+          math.end = {node: text, delim: '', n: 0};
+          doc.math.push(math);
+        }
+      }, '']
+    }
+  }
+}
+</script>
+
+<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
 
   </body>
 
