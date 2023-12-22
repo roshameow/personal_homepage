@@ -31,7 +31,7 @@
 <meta property="twitter:title" content="用 jekyll+obsidian生成个人主页并部署到 github pages的工作流" />
 <meta name="twitter:site" content="@" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-12-22T09:47:48+00:00","datePublished":"2023-12-20T00:00:00+00:00","description":"用jekyll的原因无需多说。这样配置好工作流之后，除了编写内容基本没有什么麻烦的操作(登录在线网页，换编辑器之类在我看来都很麻烦。。)。 Ruby的环境管理，包管理方式","headline":"用 jekyll+obsidian生成个人主页并部署到 github pages的工作流","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/docs/webpage/jekyll-blog-deploy/"},"url":"https://roshameow.github.io//personal_homepage/docs/webpage/jekyll-blog-deploy/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-12-22T16:22:03+00:00","datePublished":"2023-12-20T00:00:00+00:00","description":"用jekyll的原因无需多说。这样配置好工作流之后，除了编写内容基本没有什么麻烦的操作(登录在线网页，换编辑器之类在我看来都很麻烦。。)。 Ruby的环境管理，包管理方式","headline":"用 jekyll+obsidian生成个人主页并部署到 github pages的工作流","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/docs/webpage/jekyll-blog-deploy/"},"url":"https://roshameow.github.io//personal_homepage/docs/webpage/jekyll-blog-deploy/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -311,7 +311,7 @@
 			<span class="n">image_name</span><span class="o">=</span><span class="err">$</span><span class="p">(</span><span class="n">echo</span> <span class="s2">"$image_link"</span> <span class="o">|</span> <span class="n">sed</span> <span class="o">-</span><span class="no">E</span> <span class="s1">'s/!\[\[([^|]+)\|[^]]+\]\]/\1/g'</span><span class="p">)</span> 
 			<span class="n">image_width</span><span class="o">=</span><span class="err">$</span><span class="p">(</span><span class="n">echo</span> <span class="s2">"$image_link"</span> <span class="o">|</span> <span class="n">grep</span> <span class="o">-</span><span class="n">o</span> <span class="o">-</span><span class="no">E</span> <span class="s1">'\|\d+'</span> <span class="o">|</span> <span class="n">sed</span> <span class="s1">'s/|//'</span><span class="p">)</span>
 	
-			<span class="n">sed</span> <span class="o">-</span><span class="n">i</span> <span class="s1">''</span> <span class="o">-</span><span class="no">E</span> <span class="s1">'s/!\[\[([^|]+)\|([^]]+)\]\]/\!\[\1\]\({{ '</span><span class="p">\</span><span class="s1">''</span><span class="p">\</span><span class="sr">/docs\/attachment\/\1'\'' | relative_url }}\){:width="'${image_width}'"}/</span><span class="n">g</span><span class="err">'</span> <span class="s2">"$target_folder/$filename"</span>
+			<span class="n">sed</span> <span class="o">-</span><span class="n">i</span> <span class="s1">''</span> <span class="o">-</span><span class="no">E</span> <span class="s1">'s/!\[\[([^|]+)\|'</span><span class="err">$</span><span class="p">{</span><span class="n">image_width</span><span class="p">}</span><span class="s1">'\]\]/\!\[\1\]\({{ '</span><span class="p">\</span><span class="s1">''</span><span class="p">\</span><span class="sr">/docs\/attachment\/\1'\'' | relative_url }}\){:width="'${image_width}'"}/</span><span class="n">g</span><span class="err">'</span> <span class="s2">"$target_folder/$filename"</span>
 	
 			<span class="c1"># 复制附件文件到目标附件文件夹</span>
 			<span class="n">cp</span> <span class="s2">"$attachment_source/$image_name"</span> <span class="s2">"$attachment_target/"</span>
