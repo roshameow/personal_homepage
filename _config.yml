@@ -38,9 +38,9 @@ google_fonts:
     weights: "400,400i,700,700i"
   - name: "Lora"
     weights: "400,400i,700,700i"
-google_analytics: # Google Analytics id, e.g. "UA-NNNNNNNN-N"
+google_analytics: "G-9TMSCDTBGN" # Google Analytics id, e.g. "UA-NNNNNNNN-N"
 disqus:
-  shortname: # Disqus shortname, e.g. "my_disqus_shortname"
+  shortname: rosharic # Disqus shortname, e.g. "my_disqus_shortname"
 twitter:
   username: # site's Twitter username, e.g. "mmistakes"
 
@@ -97,17 +97,30 @@ defaults:
 
 # Site Author
 author:
-  name:
+  name: 
   picture:
-  email:
+  email: w.liuatnk@gmail.com
   twitter:
   links:
     - title:
       url:
       icon:
+    - title: QQ
+      url: tencent://message/?uin=775986807&Site=&Menu=yes 
+      icon: fab fa-qq
 
 # Footer Links
 footer_links:
   - title: Feed
     url: atom.xml
     icon: fas fa-rss-square
+  - title: GitHub
+    url: https://github.com/roshameow
+    icon: fab fa-github-square
+  - title: LinkedIn
+    url: https://www.linkedin.com/in/wen-liu-06503a7b/ 
+    icon: fab fa-linkedin
+  - title: e-mail
+    url: mailto:w.liuatnk@gmail.com
+    icon: fas fa-envelope-square
+
