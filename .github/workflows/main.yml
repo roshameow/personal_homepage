@@ -23,6 +23,7 @@ jobs:
 
       - name: Build and deploy
         run: |
+            JEKYLL_ENV=production
             bundle exec jekyll build
             echo 'personal-homepage' > _site/CNAME
             cp _site/index.html _site/404.html

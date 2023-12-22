@@ -1,10 +1,10 @@
 # Sample Authors
 # Remove file or replace with your own
 
-Billy Rick:
-  name: Wen Liu
+Wen Liu:
+  name: Liu, Wen
   picture: /images/bio-photo-2.jpg
-  twitter: "@billyrick"
+  twitter: 
   links:
     - title: Twitter
       url: https://twitter.com/billyrick
