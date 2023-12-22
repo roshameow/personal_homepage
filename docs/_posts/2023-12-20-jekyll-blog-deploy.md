@@ -8,7 +8,7 @@ tags:
   - jekyll
   - markup
   - obsidian
-last_modified_at: 2023-12-22T01:47:48-08:00
+last_modified_at: 2023-12-22T08:22:03-08:00
 ---
 用jekyll的原因无需多说。这样配置好工作流之后，除了编写内容基本没有什么麻烦的操作(登录在线网页，换编辑器之类在我看来都很麻烦。。)。
 ### Ruby的环境管理，包管理方式
@@ -145,7 +145,7 @@ last_modified_at: 2023-12-22T01:47:48-08:00
 			image_name=$(echo "$image_link" | sed -E 's/!\[\[([^|]+)\|[^]]+\]\]/\1/g') 
 			image_width=$(echo "$image_link" | grep -o -E '\|\d+' | sed 's/|//')
 	
-			sed -i '' -E 's/!\[\[([^|]+)\|([^]]+)\]\]/\!\[\1\]\({{ '\''\/docs\/attachment\/\1'\'' | relative_url }}\){:width="'${image_width}'"}/g' "$target_folder/$filename"
+			sed -i '' -E 's/!\[\[([^|]+)\|'${image_width}'\]\]/\!\[\1\]\({{ '\''\/docs\/attachment\/\1'\'' | relative_url }}\){:width="'${image_width}'"}/g' "$target_folder/$filename"
 	
 			# 复制附件文件到目标附件文件夹
 			cp "$attachment_source/$image_name" "$attachment_target/"
