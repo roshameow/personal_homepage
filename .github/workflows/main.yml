@@ -23,13 +23,13 @@ jobs:
 
       - name: Build and deploy
         run: |
-            JEKYLL_ENV=production
             bundle exec jekyll build
             echo 'personal-homepage' > _site/CNAME
             cp _site/index.html _site/404.html
             touch _site/.nojekyll
         env:
-            BASE_URL: '/personal-homepage/'  # Adjust this based on your repository name
+            JEKYLL_ENV: production
+            # BASE_URL: '/personal-homepage/'  # Adjust this based on your repository name
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@releases/v3
