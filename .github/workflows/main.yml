@@ -29,7 +29,6 @@ jobs:
             touch _site/.nojekyll
         env:
             JEKYLL_ENV: production
-            # BASE_URL: '/personal-homepage/'  # Adjust this based on your repository name
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@releases/v3

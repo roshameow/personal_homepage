@@ -9,7 +9,7 @@ tags:
   - markdown
   - obsidian
   - raycast
-last_modified_at: 2023-12-22T11:05:31-08:00
+last_modified_at: 2023-12-23T17:24:25-08:00
 ---
 用jekyll的原因无需多说。这样配置好工作流之后，除了编写内容基本没有什么麻烦的操作(登录在线网页，换编辑器，按照统一格式改文件名之类在我看来都很麻烦。。)。
 ### Ruby的环境管理，包管理方式
@@ -75,7 +75,7 @@ last_modified_at: 2023-12-22T11:05:31-08:00
 				cp _site/index.html _site/404.html
 				touch _site/.nojekyll #必须的，gh-pages分支没有环境，必须要跳过build
 			env:
-				BASE_URL: '/personal-homepage/'  # Adjust this based on your repository name
+				JEKYLL_ENV: production
 	
 		  - name: Deploy to GitHub Pages
 			uses: JamesIves/github-pages-deploy-action@releases/v3
