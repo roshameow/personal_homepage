@@ -80,7 +80,7 @@ last_modified_at: 2023-12-27T17:26:34-08:00
 		  - name: Deploy to GitHub Pages
 			uses: JamesIves/github-pages-deploy-action@releases/v3
 			with:
-				GITHUB_TOKEN: $${{ secrets.DEPLOY_TOKEN }}
+				GITHUB_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
 				BRANCH: gh-pages
 				FOLDER: _site
 	```
@@ -127,35 +127,35 @@ last_modified_at: 2023-12-27T17:26:34-08:00
 	attachment_target=".../docs/attachment"
 	
 	# 检查附件目标文件夹是否存在，如果不存在则创建
-	if [ ! -d "$$attachment_target" ]; then
-		mkdir -p "$$attachment_target"
+	if [ ! -d "$attachment_target" ]; then
+		mkdir -p "$attachment_target"
 	fi
 	
 	# 遍历源文件夹中的所有 .md 文件
-	for file in "$$source_folder"/*.md; do
+	for file in "$source_folder"/*.md; do
 		# 获取文件名（不包含路径）
-		filename=$$(basename "$$file")
+		filename=$(basename "$file")
 		
 		# 复制 .md 文件到目标文件夹
-		cp "$$file" "$$target_folder/$$filename"
-		echo "Copying $$file to $$target_folder/$$filename"
+		cp "$file" "$target_folder/$filename"
+		echo "Copying $file to $target_folder/$filename"
 		# 遍历文件中的每个匹配的图片链接，提取图片文件名
-		grep -oE "!\[\[([^]]+)\]\]" "$$target_folder/$$filename" | while IFS= read -r image_link; do
+		grep -oE "!\[\[([^]]+)\]\]" "$target_folder/$filename" | while IFS= read -r image_link; do
 	
 	
-			image_name=$$(echo "$$image_link" | sed -E 's/!\[\[([^|]+)\|[^]]+\]\]/\1/g') 
-			image_width=$$(echo "$$image_link" | grep -o -E '\|\d+' | sed 's/|//')
+			image_name=$(echo "$image_link" | sed -E 's/!\[\[([^|]+)\|[^]]+\]\]/\1/g') 
+			image_width=$(echo "$image_link" | grep -o -E '\|\d+' | sed 's/|//')
 	
-			sed -i '' -E 's/!\[\[([^|]+)\|'$${image_width}'\]\]/\!\[\1\]\({{ '\''\/docs\/attachment\/\1'\'' | relative_url }}\){:width="'$${image_width}'"}/g' "$$target_folder/$$filename"
+			sed -i '' -E 's/!\[\[([^|]+)\|'${image_width}'\]\]/\!\[\1\]\({{ '\''\/docs\/attachment\/\1'\'' | relative_url }}\){:width="'${image_width}'"}/g' "$target_folder/$filename"
 	
 			# 复制附件文件到目标附件文件夹
-			cp "$$attachment_source/$$image_name" "$$attachment_target/"
-			echo "Copying $$attachment_source/$$image_name to $$attachment_target/"
+			cp "$attachment_source/$image_name" "$attachment_target/"
+			echo "Copying $attachment_source/$image_name to $attachment_target/"
 		done
 		# 替换ruby 代码块为Liquid语法
 		...
-		# 替换latex公式，Replace $$...$$ with $$$$...$$$$ using sed
-		sed -i '' -E 's/\$$/\$$\$$/g' "$$target_folder/$$filename"
+		# 替换latex公式，Replace $...$ with $$...$$ using sed
+		sed -i '' -E 's/\$/\$\$/g' "$target_folder/$filename"
 	done
 	{% endraw %}
 {% endhighlight %}
@@ -165,8 +165,8 @@ last_modified_at: 2023-12-27T17:26:34-08:00
 
 
 1. **配置latex风格的公式：** 
-	- 用[mathjax@3][6] : 只支持`$$...$$`风格的语法，要自己在脚本里转换一下
-2. 配置google analysis:
+	- 用[mathjax@3][6] : 只支持`$...$`风格的语法，要自己在脚本里转换一下
+2. **配置google analysis:** 
 	- 我用的模版比较老，需要[把Universal analysis换成GA4][7] 
 
 
