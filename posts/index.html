@@ -49,19 +49,10 @@
   <link rel="stylesheet"
     href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,700,700i|Lora:400,400i,700,700i">
   <link rel="alternate" type="application/atom+xml" title="Liu, Wen&#39;s Home Page" href="/personal_homepage/atom.xml">
-<script type="text/x-mathjax-config">
-    /* Using Mathjax */
-    MathJax.Hub.Config({
-      tex2jax: {
-        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
-        inlineMath: [['$','$']]
-      }
-    });
-  </script>
-  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
-    type="text/javascript"></script>
+<!-- start custom head snippets -->
 
-  <!-- start custom head snippets -->
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
 
 <!-- insert favicons. use http://realfavicongenerator.net/ -->
 
@@ -328,7 +319,7 @@
     <footer class="entry-meta">
       
 
-<span class="read-time">1 min read</span>
+<span class="read-time">2 min read</span>
 
       <time class="entry-date dt-published" datetime="2023-12-20T00:00:00+00:00">December 20, 2023
   </time>
@@ -1341,35 +1332,6 @@ including Tex/LaTex/MathML based mathematics in HTML webpages.</p>
   }
   </script>
 
-
-<!-- MathJax -->
-
-<script>
-// http://docs.mathjax.org/en/latest/upgrading/v2.html
-MathJax = {
-  tex: {
-      tags: "ams"    // eq numbering options: none, ams, all
-  },
-  options: {
-    renderActions: {
-      // for mathjax 3, handle <script "math/tex"> blocks inserted by kramdown
-      find: [10, function (doc) {
-        for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
-          const display = !!node.type.match(/; *mode=display/);
-          const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
-          const text = document.createTextNode('');
-          node.parentNode.replaceChild(text, node);
-          math.start = {node: text, delim: '', n: 0};
-          math.end = {node: text, delim: '', n: 0};
-          doc.math.push(math);
-        }
-      }, '']
-    }
-  }
-}
-</script>
-
-<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
 
   </body>
 

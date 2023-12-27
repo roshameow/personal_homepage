@@ -50,19 +50,10 @@
   <link rel="stylesheet"
     href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,700,700i|Lora:400,400i,700,700i">
   <link rel="alternate" type="application/atom+xml" title="Liu, Wen&#39;s Home Page" href="/personal_homepage/atom.xml">
-<script type="text/x-mathjax-config">
-    /* Using Mathjax */
-    MathJax.Hub.Config({
-      tex2jax: {
-        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
-        inlineMath: [['$','$']]
-      }
-    });
-  </script>
-  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
-    type="text/javascript"></script>
+<!-- start custom head snippets -->
 
-  <!-- start custom head snippets -->
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
 
 <!-- insert favicons. use http://realfavicongenerator.net/ -->
 
@@ -168,7 +159,7 @@
             <p>所有通道叠加(一个像素是同行28x2=56个不同通道像素的叠加，出来的图像是很模糊的)</p>
           </li>
           <li>
-            <p>仿真通过shot noise: $Y_{sim}=B(Y/QE,QE)$</p>
+            <p>仿真通过shot noise: \(Y_{sim}=B(Y/QE,QE)\)</p>
 
             <ul>
               <li>
@@ -178,7 +169,7 @@
                 <p>B是binomial 分布</p>
               </li>
               <li>
-                <p>这段其实没懂为什么要用binomial分布，而不是poisson分布$P(Y)$ , 大概Y/QE是平均光子数，所以sample这么多次，每次都有qe的概率转换为电子；但是仍然不理解为什么要在光电转换的部分随机</p>
+                <p>这段其实没懂为什么要用binomial分布，而不是poisson分布\(P(Y)\) , 大概Y/QE是平均光子数，所以sample这么多次，每次都有qe的概率转换为电子；但是仍然不理解为什么要在光电转换的部分随机</p>
               </li>
             </ul>
           </li>
@@ -316,35 +307,6 @@
   }
   </script>
 
-
-<!-- MathJax -->
-
-<script>
-// http://docs.mathjax.org/en/latest/upgrading/v2.html
-MathJax = {
-  tex: {
-      tags: "ams"    // eq numbering options: none, ams, all
-  },
-  options: {
-    renderActions: {
-      // for mathjax 3, handle <script "math/tex"> blocks inserted by kramdown
-      find: [10, function (doc) {
-        for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
-          const display = !!node.type.match(/; *mode=display/);
-          const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
-          const text = document.createTextNode('');
-          node.parentNode.replaceChild(text, node);
-          math.start = {node: text, delim: '', n: 0};
-          math.end = {node: text, delim: '', n: 0};
-          doc.math.push(math);
-        }
-      }, '']
-    }
-  }
-}
-</script>
-
-<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
 
   </body>
 
