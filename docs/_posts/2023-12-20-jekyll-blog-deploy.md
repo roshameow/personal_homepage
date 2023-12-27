@@ -9,7 +9,7 @@ tags:
   - markdown
   - obsidian
   - raycast
-last_modified_at: 2023-12-27T17:26:34-08:00
+last_modified_at: 2023-12-28T07:17:25-08:00
 ---
 用jekyll的原因无需多说。这样配置好工作流之后，除了编写内容基本没有什么麻烦的操作(登录在线网页，换编辑器，按照统一格式改文件名之类在我看来都很麻烦。。)。
 ### Ruby的环境管理，包管理方式
@@ -154,8 +154,6 @@ last_modified_at: 2023-12-27T17:26:34-08:00
 		done
 		# 替换ruby 代码块为Liquid语法
 		...
-		# 替换latex公式，Replace $...$ with $$...$$ using sed
-		sed -i '' -E 's/\$/\$\$/g' "$target_folder/$filename"
 	done
 	{% endraw %}
 {% endhighlight %}
@@ -163,10 +161,22 @@ last_modified_at: 2023-12-27T17:26:34-08:00
 
 ### 其他配置
 
-
+1. **配置位置：**
+	- 我的模版调用顺序是`_layouts/default.html->_includes/scripts.html->includes/对应功能.html` 
 1. **配置latex风格的公式：** 
-	- 用[mathjax@3][6] : 只支持`$...$`风格的语法，要自己在脚本里转换一下
-2. **配置google analysis:** 
+	- 用[mathjax@3][6] : 只支持`$$...$$`风格的语法，需要在Mathjax的tex里面配置一下支持一般的`$...$`语法
+	```
+	<script>
+	    MathJax = {
+	        tex: {
+	            tags: "{{ site.mathjax.tags | default: 'ams' }}",    // eq numbering options: none, ams, all
+	            inlineMath: [['$', '$'], ["\\(", "\\)"]],  // 设置行内数学公式的开始和结束标记
+	            displayMath: [['$$', '$$'], ["\\[", "\\]"]]  // 设置行间数学公式的开始和结束标记
+	        },
+	    }
+	</script>
+	```
+3. **配置google analysis:** 
 	- 我用的模版比较老，需要[把Universal analysis换成GA4][7] 
 
 
