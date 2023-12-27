@@ -148,4 +148,14 @@ var store = [{
         "excerpt":"趁着双十二激情下单，前后不到一天，选的配件都没什么性价比。 配置：   不想再等了，买了4080  cpu实际换了7900x3d  外观：   买完发现灯光处于一个过饱和状态，显卡还带屏幕。不过再增加发光的东西就怎么都看不顺眼了，暂时只能保持这样的状态。   \t","categories": ["docs","photo"],
         "tags": ["content","device","life"],
         "url": "https://roshameow.github.io//personal_homepage/docs/photo/new-computer/"
+      },{
+        "title": "传感器颜色调制 (一)",
+        "excerpt":"调制 一般把信号区分出来的过程叫调制。现在一般的传感器只能感应2d的光学信号强度(就是灰度图)，把不同波长的光分离，以获取特定光谱范围的信息的过程，就叫颜色调制。比如信号经过rgb的滤光片，得到彩色图像。 所有调制都是通过牺牲一部分空间精度为代价获得其他层次信息。 通过排布滤光片进行颜色调制 像传统的rggb bayer和quad bayer一样，可以用不同方式排布多光谱的滤光片。如： 几种排布像素的方法 把像素不断二分1 如果不是$2^n$ 个通道，没法保证所有通道的像素密度一样。比如图上5个通道的情况。1，2通道的密度就比3，4，5的密度低。 但是这样做可以让每个相同通道的间距相等。 间隔相等斜向排布2 能保证每个channel的像素相邻的channel一直是一样的 但是这样在各个方向上像素密度极度不均匀：比如图上5个通道情况，横竖方向相隔4个像素，斜向却相隔0个，3个像素 分成primary channel和secondary channel两组 3 把secondary channel穿插在primay channel中 图中a,b,c是primary channel，像素密度高； d,e,f,g 是secondary channel，像素密度低 一个实拍的样例 图中是8个通道的sensor实拍图做了伪彩变换之后的样例 filter不同channel之间贴了黑胶阻挡(除了阻挡更多光线进入sensor以外，没什么积极意义) 排布像素的规则 根据不同通道的功能先确定需要的像素密度 采用滤光片排布调制的问题： 技术本身的问题： 现在一般用FP-干涉技术来制作多光谱sensor需要的窄波段，FP-干涉需要使用多层透镜实现，相当于严重降低光线透过率 mask均匀排布，会导致有些地方的傅立叶系数是0，不利于做reconstruction 工厂生产的问题： 生产的一个filter的尺寸最小在10um左右，但是目前的手机用的单像素尺寸在0.6～2.4um(单像素2.4um已经是非常好的CMOS了)，不得不用类似quad bayer的做法让一个filter对应多个像素，无疑会影响调制的精度 透镜部分和成像部分不贴合：透镜距离sensor的感光区域有大约3um的垂直距离，会导致像素中有效信息进一步降低 透镜偏移，没有和像素的位置对应：导致传感器之间的差异很大 [1] Lidan Miao and Hairong Qi. “The Design and...","categories": ["docs","algorithm"],
+        "tags": ["content","sensor"],
+        "url": "https://roshameow.github.io//personal_homepage/docs/algorithm/color-moderate/"
+      },{
+        "title": "传感器颜色调制 (二)",
+        "excerpt":"通过coded-aperture 和 dispenser进行颜色调制 仿真数据： CASSI: coded_apeture+dispenser coded_apeture把mask应用于所有通道 dispenser依次给mask的通道图像y-axis 2pixel的shift 所有通道叠加(一个像素是同行28x2=56个不同通道像素的叠加，出来的图像是很模糊的) 仿真通过shot noise: $Y_{sim}=B(Y/QE,QE)$ 本来读数是Y, qe是quantum efficiency B是binomial 分布 这段其实没懂为什么要用binomial分布，而不是poisson分布$P(Y)$ , 大概Y/QE是平均光子数，所以sample这么多次，每次都有qe的概率转换为电子；但是仍然不理解为什么要在光电转换的部分随机 数据集使用： simulation: 训练： data: cave_1024_28 crop_size: 随机crop到256x256, 和mask做simulation shift3d mask: 28x256x310 mask: TSA_simu_data/mask.mat test: TSA_simu_data/Truth/ 测试： mask: TSA_simu_data/mask.mat test: TSA_simu_data/Truth/ real: 训练: size: 96 data: CAVE_512_28 and KAIST_CVPR2021 CAVE_512_28...","categories": ["docs","algorithm"],
+        "tags": ["content","sensor"],
+        "url": "https://roshameow.github.io//personal_homepage/docs/algorithm/color-moderate1/"
       }]

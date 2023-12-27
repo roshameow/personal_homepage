@@ -1,4 +1,169 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="https://roshameow.github.io//personal_homepage/atom.xml" rel="self" type="application/atom+xml" /><link href="https://roshameow.github.io//personal_homepage/" rel="alternate" type="text/html" /><updated>2023-12-23T09:25:48+00:00</updated><id>https://roshameow.github.io//personal_homepage/atom.xml</id><title type="html">Liu, Wen’s Home Page</title><subtitle>Work, Experiments and Ideas.</subtitle><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}, {&quot;title&quot;=&gt;&quot;QQ&quot;, &quot;url&quot;=&gt;&quot;tencent://message/?uin=775986807&amp;Site=&amp;Menu=yes&quot;, &quot;icon&quot;=&gt;&quot;fab fa-qq&quot;}]}</name><email>w.liuatnk@gmail.com</email></author><entry><title type="html">双十二装机</title><link href="https://roshameow.github.io//personal_homepage/docs/photo/new-computer/" rel="alternate" type="text/html" title="双十二装机" /><published>2023-12-22T00:00:00+00:00</published><updated>2023-12-22T16:21:32+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/photo/new-computer</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/photo/new-computer/"><![CDATA[<p>趁着双十二激情下单，前后不到一天，选的配件都没什么性价比。</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="https://roshameow.github.io//personal_homepage/atom.xml" rel="self" type="application/atom+xml" /><link href="https://roshameow.github.io//personal_homepage/" rel="alternate" type="text/html" /><updated>2023-12-27T06:26:11+00:00</updated><id>https://roshameow.github.io//personal_homepage/atom.xml</id><title type="html">Liu, Wen’s Home Page</title><subtitle>Work, Experiments and Ideas.</subtitle><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><entry><title type="html">传感器颜色调制 (二)</title><link href="https://roshameow.github.io//personal_homepage/docs/algorithm/color-moderate1/" rel="alternate" type="text/html" title="传感器颜色调制 (二)" /><published>2023-12-26T00:00:00+00:00</published><updated>2023-12-27T20:34:40+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/algorithm/color-moderate1</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/algorithm/color-moderate1/"><![CDATA[<h2 id="通过coded-aperture-和-dispenser进行颜色调制">通过coded-aperture 和 dispenser进行颜色调制</h2>
+
+<ul>
+  <li>
+    <p>仿真数据：</p>
+
+    <ul>
+      <li>
+        <p>CASSI: coded_apeture+dispenser</p>
+
+        <ul>
+          <li>
+            <p>coded_apeture把mask应用于所有通道</p>
+          </li>
+          <li>
+            <p>dispenser依次给mask的通道图像y-axis 2pixel的shift</p>
+          </li>
+          <li>
+            <p>所有通道叠加(一个像素是同行28x2=56个不同通道像素的叠加，出来的图像是很模糊的)</p>
+          </li>
+          <li>
+            <p>仿真通过shot noise: $Y_{sim}=B(Y/QE,QE)$</p>
+
+            <ul>
+              <li>
+                <p>本来读数是Y, qe是quantum efficiency</p>
+              </li>
+              <li>
+                <p>B是binomial 分布</p>
+              </li>
+              <li>
+                <p>这段其实没懂为什么要用binomial分布，而不是poisson分布$P(Y)$ , 大概Y/QE是平均光子数，所以sample这么多次，每次都有qe的概率转换为电子；但是仍然不理解为什么要在光电转换的部分随机</p>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p>数据集使用：</p>
+<ul>
+  <li>simulation:
+    <ul>
+      <li>训练：
+        <ul>
+          <li>data: cave_1024_28</li>
+          <li>crop_size: 随机crop到256x256, 和mask做simulation
+            <ul>
+              <li>shift3d mask: 28x256x310</li>
+            </ul>
+          </li>
+          <li>mask: TSA_simu_data/mask.mat</li>
+          <li>test:  TSA_simu_data/Truth/</li>
+        </ul>
+      </li>
+      <li>测试：
+        <ul>
+          <li>mask: TSA_simu_data/mask.mat</li>
+          <li>test: TSA_simu_data/Truth/</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>real:
+    <ul>
+      <li>训练:
+        <ul>
+          <li>size: 96</li>
+          <li>data: CAVE_512_28 and KAIST_CVPR2021
+            <ul>
+              <li>CAVE_512_28 ：原数据集512x512x28 30个图片</li>
+              <li>KAIST_CVPR2021： 2704x3376x28 30个图片</li>
+            </ul>
+          </li>
+          <li>mask: TSA_real_data/mask.mat
+            <ul>
+              <li>660x660 0-1的数据</li>
+              <li><img src="/personal_homepage/docs/attachment/mask.png" alt="mask.png" width="300" /></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>测试
+        <ul>
+          <li>size: 714x660</li>
+          <li>data: TSA_real_data/Measurements/
+            <ul>
+              <li><img src="/personal_homepage/docs/attachment/Pasted%20image%2020231226120247.png" alt="Pasted image 20231226120247.png" width="300" /></li>
+            </ul>
+          </li>
+          <li>mask: TSA_real_data/mask.mat</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="algorithm" /><category term="content" /><category term="sensor" /><summary type="html"><![CDATA[通过coded-aperture 和 dispenser进行颜色调制]]></summary></entry><entry><title type="html">传感器颜色调制 (一)</title><link href="https://roshameow.github.io//personal_homepage/docs/algorithm/color-moderate/" rel="alternate" type="text/html" title="传感器颜色调制 (一)" /><published>2023-12-23T00:00:00+00:00</published><updated>2023-12-27T22:08:56+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/algorithm/color-moderate</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/algorithm/color-moderate/"><![CDATA[<h2 id="调制">调制</h2>
+
+<p>一般把信号区分出来的过程叫调制。现在一般的传感器只能感应2d的光学信号强度(就是灰度图)，把不同波长的光分离，以获取特定光谱范围的信息的过程，就叫颜色调制。比如信号经过rgb的滤光片，得到彩色图像。</p>
+
+<p>所有调制都是通过牺牲一部分空间精度为代价获得其他层次信息。</p>
+
+<h2 id="通过排布滤光片进行颜色调制">通过排布滤光片进行颜色调制</h2>
+
+<p>像传统的rggb bayer和quad bayer一样，可以用不同方式排布多光谱的滤光片。如：</p>
+<h3 id="几种排布像素的方法">几种排布像素的方法</h3>
+
+<ol>
+  <li><strong>把像素不断二分<a href="#ref">1</a></strong>
+    <ul>
+      <li><img src="/personal_homepage/docs/attachment/Pasted%20image%2020231227093202.png" alt="Pasted image 20231227093202.png" width="400" /></li>
+      <li>如果不是$2^n$ 个通道，没法保证所有通道的像素密度一样。比如图上5个通道的情况。1，2通道的密度就比3，4，5的密度低。</li>
+      <li>但是这样做可以让每个相同通道的间距相等。</li>
+    </ul>
+  </li>
+  <li><strong>间隔相等斜向排布<a href="#ref">2</a></strong>
+    <ul>
+      <li><img src="/personal_homepage/docs/attachment/Pasted%20image%2020231227093439.png" alt="Pasted image 20231227093439.png" width="200" /></li>
+      <li>能保证每个channel的像素相邻的channel一直是一样的</li>
+      <li>但是这样在各个方向上像素密度极度不均匀：比如图上5个通道情况，横竖方向相隔4个像素，斜向却相隔0个，3个像素</li>
+    </ul>
+  </li>
+  <li><strong>分成primary channel和secondary channel两组 <a href="#ref">3</a></strong>
+    <ul>
+      <li>把secondary channel穿插在primay channel中</li>
+      <li><img src="/personal_homepage/docs/attachment/Pasted%20image%2020231227100416.png" alt="Pasted image 20231227100416.png" width="200" /></li>
+      <li>图中a,b,c是primary channel，像素密度高； d,e,f,g 是secondary channel，像素密度低</li>
+    </ul>
+  </li>
+  <li><strong>一个实拍的样例</strong>
+    <ul>
+      <li><img src="/personal_homepage/docs/attachment/Pasted%20image%2020231227114816.png" alt="Pasted image 20231227114816.png" width="300" /></li>
+      <li>图中是8个通道的sensor实拍图做了伪彩变换之后的样例</li>
+      <li>filter不同channel之间贴了黑胶阻挡(除了阻挡更多光线进入sensor以外，没什么积极意义)</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="排布像素的规则">排布像素的规则</h3>
+
+<ul>
+  <li>根据不同通道的功能先确定需要的像素密度
+    <h3 id="采用滤光片排布调制的问题">采用滤光片排布调制的问题：</h3>
+  </li>
+  <li>技术本身的问题：
+    <ul>
+      <li>现在一般用FP-干涉技术来制作多光谱sensor需要的窄波段，FP-干涉需要使用多层透镜实现，相当于严重降低光线透过率</li>
+      <li>mask均匀排布，会导致有些地方的傅立叶系数是0，不利于做reconstruction</li>
+    </ul>
+  </li>
+  <li>工厂生产的问题：
+    <ul>
+      <li>生产的一个filter的尺寸最小在10um左右，但是目前的手机用的单像素尺寸在<a href="https://www.igao7.com/news/202204/Xo2jTjWP67ayPtIA.html">0.6～2.4um</a>(单像素2.4um已经是非常好的CMOS了)，不得不用类似quad bayer的做法让一个filter对应多个像素，无疑会影响调制的精度</li>
+      <li>透镜部分和成像部分不贴合：透镜距离sensor的感光区域有大约3um的垂直距离，会导致像素中有效信息进一步降低</li>
+      <li>透镜偏移，没有和像素的位置对应：导致传感器之间的差异很大</li>
+    </ul>
+  </li>
+</ul>
+
+<p><span id="ref"></span>
+[1]  Lidan Miao and Hairong Qi. “The Design and Evaluation of a Generic Method for Generating Mosaicked Multispectral Filter Arrays.” <em>IEEE Transactions on Image Processing</em> 15, no. 9 (September 2006): 2780–91. <a href="https://doi.org/10.1109/TIP.2006.877315">https://doi.org/10.1109/TIP.2006.877315</a>.</p>
+
+<p>[2] Aggarwal, Hemant Kumar, and Angshul Majumdar. “Single-Sensor Multi-Spectral Image Demosaicing Algorithm Using Learned Interpolation Weights.” In <em>2014 IEEE Geoscience and Remote Sensing Symposium</em>, 2011–14. Quebec City, QC: IEEE, 2014. <a href="https://doi.org/10.1109/IGARSS.2014.6946857">https://doi.org/10.1109/IGARSS.2014.6946857</a>.</p>
+
+<p>[3] Yasuma, Fumihito, Tomoo Mitsunaga, Daisuke Iso, and Shree K. Nayar. “Generalized Assorted Pixel Camera: Postcapture Control of Resolution, Dynamic Range, and Spectrum.” <em>IEEE Transactions on Image Processing</em> 19, no. 9 (September 2010): 2241–53. <a href="https://doi.org/10.1109/TIP.2010.2046811">https://doi.org/10.1109/TIP.2010.2046811</a>.</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="algorithm" /><category term="content" /><category term="sensor" /><summary type="html"><![CDATA[调制]]></summary></entry><entry><title type="html">双十二装机</title><link href="https://roshameow.github.io//personal_homepage/docs/photo/new-computer/" rel="alternate" type="text/html" title="双十二装机" /><published>2023-12-22T00:00:00+00:00</published><updated>2023-12-22T16:21:32+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/photo/new-computer</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/photo/new-computer/"><![CDATA[<p>趁着双十二激情下单，前后不到一天，选的配件都没什么性价比。</p>
 
 <h3 id="配置">配置：</h3>
 <ul>
@@ -11,7 +176,7 @@
 <ul>
   <li>买完发现灯光处于一个过饱和状态，显卡还带屏幕。不过再增加发光的东西就怎么都看不顺眼了，暂时只能保持这样的状态。</li>
   <li><img src="/personal_homepage/docs/attachment/Pasted%20image%2020231222072754.png" alt="Pasted image 20231222072754.png" width="300" /> 	<img src="/personal_homepage/docs/attachment/Pasted%20image%2020231222071842.png" alt="Pasted image 20231222071842.png" width="250" /></li>
-</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}, {&quot;title&quot;=&gt;&quot;QQ&quot;, &quot;url&quot;=&gt;&quot;tencent://message/?uin=775986807&amp;Site=&amp;Menu=yes&quot;, &quot;icon&quot;=&gt;&quot;fab fa-qq&quot;}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="photo" /><category term="content" /><category term="device" /><category term="life" /><summary type="html"><![CDATA[趁着双十二激情下单，前后不到一天，选的配件都没什么性价比。]]></summary></entry><entry><title type="html">小红书学到的几种图片调色</title><link href="https://roshameow.github.io//personal_homepage/docs/photo/photo-color/" rel="alternate" type="text/html" title="小红书学到的几种图片调色" /><published>2023-12-21T00:00:00+00:00</published><updated>2023-12-22T15:10:39+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/photo/photo-color</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/photo/photo-color/"><![CDATA[<p>感觉共同点是：为了追求画面简洁有冲击力，不约而同的压缩了亮度和颜色的动态范围。</p>
+</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="photo" /><category term="content" /><category term="device" /><category term="life" /><summary type="html"><![CDATA[趁着双十二激情下单，前后不到一天，选的配件都没什么性价比。]]></summary></entry><entry><title type="html">小红书学到的几种图片调色</title><link href="https://roshameow.github.io//personal_homepage/docs/photo/photo-color/" rel="alternate" type="text/html" title="小红书学到的几种图片调色" /><published>2023-12-21T00:00:00+00:00</published><updated>2023-12-22T15:10:39+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/photo/photo-color</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/photo/photo-color/"><![CDATA[<p>感觉共同点是：为了追求画面简洁有冲击力，不约而同的压缩了亮度和颜色的动态范围。</p>
 <h2 id="版画滤镜">版画滤镜</h2>
 
 <p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020231221113525.png" alt="Pasted image 20231221113525.png" width="300" />  <img src="/personal_homepage/docs/attachment/Pasted%20image%2020231221113539.png" alt="Pasted image 20231221113539.png" width="300" /></p>
@@ -67,7 +232,7 @@
       </li>
     </ul>
   </li>
-</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}, {&quot;title&quot;=&gt;&quot;QQ&quot;, &quot;url&quot;=&gt;&quot;tencent://message/?uin=775986807&amp;Site=&amp;Menu=yes&quot;, &quot;icon&quot;=&gt;&quot;fab fa-qq&quot;}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="photo" /><category term="content" /><category term="醒图" /><summary type="html"><![CDATA[感觉共同点是：为了追求画面简洁有冲击力，不约而同的压缩了亮度和颜色的动态范围。 版画滤镜]]></summary></entry><entry><title type="html">用 jekyll+obsidian生成个人主页并部署到 github pages的工作流</title><link href="https://roshameow.github.io//personal_homepage/docs/webpage/jekyll-blog-deploy/" rel="alternate" type="text/html" title="用 jekyll+obsidian生成个人主页并部署到 github pages的工作流" /><published>2023-12-20T00:00:00+00:00</published><updated>2023-12-24T01:24:25+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/webpage/jekyll-blog-deploy</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/webpage/jekyll-blog-deploy/"><![CDATA[<p>用jekyll的原因无需多说。这样配置好工作流之后，除了编写内容基本没有什么麻烦的操作(登录在线网页，换编辑器，按照统一格式改文件名之类在我看来都很麻烦。。)。</p>
+</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="photo" /><category term="content" /><category term="醒图" /><summary type="html"><![CDATA[感觉共同点是：为了追求画面简洁有冲击力，不约而同的压缩了亮度和颜色的动态范围。 版画滤镜]]></summary></entry><entry><title type="html">用 jekyll+obsidian生成个人主页并部署到 github pages的工作流</title><link href="https://roshameow.github.io//personal_homepage/docs/webpage/jekyll-blog-deploy/" rel="alternate" type="text/html" title="用 jekyll+obsidian生成个人主页并部署到 github pages的工作流" /><published>2023-12-20T00:00:00+00:00</published><updated>2023-12-24T01:24:25+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/webpage/jekyll-blog-deploy</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/webpage/jekyll-blog-deploy/"><![CDATA[<p>用jekyll的原因无需多说。这样配置好工作流之后，除了编写内容基本没有什么麻烦的操作(登录在线网页，换编辑器，按照统一格式改文件名之类在我看来都很麻烦。。)。</p>
 <h3 id="ruby的环境管理包管理方式">Ruby的环境管理，包管理方式</h3>
 
 <ul>
@@ -252,7 +417,7 @@
 		<span class="c1"># 替换ruby 代码块为Liquid语法</span>
 		<span class="o">...</span>
 	<span class="n">done</span>
-	</code></pre></figure>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}, {&quot;title&quot;=&gt;&quot;QQ&quot;, &quot;url&quot;=&gt;&quot;tencent://message/?uin=775986807&amp;Site=&amp;Menu=yes&quot;, &quot;icon&quot;=&gt;&quot;fab fa-qq&quot;}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="WebPage" /><category term="content" /><category term="jekyll" /><category term="markdown" /><category term="obsidian" /><category term="raycast" /><summary type="html"><![CDATA[用jekyll的原因无需多说。这样配置好工作流之后，除了编写内容基本没有什么麻烦的操作(登录在线网页，换编辑器，按照统一格式改文件名之类在我看来都很麻烦。。)。 Ruby的环境管理，包管理方式]]></summary></entry><entry><title type="html">Hidden Post</title><link href="https://roshameow.github.io//personal_homepage/docs/hidden-post/" rel="alternate" type="text/html" title="Hidden Post" /><published>2018-02-25T00:00:00+00:00</published><updated>2018-02-25T00:00:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/hidden-post</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/hidden-post/"><![CDATA[<p>This post has YAML Front Matter of <code class="language-plaintext highlighter-rouge">hidden: true</code> and should not appear in <code class="language-plaintext highlighter-rouge">paginator.posts</code>.</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}, {&quot;title&quot;=&gt;&quot;QQ&quot;, &quot;url&quot;=&gt;&quot;tencent://message/?uin=775986807&amp;Site=&amp;Menu=yes&quot;, &quot;icon&quot;=&gt;&quot;fab fa-qq&quot;}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><summary type="html"><![CDATA[This post has YAML Front Matter of hidden: true and should not appear in paginator.posts.]]></summary></entry><entry><title type="html">MathJax Example</title><link href="https://roshameow.github.io//personal_homepage/docs/mathjax-example/" rel="alternate" type="text/html" title="MathJax Example" /><published>2015-08-10T12:08:50+00:00</published><updated>2015-08-10T12:08:50+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/mathjax-example</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/mathjax-example/"><![CDATA[<p><a href="http://www.mathjax.org/">MathJax</a> is a simple, yet powerful, way of
+	</code></pre></figure>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="WebPage" /><category term="content" /><category term="jekyll" /><category term="markdown" /><category term="obsidian" /><category term="raycast" /><summary type="html"><![CDATA[用jekyll的原因无需多说。这样配置好工作流之后，除了编写内容基本没有什么麻烦的操作(登录在线网页，换编辑器，按照统一格式改文件名之类在我看来都很麻烦。。)。 Ruby的环境管理，包管理方式]]></summary></entry><entry><title type="html">Hidden Post</title><link href="https://roshameow.github.io//personal_homepage/docs/hidden-post/" rel="alternate" type="text/html" title="Hidden Post" /><published>2018-02-25T00:00:00+00:00</published><updated>2018-02-25T00:00:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/hidden-post</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/hidden-post/"><![CDATA[<p>This post has YAML Front Matter of <code class="language-plaintext highlighter-rouge">hidden: true</code> and should not appear in <code class="language-plaintext highlighter-rouge">paginator.posts</code>.</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><summary type="html"><![CDATA[This post has YAML Front Matter of hidden: true and should not appear in paginator.posts.]]></summary></entry><entry><title type="html">MathJax Example</title><link href="https://roshameow.github.io//personal_homepage/docs/mathjax-example/" rel="alternate" type="text/html" title="MathJax Example" /><published>2015-08-10T12:08:50+00:00</published><updated>2015-08-10T12:08:50+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/mathjax-example</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/mathjax-example/"><![CDATA[<p><a href="http://www.mathjax.org/">MathJax</a> is a simple, yet powerful, way of
 including Tex/LaTex/MathML based mathematics in HTML webpages.</p>
 
 <h2 id="usage">Usage</h2>
@@ -298,7 +463,7 @@ the <code class="language-plaintext highlighter-rouge">ams</code> and <code clas
 \[\begin{align}
 (x + y) (x - y) &amp;= x^2 + xy - xy + y^2   \notag \\
     &amp;= x^2 - y^2
-\end{align}\]]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}, {&quot;title&quot;=&gt;&quot;QQ&quot;, &quot;url&quot;=&gt;&quot;tencent://message/?uin=775986807&amp;Site=&amp;Menu=yes&quot;, &quot;icon&quot;=&gt;&quot;fab fa-qq&quot;}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><summary type="html"><![CDATA[MathJax is a simple, yet powerful, way of including Tex/LaTex/MathML based mathematics in HTML webpages.]]></summary></entry><entry><title type="html">Markup: Syntax Highlighting</title><link href="https://roshameow.github.io//personal_homepage/docs/markup-syntax-highlighting/" rel="alternate" type="text/html" title="Markup: Syntax Highlighting" /><published>2013-08-16T00:00:00+00:00</published><updated>2017-03-09T15:27:01+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/markup-syntax-highlighting</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/markup-syntax-highlighting/"><![CDATA[<p>Syntax highlighting is a feature that displays source code, in different colors and fonts according to the category of terms. This feature facilitates writing in a structured language such as a programming language or a markup language as both structures and syntax errors are visually distinct. Highlighting does not affect the meaning of the text itself; it is intended only for human readers.<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup></p>
+\end{align}\]]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><summary type="html"><![CDATA[MathJax is a simple, yet powerful, way of including Tex/LaTex/MathML based mathematics in HTML webpages.]]></summary></entry><entry><title type="html">Markup: Syntax Highlighting</title><link href="https://roshameow.github.io//personal_homepage/docs/markup-syntax-highlighting/" rel="alternate" type="text/html" title="Markup: Syntax Highlighting" /><published>2013-08-16T00:00:00+00:00</published><updated>2017-03-09T15:27:01+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/markup-syntax-highlighting</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/markup-syntax-highlighting/"><![CDATA[<p>Syntax highlighting is a feature that displays source code, in different colors and fonts according to the category of terms. This feature facilitates writing in a structured language such as a programming language or a markup language as both structures and syntax errors are visually distinct. Highlighting does not affect the meaning of the text itself; it is intended only for human readers.<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup></p>
 
 <h2 id="gfm-code-blocks">GFM Code Blocks</h2>
 
@@ -419,7 +584,7 @@ the <code class="language-plaintext highlighter-rouge">ams</code> and <code clas
       <p><a href="http://en.wikipedia.org/wiki/Syntax_highlighting">http://en.wikipedia.org/wiki/Syntax_highlighting</a> <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
   </ol>
-</div>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}, {&quot;title&quot;=&gt;&quot;QQ&quot;, &quot;url&quot;=&gt;&quot;tencent://message/?uin=775986807&amp;Site=&amp;Menu=yes&quot;, &quot;icon&quot;=&gt;&quot;fab fa-qq&quot;}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="code" /><category term="syntax highlighting" /><summary type="html"><![CDATA[Post displaying the various ways one can highlight code blocks with Jekyll. Some options include standard Markdown, GitHub Flavored Markdown, and Jekyll's `{% highlight %}` tag.]]></summary></entry><entry><title type="html">Markup: HTML Elements and Formatting</title><link href="https://roshameow.github.io//personal_homepage/docs/markup/markup-html-elements-and-formatting/" rel="alternate" type="text/html" title="Markup: HTML Elements and Formatting" /><published>2013-01-11T00:00:00+00:00</published><updated>2018-02-01T15:16:49+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/markup/markup-html-elements-and-formatting</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/markup/markup-html-elements-and-formatting/"><![CDATA[<p>A variety of common HTML elements to demonstrate the theme’s stylesheet and verify they have been styled appropriately.</p>
+</div>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="code" /><category term="syntax highlighting" /><summary type="html"><![CDATA[Post displaying the various ways one can highlight code blocks with Jekyll. Some options include standard Markdown, GitHub Flavored Markdown, and Jekyll's `{% highlight %}` tag.]]></summary></entry><entry><title type="html">Markup: HTML Elements and Formatting</title><link href="https://roshameow.github.io//personal_homepage/docs/markup/markup-html-elements-and-formatting/" rel="alternate" type="text/html" title="Markup: HTML Elements and Formatting" /><published>2013-01-11T00:00:00+00:00</published><updated>2018-02-01T15:16:49+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/markup/markup-html-elements-and-formatting</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/markup/markup-html-elements-and-formatting/"><![CDATA[<p>A variety of common HTML elements to demonstrate the theme’s stylesheet and verify they have been styled appropriately.</p>
 
 <h1 id="header-one">Header one</h1>
 
@@ -712,7 +877,7 @@ the <code class="language-plaintext highlighter-rouge">ams</code> and <code clas
 
 <h2 id="variable-element">Variable element</h2>
 
-<p>This allows you to denote <var>variables</var>.</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}, {&quot;title&quot;=&gt;&quot;QQ&quot;, &quot;url&quot;=&gt;&quot;tencent://message/?uin=775986807&amp;Site=&amp;Menu=yes&quot;, &quot;icon&quot;=&gt;&quot;fab fa-qq&quot;}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="Markup" /><summary type="html"><![CDATA[A variety of common HTML elements to demonstrate the theme’s stylesheet and verify they have been styled appropriately.]]></summary></entry><entry><title type="html">Markup: Image Alignment</title><link href="https://roshameow.github.io//personal_homepage/docs/markup/markup-image-alignment/" rel="alternate" type="text/html" title="Markup: Image Alignment" /><published>2013-01-10T00:00:00+00:00</published><updated>2018-02-05T21:19:55+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/markup/markup-image-alignment</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/markup/markup-image-alignment/"><![CDATA[<p>The best way to demonstrate the ebb and flow of the various image positioning options is to nestle them snuggly among an ocean of words. Grab a paddle and let’s get started.</p>
+<p>This allows you to denote <var>variables</var>.</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="Markup" /><summary type="html"><![CDATA[A variety of common HTML elements to demonstrate the theme’s stylesheet and verify they have been styled appropriately.]]></summary></entry><entry><title type="html">Markup: Image Alignment</title><link href="https://roshameow.github.io//personal_homepage/docs/markup/markup-image-alignment/" rel="alternate" type="text/html" title="Markup: Image Alignment" /><published>2013-01-10T00:00:00+00:00</published><updated>2018-02-05T21:19:55+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/markup/markup-image-alignment</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/markup/markup-image-alignment/"><![CDATA[<p>The best way to demonstrate the ebb and flow of the various image positioning options is to nestle them snuggly among an ocean of words. Grab a paddle and let’s get started.</p>
 
 <p>Assign classes with HTML:</p>
 
@@ -784,93 +949,4 @@ the <code class="language-plaintext highlighter-rouge">ams</code> and <code clas
 
 <p>In just a bit here, you should see the text start to wrap below the right aligned image and settle in nicely. There should still be plenty of room and everything should be sitting pretty. Yeah — Just like that. It never felt so good to be right.</p>
 
-<p>And that’s a wrap, yo! You survived the tumultuous waters of alignment. Image alignment achievement unlocked!</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}, {&quot;title&quot;=&gt;&quot;QQ&quot;, &quot;url&quot;=&gt;&quot;tencent://message/?uin=775986807&amp;Site=&amp;Menu=yes&quot;, &quot;icon&quot;=&gt;&quot;fab fa-qq&quot;}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="Markup" /><category term="alignment" /><category term="captions" /><category term="content" /><category term="css" /><category term="image" /><category term="markup" /><summary type="html"><![CDATA[The best way to demonstrate the ebb and flow of the various image positioning options is to nestle them snuggly among an ocean of words. Grab a paddle and let’s get started.]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://roshameow.github.io//personal_homepage/images/so-simple-sample-image-5.jpg" /><media:content medium="image" url="https://roshameow.github.io//personal_homepage/images/so-simple-sample-image-5.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Markup: Text Alignment and Transformations</title><link href="https://roshameow.github.io//personal_homepage/docs/markup/markup-text-alignment/" rel="alternate" type="text/html" title="Markup: Text Alignment and Transformations" /><published>2013-01-09T00:00:00+00:00</published><updated>2017-03-09T17:17:03+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/markup/markup-text-alignment</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/markup/markup-text-alignment/"><![CDATA[<p>Sample text to demonstrate alignment and transformation classes.</p>
-
-<p>Easily realign text with alignment classes via HTML:</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;p class="text-left"&gt;Left aligned text.&lt;/p&gt;
-&lt;p class="text-center"&gt;Center aligned text.&lt;/p&gt;
-&lt;p class="text-right"&gt;Right aligned text.&lt;/p&gt;
-&lt;p class="text-justify"&gt;Justified text.&lt;/p&gt;
-&lt;p class="text-nowrap"&gt;No wrap text.&lt;/p&gt;
-</code></pre></div></div>
-
-<p>Or with Kramdown and <a href="https://kramdown.gettalong.org/syntax.html#inline-attribute-lists">inline attribute lists</a>:</p>
-
-<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Left aligned text.
-{: .text-left}
-
-Center aligned text.
-{: .text-center}
-
-Right aligned text.
-{: .text-right}
-
-Justified text.
-{: .text-justify}
-
-No wrap text.
-{: .text-nowrap}
-</code></pre></div></div>
-
-<h2 id="default">Default</h2>
-
-<p>This is a paragraph. It should not have any alignment of any kind. It should just flow like you would normally expect. Nothing fancy. Just straight up text, free flowing, with love. Completely neutral and not picking a side or sitting on the fence. It just is. It just freaking is. It likes where it is. It does not feel compelled to pick a side. Leave him be. It will just be better that way. Trust me.</p>
-
-<h2 id="left-aligned">Left Aligned</h2>
-
-<p class="text-left">This is a paragraph. It is left aligned. Because of this, it is a bit more liberal in it’s views. It’s favorite color is green. Left align tends to be more eco-friendly, but it provides no concrete evidence that it really is. Even though it likes share the wealth evenly, it leaves the equal distribution up to justified alignment.</p>
-
-<h2 id="center-aligned">Center Aligned</h2>
-
-<p class="text-center">This is a paragraph. It is center aligned. Center is, but nature, a fence sitter. A flip flopper. It has a difficult time making up its mind. It wants to pick a side. Really, it does. It has the best intentions, but it tends to complicate matters more than help. The best you can do is try to win it over and hope for the best. I hear center align does take bribes.</p>
-
-<h2 id="right-aligned">Right Aligned</h2>
-
-<p class="text-right">This is a paragraph. It is right aligned. It is a bit more conservative in it’s views. It’s prefers to not be told what to do or how to do it. Right align totally owns a slew of guns and loves to head to the range for some practice. Which is cool and all. I mean, it’s a pretty good shot from at least four or five football fields away. Dead on. So boss.</p>
-
-<h2 id="justify-aligned">Justify Aligned</h2>
-
-<p class="text-justify">This is a paragraph. It is justify aligned. It gets really mad when people associate it with Justin Timberlake. Typically, justified is pretty straight laced. It likes everything to be in it’s place and not all cattywampus like the rest of the aligns. I am not saying that makes it better than the rest of the aligns, but it does tend to put off more of an elitist attitude.</p>
-
-<h2 id="no-wrap">No Wrap</h2>
-
-<p class="text-nowrap">This is a paragraph. It has a no wrap. Beef ribs pig tenderloin filet mignon. Spare ribs leberkas ribeye, burgdoggen fatback tenderloin biltong jowl flank sirloin hamburger bacon brisket. Shoulder bresaola drumstick capicola. Beef ribs prosciutto porchetta beef.</p>
-
-<hr />
-
-<p>Transform text with capitalization classes via HTML:</p>
-
-<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;p</span> <span class="na">class=</span><span class="s">"text-lowercase"</span><span class="nt">&gt;</span>Lowercased text.<span class="nt">&lt;/p&gt;</span>
-<span class="nt">&lt;p</span> <span class="na">class=</span><span class="s">"text-uppercase"</span><span class="nt">&gt;</span>Uppercased text.<span class="nt">&lt;/p&gt;</span>
-<span class="nt">&lt;p</span> <span class="na">class=</span><span class="s">"text-capitalize"</span><span class="nt">&gt;</span>Capitalized text.<span class="nt">&lt;/p&gt;</span>
-<span class="nt">&lt;p</span> <span class="na">class=</span><span class="s">"text-truncate"</span><span class="nt">&gt;</span>Truncated text.<span class="nt">&lt;/p&gt;</span>
-<span class="nt">&lt;p</span> <span class="na">class=</span><span class="s">"small"</span><span class="nt">&gt;</span>Small text.<span class="nt">&lt;/p&gt;</span>
-</code></pre></div></div>
-
-<p>Or with Kramdown:</p>
-
-<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Lowercased text
-{: .text-lowercase}
-
-Uppercased text
-{: .text-uppercase}
-
-Capitalized text
-{: .text-capitalize}
-</code></pre></div></div>
-
-<p class="text-lowercase">Lowercased text</p>
-
-<p class="text-uppercase">Uppercased text</p>
-
-<p class="text-capitalize">Capitalized text</p>
-
-<p class="text-truncate">This is a truncated paragraph of text. Bacon ipsum dolor amet shoulder jowl tail andouille fatback tongue. Ham porchetta kielbasa pork pork chop, tenderloin hamburger meatball. Picanha porchetta swine, brisket salami pork belly burgdoggen. Cupim swine pastrami, chuck tri-tip pork belly jowl shankle alcatra brisket capicola ball tip prosciutto beef ribs doner. Tri-tip bacon ground round pork chop burgdoggen leberkas pork strip steak beef corned beef salami.</p>
-
-<p class="small">Small text</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}, {&quot;title&quot;=&gt;&quot;QQ&quot;, &quot;url&quot;=&gt;&quot;tencent://message/?uin=775986807&amp;Site=&amp;Menu=yes&quot;, &quot;icon&quot;=&gt;&quot;fab fa-qq&quot;}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="Markup" /><category term="alignment" /><category term="content" /><category term="css" /><category term="markup" /><summary type="html"><![CDATA[Sample text to demonstrate alignment and transformation classes.]]></summary></entry><entry><title type="html">Markup: Title *with* **Markdown**</title><link href="https://roshameow.github.io//personal_homepage/docs/markdown/markup-title-with-markdown/" rel="alternate" type="text/html" title="Markup: Title *with* **Markdown**" /><published>2013-01-05T00:00:00+00:00</published><updated>2017-03-09T17:25:10+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/markdown/markup-title-with-markdown</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/markdown/markup-title-with-markdown/"><![CDATA[<p>Using Markdown in the title should have no adverse effect on the layout or functionality.</p>
-
-<p><strong><code class="language-plaintext highlighter-rouge">page.title</code> example:</strong></p>
-
-<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">title</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Markup:</span><span class="nv"> </span><span class="s">Title</span><span class="nv"> </span><span class="s">*with*</span><span class="nv"> </span><span class="s">**Markdown**"</span><span class="s2">"</span>
-</code></pre></div></div>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}, {&quot;title&quot;=&gt;&quot;QQ&quot;, &quot;url&quot;=&gt;&quot;tencent://message/?uin=775986807&amp;Site=&amp;Menu=yes&quot;, &quot;icon&quot;=&gt;&quot;fab fa-qq&quot;}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="Markdown" /><category term="css" /><category term="html" /><category term="title" /><summary type="html"><![CDATA[Using Markdown in the title should have no adverse effect on the layout or functionality.]]></summary></entry></feed>
+<p>And that’s a wrap, yo! You survived the tumultuous waters of alignment. Image alignment achievement unlocked!</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="Markup" /><category term="alignment" /><category term="captions" /><category term="content" /><category term="css" /><category term="image" /><category term="markup" /><summary type="html"><![CDATA[The best way to demonstrate the ebb and flow of the various image positioning options is to nestle them snuggly among an ocean of words. Grab a paddle and let’s get started.]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://roshameow.github.io//personal_homepage/images/so-simple-sample-image-5.jpg" /><media:content medium="image" url="https://roshameow.github.io//personal_homepage/images/so-simple-sample-image-5.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>

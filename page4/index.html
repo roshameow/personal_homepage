@@ -16,21 +16,22 @@
   
   
   <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>Search | Liu, Wen’s Home Page</title>
+<title>Page 4 of 4 for Liu, Wen’s Home Page | Work, Experiments and Ideas.</title>
 <meta name="generator" content="Jekyll v4.3.2" />
-<meta property="og:title" content="Search" />
+<meta property="og:title" content="Liu, Wen’s Home Page" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="Work, Experiments and Ideas." />
 <meta property="og:description" content="Work, Experiments and Ideas." />
-<link rel="canonical" href="https://roshameow.github.io//personal_homepage/search/" />
-<meta property="og:url" content="https://roshameow.github.io//personal_homepage/search/" />
+<link rel="canonical" href="https://roshameow.github.io//personal_homepage/page4/" />
+<meta property="og:url" content="https://roshameow.github.io//personal_homepage/page4/" />
 <meta property="og:site_name" content="Liu, Wen’s Home Page" />
 <meta property="og:type" content="website" />
+<link rel="prev" href="https://roshameow.github.io//personal_homepage/page3/" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="Search" />
+<meta property="twitter:title" content="Liu, Wen’s Home Page" />
 <meta name="twitter:site" content="@" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebPage","description":"Work, Experiments and Ideas.","headline":"Search","url":"https://roshameow.github.io//personal_homepage/search/"}</script>
+{"@context":"https://schema.org","@type":"WebPage","description":"Work, Experiments and Ideas.","headline":"Liu, Wen’s Home Page","url":"https://roshameow.github.io//personal_homepage/page4/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -69,7 +70,7 @@
 
 </head>
 
-  <body class="layout--search  search">
+  <body class="layout--home  ">
     <nav class="skip-links">
   <h2 class="screen-reader-text">Skip links</h2>
   <ul>
@@ -110,18 +111,98 @@
       <header class="page-header">
         
         
-          <h1 id="page-title" class="page-title">Search</h1>
+          <h1 id="page-title" class="page-title"></h1>
         
       </header>
       <div class="page-content">
         
 
+<div class="entries-list">
 
-<form onsubmit="return false;">
-  <input type="input" id="search" class="search-input" placeholder="Enter your search term..." autofocus>
-</form>
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
+        <a href="/personal_homepage/docs/edge%20case/edge-case-nested-and-mixed-lists/" rel="bookmark">Edge Case: Nested and Mixed Lists
+</a>
+      
+    </h3>
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <p>Nested and mixed lists are an interesting beast. It’s a corner case to make sure that lists within lists do not break the ordered list numbering order and list styles go deep enough.</p>
 
-<div id="results"></div>
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">~1 min read</span>
+
+      <time class="entry-date dt-published" datetime="2009-05-15T00:00:00+00:00">May 15, 2009
+  </time>
+    </footer>
+  
+</article>
+<!-- Pagination links -->
+
+<nav class="pagination">
+  
+  <ul>
+    
+    
+      
+        <li><a href="/personal_homepage/page3/">Previous</a></li>
+      
+    
+
+    
+    
+      <li><a href="/personal_homepage/">1</a></li>
+    
+
+    
+    
+
+    
+    
+    
+
+    
+      
+        
+        
+        
+        <li><a href="/personal_homepage/page2/">2</a></li>
+      
+    
+      
+        
+        
+        
+        <li><a href="/personal_homepage/page3/">3</a></li>
+      
+    
+
+    
+    
+
+    
+      <li><a href="#" class="disabled current">4</a></li>
+    
+
+    
+    
+      <li><a href="#" class="disabled"><span aria-hidden="true">Next</span></a></li>
+    
+  </ul>
+</nav>
+
+</div>
 
 
         
@@ -184,68 +265,6 @@ MathJax = {
 </script>
 
 <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
-<script src="/personal_homepage/assets/js/lunr/lunr.min.js"></script>
-  <script src="/personal_homepage/assets/js/search-data.js"></script>
-  <script>
-    var idx = lunr(function () {
-      
-      // the, the normal lunr index initialization
-      this.field('title')
-      this.field('excerpt')
-      this.field('categories')
-      this.field('tags')
-      this.ref('id')
-
-      this.pipeline.remove(lunr.trimmer)
-
-      // add documents to index
-      for (var item in store) {
-        this.add({
-          title: store[item].title,
-          excerpt: store[item].excerpt,
-          categories: store[item].categories,
-          tags: store[item].tags,
-          id: item
-        })
-      }
-    });
-
-    console.log(jQuery.type(idx));
-
-    $(document).ready(function () {
-      $('input#search').on('keyup', function () {
-        var resultdiv = $('#results');
-        var query = $(this).val().toLowerCase();
-        var result =
-          idx.query(function (q) {
-            query.split(lunr.tokenizer.separator).forEach(function (term) {
-              q.term(term, { boost: 100 })
-              if (query.lastIndexOf(" ") != query.length - 1) {
-                q.term(term, { usePipeline: false, wildcard: lunr.Query.wildcard.TRAILING, boost: 10 })
-              }
-              if (term != "") {
-                q.term(term, { usePipeline: false, editDistance: 1, boost: 1 })
-              }
-            })
-          });
-        resultdiv.empty();
-        resultdiv.prepend('<p class="results__found">' + result.length + ' Result(s) found</p>');
-        for (var item in result) {
-          var ref = result[item].ref;
-          var searchitem =
-            '<article class="entry">' +
-              '<h3 class="entry-title">' +
-                '<a href="' + store[ref].url + '">' + store[ref].title + '</a>' +
-              '</h3>' +
-              '<div class="entry-excerpt">' +
-                '<p>' + store[ref].excerpt.split(" ").splice(0, 20).join(" ") + '...</p>' +
-              '</div>' +
-            '</article>';
-          resultdiv.append(searchitem);
-        }
-      });
-    });
-  </script>
 
   </body>
 
