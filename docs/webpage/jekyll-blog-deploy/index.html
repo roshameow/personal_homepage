@@ -31,7 +31,7 @@
 <meta property="twitter:title" content="用 jekyll+obsidian生成个人主页并部署到 github pages的工作流" />
 <meta name="twitter:site" content="@" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-12-28T01:26:34+00:00","datePublished":"2023-12-20T00:00:00+00:00","description":"用jekyll的原因无需多说。这样配置好工作流之后，除了编写内容基本没有什么麻烦的操作(登录在线网页，换编辑器，按照统一格式改文件名之类在我看来都很麻烦。。)。 Ruby的环境管理，包管理方式","headline":"用 jekyll+obsidian生成个人主页并部署到 github pages的工作流","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/docs/webpage/jekyll-blog-deploy/"},"url":"https://roshameow.github.io//personal_homepage/docs/webpage/jekyll-blog-deploy/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-12-28T15:17:25+00:00","datePublished":"2023-12-20T00:00:00+00:00","description":"用jekyll的原因无需多说。这样配置好工作流之后，除了编写内容基本没有什么麻烦的操作(登录在线网页，换编辑器，按照统一格式改文件名之类在我看来都很麻烦。。)。 Ruby的环境管理，包管理方式","headline":"用 jekyll+obsidian生成个人主页并部署到 github pages的工作流","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/docs/webpage/jekyll-blog-deploy/"},"url":"https://roshameow.github.io//personal_homepage/docs/webpage/jekyll-blog-deploy/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -311,25 +311,39 @@
 			<span class="n">image_name</span><span class="o">=</span><span class="err">$</span><span class="p">(</span><span class="n">echo</span> <span class="s2">"$image_link"</span> <span class="o">|</span> <span class="n">sed</span> <span class="o">-</span><span class="no">E</span> <span class="s1">'s/!\[\[([^|]+)\|[^]]+\]\]/\1/g'</span><span class="p">)</span> 
 			<span class="n">image_width</span><span class="o">=</span><span class="err">$</span><span class="p">(</span><span class="n">echo</span> <span class="s2">"$image_link"</span> <span class="o">|</span> <span class="n">grep</span> <span class="o">-</span><span class="n">o</span> <span class="o">-</span><span class="no">E</span> <span class="s1">'\|\d+'</span> <span class="o">|</span> <span class="n">sed</span> <span class="s1">'s/|//'</span><span class="p">)</span>
 	
-			<span class="n">sed</span> <span class="o">-</span><span class="n">i</span> <span class="s1">''</span> <span class="o">-</span><span class="no">E</span> <span class="s1">'s/!\[\[([^|]+)\|'</span><span class="err">$</span><span class="p">{</span><span class="n">image_width</span><span class="p">}</span><span class="s1">'\]\]/\!\[\1\]\({{ '</span><span class="p">\</span><span class="s1">''</span><span class="p">\</span><span class="sr">/docs\/attachment\/\1'\'' | relative_url }}\){:width="'${image_width}'"}/</span><span class="n">g</span><span class="s1">' "$target_folder/$filename"
+			<span class="n">sed</span> <span class="o">-</span><span class="n">i</span> <span class="s1">''</span> <span class="o">-</span><span class="no">E</span> <span class="s1">'s/!\[\[([^|]+)\|'</span><span class="err">$</span><span class="p">{</span><span class="n">image_width</span><span class="p">}</span><span class="s1">'\]\]/\!\[\1\]\({{ '</span><span class="p">\</span><span class="s1">''</span><span class="p">\</span><span class="sr">/docs\/attachment\/\1'\'' | relative_url }}\){:width="'${image_width}'"}/</span><span class="n">g</span><span class="err">'</span> <span class="s2">"$target_folder/$filename"</span>
 	
-			# 复制附件文件到目标附件文件夹
-			cp "$attachment_source/$image_name" "$attachment_target/"
-			echo "Copying $attachment_source/$image_name to $attachment_target/"
-		done
-		# 替换ruby 代码块为Liquid语法
-		...
-		# 替换latex公式，Replace $...$ with $$...$$ using sed
-		sed -i '' -E '</span><span class="n">s</span><span class="o">/</span><span class="p">\</span><span class="vg">$/</span><span class="p">\</span><span class="vg">$\$/</span><span class="n">g</span><span class="err">'</span> <span class="s2">"$target_folder/$filename"</span>
+			<span class="c1"># 复制附件文件到目标附件文件夹</span>
+			<span class="n">cp</span> <span class="s2">"$attachment_source/$image_name"</span> <span class="s2">"$attachment_target/"</span>
+			<span class="n">echo</span> <span class="s2">"Copying $attachment_source/$image_name to $attachment_target/"</span>
+		<span class="n">done</span>
+		<span class="c1"># 替换ruby 代码块为Liquid语法</span>
+		<span class="o">...</span>
 	<span class="n">done</span>
 	</code></pre></figure>
 
 <h3 id="其他配置">其他配置</h3>
 
 <ol>
+  <li><strong>配置位置：</strong>
+    <ul>
+      <li>我的模版调用顺序是<code class="language-plaintext highlighter-rouge">_layouts/default.html-&gt;_includes/scripts.html-&gt;includes/对应功能.html</code></li>
+    </ul>
+  </li>
   <li><strong>配置latex风格的公式：</strong>
     <ul>
-      <li>用<a href="https://stackoverflow.com/questions/26275645/how-to-support-latex-in-github-pages">mathjax@3</a> : 只支持<code class="language-plaintext highlighter-rouge">$...$</code>风格的语法，要自己在脚本里转换一下</li>
+      <li>用<a href="https://stackoverflow.com/questions/26275645/how-to-support-latex-in-github-pages">mathjax@3</a> : 只支持<code class="language-plaintext highlighter-rouge">$$...$$</code>风格的语法，需要在Mathjax的tex里面配置一下支持一般的<code class="language-plaintext highlighter-rouge">$...$</code>语法
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> &lt;script&gt;
+  MathJax = {
+      tex: {
+          tags: "ams",    // eq numbering options: none, ams, all
+          inlineMath: [['$', '$'], ["\\(", "\\)"]],  // 设置行内数学公式的开始和结束标记
+          displayMath: [['$$', '$$'], ["\\[", "\\]"]]  // 设置行间数学公式的开始和结束标记
+      },
+  }
+ &lt;/script&gt;
+</code></pre></div>        </div>
+      </li>
     </ul>
   </li>
   <li><strong>配置google analysis:</strong>
