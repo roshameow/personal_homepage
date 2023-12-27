@@ -20,13 +20,13 @@ last_modified_at: 2023-12-27T12:34:40-08:00
             
         - 所有通道叠加(一个像素是同行28x2=56个不同通道像素的叠加，出来的图像是很模糊的)
             
-        - 仿真通过shot noise: $Y_{sim}=B(Y/QE,QE)$
+        - 仿真通过shot noise: $$Y_{sim}=B(Y/QE,QE)$$
             
             - 本来读数是Y, qe是quantum efficiency
                 
             - B是binomial 分布
                 
-            - 这段其实没懂为什么要用binomial分布，而不是poisson分布$P(Y)$ , 大概Y/QE是平均光子数，所以sample这么多次，每次都有qe的概率转换为电子；但是仍然不理解为什么要在光电转换的部分随机
+            - 这段其实没懂为什么要用binomial分布，而不是poisson分布$$P(Y)$$ , 大概Y/QE是平均光子数，所以sample这么多次，每次都有qe的概率转换为电子；但是仍然不理解为什么要在光电转换的部分随机
 
 数据集使用：
 - simulation:

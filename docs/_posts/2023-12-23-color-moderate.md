@@ -6,7 +6,7 @@ categories:
 tags:
   - content
   - sensor
-last_modified_at: 2023-12-27T14:08:56-08:00
+last_modified_at: 2023-12-27T15:14:21-08:00
 ---
 ## 调制
 
@@ -21,7 +21,7 @@ last_modified_at: 2023-12-27T14:08:56-08:00
 
 1. **把像素不断二分[1](#ref)** 
 	- ![Pasted image 20231227093202.png]({{ '/docs/attachment/Pasted image 20231227093202.png' | relative_url }}){:width="400"}  
-	- 如果不是$2^n$ 个通道，没法保证所有通道的像素密度一样。比如图上5个通道的情况。1，2通道的密度就比3，4，5的密度低。
+	- 如果不是$$2^n$$ 个通道，没法保证所有通道的像素密度一样。比如图上5个通道的情况。1，2通道的密度就比3，4，5的密度低。
 	- 但是这样做可以让每个相同通道的间距相等。
 2. **间隔相等斜向排布[2](#ref)**  
 	- ![Pasted image 20231227093439.png]({{ '/docs/attachment/Pasted image 20231227093439.png' | relative_url }}){:width="200"} 
@@ -39,10 +39,11 @@ last_modified_at: 2023-12-27T14:08:56-08:00
 ### 排布像素的规则
 
 - 根据不同通道的功能先确定需要的像素密度
+
 ### 采用滤光片排布调制的问题：
 
 - 技术本身的问题：
-	- 现在一般用FP-干涉技术来制作多光谱sensor需要的窄波段，FP-干涉需要使用多层透镜实现，相当于严重降低光线透过率
+	- 现在一般用[FP-干涉][FP-干涉]技术来制作多光谱sensor需要的窄波段，FP-干涉需要使用多层透镜实现，相当于严重降低光线透过率
 	- mask均匀排布，会导致有些地方的傅立叶系数是0，不利于做reconstruction
 - 工厂生产的问题：
 	- 生产的一个filter的尺寸最小在10um左右，但是目前的手机用的单像素尺寸在[0.6～2.4um][像素尺寸](单像素2.4um已经是非常好的CMOS了)，不得不用类似quad bayer的做法让一个filter对应多个像素，无疑会影响调制的精度
@@ -53,6 +54,7 @@ last_modified_at: 2023-12-27T14:08:56-08:00
 
 
 [像素尺寸]: https://www.igao7.com/news/202204/Xo2jTjWP67ayPtIA.html
+[FP-干涉]: https://en.wikipedia.org/wiki/Fabry–Pérot_interferometer
 
 <span id="ref"></span>
 [1]  Lidan Miao and Hairong Qi. “The Design and Evaluation of a Generic Method for Generating Mosaicked Multispectral Filter Arrays.” _IEEE Transactions on Image Processing_ 15, no. 9 (September 2006): 2780–91. [https://doi.org/10.1109/TIP.2006.877315](https://doi.org/10.1109/TIP.2006.877315).
