@@ -31,7 +31,7 @@ read_time: true # reading time estimates, e.g. true
 words_per_minute: # 200
 mathjax:
   enable: true # MathJax equations, e.g. true, false (default)
-  combo:  # "tex-svg" (default), "tex-mml-chtml", etc.: docs.mathjax.org/en/latest/web/components/combined.html
+  combo:   # "tex-svg" (default), "tex-mml-chtml", etc.: docs.mathjax.org/en/latest/web/components/combined.html
   tags:  # "none", "ams" (default), "all"
 google_fonts:
   - name: "Source Sans Pro"
@@ -40,7 +40,7 @@ google_fonts:
     weights: "400,400i,700,700i"
 google_analytics: "G-9TMSCDTBGN" # Google Analytics id, e.g. "UA-NNNNNNNN-N"
 disqus:
-  shortname: https-roshameow-github-io-personal-homepage # Disqus shortname, e.g. "my_disqus_shortname"
+  shortname: https-roshameow-github-io-personal-homepage # Disqus shortname, e.g. "my_disqus_shortname", https://help.disqus.com/en/articles/1717111-what-s-a-shortname#
 twitter:
   username: # site's Twitter username, e.g. "mmistakes"
 
@@ -105,9 +105,6 @@ author:
     - title:
       url:
       icon:
-    - title: QQ
-      url: tencent://message/?uin=775986807&Site=&Menu=yes 
-      icon: fab fa-qq
 
 # Footer Links
 footer_links:
