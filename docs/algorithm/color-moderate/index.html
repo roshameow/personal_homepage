@@ -52,9 +52,6 @@
   <link rel="alternate" type="application/atom+xml" title="Liu, Wen&#39;s Home Page" href="/personal_homepage/atom.xml">
 <!-- start custom head snippets -->
 
-<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-
-
 <!-- insert favicons. use http://realfavicongenerator.net/ -->
 
 <!-- end custom head snippets -->
@@ -153,7 +150,7 @@
   <li><strong>把像素不断二分<a href="#ref">1</a></strong>
     <ul>
       <li><img src="/personal_homepage/docs/attachment/Pasted%20image%2020231227093202.png" alt="Pasted image 20231227093202.png" width="400" /></li>
-      <li>如果不是\(2^n\) 个通道，没法保证所有通道的像素密度一样。比如图上5个通道的情况。1，2通道的密度就比3，4，5的密度低。</li>
+      <li>如果不是$2^n$ 个通道，没法保证所有通道的像素密度一样。比如图上5个通道的情况。1，2通道的密度就比3，4，5的密度低。</li>
       <li>但是这样做可以让每个相同通道的间距相等。</li>
     </ul>
   </li>
@@ -300,16 +297,38 @@
   gtag('config', 'G-9TMSCDTBGN');
 </script>
 
-<!-- 
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-9TMSCDTBGN"></script>
+
+
+<!-- MathJax -->
+
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag() { dataLayer.push(arguments); }
-  gtag('js', new Date());
+    // http://docs.mathjax.org/en/latest/upgrading/v2.html
+    MathJax = {
+        tex: {
+            tags: "ams",    // eq numbering options: none, ams, all
+            inlineMath: [['$', '$'], ["\\(", "\\)"]],  // 设置行内数学公式的开始和结束标记
+            displayMath: [['$$', '$$'], ["\\[", "\\]"]]  // 设置行间数学公式的开始和结束标记
+        },
+        // options: {
+        //   renderActions: {
+        //     // for mathjax 3, handle <script "math/tex"> blocks inserted by kramdown
+        //     find: [10, function (doc) {
+        //       for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+        //         const display = !!node.type.match(/; *mode=display/);
+        //         const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+        //         const text = document.createTextNode('');
+        //         node.parentNode.replaceChild(text, node);
+        //         math.start = { node: text, delim: '', n: 0 };
+        //         math.end = { node: text, delim: '', n: 0 };
+        //         doc.math.push(math);
+        //       }
+        //     }, '']
+        //   }
+        // }
+    }
+</script>
 
-  gtag('config', 'G-9TMSCDTBGN');
-</script> -->
-
+<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
   </body>
 

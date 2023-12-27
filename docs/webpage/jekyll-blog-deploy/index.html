@@ -52,9 +52,6 @@
   <link rel="alternate" type="application/atom+xml" title="Liu, Wen&#39;s Home Page" href="/personal_homepage/atom.xml">
 <!-- start custom head snippets -->
 
-<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-
-
 <!-- insert favicons. use http://realfavicongenerator.net/ -->
 
 <!-- end custom head snippets -->
@@ -234,7 +231,7 @@
        <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Deploy to GitHub Pages</span>
          <span class="na">uses</span><span class="pi">:</span> <span class="s">JamesIves/github-pages-deploy-action@releases/v3</span>
          <span class="na">with</span><span class="pi">:</span>
-             <span class="na">GITHUB_TOKEN</span><span class="pi">:</span> <span class="s">$$</span>
+             <span class="na">GITHUB_TOKEN</span><span class="pi">:</span> <span class="s">$</span>
              <span class="na">BRANCH</span><span class="pi">:</span> <span class="s">gh-pages</span>
              <span class="na">FOLDER</span><span class="pi">:</span> <span class="s">_site</span>
 </code></pre></div>    </div>
@@ -295,35 +292,35 @@
 	<span class="n">attachment_target</span><span class="o">=</span><span class="s2">".../docs/attachment"</span>
 	
 	<span class="c1"># 检查附件目标文件夹是否存在，如果不存在则创建</span>
-	<span class="k">if</span> <span class="p">[</span> <span class="o">!</span> <span class="o">-</span><span class="n">d</span> <span class="s2">"$$attachment_target"</span> <span class="p">];</span> <span class="k">then</span>
-		<span class="n">mkdir</span> <span class="o">-</span><span class="nb">p</span> <span class="s2">"$$attachment_target"</span>
+	<span class="k">if</span> <span class="p">[</span> <span class="o">!</span> <span class="o">-</span><span class="n">d</span> <span class="s2">"$attachment_target"</span> <span class="p">];</span> <span class="k">then</span>
+		<span class="n">mkdir</span> <span class="o">-</span><span class="nb">p</span> <span class="s2">"$attachment_target"</span>
 	<span class="n">fi</span>
 	
 	<span class="c1"># 遍历源文件夹中的所有 .md 文件</span>
-	<span class="k">for</span> <span class="n">file</span> <span class="k">in</span> <span class="s2">"$$source_folder"</span><span class="o">/*</span><span class="p">.</span><span class="nf">md</span><span class="p">;</span> <span class="k">do</span>
+	<span class="k">for</span> <span class="n">file</span> <span class="k">in</span> <span class="s2">"$source_folder"</span><span class="o">/*</span><span class="p">.</span><span class="nf">md</span><span class="p">;</span> <span class="k">do</span>
 		<span class="c1"># 获取文件名（不包含路径）</span>
-		<span class="n">filename</span><span class="o">=</span><span class="vg">$$</span><span class="p">(</span><span class="n">basename</span> <span class="s2">"$$file"</span><span class="p">)</span>
+		<span class="n">filename</span><span class="o">=</span><span class="err">$</span><span class="p">(</span><span class="n">basename</span> <span class="s2">"$file"</span><span class="p">)</span>
 		
 		<span class="c1"># 复制 .md 文件到目标文件夹</span>
-		<span class="n">cp</span> <span class="s2">"$$file"</span> <span class="s2">"$$target_folder/$$filename"</span>
-		<span class="n">echo</span> <span class="s2">"Copying $$file to $$target_folder/$$filename"</span>
+		<span class="n">cp</span> <span class="s2">"$file"</span> <span class="s2">"$target_folder/$filename"</span>
+		<span class="n">echo</span> <span class="s2">"Copying $file to $target_folder/$filename"</span>
 		<span class="c1"># 遍历文件中的每个匹配的图片链接，提取图片文件名</span>
-		<span class="n">grep</span> <span class="o">-</span><span class="n">oE</span> <span class="s2">"!</span><span class="se">\[\[</span><span class="s2">([^]]+)</span><span class="se">\]\]</span><span class="s2">"</span> <span class="s2">"$$target_folder/$$filename"</span> <span class="o">|</span> <span class="k">while</span> <span class="no">IFS</span><span class="o">=</span> <span class="n">read</span> <span class="o">-</span><span class="n">r</span> <span class="n">image_link</span><span class="p">;</span> <span class="k">do</span>
+		<span class="n">grep</span> <span class="o">-</span><span class="n">oE</span> <span class="s2">"!</span><span class="se">\[\[</span><span class="s2">([^]]+)</span><span class="se">\]\]</span><span class="s2">"</span> <span class="s2">"$target_folder/$filename"</span> <span class="o">|</span> <span class="k">while</span> <span class="no">IFS</span><span class="o">=</span> <span class="n">read</span> <span class="o">-</span><span class="n">r</span> <span class="n">image_link</span><span class="p">;</span> <span class="k">do</span>
 	
 	
-			<span class="n">image_name</span><span class="o">=</span><span class="vg">$$</span><span class="p">(</span><span class="n">echo</span> <span class="s2">"$$image_link"</span> <span class="o">|</span> <span class="n">sed</span> <span class="o">-</span><span class="no">E</span> <span class="s1">'s/!\[\[([^|]+)\|[^]]+\]\]/\1/g'</span><span class="p">)</span> 
-			<span class="n">image_width</span><span class="o">=</span><span class="vg">$$</span><span class="p">(</span><span class="n">echo</span> <span class="s2">"$$image_link"</span> <span class="o">|</span> <span class="n">grep</span> <span class="o">-</span><span class="n">o</span> <span class="o">-</span><span class="no">E</span> <span class="s1">'\|\d+'</span> <span class="o">|</span> <span class="n">sed</span> <span class="s1">'s/|//'</span><span class="p">)</span>
+			<span class="n">image_name</span><span class="o">=</span><span class="err">$</span><span class="p">(</span><span class="n">echo</span> <span class="s2">"$image_link"</span> <span class="o">|</span> <span class="n">sed</span> <span class="o">-</span><span class="no">E</span> <span class="s1">'s/!\[\[([^|]+)\|[^]]+\]\]/\1/g'</span><span class="p">)</span> 
+			<span class="n">image_width</span><span class="o">=</span><span class="err">$</span><span class="p">(</span><span class="n">echo</span> <span class="s2">"$image_link"</span> <span class="o">|</span> <span class="n">grep</span> <span class="o">-</span><span class="n">o</span> <span class="o">-</span><span class="no">E</span> <span class="s1">'\|\d+'</span> <span class="o">|</span> <span class="n">sed</span> <span class="s1">'s/|//'</span><span class="p">)</span>
 	
-			<span class="n">sed</span> <span class="o">-</span><span class="n">i</span> <span class="s1">''</span> <span class="o">-</span><span class="no">E</span> <span class="s1">'s/!\[\[([^|]+)\|'</span><span class="vg">$$</span><span class="p">{</span><span class="n">image_width</span><span class="p">}</span><span class="s1">'\]\]/\!\[\1\]\({{ '</span><span class="p">\</span><span class="s1">''</span><span class="p">\</span><span class="sr">/docs\/attachment\/\1'\'' | relative_url }}\){:width="'$${image_width}'"}/</span><span class="n">g</span><span class="s1">' "$$target_folder/$$filename"
+			<span class="n">sed</span> <span class="o">-</span><span class="n">i</span> <span class="s1">''</span> <span class="o">-</span><span class="no">E</span> <span class="s1">'s/!\[\[([^|]+)\|'</span><span class="err">$</span><span class="p">{</span><span class="n">image_width</span><span class="p">}</span><span class="s1">'\]\]/\!\[\1\]\({{ '</span><span class="p">\</span><span class="s1">''</span><span class="p">\</span><span class="sr">/docs\/attachment\/\1'\'' | relative_url }}\){:width="'${image_width}'"}/</span><span class="n">g</span><span class="s1">' "$target_folder/$filename"
 	
 			# 复制附件文件到目标附件文件夹
-			cp "$$attachment_source/$$image_name" "$$attachment_target/"
-			echo "Copying $$attachment_source/$$image_name to $$attachment_target/"
+			cp "$attachment_source/$image_name" "$attachment_target/"
+			echo "Copying $attachment_source/$image_name to $attachment_target/"
 		done
 		# 替换ruby 代码块为Liquid语法
 		...
-		# 替换latex公式，Replace $$...$$ with $$$$...$$$$ using sed
-		sed -i '' -E '</span><span class="n">s</span><span class="o">/</span><span class="p">\</span><span class="vg">$$</span><span class="o">/</span><span class="p">\</span><span class="vg">$$</span><span class="p">\</span><span class="vg">$$</span><span class="o">/</span><span class="n">g</span><span class="err">'</span> <span class="s2">"$$target_folder/$$filename"</span>
+		# 替换latex公式，Replace $...$ with $$...$$ using sed
+		sed -i '' -E '</span><span class="n">s</span><span class="o">/</span><span class="p">\</span><span class="vg">$/</span><span class="p">\</span><span class="vg">$\$/</span><span class="n">g</span><span class="err">'</span> <span class="s2">"$target_folder/$filename"</span>
 	<span class="n">done</span>
 	</code></pre></figure>
 
@@ -332,10 +329,10 @@
 <ol>
   <li><strong>配置latex风格的公式：</strong>
     <ul>
-      <li>用<a href="https://stackoverflow.com/questions/26275645/how-to-support-latex-in-github-pages">mathjax@3</a> : 只支持<code class="language-plaintext highlighter-rouge">$$...$$</code>风格的语法，要自己在脚本里转换一下</li>
+      <li>用<a href="https://stackoverflow.com/questions/26275645/how-to-support-latex-in-github-pages">mathjax@3</a> : 只支持<code class="language-plaintext highlighter-rouge">$...$</code>风格的语法，要自己在脚本里转换一下</li>
     </ul>
   </li>
-  <li>配置google analysis:
+  <li><strong>配置google analysis:</strong>
     <ul>
       <li>我用的模版比较老，需要<a href="https://blog.jakelee.co.uk/migrating-jekyll-minima-from-ua-to-ga4/">把Universal analysis换成GA4</a></li>
     </ul>
@@ -431,16 +428,38 @@
   gtag('config', 'G-9TMSCDTBGN');
 </script>
 
-<!-- 
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-9TMSCDTBGN"></script>
+
+
+<!-- MathJax -->
+
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag() { dataLayer.push(arguments); }
-  gtag('js', new Date());
+    // http://docs.mathjax.org/en/latest/upgrading/v2.html
+    MathJax = {
+        tex: {
+            tags: "ams",    // eq numbering options: none, ams, all
+            inlineMath: [['$', '$'], ["\\(", "\\)"]],  // 设置行内数学公式的开始和结束标记
+            displayMath: [['$$', '$$'], ["\\[", "\\]"]]  // 设置行间数学公式的开始和结束标记
+        },
+        // options: {
+        //   renderActions: {
+        //     // for mathjax 3, handle <script "math/tex"> blocks inserted by kramdown
+        //     find: [10, function (doc) {
+        //       for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+        //         const display = !!node.type.match(/; *mode=display/);
+        //         const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+        //         const text = document.createTextNode('');
+        //         node.parentNode.replaceChild(text, node);
+        //         math.start = { node: text, delim: '', n: 0 };
+        //         math.end = { node: text, delim: '', n: 0 };
+        //         doc.math.push(math);
+        //       }
+        //     }, '']
+        //   }
+        // }
+    }
+</script>
 
-  gtag('config', 'G-9TMSCDTBGN');
-</script> -->
-
+<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
   </body>
 
