@@ -16,22 +16,22 @@
   
   
   <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>传感器颜色调制 (二) | Liu, Wen’s Home Page</title>
+<title>blender学习: Toon BSDF的硬阴影效果 | Liu, Wen’s Home Page</title>
 <meta name="generator" content="Jekyll v4.3.3" />
-<meta property="og:title" content="传感器颜色调制 (二)" />
+<meta property="og:title" content="blender学习: Toon BSDF的硬阴影效果" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="通过coded-aperture 和 dispenser进行颜色调制" />
-<meta property="og:description" content="通过coded-aperture 和 dispenser进行颜色调制" />
-<link rel="canonical" href="https://roshameow.github.io//personal_homepage/docs/algorithm/color-moderate1/" />
-<meta property="og:url" content="https://roshameow.github.io//personal_homepage/docs/algorithm/color-moderate1/" />
+<meta name="description" content="导入模型" />
+<meta property="og:description" content="导入模型" />
+<link rel="canonical" href="https://roshameow.github.io//personal_homepage/docs/blender/blender-learning/" />
+<meta property="og:url" content="https://roshameow.github.io//personal_homepage/docs/blender/blender-learning/" />
 <meta property="og:site_name" content="Liu, Wen’s Home Page" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2023-12-26T00:00:00+00:00" />
+<meta property="article:published_time" content="2023-12-29T00:00:00+00:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="传感器颜色调制 (二)" />
+<meta property="twitter:title" content="blender学习: Toon BSDF的硬阴影效果" />
 <meta name="twitter:site" content="@" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-12-27T20:34:40+00:00","datePublished":"2023-12-26T00:00:00+00:00","description":"通过coded-aperture 和 dispenser进行颜色调制","headline":"传感器颜色调制 (二)","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/docs/algorithm/color-moderate1/"},"url":"https://roshameow.github.io//personal_homepage/docs/algorithm/color-moderate1/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-01-01T02:11:23+00:00","datePublished":"2023-12-29T00:00:00+00:00","description":"导入模型","headline":"blender学习: Toon BSDF的硬阴影效果","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/docs/blender/blender-learning/"},"url":"https://roshameow.github.io//personal_homepage/docs/blender/blender-learning/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -58,7 +58,7 @@
 
 </head>
 
-  <body class="layout--post  传感器颜色调制-二">
+  <body class="layout--post  blender学习-toon-bsdf的硬阴影效果">
     <nav class="skip-links">
   <h2 class="screen-reader-text">Skip links</h2>
   <ul>
@@ -99,7 +99,7 @@
       <header class="page-header">
         
         
-        <h1 id="page-title" class="page-title p-name">传感器颜色调制 (二)
+        <h1 id="page-title" class="page-title p-name">blender学习:  Toon BSDF的硬阴影效果
 </h1>
         
       </header>
@@ -111,7 +111,7 @@
 
 <span class="read-time">~1 min read</span>
 
-    <time class="page-date dt-published" datetime="2023-12-26T00:00:00+00:00"><a class="u-url" href="">December 26, 2023</a>
+    <time class="page-date dt-published" datetime="2023-12-29T00:00:00+00:00"><a class="u-url" href="">December 29, 2023</a>
 </time>
 
   </div>
@@ -120,14 +120,14 @@
         
   <h3 class="page-taxonomies-title">Categories</h3>
   
-  <ul class="page-taxonomies"><li class="page-taxonomy"><a class="p-category" href="/personal_homepage/categories/#algorithm" title="Pages filed under algorithm">algorithm</a></li><li class="page-taxonomy"><a class="p-category" href="/personal_homepage/categories/#docs" title="Pages filed under docs">docs</a></li>
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a class="p-category" href="/personal_homepage/categories/#blender" title="Pages filed under blender">blender</a></li><li class="page-taxonomy"><a class="p-category" href="/personal_homepage/categories/#docs" title="Pages filed under docs">docs</a></li>
   </ul>
 
 
         
   <h3 class="page-taxonomies-title">Tags</h3>
   
-  <ul class="page-taxonomies"><li class="page-taxonomy"><a href="/personal_homepage/tags/#content" title="Pages tagged content" rel="tag">content</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#sensor" title="Pages tagged sensor" rel="tag">sensor</a></li>
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a href="/personal_homepage/tags/#bsdf" title="Pages tagged BSDF" rel="tag">BSDF</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#content" title="Pages tagged content" rel="tag">content</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#render" title="Pages tagged render" rel="tag">render</a></li>
   </ul>
 
 
@@ -135,104 +135,81 @@
 
       <div class="page-content">
         <div class="e-content">
-          <h2 id="通过coded-aperture-和-dispenser进行颜色调制">通过coded-aperture 和 dispenser进行颜色调制</h2>
+          <h3 id="导入模型">导入模型</h3>
+
+<p>用glTF格式的模型</p>
 
 <ul>
-  <li>
-    <p>仿真数据：</p>
-
+  <li>glTF格式介绍：<a href="https://github.com/KhronosGroup/glTF">https://github.com/KhronosGroup/glTF</a></li>
+  <li>在vscode安装glTF tools 插件：
     <ul>
-      <li>
-        <p>CASSI: coded_apeture+dispenser</p>
+      <li>可以跳转到具体accessor，直接查看数据</li>
+      <li>可以查看渲染之后的结果(包括背景和动画)</li>
+    </ul>
+  </li>
+  <li>下载gltf模型: <a href="https://github.com/GPUOpen-LibrariesAndSDKs/Cauldron-Media/tree/v1.0.4/buster_drone">https://github.com/GPUOpen-LibrariesAndSDKs/Cauldron-Media/tree/v1.0.4/buster_drone</a></li>
+</ul>
 
+<h3 id="步骤">步骤</h3>
+
+<ul>
+  <li>参考<a href="https://www.bilibili.com/video/BV1ck4y1W7am/">b站的教学视频</a> 修改：
+    <ul>
+      <li>world property:
         <ul>
-          <li>
-            <p>coded_apeture把mask应用于所有通道</p>
-          </li>
-          <li>
-            <p>dispenser依次给mask的通道图像y-axis 2pixel的shift</p>
-          </li>
-          <li>
-            <p>所有通道叠加(一个像素是同行28x2=56个不同通道像素的叠加，出来的图像是很模糊的)</p>
-          </li>
-          <li>
-            <p>仿真通过shot noise: $Y_{sim}=B(Y/QE,QE)$</p>
-
+          <li>surface: 选background, strength 0
             <ul>
-              <li>
-                <p>本来读数是Y, qe是quantum efficiency</p>
-              </li>
-              <li>
-                <p>B是binomial 分布</p>
-              </li>
-              <li>
-                <p>这段其实没懂为什么要用binomial分布，而不是poisson分布$P(Y)$ , 大概Y/QE是平均光子数，所以sample这么多次，每次都有qe的概率转换为电子；但是仍然不理解为什么要在光电转换的部分随机</p>
-              </li>
+              <li>直接把surface的shader直接关掉应该也是一样的效果？</li>
             </ul>
           </li>
         </ul>
       </li>
+      <li>光源：
+        <ul>
+          <li>blender代码：
+            <ul>
+              <li>https://github.com/blender/cycles/blob/main/src/scene/light.cpp</li>
+              <li>https://github.com/blender/cycles/blob/main/src/kernel/light/spot.h</li>
+              <li>https://github.com/blender/cycles/blob/main/src/kernel/sample/mapping.h#L114</li>
+            </ul>
+          </li>
+          <li>改成spot light</li>
+          <li>radius改成0：影响光锥的软硬</li>
+          <li>blend改成0</li>
+        </ul>
+      </li>
+      <li>rendering
+        <ul>
+          <li>引擎改成cycles：cycles是基于光追的，更符合现实情况</li>
+          <li>noise threshold改成0， sample改成64</li>
+          <li>Light Paths里面反弹次数(Total, Diffuse, Glossy, Transmission)都改成0
+            <ul>
+              <li>防止出现明亮表面和柔和边缘？</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>shader
+        <ul>
+          <li>改成Toon BSDF</li>
+          <li>把反光的部分BSDF从diffuse改成glossy</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>加入运镜，参考教学视频 <a href="https://www.bilibili.com/video/BV1eq4y1y7D2/?vd_source=9cd152be6fbc1b9ad36a33604a13fb6e">https://www.bilibili.com/video/BV1eq4y1y7D2</a>
+    <ul>
+      <li>在animation界面删除本来的animation</li>
+      <li>在layout界面开启auto key之后，点击播放：这个时候鼠标只能移动，需要按快捷键配合移动。</li>
+    </ul>
+  </li>
+  <li>输出视频
+    <ul>
+      <li><img src="/personal_homepage/docs/attachment/output.mp4" alt="output.mp4" width="400" /></li>
     </ul>
   </li>
 </ul>
 
-<p>数据集使用：</p>
-<ul>
-  <li>simulation:
-    <ul>
-      <li>训练：
-        <ul>
-          <li>data: cave_1024_28</li>
-          <li>crop_size: 随机crop到256x256, 和mask做simulation
-            <ul>
-              <li>shift3d mask: 28x256x310</li>
-            </ul>
-          </li>
-          <li>mask: TSA_simu_data/mask.mat</li>
-          <li>test:  TSA_simu_data/Truth/</li>
-        </ul>
-      </li>
-      <li>测试：
-        <ul>
-          <li>mask: TSA_simu_data/mask.mat</li>
-          <li>test: TSA_simu_data/Truth/</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li>real:
-    <ul>
-      <li>训练:
-        <ul>
-          <li>size: 96</li>
-          <li>data: CAVE_512_28 and KAIST_CVPR2021
-            <ul>
-              <li>CAVE_512_28 ：原数据集512x512x28 30个图片</li>
-              <li>KAIST_CVPR2021： 2704x3376x28 30个图片</li>
-            </ul>
-          </li>
-          <li>mask: TSA_real_data/mask.mat
-            <ul>
-              <li>660x660 0-1的数据</li>
-              <li><img src="/personal_homepage/docs/attachment/mask.png" alt="mask.png" width="300" /></li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-      <li>测试
-        <ul>
-          <li>size: 714x660</li>
-          <li>data: TSA_real_data/Measurements/
-            <ul>
-              <li><img src="/personal_homepage/docs/attachment/Pasted%20image%2020231226120247.png" alt="Pasted image 20231226120247.png" width="300" /></li>
-            </ul>
-          </li>
-          <li>mask: TSA_real_data/mask.mat</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-</ul>
 
         </div>
 
@@ -244,8 +221,8 @@
     <div id="disqus_thread"></div>
     <script>
       var disqus_config = function () {
-        this.page.url = 'https://roshameow.github.io//personal_homepage/docs/algorithm/color-moderate1/';
-        this.page.identifier = 'https://roshameow.github.io//personal_homepage/docs/algorithm/color-moderate1/';
+        this.page.url = 'https://roshameow.github.io//personal_homepage/docs/blender/blender-learning/';
+        this.page.identifier = 'https://roshameow.github.io//personal_homepage/docs/blender/blender-learning/';
       };
 
       (function() {
@@ -263,23 +240,15 @@
 
         <nav class="page-pagination" role="navigation">
   
-    <a class="page-previous" href="/personal_homepage/docs/algorithm/color-moderate/">
+    <a class="page-previous" href="/personal_homepage/docs/algorithm/color-moderate1/">
       <h4 class="page-pagination-label">Previous</h4>
       <span class="page-pagination-title">
-        <i class="fas fa-arrow-left"></i> 传感器颜色调制 (一)
+        <i class="fas fa-arrow-left"></i> 传感器颜色调制 (二)
 
       </span>
     </a>
   
 
-  
-    <a class="page-next" href="/personal_homepage/docs/blender/blender-learning/">
-      <h4 class="page-pagination-label">Next</h4>
-      <span class="page-pagination-title">
-        blender学习:  Toon BSDF的硬阴影效果
- <i class="fas fa-arrow-right"></i>
-      </span>
-    </a>
   
 </nav>
 
