@@ -20,8 +20,8 @@
 <meta name="generator" content="Jekyll v4.3.3" />
 <meta property="og:title" content="用 jekyll+obsidian生成个人主页并部署到 github pages的工作流" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="用jekyll的原因无需多说。这样配置好工作流之后，除了编写内容基本没有什么麻烦的操作(登录在线网页，换编辑器，按照统一格式改文件名之类在我看来都很麻烦。。)。 Ruby的环境管理，包管理方式" />
-<meta property="og:description" content="用jekyll的原因无需多说。这样配置好工作流之后，除了编写内容基本没有什么麻烦的操作(登录在线网页，换编辑器，按照统一格式改文件名之类在我看来都很麻烦。。)。 Ruby的环境管理，包管理方式" />
+<meta name="description" content="用jekyll的原因无需多说。这样配置好工作流之后，除了编写内容基本没有什么麻烦的操作(登录在线网页，换编辑器，按照统一格式改文件名之类在我看来都很麻烦。。)。 Ruby的环境管理，包管理方式 管理顺序： churby -&gt; ruby -&gt; bundle -&gt; gem -&gt; jekyll ruby： 是经常在 web 开发中使用的一种动态语言。 churby： Ruby 的环境管理工具，用于管理不同版本的 Ruby。 gem： Ruby 编写的软件包的统称，Jekyll 也是一个 gem。 bundler： 用于管理项目 gem 的工具，根据 Gemfile 管理不同版本的 gem。bundler自己本身也是gem。 如果用 Python 来类比，关系大概是这样： ruby python churby 版本号 conda create -n my_env python=版本号; conda activate my_env gem install 某个包 pip install 某个包 bundler install pip install -r requirements.txt 具体配置流程 安装ruby 按照 Jekyll 网站 的方法，安装 Chruby 和 Ruby-install。 切换到对应版本的 Ruby。 在 macOS 中我遇到的问题是系统中已经安装了 Miniforge3，其中包含了 OpenSSL，但不能正常使用。通过 Homebrew 安装 OpenSSL@1.1 解决。 本地配置 选择一个博客主题，例如 So Simple，fork 对应主题的 GitHub 代码，然后根据自己的需要修改 _config.yml。 运行 bundler install 安装项目所需的 gem。 运行 bundle exec jekyll serve，此时可以在本地进行预览。 利用 GitHub Actions 部署到 GitHub Pages 将下面的 Action 脚本添加到项目的 .github/workflows/main.yml 文件。等待执行完成，可以通过浏览器访问 http://name.github.io/base_url/。 name: Homepage Project Deploy to GitHub Pages on: push: branches: - master #设置每次将代码推送到 master 分支时自动执行 permissions: contents: write jobs: deploy: runs-on: ubuntu-latest steps: - name: Checkout repository uses: actions/checkout@v4 - name: Set up ruby and gems uses: ruby/setup-ruby@v1 #如果用ruby install的话好像没法切换版本 with: ruby-version: &#39;3.2&#39; # Not needed with a .ruby-version file bundler-cache: true # runs &#39;bundle install&#39; and caches installed gems automatically - name: Build and deploy run: | bundle exec jekyll build echo &#39;personal-homepage&#39; &gt; _site/CNAME cp _site/index.html _site/404.html touch _site/.nojekyll #必须的，gh-pages分支没有环境，必须要跳过build env: JEKYLL_ENV: production - name: Deploy to GitHub Pages uses: JamesIves/github-pages-deploy-action@releases/v3 with: GITHUB_TOKEN: $ BRANCH: gh-pages FOLDER: _site 因为actions里有写入操作，需要先去账户生成一个有权限的token。具体参考github文档 还需要在repo setting里把gh-pages设置为pages对应的branch 。 更新内容： 在 docs/_posts 中更新内容。因为我平时笔记都是在 Obsidian 中编辑的，决定在 Obsidian 中设置一个文件夹，然后将每篇笔记同步到 docs/_posts 文件夹中。 用obsidian的优点： Markdown 格式, 包括Front Matter在 Obsidian 中显示非常舒适。 利用 Obsidian 的update-time-on-edit 插件，可以自动更新 last_modified_date。 利用 Obsidian 的 unique note 插件，可以通过点击生成符合格式的笔记模板。 同步： 大部分 Obsidian 的 Markdown 格式是直接兼容的。为了同步，我编写了一个 Bash 脚本sync_homepage.sh ，把双链改成 Markdown 链接，并将文章中链接的图片同步到 docs/attachment 文件夹下。 注意代码块可能会解析错误，所以在脚本里把ruby的代码块都替换成Liquid语法。 问题：目前不支持增量同步，每次同步都需要遍历所有文件，但由于都是文本文件，影响较小。 和raycast联动: 然后给脚本设置raycast的标记。这样每次在obsidian里面编辑完，直接用raycast快捷键同步。 sync_homepage.sh 示范： 其他配置 配置位置： 我的模版调用顺序是_layouts/default.html-&gt;_includes/scripts.html-&gt;includes/对应功能.html 配置latex风格的公式： 用mathjax@3 : 只支持$$...$$风格的语法，需要在Mathjax的tex里面配置一下支持一般的$...$语法 &lt;script&gt; MathJax = { tex: { tags: &quot;ams&quot;, // eq numbering options: none, ams, all inlineMath: [[&#39;$&#39;, &#39;$&#39;], [&quot;\\(&quot;, &quot;\\)&quot;]], // 设置行内数学公式的开始和结束标记 displayMath: [[&#39;$$&#39;, &#39;$$&#39;], [&quot;\\[&quot;, &quot;\\]&quot;]] // 设置行间数学公式的开始和结束标记 }, } &lt;/script&gt; 配置google analysis: 我用的模版比较老，需要把Universal analysis换成GA4" />
+<meta property="og:description" content="用jekyll的原因无需多说。这样配置好工作流之后，除了编写内容基本没有什么麻烦的操作(登录在线网页，换编辑器，按照统一格式改文件名之类在我看来都很麻烦。。)。 Ruby的环境管理，包管理方式 管理顺序： churby -&gt; ruby -&gt; bundle -&gt; gem -&gt; jekyll ruby： 是经常在 web 开发中使用的一种动态语言。 churby： Ruby 的环境管理工具，用于管理不同版本的 Ruby。 gem： Ruby 编写的软件包的统称，Jekyll 也是一个 gem。 bundler： 用于管理项目 gem 的工具，根据 Gemfile 管理不同版本的 gem。bundler自己本身也是gem。 如果用 Python 来类比，关系大概是这样： ruby python churby 版本号 conda create -n my_env python=版本号; conda activate my_env gem install 某个包 pip install 某个包 bundler install pip install -r requirements.txt 具体配置流程 安装ruby 按照 Jekyll 网站 的方法，安装 Chruby 和 Ruby-install。 切换到对应版本的 Ruby。 在 macOS 中我遇到的问题是系统中已经安装了 Miniforge3，其中包含了 OpenSSL，但不能正常使用。通过 Homebrew 安装 OpenSSL@1.1 解决。 本地配置 选择一个博客主题，例如 So Simple，fork 对应主题的 GitHub 代码，然后根据自己的需要修改 _config.yml。 运行 bundler install 安装项目所需的 gem。 运行 bundle exec jekyll serve，此时可以在本地进行预览。 利用 GitHub Actions 部署到 GitHub Pages 将下面的 Action 脚本添加到项目的 .github/workflows/main.yml 文件。等待执行完成，可以通过浏览器访问 http://name.github.io/base_url/。 name: Homepage Project Deploy to GitHub Pages on: push: branches: - master #设置每次将代码推送到 master 分支时自动执行 permissions: contents: write jobs: deploy: runs-on: ubuntu-latest steps: - name: Checkout repository uses: actions/checkout@v4 - name: Set up ruby and gems uses: ruby/setup-ruby@v1 #如果用ruby install的话好像没法切换版本 with: ruby-version: &#39;3.2&#39; # Not needed with a .ruby-version file bundler-cache: true # runs &#39;bundle install&#39; and caches installed gems automatically - name: Build and deploy run: | bundle exec jekyll build echo &#39;personal-homepage&#39; &gt; _site/CNAME cp _site/index.html _site/404.html touch _site/.nojekyll #必须的，gh-pages分支没有环境，必须要跳过build env: JEKYLL_ENV: production - name: Deploy to GitHub Pages uses: JamesIves/github-pages-deploy-action@releases/v3 with: GITHUB_TOKEN: $ BRANCH: gh-pages FOLDER: _site 因为actions里有写入操作，需要先去账户生成一个有权限的token。具体参考github文档 还需要在repo setting里把gh-pages设置为pages对应的branch 。 更新内容： 在 docs/_posts 中更新内容。因为我平时笔记都是在 Obsidian 中编辑的，决定在 Obsidian 中设置一个文件夹，然后将每篇笔记同步到 docs/_posts 文件夹中。 用obsidian的优点： Markdown 格式, 包括Front Matter在 Obsidian 中显示非常舒适。 利用 Obsidian 的update-time-on-edit 插件，可以自动更新 last_modified_date。 利用 Obsidian 的 unique note 插件，可以通过点击生成符合格式的笔记模板。 同步： 大部分 Obsidian 的 Markdown 格式是直接兼容的。为了同步，我编写了一个 Bash 脚本sync_homepage.sh ，把双链改成 Markdown 链接，并将文章中链接的图片同步到 docs/attachment 文件夹下。 注意代码块可能会解析错误，所以在脚本里把ruby的代码块都替换成Liquid语法。 问题：目前不支持增量同步，每次同步都需要遍历所有文件，但由于都是文本文件，影响较小。 和raycast联动: 然后给脚本设置raycast的标记。这样每次在obsidian里面编辑完，直接用raycast快捷键同步。 sync_homepage.sh 示范： 其他配置 配置位置： 我的模版调用顺序是_layouts/default.html-&gt;_includes/scripts.html-&gt;includes/对应功能.html 配置latex风格的公式： 用mathjax@3 : 只支持$$...$$风格的语法，需要在Mathjax的tex里面配置一下支持一般的$...$语法 &lt;script&gt; MathJax = { tex: { tags: &quot;ams&quot;, // eq numbering options: none, ams, all inlineMath: [[&#39;$&#39;, &#39;$&#39;], [&quot;\\(&quot;, &quot;\\)&quot;]], // 设置行内数学公式的开始和结束标记 displayMath: [[&#39;$$&#39;, &#39;$$&#39;], [&quot;\\[&quot;, &quot;\\]&quot;]] // 设置行间数学公式的开始和结束标记 }, } &lt;/script&gt; 配置google analysis: 我用的模版比较老，需要把Universal analysis换成GA4" />
 <link rel="canonical" href="https://roshameow.github.io//personal_homepage/docs/webpage/jekyll-blog-deploy/" />
 <meta property="og:url" content="https://roshameow.github.io//personal_homepage/docs/webpage/jekyll-blog-deploy/" />
 <meta property="og:site_name" content="Liu, Wen’s Home Page" />
@@ -31,7 +31,7 @@
 <meta property="twitter:title" content="用 jekyll+obsidian生成个人主页并部署到 github pages的工作流" />
 <meta name="twitter:site" content="@" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-12-28T15:18:08+00:00","datePublished":"2023-12-20T00:00:00+00:00","description":"用jekyll的原因无需多说。这样配置好工作流之后，除了编写内容基本没有什么麻烦的操作(登录在线网页，换编辑器，按照统一格式改文件名之类在我看来都很麻烦。。)。 Ruby的环境管理，包管理方式","headline":"用 jekyll+obsidian生成个人主页并部署到 github pages的工作流","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/docs/webpage/jekyll-blog-deploy/"},"url":"https://roshameow.github.io//personal_homepage/docs/webpage/jekyll-blog-deploy/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-01-12T01:53:15+00:00","datePublished":"2023-12-20T00:00:00+00:00","description":"用jekyll的原因无需多说。这样配置好工作流之后，除了编写内容基本没有什么麻烦的操作(登录在线网页，换编辑器，按照统一格式改文件名之类在我看来都很麻烦。。)。 Ruby的环境管理，包管理方式 管理顺序： churby -&gt; ruby -&gt; bundle -&gt; gem -&gt; jekyll ruby： 是经常在 web 开发中使用的一种动态语言。 churby： Ruby 的环境管理工具，用于管理不同版本的 Ruby。 gem： Ruby 编写的软件包的统称，Jekyll 也是一个 gem。 bundler： 用于管理项目 gem 的工具，根据 Gemfile 管理不同版本的 gem。bundler自己本身也是gem。 如果用 Python 来类比，关系大概是这样： ruby python churby 版本号 conda create -n my_env python=版本号; conda activate my_env gem install 某个包 pip install 某个包 bundler install pip install -r requirements.txt 具体配置流程 安装ruby 按照 Jekyll 网站 的方法，安装 Chruby 和 Ruby-install。 切换到对应版本的 Ruby。 在 macOS 中我遇到的问题是系统中已经安装了 Miniforge3，其中包含了 OpenSSL，但不能正常使用。通过 Homebrew 安装 OpenSSL@1.1 解决。 本地配置 选择一个博客主题，例如 So Simple，fork 对应主题的 GitHub 代码，然后根据自己的需要修改 _config.yml。 运行 bundler install 安装项目所需的 gem。 运行 bundle exec jekyll serve，此时可以在本地进行预览。 利用 GitHub Actions 部署到 GitHub Pages 将下面的 Action 脚本添加到项目的 .github/workflows/main.yml 文件。等待执行完成，可以通过浏览器访问 http://name.github.io/base_url/。 name: Homepage Project Deploy to GitHub Pages on: push: branches: - master #设置每次将代码推送到 master 分支时自动执行 permissions: contents: write jobs: deploy: runs-on: ubuntu-latest steps: - name: Checkout repository uses: actions/checkout@v4 - name: Set up ruby and gems uses: ruby/setup-ruby@v1 #如果用ruby install的话好像没法切换版本 with: ruby-version: &#39;3.2&#39; # Not needed with a .ruby-version file bundler-cache: true # runs &#39;bundle install&#39; and caches installed gems automatically - name: Build and deploy run: | bundle exec jekyll build echo &#39;personal-homepage&#39; &gt; _site/CNAME cp _site/index.html _site/404.html touch _site/.nojekyll #必须的，gh-pages分支没有环境，必须要跳过build env: JEKYLL_ENV: production - name: Deploy to GitHub Pages uses: JamesIves/github-pages-deploy-action@releases/v3 with: GITHUB_TOKEN: $ BRANCH: gh-pages FOLDER: _site 因为actions里有写入操作，需要先去账户生成一个有权限的token。具体参考github文档 还需要在repo setting里把gh-pages设置为pages对应的branch 。 更新内容： 在 docs/_posts 中更新内容。因为我平时笔记都是在 Obsidian 中编辑的，决定在 Obsidian 中设置一个文件夹，然后将每篇笔记同步到 docs/_posts 文件夹中。 用obsidian的优点： Markdown 格式, 包括Front Matter在 Obsidian 中显示非常舒适。 利用 Obsidian 的update-time-on-edit 插件，可以自动更新 last_modified_date。 利用 Obsidian 的 unique note 插件，可以通过点击生成符合格式的笔记模板。 同步： 大部分 Obsidian 的 Markdown 格式是直接兼容的。为了同步，我编写了一个 Bash 脚本sync_homepage.sh ，把双链改成 Markdown 链接，并将文章中链接的图片同步到 docs/attachment 文件夹下。 注意代码块可能会解析错误，所以在脚本里把ruby的代码块都替换成Liquid语法。 问题：目前不支持增量同步，每次同步都需要遍历所有文件，但由于都是文本文件，影响较小。 和raycast联动: 然后给脚本设置raycast的标记。这样每次在obsidian里面编辑完，直接用raycast快捷键同步。 sync_homepage.sh 示范： 其他配置 配置位置： 我的模版调用顺序是_layouts/default.html-&gt;_includes/scripts.html-&gt;includes/对应功能.html 配置latex风格的公式： 用mathjax@3 : 只支持$$...$$风格的语法，需要在Mathjax的tex里面配置一下支持一般的$...$语法 &lt;script&gt; MathJax = { tex: { tags: &quot;ams&quot;, // eq numbering options: none, ams, all inlineMath: [[&#39;$&#39;, &#39;$&#39;], [&quot;\\\\(&quot;, &quot;\\\\)&quot;]], // 设置行内数学公式的开始和结束标记 displayMath: [[&#39;$$&#39;, &#39;$$&#39;], [&quot;\\\\[&quot;, &quot;\\\\]&quot;]] // 设置行间数学公式的开始和结束标记 }, } &lt;/script&gt; 配置google analysis: 我用的模版比较老，需要把Universal analysis换成GA4","headline":"用 jekyll+obsidian生成个人主页并部署到 github pages的工作流","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/docs/webpage/jekyll-blog-deploy/"},"url":"https://roshameow.github.io//personal_homepage/docs/webpage/jekyll-blog-deploy/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -109,7 +109,7 @@
             <a class="u-url" rel="me" href=""><i class="fas fa-link fa-lg" title=""></i></a>
           </li></ul>
 
-<span class="read-time">2 min read</span>
+<span class="read-time">1 min read</span>
 
     <time class="page-date dt-published" datetime="2023-12-20T00:00:00+00:00"><a class="u-url" href="">December 20, 2023</a>
 </time>
@@ -130,6 +130,21 @@
   <ul class="page-taxonomies"><li class="page-taxonomy"><a href="/personal_homepage/tags/#content" title="Pages tagged content" rel="tag">content</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#jekyll" title="Pages tagged jekyll" rel="tag">jekyll</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#markdown" title="Pages tagged markdown" rel="tag">markdown</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#obsidian" title="Pages tagged obsidian" rel="tag">obsidian</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#raycast" title="Pages tagged raycast" rel="tag">raycast</a></li>
   </ul>
 
+
+        <!-- {::options parse_block_html="true" /} -->
+<div id="entry-table-of-contents" class="toc-wrapper">
+<h2 id="toc-toggle" class="no_toc">
+  Table of Contents <i class="toc-toggle-icon fas fa-chevron-down"></i>
+</h2>
+<ol class="inline_toc" id="my_toc"><li><a href="#ruby的环境管理包管理方式">Ruby的环境管理，包管理方式</a></li><li><a href="#具体配置流程">具体配置流程</a></li><li><a href="#其他配置">其他配置</a></li>
+        </ol>
+
+<!-- 1. toc
+{:toc} -->
+
+</div>
+
+<!-- {::options parse_block_html="false" /} -->
 
       </div>
 
@@ -272,55 +287,7 @@
 
 <p><code class="language-plaintext highlighter-rouge">sync_homepage.sh</code> 示范：</p>
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby">	<span class="c1">#!/bin/bash</span>
-	
-	<span class="c1"># Required parameters:</span>
-	<span class="c1"># @raycast.schemaVersion 1</span>
-	<span class="c1"># @raycast.title sync_homepage</span>
-	<span class="c1"># @raycast.mode compact</span>
-	
-	<span class="c1"># obsidian文件夹路径</span>
-	<span class="n">source_folder</span><span class="o">=</span><span class="s2">"..."</span>
-	
-	<span class="c1"># homepage项目doc/_post文件夹路径</span>
-	<span class="n">target_folder</span><span class="o">=</span><span class="s2">".../docs/_posts"</span>
-	
-	<span class="c1"># 附件源文件夹路径</span>
-	<span class="n">attachment_source</span><span class="o">=</span><span class="s2">"..."</span>
-	
-	<span class="c1"># 附件目标文件夹路径</span>
-	<span class="n">attachment_target</span><span class="o">=</span><span class="s2">".../docs/attachment"</span>
-	
-	<span class="c1"># 检查附件目标文件夹是否存在，如果不存在则创建</span>
-	<span class="k">if</span> <span class="p">[</span> <span class="o">!</span> <span class="o">-</span><span class="n">d</span> <span class="s2">"$attachment_target"</span> <span class="p">];</span> <span class="k">then</span>
-		<span class="n">mkdir</span> <span class="o">-</span><span class="nb">p</span> <span class="s2">"$attachment_target"</span>
-	<span class="n">fi</span>
-	
-	<span class="c1"># 遍历源文件夹中的所有 .md 文件</span>
-	<span class="k">for</span> <span class="n">file</span> <span class="k">in</span> <span class="s2">"$source_folder"</span><span class="o">/*</span><span class="p">.</span><span class="nf">md</span><span class="p">;</span> <span class="k">do</span>
-		<span class="c1"># 获取文件名（不包含路径）</span>
-		<span class="n">filename</span><span class="o">=</span><span class="err">$</span><span class="p">(</span><span class="n">basename</span> <span class="s2">"$file"</span><span class="p">)</span>
-		
-		<span class="c1"># 复制 .md 文件到目标文件夹</span>
-		<span class="n">cp</span> <span class="s2">"$file"</span> <span class="s2">"$target_folder/$filename"</span>
-		<span class="n">echo</span> <span class="s2">"Copying $file to $target_folder/$filename"</span>
-		<span class="c1"># 遍历文件中的每个匹配的图片链接，提取图片文件名</span>
-		<span class="n">grep</span> <span class="o">-</span><span class="n">oE</span> <span class="s2">"!</span><span class="se">\[\[</span><span class="s2">([^]]+)</span><span class="se">\]\]</span><span class="s2">"</span> <span class="s2">"$target_folder/$filename"</span> <span class="o">|</span> <span class="k">while</span> <span class="no">IFS</span><span class="o">=</span> <span class="n">read</span> <span class="o">-</span><span class="n">r</span> <span class="n">image_link</span><span class="p">;</span> <span class="k">do</span>
-	
-	
-			<span class="n">image_name</span><span class="o">=</span><span class="err">$</span><span class="p">(</span><span class="n">echo</span> <span class="s2">"$image_link"</span> <span class="o">|</span> <span class="n">sed</span> <span class="o">-</span><span class="no">E</span> <span class="s1">'s/!\[\[([^|]+)\|[^]]+\]\]/\1/g'</span><span class="p">)</span> 
-			<span class="n">image_width</span><span class="o">=</span><span class="err">$</span><span class="p">(</span><span class="n">echo</span> <span class="s2">"$image_link"</span> <span class="o">|</span> <span class="n">grep</span> <span class="o">-</span><span class="n">o</span> <span class="o">-</span><span class="no">E</span> <span class="s1">'\|\d+'</span> <span class="o">|</span> <span class="n">sed</span> <span class="s1">'s/|//'</span><span class="p">)</span>
-	
-			<span class="n">sed</span> <span class="o">-</span><span class="n">i</span> <span class="s1">''</span> <span class="o">-</span><span class="no">E</span> <span class="s1">'s/!\[\[([^|]+)\|'</span><span class="err">$</span><span class="p">{</span><span class="n">image_width</span><span class="p">}</span><span class="s1">'\]\]/\!\[\1\]\({{ '</span><span class="p">\</span><span class="s1">''</span><span class="p">\</span><span class="sr">/docs\/attachment\/\1'\'' | relative_url }}\){:width="'${image_width}'"}/</span><span class="n">g</span><span class="err">'</span> <span class="s2">"$target_folder/$filename"</span>
-	
-			<span class="c1"># 复制附件文件到目标附件文件夹</span>
-			<span class="n">cp</span> <span class="s2">"$attachment_source/$image_name"</span> <span class="s2">"$attachment_target/"</span>
-			<span class="n">echo</span> <span class="s2">"Copying $attachment_source/$image_name to $attachment_target/"</span>
-		<span class="n">done</span>
-		<span class="c1"># 替换ruby 代码块为Liquid语法</span>
-		<span class="o">...</span>
-	<span class="n">done</span>
-	</code></pre></figure>
+<script src="https://gist.github.com/roshameow/d476620467bc40d79519f827bfd07da5.js"></script>
 
 <h3 id="其他配置">其他配置</h3>
 

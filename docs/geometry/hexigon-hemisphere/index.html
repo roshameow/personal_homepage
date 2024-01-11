@@ -20,8 +20,8 @@
 <meta name="generator" content="Jekyll v4.3.3" />
 <meta property="og:title" content="用六边形构成半球" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="刷到《葬送的芙莉莲》里面关于六边形魔法防御结界的讨论，根据多面体欧拉公式，仅仅用正六边形是没法组成球体形状结界。我也非常理解制作组为什么不画个足球：毕竟是魔法阵，六边形画的又比较大，弄个五边形也不好看也不好解释。" />
-<meta property="og:description" content="刷到《葬送的芙莉莲》里面关于六边形魔法防御结界的讨论，根据多面体欧拉公式，仅仅用正六边形是没法组成球体形状结界。我也非常理解制作组为什么不画个足球：毕竟是魔法阵，六边形画的又比较大，弄个五边形也不好看也不好解释。" />
+<meta name="description" content="刷到关于《葬送的芙莉莲》里面六边形魔法防御结界的讨论，根据多面体欧拉公式，仅仅用正六边形是没法组成球体形状结界。我也非常理解制作组为什么不画个足球：毕竟是魔法阵，六边形画的又比较大，弄个五边形也不好看也不好解释。 但是如果不是球，而是半球，不考虑边界是否完整，变形，肯定是可行的。因为半球$S^+$ 和disk $\mathbb{D}^1$， 和六边形边界的平面都是 topological isomorphism 的，在平面上能实现的密铺，变形到半球上当然也能实现。 另外，为了保证在3维上看起来不难看。用Malley’s Method, 把disk看成半球的投影，实行$(r,\phi)=(\sin\theta,\phi)\rightarrow (\theta,\phi)$ 的变换，让六边形在$(\theta,\phi)$ 的坐标上是均匀的。 画一个密铺六边形半球的步骤 用python画一个密铺的六边形： , 画上辅助线： 做变换 这一步得到的是我们设想的半球面的投影, 看起来确实给人一种六边形能组成球形的错觉。。 另外，Photoshop里面球面化的滤镜，看起来效果差不多，可能也是用了这个变换。   又对比了一下原图，嗯？费伦的结界难道也是这么画的？ 把得到的投影映射到半球 转到侧面看下：   看起来确实挺正常的，当然，这样的两个半球也合不成一个全是六边形的球，因为如图上边界的地方： 展开会变成5边形，7边形，8边形 其他讨论这个的链接： [1] https://zhuanlan.zhihu.com/p/673051340 [2] https://www.163.com/dy/article/IMH50ITS0526FP3N.html" />
+<meta property="og:description" content="刷到关于《葬送的芙莉莲》里面六边形魔法防御结界的讨论，根据多面体欧拉公式，仅仅用正六边形是没法组成球体形状结界。我也非常理解制作组为什么不画个足球：毕竟是魔法阵，六边形画的又比较大，弄个五边形也不好看也不好解释。 但是如果不是球，而是半球，不考虑边界是否完整，变形，肯定是可行的。因为半球$S^+$ 和disk $\mathbb{D}^1$， 和六边形边界的平面都是 topological isomorphism 的，在平面上能实现的密铺，变形到半球上当然也能实现。 另外，为了保证在3维上看起来不难看。用Malley’s Method, 把disk看成半球的投影，实行$(r,\phi)=(\sin\theta,\phi)\rightarrow (\theta,\phi)$ 的变换，让六边形在$(\theta,\phi)$ 的坐标上是均匀的。 画一个密铺六边形半球的步骤 用python画一个密铺的六边形： , 画上辅助线： 做变换 这一步得到的是我们设想的半球面的投影, 看起来确实给人一种六边形能组成球形的错觉。。 另外，Photoshop里面球面化的滤镜，看起来效果差不多，可能也是用了这个变换。   又对比了一下原图，嗯？费伦的结界难道也是这么画的？ 把得到的投影映射到半球 转到侧面看下：   看起来确实挺正常的，当然，这样的两个半球也合不成一个全是六边形的球，因为如图上边界的地方： 展开会变成5边形，7边形，8边形 其他讨论这个的链接： [1] https://zhuanlan.zhihu.com/p/673051340 [2] https://www.163.com/dy/article/IMH50ITS0526FP3N.html" />
 <link rel="canonical" href="https://roshameow.github.io//personal_homepage/docs/geometry/hexigon-hemisphere/" />
 <meta property="og:url" content="https://roshameow.github.io//personal_homepage/docs/geometry/hexigon-hemisphere/" />
 <meta property="og:site_name" content="Liu, Wen’s Home Page" />
@@ -31,7 +31,7 @@
 <meta property="twitter:title" content="用六边形构成半球" />
 <meta name="twitter:site" content="@" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-01-03T03:57:56+00:00","datePublished":"2024-01-02T00:00:00+00:00","description":"刷到《葬送的芙莉莲》里面关于六边形魔法防御结界的讨论，根据多面体欧拉公式，仅仅用正六边形是没法组成球体形状结界。我也非常理解制作组为什么不画个足球：毕竟是魔法阵，六边形画的又比较大，弄个五边形也不好看也不好解释。","headline":"用六边形构成半球","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/docs/geometry/hexigon-hemisphere/"},"url":"https://roshameow.github.io//personal_homepage/docs/geometry/hexigon-hemisphere/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-01-03T03:57:56+00:00","datePublished":"2024-01-02T00:00:00+00:00","description":"刷到关于《葬送的芙莉莲》里面六边形魔法防御结界的讨论，根据多面体欧拉公式，仅仅用正六边形是没法组成球体形状结界。我也非常理解制作组为什么不画个足球：毕竟是魔法阵，六边形画的又比较大，弄个五边形也不好看也不好解释。 但是如果不是球，而是半球，不考虑边界是否完整，变形，肯定是可行的。因为半球$S^+$ 和disk $\\mathbb{D}^1$， 和六边形边界的平面都是 topological isomorphism 的，在平面上能实现的密铺，变形到半球上当然也能实现。 另外，为了保证在3维上看起来不难看。用Malley’s Method, 把disk看成半球的投影，实行$(r,\\phi)=(\\sin\\theta,\\phi)\\rightarrow (\\theta,\\phi)$ 的变换，让六边形在$(\\theta,\\phi)$ 的坐标上是均匀的。 画一个密铺六边形半球的步骤 用python画一个密铺的六边形： , 画上辅助线： 做变换 这一步得到的是我们设想的半球面的投影, 看起来确实给人一种六边形能组成球形的错觉。。 另外，Photoshop里面球面化的滤镜，看起来效果差不多，可能也是用了这个变换。   又对比了一下原图，嗯？费伦的结界难道也是这么画的？ 把得到的投影映射到半球 转到侧面看下：   看起来确实挺正常的，当然，这样的两个半球也合不成一个全是六边形的球，因为如图上边界的地方： 展开会变成5边形，7边形，8边形 其他讨论这个的链接： [1] https://zhuanlan.zhihu.com/p/673051340 [2] https://www.163.com/dy/article/IMH50ITS0526FP3N.html","headline":"用六边形构成半球","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/docs/geometry/hexigon-hemisphere/"},"url":"https://roshameow.github.io//personal_homepage/docs/geometry/hexigon-hemisphere/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -131,11 +131,27 @@
   </ul>
 
 
+        <!-- {::options parse_block_html="true" /} -->
+<div id="entry-table-of-contents" class="toc-wrapper">
+<h2 id="toc-toggle" class="no_toc">
+  Table of Contents <i class="toc-toggle-icon fas fa-chevron-down"></i>
+</h2>
+<ol class="inline_toc" id="my_toc"><li><a href="#画一个密铺六边形半球的步骤">画一个密铺六边形半球的步骤</a><ol><li><a href="#用python画一个密铺的六边形">用python画一个密铺的六边形：</a></li><li><a href="#做变换">做变换</a></li><li><a href="#把得到的投影映射到半球">把得到的投影映射到半球</a></li>
+    </ol></li><li><a href="#其他讨论这个的链接">其他讨论这个的链接：</a></li>
+        </ol>
+
+<!-- 1. toc
+{:toc} -->
+
+</div>
+
+<!-- {::options parse_block_html="false" /} -->
+
       </div>
 
       <div class="page-content">
         <div class="e-content">
-          <p>刷到《葬送的芙莉莲》里面关于六边形魔法防御结界的讨论，根据<a href="https://en.wikipedia.org/wiki/Euler_characteristic">多面体欧拉公式</a>，仅仅用正六边形是没法组成球体形状结界。我也非常理解制作组为什么不画个足球：毕竟是魔法阵，六边形画的又比较大，弄个五边形也不好看也不好解释。
+          <p>刷到关于《葬送的芙莉莲》里面六边形魔法防御结界的讨论，根据<a href="https://en.wikipedia.org/wiki/Euler_characteristic">多面体欧拉公式</a>，仅仅用正六边形是没法组成球体形状结界。我也非常理解制作组为什么不画个足球：毕竟是魔法阵，六边形画的又比较大，弄个五边形也不好看也不好解释。
 <img src="/personal_homepage/docs/attachment/Pasted%20image%2020240102192929.png" alt="Pasted image 20240102192929.png" width="500" /></p>
 
 <p>但是如果不是球，而是半球，不考虑边界是否完整，变形，肯定是可行的。因为半球$S^+$ 和disk $\mathbb{D}^1$， 和六边形边界的平面都是 <a href="https://en.wikipedia.org/wiki/Homeomorphism">topological isomorphism</a> 的，在平面上能实现的密铺，变形到半球上当然也能实现。</p>
@@ -214,6 +230,14 @@
     </a>
   
 
+  
+    <a class="page-next" href="/personal_homepage/docs/simulation/diffraction/">
+      <h4 class="page-pagination-label">Next</h4>
+      <span class="page-pagination-title">
+        aperture衍射模型
+ <i class="fas fa-arrow-right"></i>
+      </span>
+    </a>
   
 </nav>
 
