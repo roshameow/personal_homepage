@@ -3,11 +3,8 @@
 <h2 id="toc-toggle" class="no_toc">
   {{ site.data.text[site.locale].table_of_contents | default: 'Table of Contents' }} <i class="toc-toggle-icon fas fa-chevron-down"></i>
 </h2>
-{% include toc.html html=content sanitize=true ordered=true class="inline_toc" id="my_toc" h_min=2 h_max=3 %}
-
 <!-- 1. toc
 {:toc} -->
-
+{% include toc.html html=content sanitize=true class="inline_toc" id="my_toc" h_min=2 h_max=3 %}
 </div>
-
 <!-- {::options parse_block_html="false" /} -->
