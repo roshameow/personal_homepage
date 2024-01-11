@@ -9,7 +9,7 @@ tags:
   - markdown
   - obsidian
   - raycast
-last_modified_at: 2023-12-28T07:18:08-08:00
+last_modified_at: 2024-01-11T17:53:15-08:00
 ---
 用jekyll的原因无需多说。这样配置好工作流之后，除了编写内容基本没有什么麻烦的操作(登录在线网页，换编辑器，按照统一格式改文件名之类在我看来都很麻烦。。)。
 ### Ruby的环境管理，包管理方式
@@ -105,59 +105,8 @@ last_modified_at: 2023-12-28T07:18:08-08:00
  ![Pasted image 20231221195227.png]({{ '/docs/attachment/Pasted image 20231221195227.png' | relative_url }}){:width="600"} 
 
 `sync_homepage.sh` 示范：
-	{% highlight ruby %}
-{% raw %}
-	#!/bin/bash
-	
-	# Required parameters:
-	# @raycast.schemaVersion 1
-	# @raycast.title sync_homepage
-	# @raycast.mode compact
-	
-	# obsidian文件夹路径
-	source_folder="..."
-	
-	# homepage项目doc/_post文件夹路径
-	target_folder=".../docs/_posts"
-	
-	# 附件源文件夹路径
-	attachment_source="..."
-	
-	# 附件目标文件夹路径
-	attachment_target=".../docs/attachment"
-	
-	# 检查附件目标文件夹是否存在，如果不存在则创建
-	if [ ! -d "$attachment_target" ]; then
-		mkdir -p "$attachment_target"
-	fi
-	
-	# 遍历源文件夹中的所有 .md 文件
-	for file in "$source_folder"/*.md; do
-		# 获取文件名（不包含路径）
-		filename=$(basename "$file")
-		
-		# 复制 .md 文件到目标文件夹
-		cp "$file" "$target_folder/$filename"
-		echo "Copying $file to $target_folder/$filename"
-		# 遍历文件中的每个匹配的图片链接，提取图片文件名
-		grep -oE "!\[\[([^]]+)\]\]" "$target_folder/$filename" | while IFS= read -r image_link; do
-	
-	
-			image_name=$(echo "$image_link" | sed -E 's/!\[\[([^|]+)\|[^]]+\]\]/\1/g') 
-			image_width=$(echo "$image_link" | grep -o -E '\|\d+' | sed 's/|//')
-	
-			sed -i '' -E 's/!\[\[([^|]+)\|'${image_width}'\]\]/\!\[\1\]\({{ '\''\/docs\/attachment\/\1'\'' | relative_url }}\){:width="'${image_width}'"}/g' "$target_folder/$filename"
-	
-			# 复制附件文件到目标附件文件夹
-			cp "$attachment_source/$image_name" "$attachment_target/"
-			echo "Copying $attachment_source/$image_name to $attachment_target/"
-		done
-		# 替换ruby 代码块为Liquid语法
-		...
-	done
-	{% endraw %}
-{% endhighlight %}
 
+<script src="https://gist.github.com/roshameow/d476620467bc40d79519f827bfd07da5.js"></script>
 
 ### 其他配置
 

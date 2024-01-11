@@ -47,7 +47,8 @@ twitter:
 # Liquid
 liquid:
   error_mode: strict
-
+# excerpt
+excerpt_separator: <!--more-->
 # Build settings
 permalink: /:categories/:title/
 markdown: kramdown

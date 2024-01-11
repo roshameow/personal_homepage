@@ -9,7 +9,7 @@ tags:
   - 动漫
 last_modified_at: 2024-01-02T19:57:56-08:00
 ---
-刷到《葬送的芙莉莲》里面关于六边形魔法防御结界的讨论，根据[多面体欧拉公式](https://en.wikipedia.org/wiki/Euler_characteristic)，仅仅用正六边形是没法组成球体形状结界。我也非常理解制作组为什么不画个足球：毕竟是魔法阵，六边形画的又比较大，弄个五边形也不好看也不好解释。
+刷到关于《葬送的芙莉莲》里面六边形魔法防御结界的讨论，根据[多面体欧拉公式](https://en.wikipedia.org/wiki/Euler_characteristic)，仅仅用正六边形是没法组成球体形状结界。我也非常理解制作组为什么不画个足球：毕竟是魔法阵，六边形画的又比较大，弄个五边形也不好看也不好解释。
 ![Pasted image 20240102192929.png]({{ '/docs/attachment/Pasted image 20240102192929.png' | relative_url }}){:width="500"} 
 
 但是如果不是球，而是半球，不考虑边界是否完整，变形，肯定是可行的。因为半球$S^+$ 和disk $\mathbb{D}^1$， 和六边形边界的平面都是 [topological isomorphism](https://en.wikipedia.org/wiki/Homeomorphism) 的，在平面上能实现的密铺，变形到半球上当然也能实现。
