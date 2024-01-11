@@ -169,8 +169,13 @@ var store = [{
         "tags": ["content","idea","动漫"],
         "url": "https://roshameow.github.io//personal_homepage/docs/geometry/hexigon-hemisphere/"
       },{
-        "title": "aperture衍射模型",
+        "title": "aperture衍射模型 (一)",
         "excerpt":"光的传播理论 Huygens–Fresnel principle理论： 假设光源在$(x^\\prime,y^\\prime,0)$ , 方向是$z$ 方向，能量是$E$ 传播到$(x,y,z)$ 的electric field是$E(x,y,z)=\\frac{1}{i\\lambda}\\cdot E \\cdot\\frac{e^{ikr}}{r}\\cdot \\frac{z}{r}$ $r$ 是$(x,y,z)$ 到光源的距离 $\\lambda$ 是波长 $k$ 是wavenumber: $\\frac{2\\pi}{\\lambda}$ diffraction 考虑由光圈所在平面到sensor这一段, 假设$z$ 固定为aperture和sensor的距离，光源为从aperture向sensor方向的平行光 从aperture $A$ 透过的能量是 $E(x,y,z)= \\int\\int_A \\frac{z}{i\\lambda r^2} E(x^\\prime,y^\\prime,0)\\cdot e^{ikr}\\cdot dx^\\prime dy^\\prime$ ，形成的pattern主要受$e^{ikr}$ 这个高频项的影响, 主要能观测到的pattern可以用下面两类衍射模型近似 Fresnel diffraction(菲涅耳衍射) 假设 : $r\\approx z+\\frac{(x-x^\\prime)^2+(y-y^\\prime)^2}{2z}$ $r=\\sqrt{z^2+\\rho^2}=z\\sqrt{1+\\frac{\\rho^2}{z^2}}$ , 其中$\\rho^2=(x-x^\\prime)^2+(y-y^\\prime)^2$ 展开为 $r=z(1+\\frac{\\rho^2}{2z^2}-\\frac{1}{8}(\\frac{\\rho^2}{z^2})^2+\\cdots)\\approx...","categories": ["docs","simulation"],
-        "tags": ["content","simulation","pysics","sensor"],
+        "tags": ["content","simulation","sensor","physics"],
         "url": "https://roshameow.github.io//personal_homepage/docs/simulation/diffraction/"
+      },{
+        "title": "aperture衍射模型 (二)",
+        "excerpt":"仿真 在aperture区域均匀采样，发现Frensel pattern是很难出现的，在每个像素对应sample数不足1000的时候，基本观测不到。。应该是因为在那个范围内结果受$(x^\\prime,y^\\prime)$ 的位置影响更大, 也就表现出更大的随机性。 确实可以看到sensor到aperture距离增大后, pattern变化的全过程。 在一个网上找的Frensel diffraction仿真 java代码里面，作者也是通过先把部分积分形式通过公式运算先化简之后做的仿真1，没有用原始的传播公式。应用 在相机系统中，我们关心进光量和成像的分辨率：用Fraunhofer的模型估算相机的resolution 相机aperture参数：这两个都是dimensionless版本的aperture f-number: $N=\\frac{f}{D}=\\frac{f}{2a}$ 相机焦距$f=z$, 光圈直径$D=2a$ numerical aperture $NA=\\frac{a}{\\sqrt{f^2+a^2}}=\\frac{1}{\\sqrt{4N^2+1}}\\approx \\frac{1}{2N}$ 第一圈黑环处距中心距离，认为是相机的optical resolution: $q=r_1\\sin\\theta\\approx \\sqrt{f^2+a^2}\\sin\\theta=\\frac{a}{NA}\\sin\\theta\\approx \\frac{a}{NA}\\frac{1.22\\lambda}{2a}=\\frac{0.61\\lambda}{NA}$ 此时是$J_1(x)$ 的第一个0点， $J_1(ka\\sin\\theta)=0$，$ka\\sin\\theta\\approx 3.83$ ，即$\\sin\\theta\\approx \\frac{3.83}{ka}=\\frac{3.83\\lambda}{2\\pi a}=1.22\\frac{\\lambda}{D}$ numberical aperture越大，optical resolution越小，分辨率越高？其他讨论这个的链接： 仿真 [5] http://www.dauger.com/fresnel/ [6] Dauger, Dean E. “Simulation and Study of Fresnel Diffraction for Arbitrary...","categories": ["docs","simulation"],
+        "tags": ["content","simulation","sensor","physics"],
+        "url": "https://roshameow.github.io//personal_homepage/docs/simulation/diffraction1/"
       }]
