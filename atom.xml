@@ -1,10 +1,15 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="https://roshameow.github.io//personal_homepage/atom.xml" rel="self" type="application/atom+xml" /><link href="https://roshameow.github.io//personal_homepage/" rel="alternate" type="text/html" /><updated>2024-01-11T15:56:35+00:00</updated><id>https://roshameow.github.io//personal_homepage/atom.xml</id><title type="html">Liu, Wen’s Home Page</title><subtitle>Work, Experiments and Ideas.</subtitle><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><entry><title type="html">aperture衍射模型 (二)</title><link href="https://roshameow.github.io//personal_homepage/docs/simulation/diffraction1/" rel="alternate" type="text/html" title="aperture衍射模型 (二)" /><published>2024-01-11T00:00:00+00:00</published><updated>2024-01-12T07:52:21+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/simulation/diffraction1</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/simulation/diffraction1/"><![CDATA[<h3 id="仿真">仿真</h3>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="https://roshameow.github.io//personal_homepage/atom.xml" rel="self" type="application/atom+xml" /><link href="https://roshameow.github.io//personal_homepage/" rel="alternate" type="text/html" /><updated>2024-01-12T08:24:41+00:00</updated><id>https://roshameow.github.io//personal_homepage/atom.xml</id><title type="html">Liu, Wen’s Home Page</title><subtitle>Work, Experiments and Ideas.</subtitle><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><entry><title type="html">aperture衍射模型 (二)</title><link href="https://roshameow.github.io//personal_homepage/docs/simulation/diffraction1/" rel="alternate" type="text/html" title="aperture衍射模型 (二)" /><published>2024-01-11T00:00:00+00:00</published><updated>2024-01-13T00:11:41+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/simulation/diffraction1</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/simulation/diffraction1/"><![CDATA[<h3 id="仿真">仿真</h3>
 
 <p><img src="/personal_homepage/docs/attachment/circle_diffraction.mp4" alt="circle_diffraction.mp4" width="200" /> <img src="/personal_homepage/docs/attachment/square_diffraction.mp4" alt="square_diffraction.mp4" width="200" /></p>
 <ol>
   <li>在aperture区域均匀采样，发现Frensel pattern是很难出现的，在每个像素对应sample数不足1000的时候，基本观测不到。。应该是因为在那个范围内结果受$(x^\prime,y^\prime)$ 的位置影响更大, 也就表现出更大的随机性。</li>
   <li>确实可以看到sensor到aperture距离增大后, pattern变化的全过程。</li>
   <li>在一个网上找的<a href="https://www.falstad.com/diffraction/">Frensel diffraction仿真</a> java代码里面，作者也是通过先把部分积分形式通过公式运算先化简之后做的仿真<a href="#ref">1</a>，没有用原始的传播公式。</li>
+  <li>如果用全光谱的光源，Fraunhofer衍射中因为波长影响看起来的效果像是从中间不同颜色的光被diffuse了，我看一些3d建模制作里说的衍射，一般是指这种效果，可以看<a href="https://www.bilibili.com/video/BV1C5411E78d/">b站上一个用blender仿这种效果的视频</a>
+    <ul>
+      <li>blender的cycles用的是粒子模型, 没有相位变化，可能没法直接得到衍射</li>
+    </ul>
+  </li>
 </ol>
 
 <h3 id="应用">应用</h3>
@@ -13,21 +18,42 @@
 <ul>
   <li>相机aperture参数：这两个都是dimensionless版本的aperture
     <ul>
-      <li>f-number: $N=\frac{f}{D}=\frac{f}{2a}$
+      <li><a href="https://en.wikipedia.org/wiki/F-number">f-number</a>: $N=\frac{f}{D}=\frac{f}{2a}$
         <ul>
           <li>相机焦距$f=z$, 光圈直径$D=2a$</li>
         </ul>
       </li>
-      <li>numerical aperture $NA=\frac{a}{\sqrt{f^2+a^2}}=\frac{1}{\sqrt{4N^2+1}}\approx \frac{1}{2N}$</li>
+      <li><a href="https://en.wikipedia.org/wiki/Numerical_aperture">numerical aperture</a> $NA=\frac{a}{\sqrt{f^2+a^2}}=\frac{1}{\sqrt{4N^2+1}}\approx \frac{1}{2N}$</li>
     </ul>
   </li>
-  <li>第一圈黑环处距中心距离，认为是相机的optical resolution: $q=r_1\sin\theta\approx \sqrt{f^2+a^2}\sin\theta=\frac{a}{NA}\sin\theta\approx \frac{a}{NA}\frac{1.22\lambda}{2a}=\frac{0.61\lambda}{NA}$
+  <li>第一圈黑环处距中心距离，认为是相机的optical resolution:
     <ul>
+      <li><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240112160824.png" alt="Pasted image 20240112160824.png" width="300" /></li>
       <li>此时是$J_1(x)$ 的第一个0点， $J_1(ka\sin\theta)=0$，$ka\sin\theta\approx 3.83$ ，即$\sin\theta\approx \frac{3.83}{ka}=\frac{3.83\lambda}{2\pi a}=1.22\frac{\lambda}{D}$</li>
+      <li>得到optical resolution $q=r_1\sin\theta\approx \sqrt{f^2+a^2}\sin\theta=\frac{a}{NA}\sin\theta\approx \frac{a}{NA}\frac{1.22\lambda}{2a}=\frac{0.61\lambda}{NA}$</li>
+      <li>理论上，numberical aperture越大，optical resolution越小，分辨率越高(也就是衍射更不明显)</li>
     </ul>
   </li>
-  <li>numberical aperture越大，optical resolution越小，分辨率越高？</li>
+  <li>相机的成像清晰度指标：MTF
+    <ul>
+      <li><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240112154649.png" alt="Pasted image 20240112154649.png" width="400" /></li>
+      <li><a href="https://en.wikipedia.org/wiki/Point_spread_function">PSF</a>(intensity function): $PSF=|G(p,q)|^2=|F(g(x^\prime,y^\prime))|^2$
+        <ul>
+          <li>PSF的单位是 (distance(mm),intesity)</li>
+        </ul>
+      </li>
+      <li><a href="https://en.wikipedia.org/wiki/Optical_transfer_function">MTF</a>: $MTF=F(PSF)$
+        <ul>
+          <li>MTF的单位是（frequency(lines/mm),response(%)）</li>
+          <li>$J_1$ 的Fourier变化是连续下降函数</li>
+          <li>根据 <a href="https://en.wikipedia.org/wiki/Fourier_transform#Applications">Fourier transform</a> time scaling的性质：因为PSF的零点$PSF_0\propto \frac{\lambda}{NA}$ , 得到MTF的cutoff点 $c(MTF)\propto \frac{NA}{\lambda}$</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
 </ul>
+
+<p>MTF是个衡量成像系统分辨率的常用指标，不光衍射，所有成像过程，包括软件做的deblur等操作都可以用这个指标衡量。</p>
 
 <h2 id="其他讨论这个的链接">其他讨论这个的链接：</h2>
 <p><span id="ref"></span>
@@ -35,7 +61,15 @@
 
 <p>[5] http://www.dauger.com/fresnel/</p>
 
-<p>[6] Dauger, Dean E. “Simulation and Study of Fresnel Diffraction for Arbitrary Two-Dimensional Apertures.” <em>Computers in Physics</em> 10 (November 1, 1996): 591–604. <a href="https://doi.org/10.1063/1.168584">https://doi.org/10.1063/1.168584</a>.</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="simulation" /><category term="content" /><category term="simulation" /><category term="sensor" /><category term="physics" /><summary type="html"><![CDATA[仿真]]></summary></entry><entry><title type="html">aperture衍射模型 (一)</title><link href="https://roshameow.github.io//personal_homepage/docs/simulation/diffraction/" rel="alternate" type="text/html" title="aperture衍射模型 (一)" /><published>2024-01-03T00:00:00+00:00</published><updated>2024-01-12T07:48:24+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/simulation/diffraction</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/simulation/diffraction/"><![CDATA[<h2 id="光的传播理论">光的传播理论</h2>
+<p>[6] Dauger, Dean E. “Simulation and Study of Fresnel Diffraction for Arbitrary Two-Dimensional Apertures.” <em>Computers in Physics</em> 10 (November 1, 1996): 591–604. <a href="https://doi.org/10.1063/1.168584">https://doi.org/10.1063/1.168584</a>.</p>
+
+<p>相机resolution</p>
+
+<p>[7] https://www.microscopyu.com/tutorials/imageformation-airyna (包含一个<a href="https://en.wikipedia.org/wiki/Airy_disk">Airy disk</a> 影响清晰度的演示)</p>
+
+<p>[8] https://www.iasj.net/iasj/download/8ab5ecbce0ead154</p>
+
+<p>[9] https://micro.magnet.fsu.edu/primer/java/mtf/airydisksize/index.html</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="simulation" /><category term="content" /><category term="simulation" /><category term="sensor" /><category term="physics" /><summary type="html"><![CDATA[仿真]]></summary></entry><entry><title type="html">aperture衍射模型 (一)</title><link href="https://roshameow.github.io//personal_homepage/docs/simulation/diffraction/" rel="alternate" type="text/html" title="aperture衍射模型 (一)" /><published>2024-01-03T00:00:00+00:00</published><updated>2024-01-12T17:22:46+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/simulation/diffraction</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/simulation/diffraction/"><![CDATA[<h2 id="光的传播理论">光的传播理论</h2>
 
 <p><img src="https://upload.wikimedia.org/wikipedia/commons/4/48/Diffraction_geometry_2.svg" alt="image" /></p>
 
@@ -61,13 +95,13 @@
 
 <p>考虑由光圈所在平面到sensor这一段, 假设$z$ 固定为aperture和sensor的距离，光源为从aperture向sensor方向的平行光</p>
 
-<p>从aperture $A$ 透过的能量是 $E(x,y,z)= \int\int_A \frac{z}{i\lambda r^2} E(x^\prime,y^\prime,0)\cdot e^{ikr}\cdot dx^\prime dy^\prime$  ，形成的pattern主要受$e^{ikr}$ 这个高频项的影响, 主要能观测到的pattern可以用下面两类衍射模型近似</p>
+<p>从aperture $A$ 透过的能量是 $E(x,y,z)= \int\int_A \frac{z}{i\lambda r^2} E(x^\prime,y^\prime,0)\cdot e^{ikr}\cdot dx^\prime dy^\prime$  ，形成的pattern主要<strong>受$e^{ikr}$ 这个高频项的影响</strong>,主要能观测到的pattern可以用下面两类衍射模型近似</p>
 
 <!--more-->
 <h3 id="fresnel-diffraction菲涅耳衍射">Fresnel diffraction(<a href="https://en.wikipedia.org/wiki/Fresnel_diffraction">菲涅耳衍射</a>)</h3>
 
 <ul>
-  <li>假设 : $r\approx z+\frac{(x-x^\prime)^2+(y-y^\prime)^2}{2z}$
+  <li><strong>假设</strong> : $r\approx z+\frac{(x-x^\prime)^2+(y-y^\prime)^2}{2z}$
     <ul>
       <li>$r=\sqrt{z^2+\rho^2}=z\sqrt{1+\frac{\rho^2}{z^2}}$ , 其中$\rho^2=(x-x^\prime)^2+(y-y^\prime)^2$
         <ul>
@@ -77,7 +111,7 @@
       </li>
     </ul>
   </li>
-  <li>化简成Fourier变换的格式：
+  <li><strong>化简成Fourier变换的格式</strong>：
     <ul>
       <li>$\begin{align}E(x,y,z)&amp;=\frac{e^{ikz}}{i\lambda z} \int\int_A E(x^\prime,y^\prime,0)\cdot e^{\frac{ik}{2z}((x-x^\prime)^2+(y-y^\prime)^2)} dx^\prime dy^\prime \\ &amp;=\frac{e^{ikz}}{i\lambda z} \int\int_A E(x^\prime,y^\prime,0)\cdot e^{\frac{i\pi}{\lambda z}(x^2+y^2+{x^\prime}^2+{y^\prime}^2-2xx^\prime-2yy^\prime)} dx^\prime dy^\prime\ (k\text{还原成 }\frac{2\pi}{\lambda}) \\ &amp; =\frac{e^{ikz}}{i\lambda z}e^{\frac{i\pi}{\lambda z}(x^2+y^2)} \int\int_A E(x^\prime,y^\prime,0)e^{\frac{i\pi}{\lambda z}({x^\prime}^2+{y^\prime}^2)}\cdot e^{\frac{i\pi}{\lambda z}(-2xx^\prime-2yy^\prime)} dx^\prime dy^\prime \\ &amp;=\frac{e^{ikz}}{i\lambda z}e^{\frac{i\pi}{\lambda z}(x^2+y^2)} \int\int \mathbb 1_A(x^\prime,y^\prime)\cdot E(x^\prime,y^\prime,0)e^{\frac{i\pi}{\lambda z}({x^\prime}^2+{y^\prime}^2)}\cdot e^{\frac{i\pi}{\lambda}(px^\prime+py^\prime)} dx^\prime dy^\prime\ (\text{ 带入 }p=\frac{x}{\lambda z}, q=\frac{y}{\lambda z})\end{align}$</li>
       <li>记 impulse response: $h(x,y,z)= \frac{e^{ikz}}{i\lambda z}\cdot e^{\frac{ik}{2z}(x^2+y^2)}$</li>
@@ -92,7 +126,7 @@
 
 <ul>
   <li><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240110160604.png" alt="Pasted image 20240110160604.png" width="500" /></li>
-  <li>假设1：$r\approx r_1-b\cdot\cos(\phi-\Phi)\cdot\sin\theta$  (有如图几何直观，对于圆形aperture有个简便的表达方法)
+  <li><strong>假设1</strong>：$r\approx r_1-b\cdot\cos(\phi-\Phi)\cdot\sin\theta$  (有如图几何直观，对于圆形aperture有个简便的表达方法)
     <ul>
       <li>近似条件：图中红线 $\approx$ 图中绿线部分
         <ul>
@@ -106,7 +140,7 @@
       </li>
     </ul>
   </li>
-  <li>假设2: $r\approx z+\frac{x^2+y^2-2xx^\prime-2yy^\prime}{2z}$ (和Fresnel的形式更统一，也方便写成Fourier变换的形式)
+  <li><strong>假设2</strong>: $r\approx z+\frac{x^2+y^2-2xx^\prime-2yy^\prime}{2z}$ (和Fresnel的形式更统一，也方便写成Fourier变换的形式)
     <ul>
       <li>近似条件：
         <ul>
@@ -122,7 +156,7 @@
       </li>
     </ul>
   </li>
-  <li>化简成Fourier变换的格式：
+  <li><strong>化简成Fourier变换的格式</strong>：
     <ul>
       <li>根据假设2，其他部分都和Fresnel相同, 只有$g(x^\prime,y^\prime)=\mathbb 1_A(x^\prime,y^\prime)\cdot E(x^\prime,y^\prime,0)$ 更简单了</li>
     </ul>
@@ -133,7 +167,7 @@
   <p>[!example]</p>
 
   <ul>
-    <li>圆形aperture, 并假设光源在aperture均匀分布，即$E(x^\prime,y^\prime,0)=const$ :
+    <li><strong>圆形aperture</strong>, 并假设光源在aperture均匀分布，即$E(x^\prime,y^\prime,0)=const$ :
       <ul>
         <li>把$(x^\prime,y^\prime)$ 转为$(b,\phi)$ 极坐标，$\int\int_A …dx^\prime dy^\prime=\int_0^a\int_0^{2\pi}… bdbd\phi$</li>
         <li>根据假设1，参考<a href="https://en.wikipedia.org/wiki/Bessel_function">Bessel公式</a></li>
@@ -141,7 +175,7 @@
         <li>另外，根据假设2，也能得到circ函数的Fourier变换是$J_1$</li>
       </ul>
     </li>
-    <li>方形aperture, 并假设光源在aperture均匀分布：
+    <li><strong>方形aperture</strong>, 并假设光源在aperture均匀分布：
       <ul>
         <li>x,y可以拆开成两个rectangular pulse, 其Fourier变换是sinc函数</li>
       </ul>
@@ -546,7 +580,7 @@
       </li>
     </ul>
   </li>
-</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="photo" /><category term="content" /><category term="醒图" /><summary type="html"><![CDATA[感觉共同点是：为了追求画面简洁有冲击力，不约而同的压缩了亮度和颜色的动态范围。 版画滤镜]]></summary></entry><entry><title type="html">用 jekyll+obsidian生成个人主页并部署到 github pages的工作流</title><link href="https://roshameow.github.io//personal_homepage/docs/webpage/jekyll-blog-deploy/" rel="alternate" type="text/html" title="用 jekyll+obsidian生成个人主页并部署到 github pages的工作流" /><published>2023-12-20T00:00:00+00:00</published><updated>2024-01-12T01:53:15+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/webpage/jekyll-blog-deploy</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/webpage/jekyll-blog-deploy/"><![CDATA[<p>用jekyll的原因无需多说。这样配置好工作流之后，除了编写内容基本没有什么麻烦的操作(登录在线网页，换编辑器，按照统一格式改文件名之类在我看来都很麻烦。。)。</p>
+</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="photo" /><category term="content" /><category term="醒图" /><summary type="html"><![CDATA[感觉共同点是：为了追求画面简洁有冲击力，不约而同的压缩了亮度和颜色的动态范围。 版画滤镜]]></summary></entry><entry><title type="html">用 jekyll+obsidian生成个人主页并部署到 github pages的工作流</title><link href="https://roshameow.github.io//personal_homepage/docs/webpage/jekyll-blog-deploy/" rel="alternate" type="text/html" title="用 jekyll+obsidian生成个人主页并部署到 github pages的工作流" /><published>2023-12-20T00:00:00+00:00</published><updated>2024-01-12T17:19:52+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/webpage/jekyll-blog-deploy</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/webpage/jekyll-blog-deploy/"><![CDATA[<p>用jekyll的原因无需多说。这样配置好工作流之后，除了编写内容基本没有什么麻烦的操作(登录在线网页，换编辑器，按照统一格式改文件名之类在我看来都很麻烦。。)。</p>
 <h3 id="ruby的环境管理包管理方式">Ruby的环境管理，包管理方式</h3>
 
 <ul>
@@ -712,6 +746,16 @@
   <li><strong>配置google analysis:</strong>
     <ul>
       <li>我用的模版比较老，需要<a href="https://blog.jakelee.co.uk/migrating-jekyll-minima-from-ua-to-ga4/">把Universal analysis换成GA4</a></li>
+    </ul>
+  </li>
+  <li><strong>加table of content:</strong>
+    <ul>
+      <li>模版里的toc也是不能用了，加入这个比较新的<a href="https://github.com/allejo/jekyll-toc">toc.html</a></li>
+    </ul>
+  </li>
+  <li><strong>用gist加载代码块：</strong>
+    <ul>
+      <li>还是因为有些脚本里代码块解析错误，用<a href="https://gist.github.com">GitHub gist</a>就没有这个问题, 不过这种代码块的形式obsidian没法渲染</li>
     </ul>
   </li>
 </ol>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="WebPage" /><category term="content" /><category term="jekyll" /><category term="markdown" /><category term="obsidian" /><category term="raycast" /><summary type="html"><![CDATA[用jekyll的原因无需多说。这样配置好工作流之后，除了编写内容基本没有什么麻烦的操作(登录在线网页，换编辑器，按照统一格式改文件名之类在我看来都很麻烦。。)。 Ruby的环境管理，包管理方式]]></summary></entry><entry><title type="html">Hidden Post</title><link href="https://roshameow.github.io//personal_homepage/docs/hidden-post/" rel="alternate" type="text/html" title="Hidden Post" /><published>2018-02-25T00:00:00+00:00</published><updated>2018-02-25T00:00:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/hidden-post</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/hidden-post/"><![CDATA[<p>This post has YAML Front Matter of <code class="language-plaintext highlighter-rouge">hidden: true</code> and should not appear in <code class="language-plaintext highlighter-rouge">paginator.posts</code>.</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><summary type="html"><![CDATA[This post has YAML Front Matter of hidden: true and should not appear in paginator.posts.]]></summary></entry></feed>

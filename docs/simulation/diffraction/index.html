@@ -31,7 +31,7 @@
 <meta property="twitter:title" content="aperture衍射模型 (一)" />
 <meta name="twitter:site" content="@" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-01-12T07:48:24+00:00","datePublished":"2024-01-03T00:00:00+00:00","description":"光的传播理论","headline":"aperture衍射模型 (一)","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/docs/simulation/diffraction/"},"url":"https://roshameow.github.io//personal_homepage/docs/simulation/diffraction/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-01-12T17:22:46+00:00","datePublished":"2024-01-03T00:00:00+00:00","description":"光的传播理论","headline":"aperture衍射模型 (一)","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/docs/simulation/diffraction/"},"url":"https://roshameow.github.io//personal_homepage/docs/simulation/diffraction/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -172,13 +172,13 @@
 
 <p>考虑由光圈所在平面到sensor这一段, 假设$z$ 固定为aperture和sensor的距离，光源为从aperture向sensor方向的平行光</p>
 
-<p>从aperture $A$ 透过的能量是 $E(x,y,z)= \int\int_A \frac{z}{i\lambda r^2} E(x^\prime,y^\prime,0)\cdot e^{ikr}\cdot dx^\prime dy^\prime$  ，形成的pattern主要受$e^{ikr}$ 这个高频项的影响, 主要能观测到的pattern可以用下面两类衍射模型近似</p>
+<p>从aperture $A$ 透过的能量是 $E(x,y,z)= \int\int_A \frac{z}{i\lambda r^2} E(x^\prime,y^\prime,0)\cdot e^{ikr}\cdot dx^\prime dy^\prime$  ，形成的pattern主要<strong>受$e^{ikr}$ 这个高频项的影响</strong>,主要能观测到的pattern可以用下面两类衍射模型近似</p>
 
 <!--more-->
 <h3 id="fresnel-diffraction菲涅耳衍射">Fresnel diffraction(<a href="https://en.wikipedia.org/wiki/Fresnel_diffraction">菲涅耳衍射</a>)</h3>
 
 <ul>
-  <li>假设 : $r\approx z+\frac{(x-x^\prime)^2+(y-y^\prime)^2}{2z}$
+  <li><strong>假设</strong> : $r\approx z+\frac{(x-x^\prime)^2+(y-y^\prime)^2}{2z}$
     <ul>
       <li>$r=\sqrt{z^2+\rho^2}=z\sqrt{1+\frac{\rho^2}{z^2}}$ , 其中$\rho^2=(x-x^\prime)^2+(y-y^\prime)^2$
         <ul>
@@ -188,7 +188,7 @@
       </li>
     </ul>
   </li>
-  <li>化简成Fourier变换的格式：
+  <li><strong>化简成Fourier变换的格式</strong>：
     <ul>
       <li>$\begin{align}E(x,y,z)&amp;=\frac{e^{ikz}}{i\lambda z} \int\int_A E(x^\prime,y^\prime,0)\cdot e^{\frac{ik}{2z}((x-x^\prime)^2+(y-y^\prime)^2)} dx^\prime dy^\prime \\ &amp;=\frac{e^{ikz}}{i\lambda z} \int\int_A E(x^\prime,y^\prime,0)\cdot e^{\frac{i\pi}{\lambda z}(x^2+y^2+{x^\prime}^2+{y^\prime}^2-2xx^\prime-2yy^\prime)} dx^\prime dy^\prime\ (k\text{还原成 }\frac{2\pi}{\lambda}) \\ &amp; =\frac{e^{ikz}}{i\lambda z}e^{\frac{i\pi}{\lambda z}(x^2+y^2)} \int\int_A E(x^\prime,y^\prime,0)e^{\frac{i\pi}{\lambda z}({x^\prime}^2+{y^\prime}^2)}\cdot e^{\frac{i\pi}{\lambda z}(-2xx^\prime-2yy^\prime)} dx^\prime dy^\prime \\ &amp;=\frac{e^{ikz}}{i\lambda z}e^{\frac{i\pi}{\lambda z}(x^2+y^2)} \int\int \mathbb 1_A(x^\prime,y^\prime)\cdot E(x^\prime,y^\prime,0)e^{\frac{i\pi}{\lambda z}({x^\prime}^2+{y^\prime}^2)}\cdot e^{\frac{i\pi}{\lambda}(px^\prime+py^\prime)} dx^\prime dy^\prime\ (\text{ 带入 }p=\frac{x}{\lambda z}, q=\frac{y}{\lambda z})\end{align}$</li>
       <li>记 impulse response: $h(x,y,z)= \frac{e^{ikz}}{i\lambda z}\cdot e^{\frac{ik}{2z}(x^2+y^2)}$</li>
@@ -203,7 +203,7 @@
 
 <ul>
   <li><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240110160604.png" alt="Pasted image 20240110160604.png" width="500" /></li>
-  <li>假设1：$r\approx r_1-b\cdot\cos(\phi-\Phi)\cdot\sin\theta$  (有如图几何直观，对于圆形aperture有个简便的表达方法)
+  <li><strong>假设1</strong>：$r\approx r_1-b\cdot\cos(\phi-\Phi)\cdot\sin\theta$  (有如图几何直观，对于圆形aperture有个简便的表达方法)
     <ul>
       <li>近似条件：图中红线 $\approx$ 图中绿线部分
         <ul>
@@ -217,7 +217,7 @@
       </li>
     </ul>
   </li>
-  <li>假设2: $r\approx z+\frac{x^2+y^2-2xx^\prime-2yy^\prime}{2z}$ (和Fresnel的形式更统一，也方便写成Fourier变换的形式)
+  <li><strong>假设2</strong>: $r\approx z+\frac{x^2+y^2-2xx^\prime-2yy^\prime}{2z}$ (和Fresnel的形式更统一，也方便写成Fourier变换的形式)
     <ul>
       <li>近似条件：
         <ul>
@@ -233,7 +233,7 @@
       </li>
     </ul>
   </li>
-  <li>化简成Fourier变换的格式：
+  <li><strong>化简成Fourier变换的格式</strong>：
     <ul>
       <li>根据假设2，其他部分都和Fresnel相同, 只有$g(x^\prime,y^\prime)=\mathbb 1_A(x^\prime,y^\prime)\cdot E(x^\prime,y^\prime,0)$ 更简单了</li>
     </ul>
@@ -244,7 +244,7 @@
   <p>[!example]</p>
 
   <ul>
-    <li>圆形aperture, 并假设光源在aperture均匀分布，即$E(x^\prime,y^\prime,0)=const$ :
+    <li><strong>圆形aperture</strong>, 并假设光源在aperture均匀分布，即$E(x^\prime,y^\prime,0)=const$ :
       <ul>
         <li>把$(x^\prime,y^\prime)$ 转为$(b,\phi)$ 极坐标，$\int\int_A …dx^\prime dy^\prime=\int_0^a\int_0^{2\pi}… bdbd\phi$</li>
         <li>根据假设1，参考<a href="https://en.wikipedia.org/wiki/Bessel_function">Bessel公式</a></li>
@@ -252,7 +252,7 @@
         <li>另外，根据假设2，也能得到circ函数的Fourier变换是$J_1$</li>
       </ul>
     </li>
-    <li>方形aperture, 并假设光源在aperture均匀分布：
+    <li><strong>方形aperture</strong>, 并假设光源在aperture均匀分布：
       <ul>
         <li>x,y可以拆开成两个rectangular pulse, 其Fourier变换是sinc函数</li>
       </ul>
