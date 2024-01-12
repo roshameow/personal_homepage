@@ -8,7 +8,7 @@ tags:
   - simulation
   - sensor
   - physics
-last_modified_at: 2024-01-11T23:48:24-08:00
+last_modified_at: 2024-01-12T09:22:46-08:00
 ---
 
 ## 光的传播理论
@@ -29,16 +29,16 @@ last_modified_at: 2024-01-11T23:48:24-08:00
 
 考虑由光圈所在平面到sensor这一段, 假设$z$ 固定为aperture和sensor的距离，光源为从aperture向sensor方向的平行光
 
-从aperture $A$ 透过的能量是 $E(x,y,z)= \int\int_A \frac{z}{i\lambda r^2} E(x^\prime,y^\prime,0)\cdot e^{ikr}\cdot dx^\prime dy^\prime$  ，形成的pattern主要受$e^{ikr}$ 这个高频项的影响, 主要能观测到的pattern可以用下面两类衍射模型近似   
+从aperture $A$ 透过的能量是 $E(x,y,z)= \int\int_A \frac{z}{i\lambda r^2} E(x^\prime,y^\prime,0)\cdot e^{ikr}\cdot dx^\prime dy^\prime$  ，形成的pattern主要**受$e^{ikr}$ 这个高频项的影响**,主要能观测到的pattern可以用下面两类衍射模型近似   
 
 <!--more-->
 ### Fresnel diffraction([菲涅耳衍射](https://en.wikipedia.org/wiki/Fresnel_diffraction))
 
-- 假设 : $r\approx z+\frac{(x-x^\prime)^2+(y-y^\prime)^2}{2z}$ 
+- **假设** : $r\approx z+\frac{(x-x^\prime)^2+(y-y^\prime)^2}{2z}$ 
 	- $r=\sqrt{z^2+\rho^2}=z\sqrt{1+\frac{\rho^2}{z^2}}$ , 其中$\rho^2=(x-x^\prime)^2+(y-y^\prime)^2$ 
 		-  展开为 $r=z(1+\frac{\rho^2}{2z^2}-\frac{1}{8}(\frac{\rho^2}{z^2})^2+\cdots)\approx z+\frac{\rho^2}{2z}$  
 		- 近似条件为$z\frac{1}{8}(\frac{\rho^2}{z^2})^2=o(2\pi/k)$ , 即$\frac{\rho^4}{z^3\lambda}=o(1)$, 因为我们主要关注的是$e^{ikr}$ 这个高频项的周期
-- 化简成Fourier变换的格式：
+- **化简成Fourier变换的格式**：
 	- $\begin{align}E(x,y,z)&=\frac{e^{ikz}}{i\lambda z} \int\int_A E(x^\prime,y^\prime,0)\cdot e^{\frac{ik}{2z}((x-x^\prime)^2+(y-y^\prime)^2)} dx^\prime dy^\prime \\\\ &=\frac{e^{ikz}}{i\lambda z} \int\int_A E(x^\prime,y^\prime,0)\cdot e^{\frac{i\pi}{\lambda z}(x^2+y^2+{x^\prime}^2+{y^\prime}^2-2xx^\prime-2yy^\prime)} dx^\prime dy^\prime\ (k\text{还原成 }\frac{2\pi}{\lambda}) \\\\ & =\frac{e^{ikz}}{i\lambda z}e^{\frac{i\pi}{\lambda z}(x^2+y^2)} \int\int_A E(x^\prime,y^\prime,0)e^{\frac{i\pi}{\lambda z}({x^\prime}^2+{y^\prime}^2)}\cdot e^{\frac{i\pi}{\lambda z}(-2xx^\prime-2yy^\prime)} dx^\prime dy^\prime \\\\ &=\frac{e^{ikz}}{i\lambda z}e^{\frac{i\pi}{\lambda z}(x^2+y^2)} \int\int \mathbb 1_A(x^\prime,y^\prime)\cdot E(x^\prime,y^\prime,0)e^{\frac{i\pi}{\lambda z}({x^\prime}^2+{y^\prime}^2)}\cdot e^{\frac{i\pi}{\lambda}(px^\prime+py^\prime)} dx^\prime dy^\prime\ (\text{ 带入 }p=\frac{x}{\lambda z}, q=\frac{y}{\lambda z})\end{align}$ 
 	- 记 impulse response: $h(x,y,z)= \frac{e^{ikz}}{i\lambda z}\cdot e^{\frac{ik}{2z}(x^2+y^2)}$ 
 	- 记aperture function: $g(x^\prime,y^\prime)=\mathbb 1_A(x^\prime,y^\prime)\cdot E(x^\prime,y^\prime,0)e^{\frac{i\pi}{\lambda z}({x^\prime}^2+{y^\prime}^2)}$ 
@@ -48,7 +48,7 @@ last_modified_at: 2024-01-11T23:48:24-08:00
 ###  Fraunhofer diffraction([夫琅禾费衍射](https://en.wikipedia.org/wiki/Fraunhofer_diffraction))
 
 -  ![Pasted image 20240110160604.png]({{ '/docs/attachment/Pasted image 20240110160604.png' | relative_url }}){:width="500"} 
-- 假设1：$r\approx r_1-b\cdot\cos(\phi-\Phi)\cdot\sin\theta$  (有如图几何直观，对于圆形aperture有个简便的表达方法)
+- **假设1**：$r\approx r_1-b\cdot\cos(\phi-\Phi)\cdot\sin\theta$  (有如图几何直观，对于圆形aperture有个简便的表达方法)
 	- 近似条件：图中红线 $\approx$ 图中绿线部分
 		- $r_1$ 是aperture中心到观测点$(x,y)$ 的距离
 		- 光源点$(x^\prime,y^\prime)$ 到中心距离为$b$ ,角度为$\phi$, 观测点$(x,y)$ 的角度为$\Phi$, $b$ 往$(x,y)$ 所在角度投影为$b\cos(\phi-\Phi)$ , 图中蓝色三角形的短边
@@ -56,24 +56,24 @@ last_modified_at: 2024-01-11T23:48:24-08:00
 		-  则 $r=\sqrt{r_2^2+b^2\sin^2(\phi-\Phi)}=\sqrt{r_1^2+b^2-2br_1\sin(\theta)\cos(\phi-\Phi)}$  
 		- 展开为：$r=r_1(1-\frac{b}{r_1}\sin(\theta)\cos(\phi-\Phi)+\frac{b^2}{2r_1^2}\cos^2(\theta)\cos^2(\phi-\Phi)+\cdots)$ 
 		- 在$\frac{b^2}{2r_1}\cos^2(\theta)=o(2\pi/k)$ 条件下，即$\frac{b^2}{\lambda r_1}\cos^2\theta=o(1)$ 的情况下，得到我们的假设
-- 假设2: $r\approx z+\frac{x^2+y^2-2xx^\prime-2yy^\prime}{2z}$ (和Fresnel的形式更统一，也方便写成Fourier变换的形式)
+- **假设2**: $r\approx z+\frac{x^2+y^2-2xx^\prime-2yy^\prime}{2z}$ (和Fresnel的形式更统一，也方便写成Fourier变换的形式)
 	- 近似条件：
 		- 和Frensel一样假设$\frac{\rho^4}{z^3\lambda}=o(1)$ ，另外，假设$\frac{b^2}{z\lambda}=o(1)$ 
 	- 和假设1的关系：其实把假设1形式变换一下就能得到相似的形式
 		- $r\approx r_1-b\cdot(\cos\phi\cos\Phi+\sin\phi\sin\Phi)\cdot\sin\theta$ 
 		- 带入： $\cos\phi=\frac{x^\prime}{b},\sin\phi=\frac{y^\prime}{b},\cos\Phi=\frac{x}{\sqrt{x^2+y^2}},\sin\Phi=\frac{y}{\sqrt{x^2+y^2}},\sin\theta=\frac{\sqrt{x^2+y^2}}{r_1}$   
 		- 得到$r\approx r_1-\frac{xx^\prime+yy^\prime}{r_1}=\sqrt{z^2+x^2+y^2}-\frac{xx^\prime+yy^\prime}{r_1}\approx z+\frac{x^2+y^2}{2z}-\frac{xx^\prime+yy^\prime}{z}$ (不过这样需要进一步的假设。。)
-- 化简成Fourier变换的格式：
+- **化简成Fourier变换的格式**：
 	- 根据假设2，其他部分都和Fresnel相同, 只有$g(x^\prime,y^\prime)=\mathbb 1_A(x^\prime,y^\prime)\cdot E(x^\prime,y^\prime,0)$ 更简单了
 
 > [!example]
 > 
- - 圆形aperture, 并假设光源在aperture均匀分布，即$E(x^\prime,y^\prime,0)=const$ : 
+ - **圆形aperture**, 并假设光源在aperture均匀分布，即$E(x^\prime,y^\prime,0)=const$ : 
 	- 把$(x^\prime,y^\prime)$ 转为$(b,\phi)$ 极坐标，$\int\int_A ...dx^\prime dy^\prime=\int_0^a\int_0^{2\pi}... bdbd\phi$   
 	- 根据假设1，参考[Bessel公式](https://en.wikipedia.org/wiki/Bessel_function) 
 	- $\begin{align}E(x,y,z)&=\frac{e^{ikr_1}}{i\lambda r_1} \int_{b=0}^a\int_{\phi=0}^{2\pi}  e^{-ikb\cdot\cos(\phi-\Phi)\cdot\sin\theta}b db d\phi\text{ (根据假设1)}\\\\ & =\frac{e^{ikr_1}}{i\lambda r_1} \int_{b=0}^a\int_{\phi=0}^{2\pi}  e^{-ikb\cdot\cos\phi\cdot\sin\theta}b db d\phi\text{ (关于}\Phi\text{对称,可以假设=0)}\\\\ & =\frac{e^{ikr_1}2\pi}{i\lambda r_1} \int_{b=0}^a J_0(kb\sin\theta)b db \text{ (根据Bessel公式) }\\\\ & =e^{ikr_1}\frac{k}{i r_1} \frac{J_1(ka\sin\theta)}{ka\sin\theta}\end{align}$ 
 	- 另外，根据假设2，也能得到circ函数的Fourier变换是$J_1$ 
-- 方形aperture, 并假设光源在aperture均匀分布：
+- **方形aperture**, 并假设光源在aperture均匀分布：
 	- x,y可以拆开成两个rectangular pulse, 其Fourier变换是sinc函数 
 
 ### 两种diffraction的区别  　
