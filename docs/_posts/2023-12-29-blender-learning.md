@@ -7,7 +7,7 @@ tags:
   - content
   - BSDF
   - render
-last_modified_at: 2023-12-31T18:11:23-08:00
+last_modified_at: 2024-01-15T14:33:25-08:00
 ---
 ### 导入模型
 
@@ -34,10 +34,15 @@ last_modified_at: 2023-12-31T18:11:23-08:00
 		- radius改成0：影响光锥的软硬
 		- blend改成0
 	- rendering
-		- 引擎改成cycles：cycles是基于光追的，更符合现实情况
-		- noise threshold改成0， sample改成64
-		- Light Paths里面反弹次数(Total, Diffuse, Glossy, Transmission)都改成0
-			- 防止出现明亮表面和柔和边缘？
+		- 用cycles:
+			- 引擎改成cycles：cycles是基于光追的，更符合现实情况
+			- noise threshold改成0， sample改成64
+			- Light Paths里面反弹次数(Total, Diffuse, Glossy, Transmission)都改成0
+				- 防止出现明亮表面和柔和边缘？
+		- 用eevee: eevee的效果看起来不太一样..
+			- Film里面filter size改成0
+			- 在shader和material output中间,加Shader to RGB->ColorRamp
+			- 再把ColorRamp改成Constant, 只有黑白2个色阶
 	- shader
 		- 改成Toon BSDF
 		- 把反光的部分BSDF从diffuse改成glossy
