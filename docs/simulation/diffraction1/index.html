@@ -31,7 +31,7 @@
 <meta property="twitter:title" content="aperture衍射模型 (二)" />
 <meta name="twitter:site" content="@" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-01-13T00:11:41+00:00","datePublished":"2024-01-11T00:00:00+00:00","description":"仿真","headline":"aperture衍射模型 (二)","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/docs/simulation/diffraction1/"},"url":"https://roshameow.github.io//personal_homepage/docs/simulation/diffraction1/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-01-15T01:10:47+00:00","datePublished":"2024-01-11T00:00:00+00:00","description":"仿真","headline":"aperture衍射模型 (二)","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/docs/simulation/diffraction1/"},"url":"https://roshameow.github.io//personal_homepage/docs/simulation/diffraction1/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -138,7 +138,7 @@
 </h2>
 <!-- 1. toc
 {:toc} -->
-<ul class="inline_toc" id="my_toc"><li><a href="#仿真">仿真</a></li><li><a href="#应用">应用</a></li></ul>
+<ul class="inline_toc" id="my_toc"><li><a href="#仿真">仿真</a></li><li><a href="#应用">应用</a></li><li><a href="#代码">代码</a></li><li><a href="#其他讨论这个的链接">其他讨论这个的链接：</a></li></ul>
 </div>
 <!-- {::options parse_block_html="false" /} -->
 
@@ -146,62 +146,78 @@
 
       <div class="page-content">
         <div class="e-content">
-          <h3 id="仿真">仿真</h3>
+          <h2 id="仿真">仿真</h2>
 
 <p><img src="/personal_homepage/docs/attachment/circle_diffraction.mp4" alt="circle_diffraction.mp4" width="200" /> <img src="/personal_homepage/docs/attachment/square_diffraction.mp4" alt="square_diffraction.mp4" width="200" /></p>
 <ol>
   <li>在aperture区域均匀采样，发现Frensel pattern是很难出现的，在每个像素对应sample数不足1000的时候，基本观测不到。。应该是因为在那个范围内结果受$(x^\prime,y^\prime)$ 的位置影响更大, 也就表现出更大的随机性。</li>
   <li>确实可以看到sensor到aperture距离增大后, pattern变化的全过程。</li>
   <li>在一个网上找的<a href="https://www.falstad.com/diffraction/">Frensel diffraction仿真</a> java代码里面，作者也是通过先把部分积分形式通过公式运算先化简之后做的仿真<a href="#ref">1</a>，没有用原始的传播公式。</li>
-  <li>如果用全光谱的光源，Fraunhofer衍射中因为波长影响看起来的效果像是从中间不同颜色的光被diffuse了，我看一些3d建模制作里说的衍射，一般是指这种效果，可以看<a href="https://www.bilibili.com/video/BV1C5411E78d/">b站上一个用blender仿这种效果的视频</a>
+  <li>如果用全光谱的光源，Fraunhofer衍射中因为波长影响, 看起来的效果像是从中间不同颜色的光被diffuse了，我看一些3d建模制作里说的衍射，一般是指这种效果，可以看<a href="https://www.bilibili.com/video/BV1C5411E78d/">b站上一个用blender仿这种效果的视频</a>
     <ul>
+      <li>另外判断天然珍珠和人造珍珠的区别的一种方法，也是看天然珍珠里面有微小的结构可以把不同波长的光区分出来的效果</li>
       <li>blender的cycles用的是粒子模型, 没有相位变化，可能没法直接得到衍射</li>
     </ul>
   </li>
 </ol>
 
-<h3 id="应用">应用</h3>
+<h2 id="应用">应用</h2>
 
-<p>在相机系统中，我们关心进光量和成像的分辨率：用Fraunhofer的模型估算相机的resolution</p>
-<ul>
-  <li>相机aperture参数：这两个都是dimensionless版本的aperture
+<ol>
+  <li><strong>在相机系统中，我们关心成像的分辨率</strong>：用Fraunhofer的模型估算相机的resolution
     <ul>
-      <li><a href="https://en.wikipedia.org/wiki/F-number">f-number</a>: $N=\frac{f}{D}=\frac{f}{2a}$
+      <li>相机aperture参数：这两个都是dimensionless版本的aperture
         <ul>
-          <li>相机焦距$f=z$, 光圈直径$D=2a$</li>
+          <li><a href="https://en.wikipedia.org/wiki/F-number">f-number</a>: $N=\frac{f}{D}=\frac{f}{2a}$
+            <ul>
+              <li>相机焦距$f=z$, 光圈直径$D=2a$</li>
+            </ul>
+          </li>
+          <li><a href="https://en.wikipedia.org/wiki/Numerical_aperture">numerical aperture</a> $NA=\frac{a}{\sqrt{f^2+a^2}}=\frac{1}{\sqrt{4N^2+1}}\approx \frac{1}{2N}$</li>
         </ul>
       </li>
-      <li><a href="https://en.wikipedia.org/wiki/Numerical_aperture">numerical aperture</a> $NA=\frac{a}{\sqrt{f^2+a^2}}=\frac{1}{\sqrt{4N^2+1}}\approx \frac{1}{2N}$</li>
-    </ul>
-  </li>
-  <li>第一圈黑环处距中心距离，认为是相机的optical resolution:
-    <ul>
-      <li><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240112160824.png" alt="Pasted image 20240112160824.png" width="300" /></li>
-      <li>此时是$J_1(x)$ 的第一个0点， $J_1(ka\sin\theta)=0$，$ka\sin\theta\approx 3.83$ ，即$\sin\theta\approx \frac{3.83}{ka}=\frac{3.83\lambda}{2\pi a}=1.22\frac{\lambda}{D}$</li>
-      <li>得到optical resolution $q=r_1\sin\theta\approx \sqrt{f^2+a^2}\sin\theta=\frac{a}{NA}\sin\theta\approx \frac{a}{NA}\frac{1.22\lambda}{2a}=\frac{0.61\lambda}{NA}$</li>
-      <li>理论上，numberical aperture越大，optical resolution越小，分辨率越高(也就是衍射更不明显)</li>
-    </ul>
-  </li>
-  <li>相机的成像清晰度指标：MTF
-    <ul>
-      <li><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240112154649.png" alt="Pasted image 20240112154649.png" width="400" /></li>
-      <li><a href="https://en.wikipedia.org/wiki/Point_spread_function">PSF</a>(intensity function): $PSF=|G(p,q)|^2=|F(g(x^\prime,y^\prime))|^2$
+      <li>第一圈黑环处距中心距离，认为是相机的optical resolution:
         <ul>
-          <li>PSF的单位是 (distance(mm),intesity)</li>
+          <li><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240112160824.png" alt="Pasted image 20240112160824.png" width="300" /></li>
+          <li>此时是$J_1(x)$ 的第一个0点， $J_1(ka\sin\theta)=0$，$ka\sin\theta\approx 3.83$ ，即$\sin\theta\approx \frac{3.83}{ka}=\frac{3.83\lambda}{2\pi a}=1.22\frac{\lambda}{D}$</li>
+          <li>得到optical resolution $q=r_1\sin\theta\approx \sqrt{f^2+a^2}\sin\theta=\frac{a}{NA}\sin\theta\approx \frac{a}{NA}\frac{1.22\lambda}{2a}=\frac{0.61\lambda}{NA}$</li>
+          <li>理论上，numberical aperture越大，optical resolution越小，分辨率越高(也就是衍射更不明显)</li>
         </ul>
       </li>
-      <li><a href="https://en.wikipedia.org/wiki/Optical_transfer_function">MTF</a>: $MTF=F(PSF)$
+      <li>相机的成像清晰度指标：MTF
         <ul>
-          <li>MTF的单位是（frequency(lines/mm),response(%)）</li>
-          <li>$J_1$ 的Fourier变化是连续下降函数</li>
-          <li>根据 <a href="https://en.wikipedia.org/wiki/Fourier_transform#Applications">Fourier transform</a> time scaling的性质：因为PSF的零点$PSF_0\propto \frac{\lambda}{NA}$ , 得到MTF的cutoff点 $c(MTF)\propto \frac{NA}{\lambda}$</li>
+          <li><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240112154649.png" alt="Pasted image 20240112154649.png" width="400" /></li>
+          <li><a href="https://en.wikipedia.org/wiki/Point_spread_function">PSF</a>(intensity function): $PSF=|G(p,q)|^2=|F(g(x^\prime,y^\prime))|^2$
+            <ul>
+              <li>PSF的单位是 (distance(mm),intesity)</li>
+              <li>对于圆形aperture：$PSF=\frac{J_1^2(ka\sin\theta)}{(ka\sin\theta)^2}$ , PSF的零点也就是$J_1$ 的零点</li>
+              <li>生成图像的image: $I=PSF*\text{scene}$ 是场景和PSF的卷积</li>
+            </ul>
+          </li>
+          <li><a href="https://en.wikipedia.org/wiki/Optical_transfer_function">MTF</a>: $MTF=F(PSF)$
+            <ul>
+              <li>MTF的单位是（frequency(lines/mm),response(%)）</li>
+              <li>$\frac{J_1^2(x)}{x^2}$ 的Fourier变化是个连续下降函数</li>
+              <li>根据 <a href="https://en.wikipedia.org/wiki/Fourier_transform#Applications">Fourier transform</a> time scaling的性质：因为PSF的零点$PSF_0\propto \frac{\lambda}{NA}$ , 得到MTF的cutoff点 $c(MTF)\propto \frac{NA}{\lambda}$  (即频率更高的物体就看不清了)</li>
+              <li>MTF是个衡量成像系统分辨率的常用指标，不光衍射，所有成像过程，包括软件做的deblur等操作都可以用这个指标衡量。</li>
+            </ul>
+          </li>
         </ul>
       </li>
     </ul>
   </li>
-</ul>
+  <li><strong>用PSF做图像调制</strong> 
+    <ul>
+      <li>从PSF的表达式可以看出, PSF受距离, 波长(光的颜色), 位置影响, 可以在相机系统中主动利用这些信息</li>
+    </ul>
+  </li>
+</ol>
 
-<p>MTF是个衡量成像系统分辨率的常用指标，不光衍射，所有成像过程，包括软件做的deblur等操作都可以用这个指标衡量。</p>
+<h2 id="代码">代码</h2>
+
+<p><a href="https://gist.github.com/roshameow/7d44196b703ade645b34b164d779cdfe#file-diffraction_simulation-py"><strong>diffraction_simulation.py</strong></a></p>
+
+<p><a href="https://gist.github.com/roshameow/7d44196b703ade645b34b164d779cdfe#file-pst_bessel-py"><strong>pst_bessel.py</strong></a></p>
 
 <h2 id="其他讨论这个的链接">其他讨论这个的链接：</h2>
 <p><span id="ref"></span>
@@ -258,6 +274,14 @@
     </a>
   
 
+  
+    <a class="page-next" href="/personal_homepage/docs/data/color-moderate2/">
+      <h4 class="page-pagination-label">Next</h4>
+      <span class="page-pagination-title">
+        传感器颜色调制 (三) – 数据
+ <i class="fas fa-arrow-right"></i>
+      </span>
+    </a>
   
 </nav>
 

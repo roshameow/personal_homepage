@@ -31,7 +31,7 @@
 <meta property="twitter:title" content="传感器颜色调制 (二)" />
 <meta name="twitter:site" content="@" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-12-27T20:34:40+00:00","datePublished":"2023-12-26T00:00:00+00:00","description":"通过coded-aperture 和 dispenser进行颜色调制","headline":"传感器颜色调制 (二)","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/docs/algorithm/color-moderate1/"},"url":"https://roshameow.github.io//personal_homepage/docs/algorithm/color-moderate1/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-01-19T19:06:56+00:00","datePublished":"2023-12-26T00:00:00+00:00","description":"通过coded-aperture 和 dispenser进行颜色调制","headline":"传感器颜色调制 (二)","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/docs/algorithm/color-moderate1/"},"url":"https://roshameow.github.io//personal_homepage/docs/algorithm/color-moderate1/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -138,7 +138,7 @@
 </h2>
 <!-- 1. toc
 {:toc} -->
-<ul class="inline_toc" id="my_toc"><li><a href="#通过coded-aperture-和-dispenser进行颜色调制">通过coded-aperture 和 dispenser进行颜色调制</a></li></ul>
+<ul class="inline_toc" id="my_toc"><li><a href="#通过coded-aperture-和-dispenser进行颜色调制">通过coded-aperture 和 dispenser进行颜色调制</a><ul><li><a href="#coded-aperture的优点">coded-aperture的优点</a></li></ul></li></ul>
 </div>
 <!-- {::options parse_block_html="false" /} -->
 
@@ -148,11 +148,25 @@
         <div class="e-content">
           <h2 id="通过coded-aperture-和-dispenser进行颜色调制">通过coded-aperture 和 dispenser进行颜色调制</h2>
 
-<ul>
-  <li>
-    <p>仿真数据：</p>
+<h3 id="coded-aperture的优点">coded-aperture的优点</h3>
 
+<ol>
+  <li><strong>有利于deblur</strong>
+    <ol>
+      <li>PSF是scene到image的kernel: $\text{image}=PSF*\text{scene}$</li>
+      <li>如果对image做deblur, $\text{scene}=F^{-1}(\frac{F(\text{image})}{F(PSF)})=F^{-1}(\frac{F(\text{image})}{MTF})$</li>
+      <li>传统的MTF存在cutoff点, 即在cutoff之上的的高频部分是0, 而coded-aperture可以保留部分高频信息, 使MTF没有完全为0的点</li>
+    </ol>
+  </li>
+  <li>我不能确定coded aperture是否必要, 看起来颜色调制主要还是通过dispenser完成的</li>
+</ol>
+
+<ul>
+  <li>仿真数据：
     <ul>
+      <li>
+        <p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240114142241.png" alt="Pasted image 20240114142241.png" width="300" /> <a href="#ref">1</a></p>
+      </li>
       <li>
         <p>CASSI: coded_apeture+dispenser</p>
 
@@ -185,7 +199,19 @@
       </li>
     </ul>
   </li>
+  <li>仿真:
+    <ul>
+      <li><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240117165405.png" alt="Pasted image 20240117165405.png" width="200" />   <img src="/personal_homepage/docs/attachment/Pasted%20image%2020240117165253.png" alt="Pasted image 20240117165253.png" width="220" /></li>
+    </ul>
+  </li>
+  <li>实际拍摄:
+    <ul>
+      <li><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240117165603.png" alt="Pasted image 20240117165603.png" width="200" />   <img src="/personal_homepage/docs/attachment/Pasted%20image%2020231226120247.png" alt="Pasted image 20231226120247.png" width="220" /></li>
+    </ul>
+  </li>
 </ul>
+
+<p>看起来仿真和实际拍摄的情况并不太一样啊?仿真的y方向距离更大</p>
 
 <p>数据集使用：</p>
 <ul>
@@ -225,7 +251,7 @@
           <li>mask: TSA_real_data/mask.mat
             <ul>
               <li>660x660 0-1的数据</li>
-              <li><img src="/personal_homepage/docs/attachment/mask.png" alt="mask.png" width="300" /></li>
+              <li><img src="/personal_homepage/docs/attachment/mask.png" alt="mask.png" width="200" /></li>
             </ul>
           </li>
         </ul>
@@ -235,7 +261,7 @@
           <li>size: 714x660</li>
           <li>data: TSA_real_data/Measurements/
             <ul>
-              <li><img src="/personal_homepage/docs/attachment/Pasted%20image%2020231226120247.png" alt="Pasted image 20231226120247.png" width="300" /></li>
+              <li></li>
             </ul>
           </li>
           <li>mask: TSA_real_data/mask.mat</li>
@@ -244,6 +270,10 @@
     </ul>
   </li>
 </ul>
+
+<p><span id="ref"></span>
+[1]  Zhao, Ruixuan, Chengshuai Yang, R. Theodore Smith, and Liang Gao. “Coded Aperture Snapshot Spectral Imaging Fundus Camera.” <em>Scientific Reports</em> 13, no. 1 (July 25, 2023): 12007. <a href="https://doi.org/10.1038/s41598-023-39117-2">https://doi.org/10.1038/s41598-023-39117-2</a>.</p>
+
 
         </div>
 

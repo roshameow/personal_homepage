@@ -31,7 +31,7 @@
 <meta property="twitter:title" content="blender学习: Toon BSDF的硬阴影效果" />
 <meta name="twitter:site" content="@" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-01-01T02:11:23+00:00","datePublished":"2023-12-29T00:00:00+00:00","description":"导入模型","headline":"blender学习: Toon BSDF的硬阴影效果","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/docs/blender/blender-learning/"},"url":"https://roshameow.github.io//personal_homepage/docs/blender/blender-learning/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-01-15T22:33:25+00:00","datePublished":"2023-12-29T00:00:00+00:00","description":"导入模型","headline":"blender学习: Toon BSDF的硬阴影效果","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/docs/blender/blender-learning/"},"url":"https://roshameow.github.io//personal_homepage/docs/blender/blender-learning/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -191,11 +191,22 @@
       </li>
       <li>rendering
         <ul>
-          <li>引擎改成cycles：cycles是基于光追的，更符合现实情况</li>
-          <li>noise threshold改成0， sample改成64</li>
-          <li>Light Paths里面反弹次数(Total, Diffuse, Glossy, Transmission)都改成0
+          <li>用cycles:
             <ul>
-              <li>防止出现明亮表面和柔和边缘？</li>
+              <li>引擎改成cycles：cycles是基于光追的，更符合现实情况</li>
+              <li>noise threshold改成0， sample改成64</li>
+              <li>Light Paths里面反弹次数(Total, Diffuse, Glossy, Transmission)都改成0
+                <ul>
+                  <li>防止出现明亮表面和柔和边缘？</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>用eevee: eevee的效果看起来不太一样..
+            <ul>
+              <li>Film里面filter size改成0</li>
+              <li>在shader和material output中间,加Shader to RGB-&gt;ColorRamp</li>
+              <li>再把ColorRamp改成Constant, 只有黑白2个色阶</li>
             </ul>
           </li>
         </ul>
