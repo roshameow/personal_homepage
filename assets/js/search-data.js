@@ -155,7 +155,7 @@ var store = [{
         "url": "https://roshameow.github.io//personal_homepage/docs/algorithm/color-moderate/"
       },{
         "title": "传感器颜色调制 (二)",
-        "excerpt":"通过coded-aperture 和 dispenser进行颜色调制 coded-aperture的优点 有利于deblur PSF是scene到image的kernel: $\\text{image}=PSF*\\text{scene}$ 如果对image做deblur, $\\text{scene}=F^{-1}(\\frac{F(\\text{image})}{F(PSF)})=F^{-1}(\\frac{F(\\text{image})}{MTF})$ 传统的MTF存在cutoff点, 即在cutoff之上的的高频部分是0, 而coded-aperture可以保留部分高频信息, 使MTF没有完全为0的点 我不能确定coded aperture是否必要, 看起来颜色调制主要还是通过dispenser完成的 仿真数据： 1 CASSI: coded_apeture+dispenser coded_apeture把mask应用于所有通道 dispenser依次给mask的通道图像y-axis 2pixel的shift 所有通道叠加(一个像素是同行28x2=56个不同通道像素的叠加，出来的图像是很模糊的) 仿真通过shot noise: $Y_{sim}=B(Y/QE,QE)$ 本来读数是Y, qe是quantum efficiency B是binomial 分布 这段其实没懂为什么要用binomial分布，而不是poisson分布$P(Y)$ , 大概Y/QE是平均光子数，所以sample这么多次，每次都有qe的概率转换为电子；但是仍然不理解为什么要在光电转换的部分随机 仿真: 实际拍摄: 看起来仿真和实际拍摄的情况并不太一样啊?仿真的y方向距离更大 数据集使用： simulation: 训练： data: cave_1024_28 crop_size: 随机crop到256x256, 和mask做simulation shift3d mask: 28x256x310 mask:...","categories": ["docs","algorithm"],
+        "excerpt":"通过coded-aperture 和 dispenser进行颜色调制 coded-aperture的优点 有利于deblur PSF是scene到image的kernel: $\\text{image}=PSF*\\text{scene}$ 如果对image做deblur, $\\text{scene}=F^{-1}(\\frac{F(\\text{image})}{F(PSF)})=F^{-1}(\\frac{F(\\text{image})}{MTF})$ 传统的MTF存在cutoff点, 即在cutoff之上的的高频部分是0, 而coded-aperture可以保留部分高频信息, 使MTF没有完全为0的点 我不能确定coded aperture是否必要, 看起来颜色调制主要还是通过dispenser完成的 仿真数据： 1 CASSI: coded_apeture+dispenser coded_apeture把mask应用于所有通道 dispenser依次给mask的通道图像y-axis 2pixel的shift 所有通道叠加(一个像素是同行28x2=56个不同通道像素的叠加，出来的图像是很模糊的) 仿真通过shot noise: $Y_{sim}=B(Y/QE,QE)$ 本来读数是Y, qe是quantum efficiency B是binomial 分布 这段其实没懂为什么要用binomial分布，而不是poisson分布$P(Y)$ , 大概Y/QE是平均光子数，所以sample这么多次，每次都有qe的概率转换为电子；但是仍然不理解为什么要在光电转换的部分随机 仿真: 实际拍摄: recon: 看起来仿真和实际拍摄的情况并不太一样啊?仿真的y方向距离更大 数据集使用： simulation: 训练： data: cave_1024_28 crop_size: 随机crop到256x256, 和mask做simulation shift3d mask: 28x256x310...","categories": ["docs","algorithm"],
         "tags": ["content","sensor"],
         "url": "https://roshameow.github.io//personal_homepage/docs/algorithm/color-moderate1/"
       },{
@@ -180,7 +180,12 @@ var store = [{
         "url": "https://roshameow.github.io//personal_homepage/docs/simulation/diffraction1/"
       },{
         "title": "传感器颜色调制 (三) -- 数据",
-        "excerpt":"各种颜色调制的数据对难以采集, 所以现在大部分颜色调制还是用多光谱数据仿真得到. 多光谱数据集 数据集$\\downarrow$ size bands 格式 数量 拍摄场景 发布时间 大小 条件 拍摄条件 CAVE 512x512 400-700nm10nm steps31bands .png每个通道分别存 32 实验室:真假人脸真假水果 2008 419.9MB     CAVE1024             13.06GB     KAIST 2704x3376 420-720nm10nm steps31bands .exr网页直接下载 30 实验室 2017 8.67GB     TSA 660x660 28通道特殊 .mat 10(simu)5(real)...","categories": ["docs","data"],
+        "excerpt":"各种颜色调制的数据对难以采集, 所以现在大部分颜色调制还是用多光谱数据仿真得到. 多光谱数据集 数据集$\\downarrow$ size bands 格式 数量 拍摄场景 发布时间 大小 条件 拍摄条件 CAVE 512x512 400-700nm10nm steps31bands .png每个通道分别存 32 实验室:真假人脸真假水果 2008 419.9MB     CAVE1024             13.06GB     KAIST 2704x3376 420-720nm10nm steps31bands .exr每个图片单独下载 30 实验室 2017 8.67GB     TSA 660x660 28通道特殊 .mat 10(simu)5(real)...","categories": ["docs","data"],
         "tags": ["content","dataset","pytorch","script"],
         "url": "https://roshameow.github.io//personal_homepage/docs/data/color-moderate2/"
+      },{
+        "title": "电子产品的频闪讨论",
+        "excerpt":"频闪就是亮度随时间周期性变化的情况. b站影视飓风关于频闪的介绍: 频闪的分类 种类 原因 频率 形态 可能解决方式 光源 交流电产生的 100hz或120hz $|\\cos x|$ 调整拍摄频率和交流电保持一致调整快门时间, 让快门覆盖整数个周期 LED屏幕 PWM调光 都有 rectangular pulse由占空比决定 除了增加快门时间, 让条纹不明显目前没有什么好的解决方式 我手里的电子设备观测 按照模型, 影响拍到的pattern的有: 相机的频率$f$, 快门时间(&lt;$\\frac{1}{f}$), 相位, pwm的频率, 占空比, 每行的相位. 我们用相机去拍屏幕的时候,拍到的理论上亮, 暗的部分都是由于相位的不同, 不会相差超过一个周期, 所以$\\frac{最亮}{最暗}&lt;\\frac{ceil(\\frac{快门时间}{pwm周期})}{floor(\\frac{快门时间}{pwm周期})}$ 条件: 用我的iphone11拍摄, 240fps的慢镜头, 快门时间不知道, 但是大概有1/500s左右? iphone12手机: 另一个方向: 在同一帧内, 在一个方向是横条纹, 把镜头换了一个方向却出现了斜向的条纹: 合理的解释是可能屏幕上不同行的led灯相位不同. 考虑到相机每行是同时曝光的, 相机和屏幕垂直拍摄就会出现在一行拍到了多个相位的情况, 也就是斜向的条纹 出现黑色和白色:...","categories": ["docs"],
+        "tags": ["content","jekyll"],
+        "url": "https://roshameow.github.io//personal_homepage/docs/flicker/"
       }]
