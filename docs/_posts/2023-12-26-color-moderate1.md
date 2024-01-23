@@ -6,7 +6,7 @@ categories:
 tags:
   - content
   - sensor
-last_modified_at: 2024-01-19T11:06:56-08:00
+last_modified_at: 2024-01-22T11:41:46-08:00
 ---
 ## 通过coded-aperture 和 dispenser进行颜色调制
 
@@ -42,7 +42,7 @@ last_modified_at: 2024-01-19T11:06:56-08:00
 - 仿真:
 	- ![Pasted image 20240117165405.png]({{ '/docs/attachment/Pasted image 20240117165405.png' | relative_url }}){:width="200"}   ![Pasted image 20240117165253.png]({{ '/docs/attachment/Pasted image 20240117165253.png' | relative_url }}){:width="220"}
 - 实际拍摄:
-	- ![Pasted image 20240117165603.png]({{ '/docs/attachment/Pasted image 20240117165603.png' | relative_url }}){:width="200"}   ![Pasted image 20231226120247.png]({{ '/docs/attachment/Pasted image 20231226120247.png' | relative_url }}){:width="220"}
+	- ![Pasted image 20240117165603.png]({{ '/docs/attachment/Pasted image 20240117165603.png' | relative_url }}){:width="200"}   ![Pasted image 20231226120247.png]({{ '/docs/attachment/Pasted image 20231226120247.png' | relative_url }}){:width="220"}  recon: ![Pasted image 20240122114048.png]({{ '/docs/attachment/Pasted image 20240122114048.png' | relative_url }}){:width="200"} 
 
 
 看起来仿真和实际拍摄的情况并不太一样啊?仿真的y方向距离更大

@@ -8,22 +8,22 @@ tags:
   - dataset
   - pytorch
   - script
-last_modified_at: 2024-01-19T11:05:57-08:00
+last_modified_at: 2024-01-20T16:32:13-08:00
 ---
 各种颜色调制的数据对难以采集, 所以现在大部分颜色调制还是用多光谱数据仿真得到.
 ## 多光谱数据集
 
 | 数据集$\downarrow$ | size | bands | 格式 | 数量 | 拍摄场景 | 发布时间 | 大小 | 条件 | 拍摄条件 |
 | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |
-| [CAVE](https://www1.cs.columbia.edu/CAVE/databases/multispectral/) | 512x512 | 400-700nm<br>10nm steps<br>31bands | .png<br>每个通道分别存 | 32 | 实验室:<br>真假人脸<br>真假水果 | 2008 | 419.9MB |  |  |
+| [CAVE](https://www1.cs.columbia.edu/CAVE/databases/multispectral/) | 512x512 | 400-700nm<br>10nm steps<br>31bands | .png<br>每个通道<br>分别存 | 32 | 实验室:<br>真假人脸<br>真假水果 | 2008 | 419.9MB |  |  |
 | [CAVE1024](https://cave.cs.columbia.edu/projects/categories/project?cid=Computational+Imaging&pid=Multispectral+Imaging+Using+Multiplexed+Illumination) |  |  |  |  |  |  | 13.06GB |  |  |
-| [KAIST](http://vclab.kaist.ac.kr/siggraphasia2017p1/kaistdataset.html) | 2704x3376 | 420-720nm<br>10nm steps<br>31bands | .exr<br>网页直接下载 | 30 | 实验室 | 2017 | 8.67GB |  |  |
+| [KAIST](http://vclab.kaist.ac.kr/siggraphasia2017p1/kaistdataset.html) | 2704x3376 | 420-720nm<br>10nm steps<br>31bands | .exr<br>每个图片<br>单独下载 | 30 | 实验室 | 2017 | 8.67GB |  |  |
 | [TSA](https://github.com/mengziyi64/TSA-Net) | 660x660 | 28通道<br>特殊 | .mat | 10(simu)<br>5(real) | 实验室 | 2020 |  | simu是从<br>KAIST的数据<br>中截取的 |  |
 | [harvard](https://vision.seas.harvard.edu/hyperspec/download.html) | 1040x1392 | 420-720nm<br>10nm steps<br>31bands | .mat | 50(自然光)<br>27(人工光) | 场景丰富 | 2011 | 约7GB | research-only | 商业相机:<br>Nuance FX, CRI Inc<br>liquid crystal tunable filter |
 | [ARAD 1K](https://github.com/boazarad/ARAD_1K) |  | 400-700nm<br>10nm steps<br>31bands |  |  | 场景丰富 | 2022 |  | 需要注册 |  |
 | TokyoTech<br>[31-band](http://www.ok.sc.e.titech.ac.jp/res/MSI/MSIdata31.html) | 不固定<br>500~2k<br>左右 | 420-720nm<br>10nm steps<br>31bands | .mat | 30 | 色卡(齐全)<br>布料,<br>蝴蝶<br>局部特写 | 2015 | 2.97GB | research-only<br>redistribute-<br>prevent |  |
 | TokyoTech<br>[59-band](http://www.ok.sc.e.titech.ac.jp/res/MSI/MSIdata59.html) | 512x512 | 420-1000nm<br>10nm steps<br>59bands | .mat-v7.3 | 16 | 类似<br> | 2019 | 1.7GB | research-only<br>redistribute-<br>prevent |  |
-| [CMP_UEA](http://www2.cmp.uea.ac.uk/Research/compvis/MultiSpectralDB.htm) | 不固定<br>200~400<br>左右 | 400-700nm<br>10nm steps<br>31bands | .mat<br>网页直接下载 | 23 | 色卡,<br>广告包装 | 2004 | 566.6MB |  |  |
+| [CMP_UEA](http://www2.cmp.uea.ac.uk/Research/compvis/MultiSpectralDB.htm) | 不固定<br>200~400<br>左右 | 400-700nm<br>10nm steps<br>31bands | .mat<br>每个图片<br>单独下载 | 23 | 色卡,<br>广告包装 | 2004 | 566.6MB |  |  |
 
 ## 格式读取和注意事项
 
@@ -39,7 +39,7 @@ last_modified_at: 2024-01-19T11:05:57-08:00
 	-  .mat数据有两种: 老版的.mat和新的v7.3格式的.mat, 不实际读的话, 没法知道究竟是哪种. 我还没找到可以先提取.mat的metadata的方法
 	- 老版的.mat可以用`scipy.io.loadmat` 读
 	- v7.3其实就是H5DF格式, 和.h5文件一样, 可以用`h5py` 读. 看到一些地方是建议用 [hdf5storage](https://pypi.python.org/pypi/hdf5storage) 这个包(不光可以读, 还可以存成v7.3格式).
-	- .mat数据好像没法看存储类型..
+	- .mat数据好像没法看数据类型..
 1. **怎么正确的在pytorch里加载**
 	- 目前是存在dataset的一个list里面
 		- 一定不能把所有image存在一个大的`ndarray`里面, 我们的数据都比较大, 很有可能会内存不够

@@ -9,7 +9,7 @@ tags:
   - markdown
   - obsidian
   - raycast
-last_modified_at: 2024-01-12T09:19:52-08:00
+last_modified_at: 2024-01-20T16:27:56-08:00
 ---
 用jekyll的原因无需多说。这样配置好工作流之后，除了编写内容基本没有什么麻烦的操作(登录在线网页，换编辑器，按照统一格式改文件名之类在我看来都很麻烦。。)。
 ### Ruby的环境管理，包管理方式
@@ -112,7 +112,8 @@ last_modified_at: 2024-01-12T09:19:52-08:00
 
 1. **配置位置：**
 	- 我的模版调用顺序是`_layouts/default.html->_includes/scripts.html->includes/对应功能.html` 
-1. **配置latex风格的公式：** 
+	- 调整页面文字宽度: 我的模版中是调整`_page.scss` 和 `_variables.scss` 中的对应参数
+2. **配置latex风格的公式：** 
 	- 用[mathjax@3][6] : 只支持`$$...$$`风格的语法，需要在Mathjax的tex里面配置一下支持一般的`$...$`语法
 	```
 	<script>
