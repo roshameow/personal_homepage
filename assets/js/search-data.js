@@ -185,7 +185,12 @@ var store = [{
         "url": "https://roshameow.github.io//personal_homepage/docs/data/color-moderate2/"
       },{
         "title": "电子产品的频闪讨论",
-        "excerpt":"频闪就是亮度随时间周期性变化的情况. b站影视飓风关于频闪的介绍: 频闪的分类 种类 原因 频率 形态 可能解决方式 光源 交流电产生的 100hz或120hz $|\\cos x|$ 调整拍摄频率和交流电保持一致调整快门时间, 让快门覆盖整数个周期 LED屏幕 PWM调光 都有 rectangular pulse由占空比决定 除了增加快门时间, 让条纹不明显目前没有什么好的解决方式 我手里的电子设备观测 按照模型, 影响拍到的pattern的有: 相机的频率$f$, 快门时间(&lt;$\\frac{1}{f}$), 相位, pwm的频率, 占空比, 每行的相位. 我们用相机去拍屏幕的时候,拍到的理论上亮, 暗的部分都是由于相位的不同, 不会相差超过一个周期, 所以$\\frac{最亮}{最暗}&lt;\\frac{ceil(\\frac{快门时间}{pwm周期})}{floor(\\frac{快门时间}{pwm周期})}$ 条件: 用我的iphone11拍摄, 240fps的慢镜头, 快门时间不知道, 但是大概有1/500s左右? iphone12手机: 另一个方向: 在同一帧内, 在一个方向是横条纹, 把镜头换了一个方向却出现了斜向的条纹: 合理的解释是可能屏幕上不同行的led灯相位不同. 考虑到相机每行是同时曝光的, 相机和屏幕垂直拍摄就会出现在一行拍到了多个相位的情况, 也就是斜向的条纹 出现黑色和白色:...","categories": ["docs"],
+        "excerpt":"频闪就是亮度随时间周期性变化的情况. b站影视飓风关于频闪的介绍: 频闪的分类 种类 原因 频率 形态 可能解决方式 光源 交流电产生的 100hz或120hz $|\\cos x|$ 调整拍摄频率和交流电保持一致调整快门时间, 让快门覆盖整数个周期 LED屏幕 PWM调光 都有 rectangular pulse由duty cycle(占空比)决定 除了增加快门时间, 让条纹不明显目前没有什么好的解决方式 我手里的电子设备观测 按照模型, 影响拍到的pattern的有: 相机的频率$f$, 快门时间(&lt;$\\frac{1}{f}$), 相位(快门扫描速度), pwm的频率, 占空比, 每行的相位. 我们用相机去拍屏幕的时候,拍到的理论上亮, 暗的部分都是由于相位的不同, 不会相差超过一个周期, 所以$\\frac{最亮}{最暗}&lt;\\frac{ceil(\\frac{快门时间}{pwm周期})}{floor(\\frac{快门时间}{pwm周期})}$ 条件: 用我的iphone11拍摄, 240fps的慢镜头, 快门时间不知道, 但是大概有1/500s左右? iphone12手机: 另一个方向: 在同一帧内, 在一个方向是横条纹, 把镜头换了一个方向却出现了斜向的条纹: 合理的解释是可能屏幕上不同行的led灯相位不同. 考虑到相机每行是同时曝光的, 相机和屏幕垂直拍摄就会出现在一行拍到了多个相位的情况, 也就是斜向的条纹...","categories": ["docs","camera"],
+        "tags": ["content","test","sci-pop"],
+        "url": "https://roshameow.github.io//personal_homepage/docs/camera/flicker/"
+      },{
+        "title": "blender学习: 用displacement做动态鸟群",
+        "excerpt":"步骤 参考RuiHuang_art在b站的教学视频   world property: background改成黑色  加入鸟群贴图: 在material property里修改          把贴图连到alpha通道      blend mode改为alpha blend        加入displacement: 在modifier property里修改          加入subdivision surface                  levels viewport 增加到5          render增加到5                    加入displace                  加入texture-&gt;调整texture的属性                          type用Clouds, 也就是Perlin noise                                  Perlin noise的参数                                                              调整stength到0.1                      加入运镜，参考教学视频 https://www.bilibili.com/video/BV1eq4y1y7D2          在layout界面开启auto key之后，点击播放：这个时候鼠标只能移动，需要按G快捷键配合移动。      在animation界面看效果.        输出视频: 这么做只是鸟的贴图在平面上波动, 不能细看.                其他方法 用粒子制作, 参考 这个b站教程 ","categories": ["docs"],
         "tags": ["content","jekyll"],
-        "url": "https://roshameow.github.io//personal_homepage/docs/flicker/"
+        "url": "https://roshameow.github.io//personal_homepage/docs/blender-learning2/"
       }]

@@ -1,4 +1,54 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="https://roshameow.github.io//personal_homepage/atom.xml" rel="self" type="application/atom+xml" /><link href="https://roshameow.github.io//personal_homepage/" rel="alternate" type="text/html" /><updated>2024-01-23T04:48:49+00:00</updated><id>https://roshameow.github.io//personal_homepage/atom.xml</id><title type="html">Liu, Wen’s Home Page</title><subtitle>Work, Experiments and Ideas.</subtitle><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><entry><title type="html">电子产品的频闪讨论</title><link href="https://roshameow.github.io//personal_homepage/docs/flicker/" rel="alternate" type="text/html" title="电子产品的频闪讨论" /><published>2024-01-19T00:00:00+00:00</published><updated>2024-01-23T20:30:03+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/flicker</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/flicker/"><![CDATA[<p>频闪就是亮度随时间周期性变化的情况.</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="https://roshameow.github.io//personal_homepage/atom.xml" rel="self" type="application/atom+xml" /><link href="https://roshameow.github.io//personal_homepage/" rel="alternate" type="text/html" /><updated>2024-01-24T10:01:40+00:00</updated><id>https://roshameow.github.io//personal_homepage/atom.xml</id><title type="html">Liu, Wen’s Home Page</title><subtitle>Work, Experiments and Ideas.</subtitle><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><entry><title type="html">blender学习: 用displacement做动态鸟群</title><link href="https://roshameow.github.io//personal_homepage/docs/blender-learning2/" rel="alternate" type="text/html" title="blender学习: 用displacement做动态鸟群" /><published>2024-01-24T00:00:00+00:00</published><updated>2024-01-25T00:47:28+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/blender-learning2</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/blender-learning2/"><![CDATA[<h2 id="步骤">步骤</h2>
+
+<p>参考RuiHuang_art在<a href="https://www.bilibili.com/video/BV1ta4y1f7ui/">b站的教学视频</a></p>
+<ul>
+  <li>world property: background改成黑色</li>
+  <li>加入鸟群贴图: 在material property里修改
+    <ul>
+      <li>把贴图连到alpha通道</li>
+      <li>blend mode改为alpha blend</li>
+    </ul>
+  </li>
+  <li>加入displacement: 在modifier property里修改
+    <ul>
+      <li>加入subdivision surface
+        <ul>
+          <li>levels viewport 增加到5</li>
+          <li>render增加到5</li>
+        </ul>
+      </li>
+      <li>加入displace
+        <ul>
+          <li>加入texture-&gt;调整texture的属性
+            <ul>
+              <li>type用Clouds, 也就是Perlin noise
+                <ul>
+                  <li>Perlin noise的参数</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>调整stength到0.1</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>加入运镜，参考教学视频 <a href="https://www.bilibili.com/video/BV1eq4y1y7D2/?vd_source=9cd152be6fbc1b9ad36a33604a13fb6e">https://www.bilibili.com/video/BV1eq4y1y7D2</a>
+    <ul>
+      <li>在layout界面开启auto key之后，点击播放：这个时候鼠标只能移动，需要按G快捷键配合移动。</li>
+      <li>在animation界面看效果.</li>
+    </ul>
+  </li>
+  <li>输出视频: 这么做只是鸟的贴图在平面上波动, 不能细看.
+    <ul>
+      <li><img src="/personal_homepage/docs/attachment/0030-0090.mp4" alt="0030-0090.mp4" width="200" /></li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="其他方法">其他方法</h2>
+
+<p>用粒子制作, 参考 <a href="https://www.bilibili.com/video/BV11i4y1r7GU/">这个b站教程</a></p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="content" /><category term="jekyll" /><summary type="html"><![CDATA[步骤]]></summary></entry><entry><title type="html">电子产品的频闪讨论</title><link href="https://roshameow.github.io//personal_homepage/docs/camera/flicker/" rel="alternate" type="text/html" title="电子产品的频闪讨论" /><published>2024-01-19T00:00:00+00:00</published><updated>2024-01-24T01:12:51+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/camera/flicker</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/camera/flicker/"><![CDATA[<p>频闪就是亮度随时间周期性变化的情况.</p>
 
 <p>b站影视飓风关于频闪的介绍:</p>
 <iframe src="//player.bilibili.com/player.html?aid=666304538&amp;bvid=BV1ua4y127pk&amp;cid=1408505034&amp;p=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
@@ -27,7 +77,7 @@
       <td>LED屏幕</td>
       <td>PWM调光</td>
       <td>都有</td>
-      <td>rectangular pulse<br />由占空比决定</td>
+      <td>rectangular pulse<br />由duty cycle(占空比)决定</td>
       <td>除了增加快门时间, 让条纹不明显<br />目前没有什么好的解决方式</td>
     </tr>
   </tbody>
@@ -35,7 +85,7 @@
 
 <h2 id="我手里的电子设备观测">我手里的电子设备观测</h2>
 
-<p>按照模型, 影响拍到的pattern的有: 相机的频率$f$, 快门时间(&lt;$\frac{1}{f}$), 相位, pwm的频率, 占空比, 每行的相位.</p>
+<p>按照模型, 影响拍到的pattern的有: 相机的频率$f$, 快门时间(&lt;$\frac{1}{f}$), 相位(快门扫描速度), pwm的频率, 占空比, 每行的相位.</p>
 
 <p>我们用相机去拍屏幕的时候,拍到的理论上亮, 暗的部分都是由于相位的不同, 不会相差超过一个周期, 所以$\frac{最亮}{最暗}&lt;\frac{ceil(\frac{快门时间}{pwm周期})}{floor(\frac{快门时间}{pwm周期})}$</p>
 
@@ -85,6 +135,17 @@
 <p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240122233738.png" alt="Pasted image 20240122233738.png" width="150" /></p>
 <ul>
   <li>网上有说法是mac的pwm频率为11800, 那么, 亮-暗/亮 对比不会超过 $\approx 500/11800\approx 1/23$ , 从图像的亮暗清晰度来看, 也不能算是和我拍摄的图像矛盾吧.  另外, 改用60fps的视频模式去拍, 这个图案也是可见的. 这个数字是否可信不好判断呢…但是能肯定频率至少是上千的</li>
+</ul>
+
+<p><strong>问题</strong></p>
+
+<ul>
+  <li>能否通过所有参数已知的相机, 通过图像,视频解出pwm调光的参数?
+    <ul>
+      <li>TOF问题中有些类似的方法<a href="https://zhuanlan.zhihu.com/p/505843064">解相位</a></li>
+      <li>如果已知屏幕信号和相机信号的auto-correlation结果, 自然知道屏幕的信号, 但是我们目前能测量的是在快门时间内积分的亮度</li>
+    </ul>
+  </li>
 </ul>
 
 <h2 id="strobe-light-control"><a href="https://www.urvision-tw.com/article_detail/17/4.htm">Strobe Light Control</a></h2>
@@ -142,6 +203,9 @@
   </li>
 </ul>
 
+<h2 id="仿真代码">仿真代码</h2>
+
+<p><a href="https://gist.github.com/roshameow/46245e2e9772d9afb1913a27a350bc4b#file-rect_pluse-py"><strong>rect_pluse.py</strong></a></p>
 <h2 id="reference">reference</h2>
 <p><span id="ref"></span></p>
 
@@ -156,11 +220,13 @@
 <p>[5] https://spectrum.ieee.org/the-iphone-12-mini-makes-me-sick-literally 评论说制造商可能让pwm频率约等于屏幕刷新率的4倍</p>
 
 <p>[6] https://www.hangjianet.com/topic/14734042955300000 一些从硬件上处理灯光频闪的方案</p>
+
+<p>[7] https://www.dxomark.com/flicker-the-display-affliction/ dxomark对一些手机的具体测试过程和结果: 可以理解成手机上不同行虽然相位不同, 频率都是一致的吧? 虽然不同相位相同频率的波相加可能得到更高频的信号.. 这里我们就假设相位随机, 测出的频率就是pwm频率</p>
 <h2 id="其他手机的效果">其他手机的效果</h2>
 
-<p><a href="https://zhuanlan.zhihu.com/p/41421658">这个知乎帖子看到的</a> 明显占空比变化</p>
+<p><a href="https://zhuanlan.zhihu.com/p/414216581">这个知乎帖子看到的</a> 明显占空比变化</p>
 
-<p><img src="https://vdn3.vzuu.com/SD/c53acdce-1ea2-11ec-b4fa-421c7066376d.mp4?disable_local_cache=1&amp;bu=078babd7&amp;c=avc.0.0&amp;f=mp4&amp;expiration=1705987673&amp;auth_key=1705987673-0-0-9aff69184a2eabc38cabc1cd7a5321d6&amp;v=tx&amp;pu=078babd7" alt="其他手机测试" /></p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="content" /><category term="jekyll" /><summary type="html"><![CDATA[频闪就是亮度随时间周期性变化的情况.]]></summary></entry><entry><title type="html">传感器颜色调制 (三) – 数据</title><link href="https://roshameow.github.io//personal_homepage/docs/data/color-moderate2/" rel="alternate" type="text/html" title="传感器颜色调制 (三) – 数据" /><published>2024-01-15T00:00:00+00:00</published><updated>2024-01-21T00:32:13+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/data/color-moderate2</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/data/color-moderate2/"><![CDATA[<p>各种颜色调制的数据对难以采集, 所以现在大部分颜色调制还是用多光谱数据仿真得到.</p>
+<p><img src="https://vdn6.vzuu.com/SD/c53acdce-1ea2-11ec-b4fa-421c7066376d.mp4?pkey=AAUThDYuAqcsVwav5tiGjgKxOoyNlRuOzqXj0uSazKu9FFQMQAVIeoHmkgFOLG-xv86neFVXSn2dxikvzZAtfeJ-&amp;c=avc.0.0&amp;f=mp4&amp;pu=078babd7&amp;bu=078babd7&amp;expiration=1706000378&amp;v=ks6" alt="其他手机测试" /></p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="camera" /><category term="content" /><category term="test" /><category term="sci-pop" /><summary type="html"><![CDATA[频闪就是亮度随时间周期性变化的情况.]]></summary></entry><entry><title type="html">传感器颜色调制 (三) – 数据</title><link href="https://roshameow.github.io//personal_homepage/docs/data/color-moderate2/" rel="alternate" type="text/html" title="传感器颜色调制 (三) – 数据" /><published>2024-01-15T00:00:00+00:00</published><updated>2024-01-21T00:32:13+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/data/color-moderate2</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/data/color-moderate2/"><![CDATA[<p>各种颜色调制的数据对难以采集, 所以现在大部分颜色调制还是用多光谱数据仿真得到.</p>
 <h2 id="多光谱数据集">多光谱数据集</h2>
 
 <table>
@@ -959,60 +1025,4 @@
 <ul>
   <li>买完发现灯光处于一个过饱和状态，显卡还带屏幕。不过再增加发光的东西就怎么都看不顺眼了，暂时只能保持这样的状态。</li>
   <li><img src="/personal_homepage/docs/attachment/Pasted%20image%2020231222072754.png" alt="Pasted image 20231222072754.png" width="300" /> 	<img src="/personal_homepage/docs/attachment/Pasted%20image%2020231222071842.png" alt="Pasted image 20231222071842.png" width="250" /></li>
-</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="photo" /><category term="content" /><category term="device" /><category term="life" /><summary type="html"><![CDATA[趁着双十二激情下单，前后不到一天，选的配件都没什么性价比。]]></summary></entry><entry><title type="html">小红书学到的几种图片调色</title><link href="https://roshameow.github.io//personal_homepage/docs/photo/photo-color/" rel="alternate" type="text/html" title="小红书学到的几种图片调色" /><published>2023-12-21T00:00:00+00:00</published><updated>2023-12-22T15:10:39+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/photo/photo-color</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/photo/photo-color/"><![CDATA[<p>感觉共同点是：为了追求画面简洁有冲击力，不约而同的压缩了亮度和颜色的动态范围。</p>
-<h2 id="版画滤镜">版画滤镜</h2>
-
-<p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020231221113525.png" alt="Pasted image 20231221113525.png" width="300" />  <img src="/personal_homepage/docs/attachment/Pasted%20image%2020231221113539.png" alt="Pasted image 20231221113539.png" width="300" /></p>
-<ul>
-  <li>醒图4个滤镜依次叠加，透明度依次减小
-    <ul>
-      <li>千禧-&gt;幻想蝴蝶</li>
-      <li>新中式-&gt;空谷</li>
-      <li>千禧-&gt;数字彩虹</li>
-      <li>新中式-&gt;烟霞</li>
-    </ul>
-  </li>
-  <li>实际实验结果
-    <ul>
-      <li><img src="/personal_homepage/docs/attachment/Pasted%20image%2020231221114420.png" alt="Pasted image 20231221114420.png" width="300" /></li>
-      <li>调整亮度曲线如图，暗部切断，亮部反色，压缩动态范围</li>
-      <li>添加噪声</li>
-      <li>去掉图片原有颜色</li>
-      <li>按照亮暗调节新的颜色</li>
-    </ul>
-  </li>
-</ul>
-
-<h2 id="白夜之树">白夜之树</h2>
-
-<ul>
-  <li>
-    <p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020231221121648.png" alt="Pasted image 20231221121648.png" width="300" />  <img src="/personal_homepage/docs/attachment/Pasted%20image%2020231221121655.png" alt="Pasted image 20231221121655.png" width="300" /></p>
-  </li>
-  <li>
-    <p>方法：</p>
-    <ul>
-      <li>醒图滤镜：千禧-&gt;午夜 把照片变成蓝色，就是为了伪造天空部分吧？</li>
-      <li>曲线反色：画面要避开一些常见的物品，不然很容易看出其实是反色，就感觉出戏了</li>
-      <li>光感-100：作用是，把有颜色的部分变暗？</li>
-    </ul>
-  </li>
-</ul>
-
-<h2 id="单色涂鸦">单色涂鸦</h2>
-
-<p><img src="/personal_homepage/docs/attachment/IMG_8192.jpg" alt="IMG_8192.jpg" width="300" />   <img src="/personal_homepage/docs/attachment/IMG_8193.jpg" alt="IMG_8193.jpg" width="300" /></p>
-
-<ul>
-  <li>方法：
-    <ul>
-      <li>醒图特效：单色填充：可能是根据饱和度？把饱和度高的部分填充了粉色。因为图片里红色和蓝色都被填充了，所以不是根据主体色识别。其他位置变为灰度图</li>
-      <li>醒图特效：单色涂鸦：检测边缘，设置白边
-        <ul>
-          <li>可能是检测闭合的部分，处理成涂鸦的斜线</li>
-          <li>检测线条少的位置加文字</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="photo" /><category term="content" /><category term="醒图" /><summary type="html"><![CDATA[感觉共同点是：为了追求画面简洁有冲击力，不约而同的压缩了亮度和颜色的动态范围。 版画滤镜]]></summary></entry></feed>
+</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="photo" /><category term="content" /><category term="device" /><category term="life" /><summary type="html"><![CDATA[趁着双十二激情下单，前后不到一天，选的配件都没什么性价比。]]></summary></entry></feed>

@@ -22,8 +22,8 @@
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="频闪就是亮度随时间周期性变化的情况." />
 <meta property="og:description" content="频闪就是亮度随时间周期性变化的情况." />
-<link rel="canonical" href="https://roshameow.github.io//personal_homepage/docs/flicker/" />
-<meta property="og:url" content="https://roshameow.github.io//personal_homepage/docs/flicker/" />
+<link rel="canonical" href="https://roshameow.github.io//personal_homepage/docs/camera/flicker/" />
+<meta property="og:url" content="https://roshameow.github.io//personal_homepage/docs/camera/flicker/" />
 <meta property="og:site_name" content="Liu, Wen’s Home Page" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2024-01-19T00:00:00+00:00" />
@@ -31,7 +31,7 @@
 <meta property="twitter:title" content="电子产品的频闪讨论" />
 <meta name="twitter:site" content="@" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-01-23T20:30:03+00:00","datePublished":"2024-01-19T00:00:00+00:00","description":"频闪就是亮度随时间周期性变化的情况.","headline":"电子产品的频闪讨论","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/docs/flicker/"},"url":"https://roshameow.github.io//personal_homepage/docs/flicker/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-01-24T01:12:51+00:00","datePublished":"2024-01-19T00:00:00+00:00","description":"频闪就是亮度随时间周期性变化的情况.","headline":"电子产品的频闪讨论","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/docs/camera/flicker/"},"url":"https://roshameow.github.io//personal_homepage/docs/camera/flicker/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -120,14 +120,14 @@
         
   <h3 class="page-taxonomies-title">Categories</h3>
   
-  <ul class="page-taxonomies"><li class="page-taxonomy"><a class="p-category" href="/personal_homepage/categories/#docs" title="Pages filed under docs">docs</a></li>
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a class="p-category" href="/personal_homepage/categories/#camera" title="Pages filed under camera">camera</a></li><li class="page-taxonomy"><a class="p-category" href="/personal_homepage/categories/#docs" title="Pages filed under docs">docs</a></li>
   </ul>
 
 
         
   <h3 class="page-taxonomies-title">Tags</h3>
   
-  <ul class="page-taxonomies"><li class="page-taxonomy"><a href="/personal_homepage/tags/#content" title="Pages tagged content" rel="tag">content</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#jekyll" title="Pages tagged jekyll" rel="tag">jekyll</a></li>
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a href="/personal_homepage/tags/#content" title="Pages tagged content" rel="tag">content</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#sci-pop" title="Pages tagged sci-pop" rel="tag">sci-pop</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#test" title="Pages tagged test" rel="tag">test</a></li>
   </ul>
 
 
@@ -138,7 +138,7 @@
 </h2>
 <!-- 1. toc
 {:toc} -->
-<ul class="inline_toc" id="my_toc"><li><a href="#频闪的分类">频闪的分类</a></li><li><a href="#我手里的电子设备观测">我手里的电子设备观测</a></li><li><a href="#strobe-light-control">Strobe Light Control</a></li><li><a href="#频闪的检测">频闪的检测</a></li><li><a href="#频闪对人眼的风险">频闪对人眼的风险</a></li><li><a href="#reference">reference</a></li><li><a href="#其他手机的效果">其他手机的效果</a></li></ul>
+<ul class="inline_toc" id="my_toc"><li><a href="#频闪的分类">频闪的分类</a></li><li><a href="#我手里的电子设备观测">我手里的电子设备观测</a></li><li><a href="#strobe-light-control">Strobe Light Control</a></li><li><a href="#频闪的检测">频闪的检测</a></li><li><a href="#频闪对人眼的风险">频闪对人眼的风险</a></li><li><a href="#仿真代码">仿真代码</a></li><li><a href="#reference">reference</a></li><li><a href="#其他手机的效果">其他手机的效果</a></li></ul>
 </div>
 <!-- {::options parse_block_html="false" /} -->
 
@@ -175,7 +175,7 @@
       <td>LED屏幕</td>
       <td>PWM调光</td>
       <td>都有</td>
-      <td>rectangular pulse<br />由占空比决定</td>
+      <td>rectangular pulse<br />由duty cycle(占空比)决定</td>
       <td>除了增加快门时间, 让条纹不明显<br />目前没有什么好的解决方式</td>
     </tr>
   </tbody>
@@ -183,7 +183,7 @@
 
 <h2 id="我手里的电子设备观测">我手里的电子设备观测</h2>
 
-<p>按照模型, 影响拍到的pattern的有: 相机的频率$f$, 快门时间(&lt;$\frac{1}{f}$), 相位, pwm的频率, 占空比, 每行的相位.</p>
+<p>按照模型, 影响拍到的pattern的有: 相机的频率$f$, 快门时间(&lt;$\frac{1}{f}$), 相位(快门扫描速度), pwm的频率, 占空比, 每行的相位.</p>
 
 <p>我们用相机去拍屏幕的时候,拍到的理论上亮, 暗的部分都是由于相位的不同, 不会相差超过一个周期, 所以$\frac{最亮}{最暗}&lt;\frac{ceil(\frac{快门时间}{pwm周期})}{floor(\frac{快门时间}{pwm周期})}$</p>
 
@@ -233,6 +233,17 @@
 <p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240122233738.png" alt="Pasted image 20240122233738.png" width="150" /></p>
 <ul>
   <li>网上有说法是mac的pwm频率为11800, 那么, 亮-暗/亮 对比不会超过 $\approx 500/11800\approx 1/23$ , 从图像的亮暗清晰度来看, 也不能算是和我拍摄的图像矛盾吧.  另外, 改用60fps的视频模式去拍, 这个图案也是可见的. 这个数字是否可信不好判断呢…但是能肯定频率至少是上千的</li>
+</ul>
+
+<p><strong>问题</strong></p>
+
+<ul>
+  <li>能否通过所有参数已知的相机, 通过图像,视频解出pwm调光的参数?
+    <ul>
+      <li>TOF问题中有些类似的方法<a href="https://zhuanlan.zhihu.com/p/505843064">解相位</a></li>
+      <li>如果已知屏幕信号和相机信号的auto-correlation结果, 自然知道屏幕的信号, 但是我们目前能测量的是在快门时间内积分的亮度</li>
+    </ul>
+  </li>
 </ul>
 
 <h2 id="strobe-light-control"><a href="https://www.urvision-tw.com/article_detail/17/4.htm">Strobe Light Control</a></h2>
@@ -290,6 +301,9 @@
   </li>
 </ul>
 
+<h2 id="仿真代码">仿真代码</h2>
+
+<p><a href="https://gist.github.com/roshameow/46245e2e9772d9afb1913a27a350bc4b#file-rect_pluse-py"><strong>rect_pluse.py</strong></a></p>
 <h2 id="reference">reference</h2>
 <p><span id="ref"></span></p>
 
@@ -304,11 +318,13 @@
 <p>[5] https://spectrum.ieee.org/the-iphone-12-mini-makes-me-sick-literally 评论说制造商可能让pwm频率约等于屏幕刷新率的4倍</p>
 
 <p>[6] https://www.hangjianet.com/topic/14734042955300000 一些从硬件上处理灯光频闪的方案</p>
+
+<p>[7] https://www.dxomark.com/flicker-the-display-affliction/ dxomark对一些手机的具体测试过程和结果: 可以理解成手机上不同行虽然相位不同, 频率都是一致的吧? 虽然不同相位相同频率的波相加可能得到更高频的信号.. 这里我们就假设相位随机, 测出的频率就是pwm频率</p>
 <h2 id="其他手机的效果">其他手机的效果</h2>
 
-<p><a href="https://zhuanlan.zhihu.com/p/41421658">这个知乎帖子看到的</a> 明显占空比变化</p>
+<p><a href="https://zhuanlan.zhihu.com/p/414216581">这个知乎帖子看到的</a> 明显占空比变化</p>
 
-<p><img src="https://vdn3.vzuu.com/SD/c53acdce-1ea2-11ec-b4fa-421c7066376d.mp4?disable_local_cache=1&amp;bu=078babd7&amp;c=avc.0.0&amp;f=mp4&amp;expiration=1705987673&amp;auth_key=1705987673-0-0-9aff69184a2eabc38cabc1cd7a5321d6&amp;v=tx&amp;pu=078babd7" alt="其他手机测试" /></p>
+<p><img src="https://vdn6.vzuu.com/SD/c53acdce-1ea2-11ec-b4fa-421c7066376d.mp4?pkey=AAUThDYuAqcsVwav5tiGjgKxOoyNlRuOzqXj0uSazKu9FFQMQAVIeoHmkgFOLG-xv86neFVXSn2dxikvzZAtfeJ-&amp;c=avc.0.0&amp;f=mp4&amp;pu=078babd7&amp;bu=078babd7&amp;expiration=1706000378&amp;v=ks6" alt="其他手机测试" /></p>
 
 
         </div>
@@ -321,8 +337,8 @@
     <div id="disqus_thread"></div>
     <script>
       var disqus_config = function () {
-        this.page.url = 'https://roshameow.github.io//personal_homepage/docs/flicker/';
-        this.page.identifier = 'https://roshameow.github.io//personal_homepage/docs/flicker/';
+        this.page.url = 'https://roshameow.github.io//personal_homepage/docs/camera/flicker/';
+        this.page.identifier = 'https://roshameow.github.io//personal_homepage/docs/camera/flicker/';
       };
 
       (function() {
@@ -349,6 +365,14 @@
     </a>
   
 
+  
+    <a class="page-next" href="/personal_homepage/docs/blender-learning2/">
+      <h4 class="page-pagination-label">Next</h4>
+      <span class="page-pagination-title">
+        blender学习: 用displacement做动态鸟群
+ <i class="fas fa-arrow-right"></i>
+      </span>
+    </a>
   
 </nav>
 
