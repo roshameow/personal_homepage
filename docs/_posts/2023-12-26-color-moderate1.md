@@ -6,7 +6,7 @@ categories:
 tags:
   - content
   - sensor
-last_modified_at: 2024-01-22T11:41:46-08:00
+last_modified_at: 2024-01-25T16:09:13-08:00
 ---
 ## 通过coded-aperture 和 dispenser进行颜色调制
 
@@ -80,3 +80,11 @@ last_modified_at: 2024-01-22T11:41:46-08:00
 <span id="ref"></span>
 [1]  Zhao, Ruixuan, Chengshuai Yang, R. Theodore Smith, and Liang Gao. “Coded Aperture Snapshot Spectral Imaging Fundus Camera.” _Scientific Reports_ 13, no. 1 (July 25, 2023): 12007. [https://doi.org/10.1038/s41598-023-39117-2](https://doi.org/10.1038/s41598-023-39117-2).
 
+CSST
+为什么要这么仿真? 怎么从系统的结构得到的? 
+每个aperture的小孔都会在不同offset的地方成像吗? 相当于aperture每个小孔位置放了一个dispenser
+假设有7x7的孔, 那么每个7x7x28的波长都有自己的offset
+rgb bayer filter有必要吗?
+是不是相当于两级的dispenser, 
+
+到底应不应该这么仿真, 其实我是有疑惑的.
