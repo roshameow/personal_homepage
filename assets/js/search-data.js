@@ -180,7 +180,7 @@ var store = [{
         "url": "https://roshameow.github.io//personal_homepage/docs/simulation/diffraction1/"
       },{
         "title": "传感器颜色调制 (三) -- 数据",
-        "excerpt":"各种颜色调制的数据对难以采集, 所以现在大部分颜色调制还是用多光谱数据仿真得到. 多光谱数据集 数据集$\\downarrow$ size bands 格式 数量 拍摄场景 发布时间 大小 条件 拍摄条件 CAVE 512x512 400-700nm10nm steps31bands .png每个通道分别存 32 实验室:真假人脸真假水果 2008 419.9MB     CAVE1024             13.06GB     KAIST 2704x3376 420-720nm10nm steps31bands .exr每个图片单独下载 30 实验室 2017 8.67GB     TSA 660x660 28通道特殊 .mat 10(simu)5(real)...","categories": ["docs","data"],
+        "excerpt":"各种颜色调制的数据对难以采集, 所以现在大部分颜色调制还是用多光谱数据仿真得到. 多光谱数据集 数据集$\\downarrow$ size bands 格式 数量 拍摄场景 发布时间 大小 条件 拍摄条件 CAVE 512x512 400-700nm10nm steps31bands .png每个通道分别存 32 实验室:真假人脸真假水果 2008 419.9MB     CAVE1024 1024x1024     205     13.06GB     KAIST 2704x3376 420-720nm10nm steps31bands .exr每个图片单独下载 30 实验室 2017 8.67GB     TSA 660x660 28通道特殊 .mat 10(simu)5(real)...","categories": ["docs","data"],
         "tags": ["content","dataset","pytorch","script"],
         "url": "https://roshameow.github.io//personal_homepage/docs/data/color-moderate2/"
       },{
@@ -190,7 +190,12 @@ var store = [{
         "url": "https://roshameow.github.io//personal_homepage/docs/camera/flicker/"
       },{
         "title": "blender学习: 用displacement做动态鸟群",
-        "excerpt":"步骤 参考RuiHuang_art在b站的教学视频   world property: background改成黑色  加入鸟群贴图: 在material property里修改          把贴图连到alpha通道      blend mode改为alpha blend        加入displacement: 在modifier property里修改          加入subdivision surface                  levels viewport 增加到5          render增加到5                    加入displace                  加入texture-&gt;调整texture的属性                          type用Clouds, 也就是Perlin noise                                  Perlin noise的参数                                                              调整stength到0.1                      加入运镜，参考教学视频 https://www.bilibili.com/video/BV1eq4y1y7D2          在layout界面开启auto key之后，点击播放：这个时候鼠标只能移动，需要按G快捷键配合移动。      在animation界面看效果.        输出视频: 这么做只是鸟的贴图在平面上波动, 不能细看.                其他方法 用粒子制作, 参考 这个b站教程 ","categories": ["docs"],
-        "tags": ["content","jekyll"],
-        "url": "https://roshameow.github.io//personal_homepage/docs/blender-learning2/"
+        "excerpt":"步骤 参考RuiHuang_art在b站的教学视频 world property: background改成黑色 加入鸟群所在的mesh 加入鸟群贴图: 在material property里修改 把贴图连到alpha通道 blend mode改为alpha blend 加入displacement: 在modifier property里修改 加入subdivision surface: 用Catmull-Clark 的方法细分(迭代进行, 每次加入新的点后, 会移动顶点位置, 让整体更平滑) levels viewport 增加到5: 对应编辑时, 看到的细分的迭代次数, 可以调的比render低一些 render增加到5: 对应最终渲染时, 看到的细分的迭代次数 加入displace: 根据texture的灰度值变换顶点的coordinate 代码可能在: https://github.com/blender/blender/blob/main/source/blender/modifiers/intern/MOD_volume_displace.cc 加入texture-&gt;调整texture的属性 type用Clouds, 也就是Perlin noise : 多个不同粒度的随机叠加 Depth参数控制模糊程度: 应该是Perlin noise生成时的粒度有几层 其中nabla($\\nabla$ ) 参数好像对Perlin noise没影响.. coordinate设置成global:...","categories": ["docs","blender"],
+        "tags": ["content"],
+        "url": "https://roshameow.github.io//personal_homepage/docs/blender/blender-learning2/"
+      },{
+        "title": "blender学习: 用体积渲染做气态行星",
+        "excerpt":"步骤 参考RuiHuang_art在b站的教学视频 world property: 加入一个太空背景的贴图 光源：改成sun light strength改成12: 单位是 $W/m^2$ volume改成3: 控制在volume shader时的影响? render: 用eevee 设置volumetrics参数 打开volumetric shadows start, end: 相对相机的体积效果范围, 设为(3.3m-&gt;200m) tile size: volume块大小 shader: 用principled volume : 把mesh包含的部分看成volume块 color: 用texture Coordinate 生成volume的坐标 Image Texture 把2d的木星贴图映射到3d的volume上 用Hue/Saturation/Value Node 调颜色 density: 一个从里到外逐渐稀薄的球形+被纹理的影响 用texture Coordinate 生成volume的坐标 object生成一个在中心的坐标系: 一个球形 用 Image Texture...","categories": ["docs","blender"],
+        "tags": ["content","render","shader"],
+        "url": "https://roshameow.github.io//personal_homepage/docs/blender/blender-learning3/"
       }]

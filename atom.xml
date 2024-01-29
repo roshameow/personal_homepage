@@ -1,8 +1,106 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="https://roshameow.github.io//personal_homepage/atom.xml" rel="self" type="application/atom+xml" /><link href="https://roshameow.github.io//personal_homepage/" rel="alternate" type="text/html" /><updated>2024-01-24T10:01:40+00:00</updated><id>https://roshameow.github.io//personal_homepage/atom.xml</id><title type="html">Liu, Wen’s Home Page</title><subtitle>Work, Experiments and Ideas.</subtitle><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><entry><title type="html">blender学习: 用displacement做动态鸟群</title><link href="https://roshameow.github.io//personal_homepage/docs/blender-learning2/" rel="alternate" type="text/html" title="blender学习: 用displacement做动态鸟群" /><published>2024-01-24T00:00:00+00:00</published><updated>2024-01-25T00:47:28+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/blender-learning2</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/blender-learning2/"><![CDATA[<h2 id="步骤">步骤</h2>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="https://roshameow.github.io//personal_homepage/atom.xml" rel="self" type="application/atom+xml" /><link href="https://roshameow.github.io//personal_homepage/" rel="alternate" type="text/html" /><updated>2024-01-29T08:51:35+00:00</updated><id>https://roshameow.github.io//personal_homepage/atom.xml</id><title type="html">Liu, Wen’s Home Page</title><subtitle>Work, Experiments and Ideas.</subtitle><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><entry><title type="html">blender学习: 用体积渲染做气态行星</title><link href="https://roshameow.github.io//personal_homepage/docs/blender/blender-learning3/" rel="alternate" type="text/html" title="blender学习: 用体积渲染做气态行星" /><published>2024-01-26T00:00:00+00:00</published><updated>2024-01-30T00:47:25+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/blender/blender-learning3</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/blender/blender-learning3/"><![CDATA[<h2 id="步骤">步骤</h2>
+
+<p>参考RuiHuang_art在<a href="https://www.bilibili.com/video/BV1Aj411j7CD">b站的教学视频</a></p>
+<ul>
+  <li>world property: 加入一个太空背景的贴图</li>
+  <li>光源：改成<a href="https://docs.blender.org/manual/en/latest/render/lights/light_object.html#sun-light">sun light</a>
+    <ul>
+      <li>strength改成12: 单位是 $W/m^2$</li>
+      <li>volume改成3: 控制在volume shader时的影响?</li>
+    </ul>
+  </li>
+  <li>render: 用eevee
+    <ul>
+      <li>设置volumetrics参数
+        <ul>
+          <li><strong>打开volumetric shadows</strong></li>
+          <li>start, end: 相对相机的体积效果范围, 设为(3.3m-&gt;200m)</li>
+          <li>tile size: volume块大小</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>shader:
+    <ul>
+      <li>用<a href="https://docs.blender.org/manual/en/latest/render/shader_nodes/shader/volume_principled.html">principled volume</a> : 把mesh包含的部分看成volume块
+        <ul>
+          <li>color:
+            <ol>
+              <li>用<a href="https://docs.blender.org/manual/en/latest/render/shader_nodes/input/texture_coordinate.html">texture Coordinate</a> 生成volume的坐标</li>
+              <li><a href="https://docs.blender.org/manual/en/latest/render/shader_nodes/textures/image.html">Image Texture</a> 把2d的木星贴图映射到3d的volume上</li>
+              <li>用<a href="https://docs.blender.org/manual/en/latest/render/shader_nodes/color/hue_saturation.html">Hue/Saturation/Value Node</a> 调颜色</li>
+            </ol>
+          </li>
+          <li>density: 一个从里到外逐渐稀薄的球形+被纹理的影响
+            <ol>
+              <li>用<a href="https://docs.blender.org/manual/en/latest/render/shader_nodes/input/texture_coordinate.html">texture Coordinate</a> 生成volume的坐标
+                <ol>
+                  <li>object生成一个在中心的坐标系: 一个球形</li>
+                  <li>用 <a href="https://docs.blender.org/manual/en/latest/render/shader_nodes/textures/image.html">Image Texture</a> 生成一个按照贴图纹理亮度的scale, 模拟气体的效果
+                    <ul>
+                      <li>用Mulitiply node的Factor node调整受纹理影响的强度</li>
+                      <li>用<a href="https://docs.blender.org/manual/en/latest/render/shader_nodes/color/invert.html">invert node</a> 调整: 亮的纹理密度低(凹陷), 暗得纹理密度高(突出), 如果Fac设置成1就会反过来
+                        <ul>
+                          <li>Fac参数:  类似$\alpha \frac{1}{x}+(1-\alpha) x$ ?</li>
+                        </ul>
+                      </li>
+                      <li>这部分应该可以优化, 不是用multiply 而是用其他方式做纹理的distortion?</li>
+                    </ul>
+                  </li>
+                </ol>
+              </li>
+              <li>用<a href="https://docs.blender.org/manual/en/latest/render/shader_nodes/textures/gradient.html">gradient texture</a> 设置渐变的密度</li>
+              <li>用 <a href="https://docs.blender.org/manual/en/latest/editors/texture_node/types/converter/color_ramp.html">Color Ramp</a> 做一个动态范围的压缩:
+                <ul>
+                  <li>我们想要一个(实体-&gt;气态-&gt;空) 的渐变, 中间density在0-1之间的部分, 是气态部分</li>
+                  <li>调整value参数, 也就是最后输入的密度</li>
+                </ul>
+              </li>
+            </ol>
+          </li>
+        </ul>
+      </li>
+      <li>视频里还另外加了一个底色, 但是看起来没什么影响</li>
+    </ul>
+  </li>
+  <li>相机: Camera-&gt; Data
+    <ul>
+      <li>Focal Length 调大到60mm: 调整物体在镜头内的大小</li>
+    </ul>
+  </li>
+  <li>结果: 和视频里的结果不完全一样, 不清楚是哪里的问题😮‍💨
+    <ul>
+      <li><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240129164109.png" alt="Pasted image 20240129164109.png" width="200" /> <img src="/personal_homepage/docs/attachment/Pasted%20image%2020240129164354.png" alt="Pasted image 20240129164354.png" width="200" /></li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="shader流程">shader流程</h2>
+
+<p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240129164505.png" alt="Pasted image 20240129164505.png" width="900" /></p>
+
+<h2 id="texture-coordinate-的设置"><a href="https://docs.blender.org/manual/en/latest/render/shader_nodes/input/texture_coordinate.html">texture Coordinate</a> 的设置</h2>
+
+<p>texture coordinate不同模式的区别是坐标系的原点位置不一样: generate模式的原点是在mesh的bounding box一角, 而object模式的原点是在bounding box的中心(从名字是看不出来..也没看源码验证, 都是我猜的)</p>
+<ul>
+  <li>用<a href="https://docs.blender.org/manual/en/latest/render/shader_nodes/textures/gradient.html">gradient texture</a> 调整密度时, 输入的是vector的模长
+    <ul>
+      <li>如果generate模式 , 密度最大的点在box的一角, 得到<img src="/personal_homepage/docs/attachment/Pasted%20image%2020240129151203.png" alt="Pasted image 20240129151203.png" width="120" />;</li>
+      <li>用object模式  , 密度最大的点在中心, 得到<img src="/personal_homepage/docs/attachment/Pasted%20image%2020240129151233.png" alt="Pasted image 20240129151233.png" width="150" />, 也就是我们需要的行星的形态</li>
+    </ul>
+  </li>
+  <li>而我们用<a href="https://docs.blender.org/manual/en/latest/render/shader_nodes/textures/image.html">Image Texture</a> 设置颜色的映射时, Sphere的映射方法默认是围绕点 $(0.5,0.5,0.5)$ 进行映射, 这个时候我们就需要在generate模式的坐标系下映射
+    <ul>
+      <li>Sphere的映射方法: <img src="https://docs.blender.org/manual/en/latest/_images/render_shader-nodes_textures_image_projection-sphere.png" alt="sphere" /></li>
+      <li>把贴图<img src="/personal_homepage/docs/attachment/jupiter_01_pd.png" alt="jupiter_01_pd.png" width="200" /> 映射到<img src="/personal_homepage/docs/attachment/Pasted%20image%2020240129144125.png" alt="Pasted image 20240129144125.png" width="120" /></li>
+    </ul>
+  </li>
+</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="blender" /><category term="content" /><category term="render" /><category term="shader" /><summary type="html"><![CDATA[步骤]]></summary></entry><entry><title type="html">blender学习: 用displacement做动态鸟群</title><link href="https://roshameow.github.io//personal_homepage/docs/blender/blender-learning2/" rel="alternate" type="text/html" title="blender学习: 用displacement做动态鸟群" /><published>2024-01-24T00:00:00+00:00</published><updated>2024-01-26T18:49:15+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/blender/blender-learning2</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/blender/blender-learning2/"><![CDATA[<h2 id="步骤">步骤</h2>
 
 <p>参考RuiHuang_art在<a href="https://www.bilibili.com/video/BV1ta4y1f7ui/">b站的教学视频</a></p>
 <ul>
   <li>world property: background改成黑色</li>
+  <li>加入鸟群所在的mesh</li>
   <li>加入鸟群贴图: 在material property里修改
     <ul>
       <li>把贴图连到alpha通道</li>
@@ -11,23 +109,27 @@
   </li>
   <li>加入displacement: 在modifier property里修改
     <ul>
-      <li>加入subdivision surface
+      <li>加入subdivision surface: 用<a href="https://en.wikipedia.org/wiki/Catmull–Clark_subdivision_surface">Catmull-Clark</a> 的方法细分(迭代进行, 每次加入新的点后, 会移动顶点位置, 让整体更平滑)
         <ul>
-          <li>levels viewport 增加到5</li>
-          <li>render增加到5</li>
+          <li>levels viewport 增加到5: 对应编辑时, 看到的细分的迭代次数, 可以调的比render低一些</li>
+          <li>render增加到5: 对应最终渲染时, 看到的细分的迭代次数</li>
         </ul>
       </li>
-      <li>加入displace
+      <li>加入displace: 根据texture的灰度值变换顶点的coordinate
         <ul>
+          <li>代码可能在: https://github.com/blender/blender/blob/main/source/blender/modifiers/intern/MOD_volume_displace.cc</li>
           <li>加入texture-&gt;调整texture的属性
             <ul>
-              <li>type用Clouds, 也就是Perlin noise
+              <li>type用Clouds, 也就是<a href="https://en.wikipedia.org/wiki/Perlin_noise">Perlin noise</a> : 多个不同粒度的随机叠加
                 <ul>
-                  <li>Perlin noise的参数</li>
+                  <li>Depth参数控制模糊程度: 应该是Perlin noise生成时的粒度有几层</li>
+                  <li>其中nabla($\nabla$ ) 参数好像对Perlin noise没影响..</li>
                 </ul>
               </li>
             </ul>
           </li>
+          <li>coordinate设置成global: 每个世界坐标位置根据texture固定displacement(如果是local就会相对于我们的mesh不动)</li>
+          <li>direction: 就用默认的normal, 我们的mesh是个平面, 和用z axis一样</li>
           <li>调整stength到0.1</li>
         </ul>
       </li>
@@ -48,7 +150,7 @@
 
 <h2 id="其他方法">其他方法</h2>
 
-<p>用粒子制作, 参考 <a href="https://www.bilibili.com/video/BV11i4y1r7GU/">这个b站教程</a></p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="content" /><category term="jekyll" /><summary type="html"><![CDATA[步骤]]></summary></entry><entry><title type="html">电子产品的频闪讨论</title><link href="https://roshameow.github.io//personal_homepage/docs/camera/flicker/" rel="alternate" type="text/html" title="电子产品的频闪讨论" /><published>2024-01-19T00:00:00+00:00</published><updated>2024-01-24T01:12:51+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/camera/flicker</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/camera/flicker/"><![CDATA[<p>频闪就是亮度随时间周期性变化的情况.</p>
+<p>用粒子制作, 参考 <a href="https://www.bilibili.com/video/BV11i4y1r7GU/">这个b站教程</a> : 实在啰嗦我没有耐心看😂</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="blender" /><category term="content" /><summary type="html"><![CDATA[步骤]]></summary></entry><entry><title type="html">电子产品的频闪讨论</title><link href="https://roshameow.github.io//personal_homepage/docs/camera/flicker/" rel="alternate" type="text/html" title="电子产品的频闪讨论" /><published>2024-01-19T00:00:00+00:00</published><updated>2024-01-24T01:12:51+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/camera/flicker</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/camera/flicker/"><![CDATA[<p>频闪就是亮度随时间周期性变化的情况.</p>
 
 <p>b站影视飓风关于频闪的介绍:</p>
 <iframe src="//player.bilibili.com/player.html?aid=666304538&amp;bvid=BV1ua4y127pk&amp;cid=1408505034&amp;p=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
@@ -226,7 +328,7 @@
 
 <p><a href="https://zhuanlan.zhihu.com/p/414216581">这个知乎帖子看到的</a> 明显占空比变化</p>
 
-<p><img src="https://vdn6.vzuu.com/SD/c53acdce-1ea2-11ec-b4fa-421c7066376d.mp4?pkey=AAUThDYuAqcsVwav5tiGjgKxOoyNlRuOzqXj0uSazKu9FFQMQAVIeoHmkgFOLG-xv86neFVXSn2dxikvzZAtfeJ-&amp;c=avc.0.0&amp;f=mp4&amp;pu=078babd7&amp;bu=078babd7&amp;expiration=1706000378&amp;v=ks6" alt="其他手机测试" /></p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="camera" /><category term="content" /><category term="test" /><category term="sci-pop" /><summary type="html"><![CDATA[频闪就是亮度随时间周期性变化的情况.]]></summary></entry><entry><title type="html">传感器颜色调制 (三) – 数据</title><link href="https://roshameow.github.io//personal_homepage/docs/data/color-moderate2/" rel="alternate" type="text/html" title="传感器颜色调制 (三) – 数据" /><published>2024-01-15T00:00:00+00:00</published><updated>2024-01-21T00:32:13+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/data/color-moderate2</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/data/color-moderate2/"><![CDATA[<p>各种颜色调制的数据对难以采集, 所以现在大部分颜色调制还是用多光谱数据仿真得到.</p>
+<p><img src="https://vdn6.vzuu.com/SD/c53acdce-1ea2-11ec-b4fa-421c7066376d.mp4?pkey=AAUThDYuAqcsVwav5tiGjgKxOoyNlRuOzqXj0uSazKu9FFQMQAVIeoHmkgFOLG-xv86neFVXSn2dxikvzZAtfeJ-&amp;c=avc.0.0&amp;f=mp4&amp;pu=078babd7&amp;bu=078babd7&amp;expiration=1706000378&amp;v=ks6" alt="其他手机测试" /></p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="camera" /><category term="content" /><category term="test" /><category term="sci-pop" /><summary type="html"><![CDATA[频闪就是亮度随时间周期性变化的情况.]]></summary></entry><entry><title type="html">传感器颜色调制 (三) – 数据</title><link href="https://roshameow.github.io//personal_homepage/docs/data/color-moderate2/" rel="alternate" type="text/html" title="传感器颜色调制 (三) – 数据" /><published>2024-01-15T00:00:00+00:00</published><updated>2024-01-25T22:33:35+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/data/color-moderate2</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/data/color-moderate2/"><![CDATA[<p>各种颜色调制的数据对难以采集, 所以现在大部分颜色调制还是用多光谱数据仿真得到.</p>
 <h2 id="多光谱数据集">多光谱数据集</h2>
 
 <table>
@@ -259,10 +361,10 @@
     </tr>
     <tr>
       <td><a href="https://cave.cs.columbia.edu/projects/categories/project?cid=Computational+Imaging&amp;pid=Multispectral+Imaging+Using+Multiplexed+Illumination">CAVE1024</a></td>
+      <td>1024x1024</td>
       <td> </td>
       <td> </td>
-      <td> </td>
-      <td> </td>
+      <td>205</td>
       <td> </td>
       <td> </td>
       <td>13.06GB</td>
@@ -307,13 +409,13 @@
     </tr>
     <tr>
       <td><a href="https://github.com/boazarad/ARAD_1K">ARAD 1K</a></td>
-      <td> </td>
+      <td>512x482</td>
       <td>400-700nm<br />10nm steps<br />31bands</td>
-      <td> </td>
-      <td> </td>
+      <td>.mat-v7.3</td>
+      <td>900(train)<br />50(val)<br />50(test)</td>
       <td>场景丰富</td>
       <td>2022</td>
-      <td> </td>
+      <td>约21GB<br />压缩包</td>
       <td>需要注册</td>
       <td> </td>
     </tr>
@@ -815,7 +917,7 @@
       <li><img src="/personal_homepage/docs/attachment/output.mp4" alt="output.mp4" width="400" /></li>
     </ul>
   </li>
-</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="blender" /><category term="content" /><category term="BSDF" /><category term="render" /><summary type="html"><![CDATA[导入模型]]></summary></entry><entry><title type="html">传感器颜色调制 (二)</title><link href="https://roshameow.github.io//personal_homepage/docs/algorithm/color-moderate1/" rel="alternate" type="text/html" title="传感器颜色调制 (二)" /><published>2023-12-26T00:00:00+00:00</published><updated>2024-01-22T19:41:46+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/algorithm/color-moderate1</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/algorithm/color-moderate1/"><![CDATA[<h2 id="通过coded-aperture-和-dispenser进行颜色调制">通过coded-aperture 和 dispenser进行颜色调制</h2>
+</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="blender" /><category term="content" /><category term="BSDF" /><category term="render" /><summary type="html"><![CDATA[导入模型]]></summary></entry><entry><title type="html">传感器颜色调制 (二)</title><link href="https://roshameow.github.io//personal_homepage/docs/algorithm/color-moderate1/" rel="alternate" type="text/html" title="传感器颜色调制 (二)" /><published>2023-12-26T00:00:00+00:00</published><updated>2024-01-26T00:09:13+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/algorithm/color-moderate1</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/algorithm/color-moderate1/"><![CDATA[<h2 id="通过coded-aperture-和-dispenser进行颜色调制">通过coded-aperture 和 dispenser进行颜色调制</h2>
 
 <h3 id="coded-aperture的优点">coded-aperture的优点</h3>
 
@@ -941,7 +1043,16 @@
 </ul>
 
 <p><span id="ref"></span>
-[1]  Zhao, Ruixuan, Chengshuai Yang, R. Theodore Smith, and Liang Gao. “Coded Aperture Snapshot Spectral Imaging Fundus Camera.” <em>Scientific Reports</em> 13, no. 1 (July 25, 2023): 12007. <a href="https://doi.org/10.1038/s41598-023-39117-2">https://doi.org/10.1038/s41598-023-39117-2</a>.</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="algorithm" /><category term="content" /><category term="sensor" /><summary type="html"><![CDATA[通过coded-aperture 和 dispenser进行颜色调制]]></summary></entry><entry><title type="html">传感器颜色调制 (一)</title><link href="https://roshameow.github.io//personal_homepage/docs/algorithm/color-moderate/" rel="alternate" type="text/html" title="传感器颜色调制 (一)" /><published>2023-12-23T00:00:00+00:00</published><updated>2023-12-27T23:14:21+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/algorithm/color-moderate</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/algorithm/color-moderate/"><![CDATA[<h2 id="调制">调制</h2>
+[1]  Zhao, Ruixuan, Chengshuai Yang, R. Theodore Smith, and Liang Gao. “Coded Aperture Snapshot Spectral Imaging Fundus Camera.” <em>Scientific Reports</em> 13, no. 1 (July 25, 2023): 12007. <a href="https://doi.org/10.1038/s41598-023-39117-2">https://doi.org/10.1038/s41598-023-39117-2</a>.</p>
+
+<p>CSST
+为什么要这么仿真? 怎么从系统的结构得到的? 
+每个aperture的小孔都会在不同offset的地方成像吗? 相当于aperture每个小孔位置放了一个dispenser
+假设有7x7的孔, 那么每个7x7x28的波长都有自己的offset
+rgb bayer filter有必要吗?
+是不是相当于两级的dispenser,</p>
+
+<p>到底应不应该这么仿真, 其实我是有疑惑的.</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="algorithm" /><category term="content" /><category term="sensor" /><summary type="html"><![CDATA[通过coded-aperture 和 dispenser进行颜色调制]]></summary></entry><entry><title type="html">传感器颜色调制 (一)</title><link href="https://roshameow.github.io//personal_homepage/docs/algorithm/color-moderate/" rel="alternate" type="text/html" title="传感器颜色调制 (一)" /><published>2023-12-23T00:00:00+00:00</published><updated>2023-12-27T23:14:21+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/algorithm/color-moderate</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/algorithm/color-moderate/"><![CDATA[<h2 id="调制">调制</h2>
 
 <p>一般把信号区分出来的过程叫调制。现在一般的传感器只能感应2d的光学信号强度(就是灰度图)，把不同波长的光分离，以获取特定光谱范围的信息的过程，就叫颜色调制。比如信号经过rgb的滤光片，得到彩色图像。</p>
 
@@ -1012,17 +1123,4 @@
 
 <p>[2] Aggarwal, Hemant Kumar, and Angshul Majumdar. “Single-Sensor Multi-Spectral Image Demosaicing Algorithm Using Learned Interpolation Weights.” In <em>2014 IEEE Geoscience and Remote Sensing Symposium</em>, 2011–14. Quebec City, QC: IEEE, 2014. <a href="https://doi.org/10.1109/IGARSS.2014.6946857">https://doi.org/10.1109/IGARSS.2014.6946857</a>.</p>
 
-<p>[3] Yasuma, Fumihito, Tomoo Mitsunaga, Daisuke Iso, and Shree K. Nayar. “Generalized Assorted Pixel Camera: Postcapture Control of Resolution, Dynamic Range, and Spectrum.” <em>IEEE Transactions on Image Processing</em> 19, no. 9 (September 2010): 2241–53. <a href="https://doi.org/10.1109/TIP.2010.2046811">https://doi.org/10.1109/TIP.2010.2046811</a>.</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="algorithm" /><category term="content" /><category term="sensor" /><summary type="html"><![CDATA[调制]]></summary></entry><entry><title type="html">双十二装机</title><link href="https://roshameow.github.io//personal_homepage/docs/photo/new-computer/" rel="alternate" type="text/html" title="双十二装机" /><published>2023-12-22T00:00:00+00:00</published><updated>2023-12-22T16:21:32+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/photo/new-computer</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/photo/new-computer/"><![CDATA[<p>趁着双十二激情下单，前后不到一天，选的配件都没什么性价比。</p>
-
-<h3 id="配置">配置：</h3>
-<ul>
-  <li>不想再等了，买了4080</li>
-  <li>cpu实际换了7900x3d</li>
-  <li><img src="/personal_homepage/docs/attachment/Pasted%20image%2020231222024142.png" alt="Pasted image 20231222024142.png" width="400" /></li>
-</ul>
-
-<h3 id="外观">外观：</h3>
-<ul>
-  <li>买完发现灯光处于一个过饱和状态，显卡还带屏幕。不过再增加发光的东西就怎么都看不顺眼了，暂时只能保持这样的状态。</li>
-  <li><img src="/personal_homepage/docs/attachment/Pasted%20image%2020231222072754.png" alt="Pasted image 20231222072754.png" width="300" /> 	<img src="/personal_homepage/docs/attachment/Pasted%20image%2020231222071842.png" alt="Pasted image 20231222071842.png" width="250" /></li>
-</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="photo" /><category term="content" /><category term="device" /><category term="life" /><summary type="html"><![CDATA[趁着双十二激情下单，前后不到一天，选的配件都没什么性价比。]]></summary></entry></feed>
+<p>[3] Yasuma, Fumihito, Tomoo Mitsunaga, Daisuke Iso, and Shree K. Nayar. “Generalized Assorted Pixel Camera: Postcapture Control of Resolution, Dynamic Range, and Spectrum.” <em>IEEE Transactions on Image Processing</em> 19, no. 9 (September 2010): 2241–53. <a href="https://doi.org/10.1109/TIP.2010.2046811">https://doi.org/10.1109/TIP.2010.2046811</a>.</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="algorithm" /><category term="content" /><category term="sensor" /><summary type="html"><![CDATA[调制]]></summary></entry></feed>
