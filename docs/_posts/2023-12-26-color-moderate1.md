@@ -6,7 +6,7 @@ categories:
 tags:
   - content
   - sensor
-last_modified_at: 2024-01-25T16:09:13-08:00
+last_modified_at: 2024-01-29T17:54:34-08:00
 ---
 ## 通过coded-aperture 和 dispenser进行颜色调制
 
@@ -17,6 +17,10 @@ last_modified_at: 2024-01-25T16:09:13-08:00
 	2. 如果对image做deblur, $\text{scene}=F^{-1}(\frac{F(\text{image})}{F(PSF)})=F^{-1}(\frac{F(\text{image})}{MTF})$  
 	3. 传统的MTF存在cutoff点, 即在cutoff之上的的高频部分是0, 而coded-aperture可以保留部分高频信息, 使MTF没有完全为0的点
 2. 我不能确定coded aperture是否必要, 看起来颜色调制主要还是通过dispenser完成的
+
+### CASSI
+
+coded_apeture+dispenser
 
 - 仿真数据：
 	- ![Pasted image 20240114142241.png]({{ '/docs/attachment/Pasted image 20240114142241.png' | relative_url }}){:width="300"} [1](#ref)
@@ -74,11 +78,24 @@ last_modified_at: 2024-01-25T16:09:13-08:00
 		- mask: TSA_real_data/mask.mat
 
 
+### ADIS
+
+grid aperture + color filter
+
+- 文章中的说法是把aperture看成一组7x7的方形aperture, 根据Fraunhofer diffraction, 不同位置的aperture因为波长不同, 会产生offset
+	- 相机系统可以这么解释吗?
+- 我觉得也可以看成, 在aperture之后的每个不同位置, 都有对应的dispenser, 移动aperture的位置会产生offset
+
+
+## 理解
+
 
 
 
 <span id="ref"></span>
 [1]  Zhao, Ruixuan, Chengshuai Yang, R. Theodore Smith, and Liang Gao. “Coded Aperture Snapshot Spectral Imaging Fundus Camera.” _Scientific Reports_ 13, no. 1 (July 25, 2023): 12007. [https://doi.org/10.1038/s41598-023-39117-2](https://doi.org/10.1038/s41598-023-39117-2).
+
+[2] Lv, Tao, Hao Ye, Quan Yuan, Zhan Shi, Yibo Wang, Shuming Wang, and Xun Cao. “Aperture Diffraction for Compact Snapshot Spectral Imaging.” arXiv, September 27, 2023. [https://doi.org/10.48550/arXiv.2309.16372](https://doi.org/10.48550/arXiv.2309.16372).
 
 CSST
 为什么要这么仿真? 怎么从系统的结构得到的? 

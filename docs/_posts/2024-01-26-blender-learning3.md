@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "blender学习: 用体积渲染做气态行星"
+title: "blender学习: 用volume shader做气态行星"
 categories:
   - blender
 tags:
@@ -29,7 +29,7 @@ last_modified_at: 2024-01-29T16:47:25-08:00
 			3. 用[Hue/Saturation/Value Node](https://docs.blender.org/manual/en/latest/render/shader_nodes/color/hue_saturation.html) 调颜色
 		- density: 一个从里到外逐渐稀薄的球形+被纹理的影响
 			1. 用[texture Coordinate](https://docs.blender.org/manual/en/latest/render/shader_nodes/input/texture_coordinate.html) 生成volume的坐标
-				1. object生成一个在中心的坐标系: 一个球形
+				1. object生成一个在中心的坐标系
 				2. 用 [Image Texture](https://docs.blender.org/manual/en/latest/render/shader_nodes/textures/image.html) 生成一个按照贴图纹理亮度的scale, 模拟气体的效果
 					- 用Mulitiply node的Factor node调整受纹理影响的强度
 					- 用[invert node](https://docs.blender.org/manual/en/latest/render/shader_nodes/color/invert.html) 调整: 亮的纹理密度低(凹陷), 暗得纹理密度高(突出), 如果Fac设置成1就会反过来

@@ -7,7 +7,7 @@ tags:
   - content
   - BSDF
   - render
-last_modified_at: 2024-01-15T14:33:25-08:00
+last_modified_at: 2024-01-29T17:21:45-08:00
 ---
 ### 导入模型
 
@@ -39,7 +39,7 @@ last_modified_at: 2024-01-15T14:33:25-08:00
 			- noise threshold改成0， sample改成64
 			- Light Paths里面反弹次数(Total, Diffuse, Glossy, Transmission)都改成0
 				- 防止出现明亮表面和柔和边缘？
-		- 用eevee: eevee的效果看起来不太一样..
+		- 用eevee: eevee的效果看起来不太一样.. 因为压缩色阶的效果相当于blur+量化吧? 所以和没有blur过的结果不一致
 			- Film里面filter size改成0
 			- 在shader和material output中间,加Shader to RGB->ColorRamp
 			- 再把ColorRamp改成Constant, 只有黑白2个色阶
@@ -54,7 +54,9 @@ last_modified_at: 2024-01-15T14:33:25-08:00
 
 
 
+###  得到viewport白模图
 
+参考这个[视频](https://www.bilibili.com/video/BV1ee411b7GF/) 在viewport->render pass改成Ambient Occlusion或Diffuse Light然后渲染viewport
 
 
 
