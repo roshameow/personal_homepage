@@ -9,7 +9,7 @@ tags:
   - markdown
   - obsidian
   - raycast
-last_modified_at: 2024-01-20T16:27:56-08:00
+last_modified_at: 2024-02-02T12:04:34-08:00
 ---
 用jekyll的原因无需多说。这样配置好工作流之后，除了编写内容基本没有什么麻烦的操作(登录在线网页，换编辑器，按照统一格式改文件名之类在我看来都很麻烦。。)。
 ### Ruby的环境管理，包管理方式
@@ -126,12 +126,14 @@ last_modified_at: 2024-01-20T16:27:56-08:00
 	    }
 	</script>
 	```
-3. **配置google analysis:** 
+	- mathjax的公式里的竖线和markdown的table的竖线冲突
+1. **配置google analysis:** 
 	- 我用的模版比较老，需要[把Universal analysis换成GA4][7] 
-1. **加table of content:**
+2. **加table of content:**
 	- 模版里的toc也是不能用了，加入这个比较新的[toc.html][8] 
-5. **用gist加载代码块：** 
+3. **用gist加载代码块：** 
 	- 还是因为有些脚本里代码块解析错误，用[GitHub gist][9]就没有这个问题, 不过这种代码块的形式obsidian没法渲染
+
 
 
 
