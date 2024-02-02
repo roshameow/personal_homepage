@@ -31,7 +31,7 @@
 <meta property="twitter:title" content="blender学习: 用graph editor做赛博车流" />
 <meta name="twitter:site" content="@" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-02-02T02:01:20+00:00","datePublished":"2024-01-30T00:00:00+00:00","description":"步骤","headline":"blender学习: 用graph editor做赛博车流","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/docs/blender/blender-learning4/"},"url":"https://roshameow.github.io//personal_homepage/docs/blender/blender-learning4/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-02-02T06:14:22+00:00","datePublished":"2024-01-30T00:00:00+00:00","description":"步骤","headline":"blender学习: 用graph editor做赛博车流","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/docs/blender/blender-learning4/"},"url":"https://roshameow.github.io//personal_homepage/docs/blender/blender-learning4/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -158,7 +158,7 @@
   <li>制做车流:
     <ul>
       <li>添加一个Plane mesh</li>
-      <li>在Edit编辑模式下, 选中, <a href="https://blog.csdn.net/BuladeMian/article/details/79625926">S+X, S+Y</a> 沿X,Y轴双向拉伸, 拉成长条形</li>
+      <li>在Edit编辑模式下, 按A选中, <a href="https://blog.csdn.net/BuladeMian/article/details/79625926">S+X, S+Y</a> 沿X,Y轴双向拉伸, 拉成长条形</li>
     </ul>
   </li>
   <li>shader: 目的是把车流改成带纹理, 自发光, 透明的效果
@@ -175,7 +175,7 @@
       </li>
       <li>emission: 把贴图纹理连到bsdf的<a href="https://docs.blender.org/manual/en/latest/render/shader_nodes/shader/emission.html">emission</a>
         <ul>
-          <li>需要调整strength</li>
+          <li>需要调整strength: 把strength调大之后好像发的都是白光?</li>
         </ul>
       </li>
       <li>alpha(调整车流的透明度): 除了贴图本身暗的地方转成透明, 我们还想要一个两端完全透明-&gt;中心的渐变
@@ -208,20 +208,17 @@
       <li>在shader里给贴图加上mapping</li>
       <li>调整mapping的location
         <ul>
-          <li>在Mapping的location插入关键帧
-            <ul>
-              <li>在<a href="https://docs.blender.org/manual/zh-hans/dev/editors/graph_editor/fcurves/editing.html">Graph Editor</a> 里编辑: 需要快捷键T调出Select Box, 把需要更改的mapping选中</li>
-              <li>选中后在Graph Editor的Shader Nodetree里编辑Y Default Value</li>
-              <li>添加Modifier, 把x^1改成需要的速度0.05</li>
-            </ul>
-          </li>
-          <li>另外用<a href="https://docs.blender.org/manual/en/latest/render/shader_nodes/input/object_info.html">Object Info</a> 获取object的位置加到location里, 给每个不同位置的车流加一个location的变化</li>
+          <li>在Mapping的location插入关键帧</li>
+          <li>在<a href="https://docs.blender.org/manual/zh-hans/dev/editors/graph_editor/fcurves/editing.html">Graph Editor</a> 里编辑: 需要快捷键T调出Select Box, 把需要更改的mapping选中</li>
+          <li>选中后在Graph Editor的Shader Nodetree里编辑Y Default Value</li>
+          <li>添加Modifier, 把x^1改成需要的速度0.05</li>
         </ul>
       </li>
+      <li>另外用<a href="https://docs.blender.org/manual/en/latest/render/shader_nodes/input/object_info.html">Object Info</a> 获取object的位置加到location里, 给每个不同位置的车流加一个location的变化</li>
     </ul>
   </li>
   <li>复制多个车流组合</li>
-  <li>结果:
+  <li>结果: 当然也只能远看
     <ul>
       <li><img src="/personal_homepage/docs/attachment/car_flow.mp4" alt="car_flow.mp4" width="320" /></li>
     </ul>

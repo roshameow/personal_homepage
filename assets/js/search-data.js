@@ -200,7 +200,7 @@ var store = [{
         "url": "https://roshameow.github.io//personal_homepage/docs/blender/blender-learning3/"
       },{
         "title": "blender学习: 用graph editor做赛博车流",
-        "excerpt":"步骤 参考RuiHuang_art在b站的教学视频 world property: 加入一个CyberPunk背景的贴图 texture Coordinate 选择camera坐标 制做车流: 添加一个Plane mesh 在Edit编辑模式下, 选中, S+X, S+Y 沿X,Y轴双向拉伸, 拉成长条形 shader: 目的是把车流改成带纹理, 自发光, 透明的效果 color: 下载一个灯火通明的城市俯瞰图 我们只想要图中亮的地方 emission: 把贴图纹理连到bsdf的emission 需要调整strength alpha(调整车流的透明度): 除了贴图本身暗的地方转成透明, 我们还想要一个两端完全透明-&gt;中心的渐变 根据原图亮度设置透明: 暗处透明, 亮处不透明 给贴图连接一个Color Ramp 设置两端完全透明-&gt;中心的渐变 用texture Coordinate 的uv生成平面的坐标 用Gradient Texture 提取x方向 用 Color Ramp 做一个 暗-&gt;亮-&gt;暗 的渐变 用Mix Node...","categories": ["docs","blender"],
+        "excerpt":"步骤 参考RuiHuang_art在b站的教学视频 world property: 加入一个CyberPunk背景的贴图 texture Coordinate 选择camera坐标 制做车流: 添加一个Plane mesh 在Edit编辑模式下, 按A选中, S+X, S+Y 沿X,Y轴双向拉伸, 拉成长条形 shader: 目的是把车流改成带纹理, 自发光, 透明的效果 color: 下载一个灯火通明的城市俯瞰图 我们只想要图中亮的地方 emission: 把贴图纹理连到bsdf的emission 需要调整strength: 把strength调大之后好像发的都是白光? alpha(调整车流的透明度): 除了贴图本身暗的地方转成透明, 我们还想要一个两端完全透明-&gt;中心的渐变 根据原图亮度设置透明: 暗处透明, 亮处不透明 给贴图连接一个Color Ramp 设置两端完全透明-&gt;中心的渐变 用texture Coordinate 的uv生成平面的坐标 用Gradient Texture 提取x方向 用 Color Ramp 做一个 暗-&gt;亮-&gt;暗 的渐变 用Mix...","categories": ["docs","blender"],
         "tags": ["content","render","shader"],
         "url": "https://roshameow.github.io//personal_homepage/docs/blender/blender-learning4/"
       },{
@@ -208,4 +208,9 @@ var store = [{
         "excerpt":"上联是“查找，回退，终止，定义，返回，格式化，删除”下联是“启动，切换，上一级，根目录，查找，替换，退出”横批是“全部历史” 本以为会简单的制作过程, 居然感触挺多的 制作时间轴 看到小红书上这个ps春联的帖子 最开始是想做vscode和obsidian的图标 做着做着, 感觉快捷键更有分享欲; 而且, 图标截图下来有清晰度和大小不一的问题 直接写在红底黑字的春联底色上, 看起来太单调了 想用stable diffusion生成个华丽的背景, 但是… 放弃 基于v1.5的模型没法理解春联, 也没法理解龙 生成的这种看起来挺奇怪的东西: canny的controlnet没法保证文字的细节一致: 生成的龙😮‍💨: SDXL可以生成不错的龙, 虽然细节不对 ComfyUI的工作流我用的不太熟练, 而且, 我不太了解各种风格的prompt 在小红书上搜索春联的版式, 看到了这个帖子 模仿失败: 卖家秀$\\rightarrow$ 买家秀$\\rightarrow$ 我的图看起来像东南亚黑帮, 又像个祭坛 当然我的颜色调的不对, 但是我也明白了这个排版不适合龙(你的内容是现代的, 但是排版却相当古老, 你究竟是什么人😂) 又回归了黑白红配色, 改了版式, 感觉能看了, 蛮喜庆的, 有种过年的气氛了工具 pinterest搜索, 然后推荐相似风格的图片 eagle存图 Freeform排版 可惜Freeform里面没法改图片整体的颜色, 也没法旋转 preview的魔棒工具 中间想用photoshop,...","categories": ["docs","design"],
         "tags": ["content"],
         "url": "https://roshameow.github.io//personal_homepage/docs/design/spring-couplets/"
+      },{
+        "title": "常用的图像 reconstruction loss",
+        "excerpt":"输出为图像的任务, 比如enhance, deblur, super-resolution等用到的loss, 主要分为以下两类 output和label相近 loss 公式 目的 特点 L1 loss $||I_1-I_2||_1$ 大体相近 最常用的loss L2 loss(MSE) $||I_1-I_2||_2$或$MSE=\\overline{(I_1-I_2)^2}$   因为导数是线性所以计算最快 SSIM (stuctural similarity index measure) $\\frac{2\\mu_1\\mu_2+C_1}{\\mu_1^2+\\mu_2^2+C_1}\\cdot \\frac{2\\sigma_{12}+C_2}{\\sigma_1^2+\\sigma_2^2+C_2}$ $\\mu, \\sigma$ 分别为mean, variance$\\sigma_{12}$是covariance$C_1, C_2$ 是常数 纹理相近 要分patch计算$C_1, C_2$ 的值要根据图像的范围调整 PSNR(Peak signal-to-noise ratio) $-10\\log_{10}(MSE(I_1,I_2))$   经常是用来验证 PerceptualLoss 一个分类网络 语义相近 一般用vgg16, 输入RGB图像一般会用后几层的语义特征对比 LPIPS (Learned...","categories": ["docs","deeplearning"],
+        "tags": ["content","loss","image"],
+        "url": "https://roshameow.github.io//personal_homepage/docs/deeplearning/restruction-loss/"
       }]
