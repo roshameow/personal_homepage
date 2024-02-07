@@ -218,4 +218,9 @@ var store = [{
         "excerpt":"在网络中, block是把input信息转换成output信息的过程: 一般, output(position, vector)是input(token, embedding vector)的线性组合, 组合的weight (position, token) 由input和output两方关系确定. 把着重强调这种信息交互的模块叫attention. convolution convolution在神经网络流行之前就已经在图像任务里广泛使用了 目的: 对spatial information进行特征的提取和转换 特点: pixel的weight只和(input, output)的相对位置有关, 因此也是平移不变的. 对每个输出像素有影响的只有input里kernel覆盖到的区域, 也就是response field 每个不同的相对位置对应vector mapping不同 这个符合图像处理的直观, 左边有条线和右边有条线当然要映射成不同的结果 有时也会把卷积拆分成1x1 conv和spatial conv(通道无关) 的形式 gate attention 目的: 提取channel1或spatial的权重, 让网络关注更重要的信息 特点: spatial 信息对人类来说更有可读性, 所以可以把spatial weight可视化, 看看图片什么位置更加重要 self-attention &amp; cross-attention 目的: 信息的交互: 在我的图示中, 是把文字信息加入视觉信息...","categories": ["docs","deeplearning"],
         "tags": ["content","network","attention","block"],
         "url": "https://roshameow.github.io//personal_homepage/docs/deeplearning/attention/"
+      },{
+        "title": "stable-diffusion的用法: 用 ipadatper+controlnet canny做风格转换",
+        "excerpt":"用ipadapter和canny做风格转换 ComfyUI使用 调用ComfyUI中default的工作流 下载sdxl模型 连上IPAdapter节点 安装IPAdapter_plus插件 下载需要的ipadater微调模型和clip vision编码器: 把图像用clip vision编码后输入base model的cross-attention层 ComfyUI里连接顺序是: Checkpoint: model-&gt; IPAdapter: model -&gt; KSampler: model weigt设为1, text prompt都空着, latent prompt也空着 连上Controlnet节点 下载canny模型 找不到其他适合sdxl的controlnet模型因为我们的原图是个线稿适合用canny ComfyUI里连接顺序是: Checkpoint-&gt;prompt-&gt;controlnet-&gt;Ksampler: text prompt controlnet最后是作用在text prompt上的? 调整controlnet权重和影响步数: stength=0.5, start_percent=0, end_percent=0.6 如果设置过大就只能得到一张有颜色的线稿图 结果 原图: + 合成图: 竟然可以识别龙的眼睛啊…有好几幅图都把猫眼替换到了龙眼上 如果两种图有同样的元素(眼睛之类的), 可能可以比较好的替换 最后的龙和人, 龙和山, 都不能对应起来 ipadapter没法主动控制合成哪个图像中的哪种元素: 虽然替换了颜色,...","categories": ["docs","photo"],
+        "tags": ["content","ComfyUI","ipadapter","controlnet","canny","sdxl"],
+        "url": "https://roshameow.github.io//personal_homepage/docs/photo/stable-diffusion1/"
       }]
