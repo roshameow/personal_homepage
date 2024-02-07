@@ -5,6 +5,9 @@ categories:
   - deeplearning
 tags:
   - content
+  - network
+  - attention
+  - block
 last_modified_at: 2024-02-07T16:23:34-08:00
 ---
 在网络中, block是把input信息转换成output信息的过程: 一般, output(position, vector)是input(token, embedding vector)的线性组合, 组合的weight (position, token) 由input和output两方关系确定. 把着重强调这种信息交互的模块叫attention. 
@@ -26,7 +29,7 @@ convolution在神经网络流行之前就已经在图像任务里广泛使用了
 ![Pasted image 20240207151122.png]({{ '/docs/attachment/Pasted image 20240207151122.png' | relative_url }}){:width="400"} ![Pasted image 20240207151136.png]({{ '/docs/attachment/Pasted image 20240207151136.png' | relative_url }}){:width="400"} 
 
 - **目的:**
-	- 提取channel或spatial的权重, 让网络关注更重要的信息
+	- 提取channel[1](#ref)或spatial的权重, 让网络关注更重要的信息
 - **特点:** 
 	- spatial 信息对人类来说更有可读性, 所以可以把spatial weight可视化, 看看图片什么位置更加重要
 
@@ -52,13 +55,18 @@ convolution在神经网络流行之前就已经在图像任务里广泛使用了
 	- 在实际实现过程中,  先映射成一个大的QKV, 再把Q, K, V切分是完全等价的
 	- 做mulit-head可以得到多组不同的映射方式, 或减小inner_dimension(T)的大小
 - 分层attention: 在做attention之前对数据排序, 切分
-	- 可能有些pixel之间关联不大, 这样的话把它们分到不同的bucket, 分别做attention, 可以减少计算量
+	- 可能有些pixel之间关联不大, 这样的话把它们分到不同的bucket, 分别做attention, 可以减少计算量[2](#ref)
 
 ## 光流估计网络
 
 视觉匹配任务
 
+## 代码
 
+[**attention_block.py**](https://gist.github.com/roshameow/503ec3769d75c47b82f2a7372e8c2dab#file-attention_block-py)
+
+## reference 
+<span id="ref"></span>
 
 [1] Woo, Sanghyun, Jongchan Park, Joon-Young Lee, and In So Kweon. “CBAM: Convolutional Block Attention Module.” arXiv, July 18, 2018. [https://doi.org/10.48550/arXiv.1807.06521](https://doi.org/10.48550/arXiv.1807.06521). 介绍gate attention
 
