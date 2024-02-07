@@ -127,7 +127,7 @@
         
   <h3 class="page-taxonomies-title">Tags</h3>
   
-  <ul class="page-taxonomies"><li class="page-taxonomy"><a href="/personal_homepage/tags/#content" title="Pages tagged content" rel="tag">content</a></li>
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a href="/personal_homepage/tags/#attention" title="Pages tagged attention" rel="tag">attention</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#block" title="Pages tagged block" rel="tag">block</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#content" title="Pages tagged content" rel="tag">content</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#network" title="Pages tagged network" rel="tag">network</a></li>
   </ul>
 
 
@@ -138,7 +138,7 @@
 </h2>
 <!-- 1. toc
 {:toc} -->
-<ul class="inline_toc" id="my_toc"><li><a href="#convolution">convolution</a></li><li><a href="#gate-attention">gate attention</a></li><li><a href="#self-attention--cross-attention">self-attention &amp; cross-attention</a><ul><li><a href="#attention的一些变形和优化">attention的一些变形和优化</a></li></ul></li><li><a href="#光流估计网络">光流估计网络</a></li></ul>
+<ul class="inline_toc" id="my_toc"><li><a href="#convolution">convolution</a></li><li><a href="#gate-attention">gate attention</a></li><li><a href="#self-attention--cross-attention">self-attention &amp; cross-attention</a><ul><li><a href="#attention的一些变形和优化">attention的一些变形和优化</a></li></ul></li><li><a href="#光流估计网络">光流估计网络</a></li><li><a href="#代码">代码</a></li><li><a href="#reference">reference</a></li></ul>
 </div>
 <!-- {::options parse_block_html="false" /} -->
 
@@ -178,7 +178,7 @@
 <ul>
   <li><strong>目的:</strong>
     <ul>
-      <li>提取channel或spatial的权重, 让网络关注更重要的信息</li>
+      <li>提取channel<a href="#ref">1</a>或spatial的权重, 让网络关注更重要的信息</li>
     </ul>
   </li>
   <li><strong>特点:</strong>
@@ -229,7 +229,7 @@
   </li>
   <li>分层attention: 在做attention之前对数据排序, 切分
     <ul>
-      <li>可能有些pixel之间关联不大, 这样的话把它们分到不同的bucket, 分别做attention, 可以减少计算量</li>
+      <li>可能有些pixel之间关联不大, 这样的话把它们分到不同的bucket, 分别做attention, 可以减少计算量<a href="#ref">2</a></li>
     </ul>
   </li>
 </ul>
@@ -237,6 +237,13 @@
 <h2 id="光流估计网络">光流估计网络</h2>
 
 <p>视觉匹配任务</p>
+
+<h2 id="代码">代码</h2>
+
+<p><a href="https://gist.github.com/roshameow/503ec3769d75c47b82f2a7372e8c2dab#file-attention_block-py"><strong>attention_block.py</strong></a></p>
+
+<h2 id="reference">reference</h2>
+<p><span id="ref"></span></p>
 
 <p>[1] Woo, Sanghyun, Jongchan Park, Joon-Young Lee, and In So Kweon. “CBAM: Convolutional Block Attention Module.” arXiv, July 18, 2018. <a href="https://doi.org/10.48550/arXiv.1807.06521">https://doi.org/10.48550/arXiv.1807.06521</a>. 介绍gate attention</p>
 
