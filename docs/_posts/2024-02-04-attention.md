@@ -8,7 +8,7 @@ tags:
   - network
   - attention
   - block
-last_modified_at: 2024-02-07T16:23:34-08:00
+last_modified_at: 2024-02-07T17:13:42-08:00
 ---
 在网络中, block是把input信息转换成output信息的过程: 一般, output(position, vector)是input(token, embedding vector)的线性组合, 组合的weight (position, token) 由input和output两方关系确定. 把着重强调这种信息交互的模块叫attention. 
 ## convolution
@@ -41,7 +41,7 @@ convolution在神经网络流行之前就已经在图像任务里广泛使用了
 	- 信息的交互: 在我的图示中, 是把文字信息加入视觉信息
 - **特点:** 
 	- self-attention和cross-attention结构类似, 只是变成了一种输入
-	- cross-attention现在常见的把一种信息加入另一种信息的方法
+	- cross-attention是现在常见的把一种信息加入另一种信息的方法
 		- 也用到了图像信息和文字信息的统一形式, 即(position, embedding) , 在图像信息中, position(S=H x W)是像素或patch的位置; 文字信息中, position是token在句中的前后位置
 		- 我们可以对relative weight可视化, 从而知道某个文字token和图像哪个位置最相关
 	- Q,K,V(query, key, value) 的叫法是nlp搜索(匹配)任务的术语, 额, 其实我一直没法对这个望文生义...
@@ -56,6 +56,8 @@ convolution在神经网络流行之前就已经在图像任务里广泛使用了
 	- 做mulit-head可以得到多组不同的映射方式, 或减小inner_dimension(T)的大小
 - 分层attention: 在做attention之前对数据排序, 切分
 	- 可能有些pixel之间关联不大, 这样的话把它们分到不同的bucket, 分别做attention, 可以减少计算量[2](#ref)
+- 多个attention合成:
+	- 在最近流行的ipadapter里面也讨论了多种不同来源的数据在cross-attention 里合成的问题, 结论是分别与原数据做attention最后再合成比较好[3](#ref), 这个也是我们一般naive的想法
 
 ## 光流估计网络
 
@@ -71,3 +73,5 @@ convolution在神经网络流行之前就已经在图像任务里广泛使用了
 [1] Woo, Sanghyun, Jongchan Park, Joon-Young Lee, and In So Kweon. “CBAM: Convolutional Block Attention Module.” arXiv, July 18, 2018. [https://doi.org/10.48550/arXiv.1807.06521](https://doi.org/10.48550/arXiv.1807.06521). 介绍gate attention
 
 [2] Cai, Yuanhao, Jing Lin, Xiaowan Hu, Haoqian Wang, Xin Yuan, Yulun Zhang, Radu Timofte, and Luc Van Gool. “Coarse-to-Fine Sparse Transformer for Hyperspectral Image Reconstruction.” arXiv, July 10, 2022. [https://doi.org/10.48550/arXiv.2203.04845](https://doi.org/10.48550/arXiv.2203.04845). 介绍了Spectra-aware hashing attention block的结构
+
+[3] https://github.com/tencent-ailab/IP-Adapter 
