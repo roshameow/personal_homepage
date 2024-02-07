@@ -1,4 +1,98 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="https://roshameow.github.io//personal_homepage/atom.xml" rel="self" type="application/atom+xml" /><link href="https://roshameow.github.io//personal_homepage/" rel="alternate" type="text/html" /><updated>2024-02-02T04:19:51+00:00</updated><id>https://roshameow.github.io//personal_homepage/atom.xml</id><title type="html">Liu, Wen’s Home Page</title><subtitle>Work, Experiments and Ideas.</subtitle><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><entry><title type="html">常用的图像 reconstruction loss</title><link href="https://roshameow.github.io//personal_homepage/docs/deeplearning/restruction-loss/" rel="alternate" type="text/html" title="常用的图像 reconstruction loss" /><published>2024-02-01T00:00:00+00:00</published><updated>2024-02-02T20:02:40+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/deeplearning/restruction-loss</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/deeplearning/restruction-loss/"><![CDATA[<p>输出为图像的任务, 比如enhance, deblur, super-resolution等用到的loss, 主要分为以下两类</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="https://roshameow.github.io//personal_homepage/atom.xml" rel="self" type="application/atom+xml" /><link href="https://roshameow.github.io//personal_homepage/" rel="alternate" type="text/html" /><updated>2024-02-07T08:24:39+00:00</updated><id>https://roshameow.github.io//personal_homepage/atom.xml</id><title type="html">Liu, Wen’s Home Page</title><subtitle>Work, Experiments and Ideas.</subtitle><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><entry><title type="html">神经网络attention结构理解</title><link href="https://roshameow.github.io//personal_homepage/docs/deeplearning/attention/" rel="alternate" type="text/html" title="神经网络attention结构理解" /><published>2024-02-04T00:00:00+00:00</published><updated>2024-02-08T00:23:34+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/deeplearning/attention</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/deeplearning/attention/"><![CDATA[<p>在网络中, block是把input信息转换成output信息的过程: 一般, output(position, vector)是input(token, embedding vector)的线性组合, 组合的weight (position, token) 由input和output两方关系确定. 把着重强调这种信息交互的模块叫attention.</p>
+<h2 id="convolution">convolution</h2>
+
+<p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240207151034.png" alt="Pasted image 20240207151034.png" width="400" /></p>
+
+<p>convolution在神经网络流行之前就已经在图像任务里广泛使用了</p>
+<ul>
+  <li><strong>目的:</strong>
+    <ul>
+      <li>对spatial information进行特征的提取和转换</li>
+    </ul>
+  </li>
+  <li><strong>特点:</strong>
+    <ul>
+      <li>pixel的weight只和(input, output)的相对位置有关, 因此也是平移不变的. 对每个输出像素有影响的只有input里kernel覆盖到的区域, 也就是response field</li>
+      <li>每个不同的相对位置对应vector mapping不同
+        <ul>
+          <li>这个符合图像处理的直观, 左边有条线和右边有条线当然要映射成不同的结果</li>
+          <li>有时也会把卷积拆分成1x1 conv和spatial conv(通道无关) 的形式</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="gate-attention">gate attention</h2>
+
+<p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240207151122.png" alt="Pasted image 20240207151122.png" width="400" /> <img src="/personal_homepage/docs/attachment/Pasted%20image%2020240207151136.png" alt="Pasted image 20240207151136.png" width="400" /></p>
+
+<ul>
+  <li><strong>目的:</strong>
+    <ul>
+      <li>提取channel或spatial的权重, 让网络关注更重要的信息</li>
+    </ul>
+  </li>
+  <li><strong>特点:</strong>
+    <ul>
+      <li>spatial 信息对人类来说更有可读性, 所以可以把spatial weight可视化, 看看图片什么位置更加重要</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="self-attention--cross-attention">self-attention &amp; cross-attention</h2>
+
+<p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240207151214.png" alt="Pasted image 20240207151214.png" width="400" /></p>
+
+<ul>
+  <li><strong>目的:</strong>
+    <ul>
+      <li>信息的交互: 在我的图示中, 是把文字信息加入视觉信息</li>
+    </ul>
+  </li>
+  <li><strong>特点:</strong>
+    <ul>
+      <li>self-attention和cross-attention结构类似, 只是变成了一种输入</li>
+      <li>cross-attention现在常见的把一种信息加入另一种信息的方法
+        <ul>
+          <li>也用到了图像信息和文字信息的统一形式, 即(position, embedding) , 在图像信息中, position(S=H x W)是像素或patch的位置; 文字信息中, position是token在句中的前后位置</li>
+          <li>我们可以对relative weight可视化, 从而知道某个文字token和图像哪个位置最相关</li>
+        </ul>
+      </li>
+      <li>Q,K,V(query, key, value) 的叫法是nlp搜索(匹配)任务的术语, 额, 其实我一直没法对这个望文生义…
+        <ul>
+          <li>其实从计算过程可以看出, 不管它们的原义, Q, K交换一下也没差</li>
+          <li>query和key的embedding channel数应该相同, 为了之后计算他们relation的目的</li>
+          <li>和卷积不一样, 放了更大的计算量在交互部分, 相对的, 每个input token对应vector mapping相同, 也就是用”value”部分解决了channel的映射: 这样导致同样的文字信息不论放在前面还是后面, 对应同一种output信息, 区别的只是他们权重可能不同, 或在图像的不同位置</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="attention的一些变形和优化">attention的一些变形和优化</h3>
+
+<ul>
+  <li>mulit-head attention: 映射多组QKV, 计算得到的多组output再concat
+    <ul>
+      <li>在实际实现过程中,  先映射成一个大的QKV, 再把Q, K, V切分是完全等价的</li>
+      <li>做mulit-head可以得到多组不同的映射方式, 或减小inner_dimension(T)的大小</li>
+    </ul>
+  </li>
+  <li>分层attention: 在做attention之前对数据排序, 切分
+    <ul>
+      <li>可能有些pixel之间关联不大, 这样的话把它们分到不同的bucket, 分别做attention, 可以减少计算量</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="光流估计网络">光流估计网络</h2>
+
+<p>视觉匹配任务</p>
+
+<p>[1] Woo, Sanghyun, Jongchan Park, Joon-Young Lee, and In So Kweon. “CBAM: Convolutional Block Attention Module.” arXiv, July 18, 2018. <a href="https://doi.org/10.48550/arXiv.1807.06521">https://doi.org/10.48550/arXiv.1807.06521</a>. 介绍gate attention</p>
+
+<p>[2] Cai, Yuanhao, Jing Lin, Xiaowan Hu, Haoqian Wang, Xin Yuan, Yulun Zhang, Radu Timofte, and Luc Van Gool. “Coarse-to-Fine Sparse Transformer for Hyperspectral Image Reconstruction.” arXiv, July 10, 2022. <a href="https://doi.org/10.48550/arXiv.2203.04845">https://doi.org/10.48550/arXiv.2203.04845</a>. 介绍了Spectra-aware hashing attention block的结构</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="deeplearning" /><category term="content" /><summary type="html"><![CDATA[在网络中, block是把input信息转换成output信息的过程: 一般, output(position, vector)是input(token, embedding vector)的线性组合, 组合的weight (position, token) 由input和output两方关系确定. 把着重强调这种信息交互的模块叫attention. convolution]]></summary></entry><entry><title type="html">常用的图像 reconstruction loss</title><link href="https://roshameow.github.io//personal_homepage/docs/deeplearning/restruction-loss/" rel="alternate" type="text/html" title="常用的图像 reconstruction loss" /><published>2024-02-01T00:00:00+00:00</published><updated>2024-02-02T20:02:40+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/deeplearning/restruction-loss</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/deeplearning/restruction-loss/"><![CDATA[<p>输出为图像的任务, 比如enhance, deblur, super-resolution等用到的loss, 主要分为以下两类</p>
 <h2 id="output和label相近">output和label相近</h2>
 
 <table>
@@ -1018,51 +1112,4 @@
 
 <p>[3] http://www.erbion.com/index_files/Modern_Optics/Ch11.pdf</p>
 
-<p>[4] https://zhuanlan.zhihu.com/p/339379109</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="simulation" /><category term="content" /><category term="simulation" /><category term="sensor" /><category term="physics" /><summary type="html"><![CDATA[光的传播理论]]></summary></entry><entry><title type="html">用六边形构成半球</title><link href="https://roshameow.github.io//personal_homepage/docs/geometry/hexigon-hemisphere/" rel="alternate" type="text/html" title="用六边形构成半球" /><published>2024-01-02T00:00:00+00:00</published><updated>2024-02-02T20:16:37+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/geometry/hexigon-hemisphere</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/geometry/hexigon-hemisphere/"><![CDATA[<p>刷到关于《葬送的芙莉莲》里面六边形魔法防御结界的讨论，根据<a href="https://en.wikipedia.org/wiki/Euler_characteristic">多面体欧拉公式</a>，仅仅用正六边形是没法组成球体形状结界。我也非常理解制作组为什么不画个足球：毕竟是魔法阵，六边形画的又比较大，弄个五边形也不好看也不好解释。
-<img src="/personal_homepage/docs/attachment/Pasted%20image%2020240102192929.png" alt="Pasted image 20240102192929.png" width="500" /></p>
-
-<p>但是如果不是球，而是半球，不考虑边界是否完整，变形，肯定是可行的。因为半球$S^+$ 和disk $\mathbb{D}^1$， 和六边形边界的平面都是 <a href="https://en.wikipedia.org/wiki/Homeomorphism">topological isomorphism</a> 的，在平面上能实现的密铺，变形到半球上当然也能实现。</p>
-
-<p>另外，为了保证在3维上看起来不难看。用<a href="https://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration/2D_Sampling_with_Multidimensional_Transformations#:~:text=The%20idea%20behind%20Malley%27s%20method,Figure%2013.14%3A%20Malley%27s%20Method.">Malley’s Method</a>, 把disk看成半球的投影，实行$(r,\phi)=(\sin\theta,\phi)\rightarrow (\theta,\phi)$ 的变换，让六边形在$(\theta,\phi)$ 的坐标上是均匀的。
-<img src="/personal_homepage/docs/attachment/Pasted%20image%2020240102191540.png" alt="Pasted image 20240102191540.png" width="300" /></p>
-
-<h2 id="画一个密铺六边形半球的步骤">画一个密铺六边形半球的步骤</h2>
-
-<h3 id="用python画一个密铺的六边形">用python画一个密铺的六边形：</h3>
-
-<p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240102191646.png" alt="Pasted image 20240102191646.png" width="200" /> , 画上辅助线：<img src="/personal_homepage/docs/attachment/Pasted%20image%2020240102191705.png" alt="Pasted image 20240102191705.png" width="200" /></p>
-
-<h3 id="做变换">做变换</h3>
-
-<p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240102191731.png" alt="Pasted image 20240102191731.png" width="200" /></p>
-
-<ul>
-  <li>这一步得到的是我们设想的半球面的投影, 看起来确实给人一种六边形能组成球形的错觉。。</li>
-  <li>另外，Photoshop里面球面化的滤镜，看起来效果差不多，可能也是用了这个变换。
-    <ul>
-      <li><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240102191855.png" alt="Pasted image 20240102191855.png" width="400" />  </li>
-    </ul>
-  </li>
-  <li>又对比了一下原图，嗯？费伦的结界难道也是这么画的？</li>
-</ul>
-
-<h3 id="把得到的投影映射到半球">把得到的投影映射到半球</h3>
-
-<p>转到侧面看下：<img src="/personal_homepage/docs/attachment/Pasted%20image%2020240102192405.png" alt="Pasted image 20240102192405.png" width="200" />  </p>
-
-<p>看起来确实挺正常的，当然，这样的两个半球也合不成一个全是六边形的球，因为如图上边界的地方：<img src="/personal_homepage/docs/attachment/Pasted%20image%2020240102195111.png" alt="Pasted image 20240102195111.png" width="200" /> 展开会变成5边形，7边形，8边形</p>
-
-<h2 id="代码">代码</h2>
-
-<p><a href="https://gist.github.com/roshameow/b9838c17a65f17f8f775585f24d34d64#file-hex-py"><strong>hex.py</strong></a></p>
-<h2 id="其他讨论这个的链接">其他讨论这个的链接：</h2>
-
-<p>[1] https://zhuanlan.zhihu.com/p/673051340</p>
-
-<p>[2] https://www.163.com/dy/article/IMH50ITS0526FP3N.html</p>
-
-<h2 id="动画另一个地方">动画另一个地方</h2>
-
-<p>其实还是有半球法阵的</p>
-
-<p><img src="/personal_homepage/docs/attachment/Pasted%20Graphic%203.png" alt="Pasted Graphic 3.png" width="500" /></p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="geometry" /><category term="content" /><category term="idea" /><category term="动漫" /><summary type="html"><![CDATA[刷到关于《葬送的芙莉莲》里面六边形魔法防御结界的讨论，根据多面体欧拉公式，仅仅用正六边形是没法组成球体形状结界。我也非常理解制作组为什么不画个足球：毕竟是魔法阵，六边形画的又比较大，弄个五边形也不好看也不好解释。]]></summary></entry></feed>
+<p>[4] https://zhuanlan.zhihu.com/p/339379109</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="simulation" /><category term="content" /><category term="simulation" /><category term="sensor" /><category term="physics" /><summary type="html"><![CDATA[光的传播理论]]></summary></entry></feed>

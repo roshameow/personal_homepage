@@ -16,22 +16,22 @@
   
   
   <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>常用的图像 reconstruction loss | Liu, Wen’s Home Page</title>
+<title>神经网络attention结构理解 | Liu, Wen’s Home Page</title>
 <meta name="generator" content="Jekyll v4.3.3" />
-<meta property="og:title" content="常用的图像 reconstruction loss" />
+<meta property="og:title" content="神经网络attention结构理解" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="输出为图像的任务, 比如enhance, deblur, super-resolution等用到的loss, 主要分为以下两类 output和label相近" />
-<meta property="og:description" content="输出为图像的任务, 比如enhance, deblur, super-resolution等用到的loss, 主要分为以下两类 output和label相近" />
-<link rel="canonical" href="https://roshameow.github.io//personal_homepage/docs/deeplearning/restruction-loss/" />
-<meta property="og:url" content="https://roshameow.github.io//personal_homepage/docs/deeplearning/restruction-loss/" />
+<meta name="description" content="在网络中, block是把input信息转换成output信息的过程: 一般, output(position, vector)是input(token, embedding vector)的线性组合, 组合的weight (position, token) 由input和output两方关系确定. 把着重强调这种信息交互的模块叫attention. convolution" />
+<meta property="og:description" content="在网络中, block是把input信息转换成output信息的过程: 一般, output(position, vector)是input(token, embedding vector)的线性组合, 组合的weight (position, token) 由input和output两方关系确定. 把着重强调这种信息交互的模块叫attention. convolution" />
+<link rel="canonical" href="https://roshameow.github.io//personal_homepage/docs/deeplearning/attention/" />
+<meta property="og:url" content="https://roshameow.github.io//personal_homepage/docs/deeplearning/attention/" />
 <meta property="og:site_name" content="Liu, Wen’s Home Page" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2024-02-01T00:00:00+00:00" />
+<meta property="article:published_time" content="2024-02-04T00:00:00+00:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="常用的图像 reconstruction loss" />
+<meta property="twitter:title" content="神经网络attention结构理解" />
 <meta name="twitter:site" content="@" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-02-02T20:02:40+00:00","datePublished":"2024-02-01T00:00:00+00:00","description":"输出为图像的任务, 比如enhance, deblur, super-resolution等用到的loss, 主要分为以下两类 output和label相近","headline":"常用的图像 reconstruction loss","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/docs/deeplearning/restruction-loss/"},"url":"https://roshameow.github.io//personal_homepage/docs/deeplearning/restruction-loss/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-02-08T00:23:34+00:00","datePublished":"2024-02-04T00:00:00+00:00","description":"在网络中, block是把input信息转换成output信息的过程: 一般, output(position, vector)是input(token, embedding vector)的线性组合, 组合的weight (position, token) 由input和output两方关系确定. 把着重强调这种信息交互的模块叫attention. convolution","headline":"神经网络attention结构理解","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/docs/deeplearning/attention/"},"url":"https://roshameow.github.io//personal_homepage/docs/deeplearning/attention/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -58,7 +58,7 @@
 
 </head>
 
-  <body class="layout--post  常用的图像-reconstruction-loss">
+  <body class="layout--post  神经网络attention结构理解">
     <nav class="skip-links">
   <h2 class="screen-reader-text">Skip links</h2>
   <ul>
@@ -99,7 +99,7 @@
       <header class="page-header">
         
         
-        <h1 id="page-title" class="page-title p-name">常用的图像 reconstruction loss
+        <h1 id="page-title" class="page-title p-name">神经网络attention结构理解
 </h1>
         
       </header>
@@ -111,7 +111,7 @@
 
 <span class="read-time">~1 min read</span>
 
-    <time class="page-date dt-published" datetime="2024-02-01T00:00:00+00:00"><a class="u-url" href="">February 1, 2024</a>
+    <time class="page-date dt-published" datetime="2024-02-04T00:00:00+00:00"><a class="u-url" href="">February 4, 2024</a>
 </time>
 
   </div>
@@ -127,7 +127,7 @@
         
   <h3 class="page-taxonomies-title">Tags</h3>
   
-  <ul class="page-taxonomies"><li class="page-taxonomy"><a href="/personal_homepage/tags/#content" title="Pages tagged content" rel="tag">content</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#image" title="Pages tagged image" rel="tag">image</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#loss" title="Pages tagged loss" rel="tag">loss</a></li>
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a href="/personal_homepage/tags/#content" title="Pages tagged content" rel="tag">content</a></li>
   </ul>
 
 
@@ -138,7 +138,7 @@
 </h2>
 <!-- 1. toc
 {:toc} -->
-<ul class="inline_toc" id="my_toc"><li><a href="#output和label相近">output和label相近</a></li><li><a href="#output图像符合自然图像的性质">output图像符合自然图像的性质</a></li><li><a href="#代码">代码</a></li></ul>
+<ul class="inline_toc" id="my_toc"><li><a href="#convolution">convolution</a></li><li><a href="#gate-attention">gate attention</a></li><li><a href="#self-attention--cross-attention">self-attention &amp; cross-attention</a><ul><li><a href="#attention的一些变形和优化">attention的一些变形和优化</a></li></ul></li><li><a href="#光流估计网络">光流估计网络</a></li></ul>
 </div>
 <!-- {::options parse_block_html="false" /} -->
 
@@ -146,89 +146,101 @@
 
       <div class="page-content">
         <div class="e-content">
-          <p>输出为图像的任务, 比如enhance, deblur, super-resolution等用到的loss, 主要分为以下两类</p>
-<h2 id="output和label相近">output和label相近</h2>
+          <p>在网络中, block是把input信息转换成output信息的过程: 一般, output(position, vector)是input(token, embedding vector)的线性组合, 组合的weight (position, token) 由input和output两方关系确定. 把着重强调这种信息交互的模块叫attention.</p>
+<h2 id="convolution">convolution</h2>
 
-<table>
-  <thead>
-    <tr>
-      <th>loss</th>
-      <th>公式</th>
-      <th>目的</th>
-      <th>特点<br /></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>L1 loss</td>
-      <td>$||I_1-I_2||_1$</td>
-      <td>大体相近</td>
-      <td>最常用的loss</td>
-    </tr>
-    <tr>
-      <td>L2 loss<br />(MSE)</td>
-      <td>$||I_1-I_2||_2$<br />或$MSE=\overline{(I_1-I_2)^2}$</td>
-      <td> </td>
-      <td>因为导数是线性所以计算最快</td>
-    </tr>
-    <tr>
-      <td><a href="[https://github.com/CVMI-Lab/UHDM/blob/main/utils/common.py](https://github.com/CVMI-Lab/UHDM/blob/main/utils/common.py)">SSIM</a> <br />(stuctural similarity<br /> index measure)</td>
-      <td>$\frac{2\mu_1\mu_2+C_1}{\mu_1^2+\mu_2^2+C_1}\cdot \frac{2\sigma_{12}+C_2}{\sigma_1^2+\sigma_2^2+C_2}$ <br />$\mu, \sigma$ 分别为mean, variance<br />$\sigma_{12}$是covariance<br />$C_1, C_2$ 是常数</td>
-      <td>纹理相近</td>
-      <td>要分patch计算<br />$C_1, C_2$ 的值要根据图像的范围调整</td>
-    </tr>
-    <tr>
-      <td>PSNR<br />(Peak signal-<br />to-noise ratio)</td>
-      <td>$-10\log_{10}(MSE(I_1,I_2))$</td>
-      <td> </td>
-      <td>经常是用来验证</td>
-    </tr>
-    <tr>
-      <td><a href="[https://github.com/varun19299/deep-atrous-guided-filter/tree/master/PerceptualSimilarity](https://github.com/varun19299/deep-atrous-guided-filter/tree/master/PerceptualSimilarity)">PerceptualLoss</a></td>
-      <td>一个分类网络</td>
-      <td>语义相近</td>
-      <td>一般用vgg16, 输入RGB图像<br />一般会用后几层的语义特征对比<br /></td>
-    </tr>
-    <tr>
-      <td><a href="https://github.com/richzhang/PerceptualSimilarity">LPIPS</a> <br />(Learned Perceptual<br />image patch similarity)</td>
-      <td> </td>
-      <td> </td>
-      <td>perceptualLoss+分块</td>
-    </tr>
-    <tr>
-      <td>DeltaE</td>
-      <td>转换成Lab空间的MSE</td>
-      <td>颜色相近</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>Gan Loss</td>
-      <td>在训练过程中学习到的loss<br />用determinate网络表示<br /></td>
-      <td>determinate网络<br />区别不出</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>KL散度</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-    </tr>
-  </tbody>
-</table>
+<p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240207151034.png" alt="Pasted image 20240207151034.png" width="400" /></p>
 
-<h2 id="output图像符合自然图像的性质">output图像符合自然图像的性质</h2>
-
+<p>convolution在神经网络流行之前就已经在图像任务里广泛使用了</p>
 <ul>
-  <li>Total Variant(TV) loss: 图像gradient稀疏性
+  <li><strong>目的:</strong>
     <ul>
-      <li>anisotropic定义: <code class="language-plaintext highlighter-rouge">$|D_x I|_1+|D_y I|_1$</code></li>
+      <li>对spatial information进行特征的提取和转换</li>
+    </ul>
+  </li>
+  <li><strong>特点:</strong>
+    <ul>
+      <li>pixel的weight只和(input, output)的相对位置有关, 因此也是平移不变的. 对每个输出像素有影响的只有input里kernel覆盖到的区域, 也就是response field</li>
+      <li>每个不同的相对位置对应vector mapping不同
+        <ul>
+          <li>这个符合图像处理的直观, 左边有条线和右边有条线当然要映射成不同的结果</li>
+          <li>有时也会把卷积拆分成1x1 conv和spatial conv(通道无关) 的形式</li>
+        </ul>
+      </li>
     </ul>
   </li>
 </ul>
 
-<h2 id="代码">代码</h2>
+<h2 id="gate-attention">gate attention</h2>
 
-<p><a href="https://gist.github.com/roshameow/c59d5708610ae30eb4329b140ccab3a7#file-reconstruction_loss-py"><strong>reconstruction_loss.py</strong></a></p>
+<p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240207151122.png" alt="Pasted image 20240207151122.png" width="400" /> <img src="/personal_homepage/docs/attachment/Pasted%20image%2020240207151136.png" alt="Pasted image 20240207151136.png" width="400" /></p>
+
+<ul>
+  <li><strong>目的:</strong>
+    <ul>
+      <li>提取channel或spatial的权重, 让网络关注更重要的信息</li>
+    </ul>
+  </li>
+  <li><strong>特点:</strong>
+    <ul>
+      <li>spatial 信息对人类来说更有可读性, 所以可以把spatial weight可视化, 看看图片什么位置更加重要</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="self-attention--cross-attention">self-attention &amp; cross-attention</h2>
+
+<p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240207151214.png" alt="Pasted image 20240207151214.png" width="400" /></p>
+
+<ul>
+  <li><strong>目的:</strong>
+    <ul>
+      <li>信息的交互: 在我的图示中, 是把文字信息加入视觉信息</li>
+    </ul>
+  </li>
+  <li><strong>特点:</strong>
+    <ul>
+      <li>self-attention和cross-attention结构类似, 只是变成了一种输入</li>
+      <li>cross-attention现在常见的把一种信息加入另一种信息的方法
+        <ul>
+          <li>也用到了图像信息和文字信息的统一形式, 即(position, embedding) , 在图像信息中, position(S=H x W)是像素或patch的位置; 文字信息中, position是token在句中的前后位置</li>
+          <li>我们可以对relative weight可视化, 从而知道某个文字token和图像哪个位置最相关</li>
+        </ul>
+      </li>
+      <li>Q,K,V(query, key, value) 的叫法是nlp搜索(匹配)任务的术语, 额, 其实我一直没法对这个望文生义…
+        <ul>
+          <li>其实从计算过程可以看出, 不管它们的原义, Q, K交换一下也没差</li>
+          <li>query和key的embedding channel数应该相同, 为了之后计算他们relation的目的</li>
+          <li>和卷积不一样, 放了更大的计算量在交互部分, 相对的, 每个input token对应vector mapping相同, 也就是用”value”部分解决了channel的映射: 这样导致同样的文字信息不论放在前面还是后面, 对应同一种output信息, 区别的只是他们权重可能不同, 或在图像的不同位置</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="attention的一些变形和优化">attention的一些变形和优化</h3>
+
+<ul>
+  <li>mulit-head attention: 映射多组QKV, 计算得到的多组output再concat
+    <ul>
+      <li>在实际实现过程中,  先映射成一个大的QKV, 再把Q, K, V切分是完全等价的</li>
+      <li>做mulit-head可以得到多组不同的映射方式, 或减小inner_dimension(T)的大小</li>
+    </ul>
+  </li>
+  <li>分层attention: 在做attention之前对数据排序, 切分
+    <ul>
+      <li>可能有些pixel之间关联不大, 这样的话把它们分到不同的bucket, 分别做attention, 可以减少计算量</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="光流估计网络">光流估计网络</h2>
+
+<p>视觉匹配任务</p>
+
+<p>[1] Woo, Sanghyun, Jongchan Park, Joon-Young Lee, and In So Kweon. “CBAM: Convolutional Block Attention Module.” arXiv, July 18, 2018. <a href="https://doi.org/10.48550/arXiv.1807.06521">https://doi.org/10.48550/arXiv.1807.06521</a>. 介绍gate attention</p>
+
+<p>[2] Cai, Yuanhao, Jing Lin, Xiaowan Hu, Haoqian Wang, Xin Yuan, Yulun Zhang, Radu Timofte, and Luc Van Gool. “Coarse-to-Fine Sparse Transformer for Hyperspectral Image Reconstruction.” arXiv, July 10, 2022. <a href="https://doi.org/10.48550/arXiv.2203.04845">https://doi.org/10.48550/arXiv.2203.04845</a>. 介绍了Spectra-aware hashing attention block的结构</p>
 
         </div>
 
@@ -240,8 +252,8 @@
     <div id="disqus_thread"></div>
     <script>
       var disqus_config = function () {
-        this.page.url = 'https://roshameow.github.io//personal_homepage/docs/deeplearning/restruction-loss/';
-        this.page.identifier = 'https://roshameow.github.io//personal_homepage/docs/deeplearning/restruction-loss/';
+        this.page.url = 'https://roshameow.github.io//personal_homepage/docs/deeplearning/attention/';
+        this.page.identifier = 'https://roshameow.github.io//personal_homepage/docs/deeplearning/attention/';
       };
 
       (function() {
@@ -259,23 +271,15 @@
 
         <nav class="page-pagination" role="navigation">
   
-    <a class="page-previous" href="/personal_homepage/docs/design/spring-couplets/">
+    <a class="page-previous" href="/personal_homepage/docs/deeplearning/restruction-loss/">
       <h4 class="page-pagination-label">Previous</h4>
       <span class="page-pagination-title">
-        <i class="fas fa-arrow-left"></i> 龙年春联
+        <i class="fas fa-arrow-left"></i> 常用的图像 reconstruction loss
 
       </span>
     </a>
   
 
-  
-    <a class="page-next" href="/personal_homepage/docs/deeplearning/attention/">
-      <h4 class="page-pagination-label">Next</h4>
-      <span class="page-pagination-title">
-        神经网络attention结构理解
- <i class="fas fa-arrow-right"></i>
-      </span>
-    </a>
   
 </nav>
 

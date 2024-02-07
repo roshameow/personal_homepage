@@ -213,4 +213,9 @@ var store = [{
         "excerpt":"输出为图像的任务, 比如enhance, deblur, super-resolution等用到的loss, 主要分为以下两类 output和label相近 loss 公式 目的 特点 L1 loss $||I_1-I_2||_1$ 大体相近 最常用的loss L2 loss(MSE) $||I_1-I_2||_2$或$MSE=\\overline{(I_1-I_2)^2}$   因为导数是线性所以计算最快 SSIM (stuctural similarity index measure) $\\frac{2\\mu_1\\mu_2+C_1}{\\mu_1^2+\\mu_2^2+C_1}\\cdot \\frac{2\\sigma_{12}+C_2}{\\sigma_1^2+\\sigma_2^2+C_2}$ $\\mu, \\sigma$ 分别为mean, variance$\\sigma_{12}$是covariance$C_1, C_2$ 是常数 纹理相近 要分patch计算$C_1, C_2$ 的值要根据图像的范围调整 PSNR(Peak signal-to-noise ratio) $-10\\log_{10}(MSE(I_1,I_2))$   经常是用来验证 PerceptualLoss 一个分类网络 语义相近 一般用vgg16, 输入RGB图像一般会用后几层的语义特征对比 LPIPS (Learned...","categories": ["docs","deeplearning"],
         "tags": ["content","loss","image"],
         "url": "https://roshameow.github.io//personal_homepage/docs/deeplearning/restruction-loss/"
+      },{
+        "title": "神经网络attention结构理解",
+        "excerpt":"在网络中, block是把input信息转换成output信息的过程: 一般, output(position, vector)是input(token, embedding vector)的线性组合, 组合的weight (position, token) 由input和output两方关系确定. 把着重强调这种信息交互的模块叫attention. convolution convolution在神经网络流行之前就已经在图像任务里广泛使用了 目的: 对spatial information进行特征的提取和转换 特点: pixel的weight只和(input, output)的相对位置有关, 因此也是平移不变的. 对每个输出像素有影响的只有input里kernel覆盖到的区域, 也就是response field 每个不同的相对位置对应vector mapping不同 这个符合图像处理的直观, 左边有条线和右边有条线当然要映射成不同的结果 有时也会把卷积拆分成1x1 conv和spatial conv(通道无关) 的形式 gate attention 目的: 提取channel或spatial的权重, 让网络关注更重要的信息 特点: spatial 信息对人类来说更有可读性, 所以可以把spatial weight可视化, 看看图片什么位置更加重要 self-attention &amp; cross-attention 目的: 信息的交互: 在我的图示中, 是把文字信息加入视觉信息...","categories": ["docs","deeplearning"],
+        "tags": ["content"],
+        "url": "https://roshameow.github.io//personal_homepage/docs/deeplearning/attention/"
       }]
