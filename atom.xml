@@ -1,4 +1,192 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="https://roshameow.github.io//personal_homepage/atom.xml" rel="self" type="application/atom+xml" /><link href="https://roshameow.github.io//personal_homepage/" rel="alternate" type="text/html" /><updated>2024-02-07T17:01:24+00:00</updated><id>https://roshameow.github.io//personal_homepage/atom.xml</id><title type="html">Liu, Wen’s Home Page</title><subtitle>Work, Experiments and Ideas.</subtitle><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><entry><title type="html">stable-diffusion的用法: 用 ipadatper+controlnet canny做风格转换</title><link href="https://roshameow.github.io//personal_homepage/docs/photo/stable-diffusion1/" rel="alternate" type="text/html" title="stable-diffusion的用法: 用 ipadatper+controlnet canny做风格转换" /><published>2024-02-07T00:00:00+00:00</published><updated>2024-02-08T08:58:53+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/photo/stable-diffusion1</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/photo/stable-diffusion1/"><![CDATA[<p>用ipadapter和canny做风格转换</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="https://roshameow.github.io//personal_homepage/atom.xml" rel="self" type="application/atom+xml" /><link href="https://roshameow.github.io//personal_homepage/" rel="alternate" type="text/html" /><updated>2024-02-09T11:08:59+00:00</updated><id>https://roshameow.github.io//personal_homepage/atom.xml</id><title type="html">Liu, Wen’s Home Page</title><subtitle>Work, Experiments and Ideas.</subtitle><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><entry><title type="html">stable-diffusion的用法: 用 lora+controlnet做风格转换</title><link href="https://roshameow.github.io//personal_homepage/docs/photo/stable-diffusion2/" rel="alternate" type="text/html" title="stable-diffusion的用法: 用 lora+controlnet做风格转换" /><published>2024-02-09T00:00:00+00:00</published><updated>2024-02-10T03:01:41+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/photo/stable-diffusion2</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/photo/stable-diffusion2/"><![CDATA[<p>尝试只用ipadapter做猫的风格转换, 非常不成功, ipadapter还是无法控制输入的元素. 必须要用多张图片训练的LoRA控制.</p>
+
+<h2 id="comfyui步骤">ComfyUI步骤</h2>
+
+<ol>
+  <li><strong>训练Lora</strong>
+    <ul>
+      <li>用<a href="https://github.com/bmaltais/kohya_ss">kohya_ss</a> 的gui训练
+        <ul>
+          <li>networkrank设置64</li>
+          <li>打开Gradient checkpoint, 不然我16G的显存不够用</li>
+          <li>另外, 我的wsl2需要解决一下找不到cuda toolkit的问题
+            <ul>
+              <li>检查发现是ubuntu的requirement里面指定的torch和bitsandbytes版本不匹配</li>
+              <li>在虚拟环境里, 升级到最新版2.2后代码又出问题</li>
+              <li>最后参考windows版本的requirement.txt, 改成torch=2.1.0+cu118解决了</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><strong>连上Lora节点</strong>
+    <ul>
+      <li>ComfyUI里连接顺序是: Checkpoint: model, clip -&gt; Lora</li>
+      <li>多个Lora顺序连接就行</li>
+      <li>ip的lora的weigt设为1.22, 风格化lora的weight不用设那么大</li>
+    </ul>
+  </li>
+  <li><strong>写text prompt</strong>
+    <ul>
+      <li>写了包括描述内容的, lora配套的, 描述想要风格的positive prompt</li>
+    </ul>
+  </li>
+  <li><strong>连上Controlnet节点</strong>
+    <ul>
+      <li>用到了<a href="https://huggingface.co/collections/diffusers/sdxl-controlnets-64f9c35846f3f06f5abe351f">canny模型, depth模型</a>
+        <ul>
+          <li>下载<a href="https://github.com/kijai/ComfyUI-Marigold">Marigold</a>的深度识别模型节点</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ol>
+
+<h2 id="结果">结果</h2>
+
+<p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240209124721.png" alt="Pasted image 20240209124721.png" width="150" /> -&gt; <img src="/personal_homepage/docs/attachment/Pasted%20image%2020240209124343.png" alt="Pasted image 20240209124343.png" width="600" /></p>
+
+<ul>
+  <li><strong>风格:</strong> 3种方法都可以
+    <ol>
+      <li>text prompt里输入</li>
+      <li>风格LoRA
+        <ul>
+          <li>在prompt也要加上对应风格关键词</li>
+        </ul>
+      </li>
+      <li>用ipadpter输入风格图片控制
+        <ul>
+          <li>ipadpter的weight需要调整: 不能太低(风格化没用), 也不能太高(和风格图太像)</li>
+          <li>一直有和风格图太像, 或者风格图提供我们不想要元素的风险…毕竟一张图片的信息不像文字和lora那样有明确的指向性</li>
+        </ul>
+      </li>
+    </ol>
+  </li>
+  <li><strong>控制:</strong>
+    <ul>
+      <li>用canny或depth模型都能做到控制猫的位置
+        <ul>
+          <li>Marigold的识别特别慢, 尝试的时候计算完深度图要先把那个节点断开</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><strong>问题:</strong>
+    <ul>
+      <li>有些风格单独可以出图, 但是加了我训练的猫的LoRA就没法出对应风格的图了</li>
+      <li>用LoRA训练的模型没有完全理解我的猫的所有特征: 尤其是鼻子和嘴附近的毛色
+        <ul>
+          <li>我用了30多张照片, 也没有改label的caption, 所以可能还有质量增加的空间</li>
+        </ul>
+      </li>
+      <li>用ipadpter的失败经验:
+        <ul>
+          <li>如果用一张猫的图片和一张风格图
+            <ul>
+              <li><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240209133511.png" alt="Pasted image 20240209133511.png" width="100" /></li>
+              <li>无法控制输入元素</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="comfyui-workflow">ComfyUI workflow</h2>
+
+<p>用Lora调整风格$\downarrow$ : <a href="https://gist.github.com/roshameow/d952bf0157a25ab3e9e724df1449b160#file-rosha_lora_controlnet_canny_depth_style_change-json"><strong>rosha_lora_controlnet_canny_depth_style_change.json</strong></a></p>
+
+<p><img src="/personal_homepage/docs/attachment/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-02-08%20230728.png" alt="屏幕截图 2024-02-08 230728.png" width="800" /></p>
+
+<p>用ipadator调整风格$\downarrow$ : <a href="https://gist.github.com/roshameow/d952bf0157a25ab3e9e724df1449b160#file-rosha_lora_ipadapter_style_tranformation-json"><strong>rosha_lora_ipadapter_style_tranformation.json</strong></a></p>
+
+<p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240209135354.png" alt="Pasted image 20240209135354.png" width="800" /></p>
+
+<h2 id="资源">资源</h2>
+
+<p>艺术风格prompt:</p>
+
+<p>[1] https://medium.com/phygital/top-40-useful-prompts-for-stable-diffusion-xl-008c03dd0557</p>
+
+<p>[2] https://docs.midjourney.com/docs/explore-prompting</p>
+
+<p>[3] https://www.urania.ai/top-sd-artists</p>
+
+<p>[4] https://github.com/SupaGruen/StableDiffusion-CheatSheet 是v1.5插件</p>
+
+<p>Lora训练:</p>
+
+<p>[5]  <a href="https://www.youtube.com/watch?v=NaHtI0u3Am4">https://www.youtube.com/watch?v=NaHtI0u3Am4</a> kohya_ss的参数设置,</p>
+
+<p>[6] https://zhuanlan.zhihu.com/p/654322145.   下面讨论说optimizer还是默认比较好?</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="photo" /><category term="content" /><category term="ComfyUI" /><category term="ipadapter" /><category term="controlnet" /><category term="canny" /><category term="sdxl" /><summary type="html"><![CDATA[尝试只用ipadapter做猫的风格转换, 非常不成功, ipadapter还是无法控制输入的元素. 必须要用多张图片训练的LoRA控制.]]></summary></entry><entry><title type="html">blender学习: 做火焰效果</title><link href="https://roshameow.github.io//personal_homepage/docs/blender/blender-learning5/" rel="alternate" type="text/html" title="blender学习: 做火焰效果" /><published>2024-02-08T00:00:00+00:00</published><updated>2024-02-09T16:51:37+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/blender/blender-learning5</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/blender/blender-learning5/"><![CDATA[<h2 id="用graph-editor和noise-texture">用graph editor和noise texture</h2>
+<h3 id="步骤">步骤</h3>
+
+<p>参考RuiHuang_art在<a href="https://www.bilibili.com/video/BV1HH4y1Y7Vv/">b站的教学视频</a> , 和做车流用到的功能差不多</p>
+<ul>
+  <li>world property: 加入一个背景的贴图</li>
+  <li>制做火焰:
+    <ul>
+      <li>添加一个Plane mesh</li>
+      <li>分成两半: 在Edit编辑模式下, 按Ctrl+R加<a href="https://docs.blender.org/manual/en/latest/modeling/meshes/tools/loop.html">loop cut</a> , 在edge中间添加新的顶点,</li>
+      <li>把一半拉长: 选中顶点后按G可以拉伸, 但是没法控制只在一个轴的方向拉</li>
+    </ul>
+  </li>
+  <li>shader: 目的是制作一个自发光, 半透明, 抖动的效果
+    <ul>
+      <li>颜色效果:
+        <ol>
+          <li>用<a href="https://docs.blender.org/manual/en/latest/render/shader_nodes/input/texture_coordinate.html">texture Coordinate</a> 生成uv坐标
+            <ul>
+              <li>在mapping里把x,y的location调到-2, scale调到4</li>
+              <li>uv坐标系好像范围是(-scale/2, scale/2)</li>
+            </ul>
+          </li>
+          <li>用<a href="https://docs.blender.org/manual/en/latest/render/shader_nodes/textures/gradient.html">Gradient Texture</a> 的spherical: 制作从外到内的渐变</li>
+          <li>自发光: 用<a href="https://docs.blender.org/manual/en/latest/editors/texture_node/types/converter/color_ramp.html">Color Ramp</a> 做一个 蓝-&gt;白-&gt;红-&gt;黄 的渐变</li>
+          <li>调整透明度: 用<a href="https://docs.blender.org/manual/en/latest/editors/texture_node/types/converter/color_ramp.html">Color Ramp</a> 做一个 透明-&gt;半透明-&gt;透明 的渐变</li>
+          <li>连接bsdf
+            <ul>
+              <li>把Emmision和transparent bsdf用Mix shader连接在一起</li>
+            </ul>
+          </li>
+        </ol>
+      </li>
+      <li>抖动效果:
+        <ol>
+          <li>用<a href="https://docs.blender.org/manual/en/latest/render/shader_nodes/input/texture_coordinate.html">texture Coordinate</a> 生成object坐标</li>
+          <li>用<a href="https://docs.blender.org/manual/en/latest/render/shader_nodes/textures/noise.html">Noise Texture</a> 扭曲坐标, 制作抖动效果: noise texture和displacement的cloudy texture效果差不多
+            <ul>
+              <li>用<a href="https://docs.blender.org/manual/en/latest/compositing/types/color/mix/mix_color.html">Mix Node</a> 的Multiply把两个坐标混合</li>
+            </ul>
+          </li>
+          <li>用<a href="https://docs.blender.org/manual/zh-hans/dev/editors/graph_editor/fcurves/editing.html">Graph Editor</a> 调整mapping的y坐标的location, 形成动态的扭曲</li>
+        </ol>
+      </li>
+    </ul>
+  </li>
+  <li>把火焰的plane mesh旋转复制出多个绕y轴一圈
+    <ul>
+      <li>在shader里选中一个materail<a href="https://blender.stackexchange.com/questions/7044/copy-material-to-another-object">复制给所有mesh</a></li>
+      <li>复制完想修改所有的mesh形状但是没找到方法</li>
+    </ul>
+  </li>
+  <li>结果: 我复制的次数比较少, 而且颜色也不好看,  形状也拉的不太对
+    <ul>
+      <li><img src="/personal_homepage/docs/attachment/fire.mp4" alt="fire.mp4" width="320" /></li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="shader流程">shader流程</h3>
+
+<p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240208164250.png" alt="Pasted image 20240208164250.png" width="600" /></p>
+
+<h2 id="用displacement粒子特效">用displacement+粒子特效</h2>
+
+<p>参考小红书<a href="https://www.xiaohongshu.com/explore/658636a9000000003c010c5d">KurTips的教学</a></p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="blender" /><category term="content" /><category term="render" /><category term="shader" /><summary type="html"><![CDATA[用graph editor和noise texture 步骤]]></summary></entry><entry><title type="html">stable-diffusion的用法: 用 ipadatper+controlnet canny做风格转换</title><link href="https://roshameow.github.io//personal_homepage/docs/photo/stable-diffusion1/" rel="alternate" type="text/html" title="stable-diffusion的用法: 用 ipadatper+controlnet canny做风格转换" /><published>2024-02-07T00:00:00+00:00</published><updated>2024-02-08T08:58:53+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/photo/stable-diffusion1</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/photo/stable-diffusion1/"><![CDATA[<p>用ipadapter和canny做风格转换</p>
 
 <h2 id="comfyui使用">ComfyUI使用</h2>
 
@@ -789,305 +977,4 @@
 <p>[7] https://www.dxomark.com/flicker-the-display-affliction/ dxomark对一些手机的具体测试过程和结果: 可以理解成手机上不同行虽然相位不同, 频率都是一致的吧? 虽然不同相位相同频率的波相加可能得到更高频的信号.. 这里我们就假设相位随机, 测出的频率就是pwm频率</p>
 <h2 id="其他手机的效果">其他手机的效果</h2>
 
-<p><a href="https://zhuanlan.zhihu.com/p/414216581">这个知乎帖子看到的</a> 明显占空比变化</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="camera" /><category term="content" /><category term="test" /><category term="sci-pop" /><summary type="html"><![CDATA[频闪就是亮度随时间周期性变化的情况.]]></summary></entry><entry><title type="html">传感器颜色调制 (三) – 数据</title><link href="https://roshameow.github.io//personal_homepage/docs/data/color-moderate2/" rel="alternate" type="text/html" title="传感器颜色调制 (三) – 数据" /><published>2024-01-15T00:00:00+00:00</published><updated>2024-01-25T22:33:35+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/data/color-moderate2</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/data/color-moderate2/"><![CDATA[<p>各种颜色调制的数据对难以采集, 所以现在大部分颜色调制还是用多光谱数据仿真得到.</p>
-<h2 id="多光谱数据集">多光谱数据集</h2>
-
-<table>
-  <thead>
-    <tr>
-      <th>数据集$\downarrow$</th>
-      <th>size</th>
-      <th>bands</th>
-      <th>格式</th>
-      <th>数量</th>
-      <th>拍摄场景</th>
-      <th>发布时间</th>
-      <th>大小</th>
-      <th>条件</th>
-      <th>拍摄条件</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><a href="https://www1.cs.columbia.edu/CAVE/databases/multispectral/">CAVE</a></td>
-      <td>512x512</td>
-      <td>400-700nm<br />10nm steps<br />31bands</td>
-      <td>.png<br />每个通道<br />分别存</td>
-      <td>32</td>
-      <td>实验室:<br />真假人脸<br />真假水果</td>
-      <td>2008</td>
-      <td>419.9MB</td>
-      <td> </td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td><a href="https://cave.cs.columbia.edu/projects/categories/project?cid=Computational+Imaging&amp;pid=Multispectral+Imaging+Using+Multiplexed+Illumination">CAVE1024</a></td>
-      <td>1024x1024</td>
-      <td> </td>
-      <td> </td>
-      <td>205</td>
-      <td> </td>
-      <td> </td>
-      <td>13.06GB</td>
-      <td> </td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td><a href="http://vclab.kaist.ac.kr/siggraphasia2017p1/kaistdataset.html">KAIST</a></td>
-      <td>2704x3376</td>
-      <td>420-720nm<br />10nm steps<br />31bands</td>
-      <td>.exr<br />每个图片<br />单独下载</td>
-      <td>30</td>
-      <td>实验室</td>
-      <td>2017</td>
-      <td>8.67GB</td>
-      <td> </td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td><a href="https://github.com/mengziyi64/TSA-Net">TSA</a></td>
-      <td>660x660</td>
-      <td>28通道<br />特殊</td>
-      <td>.mat</td>
-      <td>10(simu)<br />5(real)</td>
-      <td>实验室</td>
-      <td>2020</td>
-      <td> </td>
-      <td>simu是从<br />KAIST的数据<br />中截取的</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td><a href="https://vision.seas.harvard.edu/hyperspec/download.html">harvard</a></td>
-      <td>1040x1392</td>
-      <td>420-720nm<br />10nm steps<br />31bands</td>
-      <td>.mat</td>
-      <td>50(自然光)<br />27(人工光)</td>
-      <td>场景丰富</td>
-      <td>2011</td>
-      <td>约7GB</td>
-      <td>research-only</td>
-      <td>商业相机:<br />Nuance FX, CRI Inc<br />liquid crystal tunable filter</td>
-    </tr>
-    <tr>
-      <td><a href="https://github.com/boazarad/ARAD_1K">ARAD 1K</a></td>
-      <td>512x482</td>
-      <td>400-700nm<br />10nm steps<br />31bands</td>
-      <td>.mat-v7.3</td>
-      <td>900(train)<br />50(val)<br />50(test)</td>
-      <td>场景丰富</td>
-      <td>2022</td>
-      <td>约21GB<br />压缩包</td>
-      <td>需要注册</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>TokyoTech<br /><a href="http://www.ok.sc.e.titech.ac.jp/res/MSI/MSIdata31.html">31-band</a></td>
-      <td>不固定<br />500~2k<br />左右</td>
-      <td>420-720nm<br />10nm steps<br />31bands</td>
-      <td>.mat</td>
-      <td>30</td>
-      <td>色卡(齐全)<br />布料,<br />蝴蝶<br />局部特写</td>
-      <td>2015</td>
-      <td>2.97GB</td>
-      <td>research-only<br />redistribute-<br />prevent</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>TokyoTech<br /><a href="http://www.ok.sc.e.titech.ac.jp/res/MSI/MSIdata59.html">59-band</a></td>
-      <td>512x512</td>
-      <td>420-1000nm<br />10nm steps<br />59bands</td>
-      <td>.mat-v7.3</td>
-      <td>16</td>
-      <td>类似<br /></td>
-      <td>2019</td>
-      <td>1.7GB</td>
-      <td>research-only<br />redistribute-<br />prevent</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td><a href="http://www2.cmp.uea.ac.uk/Research/compvis/MultiSpectralDB.htm">CMP_UEA</a></td>
-      <td>不固定<br />200~400<br />左右</td>
-      <td>400-700nm<br />10nm steps<br />31bands</td>
-      <td>.mat<br />每个图片<br />单独下载</td>
-      <td>23</td>
-      <td>色卡,<br />广告包装</td>
-      <td>2004</td>
-      <td>566.6MB</td>
-      <td> </td>
-      <td> </td>
-    </tr>
-  </tbody>
-</table>
-
-<h2 id="格式读取和注意事项">格式读取和注意事项</h2>
-
-<ol>
-  <li><strong>从网页抓数据</strong>
-    <ul>
-      <li>因为数据是分散在网页上的, 需要用python从网页上抓.exr图片
-        <ul>
-          <li>问题: 用<code class="language-plaintext highlighter-rouge">requests.get(absolute_url).content</code> , 这么下载下来的文件可能会有不全
-            <ul>
-              <li>我批量下载kaist数据时, 就有一张图片错误, 还好.exr可以预览, 发现不正常的图片再单独下载下来就好</li>
-              <li>在批量下载CMP_UEA网页上的.mat文件时, 也出错了, 但是.mat文件没法预览, 等到读数据才发现</li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li><strong>读.exr数据</strong>
-    <ul>
-      <li>网上的<a href="https://github.com/jamesbowman/openexrpython.git">读exr的python包</a>都有些问题, 而尴尬的是OpenEXR的官方放出了要做官方python binding的消息, 截止目前还没发布. 需要我们自己按如下流程操作: 写调用OpenEXR的C++代码-&gt;用pybind11编成.so库-&gt;在python里面调用
-        <ul>
-          <li>参考<a href="https://openexr.com/en/latest/API.html#the-openexr-api">OpenEXR的API文档</a> : 一定要把所有channel都在datawindow 里面排好一次性读</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li><strong>读.mat数据</strong>
-    <ul>
-      <li>.mat数据有两种: 老版的.mat和新的v7.3格式的.mat, 不实际读的话, 没法知道究竟是哪种. 我还没找到可以先提取.mat的metadata的方法</li>
-      <li>老版的.mat可以用<code class="language-plaintext highlighter-rouge">scipy.io.loadmat</code> 读</li>
-      <li>v7.3其实就是H5DF格式, 和.h5文件一样, 可以用<code class="language-plaintext highlighter-rouge">h5py</code> 读. 看到一些地方是建议用 <a href="https://pypi.python.org/pypi/hdf5storage">hdf5storage</a> 这个包(不光可以读, 还可以存成v7.3格式).</li>
-      <li>.mat数据好像没法看数据类型..</li>
-    </ul>
-  </li>
-  <li><strong>怎么正确的在pytorch里加载</strong>
-    <ul>
-      <li>目前是存在dataset的一个list里面
-        <ul>
-          <li>一定不能把所有image存在一个大的<code class="language-plaintext highlighter-rouge">ndarray</code>里面, 我们的数据都比较大, 很有可能会内存不够</li>
-          <li>存在list里面是不受内存的限制吗?在训练过程中可以及时的动态加载吗? 还没有研究</li>
-          <li>我们的图片大, 而训练需要的crop_size比较小, 一个想法是先把图片切分成多个小的patch, 这样是否就不用加载一整张图片了?</li>
-        </ul>
-      </li>
-      <li>在第一次读数据时存成.h5文件的cache, 之后从.h5文件读取
-        <ul>
-          <li>因为数据集中的波长和我们要的channel可能不一样, 我们的channel是用<code class="language-plaintext highlighter-rouge">interp1d</code> 插值得到的, 这个插值的过程比较浪费时间, 所以至少需要把插值后的结果存下来</li>
-          <li>.h5文件读出来是<code class="language-plaintext highlighter-rouge">ndarray</code> 格式, 要转成tensor使用, 不过这个过程是很快的</li>
-          <li><strong>为什么不存成.pkl</strong>
-            <ul>
-              <li>.pkl读起来比.h5慢, 在我的mac M1上速度慢了一倍.  .pkl 倒是可以直接存tensor的, 而且存数据更快.</li>
-              <li><a href="https://docs.python.org/3/library/pickle.html">.pkl</a>可以做的操作比较多, 如果在网上把.pkl发给别人, 对方可能不敢打开.. 所以一般不会用.pkl分发大文件</li>
-              <li>.pkl适合自己开发时存一些中间结果</li>
-            </ul>
-          </li>
-          <li>为什么不是一张图片一个文件而是把全部list存在一起? 没有测试, 可能速度是差不多的吧?</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-</ol>
-
-<h2 id="其他有用的资源">其他有用的资源</h2>
-
-<ul>
-  <li><a href="https://github.com/caiyuanhao1998/BiSCI">BiSCI的repo</a> 里提供了CAVE512, CAVE1024, KAIST, TSA的下载链接, 是已经转成28通道的, .mat格式
-    <ul>
-      <li>其中kaist的数据load超慢.. 可能是因为把原本的16bit的half长度存成了64bit的complex?</li>
-      <li>我想kaist里面存half格式的exr可能也是出于缩小空间的考虑.. OpenEXR本身读起来挺快的</li>
-    </ul>
-  </li>
-  <li><a href="https://github.com/colour-science/colour">color-science</a> : 里面包含各种光学方面的标准, 对各种色彩空间转换, 可视化很有用</li>
-</ul>
-
-<h2 id="代码">代码</h2>
-
-<ul>
-  <li>exr: <a href="https://gist.github.com/roshameow/c2710dedf5ab067517d622b2a7ed4679#file-readexr-cpp"><strong>readexr.cpp</strong></a></li>
-  <li>网页抓图片: <a href="https://gist.github.com/roshameow/30aae94815c6b8ddb2253191d4f86649#file-download_kaist-py"><strong>download_kaist.py</strong></a></li>
-  <li>读数据集: <a href="https://gist.github.com/roshameow/30aae94815c6b8ddb2253191d4f86649#file-multisepc_load-py"><strong>multisepc_load.py</strong></a></li>
-  <li>多光谱图片转成RGB显示: <a href="https://gist.github.com/roshameow/30aae94815c6b8ddb2253191d4f86649#file-multispec2rgb-py"><strong>multispec2rgb.py</strong></a>
-    <ul>
-      <li>用TSA的图片测试, 转出的RGB有偏色, 可能是因为只对应了channel的主波长的XYZ, 没有在光谱上积分吗?</li>
-    </ul>
-  </li>
-</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="data" /><category term="content" /><category term="dataset" /><category term="pytorch" /><category term="script" /><summary type="html"><![CDATA[各种颜色调制的数据对难以采集, 所以现在大部分颜色调制还是用多光谱数据仿真得到. 多光谱数据集]]></summary></entry><entry><title type="html">aperture衍射模型 (二)</title><link href="https://roshameow.github.io//personal_homepage/docs/simulation/diffraction1/" rel="alternate" type="text/html" title="aperture衍射模型 (二)" /><published>2024-01-11T00:00:00+00:00</published><updated>2024-01-15T01:10:47+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/simulation/diffraction1</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/simulation/diffraction1/"><![CDATA[<h2 id="仿真">仿真</h2>
-
-<p><img src="/personal_homepage/docs/attachment/circle_diffraction.mp4" alt="circle_diffraction.mp4" width="200" /> <img src="/personal_homepage/docs/attachment/square_diffraction.mp4" alt="square_diffraction.mp4" width="200" /></p>
-<ol>
-  <li>在aperture区域均匀采样，发现Frensel pattern是很难出现的，在每个像素对应sample数不足1000的时候，基本观测不到。。应该是因为在那个范围内结果受$(x^\prime,y^\prime)$ 的位置影响更大, 也就表现出更大的随机性。</li>
-  <li>确实可以看到sensor到aperture距离增大后, pattern变化的全过程。</li>
-  <li>在一个网上找的<a href="https://www.falstad.com/diffraction/">Frensel diffraction仿真</a> java代码里面，作者也是通过先把部分积分形式通过公式运算先化简之后做的仿真<a href="#ref">1</a>，没有用原始的传播公式。</li>
-  <li>如果用全光谱的光源，Fraunhofer衍射中因为波长影响, 看起来的效果像是从中间不同颜色的光被diffuse了，我看一些3d建模制作里说的衍射，一般是指这种效果，可以看<a href="https://www.bilibili.com/video/BV1C5411E78d/">b站上一个用blender仿这种效果的视频</a>
-    <ul>
-      <li>另外判断天然珍珠和人造珍珠的区别的一种方法，也是看天然珍珠里面有微小的结构可以把不同波长的光区分出来的效果</li>
-      <li>blender的cycles用的是粒子模型, 没有相位变化，可能没法直接得到衍射</li>
-    </ul>
-  </li>
-</ol>
-
-<h2 id="应用">应用</h2>
-
-<ol>
-  <li><strong>在相机系统中，我们关心成像的分辨率</strong>：用Fraunhofer的模型估算相机的resolution
-    <ul>
-      <li>相机aperture参数：这两个都是dimensionless版本的aperture
-        <ul>
-          <li><a href="https://en.wikipedia.org/wiki/F-number">f-number</a>: $N=\frac{f}{D}=\frac{f}{2a}$
-            <ul>
-              <li>相机焦距$f=z$, 光圈直径$D=2a$</li>
-            </ul>
-          </li>
-          <li><a href="https://en.wikipedia.org/wiki/Numerical_aperture">numerical aperture</a> $NA=\frac{a}{\sqrt{f^2+a^2}}=\frac{1}{\sqrt{4N^2+1}}\approx \frac{1}{2N}$</li>
-        </ul>
-      </li>
-      <li>第一圈黑环处距中心距离，认为是相机的optical resolution:
-        <ul>
-          <li><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240112160824.png" alt="Pasted image 20240112160824.png" width="300" /></li>
-          <li>此时是$J_1(x)$ 的第一个0点， $J_1(ka\sin\theta)=0$，$ka\sin\theta\approx 3.83$ ，即$\sin\theta\approx \frac{3.83}{ka}=\frac{3.83\lambda}{2\pi a}=1.22\frac{\lambda}{D}$</li>
-          <li>得到optical resolution $q=r_1\sin\theta\approx \sqrt{f^2+a^2}\sin\theta=\frac{a}{NA}\sin\theta\approx \frac{a}{NA}\frac{1.22\lambda}{2a}=\frac{0.61\lambda}{NA}$</li>
-          <li>理论上，numberical aperture越大，optical resolution越小，分辨率越高(也就是衍射更不明显)</li>
-        </ul>
-      </li>
-      <li>相机的成像清晰度指标：MTF
-        <ul>
-          <li><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240112154649.png" alt="Pasted image 20240112154649.png" width="400" /></li>
-          <li><a href="https://en.wikipedia.org/wiki/Point_spread_function">PSF</a>(intensity function): $PSF=|G(p,q)|^2=|F(g(x^\prime,y^\prime))|^2$
-            <ul>
-              <li>PSF的单位是 (distance(mm),intesity)</li>
-              <li>对于圆形aperture：$PSF=\frac{J_1^2(ka\sin\theta)}{(ka\sin\theta)^2}$ , PSF的零点也就是$J_1$ 的零点</li>
-              <li>生成图像的image: $I=PSF*\text{scene}$ 是场景和PSF的卷积</li>
-            </ul>
-          </li>
-          <li><a href="https://en.wikipedia.org/wiki/Optical_transfer_function">MTF</a>: $MTF=F(PSF)$
-            <ul>
-              <li>MTF的单位是（frequency(lines/mm),response(%)）</li>
-              <li>$\frac{J_1^2(x)}{x^2}$ 的Fourier变化是个连续下降函数</li>
-              <li>根据 <a href="https://en.wikipedia.org/wiki/Fourier_transform#Applications">Fourier transform</a> time scaling的性质：因为PSF的零点$PSF_0\propto \frac{\lambda}{NA}$ , 得到MTF的cutoff点 $c(MTF)\propto \frac{NA}{\lambda}$  (即频率更高的物体就看不清了)</li>
-              <li>MTF是个衡量成像系统分辨率的常用指标，不光衍射，所有成像过程，包括软件做的deblur等操作都可以用这个指标衡量。</li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li><strong>用PSF做图像调制</strong> 
-    <ul>
-      <li>从PSF的表达式可以看出, PSF受距离, 波长(光的颜色), 位置影响, 可以在相机系统中主动利用这些信息</li>
-    </ul>
-  </li>
-</ol>
-
-<h2 id="代码">代码</h2>
-
-<p><a href="https://gist.github.com/roshameow/7d44196b703ade645b34b164d779cdfe#file-diffraction_simulation-py"><strong>diffraction_simulation.py</strong></a></p>
-
-<p><a href="https://gist.github.com/roshameow/7d44196b703ade645b34b164d779cdfe#file-pst_bessel-py"><strong>pst_bessel.py</strong></a></p>
-
-<h2 id="其他讨论这个的链接">其他讨论这个的链接：</h2>
-<p><span id="ref"></span>
-仿真</p>
-
-<p>[5] http://www.dauger.com/fresnel/</p>
-
-<p>[6] Dauger, Dean E. “Simulation and Study of Fresnel Diffraction for Arbitrary Two-Dimensional Apertures.” <em>Computers in Physics</em> 10 (November 1, 1996): 591–604. <a href="https://doi.org/10.1063/1.168584">https://doi.org/10.1063/1.168584</a>.</p>
-
-<p>相机resolution</p>
-
-<p>[7] https://www.microscopyu.com/tutorials/imageformation-airyna (包含一个<a href="https://en.wikipedia.org/wiki/Airy_disk">Airy disk</a> 影响清晰度的演示)</p>
-
-<p>[8] https://www.iasj.net/iasj/download/8ab5ecbce0ead154</p>
-
-<p>[9] https://micro.magnet.fsu.edu/primer/java/mtf/airydisksize/index.html</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="simulation" /><category term="content" /><category term="simulation" /><category term="sensor" /><category term="physics" /><summary type="html"><![CDATA[仿真]]></summary></entry></feed>
+<p><a href="https://zhuanlan.zhihu.com/p/414216581">这个知乎帖子看到的</a> 明显占空比变化</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="camera" /><category term="content" /><category term="test" /><category term="sci-pop" /><summary type="html"><![CDATA[频闪就是亮度随时间周期性变化的情况.]]></summary></entry></feed>

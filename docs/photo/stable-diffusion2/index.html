@@ -16,22 +16,22 @@
   
   
   <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>stable-diffusion的用法: 用 ipadatper+controlnet canny做风格转换 | Liu, Wen’s Home Page</title>
+<title>stable-diffusion的用法: 用 lora+controlnet做风格转换 | Liu, Wen’s Home Page</title>
 <meta name="generator" content="Jekyll v4.3.3" />
-<meta property="og:title" content="stable-diffusion的用法: 用 ipadatper+controlnet canny做风格转换" />
+<meta property="og:title" content="stable-diffusion的用法: 用 lora+controlnet做风格转换" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="用ipadapter和canny做风格转换" />
-<meta property="og:description" content="用ipadapter和canny做风格转换" />
-<link rel="canonical" href="https://roshameow.github.io//personal_homepage/docs/photo/stable-diffusion1/" />
-<meta property="og:url" content="https://roshameow.github.io//personal_homepage/docs/photo/stable-diffusion1/" />
+<meta name="description" content="尝试只用ipadapter做猫的风格转换, 非常不成功, ipadapter还是无法控制输入的元素. 必须要用多张图片训练的LoRA控制." />
+<meta property="og:description" content="尝试只用ipadapter做猫的风格转换, 非常不成功, ipadapter还是无法控制输入的元素. 必须要用多张图片训练的LoRA控制." />
+<link rel="canonical" href="https://roshameow.github.io//personal_homepage/docs/photo/stable-diffusion2/" />
+<meta property="og:url" content="https://roshameow.github.io//personal_homepage/docs/photo/stable-diffusion2/" />
 <meta property="og:site_name" content="Liu, Wen’s Home Page" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2024-02-07T00:00:00+00:00" />
+<meta property="article:published_time" content="2024-02-09T00:00:00+00:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="stable-diffusion的用法: 用 ipadatper+controlnet canny做风格转换" />
+<meta property="twitter:title" content="stable-diffusion的用法: 用 lora+controlnet做风格转换" />
 <meta name="twitter:site" content="@" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-02-08T08:58:53+00:00","datePublished":"2024-02-07T00:00:00+00:00","description":"用ipadapter和canny做风格转换","headline":"stable-diffusion的用法: 用 ipadatper+controlnet canny做风格转换","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/docs/photo/stable-diffusion1/"},"url":"https://roshameow.github.io//personal_homepage/docs/photo/stable-diffusion1/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-02-10T03:01:41+00:00","datePublished":"2024-02-09T00:00:00+00:00","description":"尝试只用ipadapter做猫的风格转换, 非常不成功, ipadapter还是无法控制输入的元素. 必须要用多张图片训练的LoRA控制.","headline":"stable-diffusion的用法: 用 lora+controlnet做风格转换","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/docs/photo/stable-diffusion2/"},"url":"https://roshameow.github.io//personal_homepage/docs/photo/stable-diffusion2/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -58,7 +58,7 @@
 
 </head>
 
-  <body class="layout--post  stable-diffusion的用法-用-ipadatper-controlnet-canny做风格转换">
+  <body class="layout--post  stable-diffusion的用法-用-lora-controlnet做风格转换">
     <nav class="skip-links">
   <h2 class="screen-reader-text">Skip links</h2>
   <ul>
@@ -99,7 +99,7 @@
       <header class="page-header">
         
         
-        <h1 id="page-title" class="page-title p-name">stable-diffusion的用法: 用 ipadatper+controlnet canny做风格转换
+        <h1 id="page-title" class="page-title p-name">stable-diffusion的用法: 用 lora+controlnet做风格转换
 </h1>
         
       </header>
@@ -111,7 +111,7 @@
 
 <span class="read-time">~1 min read</span>
 
-    <time class="page-date dt-published" datetime="2024-02-07T00:00:00+00:00"><a class="u-url" href="">February 7, 2024</a>
+    <time class="page-date dt-published" datetime="2024-02-09T00:00:00+00:00"><a class="u-url" href="">February 9, 2024</a>
 </time>
 
   </div>
@@ -138,7 +138,7 @@
 </h2>
 <!-- 1. toc
 {:toc} -->
-<ul class="inline_toc" id="my_toc"><li><a href="#comfyui使用">ComfyUI使用</a></li><li><a href="#结果">结果</a></li><li><a href="#comfyui-workflow">ComfyUI workflow</a></li><li><a href="#comfyui难用的地方">ComfyUI难用的地方</a></li><li><a href="#其他讨论这个链接">其他讨论这个链接</a></li></ul>
+<ul class="inline_toc" id="my_toc"><li><a href="#comfyui步骤">ComfyUI步骤</a></li><li><a href="#结果">结果</a></li><li><a href="#comfyui-workflow">ComfyUI workflow</a></li><li><a href="#资源">资源</a></li></ul>
 </div>
 <!-- {::options parse_block_html="false" /} -->
 
@@ -146,42 +146,45 @@
 
       <div class="page-content">
         <div class="e-content">
-          <p>用ipadapter和canny做风格转换</p>
+          <p>尝试只用ipadapter做猫的风格转换, 非常不成功, ipadapter还是无法控制输入的元素. 必须要用多张图片训练的LoRA控制.</p>
 
-<h2 id="comfyui使用">ComfyUI使用</h2>
+<h2 id="comfyui步骤">ComfyUI步骤</h2>
 
 <ol>
-  <li>调用ComfyUI中default的工作流
+  <li><strong>训练Lora</strong>
     <ul>
-      <li>下载<a href="https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0">sdxl模型</a></li>
-    </ul>
-  </li>
-  <li><strong>连上IPAdapter节点</strong>
-    <ul>
-      <li>安装<a href="https://github.com/cubiq/ComfyUI_IPAdapter_plus">IPAdapter_plus插件</a>
+      <li>用<a href="https://github.com/bmaltais/kohya_ss">kohya_ss</a> 的gui训练
         <ul>
-          <li>下载需要的ipadater微调模型和clip vision编码器: 把图像用clip vision编码后输入base model的cross-attention层</li>
+          <li>networkrank设置64</li>
+          <li>打开Gradient checkpoint, 不然我16G的显存不够用</li>
+          <li>另外, 我的wsl2需要解决一下找不到cuda toolkit的问题
+            <ul>
+              <li>检查发现是ubuntu的requirement里面指定的torch和bitsandbytes版本不匹配</li>
+              <li>在虚拟环境里, 升级到最新版2.2后代码又出问题</li>
+              <li>最后参考windows版本的requirement.txt, 改成torch=2.1.0+cu118解决了</li>
+            </ul>
+          </li>
         </ul>
       </li>
-      <li>ComfyUI里连接顺序是: Checkpoint: model-&gt; IPAdapter: model -&gt; KSampler: model</li>
-      <li>weigt设为1, text prompt都空着, latent prompt也空着</li>
+    </ul>
+  </li>
+  <li><strong>连上Lora节点</strong>
+    <ul>
+      <li>ComfyUI里连接顺序是: Checkpoint: model, clip -&gt; Lora</li>
+      <li>多个Lora顺序连接就行</li>
+      <li>ip的lora的weigt设为1.22, 风格化lora的weight不用设那么大</li>
+    </ul>
+  </li>
+  <li><strong>写text prompt</strong>
+    <ul>
+      <li>写了包括描述内容的, lora配套的, 描述想要风格的positive prompt</li>
     </ul>
   </li>
   <li><strong>连上Controlnet节点</strong>
     <ul>
-      <li>下载<a href="https://huggingface.co/collections/diffusers/sdxl-controlnets-64f9c35846f3f06f5abe351f">canny模型</a>
+      <li>用到了<a href="https://huggingface.co/collections/diffusers/sdxl-controlnets-64f9c35846f3f06f5abe351f">canny模型, depth模型</a>
         <ul>
-          <li><del>找不到其他适合sdxl的controlnet模型</del>因为我们的原图是个线稿适合用canny</li>
-        </ul>
-      </li>
-      <li>ComfyUI里连接顺序是: Checkpoint-&gt;prompt-&gt;controlnet-&gt;Ksampler: text prompt
-        <ul>
-          <li>controlnet最后是作用在text prompt上的?</li>
-        </ul>
-      </li>
-      <li>调整controlnet权重和影响步数: stength=0.5, start_percent=0, end_percent=0.6
-        <ul>
-          <li>如果设置过大就只能得到一张有颜色的线稿图</li>
+          <li>下载<a href="https://github.com/kijai/ComfyUI-Marigold">Marigold</a>的深度识别模型节点</li>
         </ul>
       </li>
     </ul>
@@ -190,41 +193,50 @@
 
 <h2 id="结果">结果</h2>
 
-<p>原图: 
-<img src="/personal_homepage/docs/attachment/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-02-07%20224110.png" alt="屏幕截图 2024-02-07 224110.png" width="600" /> + <img src="/personal_homepage/docs/attachment/2e2b76d160ca4317bb8e095ffd8ff878.jpg.png" alt="2e2b76d160ca4317bb8e095ffd8ff878.jpg.png" width="150" /></p>
-
-<p>合成图: 
-<img src="/personal_homepage/docs/attachment/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-02-07%20224141.png" alt="屏幕截图 2024-02-07 224141.png" width="600" /></p>
+<p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240209124721.png" alt="Pasted image 20240209124721.png" width="150" /> -&gt; <img src="/personal_homepage/docs/attachment/Pasted%20image%2020240209124343.png" alt="Pasted image 20240209124343.png" width="600" /></p>
 
 <ul>
-  <li>竟然可以识别龙的眼睛啊…有好几幅图都把猫眼替换到了龙眼上
-    <ul>
-      <li>如果两种图有同样的元素(眼睛之类的), 可能可以比较好的替换</li>
-      <li>最后的龙和人, 龙和山, 都不能对应起来</li>
-    </ul>
-  </li>
-  <li>ipadapter没法主动控制合成哪个图像中的哪种元素:
-    <ul>
-      <li>虽然替换了颜色, 背景, 但是没法替换材质, 笔触</li>
-      <li>有几张图还替换了原图的色块分布, 这是我们不想要的</li>
-    </ul>
-  </li>
-  <li>另外, controlnet-canny和ipadapter的龙都不能省略
-    <ul>
-      <li>如果ipadapter只用风格图:
+  <li><strong>风格:</strong> 3种方法都可以
+    <ol>
+      <li>text prompt里输入</li>
+      <li>风格LoRA
         <ul>
-          <li><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240208003655.png" alt="Pasted image 20240208003655.png" width="100" /> <img src="/personal_homepage/docs/attachment/Pasted%20image%2020240208003712.png" alt="Pasted image 20240208003712.png" width="100" /></li>
-          <li>增加control-net的权重也是没用的, weight=0.8时出现了噪声图案</li>
+          <li>在prompt也要加上对应风格关键词</li>
         </ul>
       </li>
-      <li>如果不加controlnet:
+      <li>用ipadpter输入风格图片控制
         <ul>
-          <li><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240208003804.png" alt="Pasted image 20240208003804.png" width="100" /> <img src="/personal_homepage/docs/attachment/Pasted%20image%2020240208003819.png" alt="Pasted image 20240208003819.png" width="100" /></li>
+          <li>ipadpter的weight需要调整: 不能太低(风格化没用), 也不能太高(和风格图太像)</li>
+          <li>一直有和风格图太像, 或者风格图提供我们不想要元素的风险…毕竟一张图片的信息不像文字和lora那样有明确的指向性</li>
         </ul>
       </li>
-      <li>看起来controlnet保持了龙的外形结构, ipadpter加龙提高了龙的权重, 不过ipadapter从龙图中究竟学到了什么? 是扁平的画风吗? 只用风格图的情况下, 确实画风更接近风格图, 但是内容也更接近了
+    </ol>
+  </li>
+  <li><strong>控制:</strong>
+    <ul>
+      <li>用canny或depth模型都能做到控制猫的位置
         <ul>
-          <li>可以通过text prompt控制吗? 但是clip又无法理解简笔画的龙.</li>
+          <li>Marigold的识别特别慢, 尝试的时候计算完深度图要先把那个节点断开</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><strong>问题:</strong>
+    <ul>
+      <li>有些风格单独可以出图, 但是加了我训练的猫的LoRA就没法出对应风格的图了</li>
+      <li>用LoRA训练的模型没有完全理解我的猫的所有特征: 尤其是鼻子和嘴附近的毛色
+        <ul>
+          <li>我用了30多张照片, 也没有改label的caption, 所以可能还有质量增加的空间</li>
+        </ul>
+      </li>
+      <li>用ipadpter的失败经验:
+        <ul>
+          <li>如果用一张猫的图片和一张风格图
+            <ul>
+              <li><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240209133511.png" alt="Pasted image 20240209133511.png" width="100" /></li>
+              <li>无法控制输入元素</li>
+            </ul>
+          </li>
         </ul>
       </li>
     </ul>
@@ -233,48 +245,31 @@
 
 <h2 id="comfyui-workflow">ComfyUI workflow</h2>
 
-<p><a href="https://gist.github.com/roshameow/d952bf0157a25ab3e9e724df1449b160#file-ipadapter_controlnet-canny_loong_style_change-json"><strong>ipadapter_controlnet-canny_loong_style_change.json</strong></a></p>
+<p>用Lora调整风格$\downarrow$ : <a href="https://gist.github.com/roshameow/d952bf0157a25ab3e9e724df1449b160#file-rosha_lora_controlnet_canny_depth_style_change-json"><strong>rosha_lora_controlnet_canny_depth_style_change.json</strong></a></p>
 
-<p><img src="/personal_homepage/docs/attachment/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-02-07%20224530.png" alt="屏幕截图 2024-02-07 224530.png" width="800" /></p>
+<p><img src="/personal_homepage/docs/attachment/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-02-08%20230728.png" alt="屏幕截图 2024-02-08 230728.png" width="800" /></p>
 
-<h2 id="comfyui难用的地方">ComfyUI难用的地方</h2>
+<p>用ipadator调整风格$\downarrow$ : <a href="https://gist.github.com/roshameow/d952bf0157a25ab3e9e724df1449b160#file-rosha_lora_ipadapter_style_tranformation-json"><strong>rosha_lora_ipadapter_style_tranformation.json</strong></a></p>
 
-<ul>
-  <li>UI的奇怪地方
-    <ul>
-      <li>有参数的地方字体相对整个节点特别小, 而且没法调节. 输入text prompt的时候是根本看不清..</li>
-      <li>鼠标的十字倒是特别大…</li>
-    </ul>
-  </li>
-  <li>节点连接非常反常识
-    <ul>
-      <li>load节点
-        <ul>
-          <li>输入都在右侧, 一般会觉得应该把prompt输入模型</li>
-          <li>load节点的存在就很奇怪, 为什么不把load和apply合并到一起? 或者在右侧用菜单栏切换</li>
-          <li>model里面还有个model_name? 模型的名字一长全混在一起真的分不清啊…</li>
-        </ul>
-      </li>
-      <li>preview Image节点
-        <ul>
-          <li>为什么不直接做成一个下拉选项…</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li>为什么不能做成一个Chromium内核的本地app..
-    <ul>
-      <li>据说有一些方法可以打包成一个app?</li>
-      <li>凡需要inpaint输入的地方, 输入方式很不方便, 能和其他专门用来绘图的软件结合就好了</li>
-    </ul>
-  </li>
-  <li>虽然如此, 可以用节点和分享工作流就比webui好用太多了</li>
-</ul>
+<p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240209135354.png" alt="Pasted image 20240209135354.png" width="800" /></p>
 
-<h2 id="其他讨论这个链接">其他讨论这个链接</h2>
+<h2 id="资源">资源</h2>
 
-<p>[1] https://zhuanlan.zhihu.com/p/664201523 里面介绍了一个换画风的工作流, 不过例子是人像, 可能本身网络对人像的理解能力更强吧?　</p>
+<p>艺术风格prompt:</p>
 
+<p>[1] https://medium.com/phygital/top-40-useful-prompts-for-stable-diffusion-xl-008c03dd0557</p>
+
+<p>[2] https://docs.midjourney.com/docs/explore-prompting</p>
+
+<p>[3] https://www.urania.ai/top-sd-artists</p>
+
+<p>[4] https://github.com/SupaGruen/StableDiffusion-CheatSheet 是v1.5插件</p>
+
+<p>Lora训练:</p>
+
+<p>[5]  <a href="https://www.youtube.com/watch?v=NaHtI0u3Am4">https://www.youtube.com/watch?v=NaHtI0u3Am4</a> kohya_ss的参数设置,</p>
+
+<p>[6] https://zhuanlan.zhihu.com/p/654322145.   下面讨论说optimizer还是默认比较好?</p>
 
         </div>
 
@@ -286,8 +281,8 @@
     <div id="disqus_thread"></div>
     <script>
       var disqus_config = function () {
-        this.page.url = 'https://roshameow.github.io//personal_homepage/docs/photo/stable-diffusion1/';
-        this.page.identifier = 'https://roshameow.github.io//personal_homepage/docs/photo/stable-diffusion1/';
+        this.page.url = 'https://roshameow.github.io//personal_homepage/docs/photo/stable-diffusion2/';
+        this.page.identifier = 'https://roshameow.github.io//personal_homepage/docs/photo/stable-diffusion2/';
       };
 
       (function() {
@@ -305,23 +300,15 @@
 
         <nav class="page-pagination" role="navigation">
   
-    <a class="page-previous" href="/personal_homepage/docs/deeplearning/attention/">
+    <a class="page-previous" href="/personal_homepage/docs/blender/blender-learning5/">
       <h4 class="page-pagination-label">Previous</h4>
       <span class="page-pagination-title">
-        <i class="fas fa-arrow-left"></i> 神经网络attention结构理解
+        <i class="fas fa-arrow-left"></i> blender学习: 做火焰效果
 
       </span>
     </a>
   
 
-  
-    <a class="page-next" href="/personal_homepage/docs/blender/blender-learning5/">
-      <h4 class="page-pagination-label">Next</h4>
-      <span class="page-pagination-title">
-        blender学习: 做火焰效果
- <i class="fas fa-arrow-right"></i>
-      </span>
-    </a>
   
 </nav>
 

@@ -223,4 +223,14 @@ var store = [{
         "excerpt":"用ipadapter和canny做风格转换 ComfyUI使用 调用ComfyUI中default的工作流 下载sdxl模型 连上IPAdapter节点 安装IPAdapter_plus插件 下载需要的ipadater微调模型和clip vision编码器: 把图像用clip vision编码后输入base model的cross-attention层 ComfyUI里连接顺序是: Checkpoint: model-&gt; IPAdapter: model -&gt; KSampler: model weigt设为1, text prompt都空着, latent prompt也空着 连上Controlnet节点 下载canny模型 找不到其他适合sdxl的controlnet模型因为我们的原图是个线稿适合用canny ComfyUI里连接顺序是: Checkpoint-&gt;prompt-&gt;controlnet-&gt;Ksampler: text prompt controlnet最后是作用在text prompt上的? 调整controlnet权重和影响步数: stength=0.5, start_percent=0, end_percent=0.6 如果设置过大就只能得到一张有颜色的线稿图 结果 原图: + 合成图: 竟然可以识别龙的眼睛啊…有好几幅图都把猫眼替换到了龙眼上 如果两种图有同样的元素(眼睛之类的), 可能可以比较好的替换 最后的龙和人, 龙和山, 都不能对应起来 ipadapter没法主动控制合成哪个图像中的哪种元素: 虽然替换了颜色,...","categories": ["docs","photo"],
         "tags": ["content","ComfyUI","ipadapter","controlnet","canny","sdxl"],
         "url": "https://roshameow.github.io//personal_homepage/docs/photo/stable-diffusion1/"
+      },{
+        "title": "blender学习: 做火焰效果",
+        "excerpt":"用graph editor和noise texture 步骤 参考RuiHuang_art在b站的教学视频 , 和做车流用到的功能差不多 world property: 加入一个背景的贴图 制做火焰: 添加一个Plane mesh 分成两半: 在Edit编辑模式下, 按Ctrl+R加loop cut , 在edge中间添加新的顶点, 把一半拉长: 选中顶点后按G可以拉伸, 但是没法控制只在一个轴的方向拉 shader: 目的是制作一个自发光, 半透明, 抖动的效果 颜色效果: 用texture Coordinate 生成uv坐标 在mapping里把x,y的location调到-2, scale调到4 uv坐标系好像范围是(-scale/2, scale/2) 用Gradient Texture 的spherical: 制作从外到内的渐变 自发光: 用Color Ramp 做一个 蓝-&gt;白-&gt;红-&gt;黄 的渐变 调整透明度: 用Color Ramp 做一个 透明-&gt;半透明-&gt;透明 的渐变...","categories": ["docs","blender"],
+        "tags": ["content","render","shader"],
+        "url": "https://roshameow.github.io//personal_homepage/docs/blender/blender-learning5/"
+      },{
+        "title": "stable-diffusion的用法: 用 lora+controlnet做风格转换",
+        "excerpt":"尝试只用ipadapter做猫的风格转换, 非常不成功, ipadapter还是无法控制输入的元素. 必须要用多张图片训练的LoRA控制. ComfyUI步骤 训练Lora 用kohya_ss 的gui训练 networkrank设置64 打开Gradient checkpoint, 不然我16G的显存不够用 另外, 我的wsl2需要解决一下找不到cuda toolkit的问题 检查发现是ubuntu的requirement里面指定的torch和bitsandbytes版本不匹配 在虚拟环境里, 升级到最新版2.2后代码又出问题 最后参考windows版本的requirement.txt, 改成torch=2.1.0+cu118解决了 连上Lora节点 ComfyUI里连接顺序是: Checkpoint: model, clip -&gt; Lora 多个Lora顺序连接就行 ip的lora的weigt设为1.22, 风格化lora的weight不用设那么大 写text prompt 写了包括描述内容的, lora配套的, 描述想要风格的positive prompt 连上Controlnet节点 用到了canny模型, depth模型 下载Marigold的深度识别模型节点 结果 -&gt; 风格: 3种方法都可以 text prompt里输入 风格LoRA 在prompt也要加上对应风格关键词 用ipadpter输入风格图片控制 ipadpter的weight需要调整:...","categories": ["docs","photo"],
+        "tags": ["content","ComfyUI","ipadapter","controlnet","canny","sdxl"],
+        "url": "https://roshameow.github.io//personal_homepage/docs/photo/stable-diffusion2/"
       }]
