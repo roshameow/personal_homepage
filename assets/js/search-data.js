@@ -225,12 +225,22 @@ var store = [{
         "url": "https://roshameow.github.io//personal_homepage/docs/photo/stable-diffusion1/"
       },{
         "title": "blender学习: 做火焰效果",
-        "excerpt":"用graph editor和noise texture 步骤 参考RuiHuang_art在b站的教学视频 , 和做车流用到的功能差不多 world property: 加入一个背景的贴图 制做火焰: 添加一个Plane mesh 分成两半: 在Edit编辑模式下, 按Ctrl+R加loop cut , 在edge中间添加新的顶点, 把一半拉长: 选中顶点后按G可以拉伸, 但是没法控制只在一个轴的方向拉 shader: 目的是制作一个自发光, 半透明, 抖动的效果 颜色效果: 用texture Coordinate 生成uv坐标 在mapping里把x,y的location调到-2, scale调到4 uv坐标系好像范围是(-scale/2, scale/2) 用Gradient Texture 的spherical: 制作从外到内的渐变 自发光: 用Color Ramp 做一个 蓝-&gt;白-&gt;红-&gt;黄 的渐变 调整透明度: 用Color Ramp 做一个 透明-&gt;半透明-&gt;透明 的渐变...","categories": ["docs","blender"],
+        "excerpt":"火焰的形状用圆形变形一半获得. 用Perlin noise使坐标变形制作随机抖动. 用Emission node渲染发光效果. 用graph editor和noise texture -&gt; 飞行器火焰 步骤 参考RuiHuang_art在b站的教学视频 , 和做车流用到的功能差不多 world property: 加入一个背景的贴图 制做一个平面的火焰: 添加一个Plane mesh 分成两半: 在Edit编辑模式下, 按Ctrl+R加loop cut , 在edge中间添加新的顶点, 把一半拉长: 选中顶点后按G+Y在Y轴拉伸 shader: 目的是制作一个自发光, 半透明, 抖动的效果 颜色效果: 用texture Coordinate 生成uv坐标 在mapping里把x,y的location调到-2, scale调到4 uv坐标系好像范围是(-scale/2, scale/2) 用Gradient Texture 的spherical: 制作从外到内的渐变 自发光: 用Color Ramp 做一个 蓝-&gt;白-&gt;红-&gt;黄 的渐变...","categories": ["docs","blender"],
         "tags": ["content","render","shader"],
         "url": "https://roshameow.github.io//personal_homepage/docs/blender/blender-learning5/"
       },{
         "title": "stable-diffusion的用法: 用 lora+controlnet做风格转换",
-        "excerpt":"尝试只用ipadapter做猫的风格转换, 非常不成功, ipadapter还是无法控制输入的元素. 必须要用多张图片训练的LoRA控制. ComfyUI步骤 训练Lora 用kohya_ss 的gui训练 networkrank设置64 打开Gradient checkpoint, 不然我16G的显存不够用 另外, 我的wsl2需要解决一下找不到cuda toolkit的问题 检查发现是ubuntu的requirement里面指定的torch和bitsandbytes版本不匹配 在虚拟环境里, 升级到最新版2.2后代码又出问题 最后参考windows版本的requirement.txt, 改成torch=2.1.0+cu118解决了 连上Lora节点 ComfyUI里连接顺序是: Checkpoint: model, clip -&gt; Lora 多个Lora顺序连接就行 ip的lora的weigt设为1.22, 风格化lora的weight不用设那么大 写text prompt 写了包括描述内容的, lora配套的, 描述想要风格的positive prompt 连上Controlnet节点 用到了canny模型, depth模型 下载Marigold的深度识别模型节点 结果 -&gt; 风格: 3种方法都可以 text prompt里输入 风格LoRA 在prompt也要加上对应风格关键词 用ipadpter输入风格图片控制 ipadpter的weight需要调整:...","categories": ["docs","photo"],
+        "excerpt":"尝试只用ipadapter做猫的风格转换, 非常不成功, ipadapter还是无法控制输入的元素. 必须要用多张图片训练的LoRA控制. 另外, 猫脸上颜色分布的特征, 没有controlnet可以直接表示. ComfyUI步骤 训练Lora 用kohya_ss 的gui训练 network rank设置64 打开Gradient checkpoint, 不然我16G的显存不够用 另外, 我的wsl2需要解决一下找不到cuda toolkit的问题 检查发现是ubuntu的requirement里面指定的torch和bitsandbytes版本不匹配 在虚拟环境里, 升级到最新版2.2后代码又出问题 最后参考windows版本的requirement.txt, 改成torch=2.1.0+cu118解决了 连上Lora节点 ComfyUI里连接顺序是: Checkpoint: model, clip -&gt; Lora 多个Lora顺序连接就行 ip的lora的weigt设为1.22, 风格化lora的weight不用设那么大 写text prompt 写了包括描述内容的, lora配套的, 描述想要风格的positive prompt 连上Controlnet节点 用到了canny模型, depth模型 下载Marigold的深度识别模型节点 结果 -&gt; 风格: 3种方法都可以 text prompt里输入...","categories": ["docs","photo"],
         "tags": ["content","ComfyUI","ipadapter","controlnet","canny","sdxl"],
         "url": "https://roshameow.github.io//personal_homepage/docs/photo/stable-diffusion2/"
+      },{
+        "title": "blender学习: 玻璃杯",
+        "excerpt":"由cylinder变形得到水杯. 用cycles渲染玻璃材质. 步骤 参考这个b站的教学视频 制作水杯: 添加一个cylinder 删除上下两个底: 在Edit Mode, 开启透视, 按3选中面删除 把下底缩小一点: 按1选中顶点 填充底面: 用Ctrl+F填充, 选择Grid Fill, 调节Offset 做出玻璃杯的厚度: 选中上面的顶点, 用E+S向内 做出玻璃杯的内层: 继续E+Y向下, S向内 做出玻璃杯的内底: Ctrl+F填充, 选择Grid Fill , 调节Offset 把杯子变光滑: 在边缘处添加loop cut(卡线): Ctrl+R 增加loop cut, Ctrl+B向上下拉伸 添加loop cut是为了之后把杯子边缘变成弧形, 而不影响杯壁和杯底平的部分 Shift+option 长按出现选项, 选中loop, 按G移动loop进行微调 改成shade smooth 加一个subdivision modifier 制作拍摄场景: 添加一个plane...","categories": ["docs","blender"],
+        "tags": ["content","shader","3d_model","shortcut"],
+        "url": "https://roshameow.github.io//personal_homepage/docs/blender/blender-learning6/"
+      },{
+        "title": "photoshop: 酸性海报",
+        "excerpt":"","categories": ["docs","photo"],
+        "tags": ["content"],
+        "url": "https://roshameow.github.io//personal_homepage/docs/photo/photoshop-sore/"
       }]

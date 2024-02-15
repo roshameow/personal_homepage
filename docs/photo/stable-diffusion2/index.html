@@ -20,8 +20,8 @@
 <meta name="generator" content="Jekyll v4.3.3" />
 <meta property="og:title" content="stable-diffusion的用法: 用 lora+controlnet做风格转换" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="尝试只用ipadapter做猫的风格转换, 非常不成功, ipadapter还是无法控制输入的元素. 必须要用多张图片训练的LoRA控制." />
-<meta property="og:description" content="尝试只用ipadapter做猫的风格转换, 非常不成功, ipadapter还是无法控制输入的元素. 必须要用多张图片训练的LoRA控制." />
+<meta name="description" content="尝试只用ipadapter做猫的风格转换, 非常不成功, ipadapter还是无法控制输入的元素. 必须要用多张图片训练的LoRA控制. 另外, 猫脸上颜色分布的特征, 没有controlnet可以直接表示." />
+<meta property="og:description" content="尝试只用ipadapter做猫的风格转换, 非常不成功, ipadapter还是无法控制输入的元素. 必须要用多张图片训练的LoRA控制. 另外, 猫脸上颜色分布的特征, 没有controlnet可以直接表示." />
 <link rel="canonical" href="https://roshameow.github.io//personal_homepage/docs/photo/stable-diffusion2/" />
 <meta property="og:url" content="https://roshameow.github.io//personal_homepage/docs/photo/stable-diffusion2/" />
 <meta property="og:site_name" content="Liu, Wen’s Home Page" />
@@ -31,7 +31,7 @@
 <meta property="twitter:title" content="stable-diffusion的用法: 用 lora+controlnet做风格转换" />
 <meta name="twitter:site" content="@" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-02-10T03:01:41+00:00","datePublished":"2024-02-09T00:00:00+00:00","description":"尝试只用ipadapter做猫的风格转换, 非常不成功, ipadapter还是无法控制输入的元素. 必须要用多张图片训练的LoRA控制.","headline":"stable-diffusion的用法: 用 lora+controlnet做风格转换","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/docs/photo/stable-diffusion2/"},"url":"https://roshameow.github.io//personal_homepage/docs/photo/stable-diffusion2/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-02-16T01:38:07+00:00","datePublished":"2024-02-09T00:00:00+00:00","description":"尝试只用ipadapter做猫的风格转换, 非常不成功, ipadapter还是无法控制输入的元素. 必须要用多张图片训练的LoRA控制. 另外, 猫脸上颜色分布的特征, 没有controlnet可以直接表示.","headline":"stable-diffusion的用法: 用 lora+controlnet做风格转换","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/docs/photo/stable-diffusion2/"},"url":"https://roshameow.github.io//personal_homepage/docs/photo/stable-diffusion2/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -146,7 +146,8 @@
 
       <div class="page-content">
         <div class="e-content">
-          <p>尝试只用ipadapter做猫的风格转换, 非常不成功, ipadapter还是无法控制输入的元素. 必须要用多张图片训练的LoRA控制.</p>
+          <p>尝试只用ipadapter做猫的风格转换, 非常不成功, ipadapter还是无法控制输入的元素. 必须要用多张图片训练的LoRA控制. 
+另外, 猫脸上颜色分布的特征, 没有controlnet可以直接表示.</p>
 
 <h2 id="comfyui步骤">ComfyUI步骤</h2>
 
@@ -155,7 +156,7 @@
     <ul>
       <li>用<a href="https://github.com/bmaltais/kohya_ss">kohya_ss</a> 的gui训练
         <ul>
-          <li>networkrank设置64</li>
+          <li>network rank设置64</li>
           <li>打开Gradient checkpoint, 不然我16G的显存不够用</li>
           <li>另外, 我的wsl2需要解决一下找不到cuda toolkit的问题
             <ul>
@@ -208,6 +209,7 @@
         <ul>
           <li>ipadpter的weight需要调整: 不能太低(风格化没用), 也不能太高(和风格图太像)</li>
           <li>一直有和风格图太像, 或者风格图提供我们不想要元素的风险…毕竟一张图片的信息不像文字和lora那样有明确的指向性</li>
+          <li>我用的不是换脸模型, 但是模型好像特别执着于换脸? 的确模型本来的目的是换ip…</li>
         </ul>
       </li>
     </ol>
@@ -309,6 +311,14 @@
     </a>
   
 
+  
+    <a class="page-next" href="/personal_homepage/docs/blender/blender-learning6/">
+      <h4 class="page-pagination-label">Next</h4>
+      <span class="page-pagination-title">
+        blender学习: 玻璃杯
+ <i class="fas fa-arrow-right"></i>
+      </span>
+    </a>
   
 </nav>
 

@@ -20,8 +20,8 @@
 <meta name="generator" content="Jekyll v4.3.3" />
 <meta property="og:title" content="blender学习: 做火焰效果" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="用graph editor和noise texture 步骤" />
-<meta property="og:description" content="用graph editor和noise texture 步骤" />
+<meta name="description" content="火焰的形状用圆形变形一半获得. 用Perlin noise使坐标变形制作随机抖动. 用Emission node渲染发光效果." />
+<meta property="og:description" content="火焰的形状用圆形变形一半获得. 用Perlin noise使坐标变形制作随机抖动. 用Emission node渲染发光效果." />
 <link rel="canonical" href="https://roshameow.github.io//personal_homepage/docs/blender/blender-learning5/" />
 <meta property="og:url" content="https://roshameow.github.io//personal_homepage/docs/blender/blender-learning5/" />
 <meta property="og:site_name" content="Liu, Wen’s Home Page" />
@@ -31,7 +31,7 @@
 <meta property="twitter:title" content="blender学习: 做火焰效果" />
 <meta name="twitter:site" content="@" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-02-09T16:51:37+00:00","datePublished":"2024-02-08T00:00:00+00:00","description":"用graph editor和noise texture 步骤","headline":"blender学习: 做火焰效果","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/docs/blender/blender-learning5/"},"url":"https://roshameow.github.io//personal_homepage/docs/blender/blender-learning5/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-02-12T03:33:52+00:00","datePublished":"2024-02-08T00:00:00+00:00","description":"火焰的形状用圆形变形一半获得. 用Perlin noise使坐标变形制作随机抖动. 用Emission node渲染发光效果.","headline":"blender学习: 做火焰效果","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/docs/blender/blender-learning5/"},"url":"https://roshameow.github.io//personal_homepage/docs/blender/blender-learning5/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -109,7 +109,7 @@
             <a class="u-url" rel="me" href=""><i class="fas fa-link fa-lg" title=""></i></a>
           </li></ul>
 
-<span class="read-time">~1 min read</span>
+<span class="read-time">1 min read</span>
 
     <time class="page-date dt-published" datetime="2024-02-08T00:00:00+00:00"><a class="u-url" href="">February 8, 2024</a>
 </time>
@@ -138,7 +138,7 @@
 </h2>
 <!-- 1. toc
 {:toc} -->
-<ul class="inline_toc" id="my_toc"><li><a href="#用graph-editor和noise-texture">用graph editor和noise texture</a><ul><li><a href="#步骤">步骤</a></li><li><a href="#shader流程">shader流程</a></li></ul></li><li><a href="#用displacement粒子特效">用displacement+粒子特效</a></li></ul>
+<ul class="inline_toc" id="my_toc"><li><a href="#用graph-editor和noise-texture---飞行器火焰">用graph editor和noise texture -&gt; 飞行器火焰</a><ul><li><a href="#步骤">步骤</a></li><li><a href="#shader流程">shader流程</a></li></ul></li><li><a href="#用displacement粒子系统---卡通火焰">用displacement+粒子系统 -&gt; 卡通火焰</a><ul><li><a href="#步骤-1">步骤:</a></li></ul></li><li><a href="#火焰效果的片段">火焰效果的片段</a></li><li><a href="#reference">reference</a></li></ul>
 </div>
 <!-- {::options parse_block_html="false" /} -->
 
@@ -146,17 +146,19 @@
 
       <div class="page-content">
         <div class="e-content">
-          <h2 id="用graph-editor和noise-texture">用graph editor和noise texture</h2>
+          <p>火焰的形状用圆形变形一半获得. 用<a href="https://en.wikipedia.org/wiki/Perlin_noise">Perlin noise</a>使坐标变形制作随机抖动. 用Emission node渲染发光效果.</p>
+
+<h2 id="用graph-editor和noise-texture---飞行器火焰">用graph editor和noise texture -&gt; 飞行器火焰</h2>
 <h3 id="步骤">步骤</h3>
 
 <p>参考RuiHuang_art在<a href="https://www.bilibili.com/video/BV1HH4y1Y7Vv/">b站的教学视频</a> , 和做车流用到的功能差不多</p>
 <ul>
   <li>world property: 加入一个背景的贴图</li>
-  <li>制做火焰:
+  <li>制做一个平面的火焰:
     <ul>
       <li>添加一个Plane mesh</li>
       <li>分成两半: 在Edit编辑模式下, 按Ctrl+R加<a href="https://docs.blender.org/manual/en/latest/modeling/meshes/tools/loop.html">loop cut</a> , 在edge中间添加新的顶点,</li>
-      <li>把一半拉长: 选中顶点后按G可以拉伸, 但是没法控制只在一个轴的方向拉</li>
+      <li>把一半拉长: 选中顶点后按G+Y在Y轴拉伸</li>
     </ul>
   </li>
   <li>shader: 目的是制作一个自发光, 半透明, 抖动的效果
@@ -174,7 +176,7 @@
           <li>调整透明度: 用<a href="https://docs.blender.org/manual/en/latest/editors/texture_node/types/converter/color_ramp.html">Color Ramp</a> 做一个 透明-&gt;半透明-&gt;透明 的渐变</li>
           <li>连接bsdf
             <ul>
-              <li>把Emmision和transparent bsdf用Mix shader连接在一起</li>
+              <li>把Emission和transparent bsdf用Mix shader连接在一起</li>
             </ul>
           </li>
         </ol>
@@ -209,9 +211,103 @@
 
 <p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240208164250.png" alt="Pasted image 20240208164250.png" width="600" /></p>
 
-<h2 id="用displacement粒子特效">用displacement+粒子特效</h2>
+<h2 id="用displacement粒子系统---卡通火焰">用displacement+粒子系统 -&gt; 卡通火焰</h2>
+<h3 id="步骤-1">步骤:</h3>
 
 <p>参考小红书<a href="https://www.xiaohongshu.com/explore/658636a9000000003c010c5d">KurTips的教学</a></p>
+<ul>
+  <li>制作火焰形状
+    <ul>
+      <li>添加一个cube mesh</li>
+      <li>在modifier里加subdivision surface</li>
+      <li>在Edit Mode, 打开Propotional Editing(衰减编辑), 选择最上面vertex, 按G+V可以在z轴拉伸</li>
+      <li>制作焰心: 复制一个更小的放在前面</li>
+      <li>选中两个object, 右键<a href="https://docs.blender.org/manual/en/latest/scene_layout/object/editing/shading.html">shade smooth</a>
+        <ul>
+          <li>shader计算时, 三角形内的normal vector由三个顶点的normal vector插值得到</li>
+        </ul>
+      </li>
+      <li>合并两个object: <a href="https://docs.blender.org/manual/en/4.2/scene_layout/object/editing/join.html">Ctrl+J</a></li>
+    </ul>
+  </li>
+  <li>shader: 设置<a href="https://docs.blender.org/manual/en/latest/render/shader_nodes/input/texture_coordinate.html">texture Coordinate</a>  generate-&gt;Separate XYZ-&gt;Gradient Texture-&gt;ColorRamp-&gt; Emission
+    <ul>
+      <li>把大小两块用不同的材质
+        <ul>
+          <li>进入Edit Mode, 随便选中一个点, Ctrl+L可以把原本的大小两个object分别选中</li>
+          <li>在Material添加材质</li>
+        </ul>
+      </li>
+      <li>ColorRamp颜色: 外焰: 红-&gt;黄 ; 焰心: 红-&gt;橙红</li>
+    </ul>
+  </li>
+  <li>抖动效果: 用displacement实现
+    <ol>
+      <li>在Modifier添加displace: 选Clouds材质, 调整Size, Depth=1, displacement的Stength</li>
+      <li>让displacement的强度从上到下渐变: 用顶点组实现
+        <ol>
+          <li>定义顶点组: 在Edit Mode开透视模式, 选中上面一部分顶点; 在Oject的Data里添加vetex group, 把刚才选中的部分顶点assign给这个顶点组</li>
+          <li>在<a href="https://docs.blender.org/manual/en/latest/sculpt_paint/weight_paint/index.html">Weight Paint</a>模式, 增加weight-&gt;<a href="https://docs.blender.org/manual/en/2.79/sculpt_paint/painting/weight_paint/weight_tools.html">smooth-&gt;iteration</a>: 让 in Vertex Group-&gt; outside Vertex Group 的渐变更光滑
+            <ul>
+              <li>smooth操作的每个iteration都是和邻域的顶点做平滑</li>
+            </ul>
+          </li>
+          <li>在displace的vertex group选择顶点组</li>
+        </ol>
+      </li>
+      <li>制作displacement的动态: 通过绑定一个空坐标轴实现
+        <ol>
+          <li>在displace的Coordinates选择object, 物体选择我们的空坐标轴</li>
+          <li>修改空坐标轴的Oject-&gt;Transform的z轴的值, 改为: <code class="language-plaintext highlighter-rouge">#frame/100(帧数/100)</code>
+            <ul>
+              <li>这样做比用<a href="https://docs.blender.org/manual/zh-hans/dev/editors/graph_editor/fcurves/editing.html">Graph Editor</a> 方便不少👍</li>
+            </ul>
+          </li>
+        </ol>
+      </li>
+    </ol>
+  </li>
+  <li>制作火星: 用粒子系统
+    <ol>
+      <li>在火焰里添加一个圆环mesh</li>
+      <li>进入Edit Mode, 填充: 快捷键F</li>
+      <li>修改Particles参数:
+        <ul>
+          <li>Field Weight-&gt; Gravity改为0: 让粒子向上</li>
+          <li>Velocity-&gt; normal改为2</li>
+          <li>Emission: 调整Frame_start, Frame_end, lifetime(和velocity共同控制粒子移动的距离)</li>
+          <li>Physics-&gt; Brownian改为10.5: 让粒子做布朗运动</li>
+        </ul>
+      </li>
+      <li>调整火星材质:
+        <ol>
+          <li>制作一个多面体mesh, subdivision改成1: 减小计算量</li>
+          <li>把多面体的shader改成自发光, 调整color, strength适当增大</li>
+          <li><strong>打开eevee渲染器的<a href="https://docs.blender.org/manual/en/latest/render/eevee/render_settings/bloom.html">bloom(辉光)</a> 功能</strong></li>
+          <li>制定Particles-&gt;Render参数:
+            <ol>
+              <li>Render As调成Object模式, Render-&gt;Instance选择我们的制作的多面体mesh</li>
+              <li>scale调小, scale Randomness调大: 让粒子大小不一</li>
+            </ol>
+          </li>
+        </ol>
+      </li>
+    </ol>
+  </li>
+  <li>结果: 因为焰心的制作方法, 只能在一定角度看.
+    <ul>
+      <li><img src="/personal_homepage/docs/attachment/fire_cartoon_cut.mp4" alt="fire_cartoon_cut.mp4" width="200" /></li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="火焰效果的片段">火焰效果的片段</h2>
+
+<p>[1] 冰海战记s2ep5的放火场景</p>
+
+<h2 id="reference">reference</h2>
+
+<p>[1] https://zhuanlan.zhihu.com/p/484222862 辉光效果</p>
 
         </div>
 

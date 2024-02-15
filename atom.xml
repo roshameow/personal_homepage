@@ -1,4 +1,161 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="https://roshameow.github.io//personal_homepage/atom.xml" rel="self" type="application/atom+xml" /><link href="https://roshameow.github.io//personal_homepage/" rel="alternate" type="text/html" /><updated>2024-02-09T11:08:59+00:00</updated><id>https://roshameow.github.io//personal_homepage/atom.xml</id><title type="html">Liu, Wen’s Home Page</title><subtitle>Work, Experiments and Ideas.</subtitle><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><entry><title type="html">stable-diffusion的用法: 用 lora+controlnet做风格转换</title><link href="https://roshameow.github.io//personal_homepage/docs/photo/stable-diffusion2/" rel="alternate" type="text/html" title="stable-diffusion的用法: 用 lora+controlnet做风格转换" /><published>2024-02-09T00:00:00+00:00</published><updated>2024-02-10T03:01:41+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/photo/stable-diffusion2</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/photo/stable-diffusion2/"><![CDATA[<p>尝试只用ipadapter做猫的风格转换, 非常不成功, ipadapter还是无法控制输入的元素. 必须要用多张图片训练的LoRA控制.</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="https://roshameow.github.io//personal_homepage/atom.xml" rel="self" type="application/atom+xml" /><link href="https://roshameow.github.io//personal_homepage/" rel="alternate" type="text/html" /><updated>2024-02-15T17:01:15+00:00</updated><id>https://roshameow.github.io//personal_homepage/atom.xml</id><title type="html">Liu, Wen’s Home Page</title><subtitle>Work, Experiments and Ideas.</subtitle><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><entry><title type="html">photoshop: 酸性海报</title><link href="https://roshameow.github.io//personal_homepage/docs/photo/photoshop-sore/" rel="alternate" type="text/html" title="photoshop: 酸性海报" /><published>2024-02-14T00:00:00+00:00</published><updated>2024-02-16T08:57:10+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/photo/photoshop-sore</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/photo/photoshop-sore/"><![CDATA[]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="photo" /><category term="content" /><summary type="html"><![CDATA[]]></summary></entry><entry><title type="html">blender学习: 玻璃杯</title><link href="https://roshameow.github.io//personal_homepage/docs/blender/blender-learning6/" rel="alternate" type="text/html" title="blender学习: 玻璃杯" /><published>2024-02-10T00:00:00+00:00</published><updated>2024-02-16T08:39:36+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/blender/blender-learning6</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/blender/blender-learning6/"><![CDATA[<p>由cylinder变形得到水杯. 用cycles渲染玻璃材质.</p>
+<h2 id="步骤">步骤</h2>
+
+<p>参考<a href="https://www.bilibili.com/video/BV1Fg4y127c7/">这个b站的教学视频</a></p>
+
+<ul>
+  <li>制作水杯:
+    <ol>
+      <li>添加一个cylinder</li>
+      <li>删除上下两个底: 在Edit Mode, 开启透视, 按3选中面删除</li>
+      <li>把下底缩小一点: 按1选中顶点</li>
+      <li>填充底面: 用Ctrl+F填充, 选择<a href="https://docs.blender.org/manual/en/latest/modeling/meshes/editing/face/grid_fill.html">Grid Fill</a>, 调节Offset
+        <ul>
+          <li><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240212082748.png" alt="Pasted image 20240212082748.png" width="100" /></li>
+        </ul>
+      </li>
+      <li>做出玻璃杯的厚度: 选中上面的顶点, 用E+S向内
+        <ul>
+          <li><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240212082705.png" alt="Pasted image 20240212082705.png" width="100" /></li>
+        </ul>
+      </li>
+      <li>做出玻璃杯的内层: 继续E+Y向下, S向内</li>
+      <li>做出玻璃杯的内底: Ctrl+F填充, 选择<a href="https://docs.blender.org/manual/en/latest/modeling/meshes/editing/face/grid_fill.html">Grid Fill</a> , 调节Offset</li>
+      <li>把杯子变光滑:
+        <ol>
+          <li>在边缘处添加loop cut(卡线): Ctrl+R 增加loop cut, Ctrl+B向上下拉伸
+            <ul>
+              <li><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240212133706.png" alt="Pasted image 20240212133706.png" width="100" /></li>
+              <li>添加loop cut是为了之后把杯子边缘变成弧形, 而不影响杯壁和杯底平的部分</li>
+            </ul>
+          </li>
+          <li>Shift+option 长按出现选项, 选中loop, 按G移动loop进行微调
+            <ol>
+              <li><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240212141056.png" alt="Pasted image 20240212141056.png" width="100" /></li>
+            </ol>
+          </li>
+        </ol>
+      </li>
+      <li>改成shade smooth</li>
+      <li>加一个subdivision modifier</li>
+    </ol>
+  </li>
+  <li>制作拍摄场景:
+    <ol>
+      <li>添加一个plane mesh</li>
+      <li>在Edit Mode选中一个边, E+Z复制一份, 向上拉
+        <ol>
+          <li><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240212141942.png" alt="Pasted image 20240212141942.png" width="100" /></li>
+        </ol>
+      </li>
+      <li>选中中间的edge, 拉成弧线: Shift+Option选中, Ctrl+B拉伸, 按S改变段数
+        <ol>
+          <li><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240212142443.png" alt="Pasted image 20240212142443.png" width="150" /></li>
+        </ol>
+      </li>
+      <li>选择shade smooth</li>
+    </ol>
+  </li>
+  <li>打光
+    <ul>
+      <li>一个area light做主光, 另一个area light做辅光: 形状调节成disk
+        <ul>
+          <li><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240212143950.png" alt="Pasted image 20240212143950.png" width="150" /> <img src="/personal_homepage/docs/attachment/Pasted%20image%2020240212152018.png" alt="Pasted image 20240212152018.png" width="130" /></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>shader:
+    <ul>
+      <li>用Refraction和Glossy混合</li>
+      <li>用<a href="https://docs.blender.org/manual/en/4.0/render/shader_nodes/input/fresnel.html">Fresnel node</a> 调节折射和反射的比例</li>
+      <li>设置IOR(折射率)为1.52</li>
+      <li>设置粗糙度为0</li>
+    </ul>
+  </li>
+  <li>render:
+    <ul>
+      <li>用cycles, 把light Paths调成Full Global Illumation: 即所有反射次数为32</li>
+    </ul>
+  </li>
+  <li>结果:
+    <ul>
+      <li><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240212152142.png" alt="Pasted image 20240212152142.png" width="400" /></li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="用到的blender的一些快捷键功能">用到的blender的一些快捷键功能</h2>
+
+<ul>
+  <li>G/R/S (移动/旋转/放缩) 按了之后会提示方向快捷键</li>
+  <li>E (<a href="https://docs.blender.org/manual/en/2.80/modeling/meshes/editing/duplicating/extrude.html">Extrude</a>, 挤出): 保持原顶点不变, 复制一份, 复制的和原来的用edge连接
+    <ul>
+      <li>selected face: <img src="https://docs.blender.org/manual/en/2.80/_images/modeling_meshes_editing_duplicating_extrude_face-before.png" alt="drawing" width="150" />  During extrude:  <img src="https://docs.blender.org/manual/en/2.80/_images/modeling_meshes_editing_duplicating_extrude_face-after.png" alt="drawing" width="150" />  </li>
+    </ul>
+  </li>
+  <li><a href="https://docs.blender.org/manual/en/latest/modeling/meshes/tools/loop.html">Loop Cut</a>(卡线): 在edge中间添新的顶点
+    <ul>
+      <li>添加loop cut: Ctrl+R</li>
+      <li>选中已有的loop cut: Shift+Option+长按</li>
+    </ul>
+  </li>
+  <li>Ctrl+B( <a href="https://docs.blender.org/manual/en/2.81/modeling/meshes/editing/subdividing/bevel.html#:~:text=The%20Bevel%20tool%20smooths%20the,above%20to%20run%20the%20tool.">Bevel</a>, 拉伸, 倒角): 把一个edge变成多个edge, 使物体边缘光滑
+    <ul>
+      <li><img src="https://docs.blender.org/manual/zh-hans/2.81/_images/modeling_meshes_editing_subdividing_bevel_example-4.png" alt="drawing" width="150" /></li>
+      <li>按S可以改变段数</li>
+    </ul>
+  </li>
+  <li>Edit Mode 1/2/3 (选vertex, edge, face)</li>
+</ul>
+
+<h2 id="frensel反射系数">Frensel反射系数</h2>
+
+<p>Frensel node确定折射和反射比例, 从blender的参数看, 受IOR(折射率)和平面法向的影响</p>
+
+<ul>
+  <li>推导:
+    <ul>
+      <li>根据<a href="https://en.wikipedia.org/wiki/Fresnel_equations">Fresnel equation</a> 的dielectric(绝缘体)的版本: $R=0.5*(r_{\perp}^2+r_{\parallel}^2)$
+        <ul>
+          <li>其中: $r_{\perp}=\frac{n_i\cos\theta_i-n_t\cos\theta_t}{n_i\cos\theta_i+n_t\cos\theta_t}$  , $r_{\parallel}=\frac{n_t\cos\theta_i-n_i\cos\theta_t}{n_t\cos\theta_i+n_i\cos\theta_t}$
+            <ul>
+              <li>$n_i$ 是入射介质(即空气=1)的折射率</li>
+              <li>$n_t$ 是传播介质(即玻璃=1.52)的折射率</li>
+              <li>$\cos\theta_i=(n\cdot w_o)$ 表示平面法向和观察方向的夹角：观察方向越平行于平面，$\theta_i$ 越大，折射越少, 反射越强
+                <ul>
+                  <li>pathtracing的方法里, 观察方向就是入射方向</li>
+                </ul>
+              </li>
+              <li>$\cos\theta_t$ 表示平面法向和传播方向的夹角, 根据<a href="https://en.wikipedia.org/wiki/Snell%27s_law">Snell’s law</a>: $\frac{\sin\theta_t}{\sin\theta_i}=\frac{n_i}{n_t}=\frac{1}{\eta}$
+                <ul>
+                  <li>$\eta=n_t/n_i$ : ratio of IOR, 正面是$n$, 反面是$1/n$</li>
+                  <li>则$\cos\theta_t=\sqrt{1-\sin^2\theta_t}=\sqrt{1-\frac{1}{\eta^2}(1-\cos^2\theta_i)}=\frac{1}{\eta}\sqrt{\eta^2-1+\cos^2\theta_i}$</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>代码中的表达方式:
+  \(\begin{align}R &amp;=0.5*((\frac{n_i\cos\theta_i-n_t\cos\theta_t}{n_i\cos\theta_i+n_t\cos\theta_t})^2+(\frac{n_t\cos\theta_i-n_i\cos\theta_t}{n_t\cos\theta_i+n_i\cos\theta_t})^2)\\\\ &amp;=0.5*((\frac{\cos\theta_i-\eta\cos\theta_t}{\cos\theta_i+\eta\cos\theta_t})^2+(\frac{\eta\cos\theta_i-\cos\theta_t}{\eta\cos\theta_i+\cos\theta_t})^2)\; (\eta=n_t/n_i\text{是ratio of IOR, 正面是n, 反面是1/n)}\\\\ &amp;=0.5*((\frac{c-g}{c+g})^2+(\frac{\eta^2c-g}{\eta^2c+g})^2)\;\; (\text{让 }c=\cos\theta_i,\  g=\sqrt{\eta^2-1+\cos^2\theta}=\eta\cos\theta_t)\\\\ &amp;=0.5*((\frac{c-g}{c+g})^2+(\frac{(1+g^2-c^2)c-g}{(1+g^2-c^2)c+g})^2)\;\; (\text{根据 }\eta^2=1+g^2-c^2)\\\\  &amp;=0.5*((\frac{c-g}{c+g})^2+(\frac{c-g}{c+g})^2(\frac{1-c(c+g)}{1+c(g-c)})^2)\\\\  &amp;=0.5*(A^2+A^2B^2)=0.5*A^2(1+B^2)\;\; (\text{让 }A=\frac{g-c}{g+c}, B=\frac{c(g+c)-1}{c(g-c)+1})\end{align}\)</li>
+    </ul>
+  </li>
+  <li>blender代码:
+    <ul>
+      <li><a href="https://projects.blender.org/blender/cycles/src/branch/main/src/kernel/osl/shaders/node_fresnel.osl">cycles/node_fresnel.osl at main</a></li>
+      <li><a href="https://projects.blender.org/blender/cycles/src/branch/main/src/kernel/osl/shaders/node_fresnel.h">cycles/node_fresnel.h at main</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="reference">reference</h2>
+<p><span id="ref"></span></p>
+
+<p>[1] https://seblagarde.wordpress.com/2013/04/29/memo-on-fresnel-equations/ 一些版本的公式推导和reference</p>
+
+<p>[2] https://blenderartists.org/t/whats-the-math-behind-fresnel-node/1502809/11 Fensel node讨论</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="blender" /><category term="content" /><category term="shader" /><category term="3d_model" /><category term="shortcut" /><summary type="html"><![CDATA[由cylinder变形得到水杯. 用cycles渲染玻璃材质. 步骤]]></summary></entry><entry><title type="html">stable-diffusion的用法: 用 lora+controlnet做风格转换</title><link href="https://roshameow.github.io//personal_homepage/docs/photo/stable-diffusion2/" rel="alternate" type="text/html" title="stable-diffusion的用法: 用 lora+controlnet做风格转换" /><published>2024-02-09T00:00:00+00:00</published><updated>2024-02-16T01:38:07+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/photo/stable-diffusion2</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/photo/stable-diffusion2/"><![CDATA[<p>尝试只用ipadapter做猫的风格转换, 非常不成功, ipadapter还是无法控制输入的元素. 必须要用多张图片训练的LoRA控制. 
+另外, 猫脸上颜色分布的特征, 没有controlnet可以直接表示.</p>
 
 <h2 id="comfyui步骤">ComfyUI步骤</h2>
 
@@ -7,7 +164,7 @@
     <ul>
       <li>用<a href="https://github.com/bmaltais/kohya_ss">kohya_ss</a> 的gui训练
         <ul>
-          <li>networkrank设置64</li>
+          <li>network rank设置64</li>
           <li>打开Gradient checkpoint, 不然我16G的显存不够用</li>
           <li>另外, 我的wsl2需要解决一下找不到cuda toolkit的问题
             <ul>
@@ -60,6 +217,7 @@
         <ul>
           <li>ipadpter的weight需要调整: 不能太低(风格化没用), 也不能太高(和风格图太像)</li>
           <li>一直有和风格图太像, 或者风格图提供我们不想要元素的风险…毕竟一张图片的信息不像文字和lora那样有明确的指向性</li>
+          <li>我用的不是换脸模型, 但是模型好像特别执着于换脸? 的确模型本来的目的是换ip…</li>
         </ul>
       </li>
     </ol>
@@ -121,17 +279,19 @@
 
 <p>[5]  <a href="https://www.youtube.com/watch?v=NaHtI0u3Am4">https://www.youtube.com/watch?v=NaHtI0u3Am4</a> kohya_ss的参数设置,</p>
 
-<p>[6] https://zhuanlan.zhihu.com/p/654322145.   下面讨论说optimizer还是默认比较好?</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="photo" /><category term="content" /><category term="ComfyUI" /><category term="ipadapter" /><category term="controlnet" /><category term="canny" /><category term="sdxl" /><summary type="html"><![CDATA[尝试只用ipadapter做猫的风格转换, 非常不成功, ipadapter还是无法控制输入的元素. 必须要用多张图片训练的LoRA控制.]]></summary></entry><entry><title type="html">blender学习: 做火焰效果</title><link href="https://roshameow.github.io//personal_homepage/docs/blender/blender-learning5/" rel="alternate" type="text/html" title="blender学习: 做火焰效果" /><published>2024-02-08T00:00:00+00:00</published><updated>2024-02-09T16:51:37+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/blender/blender-learning5</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/blender/blender-learning5/"><![CDATA[<h2 id="用graph-editor和noise-texture">用graph editor和noise texture</h2>
+<p>[6] https://zhuanlan.zhihu.com/p/654322145.   下面讨论说optimizer还是默认比较好?</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="photo" /><category term="content" /><category term="ComfyUI" /><category term="ipadapter" /><category term="controlnet" /><category term="canny" /><category term="sdxl" /><summary type="html"><![CDATA[尝试只用ipadapter做猫的风格转换, 非常不成功, ipadapter还是无法控制输入的元素. 必须要用多张图片训练的LoRA控制. 另外, 猫脸上颜色分布的特征, 没有controlnet可以直接表示.]]></summary></entry><entry><title type="html">blender学习: 做火焰效果</title><link href="https://roshameow.github.io//personal_homepage/docs/blender/blender-learning5/" rel="alternate" type="text/html" title="blender学习: 做火焰效果" /><published>2024-02-08T00:00:00+00:00</published><updated>2024-02-12T03:33:52+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/blender/blender-learning5</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/blender/blender-learning5/"><![CDATA[<p>火焰的形状用圆形变形一半获得. 用<a href="https://en.wikipedia.org/wiki/Perlin_noise">Perlin noise</a>使坐标变形制作随机抖动. 用Emission node渲染发光效果.</p>
+
+<h2 id="用graph-editor和noise-texture---飞行器火焰">用graph editor和noise texture -&gt; 飞行器火焰</h2>
 <h3 id="步骤">步骤</h3>
 
 <p>参考RuiHuang_art在<a href="https://www.bilibili.com/video/BV1HH4y1Y7Vv/">b站的教学视频</a> , 和做车流用到的功能差不多</p>
 <ul>
   <li>world property: 加入一个背景的贴图</li>
-  <li>制做火焰:
+  <li>制做一个平面的火焰:
     <ul>
       <li>添加一个Plane mesh</li>
       <li>分成两半: 在Edit编辑模式下, 按Ctrl+R加<a href="https://docs.blender.org/manual/en/latest/modeling/meshes/tools/loop.html">loop cut</a> , 在edge中间添加新的顶点,</li>
-      <li>把一半拉长: 选中顶点后按G可以拉伸, 但是没法控制只在一个轴的方向拉</li>
+      <li>把一半拉长: 选中顶点后按G+Y在Y轴拉伸</li>
     </ul>
   </li>
   <li>shader: 目的是制作一个自发光, 半透明, 抖动的效果
@@ -149,7 +309,7 @@
           <li>调整透明度: 用<a href="https://docs.blender.org/manual/en/latest/editors/texture_node/types/converter/color_ramp.html">Color Ramp</a> 做一个 透明-&gt;半透明-&gt;透明 的渐变</li>
           <li>连接bsdf
             <ul>
-              <li>把Emmision和transparent bsdf用Mix shader连接在一起</li>
+              <li>把Emission和transparent bsdf用Mix shader连接在一起</li>
             </ul>
           </li>
         </ol>
@@ -184,9 +344,103 @@
 
 <p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240208164250.png" alt="Pasted image 20240208164250.png" width="600" /></p>
 
-<h2 id="用displacement粒子特效">用displacement+粒子特效</h2>
+<h2 id="用displacement粒子系统---卡通火焰">用displacement+粒子系统 -&gt; 卡通火焰</h2>
+<h3 id="步骤-1">步骤:</h3>
 
-<p>参考小红书<a href="https://www.xiaohongshu.com/explore/658636a9000000003c010c5d">KurTips的教学</a></p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="blender" /><category term="content" /><category term="render" /><category term="shader" /><summary type="html"><![CDATA[用graph editor和noise texture 步骤]]></summary></entry><entry><title type="html">stable-diffusion的用法: 用 ipadatper+controlnet canny做风格转换</title><link href="https://roshameow.github.io//personal_homepage/docs/photo/stable-diffusion1/" rel="alternate" type="text/html" title="stable-diffusion的用法: 用 ipadatper+controlnet canny做风格转换" /><published>2024-02-07T00:00:00+00:00</published><updated>2024-02-08T08:58:53+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/photo/stable-diffusion1</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/photo/stable-diffusion1/"><![CDATA[<p>用ipadapter和canny做风格转换</p>
+<p>参考小红书<a href="https://www.xiaohongshu.com/explore/658636a9000000003c010c5d">KurTips的教学</a></p>
+<ul>
+  <li>制作火焰形状
+    <ul>
+      <li>添加一个cube mesh</li>
+      <li>在modifier里加subdivision surface</li>
+      <li>在Edit Mode, 打开Propotional Editing(衰减编辑), 选择最上面vertex, 按G+V可以在z轴拉伸</li>
+      <li>制作焰心: 复制一个更小的放在前面</li>
+      <li>选中两个object, 右键<a href="https://docs.blender.org/manual/en/latest/scene_layout/object/editing/shading.html">shade smooth</a>
+        <ul>
+          <li>shader计算时, 三角形内的normal vector由三个顶点的normal vector插值得到</li>
+        </ul>
+      </li>
+      <li>合并两个object: <a href="https://docs.blender.org/manual/en/4.2/scene_layout/object/editing/join.html">Ctrl+J</a></li>
+    </ul>
+  </li>
+  <li>shader: 设置<a href="https://docs.blender.org/manual/en/latest/render/shader_nodes/input/texture_coordinate.html">texture Coordinate</a>  generate-&gt;Separate XYZ-&gt;Gradient Texture-&gt;ColorRamp-&gt; Emission
+    <ul>
+      <li>把大小两块用不同的材质
+        <ul>
+          <li>进入Edit Mode, 随便选中一个点, Ctrl+L可以把原本的大小两个object分别选中</li>
+          <li>在Material添加材质</li>
+        </ul>
+      </li>
+      <li>ColorRamp颜色: 外焰: 红-&gt;黄 ; 焰心: 红-&gt;橙红</li>
+    </ul>
+  </li>
+  <li>抖动效果: 用displacement实现
+    <ol>
+      <li>在Modifier添加displace: 选Clouds材质, 调整Size, Depth=1, displacement的Stength</li>
+      <li>让displacement的强度从上到下渐变: 用顶点组实现
+        <ol>
+          <li>定义顶点组: 在Edit Mode开透视模式, 选中上面一部分顶点; 在Oject的Data里添加vetex group, 把刚才选中的部分顶点assign给这个顶点组</li>
+          <li>在<a href="https://docs.blender.org/manual/en/latest/sculpt_paint/weight_paint/index.html">Weight Paint</a>模式, 增加weight-&gt;<a href="https://docs.blender.org/manual/en/2.79/sculpt_paint/painting/weight_paint/weight_tools.html">smooth-&gt;iteration</a>: 让 in Vertex Group-&gt; outside Vertex Group 的渐变更光滑
+            <ul>
+              <li>smooth操作的每个iteration都是和邻域的顶点做平滑</li>
+            </ul>
+          </li>
+          <li>在displace的vertex group选择顶点组</li>
+        </ol>
+      </li>
+      <li>制作displacement的动态: 通过绑定一个空坐标轴实现
+        <ol>
+          <li>在displace的Coordinates选择object, 物体选择我们的空坐标轴</li>
+          <li>修改空坐标轴的Oject-&gt;Transform的z轴的值, 改为: <code class="language-plaintext highlighter-rouge">#frame/100(帧数/100)</code>
+            <ul>
+              <li>这样做比用<a href="https://docs.blender.org/manual/zh-hans/dev/editors/graph_editor/fcurves/editing.html">Graph Editor</a> 方便不少👍</li>
+            </ul>
+          </li>
+        </ol>
+      </li>
+    </ol>
+  </li>
+  <li>制作火星: 用粒子系统
+    <ol>
+      <li>在火焰里添加一个圆环mesh</li>
+      <li>进入Edit Mode, 填充: 快捷键F</li>
+      <li>修改Particles参数:
+        <ul>
+          <li>Field Weight-&gt; Gravity改为0: 让粒子向上</li>
+          <li>Velocity-&gt; normal改为2</li>
+          <li>Emission: 调整Frame_start, Frame_end, lifetime(和velocity共同控制粒子移动的距离)</li>
+          <li>Physics-&gt; Brownian改为10.5: 让粒子做布朗运动</li>
+        </ul>
+      </li>
+      <li>调整火星材质:
+        <ol>
+          <li>制作一个多面体mesh, subdivision改成1: 减小计算量</li>
+          <li>把多面体的shader改成自发光, 调整color, strength适当增大</li>
+          <li><strong>打开eevee渲染器的<a href="https://docs.blender.org/manual/en/latest/render/eevee/render_settings/bloom.html">bloom(辉光)</a> 功能</strong></li>
+          <li>制定Particles-&gt;Render参数:
+            <ol>
+              <li>Render As调成Object模式, Render-&gt;Instance选择我们的制作的多面体mesh</li>
+              <li>scale调小, scale Randomness调大: 让粒子大小不一</li>
+            </ol>
+          </li>
+        </ol>
+      </li>
+    </ol>
+  </li>
+  <li>结果: 因为焰心的制作方法, 只能在一定角度看.
+    <ul>
+      <li><img src="/personal_homepage/docs/attachment/fire_cartoon_cut.mp4" alt="fire_cartoon_cut.mp4" width="200" /></li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="火焰效果的片段">火焰效果的片段</h2>
+
+<p>[1] 冰海战记s2ep5的放火场景</p>
+
+<h2 id="reference">reference</h2>
+
+<p>[1] https://zhuanlan.zhihu.com/p/484222862 辉光效果</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="blender" /><category term="content" /><category term="render" /><category term="shader" /><summary type="html"><![CDATA[火焰的形状用圆形变形一半获得. 用Perlin noise使坐标变形制作随机抖动. 用Emission node渲染发光效果.]]></summary></entry><entry><title type="html">stable-diffusion的用法: 用 ipadatper+controlnet canny做风格转换</title><link href="https://roshameow.github.io//personal_homepage/docs/photo/stable-diffusion1/" rel="alternate" type="text/html" title="stable-diffusion的用法: 用 ipadatper+controlnet canny做风格转换" /><published>2024-02-07T00:00:00+00:00</published><updated>2024-02-08T08:58:53+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/photo/stable-diffusion1</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/photo/stable-diffusion1/"><![CDATA[<p>用ipadapter和canny做风格转换</p>
 
 <h2 id="comfyui使用">ComfyUI使用</h2>
 
@@ -746,235 +1000,4 @@
       <li>把贴图<img src="/personal_homepage/docs/attachment/jupiter_01_pd.png" alt="jupiter_01_pd.png" width="200" /> 映射到<img src="/personal_homepage/docs/attachment/Pasted%20image%2020240129144125.png" alt="Pasted image 20240129144125.png" width="120" /></li>
     </ul>
   </li>
-</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="blender" /><category term="content" /><category term="render" /><category term="shader" /><summary type="html"><![CDATA[步骤]]></summary></entry><entry><title type="html">blender学习: 用displacement做动态鸟群</title><link href="https://roshameow.github.io//personal_homepage/docs/blender/blender-learning2/" rel="alternate" type="text/html" title="blender学习: 用displacement做动态鸟群" /><published>2024-01-24T00:00:00+00:00</published><updated>2024-01-26T18:49:15+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/blender/blender-learning2</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/blender/blender-learning2/"><![CDATA[<h2 id="步骤">步骤</h2>
-
-<p>参考RuiHuang_art在<a href="https://www.bilibili.com/video/BV1ta4y1f7ui/">b站的教学视频</a></p>
-<ul>
-  <li>world property: background改成黑色</li>
-  <li>加入鸟群所在的mesh</li>
-  <li>加入鸟群贴图: 在material property里修改
-    <ul>
-      <li>把贴图连到alpha通道</li>
-      <li>blend mode改为alpha blend</li>
-    </ul>
-  </li>
-  <li>加入displacement: 在modifier property里修改
-    <ul>
-      <li>加入subdivision surface: 用<a href="https://en.wikipedia.org/wiki/Catmull–Clark_subdivision_surface">Catmull-Clark</a> 的方法细分(迭代进行, 每次加入新的点后, 会移动顶点位置, 让整体更平滑)
-        <ul>
-          <li>levels viewport 增加到5: 对应编辑时, 看到的细分的迭代次数, 可以调的比render低一些</li>
-          <li>render增加到5: 对应最终渲染时, 看到的细分的迭代次数</li>
-        </ul>
-      </li>
-      <li>加入displace: 根据texture的灰度值变换顶点的coordinate
-        <ul>
-          <li>代码可能在: https://github.com/blender/blender/blob/main/source/blender/modifiers/intern/MOD_volume_displace.cc</li>
-          <li>加入texture-&gt;调整texture的属性
-            <ul>
-              <li>type用Clouds, 也就是<a href="https://en.wikipedia.org/wiki/Perlin_noise">Perlin noise</a> : 多个不同粒度的随机叠加
-                <ul>
-                  <li>Depth参数控制模糊程度: 应该是Perlin noise生成时的粒度有几层</li>
-                  <li>其中nabla($\nabla$ ) 参数好像对Perlin noise没影响..</li>
-                </ul>
-              </li>
-            </ul>
-          </li>
-          <li>coordinate设置成global: 每个世界坐标位置根据texture固定displacement(如果是local就会相对于我们的mesh不动)</li>
-          <li>direction: 就用默认的normal, 我们的mesh是个平面, 和用z axis一样</li>
-          <li>调整stength到0.1</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li>加入运镜，参考教学视频 <a href="https://www.bilibili.com/video/BV1eq4y1y7D2/?vd_source=9cd152be6fbc1b9ad36a33604a13fb6e">https://www.bilibili.com/video/BV1eq4y1y7D2</a>
-    <ul>
-      <li>在layout界面开启auto key之后，点击播放：这个时候鼠标只能移动，需要按G快捷键配合移动。</li>
-      <li>在animation界面看效果.</li>
-    </ul>
-  </li>
-  <li>输出视频: 这么做只是鸟的贴图在平面上波动, 不能细看.
-    <ul>
-      <li><img src="/personal_homepage/docs/attachment/0030-0090.mp4" alt="0030-0090.mp4" width="200" /></li>
-    </ul>
-  </li>
-</ul>
-
-<h2 id="其他方法">其他方法</h2>
-
-<p>用粒子制作, 参考 <a href="https://www.bilibili.com/video/BV11i4y1r7GU/">这个b站教程</a> : 实在啰嗦我没有耐心看😂</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="blender" /><category term="content" /><summary type="html"><![CDATA[步骤]]></summary></entry><entry><title type="html">电子产品的频闪讨论</title><link href="https://roshameow.github.io//personal_homepage/docs/camera/flicker/" rel="alternate" type="text/html" title="电子产品的频闪讨论" /><published>2024-01-19T00:00:00+00:00</published><updated>2024-01-31T22:52:26+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/camera/flicker</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/camera/flicker/"><![CDATA[<p>频闪就是亮度随时间周期性变化的情况.</p>
-
-<p>b站影视飓风关于频闪的介绍:</p>
-<iframe src="//player.bilibili.com/player.html?aid=666304538&amp;bvid=BV1ua4y127pk&amp;cid=1408505034&amp;p=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
-
-<h2 id="频闪的分类">频闪的分类</h2>
-
-<table>
-  <thead>
-    <tr>
-      <th>种类</th>
-      <th>原因</th>
-      <th>频率</th>
-      <th>形态</th>
-      <th>可能解决方式</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>光源</td>
-      <td>交流电产生的</td>
-      <td>100hz或120hz</td>
-      <td>$|\cos x|$</td>
-      <td>调整拍摄频率和交流电保持一致<br />调整快门时间, 让快门覆盖整数个周期</td>
-    </tr>
-    <tr>
-      <td>LED屏幕</td>
-      <td>PWM调光</td>
-      <td>都有</td>
-      <td>rectangular pulse<br />由duty cycle(占空比)决定</td>
-      <td>除了增加快门时间, 让条纹不明显<br />目前没有什么好的解决方式</td>
-    </tr>
-  </tbody>
-</table>
-
-<h2 id="我手里的电子设备观测">我手里的电子设备观测</h2>
-
-<p>按照模型, 影响拍到的pattern的有: 相机的频率$f$, 快门时间(&lt;$\frac{1}{f}$), 相位(快门扫描速度), pwm的频率, 占空比, 每行的相位.</p>
-
-<p>我们用相机去拍屏幕的时候,拍到的理论上亮, 暗的部分都是由于相位的不同, 不会相差超过一个周期, 所以$\frac{最亮}{最暗}&lt;\frac{ceil(\frac{快门时间}{pwm周期})}{floor(\frac{快门时间}{pwm周期})}$</p>
-
-<p><strong>条件:</strong> 用我的iphone11拍摄, 240fps的慢镜头, 快门时间不知道, 但是大概有1/500s左右?</p>
-
-<p><strong>iphone12手机:</strong></p>
-
-<p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240122233401.png" alt="Pasted image 20240122233401.png" width="100" />  另一个方向: <img src="/personal_homepage/docs/attachment/Pasted%20image%2020240122233636.png" alt="Pasted image 20240122233636.png" width="200" /></p>
-
-<ol>
-  <li>在同一帧内, 在一个方向是横条纹, 把镜头换了一个方向却出现了斜向的条纹:
-    <ul>
-      <li>合理的解释是可能屏幕上不同行的led灯相位不同. 考虑到相机每行是同时曝光的, 相机和屏幕垂直拍摄就会出现在一行拍到了多个相位的情况, 也就是斜向的条纹</li>
-    </ul>
-  </li>
-  <li>出现黑色和白色: 看起来亮度就只有两档, 白色比例远高于黑色
-    <ul>
-      <li>从黑色的清晰度来看, pwm的周期可能比快门时间要长…</li>
-      <li>在最暗的情况下, 可能低位完全覆盖快门时间, 所以看到的黑色是纯黑的, 而白色是在高位时间积分得到的
-        <ul>
-          <li><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240123112400.png" alt="Pasted image 20240123112400.png" width="200" /></li>
-        </ul>
-      </li>
-      <li>在网上看到的<a href="#其他手机的效果">另一个手机测试视频里</a>, 黑白的比例能看出变化</li>
-    </ul>
-  </li>
-  <li>出现一紫三白的规律:
-    <ul>
-      <li>绿色灯的规律好像没法用我们的模型解释. 似乎出现了两个周期?</li>
-    </ul>
-  </li>
-  <li>随着调亮屏幕: pattern的样子没有变, 但是渐渐不那么黑白分明了, 暗条纹变宽, 屏幕的整体亮度也有所提高:
-    <ul>
-      <li>pwm低位的时间在减少</li>
-      <li>当高位完全覆盖快门时间, 其亮度比例大约为 $\frac{暗}{亮}\approx \frac{快门时间\% pwm周期-低位时间}{快门时间\% pwm周期}$</li>
-    </ul>
-  </li>
-  <li>在视频中, 条纹随时间变化:
-    <ul>
-      <li>有评论说iphone12的屏幕频率是240, 从实验结果来说, 和240fps的镜头并不匹配, 说明频率不是240. 从条纹的清晰度推测频率在几百量级</li>
-    </ul>
-  </li>
-</ol>
-
-<p><strong>MacbookPro:</strong></p>
-
-<p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240122233738.png" alt="Pasted image 20240122233738.png" width="150" /></p>
-<ul>
-  <li>网上有说法是mac的pwm频率为11800, 那么, 亮-暗/亮 对比不会超过 $\approx 500/11800\approx 1/23$ , 从图像的亮暗清晰度来看, 也不能算是和我拍摄的图像矛盾吧.  另外, 改用60fps的视频模式去拍, 这个图案也是可见的. 这个数字是否可信不好判断呢…但是能肯定频率至少是上千的</li>
-</ul>
-
-<p><strong>问题</strong></p>
-
-<ul>
-  <li>能否通过所有参数已知的相机, 通过图像,视频解出pwm调光的参数?
-    <ul>
-      <li>TOF问题中有些类似的方法<a href="https://zhuanlan.zhihu.com/p/505843064">解相位</a></li>
-      <li>如果已知屏幕信号和相机信号的auto-correlation结果, 自然知道屏幕的信号, 但是我们目前能测量的是在快门时间内积分的亮度</li>
-    </ul>
-  </li>
-</ul>
-
-<h2 id="strobe-light-control"><a href="https://www.urvision-tw.com/article_detail/17/4.htm">Strobe Light Control</a></h2>
-
-<p>闪频控制提供了一个和相机曝光同时控制的光源, 可以解决高速摄影(即频率高, 快门时间短) 的频闪问题. 
-奇怪的是, 有些手机CIS产品(<a href="https://www.gcoreinc.com/products/index?cid=2&amp;subcid=5">比如格科微的GC02M1B</a>), 一般工作频率是30fps, 也提供一个闪频控制的灯光, 想不通应用场景是什么.</p>
-
-<h2 id="频闪的检测">频闪的检测</h2>
-
-<p>在淘宝上看到的几种频闪检测仪器</p>
-
-<p><img src="/personal_homepage/docs/attachment/IMG_8267.jpg" alt="IMG_8267.jpg" width="100" /> <img src="/personal_homepage/docs/attachment/IMG_8268.jpg" alt="IMG_8268.jpg" width="100" /> <img src="/personal_homepage/docs/attachment/IMG_8265.jpg" alt="IMG_8265.jpg" width="100" /> <img src="/personal_homepage/docs/attachment/IMG_8266.jpg" alt="IMG_8266.jpg" width="100" /></p>
-
-<h2 id="频闪对人眼的风险">频闪对人眼的风险</h2>
-
-<table>
-  <thead>
-    <tr>
-      <th>参数</th>
-      <th>公式</th>
-      <th>含义</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>频闪百分比(波动深度, percent filcker, FPF)</td>
-      <td>$\frac{A\text{(最大值)}-B\text{(最小值)}}{A+B}\cdot$ 100%</td>
-      <td>表示波动的剧烈程度</td>
-    </tr>
-    <tr>
-      <td>频闪指数(Filcker index)</td>
-      <td>$\frac{A_1\text{(平均值上面积)}}{A_1+A_2\text{(平均值下面积)}}$</td>
-      <td>表示频闪的不稳定程度?<br />pwm调光时降低占空比,<br /> 平均值降低, <br />频闪指数会变高</td>
-    </tr>
-  </tbody>
-</table>
-
-<ul>
-  <li><strong>几种频闪的标准</strong>
-    <ul>
-      <li>IEEE std 1789-2015
-        <ul>
-          <li><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240122105434.png" alt="Pasted image 20240122105434.png" width="300" /></li>
-        </ul>
-      </li>
-      <li>GB/T31831《LED室内照明技术应用要求》</li>
-      <li><a href="http://222.66.64.153:8080/sdzg_admin/upload/myupload_3674.pdf">CQC1601 2016《视觉作业台灯认证技术规范》</a>: 和IEEE std 1789-2015规定相似</li>
-    </ul>
-  </li>
-  <li><strong>理解</strong>
-    <ul>
-      <li>规定里只提及了频闪百分比, 没有提及频闪指数. PWM调光的频闪百分比理论上应该都是100%? 感觉这个标准考虑的只有灯光, 根本没有考虑oled屏幕</li>
-      <li>规定里认为只要是&gt;3125hz的高频, 怎么样的波形都无风险</li>
-    </ul>
-  </li>
-</ul>
-
-<h2 id="仿真代码">仿真代码</h2>
-
-<p><a href="https://gist.github.com/roshameow/46245e2e9772d9afb1913a27a350bc4b#file-rect_pluse-py"><strong>rect_pluse.py</strong></a></p>
-<h2 id="reference">reference</h2>
-<p><span id="ref"></span></p>
-
-<p>[1] https://www.hangjianet.com/topic/15627339606370002 标准</p>
-
-<p>[2] https://post.smzdm.com/p/ag8lgep6/ 手机测评</p>
-
-<p>[3] https://zhuanlan.zhihu.com/p/30939047 用测量仪测试 手机上不同行的led可能相位并不同, 所以这种直接对着屏幕的测量方式应该是有问题的..</p>
-
-<p>[4] https://discussions.apple.com/thread/254350073?sortBy=best 评论了iphone和mac的频率</p>
-
-<p>[5] https://spectrum.ieee.org/the-iphone-12-mini-makes-me-sick-literally 评论说制造商可能让pwm频率约等于屏幕刷新率的4倍</p>
-
-<p>[6] https://www.hangjianet.com/topic/14734042955300000 一些从硬件上处理灯光频闪的方案</p>
-
-<p>[7] https://www.dxomark.com/flicker-the-display-affliction/ dxomark对一些手机的具体测试过程和结果: 可以理解成手机上不同行虽然相位不同, 频率都是一致的吧? 虽然不同相位相同频率的波相加可能得到更高频的信号.. 这里我们就假设相位随机, 测出的频率就是pwm频率</p>
-<h2 id="其他手机的效果">其他手机的效果</h2>
-
-<p><a href="https://zhuanlan.zhihu.com/p/414216581">这个知乎帖子看到的</a> 明显占空比变化</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="camera" /><category term="content" /><category term="test" /><category term="sci-pop" /><summary type="html"><![CDATA[频闪就是亮度随时间周期性变化的情况.]]></summary></entry></feed>
+</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="blender" /><category term="content" /><category term="render" /><category term="shader" /><summary type="html"><![CDATA[步骤]]></summary></entry></feed>
