@@ -8,12 +8,12 @@ tags:
   - simulation
   - sensor
   - physics
-last_modified_at: 2024-01-12T09:22:46-08:00
+last_modified_at: 2024-02-15T12:13:12-08:00
 ---
 
 ## 光的传播理论
 
-![image](https://upload.wikimedia.org/wikipedia/commons/4/48/Diffraction_geometry_2.svg)
+<img src="https://upload.wikimedia.org/wikipedia/commons/4/48/Diffraction_geometry_2.svg" alt="drawing" width="300"/>
 
 - [Huygens–Fresnel principle理论](https://en.wikipedia.org/wiki/Huygens–Fresnel_principle)：
 	- 假设光源在$(x^\prime,y^\prime,0)$ , 方向是$z$ 方向，能量是$E$
@@ -25,7 +25,7 @@ last_modified_at: 2024-01-12T09:22:46-08:00
 <!--more-->
 ## diffraction 
 
-![image1](https://upload.wikimedia.org/wikipedia/commons/b/b8/Wavelength%3Dslitwidth.gif) 
+<img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/Wavelength%3Dslitwidth.gif" alt="drawing" width="150"/>
 
 考虑由光圈所在平面到sensor这一段, 假设$z$ 固定为aperture和sensor的距离，光源为从aperture向sensor方向的平行光
 

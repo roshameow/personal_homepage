@@ -10,16 +10,17 @@ tags:
   - controlnet
   - canny
   - sdxl
-last_modified_at: 2024-02-09T19:01:41-08:00
+last_modified_at: 2024-02-15T17:38:07-08:00
 ---
 
 尝试只用ipadapter做猫的风格转换, 非常不成功, ipadapter还是无法控制输入的元素. 必须要用多张图片训练的LoRA控制. 
+另外, 猫脸上颜色分布的特征, 没有controlnet可以直接表示. 
 
 ## ComfyUI步骤
 
 1. **训练Lora** 
 	- 用[kohya_ss](https://github.com/bmaltais/kohya_ss) 的gui训练
-		- networkrank设置64
+		- network rank设置64
 		- 打开Gradient checkpoint, 不然我16G的显存不够用
 		- 另外, 我的wsl2需要解决一下找不到cuda toolkit的问题
 			- 检查发现是ubuntu的requirement里面指定的torch和bitsandbytes版本不匹配
@@ -46,6 +47,7 @@ last_modified_at: 2024-02-09T19:01:41-08:00
 	3. 用ipadpter输入风格图片控制
 		- ipadpter的weight需要调整: 不能太低(风格化没用), 也不能太高(和风格图太像)
 		- 一直有和风格图太像, 或者风格图提供我们不想要元素的风险...毕竟一张图片的信息不像文字和lora那样有明确的指向性
+		- 我用的不是换脸模型, 但是模型好像特别执着于换脸? 的确模型本来的目的是换ip...
 - **控制:** 
 	- 用canny或depth模型都能做到控制猫的位置
 		- Marigold的识别特别慢, 尝试的时候计算完深度图要先把那个节点断开
@@ -57,6 +59,7 @@ last_modified_at: 2024-02-09T19:01:41-08:00
 		- 如果用一张猫的图片和一张风格图
 			- ![Pasted image 20240209133511.png]({{ '/docs/attachment/Pasted image 20240209133511.png' | relative_url }}){:width="100"} 
 			- 无法控制输入元素
+
 	
 ## ComfyUI workflow
 

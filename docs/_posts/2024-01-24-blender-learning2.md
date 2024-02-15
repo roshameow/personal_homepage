@@ -5,7 +5,7 @@ categories:
   - blender
 tags:
   - content
-last_modified_at: 2024-01-26T10:49:15-08:00
+last_modified_at: 2024-02-11T19:36:56-08:00
 ---
 ## 步骤
 
@@ -37,5 +37,5 @@ last_modified_at: 2024-01-26T10:49:15-08:00
 
 ## 其他方法
 
-用粒子制作, 参考 [这个b站教程](https://www.bilibili.com/video/BV11i4y1r7GU/) : 实在啰嗦我没有耐心看😂
+用粒子系统制作, 参考 [这个b站教程](https://www.bilibili.com/video/BV11i4y1r7GU/) : 实在啰嗦我没有耐心看😂
 
