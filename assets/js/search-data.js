@@ -239,8 +239,8 @@ var store = [{
         "tags": ["content","shader","3d_model","shortcut"],
         "url": "https://roshameow.github.io//personal_homepage/docs/blender/blender-learning6/"
       },{
-        "title": "photoshop: 酸性海报",
-        "excerpt":"","categories": ["docs","photo"],
-        "tags": ["content"],
-        "url": "https://roshameow.github.io//personal_homepage/docs/photo/photoshop-sore/"
+        "title": "photoshop: 酸性风格海报",
+        "excerpt":"酸性(acid)风格 迷幻感 . 设计元素包含: 高饱和, 流动性, 未来复古元素, 格纹, 镭射金属, 霓虹色. 这个链接解释的比较详细 制作液态效果, 流动感, 金属感 在网上看到的两个简易教程$\\downarrow$ 物体只保留纹理 选取素材变成gray image: 图像-&gt; 调整 -&gt; 黑白 制作物体中间类似流动金属的效果 教程1的做法: 复制物体 gaussian滤波 不想有显得特别不光滑的地方 反色 下层用铬黄渐变, 细节,平滑度调到最高 上层混合模式改成正片叠底(multiply): $I_1*I_2$ 保留原物体的细节 上下两个图层合并 混合模式改为滤色(screen): 是$clip(I_1+I_2,0,1)$ 吗? 因为看到结果有全白部分 仿玻璃的质感: 透明, 并比原图层亮 教程2的做法: 复制物体 上层反色, 用差值模式(difference): $abs(I_1-I_2)$ 这个结果是越偏离中间值128的像素越亮 上下两个图层合并 重复2-3次 这个的结果可能是在0-255范围内设置了几个量化点,...","categories": ["docs","photo"],
+        "tags": ["content","photoshop","filter","design"],
+        "url": "https://roshameow.github.io//personal_homepage/docs/photo/photoshop1/"
       }]

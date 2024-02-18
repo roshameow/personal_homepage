@@ -1,4 +1,96 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="https://roshameow.github.io//personal_homepage/atom.xml" rel="self" type="application/atom+xml" /><link href="https://roshameow.github.io//personal_homepage/" rel="alternate" type="text/html" /><updated>2024-02-15T17:01:15+00:00</updated><id>https://roshameow.github.io//personal_homepage/atom.xml</id><title type="html">Liu, Wen’s Home Page</title><subtitle>Work, Experiments and Ideas.</subtitle><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><entry><title type="html">photoshop: 酸性海报</title><link href="https://roshameow.github.io//personal_homepage/docs/photo/photoshop-sore/" rel="alternate" type="text/html" title="photoshop: 酸性海报" /><published>2024-02-14T00:00:00+00:00</published><updated>2024-02-16T08:57:10+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/photo/photoshop-sore</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/photo/photoshop-sore/"><![CDATA[]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="photo" /><category term="content" /><summary type="html"><![CDATA[]]></summary></entry><entry><title type="html">blender学习: 玻璃杯</title><link href="https://roshameow.github.io//personal_homepage/docs/blender/blender-learning6/" rel="alternate" type="text/html" title="blender学习: 玻璃杯" /><published>2024-02-10T00:00:00+00:00</published><updated>2024-02-16T08:39:36+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/blender/blender-learning6</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/blender/blender-learning6/"><![CDATA[<p>由cylinder变形得到水杯. 用cycles渲染玻璃材质.</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="https://roshameow.github.io//personal_homepage/atom.xml" rel="self" type="application/atom+xml" /><link href="https://roshameow.github.io//personal_homepage/" rel="alternate" type="text/html" /><updated>2024-02-18T08:22:54+00:00</updated><id>https://roshameow.github.io//personal_homepage/atom.xml</id><title type="html">Liu, Wen’s Home Page</title><subtitle>Work, Experiments and Ideas.</subtitle><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><entry><title type="html">photoshop: 酸性风格海报</title><link href="https://roshameow.github.io//personal_homepage/docs/photo/photoshop1/" rel="alternate" type="text/html" title="photoshop: 酸性风格海报" /><published>2024-02-14T00:00:00+00:00</published><updated>2024-02-19T00:21:24+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/photo/photoshop1</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/photo/photoshop1/"><![CDATA[<p><a href="https://aesthetics.fandom.com/wiki/Acid_Design">酸性(acid)风格</a> 迷幻感 . 设计元素包含: 高饱和, 流动性, 未来复古元素, 格纹, 镭射金属, 霓虹色. 
+<a href="https://www.bilibili.com/video/BV1gD4y127m1/">这个链接解释的比较详细</a></p>
+
+<h2 id="制作液态效果-流动感-金属感">制作液态效果, 流动感, 金属感</h2>
+
+<p>在网上看到的两个简易教程$\downarrow$</p>
+<ol>
+  <li>物体只保留纹理
+    <ol>
+      <li>选取素材变成gray image: 图像-&gt; 调整 -&gt; 黑白</li>
+    </ol>
+  </li>
+  <li>制作物体中间类似流动金属的效果
+    <ol>
+      <li>教程1的做法:
+        <ol>
+          <li>复制物体</li>
+          <li>gaussian滤波
+            <ul>
+              <li>不想有显得特别不光滑的地方</li>
+            </ul>
+          </li>
+          <li>反色</li>
+          <li>下层用铬黄渐变, 细节,平滑度调到最高</li>
+          <li>上层混合模式改成正片叠底(multiply): $I_1*I_2$
+            <ul>
+              <li>保留原物体的细节</li>
+            </ul>
+          </li>
+          <li>上下两个图层合并</li>
+          <li>混合模式改为滤色(screen): 是$clip(I_1+I_2,0,1)$ 吗? 因为看到结果有全白部分
+            <ul>
+              <li>仿玻璃的质感: 透明, 并比原图层亮</li>
+            </ul>
+          </li>
+        </ol>
+      </li>
+      <li>教程2的做法:
+        <ol>
+          <li>复制物体</li>
+          <li>上层反色, 用差值模式(difference): $abs(I_1-I_2)$
+            <ul>
+              <li>这个结果是越偏离中间值128的像素越亮</li>
+            </ul>
+          </li>
+          <li>上下两个图层合并</li>
+          <li>重复2-3次
+            <ul>
+              <li>这个的结果可能是在0-255范围内设置了几个量化点, 越靠近其中一个点就会越亮
+                <ul>
+                  <li><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240218142334.png" alt="Pasted image 20240218142334.png" width="400" /></li>
+                  <li>所以完全可以直接拉曲线的. 步骤1-4都有点多余. 只要有那种相近的地方明暗变化很快的感觉就可以了.</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>用曲线压缩动态范围</li>
+          <li>把一个金属色流动的背景叠加(overlay)在上层
+            <ul>
+              <li>overlay是screen和multiply的混合</li>
+            </ul>
+          </li>
+        </ol>
+      </li>
+    </ol>
+  </li>
+</ol>
+
+<p><a href="https://www.bilibili.com/video/BV18w411B75n/">教程1</a> : <img src="/personal_homepage/docs/attachment/Pasted%20image%2020240217233149.png" alt="Pasted image 20240217233149.png" width="300" />   <a href="https://www.bilibili.com/video/BV1684y1T7t6/">教程2</a> : <img src="/personal_homepage/docs/attachment/Pasted%20image%2020240218102040.png" alt="Pasted image 20240218102040.png" width="300" /></p>
+
+<ul>
+  <li>这两个教程看起来都有点随便, 顶多算一种特殊效果滤镜.
+    <ul>
+      <li>看起来具体的步骤并不重要. 因为里面确实有些操作意义不明可以简化, 奇怪的不是教程里绕了弯路, 而是不明白每一步的动机. 难道是随便试了试发现这样可以?</li>
+    </ul>
+  </li>
+  <li>在<a href="https://www.bilibili.com/video/BV18w411B75n/">教程1</a> 里用铬黄渐变的filter制作金属感,  <a href="https://www.bilibili.com/video/BV1684y1T7t6/">教程2</a> 更是直接叠了一个金属色的图
+    <ul>
+      <li><a href="https://www.youtube.com/watch?v=RHgT4Q4dDY8">这个教程</a> 很详细的用bevel(倒角)和emboss(浮雕) 制作金属反光效果. 铬黄渐变的滤镜可能也是类似原理的一组滤镜?</li>
+    </ul>
+  </li>
+  <li>photoshop的blending mode有些模式找不到公式…感觉很难理解用法
+    <ul>
+      <li>比如overlay和screen…</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="reference">reference</h2>
+
+<p>[1] http://pigs-blood-cake.blogspot.com/p/photoshop.html ps中英文对照</p>
+
+<p>[2] https://photoshoptrainingchannel.com/blending-modes-explained/#multiply ps图层混合</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="photo" /><category term="content" /><category term="photoshop" /><category term="filter" /><category term="design" /><summary type="html"><![CDATA[酸性(acid)风格 迷幻感 . 设计元素包含: 高饱和, 流动性, 未来复古元素, 格纹, 镭射金属, 霓虹色. 这个链接解释的比较详细]]></summary></entry><entry><title type="html">blender学习: 玻璃杯</title><link href="https://roshameow.github.io//personal_homepage/docs/blender/blender-learning6/" rel="alternate" type="text/html" title="blender学习: 玻璃杯" /><published>2024-02-10T00:00:00+00:00</published><updated>2024-02-16T09:12:32+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/blender/blender-learning6</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/blender/blender-learning6/"><![CDATA[<p>由cylinder变形得到水杯. 用cycles渲染玻璃材质.</p>
 <h2 id="步骤">步骤</h2>
 
 <p>参考<a href="https://www.bilibili.com/video/BV1Fg4y127c7/">这个b站的教学视频</a></p>
@@ -138,7 +230,7 @@
         </ul>
       </li>
       <li>代码中的表达方式:
-  \(\begin{align}R &amp;=0.5*((\frac{n_i\cos\theta_i-n_t\cos\theta_t}{n_i\cos\theta_i+n_t\cos\theta_t})^2+(\frac{n_t\cos\theta_i-n_i\cos\theta_t}{n_t\cos\theta_i+n_i\cos\theta_t})^2)\\\\ &amp;=0.5*((\frac{\cos\theta_i-\eta\cos\theta_t}{\cos\theta_i+\eta\cos\theta_t})^2+(\frac{\eta\cos\theta_i-\cos\theta_t}{\eta\cos\theta_i+\cos\theta_t})^2)\; (\eta=n_t/n_i\text{是ratio of IOR, 正面是n, 反面是1/n)}\\\\ &amp;=0.5*((\frac{c-g}{c+g})^2+(\frac{\eta^2c-g}{\eta^2c+g})^2)\;\; (\text{让 }c=\cos\theta_i,\  g=\sqrt{\eta^2-1+\cos^2\theta}=\eta\cos\theta_t)\\\\ &amp;=0.5*((\frac{c-g}{c+g})^2+(\frac{(1+g^2-c^2)c-g}{(1+g^2-c^2)c+g})^2)\;\; (\text{根据 }\eta^2=1+g^2-c^2)\\\\  &amp;=0.5*((\frac{c-g}{c+g})^2+(\frac{c-g}{c+g})^2(\frac{1-c(c+g)}{1+c(g-c)})^2)\\\\  &amp;=0.5*(A^2+A^2B^2)=0.5*A^2(1+B^2)\;\; (\text{让 }A=\frac{g-c}{g+c}, B=\frac{c(g+c)-1}{c(g-c)+1})\end{align}\)</li>
+  \(\begin{align}R &amp;=0.5*((\frac{n_i\cos\theta_i-n_t\cos\theta_t}{n_i\cos\theta_i+n_t\cos\theta_t})^2+(\frac{n_t\cos\theta_i-n_i\cos\theta_t}{n_t\cos\theta_i+n_i\cos\theta_t})^2)\\\\ &amp;=0.5*((\frac{\cos\theta_i-\eta\cos\theta_t}{\cos\theta_i+\eta\cos\theta_t})^2+(\frac{\eta\cos\theta_i-\cos\theta_t}{\eta\cos\theta_i+\cos\theta_t})^2)\; (\eta=n_t/n_i\text{是ratio of IOR, 正面是n, 反面是1/n)}\\\\ &amp;=0.5*((\frac{c-g}{c+g})^2+(\frac{\eta^2c-g}{\eta^2c+g})^2)\;\; (\text{让 }c=\cos\theta_i,\  g=\sqrt{\eta^2-1+\cos^2\theta}=\eta\cos\theta_t, \text{ 这步已经足够化简了, 为什么要把}\eta\text{完全替换掉呢?})\\\\ &amp;=0.5*((\frac{c-g}{c+g})^2+(\frac{(1+g^2-c^2)c-g}{(1+g^2-c^2)c+g})^2)\;\; (\text{根据 }\eta^2=1+g^2-c^2)\\\\  &amp;=0.5*((\frac{c-g}{c+g})^2+(\frac{c-g}{c+g})^2(\frac{1-c(c+g)}{1+c(g-c)})^2)\\\\  &amp;=0.5*(A^2+A^2B^2)=0.5*A^2(1+B^2)\;\; (\text{让 }A=\frac{g-c}{g+c}, B=\frac{c(g+c)-1}{c(g-c)+1})\end{align}\)</li>
     </ul>
   </li>
   <li>blender代码:

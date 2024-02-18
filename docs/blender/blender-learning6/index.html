@@ -31,7 +31,7 @@
 <meta property="twitter:title" content="blender学习: 玻璃杯" />
 <meta name="twitter:site" content="@" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-02-16T08:39:36+00:00","datePublished":"2024-02-10T00:00:00+00:00","description":"由cylinder变形得到水杯. 用cycles渲染玻璃材质. 步骤","headline":"blender学习: 玻璃杯","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/docs/blender/blender-learning6/"},"url":"https://roshameow.github.io//personal_homepage/docs/blender/blender-learning6/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-02-16T09:12:32+00:00","datePublished":"2024-02-10T00:00:00+00:00","description":"由cylinder变形得到水杯. 用cycles渲染玻璃材质. 步骤","headline":"blender学习: 玻璃杯","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/docs/blender/blender-learning6/"},"url":"https://roshameow.github.io//personal_homepage/docs/blender/blender-learning6/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -286,7 +286,7 @@
         </ul>
       </li>
       <li>代码中的表达方式:
-  \(\begin{align}R &amp;=0.5*((\frac{n_i\cos\theta_i-n_t\cos\theta_t}{n_i\cos\theta_i+n_t\cos\theta_t})^2+(\frac{n_t\cos\theta_i-n_i\cos\theta_t}{n_t\cos\theta_i+n_i\cos\theta_t})^2)\\\\ &amp;=0.5*((\frac{\cos\theta_i-\eta\cos\theta_t}{\cos\theta_i+\eta\cos\theta_t})^2+(\frac{\eta\cos\theta_i-\cos\theta_t}{\eta\cos\theta_i+\cos\theta_t})^2)\; (\eta=n_t/n_i\text{是ratio of IOR, 正面是n, 反面是1/n)}\\\\ &amp;=0.5*((\frac{c-g}{c+g})^2+(\frac{\eta^2c-g}{\eta^2c+g})^2)\;\; (\text{让 }c=\cos\theta_i,\  g=\sqrt{\eta^2-1+\cos^2\theta}=\eta\cos\theta_t)\\\\ &amp;=0.5*((\frac{c-g}{c+g})^2+(\frac{(1+g^2-c^2)c-g}{(1+g^2-c^2)c+g})^2)\;\; (\text{根据 }\eta^2=1+g^2-c^2)\\\\  &amp;=0.5*((\frac{c-g}{c+g})^2+(\frac{c-g}{c+g})^2(\frac{1-c(c+g)}{1+c(g-c)})^2)\\\\  &amp;=0.5*(A^2+A^2B^2)=0.5*A^2(1+B^2)\;\; (\text{让 }A=\frac{g-c}{g+c}, B=\frac{c(g+c)-1}{c(g-c)+1})\end{align}\)</li>
+  \(\begin{align}R &amp;=0.5*((\frac{n_i\cos\theta_i-n_t\cos\theta_t}{n_i\cos\theta_i+n_t\cos\theta_t})^2+(\frac{n_t\cos\theta_i-n_i\cos\theta_t}{n_t\cos\theta_i+n_i\cos\theta_t})^2)\\\\ &amp;=0.5*((\frac{\cos\theta_i-\eta\cos\theta_t}{\cos\theta_i+\eta\cos\theta_t})^2+(\frac{\eta\cos\theta_i-\cos\theta_t}{\eta\cos\theta_i+\cos\theta_t})^2)\; (\eta=n_t/n_i\text{是ratio of IOR, 正面是n, 反面是1/n)}\\\\ &amp;=0.5*((\frac{c-g}{c+g})^2+(\frac{\eta^2c-g}{\eta^2c+g})^2)\;\; (\text{让 }c=\cos\theta_i,\  g=\sqrt{\eta^2-1+\cos^2\theta}=\eta\cos\theta_t, \text{ 这步已经足够化简了, 为什么要把}\eta\text{完全替换掉呢?})\\\\ &amp;=0.5*((\frac{c-g}{c+g})^2+(\frac{(1+g^2-c^2)c-g}{(1+g^2-c^2)c+g})^2)\;\; (\text{根据 }\eta^2=1+g^2-c^2)\\\\  &amp;=0.5*((\frac{c-g}{c+g})^2+(\frac{c-g}{c+g})^2(\frac{1-c(c+g)}{1+c(g-c)})^2)\\\\  &amp;=0.5*(A^2+A^2B^2)=0.5*A^2(1+B^2)\;\; (\text{让 }A=\frac{g-c}{g+c}, B=\frac{c(g+c)-1}{c(g-c)+1})\end{align}\)</li>
     </ul>
   </li>
   <li>blender代码:
@@ -344,10 +344,10 @@
   
 
   
-    <a class="page-next" href="/personal_homepage/docs/photo/photoshop-sore/">
+    <a class="page-next" href="/personal_homepage/docs/photo/photoshop1/">
       <h4 class="page-pagination-label">Next</h4>
       <span class="page-pagination-title">
-        photoshop: 酸性海报
+        photoshop: 酸性风格海报
  <i class="fas fa-arrow-right"></i>
       </span>
     </a>
