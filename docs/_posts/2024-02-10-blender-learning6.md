@@ -8,7 +8,7 @@ tags:
   - shader
   - 3d_model
   - shortcut
-last_modified_at: 2024-02-16T00:39:36-08:00
+last_modified_at: 2024-02-16T01:12:32-08:00
 ---
 
 由cylinder变形得到水杯. 用cycles渲染玻璃材质.
@@ -83,7 +83,7 @@ Frensel node确定折射和反射比例, 从blender的参数看, 受IOR(折射�
 				-  $\eta=n_t/n_i$ : ratio of IOR, 正面是$n$, 反面是$1/n$   
 				- 则$\cos\theta_t=\sqrt{1-\sin^2\theta_t}=\sqrt{1-\frac{1}{\eta^2}(1-\cos^2\theta_i)}=\frac{1}{\eta}\sqrt{\eta^2-1+\cos^2\theta_i}$  
 	- 代码中的表达方式:
-		$$\begin{align}R &=0.5*((\frac{n_i\cos\theta_i-n_t\cos\theta_t}{n_i\cos\theta_i+n_t\cos\theta_t})^2+(\frac{n_t\cos\theta_i-n_i\cos\theta_t}{n_t\cos\theta_i+n_i\cos\theta_t})^2)\\\\ &=0.5*((\frac{\cos\theta_i-\eta\cos\theta_t}{\cos\theta_i+\eta\cos\theta_t})^2+(\frac{\eta\cos\theta_i-\cos\theta_t}{\eta\cos\theta_i+\cos\theta_t})^2)\; (\eta=n_t/n_i\text{是ratio of IOR, 正面是n, 反面是1/n)}\\\\ &=0.5*((\frac{c-g}{c+g})^2+(\frac{\eta^2c-g}{\eta^2c+g})^2)\;\; (\text{让 }c=\cos\theta_i,\  g=\sqrt{\eta^2-1+\cos^2\theta}=\eta\cos\theta_t)\\\\ &=0.5*((\frac{c-g}{c+g})^2+(\frac{(1+g^2-c^2)c-g}{(1+g^2-c^2)c+g})^2)\;\; (\text{根据 }\eta^2=1+g^2-c^2)\\\\  &=0.5*((\frac{c-g}{c+g})^2+(\frac{c-g}{c+g})^2(\frac{1-c(c+g)}{1+c(g-c)})^2)\\\\  &=0.5*(A^2+A^2B^2)=0.5*A^2(1+B^2)\;\; (\text{让 }A=\frac{g-c}{g+c}, B=\frac{c(g+c)-1}{c(g-c)+1})\end{align}$$
+		$$\begin{align}R &=0.5*((\frac{n_i\cos\theta_i-n_t\cos\theta_t}{n_i\cos\theta_i+n_t\cos\theta_t})^2+(\frac{n_t\cos\theta_i-n_i\cos\theta_t}{n_t\cos\theta_i+n_i\cos\theta_t})^2)\\\\ &=0.5*((\frac{\cos\theta_i-\eta\cos\theta_t}{\cos\theta_i+\eta\cos\theta_t})^2+(\frac{\eta\cos\theta_i-\cos\theta_t}{\eta\cos\theta_i+\cos\theta_t})^2)\; (\eta=n_t/n_i\text{是ratio of IOR, 正面是n, 反面是1/n)}\\\\ &=0.5*((\frac{c-g}{c+g})^2+(\frac{\eta^2c-g}{\eta^2c+g})^2)\;\; (\text{让 }c=\cos\theta_i,\  g=\sqrt{\eta^2-1+\cos^2\theta}=\eta\cos\theta_t, \text{ 这步已经足够化简了, 为什么要把}\eta\text{完全替换掉呢?})\\\\ &=0.5*((\frac{c-g}{c+g})^2+(\frac{(1+g^2-c^2)c-g}{(1+g^2-c^2)c+g})^2)\;\; (\text{根据 }\eta^2=1+g^2-c^2)\\\\  &=0.5*((\frac{c-g}{c+g})^2+(\frac{c-g}{c+g})^2(\frac{1-c(c+g)}{1+c(g-c)})^2)\\\\  &=0.5*(A^2+A^2B^2)=0.5*A^2(1+B^2)\;\; (\text{让 }A=\frac{g-c}{g+c}, B=\frac{c(g+c)-1}{c(g-c)+1})\end{align}$$
 - blender代码: 
 	- [cycles/node_fresnel.osl at main](https://projects.blender.org/blender/cycles/src/branch/main/src/kernel/osl/shaders/node_fresnel.osl) 
 	-  [cycles/node_fresnel.h at main](https://projects.blender.org/blender/cycles/src/branch/main/src/kernel/osl/shaders/node_fresnel.h) 
