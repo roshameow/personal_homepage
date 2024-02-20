@@ -1,4 +1,16 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="https://roshameow.github.io//personal_homepage/atom.xml" rel="self" type="application/atom+xml" /><link href="https://roshameow.github.io//personal_homepage/" rel="alternate" type="text/html" /><updated>2024-02-18T08:22:54+00:00</updated><id>https://roshameow.github.io//personal_homepage/atom.xml</id><title type="html">Liu, Wen’s Home Page</title><subtitle>Work, Experiments and Ideas.</subtitle><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><entry><title type="html">photoshop: 酸性风格海报</title><link href="https://roshameow.github.io//personal_homepage/docs/photo/photoshop1/" rel="alternate" type="text/html" title="photoshop: 酸性风格海报" /><published>2024-02-14T00:00:00+00:00</published><updated>2024-02-19T00:21:24+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/photo/photoshop1</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/photo/photoshop1/"><![CDATA[<p><a href="https://aesthetics.fandom.com/wiki/Acid_Design">酸性(acid)风格</a> 迷幻感 . 设计元素包含: 高饱和, 流动性, 未来复古元素, 格纹, 镭射金属, 霓虹色. 
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="https://roshameow.github.io//personal_homepage/atom.xml" rel="self" type="application/atom+xml" /><link href="https://roshameow.github.io//personal_homepage/" rel="alternate" type="text/html" /><updated>2024-02-20T09:41:06+00:00</updated><id>https://roshameow.github.io//personal_homepage/atom.xml</id><title type="html">Liu, Wen’s Home Page</title><subtitle>Work, Experiments and Ideas.</subtitle><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><entry><title type="html">stable-diffusion的用法: 常用的作图功能</title><link href="https://roshameow.github.io//personal_homepage/docs/photo/stable-diffusion3/" rel="alternate" type="text/html" title="stable-diffusion的用法: 常用的作图功能" /><published>2024-02-18T00:00:00+00:00</published><updated>2024-02-19T08:02:13+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/photo/stable-diffusion3</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/photo/stable-diffusion3/"><![CDATA[<h2 id="用sam抠图">用SAM抠图</h2>
+
+<h2 id="inpaint">inpaint</h2>
+
+<h3 id="换背景">换背景</h3>
+
+<h3 id="去掉不想要的人物">去掉不想要的人物</h3>
+
+<h3 id="修改局部">修改局部</h3>
+
+<h2 id="outpaint">outpaint</h2>
+
+<h3 id="更改图片尺寸">更改图片尺寸</h3>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="photo" /><category term="content" /><category term="ComfyUI" /><category term="sdxl" /><category term="inpaint" /><summary type="html"><![CDATA[用SAM抠图]]></summary></entry><entry><title type="html">photoshop: 酸性风格海报</title><link href="https://roshameow.github.io//personal_homepage/docs/photo/photoshop1/" rel="alternate" type="text/html" title="photoshop: 酸性风格海报" /><published>2024-02-14T00:00:00+00:00</published><updated>2024-02-19T00:21:24+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/photo/photoshop1</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/photo/photoshop1/"><![CDATA[<p><a href="https://aesthetics.fandom.com/wiki/Acid_Design">酸性(acid)风格</a> 迷幻感 . 设计元素包含: 高饱和, 流动性, 未来复古元素, 格纹, 镭射金属, 霓虹色. 
 <a href="https://www.bilibili.com/video/BV1gD4y127m1/">这个链接解释的比较详细</a></p>
 
 <h2 id="制作液态效果-流动感-金属感">制作液态效果, 流动感, 金属感</h2>
@@ -995,101 +1007,4 @@
 
 <h2 id="shader流程">shader流程</h2>
 
-<p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240201172349.png" alt="Pasted image 20240201172349.png" width="800" /></p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="blender" /><category term="content" /><category term="render" /><category term="shader" /><summary type="html"><![CDATA[步骤]]></summary></entry><entry><title type="html">blender学习: 用volume shader做气态行星</title><link href="https://roshameow.github.io//personal_homepage/docs/blender/blender-learning3/" rel="alternate" type="text/html" title="blender学习: 用volume shader做气态行星" /><published>2024-01-26T00:00:00+00:00</published><updated>2024-01-30T00:47:25+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/blender/blender-learning3</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/blender/blender-learning3/"><![CDATA[<h2 id="步骤">步骤</h2>
-
-<p>参考RuiHuang_art在<a href="https://www.bilibili.com/video/BV1Aj411j7CD">b站的教学视频</a></p>
-<ul>
-  <li>world property: 加入一个太空背景的贴图</li>
-  <li>光源：改成<a href="https://docs.blender.org/manual/en/latest/render/lights/light_object.html#sun-light">sun light</a>
-    <ul>
-      <li>strength改成12: 单位是 $W/m^2$</li>
-      <li>volume改成3: 控制在volume shader时的影响?</li>
-    </ul>
-  </li>
-  <li>render: 用eevee
-    <ul>
-      <li>设置volumetrics参数
-        <ul>
-          <li><strong>打开volumetric shadows</strong></li>
-          <li>start, end: 相对相机的体积效果范围, 设为(3.3m-&gt;200m)</li>
-          <li>tile size: volume块大小</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li>shader:
-    <ul>
-      <li>用<a href="https://docs.blender.org/manual/en/latest/render/shader_nodes/shader/volume_principled.html">principled volume</a> : 把mesh包含的部分看成volume块
-        <ul>
-          <li>color:
-            <ol>
-              <li>用<a href="https://docs.blender.org/manual/en/latest/render/shader_nodes/input/texture_coordinate.html">texture Coordinate</a> 生成volume的坐标</li>
-              <li><a href="https://docs.blender.org/manual/en/latest/render/shader_nodes/textures/image.html">Image Texture</a> 把2d的木星贴图映射到3d的volume上</li>
-              <li>用<a href="https://docs.blender.org/manual/en/latest/render/shader_nodes/color/hue_saturation.html">Hue/Saturation/Value Node</a> 调颜色</li>
-            </ol>
-          </li>
-          <li>density: 一个从里到外逐渐稀薄的球形+被纹理的影响
-            <ol>
-              <li>用<a href="https://docs.blender.org/manual/en/latest/render/shader_nodes/input/texture_coordinate.html">texture Coordinate</a> 生成volume的坐标
-                <ol>
-                  <li>object生成一个在中心的坐标系</li>
-                  <li>用 <a href="https://docs.blender.org/manual/en/latest/render/shader_nodes/textures/image.html">Image Texture</a> 生成一个按照贴图纹理亮度的scale, 模拟气体的效果
-                    <ul>
-                      <li>用Mulitiply node的Factor node调整受纹理影响的强度</li>
-                      <li>用<a href="https://docs.blender.org/manual/en/latest/render/shader_nodes/color/invert.html">invert node</a> 调整: 亮的纹理密度低(凹陷), 暗得纹理密度高(突出), 如果Fac设置成1就会反过来
-                        <ul>
-                          <li>Fac参数:  类似$\alpha \frac{1}{x}+(1-\alpha) x$ ?</li>
-                        </ul>
-                      </li>
-                      <li>这部分应该可以优化, 不是用multiply 而是用其他方式做纹理的distortion?</li>
-                    </ul>
-                  </li>
-                </ol>
-              </li>
-              <li>用<a href="https://docs.blender.org/manual/en/latest/render/shader_nodes/textures/gradient.html">gradient texture</a> 设置渐变的密度</li>
-              <li>用 <a href="https://docs.blender.org/manual/en/latest/editors/texture_node/types/converter/color_ramp.html">Color Ramp</a> 做一个动态范围的压缩:
-                <ul>
-                  <li>我们想要一个(实体-&gt;气态-&gt;空) 的渐变, 中间density在0-1之间的部分, 是气态部分</li>
-                  <li>调整value参数, 也就是最后输入的密度</li>
-                </ul>
-              </li>
-            </ol>
-          </li>
-        </ul>
-      </li>
-      <li>视频里还另外加了一个底色, 但是看起来没什么影响</li>
-    </ul>
-  </li>
-  <li>相机: Camera-&gt; Data
-    <ul>
-      <li>Focal Length 调大到60mm: 调整物体在镜头内的大小</li>
-    </ul>
-  </li>
-  <li>结果: 和视频里的结果不完全一样, 不清楚是哪里的问题😮‍💨
-    <ul>
-      <li><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240129164109.png" alt="Pasted image 20240129164109.png" width="200" /> <img src="/personal_homepage/docs/attachment/Pasted%20image%2020240129164354.png" alt="Pasted image 20240129164354.png" width="200" /></li>
-    </ul>
-  </li>
-</ul>
-
-<h2 id="shader流程">shader流程</h2>
-
-<p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240129164505.png" alt="Pasted image 20240129164505.png" width="900" /></p>
-
-<h2 id="texture-coordinate-的设置"><a href="https://docs.blender.org/manual/en/latest/render/shader_nodes/input/texture_coordinate.html">texture Coordinate</a> 的设置</h2>
-
-<p>texture coordinate不同模式的区别是坐标系的原点位置不一样: generate模式的原点是在mesh的bounding box一角, 而object模式的原点是在bounding box的中心(从名字是看不出来..也没看源码验证, 都是我猜的)</p>
-<ul>
-  <li>用<a href="https://docs.blender.org/manual/en/latest/render/shader_nodes/textures/gradient.html">gradient texture</a> 调整密度时, 输入的是vector的模长
-    <ul>
-      <li>如果generate模式 , 密度最大的点在box的一角, 得到<img src="/personal_homepage/docs/attachment/Pasted%20image%2020240129151203.png" alt="Pasted image 20240129151203.png" width="120" />;</li>
-      <li>用object模式  , 密度最大的点在中心, 得到<img src="/personal_homepage/docs/attachment/Pasted%20image%2020240129151233.png" alt="Pasted image 20240129151233.png" width="150" />, 也就是我们需要的行星的形态</li>
-    </ul>
-  </li>
-  <li>而我们用<a href="https://docs.blender.org/manual/en/latest/render/shader_nodes/textures/image.html">Image Texture</a> 设置颜色的映射时, Sphere的映射方法默认是围绕点 $(0.5,0.5,0.5)$ 进行映射, 这个时候我们就需要在generate模式的坐标系下映射
-    <ul>
-      <li>Sphere的映射方法: <img src="https://docs.blender.org/manual/en/latest/_images/render_shader-nodes_textures_image_projection-sphere.png" alt="sphere" /></li>
-      <li>把贴图<img src="/personal_homepage/docs/attachment/jupiter_01_pd.png" alt="jupiter_01_pd.png" width="200" /> 映射到<img src="/personal_homepage/docs/attachment/Pasted%20image%2020240129144125.png" alt="Pasted image 20240129144125.png" width="120" /></li>
-    </ul>
-  </li>
-</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="blender" /><category term="content" /><category term="render" /><category term="shader" /><summary type="html"><![CDATA[步骤]]></summary></entry></feed>
+<p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240201172349.png" alt="Pasted image 20240201172349.png" width="800" /></p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="blender" /><category term="content" /><category term="render" /><category term="shader" /><summary type="html"><![CDATA[步骤]]></summary></entry></feed>

@@ -20,8 +20,8 @@
 <meta name="generator" content="Jekyll v4.3.3" />
 <meta property="og:title" content="传感器颜色调制 (二)" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="通过coded-aperture 和 dispenser进行颜色调制" />
-<meta property="og:description" content="通过coded-aperture 和 dispenser进行颜色调制" />
+<meta name="description" content="其他方法进行颜色调制: coded-aperture, dispenser" />
+<meta property="og:description" content="其他方法进行颜色调制: coded-aperture, dispenser" />
 <link rel="canonical" href="https://roshameow.github.io//personal_homepage/docs/algorithm/color-moderate1/" />
 <meta property="og:url" content="https://roshameow.github.io//personal_homepage/docs/algorithm/color-moderate1/" />
 <meta property="og:site_name" content="Liu, Wen’s Home Page" />
@@ -31,7 +31,7 @@
 <meta property="twitter:title" content="传感器颜色调制 (二)" />
 <meta name="twitter:site" content="@" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-01-30T01:54:34+00:00","datePublished":"2023-12-26T00:00:00+00:00","description":"通过coded-aperture 和 dispenser进行颜色调制","headline":"传感器颜色调制 (二)","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/docs/algorithm/color-moderate1/"},"url":"https://roshameow.github.io//personal_homepage/docs/algorithm/color-moderate1/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-02-20T01:58:26+00:00","datePublished":"2023-12-26T00:00:00+00:00","description":"其他方法进行颜色调制: coded-aperture, dispenser","headline":"传感器颜色调制 (二)","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/docs/algorithm/color-moderate1/"},"url":"https://roshameow.github.io//personal_homepage/docs/algorithm/color-moderate1/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -109,7 +109,7 @@
             <a class="u-url" rel="me" href=""><i class="fas fa-link fa-lg" title=""></i></a>
           </li></ul>
 
-<span class="read-time">~1 min read</span>
+<span class="read-time">1 min read</span>
 
     <time class="page-date dt-published" datetime="2023-12-26T00:00:00+00:00"><a class="u-url" href="">December 26, 2023</a>
 </time>
@@ -138,7 +138,7 @@
 </h2>
 <!-- 1. toc
 {:toc} -->
-<ul class="inline_toc" id="my_toc"><li><a href="#通过coded-aperture-和-dispenser进行颜色调制">通过coded-aperture 和 dispenser进行颜色调制</a><ul><li><a href="#coded-aperture的优点">coded-aperture的优点</a></li><li><a href="#cassi">CASSI</a></li><li><a href="#adis">ADIS</a></li></ul></li><li><a href="#理解">理解</a></li></ul>
+<ul class="inline_toc" id="my_toc"><li><a href="#其他方法进行颜色调制-coded-aperture-dispenser">其他方法进行颜色调制: coded-aperture, dispenser</a><ul><li><a href="#coded-aperture的优点">coded-aperture的优点</a></li><li><a href="#cassi">CASSI</a></li><li><a href="#adis-2">ADIS 2</a></li><li><a href="#theta--3">THETA  3</a></li></ul></li><li><a href="#dataset代码">dataset代码</a></li><li><a href="#单从理论看-什么样的psf更好">单从理论看, 什么样的PSF更好?</a></li></ul>
 </div>
 <!-- {::options parse_block_html="false" /} -->
 
@@ -146,7 +146,7 @@
 
       <div class="page-content">
         <div class="e-content">
-          <h2 id="通过coded-aperture-和-dispenser进行颜色调制">通过coded-aperture 和 dispenser进行颜色调制</h2>
+          <h2 id="其他方法进行颜色调制-coded-aperture-dispenser">其他方法进行颜色调制: coded-aperture, dispenser</h2>
 
 <h3 id="coded-aperture的优点">coded-aperture的优点</h3>
 
@@ -155,154 +155,131 @@
     <ol>
       <li>PSF是scene到image的kernel: $\text{image}=PSF*\text{scene}$</li>
       <li>如果对image做deblur, $\text{scene}=F^{-1}(\frac{F(\text{image})}{F(PSF)})=F^{-1}(\frac{F(\text{image})}{MTF})$</li>
-      <li>传统的MTF存在cutoff点, 即在cutoff之上的的高频部分是0, 而coded-aperture可以保留部分高频信息, 使MTF没有完全为0的点</li>
+      <li>传统的MTF(即$F(J_1)$ )存在cutoff点, 即在cutoff之上的的高频部分是0, 而coded-aperture可以保留部分高频信息, 使MTF没有完全为0的点</li>
     </ol>
   </li>
-  <li>我不能确定coded aperture是否必要, 看起来颜色调制主要还是通过dispenser完成的</li>
+  <li><strong>进行颜色调制</strong>
+    <ol>
+      <li>不同的波长的PSF不同, aperture缩小后, 这个不同在成像上变得更明显, coded-aperture可以看成是很多小的aperture的组合</li>
+      <li>coded-aperture可以让不同波长的PSF形成不同的pattern</li>
+    </ol>
+  </li>
 </ol>
 
 <h3 id="cassi">CASSI</h3>
 
 <p>coded_apeture+dispenser</p>
-
 <ul>
-  <li>仿真数据：
-    <ul>
-      <li>
-        <p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240114142241.png" alt="Pasted image 20240114142241.png" width="300" /> <a href="#ref">1</a></p>
-      </li>
-      <li>
-        <p>CASSI: coded_apeture+dispenser</p>
-
+  <li><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240114142241.png" alt="Pasted image 20240114142241.png" width="180" /> <a href="#ref">1</a> 设备: <img src="/personal_homepage/docs/attachment/Pasted%20image%2020240219163704.png" alt="Pasted image 20240219163704.png" width="250" /></li>
+  <li>代码仿真过程: 3d multichannel image( C x H x W ) -&gt; 2d perception image( H x (W+2*C-2) )
+    <ol>
+      <li>把coded_apeture mask应用于所有通道</li>
+      <li>dispenser依次给mask的通道图像y-axis 2pixel的shift</li>
+      <li>把所有通道叠加</li>
+      <li>加入shot noise: $Y_{sim}=B(Y/QE,QE)$
         <ul>
-          <li>
-            <p>coded_apeture把mask应用于所有通道</p>
-          </li>
-          <li>
-            <p>dispenser依次给mask的通道图像y-axis 2pixel的shift</p>
-          </li>
-          <li>
-            <p>所有通道叠加(一个像素是同行28x2=56个不同通道像素的叠加，出来的图像是很模糊的)</p>
-          </li>
-          <li>
-            <p>仿真通过shot noise: $Y_{sim}=B(Y/QE,QE)$</p>
-
-            <ul>
-              <li>
-                <p>本来读数是Y, qe是quantum efficiency</p>
-              </li>
-              <li>
-                <p>B是binomial 分布</p>
-              </li>
-              <li>
-                <p>这段其实没懂为什么要用binomial分布，而不是poisson分布$P(Y)$ , 大概Y/QE是平均光子数，所以sample这么多次，每次都有qe的概率转换为电子；但是仍然不理解为什么要在光电转换的部分随机</p>
-              </li>
-            </ul>
-          </li>
+          <li>本来读数是Y, qe是quantum efficiency</li>
+          <li>B是binomial 分布</li>
+          <li>这段其实没懂为什么要用binomial分布，而不是poisson分布$P(Y)$ , 大概Y/QE是平均光子数，所以sample这么多次，每次都有qe的概率转换为电子；但是仍然不理解为什么要在光电转换的部分随机</li>
         </ul>
       </li>
+    </ol>
+  </li>
+  <li>仿真图例:
+    <ul>
+      <li>input: <img src="/personal_homepage/docs/attachment/Pasted%20image%2020240117165405.png" alt="Pasted image 20240117165405.png" width="150" />   sim: <img src="/personal_homepage/docs/attachment/Pasted%20image%2020240117165253.png" alt="Pasted image 20240117165253.png" width="170" /></li>
+      <li>simulation图片的size是Hx(W+54)</li>
     </ul>
   </li>
-  <li>仿真:
+  <li>实际拍摄的测试图例:
     <ul>
-      <li><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240117165405.png" alt="Pasted image 20240117165405.png" width="200" />   <img src="/personal_homepage/docs/attachment/Pasted%20image%2020240117165253.png" alt="Pasted image 20240117165253.png" width="220" /></li>
+      <li>label:  <img src="/personal_homepage/docs/attachment/Pasted%20image%2020240117165603.png" alt="Pasted image 20240117165603.png" width="150" />  image:  <img src="/personal_homepage/docs/attachment/Pasted%20image%2020231226120247.png" alt="Pasted image 20231226120247.png" width="170" />  recon: <img src="/personal_homepage/docs/attachment/Pasted%20image%2020240122114048.png" alt="Pasted image 20240122114048.png" width="150" /></li>
+      <li>mask: <img src="/personal_homepage/docs/attachment/mask.png" alt="mask.png" width="150" /></li>
     </ul>
   </li>
-  <li>实际拍摄:
+  <li>讨论:
     <ul>
-      <li><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240117165603.png" alt="Pasted image 20240117165603.png" width="200" />   <img src="/personal_homepage/docs/attachment/Pasted%20image%2020231226120247.png" alt="Pasted image 20231226120247.png" width="220" />  recon: <img src="/personal_homepage/docs/attachment/Pasted%20image%2020240122114048.png" alt="Pasted image 20240122114048.png" width="200" /></li>
+      <li>看起来仿真和实际拍摄的情况并不太一样啊?仿真的y方向offset距离更大</li>
+      <li>不能确定coded aperture mask是否必要, 仿真过程里, mask是在所有channel上都是一样的, 并没有颜色调制效果, 无论实际拍摄时有什么作用, 用仿真数据训练的网络学不到这个信息, 看起来颜色调制主要还是通过dispenser完成的</li>
     </ul>
   </li>
 </ul>
 
-<p>看起来仿真和实际拍摄的情况并不太一样啊?仿真的y方向距离更大</p>
-
-<p>数据集使用：</p>
-<ul>
-  <li>simulation:
-    <ul>
-      <li>训练：
-        <ul>
-          <li>data: cave_1024_28</li>
-          <li>crop_size: 随机crop到256x256, 和mask做simulation
-            <ul>
-              <li>shift3d mask: 28x256x310</li>
-            </ul>
-          </li>
-          <li>mask: TSA_simu_data/mask.mat</li>
-          <li>test:  TSA_simu_data/Truth/</li>
-        </ul>
-      </li>
-      <li>测试：
-        <ul>
-          <li>mask: TSA_simu_data/mask.mat</li>
-          <li>test: TSA_simu_data/Truth/</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li>real:
-    <ul>
-      <li>训练:
-        <ul>
-          <li>size: 96</li>
-          <li>data: CAVE_512_28 and KAIST_CVPR2021
-            <ul>
-              <li>CAVE_512_28 ：原数据集512x512x28 30个图片</li>
-              <li>KAIST_CVPR2021： 2704x3376x28 30个图片</li>
-            </ul>
-          </li>
-          <li>mask: TSA_real_data/mask.mat
-            <ul>
-              <li>660x660 0-1的数据</li>
-              <li><img src="/personal_homepage/docs/attachment/mask.png" alt="mask.png" width="200" /></li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-      <li>测试
-        <ul>
-          <li>size: 714x660</li>
-          <li>data: TSA_real_data/Measurements/
-            <ul>
-              <li></li>
-            </ul>
-          </li>
-          <li>mask: TSA_real_data/mask.mat</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-</ul>
-
-<h3 id="adis">ADIS</h3>
+<h3 id="adis-2">ADIS <a href="#ref">2</a></h3>
 
 <p>grid aperture + color filter</p>
 
 <ul>
-  <li>文章中的说法是把aperture看成一组7x7的方形aperture, 根据Fraunhofer diffraction, 不同位置的aperture因为波长不同, 会产生offset
+  <li><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240219161325.png" alt="Pasted image 20240219161325.png" width="190" />  设备: <img src="/personal_homepage/docs/attachment/Pasted%20image%2020240219161024.png" alt="Pasted image 20240219161024.png" width="150" /></li>
+  <li>代码仿真过程: 3d multichannel image( C x (H+max_offset*2) x (W+max_offset*2) ) -&gt; 2d perception image( H x W )
+    <ol>
+      <li>对应每个channel, 提取3d multichannel image中, 对应位置的patch相加
+        <ol>
+          <li>每个channel的offset递增: patch的位置不同
+            <ul>
+              <li>文章中用到的是28通道, offset从20开始, 每两个通道+1: offset为20, 20, 21, 21, …, 33, 33</li>
+            </ul>
+          </li>
+          <li>提取7x7=49个patch, 每个patch位置为 center-5offset, center-3offset, center-offset, center, center+offset, center+3offset, center+5offset
+            <ul>
+              <li>文章中的情况, max_offset = 5x33 = 165. 要仿真256x256的数据, 至少需要原数据 &gt; 586x586</li>
+            </ul>
+          </li>
+        </ol>
+      </li>
+      <li>加入GBRG的color filter
+        <ul>
+          <li>是为了补充相邻通道offset一样的调制吗?</li>
+        </ul>
+      </li>
+      <li>把所有通道叠加</li>
+    </ol>
+  </li>
+  <li>仿真图例:
     <ul>
-      <li>相机系统可以这么解释吗?</li>
+      <li>data: <img src="/personal_homepage/docs/attachment/Pasted%20image%2020240219160739.png" alt="Pasted image 20240219160739.png" width="200" /> label: <img src="/personal_homepage/docs/attachment/Pasted%20image%2020240219162430.png" alt="Pasted image 20240219162430.png" width="100" />  sim: <img src="/personal_homepage/docs/attachment/Pasted%20image%2020240219160842.png" alt="Pasted image 20240219160842.png" width="100" /></li>
     </ul>
   </li>
-  <li>我觉得也可以看成, 在aperture之后的每个不同位置, 都有对应的dispenser, 移动aperture的位置会产生offset</li>
+  <li>讨论:
+    <ul>
+      <li>文章中的说法是把aperture看成一组7x7的方形aperture, 根据Fraunhofer diffraction, 不同位置的aperture因为波长不同, 会产生offset
+        <ul>
+          <li>相机系统可以这么解释吗?</li>
+        </ul>
+      </li>
+      <li>我觉得也可以看成, 在aperture之后的每个不同位置, 都有对应的dispenser, 移动aperture的位置会产生offset</li>
+    </ul>
+  </li>
 </ul>
 
-<h2 id="理解">理解</h2>
+<h3 id="theta--3">THETA  <a href="#ref">3</a></h3>
+
+<p>也是color_filter但是不按像素排布, 光滑切换, 不规则排布. 用加在sensor上的一个彩色胶片实现.</p>
+<ul>
+  <li>拍摄图例: <img src="/personal_homepage/docs/attachment/Pasted%20image%2020240219172254.png" alt="Pasted image 20240219172254.png" width="150" /></li>
+  <li>讨论:
+    <ul>
+      <li>color_filter的pattern比pixel 要大</li>
+      <li>保留了图像的高频信息, 恢复出的图像很细节. 但是颜色的分辨率不高</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="dataset代码">dataset代码</h2>
+
+<p><a href="https://gist.github.com/roshameow/d3d6b1fd6d893a51656d645d7d16ad9b#file-cassi-py"><strong>CASSI.py</strong></a></p>
+
+<p><a href="https://gist.github.com/roshameow/d3d6b1fd6d893a51656d645d7d16ad9b#file-adis-py"><strong>ADIS.py</strong></a></p>
+
+<h2 id="单从理论看-什么样的psf更好">单从理论看, 什么样的PSF更好?</h2>
 
 <p><span id="ref"></span>
 [1]  Zhao, Ruixuan, Chengshuai Yang, R. Theodore Smith, and Liang Gao. “Coded Aperture Snapshot Spectral Imaging Fundus Camera.” <em>Scientific Reports</em> 13, no. 1 (July 25, 2023): 12007. <a href="https://doi.org/10.1038/s41598-023-39117-2">https://doi.org/10.1038/s41598-023-39117-2</a>.</p>
 
 <p>[2] Lv, Tao, Hao Ye, Quan Yuan, Zhan Shi, Yibo Wang, Shuming Wang, and Xun Cao. “Aperture Diffraction for Compact Snapshot Spectral Imaging.” arXiv, September 27, 2023. <a href="https://doi.org/10.48550/arXiv.2309.16372">https://doi.org/10.48550/arXiv.2309.16372</a>.</p>
 
-<p>CSST
-为什么要这么仿真? 怎么从系统的结构得到的? 
-每个aperture的小孔都会在不同offset的地方成像吗? 相当于aperture每个小孔位置放了一个dispenser
-假设有7x7的孔, 那么每个7x7x28的波长都有自己的offset
-rgb bayer filter有必要吗?
-是不是相当于两级的dispenser,</p>
+<p>[3] Zhang, Weihang, Jinli Suo, Kaiming Dong, Lianglong Li, Xin Yuan, Chengquan Pei, and Qionghai Dai. “Handheld Snapshot Multi-Spectral Camera at Tens-of-Megapixel Resolution.” <em>Nature Communications</em> 14, no. 1 (August 19, 2023): 5043. <a href="https://doi.org/10.1038/s41467-023-40739-3">https://doi.org/10.1038/s41467-023-40739-3</a>.</p>
 
-<p>到底应不应该这么仿真, 其实我是有疑惑的.</p>
 
         </div>
 

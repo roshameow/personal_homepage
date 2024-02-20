@@ -31,7 +31,7 @@
 <meta property="twitter:title" content="传感器颜色调制 (一)" />
 <meta name="twitter:site" content="@" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-12-27T23:14:21+00:00","datePublished":"2023-12-23T00:00:00+00:00","description":"调制","headline":"传感器颜色调制 (一)","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/docs/algorithm/color-moderate/"},"url":"https://roshameow.github.io//personal_homepage/docs/algorithm/color-moderate/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-02-20T02:03:22+00:00","datePublished":"2023-12-23T00:00:00+00:00","description":"调制","headline":"传感器颜色调制 (一)","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/docs/algorithm/color-moderate/"},"url":"https://roshameow.github.io//personal_homepage/docs/algorithm/color-moderate/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -200,7 +200,7 @@
   <li>技术本身的问题：
     <ul>
       <li>现在一般用<a href="https://en.wikipedia.org/wiki/Fabry–Pérot_interferometer">FP-干涉</a>技术来制作多光谱sensor需要的窄波段，FP-干涉需要使用多层透镜实现，相当于严重降低光线透过率</li>
-      <li>mask均匀排布，会导致有些地方的傅立叶系数是0，不利于做reconstruction</li>
+      <li>mask均匀排布，会导致MTF有些地方的傅立叶系数是0(rect pulse的Fourier transform是sinc)，不利于做reconstruction</li>
     </ul>
   </li>
   <li>工厂生产的问题：
