@@ -6,7 +6,7 @@ categories:
 tags:
   - content
   - sensor
-last_modified_at: 2023-12-27T15:14:21-08:00
+last_modified_at: 2024-02-19T18:03:22-08:00
 ---
 ## 调制
 
@@ -44,7 +44,7 @@ last_modified_at: 2023-12-27T15:14:21-08:00
 
 - 技术本身的问题：
 	- 现在一般用[FP-干涉][FP-干涉]技术来制作多光谱sensor需要的窄波段，FP-干涉需要使用多层透镜实现，相当于严重降低光线透过率
-	- mask均匀排布，会导致有些地方的傅立叶系数是0，不利于做reconstruction
+	- mask均匀排布，会导致MTF有些地方的傅立叶系数是0(rect pulse的Fourier transform是sinc)，不利于做reconstruction
 - 工厂生产的问题：
 	- 生产的一个filter的尺寸最小在10um左右，但是目前的手机用的单像素尺寸在[0.6～2.4um][像素尺寸](单像素2.4um已经是非常好的CMOS了)，不得不用类似quad bayer的做法让一个filter对应多个像素，无疑会影响调制的精度
 	- 透镜部分和成像部分不贴合：透镜距离sensor的感光区域有大约3um的垂直距离，会导致像素中有效信息进一步降低
