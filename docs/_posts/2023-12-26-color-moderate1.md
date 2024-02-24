@@ -77,7 +77,7 @@ grid aperture + color filter
 
 [**ADIS.py**](https://gist.github.com/roshameow/d3d6b1fd6d893a51656d645d7d16ad9b#file-adis-py) 
 
-## 单从理论看, 什么样的PSF更好?
+## 单从理论看, 什么样的调制更好?
 
 
 

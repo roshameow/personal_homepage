@@ -10,7 +10,7 @@ tags:
   - controlnet
   - canny
   - sdxl
-last_modified_at: 2024-02-08T00:58:53-08:00
+last_modified_at: 2024-02-24T11:16:16-08:00
 ---
 
 用ipadapter和canny做风格转换
@@ -28,7 +28,7 @@ last_modified_at: 2024-02-08T00:58:53-08:00
 	- 下载[canny模型](https://huggingface.co/collections/diffusers/sdxl-controlnets-64f9c35846f3f06f5abe351f) 
 		- ~~找不到其他适合sdxl的controlnet模型~~因为我们的原图是个线稿适合用canny
 	- ComfyUI里连接顺序是: Checkpoint->prompt->controlnet->Ksampler: text prompt
-		- controlnet最后是作用在text prompt上的?
+		- controlnet最后是作用在condition(positive, negative)上的, 和text promt一样
 	- 调整controlnet权重和影响步数: stength=0.5, start_percent=0, end_percent=0.6
 		- 如果设置过大就只能得到一张有颜色的线稿图
 
@@ -75,6 +75,9 @@ last_modified_at: 2024-02-08T00:58:53-08:00
 		- model里面还有个model_name? 模型的名字一长全混在一起真的分不清啊...
 	- preview Image节点
 		- 为什么不直接做成一个下拉选项...
+- 节点划分不明确: ComfyUI里面一个节点会用dict的形式传递多种参数
+	- latent里面可能包含latent image, noise mask, 也可能不包含noise mask, 此时连接到需要noise mask key的latent节点就会报错
+	- condition(positive, negative)也包含多种condition...
 - 为什么不能做成一个Chromium内核的本地app..
 	- 据说有一些方法可以打包成一个app?
 	- 凡需要inpaint输入的地方, 输入方式很不方便, 能和其他专门用来绘图的软件结合就好了

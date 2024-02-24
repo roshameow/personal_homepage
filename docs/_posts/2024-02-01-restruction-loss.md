@@ -7,7 +7,7 @@ tags:
   - content
   - loss
   - image
-last_modified_at: 2024-02-02T12:02:40-08:00
+last_modified_at: 2024-02-21T12:02:22-08:00
 ---
 
 输出为图像的任务, 比如enhance, deblur, super-resolution等用到的loss, 主要分为以下两类
@@ -25,10 +25,12 @@ last_modified_at: 2024-02-02T12:02:40-08:00
 | Gan Loss | 在训练过程中学习到的loss<br>用determinate网络表示<br> | determinate网络<br>区别不出 |  |
 | KL散度 |  |  |  |
 
-## output图像符合自然图像的性质
+## output图像符合自然图像的性质(image prior)
 
-- Total Variant(TV) loss: 图像gradient稀疏性
-	- anisotropic定义: `$|D_x I|_1+|D_y I|_1$`  
+| loss | 公式 | 目的 | 特点 |
+| ---- | ---- | ---- | ---- |
+| Total Variant(TV) | anisotropic定义:<br>$\|\|D_x I\|\|_1+\|\|D_y I\|\|_1$ | 图像gradient稀疏性 |  |
+
 
 ## 代码
 
