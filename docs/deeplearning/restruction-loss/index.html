@@ -31,7 +31,7 @@
 <meta property="twitter:title" content="常用的图像 reconstruction loss" />
 <meta name="twitter:site" content="@" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-02-02T20:02:40+00:00","datePublished":"2024-02-01T00:00:00+00:00","description":"输出为图像的任务, 比如enhance, deblur, super-resolution等用到的loss, 主要分为以下两类 output和label相近","headline":"常用的图像 reconstruction loss","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/docs/deeplearning/restruction-loss/"},"url":"https://roshameow.github.io//personal_homepage/docs/deeplearning/restruction-loss/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-02-21T20:02:22+00:00","datePublished":"2024-02-01T00:00:00+00:00","description":"输出为图像的任务, 比如enhance, deblur, super-resolution等用到的loss, 主要分为以下两类 output和label相近","headline":"常用的图像 reconstruction loss","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/docs/deeplearning/restruction-loss/"},"url":"https://roshameow.github.io//personal_homepage/docs/deeplearning/restruction-loss/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -138,7 +138,7 @@
 </h2>
 <!-- 1. toc
 {:toc} -->
-<ul class="inline_toc" id="my_toc"><li><a href="#output和label相近">output和label相近</a></li><li><a href="#output图像符合自然图像的性质">output图像符合自然图像的性质</a></li><li><a href="#代码">代码</a></li></ul>
+<ul class="inline_toc" id="my_toc"><li><a href="#output和label相近">output和label相近</a></li><li><a href="#output图像符合自然图像的性质image-prior">output图像符合自然图像的性质(image prior)</a></li><li><a href="#代码">代码</a></li></ul>
 </div>
 <!-- {::options parse_block_html="false" /} -->
 
@@ -216,15 +216,26 @@
   </tbody>
 </table>
 
-<h2 id="output图像符合自然图像的性质">output图像符合自然图像的性质</h2>
+<h2 id="output图像符合自然图像的性质image-prior">output图像符合自然图像的性质(image prior)</h2>
 
-<ul>
-  <li>Total Variant(TV) loss: 图像gradient稀疏性
-    <ul>
-      <li>anisotropic定义: <code class="language-plaintext highlighter-rouge">$|D_x I|_1+|D_y I|_1$</code></li>
-    </ul>
-  </li>
-</ul>
+<table>
+  <thead>
+    <tr>
+      <th>loss</th>
+      <th>公式</th>
+      <th>目的</th>
+      <th>特点</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Total Variant(TV)</td>
+      <td>anisotropic定义:<br />$||D_x I||_1+||D_y I||_1$</td>
+      <td>图像gradient稀疏性</td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
 
 <h2 id="代码">代码</h2>
 

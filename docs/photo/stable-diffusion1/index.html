@@ -31,7 +31,7 @@
 <meta property="twitter:title" content="stable-diffusion的用法: 用 ipadatper+controlnet canny做风格转换" />
 <meta name="twitter:site" content="@" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-02-08T08:58:53+00:00","datePublished":"2024-02-07T00:00:00+00:00","description":"用ipadapter和canny做风格转换","headline":"stable-diffusion的用法: 用 ipadatper+controlnet canny做风格转换","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/docs/photo/stable-diffusion1/"},"url":"https://roshameow.github.io//personal_homepage/docs/photo/stable-diffusion1/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-02-24T19:16:16+00:00","datePublished":"2024-02-07T00:00:00+00:00","description":"用ipadapter和canny做风格转换","headline":"stable-diffusion的用法: 用 ipadatper+controlnet canny做风格转换","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/docs/photo/stable-diffusion1/"},"url":"https://roshameow.github.io//personal_homepage/docs/photo/stable-diffusion1/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -176,7 +176,7 @@
       </li>
       <li>ComfyUI里连接顺序是: Checkpoint-&gt;prompt-&gt;controlnet-&gt;Ksampler: text prompt
         <ul>
-          <li>controlnet最后是作用在text prompt上的?</li>
+          <li>controlnet最后是作用在condition(positive, negative)上的, 和text promt一样</li>
         </ul>
       </li>
       <li>调整controlnet权重和影响步数: stength=0.5, start_percent=0, end_percent=0.6
@@ -260,6 +260,12 @@
           <li>为什么不直接做成一个下拉选项…</li>
         </ul>
       </li>
+    </ul>
+  </li>
+  <li>节点划分不明确: ComfyUI里面一个节点会用dict的形式传递多种参数
+    <ul>
+      <li>latent里面可能包含latent image, noise mask, 也可能不包含noise mask, 此时连接到需要noise mask key的latent节点就会报错</li>
+      <li>condition(positive, negative)也包含多种condition…</li>
     </ul>
   </li>
   <li>为什么不能做成一个Chromium内核的本地app..

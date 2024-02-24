@@ -1,16 +1,171 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="https://roshameow.github.io//personal_homepage/atom.xml" rel="self" type="application/atom+xml" /><link href="https://roshameow.github.io//personal_homepage/" rel="alternate" type="text/html" /><updated>2024-02-20T09:41:06+00:00</updated><id>https://roshameow.github.io//personal_homepage/atom.xml</id><title type="html">Liu, Wen’s Home Page</title><subtitle>Work, Experiments and Ideas.</subtitle><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><entry><title type="html">stable-diffusion的用法: 常用的作图功能</title><link href="https://roshameow.github.io//personal_homepage/docs/photo/stable-diffusion3/" rel="alternate" type="text/html" title="stable-diffusion的用法: 常用的作图功能" /><published>2024-02-18T00:00:00+00:00</published><updated>2024-02-19T08:02:13+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/photo/stable-diffusion3</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/photo/stable-diffusion3/"><![CDATA[<h2 id="用sam抠图">用SAM抠图</h2>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="https://roshameow.github.io//personal_homepage/atom.xml" rel="self" type="application/atom+xml" /><link href="https://roshameow.github.io//personal_homepage/" rel="alternate" type="text/html" /><updated>2024-02-24T04:32:52+00:00</updated><id>https://roshameow.github.io//personal_homepage/atom.xml</id><title type="html">Liu, Wen’s Home Page</title><subtitle>Work, Experiments and Ideas.</subtitle><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><entry><title type="html">stable-diffusion的用法: 常用的作图功能</title><link href="https://roshameow.github.io//personal_homepage/docs/photo/stable-diffusion3/" rel="alternate" type="text/html" title="stable-diffusion的用法: 常用的作图功能" /><published>2024-02-18T00:00:00+00:00</published><updated>2024-02-24T20:30:53+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/photo/stable-diffusion3</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/photo/stable-diffusion3/"><![CDATA[<h2 id="用sam抠图">用SAM抠图</h2>
 
-<h2 id="inpaint">inpaint</h2>
+<p>以下两种方式都是对segment-anything二次封装</p>
+<ul>
+  <li>在ComfyUI里用<a href="https://github.com/storyicon/comfyui_segment_anything">segment anything节点</a>
+    <ul>
+      <li>特点: 任何shape都可以, 输入text prompt, 但是没法输入位置</li>
+      <li>步骤:
+        <ol>
+          <li><a href="https://github.com/IDEA-Research/GroundingDINO">groundingDINO</a>模型: image, text prompt-&gt;目标检测box</li>
+          <li><a href="https://github.com/facebookresearch/segment-anything">SAM</a>模型: image, box-&gt; mask
+            <ol>
+              <li>SAM模型本体可以接受多种形式的prompt</li>
+              <li>SAM模式的特点是对image只encode一次, 这里box是作为prompt形式输入的, 不是在图像上crop然后处理cropped image</li>
+            </ol>
+          </li>
+        </ol>
+      </li>
+      <li>🤔️: SAM本来就可以输入text prompt, 加入groundingDINO模型是因为SAM的text promt效果不好吗?</li>
+    </ul>
+  </li>
+  <li><a href="https://github.com/geekyutao/Inpaint-Anything">inpaint-anything</a>
+    <ul>
+      <li>特点: 输入point prompt和text prompt(optional), 对输入图像大小有要求, 还接入了一个stable-diffusion的inpaint模块</li>
+    </ul>
+  </li>
+</ul>
 
+<h2 id="inpainting--outpainting">inpainting &amp; outpainting</h2>
+
+<ul>
+  <li>图生图功能: 利用stable-diffusion的sampler流程, noise mask之外的部分网络就不会去更改, 利用VAE decoder的填补能力
+    <ul>
+      <li>VAE encode成latent: 根据情况选择图像输入
+        <ol>
+          <li>输入原图: 直接用VAE Encode-&gt;latent-&gt;Set Latent Noise Mask-&gt;Ksampler
+            <ul>
+              <li>适合想保留部分原图元素的</li>
+            </ul>
+          </li>
+          <li>输入用灰色填补mask的图: 用 <a href="https://blenderneko.github.io/ComfyUI-docs/Core%20Nodes/Latent/inpaint/VAEEncodeForInpainting/">VAE Encode(for inpainting)</a> -&gt;latent-&gt;Ksampler
+            <ul>
+              <li><a href="https://blenderneko.github.io/ComfyUI-docs/Core%20Nodes/Latent/inpaint/VAEEncodeForInpainting/">VAE Encode(for inpainting)</a> 相当于 用灰色mask的图<a href="https://blenderneko.github.io/ComfyUI-docs/Core%20Nodes/Latent/VAEEncode/">VAE Encode</a> + <a href="https://blenderneko.github.io/ComfyUI-docs/Core%20Nodes/Latent/inpaint/SetLatentNoiseMask/">Set Latent Noise Mask</a> 两个节点的效果</li>
+              <li>适合想要在mask处新生成物体的</li>
+            </ul>
+          </li>
+          <li>输入LaMa inpaint的图: 用
+            <ul>
+              <li>一定要用glow加大mask的范围(最好把图像中受物体影响的部分全mask掉,例如mask人物的影子, 或是被挡住一半的文字. 不要留下不和谐的部分. )</li>
+              <li>适合有重复pattern的场景效果</li>
+            </ul>
+          </li>
+        </ol>
+      </li>
+      <li>用 <a href="https://blenderneko.github.io/ComfyUI-docs/Core%20Nodes/Latent/inpaint/SetLatentNoiseMask/">Set Latent Noise Mask</a> 在做sampler的流程中对mask以外的地方进行保留
+        <ul>
+          <li>sdxl模型latent image可以对应到8x8的pixel patch, 输入的mask会resize到latent大小成为latent mask</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>控制: inpainting任务是想让生成的部分风格接近原图, 和原图边界融合的更好
+    <ul>
+      <li>用ipadapter控制风格
+        <ul>
+          <li>ipadapter会参考原图物体的位置关系, 使这个控制在outpainting里非常鸡肋, 我们的目的是生成和原图风格一致的新物体, 而不是把原来的物体叠加在图片上</li>
+          <li>ipadapter的attention mask输入是 整张图-&gt; 部分 的流程, 而不是我们在inpainting任务想要的 部分 -&gt; 整张图
+            <ul>
+              <li>attention mask可以用来把两张图融合在同一张图的不同位置, 例如让两个人合影</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>用text prompt控制
+        <ul>
+          <li><a href="https://github.com/pythongosssss/ComfyUI-WD14-Tagger">WD14 Tagger</a> 推导提示词</li>
+          <li>用<a href="https://github.com/ZHO-ZHO-ZHO/ComfyUI-Gemini">Gemini</a> 的API的打标功能</li>
+        </ul>
+      </li>
+      <li>微调模型控制:
+        <ul>
+          <li>controlnet inpaint:(配合v1.5)
+            <ul>
+              <li>inpaintpreprocessor输入image, mask</li>
+              <li>inpaintpreprocessor处理过的图像输入inpaint controlnet</li>
+              <li>controlnet连接text prompt</li>
+              <li>用controlnet的时候甚至可以用空的latent, 因为controlnet会更改sampler流程为生成整张图?
+                <ul>
+                  <li>但是一般还是输入image latent 参考, 不然的话颜色风格会变奇怪</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>fooocus inpaint: (配合sdxl)
+            <ul>
+              <li><a href="https://github.com/lllyasviel/Fooocus/discussions/414">fooocus自己的ui界面做inpaint</a>网上评价很好</li>
+              <li><a href="https://github.com/Acly/comfyui-inpaint-nodes">fooocus comfyUI版本</a>的一些使用问题: README里给出的工作流都不太work
+                <ul>
+                  <li>输入model, patch(包含一个head模型和一个lora模型), latent(必须包含latent image和noise mask)</li>
+                  <li>使用时感觉好像一定要配合VAE Encode(for inpainting), 如果输入lama补充后的, 结果会出现奇怪的偏色, 是模型内部对mask部分进行了识别吗?</li>
+                  <li>用fooocus 开发的dpmpp sampler方式迭代, 也会出现奇怪的东西, 是comfyui的实现有问题吗?</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>结果: 远没有达到一键生成的效果, 但是比起lama只会填入重复花纹还是有很大进步
+    <ul>
+      <li>新生成的部分和原图融合的不好
+        <ul>
+          <li>按这个流程原图mask之外的内容不会重新生成, 融合的不好可以理解, 应该是生成整张图才对. 这个工作流应该是有问题, 没有发挥stable diffusion的全部能力</li>
+        </ul>
+      </li>
+      <li>需要修改seed多次生成(抽卡), 人工选好一点的效果做为图生图VAE部分的输入继续</li>
+      <li>尤其是人物, 动物, 补全的地方可以看出很明显的问题, 是多次抽卡解决不了的, 必须要配合人工实时修改</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="comfyui-workflow">ComfyUI workflow</h2>
 <h3 id="换背景">换背景</h3>
 
+<p>工作流: <a href="https://gist.github.com/roshameow/041450c340e56d39f12c93bd7d2d8606#file-inpainting_background_sam_fooocus-json"><strong>inpainting_background_SAM_fooocus.json</strong></a> $\downarrow$</p>
+
+<p><img src="/personal_homepage/docs/attachment/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-02-23%20232215.png" alt="屏幕截图 2024-02-23 232215.png" width="800" /></p>
 <h3 id="去掉不想要的人物">去掉不想要的人物</h3>
+
+<p><a href="https://gist.github.com/roshameow/041450c340e56d39f12c93bd7d2d8606#file-inpaint_delete_person_sam_lama_fooocus-json"><strong>inpaint_delete_person_SAM_Lama_fooocus.json</strong></a> $\downarrow$</p>
+
+<p><img src="/personal_homepage/docs/attachment/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-02-23%20231325.png" alt="屏幕截图 2024-02-23 231325.png" width="800" /></p>
 
 <h3 id="修改局部">修改局部</h3>
 
-<h2 id="outpaint">outpaint</h2>
+<p><a href="https://gist.github.com/roshameow/041450c340e56d39f12c93bd7d2d8606#file-inpaint_edit_fooocus_ipadapter-json"><strong>inpaint_edit_fooocus_ipadapter.json</strong></a> $\downarrow$</p>
 
-<h3 id="更改图片尺寸">更改图片尺寸</h3>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="photo" /><category term="content" /><category term="ComfyUI" /><category term="sdxl" /><category term="inpaint" /><summary type="html"><![CDATA[用SAM抠图]]></summary></entry><entry><title type="html">photoshop: 酸性风格海报</title><link href="https://roshameow.github.io//personal_homepage/docs/photo/photoshop1/" rel="alternate" type="text/html" title="photoshop: 酸性风格海报" /><published>2024-02-14T00:00:00+00:00</published><updated>2024-02-19T00:21:24+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/photo/photoshop1</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/photo/photoshop1/"><![CDATA[<p><a href="https://aesthetics.fandom.com/wiki/Acid_Design">酸性(acid)风格</a> 迷幻感 . 设计元素包含: 高饱和, 流动性, 未来复古元素, 格纹, 镭射金属, 霓虹色. 
+<p><img src="/personal_homepage/docs/attachment/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-02-23%20235229.png" alt="屏幕截图 2024-02-23 235229.png" width="800" /></p>
+
+<p>和inpaint类似, 用Pad for Outpainting生成mask和灰色填补的图像</p>
+
+<h3 id="outpaint-更改图片尺寸">outpaint 更改图片尺寸</h3>
+
+<p><a href="https://gist.github.com/roshameow/041450c340e56d39f12c93bd7d2d8606#file-outpainting_lama_fooocus_ipadapter-json"><strong>outpainting_lama_fooocus_ipadapter.json</strong></a> $\downarrow$</p>
+
+<p><img src="/personal_homepage/docs/attachment/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-02-23%20230951.png" alt="屏幕截图 2024-02-23 230951.png" width="800" /></p>
+
+<ul>
+  <li>想生成简单纯色的背景似乎不可能, 网络总会自己加些东西</li>
+</ul>
+
+<h3 id="注意事项">注意事项</h3>
+
+<ul>
+  <li>白色是想要网络生成的部分</li>
+  <li>如果在一个工作流里同时用SAM, foocus inpaint, ipadapter等模型, 我16G的显存会不够用: 其实SAM在生成mask之后就可以移出显存了, 但是不清楚comfyui怎么操作</li>
+</ul>
+
+<h2 id="reference">reference</h2>
+
+<p>[1] https://github.com/Sanster/IOPaint inpaint+outpaint合集</p>
+
+<p>[2] https://github.com/comfyanonymous/ComfyUI/blob/master/nodes.py#L331 ComfyUI 节点代码</p>
+
+<p>[3] https://medium.com/gliacloud/removing-any-object-from-your-photo-with-lama-7e966765fadc lama实际使用感受</p>
+
+<p>[4] https://huggingface.co/blog/TimothyAlexisVass/explaining-the-sdxl-latent-space sdxl的latent image的解释. sdxl的latent image和原图像素对应.</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="photo" /><category term="content" /><category term="ComfyUI" /><category term="sdxl" /><category term="inpaint" /><summary type="html"><![CDATA[用SAM抠图]]></summary></entry><entry><title type="html">photoshop: 酸性风格海报</title><link href="https://roshameow.github.io//personal_homepage/docs/photo/photoshop1/" rel="alternate" type="text/html" title="photoshop: 酸性风格海报" /><published>2024-02-14T00:00:00+00:00</published><updated>2024-02-19T00:21:24+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/photo/photoshop1</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/photo/photoshop1/"><![CDATA[<p><a href="https://aesthetics.fandom.com/wiki/Acid_Design">酸性(acid)风格</a> 迷幻感 . 设计元素包含: 高饱和, 流动性, 未来复古元素, 格纹, 镭射金属, 霓虹色. 
 <a href="https://www.bilibili.com/video/BV1gD4y127m1/">这个链接解释的比较详细</a></p>
 
 <h2 id="制作液态效果-流动感-金属感">制作液态效果, 流动感, 金属感</h2>
@@ -544,7 +699,7 @@
 
 <h2 id="reference">reference</h2>
 
-<p>[1] https://zhuanlan.zhihu.com/p/484222862 辉光效果</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="blender" /><category term="content" /><category term="render" /><category term="shader" /><summary type="html"><![CDATA[火焰的形状用圆形变形一半获得. 用Perlin noise使坐标变形制作随机抖动. 用Emission node渲染发光效果.]]></summary></entry><entry><title type="html">stable-diffusion的用法: 用 ipadatper+controlnet canny做风格转换</title><link href="https://roshameow.github.io//personal_homepage/docs/photo/stable-diffusion1/" rel="alternate" type="text/html" title="stable-diffusion的用法: 用 ipadatper+controlnet canny做风格转换" /><published>2024-02-07T00:00:00+00:00</published><updated>2024-02-08T08:58:53+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/photo/stable-diffusion1</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/photo/stable-diffusion1/"><![CDATA[<p>用ipadapter和canny做风格转换</p>
+<p>[1] https://zhuanlan.zhihu.com/p/484222862 辉光效果</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="blender" /><category term="content" /><category term="render" /><category term="shader" /><summary type="html"><![CDATA[火焰的形状用圆形变形一半获得. 用Perlin noise使坐标变形制作随机抖动. 用Emission node渲染发光效果.]]></summary></entry><entry><title type="html">stable-diffusion的用法: 用 ipadatper+controlnet canny做风格转换</title><link href="https://roshameow.github.io//personal_homepage/docs/photo/stable-diffusion1/" rel="alternate" type="text/html" title="stable-diffusion的用法: 用 ipadatper+controlnet canny做风格转换" /><published>2024-02-07T00:00:00+00:00</published><updated>2024-02-24T19:16:16+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/photo/stable-diffusion1</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/photo/stable-diffusion1/"><![CDATA[<p>用ipadapter和canny做风格转换</p>
 
 <h2 id="comfyui使用">ComfyUI使用</h2>
 
@@ -574,7 +729,7 @@
       </li>
       <li>ComfyUI里连接顺序是: Checkpoint-&gt;prompt-&gt;controlnet-&gt;Ksampler: text prompt
         <ul>
-          <li>controlnet最后是作用在text prompt上的?</li>
+          <li>controlnet最后是作用在condition(positive, negative)上的, 和text promt一样</li>
         </ul>
       </li>
       <li>调整controlnet权重和影响步数: stength=0.5, start_percent=0, end_percent=0.6
@@ -658,6 +813,12 @@
           <li>为什么不直接做成一个下拉选项…</li>
         </ul>
       </li>
+    </ul>
+  </li>
+  <li>节点划分不明确: ComfyUI里面一个节点会用dict的形式传递多种参数
+    <ul>
+      <li>latent里面可能包含latent image, noise mask, 也可能不包含noise mask, 此时连接到需要noise mask key的latent节点就会报错</li>
+      <li>condition(positive, negative)也包含多种condition…</li>
     </ul>
   </li>
   <li>为什么不能做成一个Chromium内核的本地app..
@@ -779,7 +940,7 @@
 
 <p>[2] Cai, Yuanhao, Jing Lin, Xiaowan Hu, Haoqian Wang, Xin Yuan, Yulun Zhang, Radu Timofte, and Luc Van Gool. “Coarse-to-Fine Sparse Transformer for Hyperspectral Image Reconstruction.” arXiv, July 10, 2022. <a href="https://doi.org/10.48550/arXiv.2203.04845">https://doi.org/10.48550/arXiv.2203.04845</a>. 介绍了Spectra-aware hashing attention block的结构</p>
 
-<p>[3] https://github.com/tencent-ailab/IP-Adapter</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="deeplearning" /><category term="content" /><category term="network" /><category term="attention" /><category term="block" /><summary type="html"><![CDATA[在网络中, block是把input信息转换成output信息的过程: 一般, output(position, vector)是input(token, embedding vector)的线性组合, 组合的weight (position, token) 由input和output两方关系确定. 把着重强调这种信息交互的模块叫attention. convolution]]></summary></entry><entry><title type="html">常用的图像 reconstruction loss</title><link href="https://roshameow.github.io//personal_homepage/docs/deeplearning/restruction-loss/" rel="alternate" type="text/html" title="常用的图像 reconstruction loss" /><published>2024-02-01T00:00:00+00:00</published><updated>2024-02-02T20:02:40+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/deeplearning/restruction-loss</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/deeplearning/restruction-loss/"><![CDATA[<p>输出为图像的任务, 比如enhance, deblur, super-resolution等用到的loss, 主要分为以下两类</p>
+<p>[3] https://github.com/tencent-ailab/IP-Adapter</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="deeplearning" /><category term="content" /><category term="network" /><category term="attention" /><category term="block" /><summary type="html"><![CDATA[在网络中, block是把input信息转换成output信息的过程: 一般, output(position, vector)是input(token, embedding vector)的线性组合, 组合的weight (position, token) 由input和output两方关系确定. 把着重强调这种信息交互的模块叫attention. convolution]]></summary></entry><entry><title type="html">常用的图像 reconstruction loss</title><link href="https://roshameow.github.io//personal_homepage/docs/deeplearning/restruction-loss/" rel="alternate" type="text/html" title="常用的图像 reconstruction loss" /><published>2024-02-01T00:00:00+00:00</published><updated>2024-02-21T20:02:22+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/deeplearning/restruction-loss</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/deeplearning/restruction-loss/"><![CDATA[<p>输出为图像的任务, 比如enhance, deblur, super-resolution等用到的loss, 主要分为以下两类</p>
 <h2 id="output和label相近">output和label相近</h2>
 
 <table>
@@ -849,15 +1010,26 @@
   </tbody>
 </table>
 
-<h2 id="output图像符合自然图像的性质">output图像符合自然图像的性质</h2>
+<h2 id="output图像符合自然图像的性质image-prior">output图像符合自然图像的性质(image prior)</h2>
 
-<ul>
-  <li>Total Variant(TV) loss: 图像gradient稀疏性
-    <ul>
-      <li>anisotropic定义: <code class="language-plaintext highlighter-rouge">$|D_x I|_1+|D_y I|_1$</code></li>
-    </ul>
-  </li>
-</ul>
+<table>
+  <thead>
+    <tr>
+      <th>loss</th>
+      <th>公式</th>
+      <th>目的</th>
+      <th>特点</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Total Variant(TV)</td>
+      <td>anisotropic定义:<br />$||D_x I||_1+||D_y I||_1$</td>
+      <td>图像gradient稀疏性</td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
 
 <h2 id="代码">代码</h2>
 
