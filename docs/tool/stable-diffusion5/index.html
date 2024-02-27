@@ -16,22 +16,22 @@
   
   
   <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>常用的图像 reconstruction loss | Liu, Wen’s Home Page</title>
+<title>stable-diffusion的用法: 常用插件 | Liu, Wen’s Home Page</title>
 <meta name="generator" content="Jekyll v4.3.3" />
-<meta property="og:title" content="常用的图像 reconstruction loss" />
+<meta property="og:title" content="stable-diffusion的用法: 常用插件" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="输出为图像的任务, 比如enhance, deblur, super-resolution, generation等用到的loss, 主要分为以下两类 output和label相近" />
-<meta property="og:description" content="输出为图像的任务, 比如enhance, deblur, super-resolution, generation等用到的loss, 主要分为以下两类 output和label相近" />
-<link rel="canonical" href="https://roshameow.github.io//personal_homepage/docs/deeplearning/restruction-loss/" />
-<meta property="og:url" content="https://roshameow.github.io//personal_homepage/docs/deeplearning/restruction-loss/" />
+<meta name="description" content="comfyui manager" />
+<meta property="og:description" content="comfyui manager" />
+<link rel="canonical" href="https://roshameow.github.io//personal_homepage/docs/tool/stable-diffusion5/" />
+<meta property="og:url" content="https://roshameow.github.io//personal_homepage/docs/tool/stable-diffusion5/" />
 <meta property="og:site_name" content="Liu, Wen’s Home Page" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2024-02-01T00:00:00+00:00" />
+<meta property="article:published_time" content="2024-02-27T00:00:00+00:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="常用的图像 reconstruction loss" />
+<meta property="twitter:title" content="stable-diffusion的用法: 常用插件" />
 <meta name="twitter:site" content="@" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-02-26T19:22:46+00:00","datePublished":"2024-02-01T00:00:00+00:00","description":"输出为图像的任务, 比如enhance, deblur, super-resolution, generation等用到的loss, 主要分为以下两类 output和label相近","headline":"常用的图像 reconstruction loss","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/docs/deeplearning/restruction-loss/"},"url":"https://roshameow.github.io//personal_homepage/docs/deeplearning/restruction-loss/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-02-28T07:57:30+00:00","datePublished":"2024-02-27T00:00:00+00:00","description":"comfyui manager","headline":"stable-diffusion的用法: 常用插件","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/docs/tool/stable-diffusion5/"},"url":"https://roshameow.github.io//personal_homepage/docs/tool/stable-diffusion5/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -58,7 +58,7 @@
 
 </head>
 
-  <body class="layout--post  常用的图像-reconstruction-loss">
+  <body class="layout--post  stable-diffusion的用法-常用插件">
     <nav class="skip-links">
   <h2 class="screen-reader-text">Skip links</h2>
   <ul>
@@ -99,7 +99,7 @@
       <header class="page-header">
         
         
-        <h1 id="page-title" class="page-title p-name">常用的图像 reconstruction loss
+        <h1 id="page-title" class="page-title p-name">stable-diffusion的用法: 常用插件
 </h1>
         
       </header>
@@ -111,7 +111,7 @@
 
 <span class="read-time">~1 min read</span>
 
-    <time class="page-date dt-published" datetime="2024-02-01T00:00:00+00:00"><a class="u-url" href="">February 1, 2024</a>
+    <time class="page-date dt-published" datetime="2024-02-27T00:00:00+00:00"><a class="u-url" href="">February 27, 2024</a>
 </time>
 
   </div>
@@ -120,14 +120,14 @@
         
   <h3 class="page-taxonomies-title">Categories</h3>
   
-  <ul class="page-taxonomies"><li class="page-taxonomy"><a class="p-category" href="/personal_homepage/categories/#deeplearning" title="Pages filed under deeplearning">deeplearning</a></li><li class="page-taxonomy"><a class="p-category" href="/personal_homepage/categories/#docs" title="Pages filed under docs">docs</a></li>
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a class="p-category" href="/personal_homepage/categories/#docs" title="Pages filed under docs">docs</a></li><li class="page-taxonomy"><a class="p-category" href="/personal_homepage/categories/#tool" title="Pages filed under tool">tool</a></li>
   </ul>
 
 
         
   <h3 class="page-taxonomies-title">Tags</h3>
   
-  <ul class="page-taxonomies"><li class="page-taxonomy"><a href="/personal_homepage/tags/#content" title="Pages tagged content" rel="tag">content</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#image" title="Pages tagged image" rel="tag">image</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#loss" title="Pages tagged loss" rel="tag">loss</a></li>
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a href="/personal_homepage/tags/#comfyui" title="Pages tagged ComfyUI" rel="tag">ComfyUI</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#content" title="Pages tagged content" rel="tag">content</a></li>
   </ul>
 
 
@@ -138,7 +138,7 @@
 </h2>
 <!-- 1. toc
 {:toc} -->
-<ul class="inline_toc" id="my_toc"><li><a href="#output和label相近">output和label相近</a></li><li><a href="#output图像符合自然图像的性质image-prior">output图像符合自然图像的性质(image prior)</a></li><li><a href="#代码">代码</a></li></ul>
+
 </div>
 <!-- {::options parse_block_html="false" /} -->
 
@@ -146,118 +146,23 @@
 
       <div class="page-content">
         <div class="e-content">
-          <p>输出为图像的任务, 比如enhance, deblur, super-resolution, generation等用到的loss, 主要分为以下两类</p>
-<h2 id="output和label相近">output和label相近</h2>
+          <p>comfyui manager</p>
 
-<table>
-  <thead>
-    <tr>
-      <th>loss</th>
-      <th>公式</th>
-      <th>目的</th>
-      <th>特点<br /></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>L1 loss</td>
-      <td>$||I_1-I_2||_1$</td>
-      <td>大体相近</td>
-      <td>最常用的loss</td>
-    </tr>
-    <tr>
-      <td>L2 loss<br />(MSE)</td>
-      <td>$||I_1-I_2||_2$<br />或$MSE=\overline{(I_1-I_2)^2}$</td>
-      <td> </td>
-      <td>因为导数是线性所以计算最快</td>
-    </tr>
-    <tr>
-      <td><a href="[https://github.com/CVMI-Lab/UHDM/blob/main/utils/common.py](https://github.com/CVMI-Lab/UHDM/blob/main/utils/common.py)">SSIM</a> <br />(stuctural similarity<br /> index measure)</td>
-      <td>$\frac{2\mu_1\mu_2+C_1}{\mu_1^2+\mu_2^2+C_1}\cdot \frac{2\sigma_{12}+C_2}{\sigma_1^2+\sigma_2^2+C_2}$ <br />$\mu, \sigma$ 分别为mean, variance<br />$\sigma_{12}$是covariance<br />$C_1, C_2$ 是常数</td>
-      <td>纹理相近</td>
-      <td>要分patch计算<br />$C_1, C_2$ 的值要根据图像的范围调整</td>
-    </tr>
-    <tr>
-      <td>PSNR<br />(Peak signal-<br />to-noise ratio)</td>
-      <td>$-10\log_{10}(MSE(I_1,I_2))$</td>
-      <td> </td>
-      <td>经常是用来验证</td>
-    </tr>
-    <tr>
-      <td><a href="[https://github.com/varun19299/deep-atrous-guided-filter/tree/master/PerceptualSimilarity](https://github.com/varun19299/deep-atrous-guided-filter/tree/master/PerceptualSimilarity)">PerceptualLoss</a></td>
-      <td>一个分类网络</td>
-      <td>语义相近</td>
-      <td>一般用vgg16, 输入RGB图像<br />一般会用后几层的语义特征对比<br /></td>
-    </tr>
-    <tr>
-      <td><a href="https://github.com/richzhang/PerceptualSimilarity">LPIPS</a> <br />(Learned Perceptual<br />image patch similarity)</td>
-      <td> </td>
-      <td> </td>
-      <td>perceptualLoss+分块</td>
-    </tr>
-    <tr>
-      <td>DeltaE</td>
-      <td>转换成Lab空间的MSE</td>
-      <td>颜色相近</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>Gan Loss</td>
-      <td>在训练过程中学习到的loss<br />用determinate网络表示<br /></td>
-      <td>determinate网络<br />区别不出</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>KL散度</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-    </tr>
-  </tbody>
-</table>
+<p>impact pack</p>
 
-<h2 id="output图像符合自然图像的性质image-prior">output图像符合自然图像的性质(image prior)</h2>
+<p>comfyroll_customnodes</p>
 
-<table>
-  <thead>
-    <tr>
-      <th>loss</th>
-      <th>公式</th>
-      <th>目的</th>
-      <th>特点</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Total Variant(TV)</td>
-      <td>anisotropic定义:<br />$||D_x I||_1+||D_y I||_1$</td>
-      <td>图像gradient稀疏性</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>FID<br />(Freachet Inception<br /> Distance)</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>sFID</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>IS<br />(Inception Score)</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-    </tr>
-  </tbody>
-</table>
+<p>inpaint_nodes</p>
 
-<h2 id="代码">代码</h2>
+<p>rgthree-comfy</p>
 
-<p><a href="https://gist.github.com/roshameow/c59d5708610ae30eb4329b140ccab3a7#file-reconstruction_loss-py"><strong>reconstruction_loss.py</strong></a></p>
+<p>Marigold</p>
+
+<p>WD14-tagger</p>
+
+<p>resize</p>
+
+<p>image-saver</p>
 
         </div>
 
@@ -269,8 +174,8 @@
     <div id="disqus_thread"></div>
     <script>
       var disqus_config = function () {
-        this.page.url = 'https://roshameow.github.io//personal_homepage/docs/deeplearning/restruction-loss/';
-        this.page.identifier = 'https://roshameow.github.io//personal_homepage/docs/deeplearning/restruction-loss/';
+        this.page.url = 'https://roshameow.github.io//personal_homepage/docs/tool/stable-diffusion5/';
+        this.page.identifier = 'https://roshameow.github.io//personal_homepage/docs/tool/stable-diffusion5/';
       };
 
       (function() {
@@ -288,23 +193,15 @@
 
         <nav class="page-pagination" role="navigation">
   
-    <a class="page-previous" href="/personal_homepage/docs/design/spring-couplets/">
+    <a class="page-previous" href="/personal_homepage/docs/photo/stable-diffusion4/">
       <h4 class="page-pagination-label">Previous</h4>
       <span class="page-pagination-title">
-        <i class="fas fa-arrow-left"></i> 龙年春联
+        <i class="fas fa-arrow-left"></i> stable-diffusion的用法: 常用的作图功能-提升细节
 
       </span>
     </a>
   
 
-  
-    <a class="page-next" href="/personal_homepage/docs/deeplearning/attention/">
-      <h4 class="page-pagination-label">Next</h4>
-      <span class="page-pagination-title">
-        神经网络attention结构理解
- <i class="fas fa-arrow-right"></i>
-      </span>
-    </a>
   
 </nav>
 

@@ -31,7 +31,7 @@
 <meta property="twitter:title" content="神经网络attention结构理解" />
 <meta name="twitter:site" content="@" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-02-08T01:13:42+00:00","datePublished":"2024-02-04T00:00:00+00:00","description":"在网络中, block是把input信息转换成output信息的过程: 一般, output(position, vector)是input(token, embedding vector)的线性组合, 组合的weight (position, token) 由input和output两方关系确定. 把着重强调这种信息交互的模块叫attention. convolution","headline":"神经网络attention结构理解","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/docs/deeplearning/attention/"},"url":"https://roshameow.github.io//personal_homepage/docs/deeplearning/attention/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-02-28T00:20:55+00:00","datePublished":"2024-02-04T00:00:00+00:00","description":"在网络中, block是把input信息转换成output信息的过程: 一般, output(position, vector)是input(token, embedding vector)的线性组合, 组合的weight (position, token) 由input和output两方关系确定. 把着重强调这种信息交互的模块叫attention. convolution","headline":"神经网络attention结构理解","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/docs/deeplearning/attention/"},"url":"https://roshameow.github.io//personal_homepage/docs/deeplearning/attention/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -109,7 +109,7 @@
             <a class="u-url" rel="me" href=""><i class="fas fa-link fa-lg" title=""></i></a>
           </li></ul>
 
-<span class="read-time">~1 min read</span>
+<span class="read-time">1 min read</span>
 
     <time class="page-date dt-published" datetime="2024-02-04T00:00:00+00:00"><a class="u-url" href="">February 4, 2024</a>
 </time>
@@ -204,7 +204,12 @@
       <li>cross-attention是现在常见的把一种信息加入另一种信息的方法
         <ul>
           <li>也用到了图像信息和文字信息的统一形式, 即(position, embedding) , 在图像信息中, position(S=H x W)是像素或patch的位置; 文字信息中, position是token在句中的前后位置</li>
+        </ul>
+      </li>
+      <li>relative weight:
+        <ul>
           <li>我们可以对relative weight可视化, 从而知道某个文字token和图像哪个位置最相关</li>
+          <li>对relative weight的一个维度做average pooling, 就能知道哪个位置是更重要的<a href="#ref">4</a>(和gate-attention的用法一样)</li>
         </ul>
       </li>
       <li>Q,K,V(query, key, value) 的叫法是nlp搜索(匹配)任务的术语, 额, 其实我一直没法对这个望文生义…
@@ -255,6 +260,8 @@
 <p>[2] Cai, Yuanhao, Jing Lin, Xiaowan Hu, Haoqian Wang, Xin Yuan, Yulun Zhang, Radu Timofte, and Luc Van Gool. “Coarse-to-Fine Sparse Transformer for Hyperspectral Image Reconstruction.” arXiv, July 10, 2022. <a href="https://doi.org/10.48550/arXiv.2203.04845">https://doi.org/10.48550/arXiv.2203.04845</a>. 介绍了Spectra-aware hashing attention block的结构</p>
 
 <p>[3] https://github.com/tencent-ailab/IP-Adapter</p>
+
+<p>[4] Hong, Susung, Gyuseong Lee, Wooseok Jang, and Seungryong Kim. “Improving Sample Quality of Diffusion Models Using Self-Attention Guidance.” arXiv, August 24, 2023. <a href="https://doi.org/10.48550/arXiv.2210.00939">https://doi.org/10.48550/arXiv.2210.00939</a>.</p>
 
         </div>
 

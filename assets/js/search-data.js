@@ -210,7 +210,7 @@ var store = [{
         "url": "https://roshameow.github.io//personal_homepage/docs/design/spring-couplets/"
       },{
         "title": "常用的图像 reconstruction loss",
-        "excerpt":"输出为图像的任务, 比如enhance, deblur, super-resolution等用到的loss, 主要分为以下两类 output和label相近 loss 公式 目的 特点 L1 loss $||I_1-I_2||_1$ 大体相近 最常用的loss L2 loss(MSE) $||I_1-I_2||_2$或$MSE=\\overline{(I_1-I_2)^2}$   因为导数是线性所以计算最快 SSIM (stuctural similarity index measure) $\\frac{2\\mu_1\\mu_2+C_1}{\\mu_1^2+\\mu_2^2+C_1}\\cdot \\frac{2\\sigma_{12}+C_2}{\\sigma_1^2+\\sigma_2^2+C_2}$ $\\mu, \\sigma$ 分别为mean, variance$\\sigma_{12}$是covariance$C_1, C_2$ 是常数 纹理相近 要分patch计算$C_1, C_2$ 的值要根据图像的范围调整 PSNR(Peak signal-to-noise ratio) $-10\\log_{10}(MSE(I_1,I_2))$   经常是用来验证 PerceptualLoss 一个分类网络 语义相近 一般用vgg16, 输入RGB图像一般会用后几层的语义特征对比 LPIPS (Learned...","categories": ["docs","deeplearning"],
+        "excerpt":"输出为图像的任务, 比如enhance, deblur, super-resolution, generation等用到的loss, 主要分为以下两类 output和label相近 loss 公式 目的 特点 L1 loss $||I_1-I_2||_1$ 大体相近 最常用的loss L2 loss(MSE) $||I_1-I_2||_2$或$MSE=\\overline{(I_1-I_2)^2}$   因为导数是线性所以计算最快 SSIM (stuctural similarity index measure) $\\frac{2\\mu_1\\mu_2+C_1}{\\mu_1^2+\\mu_2^2+C_1}\\cdot \\frac{2\\sigma_{12}+C_2}{\\sigma_1^2+\\sigma_2^2+C_2}$ $\\mu, \\sigma$ 分别为mean, variance$\\sigma_{12}$是covariance$C_1, C_2$ 是常数 纹理相近 要分patch计算$C_1, C_2$ 的值要根据图像的范围调整 PSNR(Peak signal-to-noise ratio) $-10\\log_{10}(MSE(I_1,I_2))$   经常是用来验证 PerceptualLoss 一个分类网络 语义相近 一般用vgg16, 输入RGB图像一般会用后几层的语义特征对比 LPIPS...","categories": ["docs","deeplearning"],
         "tags": ["content","loss","image"],
         "url": "https://roshameow.github.io//personal_homepage/docs/deeplearning/restruction-loss/"
       },{
@@ -244,8 +244,18 @@ var store = [{
         "tags": ["content","photoshop","filter","design"],
         "url": "https://roshameow.github.io//personal_homepage/docs/photo/photoshop1/"
       },{
-        "title": "stable-diffusion的用法: 常用的作图功能",
+        "title": "stable-diffusion的用法: 常用的作图功能-抠图, inpainting",
         "excerpt":"用SAM抠图 以下两种方式都是对segment-anything二次封装 在ComfyUI里用segment anything节点 特点: 任何shape都可以, 输入text prompt, 但是没法输入位置 步骤: groundingDINO模型: image, text prompt-&gt;目标检测box SAM模型: image, box-&gt; mask SAM模型本体可以接受多种形式的prompt SAM模式的特点是对image只encode一次, 这里box是作为prompt形式输入的, 不是在图像上crop然后处理cropped image 🤔️: SAM本来就可以输入text prompt, 加入groundingDINO模型是因为SAM的text promt效果不好吗? inpaint-anything 特点: 输入point prompt和text prompt(optional), 对输入图像大小有要求, 还接入了一个stable-diffusion的inpaint模块 inpainting &amp; outpainting 图生图功能: 利用stable-diffusion的sampler流程, noise mask之外的部分网络就不会去更改, 利用VAE decoder的填补能力 VAE encode成latent: 根据情况选择图像输入 输入原图: 直接用VAE Encode-&gt;latent-&gt;Set...","categories": ["docs","photo"],
         "tags": ["content","ComfyUI","sdxl","inpaint"],
         "url": "https://roshameow.github.io//personal_homepage/docs/photo/stable-diffusion3/"
+      },{
+        "title": "stable-diffusion的用法: 常用的作图功能-提升细节",
+        "excerpt":"和inpaint一样要利用stable-diffusion的图生图功能, 想让图像忠于原图的情况下提升图像细节, 解决图像模糊, 扭曲, 不合理的部分. 使用 模型: 一般模型: 对于模糊的图, encode+ksample+decode就可以提升细节 StableSR: 基于sd2.1, 关于细节修复任务重新训练的模型 sdxl refiner模型: 输入latent image, 官方建议接在sdxl base模型的后面用 sdxl refiner一般只能配和sdxl base模型, 不能配合其他风格的sdxl模型, 所以不是很实用 控制: 更像原图: 风格控制: 和inpaint一样, 可以用text promt和ipadpater控制 微调模型控制: controlnet tile(配合v1.5模型): 这是个非常好用的模型👍, 可以在分块(输入的不是一整张图)的时候, 更倾向理解图像部分而不是text prompt 关于sdxl模型没有一个tile模型的讨论 提升细节: 从流程上控制: Self-attention Guidance(SAG) 和cfg(class free guidance)类似, 是更改reverse diffusion process的过程 让图片变清晰原理: 认为self-attention值更大的位置是更重要的位置,...","categories": ["docs","photo"],
+        "tags": ["content","ComfyUI","sdxl","refine"],
+        "url": "https://roshameow.github.io//personal_homepage/docs/photo/stable-diffusion4/"
+      },{
+        "title": "stable-diffusion的用法: 常用插件",
+        "excerpt":"comfyui manager impact pack comfyroll_customnodes inpaint_nodes rgthree-comfy Marigold WD14-tagger resize image-saver ","categories": ["docs","tool"],
+        "tags": ["content","ComfyUI"],
+        "url": "https://roshameow.github.io//personal_homepage/docs/tool/stable-diffusion5/"
       }]

@@ -16,22 +16,22 @@
   
   
   <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>stable-diffusion的用法: 用 lora+controlnet做风格转换 | Liu, Wen’s Home Page</title>
+<title>stable-diffusion的用法: 常用的作图功能-提升细节 | Liu, Wen’s Home Page</title>
 <meta name="generator" content="Jekyll v4.3.3" />
-<meta property="og:title" content="stable-diffusion的用法: 用 lora+controlnet做风格转换" />
+<meta property="og:title" content="stable-diffusion的用法: 常用的作图功能-提升细节" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="尝试只用ipadapter做猫的风格转换, 非常不成功, ipadapter还是无法控制输入的元素. 必须要用多张图片训练的LoRA控制. 另外, 猫脸上颜色分布的特征, 没有controlnet可以直接表示." />
-<meta property="og:description" content="尝试只用ipadapter做猫的风格转换, 非常不成功, ipadapter还是无法控制输入的元素. 必须要用多张图片训练的LoRA控制. 另外, 猫脸上颜色分布的特征, 没有controlnet可以直接表示." />
-<link rel="canonical" href="https://roshameow.github.io//personal_homepage/docs/photo/stable-diffusion2/" />
-<meta property="og:url" content="https://roshameow.github.io//personal_homepage/docs/photo/stable-diffusion2/" />
+<meta name="description" content="和inpaint一样要利用stable-diffusion的图生图功能, 想让图像忠于原图的情况下提升图像细节, 解决图像模糊, 扭曲, 不合理的部分." />
+<meta property="og:description" content="和inpaint一样要利用stable-diffusion的图生图功能, 想让图像忠于原图的情况下提升图像细节, 解决图像模糊, 扭曲, 不合理的部分." />
+<link rel="canonical" href="https://roshameow.github.io//personal_homepage/docs/photo/stable-diffusion4/" />
+<meta property="og:url" content="https://roshameow.github.io//personal_homepage/docs/photo/stable-diffusion4/" />
 <meta property="og:site_name" content="Liu, Wen’s Home Page" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2024-02-09T00:00:00+00:00" />
+<meta property="article:published_time" content="2024-02-24T00:00:00+00:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="stable-diffusion的用法: 用 lora+controlnet做风格转换" />
+<meta property="twitter:title" content="stable-diffusion的用法: 常用的作图功能-提升细节" />
 <meta name="twitter:site" content="@" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-02-24T21:25:27+00:00","datePublished":"2024-02-09T00:00:00+00:00","description":"尝试只用ipadapter做猫的风格转换, 非常不成功, ipadapter还是无法控制输入的元素. 必须要用多张图片训练的LoRA控制. 另外, 猫脸上颜色分布的特征, 没有controlnet可以直接表示.","headline":"stable-diffusion的用法: 用 lora+controlnet做风格转换","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/docs/photo/stable-diffusion2/"},"url":"https://roshameow.github.io//personal_homepage/docs/photo/stable-diffusion2/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-02-28T07:55:46+00:00","datePublished":"2024-02-24T00:00:00+00:00","description":"和inpaint一样要利用stable-diffusion的图生图功能, 想让图像忠于原图的情况下提升图像细节, 解决图像模糊, 扭曲, 不合理的部分.","headline":"stable-diffusion的用法: 常用的作图功能-提升细节","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/docs/photo/stable-diffusion4/"},"url":"https://roshameow.github.io//personal_homepage/docs/photo/stable-diffusion4/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -58,7 +58,7 @@
 
 </head>
 
-  <body class="layout--post  stable-diffusion的用法-用-lora-controlnet做风格转换">
+  <body class="layout--post  stable-diffusion的用法-常用的作图功能-提升细节">
     <nav class="skip-links">
   <h2 class="screen-reader-text">Skip links</h2>
   <ul>
@@ -99,7 +99,7 @@
       <header class="page-header">
         
         
-        <h1 id="page-title" class="page-title p-name">stable-diffusion的用法: 用 lora+controlnet做风格转换
+        <h1 id="page-title" class="page-title p-name">stable-diffusion的用法: 常用的作图功能-提升细节
 </h1>
         
       </header>
@@ -111,7 +111,7 @@
 
 <span class="read-time">~1 min read</span>
 
-    <time class="page-date dt-published" datetime="2024-02-09T00:00:00+00:00"><a class="u-url" href="">February 9, 2024</a>
+    <time class="page-date dt-published" datetime="2024-02-24T00:00:00+00:00"><a class="u-url" href="">February 24, 2024</a>
 </time>
 
   </div>
@@ -127,7 +127,7 @@
         
   <h3 class="page-taxonomies-title">Tags</h3>
   
-  <ul class="page-taxonomies"><li class="page-taxonomy"><a href="/personal_homepage/tags/#comfyui" title="Pages tagged ComfyUI" rel="tag">ComfyUI</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#canny" title="Pages tagged canny" rel="tag">canny</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#content" title="Pages tagged content" rel="tag">content</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#controlnet" title="Pages tagged controlnet" rel="tag">controlnet</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#ipadapter" title="Pages tagged ipadapter" rel="tag">ipadapter</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#sdxl" title="Pages tagged sdxl" rel="tag">sdxl</a></li>
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a href="/personal_homepage/tags/#comfyui" title="Pages tagged ComfyUI" rel="tag">ComfyUI</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#content" title="Pages tagged content" rel="tag">content</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#refine" title="Pages tagged refine" rel="tag">refine</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#sdxl" title="Pages tagged sdxl" rel="tag">sdxl</a></li>
   </ul>
 
 
@@ -138,7 +138,7 @@
 </h2>
 <!-- 1. toc
 {:toc} -->
-<ul class="inline_toc" id="my_toc"><li><a href="#comfyui步骤">ComfyUI步骤</a></li><li><a href="#结果">结果</a></li><li><a href="#comfyui-workflow">ComfyUI workflow</a></li><li><a href="#资源">资源</a></li></ul>
+<ul class="inline_toc" id="my_toc"><li><a href="#使用">使用</a></li><li><a href="#效果">效果</a></li><li><a href="#comfyui-workflow">ComfyUI workflow</a></li></ul>
 </div>
 <!-- {::options parse_block_html="false" /} -->
 
@@ -146,133 +146,109 @@
 
       <div class="page-content">
         <div class="e-content">
-          <p>尝试只用ipadapter做猫的风格转换, 非常不成功, ipadapter还是无法控制输入的元素. 必须要用多张图片训练的LoRA控制. 
-另外, 猫脸上颜色分布的特征, 没有controlnet可以直接表示.</p>
+          <p>和inpaint一样要利用stable-diffusion的图生图功能, 想让图像忠于原图的情况下提升图像细节, 解决图像模糊, 扭曲, 不合理的部分.</p>
 
-<h2 id="comfyui步骤">ComfyUI步骤</h2>
-
-<ol>
-  <li><strong>训练Lora</strong>
-    <ul>
-      <li>用<a href="https://github.com/bmaltais/kohya_ss">kohya_ss</a> 的gui训练
-        <ul>
-          <li>network rank设置64</li>
-          <li>打开Gradient checkpoint, 不然我16G的显存不够用</li>
-          <li>另外, 我的wsl2需要解决一下找不到cuda toolkit的问题
-            <ul>
-              <li>检查发现是ubuntu的requirement里面指定的torch和bitsandbytes版本不匹配</li>
-              <li>在虚拟环境里, 升级到最新版2.2后代码又出问题</li>
-              <li>最后参考windows版本的requirement.txt, 改成torch=2.1.0+cu118解决了</li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li><strong>连上Lora节点</strong>
-    <ul>
-      <li>ComfyUI里连接顺序是: Checkpoint: model, clip -&gt; Lora</li>
-      <li>多个Lora顺序连接就行</li>
-      <li>ip的lora的weigt设为1.22, 风格化lora的weight不用设那么大</li>
-    </ul>
-  </li>
-  <li><strong>写text prompt</strong>
-    <ul>
-      <li>写了包括描述内容的, lora配套的, 描述想要风格的positive prompt</li>
-    </ul>
-  </li>
-  <li><strong>连上Controlnet节点</strong>
-    <ul>
-      <li>用到了<a href="https://huggingface.co/collections/diffusers/sdxl-controlnets-64f9c35846f3f06f5abe351f">canny模型, depth模型</a>
-        <ul>
-          <li>下载<a href="https://github.com/kijai/ComfyUI-Marigold">Marigold</a>的深度识别模型节点</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-</ol>
-
-<h2 id="结果">结果</h2>
-
-<p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240209124721.png" alt="Pasted image 20240209124721.png" width="150" /> -&gt; <img src="/personal_homepage/docs/attachment/Pasted%20image%2020240209124343.png" alt="Pasted image 20240209124343.png" width="600" /></p>
+<h2 id="使用">使用</h2>
 
 <ul>
-  <li><strong>风格:</strong> 3种方法都可以
-    <ol>
-      <li>text prompt里输入</li>
-      <li>风格LoRA
-        <ul>
-          <li>在prompt也要加上对应风格关键词</li>
-        </ul>
-      </li>
-      <li>用ipadpter输入风格图片控制
-        <ul>
-          <li>ipadpter的weight需要调整: 不能太低(风格化没用), 也不能太高(和风格图太像)</li>
-          <li>一直有和风格图太像, 或者风格图提供我们不想要元素的风险…毕竟一张图片的信息不像文字和lora那样有明确的指向性</li>
-          <li>我用的不是换脸模型, 但是模型好像特别执着于换脸? 的确模型本来的目的是换ip…</li>
-        </ul>
-      </li>
-      <li>另外, 可以直接用一个特定风格的大模型</li>
-    </ol>
-  </li>
-  <li><strong>控制:</strong>
+  <li>模型:
     <ul>
-      <li>用canny或depth模型都能做到控制猫的位置
+      <li>一般模型: 对于模糊的图, encode+ksample+decode就可以提升细节</li>
+      <li><a href="https://iceclear.github.io/projects/stablesr/">StableSR</a>: 基于sd2.1, 关于细节修复任务重新训练的模型</li>
+      <li><a href="https://huggingface.co/stabilityai/stable-diffusion-xl-refiner-1.0">sdxl refiner模型</a>: 输入latent image, 官方建议接在sdxl base模型的后面用
         <ul>
-          <li>Marigold的识别特别慢, 尝试的时候计算完深度图要先把那个节点断开</li>
+          <li>sdxl refiner一般只能配和sdxl base模型, 不能配合其他风格的sdxl模型, 所以不是很实用</li>
         </ul>
       </li>
     </ul>
   </li>
-  <li><strong>问题:</strong>
+  <li>控制:
     <ul>
-      <li>有些风格单独可以出图, 但是加了我训练的猫的LoRA就没法出对应风格的图了</li>
-      <li>用LoRA训练的模型没有完全理解我的猫的所有特征: 尤其是鼻子和嘴附近的毛色
+      <li>更像原图:
         <ul>
-          <li>我用了30多张照片, 也没有改label的caption, 所以可能还有质量增加的空间</li>
-        </ul>
-      </li>
-      <li>用ipadpter的失败经验:
-        <ul>
-          <li>如果用一张猫的图片和一张风格图
+          <li>风格控制: 和inpaint一样, 可以用text promt和ipadpater控制</li>
+          <li>微调模型控制:
             <ul>
-              <li><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240209133511.png" alt="Pasted image 20240209133511.png" width="100" /></li>
-              <li>无法控制输入元素</li>
+              <li>controlnet tile(配合v1.5模型): 这是个非常好用的模型👍, 可以在分块(输入的不是一整张图)的时候, 更倾向理解图像部分而不是text prompt</li>
+              <li><a href="https://huggingface.co/lllyasviel/sd_control_collection/discussions/1">关于sdxl模型没有一个tile模型的讨论</a></li>
             </ul>
           </li>
         </ul>
       </li>
+      <li>提升细节:
+        <ul>
+          <li>从流程上控制:
+            <ul>
+              <li><a href="https://ku-cvlab.github.io/Self-Attention-Guidance">Self-attention Guidance(SAG)</a>
+                <ul>
+                  <li>和cfg(class free guidance)类似, 是更改reverse diffusion process的过程</li>
+                  <li>让图片变清晰原理:  认为self-attention值更大的位置是更重要的位置, 让其离blurry的方向更远, 即更清晰
+                    <ul>
+                      <li>从文章里的例子看, 这种做法达成了一种神奇的自纠正的效果, 可能是因为在reverse diffusion process中重要的地方更快的变清晰, 引导了其他部分的生成</li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>方便的节点: stable-diffusion本身的图生图功能input和output等大的, 图像大小和模型不匹配的时候就需要分块处理或放大
+    <ul>
+      <li>分块: 下面两个功能类似
+        <ul>
+          <li><a href="https://github.com/ltdrdata/ComfyUI-Impact-Pack/blob/5f73ac55c02b588bf151c355522e8c402723e134/modules/impact/core.py#L329">ComfyUI Impact Pack 提供的detailer节点</a> : 包含一些方便的功能
+            <ul>
+              <li>可以分块图生图</li>
+              <li>可以设置cycle次数, 即图生图的次数 (如果comfyUI本身提供循环功能就好了)</li>
+            </ul>
+          </li>
+          <li><a href="https://github.com/ssitu/ComfyUI_UltimateSDUpscale">UltimateSDUpscale</a>
+            <ul>
+              <li>支持分块图生图</li>
+              <li>改变tile的一些融合方式</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>放大: 放大经常伴随细节损失, 一般是和refine功能接力使用: upscale-&gt;refine-&gt;upscale-&gt;refine-&gt;upscale-&gt;refine…</li>
     </ul>
   </li>
 </ul>
 
+<h2 id="效果">效果</h2>
+
+<ul>
+  <li>使用时要注意:
+    <ul>
+      <li>输入图像的尺寸: 如果输入图像太小也是无法生成正常图片的, 尽量用外部的resize和upscale调整到和模型训练的大小相近</li>
+      <li>图像包含的语义信息的尺寸</li>
+      <li>reverse diffusion process的参数: cfg, denoise, steps等</li>
+    </ul>
+  </li>
+  <li>对一些常见的噪声效果很好, 例如: jpg压缩的高频alias, 摩尔纹
+    <ul>
+      <li>但是对于其他噪声就不认识, 可能被认作图像本身的风格? 例如我用其他prior搭配<a href="https://en.wikipedia.org/wiki/Augmented_Lagrangian_method">admm算法</a>恢复图像的中间结果</li>
+    </ul>
+  </li>
+  <li>恢复出的图像风格会受选择的主要模型风格影响, 很难保证细节不变风格还原</li>
+  <li>恢复真实人物的效果很差, 可能是本身我们对人脸细节要求就更严格? 可能需要加载专门控制人脸的微调模型</li>
+</ul>
+
 <h2 id="comfyui-workflow">ComfyUI workflow</h2>
 
-<p>用Lora调整风格$\downarrow$ : <a href="https://gist.github.com/roshameow/d952bf0157a25ab3e9e724df1449b160#file-rosha_lora_controlnet_canny_depth_style_change-json"><strong>rosha_lora_controlnet_canny_depth_style_change.json</strong></a></p>
+<p>用sdxl的refiner$\downarrow$ : <a href="https://gist.github.com/roshameow/7a46bcdb4d7bdc5b2c0e758e4aa85a9f#file-refine_sdxl_refiner-json"><strong>refine_sdxl_refiner.json</strong></a></p>
 
-<p><img src="/personal_homepage/docs/attachment/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-02-08%20230728.png" alt="屏幕截图 2024-02-08 230728.png" width="800" /></p>
+<p><img src="/personal_homepage/docs/attachment/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-02-27%20231030.png" alt="屏幕截图 2024-02-27 231030.png" width="800" /></p>
 
-<p>用ipadator调整风格$\downarrow$ : <a href="https://gist.github.com/roshameow/d952bf0157a25ab3e9e724df1449b160#file-rosha_lora_ipadapter_style_tranformation-json"><strong>rosha_lora_ipadapter_style_tranformation.json</strong></a></p>
+<p>用detailer节点和 <a href="https://github.com/ssitu/ComfyUI_UltimateSDUpscale">UltimateSDUpscale</a> 节点$\downarrow$ : <a href="https://gist.github.com/roshameow/7a46bcdb4d7bdc5b2c0e758e4aa85a9f#file-refine_impact_pack_detailer_sag_ultimatesd-json"><strong>refine_impact_pack_detailer_SAG_UltimateSD.json</strong></a></p>
+<ul>
+  <li>参考<a href="https://comfyworkflows.com/workflows/f9ed8191-b2e1-4417-ac26-2ecc7ff2a484">这个comfyworkflows上分享的workflow</a></li>
+</ul>
 
-<p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240209135354.png" alt="Pasted image 20240209135354.png" width="800" /></p>
-
-<h2 id="资源">资源</h2>
-
-<p>艺术风格prompt:</p>
-
-<p>[1] https://medium.com/phygital/top-40-useful-prompts-for-stable-diffusion-xl-008c03dd0557</p>
-
-<p>[2] https://docs.midjourney.com/docs/explore-prompting</p>
-
-<p>[3] https://www.urania.ai/top-sd-artists</p>
-
-<p>[4] https://github.com/SupaGruen/StableDiffusion-CheatSheet 是v1.5插件</p>
-
-<p>Lora训练:</p>
-
-<p>[5]  <a href="https://www.youtube.com/watch?v=NaHtI0u3Am4">https://www.youtube.com/watch?v=NaHtI0u3Am4</a> kohya_ss的参数设置,</p>
-
-<p>[6] https://zhuanlan.zhihu.com/p/654322145.   下面讨论说optimizer还是默认比较好?</p>
+<p><img src="/personal_homepage/docs/attachment/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-02-27%20221824.png" alt="屏幕截图 2024-02-27 221824.png" width="800" /></p>
 
         </div>
 
@@ -284,8 +260,8 @@
     <div id="disqus_thread"></div>
     <script>
       var disqus_config = function () {
-        this.page.url = 'https://roshameow.github.io//personal_homepage/docs/photo/stable-diffusion2/';
-        this.page.identifier = 'https://roshameow.github.io//personal_homepage/docs/photo/stable-diffusion2/';
+        this.page.url = 'https://roshameow.github.io//personal_homepage/docs/photo/stable-diffusion4/';
+        this.page.identifier = 'https://roshameow.github.io//personal_homepage/docs/photo/stable-diffusion4/';
       };
 
       (function() {
@@ -303,20 +279,20 @@
 
         <nav class="page-pagination" role="navigation">
   
-    <a class="page-previous" href="/personal_homepage/docs/blender/blender-learning5/">
+    <a class="page-previous" href="/personal_homepage/docs/photo/stable-diffusion3/">
       <h4 class="page-pagination-label">Previous</h4>
       <span class="page-pagination-title">
-        <i class="fas fa-arrow-left"></i> blender学习: 做火焰效果
+        <i class="fas fa-arrow-left"></i> stable-diffusion的用法: 常用的作图功能-抠图, inpainting
 
       </span>
     </a>
   
 
   
-    <a class="page-next" href="/personal_homepage/docs/blender/blender-learning6/">
+    <a class="page-next" href="/personal_homepage/docs/tool/stable-diffusion5/">
       <h4 class="page-pagination-label">Next</h4>
       <span class="page-pagination-title">
-        blender学习: 玻璃杯
+        stable-diffusion的用法: 常用插件
  <i class="fas fa-arrow-right"></i>
       </span>
     </a>
