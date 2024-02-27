@@ -7,10 +7,10 @@ tags:
   - content
   - loss
   - image
-last_modified_at: 2024-02-21T12:02:22-08:00
+last_modified_at: 2024-02-26T11:22:46-08:00
 ---
 
-输出为图像的任务, 比如enhance, deblur, super-resolution等用到的loss, 主要分为以下两类
+输出为图像的任务, 比如enhance, deblur, super-resolution, generation等用到的loss, 主要分为以下两类
 ## output和label相近
 
 | loss | 公式 | 目的 | 特点<br> |
@@ -30,6 +30,9 @@ last_modified_at: 2024-02-21T12:02:22-08:00
 | loss | 公式 | 目的 | 特点 |
 | ---- | ---- | ---- | ---- |
 | Total Variant(TV) | anisotropic定义:<br>$\|\|D_x I\|\|_1+\|\|D_y I\|\|_1$ | 图像gradient稀疏性 |  |
+| FID<br>(Freachet Inception<br> Distance) |  |  |  |
+| sFID |  |  |  |
+| IS<br>(Inception Score) |  |  |  |
 
 
 ## 代码

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "stable-diffusion的用法: 常用的作图功能"
+title: "stable-diffusion的用法: 常用的作图功能-抠图, inpainting"
 categories:
   - photo
 tags:
@@ -8,7 +8,7 @@ tags:
   - ComfyUI
   - sdxl
   - inpaint
-last_modified_at: 2024-02-24T12:30:53-08:00
+last_modified_at: 2024-02-26T11:40:13-08:00
 ---
 ## 用SAM抠图
 
@@ -34,8 +34,8 @@ last_modified_at: 2024-02-24T12:30:53-08:00
 		2. 输入用灰色填补mask的图: 用 [VAE Encode(for inpainting)](https://blenderneko.github.io/ComfyUI-docs/Core%20Nodes/Latent/inpaint/VAEEncodeForInpainting/) ->latent->Ksampler
 			-  [VAE Encode(for inpainting)](https://blenderneko.github.io/ComfyUI-docs/Core%20Nodes/Latent/inpaint/VAEEncodeForInpainting/) 相当于 用灰色mask的图[VAE Encode](https://blenderneko.github.io/ComfyUI-docs/Core%20Nodes/Latent/VAEEncode/) + [Set Latent Noise Mask](https://blenderneko.github.io/ComfyUI-docs/Core%20Nodes/Latent/inpaint/SetLatentNoiseMask/) 两个节点的效果
 			- 适合想要在mask处新生成物体的
-		4. 输入LaMa inpaint的图: 用 
-			- 一定要用glow加大mask的范围(最好把图像中受物体影响的部分全mask掉,例如mask人物的影子, 或是被挡住一半的文字. 不要留下不和谐的部分. )
+		4. 输入LaMa inpaint的图: 用[fooocus comfyUI版本](https://github.com/Acly/comfyui-inpaint-nodes) 提供的inpaint from model节点, 然后再走VAE Encode->latent->Set Latent Noise Mask->Ksampler的流程
+			- **一定要用GrowMask加大mask的范围**(最好把图像中受物体影响的部分全mask掉,例如mask人物的影子, 或是被挡住一半的文字. 不要留下不和谐的部分. [3](#ref) )
 			- 适合有重复pattern的场景效果
 	- 用 [Set Latent Noise Mask](https://blenderneko.github.io/ComfyUI-docs/Core%20Nodes/Latent/inpaint/SetLatentNoiseMask/) 在做sampler的流程中对mask以外的地方进行保留
 		- sdxl模型latent image可以对应到8x8的pixel patch, 输入的mask会resize到latent大小成为latent mask
@@ -47,7 +47,7 @@ last_modified_at: 2024-02-24T12:30:53-08:00
 	- 用text prompt控制
 		- [WD14 Tagger](https://github.com/pythongosssss/ComfyUI-WD14-Tagger) 推导提示词
 		- 用[Gemini](https://github.com/ZHO-ZHO-ZHO/ComfyUI-Gemini) 的API的打标功能
-	- 微调模型控制:
+	- 微调模型控制: 如果不加任何模型, 生成出来的结果和原图看起来完全不融合
 		- controlnet inpaint:(配合v1.5)
 			- inpaintpreprocessor输入image, mask
 			-  inpaintpreprocessor处理过的图像输入inpaint controlnet
@@ -93,7 +93,7 @@ last_modified_at: 2024-02-24T12:30:53-08:00
 
 ![屏幕截图 2024-02-23 230951.png]({{ '/docs/attachment/屏幕截图 2024-02-23 230951.png' | relative_url }}){:width="800"}
 
-- 想生成简单纯色的背景似乎不可能, 网络总会自己加些东西
+- 想生成简单纯色的背景似乎不可能, 网络总会自己加些东西: 是不是网络认为纯色背景是一种未完成的状态?
 
 ### 注意事项
 
@@ -102,6 +102,7 @@ last_modified_at: 2024-02-24T12:30:53-08:00
 
 
 ## reference 
+<span id="ref"></span>
 
 [1] https://github.com/Sanster/IOPaint inpaint+outpaint合集
 

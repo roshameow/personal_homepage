@@ -8,7 +8,7 @@ tags:
   - network
   - attention
   - block
-last_modified_at: 2024-02-07T17:13:42-08:00
+last_modified_at: 2024-02-27T16:20:55-08:00
 ---
 在网络中, block是把input信息转换成output信息的过程: 一般, output(position, vector)是input(token, embedding vector)的线性组合, 组合的weight (position, token) 由input和output两方关系确定. 把着重强调这种信息交互的模块叫attention. 
 ## convolution
@@ -43,7 +43,9 @@ convolution在神经网络流行之前就已经在图像任务里广泛使用了
 	- self-attention和cross-attention结构类似, 只是变成了一种输入
 	- cross-attention是现在常见的把一种信息加入另一种信息的方法
 		- 也用到了图像信息和文字信息的统一形式, 即(position, embedding) , 在图像信息中, position(S=H x W)是像素或patch的位置; 文字信息中, position是token在句中的前后位置
+	- relative weight: 
 		- 我们可以对relative weight可视化, 从而知道某个文字token和图像哪个位置最相关
+		- 对relative weight的一个维度做average pooling, 就能知道哪个位置是更重要的[4](#ref)(和gate-attention的用法一样)
 	- Q,K,V(query, key, value) 的叫法是nlp搜索(匹配)任务的术语, 额, 其实我一直没法对这个望文生义...
 		- 其实从计算过程可以看出, 不管它们的原义, Q, K交换一下也没差
 		- query和key的embedding channel数应该相同, 为了之后计算他们relation的目的
@@ -75,3 +77,5 @@ convolution在神经网络流行之前就已经在图像任务里广泛使用了
 [2] Cai, Yuanhao, Jing Lin, Xiaowan Hu, Haoqian Wang, Xin Yuan, Yulun Zhang, Radu Timofte, and Luc Van Gool. “Coarse-to-Fine Sparse Transformer for Hyperspectral Image Reconstruction.” arXiv, July 10, 2022. [https://doi.org/10.48550/arXiv.2203.04845](https://doi.org/10.48550/arXiv.2203.04845). 介绍了Spectra-aware hashing attention block的结构
 
 [3] https://github.com/tencent-ailab/IP-Adapter 
+
+[4] Hong, Susung, Gyuseong Lee, Wooseok Jang, and Seungryong Kim. “Improving Sample Quality of Diffusion Models Using Self-Attention Guidance.” arXiv, August 24, 2023. [https://doi.org/10.48550/arXiv.2210.00939](https://doi.org/10.48550/arXiv.2210.00939).
