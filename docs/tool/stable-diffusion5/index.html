@@ -20,8 +20,8 @@
 <meta name="generator" content="Jekyll v4.3.3" />
 <meta property="og:title" content="stable-diffusion的用法: 常用插件" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="comfyui manager" />
-<meta property="og:description" content="comfyui manager" />
+<meta name="description" content="ComfyUI使用时用到的插件" />
+<meta property="og:description" content="ComfyUI使用时用到的插件" />
 <link rel="canonical" href="https://roshameow.github.io//personal_homepage/docs/tool/stable-diffusion5/" />
 <meta property="og:url" content="https://roshameow.github.io//personal_homepage/docs/tool/stable-diffusion5/" />
 <meta property="og:site_name" content="Liu, Wen’s Home Page" />
@@ -31,7 +31,7 @@
 <meta property="twitter:title" content="stable-diffusion的用法: 常用插件" />
 <meta name="twitter:site" content="@" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-02-28T07:57:30+00:00","datePublished":"2024-02-27T00:00:00+00:00","description":"comfyui manager","headline":"stable-diffusion的用法: 常用插件","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/docs/tool/stable-diffusion5/"},"url":"https://roshameow.github.io//personal_homepage/docs/tool/stable-diffusion5/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-02-28T19:39:07+00:00","datePublished":"2024-02-27T00:00:00+00:00","description":"ComfyUI使用时用到的插件","headline":"stable-diffusion的用法: 常用插件","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/docs/tool/stable-diffusion5/"},"url":"https://roshameow.github.io//personal_homepage/docs/tool/stable-diffusion5/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -146,23 +146,83 @@
 
       <div class="page-content">
         <div class="e-content">
-          <p>comfyui manager</p>
+          <p>ComfyUI使用时用到的插件</p>
 
-<p>impact pack</p>
+<table>
+  <thead>
+    <tr>
+      <th>插件</th>
+      <th>用途</th>
+      <th>类型</th>
+      <th>必须?</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><a href="https://github.com/ltdrdata/ComfyUI-Manager">ComfyUI-Manager</a></td>
+      <td>- 查找和安装插件和模型<br />- 可以识别工作流中的missing node</td>
+      <td>功能</td>
+      <td>✔️</td>
+    </tr>
+    <tr>
+      <td><a href="https://github.com/rgthree/rgthree-comfy">rgthree-comfy</a></td>
+      <td>- 显示一个node执行进度条<br />- 优化节点执行graph<br />- 提供Image Comparer节点</td>
+      <td>功能</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><a href="https://github.com/palant/image-resize-comfyui">Resize</a></td>
+      <td>resize图片</td>
+      <td>功能<br /></td>
+      <td>✔️</td>
+    </tr>
+    <tr>
+      <td><a href="https://github.com/giriss/comfy-image-saver">image-saver</a></td>
+      <td>Save Image w/Metadata节点<br />把图片生成的信息写到图片metadata里<br />(webui有类似功能)</td>
+      <td>功能</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><a href="https://github.com/ltdrdata/ComfyUI-Impact-Pack">Impact-Pack</a></td>
+      <td>很多功能, 但是有些感觉封装的太复杂了</td>
+      <td>功能</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><a href="https://github.com/ssitu/ComfyUI_UltimateSDUpscale">UltimateSDUpscale</a></td>
+      <td>- 分块图生图<br />- 改变tile的一些融合方式</td>
+      <td>功能</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><a href="https://github.com/kijai/ComfyUI-Marigold">ComfyUI-Marigold</a></td>
+      <td>识别深度图</td>
+      <td>模型</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><a href="https://github.com/storyicon/comfyui_segment_anything">comfyui_segment_anything</a></td>
+      <td>识别mask</td>
+      <td>模型</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><a href="https://github.com/Acly/comfyui-inpaint-nodes">inpaint-nodes</a></td>
+      <td>一系列关于inpaint的节点<br />- Fooocus inapint<br />- Inpaint (using Model) : 用于加载Lama等inpaint模型</td>
+      <td>模型</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><a href="https://github.com/pythongosssss/ComfyUI-WD14-Tagger">WD14-tagger</a></td>
+      <td>识别图像的text</td>
+      <td>模型</td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
 
 <p>comfyroll_customnodes</p>
 
-<p>inpaint_nodes</p>
-
-<p>rgthree-comfy</p>
-
-<p>Marigold</p>
-
-<p>WD14-tagger</p>
-
-<p>resize</p>
-
-<p>image-saver</p>
 
         </div>
 

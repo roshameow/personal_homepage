@@ -210,7 +210,7 @@ var store = [{
         "url": "https://roshameow.github.io//personal_homepage/docs/design/spring-couplets/"
       },{
         "title": "常用的图像 reconstruction loss",
-        "excerpt":"输出为图像的任务, 比如enhance, deblur, super-resolution, generation等用到的loss, 主要分为以下两类 output和label相近 loss 公式 目的 特点 L1 loss $||I_1-I_2||_1$ 大体相近 最常用的loss L2 loss(MSE) $||I_1-I_2||_2$或$MSE=\\overline{(I_1-I_2)^2}$   因为导数是线性所以计算最快 SSIM (stuctural similarity index measure) $\\frac{2\\mu_1\\mu_2+C_1}{\\mu_1^2+\\mu_2^2+C_1}\\cdot \\frac{2\\sigma_{12}+C_2}{\\sigma_1^2+\\sigma_2^2+C_2}$ $\\mu, \\sigma$ 分别为mean, variance$\\sigma_{12}$是covariance$C_1, C_2$ 是常数 纹理相近 要分patch计算$C_1, C_2$ 的值要根据图像的范围调整 PSNR(Peak signal-to-noise ratio) $-10\\log_{10}(MSE(I_1,I_2))$   经常是用来验证 PerceptualLoss 一个分类网络 语义相近 一般用vgg16, 输入RGB图像一般会用后几层的语义特征对比 LPIPS...","categories": ["docs","deeplearning"],
+        "excerpt":"输出为图像的任务, 比如enhance, deblur, super-resolution, generation等用到的loss, 主要分为以下几类 output和label相近 loss 公式 目的 特点 L1 loss $||I_1-I_2||_1$ 大体相近 最常用的loss L2 loss(MSE) $||I_1-I_2||_2$或$MSE=\\overline{(I_1-I_2)^2}$   因为导数是线性所以计算最快 SSIM (stuctural similarity index measure) $\\frac{2\\mu_1\\mu_2+C_1}{\\mu_1^2+\\mu_2^2+C_1}\\cdot \\frac{2\\sigma_{12}+C_2}{\\sigma_1^2+\\sigma_2^2+C_2}$ $\\mu, \\sigma$ 分别为mean, variance$\\sigma_{12}$是covariance$C_1, C_2$ 是常数 纹理相近 要分patch计算$C_1, C_2$ 的值要根据图像的范围调整 PSNR(Peak signal-to-noise ratio) $-10\\log_{10}(MSE(I_1,I_2))$   经常是用来验证 PerceptualLoss 一个分类网络 语义相近 一般用vgg16, 输入RGB图像一般会用后几层的语义特征对比 LPIPS...","categories": ["docs","deeplearning"],
         "tags": ["content","loss","image"],
         "url": "https://roshameow.github.io//personal_homepage/docs/deeplearning/restruction-loss/"
       },{
@@ -255,7 +255,7 @@ var store = [{
         "url": "https://roshameow.github.io//personal_homepage/docs/photo/stable-diffusion4/"
       },{
         "title": "stable-diffusion的用法: 常用插件",
-        "excerpt":"comfyui manager impact pack comfyroll_customnodes inpaint_nodes rgthree-comfy Marigold WD14-tagger resize image-saver ","categories": ["docs","tool"],
+        "excerpt":"ComfyUI使用时用到的插件 插件 用途 类型 必须? ComfyUI-Manager - 查找和安装插件和模型- 可以识别工作流中的missing node 功能 ✔️ rgthree-comfy - 显示一个node执行进度条- 优化节点执行graph- 提供Image Comparer节点 功能   Resize resize图片 功能 ✔️ image-saver Save Image w/Metadata节点把图片生成的信息写到图片metadata里(webui有类似功能) 功能   Impact-Pack 很多功能, 但是有些感觉封装的太复杂了 功能   UltimateSDUpscale - 分块图生图- 改变tile的一些融合方式 功能   ComfyUI-Marigold 识别深度图 模型   comfyui_segment_anything 识别mask 模型   inpaint-nodes...","categories": ["docs","tool"],
         "tags": ["content","ComfyUI"],
         "url": "https://roshameow.github.io//personal_homepage/docs/tool/stable-diffusion5/"
       }]

@@ -31,7 +31,7 @@
 <meta property="twitter:title" content="stable-diffusion的用法: 常用的作图功能-提升细节" />
 <meta name="twitter:site" content="@" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-02-28T07:55:46+00:00","datePublished":"2024-02-24T00:00:00+00:00","description":"和inpaint一样要利用stable-diffusion的图生图功能, 想让图像忠于原图的情况下提升图像细节, 解决图像模糊, 扭曲, 不合理的部分.","headline":"stable-diffusion的用法: 常用的作图功能-提升细节","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/docs/photo/stable-diffusion4/"},"url":"https://roshameow.github.io//personal_homepage/docs/photo/stable-diffusion4/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-02-28T20:19:41+00:00","datePublished":"2024-02-24T00:00:00+00:00","description":"和inpaint一样要利用stable-diffusion的图生图功能, 想让图像忠于原图的情况下提升图像细节, 解决图像模糊, 扭曲, 不合理的部分.","headline":"stable-diffusion的用法: 常用的作图功能-提升细节","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/docs/photo/stable-diffusion4/"},"url":"https://roshameow.github.io//personal_homepage/docs/photo/stable-diffusion4/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -169,7 +169,7 @@
           <li>风格控制: 和inpaint一样, 可以用text promt和ipadpater控制</li>
           <li>微调模型控制:
             <ul>
-              <li>controlnet tile(配合v1.5模型): 这是个非常好用的模型👍, 可以在分块(输入的不是一整张图)的时候, 更倾向理解图像部分而不是text prompt</li>
+              <li><a href="[https://github.com/Mikubill/sd-webui-controlnet/discussions/1142](https://github.com/Mikubill/sd-webui-controlnet/discussions/1142)">controlnet tile</a>(配合v1.5模型): 这是个非常好用的模型👍, 可以在分块(输入的不是一整张图)的时候, 更倾向理解图像部分而不是text prompt</li>
               <li><a href="https://huggingface.co/lllyasviel/sd_control_collection/discussions/1">关于sdxl模型没有一个tile模型的讨论</a></li>
             </ul>
           </li>
@@ -213,7 +213,11 @@
           </li>
         </ul>
       </li>
-      <li>放大: 放大经常伴随细节损失, 一般是和refine功能接力使用: upscale-&gt;refine-&gt;upscale-&gt;refine-&gt;upscale-&gt;refine…</li>
+      <li>放大: 放大经常伴随细节损失, 一般是和refine功能接力使用: upscale-&gt;refine-&gt;upscale-&gt;refine-&gt;upscale-&gt;refine…
+        <ul>
+          <li>我看到有人在latent image上放大, 总感觉这么做不对, latent image的一个点大约对应图像8x8的patch, 放大latent后这个比例关系和放大图像是不一样的</li>
+        </ul>
+      </li>
     </ul>
   </li>
 </ul>
@@ -230,7 +234,12 @@
   </li>
   <li>对一些常见的噪声效果很好, 例如: jpg压缩的高频alias, 摩尔纹
     <ul>
-      <li>但是对于其他噪声就不认识, 可能被认作图像本身的风格? 例如我用其他prior搭配<a href="https://en.wikipedia.org/wiki/Augmented_Lagrangian_method">admm算法</a>恢复图像的中间结果</li>
+      <li>但是对于其他噪声就不认识, 可能被认作图像本身的风格?
+        <ul>
+          <li>例如我用其他prior搭配<a href="https://en.wikipedia.org/wiki/Augmented_Lagrangian_method">admm算法</a>恢复图像的中间结果</li>
+          <li>汉字也会被改变的看不出形状</li>
+        </ul>
+      </li>
     </ul>
   </li>
   <li>恢复出的图像风格会受选择的主要模型风格影响, 很难保证细节不变风格还原</li>

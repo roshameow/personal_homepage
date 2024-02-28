@@ -20,8 +20,8 @@
 <meta name="generator" content="Jekyll v4.3.3" />
 <meta property="og:title" content="常用的图像 reconstruction loss" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="输出为图像的任务, 比如enhance, deblur, super-resolution, generation等用到的loss, 主要分为以下两类 output和label相近" />
-<meta property="og:description" content="输出为图像的任务, 比如enhance, deblur, super-resolution, generation等用到的loss, 主要分为以下两类 output和label相近" />
+<meta name="description" content="输出为图像的任务, 比如enhance, deblur, super-resolution, generation等用到的loss, 主要分为以下几类 output和label相近" />
+<meta property="og:description" content="输出为图像的任务, 比如enhance, deblur, super-resolution, generation等用到的loss, 主要分为以下几类 output和label相近" />
 <link rel="canonical" href="https://roshameow.github.io//personal_homepage/docs/deeplearning/restruction-loss/" />
 <meta property="og:url" content="https://roshameow.github.io//personal_homepage/docs/deeplearning/restruction-loss/" />
 <meta property="og:site_name" content="Liu, Wen’s Home Page" />
@@ -31,7 +31,7 @@
 <meta property="twitter:title" content="常用的图像 reconstruction loss" />
 <meta name="twitter:site" content="@" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-02-26T19:22:46+00:00","datePublished":"2024-02-01T00:00:00+00:00","description":"输出为图像的任务, 比如enhance, deblur, super-resolution, generation等用到的loss, 主要分为以下两类 output和label相近","headline":"常用的图像 reconstruction loss","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/docs/deeplearning/restruction-loss/"},"url":"https://roshameow.github.io//personal_homepage/docs/deeplearning/restruction-loss/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-02-28T23:07:13+00:00","datePublished":"2024-02-01T00:00:00+00:00","description":"输出为图像的任务, 比如enhance, deblur, super-resolution, generation等用到的loss, 主要分为以下几类 output和label相近","headline":"常用的图像 reconstruction loss","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/docs/deeplearning/restruction-loss/"},"url":"https://roshameow.github.io//personal_homepage/docs/deeplearning/restruction-loss/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -138,7 +138,7 @@
 </h2>
 <!-- 1. toc
 {:toc} -->
-<ul class="inline_toc" id="my_toc"><li><a href="#output和label相近">output和label相近</a></li><li><a href="#output图像符合自然图像的性质image-prior">output图像符合自然图像的性质(image prior)</a></li><li><a href="#代码">代码</a></li></ul>
+<ul class="inline_toc" id="my_toc"><li><a href="#output和label相近">output和label相近</a></li><li><a href="#output图像符合自然图像的性质image-prior">output图像符合自然图像的性质(image prior)</a></li><li><a href="#output图像分布符合自然图像的分布">output图像分布符合自然图像的分布</a></li><li><a href="#代码">代码</a></li><li><a href="#其他讨论这个的链接">其他讨论这个的链接：</a></li></ul>
 </div>
 <!-- {::options parse_block_html="false" /} -->
 
@@ -146,7 +146,7 @@
 
       <div class="page-content">
         <div class="e-content">
-          <p>输出为图像的任务, 比如enhance, deblur, super-resolution, generation等用到的loss, 主要分为以下两类</p>
+          <p>输出为图像的任务, 比如enhance, deblur, super-resolution, generation等用到的loss, 主要分为以下几类</p>
 <h2 id="output和label相近">output和label相近</h2>
 
 <table>
@@ -207,12 +207,6 @@
       <td>determinate网络<br />区别不出</td>
       <td> </td>
     </tr>
-    <tr>
-      <td>KL散度</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-    </tr>
   </tbody>
 </table>
 
@@ -235,19 +229,7 @@
       <td> </td>
     </tr>
     <tr>
-      <td>FID<br />(Freachet Inception<br /> Distance)</td>
       <td> </td>
-      <td> </td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>sFID</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>IS<br />(Inception Score)</td>
       <td> </td>
       <td> </td>
       <td> </td>
@@ -255,9 +237,47 @@
   </tbody>
 </table>
 
+<h2 id="output图像分布符合自然图像的分布">output图像分布符合自然图像的分布</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>loss</th>
+      <th>公式</th>
+      <th>目的</th>
+      <th>特点</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><a href="https://pytorch.org/ignite/generated/ignite.metrics.InceptionScore.html">IS</a>  <br />(Inception Score)<br /><a href="https://github.com/sbarratt/inception-score-pytorch/tree/master">另一个代码</a></td>
+      <td>$KL(p|\bar p)$<br />$p$ 是当前图像在Inception v3的分类分布<br />$\bar p$ 是所有生成图像的分类分布的平均<br /><a href="https://en.wikipedia.org/wiki/Kullback–Leibler_divergence">KL散度</a>计算两个分布距离<br /></td>
+      <td>图像多样性:<br />每个图像的分类分布<br />和图像平均分布差距大<br /></td>
+      <td>生成模型也需要在ImageNet上训练才有意义<br /></td>
+    </tr>
+    <tr>
+      <td><a href="https://en.wikipedia.org/wiki/Fréchet_inception_distance">FID</a>  <br />(Freachet Inception  <br />Distance)</td>
+      <td>$d_F=||\mu_1-\mu_2||^2_2+tr(\Sigma_1+\Sigma_2-2\sqrt{\Sigma_1\Sigma_2})$ <br />$\mu_1,\Sigma_1$ 是generated images的分布的mean, variance<br />$\mu_2,\Sigma_2$ 是real images的分布的mean, variance<br />$d_F$ 是Freachet Distance, 可以衡量两个多维分布的距离</td>
+      <td>图像分布接近真实</td>
+      <td>用到的也是图像通过一个分类网络得到的vector的分布</td>
+    </tr>
+    <tr>
+      <td>sFID</td>
+      <td> </td>
+      <td>图像分布接近真实</td>
+      <td>和FID一样, 只是特征提取用的是中间层</td>
+    </tr>
+  </tbody>
+</table>
+
 <h2 id="代码">代码</h2>
 
 <p><a href="https://gist.github.com/roshameow/c59d5708610ae30eb4329b140ccab3a7#file-reconstruction_loss-py"><strong>reconstruction_loss.py</strong></a></p>
+
+<h2 id="其他讨论这个的链接">其他讨论这个的链接：</h2>
+
+<p>[1] https://www.jiqizhixin.com/articles/2019-01-10-18 inception loss</p>
+
 
         </div>
 
