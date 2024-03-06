@@ -1,4 +1,41 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="https://roshameow.github.io//personal_homepage/atom.xml" rel="self" type="application/atom+xml" /><link href="https://roshameow.github.io//personal_homepage/" rel="alternate" type="text/html" /><updated>2024-02-28T13:34:16+00:00</updated><id>https://roshameow.github.io//personal_homepage/atom.xml</id><title type="html">Liu, Wen’s Home Page</title><subtitle>Work, Experiments and Ideas.</subtitle><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><entry><title type="html">stable-diffusion的用法: 常用插件</title><link href="https://roshameow.github.io//personal_homepage/docs/tool/stable-diffusion5/" rel="alternate" type="text/html" title="stable-diffusion的用法: 常用插件" /><published>2024-02-27T00:00:00+00:00</published><updated>2024-02-28T19:39:07+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/tool/stable-diffusion5</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/tool/stable-diffusion5/"><![CDATA[<p>ComfyUI使用时用到的插件</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="https://roshameow.github.io//personal_homepage/atom.xml" rel="self" type="application/atom+xml" /><link href="https://roshameow.github.io//personal_homepage/" rel="alternate" type="text/html" /><updated>2024-03-06T06:40:05+00:00</updated><id>https://roshameow.github.io//personal_homepage/atom.xml</id><title type="html">Liu, Wen’s Home Page</title><subtitle>Work, Experiments and Ideas.</subtitle><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><entry><title type="html">stable-diffusion的结构和微调模型</title><link href="https://roshameow.github.io//personal_homepage/docs/deeplearning/stable-diffusion6/" rel="alternate" type="text/html" title="stable-diffusion的结构和微调模型" /><published>2024-02-29T00:00:00+00:00</published><updated>2024-03-06T22:31:09+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/deeplearning/stable-diffusion6</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/deeplearning/stable-diffusion6/"><![CDATA[<h2 id="stable-diffusion结构和controlnet插件">stable-diffusion结构和controlnet插件</h2>
+
+<p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240306124200.png" alt="Pasted image 20240306124200.png" width="500" /></p>
+
+<ul>
+  <li>controlnet保持和stable-diffusion u-net上半部分相同的结构</li>
+</ul>
+
+<h2 id="resnetblock-spatialtransfomer-结构和插件">Resnetblock, SpatialTransfomer 结构和插件</h2>
+
+<p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240306123108.png" alt="Pasted image 20240306123108.png" width="300" /> <img src="/personal_homepage/docs/attachment/Pasted%20image%2020240306123128.png" alt="Pasted image 20240306123128.png" width="500" /></p>
+
+<ul>
+  <li>lora可以应用在网络的任何线性结构上, 比如:
+    <ul>
+      <li>attention里面的q,k,v,out层</li>
+      <li>feedforward里面的linear层</li>
+      <li>clip里面的mlp, fc层</li>
+    </ul>
+  </li>
+  <li>这几种模型的作用的粒度不一样, 从小到大是: lora(线性层) &lt; Gligen=IpAdapter(SpatialTransformer层) &lt; Controlnet(U-net的block)
+    <ul>
+      <li>模型的size也是依次变大</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="reference">reference</h2>
+<p><span id="ref"></span>
+[1] Hu, Edward J., Yelong Shen, Phillip Wallis, Zeyuan Allen-Zhu, Yuanzhi Li, Shean Wang, Lu Wang, and Weizhu Chen. “<strong>LoRA</strong>: Low-Rank Adaptation of Large Language Models.” arXiv, October 16, 2021. <a href="https://doi.org/10.48550/arXiv.2106.09685">https://doi.org/10.48550/arXiv.2106.09685</a>.</p>
+
+<p>[2] Zhang, Lvmin, and Maneesh Agrawala. “Adding Conditional <strong>Control</strong> to Text-to-Image Diffusion Models.” arXiv, February 10, 2023. <a href="https://doi.org/10.48550/arXiv.2302.05543">https://doi.org/10.48550/arXiv.2302.05543</a>.</p>
+
+<p>[3] Ye, Hu, Jun Zhang, Sibo Liu, Xiao Han, and Wei Yang. “<strong>IP-Adapter</strong>: Text Compatible Image Prompt Adapter for Text-to-Image Diffusion Models.” arXiv.org, August 13, 2023. <a href="https://arxiv.org/abs/2308.06721v1">https://arxiv.org/abs/2308.06721v1</a>.</p>
+
+<p>[4] Li, Yuheng, Haotian Liu, Qingyang Wu, Fangzhou Mu, Jianwei Yang, Jianfeng Gao, Chunyuan Li, and Yong Jae Lee. “<strong>GLIGEN</strong>: Open-Set Grounded Text-to-Image Generation.” arXiv, April 16, 2023. <a href="https://doi.org/10.48550/arXiv.2301.07093">https://doi.org/10.48550/arXiv.2301.07093</a>.</p>
+
+<p>代码: 参考comfyui里<code class="language-plaintext highlighter-rouge">comfy.ldm.modules.diffusionmodules.openaimodel.py</code> 的实现, 除了controlnet是加在<code class="language-plaintext highlighter-rouge">condition</code> 流里面, 其他几种都是通过<code class="language-plaintext highlighter-rouge">model.patches</code> 切换网络分支实现的.</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="deeplearning" /><category term="content" /><category term="sdxl" /><category term="attention" /><summary type="html"><![CDATA[stable-diffusion结构和controlnet插件]]></summary></entry><entry><title type="html">stable-diffusion的用法: 常用插件</title><link href="https://roshameow.github.io//personal_homepage/docs/tool/stable-diffusion5/" rel="alternate" type="text/html" title="stable-diffusion的用法: 常用插件" /><published>2024-02-27T00:00:00+00:00</published><updated>2024-02-29T17:53:57+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/tool/stable-diffusion5</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/tool/stable-diffusion5/"><![CDATA[<p>ComfyUI使用时用到的插件</p>
 
 <table>
   <thead>
@@ -18,7 +55,7 @@
     </tr>
     <tr>
       <td><a href="https://github.com/rgthree/rgthree-comfy">rgthree-comfy</a></td>
-      <td>- 显示一个node执行进度条<br />- 优化节点执行graph<br />- 提供Image Comparer节点</td>
+      <td>- 显示一个node执行进度条<br />- 优化节点执行graph<br />- 提供Image Comparer节点<br />- Lora Loader Stack 节点</td>
       <td>功能</td>
       <td> </td>
     </tr>
@@ -41,8 +78,26 @@
       <td> </td>
     </tr>
     <tr>
+      <td><a href="https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes">Comfyroll_CustomNodes</a></td>
+      <td>CR开头的一堆节点</td>
+      <td>功能</td>
+      <td> </td>
+    </tr>
+    <tr>
       <td><a href="https://github.com/ssitu/ComfyUI_UltimateSDUpscale">UltimateSDUpscale</a></td>
       <td>- 分块图生图<br />- 改变tile的一些融合方式</td>
+      <td>功能</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><a href="https://github.com/shadowcz007/comfyui-mixlab-nodes?tab=readme-ov-file">comfyui-mixlab-nodes</a></td>
+      <td>- clip interrogator 节点: 分析图片信息</td>
+      <td>功能<br /></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><a href="https://github.com/twri/sdxl_prompt_styler">promt styler</a></td>
+      <td>- SDXL Prompt Styler: 把一些画风写成prompt</td>
       <td>功能</td>
       <td> </td>
     </tr>
@@ -64,16 +119,10 @@
       <td>模型</td>
       <td> </td>
     </tr>
-    <tr>
-      <td><a href="https://github.com/pythongosssss/ComfyUI-WD14-Tagger">WD14-tagger</a></td>
-      <td>识别图像的text</td>
-      <td>模型</td>
-      <td> </td>
-    </tr>
   </tbody>
 </table>
 
-<p>comfyroll_customnodes</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="tool" /><category term="content" /><category term="ComfyUI" /><summary type="html"><![CDATA[ComfyUI使用时用到的插件]]></summary></entry><entry><title type="html">stable-diffusion的用法: 常用的作图功能-提升细节</title><link href="https://roshameow.github.io//personal_homepage/docs/photo/stable-diffusion4/" rel="alternate" type="text/html" title="stable-diffusion的用法: 常用的作图功能-提升细节" /><published>2024-02-24T00:00:00+00:00</published><updated>2024-02-28T20:19:41+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/photo/stable-diffusion4</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/photo/stable-diffusion4/"><![CDATA[<p>和inpaint一样要利用stable-diffusion的图生图功能, 想让图像忠于原图的情况下提升图像细节, 解决图像模糊, 扭曲, 不合理的部分.</p>
+<p>很多插件提供重复的功能, 或者没有维护, 生态还挺混乱的</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="tool" /><category term="content" /><category term="ComfyUI" /><summary type="html"><![CDATA[ComfyUI使用时用到的插件]]></summary></entry><entry><title type="html">stable-diffusion的用法: 常用的作图功能-提升细节</title><link href="https://roshameow.github.io//personal_homepage/docs/photo/stable-diffusion4/" rel="alternate" type="text/html" title="stable-diffusion的用法: 常用的作图功能-提升细节" /><published>2024-02-24T00:00:00+00:00</published><updated>2024-02-28T20:19:41+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/photo/stable-diffusion4</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/photo/stable-diffusion4/"><![CDATA[<p>和inpaint一样要利用stable-diffusion的图生图功能, 想让图像忠于原图的情况下提升图像细节, 解决图像模糊, 扭曲, 不合理的部分.</p>
 
 <h2 id="使用">使用</h2>
 
@@ -184,7 +233,7 @@
   <li>参考<a href="https://comfyworkflows.com/workflows/f9ed8191-b2e1-4417-ac26-2ecc7ff2a484">这个comfyworkflows上分享的workflow</a></li>
 </ul>
 
-<p><img src="/personal_homepage/docs/attachment/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-02-27%20221824.png" alt="屏幕截图 2024-02-27 221824.png" width="800" /></p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="photo" /><category term="content" /><category term="ComfyUI" /><category term="sdxl" /><category term="refine" /><summary type="html"><![CDATA[和inpaint一样要利用stable-diffusion的图生图功能, 想让图像忠于原图的情况下提升图像细节, 解决图像模糊, 扭曲, 不合理的部分.]]></summary></entry><entry><title type="html">stable-diffusion的用法: 常用的作图功能-抠图, inpainting</title><link href="https://roshameow.github.io//personal_homepage/docs/photo/stable-diffusion3/" rel="alternate" type="text/html" title="stable-diffusion的用法: 常用的作图功能-抠图, inpainting" /><published>2024-02-18T00:00:00+00:00</published><updated>2024-02-26T19:40:13+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/photo/stable-diffusion3</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/photo/stable-diffusion3/"><![CDATA[<h2 id="用sam抠图">用SAM抠图</h2>
+<p><img src="/personal_homepage/docs/attachment/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-02-27%20221824.png" alt="屏幕截图 2024-02-27 221824.png" width="800" /></p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="photo" /><category term="content" /><category term="ComfyUI" /><category term="sdxl" /><category term="refine" /><summary type="html"><![CDATA[和inpaint一样要利用stable-diffusion的图生图功能, 想让图像忠于原图的情况下提升图像细节, 解决图像模糊, 扭曲, 不合理的部分.]]></summary></entry><entry><title type="html">stable-diffusion的用法: 常用的作图功能-抠图, inpainting, 引导图</title><link href="https://roshameow.github.io//personal_homepage/docs/photo/stable-diffusion3/" rel="alternate" type="text/html" title="stable-diffusion的用法: 常用的作图功能-抠图, inpainting, 引导图" /><published>2024-02-18T00:00:00+00:00</published><updated>2024-03-01T22:58:08+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/photo/stable-diffusion3</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/photo/stable-diffusion3/"><![CDATA[<h2 id="用sam抠图">用SAM抠图</h2>
 
 <p>以下两种方式都是对segment-anything二次封装</p>
 <ul>
@@ -212,7 +261,7 @@
   </li>
 </ul>
 
-<h2 id="inpainting--outpainting">inpainting &amp; outpainting</h2>
+<h2 id="inpainting--outpainting--guided">inpainting &amp; outpainting &amp; guided</h2>
 
 <ul>
   <li>图生图功能: 利用stable-diffusion的sampler流程, noise mask之外的部分网络就不会去更改, 利用VAE decoder的填补能力
@@ -228,6 +277,11 @@
             <ul>
               <li><a href="https://blenderneko.github.io/ComfyUI-docs/Core%20Nodes/Latent/inpaint/VAEEncodeForInpainting/">VAE Encode(for inpainting)</a> 相当于 用灰色mask的图<a href="https://blenderneko.github.io/ComfyUI-docs/Core%20Nodes/Latent/VAEEncode/">VAE Encode</a> + <a href="https://blenderneko.github.io/ComfyUI-docs/Core%20Nodes/Latent/inpaint/SetLatentNoiseMask/">Set Latent Noise Mask</a> 两个节点的效果</li>
               <li>适合想要在mask处新生成物体的</li>
+            </ul>
+          </li>
+          <li>输入自制引导图: 直接用VAE Encode-&gt;latent-&gt;Set Latent Noise Mask-&gt;Ksampler
+            <ul>
+              <li>适合想要引导图上的一些元素的: 形状, 布局, 颜色等</li>
             </ul>
           </li>
           <li>输入LaMa inpaint的图: 用<a href="https://github.com/Acly/comfyui-inpaint-nodes">fooocus comfyUI版本</a> 提供的inpaint from model节点, 然后再走VAE Encode-&gt;latent-&gt;Set Latent Noise Mask-&gt;Ksampler的流程
@@ -249,7 +303,11 @@
     <ul>
       <li>用ipadapter控制风格
         <ul>
-          <li>ipadapter会参考原图物体的位置关系, 使这个控制在outpainting里非常鸡肋, 我们的目的是生成和原图风格一致的新物体, 而不是把原来的物体叠加在图片上</li>
+          <li>ipadapter会参考原图物体的位置关系, 使这个控制在outpainting里非常鸡肋, 我们的目的是生成和原图风格一致的新物体, 而不是把原来的物体叠加在图片上
+            <ul>
+              <li>用合适的text prompt控制+引导图可以有效的减少ipadapter对物体位置的影响, 效果非常好</li>
+            </ul>
+          </li>
           <li>ipadapter的attention mask输入是 整张图-&gt; 部分 的流程, 而不是我们在inpainting任务想要的 部分 -&gt; 整张图
             <ul>
               <li>attention mask可以用来把两张图融合在同一张图的不同位置, 例如让两个人合影</li>
@@ -334,6 +392,33 @@
 
 <ul>
   <li>想生成简单纯色的背景似乎不可能, 网络总会自己加些东西: 是不是网络认为纯色背景是一种未完成的状态?</li>
+</ul>
+
+<h3 id="由引导图生成图片">由引导图生成图片</h3>
+
+<p><a href="https://gist.github.com/roshameow/041450c340e56d39f12c93bd7d2d8606#file-guided_image_ipadapter_attmask-json"><strong>guided_image_ipadapter_attmask.json</strong></a> $\downarrow$</p>
+<ul>
+  <li><a href="https://www.bilibili.com/video/BV1tU421o7hu/">参考网络上这个做法</a> : 生成一组边框和圆形logo</li>
+  <li>用到了inpaint, 图片引导, ipadapter的attmask功能</li>
+</ul>
+
+<p><img src="/personal_homepage/docs/attachment/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-02-28%20224350.png" alt="屏幕截图 2024-02-28 224350.png" width="800" /></p>
+
+<ul>
+  <li>用引导图控制颜色的例子:
+    <ul>
+      <li>
+        <iframe src="//player.bilibili.com/player.html?aid=623547089&amp;bvid=BV1Jt4y1o7TY&amp;cid=1402072759&amp;p=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
+      </li>
+    </ul>
+  </li>
+  <li>用引导图控制布局的例子:
+    <ul>
+      <li>
+        <iframe src="//player.bilibili.com/player.html?aid=1300455401&amp;bvid=BV1au4m1K7p4&amp;cid=1431479600&amp;p=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
+      </li>
+    </ul>
+  </li>
 </ul>
 
 <h3 id="注意事项">注意事项</h3>
@@ -1135,134 +1220,4 @@
 
 <p>[3] https://github.com/tencent-ailab/IP-Adapter</p>
 
-<p>[4] Hong, Susung, Gyuseong Lee, Wooseok Jang, and Seungryong Kim. “Improving Sample Quality of Diffusion Models Using Self-Attention Guidance.” arXiv, August 24, 2023. <a href="https://doi.org/10.48550/arXiv.2210.00939">https://doi.org/10.48550/arXiv.2210.00939</a>.</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="deeplearning" /><category term="content" /><category term="network" /><category term="attention" /><category term="block" /><summary type="html"><![CDATA[在网络中, block是把input信息转换成output信息的过程: 一般, output(position, vector)是input(token, embedding vector)的线性组合, 组合的weight (position, token) 由input和output两方关系确定. 把着重强调这种信息交互的模块叫attention. convolution]]></summary></entry><entry><title type="html">常用的图像 reconstruction loss</title><link href="https://roshameow.github.io//personal_homepage/docs/deeplearning/restruction-loss/" rel="alternate" type="text/html" title="常用的图像 reconstruction loss" /><published>2024-02-01T00:00:00+00:00</published><updated>2024-02-28T23:07:13+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/deeplearning/restruction-loss</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/deeplearning/restruction-loss/"><![CDATA[<p>输出为图像的任务, 比如enhance, deblur, super-resolution, generation等用到的loss, 主要分为以下几类</p>
-<h2 id="output和label相近">output和label相近</h2>
-
-<table>
-  <thead>
-    <tr>
-      <th>loss</th>
-      <th>公式</th>
-      <th>目的</th>
-      <th>特点<br /></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>L1 loss</td>
-      <td>$||I_1-I_2||_1$</td>
-      <td>大体相近</td>
-      <td>最常用的loss</td>
-    </tr>
-    <tr>
-      <td>L2 loss<br />(MSE)</td>
-      <td>$||I_1-I_2||_2$<br />或$MSE=\overline{(I_1-I_2)^2}$</td>
-      <td> </td>
-      <td>因为导数是线性所以计算最快</td>
-    </tr>
-    <tr>
-      <td><a href="[https://github.com/CVMI-Lab/UHDM/blob/main/utils/common.py](https://github.com/CVMI-Lab/UHDM/blob/main/utils/common.py)">SSIM</a> <br />(stuctural similarity<br /> index measure)</td>
-      <td>$\frac{2\mu_1\mu_2+C_1}{\mu_1^2+\mu_2^2+C_1}\cdot \frac{2\sigma_{12}+C_2}{\sigma_1^2+\sigma_2^2+C_2}$ <br />$\mu, \sigma$ 分别为mean, variance<br />$\sigma_{12}$是covariance<br />$C_1, C_2$ 是常数</td>
-      <td>纹理相近</td>
-      <td>要分patch计算<br />$C_1, C_2$ 的值要根据图像的范围调整</td>
-    </tr>
-    <tr>
-      <td>PSNR<br />(Peak signal-<br />to-noise ratio)</td>
-      <td>$-10\log_{10}(MSE(I_1,I_2))$</td>
-      <td> </td>
-      <td>经常是用来验证</td>
-    </tr>
-    <tr>
-      <td><a href="[https://github.com/varun19299/deep-atrous-guided-filter/tree/master/PerceptualSimilarity](https://github.com/varun19299/deep-atrous-guided-filter/tree/master/PerceptualSimilarity)">PerceptualLoss</a></td>
-      <td>一个分类网络</td>
-      <td>语义相近</td>
-      <td>一般用vgg16, 输入RGB图像<br />一般会用后几层的语义特征对比<br /></td>
-    </tr>
-    <tr>
-      <td><a href="https://github.com/richzhang/PerceptualSimilarity">LPIPS</a> <br />(Learned Perceptual<br />image patch similarity)</td>
-      <td> </td>
-      <td> </td>
-      <td>perceptualLoss+分块</td>
-    </tr>
-    <tr>
-      <td>DeltaE</td>
-      <td>转换成Lab空间的MSE</td>
-      <td>颜色相近</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>Gan Loss</td>
-      <td>在训练过程中学习到的loss<br />用determinate网络表示<br /></td>
-      <td>determinate网络<br />区别不出</td>
-      <td> </td>
-    </tr>
-  </tbody>
-</table>
-
-<h2 id="output图像符合自然图像的性质image-prior">output图像符合自然图像的性质(image prior)</h2>
-
-<table>
-  <thead>
-    <tr>
-      <th>loss</th>
-      <th>公式</th>
-      <th>目的</th>
-      <th>特点</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Total Variant(TV)</td>
-      <td>anisotropic定义:<br />$||D_x I||_1+||D_y I||_1$</td>
-      <td>图像gradient稀疏性</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-    </tr>
-  </tbody>
-</table>
-
-<h2 id="output图像分布符合自然图像的分布">output图像分布符合自然图像的分布</h2>
-
-<table>
-  <thead>
-    <tr>
-      <th>loss</th>
-      <th>公式</th>
-      <th>目的</th>
-      <th>特点</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><a href="https://pytorch.org/ignite/generated/ignite.metrics.InceptionScore.html">IS</a>  <br />(Inception Score)<br /><a href="https://github.com/sbarratt/inception-score-pytorch/tree/master">另一个代码</a></td>
-      <td>$KL(p|\bar p)$<br />$p$ 是当前图像在Inception v3的分类分布<br />$\bar p$ 是所有生成图像的分类分布的平均<br /><a href="https://en.wikipedia.org/wiki/Kullback–Leibler_divergence">KL散度</a>计算两个分布距离<br /></td>
-      <td>图像多样性:<br />每个图像的分类分布<br />和图像平均分布差距大<br /></td>
-      <td>生成模型也需要在ImageNet上训练才有意义<br /></td>
-    </tr>
-    <tr>
-      <td><a href="https://en.wikipedia.org/wiki/Fréchet_inception_distance">FID</a>  <br />(Freachet Inception  <br />Distance)</td>
-      <td>$d_F=||\mu_1-\mu_2||^2_2+tr(\Sigma_1+\Sigma_2-2\sqrt{\Sigma_1\Sigma_2})$ <br />$\mu_1,\Sigma_1$ 是generated images的分布的mean, variance<br />$\mu_2,\Sigma_2$ 是real images的分布的mean, variance<br />$d_F$ 是Freachet Distance, 可以衡量两个多维分布的距离</td>
-      <td>图像分布接近真实</td>
-      <td>用到的也是图像通过一个分类网络得到的vector的分布</td>
-    </tr>
-    <tr>
-      <td>sFID</td>
-      <td> </td>
-      <td>图像分布接近真实</td>
-      <td>和FID一样, 只是特征提取用的是中间层</td>
-    </tr>
-  </tbody>
-</table>
-
-<h2 id="代码">代码</h2>
-
-<p><a href="https://gist.github.com/roshameow/c59d5708610ae30eb4329b140ccab3a7#file-reconstruction_loss-py"><strong>reconstruction_loss.py</strong></a></p>
-
-<h2 id="其他讨论这个的链接">其他讨论这个的链接：</h2>
-
-<p>[1] https://www.jiqizhixin.com/articles/2019-01-10-18 inception loss</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="deeplearning" /><category term="content" /><category term="loss" /><category term="image" /><summary type="html"><![CDATA[输出为图像的任务, 比如enhance, deblur, super-resolution, generation等用到的loss, 主要分为以下几类 output和label相近]]></summary></entry></feed>
+<p>[4] Hong, Susung, Gyuseong Lee, Wooseok Jang, and Seungryong Kim. “Improving Sample Quality of Diffusion Models Using Self-Attention Guidance.” arXiv, August 24, 2023. <a href="https://doi.org/10.48550/arXiv.2210.00939">https://doi.org/10.48550/arXiv.2210.00939</a>.</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="deeplearning" /><category term="content" /><category term="network" /><category term="attention" /><category term="block" /><summary type="html"><![CDATA[在网络中, block是把input信息转换成output信息的过程: 一般, output(position, vector)是input(token, embedding vector)的线性组合, 组合的weight (position, token) 由input和output两方关系确定. 把着重强调这种信息交互的模块叫attention. convolution]]></summary></entry></feed>

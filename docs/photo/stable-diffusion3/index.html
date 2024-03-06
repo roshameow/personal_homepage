@@ -16,9 +16,9 @@
   
   
   <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>stable-diffusion的用法: 常用的作图功能-抠图, inpainting | Liu, Wen’s Home Page</title>
+<title>stable-diffusion的用法: 常用的作图功能-抠图, inpainting, 引导图 | Liu, Wen’s Home Page</title>
 <meta name="generator" content="Jekyll v4.3.3" />
-<meta property="og:title" content="stable-diffusion的用法: 常用的作图功能-抠图, inpainting" />
+<meta property="og:title" content="stable-diffusion的用法: 常用的作图功能-抠图, inpainting, 引导图" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="用SAM抠图" />
 <meta property="og:description" content="用SAM抠图" />
@@ -28,10 +28,10 @@
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2024-02-18T00:00:00+00:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="stable-diffusion的用法: 常用的作图功能-抠图, inpainting" />
+<meta property="twitter:title" content="stable-diffusion的用法: 常用的作图功能-抠图, inpainting, 引导图" />
 <meta name="twitter:site" content="@" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-02-26T19:40:13+00:00","datePublished":"2024-02-18T00:00:00+00:00","description":"用SAM抠图","headline":"stable-diffusion的用法: 常用的作图功能-抠图, inpainting","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/docs/photo/stable-diffusion3/"},"url":"https://roshameow.github.io//personal_homepage/docs/photo/stable-diffusion3/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-03-01T22:58:08+00:00","datePublished":"2024-02-18T00:00:00+00:00","description":"用SAM抠图","headline":"stable-diffusion的用法: 常用的作图功能-抠图, inpainting, 引导图","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/docs/photo/stable-diffusion3/"},"url":"https://roshameow.github.io//personal_homepage/docs/photo/stable-diffusion3/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -58,7 +58,7 @@
 
 </head>
 
-  <body class="layout--post  stable-diffusion的用法-常用的作图功能-抠图-inpainting">
+  <body class="layout--post  stable-diffusion的用法-常用的作图功能-抠图-inpainting-引导图">
     <nav class="skip-links">
   <h2 class="screen-reader-text">Skip links</h2>
   <ul>
@@ -99,7 +99,7 @@
       <header class="page-header">
         
         
-        <h1 id="page-title" class="page-title p-name">stable-diffusion的用法: 常用的作图功能-抠图, inpainting
+        <h1 id="page-title" class="page-title p-name">stable-diffusion的用法: 常用的作图功能-抠图, inpainting, 引导图
 </h1>
         
       </header>
@@ -138,7 +138,7 @@
 </h2>
 <!-- 1. toc
 {:toc} -->
-<ul class="inline_toc" id="my_toc"><li><a href="#用sam抠图">用SAM抠图</a></li><li><a href="#inpainting--outpainting">inpainting &amp; outpainting</a></li><li><a href="#comfyui-workflow">ComfyUI workflow</a><ul><li><a href="#换背景">换背景</a></li><li><a href="#去掉不想要的人物">去掉不想要的人物</a></li><li><a href="#修改局部">修改局部</a></li><li><a href="#outpaint-更改图片尺寸">outpaint 更改图片尺寸</a></li><li><a href="#注意事项">注意事项</a></li></ul></li><li><a href="#reference">reference</a></li></ul>
+<ul class="inline_toc" id="my_toc"><li><a href="#用sam抠图">用SAM抠图</a></li><li><a href="#inpainting--outpainting--guided">inpainting &amp; outpainting &amp; guided</a></li><li><a href="#comfyui-workflow">ComfyUI workflow</a><ul><li><a href="#换背景">换背景</a></li><li><a href="#去掉不想要的人物">去掉不想要的人物</a></li><li><a href="#修改局部">修改局部</a></li><li><a href="#outpaint-更改图片尺寸">outpaint 更改图片尺寸</a></li><li><a href="#由引导图生成图片">由引导图生成图片</a></li><li><a href="#注意事项">注意事项</a></li></ul></li><li><a href="#reference">reference</a></li></ul>
 </div>
 <!-- {::options parse_block_html="false" /} -->
 
@@ -174,7 +174,7 @@
   </li>
 </ul>
 
-<h2 id="inpainting--outpainting">inpainting &amp; outpainting</h2>
+<h2 id="inpainting--outpainting--guided">inpainting &amp; outpainting &amp; guided</h2>
 
 <ul>
   <li>图生图功能: 利用stable-diffusion的sampler流程, noise mask之外的部分网络就不会去更改, 利用VAE decoder的填补能力
@@ -190,6 +190,11 @@
             <ul>
               <li><a href="https://blenderneko.github.io/ComfyUI-docs/Core%20Nodes/Latent/inpaint/VAEEncodeForInpainting/">VAE Encode(for inpainting)</a> 相当于 用灰色mask的图<a href="https://blenderneko.github.io/ComfyUI-docs/Core%20Nodes/Latent/VAEEncode/">VAE Encode</a> + <a href="https://blenderneko.github.io/ComfyUI-docs/Core%20Nodes/Latent/inpaint/SetLatentNoiseMask/">Set Latent Noise Mask</a> 两个节点的效果</li>
               <li>适合想要在mask处新生成物体的</li>
+            </ul>
+          </li>
+          <li>输入自制引导图: 直接用VAE Encode-&gt;latent-&gt;Set Latent Noise Mask-&gt;Ksampler
+            <ul>
+              <li>适合想要引导图上的一些元素的: 形状, 布局, 颜色等</li>
             </ul>
           </li>
           <li>输入LaMa inpaint的图: 用<a href="https://github.com/Acly/comfyui-inpaint-nodes">fooocus comfyUI版本</a> 提供的inpaint from model节点, 然后再走VAE Encode-&gt;latent-&gt;Set Latent Noise Mask-&gt;Ksampler的流程
@@ -211,7 +216,11 @@
     <ul>
       <li>用ipadapter控制风格
         <ul>
-          <li>ipadapter会参考原图物体的位置关系, 使这个控制在outpainting里非常鸡肋, 我们的目的是生成和原图风格一致的新物体, 而不是把原来的物体叠加在图片上</li>
+          <li>ipadapter会参考原图物体的位置关系, 使这个控制在outpainting里非常鸡肋, 我们的目的是生成和原图风格一致的新物体, 而不是把原来的物体叠加在图片上
+            <ul>
+              <li>用合适的text prompt控制+引导图可以有效的减少ipadapter对物体位置的影响, 效果非常好</li>
+            </ul>
+          </li>
           <li>ipadapter的attention mask输入是 整张图-&gt; 部分 的流程, 而不是我们在inpainting任务想要的 部分 -&gt; 整张图
             <ul>
               <li>attention mask可以用来把两张图融合在同一张图的不同位置, 例如让两个人合影</li>
@@ -296,6 +305,33 @@
 
 <ul>
   <li>想生成简单纯色的背景似乎不可能, 网络总会自己加些东西: 是不是网络认为纯色背景是一种未完成的状态?</li>
+</ul>
+
+<h3 id="由引导图生成图片">由引导图生成图片</h3>
+
+<p><a href="https://gist.github.com/roshameow/041450c340e56d39f12c93bd7d2d8606#file-guided_image_ipadapter_attmask-json"><strong>guided_image_ipadapter_attmask.json</strong></a> $\downarrow$</p>
+<ul>
+  <li><a href="https://www.bilibili.com/video/BV1tU421o7hu/">参考网络上这个做法</a> : 生成一组边框和圆形logo</li>
+  <li>用到了inpaint, 图片引导, ipadapter的attmask功能</li>
+</ul>
+
+<p><img src="/personal_homepage/docs/attachment/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-02-28%20224350.png" alt="屏幕截图 2024-02-28 224350.png" width="800" /></p>
+
+<ul>
+  <li>用引导图控制颜色的例子:
+    <ul>
+      <li>
+        <iframe src="//player.bilibili.com/player.html?aid=623547089&amp;bvid=BV1Jt4y1o7TY&amp;cid=1402072759&amp;p=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
+      </li>
+    </ul>
+  </li>
+  <li>用引导图控制布局的例子:
+    <ul>
+      <li>
+        <iframe src="//player.bilibili.com/player.html?aid=1300455401&amp;bvid=BV1au4m1K7p4&amp;cid=1431479600&amp;p=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
+      </li>
+    </ul>
+  </li>
 </ul>
 
 <h3 id="注意事项">注意事项</h3>
