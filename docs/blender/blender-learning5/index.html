@@ -31,7 +31,7 @@
 <meta property="twitter:title" content="blender学习: 做火焰效果" />
 <meta name="twitter:site" content="@" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-02-12T03:33:52+00:00","datePublished":"2024-02-08T00:00:00+00:00","description":"火焰的形状用圆形变形一半获得. 用Perlin noise使坐标变形制作随机抖动. 用Emission node渲染发光效果.","headline":"blender学习: 做火焰效果","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/docs/blender/blender-learning5/"},"url":"https://roshameow.github.io//personal_homepage/docs/blender/blender-learning5/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-03-07T17:50:30+00:00","datePublished":"2024-02-08T00:00:00+00:00","description":"火焰的形状用圆形变形一半获得. 用Perlin noise使坐标变形制作随机抖动. 用Emission node渲染发光效果.","headline":"blender学习: 做火焰效果","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/docs/blender/blender-learning5/"},"url":"https://roshameow.github.io//personal_homepage/docs/blender/blender-learning5/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -283,7 +283,7 @@
         <ol>
           <li>制作一个多面体mesh, subdivision改成1: 减小计算量</li>
           <li>把多面体的shader改成自发光, 调整color, strength适当增大</li>
-          <li><strong>打开eevee渲染器的<a href="https://docs.blender.org/manual/en/latest/render/eevee/render_settings/bloom.html">bloom(辉光)</a> 功能</strong></li>
+          <li><strong>打开eevee渲染器的<a href="https://docs.blender.org/manual/en/latest/render/eevee/render_settings/bloom.html">bloom(辉光)</a> 功能</strong> : 通过blur发光区域模拟光线在周围大气散射的效果</li>
           <li>制定Particles-&gt;Render参数:
             <ol>
               <li>Render As调成Object模式, Render-&gt;Instance选择我们的制作的多面体mesh</li>

@@ -31,7 +31,7 @@
 <meta property="twitter:title" content="blender学习: 玻璃杯" />
 <meta name="twitter:site" content="@" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-02-16T09:12:32+00:00","datePublished":"2024-02-10T00:00:00+00:00","description":"由cylinder变形得到水杯. 用cycles渲染玻璃材质. 步骤","headline":"blender学习: 玻璃杯","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/docs/blender/blender-learning6/"},"url":"https://roshameow.github.io//personal_homepage/docs/blender/blender-learning6/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-03-07T01:15:02+00:00","datePublished":"2024-02-10T00:00:00+00:00","description":"由cylinder变形得到水杯. 用cycles渲染玻璃材质. 步骤","headline":"blender学习: 玻璃杯","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/docs/blender/blender-learning6/"},"url":"https://roshameow.github.io//personal_homepage/docs/blender/blender-learning6/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -109,7 +109,7 @@
             <a class="u-url" rel="me" href=""><i class="fas fa-link fa-lg" title=""></i></a>
           </li></ul>
 
-<span class="read-time">~1 min read</span>
+<span class="read-time">1 min read</span>
 
     <time class="page-date dt-published" datetime="2024-02-10T00:00:00+00:00"><a class="u-url" href="">February 10, 2024</a>
 </time>
@@ -215,20 +215,46 @@
   </li>
   <li>shader:
     <ul>
-      <li>用Refraction和Glossy混合</li>
-      <li>用<a href="https://docs.blender.org/manual/en/4.0/render/shader_nodes/input/fresnel.html">Fresnel node</a> 调节折射和反射的比例</li>
-      <li>设置IOR(折射率)为1.52</li>
-      <li>设置粗糙度为0</li>
+      <li>cycles的做法:
+        <ul>
+          <li>用Refraction和Glossy混合</li>
+          <li>用<a href="https://docs.blender.org/manual/en/4.0/render/shader_nodes/input/fresnel.html">Fresnel node</a> 调节折射和反射的比例</li>
+          <li>设置IOR(折射率)为1.52</li>
+          <li>设置粗糙度为0</li>
+        </ul>
+      </li>
+      <li>eevee的做法: <a href="https://www.bilibili.com/video/BV1Fe411Y7oY/">参考这个教程</a>
+        <ul>
+          <li>用glass BSDF和Transparent BSDF混合
+            <ul>
+              <li>设置IOR(折射率)为1.52</li>
+              <li>设置粗糙度为0</li>
+            </ul>
+          </li>
+          <li>MixShader的混合参数固定0.5</li>
+        </ul>
+      </li>
     </ul>
   </li>
   <li>render:
     <ul>
-      <li>用cycles, 把light Paths调成Full Global Illumation: 即所有反射次数为32</li>
+      <li>cycles的参数:
+        <ul>
+          <li>把light Paths调成Full Global Illumation: 即所有反射次数为32</li>
+        </ul>
+      </li>
+      <li>eevee的参数:
+        <ul>
+          <li>打开render-&gt;Screen Space Reflections-&gt;refraction</li>
+          <li>打开玻璃杯的material-&gt;Screen Space Refraction选项</li>
+          <li>把material的Blend Mode和Shadow Mode都改成Alpha Hashed</li>
+        </ul>
+      </li>
     </ul>
   </li>
   <li>结果:
     <ul>
-      <li><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240212152142.png" alt="Pasted image 20240212152142.png" width="400" /></li>
+      <li>cycles: <img src="/personal_homepage/docs/attachment/Pasted%20image%2020240212152142.png" alt="Pasted image 20240212152142.png" width="400" />  eevee: <img src="/personal_homepage/docs/attachment/Pasted%20image%2020240306170629.png" alt="Pasted image 20240306170629.png" width="360" /></li>
     </ul>
   </li>
 </ul>
