@@ -7,7 +7,7 @@ tags:
   - content
   - render
   - shader
-last_modified_at: 2024-02-11T19:33:52-08:00
+last_modified_at: 2024-03-07T09:50:30-08:00
 ---
 火焰的形状用圆形变形一半获得. 用[Perlin noise](https://en.wikipedia.org/wiki/Perlin_noise)使坐标变形制作随机抖动. 用Emission node渲染发光效果. 
 
@@ -84,7 +84,7 @@ last_modified_at: 2024-02-11T19:33:52-08:00
 	1. 调整火星材质: 
 		1. 制作一个多面体mesh, subdivision改成1: 减小计算量
 		2. 把多面体的shader改成自发光, 调整color, strength适当增大
-		3. **打开eevee渲染器的[bloom(辉光)](https://docs.blender.org/manual/en/latest/render/eevee/render_settings/bloom.html) 功能** 
+		3. **打开eevee渲染器的[bloom(辉光)](https://docs.blender.org/manual/en/latest/render/eevee/render_settings/bloom.html) 功能** : 通过blur发光区域模拟光线在周围大气散射的效果
 		4. 制定Particles->Render参数:
 			1. Render As调成Object模式, Render->Instance选择我们的制作的多面体mesh
 			2. scale调小, scale Randomness调大: 让粒子大小不一

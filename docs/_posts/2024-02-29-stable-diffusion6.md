@@ -5,15 +5,20 @@ categories:
   - deeplearning
 tags:
   - content
-  - sdxl
   - attention
-last_modified_at: 2024-03-06T14:31:09-08:00
+  - stable-diffusion
+  - lora
+  - controlnet
+  - ipadapter
+  - gligen
+last_modified_at: 2024-03-06T19:18:33-08:00
 ---
 ## stable-diffusion结构和controlnet插件
 
 ![Pasted image 20240306124200.png]({{ '/docs/attachment/Pasted image 20240306124200.png' | relative_url }}){:width="500"} 
 
 - controlnet保持和stable-diffusion u-net上半部分相同的结构
+- controlnet输入是和原图一样的hint图像, 比如controlnet-openpose输入的不是关节坐标数据, 而是彩色的人体坐标图
 
 ## Resnetblock, SpatialTransfomer 结构和插件
 

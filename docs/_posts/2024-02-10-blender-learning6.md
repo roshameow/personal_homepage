@@ -8,7 +8,7 @@ tags:
   - shader
   - 3d_model
   - shortcut
-last_modified_at: 2024-02-16T01:12:32-08:00
+last_modified_at: 2024-03-06T17:15:02-08:00
 ---
 
 由cylinder变形得到水杯. 用cycles渲染玻璃材质.
@@ -45,16 +45,27 @@ last_modified_at: 2024-02-16T01:12:32-08:00
 	- 一个area light做主光, 另一个area light做辅光: 形状调节成disk
 		- ![Pasted image 20240212143950.png]({{ '/docs/attachment/Pasted image 20240212143950.png' | relative_url }}){:width="150"} ![Pasted image 20240212152018.png]({{ '/docs/attachment/Pasted image 20240212152018.png' | relative_url }}){:width="130"}  
 - shader: 
-	- 用Refraction和Glossy混合
-	- 用[Fresnel node](https://docs.blender.org/manual/en/4.0/render/shader_nodes/input/fresnel.html) 调节折射和反射的比例
-	- 设置IOR(折射率)为1.52
-	- 设置粗糙度为0
+	- cycles的做法:
+		- 用Refraction和Glossy混合
+		- 用[Fresnel node](https://docs.blender.org/manual/en/4.0/render/shader_nodes/input/fresnel.html) 调节折射和反射的比例
+		- 设置IOR(折射率)为1.52
+		- 设置粗糙度为0
+	- eevee的做法: [参考这个教程](https://www.bilibili.com/video/BV1Fe411Y7oY/) 
+		- 用glass BSDF和Transparent BSDF混合
+			- 设置IOR(折射率)为1.52
+			- 设置粗糙度为0
+		- MixShader的混合参数固定0.5
 - render:
-	- 用cycles, 把light Paths调成Full Global Illumation: 即所有反射次数为32
+	- cycles的参数: 
+		- 把light Paths调成Full Global Illumation: 即所有反射次数为32
+	- eevee的参数:
+		- 打开render->Screen Space Reflections->refraction
+		- 打开玻璃杯的material->Screen Space Refraction选项
+		- 把material的Blend Mode和Shadow Mode都改成Alpha Hashed
 - 结果: 
-	- ![Pasted image 20240212152142.png]({{ '/docs/attachment/Pasted image 20240212152142.png' | relative_url }}){:width="400"}
-
-
+	- cycles: ![Pasted image 20240212152142.png]({{ '/docs/attachment/Pasted image 20240212152142.png' | relative_url }}){:width="400"}  eevee: ![Pasted image 20240306170629.png]({{ '/docs/attachment/Pasted image 20240306170629.png' | relative_url }}){:width="360"} 
+ 
+ 
 ## 用到的blender的一些快捷键功能
 
 - G/R/S (移动/旋转/放缩) 按了之后会提示方向快捷键
