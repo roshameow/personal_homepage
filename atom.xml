@@ -1,4 +1,66 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="https://roshameow.github.io//personal_homepage/atom.xml" rel="self" type="application/atom+xml" /><link href="https://roshameow.github.io//personal_homepage/" rel="alternate" type="text/html" /><updated>2024-03-07T04:18:46+00:00</updated><id>https://roshameow.github.io//personal_homepage/atom.xml</id><title type="html">Liu, Wen’s Home Page</title><subtitle>Work, Experiments and Ideas.</subtitle><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><entry><title type="html">blender学习: 做卡通描边</title><link href="https://roshameow.github.io//personal_homepage/docs/blender/blender-learning7/" rel="alternate" type="text/html" title="blender学习: 做卡通描边" /><published>2024-03-06T00:00:00+00:00</published><updated>2024-03-07T20:14:23+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/blender/blender-learning7</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/blender/blender-learning7/"><![CDATA[<h2 id="用solidify背面剔除法线翻转">用solidify+背面剔除+法线翻转</h2>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="https://roshameow.github.io//personal_homepage/atom.xml" rel="self" type="application/atom+xml" /><link href="https://roshameow.github.io//personal_homepage/" rel="alternate" type="text/html" /><updated>2024-03-12T03:17:51+00:00</updated><id>https://roshameow.github.io//personal_homepage/atom.xml</id><title type="html">Liu, Wen’s Home Page</title><subtitle>Work, Experiments and Ideas.</subtitle><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><entry><title type="html">blender学习: 镜头推移</title><link href="https://roshameow.github.io//personal_homepage/docs/blender/blender-learning9/" rel="alternate" type="text/html" title="blender学习: 镜头推移" /><published>2024-03-12T00:00:00+00:00</published><updated>2024-03-12T15:32:52+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/blender/blender-learning9</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/blender/blender-learning9/"><![CDATA[<h2 id="前向推镜头">前向推镜头</h2>
+
+<p>参考<a href="https://www.xiaohongshu.com/explore/65a2ce0a000000001d037212">这个教学视频</a>, 用array modifier复制多个模型 , 得到一种穿梭效果</p>
+
+<p><img src="/personal_homepage/docs/attachment/camera_move.mp4" alt="camera_move.mp4" width="300" /></p>
+
+<h2 id="模型资源">模型资源</h2>
+
+<p>[1] https://sketchfab.com/feed</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="blender" /><category term="content" /><category term="camera" /><summary type="html"><![CDATA[前向推镜头]]></summary></entry><entry><title type="html">blender学习: 做流光效果</title><link href="https://roshameow.github.io//personal_homepage/docs/blender/blender-learning8/" rel="alternate" type="text/html" title="blender学习: 做流光效果" /><published>2024-03-11T00:00:00+00:00</published><updated>2024-03-12T14:17:26+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/blender/blender-learning8</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/blender/blender-learning8/"><![CDATA[<p>用金属材质反射world背景的流动</p>
+<h3 id="步骤">步骤:</h3>
+
+<p>参考<a href="https://www.bilibili.com/video/BV1Ny421q7HM/">这个教学视频</a></p>
+<ul>
+  <li>制作物体:
+    <ul>
+      <li>添加curve</li>
+      <li>调整Data-&gt;Geometry-&gt;Bevel(倒角)-&gt;Round-&gt; Depth: 把曲线变成软管</li>
+      <li>加modifier-&gt;subdivisor</li>
+    </ul>
+  </li>
+  <li>shader:
+    <ul>
+      <li>object: 用principled BSDF, 把metallic调到1, roughness 调整到0.1</li>
+      <li>world:
+        <ul>
+          <li>在background添加流动材质
+            <ul>
+              <li>设置<a href="https://docs.blender.org/manual/en/latest/render/shader_nodes/input/texture_coordinate.html">texture Coordinate</a>  generate-&gt;Mapping(Y=#frame/40)-&gt;background图片</li>
+            </ul>
+          </li>
+          <li>得到黑色背景
+            <ul>
+              <li>添加一个黑色背景, <a href="https://blenderartists.org/t/why-use-is-camera-ray-in-the-world/650625/3">用Light Path的Is Camera Ray控制混合</a> : 背景和物体分开的原理?</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>light: 改成sun, 给物体增加反光</li>
+  <li>结果:
+    <ul>
+      <li><img src="/personal_homepage/docs/attachment/color_change.mp4" alt="color_change.mp4" width="300" /></li>
+    </ul>
+  </li>
+</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="blender" /><category term="content" /><category term="shader" /><category term="curve" /><summary type="html"><![CDATA[用金属材质反射world背景的流动 步骤:]]></summary></entry><entry><title type="html">attention的优化</title><link href="https://roshameow.github.io//personal_homepage/docs/attention2/" rel="alternate" type="text/html" title="attention的优化" /><published>2024-03-09T00:00:00+00:00</published><updated>2024-03-11T23:17:24+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/attention2</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/attention2/"><![CDATA[<h3 id="gaugated-attention-unit">GAU(gated attention unit)</h3>
+
+<p>self-attention做为weight, conv做为变换</p>
+
+<h3 id="ssmstate-space-model">SSM(state space model)</h3>
+
+<p><a href="https://en.wikipedia.org/wiki/State-space_representation">状态空间</a> 的表示: 用input更新状态, 用状态生成output</p>
+
+<h3 id="linear-attention">Linear attention</h3>
+
+<h3 id="s4structured-state-space-sequence-结构">S4(Structured state space sequence) 结构</h3>
+<h3 id="h3hungry-hungry-hippos-结构">H3(Hungry Hungry Hippos) 结构</h3>
+
+<h3 id="mamba">Mamba</h3>
+
+<h3 id="retnet">RetNet</h3>
+
+<h3 id="rwkv">RWKV</h3>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="content" /><summary type="html"><![CDATA[GAU(gated attention unit)]]></summary></entry><entry><title type="html">blender学习: 做卡通描边</title><link href="https://roshameow.github.io//personal_homepage/docs/blender/blender-learning7/" rel="alternate" type="text/html" title="blender学习: 做卡通描边" /><published>2024-03-06T00:00:00+00:00</published><updated>2024-03-07T20:14:23+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/blender/blender-learning7</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/blender/blender-learning7/"><![CDATA[<h2 id="用solidify背面剔除法线翻转">用solidify+背面剔除+法线翻转</h2>
 
 <p>给mesh增加厚度, 让描边材质只在厚度边缘生效</p>
 <h3 id="步骤">步骤:</h3>
@@ -762,424 +824,4 @@
 
 <p>[1] https://seblagarde.wordpress.com/2013/04/29/memo-on-fresnel-equations/ 一些版本的公式推导和reference</p>
 
-<p>[2] https://blenderartists.org/t/whats-the-math-behind-fresnel-node/1502809/11 Fensel node讨论</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="blender" /><category term="content" /><category term="shader" /><category term="3d_model" /><category term="shortcut" /><summary type="html"><![CDATA[由cylinder变形得到水杯. 用cycles渲染玻璃材质. 步骤]]></summary></entry><entry><title type="html">stable-diffusion的用法: 用 lora+controlnet做风格转换</title><link href="https://roshameow.github.io//personal_homepage/docs/photo/stable-diffusion2/" rel="alternate" type="text/html" title="stable-diffusion的用法: 用 lora+controlnet做风格转换" /><published>2024-02-09T00:00:00+00:00</published><updated>2024-02-24T21:25:27+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/photo/stable-diffusion2</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/photo/stable-diffusion2/"><![CDATA[<p>尝试只用ipadapter做猫的风格转换, 非常不成功, ipadapter还是无法控制输入的元素. 必须要用多张图片训练的LoRA控制. 
-另外, 猫脸上颜色分布的特征, 没有controlnet可以直接表示.</p>
-
-<h2 id="comfyui步骤">ComfyUI步骤</h2>
-
-<ol>
-  <li><strong>训练Lora</strong>
-    <ul>
-      <li>用<a href="https://github.com/bmaltais/kohya_ss">kohya_ss</a> 的gui训练
-        <ul>
-          <li>network rank设置64</li>
-          <li>打开Gradient checkpoint, 不然我16G的显存不够用</li>
-          <li>另外, 我的wsl2需要解决一下找不到cuda toolkit的问题
-            <ul>
-              <li>检查发现是ubuntu的requirement里面指定的torch和bitsandbytes版本不匹配</li>
-              <li>在虚拟环境里, 升级到最新版2.2后代码又出问题</li>
-              <li>最后参考windows版本的requirement.txt, 改成torch=2.1.0+cu118解决了</li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li><strong>连上Lora节点</strong>
-    <ul>
-      <li>ComfyUI里连接顺序是: Checkpoint: model, clip -&gt; Lora</li>
-      <li>多个Lora顺序连接就行</li>
-      <li>ip的lora的weigt设为1.22, 风格化lora的weight不用设那么大</li>
-    </ul>
-  </li>
-  <li><strong>写text prompt</strong>
-    <ul>
-      <li>写了包括描述内容的, lora配套的, 描述想要风格的positive prompt</li>
-    </ul>
-  </li>
-  <li><strong>连上Controlnet节点</strong>
-    <ul>
-      <li>用到了<a href="https://huggingface.co/collections/diffusers/sdxl-controlnets-64f9c35846f3f06f5abe351f">canny模型, depth模型</a>
-        <ul>
-          <li>下载<a href="https://github.com/kijai/ComfyUI-Marigold">Marigold</a>的深度识别模型节点</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-</ol>
-
-<h2 id="结果">结果</h2>
-
-<p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240209124721.png" alt="Pasted image 20240209124721.png" width="150" /> -&gt; <img src="/personal_homepage/docs/attachment/Pasted%20image%2020240209124343.png" alt="Pasted image 20240209124343.png" width="600" /></p>
-
-<ul>
-  <li><strong>风格:</strong> 3种方法都可以
-    <ol>
-      <li>text prompt里输入</li>
-      <li>风格LoRA
-        <ul>
-          <li>在prompt也要加上对应风格关键词</li>
-        </ul>
-      </li>
-      <li>用ipadpter输入风格图片控制
-        <ul>
-          <li>ipadpter的weight需要调整: 不能太低(风格化没用), 也不能太高(和风格图太像)</li>
-          <li>一直有和风格图太像, 或者风格图提供我们不想要元素的风险…毕竟一张图片的信息不像文字和lora那样有明确的指向性</li>
-          <li>我用的不是换脸模型, 但是模型好像特别执着于换脸? 的确模型本来的目的是换ip…</li>
-        </ul>
-      </li>
-      <li>另外, 可以直接用一个特定风格的大模型</li>
-    </ol>
-  </li>
-  <li><strong>控制:</strong>
-    <ul>
-      <li>用canny或depth模型都能做到控制猫的位置
-        <ul>
-          <li>Marigold的识别特别慢, 尝试的时候计算完深度图要先把那个节点断开</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li><strong>问题:</strong>
-    <ul>
-      <li>有些风格单独可以出图, 但是加了我训练的猫的LoRA就没法出对应风格的图了</li>
-      <li>用LoRA训练的模型没有完全理解我的猫的所有特征: 尤其是鼻子和嘴附近的毛色
-        <ul>
-          <li>我用了30多张照片, 也没有改label的caption, 所以可能还有质量增加的空间</li>
-        </ul>
-      </li>
-      <li>用ipadpter的失败经验:
-        <ul>
-          <li>如果用一张猫的图片和一张风格图
-            <ul>
-              <li><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240209133511.png" alt="Pasted image 20240209133511.png" width="100" /></li>
-              <li>无法控制输入元素</li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-</ul>
-
-<h2 id="comfyui-workflow">ComfyUI workflow</h2>
-
-<p>用Lora调整风格$\downarrow$ : <a href="https://gist.github.com/roshameow/d952bf0157a25ab3e9e724df1449b160#file-rosha_lora_controlnet_canny_depth_style_change-json"><strong>rosha_lora_controlnet_canny_depth_style_change.json</strong></a></p>
-
-<p><img src="/personal_homepage/docs/attachment/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-02-08%20230728.png" alt="屏幕截图 2024-02-08 230728.png" width="800" /></p>
-
-<p>用ipadator调整风格$\downarrow$ : <a href="https://gist.github.com/roshameow/d952bf0157a25ab3e9e724df1449b160#file-rosha_lora_ipadapter_style_tranformation-json"><strong>rosha_lora_ipadapter_style_tranformation.json</strong></a></p>
-
-<p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240209135354.png" alt="Pasted image 20240209135354.png" width="800" /></p>
-
-<h2 id="资源">资源</h2>
-
-<p>艺术风格prompt:</p>
-
-<p>[1] https://medium.com/phygital/top-40-useful-prompts-for-stable-diffusion-xl-008c03dd0557</p>
-
-<p>[2] https://docs.midjourney.com/docs/explore-prompting</p>
-
-<p>[3] https://www.urania.ai/top-sd-artists</p>
-
-<p>[4] https://github.com/SupaGruen/StableDiffusion-CheatSheet 是v1.5插件</p>
-
-<p>Lora训练:</p>
-
-<p>[5]  <a href="https://www.youtube.com/watch?v=NaHtI0u3Am4">https://www.youtube.com/watch?v=NaHtI0u3Am4</a> kohya_ss的参数设置,</p>
-
-<p>[6] https://zhuanlan.zhihu.com/p/654322145.   下面讨论说optimizer还是默认比较好?</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="photo" /><category term="content" /><category term="ComfyUI" /><category term="ipadapter" /><category term="controlnet" /><category term="canny" /><category term="sdxl" /><summary type="html"><![CDATA[尝试只用ipadapter做猫的风格转换, 非常不成功, ipadapter还是无法控制输入的元素. 必须要用多张图片训练的LoRA控制. 另外, 猫脸上颜色分布的特征, 没有controlnet可以直接表示.]]></summary></entry><entry><title type="html">blender学习: 做火焰效果</title><link href="https://roshameow.github.io//personal_homepage/docs/blender/blender-learning5/" rel="alternate" type="text/html" title="blender学习: 做火焰效果" /><published>2024-02-08T00:00:00+00:00</published><updated>2024-03-07T17:50:30+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/blender/blender-learning5</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/blender/blender-learning5/"><![CDATA[<p>火焰的形状用圆形变形一半获得. 用<a href="https://en.wikipedia.org/wiki/Perlin_noise">Perlin noise</a>使坐标变形制作随机抖动. 用Emission node渲染发光效果.</p>
-
-<h2 id="用graph-editor和noise-texture---飞行器火焰">用graph editor和noise texture -&gt; 飞行器火焰</h2>
-<h3 id="步骤">步骤</h3>
-
-<p>参考RuiHuang_art在<a href="https://www.bilibili.com/video/BV1HH4y1Y7Vv/">b站的教学视频</a> , 和做车流用到的功能差不多</p>
-<ul>
-  <li>world property: 加入一个背景的贴图</li>
-  <li>制做一个平面的火焰:
-    <ul>
-      <li>添加一个Plane mesh</li>
-      <li>分成两半: 在Edit编辑模式下, 按Ctrl+R加<a href="https://docs.blender.org/manual/en/latest/modeling/meshes/tools/loop.html">loop cut</a> , 在edge中间添加新的顶点,</li>
-      <li>把一半拉长: 选中顶点后按G+Y在Y轴拉伸</li>
-    </ul>
-  </li>
-  <li>shader: 目的是制作一个自发光, 半透明, 抖动的效果
-    <ul>
-      <li>颜色效果:
-        <ol>
-          <li>用<a href="https://docs.blender.org/manual/en/latest/render/shader_nodes/input/texture_coordinate.html">texture Coordinate</a> 生成uv坐标
-            <ul>
-              <li>在mapping里把x,y的location调到-2, scale调到4</li>
-              <li>uv坐标系好像范围是(-scale/2, scale/2)</li>
-            </ul>
-          </li>
-          <li>用<a href="https://docs.blender.org/manual/en/latest/render/shader_nodes/textures/gradient.html">Gradient Texture</a> 的spherical: 制作从外到内的渐变</li>
-          <li>自发光: 用<a href="https://docs.blender.org/manual/en/latest/editors/texture_node/types/converter/color_ramp.html">Color Ramp</a> 做一个 蓝-&gt;白-&gt;红-&gt;黄 的渐变</li>
-          <li>调整透明度: 用<a href="https://docs.blender.org/manual/en/latest/editors/texture_node/types/converter/color_ramp.html">Color Ramp</a> 做一个 透明-&gt;半透明-&gt;透明 的渐变</li>
-          <li>连接bsdf
-            <ul>
-              <li>把Emission和transparent bsdf用Mix shader连接在一起</li>
-            </ul>
-          </li>
-        </ol>
-      </li>
-      <li>抖动效果:
-        <ol>
-          <li>用<a href="https://docs.blender.org/manual/en/latest/render/shader_nodes/input/texture_coordinate.html">texture Coordinate</a> 生成object坐标</li>
-          <li>用<a href="https://docs.blender.org/manual/en/latest/render/shader_nodes/textures/noise.html">Noise Texture</a> 扭曲坐标, 制作抖动效果: noise texture和displacement的cloudy texture效果差不多
-            <ul>
-              <li>用<a href="https://docs.blender.org/manual/en/latest/compositing/types/color/mix/mix_color.html">Mix Node</a> 的Multiply把两个坐标混合</li>
-            </ul>
-          </li>
-          <li>用<a href="https://docs.blender.org/manual/zh-hans/dev/editors/graph_editor/fcurves/editing.html">Graph Editor</a> 调整mapping的y坐标的location, 形成动态的扭曲</li>
-        </ol>
-      </li>
-    </ul>
-  </li>
-  <li>把火焰的plane mesh旋转复制出多个绕y轴一圈
-    <ul>
-      <li>在shader里选中一个materail<a href="https://blender.stackexchange.com/questions/7044/copy-material-to-another-object">复制给所有mesh</a></li>
-      <li>复制完想修改所有的mesh形状但是没找到方法</li>
-    </ul>
-  </li>
-  <li>结果: 我复制的次数比较少, 而且颜色也不好看,  形状也拉的不太对
-    <ul>
-      <li><img src="/personal_homepage/docs/attachment/fire.mp4" alt="fire.mp4" width="320" /></li>
-    </ul>
-  </li>
-</ul>
-
-<h3 id="shader流程">shader流程</h3>
-
-<p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240208164250.png" alt="Pasted image 20240208164250.png" width="600" /></p>
-
-<h2 id="用displacement粒子系统---卡通火焰">用displacement+粒子系统 -&gt; 卡通火焰</h2>
-<h3 id="步骤-1">步骤:</h3>
-
-<p>参考小红书<a href="https://www.xiaohongshu.com/explore/658636a9000000003c010c5d">KurTips的教学</a></p>
-<ul>
-  <li>制作火焰形状
-    <ul>
-      <li>添加一个cube mesh</li>
-      <li>在modifier里加subdivision surface</li>
-      <li>在Edit Mode, 打开Propotional Editing(衰减编辑), 选择最上面vertex, 按G+V可以在z轴拉伸</li>
-      <li>制作焰心: 复制一个更小的放在前面</li>
-      <li>选中两个object, 右键<a href="https://docs.blender.org/manual/en/latest/scene_layout/object/editing/shading.html">shade smooth</a>
-        <ul>
-          <li>shader计算时, 三角形内的normal vector由三个顶点的normal vector插值得到</li>
-        </ul>
-      </li>
-      <li>合并两个object: <a href="https://docs.blender.org/manual/en/4.2/scene_layout/object/editing/join.html">Ctrl+J</a></li>
-    </ul>
-  </li>
-  <li>shader: 设置<a href="https://docs.blender.org/manual/en/latest/render/shader_nodes/input/texture_coordinate.html">texture Coordinate</a>  generate-&gt;Separate XYZ-&gt;Gradient Texture-&gt;ColorRamp-&gt; Emission
-    <ul>
-      <li>把大小两块用不同的材质
-        <ul>
-          <li>进入Edit Mode, 随便选中一个点, Ctrl+L可以把原本的大小两个object分别选中</li>
-          <li>在Material添加材质</li>
-        </ul>
-      </li>
-      <li>ColorRamp颜色: 外焰: 红-&gt;黄 ; 焰心: 红-&gt;橙红</li>
-    </ul>
-  </li>
-  <li>抖动效果: 用displacement实现
-    <ol>
-      <li>在Modifier添加displace: 选Clouds材质, 调整Size, Depth=1, displacement的Stength</li>
-      <li>让displacement的强度从上到下渐变: 用顶点组实现
-        <ol>
-          <li>定义顶点组: 在Edit Mode开透视模式, 选中上面一部分顶点; 在Oject的Data里添加vetex group, 把刚才选中的部分顶点assign给这个顶点组</li>
-          <li>在<a href="https://docs.blender.org/manual/en/latest/sculpt_paint/weight_paint/index.html">Weight Paint</a>模式, 增加weight-&gt;<a href="https://docs.blender.org/manual/en/2.79/sculpt_paint/painting/weight_paint/weight_tools.html">smooth-&gt;iteration</a>: 让 in Vertex Group-&gt; outside Vertex Group 的渐变更光滑
-            <ul>
-              <li>smooth操作的每个iteration都是和邻域的顶点做平滑</li>
-            </ul>
-          </li>
-          <li>在displace的vertex group选择顶点组</li>
-        </ol>
-      </li>
-      <li>制作displacement的动态: 通过绑定一个空坐标轴实现
-        <ol>
-          <li>在displace的Coordinates选择object, 物体选择我们的空坐标轴</li>
-          <li>修改空坐标轴的Oject-&gt;Transform的z轴的值, 改为: <code class="language-plaintext highlighter-rouge">#frame/100(帧数/100)</code>
-            <ul>
-              <li>这样做比用<a href="https://docs.blender.org/manual/zh-hans/dev/editors/graph_editor/fcurves/editing.html">Graph Editor</a> 方便不少👍</li>
-            </ul>
-          </li>
-        </ol>
-      </li>
-    </ol>
-  </li>
-  <li>制作火星: 用粒子系统
-    <ol>
-      <li>在火焰里添加一个圆环mesh</li>
-      <li>进入Edit Mode, 填充: 快捷键F</li>
-      <li>修改Particles参数:
-        <ul>
-          <li>Field Weight-&gt; Gravity改为0: 让粒子向上</li>
-          <li>Velocity-&gt; normal改为2</li>
-          <li>Emission: 调整Frame_start, Frame_end, lifetime(和velocity共同控制粒子移动的距离)</li>
-          <li>Physics-&gt; Brownian改为10.5: 让粒子做布朗运动</li>
-        </ul>
-      </li>
-      <li>调整火星材质:
-        <ol>
-          <li>制作一个多面体mesh, subdivision改成1: 减小计算量</li>
-          <li>把多面体的shader改成自发光, 调整color, strength适当增大</li>
-          <li><strong>打开eevee渲染器的<a href="https://docs.blender.org/manual/en/latest/render/eevee/render_settings/bloom.html">bloom(辉光)</a> 功能</strong> : 通过blur发光区域模拟光线在周围大气散射的效果</li>
-          <li>制定Particles-&gt;Render参数:
-            <ol>
-              <li>Render As调成Object模式, Render-&gt;Instance选择我们的制作的多面体mesh</li>
-              <li>scale调小, scale Randomness调大: 让粒子大小不一</li>
-            </ol>
-          </li>
-        </ol>
-      </li>
-    </ol>
-  </li>
-  <li>结果: 因为焰心的制作方法, 只能在一定角度看.
-    <ul>
-      <li><img src="/personal_homepage/docs/attachment/fire_cartoon_cut.mp4" alt="fire_cartoon_cut.mp4" width="200" /></li>
-    </ul>
-  </li>
-</ul>
-
-<h2 id="火焰效果的片段">火焰效果的片段</h2>
-
-<p>[1] 冰海战记s2ep5的放火场景</p>
-
-<h2 id="reference">reference</h2>
-
-<p>[1] https://zhuanlan.zhihu.com/p/484222862 辉光效果</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="blender" /><category term="content" /><category term="render" /><category term="shader" /><summary type="html"><![CDATA[火焰的形状用圆形变形一半获得. 用Perlin noise使坐标变形制作随机抖动. 用Emission node渲染发光效果.]]></summary></entry><entry><title type="html">stable-diffusion的用法: 用 ipadatper+controlnet canny做风格转换</title><link href="https://roshameow.github.io//personal_homepage/docs/photo/stable-diffusion1/" rel="alternate" type="text/html" title="stable-diffusion的用法: 用 ipadatper+controlnet canny做风格转换" /><published>2024-02-07T00:00:00+00:00</published><updated>2024-02-24T19:16:16+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/photo/stable-diffusion1</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/photo/stable-diffusion1/"><![CDATA[<p>用ipadapter和canny做风格转换</p>
-
-<h2 id="comfyui使用">ComfyUI使用</h2>
-
-<ol>
-  <li>调用ComfyUI中default的工作流
-    <ul>
-      <li>下载<a href="https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0">sdxl模型</a></li>
-    </ul>
-  </li>
-  <li><strong>连上IPAdapter节点</strong>
-    <ul>
-      <li>安装<a href="https://github.com/cubiq/ComfyUI_IPAdapter_plus">IPAdapter_plus插件</a>
-        <ul>
-          <li>下载需要的ipadater微调模型和clip vision编码器: 把图像用clip vision编码后输入base model的cross-attention层</li>
-        </ul>
-      </li>
-      <li>ComfyUI里连接顺序是: Checkpoint: model-&gt; IPAdapter: model -&gt; KSampler: model</li>
-      <li>weigt设为1, text prompt都空着, latent prompt也空着</li>
-    </ul>
-  </li>
-  <li><strong>连上Controlnet节点</strong>
-    <ul>
-      <li>下载<a href="https://huggingface.co/collections/diffusers/sdxl-controlnets-64f9c35846f3f06f5abe351f">canny模型</a>
-        <ul>
-          <li><del>找不到其他适合sdxl的controlnet模型</del>因为我们的原图是个线稿适合用canny</li>
-        </ul>
-      </li>
-      <li>ComfyUI里连接顺序是: Checkpoint-&gt;prompt-&gt;controlnet-&gt;Ksampler: text prompt
-        <ul>
-          <li>controlnet最后是作用在condition(positive, negative)上的, 和text promt一样</li>
-        </ul>
-      </li>
-      <li>调整controlnet权重和影响步数: stength=0.5, start_percent=0, end_percent=0.6
-        <ul>
-          <li>如果设置过大就只能得到一张有颜色的线稿图</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-</ol>
-
-<h2 id="结果">结果</h2>
-
-<p>原图: 
-<img src="/personal_homepage/docs/attachment/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-02-07%20224110.png" alt="屏幕截图 2024-02-07 224110.png" width="600" /> + <img src="/personal_homepage/docs/attachment/2e2b76d160ca4317bb8e095ffd8ff878.jpg.png" alt="2e2b76d160ca4317bb8e095ffd8ff878.jpg.png" width="150" /></p>
-
-<p>合成图: 
-<img src="/personal_homepage/docs/attachment/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-02-07%20224141.png" alt="屏幕截图 2024-02-07 224141.png" width="600" /></p>
-
-<ul>
-  <li>竟然可以识别龙的眼睛啊…有好几幅图都把猫眼替换到了龙眼上
-    <ul>
-      <li>如果两种图有同样的元素(眼睛之类的), 可能可以比较好的替换</li>
-      <li>最后的龙和人, 龙和山, 都不能对应起来</li>
-    </ul>
-  </li>
-  <li>ipadapter没法主动控制合成哪个图像中的哪种元素:
-    <ul>
-      <li>虽然替换了颜色, 背景, 但是没法替换材质, 笔触</li>
-      <li>有几张图还替换了原图的色块分布, 这是我们不想要的</li>
-    </ul>
-  </li>
-  <li>另外, controlnet-canny和ipadapter的龙都不能省略
-    <ul>
-      <li>如果ipadapter只用风格图:
-        <ul>
-          <li><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240208003655.png" alt="Pasted image 20240208003655.png" width="100" /> <img src="/personal_homepage/docs/attachment/Pasted%20image%2020240208003712.png" alt="Pasted image 20240208003712.png" width="100" /></li>
-          <li>增加control-net的权重也是没用的, weight=0.8时出现了噪声图案</li>
-        </ul>
-      </li>
-      <li>如果不加controlnet:
-        <ul>
-          <li><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240208003804.png" alt="Pasted image 20240208003804.png" width="100" /> <img src="/personal_homepage/docs/attachment/Pasted%20image%2020240208003819.png" alt="Pasted image 20240208003819.png" width="100" /></li>
-        </ul>
-      </li>
-      <li>看起来controlnet保持了龙的外形结构, ipadpter加龙提高了龙的权重, 不过ipadapter从龙图中究竟学到了什么? 是扁平的画风吗? 只用风格图的情况下, 确实画风更接近风格图, 但是内容也更接近了
-        <ul>
-          <li>可以通过text prompt控制吗? 但是clip又无法理解简笔画的龙.</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-</ul>
-
-<h2 id="comfyui-workflow">ComfyUI workflow</h2>
-
-<p><a href="https://gist.github.com/roshameow/d952bf0157a25ab3e9e724df1449b160#file-ipadapter_controlnet-canny_loong_style_change-json"><strong>ipadapter_controlnet-canny_loong_style_change.json</strong></a></p>
-
-<p><img src="/personal_homepage/docs/attachment/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-02-07%20224530.png" alt="屏幕截图 2024-02-07 224530.png" width="800" /></p>
-
-<h2 id="comfyui难用的地方">ComfyUI难用的地方</h2>
-
-<ul>
-  <li>UI的奇怪地方
-    <ul>
-      <li>有参数的地方字体相对整个节点特别小, 而且没法调节. 输入text prompt的时候是根本看不清..</li>
-      <li>鼠标的十字倒是特别大…</li>
-    </ul>
-  </li>
-  <li>节点连接非常反常识
-    <ul>
-      <li>load节点
-        <ul>
-          <li>输入都在右侧, 一般会觉得应该把prompt输入模型</li>
-          <li>load节点的存在就很奇怪, 为什么不把load和apply合并到一起? 或者在右侧用菜单栏切换</li>
-          <li>model里面还有个model_name? 模型的名字一长全混在一起真的分不清啊…</li>
-        </ul>
-      </li>
-      <li>preview Image节点
-        <ul>
-          <li>为什么不直接做成一个下拉选项…</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li>节点划分不明确: ComfyUI里面一个节点会用dict的形式传递多种参数
-    <ul>
-      <li>latent里面可能包含latent image, noise mask, 也可能不包含noise mask, 此时连接到需要noise mask key的latent节点就会报错</li>
-      <li>condition(positive, negative)也包含多种condition…</li>
-    </ul>
-  </li>
-  <li>为什么不能做成一个Chromium内核的本地app..
-    <ul>
-      <li>据说有一些方法可以打包成一个app?</li>
-      <li>凡需要inpaint输入的地方, 输入方式很不方便, 能和其他专门用来绘图的软件结合就好了</li>
-    </ul>
-  </li>
-  <li>虽然如此, 可以用节点和分享工作流就比webui好用太多了</li>
-</ul>
-
-<h2 id="其他讨论这个链接">其他讨论这个链接</h2>
-
-<p>[1] https://zhuanlan.zhihu.com/p/664201523 里面介绍了一个换画风的工作流, 不过例子是人像, 可能本身网络对人像的理解能力更强吧?　</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="photo" /><category term="content" /><category term="ComfyUI" /><category term="ipadapter" /><category term="controlnet" /><category term="canny" /><category term="sdxl" /><summary type="html"><![CDATA[用ipadapter和canny做风格转换]]></summary></entry></feed>
+<p>[2] https://blenderartists.org/t/whats-the-math-behind-fresnel-node/1502809/11 Fensel node讨论</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="blender" /><category term="content" /><category term="shader" /><category term="3d_model" /><category term="shortcut" /><summary type="html"><![CDATA[由cylinder变形得到水杯. 用cycles渲染玻璃材质. 步骤]]></summary></entry></feed>

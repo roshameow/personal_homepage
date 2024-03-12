@@ -16,22 +16,22 @@
   
   
   <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>blender学习: 做卡通描边 | Liu, Wen’s Home Page</title>
+<title>blender学习: 镜头推移 | Liu, Wen’s Home Page</title>
 <meta name="generator" content="Jekyll v4.3.3" />
-<meta property="og:title" content="blender学习: 做卡通描边" />
+<meta property="og:title" content="blender学习: 镜头推移" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="用solidify+背面剔除+法线翻转" />
-<meta property="og:description" content="用solidify+背面剔除+法线翻转" />
-<link rel="canonical" href="https://roshameow.github.io//personal_homepage/docs/blender/blender-learning7/" />
-<meta property="og:url" content="https://roshameow.github.io//personal_homepage/docs/blender/blender-learning7/" />
+<meta name="description" content="前向推镜头" />
+<meta property="og:description" content="前向推镜头" />
+<link rel="canonical" href="https://roshameow.github.io//personal_homepage/docs/blender/blender-learning9/" />
+<meta property="og:url" content="https://roshameow.github.io//personal_homepage/docs/blender/blender-learning9/" />
 <meta property="og:site_name" content="Liu, Wen’s Home Page" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2024-03-06T00:00:00+00:00" />
+<meta property="article:published_time" content="2024-03-12T00:00:00+00:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="blender学习: 做卡通描边" />
+<meta property="twitter:title" content="blender学习: 镜头推移" />
 <meta name="twitter:site" content="@" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-03-07T20:14:23+00:00","datePublished":"2024-03-06T00:00:00+00:00","description":"用solidify+背面剔除+法线翻转","headline":"blender学习: 做卡通描边","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/docs/blender/blender-learning7/"},"url":"https://roshameow.github.io//personal_homepage/docs/blender/blender-learning7/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-03-12T15:32:52+00:00","datePublished":"2024-03-12T00:00:00+00:00","description":"前向推镜头","headline":"blender学习: 镜头推移","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/docs/blender/blender-learning9/"},"url":"https://roshameow.github.io//personal_homepage/docs/blender/blender-learning9/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -58,7 +58,7 @@
 
 </head>
 
-  <body class="layout--post  blender学习-做卡通描边">
+  <body class="layout--post  blender学习-镜头推移">
     <nav class="skip-links">
   <h2 class="screen-reader-text">Skip links</h2>
   <ul>
@@ -99,7 +99,7 @@
       <header class="page-header">
         
         
-        <h1 id="page-title" class="page-title p-name">blender学习: 做卡通描边
+        <h1 id="page-title" class="page-title p-name">blender学习: 镜头推移
 </h1>
         
       </header>
@@ -111,7 +111,7 @@
 
 <span class="read-time">~1 min read</span>
 
-    <time class="page-date dt-published" datetime="2024-03-06T00:00:00+00:00"><a class="u-url" href="">March 6, 2024</a>
+    <time class="page-date dt-published" datetime="2024-03-12T00:00:00+00:00"><a class="u-url" href="">March 12, 2024</a>
 </time>
 
   </div>
@@ -127,7 +127,7 @@
         
   <h3 class="page-taxonomies-title">Tags</h3>
   
-  <ul class="page-taxonomies"><li class="page-taxonomy"><a href="/personal_homepage/tags/#content" title="Pages tagged content" rel="tag">content</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#material" title="Pages tagged material" rel="tag">material</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#modifier" title="Pages tagged modifier" rel="tag">modifier</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#stoke" title="Pages tagged stoke" rel="tag">stoke</a></li>
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a href="/personal_homepage/tags/#camera" title="Pages tagged camera" rel="tag">camera</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#content" title="Pages tagged content" rel="tag">content</a></li>
   </ul>
 
 
@@ -138,7 +138,7 @@
 </h2>
 <!-- 1. toc
 {:toc} -->
-<ul class="inline_toc" id="my_toc"><li><a href="#用solidify背面剔除法线翻转">用solidify+背面剔除+法线翻转</a><ul><li><a href="#步骤">步骤:</a></li></ul></li><li><a href="#blender使用技巧">blender使用技巧</a></li><li><a href="#其他描边效果">其他描边效果</a></li></ul>
+<ul class="inline_toc" id="my_toc"><li><a href="#前向推镜头">前向推镜头</a></li><li><a href="#模型资源">模型资源</a></li></ul>
 </div>
 <!-- {::options parse_block_html="false" /} -->
 
@@ -146,57 +146,15 @@
 
       <div class="page-content">
         <div class="e-content">
-          <h2 id="用solidify背面剔除法线翻转">用solidify+背面剔除+法线翻转</h2>
+          <h2 id="前向推镜头">前向推镜头</h2>
 
-<p>给mesh增加厚度, 让描边材质只在厚度边缘生效</p>
-<h3 id="步骤">步骤:</h3>
+<p>参考<a href="https://www.xiaohongshu.com/explore/65a2ce0a000000001d037212">这个教学视频</a>, 用array modifier复制多个模型 , 得到一种穿梭效果</p>
 
-<p>参考<a href="https://www.bilibili.com/video/BV1Ju4y197yk">这个教学视频</a></p>
+<p><img src="/personal_homepage/docs/attachment/camera_move.mp4" alt="camera_move.mp4" width="300" /></p>
 
-<ul>
-  <li>shader:
-    <ul>
-      <li>选择一个主material的效果(Slot 1): 用Diffuse BSDF-&gt;shader to RGB-&gt;Color Ramp-&gt;Emission</li>
-      <li>添加一个描边材质(Slot 2): 用Emission, 选择我们描边的颜色
-        <ul>
-          <li>对这个材质开启Backface Culling(背面剔除)</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li>在Modifier添加<a href="https://docs.blender.org/manual/en/latest/modeling/modifiers/generate/solidify.html">solidify</a>: 给mesh表面增加厚度
-    <ul>
-      <li><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240307120524.png" alt="Pasted image 20240307120524.png" width="100" /> <img src="/personal_homepage/docs/attachment/Pasted%20image%2020240307120542.png" alt="Pasted image 20240307120542.png" width="110" /></li>
-      <li>调整thickness=-0.02m
-        <ul>
-          <li>offset默认是-1, 要让thickness和offset同方向(让增加的厚度mesh朝外凸)</li>
-        </ul>
-      </li>
-      <li>Materials-&gt;Material Offset=1 :让solidify的厚度mesh采用我们的描边材质, 即下一个slot的material</li>
-      <li>开启Normals-&gt;flip: 让颜色上到厚度mesh的内表面</li>
-    </ul>
-  </li>
-  <li>结果: 对三维的模型描边有种新鲜的观感.
-    <ul>
-      <li><img src="/personal_homepage/docs/attachment/stoke.mp4" alt="stoke.mp4" width="300" /></li>
-      <li>描边的前提是提取边缘. 如果是二维图像有很多做法, 比如自动提取图像的边缘合并. 对于我们自己建的模型当然也有办法提取边缘. 但是如果其他方式得到的模型(比如扫描得到的模型), 我们怎么识别边缘, 然后edit呢?</li>
-    </ul>
-  </li>
-</ul>
+<h2 id="模型资源">模型资源</h2>
 
-<h2 id="blender使用技巧">blender使用技巧</h2>
-
-<ul>
-  <li>复制material和modifier:
-    <ul>
-      <li>按<a href="https://blender.stackexchange.com/questions/7044/copy-material-to-another-object">这个方法</a> 可以复制到全部, 但是没法选择materail的单个slot😠, 只能全部复制过去?</li>
-    </ul>
-  </li>
-</ul>
-
-<h2 id="其他描边效果">其他描边效果</h2>
-
-<p>[1] https://svg-animation-booklet.vercel.app/chapter5.html#实现动画 svg描边动画</p>
+<p>[1] https://sketchfab.com/feed</p>
 
 
         </div>
@@ -209,8 +167,8 @@
     <div id="disqus_thread"></div>
     <script>
       var disqus_config = function () {
-        this.page.url = 'https://roshameow.github.io//personal_homepage/docs/blender/blender-learning7/';
-        this.page.identifier = 'https://roshameow.github.io//personal_homepage/docs/blender/blender-learning7/';
+        this.page.url = 'https://roshameow.github.io//personal_homepage/docs/blender/blender-learning9/';
+        this.page.identifier = 'https://roshameow.github.io//personal_homepage/docs/blender/blender-learning9/';
       };
 
       (function() {
@@ -228,23 +186,15 @@
 
         <nav class="page-pagination" role="navigation">
   
-    <a class="page-previous" href="/personal_homepage/docs/deeplearning/stable-diffusion6/">
+    <a class="page-previous" href="/personal_homepage/docs/blender/blender-learning8/">
       <h4 class="page-pagination-label">Previous</h4>
       <span class="page-pagination-title">
-        <i class="fas fa-arrow-left"></i> stable-diffusion的结构和微调模型
+        <i class="fas fa-arrow-left"></i> blender学习: 做流光效果
 
       </span>
     </a>
   
 
-  
-    <a class="page-next" href="/personal_homepage/docs/attention2/">
-      <h4 class="page-pagination-label">Next</h4>
-      <span class="page-pagination-title">
-        attention的优化
- <i class="fas fa-arrow-right"></i>
-      </span>
-    </a>
   
 </nav>
 

@@ -268,4 +268,19 @@ var store = [{
         "excerpt":"用solidify+背面剔除+法线翻转 给mesh增加厚度, 让描边材质只在厚度边缘生效 步骤: 参考这个教学视频   shader:          选择一个主material的效果(Slot 1): 用Diffuse BSDF-&gt;shader to RGB-&gt;Color Ramp-&gt;Emission      添加一个描边材质(Slot 2): 用Emission, 选择我们描边的颜色                  对这个材质开启Backface Culling(背面剔除)                      在Modifier添加solidify: 给mesh表面增加厚度                 调整thickness=-0.02m                  offset默认是-1, 要让thickness和offset同方向(让增加的厚度mesh朝外凸)                    Materials-&gt;Material Offset=1 :让solidify的厚度mesh采用我们的描边材质, 即下一个slot的material      开启Normals-&gt;flip: 让颜色上到厚度mesh的内表面        结果: 对三维的模型描边有种新鲜的观感.                描边的前提是提取边缘. 如果是二维图像有很多做法, 比如自动提取图像的边缘合并. 对于我们自己建的模型当然也有办法提取边缘. 但是如果其他方式得到的模型(比如扫描得到的模型), 我们怎么识别边缘, 然后edit呢?      blender使用技巧   复制material和modifier:          按这个方法 可以复制到全部, 但是没法选择materail的单个slot😠, 只能全部复制过去?      其他描边效果 [1] https://svg-animation-booklet.vercel.app/chapter5.html#实现动画 svg描边动画 ","categories": ["docs","blender"],
         "tags": ["content","material","stoke","modifier"],
         "url": "https://roshameow.github.io//personal_homepage/docs/blender/blender-learning7/"
+      },{
+        "title": "attention的优化",
+        "excerpt":"GAU(gated attention unit) self-attention做为weight, conv做为变换 SSM(state space model) 状态空间 的表示: 用input更新状态, 用状态生成output Linear attention S4(Structured state space sequence) 结构 H3(Hungry Hungry Hippos) 结构 Mamba RetNet RWKV ","categories": ["docs"],
+        "tags": ["content"],
+        "url": "https://roshameow.github.io//personal_homepage/docs/attention2/"
+      },{
+        "title": "blender学习: 做流光效果",
+        "excerpt":"用金属材质反射world背景的流动 步骤: 参考这个教学视频   制作物体:          添加curve      调整Data-&gt;Geometry-&gt;Bevel(倒角)-&gt;Round-&gt; Depth: 把曲线变成软管      加modifier-&gt;subdivisor        shader:          object: 用principled BSDF, 把metallic调到1, roughness 调整到0.1      world:                  在background添加流动材质                          设置texture Coordinate  generate-&gt;Mapping(Y=#frame/40)-&gt;background图片                                得到黑色背景                          添加一个黑色背景, 用Light Path的Is Camera Ray控制混合 : 背景和物体分开的原理?                                            light: 改成sun, 给物体增加反光  结果:                ","categories": ["docs","blender"],
+        "tags": ["content","shader","curve"],
+        "url": "https://roshameow.github.io//personal_homepage/docs/blender/blender-learning8/"
+      },{
+        "title": "blender学习: 镜头推移",
+        "excerpt":"前向推镜头 参考这个教学视频, 用array modifier复制多个模型 , 得到一种穿梭效果  模型资源 [1] https://sketchfab.com/feed ","categories": ["docs","blender"],
+        "tags": ["content","camera"],
+        "url": "https://roshameow.github.io//personal_homepage/docs/blender/blender-learning9/"
       }]
