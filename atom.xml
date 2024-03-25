@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="https://roshameow.github.io//personal_homepage/atom.xml" rel="self" type="application/atom+xml" /><link href="https://roshameow.github.io//personal_homepage/" rel="alternate" type="text/html" /><updated>2024-03-12T03:17:51+00:00</updated><id>https://roshameow.github.io//personal_homepage/atom.xml</id><title type="html">Liu, Wen’s Home Page</title><subtitle>Work, Experiments and Ideas.</subtitle><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><entry><title type="html">blender学习: 镜头推移</title><link href="https://roshameow.github.io//personal_homepage/docs/blender/blender-learning9/" rel="alternate" type="text/html" title="blender学习: 镜头推移" /><published>2024-03-12T00:00:00+00:00</published><updated>2024-03-12T15:32:52+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/blender/blender-learning9</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/blender/blender-learning9/"><![CDATA[<h2 id="前向推镜头">前向推镜头</h2>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="https://roshameow.github.io//personal_homepage/atom.xml" rel="self" type="application/atom+xml" /><link href="https://roshameow.github.io//personal_homepage/" rel="alternate" type="text/html" /><updated>2024-03-25T07:10:34+00:00</updated><id>https://roshameow.github.io//personal_homepage/atom.xml</id><title type="html">Liu, Wen’s Home Page</title><subtitle>Work, Experiments and Ideas.</subtitle><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><entry><title type="html">attention的优化– 加速</title><link href="https://roshameow.github.io//personal_homepage/docs/algorithm/attention3/" rel="alternate" type="text/html" title="attention的优化– 加速" /><published>2024-03-20T00:00:00+00:00</published><updated>2024-03-25T23:08:59+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/algorithm/attention3</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/algorithm/attention3/"><![CDATA[]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="algorithm" /><category term="content" /><summary type="html"><![CDATA[]]></summary></entry><entry><title type="html">blender学习: 镜头推移</title><link href="https://roshameow.github.io//personal_homepage/docs/blender/blender-learning9/" rel="alternate" type="text/html" title="blender学习: 镜头推移" /><published>2024-03-12T00:00:00+00:00</published><updated>2024-03-12T15:32:52+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/blender/blender-learning9</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/blender/blender-learning9/"><![CDATA[<h2 id="前向推镜头">前向推镜头</h2>
 
 <p>参考<a href="https://www.xiaohongshu.com/explore/65a2ce0a000000001d037212">这个教学视频</a>, 用array modifier复制多个模型 , 得到一种穿梭效果</p>
 
@@ -43,24 +43,219 @@
       <li><img src="/personal_homepage/docs/attachment/color_change.mp4" alt="color_change.mp4" width="300" /></li>
     </ul>
   </li>
-</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="blender" /><category term="content" /><category term="shader" /><category term="curve" /><summary type="html"><![CDATA[用金属材质反射world背景的流动 步骤:]]></summary></entry><entry><title type="html">attention的优化</title><link href="https://roshameow.github.io//personal_homepage/docs/attention2/" rel="alternate" type="text/html" title="attention的优化" /><published>2024-03-09T00:00:00+00:00</published><updated>2024-03-11T23:17:24+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/attention2</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/attention2/"><![CDATA[<h3 id="gaugated-attention-unit">GAU(gated attention unit)</h3>
+</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="blender" /><category term="content" /><category term="shader" /><category term="curve" /><summary type="html"><![CDATA[用金属材质反射world背景的流动 步骤:]]></summary></entry><entry><title type="html">attention的优化– 引进时序结构</title><link href="https://roshameow.github.io//personal_homepage/docs/deeplearning/attention2/" rel="alternate" type="text/html" title="attention的优化– 引进时序结构" /><published>2024-03-09T00:00:00+00:00</published><updated>2024-03-25T23:08:10+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/deeplearning/attention2</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/deeplearning/attention2/"><![CDATA[<p>在token很多(大模型用的超长文本), 或者本身数据是时间序列(比如语音, 视频流)的情况下, attention里面的weight会带来$O(token^2)$ 的内存消耗</p>
 
-<p>self-attention做为weight, conv做为变换</p>
+<h2 id="基本结构">基本结构</h2>
 
 <h3 id="ssmstate-space-model">SSM(state space model)</h3>
 
-<p><a href="https://en.wikipedia.org/wiki/State-space_representation">状态空间</a> 的表示: 用input更新状态, 用状态生成output</p>
+<ul>
+  <li><a href="https://en.wikipedia.org/wiki/State-space_representation">状态空间(state space)</a> : 用state vector记录历史的input, 而不是记录所有的历史token
+    <ul>
+      <li><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240317183044.png" alt="Pasted image 20240317183044.png" width="200" /></li>
+    </ul>
+  </li>
+  <li>连续表示:
+    <ul>
+      <li>linear state space model的一般形式:
+        <ul>
+          <li>$\dot x(t)=A(t)x(t)+B(t)u(t)$ (用input u更新状态 x)</li>
+          <li>$y(t)=C(t)x(t)+D(t)u(t)$  (用状态x, 生成output y)</li>
+        </ul>
+      </li>
+      <li>如果A,B,C是time invariant, 以及省略D, 得到,
+        <ul>
+          <li>$\dot x(t)=Ax(t)+Bu(t)$
+            <ul>
+              <li>解得 $x(t)=e^{At}x(0)+\int^t_0 e^{A(t-\tau)}Bu(\tau)d\tau$    , $x(t)$ 是$u(t)$ 的卷积形式: $x(t)=K(t)*u(t)$, $K(t)=e^{At}B$</li>
+            </ul>
+          </li>
+          <li>$y(t)=Cx(t)$</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>离散表示:
+    <ul>
+      <li>迭代的表示: $x_{k+1}=\bar A x_k + \bar Bu_k$ , $y_{k+1}=Cx_{k+1}$
+        <ul>
+          <li>用<a href="https://en.wikipedia.org/wiki/Zero-order_hold">Zero order hold</a> 离散表示$u(t)$ , $\Delta$ 是step_size, 有: $\bar A=e^{\Delta A}$ , $\bar B=(\Delta A)^{-1}(e^{\Delta A}-I)\cdot \Delta B$
+            <ul>
+              <li><a href="https://en.wikipedia.org/wiki/Discretization">Discretization wiki</a>中正好有这个推导</li>
+            </ul>
+          </li>
+          <li>用blinear离散表示$u(t)$,  $\Delta$ 是step_size, 有: $\bar A=(I-\Delta/2\cdot A)^{-1}(I+\Delta/2\cdot A)$ , $\bar B=(I-\Delta/2\cdot A)^{-1}\cdot \Delta B$</li>
+        </ul>
+      </li>
+      <li>卷积的表示: $y=x * \bar K$ , $\bar K = (C\bar B, C\bar{AB}, \dots, C\bar A^{N-1}\bar B)$</li>
+    </ul>
+  </li>
+  <li>一些状态空间的应用:
+    <ul>
+      <li>Kalman filter</li>
+      <li>control theory</li>
+    </ul>
+  </li>
+  <li>特点:
+    <ul>
+      <li>迭代和卷积的形式完全等价, 一般在训练时用卷积形式方便计算并行, 在推理时用迭代形式节省时间和存储</li>
+      <li>对于很多任务, 输入$u(t)$ 是多通道的, 这个时候一般把相同ssm应用在每个通道上</li>
+      <li>SSM支持无限长的序列推理, 所有的历史token信息都被压缩到state里</li>
+    </ul>
+  </li>
+</ul>
 
-<h3 id="linear-attention">Linear attention</h3>
+<h3 id="linear-attention">Linear Attention</h3>
 
+<p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240317103547.png" alt="Pasted image 20240317103547.png" width="1000" /></p>
+
+<ul>
+  <li>把self-attention的softmax换掉就可以改写成SSM的形式, 既有SSM计算节省内存和时间的优点, 又贴近self-attention的效果
+    <ul>
+      <li>按照这种写法, 可以把SSM迭代中的$B, C$ 写成$K, Q$</li>
+    </ul>
+  </li>
+  <li>实际使用中发现, linear attention的state容量是有限度的, 虽然理论上支持无限长的token, 但是对历史信息的遗失不好处理, 效果远不如基于self-attention的方法</li>
+</ul>
+
+<h2 id="一些利用ssmlinear-attention的语言模型工作">一些利用SSM/linear attention的语言模型工作</h2>
 <h3 id="s4structured-state-space-sequence-结构">S4(Structured state space sequence) 结构</h3>
+
+<p>发现用HiPPO(High-order Polynomial Projection Operator)矩阵做为SSM 中的状态转移矩阵$A$ 的初始化可以极大的提高SSM的性能.</p>
+
+<ul>
+  <li>motivation:
+    <ol>
+      <li>在measure function  $\omega^{(t)}$ 下, 用一组orthogonal basis表示有限维的state $x$ (例如: <a href="https://en.wikipedia.org/wiki/Legendre_polynomials">Legendre polynomials</a>  $P_n^{(t)}$ , $x(t)=\sum_n c_n(t)*P_n^{(t)}$)</li>
+      <li>在measure function  $\omega^{(t)}$ 下, 想从state $x$  尽量<strong>恢复出input $u$ 的历史信息</strong> $u_{\le t}$ , 即
+  \(x=\text{argmin}_{c_n}||u_{\le t}-\sum_n c_n*P_n||_{\omega}\)
+        <ol>
+          <li>measure function的选择影响了我们在state $x$ 中保留什么样的历史信息: 例如 $\downarrow$
+            <ol>
+              <li>LegS(scaled Legendre measure), $\omega(t)=\mathbb{1}[0,t]/t$ 对历史信息权重平均, 保留$\le t$ 的所有历史信息</li>
+              <li>LegT(Translated Legendre), $\omega(t)=\frac{1}{\theta} \mathbb 1[t-\theta,t]$ , 保留最近一段的信息</li>
+            </ol>
+          </li>
+        </ol>
+      </li>
+    </ol>
+  </li>
+  <li>计算:
+    <ol>
+      <li>以上两点得出, $c_n$ 是$u_{\le t}$ 在basis $P_n$, measure $\omega$ ,下的projection, $c_n=&lt;u_{\le t}, P_n^{(t)}&gt;_{\omega}$ ,
+        <ul>
+          <li>即 \(x=\sum_n &lt;u_{\le t}, P_n^{(t)}&gt;_{\omega} P_n^{(t)}=proj_{(\omega, P_n^{(t)})} (u_{\le t})\)</li>
+          <li>如果写成SSM卷积的形式, \(x=K*u\) , \(K(t)=\sum_n P_n^{(t)}*\omega^{(t)}\)</li>
+        </ul>
+      </li>
+      <li>因为$P_n$ 本身是basis: $\dot P_n\in span(P_n)$,  我们选取的$\omega$ 也尽量满足: $\dot \omega\in span(\omega)$</li>
+      <li>把 $x$ 和 $u$ 带入SSM的ODE( $\dot x(t)=Ax(t)+Bu(t)$ ), 即得到Hippo矩阵 $A(t)$ , 和 $B(t)$
+        <ul>
+          <li>在计算过程中为了方便会做一些变量替换</li>
+          <li>对于LegS的情况, $A(t)$ 不是time-invariant的, 不过, 可以写成 $A(t)=\frac{1}{t}A$ 的形式
+            <ul>
+              <li>S4的结构里用的是没有$\frac{1}{t}$ 的版本, 可以对应$w(t)=e^{-t}$ 和 $p_n(t)=L_n(e^{-t})$ . 按文章里的说法, 是实验有效之后才反过来找到对应的basis和measure🤔️</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ol>
+  </li>
+</ul>
+
+<p>这个恢复信号的想法和VAE里面用latent space压缩图像信号的想法很相似.</p>
 <h3 id="h3hungry-hungry-hippos-结构">H3(Hungry Hungry Hippos) 结构</h3>
 
-<h3 id="mamba">Mamba</h3>
+<p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240318042950.png" alt="Pasted image 20240318042950.png" width="400" /></p>
+
+<ul>
+  <li>和linear attention不同, H3里面KV并没把不同token的信息加在一起, 整个结构里, 不同token的信息只在SSM的地方进行交互</li>
+  <li>SSM模块: 这两个SSM模块是为了语言模型精心设计的
+    <ul>
+      <li>其中Shift SSM指SSM中的状态转移矩阵$A$ 是个<a href="https://en.wikipedia.org/wiki/Shift_matrix">shift matrix</a> , 有 $A^k=0$ 的特点, 距离和当前token大于k的信息被自然的刷新, 在网络中用于记录较近的索引
+        <ul>
+          <li>代码: https://github.com/HazyResearch/H3/blob/main/src/models/ssm/ss_kernel_shift.py</li>
+        </ul>
+      </li>
+      <li>Diag SSM指转移矩阵$A$是diagonal matrix, 保存全局记忆, 已经记录的信息不会随着新输入token刷新</li>
+    </ul>
+  </li>
+  <li><a href="https://www.youtube.com/watch?v=TkOSKrlpnU4&amp;t=716s">视频</a> 里详细讲解了h3结构和associatve recall的任务(输入一个dict, 提问某个key对应的value)的关系: 也是我第一次知道q,k,v的名字和任务的联系</li>
+</ul>
 
 <h3 id="retnet">RetNet</h3>
 
-<h3 id="rwkv">RWKV</h3>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="content" /><summary type="html"><![CDATA[GAU(gated attention unit)]]></summary></entry><entry><title type="html">blender学习: 做卡通描边</title><link href="https://roshameow.github.io//personal_homepage/docs/blender/blender-learning7/" rel="alternate" type="text/html" title="blender学习: 做卡通描边" /><published>2024-03-06T00:00:00+00:00</published><updated>2024-03-07T20:14:23+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/blender/blender-learning7</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/blender/blender-learning7/"><![CDATA[<h2 id="用solidify背面剔除法线翻转">用solidify+背面剔除+法线翻转</h2>
+<p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240325140921.png" alt="Pasted image 20240325140921.png" width="700" /></p>
+
+<ul>
+  <li>在linear-attention的基础上增加了state的状态转移, 是对linear attention的一个巧妙的变形.</li>
+  <li>试图用position embedding和D矩阵的exponential decay代替attention里的softmax的功能</li>
+  <li><a href="https://github.com/Jamie-Stirling/RetNet/blob/main/src/retention.py">Rentention的代码</a> 写的很清晰</li>
+</ul>
+
+<h3 id="rwkv">RWKV</h3>
+
+<ul>
+  <li>time-mixing和channel-mixing两个模块交替: <a href="https://github.com/BlinkDL/ChatRWKV/blob/main/RWKV_in_150_lines.py">代码</a>
+    <ul>
+      <li>time-mixing是一个类linear attention的结构, 配一个特殊设计的state转移(也就是文章里的WKV operator)
+        <ul>
+          <li>这么设计state转移的动机, 我是不明白</li>
+        </ul>
+      </li>
+      <li>channel-mixing是分成两路, 分别做 conv(token window_size=2) + linear + activation</li>
+    </ul>
+  </li>
+  <li>RWKV做了配套的chat的很多相关代码工作</li>
+</ul>
+
+<h3 id="mamba">Mamba</h3>
+
+<p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240325123207.png" alt="Pasted image 20240325123207.png" width="300" /></p>
+
+<ul>
+  <li>基础的SSM模块改为S6(Selective S4)模块: 把SSM离散表示中$\Delta, B, C$ 改成time-variant. 以适应不同位置的信息密度.
+    <ul>
+      <li>我觉得这种想法和deformable convolution的想法类似, 都是对一些结构parametrize.</li>
+    </ul>
+  </li>
+  <li>Mamba block:
+    <ul>
+      <li>用convolution和S6, 而不是attention进行信息交互.</li>
+      <li>基于mamba block的大模型用更少的参数达到了和基于attention的大模型类似的效果.</li>
+      <li>最近有一些文章用mamba block魔改去做视觉任务? 没有特别了解但是感觉很奇怪, 因为SSM本身有个顺序的结构…在视觉任务上这个顺序要怎么定义?</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="reference">reference</h2>
+
+<p>[1] Katharopoulos, Angelos, Apoorv Vyas, Nikolaos Pappas, and François Fleuret. “Transformers Are RNNs: Fast Autoregressive Transformers with <strong>Linear Attention</strong>.” arXiv, August 31, 2020. <a href="https://doi.org/10.48550/arXiv.2006.16236">https://doi.org/10.48550/arXiv.2006.16236</a>.</p>
+
+<p>[2] Gu, Albert, Karan Goel, and Christopher Ré. “Efficiently Modeling Long Sequences with <strong>Structured State Spaces</strong>.” arXiv, August 5, 2022. <a href="http://arxiv.org/abs/2111.00396">http://arxiv.org/abs/2111.00396</a>. (S4)</p>
+
+<p>[3] Gu, Albert, Tri Dao, Stefano Ermon, Atri Rudra, and Christopher Re. “<strong>HiPPO</strong>: Recurrent Memory with Optimal Polynomial Projections.” arXiv, October 22, 2020. <a href="https://doi.org/10.48550/arXiv.2008.07669">https://doi.org/10.48550/arXiv.2008.07669</a>.</p>
+
+<p>[4] Gu, Albert, Isys Johnson, Aman Timalsina, Atri Rudra, and Christopher Ré. “How to Train Your <strong>HiPPO</strong>: State Space Models with Generalized Orthogonal Basis Projections.” arXiv, August 5, 2022. <a href="http://arxiv.org/abs/2206.12037">http://arxiv.org/abs/2206.12037</a>.</p>
+
+<p>[5] Fu, Daniel Y., Tri Dao, Khaled K. Saab, Armin W. Thomas, Atri Rudra, and Christopher Ré. “<strong>Hungry Hungry Hippos</strong>: Towards Language Modeling with State Space Models.” arXiv, April 28, 2023. <a href="https://doi.org/10.48550/arXiv.2212.14052">https://doi.org/10.48550/arXiv.2212.14052</a>.</p>
+
+<p>[6] Sun, Yutao, Li Dong, Shaohan Huang, Shuming Ma, Yuqing Xia, Jilong Xue, Jianyong Wang, and Furu Wei. “<strong>Retentive Network</strong>: A Successor to Transformer for Large Language Models.” arXiv, August 9, 2023. <a href="https://doi.org/10.48550/arXiv.2307.08621">https://doi.org/10.48550/arXiv.2307.08621</a>.</p>
+
+<p>[7] Peng, Bo, Eric Alcaide, Quentin Anthony, Alon Albalak, Samuel Arcadinho, Stella Biderman, Huanqi Cao, et al. “<strong>RWKV</strong>: Reinventing RNNs for the Transformer Era.” arXiv, December 10, 2023. <a href="https://doi.org/10.48550/arXiv.2305.13048">https://doi.org/10.48550/arXiv.2305.13048</a>.</p>
+
+<p>[8] Gu, Albert, and Tri Dao. “<strong>Mamba</strong>: Linear-Time Sequence Modeling with Selective State Spaces.” arXiv.org, December 1, 2023. <a href="https://arxiv.org/abs/2312.00752v1">https://arxiv.org/abs/2312.00752v1</a>.</p>
+<h2 id="其他讨论的链接">其他讨论的链接</h2>
+
+<p>[1] https://blog.csdn.net/v_JULY_v/article/details/134923301</p>
+
+<p>[2]  <a href="https://github.com/state-spaces/s4/issues/40">https://github.com/state-spaces/s4/issues/40</a> 作者对hippo的答疑</p>
+
+<p>[3] https://www.youtube.com/watch?v=TkOSKrlpnU4&amp;t=716s H3作者的讲解</p>
+
+<p>[3] https://www.zhihu.com/question/602564718/answer/3042600470 RWKV的知乎讨论</p>
+
+<p>[4] https://cloud.tencent.com/developer/article/2377967 Mamba block的理解</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="deeplearning" /><category term="content" /><category term="SSM" /><category term="state space model" /><category term="state" /><category term="linear attention" /><category term="time series" /><category term="Mamba" /><category term="attention" /><summary type="html"><![CDATA[在token很多(大模型用的超长文本), 或者本身数据是时间序列(比如语音, 视频流)的情况下, attention里面的weight会带来$O(token^2)$ 的内存消耗]]></summary></entry><entry><title type="html">blender学习: 做卡通描边</title><link href="https://roshameow.github.io//personal_homepage/docs/blender/blender-learning7/" rel="alternate" type="text/html" title="blender学习: 做卡通描边" /><published>2024-03-06T00:00:00+00:00</published><updated>2024-03-07T20:14:23+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/blender/blender-learning7</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/blender/blender-learning7/"><![CDATA[<h2 id="用solidify背面剔除法线翻转">用solidify+背面剔除+法线翻转</h2>
 
 <p>给mesh增加厚度, 让描边材质只在厚度边缘生效</p>
 <h3 id="步骤">步骤:</h3>
@@ -642,186 +837,4 @@
 
 <p>[1] http://pigs-blood-cake.blogspot.com/p/photoshop.html ps中英文对照</p>
 
-<p>[2] https://photoshoptrainingchannel.com/blending-modes-explained/#multiply ps图层混合</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="photo" /><category term="content" /><category term="photoshop" /><category term="filter" /><category term="design" /><summary type="html"><![CDATA[酸性(acid)风格 迷幻感 . 设计元素包含: 高饱和, 流动性, 未来复古元素, 格纹, 镭射金属, 霓虹色. 这个链接解释的比较详细]]></summary></entry><entry><title type="html">blender学习: 玻璃杯</title><link href="https://roshameow.github.io//personal_homepage/docs/blender/blender-learning6/" rel="alternate" type="text/html" title="blender学习: 玻璃杯" /><published>2024-02-10T00:00:00+00:00</published><updated>2024-03-07T01:15:02+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/blender/blender-learning6</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/blender/blender-learning6/"><![CDATA[<p>由cylinder变形得到水杯. 用cycles渲染玻璃材质.</p>
-<h2 id="步骤">步骤</h2>
-
-<p>参考<a href="https://www.bilibili.com/video/BV1Fg4y127c7/">这个b站的教学视频</a></p>
-
-<ul>
-  <li>制作水杯:
-    <ol>
-      <li>添加一个cylinder</li>
-      <li>删除上下两个底: 在Edit Mode, 开启透视, 按3选中面删除</li>
-      <li>把下底缩小一点: 按1选中顶点</li>
-      <li>填充底面: 用Ctrl+F填充, 选择<a href="https://docs.blender.org/manual/en/latest/modeling/meshes/editing/face/grid_fill.html">Grid Fill</a>, 调节Offset
-        <ul>
-          <li><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240212082748.png" alt="Pasted image 20240212082748.png" width="100" /></li>
-        </ul>
-      </li>
-      <li>做出玻璃杯的厚度: 选中上面的顶点, 用E+S向内
-        <ul>
-          <li><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240212082705.png" alt="Pasted image 20240212082705.png" width="100" /></li>
-        </ul>
-      </li>
-      <li>做出玻璃杯的内层: 继续E+Y向下, S向内</li>
-      <li>做出玻璃杯的内底: Ctrl+F填充, 选择<a href="https://docs.blender.org/manual/en/latest/modeling/meshes/editing/face/grid_fill.html">Grid Fill</a> , 调节Offset</li>
-      <li>把杯子变光滑:
-        <ol>
-          <li>在边缘处添加loop cut(卡线): Ctrl+R 增加loop cut, Ctrl+B向上下拉伸
-            <ul>
-              <li><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240212133706.png" alt="Pasted image 20240212133706.png" width="100" /></li>
-              <li>添加loop cut是为了之后把杯子边缘变成弧形, 而不影响杯壁和杯底平的部分</li>
-            </ul>
-          </li>
-          <li>Shift+option 长按出现选项, 选中loop, 按G移动loop进行微调
-            <ol>
-              <li><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240212141056.png" alt="Pasted image 20240212141056.png" width="100" /></li>
-            </ol>
-          </li>
-        </ol>
-      </li>
-      <li>改成shade smooth</li>
-      <li>加一个subdivision modifier</li>
-    </ol>
-  </li>
-  <li>制作拍摄场景:
-    <ol>
-      <li>添加一个plane mesh</li>
-      <li>在Edit Mode选中一个边, E+Z复制一份, 向上拉
-        <ol>
-          <li><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240212141942.png" alt="Pasted image 20240212141942.png" width="100" /></li>
-        </ol>
-      </li>
-      <li>选中中间的edge, 拉成弧线: Shift+Option选中, Ctrl+B拉伸, 按S改变段数
-        <ol>
-          <li><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240212142443.png" alt="Pasted image 20240212142443.png" width="150" /></li>
-        </ol>
-      </li>
-      <li>选择shade smooth</li>
-    </ol>
-  </li>
-  <li>打光
-    <ul>
-      <li>一个area light做主光, 另一个area light做辅光: 形状调节成disk
-        <ul>
-          <li><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240212143950.png" alt="Pasted image 20240212143950.png" width="150" /> <img src="/personal_homepage/docs/attachment/Pasted%20image%2020240212152018.png" alt="Pasted image 20240212152018.png" width="130" /></li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li>shader:
-    <ul>
-      <li>cycles的做法:
-        <ul>
-          <li>用Refraction和Glossy混合</li>
-          <li>用<a href="https://docs.blender.org/manual/en/4.0/render/shader_nodes/input/fresnel.html">Fresnel node</a> 调节折射和反射的比例</li>
-          <li>设置IOR(折射率)为1.52</li>
-          <li>设置粗糙度为0</li>
-        </ul>
-      </li>
-      <li>eevee的做法: <a href="https://www.bilibili.com/video/BV1Fe411Y7oY/">参考这个教程</a>
-        <ul>
-          <li>用glass BSDF和Transparent BSDF混合
-            <ul>
-              <li>设置IOR(折射率)为1.52</li>
-              <li>设置粗糙度为0</li>
-            </ul>
-          </li>
-          <li>MixShader的混合参数固定0.5</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li>render:
-    <ul>
-      <li>cycles的参数:
-        <ul>
-          <li>把light Paths调成Full Global Illumation: 即所有反射次数为32</li>
-        </ul>
-      </li>
-      <li>eevee的参数:
-        <ul>
-          <li>打开render-&gt;Screen Space Reflections-&gt;refraction</li>
-          <li>打开玻璃杯的material-&gt;Screen Space Refraction选项</li>
-          <li>把material的Blend Mode和Shadow Mode都改成Alpha Hashed</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li>结果:
-    <ul>
-      <li>cycles: <img src="/personal_homepage/docs/attachment/Pasted%20image%2020240212152142.png" alt="Pasted image 20240212152142.png" width="400" />  eevee: <img src="/personal_homepage/docs/attachment/Pasted%20image%2020240306170629.png" alt="Pasted image 20240306170629.png" width="360" /></li>
-    </ul>
-  </li>
-</ul>
-
-<h2 id="用到的blender的一些快捷键功能">用到的blender的一些快捷键功能</h2>
-
-<ul>
-  <li>G/R/S (移动/旋转/放缩) 按了之后会提示方向快捷键</li>
-  <li>E (<a href="https://docs.blender.org/manual/en/2.80/modeling/meshes/editing/duplicating/extrude.html">Extrude</a>, 挤出): 保持原顶点不变, 复制一份, 复制的和原来的用edge连接
-    <ul>
-      <li>selected face: <img src="https://docs.blender.org/manual/en/2.80/_images/modeling_meshes_editing_duplicating_extrude_face-before.png" alt="drawing" width="150" />  During extrude:  <img src="https://docs.blender.org/manual/en/2.80/_images/modeling_meshes_editing_duplicating_extrude_face-after.png" alt="drawing" width="150" />  </li>
-    </ul>
-  </li>
-  <li><a href="https://docs.blender.org/manual/en/latest/modeling/meshes/tools/loop.html">Loop Cut</a>(卡线): 在edge中间添新的顶点
-    <ul>
-      <li>添加loop cut: Ctrl+R</li>
-      <li>选中已有的loop cut: Shift+Option+长按</li>
-    </ul>
-  </li>
-  <li>Ctrl+B( <a href="https://docs.blender.org/manual/en/2.81/modeling/meshes/editing/subdividing/bevel.html#:~:text=The%20Bevel%20tool%20smooths%20the,above%20to%20run%20the%20tool.">Bevel</a>, 拉伸, 倒角): 把一个edge变成多个edge, 使物体边缘光滑
-    <ul>
-      <li><img src="https://docs.blender.org/manual/zh-hans/2.81/_images/modeling_meshes_editing_subdividing_bevel_example-4.png" alt="drawing" width="150" /></li>
-      <li>按S可以改变段数</li>
-    </ul>
-  </li>
-  <li>Edit Mode 1/2/3 (选vertex, edge, face)</li>
-</ul>
-
-<h2 id="frensel反射系数">Frensel反射系数</h2>
-
-<p>Frensel node确定折射和反射比例, 从blender的参数看, 受IOR(折射率)和平面法向的影响</p>
-
-<ul>
-  <li>推导:
-    <ul>
-      <li>根据<a href="https://en.wikipedia.org/wiki/Fresnel_equations">Fresnel equation</a> 的dielectric(绝缘体)的版本: $R=0.5*(r_{\perp}^2+r_{\parallel}^2)$
-        <ul>
-          <li>其中: $r_{\perp}=\frac{n_i\cos\theta_i-n_t\cos\theta_t}{n_i\cos\theta_i+n_t\cos\theta_t}$  , $r_{\parallel}=\frac{n_t\cos\theta_i-n_i\cos\theta_t}{n_t\cos\theta_i+n_i\cos\theta_t}$
-            <ul>
-              <li>$n_i$ 是入射介质(即空气=1)的折射率</li>
-              <li>$n_t$ 是传播介质(即玻璃=1.52)的折射率</li>
-              <li>$\cos\theta_i=(n\cdot w_o)$ 表示平面法向和观察方向的夹角：观察方向越平行于平面，$\theta_i$ 越大，折射越少, 反射越强
-                <ul>
-                  <li>pathtracing的方法里, 观察方向就是入射方向</li>
-                </ul>
-              </li>
-              <li>$\cos\theta_t$ 表示平面法向和传播方向的夹角, 根据<a href="https://en.wikipedia.org/wiki/Snell%27s_law">Snell’s law</a>: $\frac{\sin\theta_t}{\sin\theta_i}=\frac{n_i}{n_t}=\frac{1}{\eta}$
-                <ul>
-                  <li>$\eta=n_t/n_i$ : ratio of IOR, 正面是$n$, 反面是$1/n$</li>
-                  <li>则$\cos\theta_t=\sqrt{1-\sin^2\theta_t}=\sqrt{1-\frac{1}{\eta^2}(1-\cos^2\theta_i)}=\frac{1}{\eta}\sqrt{\eta^2-1+\cos^2\theta_i}$</li>
-                </ul>
-              </li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-      <li>代码中的表达方式:
-  \(\begin{align}R &amp;=0.5*((\frac{n_i\cos\theta_i-n_t\cos\theta_t}{n_i\cos\theta_i+n_t\cos\theta_t})^2+(\frac{n_t\cos\theta_i-n_i\cos\theta_t}{n_t\cos\theta_i+n_i\cos\theta_t})^2)\\\\ &amp;=0.5*((\frac{\cos\theta_i-\eta\cos\theta_t}{\cos\theta_i+\eta\cos\theta_t})^2+(\frac{\eta\cos\theta_i-\cos\theta_t}{\eta\cos\theta_i+\cos\theta_t})^2)\; (\eta=n_t/n_i\text{是ratio of IOR, 正面是n, 反面是1/n)}\\\\ &amp;=0.5*((\frac{c-g}{c+g})^2+(\frac{\eta^2c-g}{\eta^2c+g})^2)\;\; (\text{让 }c=\cos\theta_i,\  g=\sqrt{\eta^2-1+\cos^2\theta}=\eta\cos\theta_t, \text{ 这步已经足够化简了, 为什么要把}\eta\text{完全替换掉呢?})\\\\ &amp;=0.5*((\frac{c-g}{c+g})^2+(\frac{(1+g^2-c^2)c-g}{(1+g^2-c^2)c+g})^2)\;\; (\text{根据 }\eta^2=1+g^2-c^2)\\\\  &amp;=0.5*((\frac{c-g}{c+g})^2+(\frac{c-g}{c+g})^2(\frac{1-c(c+g)}{1+c(g-c)})^2)\\\\  &amp;=0.5*(A^2+A^2B^2)=0.5*A^2(1+B^2)\;\; (\text{让 }A=\frac{g-c}{g+c}, B=\frac{c(g+c)-1}{c(g-c)+1})\end{align}\)</li>
-    </ul>
-  </li>
-  <li>blender代码:
-    <ul>
-      <li><a href="https://projects.blender.org/blender/cycles/src/branch/main/src/kernel/osl/shaders/node_fresnel.osl">cycles/node_fresnel.osl at main</a></li>
-      <li><a href="https://projects.blender.org/blender/cycles/src/branch/main/src/kernel/osl/shaders/node_fresnel.h">cycles/node_fresnel.h at main</a></li>
-    </ul>
-  </li>
-</ul>
-
-<h2 id="reference">reference</h2>
-<p><span id="ref"></span></p>
-
-<p>[1] https://seblagarde.wordpress.com/2013/04/29/memo-on-fresnel-equations/ 一些版本的公式推导和reference</p>
-
-<p>[2] https://blenderartists.org/t/whats-the-math-behind-fresnel-node/1502809/11 Fensel node讨论</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="blender" /><category term="content" /><category term="shader" /><category term="3d_model" /><category term="shortcut" /><summary type="html"><![CDATA[由cylinder变形得到水杯. 用cycles渲染玻璃材质. 步骤]]></summary></entry></feed>
+<p>[2] https://photoshoptrainingchannel.com/blending-modes-explained/#multiply ps图层混合</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="photo" /><category term="content" /><category term="photoshop" /><category term="filter" /><category term="design" /><summary type="html"><![CDATA[酸性(acid)风格 迷幻感 . 设计元素包含: 高饱和, 流动性, 未来复古元素, 格纹, 镭射金属, 霓虹色. 这个链接解释的比较详细]]></summary></entry></feed>

@@ -269,10 +269,10 @@ var store = [{
         "tags": ["content","material","stoke","modifier"],
         "url": "https://roshameow.github.io//personal_homepage/docs/blender/blender-learning7/"
       },{
-        "title": "attention的优化",
-        "excerpt":"GAU(gated attention unit) self-attention做为weight, conv做为变换 SSM(state space model) 状态空间 的表示: 用input更新状态, 用状态生成output Linear attention S4(Structured state space sequence) 结构 H3(Hungry Hungry Hippos) 结构 Mamba RetNet RWKV ","categories": ["docs"],
-        "tags": ["content"],
-        "url": "https://roshameow.github.io//personal_homepage/docs/attention2/"
+        "title": "attention的优化-- 引进时序结构",
+        "excerpt":"在token很多(大模型用的超长文本), 或者本身数据是时间序列(比如语音, 视频流)的情况下, attention里面的weight会带来$O(token^2)$ 的内存消耗 基本结构 SSM(state space model) 状态空间(state space) : 用state vector记录历史的input, 而不是记录所有的历史token 连续表示: linear state space model的一般形式: $\\dot x(t)=A(t)x(t)+B(t)u(t)$ (用input u更新状态 x) $y(t)=C(t)x(t)+D(t)u(t)$ (用状态x, 生成output y) 如果A,B,C是time invariant, 以及省略D, 得到, $\\dot x(t)=Ax(t)+Bu(t)$ 解得 $x(t)=e^{At}x(0)+\\int^t_0 e^{A(t-\\tau)}Bu(\\tau)d\\tau$ , $x(t)$ 是$u(t)$ 的卷积形式: $x(t)=K(t)*u(t)$, $K(t)=e^{At}B$ $y(t)=Cx(t)$ 离散表示: 迭代的表示: $x_{k+1}=\\bar A x_k...","categories": ["docs","deeplearning"],
+        "tags": ["content","SSM","state space model","state","linear attention","time series","Mamba","attention"],
+        "url": "https://roshameow.github.io//personal_homepage/docs/deeplearning/attention2/"
       },{
         "title": "blender学习: 做流光效果",
         "excerpt":"用金属材质反射world背景的流动 步骤: 参考这个教学视频   制作物体:          添加curve      调整Data-&gt;Geometry-&gt;Bevel(倒角)-&gt;Round-&gt; Depth: 把曲线变成软管      加modifier-&gt;subdivisor        shader:          object: 用principled BSDF, 把metallic调到1, roughness 调整到0.1      world:                  在background添加流动材质                          设置texture Coordinate  generate-&gt;Mapping(Y=#frame/40)-&gt;background图片                                得到黑色背景                          添加一个黑色背景, 用Light Path的Is Camera Ray控制混合 : 背景和物体分开的原理?                                            light: 改成sun, 给物体增加反光  结果:                ","categories": ["docs","blender"],
@@ -283,4 +283,9 @@ var store = [{
         "excerpt":"前向推镜头 参考这个教学视频, 用array modifier复制多个模型 , 得到一种穿梭效果  模型资源 [1] https://sketchfab.com/feed ","categories": ["docs","blender"],
         "tags": ["content","camera"],
         "url": "https://roshameow.github.io//personal_homepage/docs/blender/blender-learning9/"
+      },{
+        "title": "attention的优化-- 加速",
+        "excerpt":"","categories": ["docs","algorithm"],
+        "tags": ["content"],
+        "url": "https://roshameow.github.io//personal_homepage/docs/algorithm/attention3/"
       }]
