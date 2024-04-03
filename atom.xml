@@ -1,4 +1,205 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="https://roshameow.github.io//personal_homepage/atom.xml" rel="self" type="application/atom+xml" /><link href="https://roshameow.github.io//personal_homepage/" rel="alternate" type="text/html" /><updated>2024-03-25T07:10:34+00:00</updated><id>https://roshameow.github.io//personal_homepage/atom.xml</id><title type="html">Liu, Wen’s Home Page</title><subtitle>Work, Experiments and Ideas.</subtitle><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><entry><title type="html">attention的优化– 加速</title><link href="https://roshameow.github.io//personal_homepage/docs/algorithm/attention3/" rel="alternate" type="text/html" title="attention的优化– 加速" /><published>2024-03-20T00:00:00+00:00</published><updated>2024-03-25T23:08:59+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/algorithm/attention3</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/algorithm/attention3/"><![CDATA[]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="algorithm" /><category term="content" /><summary type="html"><![CDATA[]]></summary></entry><entry><title type="html">blender学习: 镜头推移</title><link href="https://roshameow.github.io//personal_homepage/docs/blender/blender-learning9/" rel="alternate" type="text/html" title="blender学习: 镜头推移" /><published>2024-03-12T00:00:00+00:00</published><updated>2024-03-12T15:32:52+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/blender/blender-learning9</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/blender/blender-learning9/"><![CDATA[<h2 id="前向推镜头">前向推镜头</h2>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="https://roshameow.github.io//personal_homepage/atom.xml" rel="self" type="application/atom+xml" /><link href="https://roshameow.github.io//personal_homepage/" rel="alternate" type="text/html" /><updated>2024-04-03T03:56:59+00:00</updated><id>https://roshameow.github.io//personal_homepage/atom.xml</id><title type="html">Liu, Wen’s Home Page</title><subtitle>Work, Experiments and Ideas.</subtitle><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><entry><title type="html">pyside6一些功能的用法</title><link href="https://roshameow.github.io//personal_homepage/docs/tool/pyside6-tech/" rel="alternate" type="text/html" title="pyside6一些功能的用法" /><published>2024-04-01T00:00:00+00:00</published><updated>2024-04-01T17:33:47+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/tool/pyside6-tech</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/tool/pyside6-tech/"><![CDATA[]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="tool" /><category term="content" /><summary type="html"><![CDATA[]]></summary></entry><entry><title type="html">blender学习: 用粒子系统做毛毡效果</title><link href="https://roshameow.github.io//personal_homepage/docs/blender/blender-learning10/" rel="alternate" type="text/html" title="blender学习: 用粒子系统做毛毡效果" /><published>2024-03-25T00:00:00+00:00</published><updated>2024-03-26T19:01:05+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/blender/blender-learning10</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/blender/blender-learning10/"><![CDATA[<h3 id="步骤">步骤:</h3>
+
+<p>参考<a href="https://www.xiaohongshu.com/explore/65eb070500000000030320e2/">这个教学</a></p>
+<ul>
+  <li>Paticles添加毛发粒子: Particle type选择<a href="https://docs.blender.org/manual/en/latest/physics/particles/hair/index.html">hair</a>
+    <ul>
+      <li>Emission
+        <ul>
+          <li>number=5000 发根的总数量</li>
+          <li>hair length=0.03</li>
+          <li>Segments = 5 卷曲?</li>
+        </ul>
+      </li>
+      <li><a href="https://docs.blender.org/manual/en/latest/physics/particles/emitter/render.html">Render</a> -&gt;Path-&gt;Steps=5
+        <ul>
+          <li>对hair做subdivision的次数</li>
+        </ul>
+      </li>
+      <li><a href="https://docs.blender.org/manual/en/latest/physics/particles/hair/display.html">Viewport Display</a>-&gt; Strand Step=5</li>
+      <li><a href="https://docs.blender.org/manual/en/latest/physics/particles/emitter/children.html">Children</a> 选择simple
+        <ul>
+          <li>display amount=100, render amount=100</li>
+          <li>Roughness
+            <ul>
+              <li>Random = 0.08</li>
+              <li>Size = 0.851</li>
+            </ul>
+          </li>
+          <li>Kink(纽结)选择Curl
+            <ul>
+              <li>Amplitude(振幅) = 0.03</li>
+              <li>Hair shape
+                <ul>
+                  <li>Diameter Root &gt; Tip</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>shader:
+    <ul>
+      <li>给Particles添加一个Principle Hair BSDF的material
+        <ul>
+          <li>roughness= 0.86</li>
+          <li>Radial Roughness=0.95</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>结果: 没法复刻例图的效果, 比起毛毡更像搓澡巾😣
+    <ul>
+      <li><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240326101412.png" alt="Pasted image 20240326101412.png" width="300" />  局部: <img src="/personal_homepage/docs/attachment/Pasted%20image%2020240326101810.png" alt="Pasted image 20240326101810.png" width="200" /></li>
+      <li>是不是还需要设置其他参数?</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="模型">模型</h3>
+
+<p>[1] https://free3d.com/3d-model/pumpkin-57117.html</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="blender" /><category term="content" /><category term="粒子系统" /><category term="hair" /><summary type="html"><![CDATA[步骤:]]></summary></entry><entry><title type="html">attention的优化– flash attention加速</title><link href="https://roshameow.github.io//personal_homepage/docs/algorithm/attention3/" rel="alternate" type="text/html" title="attention的优化– flash attention加速" /><published>2024-03-20T00:00:00+00:00</published><updated>2024-04-03T19:53:57+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/algorithm/attention3</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/algorithm/attention3/"><![CDATA[<p>flash-attention是一种算子合并(kernel fusion)的优化. 把self-attention分块, 直接在SRAM里计算, 省去了HBM来回搬运中间结果S和P的时间(如下图).  self-attention由两层矩阵乘法, softmax, 和其他eltwise计算(mask, dropout)构成.</p>
+
+<p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240401154241.png" alt="Pasted image 20240401154241.png" width="500" /></p>
+
+<h2 id="attention分块计算">attention分块计算</h2>
+
+<h3 id="forward计算-qkv---o">forward计算: Q,K,V -&gt; O</h3>
+
+<ul>
+  <li>矩阵分块如上图: 都是在token的维度分块
+    <ul>
+      <li>i iteration循环(黄色部分)
+        <ul>
+          <li>每次i iteration需要load不同位置的 Q, O</li>
+        </ul>
+      </li>
+      <li>j iteration循环(浅色部分)
+        <ul>
+          <li>每次j iteration需要load不同位置的 K, V</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>softmax计算:
+    <ul>
+      <li>$softmax(x)=\frac{e^{x}}{\sum_j e^{x_j}}$ , 其中$\sum_j$ 是rowsum</li>
+      <li>safe softmax:  $softmax(x)=\frac{e^{x-m}}{\sum_j e^{x_j-m}}$
+        <ul>
+          <li>为了避免$\sum_j e^{x_j}$ 产生特别大的值溢出</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>softmax分块:
+    <ul>
+      <li>对于relation S的每个分块的patch $P$, 记: 局部最大值 $m_p=\max_{x\in P}(x)$, 局部rowsum $l_p=\sum_{x\in P} e^{x-m_P}$
+        <ul>
+          <li>得到: $softmax(x)=\frac{e^x\cdot e^{(m_p-m)}}{\sum_P l_p\cdot e^{(m_p-m)}}$</li>
+        </ul>
+      </li>
+      <li>写成关于$j$ 的迭代形式:(softmax和iterate i无关)
+        <ul>
+          <li>$m_{j+1}=\max(m_j, m_{local})$</li>
+          <li>local rowsum $l_{j+1}=l_j\cdot e^{(m_j-m_{j+1})}+l_{local}\cdot e^{(m_{local}-m_{j+1})}$</li>
+          <li>softmax的中间结果 $\tilde P_{local}=e^{S_{local}-m_{local}}$</li>
+          <li>$O_{j+1}=softmax(S_{j+1})V_{j+1}=\text{diag}(l_{j+1})^{-1}(\text{diag}(l_j)\cdot O_j\cdot e^{m_j-m_{j+1}}+ \tilde P_{local}V_{j+1}\cdot e^{m_{local}-m_{j+1}})$</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="backward计算-o-do-q-k-v---dv-dk-dq">backward计算: O, dO, Q, K, V -&gt; dV, dK, dQ</h3>
+
+<p>flash-attention里面因为不保存S, P的结果, 在backward的时候要对它们重新计算</p>
+
+<p>用<a href="https://en.wikipedia.org/wiki/Automatic_differentiation">reverse mode</a> 的chain rule做backward计算:  <img src="https://wikimedia.org/api/rest_v1/media/math/render/svg/e5986463d8b2e48d0da5233099bb97bc4ea89844" alt="reverse" /></p>
+<ul>
+  <li>矩阵计算: $A=BC$
+    <ul>
+      <li>$dC = \frac{\partial y}{\partial C}=\sum_{A_{ij}} \frac{\partial y}{\partial A_{ij}}\cdot \frac{\partial A_{ij}}{\partial C}=B^{T}dA$ , 类似的 $dB=dA\ C^T$</li>
+    </ul>
+  </li>
+  <li>softmax计算: $P=softmax(S)$, $P_{j}=\frac{e^{S_{j}}}{\sum_{x\in S} e^x}$  , 下面矩阵都是eltwise乘法$\downarrow$  \(\begin{align}dS&amp;=\sum_{P_{j}} dP_{j}\frac{\partial P_{j}}{\partial S}&amp;=\sum_{P_{j}} (P_{k}\mathbb 1_{j=k}-P_{j}P_{k})dP_{j}&amp;\ (\text{根据乘除法求导法则}\frac{\partial P_j}{\partial S_k}=P_j\mathbb 1_{k=j}-\frac{e^{s_{j}}e^{s_k}}{(\sum_{x\in S} e^x)^2}=diag(P)-PP^T\text{是softmax的Jacobian})\\ &amp;&amp;=P_{k}dP_{k}+(\sum_{P_{j}}P_{j}dP_{j})P_{k}&amp;=P(dP+\sum_{P_{j}}P_{j}dP_{j})\\ &amp;&amp;&amp;=P(dP+ \sum_{j} P_j(\sum_i V_{ij} dO_{j}))\  (\text{因为}PV=O)\\ &amp;&amp;&amp;=P(dP+ \sum_{j}O_{j}dO_{j})\ (\text{其中}\sum_j \text{就是rowsum})\end{align}\)</li>
+  <li>backward采用和forward相同的分块</li>
+</ul>
+
+<h3 id="每块占用的sram">每块占用的SRAM</h3>
+
+<ul>
+  <li>forward和backward采用相同的分块, backward需要的SRAM比较大, 因此直接以backward的需求量为准</li>
+  <li>backward:
+    <ul>
+      <li>Q, dQ, O, dO : Br x d</li>
+      <li>K, V, dK, dV: Bc x d</li>
+      <li>S, P, dS, dP,  : Br x Bc</li>
+      <li>l, m: Br</li>
+    </ul>
+  </li>
+  <li>在flash-attention文章里, 取 <code class="language-plaintext highlighter-rouge">Bc=floor(M/4d)</code>, <code class="language-plaintext highlighter-rouge">Br=min(floor(M/4d),d)</code> , 这样能保证SRAM够用吗❓</li>
+</ul>
+
+<h2 id="flash-attention-v1">flash-attention v1</h2>
+
+<ul>
+  <li>让iterate i为内循环, iterate j为外循环</li>
+</ul>
+
+<h2 id="flash-attention-v2">flash-attention v2</h2>
+
+<ol>
+  <li>更改iteration的顺序(一般的规则是把相关性更高的放在更内层循环)
+    <ul>
+      <li>forward时让iterate j为内循环, 因为forward最终结果为O, 这样O的分块不用反复进出</li>
+      <li>barkward时让iterate i为内循环, backward的最终结果为(dK, dV, dQ), 这样dK, dV不用反复进出</li>
+    </ul>
+  </li>
+  <li>softmax中间结果的存储:
+    <ul>
+      <li>forward正常计算, 不过不存储$l,m$, 改为存$L=m+\log (l)$
+        <ul>
+          <li>v2 forward采用j的内循环, 和$l, m$ 计算方向一致, forward的时候本来就可以inplace更新不需要存储</li>
+          <li>backward时重新计算P, $P=diag(l)^{-1}e^{S-m}=e^{S-L}$</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>优化thread blocks的并行化计算: 把i iteration和j iteration的部分也切分进行并行计算(尤其推理时batch size=1, 并行度不够)
+    <ul>
+      <li>forward时i iteration的相关性比较小, 所以切分i iteration更方便
+        <ul>
+          <li>但是每个i iteration的切分都要自己load一遍K, V了</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>优化warp的并行计算: warp之间也是并行的
+    <ul>
+      <li>v2 也是在i iteration切分warp的并行</li>
+    </ul>
+  </li>
+</ol>
+
+<h2 id="reference">reference</h2>
+
+<p>[1] Dao, Tri, Daniel Y. Fu, Stefano Ermon, Atri Rudra, and Christopher Ré. “<strong>FlashAttention</strong>: Fast and Memory-Efficient Exact Attention with IO-Awareness.” arXiv, June 23, 2022. <a href="https://doi.org/10.48550/arXiv.2205.14135">https://doi.org/10.48550/arXiv.2205.14135</a>.</p>
+
+<p>[2] Dao, Tri. “<strong>FlashAttention-2:</strong> Faster Attention with Better Parallelism and Work Partitioning.” arXiv, July 17, 2023. <a href="https://doi.org/10.48550/arXiv.2307.08691">https://doi.org/10.48550/arXiv.2307.08691</a>.</p>
+
+<p><strong>代码</strong>: <a href="https://github.com/Dao-AILab/flash-attention">https://github.com/Dao-AILab/flash-attention</a></p>
+
+<h2 id="其他讨论的链接">其他讨论的链接</h2>
+
+<p>[1] https://zhuanlan.zhihu.com/p/669926191 flash-attention v1</p>
+
+<p>[2] https://mp.weixin.qq.com/s/5K6yNj23NmNLcAQofHcT4Q flash-attention v2</p>
+
+<p>[3] https://zhuanlan.zhihu.com/p/685020608 概括</p>
+
+<p>[4] https://mp.weixin.qq.com/s/NKShFDrfDGsb0G6PAkUCGw triton的实现</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="algorithm" /><category term="content" /><category term="attention" /><category term="flash attention" /><category term="speedup" /><category term="gpu" /><summary type="html"><![CDATA[flash-attention是一种算子合并(kernel fusion)的优化. 把self-attention分块, 直接在SRAM里计算, 省去了HBM来回搬运中间结果S和P的时间(如下图). self-attention由两层矩阵乘法, softmax, 和其他eltwise计算(mask, dropout)构成.]]></summary></entry><entry><title type="html">blender学习: 镜头推移</title><link href="https://roshameow.github.io//personal_homepage/docs/blender/blender-learning9/" rel="alternate" type="text/html" title="blender学习: 镜头推移" /><published>2024-03-12T00:00:00+00:00</published><updated>2024-03-12T15:32:52+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/blender/blender-learning9</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/blender/blender-learning9/"><![CDATA[<h2 id="前向推镜头">前向推镜头</h2>
 
 <p>参考<a href="https://www.xiaohongshu.com/explore/65a2ce0a000000001d037212">这个教学视频</a>, 用array modifier复制多个模型 , 得到一种穿梭效果</p>
 
@@ -43,7 +244,7 @@
       <li><img src="/personal_homepage/docs/attachment/color_change.mp4" alt="color_change.mp4" width="300" /></li>
     </ul>
   </li>
-</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="blender" /><category term="content" /><category term="shader" /><category term="curve" /><summary type="html"><![CDATA[用金属材质反射world背景的流动 步骤:]]></summary></entry><entry><title type="html">attention的优化– 引进时序结构</title><link href="https://roshameow.github.io//personal_homepage/docs/deeplearning/attention2/" rel="alternate" type="text/html" title="attention的优化– 引进时序结构" /><published>2024-03-09T00:00:00+00:00</published><updated>2024-03-25T23:08:10+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/deeplearning/attention2</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/deeplearning/attention2/"><![CDATA[<p>在token很多(大模型用的超长文本), 或者本身数据是时间序列(比如语音, 视频流)的情况下, attention里面的weight会带来$O(token^2)$ 的内存消耗</p>
+</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="blender" /><category term="content" /><category term="shader" /><category term="curve" /><summary type="html"><![CDATA[用金属材质反射world背景的流动 步骤:]]></summary></entry><entry><title type="html">attention的优化– 引进时序结构</title><link href="https://roshameow.github.io//personal_homepage/docs/deeplearning/attention2/" rel="alternate" type="text/html" title="attention的优化– 引进时序结构" /><published>2024-03-09T00:00:00+00:00</published><updated>2024-03-26T01:23:36+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/deeplearning/attention2</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/deeplearning/attention2/"><![CDATA[<p>在token很多(大模型用的超长文本), 或者本身数据是时间序列(比如语音, 视频流)的情况下, attention里面的weight会带来$O(token^2)$ 的内存消耗. state space model可以解决这个问题.</p>
 
 <h2 id="基本结构">基本结构</h2>
 
@@ -255,7 +456,7 @@
 
 <p>[3] https://www.zhihu.com/question/602564718/answer/3042600470 RWKV的知乎讨论</p>
 
-<p>[4] https://cloud.tencent.com/developer/article/2377967 Mamba block的理解</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="deeplearning" /><category term="content" /><category term="SSM" /><category term="state space model" /><category term="state" /><category term="linear attention" /><category term="time series" /><category term="Mamba" /><category term="attention" /><summary type="html"><![CDATA[在token很多(大模型用的超长文本), 或者本身数据是时间序列(比如语音, 视频流)的情况下, attention里面的weight会带来$O(token^2)$ 的内存消耗]]></summary></entry><entry><title type="html">blender学习: 做卡通描边</title><link href="https://roshameow.github.io//personal_homepage/docs/blender/blender-learning7/" rel="alternate" type="text/html" title="blender学习: 做卡通描边" /><published>2024-03-06T00:00:00+00:00</published><updated>2024-03-07T20:14:23+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/blender/blender-learning7</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/blender/blender-learning7/"><![CDATA[<h2 id="用solidify背面剔除法线翻转">用solidify+背面剔除+法线翻转</h2>
+<p>[4] https://cloud.tencent.com/developer/article/2377967 Mamba block的理解</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="deeplearning" /><category term="content" /><category term="SSM" /><category term="state space model" /><category term="state" /><category term="linear attention" /><category term="time series" /><category term="Mamba" /><category term="attention" /><summary type="html"><![CDATA[在token很多(大模型用的超长文本), 或者本身数据是时间序列(比如语音, 视频流)的情况下, attention里面的weight会带来$O(token^2)$ 的内存消耗. state space model可以解决这个问题.]]></summary></entry><entry><title type="html">blender学习: 做卡通描边</title><link href="https://roshameow.github.io//personal_homepage/docs/blender/blender-learning7/" rel="alternate" type="text/html" title="blender学习: 做卡通描边" /><published>2024-03-06T00:00:00+00:00</published><updated>2024-03-07T20:14:23+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/blender/blender-learning7</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/blender/blender-learning7/"><![CDATA[<h2 id="用solidify背面剔除法线翻转">用solidify+背面剔除+法线翻转</h2>
 
 <p>给mesh增加厚度, 让描边材质只在厚度边缘生效</p>
 <h3 id="步骤">步骤:</h3>
@@ -305,13 +506,18 @@
 
 <h2 id="其他描边效果">其他描边效果</h2>
 
-<p>[1] https://svg-animation-booklet.vercel.app/chapter5.html#实现动画 svg描边动画</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="blender" /><category term="content" /><category term="material" /><category term="stoke" /><category term="modifier" /><summary type="html"><![CDATA[用solidify+背面剔除+法线翻转]]></summary></entry><entry><title type="html">stable-diffusion的结构和微调模型</title><link href="https://roshameow.github.io//personal_homepage/docs/deeplearning/stable-diffusion6/" rel="alternate" type="text/html" title="stable-diffusion的结构和微调模型" /><published>2024-02-29T00:00:00+00:00</published><updated>2024-03-07T03:18:33+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/deeplearning/stable-diffusion6</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/deeplearning/stable-diffusion6/"><![CDATA[<h2 id="stable-diffusion结构和controlnet插件">stable-diffusion结构和controlnet插件</h2>
+<p>[1] https://svg-animation-booklet.vercel.app/chapter5.html#实现动画 svg描边动画</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="blender" /><category term="content" /><category term="material" /><category term="stoke" /><category term="modifier" /><summary type="html"><![CDATA[用solidify+背面剔除+法线翻转]]></summary></entry><entry><title type="html">stable-diffusion的结构和微调模型</title><link href="https://roshameow.github.io//personal_homepage/docs/deeplearning/stable-diffusion6/" rel="alternate" type="text/html" title="stable-diffusion的结构和微调模型" /><published>2024-02-29T00:00:00+00:00</published><updated>2024-03-27T20:30:05+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/deeplearning/stable-diffusion6</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/deeplearning/stable-diffusion6/"><![CDATA[<h2 id="stable-diffusion结构和controlnet插件">stable-diffusion结构和controlnet插件</h2>
 
 <p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240306124200.png" alt="Pasted image 20240306124200.png" width="500" /></p>
 
 <ul>
   <li>controlnet保持和stable-diffusion u-net上半部分相同的结构</li>
-  <li>controlnet输入是和原图一样的hint图像, 比如controlnet-openpose输入的不是关节坐标数据, 而是彩色的人体坐标图</li>
+  <li>controlnet输入是和原图一样的hint图像
+    <ul>
+      <li>比如controlnet-openpose输入的不是关节坐标数据, 而是彩色的人体坐标图</li>
+      <li>这也是像controlnet-tile, controlnet-inpaint等从任务角度明明不需要hint image还是要输入一个的原因</li>
+    </ul>
+  </li>
 </ul>
 
 <h2 id="resnetblock-spatialtransfomer-结构和插件">Resnetblock, SpatialTransfomer 结构和插件</h2>
@@ -331,6 +537,50 @@
       <li>模型的size也是依次变大</li>
     </ul>
   </li>
+</ul>
+
+<h2 id="各种embedding编码方式">各种embedding编码方式</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>类型</th>
+      <th>输入</th>
+      <th>编码</th>
+      <th>公式</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td> </td>
+      <td>图像</td>
+      <td>可训练的hint block网络(controlnet)<br />或clip vision(ipadapter)</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>文字</td>
+      <td>clip</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>一维特征 $\mathbb R$</td>
+      <td>time</td>
+      <td><a href="https://github.com/comfyanonymous/ComfyUI/blob/55f37baae85a5f3ef6d87743445fcce1f0477ba9/comfy/ldm/modules/diffusionmodules/model.py#L32">Sinusoidal Embedding</a>  <br />三角编码</td>
+      <td>$[\sin\frac{t}{10000^{2n/d}},\cdots,\cos\frac{t}{10000^{2n/d}},\cdots]\in \mathbb R^d$<br />temperature 10000<br />token t<br />embedding dim d, $n\in [0,d/2]$</td>
+    </tr>
+    <tr>
+      <td>多维特征 $\mathbb R^k$</td>
+      <td>boundingbox<br />keypoints</td>
+      <td><a href="https://github.com/gligen/GLIGEN/blob/f9dccb9c6cf48bad03c3666290a7dec8c5e58f3c/ldm/modules/diffusionmodules/util.py#L12">Fourier Embedding</a> (gligen)<br />就是在三角编码在k维度上做tile</td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li>在gligen里面, 用text encoder编码的关键词embedding和对应的用Fourier Embedding编码的bounding box concat之后再用MLP融合成grounding token</li>
+  <li>stable diffusion里面编码方式大部分都是不参与网络训练的</li>
 </ul>
 
 <h2 id="reference">reference</h2>
@@ -541,300 +791,4 @@
   <li>参考<a href="https://comfyworkflows.com/workflows/f9ed8191-b2e1-4417-ac26-2ecc7ff2a484">这个comfyworkflows上分享的workflow</a></li>
 </ul>
 
-<p><img src="/personal_homepage/docs/attachment/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-02-27%20221824.png" alt="屏幕截图 2024-02-27 221824.png" width="800" /></p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="photo" /><category term="content" /><category term="ComfyUI" /><category term="sdxl" /><category term="refine" /><summary type="html"><![CDATA[和inpaint一样要利用stable-diffusion的图生图功能, 想让图像忠于原图的情况下提升图像细节, 解决图像模糊, 扭曲, 不合理的部分.]]></summary></entry><entry><title type="html">stable-diffusion的用法: 常用的作图功能-抠图, inpainting, 引导图</title><link href="https://roshameow.github.io//personal_homepage/docs/photo/stable-diffusion3/" rel="alternate" type="text/html" title="stable-diffusion的用法: 常用的作图功能-抠图, inpainting, 引导图" /><published>2024-02-18T00:00:00+00:00</published><updated>2024-03-01T22:58:08+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/photo/stable-diffusion3</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/photo/stable-diffusion3/"><![CDATA[<h2 id="用sam抠图">用SAM抠图</h2>
-
-<p>以下两种方式都是对segment-anything二次封装</p>
-<ul>
-  <li>在ComfyUI里用<a href="https://github.com/storyicon/comfyui_segment_anything">segment anything节点</a>
-    <ul>
-      <li>特点: 任何shape都可以, 输入text prompt, 但是没法输入位置</li>
-      <li>步骤:
-        <ol>
-          <li><a href="https://github.com/IDEA-Research/GroundingDINO">groundingDINO</a>模型: image, text prompt-&gt;目标检测box</li>
-          <li><a href="https://github.com/facebookresearch/segment-anything">SAM</a>模型: image, box-&gt; mask
-            <ol>
-              <li>SAM模型本体可以接受多种形式的prompt</li>
-              <li>SAM模式的特点是对image只encode一次, 这里box是作为prompt形式输入的, 不是在图像上crop然后处理cropped image</li>
-            </ol>
-          </li>
-        </ol>
-      </li>
-      <li>🤔️: SAM本来就可以输入text prompt, 加入groundingDINO模型是因为SAM的text promt效果不好吗?</li>
-    </ul>
-  </li>
-  <li><a href="https://github.com/geekyutao/Inpaint-Anything">inpaint-anything</a>
-    <ul>
-      <li>特点: 输入point prompt和text prompt(optional), 对输入图像大小有要求, 还接入了一个stable-diffusion的inpaint模块</li>
-    </ul>
-  </li>
-</ul>
-
-<h2 id="inpainting--outpainting--guided">inpainting &amp; outpainting &amp; guided</h2>
-
-<ul>
-  <li>图生图功能: 利用stable-diffusion的sampler流程, noise mask之外的部分网络就不会去更改, 利用VAE decoder的填补能力
-    <ul>
-      <li>VAE encode成latent: 根据情况选择图像输入
-        <ol>
-          <li>输入原图: 直接用VAE Encode-&gt;latent-&gt;Set Latent Noise Mask-&gt;Ksampler
-            <ul>
-              <li>适合想保留部分原图元素的</li>
-            </ul>
-          </li>
-          <li>输入用灰色填补mask的图: 用 <a href="https://blenderneko.github.io/ComfyUI-docs/Core%20Nodes/Latent/inpaint/VAEEncodeForInpainting/">VAE Encode(for inpainting)</a> -&gt;latent-&gt;Ksampler
-            <ul>
-              <li><a href="https://blenderneko.github.io/ComfyUI-docs/Core%20Nodes/Latent/inpaint/VAEEncodeForInpainting/">VAE Encode(for inpainting)</a> 相当于 用灰色mask的图<a href="https://blenderneko.github.io/ComfyUI-docs/Core%20Nodes/Latent/VAEEncode/">VAE Encode</a> + <a href="https://blenderneko.github.io/ComfyUI-docs/Core%20Nodes/Latent/inpaint/SetLatentNoiseMask/">Set Latent Noise Mask</a> 两个节点的效果</li>
-              <li>适合想要在mask处新生成物体的</li>
-            </ul>
-          </li>
-          <li>输入自制引导图: 直接用VAE Encode-&gt;latent-&gt;Set Latent Noise Mask-&gt;Ksampler
-            <ul>
-              <li>适合想要引导图上的一些元素的: 形状, 布局, 颜色等</li>
-            </ul>
-          </li>
-          <li>输入LaMa inpaint的图: 用<a href="https://github.com/Acly/comfyui-inpaint-nodes">fooocus comfyUI版本</a> 提供的inpaint from model节点, 然后再走VAE Encode-&gt;latent-&gt;Set Latent Noise Mask-&gt;Ksampler的流程
-            <ul>
-              <li><strong>一定要用GrowMask加大mask的范围</strong>(最好把图像中受物体影响的部分全mask掉,例如mask人物的影子, 或是被挡住一半的文字. 不要留下不和谐的部分. <a href="#ref">3</a> )</li>
-              <li>适合有重复pattern的场景效果</li>
-            </ul>
-          </li>
-        </ol>
-      </li>
-      <li>用 <a href="https://blenderneko.github.io/ComfyUI-docs/Core%20Nodes/Latent/inpaint/SetLatentNoiseMask/">Set Latent Noise Mask</a> 在做sampler的流程中对mask以外的地方进行保留
-        <ul>
-          <li>sdxl模型latent image可以对应到8x8的pixel patch, 输入的mask会resize到latent大小成为latent mask</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li>控制: inpainting任务是想让生成的部分风格接近原图, 和原图边界融合的更好
-    <ul>
-      <li>用ipadapter控制风格
-        <ul>
-          <li>ipadapter会参考原图物体的位置关系, 使这个控制在outpainting里非常鸡肋, 我们的目的是生成和原图风格一致的新物体, 而不是把原来的物体叠加在图片上
-            <ul>
-              <li>用合适的text prompt控制+引导图可以有效的减少ipadapter对物体位置的影响, 效果非常好</li>
-            </ul>
-          </li>
-          <li>ipadapter的attention mask输入是 整张图-&gt; 部分 的流程, 而不是我们在inpainting任务想要的 部分 -&gt; 整张图
-            <ul>
-              <li>attention mask可以用来把两张图融合在同一张图的不同位置, 例如让两个人合影</li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-      <li>用text prompt控制
-        <ul>
-          <li><a href="https://github.com/pythongosssss/ComfyUI-WD14-Tagger">WD14 Tagger</a> 推导提示词</li>
-          <li>用<a href="https://github.com/ZHO-ZHO-ZHO/ComfyUI-Gemini">Gemini</a> 的API的打标功能</li>
-        </ul>
-      </li>
-      <li>微调模型控制: 如果不加任何模型, 生成出来的结果和原图看起来完全不融合
-        <ul>
-          <li>controlnet inpaint:(配合v1.5)
-            <ul>
-              <li>inpaintpreprocessor输入image, mask</li>
-              <li>inpaintpreprocessor处理过的图像输入inpaint controlnet</li>
-              <li>controlnet连接text prompt</li>
-              <li>用controlnet的时候甚至可以用空的latent, 因为controlnet会更改sampler流程为生成整张图?
-                <ul>
-                  <li>但是一般还是输入image latent 参考, 不然的话颜色风格会变奇怪</li>
-                </ul>
-              </li>
-            </ul>
-          </li>
-          <li>fooocus inpaint: (配合sdxl)
-            <ul>
-              <li><a href="https://github.com/lllyasviel/Fooocus/discussions/414">fooocus自己的ui界面做inpaint</a>网上评价很好</li>
-              <li><a href="https://github.com/Acly/comfyui-inpaint-nodes">fooocus comfyUI版本</a>的一些使用问题: README里给出的工作流都不太work
-                <ul>
-                  <li>输入model, patch(包含一个head模型和一个lora模型), latent(必须包含latent image和noise mask)</li>
-                  <li>使用时感觉好像一定要配合VAE Encode(for inpainting), 如果输入lama补充后的, 结果会出现奇怪的偏色, 是模型内部对mask部分进行了识别吗?</li>
-                  <li>用fooocus 开发的dpmpp sampler方式迭代, 也会出现奇怪的东西, 是comfyui的实现有问题吗?</li>
-                </ul>
-              </li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li>结果: 远没有达到一键生成的效果, 但是比起lama只会填入重复花纹还是有很大进步
-    <ul>
-      <li>新生成的部分和原图融合的不好
-        <ul>
-          <li>按这个流程原图mask之外的内容不会重新生成, 融合的不好可以理解, 应该是生成整张图才对. 这个工作流应该是有问题, 没有发挥stable diffusion的全部能力</li>
-        </ul>
-      </li>
-      <li>需要修改seed多次生成(抽卡), 人工选好一点的效果做为图生图VAE部分的输入继续</li>
-      <li>尤其是人物, 动物, 补全的地方可以看出很明显的问题, 是多次抽卡解决不了的, 必须要配合人工实时修改</li>
-    </ul>
-  </li>
-</ul>
-
-<h2 id="comfyui-workflow">ComfyUI workflow</h2>
-<h3 id="换背景">换背景</h3>
-
-<p>工作流: <a href="https://gist.github.com/roshameow/041450c340e56d39f12c93bd7d2d8606#file-inpainting_background_sam_fooocus-json"><strong>inpainting_background_SAM_fooocus.json</strong></a> $\downarrow$</p>
-
-<p><img src="/personal_homepage/docs/attachment/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-02-23%20232215.png" alt="屏幕截图 2024-02-23 232215.png" width="800" /></p>
-<h3 id="去掉不想要的人物">去掉不想要的人物</h3>
-
-<p><a href="https://gist.github.com/roshameow/041450c340e56d39f12c93bd7d2d8606#file-inpaint_delete_person_sam_lama_fooocus-json"><strong>inpaint_delete_person_SAM_Lama_fooocus.json</strong></a> $\downarrow$</p>
-
-<p><img src="/personal_homepage/docs/attachment/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-02-23%20231325.png" alt="屏幕截图 2024-02-23 231325.png" width="800" /></p>
-
-<h3 id="修改局部">修改局部</h3>
-
-<p><a href="https://gist.github.com/roshameow/041450c340e56d39f12c93bd7d2d8606#file-inpaint_edit_fooocus_ipadapter-json"><strong>inpaint_edit_fooocus_ipadapter.json</strong></a> $\downarrow$</p>
-
-<p><img src="/personal_homepage/docs/attachment/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-02-23%20235229.png" alt="屏幕截图 2024-02-23 235229.png" width="800" /></p>
-
-<p>和inpaint类似, 用Pad for Outpainting生成mask和灰色填补的图像</p>
-
-<h3 id="outpaint-更改图片尺寸">outpaint 更改图片尺寸</h3>
-
-<p><a href="https://gist.github.com/roshameow/041450c340e56d39f12c93bd7d2d8606#file-outpainting_lama_fooocus_ipadapter-json"><strong>outpainting_lama_fooocus_ipadapter.json</strong></a> $\downarrow$</p>
-
-<p><img src="/personal_homepage/docs/attachment/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-02-23%20230951.png" alt="屏幕截图 2024-02-23 230951.png" width="800" /></p>
-
-<ul>
-  <li>想生成简单纯色的背景似乎不可能, 网络总会自己加些东西: 是不是网络认为纯色背景是一种未完成的状态?</li>
-</ul>
-
-<h3 id="由引导图生成图片">由引导图生成图片</h3>
-
-<p><a href="https://gist.github.com/roshameow/041450c340e56d39f12c93bd7d2d8606#file-guided_image_ipadapter_attmask-json"><strong>guided_image_ipadapter_attmask.json</strong></a> $\downarrow$</p>
-<ul>
-  <li><a href="https://www.bilibili.com/video/BV1tU421o7hu/">参考网络上这个做法</a> : 生成一组边框和圆形logo</li>
-  <li>用到了inpaint, 图片引导, ipadapter的attmask功能</li>
-</ul>
-
-<p><img src="/personal_homepage/docs/attachment/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-02-28%20224350.png" alt="屏幕截图 2024-02-28 224350.png" width="800" /></p>
-
-<ul>
-  <li>用引导图控制颜色的例子:
-    <ul>
-      <li>
-        <iframe src="//player.bilibili.com/player.html?aid=623547089&amp;bvid=BV1Jt4y1o7TY&amp;cid=1402072759&amp;p=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
-      </li>
-    </ul>
-  </li>
-  <li>用引导图控制布局的例子:
-    <ul>
-      <li>
-        <iframe src="//player.bilibili.com/player.html?aid=1300455401&amp;bvid=BV1au4m1K7p4&amp;cid=1431479600&amp;p=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
-      </li>
-    </ul>
-  </li>
-</ul>
-
-<h3 id="注意事项">注意事项</h3>
-
-<ul>
-  <li>白色是想要网络生成的部分</li>
-  <li>如果在一个工作流里同时用SAM, foocus inpaint, ipadapter等模型, 我16G的显存会不够用: 其实SAM在生成mask之后就可以移出显存了, 但是不清楚comfyui怎么操作</li>
-</ul>
-
-<h2 id="reference">reference</h2>
-<p><span id="ref"></span></p>
-
-<p>[1] https://github.com/Sanster/IOPaint inpaint+outpaint合集</p>
-
-<p>[2] https://github.com/comfyanonymous/ComfyUI/blob/master/nodes.py#L331 ComfyUI 节点代码</p>
-
-<p>[3] https://medium.com/gliacloud/removing-any-object-from-your-photo-with-lama-7e966765fadc lama实际使用感受</p>
-
-<p>[4] https://huggingface.co/blog/TimothyAlexisVass/explaining-the-sdxl-latent-space sdxl的latent image的解释. sdxl的latent image和原图像素对应.</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="photo" /><category term="content" /><category term="ComfyUI" /><category term="sdxl" /><category term="inpaint" /><summary type="html"><![CDATA[用SAM抠图]]></summary></entry><entry><title type="html">photoshop: 酸性风格海报</title><link href="https://roshameow.github.io//personal_homepage/docs/photo/photoshop1/" rel="alternate" type="text/html" title="photoshop: 酸性风格海报" /><published>2024-02-14T00:00:00+00:00</published><updated>2024-02-19T00:21:24+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/photo/photoshop1</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/photo/photoshop1/"><![CDATA[<p><a href="https://aesthetics.fandom.com/wiki/Acid_Design">酸性(acid)风格</a> 迷幻感 . 设计元素包含: 高饱和, 流动性, 未来复古元素, 格纹, 镭射金属, 霓虹色. 
-<a href="https://www.bilibili.com/video/BV1gD4y127m1/">这个链接解释的比较详细</a></p>
-
-<h2 id="制作液态效果-流动感-金属感">制作液态效果, 流动感, 金属感</h2>
-
-<p>在网上看到的两个简易教程$\downarrow$</p>
-<ol>
-  <li>物体只保留纹理
-    <ol>
-      <li>选取素材变成gray image: 图像-&gt; 调整 -&gt; 黑白</li>
-    </ol>
-  </li>
-  <li>制作物体中间类似流动金属的效果
-    <ol>
-      <li>教程1的做法:
-        <ol>
-          <li>复制物体</li>
-          <li>gaussian滤波
-            <ul>
-              <li>不想有显得特别不光滑的地方</li>
-            </ul>
-          </li>
-          <li>反色</li>
-          <li>下层用铬黄渐变, 细节,平滑度调到最高</li>
-          <li>上层混合模式改成正片叠底(multiply): $I_1*I_2$
-            <ul>
-              <li>保留原物体的细节</li>
-            </ul>
-          </li>
-          <li>上下两个图层合并</li>
-          <li>混合模式改为滤色(screen): 是$clip(I_1+I_2,0,1)$ 吗? 因为看到结果有全白部分
-            <ul>
-              <li>仿玻璃的质感: 透明, 并比原图层亮</li>
-            </ul>
-          </li>
-        </ol>
-      </li>
-      <li>教程2的做法:
-        <ol>
-          <li>复制物体</li>
-          <li>上层反色, 用差值模式(difference): $abs(I_1-I_2)$
-            <ul>
-              <li>这个结果是越偏离中间值128的像素越亮</li>
-            </ul>
-          </li>
-          <li>上下两个图层合并</li>
-          <li>重复2-3次
-            <ul>
-              <li>这个的结果可能是在0-255范围内设置了几个量化点, 越靠近其中一个点就会越亮
-                <ul>
-                  <li><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240218142334.png" alt="Pasted image 20240218142334.png" width="400" /></li>
-                  <li>所以完全可以直接拉曲线的. 步骤1-4都有点多余. 只要有那种相近的地方明暗变化很快的感觉就可以了.</li>
-                </ul>
-              </li>
-            </ul>
-          </li>
-          <li>用曲线压缩动态范围</li>
-          <li>把一个金属色流动的背景叠加(overlay)在上层
-            <ul>
-              <li>overlay是screen和multiply的混合</li>
-            </ul>
-          </li>
-        </ol>
-      </li>
-    </ol>
-  </li>
-</ol>
-
-<p><a href="https://www.bilibili.com/video/BV18w411B75n/">教程1</a> : <img src="/personal_homepage/docs/attachment/Pasted%20image%2020240217233149.png" alt="Pasted image 20240217233149.png" width="300" />   <a href="https://www.bilibili.com/video/BV1684y1T7t6/">教程2</a> : <img src="/personal_homepage/docs/attachment/Pasted%20image%2020240218102040.png" alt="Pasted image 20240218102040.png" width="300" /></p>
-
-<ul>
-  <li>这两个教程看起来都有点随便, 顶多算一种特殊效果滤镜.
-    <ul>
-      <li>看起来具体的步骤并不重要. 因为里面确实有些操作意义不明可以简化, 奇怪的不是教程里绕了弯路, 而是不明白每一步的动机. 难道是随便试了试发现这样可以?</li>
-    </ul>
-  </li>
-  <li>在<a href="https://www.bilibili.com/video/BV18w411B75n/">教程1</a> 里用铬黄渐变的filter制作金属感,  <a href="https://www.bilibili.com/video/BV1684y1T7t6/">教程2</a> 更是直接叠了一个金属色的图
-    <ul>
-      <li><a href="https://www.youtube.com/watch?v=RHgT4Q4dDY8">这个教程</a> 很详细的用bevel(倒角)和emboss(浮雕) 制作金属反光效果. 铬黄渐变的滤镜可能也是类似原理的一组滤镜?</li>
-    </ul>
-  </li>
-  <li>photoshop的blending mode有些模式找不到公式…感觉很难理解用法
-    <ul>
-      <li>比如overlay和screen…</li>
-    </ul>
-  </li>
-</ul>
-
-<h2 id="reference">reference</h2>
-
-<p>[1] http://pigs-blood-cake.blogspot.com/p/photoshop.html ps中英文对照</p>
-
-<p>[2] https://photoshoptrainingchannel.com/blending-modes-explained/#multiply ps图层混合</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="photo" /><category term="content" /><category term="photoshop" /><category term="filter" /><category term="design" /><summary type="html"><![CDATA[酸性(acid)风格 迷幻感 . 设计元素包含: 高饱和, 流动性, 未来复古元素, 格纹, 镭射金属, 霓虹色. 这个链接解释的比较详细]]></summary></entry></feed>
+<p><img src="/personal_homepage/docs/attachment/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-02-27%20221824.png" alt="屏幕截图 2024-02-27 221824.png" width="800" /></p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="photo" /><category term="content" /><category term="ComfyUI" /><category term="sdxl" /><category term="refine" /><summary type="html"><![CDATA[和inpaint一样要利用stable-diffusion的图生图功能, 想让图像忠于原图的情况下提升图像细节, 解决图像模糊, 扭曲, 不合理的部分.]]></summary></entry></feed>

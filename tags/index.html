@@ -124,7 +124,7 @@
     
       <li>
         <a href="#content">
-          <strong>content</strong> <span class="taxonomy-count">42</span>
+          <strong>content</strong> <span class="taxonomy-count">44</span>
         </a>
       </li>
     
@@ -203,6 +203,12 @@
     
     
       <li>
+        <a href="#attention">
+          <strong>attention</strong> <span class="taxonomy-count">4</span>
+        </a>
+      </li>
+    
+      <li>
         <a href="#image">
           <strong>image</strong> <span class="taxonomy-count">4</span>
         </a>
@@ -233,12 +239,6 @@
       <li>
         <a href="#alignment">
           <strong>alignment</strong> <span class="taxonomy-count">3</span>
-        </a>
-      </li>
-    
-      <li>
-        <a href="#attention">
-          <strong>attention</strong> <span class="taxonomy-count">3</span>
         </a>
       </li>
     
@@ -333,6 +333,12 @@
       <li>
         <a href="#twitter">
           <strong>twitter</strong> <span class="taxonomy-count">2</span>
+        </a>
+      </li>
+    
+      <li>
+        <a href="#粒子系统">
+          <strong>粒子系统</strong> <span class="taxonomy-count">2</span>
         </a>
       </li>
     
@@ -533,6 +539,12 @@
       </li>
     
       <li>
+        <a href="#flash-attention">
+          <strong>flash attention</strong> <span class="taxonomy-count">1</span>
+        </a>
+      </li>
+    
+      <li>
         <a href="#gallery">
           <strong>gallery</strong> <span class="taxonomy-count">1</span>
         </a>
@@ -541,6 +553,18 @@
       <li>
         <a href="#gligen">
           <strong>gligen</strong> <span class="taxonomy-count">1</span>
+        </a>
+      </li>
+    
+      <li>
+        <a href="#gpu">
+          <strong>gpu</strong> <span class="taxonomy-count">1</span>
+        </a>
+      </li>
+    
+      <li>
+        <a href="#hair">
+          <strong>hair</strong> <span class="taxonomy-count">1</span>
         </a>
       </li>
     
@@ -683,6 +707,12 @@
       </li>
     
       <li>
+        <a href="#speedup">
+          <strong>speedup</strong> <span class="taxonomy-count">1</span>
+        </a>
+      </li>
+    
+      <li>
         <a href="#stable-diffusion">
           <strong>stable-diffusion</strong> <span class="taxonomy-count">1</span>
         </a>
@@ -766,7 +796,7 @@
   <header class="entry-header">
     <h3 class="entry-title p-name">
       
-        <a href="/personal_homepage/docs/algorithm/attention3/" rel="bookmark">attention的优化– 加速
+        <a href="/personal_homepage/docs/tool/pyside6-tech/" rel="bookmark">pyside6一些功能的用法
 </a>
       
     </h3>
@@ -785,6 +815,72 @@
       
 
 <span class="read-time">~1 min read</span>
+
+      <time class="entry-date dt-published" datetime="2024-04-01T00:00:00+00:00">April 1, 2024
+  </time>
+    </footer>
+  
+</article>
+
+            
+              
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
+        <a href="/personal_homepage/docs/blender/blender-learning10/" rel="bookmark">blender学习: 用粒子系统做毛毡效果
+</a>
+      
+    </h3>
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <h3 id="步骤">步骤:</h3>
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">~1 min read</span>
+
+      <time class="entry-date dt-published" datetime="2024-03-25T00:00:00+00:00">March 25, 2024
+  </time>
+    </footer>
+  
+</article>
+
+            
+              
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
+        <a href="/personal_homepage/docs/algorithm/attention3/" rel="bookmark">attention的优化– flash attention加速
+</a>
+      
+    </h3>
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <p>flash-attention是一种算子合并(kernel fusion)的优化. 把self-attention分块, 直接在SRAM里计算, 省去了HBM来回搬运中间结果S和P的时间(如下图).  self-attention由两层矩阵乘法, softmax, 和其他eltwise计算(mask, dropout)构成.</p>
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">1 min read</span>
 
       <time class="entry-date dt-published" datetime="2024-03-20T00:00:00+00:00">March 20, 2024
   </time>
@@ -875,7 +971,7 @@
   
     <div class="entry-excerpt p-summary">
       
-        <p>在token很多(大模型用的超长文本), 或者本身数据是时间序列(比如语音, 视频流)的情况下, attention里面的weight会带来$O(token^2)$ 的内存消耗</p>
+        <p>在token很多(大模型用的超长文本), 或者本身数据是时间序列(比如语音, 视频流)的情况下, attention里面的weight会带来$O(token^2)$ 的内存消耗. state space model可以解决这个问题.</p>
 
       
     </div>
@@ -2370,6 +2466,16 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
@@ -2853,6 +2959,16 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
@@ -3104,6 +3220,16 @@
 
             
           </div>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
         
       
         
@@ -3739,6 +3865,16 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
@@ -4017,6 +4153,16 @@
 
             
           </div>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
         
       
         
@@ -4561,6 +4707,16 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
@@ -4886,6 +5042,16 @@
 
             
           </div>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
         
       
         
@@ -5311,6 +5477,16 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
@@ -5499,6 +5675,16 @@
 
             
           </div>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
         
       
         
@@ -6064,11 +6250,372 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
 
   
+  
+    <section id="attention" class="taxonomy-section">
+      <h2 class="taxonomy-title">attention</h2>
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+          <div class="entries-list">
+            
+              
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
+        <a href="/personal_homepage/docs/algorithm/attention3/" rel="bookmark">attention的优化– flash attention加速
+</a>
+      
+    </h3>
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <p>flash-attention是一种算子合并(kernel fusion)的优化. 把self-attention分块, 直接在SRAM里计算, 省去了HBM来回搬运中间结果S和P的时间(如下图).  self-attention由两层矩阵乘法, softmax, 和其他eltwise计算(mask, dropout)构成.</p>
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">1 min read</span>
+
+      <time class="entry-date dt-published" datetime="2024-03-20T00:00:00+00:00">March 20, 2024
+  </time>
+    </footer>
+  
+</article>
+
+            
+              
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
+        <a href="/personal_homepage/docs/deeplearning/attention2/" rel="bookmark">attention的优化– 引进时序结构
+</a>
+      
+    </h3>
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <p>在token很多(大模型用的超长文本), 或者本身数据是时间序列(比如语音, 视频流)的情况下, attention里面的weight会带来$O(token^2)$ 的内存消耗. state space model可以解决这个问题.</p>
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">2 min read</span>
+
+      <time class="entry-date dt-published" datetime="2024-03-09T00:00:00+00:00">March 9, 2024
+  </time>
+    </footer>
+  
+</article>
+
+            
+              
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
+        <a href="/personal_homepage/docs/deeplearning/stable-diffusion6/" rel="bookmark">stable-diffusion的结构和微调模型
+</a>
+      
+    </h3>
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <h2 id="stable-diffusion结构和controlnet插件">stable-diffusion结构和controlnet插件</h2>
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">~1 min read</span>
+
+      <time class="entry-date dt-published" datetime="2024-02-29T00:00:00+00:00">February 29, 2024
+  </time>
+    </footer>
+  
+</article>
+
+            
+              
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
+        <a href="/personal_homepage/docs/deeplearning/attention/" rel="bookmark">神经网络attention结构理解
+</a>
+      
+    </h3>
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <p>在网络中, block是把input信息转换成output信息的过程: 一般, output(position, vector)是input(token, embedding vector)的线性组合, 组合的weight (position, token) 由input和output两方关系确定. 把着重强调这种信息交互的模块叫attention.</p>
+<h2 id="convolution">convolution</h2>
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">1 min read</span>
+
+      <time class="entry-date dt-published" datetime="2024-02-04T00:00:00+00:00">February 4, 2024
+  </time>
+    </footer>
+  
+</article>
+
+            
+          </div>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+      <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
+    </section>
   
     <section id="image" class="taxonomy-section">
       <h2 class="taxonomy-title">image</h2>
@@ -6262,6 +6809,16 @@
 
             
           </div>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
         
       
         
@@ -6758,6 +7315,16 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
@@ -7099,6 +7666,16 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
@@ -7355,6 +7932,16 @@
 
             
           </div>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
         
       
         
@@ -7754,304 +8341,6 @@
       
         
       
-      <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
-    </section>
-  
-    <section id="attention" class="taxonomy-section">
-      <h2 class="taxonomy-title">attention</h2>
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-          <div class="entries-list">
-            
-              
-
-<article class="entry h-entry">
-  <header class="entry-header">
-    <h3 class="entry-title p-name">
-      
-        <a href="/personal_homepage/docs/deeplearning/attention2/" rel="bookmark">attention的优化– 引进时序结构
-</a>
-      
-    </h3>
-    
-  </header>
-  
-    <div class="entry-excerpt p-summary">
-      
-        <p>在token很多(大模型用的超长文本), 或者本身数据是时间序列(比如语音, 视频流)的情况下, attention里面的weight会带来$O(token^2)$ 的内存消耗</p>
-
-      
-    </div>
-  
-  
-    <footer class="entry-meta">
-      
-
-<span class="read-time">2 min read</span>
-
-      <time class="entry-date dt-published" datetime="2024-03-09T00:00:00+00:00">March 9, 2024
-  </time>
-    </footer>
-  
-</article>
-
-            
-              
-
-<article class="entry h-entry">
-  <header class="entry-header">
-    <h3 class="entry-title p-name">
-      
-        <a href="/personal_homepage/docs/deeplearning/stable-diffusion6/" rel="bookmark">stable-diffusion的结构和微调模型
-</a>
-      
-    </h3>
-    
-  </header>
-  
-    <div class="entry-excerpt p-summary">
-      
-        <h2 id="stable-diffusion结构和controlnet插件">stable-diffusion结构和controlnet插件</h2>
-
-      
-    </div>
-  
-  
-    <footer class="entry-meta">
-      
-
-<span class="read-time">~1 min read</span>
-
-      <time class="entry-date dt-published" datetime="2024-02-29T00:00:00+00:00">February 29, 2024
-  </time>
-    </footer>
-  
-</article>
-
-            
-              
-
-<article class="entry h-entry">
-  <header class="entry-header">
-    <h3 class="entry-title p-name">
-      
-        <a href="/personal_homepage/docs/deeplearning/attention/" rel="bookmark">神经网络attention结构理解
-</a>
-      
-    </h3>
-    
-  </header>
-  
-    <div class="entry-excerpt p-summary">
-      
-        <p>在网络中, block是把input信息转换成output信息的过程: 一般, output(position, vector)是input(token, embedding vector)的线性组合, 组合的weight (position, token) 由input和output两方关系确定. 把着重强调这种信息交互的模块叫attention.</p>
-<h2 id="convolution">convolution</h2>
-
-      
-    </div>
-  
-  
-    <footer class="entry-meta">
-      
-
-<span class="read-time">1 min read</span>
-
-      <time class="entry-date dt-published" datetime="2024-02-04T00:00:00+00:00">February 4, 2024
-  </time>
-    </footer>
-  
-</article>
-
-            
-          </div>
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
         
       
         
@@ -8370,6 +8659,16 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
@@ -8510,6 +8809,16 @@
 
             
           </div>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
         
       
         
@@ -8988,6 +9297,16 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
@@ -9189,6 +9508,16 @@
 
             
           </div>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
         
       
         
@@ -9613,6 +9942,16 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
@@ -9891,6 +10230,16 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
@@ -9988,6 +10337,16 @@
 
             
           </div>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
         
       
         
@@ -10444,6 +10803,16 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
@@ -10548,6 +10917,16 @@
 
             
           </div>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
         
       
         
@@ -10994,6 +11373,16 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
@@ -11268,6 +11657,16 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
@@ -11410,6 +11809,16 @@
 
             
           </div>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
         
       
         
@@ -11820,6 +12229,16 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
@@ -11993,6 +12412,16 @@
 
             
           </div>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
         
       
         
@@ -12375,6 +12804,300 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+      <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
+    </section>
+  
+    <section id="粒子系统" class="taxonomy-section">
+      <h2 class="taxonomy-title">粒子系统</h2>
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+          <div class="entries-list">
+            
+              
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
+        <a href="/personal_homepage/docs/blender/blender-learning10/" rel="bookmark">blender学习: 用粒子系统做毛毡效果
+</a>
+      
+    </h3>
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <h3 id="步骤">步骤:</h3>
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">~1 min read</span>
+
+      <time class="entry-date dt-published" datetime="2024-03-25T00:00:00+00:00">March 25, 2024
+  </time>
+    </footer>
+  
+</article>
+
+            
+              
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
+        <a href="/personal_homepage/docs/blender/blender-learning5/" rel="bookmark">blender学习: 做火焰效果
+</a>
+      
+    </h3>
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <p>火焰的形状用圆形变形一半获得. 用<a href="https://en.wikipedia.org/wiki/Perlin_noise">Perlin noise</a>使坐标变形制作随机抖动. 用Emission node渲染发光效果.</p>
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">1 min read</span>
+
+      <time class="entry-date dt-published" datetime="2024-02-08T00:00:00+00:00">February 8, 2024
+  </time>
+    </footer>
+  
+</article>
+
+            
+          </div>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
@@ -12383,6 +13106,8 @@
   
     <section id="3d-model" class="taxonomy-section">
       <h2 class="taxonomy-title">3d_model</h2>
+      
+        
       
         
       
@@ -12620,6 +13345,14 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
@@ -12673,6 +13406,16 @@
 
             
           </div>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
         
       
         
@@ -13102,6 +13845,16 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
@@ -13261,6 +14014,16 @@
 
             
           </div>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
         
       
         
@@ -13584,6 +14347,16 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
@@ -13657,6 +14430,16 @@
 
             
           </div>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
         
       
         
@@ -14066,6 +14849,16 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
@@ -14153,6 +14946,16 @@
 
             
           </div>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
         
       
         
@@ -14548,11 +15351,23 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
     <section id="mamba" class="taxonomy-section">
       <h2 class="taxonomy-title">Mamba</h2>
+      
+        
       
         
       
@@ -14764,7 +15579,7 @@
   
     <div class="entry-excerpt p-summary">
       
-        <p>在token很多(大模型用的超长文本), 或者本身数据是时间序列(比如语音, 视频流)的情况下, attention里面的weight会带来$O(token^2)$ 的内存消耗</p>
+        <p>在token很多(大模型用的超长文本), 或者本身数据是时间序列(比如语音, 视频流)的情况下, attention里面的weight会带来$O(token^2)$ 的内存消耗. state space model可以解决这个问题.</p>
 
       
     </div>
@@ -14783,6 +15598,14 @@
 
             
           </div>
+        
+      
+        
+      
+        
+      
+        
+      
         
       
         
@@ -14884,6 +15707,16 @@
 
             
           </div>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
         
       
         
@@ -15271,6 +16104,16 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
@@ -15370,6 +16213,16 @@
 
             
           </div>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
         
       
         
@@ -15753,11 +16606,23 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
     <section id="ssm" class="taxonomy-section">
       <h2 class="taxonomy-title">SSM</h2>
+      
+        
       
         
       
@@ -15959,7 +16824,7 @@
   
     <div class="entry-excerpt p-summary">
       
-        <p>在token很多(大模型用的超长文本), 或者本身数据是时间序列(比如语音, 视频流)的情况下, attention里面的weight会带来$O(token^2)$ 的内存消耗</p>
+        <p>在token很多(大模型用的超长文本), 或者本身数据是时间序列(比如语音, 视频流)的情况下, attention里面的weight会带来$O(token^2)$ 的内存消耗. state space model可以解决这个问题.</p>
 
       
     </div>
@@ -15978,6 +16843,14 @@
 
             
           </div>
+        
+      
+        
+      
+        
+      
+        
+      
         
       
         
@@ -16103,6 +16976,16 @@
 
             
           </div>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
         
       
         
@@ -16476,6 +17359,16 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
@@ -16589,6 +17482,16 @@
 
             
           </div>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
         
       
         
@@ -16958,6 +17861,16 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
@@ -17083,6 +17996,16 @@
 
             
           </div>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
         
       
         
@@ -17441,11 +18364,23 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
     <section id="camera" class="taxonomy-section">
       <h2 class="taxonomy-title">camera</h2>
+      
+        
       
         
       
@@ -17682,6 +18617,14 @@
           </div>
         
       
+        
+      
+        
+      
+        
+      
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
@@ -17745,6 +18688,16 @@
 
             
           </div>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
         
       
         
@@ -18164,6 +19117,16 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
@@ -18229,6 +19192,16 @@
 
             
           </div>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
         
       
         
@@ -18606,6 +19579,8 @@
         
       
         
+      
+        
           <div class="entries-list">
             
               
@@ -18643,6 +19618,14 @@
 
             
           </div>
+        
+      
+        
+      
+        
+      
+        
+      
         
       
         
@@ -18889,11 +19872,23 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
     <section id="design" class="taxonomy-section">
       <h2 class="taxonomy-title">design</h2>
+      
+        
       
         
       
@@ -19097,6 +20092,14 @@
 
             
           </div>
+        
+      
+        
+      
+        
+      
+        
+      
         
       
         
@@ -19372,6 +20375,16 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
@@ -19439,6 +20452,16 @@
 
             
           </div>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
         
       
         
@@ -19854,11 +20877,23 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
     <section id="filter" class="taxonomy-section">
       <h2 class="taxonomy-title">filter</h2>
+      
+        
       
         
       
@@ -20096,6 +21131,265 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+      <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
+    </section>
+  
+    <section id="flash-attention" class="taxonomy-section">
+      <h2 class="taxonomy-title">flash attention</h2>
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+          <div class="entries-list">
+            
+              
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
+        <a href="/personal_homepage/docs/algorithm/attention3/" rel="bookmark">attention的优化– flash attention加速
+</a>
+      
+    </h3>
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <p>flash-attention是一种算子合并(kernel fusion)的优化. 把self-attention分块, 直接在SRAM里计算, 省去了HBM来回搬运中间结果S和P的时间(如下图).  self-attention由两层矩阵乘法, softmax, 和其他eltwise计算(mask, dropout)构成.</p>
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">1 min read</span>
+
+      <time class="entry-date dt-published" datetime="2024-03-20T00:00:00+00:00">March 20, 2024
+  </time>
+    </footer>
+  
+</article>
+
+            
+          </div>
+        
+      
+        
+      
+        
+      
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
@@ -20177,6 +21471,16 @@
 
             
           </div>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
         
       
         
@@ -20518,6 +21822,8 @@
         
       
         
+      
+        
           <div class="entries-list">
             
               
@@ -20576,6 +21882,516 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+      <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
+    </section>
+  
+    <section id="gpu" class="taxonomy-section">
+      <h2 class="taxonomy-title">gpu</h2>
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+          <div class="entries-list">
+            
+              
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
+        <a href="/personal_homepage/docs/algorithm/attention3/" rel="bookmark">attention的优化– flash attention加速
+</a>
+      
+    </h3>
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <p>flash-attention是一种算子合并(kernel fusion)的优化. 把self-attention分块, 直接在SRAM里计算, 省去了HBM来回搬运中间结果S和P的时间(如下图).  self-attention由两层矩阵乘法, softmax, 和其他eltwise计算(mask, dropout)构成.</p>
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">1 min read</span>
+
+      <time class="entry-date dt-published" datetime="2024-03-20T00:00:00+00:00">March 20, 2024
+  </time>
+    </footer>
+  
+</article>
+
+            
+          </div>
+        
+      
+        
+      
+      <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
+    </section>
+  
+    <section id="hair" class="taxonomy-section">
+      <h2 class="taxonomy-title">hair</h2>
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+          <div class="entries-list">
+            
+              
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
+        <a href="/personal_homepage/docs/blender/blender-learning10/" rel="bookmark">blender学习: 用粒子系统做毛毡效果
+</a>
+      
+    </h3>
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <h3 id="步骤">步骤:</h3>
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">~1 min read</span>
+
+      <time class="entry-date dt-published" datetime="2024-03-25T00:00:00+00:00">March 25, 2024
+  </time>
+    </footer>
+  
+</article>
+
+            
+          </div>
         
       
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
@@ -20742,6 +22558,16 @@
 
             
           </div>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
         
       
         
@@ -20993,6 +22819,8 @@
         
       
         
+      
+        
           <div class="entries-list">
             
               
@@ -21029,6 +22857,14 @@
 
             
           </div>
+        
+      
+        
+      
+        
+      
+        
+      
         
       
         
@@ -21205,6 +23041,16 @@
 
             
           </div>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
         
       
         
@@ -21544,11 +23390,23 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
     <section id="linear-attention" class="taxonomy-section">
       <h2 class="taxonomy-title">linear attention</h2>
+      
+        
       
         
       
@@ -21756,7 +23614,7 @@
   
     <div class="entry-excerpt p-summary">
       
-        <p>在token很多(大模型用的超长文本), 或者本身数据是时间序列(比如语音, 视频流)的情况下, attention里面的weight会带来$O(token^2)$ 的内存消耗</p>
+        <p>在token很多(大模型用的超长文本), 或者本身数据是时间序列(比如语音, 视频流)的情况下, attention里面的weight会带来$O(token^2)$ 的内存消耗. state space model可以解决这个问题.</p>
 
       
     </div>
@@ -21775,6 +23633,14 @@
 
             
           </div>
+        
+      
+        
+      
+        
+      
+        
+      
         
       
         
@@ -21834,6 +23700,16 @@
 
             
           </div>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
         
       
         
@@ -22205,6 +24081,8 @@
         
       
         
+      
+        
           <div class="entries-list">
             
               
@@ -22241,6 +24119,14 @@
 
             
           </div>
+        
+      
+        
+      
+        
+      
+        
+      
         
       
         
@@ -22449,6 +24335,16 @@
 
             
           </div>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
         
       
         
@@ -22751,11 +24647,23 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
     <section id="material" class="taxonomy-section">
       <h2 class="taxonomy-title">material</h2>
+      
+        
       
         
       
@@ -22992,6 +24900,14 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
@@ -23123,6 +25039,16 @@
 
             
           </div>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
         
       
         
@@ -23422,6 +25348,8 @@
         
       
         
+      
+        
           <div class="entries-list">
             
               
@@ -23458,6 +25386,14 @@
 
             
           </div>
+        
+      
+        
+      
+        
+      
+        
+      
         
       
         
@@ -23660,6 +25596,16 @@
 
             
           </div>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
         
       
         
@@ -23960,11 +25906,23 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
     <section id="photoshop" class="taxonomy-section">
       <h2 class="taxonomy-title">photoshop</h2>
+      
+        
       
         
       
@@ -24202,6 +26160,14 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
@@ -24339,6 +26305,16 @@
 
             
           </div>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
         
       
         
@@ -24685,6 +26661,16 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
@@ -24835,6 +26821,16 @@
 
             
           </div>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
         
       
         
@@ -25102,6 +27098,8 @@
         
       
         
+      
+        
           <div class="entries-list">
             
               
@@ -25138,6 +27136,14 @@
 
             
           </div>
+        
+      
+        
+      
+        
+      
+        
+      
         
       
         
@@ -25306,6 +27312,16 @@
 
             
           </div>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
         
       
         
@@ -25655,6 +27671,16 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
@@ -25897,11 +27923,23 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
     <section id="shortcut" class="taxonomy-section">
       <h2 class="taxonomy-title">shortcut</h2>
+      
+        
       
         
       
@@ -26139,11 +28177,272 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+      <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
+    </section>
+  
+    <section id="speedup" class="taxonomy-section">
+      <h2 class="taxonomy-title">speedup</h2>
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+          <div class="entries-list">
+            
+              
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
+        <a href="/personal_homepage/docs/algorithm/attention3/" rel="bookmark">attention的优化– flash attention加速
+</a>
+      
+    </h3>
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <p>flash-attention是一种算子合并(kernel fusion)的优化. 把self-attention分块, 直接在SRAM里计算, 省去了HBM来回搬运中间结果S和P的时间(如下图).  self-attention由两层矩阵乘法, softmax, 和其他eltwise计算(mask, dropout)构成.</p>
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">1 min read</span>
+
+      <time class="entry-date dt-published" datetime="2024-03-20T00:00:00+00:00">March 20, 2024
+  </time>
+    </footer>
+  
+</article>
+
+            
+          </div>
+        
+      
+        
+      
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
     <section id="stable-diffusion" class="taxonomy-section">
       <h2 class="taxonomy-title">stable-diffusion</h2>
+      
+        
       
         
       
@@ -26380,11 +28679,21 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
     <section id="state" class="taxonomy-section">
       <h2 class="taxonomy-title">state</h2>
+      
+        
       
         
       
@@ -26590,7 +28899,7 @@
   
     <div class="entry-excerpt p-summary">
       
-        <p>在token很多(大模型用的超长文本), 或者本身数据是时间序列(比如语音, 视频流)的情况下, attention里面的weight会带来$O(token^2)$ 的内存消耗</p>
+        <p>在token很多(大模型用的超长文本), 或者本身数据是时间序列(比如语音, 视频流)的情况下, attention里面的weight会带来$O(token^2)$ 的内存消耗. state space model可以解决这个问题.</p>
 
       
     </div>
@@ -26609,6 +28918,14 @@
 
             
           </div>
+        
+      
+        
+      
+        
+      
+        
+      
         
       
         
@@ -26812,6 +29129,8 @@
         
       
         
+      
+        
           <div class="entries-list">
             
               
@@ -26829,7 +29148,7 @@
   
     <div class="entry-excerpt p-summary">
       
-        <p>在token很多(大模型用的超长文本), 或者本身数据是时间序列(比如语音, 视频流)的情况下, attention里面的weight会带来$O(token^2)$ 的内存消耗</p>
+        <p>在token很多(大模型用的超长文本), 或者本身数据是时间序列(比如语音, 视频流)的情况下, attention里面的weight会带来$O(token^2)$ 的内存消耗. state space model可以解决这个问题.</p>
 
       
     </div>
@@ -26862,11 +29181,21 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
     <section id="stoke" class="taxonomy-section">
       <h2 class="taxonomy-title">stoke</h2>
+      
+        
       
         
       
@@ -27083,6 +29412,14 @@
 
             
           </div>
+        
+      
+        
+      
+        
+      
+        
+      
         
       
         
@@ -27344,6 +29681,16 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
@@ -27475,6 +29822,16 @@
 
             
           </div>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
         
       
         
@@ -27826,11 +30183,23 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
     <section id="time-series" class="taxonomy-section">
       <h2 class="taxonomy-title">time series</h2>
+      
+        
       
         
       
@@ -28040,7 +30409,7 @@
   
     <div class="entry-excerpt p-summary">
       
-        <p>在token很多(大模型用的超长文本), 或者本身数据是时间序列(比如语音, 视频流)的情况下, attention里面的weight会带来$O(token^2)$ 的内存消耗</p>
+        <p>在token很多(大模型用的超长文本), 或者本身数据是时间序列(比如语音, 视频流)的情况下, attention里面的weight会带来$O(token^2)$ 的内存消耗. state space model可以解决这个问题.</p>
 
       
     </div>
@@ -28059,6 +30428,14 @@
 
             
           </div>
+        
+      
+        
+      
+        
+      
+        
+      
         
       
         
@@ -28190,6 +30567,16 @@
 
             
           </div>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
         
       
         
@@ -28550,6 +30937,16 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
@@ -28702,6 +31099,16 @@
 
             
           </div>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
         
       
         

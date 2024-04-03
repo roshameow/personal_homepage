@@ -20,8 +20,8 @@
 <meta name="generator" content="Jekyll v4.3.3" />
 <meta property="og:title" content="attention的优化– 引进时序结构" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="在token很多(大模型用的超长文本), 或者本身数据是时间序列(比如语音, 视频流)的情况下, attention里面的weight会带来$O(token^2)$ 的内存消耗" />
-<meta property="og:description" content="在token很多(大模型用的超长文本), 或者本身数据是时间序列(比如语音, 视频流)的情况下, attention里面的weight会带来$O(token^2)$ 的内存消耗" />
+<meta name="description" content="在token很多(大模型用的超长文本), 或者本身数据是时间序列(比如语音, 视频流)的情况下, attention里面的weight会带来$O(token^2)$ 的内存消耗. state space model可以解决这个问题." />
+<meta property="og:description" content="在token很多(大模型用的超长文本), 或者本身数据是时间序列(比如语音, 视频流)的情况下, attention里面的weight会带来$O(token^2)$ 的内存消耗. state space model可以解决这个问题." />
 <link rel="canonical" href="https://roshameow.github.io//personal_homepage/docs/deeplearning/attention2/" />
 <meta property="og:url" content="https://roshameow.github.io//personal_homepage/docs/deeplearning/attention2/" />
 <meta property="og:site_name" content="Liu, Wen’s Home Page" />
@@ -31,7 +31,7 @@
 <meta property="twitter:title" content="attention的优化– 引进时序结构" />
 <meta name="twitter:site" content="@" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-03-25T23:08:10+00:00","datePublished":"2024-03-09T00:00:00+00:00","description":"在token很多(大模型用的超长文本), 或者本身数据是时间序列(比如语音, 视频流)的情况下, attention里面的weight会带来$O(token^2)$ 的内存消耗","headline":"attention的优化– 引进时序结构","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/docs/deeplearning/attention2/"},"url":"https://roshameow.github.io//personal_homepage/docs/deeplearning/attention2/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-03-26T01:23:36+00:00","datePublished":"2024-03-09T00:00:00+00:00","description":"在token很多(大模型用的超长文本), 或者本身数据是时间序列(比如语音, 视频流)的情况下, attention里面的weight会带来$O(token^2)$ 的内存消耗. state space model可以解决这个问题.","headline":"attention的优化– 引进时序结构","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/docs/deeplearning/attention2/"},"url":"https://roshameow.github.io//personal_homepage/docs/deeplearning/attention2/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -146,7 +146,7 @@
 
       <div class="page-content">
         <div class="e-content">
-          <p>在token很多(大模型用的超长文本), 或者本身数据是时间序列(比如语音, 视频流)的情况下, attention里面的weight会带来$O(token^2)$ 的内存消耗</p>
+          <p>在token很多(大模型用的超长文本), 或者本身数据是时间序列(比如语音, 视频流)的情况下, attention里面的weight会带来$O(token^2)$ 的内存消耗. state space model可以解决这个问题.</p>
 
 <h2 id="基本结构">基本结构</h2>
 

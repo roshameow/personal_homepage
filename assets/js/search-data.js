@@ -226,7 +226,7 @@ var store = [{
       },{
         "title": "blender学习: 做火焰效果",
         "excerpt":"火焰的形状用圆形变形一半获得. 用Perlin noise使坐标变形制作随机抖动. 用Emission node渲染发光效果. 用graph editor和noise texture -&gt; 飞行器火焰 步骤 参考RuiHuang_art在b站的教学视频 , 和做车流用到的功能差不多 world property: 加入一个背景的贴图 制做一个平面的火焰: 添加一个Plane mesh 分成两半: 在Edit编辑模式下, 按Ctrl+R加loop cut , 在edge中间添加新的顶点, 把一半拉长: 选中顶点后按G+Y在Y轴拉伸 shader: 目的是制作一个自发光, 半透明, 抖动的效果 颜色效果: 用texture Coordinate 生成uv坐标 在mapping里把x,y的location调到-2, scale调到4 uv坐标系好像范围是(-scale/2, scale/2) 用Gradient Texture 的spherical: 制作从外到内的渐变 自发光: 用Color Ramp 做一个 蓝-&gt;白-&gt;红-&gt;黄 的渐变...","categories": ["docs","blender"],
-        "tags": ["content","render","shader"],
+        "tags": ["content","render","shader","粒子系统"],
         "url": "https://roshameow.github.io//personal_homepage/docs/blender/blender-learning5/"
       },{
         "title": "stable-diffusion的用法: 用 lora+controlnet做风格转换",
@@ -260,7 +260,7 @@ var store = [{
         "url": "https://roshameow.github.io//personal_homepage/docs/tool/stable-diffusion5/"
       },{
         "title": "stable-diffusion的结构和微调模型",
-        "excerpt":"stable-diffusion结构和controlnet插件 controlnet保持和stable-diffusion u-net上半部分相同的结构 controlnet输入是和原图一样的hint图像, 比如controlnet-openpose输入的不是关节坐标数据, 而是彩色的人体坐标图Resnetblock, SpatialTransfomer 结构和插件 lora可以应用在网络的任何线性结构上, 比如: attention里面的q,k,v,out层 feedforward里面的linear层 clip里面的mlp, fc层 这几种模型的作用的粒度不一样, 从小到大是: lora(线性层) &lt; Gligen=IpAdapter(SpatialTransformer层) &lt; Controlnet(U-net的block) 模型的size也是依次变大 reference [1] Hu, Edward J., Yelong Shen, Phillip Wallis, Zeyuan Allen-Zhu, Yuanzhi Li, Shean Wang, Lu Wang, and Weizhu Chen. “LoRA: Low-Rank Adaptation of Large Language Models.” arXiv,...","categories": ["docs","deeplearning"],
+        "excerpt":"stable-diffusion结构和controlnet插件 controlnet保持和stable-diffusion u-net上半部分相同的结构 controlnet输入是和原图一样的hint图像 比如controlnet-openpose输入的不是关节坐标数据, 而是彩色的人体坐标图 这也是像controlnet-tile, controlnet-inpaint等从任务角度明明不需要hint image还是要输入一个的原因 Resnetblock, SpatialTransfomer 结构和插件 lora可以应用在网络的任何线性结构上, 比如: attention里面的q,k,v,out层 feedforward里面的linear层 clip里面的mlp, fc层 这几种模型的作用的粒度不一样, 从小到大是: lora(线性层) &lt; Gligen=IpAdapter(SpatialTransformer层) &lt; Controlnet(U-net的block) 模型的size也是依次变大 各种embedding编码方式 类型 输入 编码 公式   图像 可训练的hint block网络(controlnet)或clip vision(ipadapter)     文字 clip   一维特征 $\\mathbb R$ time Sinusoidal Embedding 三角编码 $[\\sin\\frac{t}{10000^{2n/d}},\\cdots,\\cos\\frac{t}{10000^{2n/d}},\\cdots]\\in \\mathbb...","categories": ["docs","deeplearning"],
         "tags": ["content","attention","stable-diffusion","lora","controlnet","ipadapter","gligen"],
         "url": "https://roshameow.github.io//personal_homepage/docs/deeplearning/stable-diffusion6/"
       },{
@@ -270,7 +270,7 @@ var store = [{
         "url": "https://roshameow.github.io//personal_homepage/docs/blender/blender-learning7/"
       },{
         "title": "attention的优化-- 引进时序结构",
-        "excerpt":"在token很多(大模型用的超长文本), 或者本身数据是时间序列(比如语音, 视频流)的情况下, attention里面的weight会带来$O(token^2)$ 的内存消耗 基本结构 SSM(state space model) 状态空间(state space) : 用state vector记录历史的input, 而不是记录所有的历史token 连续表示: linear state space model的一般形式: $\\dot x(t)=A(t)x(t)+B(t)u(t)$ (用input u更新状态 x) $y(t)=C(t)x(t)+D(t)u(t)$ (用状态x, 生成output y) 如果A,B,C是time invariant, 以及省略D, 得到, $\\dot x(t)=Ax(t)+Bu(t)$ 解得 $x(t)=e^{At}x(0)+\\int^t_0 e^{A(t-\\tau)}Bu(\\tau)d\\tau$ , $x(t)$ 是$u(t)$ 的卷积形式: $x(t)=K(t)*u(t)$, $K(t)=e^{At}B$ $y(t)=Cx(t)$ 离散表示: 迭代的表示: $x_{k+1}=\\bar A x_k...","categories": ["docs","deeplearning"],
+        "excerpt":"在token很多(大模型用的超长文本), 或者本身数据是时间序列(比如语音, 视频流)的情况下, attention里面的weight会带来$O(token^2)$ 的内存消耗. state space model可以解决这个问题. 基本结构 SSM(state space model) 状态空间(state space) : 用state vector记录历史的input, 而不是记录所有的历史token 连续表示: linear state space model的一般形式: $\\dot x(t)=A(t)x(t)+B(t)u(t)$ (用input u更新状态 x) $y(t)=C(t)x(t)+D(t)u(t)$ (用状态x, 生成output y) 如果A,B,C是time invariant, 以及省略D, 得到, $\\dot x(t)=Ax(t)+Bu(t)$ 解得 $x(t)=e^{At}x(0)+\\int^t_0 e^{A(t-\\tau)}Bu(\\tau)d\\tau$ , $x(t)$ 是$u(t)$ 的卷积形式: $x(t)=K(t)*u(t)$, $K(t)=e^{At}B$ $y(t)=Cx(t)$ 离散表示: 迭代的表示:...","categories": ["docs","deeplearning"],
         "tags": ["content","SSM","state space model","state","linear attention","time series","Mamba","attention"],
         "url": "https://roshameow.github.io//personal_homepage/docs/deeplearning/attention2/"
       },{
@@ -284,8 +284,18 @@ var store = [{
         "tags": ["content","camera"],
         "url": "https://roshameow.github.io//personal_homepage/docs/blender/blender-learning9/"
       },{
-        "title": "attention的优化-- 加速",
-        "excerpt":"","categories": ["docs","algorithm"],
-        "tags": ["content"],
+        "title": "attention的优化-- flash attention加速",
+        "excerpt":"flash-attention是一种算子合并(kernel fusion)的优化. 把self-attention分块, 直接在SRAM里计算, 省去了HBM来回搬运中间结果S和P的时间(如下图). self-attention由两层矩阵乘法, softmax, 和其他eltwise计算(mask, dropout)构成. attention分块计算 forward计算: Q,K,V -&gt; O 矩阵分块如上图: 都是在token的维度分块 i iteration循环(黄色部分) 每次i iteration需要load不同位置的 Q, O j iteration循环(浅色部分) 每次j iteration需要load不同位置的 K, V softmax计算: $softmax(x)=\\frac{e^{x}}{\\sum_j e^{x_j}}$ , 其中$\\sum_j$ 是rowsum safe softmax: $softmax(x)=\\frac{e^{x-m}}{\\sum_j e^{x_j-m}}$ 为了避免$\\sum_j e^{x_j}$ 产生特别大的值溢出 softmax分块: 对于relation S的每个分块的patch $P$, 记: 局部最大值 $m_p=\\max_{x\\in P}(x)$, 局部rowsum...","categories": ["docs","algorithm"],
+        "tags": ["content","attention","flash attention","speedup","gpu"],
         "url": "https://roshameow.github.io//personal_homepage/docs/algorithm/attention3/"
+      },{
+        "title": "blender学习: 用粒子系统做毛毡效果",
+        "excerpt":"步骤: 参考这个教学 Paticles添加毛发粒子: Particle type选择hair Emission number=5000 发根的总数量 hair length=0.03 Segments = 5 卷曲? Render -&gt;Path-&gt;Steps=5 对hair做subdivision的次数 Viewport Display-&gt; Strand Step=5 Children 选择simple display amount=100, render amount=100 Roughness Random = 0.08 Size = 0.851 Kink(纽结)选择Curl Amplitude(振幅) = 0.03 Hair shape Diameter Root &gt; Tip shader: 给Particles添加一个Principle Hair BSDF的material roughness= 0.86...","categories": ["docs","blender"],
+        "tags": ["content","粒子系统","hair"],
+        "url": "https://roshameow.github.io//personal_homepage/docs/blender/blender-learning10/"
+      },{
+        "title": "pyside6一些功能的用法",
+        "excerpt":"","categories": ["docs","tool"],
+        "tags": ["content"],
+        "url": "https://roshameow.github.io//personal_homepage/docs/tool/pyside6-tech/"
       }]

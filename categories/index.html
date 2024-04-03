@@ -124,7 +124,7 @@
     
       <li>
         <a href="#docs">
-          <strong>docs</strong> <span class="taxonomy-count">58</span>
+          <strong>docs</strong> <span class="taxonomy-count">60</span>
         </a>
       </li>
     
@@ -134,7 +134,7 @@
     
       <li>
         <a href="#blender">
-          <strong>blender</strong> <span class="taxonomy-count">9</span>
+          <strong>blender</strong> <span class="taxonomy-count">10</span>
         </a>
       </li>
     
@@ -213,6 +213,12 @@
       <li>
         <a href="#simulation">
           <strong>simulation</strong> <span class="taxonomy-count">2</span>
+        </a>
+      </li>
+    
+      <li>
+        <a href="#tool">
+          <strong>tool</strong> <span class="taxonomy-count">2</span>
         </a>
       </li>
     
@@ -322,12 +328,6 @@
         </a>
       </li>
     
-      <li>
-        <a href="#tool">
-          <strong>tool</strong> <span class="taxonomy-count">1</span>
-        </a>
-      </li>
-    
   
 </ul>
 
@@ -346,7 +346,7 @@
   <header class="entry-header">
     <h3 class="entry-title p-name">
       
-        <a href="/personal_homepage/docs/algorithm/attention3/" rel="bookmark">attention的优化– 加速
+        <a href="/personal_homepage/docs/tool/pyside6-tech/" rel="bookmark">pyside6一些功能的用法
 </a>
       
     </h3>
@@ -365,6 +365,72 @@
       
 
 <span class="read-time">~1 min read</span>
+
+      <time class="entry-date dt-published" datetime="2024-04-01T00:00:00+00:00">April 1, 2024
+  </time>
+    </footer>
+  
+</article>
+
+            
+              
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
+        <a href="/personal_homepage/docs/blender/blender-learning10/" rel="bookmark">blender学习: 用粒子系统做毛毡效果
+</a>
+      
+    </h3>
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <h3 id="步骤">步骤:</h3>
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">~1 min read</span>
+
+      <time class="entry-date dt-published" datetime="2024-03-25T00:00:00+00:00">March 25, 2024
+  </time>
+    </footer>
+  
+</article>
+
+            
+              
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
+        <a href="/personal_homepage/docs/algorithm/attention3/" rel="bookmark">attention的优化– flash attention加速
+</a>
+      
+    </h3>
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <p>flash-attention是一种算子合并(kernel fusion)的优化. 把self-attention分块, 直接在SRAM里计算, 省去了HBM来回搬运中间结果S和P的时间(如下图).  self-attention由两层矩阵乘法, softmax, 和其他eltwise计算(mask, dropout)构成.</p>
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">1 min read</span>
 
       <time class="entry-date dt-published" datetime="2024-03-20T00:00:00+00:00">March 20, 2024
   </time>
@@ -455,7 +521,7 @@
   
     <div class="entry-excerpt p-summary">
       
-        <p>在token很多(大模型用的超长文本), 或者本身数据是时间序列(比如语音, 视频流)的情况下, attention里面的weight会带来$O(token^2)$ 的内存消耗</p>
+        <p>在token很多(大模型用的超长文本), 或者本身数据是时间序列(比如语音, 视频流)的情况下, attention里面的weight会带来$O(token^2)$ 的内存消耗. state space model可以解决这个问题.</p>
 
       
     </div>
@@ -2411,6 +2477,39 @@ including Tex/LaTex/MathML based mathematics in HTML webpages.</p>
   <header class="entry-header">
     <h3 class="entry-title p-name">
       
+        <a href="/personal_homepage/docs/blender/blender-learning10/" rel="bookmark">blender学习: 用粒子系统做毛毡效果
+</a>
+      
+    </h3>
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <h3 id="步骤">步骤:</h3>
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">~1 min read</span>
+
+      <time class="entry-date dt-published" datetime="2024-03-25T00:00:00+00:00">March 25, 2024
+  </time>
+    </footer>
+  
+</article>
+
+            
+              
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
         <a href="/personal_homepage/docs/blender/blender-learning9/" rel="bookmark">blender学习: 镜头推移
 </a>
       
@@ -4032,7 +4131,7 @@ including Tex/LaTex/MathML based mathematics in HTML webpages.</p>
   
     <div class="entry-excerpt p-summary">
       
-        <p>在token很多(大模型用的超长文本), 或者本身数据是时间序列(比如语音, 视频流)的情况下, attention里面的weight会带来$O(token^2)$ 的内存消耗</p>
+        <p>在token很多(大模型用的超长文本), 或者本身数据是时间序列(比如语音, 视频流)的情况下, attention里面的weight会带来$O(token^2)$ 的内存消耗. state space model可以解决这个问题.</p>
 
       
     </div>
@@ -4214,7 +4313,7 @@ including Tex/LaTex/MathML based mathematics in HTML webpages.</p>
   <header class="entry-header">
     <h3 class="entry-title p-name">
       
-        <a href="/personal_homepage/docs/algorithm/attention3/" rel="bookmark">attention的优化– 加速
+        <a href="/personal_homepage/docs/algorithm/attention3/" rel="bookmark">attention的优化– flash attention加速
 </a>
       
     </h3>
@@ -4223,7 +4322,7 @@ including Tex/LaTex/MathML based mathematics in HTML webpages.</p>
   
     <div class="entry-excerpt p-summary">
       
-        
+        <p>flash-attention是一种算子合并(kernel fusion)的优化. 把self-attention分块, 直接在SRAM里计算, 省去了HBM来回搬运中间结果S和P的时间(如下图).  self-attention由两层矩阵乘法, softmax, 和其他eltwise计算(mask, dropout)构成.</p>
 
       
     </div>
@@ -4232,7 +4331,7 @@ including Tex/LaTex/MathML based mathematics in HTML webpages.</p>
     <footer class="entry-meta">
       
 
-<span class="read-time">~1 min read</span>
+<span class="read-time">1 min read</span>
 
       <time class="entry-date dt-published" datetime="2024-03-20T00:00:00+00:00">March 20, 2024
   </time>
@@ -4598,6 +4697,140 @@ including Tex/LaTex/MathML based mathematics in HTML webpages.</p>
       
         
       
+        
+      
+      <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
+    </section>
+  
+    <section id="tool" class="taxonomy-section">
+      <h2 class="taxonomy-title">tool</h2>
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+          <div class="entries-list">
+            
+              
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
+        <a href="/personal_homepage/docs/tool/pyside6-tech/" rel="bookmark">pyside6一些功能的用法
+</a>
+      
+    </h3>
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">~1 min read</span>
+
+      <time class="entry-date dt-published" datetime="2024-04-01T00:00:00+00:00">April 1, 2024
+  </time>
+    </footer>
+  
+</article>
+
+            
+              
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
+        <a href="/personal_homepage/docs/tool/stable-diffusion5/" rel="bookmark">stable-diffusion的用法: 常用插件
+</a>
+      
+    </h3>
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <p>ComfyUI使用时用到的插件</p>
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">~1 min read</span>
+
+      <time class="entry-date dt-published" datetime="2024-02-27T00:00:00+00:00">February 27, 2024
+  </time>
+    </footer>
+  
+</article>
+
+            
+          </div>
         
       
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
@@ -6323,107 +6556,6 @@ including Tex/LaTex/MathML based mathematics in HTML webpages.</p>
       
         
       
-        
-      
-      <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
-    </section>
-  
-    <section id="tool" class="taxonomy-section">
-      <h2 class="taxonomy-title">tool</h2>
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-          <div class="entries-list">
-            
-              
-
-<article class="entry h-entry">
-  <header class="entry-header">
-    <h3 class="entry-title p-name">
-      
-        <a href="/personal_homepage/docs/tool/stable-diffusion5/" rel="bookmark">stable-diffusion的用法: 常用插件
-</a>
-      
-    </h3>
-    
-  </header>
-  
-    <div class="entry-excerpt p-summary">
-      
-        <p>ComfyUI使用时用到的插件</p>
-
-      
-    </div>
-  
-  
-    <footer class="entry-meta">
-      
-
-<span class="read-time">~1 min read</span>
-
-      <time class="entry-date dt-published" datetime="2024-02-27T00:00:00+00:00">February 27, 2024
-  </time>
-    </footer>
-  
-</article>
-
-            
-          </div>
         
       
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
