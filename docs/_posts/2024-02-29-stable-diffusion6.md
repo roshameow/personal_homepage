@@ -11,14 +11,16 @@ tags:
   - controlnet
   - ipadapter
   - gligen
-last_modified_at: 2024-03-06T19:18:33-08:00
+last_modified_at: 2024-03-27T12:30:05-08:00
 ---
 ## stable-diffusion结构和controlnet插件
 
 ![Pasted image 20240306124200.png]({{ '/docs/attachment/Pasted image 20240306124200.png' | relative_url }}){:width="500"} 
 
 - controlnet保持和stable-diffusion u-net上半部分相同的结构
-- controlnet输入是和原图一样的hint图像, 比如controlnet-openpose输入的不是关节坐标数据, 而是彩色的人体坐标图
+- controlnet输入是和原图一样的hint图像
+	- 比如controlnet-openpose输入的不是关节坐标数据, 而是彩色的人体坐标图
+	- 这也是像controlnet-tile, controlnet-inpaint等从任务角度明明不需要hint image还是要输入一个的原因
 
 ## Resnetblock, SpatialTransfomer 结构和插件
 
@@ -31,6 +33,17 @@ last_modified_at: 2024-03-06T19:18:33-08:00
 - 这几种模型的作用的粒度不一样, 从小到大是: lora(线性层) < Gligen=IpAdapter(SpatialTransformer层) < Controlnet(U-net的block)
 	- 模型的size也是依次变大
 
+## 各种embedding编码方式
+
+| 类型                 | 输入                       | 编码                                                                                                                                                                         | 公式                                                                                                                                                        |
+| ------------------ | ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|                    | 图像                       | 可训练的hint block网络(controlnet)<br>或clip vision(ipadapter)                                                                                                                    |                                                                                                                                                           |
+|                    | 文字                       | clip                                                                                                                                                                       |                                                                                                                                                           |
+| 一维特征 $\mathbb R$   | time                     | [Sinusoidal Embedding](https://github.com/comfyanonymous/ComfyUI/blob/55f37baae85a5f3ef6d87743445fcce1f0477ba9/comfy/ldm/modules/diffusionmodules/model.py#L32)  <br>三角编码  | $[\sin\frac{t}{10000^{2n/d}},\cdots,\cos\frac{t}{10000^{2n/d}},\cdots]\in \mathbb R^d$<br>temperature 10000<br>token t<br>embedding dim d, $n\in [0,d/2]$ |
+| 多维特征 $\mathbb R^k$ | boundingbox<br>keypoints | [Fourier Embedding](https://github.com/gligen/GLIGEN/blob/f9dccb9c6cf48bad03c3666290a7dec8c5e58f3c/ldm/modules/diffusionmodules/util.py#L12) (gligen)<br>就是在三角编码在k维度上做tile |                                                                                                                                                           |
+
+- 在gligen里面, 用text encoder编码的关键词embedding和对应的用Fourier Embedding编码的bounding box concat之后再用MLP融合成grounding token
+- stable diffusion里面编码方式大部分都是不参与网络训练的
 
 ## reference 
 <span id="ref"></span>

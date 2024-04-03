@@ -7,7 +7,8 @@ tags:
   - content
   - render
   - shader
-last_modified_at: 2024-03-07T09:50:30-08:00
+  - 粒子系统
+last_modified_at: 2024-03-25T17:49:30-08:00
 ---
 火焰的形状用圆形变形一半获得. 用[Perlin noise](https://en.wikipedia.org/wiki/Perlin_noise)使坐标变形制作随机抖动. 用Emission node渲染发光效果. 
 

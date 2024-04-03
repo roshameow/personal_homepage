@@ -8,7 +8,7 @@ tags:
   - network
   - attention
   - block
-last_modified_at: 2024-02-27T16:20:55-08:00
+last_modified_at: 2024-03-27T15:26:32-08:00
 ---
 在网络中, block是把input信息转换成output信息的过程: 一般, output(position, vector)是input(token, embedding vector)的线性组合, 组合的weight (position, token) 由input和output两方关系确定. 把着重强调这种信息交互的模块叫attention. 
 ## convolution
@@ -50,12 +50,14 @@ convolution在神经网络流行之前就已经在图像任务里广泛使用了
 		- 其实从计算过程可以看出, 不管它们的原义, Q, K交换一下也没差
 		- query和key的embedding channel数应该相同, 为了之后计算他们relation的目的
 		- 和卷积不一样, 放了更大的计算量在交互部分, 相对的, 每个input token对应vector mapping相同, 也就是用"value"部分解决了channel的映射: 这样导致同样的文字信息不论放在前面还是后面, 对应同一种output信息, 区别的只是他们权重可能不同, 或在图像的不同位置
+			- 把position embedding预先和text embedding在成为"value"之前编码在一起可以解决这个问题
+			- 在文本模型里, 其实token的相对位置也很重要, 虽然不会像卷积一样relation完全由相对位置决定. 比如, 相对位置编码就把相对位置加到relation里
 
 ### attention的一些变形和优化
 
 - mulit-head attention: 映射多组QKV, 计算得到的多组output再concat
 	- 在实际实现过程中,  先映射成一个大的QKV, 再把Q, K, V切分是完全等价的
-	- 做mulit-head可以得到多组不同的映射方式, 或减小inner_dimension(T)的大小
+	- 做mulit-head可以得到多组不同的映射方式, 因为两个token之间的关系可能由多种关系构成(比如猫和老鼠既可能是捕食关系, 也可能是同为宠物, 也可能同为动画片的角色)
 - 分层attention: 在做attention之前对数据排序, 切分
 	- 可能有些pixel之间关联不大, 这样的话把它们分到不同的bucket, 分别做attention, 可以减少计算量[2](#ref)
 - 多个attention合成:
