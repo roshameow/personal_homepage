@@ -1,4 +1,90 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="https://roshameow.github.io//personal_homepage/atom.xml" rel="self" type="application/atom+xml" /><link href="https://roshameow.github.io//personal_homepage/" rel="alternate" type="text/html" /><updated>2024-04-03T03:56:59+00:00</updated><id>https://roshameow.github.io//personal_homepage/atom.xml</id><title type="html">Liu, Wen’s Home Page</title><subtitle>Work, Experiments and Ideas.</subtitle><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><entry><title type="html">pyside6一些功能的用法</title><link href="https://roshameow.github.io//personal_homepage/docs/tool/pyside6-tech/" rel="alternate" type="text/html" title="pyside6一些功能的用法" /><published>2024-04-01T00:00:00+00:00</published><updated>2024-04-01T17:33:47+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/tool/pyside6-tech</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/tool/pyside6-tech/"><![CDATA[]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="tool" /><category term="content" /><summary type="html"><![CDATA[]]></summary></entry><entry><title type="html">blender学习: 用粒子系统做毛毡效果</title><link href="https://roshameow.github.io//personal_homepage/docs/blender/blender-learning10/" rel="alternate" type="text/html" title="blender学习: 用粒子系统做毛毡效果" /><published>2024-03-25T00:00:00+00:00</published><updated>2024-03-26T19:01:05+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/blender/blender-learning10</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/blender/blender-learning10/"><![CDATA[<h3 id="步骤">步骤:</h3>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="https://roshameow.github.io//personal_homepage/atom.xml" rel="self" type="application/atom+xml" /><link href="https://roshameow.github.io//personal_homepage/" rel="alternate" type="text/html" /><updated>2024-04-07T04:37:33+00:00</updated><id>https://roshameow.github.io//personal_homepage/atom.xml</id><title type="html">Liu, Wen’s Home Page</title><subtitle>Work, Experiments and Ideas.</subtitle><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><entry><title type="html">EMVA1288 sensor测试</title><link href="https://roshameow.github.io//personal_homepage/docs/sensor/EMVA1288-sensor/" rel="alternate" type="text/html" title="EMVA1288 sensor测试" /><published>2024-04-05T00:00:00+00:00</published><updated>2024-04-06T05:48:12+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/sensor/EMVA1288-sensor</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/sensor/EMVA1288-sensor/"><![CDATA[]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="sensor" /><category term="content" /><summary type="html"><![CDATA[]]></summary></entry><entry><title type="html">pyside6一些功能的用法</title><link href="https://roshameow.github.io//personal_homepage/docs/tool/pyside6-tech/" rel="alternate" type="text/html" title="pyside6一些功能的用法" /><published>2024-04-01T00:00:00+00:00</published><updated>2024-04-07T20:09:32+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/tool/pyside6-tech</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/tool/pyside6-tech/"><![CDATA[<p>pyside是qt的python封装, API的调用方法基本差不多. 用pyside从零开始写一个gui用于标注或测试(调参数或者看中间结果), 每次花费时间都比想象的要少的多. 功能方便而且代码的可读性非常好.</p>
+
+<h2 id="工具">工具</h2>
+
+<ul>
+  <li>designer和vscode
+    <ul>
+      <li>desginer主要用到promote, 加载资源, 配置qss的功能</li>
+    </ul>
+  </li>
+  <li>vscode的PYQT Integration, 配置好uic, rcc路径后, 可以右键编译</li>
+</ul>
+
+<h2 id="事例">事例</h2>
+<h3 id="视频播放">视频播放</h3>
+
+<p>用QTimer和opencv实现</p>
+
+<p><img src="/personal_homepage/docs/attachment/Screen%20Recording%202024-04-07%20at%2009.30.20.mp4" alt="Screen Recording 2024-04-07 at 09.30.20.mp4" width="200" /></p>
+
+<ol>
+  <li>把label提升到自定义可以drop file的LabelImage</li>
+  <li>用timer设置play, pause功能, 进度条拖动功能</li>
+</ol>
+
+<ul>
+  <li>代码: <a href="https://gist.github.com/roshameow/c1c27989df0ac90a89ee9d99b87d6d59#file-main-py"><strong>main.py</strong></a> , <a href="https://gist.github.com/roshameow/c1c27989df0ac90a89ee9d99b87d6d59#file-ui_labelimage-py"><strong>Ui_LabelImage.py</strong></a></li>
+</ul>
+
+<h3 id="动态折线图">动态折线图</h3>
+
+<p>用QtCharts实现</p>
+
+<p><img src="/personal_homepage/docs/attachment/Screen%20Recording%202024-04-07%20at%2009.46.44.mp4" alt="Screen Recording 2024-04-07 at 09.46.44.mp4" width="800" /></p>
+
+<ol>
+  <li>界面画出QWidget并提升到自定义的LineChart, 继承QChartView</li>
+  <li>定义chart和series</li>
+  <li>修改QChartView的样式: 在designer里用qss实现</li>
+  <li>修改QChart的样式:
+    <ul>
+      <li><a href="https://stackoverflow.com/questions/39146502/how-to-remove-margin-from-qchartview-or-qchart">QChart调整和QChartView之间的Margin</a></li>
+      <li><a href="https://stackoverflow.com/questions/51398463/qt-chart-remove-space-for-title-legend">QChart调整axis和边界之间的Margin</a></li>
+      <li><a href="https://doc.qt.io/qt-6/qtcharts-customchart-example.html">QChart设置样式</a></li>
+    </ul>
+  </li>
+  <li>添加series update代码</li>
+</ol>
+
+<ul>
+  <li>代码: <a href="https://gist.github.com/roshameow/d1e0892205fa832aeb930a75130864e7#file-update_frame-py"><strong>update_frame.py</strong></a> , <a href="https://gist.github.com/roshameow/d1e0892205fa832aeb930a75130864e7#file-line_chart-py"><strong>line_chart.py</strong></a></li>
+</ul>
+
+<h3 id="图像标记">图像标记</h3>
+
+<iframe src="//player.bilibili.com/player.html?aid=1452824219&amp;bvid=BV1bq421F7sF&amp;cid=1496585736&amp;p=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
+
+<ol>
+  <li>选择文件: 在QTreeView上设置model为QFileSystemModel</li>
+  <li>互动标记图片
+    <ul>
+      <li>用paintEvent和QPainter实现标记</li>
+    </ul>
+  </li>
+  <li>切换label
+    <ul>
+      <li>用QFile替换svg的颜色</li>
+    </ul>
+  </li>
+  <li>显示位置数据: 在QTableView上设置model为自定义的PandasModel
+    <ul>
+      <li>给tableView设置Delegate更改颜色和行为</li>
+    </ul>
+  </li>
+</ol>
+
+<ul>
+  <li>代码: <a href="https://gist.github.com/roshameow/7d45d536dd4ab8ff6ff618b7911b5890#file-main-py"><strong>main.py</strong></a> , <a href="https://gist.github.com/roshameow/7d45d536dd4ab8ff6ff618b7911b5890#file-mask_model-py">tableView添加互动: <strong>mask_model.py</strong></a> , <a href="https://gist.github.com/roshameow/7d45d536dd4ab8ff6ff618b7911b5890#file-pyside_util-py">更改svg颜色: <strong>pyside_util.py</strong></a> , <a href="https://gist.github.com/roshameow/7d45d536dd4ab8ff6ff618b7911b5890#file-ui_labelimage-py">图片添加互动: <strong>Ui_LabelImage.py</strong></a></li>
+</ul>
+
+<h2 id="资源">资源</h2>
+
+<p>讲的很好的入门视频:</p>
+
+<iframe src="//player.bilibili.com/player.html?aid=610679490&amp;bvid=BV1c84y1N7iL&amp;cid=1098863799&amp;p=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
+
+<p>其他:</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="tool" /><category term="content" /><category term="pyside6" /><category term="gui" /><category term="python" /><summary type="html"><![CDATA[pyside是qt的python封装, API的调用方法基本差不多. 用pyside从零开始写一个gui用于标注或测试(调参数或者看中间结果), 每次花费时间都比想象的要少的多. 功能方便而且代码的可读性非常好.]]></summary></entry><entry><title type="html">blender学习: 用粒子系统做毛毡效果</title><link href="https://roshameow.github.io//personal_homepage/docs/blender/blender-learning10/" rel="alternate" type="text/html" title="blender学习: 用粒子系统做毛毡效果" /><published>2024-03-25T00:00:00+00:00</published><updated>2024-03-26T19:01:05+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/blender/blender-learning10</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/blender/blender-learning10/"><![CDATA[<h3 id="步骤">步骤:</h3>
 
 <p>参考<a href="https://www.xiaohongshu.com/explore/65eb070500000000030320e2/">这个教学</a></p>
 <ul>
@@ -60,7 +146,7 @@
 
 <h3 id="模型">模型</h3>
 
-<p>[1] https://free3d.com/3d-model/pumpkin-57117.html</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="blender" /><category term="content" /><category term="粒子系统" /><category term="hair" /><summary type="html"><![CDATA[步骤:]]></summary></entry><entry><title type="html">attention的优化– flash attention加速</title><link href="https://roshameow.github.io//personal_homepage/docs/algorithm/attention3/" rel="alternate" type="text/html" title="attention的优化– flash attention加速" /><published>2024-03-20T00:00:00+00:00</published><updated>2024-04-03T19:53:57+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/algorithm/attention3</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/algorithm/attention3/"><![CDATA[<p>flash-attention是一种算子合并(kernel fusion)的优化. 把self-attention分块, 直接在SRAM里计算, 省去了HBM来回搬运中间结果S和P的时间(如下图).  self-attention由两层矩阵乘法, softmax, 和其他eltwise计算(mask, dropout)构成.</p>
+<p>[1] https://free3d.com/3d-model/pumpkin-57117.html</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="blender" /><category term="content" /><category term="粒子系统" /><category term="hair" /><summary type="html"><![CDATA[步骤:]]></summary></entry><entry><title type="html">attention的优化– flash attention加速</title><link href="https://roshameow.github.io//personal_homepage/docs/algorithm/attention3/" rel="alternate" type="text/html" title="attention的优化– flash attention加速" /><published>2024-03-20T00:00:00+00:00</published><updated>2024-04-07T17:06:18+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/algorithm/attention3</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/algorithm/attention3/"><![CDATA[<p>flash-attention是一种算子合并(kernel fusion)的优化. 把self-attention分块, 直接在SRAM里计算, 省去了HBM来回搬运中间结果S和P的时间(如下图).  self-attention由两层矩阵乘法, softmax, 和其他eltwise计算(mask, dropout)构成.</p>
 
 <p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240401154241.png" alt="Pasted image 20240401154241.png" width="500" /></p>
 
@@ -167,7 +253,7 @@
       </li>
     </ul>
   </li>
-  <li>优化thread blocks的并行化计算: 把i iteration和j iteration的部分也切分进行并行计算(尤其推理时batch size=1, 并行度不够)
+  <li>优化thread blocks的并行化计算: 把i iteration和j iteration的部分也切分进行并行计算(尤其推理时batch size=1; 或训练token长度特别长, 需要减小batch_size和attention_heads时, 并行度不够)
     <ul>
       <li>forward时i iteration的相关性比较小, 所以切分i iteration更方便
         <ul>
@@ -199,7 +285,9 @@
 
 <p>[3] https://zhuanlan.zhihu.com/p/685020608 概括</p>
 
-<p>[4] https://mp.weixin.qq.com/s/NKShFDrfDGsb0G6PAkUCGw triton的实现</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="algorithm" /><category term="content" /><category term="attention" /><category term="flash attention" /><category term="speedup" /><category term="gpu" /><summary type="html"><![CDATA[flash-attention是一种算子合并(kernel fusion)的优化. 把self-attention分块, 直接在SRAM里计算, 省去了HBM来回搬运中间结果S和P的时间(如下图). self-attention由两层矩阵乘法, softmax, 和其他eltwise计算(mask, dropout)构成.]]></summary></entry><entry><title type="html">blender学习: 镜头推移</title><link href="https://roshameow.github.io//personal_homepage/docs/blender/blender-learning9/" rel="alternate" type="text/html" title="blender学习: 镜头推移" /><published>2024-03-12T00:00:00+00:00</published><updated>2024-03-12T15:32:52+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/blender/blender-learning9</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/blender/blender-learning9/"><![CDATA[<h2 id="前向推镜头">前向推镜头</h2>
+<p>[4] https://mp.weixin.qq.com/s/NKShFDrfDGsb0G6PAkUCGw triton的实现</p>
+
+<p>[5] https://triton-lang.org/main/getting-started/tutorials/06-fused-attention.html  基于triton的flash-attention代码</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="algorithm" /><category term="content" /><category term="attention" /><category term="flash attention" /><category term="speedup" /><category term="gpu" /><summary type="html"><![CDATA[flash-attention是一种算子合并(kernel fusion)的优化. 把self-attention分块, 直接在SRAM里计算, 省去了HBM来回搬运中间结果S和P的时间(如下图). self-attention由两层矩阵乘法, softmax, 和其他eltwise计算(mask, dropout)构成.]]></summary></entry><entry><title type="html">blender学习: 镜头推移</title><link href="https://roshameow.github.io//personal_homepage/docs/blender/blender-learning9/" rel="alternate" type="text/html" title="blender学习: 镜头推移" /><published>2024-03-12T00:00:00+00:00</published><updated>2024-03-12T15:32:52+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/blender/blender-learning9</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/blender/blender-learning9/"><![CDATA[<h2 id="前向推镜头">前向推镜头</h2>
 
 <p>参考<a href="https://www.xiaohongshu.com/explore/65a2ce0a000000001d037212">这个教学视频</a>, 用array modifier复制多个模型 , 得到一种穿梭效果</p>
 
@@ -680,115 +768,4 @@
   </tbody>
 </table>
 
-<p>很多插件提供重复的功能, 或者没有维护, 生态还挺混乱的</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="tool" /><category term="content" /><category term="ComfyUI" /><summary type="html"><![CDATA[ComfyUI使用时用到的插件]]></summary></entry><entry><title type="html">stable-diffusion的用法: 常用的作图功能-提升细节</title><link href="https://roshameow.github.io//personal_homepage/docs/photo/stable-diffusion4/" rel="alternate" type="text/html" title="stable-diffusion的用法: 常用的作图功能-提升细节" /><published>2024-02-24T00:00:00+00:00</published><updated>2024-02-28T20:19:41+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/photo/stable-diffusion4</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/photo/stable-diffusion4/"><![CDATA[<p>和inpaint一样要利用stable-diffusion的图生图功能, 想让图像忠于原图的情况下提升图像细节, 解决图像模糊, 扭曲, 不合理的部分.</p>
-
-<h2 id="使用">使用</h2>
-
-<ul>
-  <li>模型:
-    <ul>
-      <li>一般模型: 对于模糊的图, encode+ksample+decode就可以提升细节</li>
-      <li><a href="https://iceclear.github.io/projects/stablesr/">StableSR</a>: 基于sd2.1, 关于细节修复任务重新训练的模型</li>
-      <li><a href="https://huggingface.co/stabilityai/stable-diffusion-xl-refiner-1.0">sdxl refiner模型</a>: 输入latent image, 官方建议接在sdxl base模型的后面用
-        <ul>
-          <li>sdxl refiner一般只能配和sdxl base模型, 不能配合其他风格的sdxl模型, 所以不是很实用</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li>控制:
-    <ul>
-      <li>更像原图:
-        <ul>
-          <li>风格控制: 和inpaint一样, 可以用text promt和ipadpater控制</li>
-          <li>微调模型控制:
-            <ul>
-              <li><a href="[https://github.com/Mikubill/sd-webui-controlnet/discussions/1142](https://github.com/Mikubill/sd-webui-controlnet/discussions/1142)">controlnet tile</a>(配合v1.5模型): 这是个非常好用的模型👍, 可以在分块(输入的不是一整张图)的时候, 更倾向理解图像部分而不是text prompt</li>
-              <li><a href="https://huggingface.co/lllyasviel/sd_control_collection/discussions/1">关于sdxl模型没有一个tile模型的讨论</a></li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-      <li>提升细节:
-        <ul>
-          <li>从流程上控制:
-            <ul>
-              <li><a href="https://ku-cvlab.github.io/Self-Attention-Guidance">Self-attention Guidance(SAG)</a>
-                <ul>
-                  <li>和cfg(class free guidance)类似, 是更改reverse diffusion process的过程</li>
-                  <li>让图片变清晰原理:  认为self-attention值更大的位置是更重要的位置, 让其离blurry的方向更远, 即更清晰
-                    <ul>
-                      <li>从文章里的例子看, 这种做法达成了一种神奇的自纠正的效果, 可能是因为在reverse diffusion process中重要的地方更快的变清晰, 引导了其他部分的生成</li>
-                    </ul>
-                  </li>
-                </ul>
-              </li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li>方便的节点: stable-diffusion本身的图生图功能input和output等大的, 图像大小和模型不匹配的时候就需要分块处理或放大
-    <ul>
-      <li>分块: 下面两个功能类似
-        <ul>
-          <li><a href="https://github.com/ltdrdata/ComfyUI-Impact-Pack/blob/5f73ac55c02b588bf151c355522e8c402723e134/modules/impact/core.py#L329">ComfyUI Impact Pack 提供的detailer节点</a> : 包含一些方便的功能
-            <ul>
-              <li>可以分块图生图</li>
-              <li>可以设置cycle次数, 即图生图的次数 (如果comfyUI本身提供循环功能就好了)</li>
-            </ul>
-          </li>
-          <li><a href="https://github.com/ssitu/ComfyUI_UltimateSDUpscale">UltimateSDUpscale</a>
-            <ul>
-              <li>支持分块图生图</li>
-              <li>改变tile的一些融合方式</li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-      <li>放大: 放大经常伴随细节损失, 一般是和refine功能接力使用: upscale-&gt;refine-&gt;upscale-&gt;refine-&gt;upscale-&gt;refine…
-        <ul>
-          <li>我看到有人在latent image上放大, 总感觉这么做不对, latent image的一个点大约对应图像8x8的patch, 放大latent后这个比例关系和放大图像是不一样的</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-</ul>
-
-<h2 id="效果">效果</h2>
-
-<ul>
-  <li>使用时要注意:
-    <ul>
-      <li>输入图像的尺寸: 如果输入图像太小也是无法生成正常图片的, 尽量用外部的resize和upscale调整到和模型训练的大小相近</li>
-      <li>图像包含的语义信息的尺寸</li>
-      <li>reverse diffusion process的参数: cfg, denoise, steps等</li>
-    </ul>
-  </li>
-  <li>对一些常见的噪声效果很好, 例如: jpg压缩的高频alias, 摩尔纹
-    <ul>
-      <li>但是对于其他噪声就不认识, 可能被认作图像本身的风格?
-        <ul>
-          <li>例如我用其他prior搭配<a href="https://en.wikipedia.org/wiki/Augmented_Lagrangian_method">admm算法</a>恢复图像的中间结果</li>
-          <li>汉字也会被改变的看不出形状</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li>恢复出的图像风格会受选择的主要模型风格影响, 很难保证细节不变风格还原</li>
-  <li>恢复真实人物的效果很差, 可能是本身我们对人脸细节要求就更严格? 可能需要加载专门控制人脸的微调模型</li>
-</ul>
-
-<h2 id="comfyui-workflow">ComfyUI workflow</h2>
-
-<p>用sdxl的refiner$\downarrow$ : <a href="https://gist.github.com/roshameow/7a46bcdb4d7bdc5b2c0e758e4aa85a9f#file-refine_sdxl_refiner-json"><strong>refine_sdxl_refiner.json</strong></a></p>
-
-<p><img src="/personal_homepage/docs/attachment/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-02-27%20231030.png" alt="屏幕截图 2024-02-27 231030.png" width="800" /></p>
-
-<p>用detailer节点和 <a href="https://github.com/ssitu/ComfyUI_UltimateSDUpscale">UltimateSDUpscale</a> 节点$\downarrow$ : <a href="https://gist.github.com/roshameow/7a46bcdb4d7bdc5b2c0e758e4aa85a9f#file-refine_impact_pack_detailer_sag_ultimatesd-json"><strong>refine_impact_pack_detailer_SAG_UltimateSD.json</strong></a></p>
-<ul>
-  <li>参考<a href="https://comfyworkflows.com/workflows/f9ed8191-b2e1-4417-ac26-2ecc7ff2a484">这个comfyworkflows上分享的workflow</a></li>
-</ul>
-
-<p><img src="/personal_homepage/docs/attachment/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-02-27%20221824.png" alt="屏幕截图 2024-02-27 221824.png" width="800" /></p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="photo" /><category term="content" /><category term="ComfyUI" /><category term="sdxl" /><category term="refine" /><summary type="html"><![CDATA[和inpaint一样要利用stable-diffusion的图生图功能, 想让图像忠于原图的情况下提升图像细节, 解决图像模糊, 扭曲, 不合理的部分.]]></summary></entry></feed>
+<p>很多插件提供重复的功能, 或者没有维护, 生态还挺混乱的</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="tool" /><category term="content" /><category term="ComfyUI" /><summary type="html"><![CDATA[ComfyUI使用时用到的插件]]></summary></entry></feed>

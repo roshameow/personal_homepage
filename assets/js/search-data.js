@@ -295,7 +295,12 @@ var store = [{
         "url": "https://roshameow.github.io//personal_homepage/docs/blender/blender-learning10/"
       },{
         "title": "pyside6一些功能的用法",
-        "excerpt":"","categories": ["docs","tool"],
-        "tags": ["content"],
+        "excerpt":"pyside是qt的python封装, API的调用方法基本差不多. 用pyside从零开始写一个gui用于标注或测试(调参数或者看中间结果), 每次花费时间都比想象的要少的多. 功能方便而且代码的可读性非常好. 工具 designer和vscode desginer主要用到promote, 加载资源, 配置qss的功能 vscode的PYQT Integration, 配置好uic, rcc路径后, 可以右键编译事例 视频播放 用QTimer和opencv实现 把label提升到自定义可以drop file的LabelImage 用timer设置play, pause功能, 进度条拖动功能 代码: main.py , Ui_LabelImage.py动态折线图 用QtCharts实现 界面画出QWidget并提升到自定义的LineChart, 继承QChartView 定义chart和series 修改QChartView的样式: 在designer里用qss实现 修改QChart的样式: QChart调整和QChartView之间的Margin QChart调整axis和边界之间的Margin QChart设置样式 添加series update代码 代码: update_frame.py , line_chart.py图像标记 选择文件: 在QTreeView上设置model为QFileSystemModel 互动标记图片 用paintEvent和QPainter实现标记 切换label 用QFile替换svg的颜色 显示位置数据: 在QTableView上设置model为自定义的PandasModel...","categories": ["docs","tool"],
+        "tags": ["content","pyside6","gui","python"],
         "url": "https://roshameow.github.io//personal_homepage/docs/tool/pyside6-tech/"
+      },{
+        "title": "EMVA1288 sensor测试",
+        "excerpt":"","categories": ["docs","sensor"],
+        "tags": ["content"],
+        "url": "https://roshameow.github.io//personal_homepage/docs/sensor/EMVA1288-sensor/"
       }]
