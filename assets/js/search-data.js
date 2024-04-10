@@ -266,7 +266,7 @@ var store = [{
       },{
         "title": "blender学习: 做卡通描边",
         "excerpt":"用solidify+背面剔除+法线翻转 给mesh增加厚度, 让描边材质只在厚度边缘生效 步骤: 参考这个教学视频   shader:          选择一个主material的效果(Slot 1): 用Diffuse BSDF-&gt;shader to RGB-&gt;Color Ramp-&gt;Emission      添加一个描边材质(Slot 2): 用Emission, 选择我们描边的颜色                  对这个材质开启Backface Culling(背面剔除)                      在Modifier添加solidify: 给mesh表面增加厚度                 调整thickness=-0.02m                  offset默认是-1, 要让thickness和offset同方向(让增加的厚度mesh朝外凸)                    Materials-&gt;Material Offset=1 :让solidify的厚度mesh采用我们的描边材质, 即下一个slot的material      开启Normals-&gt;flip: 让颜色上到厚度mesh的内表面        结果: 对三维的模型描边有种新鲜的观感.                描边的前提是提取边缘. 如果是二维图像有很多做法, 比如自动提取图像的边缘合并. 对于我们自己建的模型当然也有办法提取边缘. 但是如果其他方式得到的模型(比如扫描得到的模型), 我们怎么识别边缘, 然后edit呢?      blender使用技巧   复制material和modifier:          按这个方法 可以复制到全部, 但是没法选择materail的单个slot😠, 只能全部复制过去?      其他描边效果 [1] https://svg-animation-booklet.vercel.app/chapter5.html#实现动画 svg描边动画 ","categories": ["docs","blender"],
-        "tags": ["content","material","stoke","modifier"],
+        "tags": ["content","material","stoke","modifier","solidify"],
         "url": "https://roshameow.github.io//personal_homepage/docs/blender/blender-learning7/"
       },{
         "title": "attention的优化-- 引进时序结构",
@@ -300,7 +300,12 @@ var store = [{
         "url": "https://roshameow.github.io//personal_homepage/docs/tool/pyside6-tech/"
       },{
         "title": "EMVA1288 sensor测试",
-        "excerpt":"","categories": ["docs","sensor"],
+        "excerpt":"             成像模型      input      中间结果      output                  变量下标      p      e      y              含义      光子      电子      读数              测量方式      由积分时间估算光源辐射能量: 由已知的平行光源的辐射照度计算：$A(sensor面积)\\cdot t(曝光时间)\\cdot E(辐射照度)$ \t\t\t- 假设辐射照度是常数单个光子的辐射能$Q=\\frac{h(\\text{普朗克常数})c(\\text{光速})}{\\lambda(\\text{波长})}=\\frac{6.6260755\\cdot 10^{−34} [Js]\\cdot 2.99792458\\cdot 10^{8} [m/s]}{\\lambda [\\mu m]}$                    ","categories": ["docs","sensor"],
         "tags": ["content"],
         "url": "https://roshameow.github.io//personal_homepage/docs/sensor/EMVA1288-sensor/"
+      },{
+        "title": "blender学习: 几何节点做摄像头移动阵列",
+        "excerpt":"参考这个教学 建模 直接复制作者的模型和材质 箭头 摄像头步骤: 制作摄像头阵列: 用Instance on Points节点 添加一个Plane mesh, 在modifier添加几何节点 在Points的地方制作一个meshgrid: 用Grid节点调整Grid大小和距离: 相对plane平面 用Vector Rotate节点 批量调整Plane里面顶点的位置 把摄像头主体和摄像机臂分别设置成为Plane顶点的instance: 用Join Geometry节点连接 设置摄像头主体追踪箭头: 分为 箭头在xz平面平移(看向箭头)和箭头在x轴旋转(跟随箭头点头) 两部分 平移-&gt;关于y轴旋转: 计算Plane里面顶点到箭头的vector: 这里面Position节点给出的是Plane每个顶点的location 用Align Euler to Vector节点 设置成关于y轴旋转 旋转-&gt; 旋转: 提取箭头Rotation的x轴反向旋转, 用Rotate Euler节点添加到Plane的Rotation(plane每个顶点的rotation) 制作箭头绕圈和点头动画: 绕圈: 让箭头围绕一个圈移动 添加一个Circle曲线 给箭头添加Constraint-&gt; Follow Path Target选择刚才的Circle Option+G清除位置: 加了follow path constraint之后,...","categories": ["docs","blender"],
+        "tags": ["content","geometry_node","track","shortcut","script"],
+        "url": "https://roshameow.github.io//personal_homepage/docs/blender/blender-learning11/"
       }]

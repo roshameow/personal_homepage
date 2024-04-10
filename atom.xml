@@ -1,4 +1,147 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="https://roshameow.github.io//personal_homepage/atom.xml" rel="self" type="application/atom+xml" /><link href="https://roshameow.github.io//personal_homepage/" rel="alternate" type="text/html" /><updated>2024-04-07T04:37:33+00:00</updated><id>https://roshameow.github.io//personal_homepage/atom.xml</id><title type="html">Liu, Wen’s Home Page</title><subtitle>Work, Experiments and Ideas.</subtitle><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><entry><title type="html">EMVA1288 sensor测试</title><link href="https://roshameow.github.io//personal_homepage/docs/sensor/EMVA1288-sensor/" rel="alternate" type="text/html" title="EMVA1288 sensor测试" /><published>2024-04-05T00:00:00+00:00</published><updated>2024-04-06T05:48:12+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/sensor/EMVA1288-sensor</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/sensor/EMVA1288-sensor/"><![CDATA[]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="sensor" /><category term="content" /><summary type="html"><![CDATA[]]></summary></entry><entry><title type="html">pyside6一些功能的用法</title><link href="https://roshameow.github.io//personal_homepage/docs/tool/pyside6-tech/" rel="alternate" type="text/html" title="pyside6一些功能的用法" /><published>2024-04-01T00:00:00+00:00</published><updated>2024-04-07T20:09:32+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/tool/pyside6-tech</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/tool/pyside6-tech/"><![CDATA[<p>pyside是qt的python封装, API的调用方法基本差不多. 用pyside从零开始写一个gui用于标注或测试(调参数或者看中间结果), 每次花费时间都比想象的要少的多. 功能方便而且代码的可读性非常好.</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="https://roshameow.github.io//personal_homepage/atom.xml" rel="self" type="application/atom+xml" /><link href="https://roshameow.github.io//personal_homepage/" rel="alternate" type="text/html" /><updated>2024-04-10T06:58:37+00:00</updated><id>https://roshameow.github.io//personal_homepage/atom.xml</id><title type="html">Liu, Wen’s Home Page</title><subtitle>Work, Experiments and Ideas.</subtitle><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><entry><title type="html">blender学习: 几何节点做摄像头移动阵列</title><link href="https://roshameow.github.io//personal_homepage/docs/blender/blender-learning11/" rel="alternate" type="text/html" title="blender学习: 几何节点做摄像头移动阵列" /><published>2024-04-08T00:00:00+00:00</published><updated>2024-04-10T22:56:01+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/blender/blender-learning11</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/blender/blender-learning11/"><![CDATA[<p>参考<a href="https://www.bilibili.com/video/BV1t5411v7b1/">这个教学</a></p>
+
+<h3 id="建模">建模</h3>
+
+<p>直接复制作者的模型和材质</p>
+<ul>
+  <li>箭头</li>
+  <li>摄像头</li>
+</ul>
+
+<h3 id="步骤">步骤:</h3>
+
+<ul>
+  <li>制作摄像头阵列: 用<a href="https://docs.blender.org/manual/en/latest/modeling/geometry_nodes/instances/instance_on_points.html#">Instance on Points节点</a>
+    <ul>
+      <li>添加一个Plane mesh, 在modifier添加几何节点</li>
+      <li>在Points的地方制作一个meshgrid:
+        <ul>
+          <li>用Grid节点调整Grid大小和距离: 相对plane平面</li>
+          <li>用<a href="https://docs.blender.org/manual/en/latest/render/shader_nodes/vector/vector_rotate.html#">Vector Rotate节点</a> 批量调整Plane里面顶点的位置</li>
+        </ul>
+      </li>
+      <li>把摄像头主体和摄像机臂分别设置成为Plane顶点的instance: 用Join Geometry节点连接</li>
+    </ul>
+  </li>
+  <li>设置摄像头主体追踪箭头: 分为 箭头在xz平面平移(看向箭头)和箭头在x轴旋转(跟随箭头点头) 两部分
+    <ul>
+      <li>平移-&gt;关于y轴旋转:
+        <ul>
+          <li>计算Plane里面顶点到箭头的vector: 这里面<a href="https://docs.blender.org/manual/en/latest/modeling/geometry_nodes/geometry/read/position.html">Position节点</a>给出的是Plane每个顶点的location</li>
+          <li>用<a href="https://docs.blender.org/manual/en/latest/modeling/geometry_nodes/utilities/rotation/align_euler_to_vector.html">Align Euler to Vector节点</a> 设置成关于y轴旋转</li>
+        </ul>
+      </li>
+      <li>旋转-&gt; 旋转:
+        <ul>
+          <li>提取箭头Rotation的x轴反向旋转, 用Rotate Euler节点添加到Plane的Rotation(plane每个顶点的rotation)</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>制作箭头绕圈和点头动画:
+    <ol>
+      <li>绕圈: 让箭头围绕一个圈移动
+        <ul>
+          <li>添加一个Circle曲线</li>
+          <li>给箭头添加Constraint-&gt; <a href="https://docs.blender.org/manual/en/4.1/animation/constraints/relationship/follow_path.html">Follow Path</a>
+            <ul>
+              <li>Target选择刚才的Circle</li>
+              <li>Option+G清除位置: 加了follow path constraint之后, position会变成相对path的, 所以要清除position保证箭头在path上</li>
+              <li>在起始和结束打上关键帧
+                <ul>
+                  <li>起始设置offset=0</li>
+                  <li>结束设置offset=100: 按照文档的说法似乎应该是0到1? 但是实际用的是0到100?</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>点头: 打rotation的关键帧
+        <ul>
+          <li>打3个关键帧: 原始位置-&gt; 最低位置 -&gt; 原始位置
+        - 在graph editor调整运动曲线</li>
+        </ul>
+      </li>
+    </ol>
+  </li>
+  <li>结果: 感觉这是个很有用的互动功能
+    <ul>
+      <li><img src="/personal_homepage/docs/attachment/camera_follow.mp4" alt="camera_follow.mp4" width="400" /></li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="geometry-nodes">geometry nodes</h3>
+
+<p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240410145231.png" alt="Pasted image 20240410145231.png" width="800" /></p>
+<h3 id="用到的blender的一些快捷键">用到的blender的一些快捷键</h3>
+
+<ul>
+  <li>Option+G/S/R (<a href="https://docs.blender.org/manual/en/latest/scene_layout/object/editing/clear.html#">清除</a> )
+    <ul>
+      <li>把object位置变成默认的0</li>
+    </ul>
+  </li>
+  <li>G/S (移动/缩放)的多种功能:
+    <ul>
+      <li>可以在Timeline移动缩放关键帧</li>
+      <li>可以在graph editor里面调整运动曲线</li>
+    </ul>
+  </li>
+  <li>I (<a href="https://docs.blender.org/manual/en/latest/animation/keyframes/editing.html#insert-keyframe">打关键帧</a> )
+    <ul>
+      <li>在Layout界面Object Mode 中选中</li>
+    </ul>
+  </li>
+  <li>Ctrl+手势: 缩放graph editor面板</li>
+</ul>
+
+<h3 id="blender-script的用法">blender Script的用法</h3>
+
+<p>看到有人用blender内置的python script编辑器做追踪的效果, 但是这个编辑器实在很难用, 而且没有自动提示的情况下, 要一直关心传参数的格式很麻烦, 远不如几何节点好用.</p>
+<ul>
+  <li>如果用vs code编辑再同步呢? 需要一些联动的功能:
+    <ul>
+      <li>安装blender的代码包以便自动提示</li>
+      <li>blender执行外部代码的功能</li>
+      <li>一个可以自动识别选中blender物体转换为代码的插件.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>网上一个blender和vscode联动的方法: https://blog.csdn.net/qq_43331089/article/details/124490171</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="blender" /><category term="content" /><category term="geometry_node" /><category term="track" /><category term="shortcut" /><category term="script" /><summary type="html"><![CDATA[参考这个教学]]></summary></entry><entry><title type="html">EMVA1288 sensor测试</title><link href="https://roshameow.github.io//personal_homepage/docs/sensor/EMVA1288-sensor/" rel="alternate" type="text/html" title="EMVA1288 sensor测试" /><published>2024-04-05T00:00:00+00:00</published><updated>2024-04-08T07:34:34+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/sensor/EMVA1288-sensor</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/sensor/EMVA1288-sensor/"><![CDATA[<p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020231116154316.png" alt="Pasted image 20231116154316.png" width="600" /></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>成像模型</th>
+      <th>input</th>
+      <th>中间结果</th>
+      <th>output</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>变量下标</td>
+      <td>p</td>
+      <td>e</td>
+      <td>y</td>
+    </tr>
+    <tr>
+      <td>含义</td>
+      <td>光子</td>
+      <td>电子</td>
+      <td>读数</td>
+    </tr>
+    <tr>
+      <td>测量方式</td>
+      <td>由积分时间估算<br />光源辐射能量: 由已知的平行光源的辐射照度计算：$A(sensor面积)\cdot t(曝光时间)\cdot E(辐射照度)$ <br />			- 假设辐射照度是常数<br />单个光子的辐射能$Q=\frac{h(\text{普朗克常数})c(\text{光速})}{\lambda(\text{波长})}=\frac{6.6260755\cdot 10^{−34} [Js]\cdot 2.99792458\cdot 10^{8} [m/s]}{\lambda [\mu m]}$</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="sensor" /><category term="content" /><summary type="html"><![CDATA[]]></summary></entry><entry><title type="html">pyside6一些功能的用法</title><link href="https://roshameow.github.io//personal_homepage/docs/tool/pyside6-tech/" rel="alternate" type="text/html" title="pyside6一些功能的用法" /><published>2024-04-01T00:00:00+00:00</published><updated>2024-04-07T20:09:32+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/tool/pyside6-tech</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/tool/pyside6-tech/"><![CDATA[<p>pyside是qt的python封装, API的调用方法基本差不多. 用pyside从零开始写一个gui用于标注或测试(调参数或者看中间结果), 每次花费时间都比想象的要少的多. 功能方便而且代码的可读性非常好.</p>
 
 <h2 id="工具">工具</h2>
 
@@ -544,7 +687,7 @@
 
 <p>[3] https://www.zhihu.com/question/602564718/answer/3042600470 RWKV的知乎讨论</p>
 
-<p>[4] https://cloud.tencent.com/developer/article/2377967 Mamba block的理解</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="deeplearning" /><category term="content" /><category term="SSM" /><category term="state space model" /><category term="state" /><category term="linear attention" /><category term="time series" /><category term="Mamba" /><category term="attention" /><summary type="html"><![CDATA[在token很多(大模型用的超长文本), 或者本身数据是时间序列(比如语音, 视频流)的情况下, attention里面的weight会带来$O(token^2)$ 的内存消耗. state space model可以解决这个问题.]]></summary></entry><entry><title type="html">blender学习: 做卡通描边</title><link href="https://roshameow.github.io//personal_homepage/docs/blender/blender-learning7/" rel="alternate" type="text/html" title="blender学习: 做卡通描边" /><published>2024-03-06T00:00:00+00:00</published><updated>2024-03-07T20:14:23+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/blender/blender-learning7</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/blender/blender-learning7/"><![CDATA[<h2 id="用solidify背面剔除法线翻转">用solidify+背面剔除+法线翻转</h2>
+<p>[4] https://cloud.tencent.com/developer/article/2377967 Mamba block的理解</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="deeplearning" /><category term="content" /><category term="SSM" /><category term="state space model" /><category term="state" /><category term="linear attention" /><category term="time series" /><category term="Mamba" /><category term="attention" /><summary type="html"><![CDATA[在token很多(大模型用的超长文本), 或者本身数据是时间序列(比如语音, 视频流)的情况下, attention里面的weight会带来$O(token^2)$ 的内存消耗. state space model可以解决这个问题.]]></summary></entry><entry><title type="html">blender学习: 做卡通描边</title><link href="https://roshameow.github.io//personal_homepage/docs/blender/blender-learning7/" rel="alternate" type="text/html" title="blender学习: 做卡通描边" /><published>2024-03-06T00:00:00+00:00</published><updated>2024-04-09T19:52:23+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/blender/blender-learning7</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/blender/blender-learning7/"><![CDATA[<h2 id="用solidify背面剔除法线翻转">用solidify+背面剔除+法线翻转</h2>
 
 <p>给mesh增加厚度, 让描边材质只在厚度边缘生效</p>
 <h3 id="步骤">步骤:</h3>
@@ -594,7 +737,7 @@
 
 <h2 id="其他描边效果">其他描边效果</h2>
 
-<p>[1] https://svg-animation-booklet.vercel.app/chapter5.html#实现动画 svg描边动画</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="blender" /><category term="content" /><category term="material" /><category term="stoke" /><category term="modifier" /><summary type="html"><![CDATA[用solidify+背面剔除+法线翻转]]></summary></entry><entry><title type="html">stable-diffusion的结构和微调模型</title><link href="https://roshameow.github.io//personal_homepage/docs/deeplearning/stable-diffusion6/" rel="alternate" type="text/html" title="stable-diffusion的结构和微调模型" /><published>2024-02-29T00:00:00+00:00</published><updated>2024-03-27T20:30:05+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/deeplearning/stable-diffusion6</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/deeplearning/stable-diffusion6/"><![CDATA[<h2 id="stable-diffusion结构和controlnet插件">stable-diffusion结构和controlnet插件</h2>
+<p>[1] https://svg-animation-booklet.vercel.app/chapter5.html#实现动画 svg描边动画</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="blender" /><category term="content" /><category term="material" /><category term="stoke" /><category term="modifier" /><category term="solidify" /><summary type="html"><![CDATA[用solidify+背面剔除+法线翻转]]></summary></entry><entry><title type="html">stable-diffusion的结构和微调模型</title><link href="https://roshameow.github.io//personal_homepage/docs/deeplearning/stable-diffusion6/" rel="alternate" type="text/html" title="stable-diffusion的结构和微调模型" /><published>2024-02-29T00:00:00+00:00</published><updated>2024-03-27T20:30:05+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/deeplearning/stable-diffusion6</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/deeplearning/stable-diffusion6/"><![CDATA[<h2 id="stable-diffusion结构和controlnet插件">stable-diffusion结构和controlnet插件</h2>
 
 <p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240306124200.png" alt="Pasted image 20240306124200.png" width="500" /></p>
 
@@ -681,91 +824,4 @@
 
 <p>[4] Li, Yuheng, Haotian Liu, Qingyang Wu, Fangzhou Mu, Jianwei Yang, Jianfeng Gao, Chunyuan Li, and Yong Jae Lee. “<strong>GLIGEN</strong>: Open-Set Grounded Text-to-Image Generation.” arXiv, April 16, 2023. <a href="https://doi.org/10.48550/arXiv.2301.07093">https://doi.org/10.48550/arXiv.2301.07093</a>.</p>
 
-<p>代码: 参考comfyui里<code class="language-plaintext highlighter-rouge">comfy.ldm.modules.diffusionmodules.openaimodel.py</code> 的实现, 除了controlnet是加在<code class="language-plaintext highlighter-rouge">condition</code> 流里面, 其他几种都是通过<code class="language-plaintext highlighter-rouge">model.patches</code> 切换网络分支实现的.</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="deeplearning" /><category term="content" /><category term="attention" /><category term="stable-diffusion" /><category term="lora" /><category term="controlnet" /><category term="ipadapter" /><category term="gligen" /><summary type="html"><![CDATA[stable-diffusion结构和controlnet插件]]></summary></entry><entry><title type="html">stable-diffusion的用法: 常用插件</title><link href="https://roshameow.github.io//personal_homepage/docs/tool/stable-diffusion5/" rel="alternate" type="text/html" title="stable-diffusion的用法: 常用插件" /><published>2024-02-27T00:00:00+00:00</published><updated>2024-02-29T17:53:57+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/tool/stable-diffusion5</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/tool/stable-diffusion5/"><![CDATA[<p>ComfyUI使用时用到的插件</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>插件</th>
-      <th>用途</th>
-      <th>类型</th>
-      <th>必须?</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><a href="https://github.com/ltdrdata/ComfyUI-Manager">ComfyUI-Manager</a></td>
-      <td>- 查找和安装插件和模型<br />- 可以识别工作流中的missing node</td>
-      <td>功能</td>
-      <td>✔️</td>
-    </tr>
-    <tr>
-      <td><a href="https://github.com/rgthree/rgthree-comfy">rgthree-comfy</a></td>
-      <td>- 显示一个node执行进度条<br />- 优化节点执行graph<br />- 提供Image Comparer节点<br />- Lora Loader Stack 节点</td>
-      <td>功能</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td><a href="https://github.com/palant/image-resize-comfyui">Resize</a></td>
-      <td>resize图片</td>
-      <td>功能<br /></td>
-      <td>✔️</td>
-    </tr>
-    <tr>
-      <td><a href="https://github.com/giriss/comfy-image-saver">image-saver</a></td>
-      <td>Save Image w/Metadata节点<br />把图片生成的信息写到图片metadata里<br />(webui有类似功能)</td>
-      <td>功能</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td><a href="https://github.com/ltdrdata/ComfyUI-Impact-Pack">Impact-Pack</a></td>
-      <td>很多功能, 但是有些感觉封装的太复杂了</td>
-      <td>功能</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td><a href="https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes">Comfyroll_CustomNodes</a></td>
-      <td>CR开头的一堆节点</td>
-      <td>功能</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td><a href="https://github.com/ssitu/ComfyUI_UltimateSDUpscale">UltimateSDUpscale</a></td>
-      <td>- 分块图生图<br />- 改变tile的一些融合方式</td>
-      <td>功能</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td><a href="https://github.com/shadowcz007/comfyui-mixlab-nodes?tab=readme-ov-file">comfyui-mixlab-nodes</a></td>
-      <td>- clip interrogator 节点: 分析图片信息</td>
-      <td>功能<br /></td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td><a href="https://github.com/twri/sdxl_prompt_styler">promt styler</a></td>
-      <td>- SDXL Prompt Styler: 把一些画风写成prompt</td>
-      <td>功能</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td><a href="https://github.com/kijai/ComfyUI-Marigold">ComfyUI-Marigold</a></td>
-      <td>识别深度图</td>
-      <td>模型</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td><a href="https://github.com/storyicon/comfyui_segment_anything">comfyui_segment_anything</a></td>
-      <td>识别mask</td>
-      <td>模型</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td><a href="https://github.com/Acly/comfyui-inpaint-nodes">inpaint-nodes</a></td>
-      <td>一系列关于inpaint的节点<br />- Fooocus inapint<br />- Inpaint (using Model) : 用于加载Lama等inpaint模型</td>
-      <td>模型</td>
-      <td> </td>
-    </tr>
-  </tbody>
-</table>
-
-<p>很多插件提供重复的功能, 或者没有维护, 生态还挺混乱的</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="tool" /><category term="content" /><category term="ComfyUI" /><summary type="html"><![CDATA[ComfyUI使用时用到的插件]]></summary></entry></feed>
+<p>代码: 参考comfyui里<code class="language-plaintext highlighter-rouge">comfy.ldm.modules.diffusionmodules.openaimodel.py</code> 的实现, 除了controlnet是加在<code class="language-plaintext highlighter-rouge">condition</code> 流里面, 其他几种都是通过<code class="language-plaintext highlighter-rouge">model.patches</code> 切换网络分支实现的.</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="deeplearning" /><category term="content" /><category term="attention" /><category term="stable-diffusion" /><category term="lora" /><category term="controlnet" /><category term="ipadapter" /><category term="gligen" /><summary type="html"><![CDATA[stable-diffusion结构和controlnet插件]]></summary></entry></feed>
