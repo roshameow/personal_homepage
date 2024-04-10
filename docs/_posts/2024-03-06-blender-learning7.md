@@ -8,7 +8,8 @@ tags:
   - material
   - stoke
   - modifier
-last_modified_at: 2024-03-07T12:14:23-08:00
+  - solidify
+last_modified_at: 2024-04-09T11:52:23-08:00
 ---
 ## 用solidify+背面剔除+法线翻转
 
