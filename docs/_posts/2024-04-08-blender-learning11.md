@@ -9,7 +9,7 @@ tags:
   - track
   - shortcut
   - script
-last_modified_at: 2024-04-10T14:56:01-08:00
+last_modified_at: 2024-04-10T15:13:14-08:00
 ---
 
 参考[这个教学](https://www.bilibili.com/video/BV1t5411v7b1/)
@@ -31,9 +31,9 @@ last_modified_at: 2024-04-10T14:56:01-08:00
 - 设置摄像头主体追踪箭头: 分为 箭头在xz平面平移(看向箭头)和箭头在x轴旋转(跟随箭头点头) 两部分
 	- 平移->关于y轴旋转:
 		- 计算Plane里面顶点到箭头的vector: 这里面[Position节点](https://docs.blender.org/manual/en/latest/modeling/geometry_nodes/geometry/read/position.html)给出的是Plane每个顶点的location
-		- 用[Align Euler to Vector节点](https://docs.blender.org/manual/en/latest/modeling/geometry_nodes/utilities/rotation/align_euler_to_vector.html) 设置成关于y轴旋转
+		- 用[Align Euler to Vector节点](https://docs.blender.org/manual/en/latest/modeling/geometry_nodes/utilities/rotation/align_euler_to_vector.html) 设置成关于y轴旋转(因为y轴是摄像机头本来的朝向?)
 	- 旋转-> 旋转:
-		- 提取箭头Rotation的x轴反向旋转, 用Rotate Euler节点添加到Plane的Rotation(plane每个顶点的rotation)
+		- 提取箭头Rotation的x轴反向旋转, 用Rotate Euler节点的local模式添加到Plane的Rotation(plane每个顶点的rotation)
 - 制作箭头绕圈和点头动画: 
 	1. 绕圈: 让箭头围绕一个圈移动
 		- 添加一个Circle曲线
@@ -47,7 +47,7 @@ last_modified_at: 2024-04-10T14:56:01-08:00
 		- 打3个关键帧: 原始位置-> 最低位置 -> 原始位置
 	- 在graph editor调整运动曲线
 
-- 结果: 感觉这是个很有用的互动功能
+- 结果: 感觉这是个很有用的互动功能, 但是这个场景有点意义不明? 是在表达什么?
 	- ![camera_follow.mp4]({{ '/docs/attachment/camera_follow.mp4' | relative_url }}){:width="400"} 
 
 ### geometry nodes

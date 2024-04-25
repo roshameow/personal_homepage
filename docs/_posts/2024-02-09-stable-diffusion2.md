@@ -10,10 +10,10 @@ tags:
   - controlnet
   - canny
   - sdxl
-last_modified_at: 2024-02-24T13:25:27-08:00
+last_modified_at: 2024-04-14T20:09:49-08:00
 ---
 
-尝试只用ipadapter做猫的风格转换, 非常不成功, ipadapter还是无法控制输入的元素. 必须要用多张图片训练的LoRA控制. 
+尝试只用ipadapter做猫的风格转换, 非常不成功, ipadapter还是无法控制输入的元素. 必须要用多张图片训练的LoRA才能固定ip.  
 另外, 猫脸上颜色分布的特征, 没有controlnet可以直接表示. 
 
 ## ComfyUI步骤
@@ -38,28 +38,36 @@ last_modified_at: 2024-02-24T13:25:27-08:00
 
 ## 结果
 
-![Pasted image 20240209124721.png]({{ '/docs/attachment/Pasted image 20240209124721.png' | relative_url }}){:width="150"} -> ![Pasted image 20240209124343.png]({{ '/docs/attachment/Pasted image 20240209124343.png' | relative_url }}){:width="600"} 
-
+![Pasted image 20240209124721.png]({{ '/docs/attachment/Pasted image 20240209124721.png' | relative_url }}){:width="150"} -> ![Pasted image 20240209124343.png]({{ '/docs/attachment/Pasted image 20240209124343.png' | relative_url }}){:width="600"} -> 
+![Pasted image 20240414194413.png]({{ '/docs/attachment/Pasted image 20240414194413.png' | relative_url }}){:width="600"} (ipadapter控制风格)
 - **风格:** 3种方法都可以
 	1. text prompt里输入
 	2. 风格LoRA
 		- 在prompt也要加上对应风格关键词
-	3. 用ipadpter输入风格图片控制
-		- ipadpter的weight需要调整: 不能太低(风格化没用), 也不能太高(和风格图太像)
+	3. 用ipadpter输入风格图片控制: 
+		- ipadapter的weight需要调整: 不能太低(风格化没用), 也不能太高(和风格图太像)
 		- 一直有和风格图太像, 或者风格图提供我们不想要元素的风险...毕竟一张图片的信息不像文字和lora那样有明确的指向性
+			-  ipadapter的更新版本提供了weight_type的控制, 在高语义的层(中间部分)减少weight, 理论上能把输入图片的风格和布局大致拆开. 确实**大大改善**了ipadapter强行改画面布局效果, 但是图片的风格和ip仍然混在一起. 
 		- 我用的不是换脸模型, 但是模型好像特别执着于换脸? 的确模型本来的目的是换ip...
 	4. 另外, 可以直接用一个特定风格的大模型
 - **控制:** 
 	- 用canny或depth模型都能做到控制猫的位置
 		- Marigold的识别特别慢, 尝试的时候计算完深度图要先把那个节点断开
-- **问题:** 
+	- 用VAE encoder把原图输入latent image, 能控制大概色块的分布
+- **问题:** 总的来说效果还是挺差
 	- 有些风格单独可以出图, 但是加了我训练的猫的LoRA就没法出对应风格的图了
+		- 比如钢笔画, 像素画
 	- 用LoRA训练的模型没有完全理解我的猫的所有特征: 尤其是鼻子和嘴附近的毛色
 		- 我用了30多张照片, 也没有改label的caption, 所以可能还有质量增加的空间
+	- 出的图似乎有一种灰黄的色调
+		- 是大模型本身导致的吗?
 	- 用ipadpter的失败经验:
 		- 如果用一张猫的图片和一张风格图
 			- ![Pasted image 20240209133511.png]({{ '/docs/attachment/Pasted image 20240209133511.png' | relative_url }}){:width="100"} 
 			- 无法控制输入元素
+		- 比较成功的样子是这样: 设置了style_transfer的weight_type, 风格图本身没有正脸
+			- ![Pasted image 20240414195850.png]({{ '/docs/attachment/Pasted image 20240414195850.png' | relative_url }}){:width="100"} 
+			- 眼睛变化不大
 
 	
 ## ComfyUI workflow
@@ -71,6 +79,10 @@ last_modified_at: 2024-02-24T13:25:27-08:00
 用ipadator调整风格$\downarrow$ : [**rosha_lora_ipadapter_style_tranformation.json**](https://gist.github.com/roshameow/d952bf0157a25ab3e9e724df1449b160#file-rosha_lora_ipadapter_style_tranformation-json) 
 
 ![Pasted image 20240209135354.png]({{ '/docs/attachment/Pasted image 20240209135354.png' | relative_url }}){:width="800"}
+
+用ipadapter v2调整风格$\downarrow$: [**rosha_lora_depthcontrol_ipadapterv2.json**](https://gist.github.com/roshameow/d952bf0157a25ab3e9e724df1449b160#file-rosha_lora_depthcontrol_ipadapterv2-json)  
+
+![Pasted image 20240414194215.png]({{ '/docs/attachment/Pasted image 20240414194215.png' | relative_url }}){:width="800"}
 
 ## 资源
 
