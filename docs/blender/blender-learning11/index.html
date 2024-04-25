@@ -31,7 +31,7 @@
 <meta property="twitter:title" content="blender学习: 几何节点做摄像头移动阵列" />
 <meta name="twitter:site" content="@" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-04-10T22:56:01+00:00","datePublished":"2024-04-08T00:00:00+00:00","description":"参考这个教学","headline":"blender学习: 几何节点做摄像头移动阵列","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/docs/blender/blender-learning11/"},"url":"https://roshameow.github.io//personal_homepage/docs/blender/blender-learning11/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-04-10T23:13:14+00:00","datePublished":"2024-04-08T00:00:00+00:00","description":"参考这个教学","headline":"blender学习: 几何节点做摄像头移动阵列","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/docs/blender/blender-learning11/"},"url":"https://roshameow.github.io//personal_homepage/docs/blender/blender-learning11/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -176,12 +176,12 @@
       <li>平移-&gt;关于y轴旋转:
         <ul>
           <li>计算Plane里面顶点到箭头的vector: 这里面<a href="https://docs.blender.org/manual/en/latest/modeling/geometry_nodes/geometry/read/position.html">Position节点</a>给出的是Plane每个顶点的location</li>
-          <li>用<a href="https://docs.blender.org/manual/en/latest/modeling/geometry_nodes/utilities/rotation/align_euler_to_vector.html">Align Euler to Vector节点</a> 设置成关于y轴旋转</li>
+          <li>用<a href="https://docs.blender.org/manual/en/latest/modeling/geometry_nodes/utilities/rotation/align_euler_to_vector.html">Align Euler to Vector节点</a> 设置成关于y轴旋转(因为y轴是摄像机头本来的朝向?)</li>
         </ul>
       </li>
       <li>旋转-&gt; 旋转:
         <ul>
-          <li>提取箭头Rotation的x轴反向旋转, 用Rotate Euler节点添加到Plane的Rotation(plane每个顶点的rotation)</li>
+          <li>提取箭头Rotation的x轴反向旋转, 用Rotate Euler节点的local模式添加到Plane的Rotation(plane每个顶点的rotation)</li>
         </ul>
       </li>
     </ul>
@@ -213,7 +213,7 @@
       </li>
     </ol>
   </li>
-  <li>结果: 感觉这是个很有用的互动功能
+  <li>结果: 感觉这是个很有用的互动功能, 但是这个场景有点意义不明? 是在表达什么?
     <ul>
       <li><img src="/personal_homepage/docs/attachment/camera_follow.mp4" alt="camera_follow.mp4" width="400" /></li>
     </ul>
@@ -298,6 +298,14 @@
     </a>
   
 
+  
+    <a class="page-next" href="/personal_homepage/docs/geometry/ring-pattern/">
+      <h4 class="page-pagination-label">Next</h4>
+      <span class="page-pagination-title">
+        画一个环形的重复图样
+ <i class="fas fa-arrow-right"></i>
+      </span>
+    </a>
   
 </nav>
 

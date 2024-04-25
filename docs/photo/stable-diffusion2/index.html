@@ -20,8 +20,8 @@
 <meta name="generator" content="Jekyll v4.3.3" />
 <meta property="og:title" content="stable-diffusion的用法: 用 lora+controlnet做风格转换" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="尝试只用ipadapter做猫的风格转换, 非常不成功, ipadapter还是无法控制输入的元素. 必须要用多张图片训练的LoRA控制. 另外, 猫脸上颜色分布的特征, 没有controlnet可以直接表示." />
-<meta property="og:description" content="尝试只用ipadapter做猫的风格转换, 非常不成功, ipadapter还是无法控制输入的元素. 必须要用多张图片训练的LoRA控制. 另外, 猫脸上颜色分布的特征, 没有controlnet可以直接表示." />
+<meta name="description" content="尝试只用ipadapter做猫的风格转换, 非常不成功, ipadapter还是无法控制输入的元素. 必须要用多张图片训练的LoRA才能固定ip. 另外, 猫脸上颜色分布的特征, 没有controlnet可以直接表示." />
+<meta property="og:description" content="尝试只用ipadapter做猫的风格转换, 非常不成功, ipadapter还是无法控制输入的元素. 必须要用多张图片训练的LoRA才能固定ip. 另外, 猫脸上颜色分布的特征, 没有controlnet可以直接表示." />
 <link rel="canonical" href="https://roshameow.github.io//personal_homepage/docs/photo/stable-diffusion2/" />
 <meta property="og:url" content="https://roshameow.github.io//personal_homepage/docs/photo/stable-diffusion2/" />
 <meta property="og:site_name" content="Liu, Wen’s Home Page" />
@@ -31,7 +31,7 @@
 <meta property="twitter:title" content="stable-diffusion的用法: 用 lora+controlnet做风格转换" />
 <meta name="twitter:site" content="@" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-02-24T21:25:27+00:00","datePublished":"2024-02-09T00:00:00+00:00","description":"尝试只用ipadapter做猫的风格转换, 非常不成功, ipadapter还是无法控制输入的元素. 必须要用多张图片训练的LoRA控制. 另外, 猫脸上颜色分布的特征, 没有controlnet可以直接表示.","headline":"stable-diffusion的用法: 用 lora+controlnet做风格转换","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/docs/photo/stable-diffusion2/"},"url":"https://roshameow.github.io//personal_homepage/docs/photo/stable-diffusion2/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-04-15T04:09:49+00:00","datePublished":"2024-02-09T00:00:00+00:00","description":"尝试只用ipadapter做猫的风格转换, 非常不成功, ipadapter还是无法控制输入的元素. 必须要用多张图片训练的LoRA才能固定ip. 另外, 猫脸上颜色分布的特征, 没有controlnet可以直接表示.","headline":"stable-diffusion的用法: 用 lora+controlnet做风格转换","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/docs/photo/stable-diffusion2/"},"url":"https://roshameow.github.io//personal_homepage/docs/photo/stable-diffusion2/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -146,7 +146,7 @@
 
       <div class="page-content">
         <div class="e-content">
-          <p>尝试只用ipadapter做猫的风格转换, 非常不成功, ipadapter还是无法控制输入的元素. 必须要用多张图片训练的LoRA控制. 
+          <p>尝试只用ipadapter做猫的风格转换, 非常不成功, ipadapter还是无法控制输入的元素. 必须要用多张图片训练的LoRA才能固定ip.<br />
 另外, 猫脸上颜色分布的特征, 没有controlnet可以直接表示.</p>
 
 <h2 id="comfyui步骤">ComfyUI步骤</h2>
@@ -194,8 +194,8 @@
 
 <h2 id="结果">结果</h2>
 
-<p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240209124721.png" alt="Pasted image 20240209124721.png" width="150" /> -&gt; <img src="/personal_homepage/docs/attachment/Pasted%20image%2020240209124343.png" alt="Pasted image 20240209124343.png" width="600" /></p>
-
+<p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240209124721.png" alt="Pasted image 20240209124721.png" width="150" /> -&gt; <img src="/personal_homepage/docs/attachment/Pasted%20image%2020240209124343.png" alt="Pasted image 20240209124343.png" width="600" /> -&gt; 
+<img src="/personal_homepage/docs/attachment/Pasted%20image%2020240414194413.png" alt="Pasted image 20240414194413.png" width="600" /> (ipadapter控制风格)</p>
 <ul>
   <li><strong>风格:</strong> 3种方法都可以
     <ol>
@@ -205,10 +205,14 @@
           <li>在prompt也要加上对应风格关键词</li>
         </ul>
       </li>
-      <li>用ipadpter输入风格图片控制
+      <li>用ipadpter输入风格图片控制:
         <ul>
-          <li>ipadpter的weight需要调整: 不能太低(风格化没用), 也不能太高(和风格图太像)</li>
-          <li>一直有和风格图太像, 或者风格图提供我们不想要元素的风险…毕竟一张图片的信息不像文字和lora那样有明确的指向性</li>
+          <li>ipadapter的weight需要调整: 不能太低(风格化没用), 也不能太高(和风格图太像)</li>
+          <li>一直有和风格图太像, 或者风格图提供我们不想要元素的风险…毕竟一张图片的信息不像文字和lora那样有明确的指向性
+            <ul>
+              <li>ipadapter的更新版本提供了weight_type的控制, 在高语义的层(中间部分)减少weight, 理论上能把输入图片的风格和布局大致拆开. 确实<strong>大大改善</strong>了ipadapter强行改画面布局效果, 但是图片的风格和ip仍然混在一起.</li>
+            </ul>
+          </li>
           <li>我用的不是换脸模型, 但是模型好像特别执着于换脸? 的确模型本来的目的是换ip…</li>
         </ul>
       </li>
@@ -222,14 +226,24 @@
           <li>Marigold的识别特别慢, 尝试的时候计算完深度图要先把那个节点断开</li>
         </ul>
       </li>
+      <li>用VAE encoder把原图输入latent image, 能控制大概色块的分布</li>
     </ul>
   </li>
-  <li><strong>问题:</strong>
+  <li><strong>问题:</strong> 总的来说效果还是挺差
     <ul>
-      <li>有些风格单独可以出图, 但是加了我训练的猫的LoRA就没法出对应风格的图了</li>
+      <li>有些风格单独可以出图, 但是加了我训练的猫的LoRA就没法出对应风格的图了
+        <ul>
+          <li>比如钢笔画, 像素画</li>
+        </ul>
+      </li>
       <li>用LoRA训练的模型没有完全理解我的猫的所有特征: 尤其是鼻子和嘴附近的毛色
         <ul>
           <li>我用了30多张照片, 也没有改label的caption, 所以可能还有质量增加的空间</li>
+        </ul>
+      </li>
+      <li>出的图似乎有一种灰黄的色调
+        <ul>
+          <li>是大模型本身导致的吗?</li>
         </ul>
       </li>
       <li>用ipadpter的失败经验:
@@ -238,6 +252,12 @@
             <ul>
               <li><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240209133511.png" alt="Pasted image 20240209133511.png" width="100" /></li>
               <li>无法控制输入元素</li>
+            </ul>
+          </li>
+          <li>比较成功的样子是这样: 设置了style_transfer的weight_type, 风格图本身没有正脸
+            <ul>
+              <li><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240414195850.png" alt="Pasted image 20240414195850.png" width="100" /></li>
+              <li>眼睛变化不大</li>
             </ul>
           </li>
         </ul>
@@ -255,6 +275,10 @@
 <p>用ipadator调整风格$\downarrow$ : <a href="https://gist.github.com/roshameow/d952bf0157a25ab3e9e724df1449b160#file-rosha_lora_ipadapter_style_tranformation-json"><strong>rosha_lora_ipadapter_style_tranformation.json</strong></a></p>
 
 <p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240209135354.png" alt="Pasted image 20240209135354.png" width="800" /></p>
+
+<p>用ipadapter v2调整风格$\downarrow$: <a href="https://gist.github.com/roshameow/d952bf0157a25ab3e9e724df1449b160#file-rosha_lora_depthcontrol_ipadapterv2-json"><strong>rosha_lora_depthcontrol_ipadapterv2.json</strong></a>  </p>
+
+<p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240414194215.png" alt="Pasted image 20240414194215.png" width="800" /></p>
 
 <h2 id="资源">资源</h2>
 

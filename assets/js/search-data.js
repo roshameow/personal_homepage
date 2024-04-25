@@ -230,7 +230,7 @@ var store = [{
         "url": "https://roshameow.github.io//personal_homepage/docs/blender/blender-learning5/"
       },{
         "title": "stable-diffusion的用法: 用 lora+controlnet做风格转换",
-        "excerpt":"尝试只用ipadapter做猫的风格转换, 非常不成功, ipadapter还是无法控制输入的元素. 必须要用多张图片训练的LoRA控制. 另外, 猫脸上颜色分布的特征, 没有controlnet可以直接表示. ComfyUI步骤 训练Lora 用kohya_ss 的gui训练 network rank设置64 打开Gradient checkpoint, 不然我16G的显存不够用 另外, 我的wsl2需要解决一下找不到cuda toolkit的问题 检查发现是ubuntu的requirement里面指定的torch和bitsandbytes版本不匹配 在虚拟环境里, 升级到最新版2.2后代码又出问题 最后参考windows版本的requirement.txt, 改成torch=2.1.0+cu118解决了 连上Lora节点 ComfyUI里连接顺序是: Checkpoint: model, clip -&gt; Lora 多个Lora顺序连接就行 ip的lora的weigt设为1.22, 风格化lora的weight不用设那么大 写text prompt 写了包括描述内容的, lora配套的, 描述想要风格的positive prompt 连上Controlnet节点 用到了canny模型, depth模型 下载Marigold的深度识别模型节点 结果 -&gt; 风格: 3种方法都可以 text prompt里输入...","categories": ["docs","photo"],
+        "excerpt":"尝试只用ipadapter做猫的风格转换, 非常不成功, ipadapter还是无法控制输入的元素. 必须要用多张图片训练的LoRA才能固定ip.另外, 猫脸上颜色分布的特征, 没有controlnet可以直接表示. ComfyUI步骤 训练Lora 用kohya_ss 的gui训练 network rank设置64 打开Gradient checkpoint, 不然我16G的显存不够用 另外, 我的wsl2需要解决一下找不到cuda toolkit的问题 检查发现是ubuntu的requirement里面指定的torch和bitsandbytes版本不匹配 在虚拟环境里, 升级到最新版2.2后代码又出问题 最后参考windows版本的requirement.txt, 改成torch=2.1.0+cu118解决了 连上Lora节点 ComfyUI里连接顺序是: Checkpoint: model, clip -&gt; Lora 多个Lora顺序连接就行 ip的lora的weigt设为1.22, 风格化lora的weight不用设那么大 写text prompt 写了包括描述内容的, lora配套的, 描述想要风格的positive prompt 连上Controlnet节点 用到了canny模型, depth模型 下载Marigold的深度识别模型节点 结果 -&gt; -&gt; (ipadapter控制风格) 风格: 3种方法都可以 text...","categories": ["docs","photo"],
         "tags": ["content","ComfyUI","ipadapter","controlnet","canny","sdxl"],
         "url": "https://roshameow.github.io//personal_homepage/docs/photo/stable-diffusion2/"
       },{
@@ -300,12 +300,32 @@ var store = [{
         "url": "https://roshameow.github.io//personal_homepage/docs/tool/pyside6-tech/"
       },{
         "title": "EMVA1288 sensor测试",
-        "excerpt":"             成像模型      input      中间结果      output                  变量下标      p      e      y              含义      光子      电子      读数              测量方式      由积分时间估算光源辐射能量: 由已知的平行光源的辐射照度计算：$A(sensor面积)\\cdot t(曝光时间)\\cdot E(辐射照度)$ \t\t\t- 假设辐射照度是常数单个光子的辐射能$Q=\\frac{h(\\text{普朗克常数})c(\\text{光速})}{\\lambda(\\text{波长})}=\\frac{6.6260755\\cdot 10^{−34} [Js]\\cdot 2.99792458\\cdot 10^{8} [m/s]}{\\lambda [\\mu m]}$                    ","categories": ["docs","sensor"],
+        "excerpt":"参数: QE $K, \\eta$ 成像模型 input 中间结果 output 参数 参数 变量下标 p e y qe或$\\eta$ $K$ 含义 光子 电子 读数 QE(Quantum Efficiency) System Gain 测量方式 由积分时间+ sensor面积 得出公式: $\\mu_p=\\frac{\\text{辐射能}}{\\text{单个光子的辐射能}}=\\frac{A(sensor面积)\\cdot t(曝光时间)\\cdot E(辐射照度)}{h(\\text{普朗克常数})c(\\text{光速})/\\lambda(\\text{波长})}$   直接测量$y(t)$     分布 Poisson分布         公式关系   $\\mu_e=\\sigma_e^2$ $K\\mu_e=\\mu_y-\\mu_{y.dark}$       统计变量 $\\mu_p,...","categories": ["docs","sensor"],
         "tags": ["content"],
         "url": "https://roshameow.github.io//personal_homepage/docs/sensor/EMVA1288-sensor/"
       },{
         "title": "blender学习: 几何节点做摄像头移动阵列",
-        "excerpt":"参考这个教学 建模 直接复制作者的模型和材质 箭头 摄像头步骤: 制作摄像头阵列: 用Instance on Points节点 添加一个Plane mesh, 在modifier添加几何节点 在Points的地方制作一个meshgrid: 用Grid节点调整Grid大小和距离: 相对plane平面 用Vector Rotate节点 批量调整Plane里面顶点的位置 把摄像头主体和摄像机臂分别设置成为Plane顶点的instance: 用Join Geometry节点连接 设置摄像头主体追踪箭头: 分为 箭头在xz平面平移(看向箭头)和箭头在x轴旋转(跟随箭头点头) 两部分 平移-&gt;关于y轴旋转: 计算Plane里面顶点到箭头的vector: 这里面Position节点给出的是Plane每个顶点的location 用Align Euler to Vector节点 设置成关于y轴旋转 旋转-&gt; 旋转: 提取箭头Rotation的x轴反向旋转, 用Rotate Euler节点添加到Plane的Rotation(plane每个顶点的rotation) 制作箭头绕圈和点头动画: 绕圈: 让箭头围绕一个圈移动 添加一个Circle曲线 给箭头添加Constraint-&gt; Follow Path Target选择刚才的Circle Option+G清除位置: 加了follow path constraint之后,...","categories": ["docs","blender"],
+        "excerpt":"参考这个教学 建模 直接复制作者的模型和材质 箭头 摄像头步骤: 制作摄像头阵列: 用Instance on Points节点 添加一个Plane mesh, 在modifier添加几何节点 在Points的地方制作一个meshgrid: 用Grid节点调整Grid大小和距离: 相对plane平面 用Vector Rotate节点 批量调整Plane里面顶点的位置 把摄像头主体和摄像机臂分别设置成为Plane顶点的instance: 用Join Geometry节点连接 设置摄像头主体追踪箭头: 分为 箭头在xz平面平移(看向箭头)和箭头在x轴旋转(跟随箭头点头) 两部分 平移-&gt;关于y轴旋转: 计算Plane里面顶点到箭头的vector: 这里面Position节点给出的是Plane每个顶点的location 用Align Euler to Vector节点 设置成关于y轴旋转(因为y轴是摄像机头本来的朝向?) 旋转-&gt; 旋转: 提取箭头Rotation的x轴反向旋转, 用Rotate Euler节点的local模式添加到Plane的Rotation(plane每个顶点的rotation) 制作箭头绕圈和点头动画: 绕圈: 让箭头围绕一个圈移动 添加一个Circle曲线 给箭头添加Constraint-&gt; Follow Path Target选择刚才的Circle Option+G清除位置: 加了follow path constraint之后,...","categories": ["docs","blender"],
         "tags": ["content","geometry_node","track","shortcut","script"],
         "url": "https://roshameow.github.io//personal_homepage/docs/blender/blender-learning11/"
+      },{
+        "title": "画一个环形的重复图样",
+        "excerpt":"   公司需要画一个这样的图像, 本来想法是先画一个方形渐变, 复制需要的份数, 极坐标变换.  想全部在photoshop里面完成的, 但是发现不知道怎么复制  转向了python的pil画渐变和复制  用photoshop的极坐标变换和python opencv都可以完成          opencv是图到图的变换        又想到直接画出2d的坐标meshgrid再应用变换好像更容易?代码: ring.py 其他链接 [1] https://zhuanlan.zhihu.com/p/518229060 ps插件 ","categories": ["docs","geometry"],
+        "tags": ["content","python","photoshop","opencv"],
+        "url": "https://roshameow.github.io//personal_homepage/docs/geometry/ring-pattern/"
+      },{
+        "title": "小面积光流传感器算法测试 (一)",
+        "excerpt":"大概分为: preprocess -&gt; instant flow compute -&gt; filter correct 三个步骤 计算连续两帧的光流 算法 改进 公式 效果 存储占用 LKLucas-Kanade   对图像$I$ 的每个像素, 有 $\\frac{\\partial I}{\\partial x}dx+\\frac{\\partial I}{\\partial y}dy=\\frac{dI}{dt}$ 即, $\\begin{bmatrix}dx \\\\ dy\\end{bmatrix}=\\begin{bmatrix}\\frac{\\partial I}{\\partial x}\\frac{\\partial I}{\\partial x} &amp; \\frac{\\partial I}{\\partial x}\\frac{\\partial I}{\\partial y} \\\\ \\frac{\\partial I}{\\partial x}\\frac{\\partial I}{\\partial y} &amp; \\frac{\\partial I}{\\partial y}\\frac{\\partial...","categories": ["docs","algorithm"],
+        "tags": ["content"],
+        "url": "https://roshameow.github.io//personal_homepage/docs/algorithm/optical-flow-train/"
+      },{
+        "title": "stable-diffusion中k-sampling的不同版本",
+        "excerpt":"","categories": ["docs","algorithm"],
+        "tags": ["content"],
+        "url": "https://roshameow.github.io//personal_homepage/docs/algorithm/stable-diffusion7/"
+      },{
+        "title": "小面积光流传感器算法测试 (二)",
+        "excerpt":"正样本: 和patch距离&lt;0.5的patch负样本: 和patch有部分相同pattern  torch grid sample torch grid 的采样方式有align_corners=True和align_cornes=False两种     转换关系          pixel -&gt; grid(align_corner=True): x=x/(n-1)*2-1      grid(align_corner=True) -&gt; pixel: x=      ","categories": ["docs","algorithm"],
+        "tags": ["content"],
+        "url": "https://roshameow.github.io//personal_homepage/docs/algorithm/optical_flow_train2/"
       }]

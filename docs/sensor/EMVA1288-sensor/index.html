@@ -31,7 +31,7 @@
 <meta property="twitter:title" content="EMVA1288 sensor测试" />
 <meta name="twitter:site" content="@" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-04-08T07:34:34+00:00","datePublished":"2024-04-05T00:00:00+00:00","description":"Work, Experiments and Ideas.","headline":"EMVA1288 sensor测试","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/docs/sensor/EMVA1288-sensor/"},"url":"https://roshameow.github.io//personal_homepage/docs/sensor/EMVA1288-sensor/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-04-11T17:20:55+00:00","datePublished":"2024-04-05T00:00:00+00:00","description":"Work, Experiments and Ideas.","headline":"EMVA1288 sensor测试","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/docs/sensor/EMVA1288-sensor/"},"url":"https://roshameow.github.io//personal_homepage/docs/sensor/EMVA1288-sensor/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -148,6 +148,8 @@
         <div class="e-content">
           <p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020231116154316.png" alt="Pasted image 20231116154316.png" width="600" /></p>
 
+<p>参数: QE $K, \eta$</p>
+
 <table>
   <thead>
     <tr>
@@ -155,6 +157,8 @@
       <th>input</th>
       <th>中间结果</th>
       <th>output</th>
+      <th>参数</th>
+      <th>参数</th>
     </tr>
   </thead>
   <tbody>
@@ -163,22 +167,128 @@
       <td>p</td>
       <td>e</td>
       <td>y</td>
+      <td>qe或<br />$\eta$</td>
+      <td>$K$</td>
     </tr>
     <tr>
       <td>含义</td>
       <td>光子</td>
       <td>电子</td>
       <td>读数</td>
+      <td>QE(Quantum Efficiency)</td>
+      <td>System Gain</td>
     </tr>
     <tr>
       <td>测量方式</td>
-      <td>由积分时间估算<br />光源辐射能量: 由已知的平行光源的辐射照度计算：$A(sensor面积)\cdot t(曝光时间)\cdot E(辐射照度)$ <br />			- 假设辐射照度是常数<br />单个光子的辐射能$Q=\frac{h(\text{普朗克常数})c(\text{光速})}{\lambda(\text{波长})}=\frac{6.6260755\cdot 10^{−34} [Js]\cdot 2.99792458\cdot 10^{8} [m/s]}{\lambda [\mu m]}$</td>
+      <td>由积分时间+ sensor面积 得出<br />公式: <br /><br />$\mu_p=\frac{\text{辐射能}}{\text{单个光子的辐射能}}=\frac{A(sensor面积)\cdot t(曝光时间)\cdot E(辐射照度)}{h(\text{普朗克常数})c(\text{光速})/\lambda(\text{波长})}$</td>
+      <td> </td>
+      <td>直接测量$y(t)$</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>分布</td>
+      <td>Poisson分布<br /></td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>公式关系</td>
+      <td> </td>
+      <td>$\mu_e=\sigma_e^2$ <br />$K\mu_e=\mu_y-\mu_{y.dark}$</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>统计变量</td>
+      <td>$\mu_p, \sigma_p$</td>
+      <td> </td>
+      <td>dark noise: $\mu_{y.dark},\sigma_{y.dark}$<br />$\mu_y, \sigma_y$<br />spatial $s_y$</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
       <td> </td>
       <td> </td>
     </tr>
   </tbody>
 </table>
 
+<p>测试:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>测试项名称</th>
+      <th>测试</th>
+      <th>理论值</th>
+      <th>含义</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>PTC(Photon Transfer)曲线</td>
+      <td>$(\mu_y-\mu_{y.dark},\sigma_y^2)$</td>
+      <td>$\sigma_y^2=K(\mu_y-\mu_{y.dark})+\sigma_{y.dark}^2$<br />是一条直线</td>
+      <td>斜率 = System gain $K$</td>
+    </tr>
+    <tr>
+      <td>SNR曲线</td>
+      <td>($\mu_p$, SNR$=\frac{\mu_y-\mu_{y.dark}}{\sigma_y}$ )</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Sensitive Curve</td>
+      <td>$(\mu_p,\mu_y-\mu_{y.dark})$</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Linearity Curve</td>
+      <td>?</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Linear error</td>
+      <td>linearity curve上data值和拟合值的距离</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Deviation Linearity Curve</td>
+      <td>$(\mu_p,LE(\text{Linearity Error}))$<br />Linearity Error是<br /></td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Stablity Check</td>
+      <td>两项<br /> $(\mu_y-\mu_{y.dark},\sigma_y)$<br /> $(\mu_y-\mu_{y.dark},\mu[0]-\mu[1])$</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>darkcurrent</td>
+      <td>两项<br />$(t,\mu_{y.dark})$ <br />$(t,\sigma_{y.dark})$</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Temporal dark noise</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
 
         </div>
 
