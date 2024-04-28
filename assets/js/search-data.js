@@ -316,7 +316,7 @@ var store = [{
       },{
         "title": "小面积光流传感器算法测试 (一)",
         "excerpt":"大概分为: preprocess -&gt; instant flow compute -&gt; filter correct 三个步骤 计算连续两帧的光流 算法 改进 公式 效果 存储占用 LKLucas-Kanade   对图像$I$ 的每个像素, 有 $\\frac{\\partial I}{\\partial x}dx+\\frac{\\partial I}{\\partial y}dy=\\frac{dI}{dt}$ 即, $\\begin{bmatrix}dx \\\\ dy\\end{bmatrix}=\\begin{bmatrix}\\frac{\\partial I}{\\partial x}\\frac{\\partial I}{\\partial x} &amp; \\frac{\\partial I}{\\partial x}\\frac{\\partial I}{\\partial y} \\\\ \\frac{\\partial I}{\\partial x}\\frac{\\partial I}{\\partial y} &amp; \\frac{\\partial I}{\\partial y}\\frac{\\partial...","categories": ["docs","algorithm"],
-        "tags": ["content"],
+        "tags": ["content","optical_flow","opencv","test"],
         "url": "https://roshameow.github.io//personal_homepage/docs/algorithm/optical-flow-train/"
       },{
         "title": "stable-diffusion中k-sampling的不同版本",
@@ -324,8 +324,13 @@ var store = [{
         "tags": ["content"],
         "url": "https://roshameow.github.io//personal_homepage/docs/algorithm/stable-diffusion7/"
       },{
-        "title": "小面积光流传感器算法测试 (二)",
-        "excerpt":"正样本: 和patch距离&lt;0.5的patch负样本: 和patch有部分相同pattern  torch grid sample torch grid 的采样方式有align_corners=True和align_cornes=False两种     转换关系          pixel -&gt; grid(align_corner=True): x=x/(n-1)*2-1      grid(align_corner=True) -&gt; pixel: x=      ","categories": ["docs","algorithm"],
-        "tags": ["content"],
+        "title": "小面积光流传感器算法测试 (二) -- 特征训练",
+        "excerpt":"数据 ① ② : ③ :   采样方式 具体说明 特点 ① 仿真图像+仿真采样Sample 在16x16的图像上随机crop得到8x8的patch, 再随机用grid_sample提取8x8的patch比对正样本: 和patch距离&lt;0.5的patch 从采样方法来说, 当前像素只和周围3x3邻域像素相关 ② 真实图像+仿真采样SampleFromFrame 用实际sensor提供的图片   ③ 真实图像+真实采样SampleFromVideo 筛选实际sensor提供的图片前后帧,用其他算法确定光流已知的图片对,在图片的其他区域采样 这是图像配准特征训练中的一般做法 代码: local_binary.py 结果: 对于究竟学到了哪方面特征, 我很疑惑 出乎我意料的, 是① &gt; ② &gt; ③ 可能是我加噪声的方式和真实情况有差距? 可能是我数据采样中的光流不可靠? 可能是产生了我不清楚的过拟合? adaboost的方法比神经网络训练效果好(或者差不多?) “最好”的训练结果也没比不训练的结果(sad-mean(diff)的版本)好. 可能通过匹配patch计算光流的准确度本来已经达到饱和, 再训练patch的描述也没法提升? 用真实数据的loss比仿真数据要大 说明真实数据更难 torch grid sample torch grid...","categories": ["docs","algorithm"],
+        "tags": ["content","optical_flow","deeplearning","adaboost","contrastive_learning","grid_sample"],
         "url": "https://roshameow.github.io//personal_homepage/docs/algorithm/optical_flow_train2/"
+      },{
+        "title": "小红书学到的几种图片调色 (二)",
+        "excerpt":"人物美白   cameraRaw滤镜梦幻发光      调整画面  给亮部做高斯模糊  和blender里面的bloom(辉光) 功能原理一样教程","categories": ["docs","photo"],
+        "tags": ["content","photoshop"],
+        "url": "https://roshameow.github.io//personal_homepage/docs/photo/photo-color1/"
       }]
