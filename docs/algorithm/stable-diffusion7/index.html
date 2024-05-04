@@ -20,8 +20,8 @@
 <meta name="generator" content="Jekyll v4.3.3" />
 <meta property="og:title" content="stable-diffusion中k-sampling的不同版本" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="Work, Experiments and Ideas." />
-<meta property="og:description" content="Work, Experiments and Ideas." />
+<meta name="description" content="把DPM表示成SDE(stochastic differential equation): $dx=f(x,t)dt+g(t)dw$ score function" />
+<meta property="og:description" content="把DPM表示成SDE(stochastic differential equation): $dx=f(x,t)dt+g(t)dw$ score function" />
 <link rel="canonical" href="https://roshameow.github.io//personal_homepage/docs/algorithm/stable-diffusion7/" />
 <meta property="og:url" content="https://roshameow.github.io//personal_homepage/docs/algorithm/stable-diffusion7/" />
 <meta property="og:site_name" content="Liu, Wen’s Home Page" />
@@ -31,7 +31,7 @@
 <meta property="twitter:title" content="stable-diffusion中k-sampling的不同版本" />
 <meta name="twitter:site" content="@" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-04-16T23:56:49+00:00","datePublished":"2024-04-16T00:00:00+00:00","description":"Work, Experiments and Ideas.","headline":"stable-diffusion中k-sampling的不同版本","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/docs/algorithm/stable-diffusion7/"},"url":"https://roshameow.github.io//personal_homepage/docs/algorithm/stable-diffusion7/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-04-29T23:35:24+00:00","datePublished":"2024-04-16T00:00:00+00:00","description":"把DPM表示成SDE(stochastic differential equation): $dx=f(x,t)dt+g(t)dw$ score function","headline":"stable-diffusion中k-sampling的不同版本","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/docs/algorithm/stable-diffusion7/"},"url":"https://roshameow.github.io//personal_homepage/docs/algorithm/stable-diffusion7/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -138,7 +138,7 @@
 </h2>
 <!-- 1. toc
 {:toc} -->
-
+<ul class="inline_toc" id="my_toc"><li><a href="#reference">reference</a></li></ul>
 </div>
 <!-- {::options parse_block_html="false" /} -->
 
@@ -146,7 +146,49 @@
 
       <div class="page-content">
         <div class="e-content">
-          
+          <p>把DPM表示成SDE(stochastic differential equation): $dx=f(x,t)dt+g(t)dw$ 
+score function</p>
+
+<p>Ancestral: 带 a的ksampler, 添加noise</p>
+
+<table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th>步骤</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Euler</td>
+      <td>noise injection:<br />- increased noise $\hat \sigma$  : $\hat \sigma\leftarrow \sigma_i + \gamma\sigma_i$ <br />-  sample x with increased noise: $\hat x \leftarrow x_i + \sqrt{\hat \sigma^2-\sigma_i^2}\cdot\epsilon$ <br />Take Euler Step: <br />- $dt=\sigma_{i+1}-\hat \sigma$<br />- $denoised=model(\hat x,\hat \sigma)$ <br />- numerical derivative: $d=(x-denoised)/{\hat \sigma}$ <br />- Euler step: $x_{i+1}=\hat x+dt \cdot d$</td>
+    </tr>
+    <tr>
+      <td>Euler Ancestral</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>DDPM</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>DDIM</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>DPM-Solver</td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Euler:</p>
+
+<h2 id="reference">reference</h2>
+
+<p>[1 ] Karras, Tero, Miika Aittala, Timo Aila, and Samuli Laine. “Elucidating the Design Space of Diffusion-Based Generative Models.” arXiv, October 11, 2022. <a href="https://doi.org/10.48550/arXiv.2206.00364">https://doi.org/10.48550/arXiv.2206.00364</a>.</p>
+
+<p>[2] Lu, Cheng, Yuhao Zhou, Fan Bao, Jianfei Chen, Chongxuan Li, and Jun Zhu. “DPM-Solver: A Fast ODE Solver for Diffusion Probabilistic Model Sampling in Around 10 Steps.” arXiv, October 13, 2022. <a href="https://doi.org/10.48550/arXiv.2206.00927">https://doi.org/10.48550/arXiv.2206.00927</a>.</p>
 
         </div>
 

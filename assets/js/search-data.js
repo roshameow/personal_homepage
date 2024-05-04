@@ -320,17 +320,22 @@ var store = [{
         "url": "https://roshameow.github.io//personal_homepage/docs/algorithm/optical-flow-train/"
       },{
         "title": "stable-diffusion中k-sampling的不同版本",
-        "excerpt":"","categories": ["docs","algorithm"],
+        "excerpt":"把DPM表示成SDE(stochastic differential equation): $dx=f(x,t)dt+g(t)dw$ score function Ancestral: 带 a的ksampler, 添加noise   步骤 Euler noise injection:- increased noise $\\hat \\sigma$ : $\\hat \\sigma\\leftarrow \\sigma_i + \\gamma\\sigma_i$ - sample x with increased noise: $\\hat x \\leftarrow x_i + \\sqrt{\\hat \\sigma^2-\\sigma_i^2}\\cdot\\epsilon$ Take Euler Step: - $dt=\\sigma_{i+1}-\\hat \\sigma$- $denoised=model(\\hat x,\\hat \\sigma)$ - numerical derivative:...","categories": ["docs","algorithm"],
         "tags": ["content"],
         "url": "https://roshameow.github.io//personal_homepage/docs/algorithm/stable-diffusion7/"
       },{
         "title": "小面积光流传感器算法测试 (二) -- 特征训练",
-        "excerpt":"数据 ① ② : ③ :   采样方式 具体说明 特点 ① 仿真图像+仿真采样Sample 在16x16的图像上随机crop得到8x8的patch, 再随机用grid_sample提取8x8的patch比对正样本: 和patch距离&lt;0.5的patch 从采样方法来说, 当前像素只和周围3x3邻域像素相关 ② 真实图像+仿真采样SampleFromFrame 用实际sensor提供的图片   ③ 真实图像+真实采样SampleFromVideo 筛选实际sensor提供的图片前后帧,用其他算法确定光流已知的图片对,在图片的其他区域采样 这是图像配准特征训练中的一般做法 代码: local_binary.py 结果: 对于究竟学到了哪方面特征, 我很疑惑 出乎我意料的, 是① &gt; ② &gt; ③ 可能是我加噪声的方式和真实情况有差距? 可能是我数据采样中的光流不可靠? 可能是产生了我不清楚的过拟合? adaboost的方法比神经网络训练效果好(或者差不多?) “最好”的训练结果也没比不训练的结果(sad-mean(diff)的版本)好. 可能通过匹配patch计算光流的准确度本来已经达到饱和, 再训练patch的描述也没法提升? 用真实数据的loss比仿真数据要大 说明真实数据更难 torch grid sample torch grid...","categories": ["docs","algorithm"],
+        "excerpt":"数据 ① ② : ③ :   采样方式 具体说明 特点 ① 仿真图像+仿真采样Sample 在16x16的图像上随机crop得到8x8的patch, 再随机用grid_sample提取8x8的patch比对正样本: 和patch距离&lt;0.5的patch 从采样方法来说, 当前像素只和周围3x3邻域像素相关 ② 真实图像+仿真采样SampleFromFrame 用实际sensor提供的图片   ③ 真实图像+真实采样SampleFromVideo 筛选实际sensor提供的图片前后帧,用其他算法确定光流已知的图片对,在图片的其他区域采样 这是图像配准特征训练中的一般做法 代码: local_binary.py 结果: 对于究竟学到了哪方面特征, 我很疑惑 出乎我意料的, 是① &gt; ② &gt; ③ 可能是我加噪声的方式和真实情况有差距? 可能是我数据采样中的光流不可靠? 可能是产生了我不清楚的过拟合? adaboost的方法比神经网络训练效果好(或者差不多?) “最好”的训练结果也没比不训练的结果(sad-mean(diff)的版本)好. 可能通过匹配patch计算光流的准确度本来已经达到饱和, 再训练patch的描述也没法提升? 用真实数据的loss比仿真数据要大 说明真实数据更难 用真实图像插值时, 结果变得超差, 改成crop好了一些 torch grid...","categories": ["docs","algorithm"],
         "tags": ["content","optical_flow","deeplearning","adaboost","contrastive_learning","grid_sample"],
         "url": "https://roshameow.github.io//personal_homepage/docs/algorithm/optical_flow_train2/"
       },{
         "title": "小红书学到的几种图片调色 (二)",
-        "excerpt":"人物美白   cameraRaw滤镜梦幻发光      调整画面  给亮部做高斯模糊  和blender里面的bloom(辉光) 功能原理一样教程","categories": ["docs","photo"],
-        "tags": ["content","photoshop"],
+        "excerpt":"人物美白   cameraRaw滤镜          基本:                                            色温, + 色调                                                          曝光, + 对比度, -高光                                          混色器:                  色相: + 红色, -橙色, –蓝色          明亮度: -红色                    校准:                  绿原色: +色相          蓝原色: +饱和度                    教程 梦幻发光      调整画面颜色: 可选颜色, 在 CMYK 颜色 调整          黄色: + 青色,黄色,黑色  -洋红      绿色: + 青色,黄色  -洋红,黑色        给高光部分做高斯模糊  混合模式改为变亮  和blender里面的bloom(辉光) 功能原理一样教程photoshop快捷键   command+alt+shift+E(盖印)          把效果和图层合并生成一个新图层        command+alt+2(提取高光)          command+J 可以把高光变成一个新图层      ","categories": ["docs","photo"],
+        "tags": ["content","photoshop","shortcut"],
         "url": "https://roshameow.github.io//personal_homepage/docs/photo/photo-color1/"
+      },{
+        "title": "小面积光流传感器算法测试 (三) -- 滤波",
+        "excerpt":"在高速场景下, 每次中断收集的数据是光流的累加值, 其实本来就相当于一个滤波…况且在硬件有限的条件下, 复杂的滤波没有什么实用价值. 实验 方法   ConfidenceFilter 输出光流时同时输出一个置信度, 如果置信度较低, 选择历史值而不是测量值 FIR 在临近window上的一个线性filter Kalman 在gain值稳定后, kalman滤波其实相当于一个IIR filter 对于整像素的光流结果, 相当于Kalman的MeasureNoise有一部分量化噪声, 应该加大MeasureNoiseCov参数的设置, 不过实验中看不出区别 Kalman在反应速度和平滑度上都要好于FIR的Kalman滤波原理 SSM(state space model) 状态空间(state space) : 用state vector记录历史的input, 而不是记录所有的历史token 连续表示: linear state space model的一般形式: $\\dot x(t)=A(t)x(t)+B(t)u(t)$ (用input u更新状态 x) $y(t)=C(t)x(t)+D(t)u(t)$ (用状态x, 生成output y) 滤波步骤 变量 input predict correct...","categories": ["docs","algorithm"],
+        "tags": ["content","kalman","optical_flow","filter","norm"],
+        "url": "https://roshameow.github.io//personal_homepage/docs/algorithm/optical_flow_train3/"
       }]

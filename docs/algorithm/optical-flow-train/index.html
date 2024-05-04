@@ -31,7 +31,7 @@
 <meta property="twitter:title" content="小面积光流传感器算法测试 (一)" />
 <meta name="twitter:site" content="@" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-04-25T23:52:54+00:00","datePublished":"2024-04-11T00:00:00+00:00","description":"大概分为: preprocess -&gt; instant flow compute -&gt; filter correct 三个步骤","headline":"小面积光流传感器算法测试 (一)","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/docs/algorithm/optical-flow-train/"},"url":"https://roshameow.github.io//personal_homepage/docs/algorithm/optical-flow-train/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-04-29T18:40:10+00:00","datePublished":"2024-04-11T00:00:00+00:00","description":"大概分为: preprocess -&gt; instant flow compute -&gt; filter correct 三个步骤","headline":"小面积光流传感器算法测试 (一)","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/docs/algorithm/optical-flow-train/"},"url":"https://roshameow.github.io//personal_homepage/docs/algorithm/optical-flow-train/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -212,7 +212,7 @@
     </tr>
     <tr>
       <td> </td>
-      <td>SAD_SUBPIXEL<br />用多项式拟合sad平面</td>
+      <td>SAD_SUBPIXEL<br />用多项式拟合sad平面<br />(opencv Farneback<br />也是用多项式拟合, <br />不过拟合的是原图像)</td>
       <td>$P(x+\Delta x)\approx P(x)+P^\prime(x)\Delta x+\frac{P^{\prime\prime}(x)}{2}\Delta x^2$ <br />即, $\Delta x=-\frac{P^\prime(x)}{P^{\prime\prime}(x)}$ <br />其中 $P^\prime(x)\approx \frac{dist(x+1,y)-dist(x-1,y)}{2}$ , $P^{\prime\prime}$ 类似<br />-  dx, dy分开计算<br />- 直接用多项式代入也是等价的</td>
       <td>没用<br />可能是因为subpixel的部分不符合多项式</td>
       <td> </td>

@@ -1,18 +1,312 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="https://roshameow.github.io//personal_homepage/atom.xml" rel="self" type="application/atom+xml" /><link href="https://roshameow.github.io//personal_homepage/" rel="alternate" type="text/html" /><updated>2024-04-28T06:50:52+00:00</updated><id>https://roshameow.github.io//personal_homepage/atom.xml</id><title type="html">Liu, Wen’s Home Page</title><subtitle>Work, Experiments and Ideas.</subtitle><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><entry><title type="html">小红书学到的几种图片调色 (二)</title><link href="https://roshameow.github.io//personal_homepage/docs/photo/photo-color1/" rel="alternate" type="text/html" title="小红书学到的几种图片调色 (二)" /><published>2024-04-27T00:00:00+00:00</published><updated>2024-04-28T22:47:24+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/photo/photo-color1</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/photo/photo-color1/"><![CDATA[<h2 id="人物美白">人物美白</h2>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="https://roshameow.github.io//personal_homepage/atom.xml" rel="self" type="application/atom+xml" /><link href="https://roshameow.github.io//personal_homepage/" rel="alternate" type="text/html" /><updated>2024-05-04T23:19:04+00:00</updated><id>https://roshameow.github.io//personal_homepage/atom.xml</id><title type="html">Liu, Wen’s Home Page</title><subtitle>Work, Experiments and Ideas.</subtitle><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><entry><title type="html">小面积光流传感器算法测试 (三) – 滤波</title><link href="https://roshameow.github.io//personal_homepage/docs/algorithm/optical_flow_train3/" rel="alternate" type="text/html" title="小面积光流传感器算法测试 (三) – 滤波" /><published>2024-04-28T00:00:00+00:00</published><updated>2024-05-05T15:17:18+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/algorithm/optical_flow_train3</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/algorithm/optical_flow_train3/"><![CDATA[<p>在高速场景下, 每次中断收集的数据是光流的累加值, 其实本来就相当于一个滤波…况且在硬件有限的条件下, 复杂的滤波没有什么实用价值.</p>
+
+<h2 id="实验">实验</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>方法</th>
+      <th> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>ConfidenceFilter</td>
+      <td>输出光流时同时输出一个置信度, 如果置信度较低, 选择历史值而不是测量值</td>
+    </tr>
+    <tr>
+      <td>FIR</td>
+      <td>在临近window上的一个线性filter</td>
+    </tr>
+    <tr>
+      <td>Kalman</td>
+      <td>在gain值稳定后, kalman滤波其实相当于一个<a href="https://en.wikipedia.org/wiki/Infinite_impulse_response">IIR filter</a></td>
+    </tr>
+  </tbody>
+</table>
 
 <ul>
-  <li>cameraRaw滤镜</li>
+  <li>对于整像素的光流结果, 相当于Kalman的MeasureNoise有一部分量化噪声, 应该加大MeasureNoiseCov参数的设置, 不过实验中看不出区别</li>
+  <li>Kalman在反应速度和平滑度上都要好于FIR的</li>
 </ul>
+
+<h2 id="kalman滤波原理"><a href="https://en.wikipedia.org/wiki/Kalman_filter#:~:text=The%20Kalman%20filter%20produces%20an,uncertainty%20are%20%22trusted%22%20more.">Kalman滤波</a>原理</h2>
+
+<h3 id="ssmstate-space-model">SSM(state space model)</h3>
+
+<ul>
+  <li><a href="https://en.wikipedia.org/wiki/State-space_representation">状态空间(state space)</a> : 用state vector记录历史的input, 而不是记录所有的历史token
+    <ul>
+      <li><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240317183044.png" alt="Pasted image 20240317183044.png" width="200" /></li>
+    </ul>
+  </li>
+  <li>连续表示:
+    <ul>
+      <li>linear state space model的一般形式:
+        <ul>
+          <li>$\dot x(t)=A(t)x(t)+B(t)u(t)$ (用input u更新状态 x)</li>
+          <li>$y(t)=C(t)x(t)+D(t)u(t)$  (用状态x, 生成output y)</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="滤波步骤">滤波步骤</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>变量</th>
+      <th>input</th>
+      <th>predict</th>
+      <th>correct</th>
+      <th>output</th>
+      <th>使用</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>state</td>
+      <td> </td>
+      <td>$\hat x_n$</td>
+      <td>$x_n$</td>
+      <td> </td>
+      <td>[x,y,dx,dy]</td>
+    </tr>
+    <tr>
+      <td>measure</td>
+      <td>$u_n$</td>
+      <td>$\hat y_n$</td>
+      <td> </td>
+      <td>$y_n$</td>
+      <td>[x, y]</td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <thead>
+    <tr>
+      <th>参数</th>
+      <th> </th>
+      <th>使用</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>transition matrix P</td>
+      <td>state -&gt; predict state</td>
+      <td>\begin{bmatrix}1&amp;0&amp;1&amp;0\\0&amp;1&amp;0&amp;1\\0&amp;0&amp;1&amp;0\\0&amp;0&amp;0&amp;1\end{bmatrix}</td>
+    </tr>
+    <tr>
+      <td>measure matrix $C$</td>
+      <td>state -&gt; measure</td>
+      <td>\begin{bmatrix}1&amp;0&amp;0&amp;0\\0&amp;1&amp;0&amp;0\end{bmatrix}</td>
+    </tr>
+    <tr>
+      <td>gain $g_n$</td>
+      <td>measure error -&gt; state error</td>
+      <td>根据仿真模型和运动模型更新</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>参考<a href="https://github.com/opencv/opencv/blob/4.x/modules/video/src/kalman.cpp">opencv里面的写法</a></p>
+<ul>
+  <li><strong>predict</strong>:
+    <ul>
+      <li>$\hat x_n=P(x_{n-1})$ 是state 在当前时间的predict</li>
+    </ul>
+  </li>
+  <li><strong>correct</strong>:
+    <ul>
+      <li>$x_{n}-\hat x_{n}=g_n\cdot(u_n-\hat y_{n})=g_n\cdot(u_n-C\hat x_n)$
+        <ul>
+          <li>state的error和measure的error(measure-predict) 是线性关系
+            <ul>
+              <li><strong>如果measure从predict偏移越少, state越保持predict的结果</strong></li>
+            </ul>
+          </li>
+          <li>写成<strong>SSM</strong>的形式: $x_n=\hat x_{n}+g_n\cdot(u_n-C\hat x_n)=(I-g_n\cdot C)\hat x_n +g_n\cdot u_n=(I-g_n\cdot C)P x_{n-1} +g_n\cdot u_n$</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="通过运动模型更新gain---g_n">通过运动模型更新gain   $g_n$</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>变量</th>
+      <th>仿真</th>
+      <th>predict</th>
+      <th>correct</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>state</td>
+      <td>$x_n^r$</td>
+      <td>$\hat x_n^r$</td>
+      <td>$\tilde x_n$</td>
+    </tr>
+    <tr>
+      <td>error</td>
+      <td> </td>
+      <td>$\hat \epsilon_n=x_n^r-\hat x_n^r$</td>
+      <td>$\epsilon_n=x_n^r-\tilde x_n$</td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li>仿真模型:
+    <ul>
+      <li>$x_n^r$ 是<strong>仿真的state</strong></li>
+      <li>$x_{n}^r=P(x_{n-1}^r)+ProcessNoise$(状态转移噪声)</li>
+      <li>$u_n^r=C(x_n^r)+MeasureNoise$    测量值仿真结果
+        <ul>
+          <li>假设ProcessNoise和MeasureNoise都是高斯分布的<a href="https://en.wikipedia.org/wiki/Random_variable">Random Variable</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>计算模型:
+    <ul>
+      <li>predict:
+        <ul>
+          <li>$\hat x_n^r=P(\tilde x_{n-1})$  是predict值</li>
+          <li>PredictError:
+            <ul>
+              <li>$\hat \epsilon_n=x_n^r-\hat x_n^r=P(x_{n-1}^r)+ProcessNoise-P(\tilde x_{n-1})=P\epsilon_{n-1}+ProcessNoise$ ①</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>correct:
+        <ul>
+          <li>$\tilde x_{n}=\hat x_{n}^r+g_n\cdot(u_n^r-C\hat x_n^r)=\hat x_{n}^r+g_n\cdot(C\cdot \hat\epsilon_n+MeasureNoise)$    是<strong>correct之后的state</strong></li>
+          <li>CorrectError:
+            <ul>
+              <li>$\epsilon_n= x_n^r-\tilde x_n =\hat \epsilon_{n}-g_n\cdot( C\cdot \hat \epsilon_{n}+MeasureNoise)$ ②</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>Gain: argmin(CorrectError) 
+        <ul>
+          <li>
+\[\begin{align}g_n=\text{argmin} ||x_{n}^r-\tilde x_{n}||&amp;=\text{argmin} ||\hat \epsilon_n-g_n\cdot(C\cdot\hat \epsilon_n + MeasureNoise)||\\&amp;=(\hat \epsilon_n)(C\hat \epsilon_n+MeasureNoise)^T((C\hat \epsilon_n+MeasureNoise)(C\hat \epsilon_n+MeasureNoise)^T)^{-1} &amp; (\text{因为 }\text{argmin}||xA-b||=(bA^T)(AA^T)^{-1})\\&amp;=(\hat \epsilon_n^{cov}C^T)(C\hat \epsilon_n^{cov} C^T+MeasureNoise^{cov})^{-1}&amp;(\text{展开, }mean(MeasureNoise)=0)\end{align}\]
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>特点:
+    <ul>
+      <li>gain  $g_n$ 和实际采集的数据$u_n$ 无关, 是由仿真过程和计算过程确定的</li>
+      <li>① , ② 为$\hat \epsilon_n$ 的更新过程</li>
+      <li>在gain的计算中, 每次更新$\hat \epsilon_n^{cov}, \epsilon_n^{cov}$ 就可以了</li>
+      <li>gain 在一段时间后会收敛到一个固定的值</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="推导least-square">推导(Least Square)</h3>
+
+<p>定义 L2 norm: 
+	\(||A|| = ∑_{ij} A_{ij}^2  = trace(A^TA)\)</p>
+
+<ul>
+  <li>
+    <p>Normal Least Square: 
+  \(\min_x ||Ax-b|| = \min_x (Ax-b)^T(Ax-b)= \min_x (x^T(A^TA)x - 2x^T(A^Tb))\)</p>
+  </li>
+  <li>其中:
+    <ul>
+      <li>$\partial_x x^T(G)x = 2Gx   \ (\partial_{x_k} \sum G_{ij} x_i\cdot x_j = \sum G_{ik} x_i+\sum G_{kj} x_j\text{ related part are one for k-th row and one for k-th col)}$</li>
+      <li>$\partial_x x^T(A^T b) = A^T b$</li>
+    </ul>
+  </li>
+  <li>得到: $(A^TA)^{-1}(A^Tb)$</li>
+</ul>
+
+<p>变形:</p>
+
+\[\text{argmin}_x ||xA-b||=\text{argmin}_{x^T} ||A^Tx^T-b^T||=((AA^T)^{-1}(Ab^T))^T=(bA^T)((AA^T)^{-1})^T=(bA^T)(AA^T)^{-1}\]
+
+<h2 id="代码">代码</h2>
+
+<p><a href="https://gist.github.com/roshameow/bee4e4ebe065cc3159094590bd873eb1#file-confidence_filter-py"><strong>confidence_filter.py</strong></a> <a href="https://gist.github.com/roshameow/bee4e4ebe065cc3159094590bd873eb1#file-fir-py"><strong>fir.py</strong></a> <a href="https://gist.github.com/roshameow/bee4e4ebe065cc3159094590bd873eb1#file-kalman-py"><strong>kalman.py</strong></a></p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="algorithm" /><category term="content" /><category term="kalman" /><category term="optical_flow" /><category term="filter" /><category term="norm" /><summary type="html"><![CDATA[在高速场景下, 每次中断收集的数据是光流的累加值, 其实本来就相当于一个滤波…况且在硬件有限的条件下, 复杂的滤波没有什么实用价值.]]></summary></entry><entry><title type="html">小红书学到的几种图片调色 (二)</title><link href="https://roshameow.github.io//personal_homepage/docs/photo/photo-color1/" rel="alternate" type="text/html" title="小红书学到的几种图片调色 (二)" /><published>2024-04-27T00:00:00+00:00</published><updated>2024-04-30T05:12:03+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/photo/photo-color1</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/photo/photo-color1/"><![CDATA[<h2 id="人物美白">人物美白</h2>
+
+<ul>
+  <li>cameraRaw滤镜
+    <ul>
+      <li>基本:
+        <ul>
+          <li>
+            <ul>
+              <li>色温, + 色调</li>
+            </ul>
+          </li>
+          <li>
+            <ul>
+              <li>曝光, + 对比度, -高光</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>混色器:
+        <ul>
+          <li>色相: + 红色, -橙色, –蓝色</li>
+          <li>明亮度: -红色</li>
+        </ul>
+      </li>
+      <li>校准:
+        <ul>
+          <li>绿原色: +色相</li>
+          <li>蓝原色: +饱和度</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p><a href="https://www.xiaohongshu.com/explore/661ab1fb000000000401bfe2">教程</a></p>
 
 <h2 id="梦幻发光">梦幻发光</h2>
 
 <p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240428143139.png" alt="Pasted image 20240428143139.png" width="200" /> <img src="/personal_homepage/docs/attachment/Pasted%20image%2020240428143157.png" alt="Pasted image 20240428143157.png" width="200" /> <img src="/personal_homepage/docs/attachment/Pasted%20image%2020240428143227.png" alt="Pasted image 20240428143227.png" width="200" /></p>
 <ul>
-  <li>调整画面</li>
-  <li>给亮部做高斯模糊</li>
+  <li>调整画面颜色: 可选颜色, 在 <a href="https://en.wikipedia.org/wiki/CMYK_color_model">CMYK 颜色</a> 调整
+    <ul>
+      <li>黄色: + 青色,黄色,黑色  -洋红</li>
+      <li>绿色: + 青色,黄色  -洋红,黑色</li>
+    </ul>
+  </li>
+  <li>给高光部分做高斯模糊</li>
+  <li>混合模式改为变亮</li>
   <li>和blender里面的<a href="https://docs.blender.org/manual/en/latest/render/eevee/render_settings/bloom.html">bloom(辉光)</a> 功能原理一样
 <a href="https://www.xiaohongshu.com/explore/660fbca9000000001a014c53">教程</a></li>
-</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="photo" /><category term="content" /><category term="photoshop" /><summary type="html"><![CDATA[人物美白]]></summary></entry><entry><title type="html">小面积光流传感器算法测试 (二) – 特征训练</title><link href="https://roshameow.github.io//personal_homepage/docs/algorithm/optical_flow_train2/" rel="alternate" type="text/html" title="小面积光流传感器算法测试 (二) – 特征训练" /><published>2024-04-25T00:00:00+00:00</published><updated>2024-04-28T22:49:54+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/algorithm/optical_flow_train2</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/algorithm/optical_flow_train2/"><![CDATA[<h2 id="数据">数据</h2>
+</ul>
+
+<h2 id="photoshop快捷键">photoshop快捷键</h2>
+
+<ul>
+  <li>command+alt+shift+E(盖印)
+    <ul>
+      <li>把效果和图层合并生成一个新图层</li>
+    </ul>
+  </li>
+  <li>command+alt+2(提取高光)
+    <ul>
+      <li>command+J 可以把高光变成一个新图层</li>
+    </ul>
+  </li>
+</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="photo" /><category term="content" /><category term="photoshop" /><category term="shortcut" /><summary type="html"><![CDATA[人物美白]]></summary></entry><entry><title type="html">小面积光流传感器算法测试 (二) – 特征训练</title><link href="https://roshameow.github.io//personal_homepage/docs/algorithm/optical_flow_train2/" rel="alternate" type="text/html" title="小面积光流传感器算法测试 (二) – 特征训练" /><published>2024-04-25T00:00:00+00:00</published><updated>2024-04-28T23:30:43+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/algorithm/optical_flow_train2</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/algorithm/optical_flow_train2/"><![CDATA[<h2 id="数据">数据</h2>
 
 <p>① ② :  <img src="/personal_homepage/docs/attachment/Pasted%20image%2020240426065333.png" alt="Pasted image 20240426065333.png" width="150" />    ③ : <img src="/personal_homepage/docs/attachment/Pasted%20image%2020240426065926.png" alt="Pasted image 20240426065926.png" width="330" /></p>
 
@@ -67,6 +361,7 @@
       <li>用真实数据的loss比仿真数据要大
         <ul>
           <li>说明真实数据更难</li>
+          <li>用真实图像插值时, 结果变得超差, 改成crop好了一些</li>
         </ul>
       </li>
     </ul>
@@ -258,7 +553,49 @@
 
 <p>[1] https://www.htmlsymbols.xyz/number-symbols/circled-numbers html特殊list符号</p>
 
-<p>[2] https://www.zhihu.com/question/382802283 很好的对于Circle loss的解释</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="algorithm" /><category term="content" /><category term="optical_flow" /><category term="deeplearning" /><category term="adaboost" /><category term="contrastive_learning" /><category term="grid_sample" /><summary type="html"><![CDATA[数据]]></summary></entry><entry><title type="html">stable-diffusion中k-sampling的不同版本</title><link href="https://roshameow.github.io//personal_homepage/docs/algorithm/stable-diffusion7/" rel="alternate" type="text/html" title="stable-diffusion中k-sampling的不同版本" /><published>2024-04-16T00:00:00+00:00</published><updated>2024-04-16T23:56:49+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/algorithm/stable-diffusion7</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/algorithm/stable-diffusion7/"><![CDATA[]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="algorithm" /><category term="content" /><summary type="html"><![CDATA[]]></summary></entry><entry><title type="html">小面积光流传感器算法测试 (一)</title><link href="https://roshameow.github.io//personal_homepage/docs/algorithm/optical-flow-train/" rel="alternate" type="text/html" title="小面积光流传感器算法测试 (一)" /><published>2024-04-11T00:00:00+00:00</published><updated>2024-04-25T23:52:54+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/algorithm/optical-flow-train</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/algorithm/optical-flow-train/"><![CDATA[<p>大概分为: preprocess -&gt; instant flow compute -&gt; filter correct 三个步骤</p>
+<p>[2] https://www.zhihu.com/question/382802283 很好的对于Circle loss的解释</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="algorithm" /><category term="content" /><category term="optical_flow" /><category term="deeplearning" /><category term="adaboost" /><category term="contrastive_learning" /><category term="grid_sample" /><summary type="html"><![CDATA[数据]]></summary></entry><entry><title type="html">stable-diffusion中k-sampling的不同版本</title><link href="https://roshameow.github.io//personal_homepage/docs/algorithm/stable-diffusion7/" rel="alternate" type="text/html" title="stable-diffusion中k-sampling的不同版本" /><published>2024-04-16T00:00:00+00:00</published><updated>2024-04-29T23:35:24+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/algorithm/stable-diffusion7</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/algorithm/stable-diffusion7/"><![CDATA[<p>把DPM表示成SDE(stochastic differential equation): $dx=f(x,t)dt+g(t)dw$ 
+score function</p>
+
+<p>Ancestral: 带 a的ksampler, 添加noise</p>
+
+<table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th>步骤</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Euler</td>
+      <td>noise injection:<br />- increased noise $\hat \sigma$  : $\hat \sigma\leftarrow \sigma_i + \gamma\sigma_i$ <br />-  sample x with increased noise: $\hat x \leftarrow x_i + \sqrt{\hat \sigma^2-\sigma_i^2}\cdot\epsilon$ <br />Take Euler Step: <br />- $dt=\sigma_{i+1}-\hat \sigma$<br />- $denoised=model(\hat x,\hat \sigma)$ <br />- numerical derivative: $d=(x-denoised)/{\hat \sigma}$ <br />- Euler step: $x_{i+1}=\hat x+dt \cdot d$</td>
+    </tr>
+    <tr>
+      <td>Euler Ancestral</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>DDPM</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>DDIM</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>DPM-Solver</td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Euler:</p>
+
+<h2 id="reference">reference</h2>
+
+<p>[1 ] Karras, Tero, Miika Aittala, Timo Aila, and Samuli Laine. “Elucidating the Design Space of Diffusion-Based Generative Models.” arXiv, October 11, 2022. <a href="https://doi.org/10.48550/arXiv.2206.00364">https://doi.org/10.48550/arXiv.2206.00364</a>.</p>
+
+<p>[2] Lu, Cheng, Yuhao Zhou, Fan Bao, Jianfei Chen, Chongxuan Li, and Jun Zhu. “DPM-Solver: A Fast ODE Solver for Diffusion Probabilistic Model Sampling in Around 10 Steps.” arXiv, October 13, 2022. <a href="https://doi.org/10.48550/arXiv.2206.00927">https://doi.org/10.48550/arXiv.2206.00927</a>.</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="algorithm" /><category term="content" /><summary type="html"><![CDATA[把DPM表示成SDE(stochastic differential equation): $dx=f(x,t)dt+g(t)dw$ score function]]></summary></entry><entry><title type="html">小面积光流传感器算法测试 (一)</title><link href="https://roshameow.github.io//personal_homepage/docs/algorithm/optical-flow-train/" rel="alternate" type="text/html" title="小面积光流传感器算法测试 (一)" /><published>2024-04-11T00:00:00+00:00</published><updated>2024-04-29T18:40:10+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/algorithm/optical-flow-train</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/algorithm/optical-flow-train/"><![CDATA[<p>大概分为: preprocess -&gt; instant flow compute -&gt; filter correct 三个步骤</p>
 
 <h2 id="计算连续两帧的光流">计算连续两帧的光流</h2>
 
@@ -324,7 +661,7 @@
     </tr>
     <tr>
       <td> </td>
-      <td>SAD_SUBPIXEL<br />用多项式拟合sad平面</td>
+      <td>SAD_SUBPIXEL<br />用多项式拟合sad平面<br />(opencv Farneback<br />也是用多项式拟合, <br />不过拟合的是原图像)</td>
       <td>$P(x+\Delta x)\approx P(x)+P^\prime(x)\Delta x+\frac{P^{\prime\prime}(x)}{2}\Delta x^2$ <br />即, $\Delta x=-\frac{P^\prime(x)}{P^{\prime\prime}(x)}$ <br />其中 $P^\prime(x)\approx \frac{dist(x+1,y)-dist(x-1,y)}{2}$ , $P^{\prime\prime}$ 类似<br />-  dx, dy分开计算<br />- 直接用多项式代入也是等价的</td>
       <td>没用<br />可能是因为subpixel的部分不符合多项式</td>
       <td> </td>
@@ -858,145 +1195,4 @@
 
 <h3 id="模型">模型</h3>
 
-<p>[1] https://free3d.com/3d-model/pumpkin-57117.html</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="blender" /><category term="content" /><category term="粒子系统" /><category term="hair" /><summary type="html"><![CDATA[步骤:]]></summary></entry><entry><title type="html">attention的优化– flash attention加速</title><link href="https://roshameow.github.io//personal_homepage/docs/algorithm/attention3/" rel="alternate" type="text/html" title="attention的优化– flash attention加速" /><published>2024-03-20T00:00:00+00:00</published><updated>2024-04-07T17:06:18+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/algorithm/attention3</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/algorithm/attention3/"><![CDATA[<p>flash-attention是一种算子合并(kernel fusion)的优化. 把self-attention分块, 直接在SRAM里计算, 省去了HBM来回搬运中间结果S和P的时间(如下图).  self-attention由两层矩阵乘法, softmax, 和其他eltwise计算(mask, dropout)构成.</p>
-
-<p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240401154241.png" alt="Pasted image 20240401154241.png" width="500" /></p>
-
-<h2 id="attention分块计算">attention分块计算</h2>
-
-<h3 id="forward计算-qkv---o">forward计算: Q,K,V -&gt; O</h3>
-
-<ul>
-  <li>矩阵分块如上图: 都是在token的维度分块
-    <ul>
-      <li>i iteration循环(黄色部分)
-        <ul>
-          <li>每次i iteration需要load不同位置的 Q, O</li>
-        </ul>
-      </li>
-      <li>j iteration循环(浅色部分)
-        <ul>
-          <li>每次j iteration需要load不同位置的 K, V</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li>softmax计算:
-    <ul>
-      <li>$softmax(x)=\frac{e^{x}}{\sum_j e^{x_j}}$ , 其中$\sum_j$ 是rowsum</li>
-      <li>safe softmax:  $softmax(x)=\frac{e^{x-m}}{\sum_j e^{x_j-m}}$
-        <ul>
-          <li>为了避免$\sum_j e^{x_j}$ 产生特别大的值溢出</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li>softmax分块:
-    <ul>
-      <li>对于relation S的每个分块的patch $P$, 记: 局部最大值 $m_p=\max_{x\in P}(x)$, 局部rowsum $l_p=\sum_{x\in P} e^{x-m_P}$
-        <ul>
-          <li>得到: $softmax(x)=\frac{e^x\cdot e^{(m_p-m)}}{\sum_P l_p\cdot e^{(m_p-m)}}$</li>
-        </ul>
-      </li>
-      <li>写成关于$j$ 的迭代形式:(softmax和iterate i无关)
-        <ul>
-          <li>$m_{j+1}=\max(m_j, m_{local})$</li>
-          <li>local rowsum $l_{j+1}=l_j\cdot e^{(m_j-m_{j+1})}+l_{local}\cdot e^{(m_{local}-m_{j+1})}$</li>
-          <li>softmax的中间结果 $\tilde P_{local}=e^{S_{local}-m_{local}}$</li>
-          <li>$O_{j+1}=softmax(S_{j+1})V_{j+1}=\text{diag}(l_{j+1})^{-1}(\text{diag}(l_j)\cdot O_j\cdot e^{m_j-m_{j+1}}+ \tilde P_{local}V_{j+1}\cdot e^{m_{local}-m_{j+1}})$</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-</ul>
-
-<h3 id="backward计算-o-do-q-k-v---dv-dk-dq">backward计算: O, dO, Q, K, V -&gt; dV, dK, dQ</h3>
-
-<p>flash-attention里面因为不保存S, P的结果, 在backward的时候要对它们重新计算</p>
-
-<p>用<a href="https://en.wikipedia.org/wiki/Automatic_differentiation">reverse mode</a> 的chain rule做backward计算:  <img src="https://wikimedia.org/api/rest_v1/media/math/render/svg/e5986463d8b2e48d0da5233099bb97bc4ea89844" alt="reverse" /></p>
-<ul>
-  <li>矩阵计算: $A=BC$
-    <ul>
-      <li>$dC = \frac{\partial y}{\partial C}=\sum_{A_{ij}} \frac{\partial y}{\partial A_{ij}}\cdot \frac{\partial A_{ij}}{\partial C}=B^{T}dA$ , 类似的 $dB=dA\ C^T$</li>
-    </ul>
-  </li>
-  <li>softmax计算: $P=softmax(S)$, $P_{j}=\frac{e^{S_{j}}}{\sum_{x\in S} e^x}$  , 下面矩阵都是eltwise乘法$\downarrow$  \(\begin{align}dS&amp;=\sum_{P_{j}} dP_{j}\frac{\partial P_{j}}{\partial S}&amp;=\sum_{P_{j}} (P_{k}\mathbb 1_{j=k}-P_{j}P_{k})dP_{j}&amp;\ (\text{根据乘除法求导法则}\frac{\partial P_j}{\partial S_k}=P_j\mathbb 1_{k=j}-\frac{e^{s_{j}}e^{s_k}}{(\sum_{x\in S} e^x)^2}=diag(P)-PP^T\text{是softmax的Jacobian})\\ &amp;&amp;=P_{k}dP_{k}+(\sum_{P_{j}}P_{j}dP_{j})P_{k}&amp;=P(dP+\sum_{P_{j}}P_{j}dP_{j})\\ &amp;&amp;&amp;=P(dP+ \sum_{j} P_j(\sum_i V_{ij} dO_{j}))\  (\text{因为}PV=O)\\ &amp;&amp;&amp;=P(dP+ \sum_{j}O_{j}dO_{j})\ (\text{其中}\sum_j \text{就是rowsum})\end{align}\)</li>
-  <li>backward采用和forward相同的分块</li>
-</ul>
-
-<h3 id="每块占用的sram">每块占用的SRAM</h3>
-
-<ul>
-  <li>forward和backward采用相同的分块, backward需要的SRAM比较大, 因此直接以backward的需求量为准</li>
-  <li>backward:
-    <ul>
-      <li>Q, dQ, O, dO : Br x d</li>
-      <li>K, V, dK, dV: Bc x d</li>
-      <li>S, P, dS, dP,  : Br x Bc</li>
-      <li>l, m: Br</li>
-    </ul>
-  </li>
-  <li>在flash-attention文章里, 取 <code class="language-plaintext highlighter-rouge">Bc=floor(M/4d)</code>, <code class="language-plaintext highlighter-rouge">Br=min(floor(M/4d),d)</code> , 这样能保证SRAM够用吗❓</li>
-</ul>
-
-<h2 id="flash-attention-v1">flash-attention v1</h2>
-
-<ul>
-  <li>让iterate i为内循环, iterate j为外循环</li>
-</ul>
-
-<h2 id="flash-attention-v2">flash-attention v2</h2>
-
-<ol>
-  <li>更改iteration的顺序(一般的规则是把相关性更高的放在更内层循环)
-    <ul>
-      <li>forward时让iterate j为内循环, 因为forward最终结果为O, 这样O的分块不用反复进出</li>
-      <li>barkward时让iterate i为内循环, backward的最终结果为(dK, dV, dQ), 这样dK, dV不用反复进出</li>
-    </ul>
-  </li>
-  <li>softmax中间结果的存储:
-    <ul>
-      <li>forward正常计算, 不过不存储$l,m$, 改为存$L=m+\log (l)$
-        <ul>
-          <li>v2 forward采用j的内循环, 和$l, m$ 计算方向一致, forward的时候本来就可以inplace更新不需要存储</li>
-          <li>backward时重新计算P, $P=diag(l)^{-1}e^{S-m}=e^{S-L}$</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li>优化thread blocks的并行化计算: 把i iteration和j iteration的部分也切分进行并行计算(尤其推理时batch size=1; 或训练token长度特别长, 需要减小batch_size和attention_heads时, 并行度不够)
-    <ul>
-      <li>forward时i iteration的相关性比较小, 所以切分i iteration更方便
-        <ul>
-          <li>但是每个i iteration的切分都要自己load一遍K, V了</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li>优化warp的并行计算: warp之间也是并行的
-    <ul>
-      <li>v2 也是在i iteration切分warp的并行</li>
-    </ul>
-  </li>
-</ol>
-
-<h2 id="reference">reference</h2>
-
-<p>[1] Dao, Tri, Daniel Y. Fu, Stefano Ermon, Atri Rudra, and Christopher Ré. “<strong>FlashAttention</strong>: Fast and Memory-Efficient Exact Attention with IO-Awareness.” arXiv, June 23, 2022. <a href="https://doi.org/10.48550/arXiv.2205.14135">https://doi.org/10.48550/arXiv.2205.14135</a>.</p>
-
-<p>[2] Dao, Tri. “<strong>FlashAttention-2:</strong> Faster Attention with Better Parallelism and Work Partitioning.” arXiv, July 17, 2023. <a href="https://doi.org/10.48550/arXiv.2307.08691">https://doi.org/10.48550/arXiv.2307.08691</a>.</p>
-
-<p><strong>代码</strong>: <a href="https://github.com/Dao-AILab/flash-attention">https://github.com/Dao-AILab/flash-attention</a></p>
-
-<h2 id="其他讨论的链接">其他讨论的链接</h2>
-
-<p>[1] https://zhuanlan.zhihu.com/p/669926191 flash-attention v1</p>
-
-<p>[2] https://mp.weixin.qq.com/s/5K6yNj23NmNLcAQofHcT4Q flash-attention v2</p>
-
-<p>[3] https://zhuanlan.zhihu.com/p/685020608 概括</p>
-
-<p>[4] https://mp.weixin.qq.com/s/NKShFDrfDGsb0G6PAkUCGw triton的实现</p>
-
-<p>[5] https://triton-lang.org/main/getting-started/tutorials/06-fused-attention.html  基于triton的flash-attention代码</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="algorithm" /><category term="content" /><category term="attention" /><category term="flash attention" /><category term="speedup" /><category term="gpu" /><summary type="html"><![CDATA[flash-attention是一种算子合并(kernel fusion)的优化. 把self-attention分块, 直接在SRAM里计算, 省去了HBM来回搬运中间结果S和P的时间(如下图). self-attention由两层矩阵乘法, softmax, 和其他eltwise计算(mask, dropout)构成.]]></summary></entry></feed>
+<p>[1] https://free3d.com/3d-model/pumpkin-57117.html</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;nil, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil, &quot;links&quot;=&gt;[{&quot;title&quot;=&gt;nil, &quot;url&quot;=&gt;nil, &quot;icon&quot;=&gt;nil}]}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="blender" /><category term="content" /><category term="粒子系统" /><category term="hair" /><summary type="html"><![CDATA[步骤:]]></summary></entry></feed>
