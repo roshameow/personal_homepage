@@ -10,7 +10,7 @@ tags:
   - adaboost
   - contrastive_learning
   - grid_sample
-last_modified_at: 2024-04-28T14:49:54-08:00
+last_modified_at: 2024-04-28T15:30:43-08:00
 ---
 
 ## 数据
@@ -35,6 +35,7 @@ last_modified_at: 2024-04-28T14:49:54-08:00
 		- 可能通过匹配patch计算光流的准确度本来已经达到饱和, 再训练patch的描述也没法提升?
 	- 用真实数据的loss比仿真数据要大
 		- 说明真实数据更难
+		- 用真实图像插值时, 结果变得超差, 改成crop好了一些
 
 
 ### torch grid sample
