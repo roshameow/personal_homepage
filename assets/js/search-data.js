@@ -290,7 +290,7 @@ var store = [{
         "url": "https://roshameow.github.io//personal_homepage/docs/algorithm/attention3/"
       },{
         "title": "blender学习: 用粒子系统做毛毡效果",
-        "excerpt":"步骤: 参考这个教学 Paticles添加毛发粒子: Particle type选择hair Emission number=5000 发根的总数量 hair length=0.03 Segments = 5 卷曲? Render -&gt;Path-&gt;Steps=5 对hair做subdivision的次数 Viewport Display-&gt; Strand Step=5 Children 选择simple display amount=100, render amount=100 Roughness Random = 0.08 Size = 0.851 Kink(纽结)选择Curl Amplitude(振幅) = 0.03 Hair shape Diameter Root &gt; Tip shader: 给Particles添加一个Principle Hair BSDF的material roughness= 0.86...","categories": ["docs","blender"],
+        "excerpt":"步骤: 参考这个教学1 教学2 Paticles添加毛发粒子: Particle type选择hair Emission number=5000 发根的总数量 hair length=0.03 Segments = 5 卷曲? Render -&gt;Path-&gt;Steps=5 对hair做subdivision的次数 Viewport Display-&gt; Strand Step=5 Children 选择simple display amount=100, render amount=100 Radius调整: 影响毛发膨胀度 Roughness Random = 0.08 Size = 0.851 Kink(纽结)选择Curl Amplitude(振幅) = 0.03 Hair shape Diameter Root &gt; Tip shader: 给Particles添加一个Principle Hair...","categories": ["docs","blender"],
         "tags": ["content","粒子系统","hair"],
         "url": "https://roshameow.github.io//personal_homepage/docs/blender/blender-learning10/"
       },{
@@ -320,7 +320,7 @@ var store = [{
         "url": "https://roshameow.github.io//personal_homepage/docs/algorithm/optical-flow-train/"
       },{
         "title": "stable-diffusion中k-sampling的不同版本",
-        "excerpt":"把DPM表示成SDE(stochastic differential equation): $dx=f(x,t)dt+g(t)dw$ score function Ancestral: 带 a的ksampler, 添加noise   步骤 Euler noise injection:- increased noise $\\hat \\sigma$ : $\\hat \\sigma\\leftarrow \\sigma_i + \\gamma\\sigma_i$ - sample x with increased noise: $\\hat x \\leftarrow x_i + \\sqrt{\\hat \\sigma^2-\\sigma_i^2}\\cdot\\epsilon$ Take Euler Step: - $dt=\\sigma_{i+1}-\\hat \\sigma$- $denoised=model(\\hat x,\\hat \\sigma)$ - numerical derivative:...","categories": ["docs","algorithm"],
+        "excerpt":"Diffusion Process &amp; Reverse Diffusion Process 用Markov chain的表示: $q(x_t x_{t-1})=N(x_t;\\sqrt{1-\\beta_t}x_{t-1},\\beta_tI)$ , $q(x_t x_0)=N(x_t;\\sqrt{\\bar\\alpha_t}x_0,(1-\\bar\\alpha_t)I)$ diffusion收敛到SDE, SDE离散化得到diffusion把DPM表示成SDE(stochastic differential equation): SDE的一般形式: $dx=f(x,t)dt+g(t)dw$ $f(\\cdot,t)$ 是drift coefficients 表示确定的部分 $g(\\cdot)$ 是diffusion coefficients 表示随机部分 $\\omega$ 是Wiener process(布朗运动) SDE的reverse: $dx=(f(x,t)-g^2(t)\\nabla_x\\log p(x,t))dt+g(t)dw$ score function $\\nabla_x\\log p(x,t)$ 指向higher density of data $\\nabla_x\\log p(x;\\sigma)=(D(x;\\sigma)-x)/{\\sigma^2}$ 前半确定部分: Probability flow ODE: $dx=(f(x,t)-g^2(t)\\nabla_x\\log p(x,t))dt$ Variance...","categories": ["docs","algorithm"],
         "tags": ["content"],
         "url": "https://roshameow.github.io//personal_homepage/docs/algorithm/stable-diffusion7/"
       },{
@@ -330,12 +330,27 @@ var store = [{
         "url": "https://roshameow.github.io//personal_homepage/docs/algorithm/optical_flow_train2/"
       },{
         "title": "小红书学到的几种图片调色 (二)",
-        "excerpt":"人物美白   cameraRaw滤镜          基本:                                            色温, + 色调                                                          曝光, + 对比度, -高光                                          混色器:                  色相: + 红色, -橙色, –蓝色          明亮度: -红色                    校准:                  绿原色: +色相          蓝原色: +饱和度                    教程 梦幻发光      调整画面颜色: 可选颜色, 在 CMYK 颜色 调整          黄色: + 青色,黄色,黑色  -洋红      绿色: + 青色,黄色  -洋红,黑色        给高光部分做高斯模糊  混合模式改为变亮  和blender里面的bloom(辉光) 功能原理一样教程photoshop快捷键   command+alt+shift+E(盖印)          把效果和图层合并生成一个新图层        command+alt+2(提取高光)          command+J 可以把高光变成一个新图层      ","categories": ["docs","photo"],
-        "tags": ["content","photoshop","shortcut"],
+        "excerpt":"人物美白 教程 cameraRaw滤镜 基本: 色温, + 色调 曝光, + 对比度, -高光 混色器: 色相: + 红色, -橙色, –蓝色 明亮度: -红色 校准: 绿原色: +色相 蓝原色: +饱和度 我明白了这件事的难度, 肤色和环境光的作用太subtle了, 美的定义又太多样了. 难怪现在无论什么滤镜都没法把所有人统一的变漂亮. 梦幻发光 教程 调整画面颜色(增加绿色): 可选颜色, 在 CMYK 颜色 调整 黄色: + 青色,黄色,黑色 -洋红 绿色: + 青色,黄色 -洋红,黑色 给高光部分做高斯模糊 混合模式改为变亮 和blender里面的bloom(辉光) 功能原理一样赛博朋克 教程 增加暗处清晰度...","categories": ["docs","photo"],
+        "tags": ["content","photoshop","shortcut","filter","color","camera_raw"],
         "url": "https://roshameow.github.io//personal_homepage/docs/photo/photo-color1/"
       },{
         "title": "小面积光流传感器算法测试 (三) -- 滤波",
         "excerpt":"在高速场景下, 每次中断收集的数据是光流的累加值, 其实本来就相当于一个滤波…况且在硬件有限的条件下, 复杂的滤波没有什么实用价值. 实验 方法   ConfidenceFilter 输出光流时同时输出一个置信度, 如果置信度较低, 选择历史值而不是测量值 FIR 在临近window上的一个线性filter Kalman 在gain值稳定后, kalman滤波其实相当于一个IIR filter 对于整像素的光流结果, 相当于Kalman的MeasureNoise有一部分量化噪声, 应该加大MeasureNoiseCov参数的设置, 不过实验中看不出区别 Kalman在反应速度和平滑度上都要好于FIR的Kalman滤波原理 SSM(state space model) 状态空间(state space) : 用state vector记录历史的input, 而不是记录所有的历史token 连续表示: linear state space model的一般形式: $\\dot x(t)=A(t)x(t)+B(t)u(t)$ (用input u更新状态 x) $y(t)=C(t)x(t)+D(t)u(t)$ (用状态x, 生成output y) 滤波步骤 变量 input predict correct...","categories": ["docs","algorithm"],
         "tags": ["content","kalman","optical_flow","filter","norm"],
         "url": "https://roshameow.github.io//personal_homepage/docs/algorithm/optical_flow_train3/"
+      },{
+        "title": "各种 moving function",
+        "excerpt":"场景 moving mean leetcode 239 用一个queue保存window里面的数据 每次+新进的数据-出去的数据moving median leetcode 480 naive: 保存window里的所有数据,排序, 找出median 每次更新进出data的顺序 优化1: 当进出的data在median同一侧时, 不需要更新median 优化2: 不需要严格的排序, 只需要维护median两边堆的结构, 就可以找到left的最大值, 和right的最小值 用window记录进出的data 同样的data只存一个位置, 通过一个counter记录data的重复次数, 次数=0就是待删除的data 记录left_heap, right_heap的实际size, 当两边size偏离的时候移动heap 如果删除/移动的data在堆顶, 需要更新堆(把堆顶待删除的data全部删除) 错误方向: 本来想像moving max一样只保留时间近的, median附近的data. 但是moving median中, 所有的元素都可能在之后变得重要, 所以要全部保留的 如果window_size=k, 需要&lt;2/k个更新的data, 或&gt;2/k个更新的data, 才能确定这个data不可能成为median, 这个条件达成的概率很小 moving min/max leetcode 239 以max为例 naive:...","categories": ["docs","algorithm"],
+        "tags": ["content"],
+        "url": "https://roshameow.github.io//personal_homepage/docs/algorithm/moving_function/"
+      },{
+        "title": "给网页添加 logo",
+        "excerpt":" 用照片制作svg 这次只描了轮廓    用钢笔工具和选择工具画路径:          在最凸，最凹的地方加锚点      添加锚点时拉拽得到切线      按command 单独调整锚点和切线的端点      option调整切线      用直接选择工具(白色箭头)调整锚点位置      用路径选择工具(黑色箭头)复制路径      用颜色填充功能实时查看路径闭包        导出:          选中填充图层复制svg      设置网页的favicon   在对应html设置icon:  &lt;link rel=\"shortcut icon\" type=\"image/x-icon\" href=\"/personal_homepage/docs/images/logo.ico\"&gt;          我的路径是head.html-&gt;head-custom.html      资源 [1]  https://www.bilibili.com/video/BV1pP4y1R7r6 钢笔工具使用 [2]  https://www.taoxuemei.com/chuli/ps/754.html 钢笔工具画的形状-&gt;svg [3]  https://zhuanlan.zhihu.com/p/446194623 路径转形状 [4]  https://stackoverflow.com/questions/30551501/unable-to-set-favicon-using-jekyll-and-github-pages  关于icon路径的讨论 [5]  https://convertio.co/download/9dceab468ba01473f3d49fc765b6f73f983c7f/ svg转ico ","categories": ["docs","photo"],
+        "tags": ["content","jekyll","photoshop","logo"],
+        "url": "https://roshameow.github.io//personal_homepage/docs/photo/jekyll-add-logo/"
+      },{
+        "title": "blender学习: 用布料系统做膨胀效果",
+        "excerpt":"","categories": ["docs","blender"],
+        "tags": ["content"],
+        "url": "https://roshameow.github.io//personal_homepage/docs/blender/blender-learning12/"
       }]

@@ -20,8 +20,8 @@
 <meta name="generator" content="Jekyll v4.3.3" />
 <meta property="og:title" content="stable-diffusion中k-sampling的不同版本" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="把DPM表示成SDE(stochastic differential equation): $dx=f(x,t)dt+g(t)dw$ score function" />
-<meta property="og:description" content="把DPM表示成SDE(stochastic differential equation): $dx=f(x,t)dt+g(t)dw$ score function" />
+<meta name="description" content="Diffusion Process &amp; Reverse Diffusion Process" />
+<meta property="og:description" content="Diffusion Process &amp; Reverse Diffusion Process" />
 <link rel="canonical" href="https://roshameow.github.io//personal_homepage/docs/algorithm/stable-diffusion7/" />
 <meta property="og:url" content="https://roshameow.github.io//personal_homepage/docs/algorithm/stable-diffusion7/" />
 <meta property="og:site_name" content="Liu, Wen’s Home Page" />
@@ -31,7 +31,7 @@
 <meta property="twitter:title" content="stable-diffusion中k-sampling的不同版本" />
 <meta name="twitter:site" content="@" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-04-29T23:35:24+00:00","datePublished":"2024-04-16T00:00:00+00:00","description":"把DPM表示成SDE(stochastic differential equation): $dx=f(x,t)dt+g(t)dw$ score function","headline":"stable-diffusion中k-sampling的不同版本","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/docs/algorithm/stable-diffusion7/"},"url":"https://roshameow.github.io//personal_homepage/docs/algorithm/stable-diffusion7/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-05-11T22:30:08+00:00","datePublished":"2024-04-16T00:00:00+00:00","description":"Diffusion Process &amp; Reverse Diffusion Process","headline":"stable-diffusion中k-sampling的不同版本","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/docs/algorithm/stable-diffusion7/"},"url":"https://roshameow.github.io//personal_homepage/docs/algorithm/stable-diffusion7/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -53,7 +53,7 @@
 <!-- start custom head snippets -->
 
 <!-- insert favicons. use http://realfavicongenerator.net/ -->
-
+<link rel="shortcut icon" type="image/x-icon" href="/personal_homepage/docs/images/logo.ico">
 <!-- end custom head snippets -->
 
 </head>
@@ -105,11 +105,9 @@
       </header>
 
       <div class="page-sidebar">
-        <div class="page-author h-card p-author"><div class="author-info"><ul class="author-links"><li class="author-link">
-            <a class="u-url" rel="me" href=""><i class="fas fa-link fa-lg" title=""></i></a>
-          </li></ul>
+        <div class="page-author h-card p-author"><img src="/personal_homepage/docs/images/logo.svg" class="author-avatar u-photo" alt=""><div class="author-info">
 
-<span class="read-time">~1 min read</span>
+<span class="read-time">1 min read</span>
 
     <time class="page-date dt-published" datetime="2024-04-16T00:00:00+00:00"><a class="u-url" href="">April 16, 2024</a>
 </time>
@@ -138,7 +136,7 @@
 </h2>
 <!-- 1. toc
 {:toc} -->
-<ul class="inline_toc" id="my_toc"><li><a href="#reference">reference</a></li></ul>
+<ul class="inline_toc" id="my_toc"><li><a href="#diffusion-process--reverse-diffusion-process">Diffusion Process &amp; Reverse Diffusion Process</a></li><li><a href="#reference">reference</a></li></ul>
 </div>
 <!-- {::options parse_block_html="false" /} -->
 
@@ -146,8 +144,55 @@
 
       <div class="page-content">
         <div class="e-content">
-          <p>把DPM表示成SDE(stochastic differential equation): $dx=f(x,t)dt+g(t)dw$ 
-score function</p>
+          <h2 id="diffusion-process--reverse-diffusion-process">Diffusion Process &amp; Reverse Diffusion Process</h2>
+
+<ul>
+  <li>用Markov chain的表示:
+    <ul>
+      <li>
+        <table>
+          <tbody>
+            <tr>
+              <td>$q(x_t</td>
+              <td>x_{t-1})=N(x_t;\sqrt{1-\beta_t}x_{t-1},\beta_tI)$ ,  $q(x_t</td>
+              <td>x_0)=N(x_t;\sqrt{\bar\alpha_t}x_0,(1-\bar\alpha_t)I)$</td>
+            </tr>
+          </tbody>
+        </table>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p>diffusion收敛到SDE, SDE离散化得到diffusion
+把DPM表示成
+<a href="https://en.wikipedia.org/wiki/Stochastic_differential_equation">SDE(stochastic differential equation)</a>:</p>
+<ul>
+  <li>SDE的一般形式: $dx=f(x,t)dt+g(t)dw$
+    <ul>
+      <li>$f(\cdot,t)$ 是drift coefficients 表示确定的部分</li>
+      <li>$g(\cdot)$ 是diffusion coefficients 表示随机部分</li>
+      <li>$\omega$ 是Wiener process(布朗运动)</li>
+    </ul>
+  </li>
+  <li>SDE的reverse: $dx=(f(x,t)-g^2(t)\nabla_x\log p(x,t))dt+g(t)dw$
+    <ul>
+      <li>score function $\nabla_x\log p(x,t)$   指向higher density of data</li>
+      <li>$\nabla_x\log p(x;\sigma)=(D(x;\sigma)-x)/{\sigma^2}$</li>
+      <li>前半确定部分: Probability flow ODE: $dx=(f(x,t)-g^2(t)\nabla_x\log p(x,t))dt$</li>
+    </ul>
+  </li>
+  <li>Variance Preserving (VP) SDE, DDPM: $dx=-\frac{1}{2}\beta_t x dt +\sqrt{\beta_t} dw$
+    <ul>
+      <li>$f(x,t)=f(t)x=$</li>
+    </ul>
+  </li>
+  <li></li>
+</ul>
+
+<p>diffusion ODE: $\frac{dx_t}{dt}=f(t)x_t+\frac{g^2(t)}{2\sigma_t}\epsilon_\theta(x_t,t), x_t\sim N(0,)$</p>
+
+<p>diffusion ODE的1,2,3阶solver</p>
 
 <p>Ancestral: 带 a的ksampler, 添加noise</p>
 
@@ -156,27 +201,53 @@ score function</p>
     <tr>
       <th> </th>
       <th>步骤</th>
+      <th> </th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td>Euler</td>
-      <td>noise injection:<br />- increased noise $\hat \sigma$  : $\hat \sigma\leftarrow \sigma_i + \gamma\sigma_i$ <br />-  sample x with increased noise: $\hat x \leftarrow x_i + \sqrt{\hat \sigma^2-\sigma_i^2}\cdot\epsilon$ <br />Take Euler Step: <br />- $dt=\sigma_{i+1}-\hat \sigma$<br />- $denoised=model(\hat x,\hat \sigma)$ <br />- numerical derivative: $d=(x-denoised)/{\hat \sigma}$ <br />- Euler step: $x_{i+1}=\hat x+dt \cdot d$</td>
-    </tr>
-    <tr>
-      <td>Euler Ancestral</td>
+      <td>noise injection:<br />- increased noise $\hat \sigma$  : $\hat \sigma\leftarrow \sigma_i + \gamma\sigma_i$ <br />-  sample x with increased noise: $\hat x \leftarrow x_i + \sqrt{\hat \sigma^2-\sigma_i^2}\cdot\epsilon$ <br />Take Euler Step: <br />- $dt=\sigma_{i+1}-\hat \sigma$<br />- $denoised=model(\hat x,\hat \sigma)$ <br />- numerical derivative: $d=(\hat x-denoised)/{\hat \sigma}$ <br />- Euler step: $x_{i+1}=\hat x+dt \cdot d$</td>
       <td> </td>
     </tr>
     <tr>
+      <td>Euler Ancestral</td>
+      <td>Take Euler Step to $\sigma_{down}$:  <br />- $dt=\sigma_{down}-\sigma_i$ <br />- $denoised=model(x,\sigma_i)$ <br />- numerical derivative: $d=(x-denoised)/{\sigma_i}$ <br />- Euler step: $x_{down}=x+dt \cdot d$ <br />Add ancestral noise:<br />- $x_{i+1}=x_{down}+noise*\sigma_{up}$ <br /></td>
+      <td><br />$\sigma_{up}=\min(\sigma_{i+1},\eta\cdot(\frac{\sigma_{i+1}^2}{\sigma_i^2}(\sigma_i^2-\sigma_{i+1}^2)))$<br />$\sigma_{down}=\sqrt{\sigma_{i+1}^2-\sigma_{up}^2}$</td>
+    </tr>
+    <tr>
       <td>DDPM</td>
+      <td> </td>
       <td> </td>
     </tr>
     <tr>
       <td>DDIM</td>
       <td> </td>
+      <td> </td>
     </tr>
     <tr>
       <td>DPM-Solver</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>dpm_2</td>
+      <td>noise injection: <br />得到$\hat\sigma, \hat x, denoised$ <br />DPM-Solver-2: <br />- 在$\sigma_{i+1},\hat \sigma$ 之间取: $\sigma_{mid}=e^{\frac{\log \hat\sigma+\log \sigma_{i+1}}{2}}$ <br />- $dt_1=\sigma_{mid}-\hat \sigma$ <br />- $dt_2=\sigma_{i+1}-\hat \sigma$ <br />- $x_{mid}=\hat x+dt_1\cdot(\hat x-model(\hat x,\hat \sigma))/\hat \sigma$  <br />用$\sigma_{mid}$ 处的numerial derivative<br />- $x=\hat x+dt_2\cdot(x_{mid}-model(x_{mid},\sigma_{mid}))/\sigma_{mid}$ <br /><br /></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>dpmpp_2m</td>
+      <td>- $t=-\log(\sigma_i)$ , $t_{next}=-\log(\sigma_{i+1})$ , $t_{last}=-\log(\sigma_{i-1})$ <br />- $h=t_{next}-t$, $h_{last}=t-t_{last}$ <br />- $r=h_{last}/h$ <br />- $denoised_d=(1+\frac{1}{2r})\cdot denoised-\frac{1}{2r}\cdot denoised_{old}$  <br />- $x_{i+1}=\frac{\sigma_{i+1}}{\sigma_i}\cdot x_i-(e^{-h}-1)\cdot denoised_d$ <br /></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>lcm</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><a href="https://en.wikipedia.org/wiki/Heun%27s_method">heun</a></td>
+      <td>noise injection:  <br />得到$\hat\sigma, \hat x, denoised$ <br />Take Euler step:<br />- $x_2=\hat x + dt\cdot d$<br />Take Heun step:<br />- $d_2=(x_2-model(x_2,\sigma_{i+1}))/\sigma_{i+1}$ <br />- $d^\prime=\frac{d+d_2}{2}$ <br />- $x_{i+1}=\hat x+d^\prime\cdot dt$</td>
       <td> </td>
     </tr>
   </tbody>

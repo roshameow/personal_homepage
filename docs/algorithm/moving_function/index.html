@@ -16,22 +16,22 @@
   
   
   <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>aperture衍射模型 (二) | Liu, Wen’s Home Page</title>
+<title>各种 moving function | Liu, Wen’s Home Page</title>
 <meta name="generator" content="Jekyll v4.3.3" />
-<meta property="og:title" content="aperture衍射模型 (二)" />
+<meta property="og:title" content="各种 moving function" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="仿真" />
-<meta property="og:description" content="仿真" />
-<link rel="canonical" href="https://roshameow.github.io//personal_homepage/docs/simulation/diffraction1/" />
-<meta property="og:url" content="https://roshameow.github.io//personal_homepage/docs/simulation/diffraction1/" />
+<meta name="description" content="场景 moving mean" />
+<meta property="og:description" content="场景 moving mean" />
+<link rel="canonical" href="https://roshameow.github.io//personal_homepage/docs/algorithm/moving_function/" />
+<meta property="og:url" content="https://roshameow.github.io//personal_homepage/docs/algorithm/moving_function/" />
 <meta property="og:site_name" content="Liu, Wen’s Home Page" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2024-01-11T00:00:00+00:00" />
+<meta property="article:published_time" content="2024-05-05T00:00:00+00:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="aperture衍射模型 (二)" />
+<meta property="twitter:title" content="各种 moving function" />
 <meta name="twitter:site" content="@" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-01-15T01:10:47+00:00","datePublished":"2024-01-11T00:00:00+00:00","description":"仿真","headline":"aperture衍射模型 (二)","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/docs/simulation/diffraction1/"},"url":"https://roshameow.github.io//personal_homepage/docs/simulation/diffraction1/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-05-16T00:56:17+00:00","datePublished":"2024-05-05T00:00:00+00:00","description":"场景 moving mean","headline":"各种 moving function","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/docs/algorithm/moving_function/"},"url":"https://roshameow.github.io//personal_homepage/docs/algorithm/moving_function/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -58,7 +58,7 @@
 
 </head>
 
-  <body class="layout--post  aperture衍射模型-二">
+  <body class="layout--post  各种-moving-function">
     <nav class="skip-links">
   <h2 class="screen-reader-text">Skip links</h2>
   <ul>
@@ -99,7 +99,7 @@
       <header class="page-header">
         
         
-        <h1 id="page-title" class="page-title p-name">aperture衍射模型 (二)
+        <h1 id="page-title" class="page-title p-name">各种 moving function
 </h1>
         
       </header>
@@ -109,7 +109,7 @@
 
 <span class="read-time">~1 min read</span>
 
-    <time class="page-date dt-published" datetime="2024-01-11T00:00:00+00:00"><a class="u-url" href="">January 11, 2024</a>
+    <time class="page-date dt-published" datetime="2024-05-05T00:00:00+00:00"><a class="u-url" href="">May 5, 2024</a>
 </time>
 
   </div>
@@ -118,14 +118,14 @@
         
   <h3 class="page-taxonomies-title">Categories</h3>
   
-  <ul class="page-taxonomies"><li class="page-taxonomy"><a class="p-category" href="/personal_homepage/categories/#docs" title="Pages filed under docs">docs</a></li><li class="page-taxonomy"><a class="p-category" href="/personal_homepage/categories/#simulation" title="Pages filed under simulation">simulation</a></li>
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a class="p-category" href="/personal_homepage/categories/#algorithm" title="Pages filed under algorithm">algorithm</a></li><li class="page-taxonomy"><a class="p-category" href="/personal_homepage/categories/#docs" title="Pages filed under docs">docs</a></li>
   </ul>
 
 
         
   <h3 class="page-taxonomies-title">Tags</h3>
   
-  <ul class="page-taxonomies"><li class="page-taxonomy"><a href="/personal_homepage/tags/#content" title="Pages tagged content" rel="tag">content</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#physics" title="Pages tagged physics" rel="tag">physics</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#sensor" title="Pages tagged sensor" rel="tag">sensor</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#simulation" title="Pages tagged simulation" rel="tag">simulation</a></li>
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a href="/personal_homepage/tags/#content" title="Pages tagged content" rel="tag">content</a></li>
   </ul>
 
 
@@ -136,7 +136,7 @@
 </h2>
 <!-- 1. toc
 {:toc} -->
-<ul class="inline_toc" id="my_toc"><li><a href="#仿真">仿真</a></li><li><a href="#应用">应用</a></li><li><a href="#代码">代码</a></li><li><a href="#其他讨论这个的链接">其他讨论这个的链接：</a></li></ul>
+<ul class="inline_toc" id="my_toc"><li><a href="#场景">场景</a><ul><li><a href="#moving-mean">moving mean</a></li><li><a href="#moving-median">moving median</a></li><li><a href="#moving-minmax">moving min/max</a></li></ul></li><li><a href="#结构">结构</a><ul><li><a href="#deque双向队列">deque(双向队列)</a></li><li><a href="#heap优先队列">heap(优先队列)</a></li><li><a href="#hashtable">hashtable</a></li><li><a href="#multiset">multiset</a></li></ul></li><li><a href="#其它有用的链接">其它有用的链接</a></li></ul>
 </div>
 <!-- {::options parse_block_html="false" /} -->
 
@@ -144,95 +144,169 @@
 
       <div class="page-content">
         <div class="e-content">
-          <h2 id="仿真">仿真</h2>
+          <h2 id="场景">场景</h2>
+<h3 id="moving-mean">moving mean</h3>
 
-<p><img src="/personal_homepage/docs/attachment/circle_diffraction.mp4" alt="circle_diffraction.mp4" width="200" /> <img src="/personal_homepage/docs/attachment/square_diffraction.mp4" alt="square_diffraction.mp4" width="200" /></p>
-<ol>
-  <li>在aperture区域均匀采样，发现Frensel pattern是很难出现的，在每个像素对应sample数不足1000的时候，基本观测不到。。应该是因为在那个范围内结果受$(x^\prime,y^\prime)$ 的位置影响更大, 也就表现出更大的随机性。</li>
-  <li>确实可以看到sensor到aperture距离增大后, pattern变化的全过程。</li>
-  <li>在一个网上找的<a href="https://www.falstad.com/diffraction/">Frensel diffraction仿真</a> java代码里面，作者也是通过先把部分积分形式通过公式运算先化简之后做的仿真<a href="#ref">1</a>，没有用原始的传播公式。</li>
-  <li>如果用全光谱的光源，Fraunhofer衍射中因为波长影响, 看起来的效果像是从中间不同颜色的光被diffuse了，我看一些3d建模制作里说的衍射，一般是指这种效果，可以看<a href="https://www.bilibili.com/video/BV1C5411E78d/">b站上一个用blender仿这种效果的视频</a>
+<p>leetcode 239</p>
+<ul>
+  <li>用一个queue保存window里面的数据</li>
+  <li>每次+新进的数据-出去的数据</li>
+</ul>
+
+<h3 id="moving-median">moving median</h3>
+
+<p>leetcode 480</p>
+
+<ul>
+  <li>naive: 保存window里的所有数据,排序, 找出median
     <ul>
-      <li>另外判断天然珍珠和人造珍珠的区别的一种方法，也是看天然珍珠里面有微小的结构可以把不同波长的光区分出来的效果</li>
-      <li>blender的cycles用的是粒子模型, 没有相位变化，可能没法直接得到衍射</li>
+      <li>每次更新进出data的顺序</li>
     </ul>
   </li>
-</ol>
-
-<h2 id="应用">应用</h2>
-
-<ol>
-  <li><strong>在相机系统中，我们关心成像的分辨率</strong>：用Fraunhofer的模型估算相机的resolution
+  <li>优化1: 当进出的data在median同一侧时, 不需要更新median</li>
+  <li>优化2: 不需要严格的排序, 只需要维护median两边堆的结构, 就可以找到left的最大值, 和right的最小值
     <ul>
-      <li>相机aperture参数：这两个都是dimensionless版本的aperture
+      <li>用window记录进出的data</li>
+      <li>同样的data只存一个位置, 通过一个counter记录data的重复次数, 次数=0就是待删除的data</li>
+      <li>记录left_heap, right_heap的实际size, 当两边size偏离的时候移动heap</li>
+      <li>如果删除/移动的data在堆顶, 需要更新堆(把堆顶待删除的data全部删除)</li>
+    </ul>
+  </li>
+  <li>错误方向:
+    <ul>
+      <li>本来想像moving max一样只保留时间近的, median附近的data. 但是moving median中, 所有的元素都可能在之后变得重要, 所以要全部保留的
         <ul>
-          <li><a href="https://en.wikipedia.org/wiki/F-number">f-number</a>: $N=\frac{f}{D}=\frac{f}{2a}$
-            <ul>
-              <li>相机焦距$f=z$, 光圈直径$D=2a$</li>
-            </ul>
-          </li>
-          <li><a href="https://en.wikipedia.org/wiki/Numerical_aperture">numerical aperture</a> $NA=\frac{a}{\sqrt{f^2+a^2}}=\frac{1}{\sqrt{4N^2+1}}\approx \frac{1}{2N}$</li>
-        </ul>
-      </li>
-      <li>第一圈黑环处距中心距离，认为是相机的optical resolution:
-        <ul>
-          <li><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240112160824.png" alt="Pasted image 20240112160824.png" width="300" /></li>
-          <li>此时是$J_1(x)$ 的第一个0点， $J_1(ka\sin\theta)=0$，$ka\sin\theta\approx 3.83$ ，即$\sin\theta\approx \frac{3.83}{ka}=\frac{3.83\lambda}{2\pi a}=1.22\frac{\lambda}{D}$</li>
-          <li>得到optical resolution $q=r_1\sin\theta\approx \sqrt{f^2+a^2}\sin\theta=\frac{a}{NA}\sin\theta\approx \frac{a}{NA}\frac{1.22\lambda}{2a}=\frac{0.61\lambda}{NA}$</li>
-          <li>理论上，numberical aperture越大，optical resolution越小，分辨率越高(也就是衍射更不明显)</li>
-        </ul>
-      </li>
-      <li>相机的成像清晰度指标：MTF
-        <ul>
-          <li><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240112154649.png" alt="Pasted image 20240112154649.png" width="400" /></li>
-          <li><a href="https://en.wikipedia.org/wiki/Point_spread_function">PSF</a>(intensity function): $PSF=|G(p,q)|^2=|F(g(x^\prime,y^\prime))|^2$
-            <ul>
-              <li>PSF的单位是 (distance(mm),intesity)</li>
-              <li>对于圆形aperture：$PSF=\frac{J_1^2(ka\sin\theta)}{(ka\sin\theta)^2}$ , PSF的零点也就是$J_1$ 的零点</li>
-              <li>生成图像的image: $I=PSF*\text{scene}$ 是场景和PSF的卷积</li>
-            </ul>
-          </li>
-          <li><a href="https://en.wikipedia.org/wiki/Optical_transfer_function">MTF</a>: $MTF=F(PSF)$
-            <ul>
-              <li>MTF的单位是（frequency(lines/mm),response(%)）</li>
-              <li>$\frac{J_1^2(x)}{x^2}$ 的Fourier变化是个连续下降函数</li>
-              <li>根据 <a href="https://en.wikipedia.org/wiki/Fourier_transform#Applications">Fourier transform</a> time scaling的性质：因为PSF的零点$PSF_0\propto \frac{\lambda}{NA}$ , 得到MTF的cutoff点 $c(MTF)\propto \frac{NA}{\lambda}$  (即频率更高的物体就看不清了)</li>
-              <li>MTF是个衡量成像系统分辨率的常用指标，不光衍射，所有成像过程，包括软件做的deblur等操作都可以用这个指标衡量。</li>
-            </ul>
-          </li>
+          <li>如果window_size=k, 需要&lt;2/k个更新的data, 或&gt;2/k个更新的data, 才能确定这个data不可能成为median, 这个条件达成的概率很小</li>
         </ul>
       </li>
     </ul>
   </li>
-  <li><strong>用PSF做图像调制</strong> 
+</ul>
+
+<h3 id="moving-minmax">moving min/max</h3>
+
+<p>leetcode 239</p>
+
+<p>以max为例</p>
+<ul>
+  <li>naive: 保存window里的所有数据, 找出max</li>
+  <li>优化1: 不需要每次计算min/max, 只需要当前max出window的时候重新计算
     <ul>
-      <li>从PSF的表达式可以看出, PSF受距离, 波长(光的颜色), 位置影响, 可以在相机系统中主动利用这些信息</li>
+      <li>记录当前max的值和index</li>
+      <li>con: 这样计算速度不稳定
+        <ul>
+          <li>比如: window_size较大, 而数据又是降序排列的时候, 每新进一个数据都要计算一次max, 时间是O(k)</li>
+        </ul>
+      </li>
     </ul>
   </li>
-</ol>
+  <li>优化2: window里不需要全部保存, 用deque结构, 只需要按顺序保存可能成为local max的data和index (不符合降序的data永远不会成为max)
+    <ul>
+      <li>当新data进入deque时, 把deque里&lt;=它的data删除</li>
+      <li>deque里的当前max生命耗尽时, 需要移出deque
+        <ul>
+          <li>用保存的index判断生命耗尽</li>
+          <li>或保存一份window, 如果window移除data = deque的第一个data, 把data从deque里移除
+            <ul>
+              <li>deque里不会有重复data</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>deque里的第一个data就是local max</li>
+      <li>例子: <img src="/personal_homepage/docs/attachment/Pasted%20image%2020240515165236.png" alt="Pasted image 20240515165236.png" width="300" />
+        <ul>
+          <li>data6进入window后, 4,5就不可能成为local max了</li>
+          <li>data7进入window后, 6也不可能成为local max了</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>应用:
+    <ul>
+      <li>动态调整画图界面适应data</li>
+      <li>mormophic filter去除基线漂移</li>
+    </ul>
+  </li>
+</ul>
 
-<h2 id="代码">代码</h2>
+<h2 id="结构">结构</h2>
 
-<p><a href="https://gist.github.com/roshameow/7d44196b703ade645b34b164d779cdfe#file-diffraction_simulation-py"><strong>diffraction_simulation.py</strong></a></p>
+<h3 id="deque双向队列">deque(双向队列)</h3>
 
-<p><a href="https://gist.github.com/roshameow/7d44196b703ade645b34b164d779cdfe#file-pst_bessel-py"><strong>pst_bessel.py</strong></a></p>
+<p>支持在两端进出</p>
+<ul>
+  <li>用途:
+    <ul>
+      <li>实现LRU缓存(leetcode 146)</li>
+    </ul>
+  </li>
+</ul>
 
-<h2 id="其他讨论这个的链接">其他讨论这个的链接：</h2>
-<p><span id="ref"></span>
-仿真</p>
+<h3 id="heap优先队列">heap(优先队列)</h3>
 
-<p>[5] http://www.dauger.com/fresnel/</p>
+<ul>
+  <li>priority_queue(C++), heapq(python)</li>
+  <li><strong>heap的数据结构</strong>:
+    <ul>
+      <li><img src="https://upload.wikimedia.org/wikipedia/commons/c/c4/Max-Heap-new.svg" alt="drawing" width="200" /></li>
+      <li>parent比children大的完备二叉树(以最大堆为例)
+        <ul>
+          <li>完备是指, 从上到下每层填满, 最后一层靠左排列</li>
+        </ul>
+      </li>
+      <li>可以用数组表示: 第 $i$个节点的左子节点编号为 $2i+1$，右子节点编号为 $2i+2$，父节点编号为 $⌊\frac{i−1}{2}⌋$
+        <ul>
+          <li>完备的=可以连续存储, 数组可以在任意位置访问-&gt;可以做swap</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><strong>heap支持的操作</strong>: 都是把中间data和最后data互换, 然后在最后增删, 所以不会破坏完备性
+    <ul>
+      <li>新插入一个元素(“上浮”操作): 把新data添到heap的尾部, 不断和parent比较, 并swap到合适位置
+        <ul>
+          <li>只需要O(logk) 的swap(如果要排序就需要O(k)个swap)</li>
+        </ul>
+      </li>
+      <li>移除heap 顶的元素(“下沉”操作): 和其children比较, 跟更大的那个swap, 直到到达底部, 删除</li>
+    </ul>
+  </li>
+  <li><strong>用途</strong>:
+    <ul>
+      <li>调度器, 用来实时添加任务, 和取出最合适的任务进行执行
+        <ul>
+          <li>比如优先级最高, 或截止时间最早的任务</li>
+        </ul>
+      </li>
+      <li>堆排序: 每轮找到最小的data排在后面, 时间复杂度是O(nlogn)
+        <ul>
+          <li>时间稳定, inplace操作, 适合大数据量, 内存有限的场景</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
 
-<p>[6] Dauger, Dean E. “Simulation and Study of Fresnel Diffraction for Arbitrary Two-Dimensional Apertures.” <em>Computers in Physics</em> 10 (November 1, 1996): 591–604. <a href="https://doi.org/10.1063/1.168584">https://doi.org/10.1063/1.168584</a>.</p>
+<h3 id="hashtable">hashtable</h3>
 
-<p>相机resolution</p>
+<ul>
+  <li>unordered_map(C++), Counter(python), dict, set</li>
+</ul>
 
-<p>[7] https://www.microscopyu.com/tutorials/imageformation-airyna (包含一个<a href="https://en.wikipedia.org/wiki/Airy_disk">Airy disk</a> 影响清晰度的演示)</p>
+<h3 id="multiset">multiset</h3>
 
-<p>[8] https://www.iasj.net/iasj/download/8ab5ecbce0ead154</p>
+<ul>
+  <li>multiset(C++)
+    <ul>
+      <li>类似set, 允许重复的data, 可以按顺序遍历</li>
+    </ul>
+  </li>
+</ul>
 
-<p>[9] https://micro.magnet.fsu.edu/primer/java/mtf/airydisksize/index.html</p>
+<h2 id="其它有用的链接">其它有用的链接</h2>
 
+<p>[1]  https://cplusplus.com/reference/unordered_map/unordered_map/</p>
 
         </div>
 
@@ -244,8 +318,8 @@
     <div id="disqus_thread"></div>
     <script>
       var disqus_config = function () {
-        this.page.url = 'https://roshameow.github.io//personal_homepage/docs/simulation/diffraction1/';
-        this.page.identifier = 'https://roshameow.github.io//personal_homepage/docs/simulation/diffraction1/';
+        this.page.url = 'https://roshameow.github.io//personal_homepage/docs/algorithm/moving_function/';
+        this.page.identifier = 'https://roshameow.github.io//personal_homepage/docs/algorithm/moving_function/';
       };
 
       (function() {
@@ -263,20 +337,20 @@
 
         <nav class="page-pagination" role="navigation">
   
-    <a class="page-previous" href="/personal_homepage/docs/simulation/diffraction/">
+    <a class="page-previous" href="/personal_homepage/docs/algorithm/optical_flow_train3/">
       <h4 class="page-pagination-label">Previous</h4>
       <span class="page-pagination-title">
-        <i class="fas fa-arrow-left"></i> aperture衍射模型 (一)
+        <i class="fas fa-arrow-left"></i> 小面积光流传感器算法测试 (三) – 滤波
 
       </span>
     </a>
   
 
   
-    <a class="page-next" href="/personal_homepage/docs/data/color-moderate2/">
+    <a class="page-next" href="/personal_homepage/docs/photo/jekyll-add-logo/">
       <h4 class="page-pagination-label">Next</h4>
       <span class="page-pagination-title">
-        传感器颜色调制 (三) – 数据
+        给网页添加 logo
  <i class="fas fa-arrow-right"></i>
       </span>
     </a>
