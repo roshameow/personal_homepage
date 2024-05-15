@@ -7,12 +7,12 @@ tags:
   - content
   - 粒子系统
   - hair
-last_modified_at: 2024-03-26T11:01:05-08:00
+last_modified_at: 2024-05-09T17:38:33-08:00
 ---
 
 ### 步骤: 
 
-参考[这个教学](https://www.xiaohongshu.com/explore/65eb070500000000030320e2/)
+参考[这个教学1](https://www.xiaohongshu.com/explore/65eb070500000000030320e2/) [教学2](https://www.bilibili.com/video/BV1kz4y1A7vW/)
 -  Paticles添加毛发粒子: Particle type选择[hair](https://docs.blender.org/manual/en/latest/physics/particles/hair/index.html) 
 	- Emission
 		- number=5000 发根的总数量
@@ -23,13 +23,14 @@ last_modified_at: 2024-03-26T11:01:05-08:00
 	- [Viewport Display](https://docs.blender.org/manual/en/latest/physics/particles/hair/display.html)-> Strand Step=5
 	- [Children](https://docs.blender.org/manual/en/latest/physics/particles/emitter/children.html) 选择simple
 		- display amount=100, render amount=100
+		- Radius调整: 影响毛发膨胀度
 		- Roughness
 			- Random = 0.08
 			- Size = 0.851
 		- Kink(纽结)选择Curl
 			- Amplitude(振幅) = 0.03
-			- Hair shape
-				- Diameter Root > Tip
+	- Hair shape
+		- Diameter Root > Tip
 - shader: 
 	- 给Particles添加一个Principle Hair BSDF的material
 		- roughness= 0.86

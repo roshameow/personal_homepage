@@ -25,7 +25,7 @@ domain: roshameow.github.io       # if you want to force HTTPS, specify the doma
 url: "https://roshameow.github.io/" # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl: "/personal_homepage" # the subpath of your site, e.g. "/blog"
 
-# logo: /docs/images/rosha_logo.JPG # path of site logo, e.g. "/images/logo.png"
+# logo: /docs/images/logo.svg # path of site logo, e.g. "/images/logo.png"
 date_format: "%B %-d, %Y"
 read_time: true # reading time estimates, e.g. true
 words_per_minute: # 200
@@ -98,13 +98,13 @@ defaults:
 # Site Author
 author:
   name: 
-  picture:
+  picture: /docs/images/logo.svg
   email: w.liuatnk@gmail.com
   twitter:
-  links:
-    - title:
-      url:
-      icon:
+  # links:
+  #   - title:
+  #     url:
+  #     icon: 
 
 # Footer Links
 footer_links:
