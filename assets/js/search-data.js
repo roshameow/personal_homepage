@@ -341,7 +341,7 @@ var store = [{
       },{
         "title": "各种 moving function",
         "excerpt":"场景 moving mean leetcode 239 用一个queue保存window里面的数据 每次+新进的数据-出去的数据moving median leetcode 480 naive: 保存window里的所有数据,排序, 找出median 每次更新进出data的顺序 优化1: 当进出的data在median同一侧时, 不需要更新median 优化2: 不需要严格的排序, 只需要维护median两边堆的结构, 就可以找到left的最大值, 和right的最小值 用window记录进出的data 同样的data只存一个位置, 通过一个counter记录data的重复次数, 次数=0就是待删除的data 记录left_heap, right_heap的实际size, 当两边size偏离的时候移动heap 如果删除/移动的data在堆顶, 需要更新堆(把堆顶待删除的data全部删除) 错误方向: 本来想像moving max一样只保留时间近的, median附近的data. 但是moving median中, 所有的元素都可能在之后变得重要, 所以要全部保留的 如果window_size=k, 需要&lt;2/k个更新的data, 或&gt;2/k个更新的data, 才能确定这个data不可能成为median, 这个条件达成的概率很小 moving min/max leetcode 239 以max为例 naive:...","categories": ["docs","algorithm"],
-        "tags": ["content"],
+        "tags": ["content","leetcode","basic","data_structure"],
         "url": "https://roshameow.github.io//personal_homepage/docs/algorithm/moving_function/"
       },{
         "title": "给网页添加 logo",
@@ -350,7 +350,17 @@ var store = [{
         "url": "https://roshameow.github.io//personal_homepage/docs/photo/jekyll-add-logo/"
       },{
         "title": "blender学习: 用布料系统做膨胀效果",
-        "excerpt":"","categories": ["docs","blender"],
-        "tags": ["content"],
+        "excerpt":"参考这个教学 建模 球和boundary两部分 新建一个Ico Sphere(棱角球) 在Edit Mode选中一些顶点作为boundary, 设为顶点组 给棱角球做一个表面细分并应用 在Edit Mode里用Bevel把boundary拉出一点宽度, 把顶点组改为新的boundary 要先应用表面细分再Bevel? 不然boundary的mesh会变得很复杂 在原位把boundary复制一份(Shift+D), 和球分离(P), 稍微拉大一点(S) 给boundary添加一个2的表面细分 设置shade smooth制作膨胀效果: 选择Physics-&gt;Cloth Pressure = 25 Shape选择boundary的顶点组 Shrinking Factor = -0.3 负数表示要cloth膨胀 Field Weights-&gt;Gravity=0 结果: 用到的blender的一些快捷键 Command+A(应用modifier) Shift+D(Duplication): 复制物体 RMB(右键): 保留在原来的位置 P(分离) 把选中的顶点建一个新的object Command+P(Parent) 把后选中的object设置为先选中的object的parent  Ctrl+B( Bevel, 拉伸, 倒角): 把一个edge变成多个edge, 使物体边缘光滑 按Shift微调:...","categories": ["docs","blender"],
+        "tags": ["content","physics","shortcut"],
         "url": "https://roshameow.github.io//personal_homepage/docs/blender/blender-learning12/"
+      },{
+        "title": "劳动仲裁流程和资料整理",
+        "excerpt":"材料 信息: 身份证复印件 公司注册信息: 在国家企业信用信息公示系统 查找公司信息并打印 证据清单 社保缴费记录: 一网通办 登陆打印 参保人员城镇职工基本养老保险缴费情况 银行流水: 在银行app里就可以打印 劳动合同 在企业微信里: 企业微信里的内容很难作为证据, 1. 都是聊天格式, 自己重新整理是没有法律效力的, 2. 而且企业微信被人事踢出后backup也没法恢复 工资条 聊天记录 打卡记录: 企业微信可以导出2个月的, 很麻烦 工时统计表: 没用到, 没研究怎么导出 周报邮件: 没用到 申请书 申请人信息: (姓名、性别、出生日期、身份证号码、住址、联系方式） 被申请人信息: (单位名称、统一社会信用代码、法定代表人、单位地址、联系方式） 仲裁请求(需要计算赔偿) 裁决劳动关系 请求被申请人支付拖欠的工资和年终奖 x元（截至申请仲裁之日）； 请求支付被动解除劳动合同的经济补偿金x元。 事实与理由 按照模版写 地址送达确认书我遇到的情况: 1. 续签劳动合同没给是按照签订了劳动合同处理, 不能索要赔偿, 用社保记录证明劳动关系即可 2. 除了社保记录和银行流水,...","categories": ["docs","affair"],
+        "tags": ["content"],
+        "url": "https://roshameow.github.io//personal_homepage/docs/affair/labor-disputes-arbitration/"
+      },{
+        "title": "FFT计算",
+        "excerpt":"  fourier Series 定义:          $F(f)(u)=\\int_{-\\infty}^{\\infty} f(x)e^{-2\\pi i x u} dx$      2维：$G(p,q)=F(g(x,y)) = \\int\\int^\\infty_\\infty g(x,y)e^{-i2\\pi(px+qy)}dxdy$        离散形式: 信号$x$ 的FFT 信号$X$          $X_k=\\sum_{m=0}^{N-1}x_m\\cdot e^{-i\\cdot 2\\pi km/N}=\\sum_{m=0}^{N-1}x_m\\cdot TW(N,k)^m$                  $N$ 是信号长度          $TW(N,k) = e^{-i*2k\\pi/N}$ 是FFT 的twiddle factor(旋转因子)                          $TW(N,k)=\\cos(-2k\\pi/N)+i\\cdot \\sin(-2k\\pi/N)=TW_r(N,k)+i\\cdot TW_i(N,k)$                                          butterfly diagram 利用fft的对称性和周期性 ","categories": ["docs","algorithm"],
+        "tags": ["content"],
+        "url": "https://roshameow.github.io//personal_homepage/docs/algorithm/fft/"
       }]
