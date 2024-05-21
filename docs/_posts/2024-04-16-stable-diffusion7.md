@@ -5,7 +5,7 @@ categories:
   - algorithm
 tags:
   - content
-last_modified_at: 2024-05-11T14:30:08-08:00
+last_modified_at: 2024-05-20T14:28:12-08:00
 ---
 ## Diffusion Process & Reverse Diffusion Process
 
@@ -24,7 +24,7 @@ diffusion收敛到SDE, SDE离散化得到diffusion
 	- $\nabla_x\log p(x;\sigma)=(D(x;\sigma)-x)/{\sigma^2}$ 
 	- 前半确定部分: Probability flow ODE: $dx=(f(x,t)-g^2(t)\nabla_x\log p(x,t))dt$ 
 - Variance Preserving (VP) SDE, DDPM: $dx=-\frac{1}{2}\beta_t x dt +\sqrt{\beta_t} dw$ 
-	- $f(x,t)=f(t)x=$
+	- $f(x,t)=f(t)x=\frac{1}{\bar \alpha_t}\frac{d\bar \alpha_t}{dt}$ 
 - 
 
 

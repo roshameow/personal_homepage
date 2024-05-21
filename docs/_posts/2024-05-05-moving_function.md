@@ -5,7 +5,10 @@ categories:
   - algorithm
 tags:
   - content
-last_modified_at: 2024-05-15T16:56:17-08:00
+  - leetcode
+  - basic
+  - data_structure
+last_modified_at: 2024-05-15T16:59:20-08:00
 ---
 ## 场景
 ### moving mean
