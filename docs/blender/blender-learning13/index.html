@@ -16,22 +16,22 @@
   
   
   <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>FFT计算 | Liu, Wen’s Home Page</title>
+<title>blender学习: 冰材质 | Liu, Wen’s Home Page</title>
 <meta name="generator" content="Jekyll v4.3.3" />
-<meta property="og:title" content="FFT计算" />
+<meta property="og:title" content="blender学习: 冰材质" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="fourier Series 定义: $F(f)(u)=\int_{-\infty}^{\infty} f(x)e^{-2\pi i x u} dx$ 2维：$G(p,q)=F(g(x,y)) = \int\int^\infty_\infty g(x,y)e^{-i2\pi(px+qy)}dxdy$ 离散形式: 信号$x$ 的FFT 信号$X$ $X_k=\sum_{m=0}^{N-1}x_m\cdot e^{-i\cdot 2\pi km/N}=\sum_{m=0}^{N-1}x_m\cdot TW(N,k)^m$ $N$ 是信号长度 $TW(N,k) = e^{-i*2k\pi/N}$ 是FFT 的twiddle factor(旋转因子) $TW(N,k)=\cos(-2k\pi/N)+i\cdot \sin(-2k\pi/N)=TW_r(N,k)+i\cdot TW_i(N,k)$" />
-<meta property="og:description" content="fourier Series 定义: $F(f)(u)=\int_{-\infty}^{\infty} f(x)e^{-2\pi i x u} dx$ 2维：$G(p,q)=F(g(x,y)) = \int\int^\infty_\infty g(x,y)e^{-i2\pi(px+qy)}dxdy$ 离散形式: 信号$x$ 的FFT 信号$X$ $X_k=\sum_{m=0}^{N-1}x_m\cdot e^{-i\cdot 2\pi km/N}=\sum_{m=0}^{N-1}x_m\cdot TW(N,k)^m$ $N$ 是信号长度 $TW(N,k) = e^{-i*2k\pi/N}$ 是FFT 的twiddle factor(旋转因子) $TW(N,k)=\cos(-2k\pi/N)+i\cdot \sin(-2k\pi/N)=TW_r(N,k)+i\cdot TW_i(N,k)$" />
-<link rel="canonical" href="https://roshameow.github.io//personal_homepage/docs/algorithm/fft/" />
-<meta property="og:url" content="https://roshameow.github.io//personal_homepage/docs/algorithm/fft/" />
+<meta name="description" content="在IOR=1.31的透明材质基础上, 添加表面的凹凸和内部的裂痕, 气泡" />
+<meta property="og:description" content="在IOR=1.31的透明材质基础上, 添加表面的凹凸和内部的裂痕, 气泡" />
+<link rel="canonical" href="https://roshameow.github.io//personal_homepage/docs/blender/blender-learning13/" />
+<meta property="og:url" content="https://roshameow.github.io//personal_homepage/docs/blender/blender-learning13/" />
 <meta property="og:site_name" content="Liu, Wen’s Home Page" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2024-05-19T00:00:00+00:00" />
+<meta property="article:published_time" content="2024-05-27T00:00:00+00:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="FFT计算" />
+<meta property="twitter:title" content="blender学习: 冰材质" />
 <meta name="twitter:site" content="@" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-05-20T21:02:00+00:00","datePublished":"2024-05-19T00:00:00+00:00","description":"fourier Series 定义: $F(f)(u)=\\int_{-\\infty}^{\\infty} f(x)e^{-2\\pi i x u} dx$ 2维：$G(p,q)=F(g(x,y)) = \\int\\int^\\infty_\\infty g(x,y)e^{-i2\\pi(px+qy)}dxdy$ 离散形式: 信号$x$ 的FFT 信号$X$ $X_k=\\sum_{m=0}^{N-1}x_m\\cdot e^{-i\\cdot 2\\pi km/N}=\\sum_{m=0}^{N-1}x_m\\cdot TW(N,k)^m$ $N$ 是信号长度 $TW(N,k) = e^{-i*2k\\pi/N}$ 是FFT 的twiddle factor(旋转因子) $TW(N,k)=\\cos(-2k\\pi/N)+i\\cdot \\sin(-2k\\pi/N)=TW_r(N,k)+i\\cdot TW_i(N,k)$","headline":"FFT计算","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/docs/algorithm/fft/"},"url":"https://roshameow.github.io//personal_homepage/docs/algorithm/fft/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-05-28T20:46:36+00:00","datePublished":"2024-05-27T00:00:00+00:00","description":"在IOR=1.31的透明材质基础上, 添加表面的凹凸和内部的裂痕, 气泡","headline":"blender学习: 冰材质","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/docs/blender/blender-learning13/"},"url":"https://roshameow.github.io//personal_homepage/docs/blender/blender-learning13/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -58,7 +58,7 @@
 
 </head>
 
-  <body class="layout--post  fft计算">
+  <body class="layout--post  blender学习-冰材质">
     <nav class="skip-links">
   <h2 class="screen-reader-text">Skip links</h2>
   <ul>
@@ -99,7 +99,7 @@
       <header class="page-header">
         
         
-        <h1 id="page-title" class="page-title p-name">FFT计算
+        <h1 id="page-title" class="page-title p-name">blender学习: 冰材质
 </h1>
         
       </header>
@@ -109,7 +109,7 @@
 
 <span class="read-time">~1 min read</span>
 
-    <time class="page-date dt-published" datetime="2024-05-19T00:00:00+00:00"><a class="u-url" href="">May 19, 2024</a>
+    <time class="page-date dt-published" datetime="2024-05-27T00:00:00+00:00"><a class="u-url" href="">May 27, 2024</a>
 </time>
 
   </div>
@@ -118,14 +118,14 @@
         
   <h3 class="page-taxonomies-title">Categories</h3>
   
-  <ul class="page-taxonomies"><li class="page-taxonomy"><a class="p-category" href="/personal_homepage/categories/#algorithm" title="Pages filed under algorithm">algorithm</a></li><li class="page-taxonomy"><a class="p-category" href="/personal_homepage/categories/#docs" title="Pages filed under docs">docs</a></li>
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a class="p-category" href="/personal_homepage/categories/#blender" title="Pages filed under blender">blender</a></li><li class="page-taxonomy"><a class="p-category" href="/personal_homepage/categories/#docs" title="Pages filed under docs">docs</a></li>
   </ul>
 
 
         
   <h3 class="page-taxonomies-title">Tags</h3>
   
-  <ul class="page-taxonomies"><li class="page-taxonomy"><a href="/personal_homepage/tags/#content" title="Pages tagged content" rel="tag">content</a></li>
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a href="/personal_homepage/tags/#content" title="Pages tagged content" rel="tag">content</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#shader" title="Pages tagged shader" rel="tag">shader</a></li>
   </ul>
 
 
@@ -136,7 +136,7 @@
 </h2>
 <!-- 1. toc
 {:toc} -->
-<ul class="inline_toc" id="my_toc"><li><a href="#butterfly-diagram">butterfly diagram</a></li></ul>
+<ul class="inline_toc" id="my_toc"><li><a href="#制作冰材质">制作冰材质:</a><ul><li><a href="#用volume-shader">用volume shader</a></li><li><a href="#用粒子系统">用粒子系统</a></li></ul></li><li><a href="#实物参考">实物参考</a></li><li><a href="#blender用法">blender用法</a></li></ul>
 </div>
 <!-- {::options parse_block_html="false" /} -->
 
@@ -144,32 +144,76 @@
 
       <div class="page-content">
         <div class="e-content">
-          <ul>
-  <li>fourier Series 定义:
+          <p>在IOR=1.31的透明材质基础上, 添加表面的凹凸和内部的裂痕, 气泡</p>
+
+<h2 id="制作冰材质">制作冰材质:</h2>
+
+<h3 id="用volume-shader">用volume shader</h3>
+
+<p>参考<a href="https://www.youtube.com/watch?v=EUvNwscez-w">这个教学</a></p>
+
+<ol>
+  <li>用Cycles渲染器, 打开Render-&gt;<a href="https://docs.blender.org/manual/en/latest/render/cycles/render_settings/film.html">Film-&gt;Transparent-&gt; Transparent Glass</a>
     <ul>
-      <li>$F(f)(u)=\int_{-\infty}^{\infty} f(x)e^{-2\pi i x u} dx$</li>
-      <li>2维：$G(p,q)=F(g(x,y)) = \int\int^\infty_\infty g(x,y)e^{-i2\pi(px+qy)}dxdy$</li>
+      <li>但是没有用到composition所以开不开无所谓吧?</li>
     </ul>
   </li>
-  <li>离散形式: 信号$x$ 的FFT 信号$X$
+  <li><strong>表面增加凹凸</strong>: 用Bump节点
     <ul>
-      <li>$X_k=\sum_{m=0}^{N-1}x_m\cdot e^{-i\cdot 2\pi km/N}=\sum_{m=0}^{N-1}x_m\cdot TW(N,k)^m$
+      <li><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240527221548.png" alt="Pasted image 20240527221548.png" width="100" /></li>
+      <li>用<a href="https://docs.blender.org/manual/en/4.1/render/shader_nodes/vector/bump.html">Bump</a> 更改normal的方向: 根据输入的局部高度差
         <ul>
-          <li>$N$ 是信号长度</li>
-          <li>$TW(N,k) = e^{-i*2k\pi/N}$ 是<a href="https://en.wikipedia.org/wiki/Twiddle_factor#:~:text=A%20twiddle%20factor%2C%20in%20fast,papers%20of%20the%20FFT%20literature.">FFT 的twiddle factor(旋转因子)</a>
-            <ul>
-              <li>$TW(N,k)=\cos(-2k\pi/N)+i\cdot \sin(-2k\pi/N)=TW_r(N,k)+i\cdot TW_i(N,k)$</li>
-            </ul>
-          </li>
+          <li>用noise texture生成纹理, 应用到bump的高度</li>
+        </ul>
+      </li>
+      <li>用相同的noise texture生成纹理, 应用到roughness
+        <ul>
+          <li>目的是让凸出的地方更粗糙? 感觉和实际不太相符</li>
         </ul>
       </li>
     </ul>
   </li>
+  <li><strong>在内部添加crack</strong>: 用<a href="https://docs.blender.org/manual/en/latest/render/shader_nodes/textures/voronoi.html">Voronoi Texture</a> 复合Noise Texture的扭曲
+    <ul>
+      <li></li>
+      <li>texture color: <img src="/personal_homepage/docs/attachment/Pasted%20image%2020240528093833.png" alt="Pasted image 20240528093833.png" width="100" />  添加到volume后: <img src="/personal_homepage/docs/attachment/Pasted%20image%2020240528102634.png" alt="Pasted image 20240528102634.png" width="100" /></li>
+      <li>Voronoi Texture由<a href="https://en.wikipedia.org/wiki/Worley_noise">Worley noise</a> 生成
+        <ul>
+          <li>选择Distance to Edge: 生成distance map</li>
+        </ul>
+      </li>
+      <li>用<a href="https://docs.krita.org/en/reference_manual/blending_modes/lighten.html#bm-linear-light">Linear Light(线性光)</a> 的方式混合: 和add差不多, 但是会对可能saturated的值特殊处理</li>
+    </ul>
+  </li>
+  <li><strong>在内部添加一些雾气</strong>: 用noise texture生成</li>
+</ol>
+
+<ul>
+  <li>结果: 没太复刻出冰的质感, 还是更像玻璃
+    <ul>
+      <li><img src="/personal_homepage/docs/attachment/ice_glass_cycle.png" alt="ice_glass_cycle.png" width="480" /></li>
+    </ul>
+  </li>
 </ul>
 
-<h3 id="butterfly-diagram">butterfly diagram</h3>
+<h3 id="用粒子系统">用粒子系统</h3>
 
-<p>利用fft的对称性和周期性</p>
+<p>参考<a href="https://www.bilibili.com/video/BV1i5411e7VZ/">这个教学</a></p>
+
+<h2 id="实物参考">实物参考</h2>
+
+<iframe src="//player.bilibili.com/player.html?isOutside=true&amp;aid=422168352&amp;bvid=BV1a3411477N&amp;cid=458238306&amp;p=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
+
+<ul>
+  <li><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240527221116.png" alt="Pasted image 20240527221116.png" width="480" />  <img src="/personal_homepage/docs/attachment/Pasted%20image%2020240527221224.png" alt="Pasted image 20240527221224.png" width="320" /></li>
+  <li>冻的漂亮的冰里面本来就不应该有那些crack和气泡嘛</li>
+</ul>
+
+<h2 id="blender用法">blender用法</h2>
+
+<ul>
+  <li>displacement和noise texture+bump的凹凸效果区别: displacement会确实更改mesh上点的位置, bump不会, bump只是改变表面法线方向来模拟.</li>
+</ul>
 
 
         </div>
@@ -182,8 +226,8 @@
     <div id="disqus_thread"></div>
     <script>
       var disqus_config = function () {
-        this.page.url = 'https://roshameow.github.io//personal_homepage/docs/algorithm/fft/';
-        this.page.identifier = 'https://roshameow.github.io//personal_homepage/docs/algorithm/fft/';
+        this.page.url = 'https://roshameow.github.io//personal_homepage/docs/blender/blender-learning13/';
+        this.page.identifier = 'https://roshameow.github.io//personal_homepage/docs/blender/blender-learning13/';
       };
 
       (function() {
@@ -201,23 +245,15 @@
 
         <nav class="page-pagination" role="navigation">
   
-    <a class="page-previous" href="/personal_homepage/docs/affair/labor-disputes-arbitration/">
+    <a class="page-previous" href="/personal_homepage/docs/design/poster1/">
       <h4 class="page-pagination-label">Previous</h4>
       <span class="page-pagination-title">
-        <i class="fas fa-arrow-left"></i> 劳动仲裁流程和资料整理
+        <i class="fas fa-arrow-left"></i> 阿那亚戏剧节的海报制作
 
       </span>
     </a>
   
 
-  
-    <a class="page-next" href="/personal_homepage/docs/design/poster1/">
-      <h4 class="page-pagination-label">Next</h4>
-      <span class="page-pagination-title">
-        阿那亚戏剧节的海报制作
- <i class="fas fa-arrow-right"></i>
-      </span>
-    </a>
   
 </nav>
 
