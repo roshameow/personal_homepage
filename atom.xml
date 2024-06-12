@@ -1,4 +1,267 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="https://roshameow.github.io//personal_homepage/atom.xml" rel="self" type="application/atom+xml" /><link href="https://roshameow.github.io//personal_homepage/" rel="alternate" type="text/html" /><updated>2024-05-28T04:49:54+00:00</updated><id>https://roshameow.github.io//personal_homepage/atom.xml</id><title type="html">Liu, Wen’s Home Page</title><subtitle>Work, Experiments and Ideas.</subtitle><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><entry><title type="html">blender学习: 冰材质</title><link href="https://roshameow.github.io//personal_homepage/docs/blender/blender-learning13/" rel="alternate" type="text/html" title="blender学习: 冰材质" /><published>2024-05-27T00:00:00+00:00</published><updated>2024-05-28T20:46:36+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/blender/blender-learning13</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/blender/blender-learning13/"><![CDATA[<p>在IOR=1.31的透明材质基础上, 添加表面的凹凸和内部的裂痕, 气泡</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="https://roshameow.github.io//personal_homepage/atom.xml" rel="self" type="application/atom+xml" /><link href="https://roshameow.github.io//personal_homepage/" rel="alternate" type="text/html" /><updated>2024-06-12T08:21:30+00:00</updated><id>https://roshameow.github.io//personal_homepage/atom.xml</id><title type="html">Liu, Wen’s Home Page</title><subtitle>Work, Experiments and Ideas.</subtitle><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><entry><title type="html">四边形网格生成</title><link href="https://roshameow.github.io//personal_homepage/docs/algorithm/quadrilateral-mesh/" rel="alternate" type="text/html" title="四边形网格生成" /><published>2024-06-04T00:00:00+00:00</published><updated>2024-06-12T23:38:29+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/algorithm/quadrilateral-mesh</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/algorithm/quadrilateral-mesh/"><![CDATA[<p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240610075408.png" alt="Pasted image 20240610075408.png" width="150" /> -&gt; <img src="/personal_homepage/docs/attachment/Pasted%20image%2020240610075425.png" alt="Pasted image 20240610075425.png" width="130" /></p>
+
+<p>从通用的triangle mesh生成quad mesh. quad mesh容易插值和细分(样条曲面和 Catmull-Clark细分曲面常⻅ 的定义域就是四边形)</p>
+
+<h2 id="quad-mesh-定义">quad-mesh 定义</h2>
+
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/b/bb/Conformal_map.svg" alt="drawing" width="100" /></p>
+
+<ul>
+  <li>由多个topological rectangle构成,每个rectangle interior是regular grid.
+    <ul>
+      <li>topological rectangle:由复平面的rectangle做conformal(holomorphic) map变形得到
+        <ul>
+          <li><a href="https://en.wikipedia.org/wiki/Conformal_map">Conformal map(保角映射)</a> 从几何方面描述: grid映射成正交的curve</li>
+          <li><a href="https://en.wikipedia.org/wiki/Holomorphic_function">holomorphic map(全纯函数)</a> 从分析方面描述:  $\mathbb C\rightarrow \mathbb C$ , 在任意一点可导</li>
+        </ul>
+      </li>
+      <li>通过在quad-mesh上定义conformal <a href="https://en.wikipedia.org/wiki/Atlas_(topology)">atlas</a> , 得到quad- mesh是Riemann surface(see quad.2 Theorem 4.6)
+        <ul>
+          <li>chart: 每个face 的 interior定义$U_f$ , edge邻域定义$U_e$ , vertex邻域定义$U_v$</li>
+          <li>transition: 每两个chart之间的transition(face-&gt;edge, edge-&gt;vertex, face-&gt;vertex)都是$\pi/2$ 的旋转+平移, 是holomorphic的</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240612152840.png" alt="Pasted image 20240612152840.png" width="400" /></p>
+
+<h2 id="等价条件">等价条件</h2>
+
+<h3 id="conditions">conditions</h3>
+
+<ul>
+  <li>Riemann surface($\Sigma,g$) with cone singularities($\mathcal S$) 是quad mesh($\mathcal Q$) 的等价条件1 :
+    <ol>
+      <li>Gauss-Bonnet condition : 在singularities处的total curvature符合<a href="https://en.wikipedia.org/wiki/Gauss–Bonnet_theorem">Gauss-Bonnet Theorem</a>
+        <ul>
+          <li>$\sum_{v_i} (4-k(v))\frac{\pi}{2}=2\pi\chi(\Sigma)=2\pi(2-2g)$
+            <ul>
+              <li>LHS: closed surface, 在singularities处的curvature是$(4-k(v))\frac{\pi}{2}$ , 其他地方的curvature=0</li>
+              <li>RHS: <a href="https://en.wikipedia.org/wiki/Euler_characteristic">Euler Character</a> = 2-2g</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>holonomy condition: 一个cross frame沿loop平行移动, 方向旋转的⻆度为pi/2的整数倍.存在一个global smooth的cross field.
+        <ul>
+          <li><a href="https://en.wikipedia.org/wiki/Holonomy">holonomy group</a> :  $Hol(\Sigma\backslash\mathcal S,g)={e^{i\frac{k\pi}{2}},k\in\mathbb Z}\simeq \mathbb Z^3$</li>
+          <li>cross field指$\Sigma$ 的tangent bundle上的 <a href="https://en.wikipedia.org/wiki/Levi-Civita_connection" title="Levi-Civita connection">Levi-Civita connection</a></li>
+        </ul>
+      </li>
+      <li>boundary alignment condition: boundary和cross field是平行或垂直关系</li>
+      <li>finite geodesic lamination condition: 沿cross field的geodesic是有限⻓的</li>
+    </ol>
+  </li>
+  <li>等价关系推导:
+    <ul>
+      <li>quad mesh -&gt; conditions(see quad.1 Theorem 3.7):
+        <ul>
+          <li>取cross field平行于edges
+            <ul>
+              <li>每次穿过不同chart时, 只会转$\pi/2$ 的整数倍</li>
+              <li>geodesic不会进入同一个face多过两次, face数是又有限的, 所以geodesic也是finite的.</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>Riemann surface with conditions -&gt; quad mesh(see quad.1 Theorem 3.8):
+        <ul>
+          <li>从singilarities出发, 沿cross field的geodesics形成quad mesh</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="meromorphic-quartic-differential">meromorphic quartic differential</h3>
+
+<ul>
+  <li>Riemann surface with cone singularities是quad mesh的等价条件 2:
+    <ul>
+      <li>closed quad-mesh等价于存在meromorphic quartic differential with finite trajectories
+        <ul>
+          <li>从文章看, quartic differential $(dz)^4$ 似乎并不是指外积 $\wedge^4 dz$</li>
+          <li>从quartic differential $\omega=f(z)(dz)^4$, 对应differential 1-form $\sqrt[4]{\omega}=f(z)^{\frac{1}{4}}dz$</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>等价关系推导:
+    <ul>
+      <li>quad mesh -&gt; meromorphic quartic differential(see quad.2 Theorem 4.7):
+        <ul>
+          <li>locally 在一个face 上定义 $(dz_f)^4$ , 可以consistent的定义在其他face, edge, vertex(包括singularities)的chart上</li>
+        </ul>
+      </li>
+      <li>meromorphic quartic differential -&gt; conditions(see quad.2 Theorem 4.8):
+        <ul>
+          <li>取cross field(condition.2)为meromorphic quartic differential的horizontal &amp; vertical trajectories(see qaud.2 Definition 3.13)
+            <ul>
+              <li>使$\omega=f(z)(dz)^4$ 值是real的方向, 如果$w=z(dz)^4=c(d(z^{\frac{5}{4}}))^4$ , 有5个方向, $\theta=\frac{k2\pi}{5}$</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="divisor">divisor</h3>
+
+<ul>
+  <li>divisor 对应meromorphic quartic differential的等价条件3:
+    <ul>
+      <li>divisor和一个holomorphic 1-form在Abel-Jacobian map下的值相等, $\mu(D-4(\omega_0))=0$
+        <ul>
+          <li>$(\omega_0)$ 为holomorphic 1-form的zeros</li>
+          <li>Abel-Jacobian map ($\Sigma\rightarrow \Omega^1(\Sigma)^*/\Lambda$ )
+            <ul>
+              <li>$\mu:p\mapsto \int_{p}^{p_0}\cdot$
+                <ul>
+                  <li>因此可以定义在divisor上,  ($Div(\Sigma)\rightarrow \Omega^1(\Sigma)^*/\Lambda$ ), $\mu:\sum_{i=1}^n n_ip_i\mapsto \sum_{i=1}^n n_i\int_{p_i}^{p_0}\cdot$</li>
+                </ul>
+              </li>
+              <li>$\Omega^1(\Sigma)$ 为<a href="https://en.wikipedia.org/wiki/Differential_forms_on_a_Riemann_surface">holomorphic 1-form的线性空间</a> , $\Omega^1(\Sigma)^*$ 是它的对偶空间</li>
+              <li>modulo image of <a href="https://en.wikipedia.org/wiki/Homology_(mathematics)">homology group(同调群)</a>  $H_1(\Sigma,\mathbb Z)$
+                <ul>
+                  <li>记 $H_1(\Sigma,\mathbb Z)$ 的basis ${a_1,\dots,a_g,b_1,\dots,b_g}$ , 即$\Lambda=span{\int_{a_1}\cdot,\dots,\int_{a_g}\cdot,\int_{b_1}\cdot,\dots,\int_{b_g}\cdot}$
+                    <ul>
+                      <li>前半部分记为period matrix $A$, 后半部分记为period matrix $B$ (see quad.3 Definition 3.9)</li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>等价关系推导:
+    <ul>
+      <li>quad mesh -&gt; divisor condition(see quad.2 Theorem 4.11):
+        <ul>
+          <li>divisor Q 对应的meromorphic quartic differential($\omega_Q$) 可以拆分成 $\omega_Q=f\cdot \omega_0^4$
+            <ul>
+              <li>其中$\omega_0$ 是任意holomorphic 1-form, $f$ 是meromorphic function</li>
+              <li>meromorphic function $f$ 对应principle divisor $(f)$ , $\mu((f))=0$</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="从divisor生成quad-mesh的方法">从divisor生成quad-mesh的方法</h2>
+
+<p>只考虑closed oriented surface的情况. 有边界和non-oriented(Mobius strip)的情况类似.</p>
+
+<h3 id="生成t-mesh-tvef">生成T-mesh $T=(V,E,F)$</h3>
+
+<p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240612151157.png" alt="Pasted image 20240612151157.png" width="200" /></p>
+
+<ul>
+  <li>从triangle mesh计算homology group(同调群) $H_1(\Sigma,\mathbb Z)$ 的basis ${a_1,\dots,a_g,b_1,\dots,b_g}$ ,
+    <ul>
+      <li>通过reset height function构造Reeb graph抽卡保证$a_i$ 只和$b_i$ 相交(see [4])</li>
+      <li>得到holomorphic 1-form basis  $\Omega^1(\Sigma)$ (see [5])
+        <ul>
+          <li>loop $\gamma$ -&gt; discrete closed 1-form $\lambda_{\gamma}=dg_{\gamma}$  -&gt; harmonic 1-form $\omega_{\gamma}$ -&gt; holomorphic 1-form $\phi_{\gamma}$</li>
+          <li>得到一个holomorphic 1-form $\phi$</li>
+          <li>得到period matrix A, B</li>
+        </ul>
+      </li>
+      <li>得到cut graph $\Gamma$</li>
+    </ul>
+  </li>
+  <li>生成singularity set $\mathcal S$
+    <ul>
+      <li>在surface上选择initial singularities
+        <ul>
+          <li>maximal Gaussian curvature as poles, or with minimal curvature as zeros</li>
+        </ul>
+      </li>
+      <li>先添加一些zeros, poles, 使其满足Gauss-Bonnet condition
+        <ul>
+          <li>local maximal Gaussian curvature as poles, or with local minimal curvature as zeros</li>
+        </ul>
+      </li>
+      <li>优化这些点, 使其满足Abel–Jacobi condition: 对应一个meromorphic quartic differential
+        <ul>
+          <li>等价于: divisor $D$ 和 $4(\phi)$  linearly equivalent, 即相差一个meromorphic function</li>
+          <li>等价于: $D$ 和 $4(\phi)$ 在Abel-Jacobian map的值相等</li>
+          <li>用gradient descent优化 $\mu(D-4(\phi))$</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>把$\mathcal S$ 做为divisor生成一个meromorphic quartic differential $\omega$
+    <ul>
+      <li>计算cutgraph: $\Gamma\ \cup\ {\cup_{i=1}^k \gamma_i}$     (see quad.3  4.1.7)
+        <ul>
+          <li>其中$\Gamma$ 为homology group  ${a_1,\dots,a_g,b_1,\dots,b_g}$ 的union</li>
+          <li>${\cup_{i=1}^k \gamma_i}$ 是sigularities $p_i$ 到cutgraph $\Gamma$ 的最短path</li>
+        </ul>
+      </li>
+      <li>得到沿上面cutgraph切开的foundamental domain $\tilde \Sigma$</li>
+      <li>计算foundamental domain $\tilde \Sigma$ 到平面$\mathbb C$ 的isometric immersion $\psi$ (see [6])
+        <ul>
+          <li>用Newton method优化每个vertex上的conformal  factor $u_i$</li>
+        </ul>
+      </li>
+      <li>complex domain上的$dz^4$, 用$\psi$ pull back, 得到 $\omega=\psi^* dz^4$ 为$\Sigma$ 上的一个meromorphic quartic differential</li>
+    </ul>
+  </li>
+  <li>从 $\omega$ 上$S$的横竖方向trace得到T-mesh(see [7])</li>
+</ul>
+
+<h3 id="生成quad-mesh-把每个rectangle划分成grid方格">生成quad-mesh: 把每个rectangle划分成grid方格</h3>
+
+<ul>
+  <li>解$\downarrow$ 构成的线性系统方程
+    <ul>
+      <li>约束:
+        <ul>
+          <li>singularity position constraints: 共2(S-1)个(singularity set $\mathcal S$ )
+            <ul>
+              <li>$v_0$ 到$v_i$ 的path在horizontal, vertical 方向是有理数 (由path经过的edge组成 )</li>
+            </ul>
+          </li>
+          <li>deck transformation constraints: 共2x2g个
+            <ul>
+              <li>${a_1,\dots,a_g,b_1,\dots,b_g}$ 对应的路径在horizontal, vertical 方向是有理数</li>
+            </ul>
+          </li>
+          <li>face constraints: 共2(F-1)个
+            <ul>
+              <li>四边形相对边等长</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>变量: 边长的改变量 ${x_e:e\in E}$</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="reference">reference</h2>
+
+<p>[quad.1] Chen, Wei, Xiaopeng Zheng, Jingyao Ke, Na Lei, Zhongxuan Luo, and Xianfeng Gu. “Quadrilateral Mesh Generation I : Metric Based Method.” <em>Computer Methods in Applied Mechanics and Engineering</em> 356 (November 2019): 652–68. <a href="https://doi.org/10.1016/j.cma.2019.07.023">https://doi.org/10.1016/j.cma.2019.07.023</a>.</p>
+
+<p>[quad.2] Lei, Na, Xiaopeng Zheng, Zhongxuan Luo, Feng Luo, and Xianfeng Gu. “Quadrilateral Mesh Generation II: Meromorphic Quartic Differentials and Abel–Jacobi Condition.” <em>Computer Methods in Applied Mechanics and Engineering</em> 366 (July 2020): 112980. <a href="https://doi.org/10.1016/j.cma.2020.112980">https://doi.org/10.1016/j.cma.2020.112980</a>.</p>
+
+<p>[quad.3]  Zheng, Xiaopeng, Yiming Zhu, Wei Chen, Na Lei, Zhongxuan Luo, and Xianfeng Gu. “Quadrilateral Mesh Generation III : Optimizing Singularity Configuration Based on Abel–Jacobi Theory.” <em>Computer Methods in Applied Mechanics and Engineering</em> 387 (December 2021): 114146. <a href="https://doi.org/10.1016/j.cma.2021.114146">https://doi.org/10.1016/j.cma.2021.114146</a>.</p>
+
+<p>[4] K, DeyTamal, FanFengtao, and WangYusu. “An Efficient Computation of Handle and Tunnel Loops via Reeb Graphs.” <em>ACM Transactions on Graphics (TOG)</em>, July 21, 2013. <a href="https://doi.org/10.1145/2461912.2462017">https://doi.org/10.1145/2461912.2462017</a>. <strong>计算homology group</strong></p>
+
+<p>[5] ACM Other conferences. “Global Conformal Surface Parameterization Proceedings of the 2003 Eurographics/ACM SIGGRAPH Symposium on Geometry Processing.” World. Accessed June 5, 2024. <a href="https://doi.org/10.5555/882370.882388">https://doi.org/10.5555/882370.882388</a>.    <strong>计算holomorphic 1-form basis</strong></p>
+
+<p>[6] Jin, Miao, Junho Kim, Feng Luo, and Xianfeng Gu. “Discrete Surface Ricci Flow.” <em>IEEE Transactions on Visualization and Computer Graphics</em> 14 (September 1, 2008): 1030–43. <a href="https://doi.org/10.1109/TVCG.2008.57">https://doi.org/10.1109/TVCG.2008.57</a>.  <strong>计算foundamental domain的参数化</strong></p>
+
+<p>[7] Eppstein, David, Michael Goodrich, Ethan Kim, and Rasmus Tamstorf. “Motorcycle Graphs: Canonical Quad Mesh Partitioning.” <em>Comput. Graph. Forum</em> 27 (July 1, 2008): 1477–86. <a href="https://doi.org/10.1111/j.1467-8659.2008.01288.x">https://doi.org/10.1111/j.1467-8659.2008.01288.x</a>.  <strong>计算T-mesh</strong></p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="algorithm" /><category term="content" /><category term="mesh" /><summary type="html"><![CDATA[-&gt;]]></summary></entry><entry><title type="html">python工具</title><link href="https://roshameow.github.io//personal_homepage/docs/tool/python-tool/" rel="alternate" type="text/html" title="python工具" /><published>2024-06-03T00:00:00+00:00</published><updated>2024-06-03T19:04:53+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/tool/python-tool</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/tool/python-tool/"><![CDATA[<h2 id="启动脚本">启动脚本</h2>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="tool" /><category term="content" /><summary type="html"><![CDATA[启动脚本]]></summary></entry><entry><title type="html">blender学习: 冰材质</title><link href="https://roshameow.github.io//personal_homepage/docs/blender/blender-learning13/" rel="alternate" type="text/html" title="blender学习: 冰材质" /><published>2024-05-27T00:00:00+00:00</published><updated>2024-05-28T20:46:36+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/blender/blender-learning13</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/blender/blender-learning13/"><![CDATA[<p>在IOR=1.31的透明材质基础上, 添加表面的凹凸和内部的裂痕, 气泡</p>
 
 <h2 id="制作冰材质">制作冰材质:</h2>
 
@@ -714,433 +977,4 @@
 
 <h2 id="代码">代码</h2>
 
-<p><a href="https://gist.github.com/roshameow/bee4e4ebe065cc3159094590bd873eb1#file-confidence_filter-py"><strong>confidence_filter.py</strong></a> <a href="https://gist.github.com/roshameow/bee4e4ebe065cc3159094590bd873eb1#file-fir-py"><strong>fir.py</strong></a> <a href="https://gist.github.com/roshameow/bee4e4ebe065cc3159094590bd873eb1#file-kalman-py"><strong>kalman.py</strong></a></p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="algorithm" /><category term="content" /><category term="kalman" /><category term="optical_flow" /><category term="filter" /><category term="norm" /><summary type="html"><![CDATA[在高速场景下, 每次中断收集的数据是光流的累加值, 其实本来就相当于一个滤波…况且在硬件有限的条件下, 复杂的滤波没有什么实用价值.]]></summary></entry><entry><title type="html">小红书学到的几种图片调色 (二)</title><link href="https://roshameow.github.io//personal_homepage/docs/photo/photo-color1/" rel="alternate" type="text/html" title="小红书学到的几种图片调色 (二)" /><published>2024-04-27T00:00:00+00:00</published><updated>2024-05-14T00:21:54+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/photo/photo-color1</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/photo/photo-color1/"><![CDATA[<h2 id="人物美白">人物美白</h2>
-
-<p><a href="https://www.xiaohongshu.com/explore/661ab1fb000000000401bfe2">教程</a></p>
-
-<ul>
-  <li>cameraRaw滤镜
-    <ul>
-      <li>基本:
-        <ul>
-          <li>
-            <ul>
-              <li>色温, + 色调</li>
-            </ul>
-          </li>
-          <li>
-            <ul>
-              <li>曝光, + 对比度, -高光</li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-      <li>混色器:
-        <ul>
-          <li>色相: + 红色, -橙色, –蓝色</li>
-          <li>明亮度: -红色</li>
-        </ul>
-      </li>
-      <li>校准:
-        <ul>
-          <li>绿原色: +色相</li>
-          <li>蓝原色: +饱和度</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-</ul>
-
-<p>我明白了这件事的难度, 肤色和环境光的作用太subtle了, 美的定义又太多样了. 难怪现在无论什么滤镜都没法把所有人统一的变漂亮.</p>
-
-<h2 id="梦幻发光">梦幻发光</h2>
-
-<p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240428143139.png" alt="Pasted image 20240428143139.png" width="200" /> <img src="/personal_homepage/docs/attachment/Pasted%20image%2020240428143157.png" alt="Pasted image 20240428143157.png" width="200" /> <img src="/personal_homepage/docs/attachment/Pasted%20image%2020240428143227.png" alt="Pasted image 20240428143227.png" width="200" /></p>
-
-<p><a href="https://www.xiaohongshu.com/explore/660fbca9000000001a014c53">教程</a></p>
-
-<ul>
-  <li>调整画面颜色(增加绿色): 可选颜色, 在 <a href="https://en.wikipedia.org/wiki/CMYK_color_model">CMYK 颜色</a> 调整
-    <ul>
-      <li>黄色: + 青色,黄色,黑色  -洋红</li>
-      <li>绿色: + 青色,黄色  -洋红,黑色</li>
-    </ul>
-  </li>
-  <li>给高光部分做高斯模糊</li>
-  <li>混合模式改为变亮</li>
-  <li>和blender里面的<a href="https://docs.blender.org/manual/en/latest/render/eevee/render_settings/bloom.html">bloom(辉光)</a> 功能原理一样</li>
-</ul>
-
-<h2 id="赛博朋克">赛博朋克</h2>
-
-<p><a href="https://www.xiaohongshu.com/explore/65be0795000000002c015bf1">教程</a></p>
-<ul>
-  <li>增加暗处清晰度</li>
-  <li>把整体颜色调成偏蓝, 偏红</li>
-  <li>在阴影,高光的地方分别加冷暖色</li>
-  <li>在混色器里把所有附近颜色调的偏青色, 洋红</li>
-</ul>
-
-<p>这效果并不好看…</p>
-
-<h2 id="eva红色天空">EVA红色天空</h2>
-
-<p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240513161940.png" alt="Pasted image 20240513161940.png" width="300" /> <img src="/personal_homepage/docs/attachment/Pasted%20image%2020240513161959.png" alt="Pasted image 20240513161959.png" width="300" /></p>
-
-<p><a href="https://www.bilibili.com/video/BV1Xj411r7P5/">教程</a></p>
-
-<ul>
-  <li>把颜色调成好看的红橙色</li>
-</ul>
-
-<h2 id="photoshop快捷键">photoshop快捷键</h2>
-
-<ul>
-  <li>command+alt+shift+E(盖印)
-    <ul>
-      <li>把效果和图层合并生成一个新图层</li>
-    </ul>
-  </li>
-  <li>command+alt+2(提取高光)
-    <ul>
-      <li>command+J 可以把高光变成一个新图层</li>
-    </ul>
-  </li>
-</ul>
-
-<h2 id="可选颜色功能">可选颜色功能</h2>
-
-<ul>
-  <li>根据选中的颜色设置一个mask, 只调整mask之中的颜色
-    <ul>
-      <li>颜色容差控制mask边缘的模糊程度</li>
-      <li>CMYK调整RGB单个通道对应的互补色</li>
-    </ul>
-  </li>
-  <li>可以用颜色取样工具监测颜色的变化</li>
-</ul>
-
-<h2 id="camerarawacr参数理解">CameraRaw(ACR)参数理解</h2>
-
-<ol>
-  <li>基本
-    <ol>
-      <li>色温(Temperature)/色调(Tint): 改变<strong>图片整体</strong>hue
-        <ol>
-          <li>色温调整蓝/黄, 色调调整洋红/绿</li>
-        </ol>
-      </li>
-      <li>自然饱和度/饱和度: 改变图片的Saturation
-        <ol>
-          <li>自然饱和度只增加图片饱和度低的地方的饱和度</li>
-          <li>饱和度增加图片整体饱和度</li>
-        </ol>
-      </li>
-      <li>亮度(Brightness): 所有像素变亮</li>
-      <li>对比度(Contrast): 增加和0.5距离的绝对值</li>
-      <li>高光/阴影/白色/黑色: 调整清晰度
-        <ol>
-          <li>高光/阴影: 只会影响图片的 亮部/暗部</li>
-          <li>白色/黑色: 影响图片整体</li>
-        </ol>
-      </li>
-    </ol>
-  </li>
-  <li>混色器: <a href="https://www.bilibili.com/video/BV1584y1C7nP/">教程</a>
-    <ul>
-      <li>HSL(Hue, Saturation, Lightness) 调整:
-        <ol>
-          <li>对图片上颜色归类(按红,橙,黄,绿,青,蓝,紫,洋红分为8类)</li>
-          <li>调整<strong>所选颜色附近45度的颜色</strong>mask, 颜色拉到最右侧是变成下一级
-            <ul>
-              <li>比如红色hue拉到100, 会把红色调成橙色</li>
-            </ul>
-          </li>
-        </ol>
-      </li>
-    </ul>
-  </li>
-  <li>颜色分级: <a href="https://www.bilibili.com/video/BV1zQ4y1R7J2/">教程</a>
-    <ol>
-      <li>把图片分为高光,中间调, 阴影</li>
-      <li><strong>在对应亮度的像素位置增加颜色</strong>
-        <ol>
-          <li>调整颜色面板和下面的(色相,饱和度,明亮度)是一样效果: 都是选颜色</li>
-        </ol>
-      </li>
-      <li>平衡: 控制偏高光还是偏阴影</li>
-    </ol>
-  </li>
-  <li>校准: <a href="https://www.bilibili.com/video/BV1JK411d7ed/">教程</a>
-    <ol>
-      <li>调整图片上所有颜色, 把所有颜色顺时针旋转, <strong>原色附近权重更大</strong></li>
-    </ol>
-  </li>
-</ol>
-
-<ul>
-  <li>颜色调整的精细度: 混色器 &gt; 校准的原色 &gt; 基本的色温/色调</li>
-  <li>测试:
-    <ul>
-      <li>用色环测试颜色调整的效果</li>
-      <li>用灰度卡测试亮度变化效果</li>
-    </ul>
-  </li>
-  <li>photoshop找不到功能的具体公式, 只能靠一些网络教程, 有些功能实在没法一下明白…</li>
-  <li>一般需要想好要什么颜色, 然后看着调…</li>
-</ul>
-
-<h2 id="reference">reference</h2>
-
-<p>[1]  https://www.zhihu.com/question/54879117#:~:text=高光和白色滑块,的保护更好一些%E3%80%82    高光/阴影/白色/黑色讨论, 看完还是没懂</p>
-
-<p>[2] Paris, Sylvain, Samuel W Hasinoff, and Jan Kautz. “Local Laplacian Filters: Edge-Aware Image Processing with a Laplacian Pyramid,” n.d.      据说可能是高光/阴影的公式</p>
-
-<p>[3] https://lab.magiconch.com/eva-title/?layout=e10 EVA字体生成器</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="photo" /><category term="content" /><category term="photoshop" /><category term="shortcut" /><category term="filter" /><category term="color" /><category term="camera_raw" /><summary type="html"><![CDATA[人物美白]]></summary></entry><entry><title type="html">小面积光流传感器算法测试 (二) – 特征训练</title><link href="https://roshameow.github.io//personal_homepage/docs/algorithm/optical_flow_train2/" rel="alternate" type="text/html" title="小面积光流传感器算法测试 (二) – 特征训练" /><published>2024-04-25T00:00:00+00:00</published><updated>2024-04-28T23:30:43+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/algorithm/optical_flow_train2</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/algorithm/optical_flow_train2/"><![CDATA[<h2 id="数据">数据</h2>
-
-<p>① ② :  <img src="/personal_homepage/docs/attachment/Pasted%20image%2020240426065333.png" alt="Pasted image 20240426065333.png" width="150" />    ③ : <img src="/personal_homepage/docs/attachment/Pasted%20image%2020240426065926.png" alt="Pasted image 20240426065926.png" width="330" /></p>
-
-<table>
-  <thead>
-    <tr>
-      <th> </th>
-      <th>采样方式</th>
-      <th>具体说明</th>
-      <th>特点</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>①</td>
-      <td>仿真图像+仿真采样<br />Sample</td>
-      <td>在16x16的图像上随机crop得到8x8的patch, <br />再随机用grid_sample提取8x8的patch比对<br /><br />正样本: 和patch距离&lt;0.5的patch<br /></td>
-      <td>从采样方法来说, 当前像素只和周围3x3邻域像素相关<br /><br /></td>
-    </tr>
-    <tr>
-      <td>②</td>
-      <td>真实图像+仿真采样<br />SampleFromFrame</td>
-      <td>用实际sensor提供的图片</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>③</td>
-      <td>真实图像+真实采样<br />SampleFromVideo</td>
-      <td>筛选实际sensor提供的图片前后帧,<br />用其他算法确定光流已知的图片对,<br />在图片的其他区域采样</td>
-      <td>这是图像配准特征训练中的一般做法</td>
-    </tr>
-  </tbody>
-</table>
-
-<ul>
-  <li>代码: <a href="https://gist.github.com/roshameow/a56eaeff6cc8c84aacfce28ba17be0bf#file-local_binary-py"><strong>local_binary.py</strong></a></li>
-  <li>结果: 对于究竟学到了哪方面特征, 我很疑惑
-    <ul>
-      <li>出乎我意料的, 是①  &gt; ② &gt; ③
-        <ul>
-          <li>可能是我加噪声的方式和真实情况有差距?</li>
-          <li>可能是我数据采样中的光流不可靠?</li>
-          <li>可能是产生了我不清楚的过拟合?</li>
-        </ul>
-      </li>
-      <li>adaboost的方法比神经网络训练效果好(或者差不多?)</li>
-      <li>“最好”的训练结果也没比不训练的结果(sad-mean(diff)的版本)好.
-        <ul>
-          <li>可能通过匹配patch计算光流的准确度本来已经达到饱和, 再训练patch的描述也没法提升?</li>
-        </ul>
-      </li>
-      <li>用真实数据的loss比仿真数据要大
-        <ul>
-          <li>说明真实数据更难</li>
-          <li>用真实图像插值时, 结果变得超差, 改成crop好了一些</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-</ul>
-
-<h3 id="torch-grid-sample">torch grid sample</h3>
-
-<p>torch grid 的采样方式有align_corners=True和align_cornes=False两种</p>
-<ul>
-  <li><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240415160510.png" alt="Pasted image 20240415160510.png" width="250" /></li>
-  <li>转换关系: 一般需要对齐的时候选align_corner=True
-    <ul>
-      <li>pixel -&gt; grid(align_corner=True): <code class="language-plaintext highlighter-rouge">x=x/(n-1)*2-1</code></li>
-      <li>x和y的dim可能和crop也不一致, 需要注意</li>
-      <li>可以先按转换关系使grid_sample和crop完全对齐, 测试sample代码位置上是否正确</li>
-    </ul>
-  </li>
-</ul>
-
-<h2 id="gradient-descent训练">gradient descent训练</h2>
-
-<p>用对比学习的模式, 输入相同size的dist(N x M: batch_size x compared_sample_num)和 label.</p>
-<ul>
-  <li>label = 1, 对应match pair, 我们想要使其dist更小(相关性的话更大)</li>
-  <li>对batch的dim做平均要在最后, 因为不同sample应该分别排序</li>
-</ul>
-
-<h3 id="几种contrastive-loss">几种contrastive loss</h3>
-
-<table>
-  <thead>
-    <tr>
-      <th>loss</th>
-      <th>公式</th>
-      <th>目的</th>
-      <th>特点</th>
-      <th> </th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><a href="https://github.com/naver/r2d2/blob/master/nets/ap_loss.py">AP Loss</a> <br />(Average Precision)<br /><br />按照R2D2<a href="#ref">2</a>的写法</td>
-      <td>1. 把dist量化, 变为N x Q x M 的binary tensor<br />2. 和label比对, 统计每个sample对应的match/miss的hist: N x Q<br />3. 对于hist的每个bin, 计算前面k个bin的precision<br /><code class="language-plaintext highlighter-rouge">prec@k=cumsum_k match/(match+miss)</code> <br />4. 对每个bin位置的prec@k 做关于match hist的加权平均, 得到AP<br />5. AP loss = 1-mean(AP)<br /></td>
-      <td>减小miss hist排在match hist前面的情况<br />用prec@K 表示混合程度<br /><br />名称里的average, 是对match sample的average<br /><br />说是<a href="https://en.wikipedia.org/wiki/Precision_and_recall#:~:text=Precision%20can%20be%20seen%20as,irrelevant%20ones%20are%20also%20returned">precision</a>, <br />代码里实际写的是accuracy<br /></td>
-      <td>要根据dist范围调整量化的min/max<br /><br />量化的过程用到了clamp截断<br /><br />因为所有的正样本都参与了训练<br />这个loss会比较稳定<br /><br />在训练过程中, hist本身就是一个很直观观测分布的指标</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>InfoNCE<br />(Noise-Contrastive Estimation)</td>
-      <td>1. 对dist做softmax<br />2. 计算dist和label的<a href="https://en.wikipedia.org/wiki/Cross-entropy">cross entropy loss</a></td>
-      <td>让match dist=0, miss dist = 1</td>
-      <td>要保证batch的每个sample只对应一个正样本<br />(因为softmax)</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>triple loss</td>
-      <td>1. 每个batch sample, 分别选取match sample里dist最大(ap), <br />和miss sample里dist最小的(an)<br />2. 计算这两者的ranking loss<br /><br />即 $dist_{ap}-dist_{an}-m$ <br />(m是boundary, 即允许最大的match dist比最小的miss dist稍大一点)</td>
-      <td>让match dist尽量小, miss dist尽量大</td>
-      <td>只有最极端的正负样本参与了训练</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>Circle Loss</td>
-      <td>1. 对match sample(sp), 和miss sample(sn)做logsumexp<br />2. 对这两个加和做soft_plus<br /><br />参数$\gamma$ 控制logsumexp的光滑度, 参数m还是控制match/miss的dist界限值</td>
-      <td>和triple loss差不多, 但是是连续形式</td>
-      <td>其他正负样本也参与训练, 越是bad case权重越高</td>
-      <td> </td>
-    </tr>
-  </tbody>
-</table>
-
-<ul>
-  <li>代码: <a href="https://gist.github.com/roshameow/4ef59b0173b9489c2caa9c0e4712137b#file-loss-py"><strong>loss.py</strong></a>
-    <ul>
-      <li>当时写的时候我用的是相关性而不是dist(但是变量名写的是dist…), 可能是改r2d2代码的时候糊涂了 💔(代码里在量化的时候把相关性转成了dist)</li>
-      <li>AP_loss的中间结果(dist的平均分布): <img src="/personal_homepage/docs/attachment/hist.png" alt="hist.png" width="100" /> 其中蓝色是match, 红色是miss</li>
-    </ul>
-  </li>
-  <li><strong>光流任务</strong> :
-    <ul>
-      <li>尝试了两种descriptor:
-        <ul>
-          <li>只用AP loss和64dim的 linear特征loss比较正常</li>
-          <li>如果用grid-sample 选一些pixel pair的差值(类似<a href="https://docs.opencv.org/3.4/dc/d7d/tutorial_py_brief.html">BRIEF</a> ), loss完全没有下降</li>
-        </ul>
-      </li>
-      <li>dist计算中, 如果是用内积计算两组sample(N x V, M x V)的相关性(N x M), 只需要用矩阵乘法就可以. 但是如果用其他自定义的dist, 需要先extend到(N x M x V, N x M x V), 去计算距离.</li>
-    </ul>
-  </li>
-</ul>
-
-<h2 id="adaboost训练"><a href="https://en.wikipedia.org/wiki/AdaBoost#:~:text=AdaBoost%20refers%20to%20a%20particular,the%20class%20of%20the%20object.">Adaboost</a>训练</h2>
-
-<p>如果特征是离散的, gradient没有指导意义的时候, 可以用sample+选择的方式训练</p>
-
-<ul>
-  <li>特征采用<a href="https://docs.opencv.org/3.4/dc/d7d/tutorial_py_brief.html">BRIEF</a> binary特征, 每个pixel pair做为一个weak-learner
-    <ul>
-      <li>$h = sign(p_1-p_2)$</li>
-    </ul>
-  </li>
-  <li>步骤是重复: 选特征-&gt; 更新sample权重 -&gt; 计算weighted error 的过程</li>
-  <li>代码: <a href="https://gist.github.com/roshameow/4d0792f08724f0bda880b564db04530f#file-boosting_train-py"><strong>boosting_train.py</strong></a></li>
-</ul>
-
-<h3 id="adaboost的一个改进">adaboost的一个改进</h3>
-
-<p>在beblid<a href="#ref">2</a>中介绍了<strong>给每个weak-learner加一个boundary的方法</strong>: 当weak-learner结果在boundary的同侧视为匹配(比如 $h_1&lt;T, h_2&lt;T$ ), 异侧视为不匹配</p>
-<ul>
-  <li><strong>步骤</strong>: 对于每个weak-learner
-    <ul>
-      <li>给当前weak-learner的结果<strong>排序</strong></li>
-      <li>先确定当前weak-learner所对应的可能的boundaries ${T_j}$
-        <ul>
-          <li>$T_{j-1}$ 到 $T_j$ error的改变有以下几种可能: 假设$(v_1,v_2)$ 是当前weak-learner sample pair的结果
-            <ul>
-              <li><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240426173943.png" alt="Pasted image 20240426173943.png" width="150" /></li>
-              <li>$v_1&lt; T_{j-1}&lt;v_2&lt; T_{j}$ , $v_1, v_2$ 从$T_{j-1}$ 的异侧变为了$T_j$ 的同侧 (1)
-                <ul>
-                  <li>如果$(v_1, v_2)$ label为1, match, error -1</li>
-                  <li>如果$(v_1, v_2)$ label为-1, miss, error +1</li>
-                </ul>
-              </li>
-              <li>$T_{j-1}&lt;v_1&lt; T_{j}&lt;v_2$ , $v_1, v_2$ 从$T_{j-1}$ 的同侧变为了$T_j$ 的异侧 (2)
-                <ul>
-                  <li>如果$(v_1, v_2)$ label为1, match, error +1</li>
-                  <li>如果$(v_1, v_2)$ label为-1, miss, error -1</li>
-                </ul>
-              </li>
-              <li>$v_2&lt; T_{j-1}&lt;v_1&lt; T_{j}$ , $v_1, v_2$ 从$T_{j-1}$ 的异侧变为了$T_j$ 的同侧 (3)
-                <ul>
-                  <li>如果$(v_1, v_2)$ label为1, match, error -1</li>
-                  <li>如果$(v_1, v_2)$ label为-1, miss, error +1</li>
-                </ul>
-              </li>
-              <li>$T_{j-1}&lt;v_2&lt; T_{j}&lt;v_1$ , $v_1, v_2$ 从$T_{j-1}$ 的同侧变为了$T_j$ 的异侧 (4)
-                <ul>
-                  <li>如果$(v_1, v_2)$ label为1, match, error +1</li>
-                  <li>如果$(v_1, v_2)$ label为-1, miss, error -1</li>
-                </ul>
-              </li>
-            </ul>
-          </li>
-          <li>用 $d_1$ 收集case 2,3, $d_2$ 收集case 1,4.
-            <ul>
-              <li>当$v_1$ 经过$T_{j-1}\rightarrow T_j$ 就会触发$d_1$,  当$v_2$ 经过$T_{j-1}\rightarrow T_j$ 就会触发$d_2$</li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-      <li><strong>遍历</strong>boundrary $T_j$ 和其中的sample即可计算出全部带boundary的weak-learner的error</li>
-    </ul>
-  </li>
-  <li><strong>计算量</strong>:
-    <ul>
-      <li>如果是plain的adaboost, 每个weak-learner的迭代只需要更新weight, 计算量只有O(N)</li>
-      <li>如果weak-learner总数很多, 每次迭代只sample一部分weak-learner, 就没法复用weak-learner的结果, 要重新计算O(N x W)
-        <ul>
-          <li>W 是本轮重新sample出的weak-learner</li>
-        </ul>
-      </li>
-      <li>如果给weak-learner附上boundary, 还要
-        <ul>
-          <li>对每个weak-learner的结果排序O(PlogP), P=2N 是sample pair里结果的个数, 即O(W x PlogP)</li>
-          <li>对每个weak-learner遍历sample 的结果 O(N), 即O(W x N)
-            <ul>
-              <li>如果不是采用这种遍历sample的方式, 虽然不需要排序了, 但是需要O(T x N)的error计算, 即总共O(W x T x N), 考虑到sample数N是比较大的, 这没法接受</li>
-              <li>考虑在boundary同侧的结果本来就没影响, 所以拆成排序+遍历应该是boundary训练的一个常见的方法🤔️</li>
-            </ul>
-          </li>
-          <li>因为每个weak-learner的结果和boundary的选择不一样, 似乎没法在weak-learner那边并行❓</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-</ul>
-
-<p>opencv的人脸检测分类器也是这种加boundary(threshold)的形式</p>
-
-<h2 id="reference">reference</h2>
-<p><span id="ref"></span>
-[1]  He, Kun, Yan Lu, and Stan Sclaroff. “Local Descriptors Optimized for <strong>Average Precision</strong>.” arXiv, April 17, 2018. <a href="http://arxiv.org/abs/1804.05312">http://arxiv.org/abs/1804.05312</a>.</p>
-
-<p>[2] Revaud, Jerome, Philippe Weinzaepfel, César De Souza, Noe Pion, Gabriela Csurka, Yohann Cabon, and Martin Humenberger. “<strong>R2D2</strong>: Repeatable and Reliable Detector and Descriptor.” arXiv, June 17, 2019. <a href="https://doi.org/10.48550/arXiv.1906.06195">https://doi.org/10.48550/arXiv.1906.06195</a>.</p>
-
-<p>[3] Suárez, Iago, Ghesn Sfeir, José M. Buenaposada, and Luis Baumela. “<strong>BEBLID</strong>: Boosted Efficient Binary Local Image Descriptor.” <em>Pattern Recognition Letters</em> 133 (May 2020): 366–72. <a href="https://doi.org/10.1016/j.patrec.2020.04.005">https://doi.org/10.1016/j.patrec.2020.04.005</a>.</p>
-<h2 id="其他资源">其他资源</h2>
-
-<p>[1] https://www.htmlsymbols.xyz/number-symbols/circled-numbers html特殊list符号</p>
-
-<p>[2] https://www.zhihu.com/question/382802283 很好的对于Circle loss的解释</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="algorithm" /><category term="content" /><category term="optical_flow" /><category term="deeplearning" /><category term="adaboost" /><category term="contrastive_learning" /><category term="grid_sample" /><summary type="html"><![CDATA[数据]]></summary></entry></feed>
+<p><a href="https://gist.github.com/roshameow/bee4e4ebe065cc3159094590bd873eb1#file-confidence_filter-py"><strong>confidence_filter.py</strong></a> <a href="https://gist.github.com/roshameow/bee4e4ebe065cc3159094590bd873eb1#file-fir-py"><strong>fir.py</strong></a> <a href="https://gist.github.com/roshameow/bee4e4ebe065cc3159094590bd873eb1#file-kalman-py"><strong>kalman.py</strong></a></p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="algorithm" /><category term="content" /><category term="kalman" /><category term="optical_flow" /><category term="filter" /><category term="norm" /><summary type="html"><![CDATA[在高速场景下, 每次中断收集的数据是光流的累加值, 其实本来就相当于一个滤波…况且在硬件有限的条件下, 复杂的滤波没有什么实用价值.]]></summary></entry></feed>

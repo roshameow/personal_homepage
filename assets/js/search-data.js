@@ -319,10 +319,15 @@ var store = [{
         "tags": ["content","optical_flow","opencv","test"],
         "url": "https://roshameow.github.io//personal_homepage/docs/algorithm/optical-flow-train/"
       },{
-        "title": "stable-diffusion中k-sampling的不同版本",
-        "excerpt":"Diffusion Process &amp; Reverse Diffusion Process 用Markov chain的表示: $q(x_t x_0)=N(x_t;\\alpha_t x_0,\\sigma^2 I)$ DDPM: $q(x_t x_{t-1})=N(x_t;\\sqrt{1-\\beta_t}x_{t-1},\\beta_tI)$ diffusion收敛到SDE, SDE离散化得到diffusion把DPM表示成SDE(stochastic differential equation): SDE的一般形式: $dx=f(x,t)dt+g(t)dw$ $f(\\cdot,t)$ 是drift coefficients 表示确定的部分 $g(\\cdot)$ 是diffusion coefficients 表示随机部分 $\\omega$ 是Wiener process(布朗运动) SDE的reverse: $dx=(f(x,t)-\\frac{1}{2}g^2(t)\\nabla_x\\log p(x,t))dt+g(t)dw$ score function $\\nabla_x\\log p(x,t)$ 指向higher density of data $\\nabla_x\\log p(x;\\sigma)=(D(x;\\sigma)-x)/{\\sigma}$ 前半确定部分: Probability flow ODE: $dx=(f(x,t)-\\frac{1}{2}g^2(t)\\nabla_x\\log...","categories": ["docs","algorithm"],
+        "title": "stable-diffusion中 k-sampling的不同版本",
+        "excerpt":"Diffusion Process &amp; Reverse Diffusion Process 用Markov chain的表示: \\[q(x_t|x_0)=N(x_t;\\alpha_t x_0,\\sigma^2 I)\\] diffusion收敛到SDE, SDE离散化得到diffusion把DPM表示成SDE(stochastic differential equation): SDE的一般形式: $dx=f(x,t)dt+g(t)dw$ $f(\\cdot,t)$ 是drift coefficients 表示确定的部分 $g(\\cdot)$ 是diffusion coefficients 表示随机部分参数 $\\omega$ 是Wiener process(布朗运动) , $dw=\\sqrt{t}z$ SDE的reverse: $dx=(f(x,t)-\\frac{1}{2}g^2(t)\\nabla_x\\log p(x,t))dt+g(t)dw$ score function $\\nabla_x\\log p(x,t)$ 指向higher density of data $\\nabla_x\\log p(x;\\sigma)=(D(x;\\sigma)-x)/{\\sigma}^2$ 前半确定部分: Probability flow ODE: $dx=(f(x,t)-\\frac{1}{2}g^2(t)\\nabla_x\\log p(x,t))dt$ Variance...","categories": ["docs","algorithm"],
         "tags": ["content"],
         "url": "https://roshameow.github.io//personal_homepage/docs/algorithm/stable-diffusion7/"
+      },{
+        "title": "stable-diffusion中 k-sampling的不同版本",
+        "excerpt":"  步骤   Euler和SDE的Euler–Maruyama 的解法不同 noise injection:- increased noise $\\hat \\sigma$ : $\\hat \\sigma\\leftarrow \\sigma_i + \\gamma\\sigma_i$ - sample x with increased noise: $\\hat x \\leftarrow x_i + \\sqrt{\\hat \\sigma^2-\\sigma_i^2}\\cdot\\epsilon$ Take Euler Step: - $dt=\\sigma_{i+1}-\\hat \\sigma$- $denoised=model(\\hat x,\\hat \\sigma)$ - gradient: $d=(\\hat x-denoised)/{\\hat \\sigma}$ - Euler step: $x_{i+1}=\\hat x+dt \\cdot...","categories": ["docs"],
+        "tags": ["content","jekyll"],
+        "url": "https://roshameow.github.io//personal_homepage/docs/stable-diffusion8/"
       },{
         "title": "小面积光流传感器算法测试 (二) -- 特征训练",
         "excerpt":"数据 ① ② : ③ :   采样方式 具体说明 特点 ① 仿真图像+仿真采样Sample 在16x16的图像上随机crop得到8x8的patch, 再随机用grid_sample提取8x8的patch比对正样本: 和patch距离&lt;0.5的patch 从采样方法来说, 当前像素只和周围3x3邻域像素相关 ② 真实图像+仿真采样SampleFromFrame 用实际sensor提供的图片   ③ 真实图像+真实采样SampleFromVideo 筛选实际sensor提供的图片前后帧,用其他算法确定光流已知的图片对,在图片的其他区域采样 这是图像配准特征训练中的一般做法 代码: local_binary.py 结果: 对于究竟学到了哪方面特征, 我很疑惑 出乎我意料的, 是① &gt; ② &gt; ③ 可能是我加噪声的方式和真实情况有差距? 可能是我数据采样中的光流不可靠? 可能是产生了我不清楚的过拟合? adaboost的方法比神经网络训练效果好(或者差不多?) “最好”的训练结果也没比不训练的结果(sad-mean(diff)的版本)好. 可能通过匹配patch计算光流的准确度本来已经达到饱和, 再训练patch的描述也没法提升? 用真实数据的loss比仿真数据要大 说明真实数据更难 用真实图像插值时, 结果变得超差, 改成crop好了一些 torch grid...","categories": ["docs","algorithm"],
@@ -373,4 +378,14 @@ var store = [{
         "excerpt":"在IOR=1.31的透明材质基础上, 添加表面的凹凸和内部的裂痕, 气泡 制作冰材质: 用volume shader 参考这个教学 用Cycles渲染器, 打开Render-&gt;Film-&gt;Transparent-&gt; Transparent Glass 但是没有用到composition所以开不开无所谓吧? 表面增加凹凸: 用Bump节点 用Bump 更改normal的方向: 根据输入的局部高度差 用noise texture生成纹理, 应用到bump的高度 用相同的noise texture生成纹理, 应用到roughness 目的是让凸出的地方更粗糙? 感觉和实际不太相符 在内部添加crack: 用Voronoi Texture 复合Noise Texture的扭曲 texture color: 添加到volume后: Voronoi Texture由Worley noise 生成 选择Distance to Edge: 生成distance map 用Linear Light(线性光) 的方式混合: 和add差不多, 但是会对可能saturated的值特殊处理 在内部添加一些雾气: 用noise texture生成...","categories": ["docs","blender"],
         "tags": ["content","shader"],
         "url": "https://roshameow.github.io//personal_homepage/docs/blender/blender-learning13/"
+      },{
+        "title": "python工具",
+        "excerpt":"启动脚本 ","categories": ["docs","tool"],
+        "tags": ["content"],
+        "url": "https://roshameow.github.io//personal_homepage/docs/tool/python-tool/"
+      },{
+        "title": "四边形网格生成",
+        "excerpt":"-&gt; 从通用的triangle mesh生成quad mesh. quad mesh容易插值和细分(样条曲面和 Catmull-Clark细分曲面常⻅ 的定义域就是四边形) quad-mesh 定义 由多个topological rectangle构成,每个rectangle interior是regular grid. topological rectangle:由复平面的rectangle做conformal(holomorphic) map变形得到 Conformal map(保角映射) 从几何方面描述: grid映射成正交的curve holomorphic map(全纯函数) 从分析方面描述: $\\mathbb C\\rightarrow \\mathbb C$ , 在任意一点可导 通过在quad-mesh上定义conformal atlas , 得到quad- mesh是Riemann surface(see quad.2 Theorem 4.6) chart: 每个face 的 interior定义$U_f$ , edge邻域定义$U_e$ , vertex邻域定义$U_v$ transition: 每两个chart之间的transition(face-&gt;edge, edge-&gt;vertex,...","categories": ["docs","algorithm"],
+        "tags": ["content","mesh"],
+        "url": "https://roshameow.github.io//personal_homepage/docs/algorithm/quadrilateral-mesh/"
       }]
