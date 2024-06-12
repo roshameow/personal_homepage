@@ -6,7 +6,8 @@ categories:
 tags:
   - content
   - mesh
-last_modified_at: 2024-06-12T15:38:29-08:00
+  - quad-mesh
+last_modified_at: 2024-06-12T16:54:48-08:00
 ---
 ![Pasted image 20240610075408.png]({{ '/docs/attachment/Pasted image 20240610075408.png' | relative_url }}){:width="150"} -> ![Pasted image 20240610075425.png]({{ '/docs/attachment/Pasted image 20240610075425.png' | relative_url }}){:width="130"} 
 
@@ -22,7 +23,7 @@ last_modified_at: 2024-06-12T15:38:29-08:00
 	- topological rectangle:由复平面的rectangle做conformal(holomorphic) map变形得到
 		- [Conformal map(保角映射)](https://en.wikipedia.org/wiki/Conformal_map) 从几何方面描述: grid映射成正交的curve
 		- [holomorphic map(全纯函数)](https://en.wikipedia.org/wiki/Holomorphic_function) 从分析方面描述:  $\mathbb C\rightarrow \mathbb C$ , 在任意一点可导
-	- 通过在quad-mesh上定义conformal [atlas](https://en.wikipedia.org/wiki/Atlas_(topology)) , 得到quad- mesh是Riemann surface(see quad.2 Theorem 4.6)
+	- 通过在quad-mesh上定义conformal [atlas](https://en.wikipedia.org/wiki/Atlas_(topology)) , 得到quad- mesh是Riemann surface(see [quad.2 Theorem 4.6](#ref))
 		- chart: 每个face 的 interior定义$U_f$ , edge邻域定义$U_e$ , vertex邻域定义$U_v$ 
 		- transition: 每两个chart之间的transition(face->edge, edge->vertex, face->vertex)都是$\pi/2$ 的旋转+平移, 是holomorphic的
 
@@ -44,11 +45,11 @@ last_modified_at: 2024-06-12T15:38:29-08:00
 	1. boundary alignment condition: boundary和cross field是平行或垂直关系
 	2. finite geodesic lamination condition: 沿cross field的geodesic是有限⻓的
 - 等价关系推导:
-	- quad mesh -> conditions(see quad.1 Theorem 3.7):
+	- quad mesh -> conditions(see [quad.1 Theorem 3.7](#ref)):
 		- 取cross field平行于edges
 			- 每次穿过不同chart时, 只会转$\pi/2$ 的整数倍
 			- geodesic不会进入同一个face多过两次, face数是又有限的, 所以geodesic也是finite的.
-	- Riemann surface with conditions -> quad mesh(see quad.1 Theorem 3.8):
+	- Riemann surface with conditions -> quad mesh(see [quad.1 Theorem 3.8](#ref)):
 		- 从singilarities出发, 沿cross field的geodesics形成quad mesh
 
 ### meromorphic quartic differential
@@ -58,10 +59,10 @@ last_modified_at: 2024-06-12T15:38:29-08:00
 		- 从文章看, quartic differential $(dz)^4$ 似乎并不是指外积 $\wedge^4 dz$  
 		- 从quartic differential $\omega=f(z)(dz)^4$, 对应differential 1-form $\sqrt[4]{\omega}=f(z)^{\frac{1}{4}}dz$   
 - 等价关系推导:
-	- quad mesh -> meromorphic quartic differential(see quad.2 Theorem 4.7):
+	- quad mesh -> meromorphic quartic differential(see [quad.2 Theorem 4.7](#ref) ):
 		- locally 在一个face 上定义 $(dz_f)^4$ , 可以consistent的定义在其他face, edge, vertex(包括singularities)的chart上
-	- meromorphic quartic differential -> conditions(see quad.2 Theorem 4.8):
-		- 取cross field(condition.2)为meromorphic quartic differential的horizontal & vertical trajectories(see qaud.2 Definition 3.13)
+	- meromorphic quartic differential -> conditions(see [quad.2 Theorem 4.8](#ref) ):
+		- 取cross field(condition.2)为meromorphic quartic differential的horizontal & vertical trajectories(see [qaud.2 Definition 3.13](#ref) )
 			- 使$\omega=f(z)(dz)^4$ 值是real的方向, 如果$w=z(dz)^4=c(d(z^{\frac{5}{4}}))^4$ , 有5个方向, $\theta=\frac{k2\pi}{5}$ 
 
 ### divisor
@@ -77,7 +78,7 @@ last_modified_at: 2024-06-12T15:38:29-08:00
 				- 记 $H_1(\Sigma,\mathbb Z)$ 的basis $\{a_1,\dots,a_g,b_1,\dots,b_g\}$ , 即$\Lambda=span\{\int_{a_1}\cdot,\dots,\int_{a_g}\cdot,\int_{b_1}\cdot,\dots,\int_{b_g}\cdot\}$ 
 					- 前半部分记为period matrix $A$, 后半部分记为period matrix $B$ (see quad.3 Definition 3.9)
 - 等价关系推导:
-	- quad mesh -> divisor condition(see quad.2 Theorem 4.11):
+	- quad mesh -> divisor condition(see [quad.2 Theorem 4.11](#ref) ):
 		- divisor Q 对应的meromorphic quartic differential($\omega_Q$) 可以拆分成 $\omega_Q=f\cdot \omega_0^4$ 
 			- 其中$\omega_0$ 是任意holomorphic 1-form, $f$ 是meromorphic function
 			- meromorphic function $f$ 对应principle divisor $(f)$ , $\mu((f))=0$ 
@@ -91,9 +92,10 @@ last_modified_at: 2024-06-12T15:38:29-08:00
 ![Pasted image 20240612151157.png]({{ '/docs/attachment/Pasted image 20240612151157.png' | relative_url }}){:width="200"}
 
 - 从triangle mesh计算homology group(同调群) $H_1(\Sigma,\mathbb Z)$ 的basis $\{a_1,\dots,a_g,b_1,\dots,b_g\}$ , 
-	- 通过reset height function构造Reeb graph抽卡保证$a_i$ 只和$b_i$ 相交(see [4])
-	- 得到holomorphic 1-form basis  $\Omega^1(\Sigma)$ (see [5])
+	- 通过reset height function构造Reeb graph抽卡保证$a_i$ 只和$b_i$ 相交(see [4](#ref))
+	- 得到holomorphic 1-form basis  $\Omega^1(\Sigma)$ (see [5](#ref))
 		- loop $\gamma$ -> discrete closed 1-form $\lambda_{\gamma}=dg_{\gamma}$  -> harmonic 1-form $\omega_{\gamma}$ -> holomorphic 1-form $\phi_{\gamma}$ 
+			- 由[Riemann-Roch theorem](https://en.wikipedia.org/wiki/Riemann–Roch_theorem), $l(D)-l(K-D)=deg(D)+1-g$, 令$D=0$, 得到 $l(K)=g$ , 即我们得到的是一组basis
 		- 得到一个holomorphic 1-form $\phi$
 		- 得到period matrix A, B
 	- 得到cut graph $\Gamma$ 
@@ -107,16 +109,16 @@ last_modified_at: 2024-06-12T15:38:29-08:00
 		- 等价于: $D$ 和 $4(\phi)$ 在Abel-Jacobian map的值相等
 		- 用gradient descent优化 $\mu(D-4(\phi))$  
 - 把$\mathcal S$ 做为divisor生成一个meromorphic quartic differential $\omega$ 
-	- 计算cutgraph: $\Gamma\ \cup\ \{\cup_{i=1}^k \gamma_i\}$     (see quad.3  4.1.7)
+	- 计算cutgraph: $\Gamma\ \cup\ \{\cup_{i=1}^k \gamma_i\}$     (see [quad.3  4.1.7](#ref) )
 		- 其中$\Gamma$ 为homology group  $\{a_1,\dots,a_g,b_1,\dots,b_g\}$ 的union
 		- $\{\cup_{i=1}^k \gamma_i\}$ 是sigularities $p_i$ 到cutgraph $\Gamma$ 的最短path
 	- 得到沿上面cutgraph切开的foundamental domain $\tilde \Sigma$ 
-	- 计算foundamental domain $\tilde \Sigma$ 到平面$\mathbb C$ 的isometric immersion $\psi$ (see [6])
+	- 计算foundamental domain $\tilde \Sigma$ 到平面$\mathbb C$ 的isometric immersion $\psi$ (see [6](#ref))
 		- 用Newton method优化每个vertex上的conformal  factor $u_i$ 
 	- complex domain上的$dz^4$, 用$\psi$ pull back, 得到 $\omega=\psi^* dz^4$ 为$\Sigma$ 上的一个meromorphic quartic differential
-- 从 $\omega$ 上$S$的横竖方向trace得到T-mesh(see [7])
+- 从 $\omega$ 上$S$的横竖方向trace得到T-mesh(see [7](#ref))
 
-
+T-mesh 形成过程: ![Pasted image 20240612170414.png]({{ '/docs/attachment/Pasted image 20240612170414.png' | relative_url }}){:width="400"} 
 ### 生成quad-mesh: 把每个rectangle划分成grid方格
 
 - 解$\downarrow$ 构成的线性系统方程
@@ -132,6 +134,7 @@ last_modified_at: 2024-06-12T15:38:29-08:00
 
 
 ## reference
+<span id="ref"></span>
 
 [quad.1] Chen, Wei, Xiaopeng Zheng, Jingyao Ke, Na Lei, Zhongxuan Luo, and Xianfeng Gu. “Quadrilateral Mesh Generation I : Metric Based Method.” _Computer Methods in Applied Mechanics and Engineering_ 356 (November 2019): 652–68. [https://doi.org/10.1016/j.cma.2019.07.023](https://doi.org/10.1016/j.cma.2019.07.023).
 
