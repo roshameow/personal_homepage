@@ -386,6 +386,6 @@ var store = [{
       },{
         "title": "四边形网格生成",
         "excerpt":"-&gt; 从通用的triangle mesh生成quad mesh. quad mesh容易插值和细分(样条曲面和 Catmull-Clark细分曲面常⻅ 的定义域就是四边形) quad-mesh 定义 由多个topological rectangle构成,每个rectangle interior是regular grid. topological rectangle:由复平面的rectangle做conformal(holomorphic) map变形得到 Conformal map(保角映射) 从几何方面描述: grid映射成正交的curve holomorphic map(全纯函数) 从分析方面描述: $\\mathbb C\\rightarrow \\mathbb C$ , 在任意一点可导 通过在quad-mesh上定义conformal atlas , 得到quad- mesh是Riemann surface(see quad.2 Theorem 4.6) chart: 每个face 的 interior定义$U_f$ , edge邻域定义$U_e$ , vertex邻域定义$U_v$ transition: 每两个chart之间的transition(face-&gt;edge, edge-&gt;vertex,...","categories": ["docs","algorithm"],
-        "tags": ["content","mesh"],
+        "tags": ["content","mesh","quad-mesh"],
         "url": "https://roshameow.github.io//personal_homepage/docs/algorithm/quadrilateral-mesh/"
       }]

@@ -31,7 +31,7 @@
 <meta property="twitter:title" content="四边形网格生成" />
 <meta name="twitter:site" content="@" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-06-12T23:38:29+00:00","datePublished":"2024-06-04T00:00:00+00:00","description":"-&gt;","headline":"四边形网格生成","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/docs/algorithm/quadrilateral-mesh/"},"url":"https://roshameow.github.io//personal_homepage/docs/algorithm/quadrilateral-mesh/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-06-13T00:54:48+00:00","datePublished":"2024-06-04T00:00:00+00:00","description":"-&gt;","headline":"四边形网格生成","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/docs/algorithm/quadrilateral-mesh/"},"url":"https://roshameow.github.io//personal_homepage/docs/algorithm/quadrilateral-mesh/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -125,7 +125,7 @@
         
   <h3 class="page-taxonomies-title">Tags</h3>
   
-  <ul class="page-taxonomies"><li class="page-taxonomy"><a href="/personal_homepage/tags/#content" title="Pages tagged content" rel="tag">content</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#mesh" title="Pages tagged mesh" rel="tag">mesh</a></li>
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a href="/personal_homepage/tags/#content" title="Pages tagged content" rel="tag">content</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#mesh" title="Pages tagged mesh" rel="tag">mesh</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#quad-mesh" title="Pages tagged quad-mesh" rel="tag">quad-mesh</a></li>
   </ul>
 
 
@@ -161,7 +161,7 @@
           <li><a href="https://en.wikipedia.org/wiki/Holomorphic_function">holomorphic map(全纯函数)</a> 从分析方面描述:  $\mathbb C\rightarrow \mathbb C$ , 在任意一点可导</li>
         </ul>
       </li>
-      <li>通过在quad-mesh上定义conformal <a href="https://en.wikipedia.org/wiki/Atlas_(topology)">atlas</a> , 得到quad- mesh是Riemann surface(see quad.2 Theorem 4.6)
+      <li>通过在quad-mesh上定义conformal <a href="https://en.wikipedia.org/wiki/Atlas_(topology)">atlas</a> , 得到quad- mesh是Riemann surface(see <a href="#ref">quad.2 Theorem 4.6</a>)
         <ul>
           <li>chart: 每个face 的 interior定义$U_f$ , edge邻域定义$U_e$ , vertex邻域定义$U_v$</li>
           <li>transition: 每两个chart之间的transition(face-&gt;edge, edge-&gt;vertex, face-&gt;vertex)都是$\pi/2$ 的旋转+平移, 是holomorphic的</li>
@@ -202,7 +202,7 @@
   </li>
   <li>等价关系推导:
     <ul>
-      <li>quad mesh -&gt; conditions(see quad.1 Theorem 3.7):
+      <li>quad mesh -&gt; conditions(see <a href="#ref">quad.1 Theorem 3.7</a>):
         <ul>
           <li>取cross field平行于edges
             <ul>
@@ -212,7 +212,7 @@
           </li>
         </ul>
       </li>
-      <li>Riemann surface with conditions -&gt; quad mesh(see quad.1 Theorem 3.8):
+      <li>Riemann surface with conditions -&gt; quad mesh(see <a href="#ref">quad.1 Theorem 3.8</a>):
         <ul>
           <li>从singilarities出发, 沿cross field的geodesics形成quad mesh</li>
         </ul>
@@ -236,14 +236,14 @@
   </li>
   <li>等价关系推导:
     <ul>
-      <li>quad mesh -&gt; meromorphic quartic differential(see quad.2 Theorem 4.7):
+      <li>quad mesh -&gt; meromorphic quartic differential(see <a href="#ref">quad.2 Theorem 4.7</a> ):
         <ul>
           <li>locally 在一个face 上定义 $(dz_f)^4$ , 可以consistent的定义在其他face, edge, vertex(包括singularities)的chart上</li>
         </ul>
       </li>
-      <li>meromorphic quartic differential -&gt; conditions(see quad.2 Theorem 4.8):
+      <li>meromorphic quartic differential -&gt; conditions(see <a href="#ref">quad.2 Theorem 4.8</a> ):
         <ul>
-          <li>取cross field(condition.2)为meromorphic quartic differential的horizontal &amp; vertical trajectories(see qaud.2 Definition 3.13)
+          <li>取cross field(condition.2)为meromorphic quartic differential的horizontal &amp; vertical trajectories(see <a href="#ref">qaud.2 Definition 3.13</a> )
             <ul>
               <li>使$\omega=f(z)(dz)^4$ 值是real的方向, 如果$w=z(dz)^4=c(d(z^{\frac{5}{4}}))^4$ , 有5个方向, $\theta=\frac{k2\pi}{5}$</li>
             </ul>
@@ -287,7 +287,7 @@
   </li>
   <li>等价关系推导:
     <ul>
-      <li>quad mesh -&gt; divisor condition(see quad.2 Theorem 4.11):
+      <li>quad mesh -&gt; divisor condition(see <a href="#ref">quad.2 Theorem 4.11</a> ):
         <ul>
           <li>divisor Q 对应的meromorphic quartic differential($\omega_Q$) 可以拆分成 $\omega_Q=f\cdot \omega_0^4$
             <ul>
@@ -312,10 +312,14 @@
 <ul>
   <li>从triangle mesh计算homology group(同调群) $H_1(\Sigma,\mathbb Z)$ 的basis ${a_1,\dots,a_g,b_1,\dots,b_g}$ ,
     <ul>
-      <li>通过reset height function构造Reeb graph抽卡保证$a_i$ 只和$b_i$ 相交(see [4])</li>
-      <li>得到holomorphic 1-form basis  $\Omega^1(\Sigma)$ (see [5])
+      <li>通过reset height function构造Reeb graph抽卡保证$a_i$ 只和$b_i$ 相交(see <a href="#ref">4</a>)</li>
+      <li>得到holomorphic 1-form basis  $\Omega^1(\Sigma)$ (see <a href="#ref">5</a>)
         <ul>
-          <li>loop $\gamma$ -&gt; discrete closed 1-form $\lambda_{\gamma}=dg_{\gamma}$  -&gt; harmonic 1-form $\omega_{\gamma}$ -&gt; holomorphic 1-form $\phi_{\gamma}$</li>
+          <li>loop $\gamma$ -&gt; discrete closed 1-form $\lambda_{\gamma}=dg_{\gamma}$  -&gt; harmonic 1-form $\omega_{\gamma}$ -&gt; holomorphic 1-form $\phi_{\gamma}$
+            <ul>
+              <li>由<a href="https://en.wikipedia.org/wiki/Riemann–Roch_theorem">Riemann-Roch theorem</a>, $l(D)-l(K-D)=deg(D)+1-g$, 令$D=0$, 得到 $l(K)=g$ , 即我们得到的是一组basis</li>
+            </ul>
+          </li>
           <li>得到一个holomorphic 1-form $\phi$</li>
           <li>得到period matrix A, B</li>
         </ul>
@@ -346,14 +350,14 @@
   </li>
   <li>把$\mathcal S$ 做为divisor生成一个meromorphic quartic differential $\omega$
     <ul>
-      <li>计算cutgraph: $\Gamma\ \cup\ {\cup_{i=1}^k \gamma_i}$     (see quad.3  4.1.7)
+      <li>计算cutgraph: $\Gamma\ \cup\ {\cup_{i=1}^k \gamma_i}$     (see <a href="#ref">quad.3  4.1.7</a> )
         <ul>
           <li>其中$\Gamma$ 为homology group  ${a_1,\dots,a_g,b_1,\dots,b_g}$ 的union</li>
           <li>${\cup_{i=1}^k \gamma_i}$ 是sigularities $p_i$ 到cutgraph $\Gamma$ 的最短path</li>
         </ul>
       </li>
       <li>得到沿上面cutgraph切开的foundamental domain $\tilde \Sigma$</li>
-      <li>计算foundamental domain $\tilde \Sigma$ 到平面$\mathbb C$ 的isometric immersion $\psi$ (see [6])
+      <li>计算foundamental domain $\tilde \Sigma$ 到平面$\mathbb C$ 的isometric immersion $\psi$ (see <a href="#ref">6</a>)
         <ul>
           <li>用Newton method优化每个vertex上的conformal  factor $u_i$</li>
         </ul>
@@ -361,9 +365,10 @@
       <li>complex domain上的$dz^4$, 用$\psi$ pull back, 得到 $\omega=\psi^* dz^4$ 为$\Sigma$ 上的一个meromorphic quartic differential</li>
     </ul>
   </li>
-  <li>从 $\omega$ 上$S$的横竖方向trace得到T-mesh(see [7])</li>
+  <li>从 $\omega$ 上$S$的横竖方向trace得到T-mesh(see <a href="#ref">7</a>)</li>
 </ul>
 
+<p>T-mesh 形成过程: <img src="/personal_homepage/docs/attachment/Pasted%20image%2020240612170414.png" alt="Pasted image 20240612170414.png" width="400" /></p>
 <h3 id="生成quad-mesh-把每个rectangle划分成grid方格">生成quad-mesh: 把每个rectangle划分成grid方格</h3>
 
 <ul>
@@ -394,6 +399,7 @@
 </ul>
 
 <h2 id="reference">reference</h2>
+<p><span id="ref"></span></p>
 
 <p>[quad.1] Chen, Wei, Xiaopeng Zheng, Jingyao Ke, Na Lei, Zhongxuan Luo, and Xianfeng Gu. “Quadrilateral Mesh Generation I : Metric Based Method.” <em>Computer Methods in Applied Mechanics and Engineering</em> 356 (November 2019): 652–68. <a href="https://doi.org/10.1016/j.cma.2019.07.023">https://doi.org/10.1016/j.cma.2019.07.023</a>.</p>
 
