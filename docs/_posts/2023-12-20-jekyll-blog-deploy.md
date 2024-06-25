@@ -9,7 +9,7 @@ tags:
   - markdown
   - obsidian
   - raycast
-last_modified_at: 2024-05-04T19:13:26-08:00
+last_modified_at: 2024-06-24T11:44:06-08:00
 ---
 用jekyll的原因无需多说。这样配置好工作流之后，除了编写内容基本没有什么麻烦的操作(登录在线网页，换编辑器，按照统一格式改文件名之类在我看来都很麻烦。。)。
 ### Ruby的环境管理，包管理方式
@@ -126,7 +126,7 @@ last_modified_at: 2024-05-04T19:13:26-08:00
 	    }
 	</script>
 	```
-	- mathjax的公式里的竖线和markdown的table的竖线冲突, 而且table的优先级更高
+	- mathjax的公式里的竖线和markdown的table的竖线冲突, 而且table的优先级更高: 把竖线用`\vert`的方式写
 	- matrix在mathjax中换行需要`\\\`  
 1. **配置google analysis:** 
 	- 我用的模版比较老，需要[把Universal analysis换成GA4][7] 
