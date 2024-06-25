@@ -319,15 +319,15 @@ var store = [{
         "tags": ["content","optical_flow","opencv","test"],
         "url": "https://roshameow.github.io//personal_homepage/docs/algorithm/optical-flow-train/"
       },{
-        "title": "stable-diffusion中 k-sampling的不同版本",
-        "excerpt":"Diffusion Process &amp; Reverse Diffusion Process 用Markov chain的表示: \\[q(x_t|x_0)=N(x_t;\\alpha_t x_0,\\sigma^2 I)\\] diffusion收敛到SDE, SDE离散化得到diffusion把DPM表示成SDE(stochastic differential equation): SDE的一般形式: $dx=f(x,t)dt+g(t)dw$ $f(\\cdot,t)$ 是drift coefficients 表示确定的部分 $g(\\cdot)$ 是diffusion coefficients 表示随机部分参数 $\\omega$ 是Wiener process(布朗运动) , $dw=\\sqrt{t}z$ SDE的reverse: $dx=(f(x,t)-\\frac{1}{2}g^2(t)\\nabla_x\\log p(x,t))dt+g(t)dw$ score function $\\nabla_x\\log p(x,t)$ 指向higher density of data $\\nabla_x\\log p(x;\\sigma)=(D(x;\\sigma)-x)/{\\sigma}^2$ 前半确定部分: Probability flow ODE: $dx=(f(x,t)-\\frac{1}{2}g^2(t)\\nabla_x\\log p(x,t))dt$ Variance...","categories": ["docs","algorithm"],
-        "tags": ["content"],
+        "title": "Diffusion Process 和 Reverse Diffusion Process理解",
+        "excerpt":"背景知识 Bayes’ rule \\[p(c\\vert a,b) = p(a\\vert c)\\frac{p(c\\vert b)}{p(a\\vert b)}\\propto p(a\\vert c)p(c\\vert b)\\] 考虑一种特殊情况: RHS都是高斯分布: $p(a\\vert c)\\propto e^{-\\frac{(a-\\mu_{c\\rightarrow a})^2}{2(\\sigma_{c\\rightarrow a})^2}}$, $p(c\\vert b)\\propto e^{-\\frac{(c-\\mu_{b\\rightarrow c})^2}{2(\\sigma_{b\\rightarrow c})^2}}$, $p(a\\vert b)\\propto e^{-\\frac{(a-\\mu_{b\\rightarrow a})^2}{2(\\sigma_{b\\rightarrow a})^2}}$ 且其中均值是关于条件变量线性的, $\\mu_{c\\rightarrow a}=\\kappa_{c\\rightarrow a}\\cdot c$ , $\\mu_{c\\rightarrow b}=\\kappa_{c\\rightarrow b}\\cdot b$, $\\mu_{a\\rightarrow b}=\\kappa_{a\\rightarrow b}\\cdot b$, 方差是常数 则$p(c\\vert a,b)$ 也同样为高斯分布 把Bayers’ rule转成log形式:...","categories": ["docs","algorithm"],
+        "tags": ["content","stable-diffusion","diffusion","sde","Markov_chain","DDPM","SMLD"],
         "url": "https://roshameow.github.io//personal_homepage/docs/algorithm/stable-diffusion7/"
       },{
         "title": "stable-diffusion中 k-sampling的不同版本",
-        "excerpt":"  步骤   Euler和SDE的Euler–Maruyama 的解法不同 noise injection:- increased noise $\\hat \\sigma$ : $\\hat \\sigma\\leftarrow \\sigma_i + \\gamma\\sigma_i$ - sample x with increased noise: $\\hat x \\leftarrow x_i + \\sqrt{\\hat \\sigma^2-\\sigma_i^2}\\cdot\\epsilon$ Take Euler Step: - $dt=\\sigma_{i+1}-\\hat \\sigma$- $denoised=model(\\hat x,\\hat \\sigma)$ - gradient: $d=(\\hat x-denoised)/{\\hat \\sigma}$ - Euler step: $x_{i+1}=\\hat x+dt \\cdot...","categories": ["docs"],
-        "tags": ["content","jekyll"],
-        "url": "https://roshameow.github.io//personal_homepage/docs/stable-diffusion8/"
+        "excerpt":"  步骤   Euler和SDE的Euler–Maruyama 的解法不同 noise injection:- increased noise $\\hat \\sigma$ : $\\hat \\sigma\\leftarrow \\sigma_i + \\gamma\\sigma_i$ - sample x with increased noise: $\\hat x \\leftarrow x_i + \\sqrt{\\hat \\sigma^2-\\sigma_i^2}\\cdot\\epsilon$ Take Euler Step: - $dt=\\sigma_{i+1}-\\hat \\sigma$- $denoised=model(\\hat x,\\hat \\sigma)$ - gradient: $d=(\\hat x-denoised)/{\\hat \\sigma}$ - Euler step: $x_{i+1}=\\hat x+dt \\cdot...","categories": ["docs","deeplearning"],
+        "tags": ["content"],
+        "url": "https://roshameow.github.io//personal_homepage/docs/deeplearning/stable-diffusion8/"
       },{
         "title": "小面积光流传感器算法测试 (二) -- 特征训练",
         "excerpt":"数据 ① ② : ③ :   采样方式 具体说明 特点 ① 仿真图像+仿真采样Sample 在16x16的图像上随机crop得到8x8的patch, 再随机用grid_sample提取8x8的patch比对正样本: 和patch距离&lt;0.5的patch 从采样方法来说, 当前像素只和周围3x3邻域像素相关 ② 真实图像+仿真采样SampleFromFrame 用实际sensor提供的图片   ③ 真实图像+真实采样SampleFromVideo 筛选实际sensor提供的图片前后帧,用其他算法确定光流已知的图片对,在图片的其他区域采样 这是图像配准特征训练中的一般做法 代码: local_binary.py 结果: 对于究竟学到了哪方面特征, 我很疑惑 出乎我意料的, 是① &gt; ② &gt; ③ 可能是我加噪声的方式和真实情况有差距? 可能是我数据采样中的光流不可靠? 可能是产生了我不清楚的过拟合? adaboost的方法比神经网络训练效果好(或者差不多?) “最好”的训练结果也没比不训练的结果(sad-mean(diff)的版本)好. 可能通过匹配patch计算光流的准确度本来已经达到饱和, 再训练patch的描述也没法提升? 用真实数据的loss比仿真数据要大 说明真实数据更难 用真实图像插值时, 结果变得超差, 改成crop好了一些 torch grid...","categories": ["docs","algorithm"],
@@ -388,4 +388,14 @@ var store = [{
         "excerpt":"-&gt; 从通用的triangle mesh生成quad mesh. quad mesh容易插值和细分(样条曲面和 Catmull-Clark细分曲面常⻅ 的定义域就是四边形) quad-mesh 定义 由多个topological rectangle构成,每个rectangle interior是regular grid. topological rectangle:由复平面的rectangle做conformal(holomorphic) map变形得到 Conformal map(保角映射) 从几何方面描述: grid映射成正交的curve holomorphic map(全纯函数) 从分析方面描述: $\\mathbb C\\rightarrow \\mathbb C$ , 在任意一点可导 通过在quad-mesh上定义conformal atlas , 得到quad- mesh是Riemann surface(see quad.2 Theorem 4.6) chart: 每个face 的 interior定义$U_f$ , edge邻域定义$U_e$ , vertex邻域定义$U_v$ transition: 每两个chart之间的transition(face-&gt;edge, edge-&gt;vertex,...","categories": ["docs","algorithm"],
         "tags": ["content","mesh","quad-mesh"],
         "url": "https://roshameow.github.io//personal_homepage/docs/algorithm/quadrilateral-mesh/"
+      },{
+        "title": "T-Display-S3开发版",
+        "excerpt":"开发方法   Arduino IDE  Esp-idf  micropython","categories": ["docs","hardware"],
+        "tags": ["content"],
+        "url": "https://roshameow.github.io//personal_homepage/docs/hardware/border/"
+      },{
+        "title": "报税计算",
+        "excerpt":"","categories": ["docs","affair"],
+        "tags": ["content"],
+        "url": "https://roshameow.github.io//personal_homepage/docs/affair/tax/"
       }]

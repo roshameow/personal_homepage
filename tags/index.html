@@ -124,7 +124,7 @@
     
       <li>
         <a href="#content">
-          <strong>content</strong> <span class="taxonomy-count">62</span>
+          <strong>content</strong> <span class="taxonomy-count">64</span>
         </a>
       </li>
     
@@ -279,12 +279,6 @@
       </li>
     
       <li>
-        <a href="#jekyll">
-          <strong>jekyll</strong> <span class="taxonomy-count">3</span>
-        </a>
-      </li>
-    
-      <li>
         <a href="#optical-flow">
           <strong>optical_flow</strong> <span class="taxonomy-count">3</span>
         </a>
@@ -299,6 +293,12 @@
       <li>
         <a href="#readability">
           <strong>readability</strong> <span class="taxonomy-count">3</span>
+        </a>
+      </li>
+    
+      <li>
+        <a href="#stable-diffusion">
+          <strong>stable-diffusion</strong> <span class="taxonomy-count">3</span>
         </a>
       </li>
     
@@ -343,6 +343,12 @@
       </li>
     
       <li>
+        <a href="#jekyll">
+          <strong>jekyll</strong> <span class="taxonomy-count">2</span>
+        </a>
+      </li>
+    
+      <li>
         <a href="#link">
           <strong>link</strong> <span class="taxonomy-count">2</span>
         </a>
@@ -375,12 +381,6 @@
       <li>
         <a href="#simulation">
           <strong>simulation</strong> <span class="taxonomy-count">2</span>
-        </a>
-      </li>
-    
-      <li>
-        <a href="#stable-diffusion">
-          <strong>stable-diffusion</strong> <span class="taxonomy-count">2</span>
         </a>
       </li>
     
@@ -425,6 +425,12 @@
       </li>
     
       <li>
+        <a href="#ddpm">
+          <strong>DDPM</strong> <span class="taxonomy-count">1</span>
+        </a>
+      </li>
+    
+      <li>
         <a href="#ftw">
           <strong>FTW</strong> <span class="taxonomy-count">1</span>
         </a>
@@ -461,6 +467,12 @@
       </li>
     
       <li>
+        <a href="#markov-chain">
+          <strong>Markov_chain</strong> <span class="taxonomy-count">1</span>
+        </a>
+      </li>
+    
+      <li>
         <a href="#mothership">
           <strong>Mothership</strong> <span class="taxonomy-count">1</span>
         </a>
@@ -481,6 +493,12 @@
       <li>
         <a href="#pictures">
           <strong>Pictures</strong> <span class="taxonomy-count">1</span>
+        </a>
+      </li>
+    
+      <li>
+        <a href="#smld">
+          <strong>SMLD</strong> <span class="taxonomy-count">1</span>
         </a>
       </li>
     
@@ -613,6 +631,12 @@
       <li>
         <a href="#device">
           <strong>device</strong> <span class="taxonomy-count">1</span>
+        </a>
+      </li>
+    
+      <li>
+        <a href="#diffusion">
+          <strong>diffusion</strong> <span class="taxonomy-count">1</span>
         </a>
       </li>
     
@@ -833,6 +857,12 @@
       </li>
     
       <li>
+        <a href="#sde">
+          <strong>sde</strong> <span class="taxonomy-count">1</span>
+        </a>
+      </li>
+    
+      <li>
         <a href="#solidify">
           <strong>solidify</strong> <span class="taxonomy-count">1</span>
         </a>
@@ -921,6 +951,72 @@
       
         
           <div class="entries-list">
+            
+              
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
+        <a href="/personal_homepage/docs/affair/tax/" rel="bookmark">报税计算
+</a>
+      
+    </h3>
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">~1 min read</span>
+
+      <time class="entry-date dt-published" datetime="2024-06-25T00:00:00+00:00">June 25, 2024
+  </time>
+    </footer>
+  
+</article>
+
+            
+              
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
+        <a href="/personal_homepage/docs/hardware/border/" rel="bookmark">T-Display-S3开发版
+</a>
+      
+    </h3>
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <h2 id="开发方法">开发方法</h2>
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">~1 min read</span>
+
+      <time class="entry-date dt-published" datetime="2024-06-13T00:00:00+00:00">June 13, 2024
+  </time>
+    </footer>
+  
+</article>
+
             
               
 
@@ -1346,7 +1442,7 @@
   <header class="entry-header">
     <h3 class="entry-title p-name">
       
-        <a href="/personal_homepage/docs/stable-diffusion8/" rel="bookmark">stable-diffusion中 k-sampling的不同版本
+        <a href="/personal_homepage/docs/deeplearning/stable-diffusion8/" rel="bookmark">stable-diffusion中 k-sampling的不同版本
 </a>
       
     </h3>
@@ -1367,7 +1463,7 @@
     <tr>
       <td>Euler<br /><br />和SDE的<a href="https://en.wikipedia.org/wiki/Euler–Maruyama_method">Euler–Maruyama</a> 的解法不同</td>
       <td>noise injection:<br />- increased noise $\hat \sigma$  : $\hat \sigma\leftarrow \sigma_i + \gamma\sigma_i$ <br />-  sample x with increased noise: $\hat x \leftarrow x_i + \sqrt{\hat \sigma^2-\sigma_i^2}\cdot\epsilon$ <br />Take Euler Step: <br />- $dt=\sigma_{i+1}-\hat \sigma$<br />- $denoised=model(\hat x,\hat \sigma)$ <br />- gradient: $d=(\hat x-denoised)/{\hat \sigma}$ <br />- Euler step: $x_{i+1}=\hat x+dt \cdot d$</td>
-      <td>令, $\alpha_t=1$ <br /><br />$f(t)\rightarrow 0$ <br />$g(t)^2\rightarrow 2\dot\sigma_t\sigma_t$ <br /><br />$d\rightarrow-\dot\sigma_t\sigma_t\nabla_x\log p(x;\sigma_t)=\frac{\dot \sigma_t}{\sigma_t}\cdot\sigma_t\frac{x-D(x,t)}{\sigma_t}$   <br /><br />令 $\sigma_t=t$ ?<br />省略参数$\frac{\dot \sigma_t}{\sigma_t}$ ?<br /><br />$d \rightarrow\frac{x-D(x;\sigma_t)}{\sigma_t}$</td>
+      <td>采用SMLD, $\alpha_t=1$ <br /><br />$f(t)\rightarrow 0$ <br />$g(t)^2\rightarrow 2\dot\sigma_t\sigma_t$ <br /><br />$d\rightarrow-\dot\sigma_t\sigma_t\nabla_x\log p(x;\sigma_t)=\frac{\dot \sigma_t}{\sigma_t}\cdot\sigma_t\frac{x-D(x,t)}{\sigma_t}$   <br /><br />令 $\sigma_t=t$ , 此时$\dot \sigma_t=1$ <br />$d \rightarrow\frac{x-D(x;\sigma_t)}{\sigma_t}$</td>
     </tr>
     <tr>
       <td><a href="https://en.wikipedia.org/wiki/Heun%27s_method">heun</a><br />Euler方法的改进</td>
@@ -1382,7 +1478,7 @@
     <tr>
       <td>Euler Ancestral</td>
       <td>Take Euler Step to $\sigma_{down}$:  <br />- $dt=\sigma_{down}-\sigma_i$ <br />- $denoised=model(x,\sigma_i)$ <br />- numerical derivative: $d=(x-denoised)/{\sigma_i}$ <br />- Euler step: $x_{down}=x+dt \cdot d$ <br />Add ancestral noise:<br />- $x_{i+1}=x_{down}+noise*\sigma_{up}$ <br /></td>
-      <td><br />$\sigma_{up}=\min(\sigma_{i+1},\eta\cdot(\frac{\sigma_{i+1}^2}{\sigma_i^2}(\sigma_i^2-\sigma_{i+1}^2)))$<br />$\sigma_{down}=\sqrt{\sigma_{i+1}^2-\sigma_{up}^2}$</td>
+      <td><br />$\sigma_{up}=\min(\sigma_{i+1},\eta\cdot\sqrt{(\frac{\sigma_{i+1}^2}{\sigma_i^2}(\sigma_i^2-\sigma_{i+1}^2))})$ <br />$\sigma_{down}=\sqrt{\sigma_{i+1}^2-\sigma_{up}^2}$</td>
     </tr>
     <tr>
       <td>DDPM</td>
@@ -1424,7 +1520,7 @@
     <footer class="entry-meta">
       
 
-<span class="read-time">~1 min read</span>
+<span class="read-time">1 min read</span>
 
       <time class="entry-date dt-published" datetime="2024-04-17T00:00:00+00:00">April 17, 2024
   </time>
@@ -1439,7 +1535,7 @@
   <header class="entry-header">
     <h3 class="entry-title p-name">
       
-        <a href="/personal_homepage/docs/algorithm/stable-diffusion7/" rel="bookmark">stable-diffusion中 k-sampling的不同版本
+        <a href="/personal_homepage/docs/algorithm/stable-diffusion7/" rel="bookmark">Diffusion Process 和 Reverse Diffusion Process理解
 </a>
       
     </h3>
@@ -1448,7 +1544,8 @@
   
     <div class="entry-excerpt p-summary">
       
-        <h2 id="diffusion-process--reverse-diffusion-process">Diffusion Process &amp; Reverse Diffusion Process</h2>
+        <h2 id="背景知识">背景知识</h2>
+<h3 id="bayes-rule"><a href="https://en.wikipedia.org/wiki/Bayes%27_theorem">Bayes’ rule</a></h3>
 
       
     </div>
@@ -1457,7 +1554,7 @@
     <footer class="entry-meta">
       
 
-<span class="read-time">1 min read</span>
+<span class="read-time">3 min read</span>
 
       <time class="entry-date dt-published" datetime="2024-04-16T00:00:00+00:00">April 16, 2024
   </time>
@@ -3328,6 +3425,16 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
@@ -3865,6 +3972,16 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
@@ -4116,6 +4233,16 @@
 
             
           </div>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
         
       
         
@@ -4859,6 +4986,16 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
@@ -5137,6 +5274,16 @@
 
             
           </div>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
         
       
         
@@ -5791,6 +5938,16 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
@@ -6073,6 +6230,16 @@
 
             
           </div>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
         
       
         
@@ -6682,6 +6849,16 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
@@ -7109,6 +7286,16 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
@@ -7297,6 +7484,16 @@
 
             
           </div>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
         
       
         
@@ -7969,6 +8166,16 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
@@ -8367,6 +8574,16 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
@@ -8562,6 +8779,16 @@
 
             
           </div>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
         
       
         
@@ -9166,6 +9393,16 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
@@ -9561,6 +9798,16 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
@@ -9817,6 +10064,16 @@
 
             
           </div>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
         
       
         
@@ -10350,6 +10607,16 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
@@ -10479,6 +10746,16 @@
 
             
           </div>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
         
       
         
@@ -11081,6 +11358,16 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
@@ -11221,6 +11508,16 @@
 
             
           </div>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
         
       
         
@@ -11807,6 +12104,16 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
@@ -12065,418 +12372,6 @@
 
             
           </div>
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-      <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
-    </section>
-  
-    <section id="jekyll" class="taxonomy-section">
-      <h2 class="taxonomy-title">jekyll</h2>
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-          <div class="entries-list">
-            
-              
-
-<article class="entry h-entry">
-  <header class="entry-header">
-    <h3 class="entry-title p-name">
-      
-        <a href="/personal_homepage/docs/photo/jekyll-add-logo/" rel="bookmark">给网页添加 logo
-</a>
-      
-    </h3>
-    
-  </header>
-  
-    <div class="entry-excerpt p-summary">
-      
-        <p><img src="/personal_homepage/docs/attachment/logo.svg" alt="logo.svg" width="200" /></p>
-
-      
-    </div>
-  
-  
-    <footer class="entry-meta">
-      
-
-<span class="read-time">~1 min read</span>
-
-      <time class="entry-date dt-published" datetime="2024-05-09T00:00:00+00:00">May 9, 2024
-  </time>
-    </footer>
-  
-</article>
-
-            
-              
-
-<article class="entry h-entry">
-  <header class="entry-header">
-    <h3 class="entry-title p-name">
-      
-        <a href="/personal_homepage/docs/stable-diffusion8/" rel="bookmark">stable-diffusion中 k-sampling的不同版本
-</a>
-      
-    </h3>
-    
-  </header>
-  
-    <div class="entry-excerpt p-summary">
-      
-        <table>
-  <thead>
-    <tr>
-      <th> </th>
-      <th>步骤</th>
-      <th> </th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Euler<br /><br />和SDE的<a href="https://en.wikipedia.org/wiki/Euler–Maruyama_method">Euler–Maruyama</a> 的解法不同</td>
-      <td>noise injection:<br />- increased noise $\hat \sigma$  : $\hat \sigma\leftarrow \sigma_i + \gamma\sigma_i$ <br />-  sample x with increased noise: $\hat x \leftarrow x_i + \sqrt{\hat \sigma^2-\sigma_i^2}\cdot\epsilon$ <br />Take Euler Step: <br />- $dt=\sigma_{i+1}-\hat \sigma$<br />- $denoised=model(\hat x,\hat \sigma)$ <br />- gradient: $d=(\hat x-denoised)/{\hat \sigma}$ <br />- Euler step: $x_{i+1}=\hat x+dt \cdot d$</td>
-      <td>令, $\alpha_t=1$ <br /><br />$f(t)\rightarrow 0$ <br />$g(t)^2\rightarrow 2\dot\sigma_t\sigma_t$ <br /><br />$d\rightarrow-\dot\sigma_t\sigma_t\nabla_x\log p(x;\sigma_t)=\frac{\dot \sigma_t}{\sigma_t}\cdot\sigma_t\frac{x-D(x,t)}{\sigma_t}$   <br /><br />令 $\sigma_t=t$ ?<br />省略参数$\frac{\dot \sigma_t}{\sigma_t}$ ?<br /><br />$d \rightarrow\frac{x-D(x;\sigma_t)}{\sigma_t}$</td>
-    </tr>
-    <tr>
-      <td><a href="https://en.wikipedia.org/wiki/Heun%27s_method">heun</a><br />Euler方法的改进</td>
-      <td>noise injection:  <br />得到$\hat\sigma, \hat x, denoised$ <br /> Left tangent prediction: <br />- $x_2=\hat x + dt\cdot d$<br />Right tangent prediction:<br />- $d_2=(x_2-model(x_2,\sigma_{i+1}))/\sigma_{i+1}$ <br />结果: <br />- $d^\prime=\frac{d+d_2}{2}$ <br />- $x_{i+1}=\hat x+d^\prime\cdot dt$</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>Euler Ancestral</td>
-      <td> </td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>Euler Ancestral</td>
-      <td>Take Euler Step to $\sigma_{down}$:  <br />- $dt=\sigma_{down}-\sigma_i$ <br />- $denoised=model(x,\sigma_i)$ <br />- numerical derivative: $d=(x-denoised)/{\sigma_i}$ <br />- Euler step: $x_{down}=x+dt \cdot d$ <br />Add ancestral noise:<br />- $x_{i+1}=x_{down}+noise*\sigma_{up}$ <br /></td>
-      <td><br />$\sigma_{up}=\min(\sigma_{i+1},\eta\cdot(\frac{\sigma_{i+1}^2}{\sigma_i^2}(\sigma_i^2-\sigma_{i+1}^2)))$<br />$\sigma_{down}=\sqrt{\sigma_{i+1}^2-\sigma_{up}^2}$</td>
-    </tr>
-    <tr>
-      <td>DDPM</td>
-      <td> </td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>DDIM</td>
-      <td> </td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>DPM-Solver</td>
-      <td> </td>
-      <td>根据probability ODE: <br />$\dot x=f(t)\cdot x-\frac{1}{2}g^2(t)\nabla_x\log p(x,t)$<br /><br />令, $\alpha_t=1$ <br /><br /></td>
-    </tr>
-    <tr>
-      <td>dpm_2</td>
-      <td>noise injection: <br />得到$\hat\sigma, \hat x, denoised$ <br />DPM-Solver-2: <br />- 在$\sigma_{i+1},\hat \sigma$ 之间取: $\sigma_{mid}=e^{\frac{\log \hat\sigma+\log \sigma_{i+1}}{2}}$ <br />- $dt_1=\sigma_{mid}-\hat \sigma$ <br />- $dt_2=\sigma_{i+1}-\hat \sigma$ <br />- $x_{mid}=\hat x+dt_1\cdot(\hat x-model(\hat x,\hat \sigma))/\hat \sigma$  <br />用$\sigma_{mid}$ 处的numerial derivative<br />- $x=\hat x+dt_2\cdot(x_{mid}-model(x_{mid},\sigma_{mid}))/\sigma_{mid}$ <br /><br /></td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>dpmpp_2m</td>
-      <td>- $t=-\log(\sigma_i)$ , $t_{next}=-\log(\sigma_{i+1})$ , $t_{last}=-\log(\sigma_{i-1})$ <br />- $h=t_{next}-t$, $h_{last}=t-t_{last}$ <br />- $r=h_{last}/h$ <br />- $denoised_d=(1+\frac{1}{2r})\cdot denoised-\frac{1}{2r}\cdot denoised_{old}$  <br />- $x_{i+1}=\frac{\sigma_{i+1}}{\sigma_i}\cdot x_i-(e^{-h}-1)\cdot denoised_d$ <br /></td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>lcm</td>
-      <td> </td>
-      <td> </td>
-    </tr>
-  </tbody>
-</table>
-
-      
-    </div>
-  
-  
-    <footer class="entry-meta">
-      
-
-<span class="read-time">~1 min read</span>
-
-      <time class="entry-date dt-published" datetime="2024-04-17T00:00:00+00:00">April 17, 2024
-  </time>
-    </footer>
-  
-</article>
-
-            
-              
-
-<article class="entry h-entry">
-  <header class="entry-header">
-    <h3 class="entry-title p-name">
-      
-        <a href="/personal_homepage/docs/webpage/jekyll-blog-deploy/" rel="bookmark">用 jekyll+obsidian生成个人主页并部署到 github pages的工作流
-</a>
-      
-    </h3>
-    
-  </header>
-  
-    <div class="entry-excerpt p-summary">
-      
-        <p>用jekyll的原因无需多说。这样配置好工作流之后，除了编写内容基本没有什么麻烦的操作(登录在线网页，换编辑器，按照统一格式改文件名之类在我看来都很麻烦。。)。</p>
-<h3 id="ruby的环境管理包管理方式">Ruby的环境管理，包管理方式</h3>
-
-      
-    </div>
-  
-  
-    <footer class="entry-meta">
-      
-
-<span class="read-time">1 min read</span>
-
-      <time class="entry-date dt-published" datetime="2023-12-20T00:00:00+00:00">December 20, 2023
-  </time>
-    </footer>
-  
-</article>
-
-            
-          </div>
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
         
       
         
@@ -12952,6 +12847,16 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
@@ -13187,6 +13092,16 @@
 
             
           </div>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
         
       
         
@@ -13682,6 +13597,388 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+      <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
+    </section>
+  
+    <section id="stable-diffusion" class="taxonomy-section">
+      <h2 class="taxonomy-title">stable-diffusion</h2>
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+          <div class="entries-list">
+            
+              
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
+        <a href="/personal_homepage/docs/design/poster1/" rel="bookmark">阿那亚戏剧节的海报制作
+</a>
+      
+    </h3>
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240524215103.png" alt="Pasted image 20240524215103.png" width="300" /></p>
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">~1 min read</span>
+
+      <time class="entry-date dt-published" datetime="2024-05-24T00:00:00+00:00">May 24, 2024
+  </time>
+    </footer>
+  
+</article>
+
+            
+              
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
+        <a href="/personal_homepage/docs/algorithm/stable-diffusion7/" rel="bookmark">Diffusion Process 和 Reverse Diffusion Process理解
+</a>
+      
+    </h3>
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <h2 id="背景知识">背景知识</h2>
+<h3 id="bayes-rule"><a href="https://en.wikipedia.org/wiki/Bayes%27_theorem">Bayes’ rule</a></h3>
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">3 min read</span>
+
+      <time class="entry-date dt-published" datetime="2024-04-16T00:00:00+00:00">April 16, 2024
+  </time>
+    </footer>
+  
+</article>
+
+            
+              
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
+        <a href="/personal_homepage/docs/deeplearning/stable-diffusion6/" rel="bookmark">stable-diffusion的结构和微调模型
+</a>
+      
+    </h3>
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <h2 id="stable-diffusion结构和controlnet插件">stable-diffusion结构和controlnet插件</h2>
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">~1 min read</span>
+
+      <time class="entry-date dt-published" datetime="2024-02-29T00:00:00+00:00">February 29, 2024
+  </time>
+    </footer>
+  
+</article>
+
+            
+          </div>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
@@ -13858,6 +14155,16 @@
 
             
           </div>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
         
       
         
@@ -14412,6 +14719,16 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
@@ -14744,6 +15061,16 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
@@ -14841,6 +15168,16 @@
 
             
           </div>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
         
       
         
@@ -15405,6 +15742,16 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
@@ -15735,6 +16082,355 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+      <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
+    </section>
+  
+    <section id="jekyll" class="taxonomy-section">
+      <h2 class="taxonomy-title">jekyll</h2>
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+          <div class="entries-list">
+            
+              
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
+        <a href="/personal_homepage/docs/photo/jekyll-add-logo/" rel="bookmark">给网页添加 logo
+</a>
+      
+    </h3>
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <p><img src="/personal_homepage/docs/attachment/logo.svg" alt="logo.svg" width="200" /></p>
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">~1 min read</span>
+
+      <time class="entry-date dt-published" datetime="2024-05-09T00:00:00+00:00">May 9, 2024
+  </time>
+    </footer>
+  
+</article>
+
+            
+              
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
+        <a href="/personal_homepage/docs/webpage/jekyll-blog-deploy/" rel="bookmark">用 jekyll+obsidian生成个人主页并部署到 github pages的工作流
+</a>
+      
+    </h3>
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <p>用jekyll的原因无需多说。这样配置好工作流之后，除了编写内容基本没有什么麻烦的操作(登录在线网页，换编辑器，按照统一格式改文件名之类在我看来都很麻烦。。)。</p>
+<h3 id="ruby的环境管理包管理方式">Ruby的环境管理，包管理方式</h3>
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">1 min read</span>
+
+      <time class="entry-date dt-published" datetime="2023-12-20T00:00:00+00:00">December 20, 2023
+  </time>
+    </footer>
+  
+</article>
+
+            
+          </div>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
@@ -15859,6 +16555,16 @@
 
             
           </div>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
         
       
         
@@ -16391,6 +17097,16 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
@@ -16719,6 +17435,16 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
@@ -16861,6 +17587,16 @@
 
             
           </div>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
         
       
         
@@ -17380,6 +18116,16 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
@@ -17708,324 +18454,6 @@
       
         
       
-      <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
-    </section>
-  
-    <section id="stable-diffusion" class="taxonomy-section">
-      <h2 class="taxonomy-title">stable-diffusion</h2>
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-          <div class="entries-list">
-            
-              
-
-<article class="entry h-entry">
-  <header class="entry-header">
-    <h3 class="entry-title p-name">
-      
-        <a href="/personal_homepage/docs/design/poster1/" rel="bookmark">阿那亚戏剧节的海报制作
-</a>
-      
-    </h3>
-    
-  </header>
-  
-    <div class="entry-excerpt p-summary">
-      
-        <p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240524215103.png" alt="Pasted image 20240524215103.png" width="300" /></p>
-
-      
-    </div>
-  
-  
-    <footer class="entry-meta">
-      
-
-<span class="read-time">~1 min read</span>
-
-      <time class="entry-date dt-published" datetime="2024-05-24T00:00:00+00:00">May 24, 2024
-  </time>
-    </footer>
-  
-</article>
-
-            
-              
-
-<article class="entry h-entry">
-  <header class="entry-header">
-    <h3 class="entry-title p-name">
-      
-        <a href="/personal_homepage/docs/deeplearning/stable-diffusion6/" rel="bookmark">stable-diffusion的结构和微调模型
-</a>
-      
-    </h3>
-    
-  </header>
-  
-    <div class="entry-excerpt p-summary">
-      
-        <h2 id="stable-diffusion结构和controlnet插件">stable-diffusion结构和controlnet插件</h2>
-
-      
-    </div>
-  
-  
-    <footer class="entry-meta">
-      
-
-<span class="read-time">~1 min read</span>
-
-      <time class="entry-date dt-published" datetime="2024-02-29T00:00:00+00:00">February 29, 2024
-  </time>
-    </footer>
-  
-</article>
-
-            
-          </div>
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
         
       
         
@@ -18190,6 +18618,16 @@
 
             
           </div>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
         
       
         
@@ -18694,6 +19132,16 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
@@ -18993,6 +19441,16 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
@@ -19046,6 +19504,16 @@
 
             
           </div>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
         
       
         
@@ -19583,6 +20051,16 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
@@ -19846,6 +20324,322 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+      <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
+    </section>
+  
+    <section id="ddpm" class="taxonomy-section">
+      <h2 class="taxonomy-title">DDPM</h2>
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+          <div class="entries-list">
+            
+              
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
+        <a href="/personal_homepage/docs/algorithm/stable-diffusion7/" rel="bookmark">Diffusion Process 和 Reverse Diffusion Process理解
+</a>
+      
+    </h3>
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <h2 id="背景知识">背景知识</h2>
+<h3 id="bayes-rule"><a href="https://en.wikipedia.org/wiki/Bayes%27_theorem">Bayes’ rule</a></h3>
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">3 min read</span>
+
+      <time class="entry-date dt-published" datetime="2024-04-16T00:00:00+00:00">April 16, 2024
+  </time>
+    </footer>
+  
+</article>
+
+            
+          </div>
         
       
         
@@ -20173,6 +20967,16 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
@@ -20246,6 +21050,16 @@
 
             
           </div>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
         
       
         
@@ -20763,6 +21577,16 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
@@ -20850,6 +21674,16 @@
 
             
           </div>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
         
       
         
@@ -21353,6 +22187,16 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
@@ -21648,6 +22492,322 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+      <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
+    </section>
+  
+    <section id="markov-chain" class="taxonomy-section">
+      <h2 class="taxonomy-title">Markov_chain</h2>
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+          <div class="entries-list">
+            
+              
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
+        <a href="/personal_homepage/docs/algorithm/stable-diffusion7/" rel="bookmark">Diffusion Process 和 Reverse Diffusion Process理解
+</a>
+      
+    </h3>
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <h2 id="背景知识">背景知识</h2>
+<h3 id="bayes-rule"><a href="https://en.wikipedia.org/wiki/Bayes%27_theorem">Bayes’ rule</a></h3>
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">3 min read</span>
+
+      <time class="entry-date dt-published" datetime="2024-04-16T00:00:00+00:00">April 16, 2024
+  </time>
+    </footer>
+  
+</article>
+
+            
+          </div>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
@@ -21743,6 +22903,16 @@
 
             
           </div>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
         
       
         
@@ -22238,6 +23408,16 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
@@ -22337,6 +23517,16 @@
 
             
           </div>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
         
       
         
@@ -22828,6 +24018,322 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+      <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
+    </section>
+  
+    <section id="smld" class="taxonomy-section">
+      <h2 class="taxonomy-title">SMLD</h2>
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+          <div class="entries-list">
+            
+              
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
+        <a href="/personal_homepage/docs/algorithm/stable-diffusion7/" rel="bookmark">Diffusion Process 和 Reverse Diffusion Process理解
+</a>
+      
+    </h3>
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <h2 id="背景知识">背景知识</h2>
+<h3 id="bayes-rule"><a href="https://en.wikipedia.org/wiki/Bayes%27_theorem">Bayes’ rule</a></h3>
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">3 min read</span>
+
+      <time class="entry-date dt-published" datetime="2024-04-16T00:00:00+00:00">April 16, 2024
+  </time>
+    </footer>
+  
+</article>
+
+            
+          </div>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
@@ -23123,6 +24629,16 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
@@ -23232,6 +24748,16 @@
 
             
           </div>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
         
       
         
@@ -23713,6 +25239,16 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
@@ -23826,6 +25362,16 @@
 
             
           </div>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
         
       
         
@@ -24303,6 +25849,16 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
@@ -24428,6 +25984,16 @@
 
             
           </div>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
         
       
         
@@ -24831,6 +26397,16 @@
         
       
         
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
           <div class="entries-list">
             
               
@@ -24898,6 +26474,16 @@
   
     <section id="basic" class="taxonomy-section">
       <h2 class="taxonomy-title">basic</h2>
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
       
         
       
@@ -25485,6 +27071,16 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
@@ -25780,11 +27376,31 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
     <section id="camera-raw" class="taxonomy-section">
       <h2 class="taxonomy-title">camera_raw</h2>
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
       
         
       
@@ -26370,6 +27986,16 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
@@ -26665,11 +28291,31 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
     <section id="color" class="taxonomy-section">
       <h2 class="taxonomy-title">color</h2>
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
       
         
       
@@ -27255,11 +28901,31 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
     <section id="contrastive-learning" class="taxonomy-section">
       <h2 class="taxonomy-title">contrastive_learning</h2>
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
       
         
       
@@ -27846,11 +29512,31 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
     <section id="data-structure" class="taxonomy-section">
       <h2 class="taxonomy-title">data_structure</h2>
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
       
         
       
@@ -28438,11 +30124,31 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
     <section id="deeplearning" class="taxonomy-section">
       <h2 class="taxonomy-title">deeplearning</h2>
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
       
         
       
@@ -29029,6 +30735,16 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
@@ -29324,6 +31040,322 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+      <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
+    </section>
+  
+    <section id="diffusion" class="taxonomy-section">
+      <h2 class="taxonomy-title">diffusion</h2>
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+          <div class="entries-list">
+            
+              
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
+        <a href="/personal_homepage/docs/algorithm/stable-diffusion7/" rel="bookmark">Diffusion Process 和 Reverse Diffusion Process理解
+</a>
+      
+    </h3>
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <h2 id="背景知识">背景知识</h2>
+<h3 id="bayes-rule"><a href="https://en.wikipedia.org/wiki/Bayes%27_theorem">Bayes’ rule</a></h3>
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">3 min read</span>
+
+      <time class="entry-date dt-published" datetime="2024-04-16T00:00:00+00:00">April 16, 2024
+  </time>
+    </footer>
+  
+</article>
+
+            
+          </div>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
@@ -29391,6 +31423,16 @@
 
             
           </div>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
         
       
         
@@ -29914,6 +31956,16 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
@@ -30209,6 +32261,16 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
@@ -30290,6 +32352,16 @@
 
             
           </div>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
         
       
         
@@ -30799,6 +32871,16 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
@@ -31018,6 +33100,16 @@
 
             
           </div>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
         
       
         
@@ -31389,11 +33481,31 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
     <section id="grid-sample" class="taxonomy-section">
       <h2 class="taxonomy-title">grid_sample</h2>
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
       
         
       
@@ -31979,6 +34091,16 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
@@ -32274,6 +34396,16 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
@@ -32438,6 +34570,16 @@
 
             
           </div>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
         
       
         
@@ -32865,11 +35007,31 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
     <section id="kalman" class="taxonomy-section">
       <h2 class="taxonomy-title">kalman</h2>
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
       
         
       
@@ -33165,6 +35327,16 @@
   
     <section id="leetcode" class="taxonomy-section">
       <h2 class="taxonomy-title">leetcode</h2>
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
       
         
       
@@ -33751,6 +35923,16 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
@@ -33986,6 +36168,16 @@
 
             
           </div>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
         
       
         
@@ -34341,11 +36533,31 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
     <section id="logo" class="taxonomy-section">
       <h2 class="taxonomy-title">logo</h2>
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
       
         
       
@@ -34931,6 +37143,16 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
@@ -35227,6 +37449,16 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
@@ -35373,6 +37605,16 @@
 
             
           </div>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
         
       
         
@@ -35818,6 +38060,16 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
@@ -36115,11 +38367,31 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
     <section id="mesh" class="taxonomy-section">
       <h2 class="taxonomy-title">mesh</h2>
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
       
         
       
@@ -36705,6 +38977,16 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
@@ -37001,11 +39283,31 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
     <section id="norm" class="taxonomy-section">
       <h2 class="taxonomy-title">norm</h2>
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
       
         
       
@@ -37592,6 +39894,16 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
@@ -37729,6 +40041,16 @@
 
             
           </div>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
         
       
         
@@ -38182,6 +40504,16 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
@@ -38478,11 +40810,31 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
     <section id="quad-mesh" class="taxonomy-section">
       <h2 class="taxonomy-title">quad-mesh</h2>
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
       
         
       
@@ -39069,6 +41421,16 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
@@ -39364,6 +41726,16 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
@@ -39502,6 +41874,16 @@
 
             
           </div>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
         
       
         
@@ -39959,6 +42341,322 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+      <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
+    </section>
+  
+    <section id="sde" class="taxonomy-section">
+      <h2 class="taxonomy-title">sde</h2>
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+          <div class="entries-list">
+            
+              
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
+        <a href="/personal_homepage/docs/algorithm/stable-diffusion7/" rel="bookmark">Diffusion Process 和 Reverse Diffusion Process理解
+</a>
+      
+    </h3>
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <h2 id="背景知识">背景知识</h2>
+<h3 id="bayes-rule"><a href="https://en.wikipedia.org/wiki/Bayes%27_theorem">Bayes’ rule</a></h3>
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">3 min read</span>
+
+      <time class="entry-date dt-published" datetime="2024-04-16T00:00:00+00:00">April 16, 2024
+  </time>
+    </footer>
+  
+</article>
+
+            
+          </div>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
@@ -40186,6 +42884,16 @@
 
             
           </div>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
         
       
         
@@ -40549,6 +43257,16 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
@@ -40844,6 +43562,16 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
@@ -41075,6 +43803,16 @@
 
             
           </div>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
         
       
         
@@ -41434,6 +44172,16 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
@@ -41575,6 +44323,16 @@
 
             
           </div>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
         
       
         
@@ -42024,6 +44782,16 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
@@ -42139,6 +44907,16 @@
 
             
           </div>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
         
       
         
@@ -42614,6 +45392,16 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
@@ -42909,6 +45697,16 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
@@ -43032,6 +45830,16 @@
 
             
           </div>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
         
       
         
@@ -43500,6 +46308,16 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
@@ -43652,6 +46470,16 @@
 
             
           </div>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
         
       
         

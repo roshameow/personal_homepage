@@ -112,6 +112,69 @@
   <header class="entry-header">
     <h3 class="entry-title p-name">
       
+        <a href="/personal_homepage/docs/algorithm/moving_function/" rel="bookmark">各种 moving function
+</a>
+      
+    </h3>
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <h2 id="场景">场景</h2>
+<h3 id="moving-mean">moving mean</h3>
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">~1 min read</span>
+
+      <time class="entry-date dt-published" datetime="2024-05-05T00:00:00+00:00">May 5, 2024
+  </time>
+    </footer>
+  
+</article>
+
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
+        <a href="/personal_homepage/docs/algorithm/optical_flow_train3/" rel="bookmark">小面积光流传感器算法测试 (三) – 滤波
+</a>
+      
+    </h3>
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <p>在高速场景下, 每次中断收集的数据是光流的累加值, 其实本来就相当于一个滤波…况且在硬件有限的条件下, 复杂的滤波没有什么实用价值.</p>
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">1 min read</span>
+
+      <time class="entry-date dt-published" datetime="2024-04-28T00:00:00+00:00">April 28, 2024
+  </time>
+    </footer>
+  
+</article>
+
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
         <a href="/personal_homepage/docs/photo/photo-color1/" rel="bookmark">小红书学到的几种图片调色 (二)
 </a>
       
@@ -174,7 +237,7 @@
   <header class="entry-header">
     <h3 class="entry-title p-name">
       
-        <a href="/personal_homepage/docs/stable-diffusion8/" rel="bookmark">stable-diffusion中 k-sampling的不同版本
+        <a href="/personal_homepage/docs/deeplearning/stable-diffusion8/" rel="bookmark">stable-diffusion中 k-sampling的不同版本
 </a>
       
     </h3>
@@ -195,7 +258,7 @@
     <tr>
       <td>Euler<br /><br />和SDE的<a href="https://en.wikipedia.org/wiki/Euler–Maruyama_method">Euler–Maruyama</a> 的解法不同</td>
       <td>noise injection:<br />- increased noise $\hat \sigma$  : $\hat \sigma\leftarrow \sigma_i + \gamma\sigma_i$ <br />-  sample x with increased noise: $\hat x \leftarrow x_i + \sqrt{\hat \sigma^2-\sigma_i^2}\cdot\epsilon$ <br />Take Euler Step: <br />- $dt=\sigma_{i+1}-\hat \sigma$<br />- $denoised=model(\hat x,\hat \sigma)$ <br />- gradient: $d=(\hat x-denoised)/{\hat \sigma}$ <br />- Euler step: $x_{i+1}=\hat x+dt \cdot d$</td>
-      <td>令, $\alpha_t=1$ <br /><br />$f(t)\rightarrow 0$ <br />$g(t)^2\rightarrow 2\dot\sigma_t\sigma_t$ <br /><br />$d\rightarrow-\dot\sigma_t\sigma_t\nabla_x\log p(x;\sigma_t)=\frac{\dot \sigma_t}{\sigma_t}\cdot\sigma_t\frac{x-D(x,t)}{\sigma_t}$   <br /><br />令 $\sigma_t=t$ ?<br />省略参数$\frac{\dot \sigma_t}{\sigma_t}$ ?<br /><br />$d \rightarrow\frac{x-D(x;\sigma_t)}{\sigma_t}$</td>
+      <td>采用SMLD, $\alpha_t=1$ <br /><br />$f(t)\rightarrow 0$ <br />$g(t)^2\rightarrow 2\dot\sigma_t\sigma_t$ <br /><br />$d\rightarrow-\dot\sigma_t\sigma_t\nabla_x\log p(x;\sigma_t)=\frac{\dot \sigma_t}{\sigma_t}\cdot\sigma_t\frac{x-D(x,t)}{\sigma_t}$   <br /><br />令 $\sigma_t=t$ , 此时$\dot \sigma_t=1$ <br />$d \rightarrow\frac{x-D(x;\sigma_t)}{\sigma_t}$</td>
     </tr>
     <tr>
       <td><a href="https://en.wikipedia.org/wiki/Heun%27s_method">heun</a><br />Euler方法的改进</td>
@@ -210,7 +273,7 @@
     <tr>
       <td>Euler Ancestral</td>
       <td>Take Euler Step to $\sigma_{down}$:  <br />- $dt=\sigma_{down}-\sigma_i$ <br />- $denoised=model(x,\sigma_i)$ <br />- numerical derivative: $d=(x-denoised)/{\sigma_i}$ <br />- Euler step: $x_{down}=x+dt \cdot d$ <br />Add ancestral noise:<br />- $x_{i+1}=x_{down}+noise*\sigma_{up}$ <br /></td>
-      <td><br />$\sigma_{up}=\min(\sigma_{i+1},\eta\cdot(\frac{\sigma_{i+1}^2}{\sigma_i^2}(\sigma_i^2-\sigma_{i+1}^2)))$<br />$\sigma_{down}=\sqrt{\sigma_{i+1}^2-\sigma_{up}^2}$</td>
+      <td><br />$\sigma_{up}=\min(\sigma_{i+1},\eta\cdot\sqrt{(\frac{\sigma_{i+1}^2}{\sigma_i^2}(\sigma_i^2-\sigma_{i+1}^2))})$ <br />$\sigma_{down}=\sqrt{\sigma_{i+1}^2-\sigma_{up}^2}$</td>
     </tr>
     <tr>
       <td>DDPM</td>
@@ -252,7 +315,7 @@
     <footer class="entry-meta">
       
 
-<span class="read-time">~1 min read</span>
+<span class="read-time">1 min read</span>
 
       <time class="entry-date dt-published" datetime="2024-04-17T00:00:00+00:00">April 17, 2024
   </time>
@@ -265,7 +328,7 @@
   <header class="entry-header">
     <h3 class="entry-title p-name">
       
-        <a href="/personal_homepage/docs/algorithm/stable-diffusion7/" rel="bookmark">stable-diffusion中 k-sampling的不同版本
+        <a href="/personal_homepage/docs/algorithm/stable-diffusion7/" rel="bookmark">Diffusion Process 和 Reverse Diffusion Process理解
 </a>
       
     </h3>
@@ -274,7 +337,8 @@
   
     <div class="entry-excerpt p-summary">
       
-        <h2 id="diffusion-process--reverse-diffusion-process">Diffusion Process &amp; Reverse Diffusion Process</h2>
+        <h2 id="背景知识">背景知识</h2>
+<h3 id="bayes-rule"><a href="https://en.wikipedia.org/wiki/Bayes%27_theorem">Bayes’ rule</a></h3>
 
       
     </div>
@@ -283,7 +347,7 @@
     <footer class="entry-meta">
       
 
-<span class="read-time">1 min read</span>
+<span class="read-time">3 min read</span>
 
       <time class="entry-date dt-published" datetime="2024-04-16T00:00:00+00:00">April 16, 2024
   </time>
@@ -410,68 +474,6 @@
 <span class="read-time">~1 min read</span>
 
       <time class="entry-date dt-published" datetime="2024-04-05T00:00:00+00:00">April 5, 2024
-  </time>
-    </footer>
-  
-</article>
-
-
-<article class="entry h-entry">
-  <header class="entry-header">
-    <h3 class="entry-title p-name">
-      
-        <a href="/personal_homepage/docs/tool/pyside6-tech/" rel="bookmark">pyside6一些功能的用法
-</a>
-      
-    </h3>
-    
-  </header>
-  
-    <div class="entry-excerpt p-summary">
-      
-        <p>pyside是qt的python封装, API的调用方法基本差不多. 用pyside从零开始写一个gui用于标注或测试(调参数或者看中间结果), 每次花费时间都比想象的要少的多. 功能方便而且代码的可读性非常好.</p>
-
-      
-    </div>
-  
-  
-    <footer class="entry-meta">
-      
-
-<span class="read-time">~1 min read</span>
-
-      <time class="entry-date dt-published" datetime="2024-04-01T00:00:00+00:00">April 1, 2024
-  </time>
-    </footer>
-  
-</article>
-
-
-<article class="entry h-entry">
-  <header class="entry-header">
-    <h3 class="entry-title p-name">
-      
-        <a href="/personal_homepage/docs/blender/blender-learning10/" rel="bookmark">blender学习: 用粒子系统做毛毡效果
-</a>
-      
-    </h3>
-    
-  </header>
-  
-    <div class="entry-excerpt p-summary">
-      
-        <h3 id="步骤">步骤:</h3>
-
-      
-    </div>
-  
-  
-    <footer class="entry-meta">
-      
-
-<span class="read-time">~1 min read</span>
-
-      <time class="entry-date dt-published" datetime="2024-03-25T00:00:00+00:00">March 25, 2024
   </time>
     </footer>
   

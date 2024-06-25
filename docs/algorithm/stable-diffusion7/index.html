@@ -16,22 +16,22 @@
   
   
   <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>stable-diffusion中 k-sampling的不同版本 | Liu, Wen’s Home Page</title>
+<title>Diffusion Process 和 Reverse Diffusion Process理解 | Liu, Wen’s Home Page</title>
 <meta name="generator" content="Jekyll v4.3.3" />
-<meta property="og:title" content="stable-diffusion中 k-sampling的不同版本" />
+<meta property="og:title" content="Diffusion Process 和 Reverse Diffusion Process理解" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="Diffusion Process &amp; Reverse Diffusion Process" />
-<meta property="og:description" content="Diffusion Process &amp; Reverse Diffusion Process" />
+<meta name="description" content="背景知识 Bayes’ rule" />
+<meta property="og:description" content="背景知识 Bayes’ rule" />
 <link rel="canonical" href="https://roshameow.github.io//personal_homepage/docs/algorithm/stable-diffusion7/" />
 <meta property="og:url" content="https://roshameow.github.io//personal_homepage/docs/algorithm/stable-diffusion7/" />
 <meta property="og:site_name" content="Liu, Wen’s Home Page" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2024-04-16T00:00:00+00:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="stable-diffusion中 k-sampling的不同版本" />
+<meta property="twitter:title" content="Diffusion Process 和 Reverse Diffusion Process理解" />
 <meta name="twitter:site" content="@" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-06-03T22:11:57+00:00","datePublished":"2024-04-16T00:00:00+00:00","description":"Diffusion Process &amp; Reverse Diffusion Process","headline":"stable-diffusion中 k-sampling的不同版本","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/docs/algorithm/stable-diffusion7/"},"url":"https://roshameow.github.io//personal_homepage/docs/algorithm/stable-diffusion7/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-06-25T22:32:08+00:00","datePublished":"2024-04-16T00:00:00+00:00","description":"背景知识 Bayes’ rule","headline":"Diffusion Process 和 Reverse Diffusion Process理解","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/docs/algorithm/stable-diffusion7/"},"url":"https://roshameow.github.io//personal_homepage/docs/algorithm/stable-diffusion7/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -58,7 +58,7 @@
 
 </head>
 
-  <body class="layout--post  stable-diffusion中-k-sampling的不同版本">
+  <body class="layout--post  diffusion-process-和-reverse-diffusion-process理解">
     <nav class="skip-links">
   <h2 class="screen-reader-text">Skip links</h2>
   <ul>
@@ -99,7 +99,7 @@
       <header class="page-header">
         
         
-        <h1 id="page-title" class="page-title p-name">stable-diffusion中 k-sampling的不同版本
+        <h1 id="page-title" class="page-title p-name">Diffusion Process 和 Reverse Diffusion Process理解
 </h1>
         
       </header>
@@ -107,7 +107,7 @@
       <div class="page-sidebar">
         <div class="page-author h-card p-author"><img src="/personal_homepage/docs/images/logo.svg" class="author-avatar u-photo" alt=""><div class="author-info">
 
-<span class="read-time">1 min read</span>
+<span class="read-time">3 min read</span>
 
     <time class="page-date dt-published" datetime="2024-04-16T00:00:00+00:00"><a class="u-url" href="">April 16, 2024</a>
 </time>
@@ -125,7 +125,7 @@
         
   <h3 class="page-taxonomies-title">Tags</h3>
   
-  <ul class="page-taxonomies"><li class="page-taxonomy"><a href="/personal_homepage/tags/#content" title="Pages tagged content" rel="tag">content</a></li>
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a href="/personal_homepage/tags/#ddpm" title="Pages tagged DDPM" rel="tag">DDPM</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#markov-chain" title="Pages tagged Markov_chain" rel="tag">Markov_chain</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#smld" title="Pages tagged SMLD" rel="tag">SMLD</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#content" title="Pages tagged content" rel="tag">content</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#diffusion" title="Pages tagged diffusion" rel="tag">diffusion</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#sde" title="Pages tagged sde" rel="tag">sde</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#stable-diffusion" title="Pages tagged stable-diffusion" rel="tag">stable-diffusion</a></li>
   </ul>
 
 
@@ -136,7 +136,7 @@
 </h2>
 <!-- 1. toc
 {:toc} -->
-<ul class="inline_toc" id="my_toc"><li><a href="#diffusion-process--reverse-diffusion-process">Diffusion Process &amp; Reverse Diffusion Process</a><ul><li><a href="#diffusion-process">Diffusion Process</a></li></ul></li><li><a href="#reference">reference</a></li></ul>
+<ul class="inline_toc" id="my_toc"><li><a href="#背景知识">背景知识</a><ul><li><a href="#bayes-rule">Bayes’ rule</a></li><li><a href="#sdestochastic-differential-equation">SDE(stochastic differential equation)</a></li></ul></li><li><a href="#diffusion-process--reverse-diffusion-process">Diffusion Process &amp; Reverse Diffusion Process</a><ul><li><a href="#diffusion-process">Diffusion Process</a></li><li><a href="#reverse-diffusion-process">Reverse Diffusion Process</a></li></ul></li><li><a href="#reference">reference</a></li></ul>
 </div>
 <!-- {::options parse_block_html="false" /} -->
 
@@ -144,73 +144,61 @@
 
       <div class="page-content">
         <div class="e-content">
-          <h2 id="diffusion-process--reverse-diffusion-process">Diffusion Process &amp; Reverse Diffusion Process</h2>
+          <h2 id="背景知识">背景知识</h2>
+<h3 id="bayes-rule"><a href="https://en.wikipedia.org/wiki/Bayes%27_theorem">Bayes’ rule</a></h3>
+
+\[p(c\vert a,b) = p(a\vert c)\frac{p(c\vert b)}{p(a\vert b)}\propto p(a\vert c)p(c\vert b)\]
 
 <ul>
-  <li>用Markov chain的表示:
+  <li>考虑一种特殊情况:
     <ul>
-      <li>
-\[q(x_t|x_0)=N(x_t;\alpha_t x_0,\sigma^2 I)\]
+      <li>RHS都是高斯分布: $p(a\vert c)\propto e^{-\frac{(a-\mu_{c\rightarrow a})^2}{2(\sigma_{c\rightarrow a})^2}}$, $p(c\vert b)\propto e^{-\frac{(c-\mu_{b\rightarrow c})^2}{2(\sigma_{b\rightarrow c})^2}}$, $p(a\vert b)\propto e^{-\frac{(a-\mu_{b\rightarrow a})^2}{2(\sigma_{b\rightarrow a})^2}}$</li>
+      <li>且其中均值是关于条件变量线性的, $\mu_{c\rightarrow a}=\kappa_{c\rightarrow a}\cdot c$ , $\mu_{c\rightarrow b}=\kappa_{c\rightarrow b}\cdot b$, $\mu_{a\rightarrow b}=\kappa_{a\rightarrow b}\cdot b$, 方差是常数</li>
+    </ul>
+  </li>
+  <li>则$p(c\vert a,b)$ 也同样为<a href="https://en.wikipedia.org/wiki/Normal_distribution">高斯分布</a>
+    <ul>
+      <li>把Bayers’ rule转成log形式: $\log p(c\vert a,b)=\log p(a\vert c) +\log p(c\vert b) +C =-\frac{(a-\kappa_{c\rightarrow a}\cdot c)^2}{2(\sigma_{c\rightarrow a})^2}-\frac{(c-\kappa_{b\rightarrow c}\cdot b)^2}{2(\sigma_{b\rightarrow c})^2}+C$</li>
+      <li>可以看到RHS依然是关于c 的二次多项式
+        <ul>
+          <li>由c的二次项系数得到方差$\frac{1}{\sigma^2}=\frac{\kappa_{c\rightarrow a}^2}{\sigma_{c\rightarrow a}^2}+\frac{1}{\sigma_{b\rightarrow c}^2}$</li>
+          <li>由c的一次项系数得到均值$\frac{\mu}{\sigma^2}=\frac{\kappa_{c\rightarrow a}\cdot a}{\sigma_{c\rightarrow a}^2}+\frac{\kappa_{b\rightarrow c}\cdot b}{\sigma_{b\rightarrow c}^2}$</li>
+        </ul>
       </li>
     </ul>
   </li>
 </ul>
 
-<p>diffusion收敛到SDE, SDE离散化得到diffusion
-把DPM表示成
+<h3 id="sdestochastic-differential-equation"><a href="https://en.wikipedia.org/wiki/Stochastic_differential_equation">SDE(stochastic differential equation)</a></h3>
+
+<p>把DPM表示成
 <a href="https://en.wikipedia.org/wiki/Stochastic_differential_equation">SDE(stochastic differential equation)</a>:</p>
 <ul>
   <li>SDE的一般形式: $dx=f(x,t)dt+g(t)dw$
     <ul>
       <li>$f(\cdot,t)$ 是drift coefficients 表示确定的部分</li>
       <li>$g(\cdot)$ 是diffusion coefficients 表示随机部分参数</li>
-      <li>$\omega$ 是<a href="https://en.wikipedia.org/wiki/Wiener_process">Wiener process(布朗运动)</a> , $dw=\sqrt{t}z$</li>
+      <li>$\omega$ 是<a href="https://en.wikipedia.org/wiki/Wiener_process">Wiener process(布朗运动)</a> , $dw=\sqrt{t}z, z\sim N(0,1)$</li>
     </ul>
   </li>
   <li>SDE的reverse: $dx=(f(x,t)-\frac{1}{2}g^2(t)\nabla_x\log p(x,t))dt+g(t)dw$
     <ul>
       <li>score function $\nabla_x\log p(x,t)$   指向higher density of data</li>
-      <li>$\nabla_x\log p(x;\sigma)=(D(x;\sigma)-x)/{\sigma}^2$</li>
       <li>前半确定部分: Probability flow ODE: $dx=(f(x,t)-\frac{1}{2}g^2(t)\nabla_x\log p(x,t))dt$</li>
     </ul>
   </li>
-  <li>Variance Preserving (VP) SDE, DDPM: $dx=-\frac{1}{2}\beta_t x dt +\sqrt{\beta_t} dw$
-    <ul>
-      <li>$f(x,t)=f(t)x=\frac{1}{\bar \alpha_t}\frac{d\bar \alpha_t}{dt}$</li>
-    </ul>
-  </li>
-  <li></li>
 </ul>
 
-<table>
-  <thead>
-    <tr>
-      <th> </th>
-      <th>stochastic process</th>
-      <th>SDE</th>
-      <th>ODE</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>forward process</td>
-      <td>$p(x_t|x_0)=\mathcal N(x_t;\alpha_t x_0,\sigma_t^2 I)$ <br />即, $x_t=\alpha_t x_0+\sigma_t z_t$ <br /><br />$p(x_i|x_0)=\mathcal N(x_i;\alpha_i x_0,\sigma_i^2 I)$ <br />即, $x_i=\alpha_i x_0+\sigma_i z_i$  <br /><br />$q(x_i|x_{i-1})=N(x_t;\sqrt{1-\beta_i}x_{i-1},\beta_iI)$<br />即, $x_i=\sqrt{1-\beta_i}x_{i-1}+\sqrt{\beta_i}z_i$ <br /><br /><br /><br />$z_i\sim N(0,1)$</td>
-      <td>$dx=f(t)xdt+g(t)dw$ <br />其中, $f(t)=d\log\alpha_t/dt$ , $g(t)= \sqrt{2\alpha_t\sigma_t\frac{d}{dt}(\frac{\sigma_t}{\alpha_t})}$ <br />$dx=\frac{d\log\alpha_t}{dt}xdt+ \sqrt{2\alpha_t\sigma_t\frac{d}{dt}(\frac{\sigma_t}{\alpha_t})} dw$   <br /></td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>backward process</td>
-      <td> </td>
-      <td>$dx=(f(t)\cdot x-\frac{1}{2}g^2(t)\nabla_x\log p(x,t))dt+g(t)dw$<br /><br />$g(t)^2=2\alpha_t\sigma_t\frac{d}{dt}(\frac{\sigma_t}{\alpha_t})$</td>
-      <td>$dx=(f(t)\cdot x-\frac{1}{2}g^2(t)\nabla_x\log p(x,t))dt$<br />即, $dx=$</td>
-    </tr>
-  </tbody>
-</table>
+<h2 id="diffusion-process--reverse-diffusion-process">Diffusion Process &amp; Reverse Diffusion Process</h2>
 
 <h3 id="diffusion-process">Diffusion Process</h3>
 
+<p>$q(x_t\vert x_0)=N(x_t;\alpha_t x_0,\sigma^2 I)$ diffusion收敛到SDE, SDE离散化得到diffusion. Denoising diffusion probabilistic modeling (DDPM) 和Score matching with Langevin dynamics (SMLD) 可以看作两种不同的实例化.</p>
+
+<p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240623150259.png" alt="Pasted image 20240623150259.png" width="800" /></p>
+
 <ol>
-  <li>DDPM(see [3] Appendix B.)
+  <li>DDPM(see <a href="#ref">[3] Appendix B.</a>) to Variance Preserving(VP) SDE
     <ul>
       <li>$x_i=\sqrt{1-\beta_i}x_{i-1}+\sqrt{\beta_i}z_i$  $\implies$   $x_i-x_{i-1}=(\sqrt{1-\beta_i}-1)x_{i-1}+\sqrt{\beta_i}z_i$
         <ul>
@@ -225,15 +213,36 @@
       </li>
     </ul>
   </li>
-  <li>DDPM to stochastic Process
+  <li>DDPM Markov chain to Marginal Distribution
     <ul>
       <li>$x_i=\sqrt{1-\beta_i}x_{i-1}+\sqrt{\beta_i}z_i=\sqrt{1-\beta_i}(\sqrt{1-\beta_{i-1}}x_{i-2}+\sqrt{\beta_{i-1}}z_{i-1})+\sqrt{\beta_i}z_i=\dots$
         <ul>
           <li>$\alpha_i=\prod_{\tau=1}^i \sqrt{1-\beta_\tau}$ , 即 $\log \alpha_i=\sum_{\tau=1}^i \log\sqrt{1-\beta_\tau}$</li>
-          <li>$\sigma_t=\sqrt{1-\prod_{\tau=1}^i (1-\beta_\tau)}$</li>
+          <li>$\sigma_i=\sqrt{1-\prod_{\tau=1}^i (1-\beta_\tau)}$</li>
         </ul>
       </li>
-      <li>得到DDPM对应的假设, $\alpha_i^2+\sigma_i^2=1$</li>
+      <li>得到$\alpha_i^2+\sigma_i^2=1$</li>
+    </ul>
+  </li>
+  <li>DDPM对应的限制, $\alpha_i^2+\sigma_i^2=1$
+    <ul>
+      <li>记 $\bar \alpha_i=\alpha_i^2$</li>
+    </ul>
+  </li>
+  <li>SMLD Markov chain to Marginal Distribution
+    <ul>
+      <li>$x_i=x_{i-1}+\sqrt{\sigma_i^2-\sigma_{i-1}^2}z_i=x_{i-2}+\sqrt{(\sigma_i^2-\sigma_{i-1}^2)+(\sigma_{i-1}^2-\sigma_{i-2}^2)}\cdot z=\dots=x_0+\sigma_i\cdot z$</li>
+    </ul>
+  </li>
+  <li>SMLD对应的限制, $\alpha_i=1$</li>
+  <li>SMLD to DDPM conversion:
+    <ul>
+      <li>$\bar \alpha_i = \frac{1}{\sigma_i^2+1}$, $\bar x_i=\frac{x_i}{\sqrt{\bar \alpha_i}}=\sqrt{\sigma_i^2+1}\cdot x_i$
+        <ul>
+          <li>从 DDPM有$\frac{x_i}{\sqrt{\bar \alpha_i}}=x_0+\sqrt{\frac{1}{\bar \alpha_i}-1}z_i$ , 使$x_i$ 和$x_0$ 的mean相同</li>
+          <li>和SMLD $x_i=x_0+\sigma_i\cdot z_i$ 对照可得</li>
+        </ul>
+      </li>
     </ul>
   </li>
   <li>Markov chain to SDE:
@@ -246,16 +255,19 @@
       </li>
     </ul>
   </li>
-  <li>stochastic Process to Markov Chain:
+  <li>Marginal Distribution to Markov Chain:
     <ul>
       <li>$x_i=\alpha_i x_0+\sigma_i z_i$ , $x_{i-1}=\alpha_{i-1}x_0+\sigma_{i-1}z_{i-1}$</li>
-      <li>解出$x_{i-1}\rightarrow x_{i}$ 的变换</li>
+      <li>解出$x_{i-1}\rightarrow x_{i}$ 的变换, $x_i=\frac{\alpha_i}{\alpha_{i-1}}x_{i-1}+\sqrt{\sigma_i^2-\frac{\alpha_i^2}{\alpha_{i-1}^2}\cdot \sigma_{i-1}^2}\cdot z_{i-1}$</li>
     </ul>
   </li>
   <li>stochastic Process to continuous
     <ul>
-      <li>${1,2,\dots,N, \dots} \rightarrow [0,1]$ , 采样间隔为$\frac{1}{N}$<br />
-    - stochastic Process to SDE.</li>
+      <li>${1,2,\dots,N, \dots} \rightarrow [0,1]$ , 采样间隔为$\frac{1}{N}$</li>
+    </ul>
+  </li>
+  <li>stochastic Process to SDE.
+    <ul>
       <li>利用 $x_t\rightarrow x_{t+\Delta t}$ 的积分:
         <ul>
           <li>$x_{t+\Delta t}=\alpha_{t+\Delta t}x_0+\sigma_{t+\Delta t} z_{t+\Delta_t}$</li>
@@ -263,26 +275,109 @@
         </ul>
       </li>
       <li>$\alpha_{t+\Delta t}=(1+f(t)\Delta t)\alpha_t$  $\implies$ $f(t)=\lim_{\Delta t\rightarrow 0} \frac{\frac{\alpha_{t+\Delta t}}{\alpha_t}-1}{\Delta t}=\frac{1}{\alpha_t}\lim_{\Delta t\rightarrow 0} \frac{\alpha_{t+\Delta t}-\alpha_t}{\Delta t}=\frac{1}{\alpha_t}\frac{d\alpha_t}{dt}=\frac{d\log \alpha_t}{dt}$</li>
-      <li>$\sigma_{t+\Delta t}=\sqrt{(1+f(t)\Delta t)^2\sigma_t^2+g(t)^2\Delta t}$ $\implies$ $g(t)=\lim_{\Delta t\rightarrow 0} \sqrt{\frac{\sigma_{t+\Delta t}^2-(\frac{\alpha_{t+\Delta t}}{\alpha_t})^2\sigma_t^2}{\Delta t}}=\sqrt{2\alpha_t\sigma_t\frac{d}{dt}(\frac{\sigma_t}{\alpha_t})}$<br />
-    - SDE 和Probability flow ODE: (see [3] Appendix D.)</li>
+      <li>$\sigma_{t+\Delta t}=\sqrt{(1+f(t)\Delta t)^2\sigma_t^2+g(t)^2\Delta t}$ $\implies$ $g(t)=\lim_{\Delta t\rightarrow 0} \sqrt{\frac{\sigma_{t+\Delta t}^2-(\frac{\alpha_{t+\Delta t}}{\alpha_t})^2\sigma_t^2}{\Delta t}}=\sqrt{2\alpha_t\sigma_t\frac{d}{dt}(\frac{\sigma_t}{\alpha_t})}$</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="reverse-diffusion-process">Reverse Diffusion Process</h3>
+
+<p>Ancestral: 带 a的ksampler, 添加noise</p>
+
+<p>除Markov Chain reverse外, 其他方法的step都不需要按照forward process的schedule</p>
+
+<ol>
+  <li><strong>Markov Chain reverse</strong>: 由<a href="https://en.wikipedia.org/wiki/Bayes%27_theorem">Bayes’ rule</a> ，$p(x_{i-1}\vert x_i,x_0) = p(x_i\vert x_{i-1})\frac{p(x_{i-1}\vert x_0)}{p(x_i\vert x_0)}$ 得到
+    <ol>
+      <li><strong>DDPM</strong>: $x_{i-1}=\frac{\sqrt{1-\beta_i}(1-\bar \alpha_{i-1})}{1-\bar \alpha_i}\cdot x_i+\frac{\beta_i\sqrt{\bar \alpha_{i-1}}}{1-\bar\alpha_i}\cdot D(x_i,\sigma_i)+\sqrt{\beta_i\frac{1-\bar\alpha_{i-1}}{1-\bar\alpha_i}}z$
+        <ul>
+          <li>其中$D(x_i,\sigma_i)$ 为网络对$x_0$ 的估计值(denoised)</li>
+          <li>$1-\beta_i=\frac{\alpha_i^2}{\alpha_{i-1}^2}=\frac{\bar \alpha_i}{\bar \alpha_{i-1}}$   (根据diffusion process,  $\beta_i,\alpha_i,\bar \alpha_i$  都可以互相得到)</li>
+          <li>在DDPM原论文中, 网络估计$x_i=\sqrt{\bar\alpha_i}x_0+\sqrt{1-\bar\alpha_i}z_i$  中的$z_i$ , 记为$\epsilon$ (noise)
+            <ul>
+              <li>此时reverse的公式替换为 $x_{i-1}=\frac{1}{\sqrt{1-\beta_i}}(x_i-\frac{\beta_i}{\sqrt{1-\bar\alpha_i}}\cdot \epsilon)+\sqrt{\beta_i\frac{1-\bar\alpha_{i-1}}{1-\bar\alpha_i}}z$</li>
+              <li>另外, 如果diffusion process由SMLD得到, 由$\bar x_i, \bar \sigma_i, D(\bar x_i,\bar \sigma_i)$ 表示
+                <ul>
+                  <li>$\bar \alpha_i=\alpha_i^2=\frac{1}{\bar \sigma_i^2+1}$ , $\bar x_i=\frac{x_i}{\sqrt{\bar \alpha_i}}=\sqrt{\bar \sigma_i^2+1}\cdot x_i$ (see diffusion process 6 DDPM to SMLD)</li>
+                  <li>$\epsilon=\frac{x_i-\sqrt{\bar \alpha_i}\cdot D(x_i;\sigma_i)}{\sqrt{1-\bar{\alpha_i}}}=\frac{\frac{x_i}{\sqrt{\bar \alpha_i}}-D(x_i;\sigma_i)}{\sqrt{\frac{1}{\bar \alpha_i}-1}}=\frac{\bar x_i-D(\bar x_i;\bar \sigma_i)}{\bar \sigma_i}$   是网络对$z_i$ 的估计值</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>随机项$z$ 的系数是$\sqrt{\beta_i\frac{1-\bar\alpha_{i-1}}{1-\bar\alpha_i}}$ 或 $\sqrt{\beta_i}$ 在实验中差别不大</li>
+        </ul>
+      </li>
+      <li><strong>SMLD</strong>: $x_{i-1}=\frac{\sigma_{i-1}^2}{\sigma_i^2}\cdot x_i+(1-\frac{\sigma_{i-1}^2}{\sigma_i^2})\cdot D(x_i,\sigma_i)+\sqrt{\frac{\sigma_{i-1}^2(\sigma_i^2-\sigma_{i-1}^2)}{\sigma_i^2}}\cdot z$   , 即$x_{i-1}=x_i-\frac{\sigma_i^2-\sigma_{i-1}^2}{\sigma_i}\cdot \epsilon+\sqrt{\frac{\sigma_{i-1}^2(\sigma_i^2-\sigma_{i-1}^2)}{\sigma_i^2}}\cdot z$
+        <ul>
+          <li>$D(x_i,\sigma_i)$ 和$\epsilon$ 和DDPM里面含义一样</li>
+        </ul>
+      </li>
+    </ol>
+  </li>
+  <li><strong>Marginal Distribution reverse</strong>: 沿用Markov Chain reverse中 $x_{i-1}=\kappa x_i+\lambda x_0+\sigma z$ 的假设, 但是去掉$p(x_i\vert x_{i-1})$ 的依赖
+    <ol>
+      <li><strong>general</strong>: $x_{i-1}=\frac{\sqrt{\sigma_{i-1}^2-\sigma^2}}{\sigma_i}\cdot x_i + (\alpha_{i-1}-\frac{\alpha_i\sqrt{\sigma_{i-1}^2-\sigma^2}}{\sigma_i})\cdot D(x_i,\sigma_i)+\sigma z$
+        <ul>
+          <li>$\alpha_{i-1}x_0+\sigma_{i-1}z_{i-1}=x_{i-1}=\kappa(\alpha_i x_0+\sigma_i z_i)+\lambda x_0+\sigma z=(\kappa\alpha_i+\lambda)x_0+\sqrt{\kappa^2\sigma_i^2+\sigma^2}\cdot z$
+            <ul>
+              <li>比较LHS和RHS, $x_0$ 和$z$ 的系数可得$\kappa, \lambda$ 关于$\sigma$ 的表达式</li>
+            </ul>
+          </li>
+          <li>比Markov Chain reverse多一个参数$\sigma$</li>
+        </ul>
+      </li>
+      <li>DDPM: 令$\alpha_i=\sqrt{\bar \alpha_i}$ , $\sigma_i=\sqrt{1-\bar \alpha_i}$ , $\sigma=\sqrt{\beta_i\frac{1-\bar\alpha_{i-1}}{1-\bar\alpha_i}}$ 得到和Markov Chain reverse相同形式(see diffusion process 3)
+        <ul>
+          <li>DDPM的另一种尝试: $\sigma=\sqrt{\beta_i}$
+            <ul>
+              <li>可以和DDPM效果类似</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>SMLD: 令$\alpha_i=1, \sigma=\sqrt{\frac{\sigma_{i-1}^2(\sigma_i^2-\sigma_{i-1}^2)}{\sigma_i^2}}$ 可得(see diffusion process 5)</li>
+      <li><strong>DDIM</strong>: $x_{i-1}=\frac{\sigma_{i-1}}{\sigma_i}\cdot x_i+(\alpha_{i-1}-\alpha_i\frac{\sigma_{i-1}}{\sigma_i})\cdot D(x_i,\sigma_i)$
+        <ul>
+          <li>令$\sigma=0$ , 此时reverse process是一个确定的过程(implicit的含义)</li>
+        </ul>
+      </li>
+    </ol>
+  </li>
+  <li><strong>SDE reverse</strong>:
+    <ul>
+      <li><strong>general</strong>: $dx=(f(t)\cdot x-\frac{1}{2}g^2(t)\nabla_x\log p(x,t))dt+g(t)dw$
+        <ul>
+          <li>$g(t)^2=2\alpha_t\sigma_t\frac{d}{dt}(\frac{\sigma_t}{\alpha_t})$</li>
+          <li>$\nabla_x\log p(x;t)\approx (D(x;\sigma)-x)/{\sigma}^2$</li>
+        </ul>
+      </li>
+      <li><strong>SMLD</strong>: $dx=\dot\sigma_t \frac{x-D(x_t,\sigma_t)}{\sigma_t}\cdot dt+\sqrt{2\dot \sigma_t \sigma_t}dw$
+        <ul>
+          <li>gradient $\dot\sigma_t \frac{x-D(x_t,\sigma_t)}{\sigma_t}$ (在gradient based method 例如Euler, Heun中用到)</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><strong>Probability flow ODE</strong>: (see <a href="#ref">[3] Appendix D.</a>) $dx=(f(x,t)-\frac{1}{2}g^2(t)\nabla_x\log p(x,t))dt$
+    <ul>
       <li>SDE和Probability flow ODE有相同的marginal probability density $p_t(x)$</li>
     </ul>
   </li>
 </ol>
 
-<p>diffusion ODE: $\frac{dx_t}{dt}=f(t)x_t+\frac{g^2(t)}{2\sigma_t}\epsilon_\theta(x_t,t), x_t\sim N(0,)$</p>
-
-<p>Ancestral: 带 a的ksampler, 添加noise</p>
-
 <h2 id="reference">reference</h2>
+<p><span id="ref"></span></p>
 
-<p>[1 ] Karras, Tero, Miika Aittala, Timo Aila, and Samuli Laine. “Elucidating the Design Space of Diffusion-Based Generative Models.” arXiv, October 11, 2022. <a href="https://doi.org/10.48550/arXiv.2206.00364">https://doi.org/10.48550/arXiv.2206.00364</a>.   <strong>Euler, Heun method</strong></p>
+<p>[1] Ho, Jonathan, Ajay Jain, and Pieter Abbeel. “Denoising Diffusion Probabilistic Models.” <em>arXiv:2006.11239 [Cs, Stat]</em>, December 16, 2020. <a href="http://arxiv.org/abs/2006.11239">http://arxiv.org/abs/2006.11239</a>. <strong>DDPM原作者版本</strong></p>
 
-<p>[2] Lu, Cheng, Yuhao Zhou, Fan Bao, Jianfei Chen, Chongxuan Li, and Jun Zhu. “<strong>DPM-Solver</strong>: A Fast ODE Solver for Diffusion Probabilistic Model Sampling in Around 10 Steps.” arXiv, October 13, 2022. <a href="https://doi.org/10.48550/arXiv.2206.00927">https://doi.org/10.48550/arXiv.2206.00927</a>.</p>
+<p>[2] Song, Jiaming, Chenlin Meng, and Stefano Ermon. “Denoising Diffusion Implicit Models.” arXiv, October 5, 2022. <a href="https://doi.org/10.48550/arXiv.2010.02502">https://doi.org/10.48550/arXiv.2010.02502</a>. <strong>DDIM</strong></p>
 
-<p>[3] Song, Yang, Jascha Sohl-Dickstein, Diederik P. Kingma, Abhishek Kumar, Stefano Ermon, and Ben Poole. “Score-Based Generative Modeling through Stochastic Differential Equations.” arXiv, February 10, 2021. <a href="https://doi.org/10.48550/arXiv.2011.13456">https://doi.org/10.48550/arXiv.2011.13456</a>.  <strong>DDPM</strong></p>
+<p>[3] Song, Yang, Jascha Sohl-Dickstein, Diederik P. Kingma, Abhishek Kumar, Stefano Ermon, and Ben Poole. “Score-Based Generative Modeling through Stochastic Differential Equations.” arXiv, February 10, 2021. <a href="https://doi.org/10.48550/arXiv.2011.13456">https://doi.org/10.48550/arXiv.2011.13456</a>.  <strong>DDPM,  SMLD, SDE, ODE</strong></p>
 
-<p>苏剑林. (Aug. 03, 2022). 《生成扩散模型漫谈（五）：一般框架之SDE篇 》[Blog post]. Retrieved from <a href="https://spaces.ac.cn/archives/9209">https://spaces.ac.cn/archives/9209</a></p>
+<p>[4] 苏剑林. (Aug. 03, 2022). 《生成扩散模型漫谈（五）：一般框架之SDE篇 》[Blog post]. Retrieved from <a href="https://spaces.ac.cn/archives/9209">https://spaces.ac.cn/archives/9209</a>  和系列里面其他文章</p>
+
+<p>[5] 代码:  <a href="https://github.com/comfyanonymous/ComfyUI/blob/master/comfy/k_diffusion/sampling.py">https://github.com/comfyanonymous/ComfyUI/blob/master/comfy/k_diffusion/sampling.py</a>  <a href="https://github.com/comfyanonymous/ComfyUI/blob/master/comfy/samplers.py">https://github.com/comfyanonymous/ComfyUI/blob/master/comfy/samplers.py</a></p>
+
 
         </div>
 
@@ -323,7 +418,7 @@
   
 
   
-    <a class="page-next" href="/personal_homepage/docs/stable-diffusion8/">
+    <a class="page-next" href="/personal_homepage/docs/deeplearning/stable-diffusion8/">
       <h4 class="page-pagination-label">Next</h4>
       <span class="page-pagination-title">
         stable-diffusion中 k-sampling的不同版本
