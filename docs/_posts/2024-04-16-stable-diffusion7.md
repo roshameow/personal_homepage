@@ -11,7 +11,7 @@ tags:
   - Markov_chain
   - DDPM
   - SMLD
-last_modified_at: 2024-06-25T14:32:08-08:00
+last_modified_at: 2024-07-02T00:21:14-08:00
 ---
 ## 背景知识
 ### [Bayes' rule](https://en.wikipedia.org/wiki/Bayes%27_theorem) 
@@ -87,7 +87,6 @@ $q(x_t\vert x_0)=N(x_t;\alpha_t x_0,\sigma^2 I)$ diffusion收敛到SDE, SDE离�
 
 ### Reverse Diffusion Process 
 
-Ancestral: 带 a的ksampler, 添加noise
 
 除Markov Chain reverse外, 其他方法的step都不需要按照forward process的schedule
 
@@ -112,16 +111,25 @@ Ancestral: 带 a的ksampler, 添加noise
 		-  DDPM的另一种尝试: $\sigma=\sqrt{\beta_i}$ 
 			- 可以和DDPM效果类似
 	2. SMLD: 令$\alpha_i=1, \sigma=\sqrt{\frac{\sigma_{i-1}^2(\sigma_i^2-\sigma_{i-1}^2)}{\sigma_i^2}}$ 可得(see diffusion process 5)
-	3. **DDIM**: $x_{i-1}=\frac{\sigma_{i-1}}{\sigma_i}\cdot x_i+(\alpha_{i-1}-\alpha_i\frac{\sigma_{i-1}}{\sigma_i})\cdot D(x_i,\sigma_i)$ 
+	3. **DDIM**: $x_{i-1}=\frac{\sigma_{i-1}}{\sigma_i}\cdot x_i+(\alpha_{i-1}-\alpha_i\frac{\sigma_{i-1}}{\sigma_i})\cdot D(x_i,\sigma_i)$ , 即 $x_{i-1}=\frac{\alpha_{i-1}}{\alpha_i}( x_i-(\sigma_i-\frac{\alpha_{i}}{\alpha_{i-1}}\sigma_{i-1})\cdot \epsilon)$  
 		- 令$\sigma=0$ , 此时reverse process是一个确定的过程(implicit的含义) 
 2. **SDE reverse**: 
 	- **general**: $dx=(f(t)\cdot x-\frac{1}{2}g^2(t)\nabla_x\log p(x,t))dt+g(t)dw$
 		- $g(t)^2=2\alpha_t\sigma_t\frac{d}{dt}(\frac{\sigma_t}{\alpha_t})$ 
 		- $\nabla_x\log p(x;t)\approx (D(x;\sigma)-x)/{\sigma}^2$  
 	- **SMLD**: $dx=\dot\sigma_t \frac{x-D(x_t,\sigma_t)}{\sigma_t}\cdot dt+\sqrt{2\dot \sigma_t \sigma_t}dw$ 
-		- gradient $\dot\sigma_t \frac{x-D(x_t,\sigma_t)}{\sigma_t}$ (在gradient based method 例如Euler, Heun中用到)
-3. **Probability flow ODE**: (see [[3] Appendix D.](#ref)) $dx=(f(x,t)-\frac{1}{2}g^2(t)\nabla_x\log p(x,t))dt$ 
+		- gradient $\frac{dx}{dt}=\dot\sigma_t \frac{x-D(x_t,\sigma_t)}{\sigma_t}$ 
+		- 做变量替换得, $\frac{dx}{d\sigma}=\frac{x-D(x_\sigma,\sigma)}{\sigma}=\epsilon$ (在gradient based method 例如Euler, Heun中用到)
+1. **Probability flow ODE**: (see [[3] Appendix D.](#ref)) $dx=(f(x,t)-\frac{1}{2}g^2(t)\nabla_x\log p(x,t))dt$ 
 	- SDE和Probability flow ODE有相同的marginal probability density $p_t(x)$ 
+	- SMLD: $dx=\dot\sigma_t \frac{x-D(x_t,\sigma_t)}{\sigma_t}\cdot dt=\dot\sigma_t \epsilon(x_t,\sigma_t)\cdot dt$ 
+		- $x_{i-1}=x_i+\int_{t_i}^{t_{i-1}} \sigma_\tau\epsilon(x_\tau,\sigma_\tau)\cdot \frac{\dot\sigma_\tau}{\sigma_\tau}\cdot d\tau=x_i-\int_{\lambda_i}^{\lambda_{i-1}} e^{-\lambda_\tau}\epsilon(x_{\tau_\lambda},\sigma_{\tau_\lambda}) d\lambda$ (DPM-solver中用到)
+			- 记$\lambda_\tau=-\log \sigma_\tau$ , $\sigma_\tau=e^{-\lambda_\tau}$ 
+			- $\epsilon$ 是通过网络得到的不能直接积分, 所以需要一些方法近似
+		- $x_{i-1}\approx x_i -\int_{\lambda_i}^{\lambda_{i-1}} e^{-\lambda_\tau} \sum_{n=0}^{k-1} \frac{(\lambda-\lambda_i)^n}{n!}\epsilon^{(n)}(x_i,\sigma_i) d\lambda= x_i -\sum_{n=0}^{k-1} \epsilon^{(n)}(x_i,\sigma_i) \int_{\lambda_i}^{\lambda_{i-1}} e^{-\lambda_\tau}  \frac{(\lambda-\lambda_i)^n}{n!} d\lambda$ 
+			- k对应DPM-Solver的阶数
+			- DPM-Solver-1: k=1 时, 正是Euler-method
+				- $x_{i-1}=x_i-\epsilon\int_{\lambda_i}^{\lambda_{i-1}}e^{-\lambda_\tau}d\lambda=x_i-\epsilon\cdot(e^{-\lambda_i}-e^{-\lambda_{i-1}})=x_i-\epsilon\cdot(\sigma_{i}-\sigma_{i-1})$   正好和**DDIM** $\alpha_i=1$ 时的表达式重合
 
 
 ## reference
