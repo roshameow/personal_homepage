@@ -124,7 +124,7 @@
     
       <li>
         <a href="#docs">
-          <strong>docs</strong> <span class="taxonomy-count">80</span>
+          <strong>docs</strong> <span class="taxonomy-count">82</span>
         </a>
       </li>
     
@@ -144,7 +144,7 @@
     
       <li>
         <a href="#algorithm">
-          <strong>algorithm</strong> <span class="taxonomy-count">10</span>
+          <strong>algorithm</strong> <span class="taxonomy-count">11</span>
         </a>
       </li>
     
@@ -168,6 +168,12 @@
         </a>
       </li>
     
+      <li>
+        <a href="#deeplearning">
+          <strong>deeplearning</strong> <span class="taxonomy-count">6</span>
+        </a>
+      </li>
+    
   
     
     
@@ -175,12 +181,6 @@
       <li>
         <a href="#post-formats">
           <strong>Post Formats</strong> <span class="taxonomy-count">5</span>
-        </a>
-      </li>
-    
-      <li>
-        <a href="#deeplearning">
-          <strong>deeplearning</strong> <span class="taxonomy-count">5</span>
         </a>
       </li>
     
@@ -345,6 +345,12 @@
       </li>
     
       <li>
+        <a href="#math">
+          <strong>math</strong> <span class="taxonomy-count">1</span>
+        </a>
+      </li>
+    
+      <li>
         <a href="#sensor">
           <strong>sensor</strong> <span class="taxonomy-count">1</span>
         </a>
@@ -368,6 +374,39 @@
   <header class="entry-header">
     <h3 class="entry-title p-name">
       
+        <a href="/personal_homepage/docs/math/algorithm/conformal-geometry1/" rel="bookmark">conformal geometry学习
+</a>
+      
+    </h3>
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <h3 id="3种基本曲面">3种基本曲面</h3>
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">~1 min read</span>
+
+      <time class="entry-date dt-published" datetime="2024-07-02T00:00:00+00:00">July 2, 2024
+  </time>
+    </footer>
+  
+</article>
+
+            
+              
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
         <a href="/personal_homepage/docs/affair/tax/" rel="bookmark">报税计算
 </a>
       
@@ -377,7 +416,7 @@
   
     <div class="entry-excerpt p-summary">
       
-        
+        <p><a href="https://shanghai.chinatax.gov.cn">上海税务局网站</a></p>
 
       
     </div>
@@ -852,7 +891,7 @@
   <header class="entry-header">
     <h3 class="entry-title p-name">
       
-        <a href="/personal_homepage/docs/deeplearning/stable-diffusion8/" rel="bookmark">stable-diffusion中 k-sampling的不同版本
+        <a href="/personal_homepage/docs/deeplearning/stable-diffusion9/" rel="bookmark">stable-diffusion中 k-sampling的不同版本 (二 )
 </a>
       
     </h3>
@@ -861,67 +900,7 @@
   
     <div class="entry-excerpt p-summary">
       
-        <table>
-  <thead>
-    <tr>
-      <th> </th>
-      <th>步骤</th>
-      <th> </th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Euler<br /><br />和SDE的<a href="https://en.wikipedia.org/wiki/Euler–Maruyama_method">Euler–Maruyama</a> 的解法不同</td>
-      <td>noise injection:<br />- increased noise $\hat \sigma$  : $\hat \sigma\leftarrow \sigma_i + \gamma\sigma_i$ <br />-  sample x with increased noise: $\hat x \leftarrow x_i + \sqrt{\hat \sigma^2-\sigma_i^2}\cdot\epsilon$ <br />Take Euler Step: <br />- $dt=\sigma_{i+1}-\hat \sigma$<br />- $denoised=model(\hat x,\hat \sigma)$ <br />- gradient: $d=(\hat x-denoised)/{\hat \sigma}$ <br />- Euler step: $x_{i+1}=\hat x+dt \cdot d$</td>
-      <td>采用SMLD, $\alpha_t=1$ <br /><br />$f(t)\rightarrow 0$ <br />$g(t)^2\rightarrow 2\dot\sigma_t\sigma_t$ <br /><br />$d\rightarrow-\dot\sigma_t\sigma_t\nabla_x\log p(x;\sigma_t)=\frac{\dot \sigma_t}{\sigma_t}\cdot\sigma_t\frac{x-D(x,t)}{\sigma_t}$   <br /><br />令 $\sigma_t=t$ , 此时$\dot \sigma_t=1$ <br />$d \rightarrow\frac{x-D(x;\sigma_t)}{\sigma_t}$</td>
-    </tr>
-    <tr>
-      <td><a href="https://en.wikipedia.org/wiki/Heun%27s_method">heun</a><br />Euler方法的改进</td>
-      <td>noise injection:  <br />得到$\hat\sigma, \hat x, denoised$ <br /> Left tangent prediction: <br />- $x_2=\hat x + dt\cdot d$<br />Right tangent prediction:<br />- $d_2=(x_2-model(x_2,\sigma_{i+1}))/\sigma_{i+1}$ <br />结果: <br />- $d^\prime=\frac{d+d_2}{2}$ <br />- $x_{i+1}=\hat x+d^\prime\cdot dt$</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>Euler Ancestral</td>
-      <td> </td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>Euler Ancestral</td>
-      <td>Take Euler Step to $\sigma_{down}$:  <br />- $dt=\sigma_{down}-\sigma_i$ <br />- $denoised=model(x,\sigma_i)$ <br />- numerical derivative: $d=(x-denoised)/{\sigma_i}$ <br />- Euler step: $x_{down}=x+dt \cdot d$ <br />Add ancestral noise:<br />- $x_{i+1}=x_{down}+noise*\sigma_{up}$ <br /></td>
-      <td><br />$\sigma_{up}=\min(\sigma_{i+1},\eta\cdot\sqrt{(\frac{\sigma_{i+1}^2}{\sigma_i^2}(\sigma_i^2-\sigma_{i+1}^2))})$ <br />$\sigma_{down}=\sqrt{\sigma_{i+1}^2-\sigma_{up}^2}$</td>
-    </tr>
-    <tr>
-      <td>DDPM</td>
-      <td> </td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>DDIM</td>
-      <td> </td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>DPM-Solver</td>
-      <td> </td>
-      <td>根据probability ODE: <br />$\dot x=f(t)\cdot x-\frac{1}{2}g^2(t)\nabla_x\log p(x,t)$<br /><br />令, $\alpha_t=1$ <br /><br /></td>
-    </tr>
-    <tr>
-      <td>dpm_2</td>
-      <td>noise injection: <br />得到$\hat\sigma, \hat x, denoised$ <br />DPM-Solver-2: <br />- 在$\sigma_{i+1},\hat \sigma$ 之间取: $\sigma_{mid}=e^{\frac{\log \hat\sigma+\log \sigma_{i+1}}{2}}$ <br />- $dt_1=\sigma_{mid}-\hat \sigma$ <br />- $dt_2=\sigma_{i+1}-\hat \sigma$ <br />- $x_{mid}=\hat x+dt_1\cdot(\hat x-model(\hat x,\hat \sigma))/\hat \sigma$  <br />用$\sigma_{mid}$ 处的numerial derivative<br />- $x=\hat x+dt_2\cdot(x_{mid}-model(x_{mid},\sigma_{mid}))/\sigma_{mid}$ <br /><br /></td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>dpmpp_2m</td>
-      <td>- $t=-\log(\sigma_i)$ , $t_{next}=-\log(\sigma_{i+1})$ , $t_{last}=-\log(\sigma_{i-1})$ <br />- $h=t_{next}-t$, $h_{last}=t-t_{last}$ <br />- $r=h_{last}/h$ <br />- $denoised_d=(1+\frac{1}{2r})\cdot denoised-\frac{1}{2r}\cdot denoised_{old}$  <br />- $x_{i+1}=\frac{\sigma_{i+1}}{\sigma_i}\cdot x_i-(e^{-h}-1)\cdot denoised_d$ <br /></td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>lcm</td>
-      <td> </td>
-      <td> </td>
-    </tr>
-  </tbody>
-</table>
+        <h2 id="comfyui中的一些代码实现">ComfyUI中的一些代码实现</h2>
 
       
     </div>
@@ -930,7 +909,40 @@
     <footer class="entry-meta">
       
 
-<span class="read-time">1 min read</span>
+<span class="read-time">2 min read</span>
+
+      <time class="entry-date dt-published" datetime="2024-04-18T00:00:00+00:00">April 18, 2024
+  </time>
+    </footer>
+  
+</article>
+
+            
+              
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
+        <a href="/personal_homepage/docs/deeplearning/stable-diffusion8/" rel="bookmark">stable-diffusion中 k-sampling的不同版本 (一 )
+</a>
+      
+    </h3>
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <h2 id="背景知识">背景知识</h2>
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">2 min read</span>
 
       <time class="entry-date dt-published" datetime="2024-04-17T00:00:00+00:00">April 17, 2024
   </time>
@@ -3188,6 +3200,8 @@ including Tex/LaTex/MathML based mathematics in HTML webpages.</p>
       
         
       
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
@@ -3696,6 +3710,8 @@ including Tex/LaTex/MathML based mathematics in HTML webpages.</p>
       
         
       
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
@@ -3747,6 +3763,39 @@ including Tex/LaTex/MathML based mathematics in HTML webpages.</p>
       
         
           <div class="entries-list">
+            
+              
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
+        <a href="/personal_homepage/docs/math/algorithm/conformal-geometry1/" rel="bookmark">conformal geometry学习
+</a>
+      
+    </h3>
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <h3 id="3种基本曲面">3种基本曲面</h3>
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">~1 min read</span>
+
+      <time class="entry-date dt-published" datetime="2024-07-02T00:00:00+00:00">July 2, 2024
+  </time>
+    </footer>
+  
+</article>
+
             
               
 
@@ -4102,6 +4151,8 @@ including Tex/LaTex/MathML based mathematics in HTML webpages.</p>
 
             
           </div>
+        
+      
         
       
         
@@ -4503,6 +4554,8 @@ including Tex/LaTex/MathML based mathematics in HTML webpages.</p>
       
         
       
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
@@ -4778,6 +4831,284 @@ including Tex/LaTex/MathML based mathematics in HTML webpages.</p>
       
         
       
+        
+      
+      <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
+    </section>
+  
+    <section id="deeplearning" class="taxonomy-section">
+      <h2 class="taxonomy-title">deeplearning</h2>
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+          <div class="entries-list">
+            
+              
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
+        <a href="/personal_homepage/docs/deeplearning/stable-diffusion9/" rel="bookmark">stable-diffusion中 k-sampling的不同版本 (二 )
+</a>
+      
+    </h3>
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <h2 id="comfyui中的一些代码实现">ComfyUI中的一些代码实现</h2>
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">2 min read</span>
+
+      <time class="entry-date dt-published" datetime="2024-04-18T00:00:00+00:00">April 18, 2024
+  </time>
+    </footer>
+  
+</article>
+
+            
+              
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
+        <a href="/personal_homepage/docs/deeplearning/stable-diffusion8/" rel="bookmark">stable-diffusion中 k-sampling的不同版本 (一 )
+</a>
+      
+    </h3>
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <h2 id="背景知识">背景知识</h2>
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">2 min read</span>
+
+      <time class="entry-date dt-published" datetime="2024-04-17T00:00:00+00:00">April 17, 2024
+  </time>
+    </footer>
+  
+</article>
+
+            
+              
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
+        <a href="/personal_homepage/docs/deeplearning/attention2/" rel="bookmark">attention的优化– 引进时序结构
+</a>
+      
+    </h3>
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <p>在token很多(大模型用的超长文本), 或者本身数据是时间序列(比如语音, 视频流)的情况下, attention里面的weight会带来$O(token^2)$ 的内存消耗. state space model可以解决这个问题.</p>
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">2 min read</span>
+
+      <time class="entry-date dt-published" datetime="2024-03-09T00:00:00+00:00">March 9, 2024
+  </time>
+    </footer>
+  
+</article>
+
+            
+              
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
+        <a href="/personal_homepage/docs/deeplearning/stable-diffusion6/" rel="bookmark">stable-diffusion的结构和微调模型
+</a>
+      
+    </h3>
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <h2 id="stable-diffusion结构和controlnet插件">stable-diffusion结构和controlnet插件</h2>
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">~1 min read</span>
+
+      <time class="entry-date dt-published" datetime="2024-02-29T00:00:00+00:00">February 29, 2024
+  </time>
+    </footer>
+  
+</article>
+
+            
+              
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
+        <a href="/personal_homepage/docs/deeplearning/attention/" rel="bookmark">神经网络attention结构理解
+</a>
+      
+    </h3>
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <p>在网络中, block是把input信息转换成output信息的过程: 一般, output(position, vector)是input(token, embedding vector)的线性组合, 组合的weight (position, token) 由input和output两方关系确定. 把着重强调这种信息交互的模块叫attention.</p>
+<h2 id="convolution">convolution</h2>
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">1 min read</span>
+
+      <time class="entry-date dt-published" datetime="2024-02-04T00:00:00+00:00">February 4, 2024
+  </time>
+    </footer>
+  
+</article>
+
+            
+              
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
+        <a href="/personal_homepage/docs/deeplearning/restruction-loss/" rel="bookmark">常用的图像 reconstruction loss
+</a>
+      
+    </h3>
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <p>输出为图像的任务, 比如enhance, deblur, super-resolution, generation等用到的loss, 主要分为以下几类</p>
+<h2 id="output和label相近">output和label相近</h2>
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">~1 min read</span>
+
+      <time class="entry-date dt-published" datetime="2024-02-01T00:00:00+00:00">February 1, 2024
+  </time>
+    </footer>
+  
+</article>
+
+            
+          </div>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
@@ -5027,305 +5358,6 @@ including Tex/LaTex/MathML based mathematics in HTML webpages.</p>
       
         
       
-      <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
-    </section>
-  
-    <section id="deeplearning" class="taxonomy-section">
-      <h2 class="taxonomy-title">deeplearning</h2>
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-          <div class="entries-list">
-            
-              
-
-<article class="entry h-entry">
-  <header class="entry-header">
-    <h3 class="entry-title p-name">
-      
-        <a href="/personal_homepage/docs/deeplearning/stable-diffusion8/" rel="bookmark">stable-diffusion中 k-sampling的不同版本
-</a>
-      
-    </h3>
-    
-  </header>
-  
-    <div class="entry-excerpt p-summary">
-      
-        <table>
-  <thead>
-    <tr>
-      <th> </th>
-      <th>步骤</th>
-      <th> </th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Euler<br /><br />和SDE的<a href="https://en.wikipedia.org/wiki/Euler–Maruyama_method">Euler–Maruyama</a> 的解法不同</td>
-      <td>noise injection:<br />- increased noise $\hat \sigma$  : $\hat \sigma\leftarrow \sigma_i + \gamma\sigma_i$ <br />-  sample x with increased noise: $\hat x \leftarrow x_i + \sqrt{\hat \sigma^2-\sigma_i^2}\cdot\epsilon$ <br />Take Euler Step: <br />- $dt=\sigma_{i+1}-\hat \sigma$<br />- $denoised=model(\hat x,\hat \sigma)$ <br />- gradient: $d=(\hat x-denoised)/{\hat \sigma}$ <br />- Euler step: $x_{i+1}=\hat x+dt \cdot d$</td>
-      <td>采用SMLD, $\alpha_t=1$ <br /><br />$f(t)\rightarrow 0$ <br />$g(t)^2\rightarrow 2\dot\sigma_t\sigma_t$ <br /><br />$d\rightarrow-\dot\sigma_t\sigma_t\nabla_x\log p(x;\sigma_t)=\frac{\dot \sigma_t}{\sigma_t}\cdot\sigma_t\frac{x-D(x,t)}{\sigma_t}$   <br /><br />令 $\sigma_t=t$ , 此时$\dot \sigma_t=1$ <br />$d \rightarrow\frac{x-D(x;\sigma_t)}{\sigma_t}$</td>
-    </tr>
-    <tr>
-      <td><a href="https://en.wikipedia.org/wiki/Heun%27s_method">heun</a><br />Euler方法的改进</td>
-      <td>noise injection:  <br />得到$\hat\sigma, \hat x, denoised$ <br /> Left tangent prediction: <br />- $x_2=\hat x + dt\cdot d$<br />Right tangent prediction:<br />- $d_2=(x_2-model(x_2,\sigma_{i+1}))/\sigma_{i+1}$ <br />结果: <br />- $d^\prime=\frac{d+d_2}{2}$ <br />- $x_{i+1}=\hat x+d^\prime\cdot dt$</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>Euler Ancestral</td>
-      <td> </td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>Euler Ancestral</td>
-      <td>Take Euler Step to $\sigma_{down}$:  <br />- $dt=\sigma_{down}-\sigma_i$ <br />- $denoised=model(x,\sigma_i)$ <br />- numerical derivative: $d=(x-denoised)/{\sigma_i}$ <br />- Euler step: $x_{down}=x+dt \cdot d$ <br />Add ancestral noise:<br />- $x_{i+1}=x_{down}+noise*\sigma_{up}$ <br /></td>
-      <td><br />$\sigma_{up}=\min(\sigma_{i+1},\eta\cdot\sqrt{(\frac{\sigma_{i+1}^2}{\sigma_i^2}(\sigma_i^2-\sigma_{i+1}^2))})$ <br />$\sigma_{down}=\sqrt{\sigma_{i+1}^2-\sigma_{up}^2}$</td>
-    </tr>
-    <tr>
-      <td>DDPM</td>
-      <td> </td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>DDIM</td>
-      <td> </td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>DPM-Solver</td>
-      <td> </td>
-      <td>根据probability ODE: <br />$\dot x=f(t)\cdot x-\frac{1}{2}g^2(t)\nabla_x\log p(x,t)$<br /><br />令, $\alpha_t=1$ <br /><br /></td>
-    </tr>
-    <tr>
-      <td>dpm_2</td>
-      <td>noise injection: <br />得到$\hat\sigma, \hat x, denoised$ <br />DPM-Solver-2: <br />- 在$\sigma_{i+1},\hat \sigma$ 之间取: $\sigma_{mid}=e^{\frac{\log \hat\sigma+\log \sigma_{i+1}}{2}}$ <br />- $dt_1=\sigma_{mid}-\hat \sigma$ <br />- $dt_2=\sigma_{i+1}-\hat \sigma$ <br />- $x_{mid}=\hat x+dt_1\cdot(\hat x-model(\hat x,\hat \sigma))/\hat \sigma$  <br />用$\sigma_{mid}$ 处的numerial derivative<br />- $x=\hat x+dt_2\cdot(x_{mid}-model(x_{mid},\sigma_{mid}))/\sigma_{mid}$ <br /><br /></td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>dpmpp_2m</td>
-      <td>- $t=-\log(\sigma_i)$ , $t_{next}=-\log(\sigma_{i+1})$ , $t_{last}=-\log(\sigma_{i-1})$ <br />- $h=t_{next}-t$, $h_{last}=t-t_{last}$ <br />- $r=h_{last}/h$ <br />- $denoised_d=(1+\frac{1}{2r})\cdot denoised-\frac{1}{2r}\cdot denoised_{old}$  <br />- $x_{i+1}=\frac{\sigma_{i+1}}{\sigma_i}\cdot x_i-(e^{-h}-1)\cdot denoised_d$ <br /></td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>lcm</td>
-      <td> </td>
-      <td> </td>
-    </tr>
-  </tbody>
-</table>
-
-      
-    </div>
-  
-  
-    <footer class="entry-meta">
-      
-
-<span class="read-time">1 min read</span>
-
-      <time class="entry-date dt-published" datetime="2024-04-17T00:00:00+00:00">April 17, 2024
-  </time>
-    </footer>
-  
-</article>
-
-            
-              
-
-<article class="entry h-entry">
-  <header class="entry-header">
-    <h3 class="entry-title p-name">
-      
-        <a href="/personal_homepage/docs/deeplearning/attention2/" rel="bookmark">attention的优化– 引进时序结构
-</a>
-      
-    </h3>
-    
-  </header>
-  
-    <div class="entry-excerpt p-summary">
-      
-        <p>在token很多(大模型用的超长文本), 或者本身数据是时间序列(比如语音, 视频流)的情况下, attention里面的weight会带来$O(token^2)$ 的内存消耗. state space model可以解决这个问题.</p>
-
-      
-    </div>
-  
-  
-    <footer class="entry-meta">
-      
-
-<span class="read-time">2 min read</span>
-
-      <time class="entry-date dt-published" datetime="2024-03-09T00:00:00+00:00">March 9, 2024
-  </time>
-    </footer>
-  
-</article>
-
-            
-              
-
-<article class="entry h-entry">
-  <header class="entry-header">
-    <h3 class="entry-title p-name">
-      
-        <a href="/personal_homepage/docs/deeplearning/stable-diffusion6/" rel="bookmark">stable-diffusion的结构和微调模型
-</a>
-      
-    </h3>
-    
-  </header>
-  
-    <div class="entry-excerpt p-summary">
-      
-        <h2 id="stable-diffusion结构和controlnet插件">stable-diffusion结构和controlnet插件</h2>
-
-      
-    </div>
-  
-  
-    <footer class="entry-meta">
-      
-
-<span class="read-time">~1 min read</span>
-
-      <time class="entry-date dt-published" datetime="2024-02-29T00:00:00+00:00">February 29, 2024
-  </time>
-    </footer>
-  
-</article>
-
-            
-              
-
-<article class="entry h-entry">
-  <header class="entry-header">
-    <h3 class="entry-title p-name">
-      
-        <a href="/personal_homepage/docs/deeplearning/attention/" rel="bookmark">神经网络attention结构理解
-</a>
-      
-    </h3>
-    
-  </header>
-  
-    <div class="entry-excerpt p-summary">
-      
-        <p>在网络中, block是把input信息转换成output信息的过程: 一般, output(position, vector)是input(token, embedding vector)的线性组合, 组合的weight (position, token) 由input和output两方关系确定. 把着重强调这种信息交互的模块叫attention.</p>
-<h2 id="convolution">convolution</h2>
-
-      
-    </div>
-  
-  
-    <footer class="entry-meta">
-      
-
-<span class="read-time">1 min read</span>
-
-      <time class="entry-date dt-published" datetime="2024-02-04T00:00:00+00:00">February 4, 2024
-  </time>
-    </footer>
-  
-</article>
-
-            
-              
-
-<article class="entry h-entry">
-  <header class="entry-header">
-    <h3 class="entry-title p-name">
-      
-        <a href="/personal_homepage/docs/deeplearning/restruction-loss/" rel="bookmark">常用的图像 reconstruction loss
-</a>
-      
-    </h3>
-    
-  </header>
-  
-    <div class="entry-excerpt p-summary">
-      
-        <p>输出为图像的任务, 比如enhance, deblur, super-resolution, generation等用到的loss, 主要分为以下几类</p>
-<h2 id="output和label相近">output和label相近</h2>
-
-      
-    </div>
-  
-  
-    <footer class="entry-meta">
-      
-
-<span class="read-time">~1 min read</span>
-
-      <time class="entry-date dt-published" datetime="2024-02-01T00:00:00+00:00">February 1, 2024
-  </time>
-    </footer>
-  
-</article>
-
-            
-          </div>
-        
-      
-        
-      
-        
-      
-        
-      
         
       
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
@@ -5509,6 +5541,8 @@ including Tex/LaTex/MathML based mathematics in HTML webpages.</p>
 
             
           </div>
+        
+      
         
       
         
@@ -5756,6 +5790,8 @@ including Tex/LaTex/MathML based mathematics in HTML webpages.</p>
       
         
       
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
@@ -5932,6 +5968,8 @@ including Tex/LaTex/MathML based mathematics in HTML webpages.</p>
       
         
       
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
@@ -6078,6 +6116,8 @@ including Tex/LaTex/MathML based mathematics in HTML webpages.</p>
       
         
       
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
@@ -6162,7 +6202,7 @@ including Tex/LaTex/MathML based mathematics in HTML webpages.</p>
   
     <div class="entry-excerpt p-summary">
       
-        
+        <p><a href="https://shanghai.chinatax.gov.cn">上海税务局网站</a></p>
 
       
     </div>
@@ -6214,6 +6254,8 @@ including Tex/LaTex/MathML based mathematics in HTML webpages.</p>
 
             
           </div>
+        
+      
         
       
         
@@ -6358,6 +6400,8 @@ including Tex/LaTex/MathML based mathematics in HTML webpages.</p>
       
         
       
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
@@ -6479,6 +6523,8 @@ including Tex/LaTex/MathML based mathematics in HTML webpages.</p>
 
             
           </div>
+        
+      
         
       
         
@@ -6639,6 +6685,8 @@ including Tex/LaTex/MathML based mathematics in HTML webpages.</p>
       
         
       
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
@@ -6749,6 +6797,8 @@ including Tex/LaTex/MathML based mathematics in HTML webpages.</p>
       
         
       
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
@@ -6820,6 +6870,8 @@ including Tex/LaTex/MathML based mathematics in HTML webpages.</p>
 
             
           </div>
+        
+      
         
       
         
@@ -6966,6 +7018,8 @@ including Tex/LaTex/MathML based mathematics in HTML webpages.</p>
       
         
       
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
@@ -7013,6 +7067,8 @@ including Tex/LaTex/MathML based mathematics in HTML webpages.</p>
 
             
           </div>
+        
+      
         
       
         
@@ -7180,6 +7236,8 @@ including Tex/LaTex/MathML based mathematics in HTML webpages.</p>
       
         
       
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
@@ -7231,6 +7289,8 @@ including Tex/LaTex/MathML based mathematics in HTML webpages.</p>
 
             
           </div>
+        
+      
         
       
         
@@ -7394,6 +7454,8 @@ including Tex/LaTex/MathML based mathematics in HTML webpages.</p>
       
         
       
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
@@ -7449,6 +7511,8 @@ including Tex/LaTex/MathML based mathematics in HTML webpages.</p>
 
             
           </div>
+        
+      
         
       
         
@@ -7608,6 +7672,8 @@ including Tex/LaTex/MathML based mathematics in HTML webpages.</p>
       
         
       
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
@@ -7715,6 +7781,8 @@ including Tex/LaTex/MathML based mathematics in HTML webpages.</p>
       
         
       
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
@@ -7774,6 +7842,8 @@ including Tex/LaTex/MathML based mathematics in HTML webpages.</p>
 
             
           </div>
+        
+      
         
       
         
@@ -7929,6 +7999,8 @@ including Tex/LaTex/MathML based mathematics in HTML webpages.</p>
       
         
       
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
@@ -8037,6 +8109,8 @@ including Tex/LaTex/MathML based mathematics in HTML webpages.</p>
       
         
       
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
@@ -8100,6 +8174,8 @@ including Tex/LaTex/MathML based mathematics in HTML webpages.</p>
 
             
           </div>
+        
+      
         
       
         
@@ -8251,6 +8327,8 @@ including Tex/LaTex/MathML based mathematics in HTML webpages.</p>
       
         
       
+        
+      
       <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
     </section>
   
@@ -8349,6 +8427,117 @@ including Tex/LaTex/MathML based mathematics in HTML webpages.</p>
 <span class="read-time">~1 min read</span>
 
       <time class="entry-date dt-published" datetime="2024-06-13T00:00:00+00:00">June 13, 2024
+  </time>
+    </footer>
+  
+</article>
+
+            
+          </div>
+        
+      
+        
+      
+      <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
+    </section>
+  
+    <section id="math" class="taxonomy-section">
+      <h2 class="taxonomy-title">math</h2>
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+          <div class="entries-list">
+            
+              
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
+        <a href="/personal_homepage/docs/math/algorithm/conformal-geometry1/" rel="bookmark">conformal geometry学习
+</a>
+      
+    </h3>
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <h3 id="3种基本曲面">3种基本曲面</h3>
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">~1 min read</span>
+
+      <time class="entry-date dt-published" datetime="2024-07-02T00:00:00+00:00">July 2, 2024
   </time>
     </footer>
   
@@ -8459,6 +8648,8 @@ including Tex/LaTex/MathML based mathematics in HTML webpages.</p>
 
             
           </div>
+        
+      
         
       
         

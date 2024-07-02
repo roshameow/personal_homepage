@@ -1,4 +1,33 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="https://roshameow.github.io//personal_homepage/atom.xml" rel="self" type="application/atom+xml" /><link href="https://roshameow.github.io//personal_homepage/" rel="alternate" type="text/html" /><updated>2024-06-25T06:37:53+00:00</updated><id>https://roshameow.github.io//personal_homepage/atom.xml</id><title type="html">Liu, Wen’s Home Page</title><subtitle>Work, Experiments and Ideas.</subtitle><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><entry><title type="html">报税计算</title><link href="https://roshameow.github.io//personal_homepage/docs/affair/tax/" rel="alternate" type="text/html" title="报税计算" /><published>2024-06-25T00:00:00+00:00</published><updated>2024-06-25T18:50:01+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/affair/tax</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/affair/tax/"><![CDATA[]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="affair" /><category term="content" /><summary type="html"><![CDATA[]]></summary></entry><entry><title type="html">T-Display-S3开发版</title><link href="https://roshameow.github.io//personal_homepage/docs/hardware/border/" rel="alternate" type="text/html" title="T-Display-S3开发版" /><published>2024-06-13T00:00:00+00:00</published><updated>2024-06-13T23:56:52+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/hardware/border</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/hardware/border/"><![CDATA[<h2 id="开发方法">开发方法</h2>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="https://roshameow.github.io//personal_homepage/atom.xml" rel="self" type="application/atom+xml" /><link href="https://roshameow.github.io//personal_homepage/" rel="alternate" type="text/html" /><updated>2024-07-02T08:37:49+00:00</updated><id>https://roshameow.github.io//personal_homepage/atom.xml</id><title type="html">Liu, Wen’s Home Page</title><subtitle>Work, Experiments and Ideas.</subtitle><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><entry><title type="html">conformal geometry学习</title><link href="https://roshameow.github.io//personal_homepage/docs/math/algorithm/conformal-geometry1/" rel="alternate" type="text/html" title="conformal geometry学习" /><published>2024-07-02T00:00:00+00:00</published><updated>2024-07-02T22:09:57+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/math/algorithm/conformal-geometry1</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/math/algorithm/conformal-geometry1/"><![CDATA[<h3 id="3种基本曲面">3种基本曲面</h3>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="math" /><category term="algorithm" /><category term="content" /><summary type="html"><![CDATA[3种基本曲面]]></summary></entry><entry><title type="html">报税计算</title><link href="https://roshameow.github.io//personal_homepage/docs/affair/tax/" rel="alternate" type="text/html" title="报税计算" /><published>2024-06-25T00:00:00+00:00</published><updated>2024-06-27T17:30:37+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/affair/tax</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/affair/tax/"><![CDATA[<p><a href="https://shanghai.chinatax.gov.cn">上海税务局网站</a></p>
+
+<p><a href="https://shanghai.chinatax.gov.cn/bsfw/bszn/znnssb/201911/t448958.html">自行申报的流程</a></p>
+
+<h2 id="材料">材料</h2>
+
+<p><a href="https://shanghai.chinatax.gov.cn/bsfw/xzzx/bgxz/sbzsl/">表格下载</a></p>
+
+<ul>
+  <li><a href="https://shanghai.chinatax.gov.cn/bsfw/xzzx/bgxz/sbzsl/202402/t470803.html">个人所得税年度自行纳税申报表</a> x2
+    <ul>
+      <li>问答版里可以看到计算公式</li>
+    </ul>
+  </li>
+  <li><a href="https://shanghai.chinatax.gov.cn/bsfw/xzzx/bgxz/sbzsl/202302/t466195.html">个人所得税专项附加扣除信息表</a> x1
+    <ul>
+      <li>在问答版里可以看到怎么计算: 租房每月1500, 赡养老人每月3000</li>
+    </ul>
+  </li>
+  <li>扣除:
+    <ul>
+      <li>随身办里查到的没有具体数值</li>
+    </ul>
+  </li>
+</ul>
+
+<p>没有走人工申报的流程, 报税大厅的人工窗口帮忙改好了专项扣除错的部分, 在app上完成的申报退税.</p>
+<h2 id="地址">地址</h2>
+
+<p><a href="https://shanghai.chinatax.gov.cn/newxbwz/wsbs/wsbsdtll/WSBSdtllCtrl-cxfjcxdom.pfv">在公众查询里</a></p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="affair" /><category term="content" /><summary type="html"><![CDATA[上海税务局网站]]></summary></entry><entry><title type="html">T-Display-S3开发版</title><link href="https://roshameow.github.io//personal_homepage/docs/hardware/border/" rel="alternate" type="text/html" title="T-Display-S3开发版" /><published>2024-06-13T00:00:00+00:00</published><updated>2024-06-13T23:56:52+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/hardware/border</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/hardware/border/"><![CDATA[<h2 id="开发方法">开发方法</h2>
 
 <ol>
   <li>Arduino IDE</li>
@@ -538,51 +567,4 @@
       <li>按Shift微调: 移动的幅度降1k倍</li>
     </ul>
   </li>
-</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="blender" /><category term="content" /><category term="physics" /><category term="shortcut" /><summary type="html"><![CDATA[参考这个教学]]></summary></entry><entry><title type="html">给网页添加 logo</title><link href="https://roshameow.github.io//personal_homepage/docs/photo/jekyll-add-logo/" rel="alternate" type="text/html" title="给网页添加 logo" /><published>2024-05-09T00:00:00+00:00</published><updated>2024-05-10T20:36:50+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/photo/jekyll-add-logo</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/photo/jekyll-add-logo/"><![CDATA[<p><img src="/personal_homepage/docs/attachment/logo.svg" alt="logo.svg" width="200" /></p>
-
-<h2 id="用照片制作svg">用照片制作svg</h2>
-
-<p>这次只描了轮廓</p>
-
-<p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240510121915.png" alt="Pasted image 20240510121915.png" width="200" /></p>
-
-<ul>
-  <li>用钢笔工具和选择工具画路径:
-    <ul>
-      <li>在最凸，最凹的地方加锚点</li>
-      <li>添加锚点时拉拽得到切线</li>
-      <li>按command 单独调整锚点和切线的端点</li>
-      <li>option调整切线</li>
-      <li>用直接选择工具(白色箭头)调整锚点位置</li>
-      <li>用路径选择工具(黑色箭头)复制路径</li>
-      <li>用颜色填充功能实时查看路径闭包</li>
-    </ul>
-  </li>
-  <li>导出:
-    <ul>
-      <li>选中填充图层复制svg</li>
-    </ul>
-  </li>
-</ul>
-
-<h2 id="设置网页的favicon">设置网页的favicon</h2>
-
-<ul>
-  <li>在对应html设置icon:  <code class="language-plaintext highlighter-rouge">&lt;link rel="shortcut icon" type="image/x-icon" href="/personal_homepage/docs/images/logo.ico"&gt;</code>
-    <ul>
-      <li>我的路径是<code class="language-plaintext highlighter-rouge">head.html-&gt;head-custom.html</code></li>
-    </ul>
-  </li>
-</ul>
-
-<h2 id="资源">资源</h2>
-
-<p>[1]  <a href="https://www.bilibili.com/video/BV1pP4y1R7r6/">https://www.bilibili.com/video/BV1pP4y1R7r6</a> 钢笔工具使用</p>
-
-<p>[2]  <a href="https://www.taoxuemei.com/chuli/ps/754.html">https://www.taoxuemei.com/chuli/ps/754.html</a> 钢笔工具画的形状-&gt;svg</p>
-
-<p>[3]  <a href="https://zhuanlan.zhihu.com/p/446194623">https://zhuanlan.zhihu.com/p/446194623</a> 路径转形状</p>
-
-<p>[4]  https://stackoverflow.com/questions/30551501/unable-to-set-favicon-using-jekyll-and-github-pages  关于icon路径的讨论</p>
-
-<p>[5]  https://convertio.co/download/9dceab468ba01473f3d49fc765b6f73f983c7f/ svg转ico</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="photo" /><category term="content" /><category term="jekyll" /><category term="photoshop" /><category term="logo" /><summary type="html"><![CDATA[]]></summary></entry></feed>
+</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="blender" /><category term="content" /><category term="physics" /><category term="shortcut" /><summary type="html"><![CDATA[参考这个教学]]></summary></entry></feed>

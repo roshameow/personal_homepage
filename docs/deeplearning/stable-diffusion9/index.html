@@ -16,22 +16,22 @@
   
   
   <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>stable-diffusion中 k-sampling的不同版本 (一 ) | Liu, Wen’s Home Page</title>
+<title>stable-diffusion中 k-sampling的不同版本 (二 ) | Liu, Wen’s Home Page</title>
 <meta name="generator" content="Jekyll v4.3.3" />
-<meta property="og:title" content="stable-diffusion中 k-sampling的不同版本 (一 )" />
+<meta property="og:title" content="stable-diffusion中 k-sampling的不同版本 (二 )" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="背景知识" />
-<meta property="og:description" content="背景知识" />
-<link rel="canonical" href="https://roshameow.github.io//personal_homepage/docs/deeplearning/stable-diffusion8/" />
-<meta property="og:url" content="https://roshameow.github.io//personal_homepage/docs/deeplearning/stable-diffusion8/" />
+<meta name="description" content="ComfyUI中的一些代码实现" />
+<meta property="og:description" content="ComfyUI中的一些代码实现" />
+<link rel="canonical" href="https://roshameow.github.io//personal_homepage/docs/deeplearning/stable-diffusion9/" />
+<meta property="og:url" content="https://roshameow.github.io//personal_homepage/docs/deeplearning/stable-diffusion9/" />
 <meta property="og:site_name" content="Liu, Wen’s Home Page" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2024-04-17T00:00:00+00:00" />
+<meta property="article:published_time" content="2024-04-18T00:00:00+00:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="stable-diffusion中 k-sampling的不同版本 (一 )" />
+<meta property="twitter:title" content="stable-diffusion中 k-sampling的不同版本 (二 )" />
 <meta name="twitter:site" content="@" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-07-03T00:34:34+00:00","datePublished":"2024-04-17T00:00:00+00:00","description":"背景知识","headline":"stable-diffusion中 k-sampling的不同版本 (一 )","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/docs/deeplearning/stable-diffusion8/"},"url":"https://roshameow.github.io//personal_homepage/docs/deeplearning/stable-diffusion8/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-07-02T23:26:29+00:00","datePublished":"2024-04-18T00:00:00+00:00","description":"ComfyUI中的一些代码实现","headline":"stable-diffusion中 k-sampling的不同版本 (二 )","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/docs/deeplearning/stable-diffusion9/"},"url":"https://roshameow.github.io//personal_homepage/docs/deeplearning/stable-diffusion9/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -58,7 +58,7 @@
 
 </head>
 
-  <body class="layout--post  stable-diffusion中-k-sampling的不同版本-一">
+  <body class="layout--post  stable-diffusion中-k-sampling的不同版本-二">
     <nav class="skip-links">
   <h2 class="screen-reader-text">Skip links</h2>
   <ul>
@@ -99,7 +99,7 @@
       <header class="page-header">
         
         
-        <h1 id="page-title" class="page-title p-name">stable-diffusion中 k-sampling的不同版本 (一 )
+        <h1 id="page-title" class="page-title p-name">stable-diffusion中 k-sampling的不同版本 (二 )
 </h1>
         
       </header>
@@ -109,7 +109,7 @@
 
 <span class="read-time">2 min read</span>
 
-    <time class="page-date dt-published" datetime="2024-04-17T00:00:00+00:00"><a class="u-url" href="">April 17, 2024</a>
+    <time class="page-date dt-published" datetime="2024-04-18T00:00:00+00:00"><a class="u-url" href="">April 18, 2024</a>
 </time>
 
   </div>
@@ -125,7 +125,7 @@
         
   <h3 class="page-taxonomies-title">Tags</h3>
   
-  <ul class="page-taxonomies"><li class="page-taxonomy"><a href="/personal_homepage/tags/#content" title="Pages tagged content" rel="tag">content</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#dpm-solver" title="Pages tagged dpm-solver" rel="tag">dpm-solver</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#lcm" title="Pages tagged lcm" rel="tag">lcm</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#noise" title="Pages tagged noise" rel="tag">noise</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#pid" title="Pages tagged pid" rel="tag">pid</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#sampling" title="Pages tagged sampling" rel="tag">sampling</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#uni-pc" title="Pages tagged uni-pc" rel="tag">uni-pc</a></li>
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a href="/personal_homepage/tags/#content" title="Pages tagged content" rel="tag">content</a></li>
   </ul>
 
 
@@ -136,7 +136,7 @@
 </h2>
 <!-- 1. toc
 {:toc} -->
-<ul class="inline_toc" id="my_toc"><li><a href="#背景知识">背景知识</a><ul><li><a href="#pidproportion-integration-differentiation-control">PID(Proportion/ Integration/ Differentiation) Control</a></li></ul></li><li><a href="#sampling">Sampling</a><ul><li><a href="#dpm-solver">DPM-Solver</a></li><li><a href="#dpm-solver-1">DPM-Solver++</a></li><li><a href="#unipcunified-predictor-corrector">UniPC(Unified Predictor-Corrector)</a></li><li><a href="#lcmlatent-cosistency-model">lcm(latent Cosistency Model)</a></li><li><a href="#添加-noise-的不同方法">添加 noise 的不同方法</a></li><li><a href="#其他">其他</a></li></ul></li><li><a href="#reference">reference</a></li></ul>
+<ul class="inline_toc" id="my_toc"><li><a href="#comfyui中的一些代码实现">ComfyUI中的一些代码实现</a></li><li><a href="#reference">reference</a></li></ul>
 </div>
 <!-- {::options parse_block_html="false" /} -->
 
@@ -144,120 +144,74 @@
 
       <div class="page-content">
         <div class="e-content">
-          <h2 id="背景知识">背景知识</h2>
+          <h2 id="comfyui中的一些代码实现">ComfyUI中的一些代码实现</h2>
 
-<h3 id="pidproportion-integration-differentiation-control"><a href="https://en.wikipedia.org/wiki/Proportional–integral–derivative_controller">PID(Proportion/ Integration/ Differentiation) Control</a></h3>
-
-<p>$f=k_p\cdot e +k_i\cdot \int_0^t e+k_d\cdot \frac{de}{dt}$</p>
-<ul>
-  <li>$e=r(\text{desired})-y(\text{measure})$ 是系统距离调解目标值的error
-    <ul>
-      <li>$k_p\cdot e$ 是比例控制项, 向desire方向进行控制</li>
-      <li>积分项表示error的大方向
-        <ul>
-          <li>pro: 如果控制是阶梯式的, 单独使用比例项控制可能会出现稳态误差, 用积分项可以消除这个问题</li>
-          <li>con: 可能会增加系统的滞后性</li>
-        </ul>
-      </li>
-      <li>微分项监测error的变化过程
-        <ul>
-          <li>如果error不断减小, 控制也随之减弱, 增强系统的稳定性(阻尼)</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-</ul>
-
-<h2 id="sampling">Sampling</h2>
-
-<p>按照forward process 是SMLD计算</p>
-<h3 id="dpm-solver">DPM-Solver</h3>
-
-<p>用$\epsilon$ 的Taylor expansion近似</p>
-
-<p>$\begin{align} x_{i-1}&amp;=x_i-\int_{\lambda_i}^{\lambda_{i-1}} e^{-\lambda_\tau}\epsilon(x_{\tau_\lambda},\sigma_{\tau_\lambda}) d\lambda &amp;\\ &amp;\approx x_i -\int_{\lambda_i}^{\lambda_{i-1}} e^{-\lambda_\tau} \sum_{n=0}^{k-1} \frac{(\lambda-\lambda_i)^n}{n!}\epsilon^{(n)}(x_i,\sigma_i) d\lambda \\ &amp;= x_i -\sum_{n=0}^{k-1} \epsilon^{(n)}(x_i,\sigma_i) \int_{\lambda_i}^{\lambda_{i-1}} e^{-\lambda_\tau}  \frac{(\lambda-\lambda_i)^n}{n!} d\lambda \\ &amp;= x_i -e^{-\lambda_{i-1}}\sum_{n=0}^{k-1} \epsilon^{(n)}(x_i,\sigma_i) \int_{\lambda_i}^{\lambda_{i-1}} e^{-(\lambda-\lambda_{i-1})}  \frac{(\lambda-\lambda_i)^n}{n!} d\lambda \\ &amp;= x_i -\sigma_{i-1}\sum_{n=0}^{k-1} \epsilon^{(n)}(x_i,\sigma_i) \int_{0}^{h} e^h e^{-s}  \frac{s^n}{n!} ds &amp; \text{(令}h=\lambda_{i-1}-\lambda_i) \\ &amp;= x_i -\sigma_{i-1}\sum_{n=0}^{k-1} \epsilon^{(n)}(x_i,\sigma_i) (e^h-\sum_{m=0}^{n} \frac{h^m}{m!})  &amp; \int_{0}^{h} e^{-s} s^n ds=\gamma(n+1,s) \\ &amp;\approx x_i -\sigma_{i-1}((e^h-1)\cdot \epsilon +(e^h-1-h)\cdot \epsilon^{(1)}+(e^h-1-h-\frac{h^2}{2})\cdot \epsilon^{(2)}) &amp;\text{(只取前3阶)}\end{align}$</p>
-
-<ul>
-  <li>$\int_0^h e^{-s}s^nds$ 可以由<a href="https://en.wikipedia.org/wiki/Integration_by_parts">integration by parts</a>得到, $\gamma(n+1,s)$ 为<a href="https://en.wikipedia.org/wiki/Incomplete_gamma_function">incomplete gamma function</a></li>
-  <li>$\epsilon^{(1)}$ 和$\epsilon^{(2)}$ 由$\epsilon$ 在$\lambda_i\rightarrow \lambda_{i-1}$ 的二分点(dpm-solver-2)和三分点(dpm-solver-3)Taylor 展开计算得到
-    <ul>
-      <li>DPM-Solver-2: $x_{i-1}\approx x_i-\sigma_{i-1}(e^h-1)\cdot\epsilon(x_i,\sigma_i)-\frac{\sigma_{i-1}}{2r}(e^h-1)(\epsilon(u_i,s_i)-\epsilon(x_i,\sigma_i))$
-        <ul>
-          <li>$(u_i,s_i)$ 为二分点处的$x$ 和$\sigma$</li>
-          <li>$r$ 为分割比例, 一般可以让$r=1/2$
-            <ul>
-              <li>此时, $x_{i-1}\approx x_i-\sigma_{i-1}(e^h-1)\cdot\epsilon(u_i,s_i)$</li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-</ul>
-
-<h3 id="dpm-solver-1">DPM-Solver++</h3>
-
-<p>$x_{i-1}=\frac{\sigma_{i-1}}{\sigma_i}x_i-(e^{-h}-1)((1+\frac{1}{2r})\cdot D(x_i,\sigma_i)-\frac{1}{2r}D(u_i,s_i))$</p>
-
-<ul>
-  <li>中间改为直接用$D(x,\sigma)$ 表示而不是$\epsilon$ 表示
-    <ul>
-      <li>和DPM-Solver的形式可以互相推导, 结果近似但不是完全等价(2S版本(Singlestep), see <a href="#ref">DPM-Solver++ Appendix B</a> )</li>
-      <li>取k=1, 也可以推出DDIM的形式</li>
-    </ul>
-  </li>
-  <li>和DPM-Solver-2类似, 不过不是取二分点, 而是把$x_{i+1}$ 做为$x_{i}$ 和$x_{i-1}$ 的二分点: $D(u_i,s_i)=D(x_{i+1},\sigma_{i+1})$ (2M版本(MultiStep))</li>
-  <li>$r=\frac{\lambda_{i+1}-\lambda_i}{\lambda_i-\lambda_{i-1}}$ 为 $\lambda_{i}\rightarrow \lambda_{i+1}\rightarrow \lambda_{i-1}$ 的比例, 因为$\lambda_{i+1}$ 在$\lambda_i,\lambda_{i-1}$ 的同侧, 和DPM-Solver-2的方向相反</li>
-</ul>
-
-<h3 id="unipcunified-predictor-corrector">UniPC(Unified Predictor-Corrector)</h3>
-
-<ul>
-  <li>把DPM-Solver++推广到任意高阶</li>
-  <li>UniC是在$x_i$ 和$x_{i-1}$ 之间的n分点(像DPM-Solver一样), UniP是$x_{i+k}$ 历史数据(像DPM-Solver++一样)</li>
-</ul>
-
-<h3 id="lcmlatent-cosistency-model">lcm(latent Cosistency Model)</h3>
-
-<ul>
-  <li>每次直接把$D(x,\sigma)$ 做为预测, 不用reverse diffusion而是一步到位</li>
-  <li>模型需要重新训练微调才能支持</li>
-</ul>
-
-<h3 id="添加-noise-的不同方法">添加 noise 的不同方法</h3>
-
-<p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240702162954.png" alt="Pasted image 20240702162954.png" width="400" /></p>
-<ul>
-  <li><strong>noise injection</strong>(没有后缀的情况): 先添加随机项
-    <ul>
-      <li>increase noise:  $\hat \sigma$  : $\hat \sigma\leftarrow \sigma_i + \gamma\sigma_i$</li>
-      <li>forward step $\sigma_{i}\rightarrow \hat \sigma$
-        <ul>
-          <li>SMLD的情况: $\hat x=x_i+\sqrt{\hat \sigma^2-\sigma_i^2}\cdot z, z\sim N(0,1)$</li>
-        </ul>
-      </li>
-      <li>backward step $\sigma_{i-1}\leftarrow \hat \sigma$</li>
-    </ul>
-  </li>
-  <li><strong>ancestral step</strong>(<code class="language-plaintext highlighter-rouge">_A, _ancestral</code>): 后添加随机项
-    <ul>
-      <li>backward step $\sigma_{down}\leftarrow \sigma_i$</li>
-      <li>add noise $\sigma_{up}$</li>
-    </ul>
-  </li>
-  <li><strong>sde</strong>(<code class="language-plaintext highlighter-rouge">_sde</code>): 后添加随机项, 严格按照SDE的公式
-    <ul>
-      <li>用<code class="language-plaintext highlighter-rouge">BrownianTreeNoiseSampler</code> 生成noise $z$</li>
-      <li>随机项为$\sigma_i\sqrt{1-e^{-2h}}\cdot z$ (按照DPM-Solver++的推导)</li>
-    </ul>
-  </li>
-</ul>
-
-<h3 id="其他">其他</h3>
-
-<ul>
-  <li>cfg++ ?</li>
-</ul>
+<table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th>步骤</th>
+      <th>细节</th>
+      <th>种类</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Euler<br /><br />和SDE的<a href="https://en.wikipedia.org/wiki/Euler–Maruyama_method">Euler–Maruyama</a> 的解法不同</td>
+      <td>noise injection:<br />- increased noise $\hat \sigma$  : $\hat \sigma\leftarrow \sigma_i + \gamma\sigma_i$ <br />-  sample x with increased noise: $\hat x \leftarrow x_i + \sqrt{\hat \sigma^2-\sigma_i^2}\cdot\epsilon$ <br />Take Euler Step: <br />- $dt=\sigma_{i+1}-\hat \sigma$<br />- $denoised=model(\hat x,\hat \sigma)$ <br />- gradient: $d=(\hat x-denoised)/{\hat \sigma}$ <br />- Euler step: $x_{i+1}=\hat x+dt \cdot d$</td>
+      <td>采用SMLD, $\alpha_t=1$ <br /><br />DDIM和Euler-method表达式一致, <br />不用另外写<br /></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><a href="https://en.wikipedia.org/wiki/Heun%27s_method">heun</a><br />Euler方法的改进</td>
+      <td>noise injection:  <br />得到$\hat\sigma, \hat x, denoised$ <br /> Left tangent prediction: <br />- $x_2=\hat x + dt\cdot d$<br />Right tangent prediction:<br />- $d_2=(x_2-model(x_2,\sigma_{i+1}))/\sigma_{i+1}$ <br />结果: <br />- $d^\prime=\frac{d+d_2}{2}$ <br />- $x_{i+1}=\hat x+d^\prime\cdot dt$</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Euler Ancestral</td>
+      <td>Take Euler Step to $\sigma_{down}$:  <br />- $dt=\sigma_{down}-\sigma_i$ <br />- $denoised=model(x,\sigma_i)$ <br />- numerical derivative: $d=(x-denoised)/{\sigma_i}$ <br />- Euler step: $x_{down}=x+dt \cdot d$ <br />Add ancestral noise:<br />- $x_{i+1}=x_{down}+noise*\sigma_{up}$ <br /></td>
+      <td><br />$\sigma_{up}=\min(\sigma_{i+1},\eta\cdot\sqrt{(\frac{\sigma_{i+1}^2}{\sigma_i^2}(\sigma_i^2-\sigma_{i+1}^2))})$ <br />$\sigma_{down}=\sqrt{\sigma_{i+1}^2-\sigma_{up}^2}$</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>lms(<a href="https://en.wikipedia.org/wiki/Linear_multistep_method">linear multistep method</a> )</td>
+      <td>用 <a href="https://en.wikipedia.org/wiki/Lagrange_polynomials">Lagrange basis functions</a> 拟合$\epsilon$ <br />即, $f=\sum_k P_k\cdot \epsilon_{i+k}$ , 令$f(\sigma_{i+k})=\epsilon(x_{i+k},\sigma_{i+k})$<br />$x_{i-1}=x_i+\int_{\sigma_i}^{\sigma_{i-1}}f d\sigma$</td>
+      <td>$f$ 是对$\epsilon$ 的估计值,<br />k=0时退化成Euler method</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>deis &amp;<br />ipndm &amp;<br />ipndm-v</td>
+      <td>实现不一样但是思路和lms差不多?</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>dpm_fast</td>
+      <td>根据number of function evaluations (nfe) 的输入<br />设置dpm的次数. 优先使用dpm-solver-3, <br />nfe不被3整除的情况下用dpm-solver-2或dpm-solver-1补充</td>
+      <td> </td>
+      <td>DPM-Solver<br />根据probability ODE<br /></td>
+    </tr>
+    <tr>
+      <td>dpm_adaptive</td>
+      <td>不输入nfe<br />同时计算dpm-solver-2和dpm-solver-3<br />比较结果, 两者的差值(L2-norm的scale)作为pid- controller的输入, 由pid-controlller判断是否结束</td>
+      <td>PID 中实际使用最近的3个error 的-log<br /><br />$k_p(e_i-e_{i-1})+k_ie_i+k_d(e_i-2e_{i-1}+e_{i-2})$ <br />error $\searrow$  , factor $\nearrow$ , accept ✔️<br /><br />和标准的pid不一样: <br /> 1. 积分项对应error<br /> 2. 只根据factor输出是否结束, factor不输出,<br />对每个step本身的步骤也没有影响</td>
+      <td>DPM-Solver<br />根据probability ODE</td>
+    </tr>
+    <tr>
+      <td>dpm_2 &amp;<br />dpm_2_ancestral</td>
+      <td>noise injection: <br />得到$\hat\sigma, \hat x, denoised$ <br />DPM-Solver-2: <br />- 在$\sigma_{i+1},\hat \sigma$ 之间取: $\sigma_{mid}=e^{\frac{\log \hat\sigma+\log \sigma_{i+1}}{2}}$ <br />- $dt_1=\sigma_{mid}-\hat \sigma$ <br />- $dt_2=\sigma_{i+1}-\hat \sigma$ <br />- $x_{mid}=\hat x+dt_1\cdot(\hat x-model(\hat x,\hat \sigma))/\hat \sigma$  <br />用$\sigma_{mid}$ 处的numerial derivative<br />- $x=\hat x+dt_2\cdot(x_{mid}-model(x_{mid},\sigma_{mid}))/\sigma_{mid}$ <br /><br /></td>
+      <td>用DPM-Solver-2的简化板, 把二分点取在中间<br /></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>dpmpp_2m</td>
+      <td>- $t=-\log(\sigma_i)$ , $t_{next}=-\log(\sigma_{i+1})$ , $t_{last}=-\log(\sigma_{i-1})$ <br />- $h=t_{next}-t$, $h_{last}=t-t_{last}$ <br />- $r=h_{last}/h$ <br />- $denoised_d=(1+\frac{1}{2r})\cdot denoised-\frac{1}{2r}\cdot denoised_{old}$  <br />- $x_{i+1}=\frac{\sigma_{i+1}}{\sigma_i}\cdot x_i-(e^{-h}-1)\cdot denoised_d$ <br /></td>
+      <td>DPM-Solver++</td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
 
 <h2 id="reference">reference</h2>
 <p><span id="ref"></span></p>
@@ -288,8 +242,8 @@
     <div id="disqus_thread"></div>
     <script>
       var disqus_config = function () {
-        this.page.url = 'https://roshameow.github.io//personal_homepage/docs/deeplearning/stable-diffusion8/';
-        this.page.identifier = 'https://roshameow.github.io//personal_homepage/docs/deeplearning/stable-diffusion8/';
+        this.page.url = 'https://roshameow.github.io//personal_homepage/docs/deeplearning/stable-diffusion9/';
+        this.page.identifier = 'https://roshameow.github.io//personal_homepage/docs/deeplearning/stable-diffusion9/';
       };
 
       (function() {
@@ -307,20 +261,20 @@
 
         <nav class="page-pagination" role="navigation">
   
-    <a class="page-previous" href="/personal_homepage/docs/algorithm/stable-diffusion7/">
+    <a class="page-previous" href="/personal_homepage/docs/deeplearning/stable-diffusion8/">
       <h4 class="page-pagination-label">Previous</h4>
       <span class="page-pagination-title">
-        <i class="fas fa-arrow-left"></i> Diffusion Process 和 Reverse Diffusion Process理解
+        <i class="fas fa-arrow-left"></i> stable-diffusion中 k-sampling的不同版本 (一 )
 
       </span>
     </a>
   
 
   
-    <a class="page-next" href="/personal_homepage/docs/deeplearning/stable-diffusion9/">
+    <a class="page-next" href="/personal_homepage/docs/algorithm/optical_flow_train2/">
       <h4 class="page-pagination-label">Next</h4>
       <span class="page-pagination-title">
-        stable-diffusion中 k-sampling的不同版本 (二 )
+        小面积光流传感器算法测试 (二) – 特征训练
  <i class="fas fa-arrow-right"></i>
       </span>
     </a>

@@ -324,10 +324,15 @@ var store = [{
         "tags": ["content","stable-diffusion","diffusion","sde","Markov_chain","DDPM","SMLD"],
         "url": "https://roshameow.github.io//personal_homepage/docs/algorithm/stable-diffusion7/"
       },{
-        "title": "stable-diffusion中 k-sampling的不同版本",
-        "excerpt":"  步骤   Euler和SDE的Euler–Maruyama 的解法不同 noise injection:- increased noise $\\hat \\sigma$ : $\\hat \\sigma\\leftarrow \\sigma_i + \\gamma\\sigma_i$ - sample x with increased noise: $\\hat x \\leftarrow x_i + \\sqrt{\\hat \\sigma^2-\\sigma_i^2}\\cdot\\epsilon$ Take Euler Step: - $dt=\\sigma_{i+1}-\\hat \\sigma$- $denoised=model(\\hat x,\\hat \\sigma)$ - gradient: $d=(\\hat x-denoised)/{\\hat \\sigma}$ - Euler step: $x_{i+1}=\\hat x+dt \\cdot...","categories": ["docs","deeplearning"],
-        "tags": ["content"],
+        "title": "stable-diffusion中 k-sampling的不同版本 (一 )",
+        "excerpt":"背景知识 PID(Proportion/ Integration/ Differentiation) Control $f=k_p\\cdot e +k_i\\cdot \\int_0^t e+k_d\\cdot \\frac{de}{dt}$ $e=r(\\text{desired})-y(\\text{measure})$ 是系统距离调解目标值的error $k_p\\cdot e$ 是比例控制项, 向desire方向进行控制 积分项表示error的大方向 pro: 如果控制是阶梯式的, 单独使用比例项控制可能会出现稳态误差, 用积分项可以消除这个问题 con: 可能会增加系统的滞后性 微分项监测error的变化过程 如果error不断减小, 控制也随之减弱, 增强系统的稳定性(阻尼) Sampling 按照forward process 是SMLD计算 DPM-Solver 用$\\epsilon$ 的Taylor expansion近似 $\\begin{align} x_{i-1}&amp;=x_i-\\int_{\\lambda_i}^{\\lambda_{i-1}} e^{-\\lambda_\\tau}\\epsilon(x_{\\tau_\\lambda},\\sigma_{\\tau_\\lambda}) d\\lambda &amp;\\\\ &amp;\\approx x_i -\\int_{\\lambda_i}^{\\lambda_{i-1}} e^{-\\lambda_\\tau} \\sum_{n=0}^{k-1} \\frac{(\\lambda-\\lambda_i)^n}{n!}\\epsilon^{(n)}(x_i,\\sigma_i) d\\lambda \\\\ &amp;=...","categories": ["docs","deeplearning"],
+        "tags": ["content","pid","sampling","dpm-solver","uni-pc","lcm","noise"],
         "url": "https://roshameow.github.io//personal_homepage/docs/deeplearning/stable-diffusion8/"
+      },{
+        "title": "stable-diffusion中 k-sampling的不同版本 (二 )",
+        "excerpt":"ComfyUI中的一些代码实现   步骤 细节 种类 Euler和SDE的Euler–Maruyama 的解法不同 noise injection:- increased noise $\\hat \\sigma$ : $\\hat \\sigma\\leftarrow \\sigma_i + \\gamma\\sigma_i$ - sample x with increased noise: $\\hat x \\leftarrow x_i + \\sqrt{\\hat \\sigma^2-\\sigma_i^2}\\cdot\\epsilon$ Take Euler Step: - $dt=\\sigma_{i+1}-\\hat \\sigma$- $denoised=model(\\hat x,\\hat \\sigma)$ - gradient: $d=(\\hat x-denoised)/{\\hat \\sigma}$ - Euler step: $x_{i+1}=\\hat...","categories": ["docs","deeplearning"],
+        "tags": ["content"],
+        "url": "https://roshameow.github.io//personal_homepage/docs/deeplearning/stable-diffusion9/"
       },{
         "title": "小面积光流传感器算法测试 (二) -- 特征训练",
         "excerpt":"数据 ① ② : ③ :   采样方式 具体说明 特点 ① 仿真图像+仿真采样Sample 在16x16的图像上随机crop得到8x8的patch, 再随机用grid_sample提取8x8的patch比对正样本: 和patch距离&lt;0.5的patch 从采样方法来说, 当前像素只和周围3x3邻域像素相关 ② 真实图像+仿真采样SampleFromFrame 用实际sensor提供的图片   ③ 真实图像+真实采样SampleFromVideo 筛选实际sensor提供的图片前后帧,用其他算法确定光流已知的图片对,在图片的其他区域采样 这是图像配准特征训练中的一般做法 代码: local_binary.py 结果: 对于究竟学到了哪方面特征, 我很疑惑 出乎我意料的, 是① &gt; ② &gt; ③ 可能是我加噪声的方式和真实情况有差距? 可能是我数据采样中的光流不可靠? 可能是产生了我不清楚的过拟合? adaboost的方法比神经网络训练效果好(或者差不多?) “最好”的训练结果也没比不训练的结果(sad-mean(diff)的版本)好. 可能通过匹配patch计算光流的准确度本来已经达到饱和, 再训练patch的描述也没法提升? 用真实数据的loss比仿真数据要大 说明真实数据更难 用真实图像插值时, 结果变得超差, 改成crop好了一些 torch grid...","categories": ["docs","algorithm"],
@@ -395,7 +400,12 @@ var store = [{
         "url": "https://roshameow.github.io//personal_homepage/docs/hardware/border/"
       },{
         "title": "报税计算",
-        "excerpt":"","categories": ["docs","affair"],
+        "excerpt":"上海税务局网站 自行申报的流程 材料 表格下载   个人所得税年度自行纳税申报表 x2          问答版里可以看到计算公式        个人所得税专项附加扣除信息表 x1          在问答版里可以看到怎么计算: 租房每月1500, 赡养老人每月3000        扣除:          随身办里查到的没有具体数值      没有走人工申报的流程, 报税大厅的人工窗口帮忙改好了专项扣除错的部分, 在app上完成的申报退税. 地址 在公众查询里 ","categories": ["docs","affair"],
         "tags": ["content"],
         "url": "https://roshameow.github.io//personal_homepage/docs/affair/tax/"
+      },{
+        "title": "conformal geometry学习",
+        "excerpt":"3种基本曲面 ","categories": ["docs","math","algorithm"],
+        "tags": ["content"],
+        "url": "https://roshameow.github.io//personal_homepage/docs/math/algorithm/conformal-geometry1/"
       }]
