@@ -7,7 +7,7 @@ tags:
   - content
   - mesh
   - quad-mesh
-last_modified_at: 2024-06-12T16:54:48-08:00
+last_modified_at: 2024-07-03T15:46:22-08:00
 ---
 ![Pasted image 20240610075408.png]({{ '/docs/attachment/Pasted image 20240610075408.png' | relative_url }}){:width="150"} -> ![Pasted image 20240610075425.png]({{ '/docs/attachment/Pasted image 20240610075425.png' | relative_url }}){:width="130"} 
 
@@ -92,7 +92,7 @@ last_modified_at: 2024-06-12T16:54:48-08:00
 ![Pasted image 20240612151157.png]({{ '/docs/attachment/Pasted image 20240612151157.png' | relative_url }}){:width="200"}
 
 - 从triangle mesh计算homology group(同调群) $H_1(\Sigma,\mathbb Z)$ 的basis $\{a_1,\dots,a_g,b_1,\dots,b_g\}$ , 
-	- 通过reset height function构造Reeb graph抽卡保证$a_i$ 只和$b_i$ 相交(see [4](#ref))
+	- 通过reset height function构造Reeb graph抽卡保证$a_i$ 只和$b_i$ 相交(canonical basis, see [4](#ref))
 	- 得到holomorphic 1-form basis  $\Omega^1(\Sigma)$ (see [5](#ref))
 		- loop $\gamma$ -> discrete closed 1-form $\lambda_{\gamma}=dg_{\gamma}$  -> harmonic 1-form $\omega_{\gamma}$ -> holomorphic 1-form $\phi_{\gamma}$ 
 			- 由[Riemann-Roch theorem](https://en.wikipedia.org/wiki/Riemann–Roch_theorem), $l(D)-l(K-D)=deg(D)+1-g$, 令$D=0$, 得到 $l(K)=g$ , 即我们得到的是一组basis

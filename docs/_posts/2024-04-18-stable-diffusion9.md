@@ -5,7 +5,8 @@ categories:
   - deeplearning
 tags:
   - content
-last_modified_at: 2024-07-02T15:26:29-08:00
+  - sampling
+last_modified_at: 2024-07-09T12:05:50-08:00
 ---
 ## ComfyUI中的一些代码实现
 
@@ -41,3 +42,5 @@ last_modified_at: 2024-07-02T15:26:29-08:00
 [5] 代码: [https://github.com/zju-pi/diff-sampler ](https://github.com/zju-pi/diff-sampler)  一些sampler
 
 [6] 代码:  [https://github.com/comfyanonymous/ComfyUI/blob/master/comfy/k_diffusion/sampling.py](https://github.com/comfyanonymous/ComfyUI/blob/master/comfy/k_diffusion/sampling.py)  [https://github.com/comfyanonymous/ComfyUI/blob/master/comfy/samplers.py](https://github.com/comfyanonymous/ComfyUI/blob/master/comfy/samplers.py) 
+
+[7] https://stable-diffusion-art.com/samplers/#DDIM_and_PLMS 不同sampler的比较测评

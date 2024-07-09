@@ -8,7 +8,7 @@ tags:
   - simulation
   - sensor
   - physics
-last_modified_at: 2024-01-14T17:10:47-08:00
+last_modified_at: 2024-07-09T12:14:29-08:00
 ---
 ## 仿真
 
@@ -41,7 +41,7 @@ last_modified_at: 2024-01-14T17:10:47-08:00
 			- 生成图像的image: $I=PSF*\text{scene}$ 是场景和PSF的卷积
 		- [MTF](https://en.wikipedia.org/wiki/Optical_transfer_function): $MTF=F(PSF)$ 
 			- MTF的单位是（frequency(lines/mm),response(%)）
-			- $\frac{J_1^2(x)}{x^2}$ 的Fourier变化是个连续下降函数
+			- $\frac{J_1^2(x)}{x^2}$ 的Fourier变换是个连续下降函数
 			- 根据 [Fourier transform](https://en.wikipedia.org/wiki/Fourier_transform#Applications) time scaling的性质：因为PSF的零点$PSF_0\propto \frac{\lambda}{NA}$ , 得到MTF的cutoff点 $c(MTF)\propto \frac{NA}{\lambda}$  (即频率更高的物体就看不清了)
 			- MTF是个衡量成像系统分辨率的常用指标，不光衍射，所有成像过程，包括软件做的deblur等操作都可以用这个指标衡量。
 1. **用PSF做图像调制** 
