@@ -300,8 +300,8 @@ var store = [{
         "url": "https://roshameow.github.io//personal_homepage/docs/tool/pyside6-tech/"
       },{
         "title": "EMVA1288 sensor测试",
-        "excerpt":"参数: QE $K, \\eta$ 成像模型 input 中间结果 output 参数 参数 变量下标 p e y qe或$\\eta$ $K$ 含义 光子 电子 读数 QE(Quantum Efficiency) System Gain 测量方式 由积分时间+ sensor面积 得出公式: $\\mu_p=\\frac{\\text{辐射能}}{\\text{单个光子的辐射能}}=\\frac{A(sensor面积)\\cdot t(曝光时间)\\cdot E(辐射照度)}{h(\\text{普朗克常数})c(\\text{光速})/\\lambda(\\text{波长})}$   直接测量$y(t)$     分布 Poisson分布         公式关系   $\\mu_e=\\sigma_e^2$ $K\\mu_e=\\mu_y-\\mu_{y.dark}$       统计变量 $\\mu_p,...","categories": ["docs","sensor"],
-        "tags": ["content"],
+        "excerpt":"模型 系统参数: $\\downarrow$ QE($\\eta$) (Quantum Efficiency) $K$ (System Gain) $\\mu_d,\\sigma_d$ (read noise) $\\sigma_q$ (quantization noise) : 常数 量化误差可以看做在$[-1/2,1/2]$ 之间均匀分布 , $\\sigma_q^2=\\int_{-1/2}^{1/2}x^2 dx=1/12$ , 单位为$DN^2$ 成像模型 input 中间结果 output 变量下标 p e y 含义 光子 电子 读数 单位   $e^{-1}$ DN(digital number) 测量方式 由积分时间+ sensor面积 得出公式: $\\mu_p=\\frac{\\text{辐射能}}{\\text{单个光子的辐射能}}=\\frac{A(sensor面积)\\cdot t(曝光时间)\\cdot E(辐射照度)}{h(\\text{普朗克常数})c(\\text{光速})/\\lambda(\\text{波长})}$除曝光时间外的变量测试中一般保持不变   直接测量$y(t)$...","categories": ["docs","sensor"],
+        "tags": ["content","isp","EMVA1288","standard","sensor"],
         "url": "https://roshameow.github.io//personal_homepage/docs/sensor/EMVA1288-sensor/"
       },{
         "title": "blender学习: 几何节点做摄像头移动阵列",
@@ -331,7 +331,7 @@ var store = [{
       },{
         "title": "stable-diffusion中 k-sampling的不同版本 (二 )",
         "excerpt":"ComfyUI中的一些代码实现   步骤 细节 种类 Euler和SDE的Euler–Maruyama 的解法不同 noise injection:- increased noise $\\hat \\sigma$ : $\\hat \\sigma\\leftarrow \\sigma_i + \\gamma\\sigma_i$ - sample x with increased noise: $\\hat x \\leftarrow x_i + \\sqrt{\\hat \\sigma^2-\\sigma_i^2}\\cdot\\epsilon$ Take Euler Step: - $dt=\\sigma_{i+1}-\\hat \\sigma$- $denoised=model(\\hat x,\\hat \\sigma)$ - gradient: $d=(\\hat x-denoised)/{\\hat \\sigma}$ - Euler step: $x_{i+1}=\\hat...","categories": ["docs","deeplearning"],
-        "tags": ["content"],
+        "tags": ["content","sampling"],
         "url": "https://roshameow.github.io//personal_homepage/docs/deeplearning/stable-diffusion9/"
       },{
         "title": "小面积光流传感器算法测试 (二) -- 特征训练",
@@ -370,7 +370,7 @@ var store = [{
         "url": "https://roshameow.github.io//personal_homepage/docs/affair/labor-disputes-arbitration/"
       },{
         "title": "FFT计算",
-        "excerpt":"  fourier Series 定义:          $F(f)(u)=\\int_{-\\infty}^{\\infty} f(x)e^{-2\\pi i x u} dx$      2维：$G(p,q)=F(g(x,y)) = \\int\\int^\\infty_\\infty g(x,y)e^{-i2\\pi(px+qy)}dxdy$        离散形式: 信号$x$ 的FFT 信号$X$          $X_k=\\sum_{m=0}^{N-1}x_m\\cdot e^{-i\\cdot 2\\pi km/N}=\\sum_{m=0}^{N-1}x_m\\cdot TW(N,k)^m$                  $N$ 是信号长度          $TW(N,k) = e^{-i*2k\\pi/N}$ 是FFT 的twiddle factor(旋转因子)                          $TW(N,k)=\\cos(-2k\\pi/N)+i\\cdot \\sin(-2k\\pi/N)=TW_r(N,k)+i\\cdot TW_i(N,k)$                                          butterfly diagram 利用fft的对称性和周期性 ","categories": ["docs","algorithm"],
+        "excerpt":"  fourier Series 定义:          $F(f)(u)=\\int_{-\\infty}^{\\infty} f(x)e^{-2\\pi i x u} dx$      2维：$G(p,q)=F(g(x,y)) = \\int\\int^\\infty_\\infty g(x,y)e^{-i2\\pi(px+qy)}dxdy$                  2维的可以拆分成1维                      离散形式: 信号$x$ 的FFT 信号$X$          $X_k=\\sum_{m=0}^{N-1}x_m\\cdot e^{-i\\cdot 2\\pi km/N}=\\sum_{m=0}^{N-1}x_m\\cdot TW(N,k)^m$                  $N$ 是信号长度          $TW(N,k) = e^{-i*2k\\pi/N}$ 是FFT 的twiddle factor(旋转因子)                          $TW(N,k)=\\cos(-2k\\pi/N)+i\\cdot \\sin(-2k\\pi/N)=TW_r(N,k)+i\\cdot TW_i(N,k)$                                          butterfly diagram 利用fft的对称性和周期性 ","categories": ["docs","algorithm"],
         "tags": ["content"],
         "url": "https://roshameow.github.io//personal_homepage/docs/algorithm/fft/"
       },{
@@ -400,12 +400,17 @@ var store = [{
         "url": "https://roshameow.github.io//personal_homepage/docs/hardware/border/"
       },{
         "title": "报税计算",
-        "excerpt":"上海税务局网站 自行申报的流程 材料 表格下载   个人所得税年度自行纳税申报表 x2          问答版里可以看到计算公式        个人所得税专项附加扣除信息表 x1          在问答版里可以看到怎么计算: 租房每月1500, 赡养老人每月3000        扣除:          随身办里查到的没有具体数值      没有走人工申报的流程, 报税大厅的人工窗口帮忙改好了专项扣除错的部分, 在app上完成的申报退税. 地址 在公众查询里 ","categories": ["docs","affair"],
+        "excerpt":"上海税务局网站 自行申报的流程 材料 表格下载   个人所得税年度自行纳税申报表 x2          问答版里可以看到计算公式        个人所得税专项附加扣除信息表 x1          在问答版里可以看到怎么计算: 租房每月1500, 赡养老人每月3000        扣除:          随身办里查到的没有具体数值      没有走人工申报的流程, 报税大厅的人工窗口帮忙改好了专项扣除错的部分, 在app上完成的申报退税. 不过倒是收走了我填好签过字的申报表? 地址 在公众查询里 ","categories": ["docs","affair"],
         "tags": ["content"],
         "url": "https://roshameow.github.io//personal_homepage/docs/affair/tax/"
       },{
         "title": "conformal geometry学习",
-        "excerpt":"3种基本曲面 ","categories": ["docs","math","algorithm"],
+        "excerpt":"3种基本曲面 球面 平面 双曲面:fundamental group Poincaré conjecture(已证明) : closed, connected, fundamental group 是trival的曲面和球面是homeomorphic(同胚)的. 同调球 对于oriented surface, fundamental group同构 &lt;-&gt; 拓扑同胚. 把$\\pi_1(S,p)$ 的一组basis做为cut graph, 把曲面切成4g的polygonal scheme. 以此构造homeomorphism. word group 表示   fundamental group $\\pi_1(S,p)=\\Gamma/\\sim$ word group representation $&lt;G\\vert R&gt;$ 生成元 $S$ 上经过点$p$ 的loop n symbols $G=\\lbrace g_1,g_2,\\cdots,g_n\\rbrace$ (see free generated group...","categories": ["docs","math","algorithm"],
         "tags": ["content"],
         "url": "https://roshameow.github.io//personal_homepage/docs/math/algorithm/conformal-geometry1/"
+      },{
+        "title": "web3钱包",
+        "excerpt":"分类 托管Vs非托管 热钱包Vs冷钱包 公链 ","categories": ["docs","web3"],
+        "tags": ["content"],
+        "url": "https://roshameow.github.io//personal_homepage/docs/web3/web3-wallet/"
       }]

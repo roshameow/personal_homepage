@@ -1,4 +1,154 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="https://roshameow.github.io//personal_homepage/atom.xml" rel="self" type="application/atom+xml" /><link href="https://roshameow.github.io//personal_homepage/" rel="alternate" type="text/html" /><updated>2024-07-02T08:37:49+00:00</updated><id>https://roshameow.github.io//personal_homepage/atom.xml</id><title type="html">Liu, Wen’s Home Page</title><subtitle>Work, Experiments and Ideas.</subtitle><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><entry><title type="html">conformal geometry学习</title><link href="https://roshameow.github.io//personal_homepage/docs/math/algorithm/conformal-geometry1/" rel="alternate" type="text/html" title="conformal geometry学习" /><published>2024-07-02T00:00:00+00:00</published><updated>2024-07-02T22:09:57+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/math/algorithm/conformal-geometry1</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/math/algorithm/conformal-geometry1/"><![CDATA[<h3 id="3种基本曲面">3种基本曲面</h3>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="math" /><category term="algorithm" /><category term="content" /><summary type="html"><![CDATA[3种基本曲面]]></summary></entry><entry><title type="html">报税计算</title><link href="https://roshameow.github.io//personal_homepage/docs/affair/tax/" rel="alternate" type="text/html" title="报税计算" /><published>2024-06-25T00:00:00+00:00</published><updated>2024-06-27T17:30:37+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/affair/tax</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/affair/tax/"><![CDATA[<p><a href="https://shanghai.chinatax.gov.cn">上海税务局网站</a></p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="https://roshameow.github.io//personal_homepage/atom.xml" rel="self" type="application/atom+xml" /><link href="https://roshameow.github.io//personal_homepage/" rel="alternate" type="text/html" /><updated>2024-07-09T06:40:37+00:00</updated><id>https://roshameow.github.io//personal_homepage/atom.xml</id><title type="html">Liu, Wen’s Home Page</title><subtitle>Work, Experiments and Ideas.</subtitle><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><entry><title type="html">web3钱包</title><link href="https://roshameow.github.io//personal_homepage/docs/web3/web3-wallet/" rel="alternate" type="text/html" title="web3钱包" /><published>2024-07-08T00:00:00+00:00</published><updated>2024-07-08T20:41:39+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/web3/web3-wallet</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/web3/web3-wallet/"><![CDATA[<h2 id="分类">分类</h2>
+
+<p>托管Vs非托管</p>
+
+<p>热钱包Vs冷钱包</p>
+
+<p>公链</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="web3" /><category term="content" /><summary type="html"><![CDATA[分类]]></summary></entry><entry><title type="html">conformal geometry学习</title><link href="https://roshameow.github.io//personal_homepage/docs/math/algorithm/conformal-geometry1/" rel="alternate" type="text/html" title="conformal geometry学习" /><published>2024-07-02T00:00:00+00:00</published><updated>2024-07-09T05:29:14+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/math/algorithm/conformal-geometry1</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/math/algorithm/conformal-geometry1/"><![CDATA[<h3 id="3种基本曲面">3种基本曲面</h3>
+
+<ul>
+  <li>球面</li>
+  <li>平面</li>
+  <li>双曲面:</li>
+</ul>
+
+<h2 id="fundamental-group">fundamental group</h2>
+
+<ul>
+  <li><a href="https://en.wikipedia.org/wiki/Poincaré_conjecture">Poincaré conjecture(已证明)</a> : closed, connected, <strong>fundamental group 是trival</strong>的曲面和球面是homeomorphic(同胚)的.
+    <ul>
+      <li>同调球</li>
+    </ul>
+  </li>
+  <li>对于oriented surface, fundamental group同构 &lt;-&gt; 拓扑同胚.
+    <ul>
+      <li>把$\pi_1(S,p)$ 的一组basis做为cut graph, 把曲面切成4g的polygonal scheme. 以此构造homeomorphism.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="word-group-表示">word group 表示</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th>fundamental group $\pi_1(S,p)=\Gamma/\sim$</th>
+      <th>word group representation $&lt;G\vert R&gt;$</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>生成元</td>
+      <td>$S$ 上经过点$p$ 的loop</td>
+      <td>n symbols $G=\lbrace g_1,g_2,\cdots,g_n\rbrace$ (see <a href="https://en.wikipedia.org/wiki/Free_group">free generated group</a> )</td>
+    </tr>
+    <tr>
+      <td>等价关系</td>
+      <td>homotopy(同伦): $\gamma_1$ 可以连续变换的$\gamma_2$</td>
+      <td>relations $R=\lbrace R_1,R_2,\cdots,R_m\rbrace$ 是有m个words的集合<br />$w_1$ 可以通过有限步的插入, 移除relation变为$w_2$</td>
+    </tr>
+    <tr>
+      <td><strong>群运算</strong></td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>identity</td>
+      <td>基点 $p$</td>
+      <td>$\emptyset$</td>
+    </tr>
+    <tr>
+      <td>乘法</td>
+      <td>两条路径首尾相接</td>
+      <td>字符串拼接</td>
+    </tr>
+    <tr>
+      <td>inverse</td>
+      <td>路径方向相反</td>
+      <td>字符串反向</td>
+    </tr>
+    <tr>
+      <td><strong>特例</strong></td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>torus</td>
+      <td>$\pi_1(T,p)$<br />任意$\gamma$ 分解成不和$a,b$ 相交的$\gamma_i$ 的积</td>
+      <td>$&lt;a,b\vert \ aba^{-1}b^{-1}&gt;$</td>
+    </tr>
+    <tr>
+      <td>$\mathbb {RP}^2$<br />Möbius band $\cup_{\partial D}$ disk</td>
+      <td>$\pi_1(\mathbb{RP}^2)=\lbrace\gamma,e\rbrace$<br />$\pi_1(\partial M)=&lt;\gamma^2&gt;$</td>
+      <td>$&lt;\gamma\ \vert\  \gamma^2&gt;$</td>
+    </tr>
+    <tr>
+      <td><strong>性质</strong></td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>合并</td>
+      <td>$\pi_1(U\cup V, p)$</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>联通和</td>
+      <td>$\pi_1(S_1 \texttt{#} S_2)$</td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="canonical-representation">Canonical Representation</h4>
+
+<p>closed, oriented surface</p>
+
+<ul>
+  <li>定义: ${a_1,\dots,a_g,b_1,\dots,b_g}$, $a_i$ 只和$b_i$ 相交
+    <ul>
+      <li><a href="https://en.wikipedia.org/wiki/Intersection_number">intersection number</a>定义: $a_i\cdot b_i=1$
+        <ul>
+          <li>在曲面上intersection index=1, 定义为切向量的cross product和法向量点积 &gt; 0</li>
+        </ul>
+      </li>
+      <li>canonical representation写成: $\pi_1(S,p)=&lt;a_1,\cdots,a_g,b_1,\cdots, b_g\vert \prod_{i=1}^g a_ib_ia_i^{-1} b_i^{-1}&gt;$</li>
+    </ul>
+  </li>
+  <li>存在性:
+    <ul>
+      <li>用火烧法找到一组basis</li>
+    </ul>
+  </li>
+  <li>唯一性: canoical representation不唯一, 判断两个canoical representation是isomorphic的是NP-hard问题.</li>
+</ul>
+
+<h4 id="特例">特例</h4>
+
+<h5 id="mathbbrp2">$\mathbb{RP}^2$</h5>
+
+<p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240707162754.png" alt="Pasted image 20240707162754.png" width="400" /></p>
+
+<ul>
+  <li>把$\mathbb{RP}^2$ 看成上半球面$H^2$ , 沿红线切割, 下面变成一个disk, 上面变成Möbius band</li>
+</ul>
+
+<h3 id="曲面分解">曲面分解</h3>
+
+<p><img src="/personal_homepage/docs/attachment/440px-Connected_sum.svg.png" alt="440px-Connected_sum.svg.png" width="300" /></p>
+
+<ul>
+  <li><a href="https://en.wikipedia.org/wiki/Connected_sum">connect sum(联通和)</a> : 两个曲面去掉disk粘在一起, $S_1 \texttt{#} S_2$</li>
+  <li><a href="https://en.wikipedia.org/wiki/Seifert–Van_Kampen_theorem">Seifert-Van Kampen Theorem</a>: $\pi_1(U\cup V, p)$ 和$\pi_1(U,p)$ , $\pi_1(V,p)$ 的关系</li>
+  <li>任意closed surface 可以写成以下3种形式,
+    <ul>
+      <li>S是sphere</li>
+      <li>$S=T\texttt{#} \cdots \texttt{#}T$  S是oriented</li>
+      <li>或  $S = \mathbb{RP}^2 \texttt{#} \cdots \texttt{#}\mathbb{RP}^2$ S事non-oriented</li>
+    </ul>
+  </li>
+</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="math" /><category term="algorithm" /><category term="content" /><summary type="html"><![CDATA[3种基本曲面]]></summary></entry><entry><title type="html">报税计算</title><link href="https://roshameow.github.io//personal_homepage/docs/affair/tax/" rel="alternate" type="text/html" title="报税计算" /><published>2024-06-25T00:00:00+00:00</published><updated>2024-07-03T02:53:10+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/affair/tax</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/affair/tax/"><![CDATA[<p><a href="https://shanghai.chinatax.gov.cn">上海税务局网站</a></p>
 
 <p><a href="https://shanghai.chinatax.gov.cn/bsfw/bszn/znnssb/201911/t448958.html">自行申报的流程</a></p>
 
@@ -24,7 +174,7 @@
   </li>
 </ul>
 
-<p>没有走人工申报的流程, 报税大厅的人工窗口帮忙改好了专项扣除错的部分, 在app上完成的申报退税.</p>
+<p>没有走人工申报的流程, 报税大厅的人工窗口帮忙改好了专项扣除错的部分, 在app上完成的申报退税. 不过倒是收走了我填好签过字的申报表?</p>
 <h2 id="地址">地址</h2>
 
 <p><a href="https://shanghai.chinatax.gov.cn/newxbwz/wsbs/wsbsdtll/WSBSdtllCtrl-cxfjcxdom.pfv">在公众查询里</a></p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="affair" /><category term="content" /><summary type="html"><![CDATA[上海税务局网站]]></summary></entry><entry><title type="html">T-Display-S3开发版</title><link href="https://roshameow.github.io//personal_homepage/docs/hardware/border/" rel="alternate" type="text/html" title="T-Display-S3开发版" /><published>2024-06-13T00:00:00+00:00</published><updated>2024-06-13T23:56:52+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/hardware/border</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/hardware/border/"><![CDATA[<h2 id="开发方法">开发方法</h2>
@@ -33,7 +183,7 @@
   <li>Arduino IDE</li>
   <li>Esp-idf</li>
   <li>micropython</li>
-</ol>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="hardware" /><category term="content" /><summary type="html"><![CDATA[开发方法]]></summary></entry><entry><title type="html">四边形网格生成</title><link href="https://roshameow.github.io//personal_homepage/docs/algorithm/quadrilateral-mesh/" rel="alternate" type="text/html" title="四边形网格生成" /><published>2024-06-04T00:00:00+00:00</published><updated>2024-06-13T00:54:48+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/algorithm/quadrilateral-mesh</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/algorithm/quadrilateral-mesh/"><![CDATA[<p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240610075408.png" alt="Pasted image 20240610075408.png" width="150" /> -&gt; <img src="/personal_homepage/docs/attachment/Pasted%20image%2020240610075425.png" alt="Pasted image 20240610075425.png" width="130" /></p>
+</ol>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="hardware" /><category term="content" /><summary type="html"><![CDATA[开发方法]]></summary></entry><entry><title type="html">四边形网格生成</title><link href="https://roshameow.github.io//personal_homepage/docs/algorithm/quadrilateral-mesh/" rel="alternate" type="text/html" title="四边形网格生成" /><published>2024-06-04T00:00:00+00:00</published><updated>2024-07-03T23:46:22+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/algorithm/quadrilateral-mesh</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/algorithm/quadrilateral-mesh/"><![CDATA[<p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240610075408.png" alt="Pasted image 20240610075408.png" width="150" /> -&gt; <img src="/personal_homepage/docs/attachment/Pasted%20image%2020240610075425.png" alt="Pasted image 20240610075425.png" width="130" /></p>
 
 <p>从通用的triangle mesh生成quad mesh. quad mesh容易插值和细分(样条曲面和 Catmull-Clark细分曲面常⻅ 的定义域就是四边形)</p>
 
@@ -201,7 +351,7 @@
 <ul>
   <li>从triangle mesh计算homology group(同调群) $H_1(\Sigma,\mathbb Z)$ 的basis ${a_1,\dots,a_g,b_1,\dots,b_g}$ ,
     <ul>
-      <li>通过reset height function构造Reeb graph抽卡保证$a_i$ 只和$b_i$ 相交(see <a href="#ref">4</a>)</li>
+      <li>通过reset height function构造Reeb graph抽卡保证$a_i$ 只和$b_i$ 相交(canonical basis, see <a href="#ref">4</a>)</li>
       <li>得到holomorphic 1-form basis  $\Omega^1(\Sigma)$ (see <a href="#ref">5</a>)
         <ul>
           <li>loop $\gamma$ -&gt; discrete closed 1-form $\lambda_{\gamma}=dg_{\gamma}$  -&gt; harmonic 1-form $\omega_{\gamma}$ -&gt; holomorphic 1-form $\phi_{\gamma}$
@@ -407,11 +557,15 @@
 
 <h2 id="后续">后续</h2>
 
-<p>发了之后完全没有流量, 而且我也看不出其他作品的好坏和点赞的关系, 看来我吃不上这碗饭😮‍💨</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="design" /><category term="content" /><category term="photoshop" /><category term="stable-diffusion" /><summary type="html"><![CDATA[]]></summary></entry><entry><title type="html">FFT计算</title><link href="https://roshameow.github.io//personal_homepage/docs/algorithm/fft/" rel="alternate" type="text/html" title="FFT计算" /><published>2024-05-19T00:00:00+00:00</published><updated>2024-05-20T21:02:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/algorithm/fft</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/algorithm/fft/"><![CDATA[<ul>
+<p>发了之后完全没有流量, 而且我也看不出其他作品的好坏和点赞的关系, 看来我吃不上这碗饭😮‍💨</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="design" /><category term="content" /><category term="photoshop" /><category term="stable-diffusion" /><summary type="html"><![CDATA[]]></summary></entry><entry><title type="html">FFT计算</title><link href="https://roshameow.github.io//personal_homepage/docs/algorithm/fft/" rel="alternate" type="text/html" title="FFT计算" /><published>2024-05-19T00:00:00+00:00</published><updated>2024-07-03T02:52:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/algorithm/fft</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/algorithm/fft/"><![CDATA[<ul>
   <li>fourier Series 定义:
     <ul>
       <li>$F(f)(u)=\int_{-\infty}^{\infty} f(x)e^{-2\pi i x u} dx$</li>
-      <li>2维：$G(p,q)=F(g(x,y)) = \int\int^\infty_\infty g(x,y)e^{-i2\pi(px+qy)}dxdy$</li>
+      <li>2维：$G(p,q)=F(g(x,y)) = \int\int^\infty_\infty g(x,y)e^{-i2\pi(px+qy)}dxdy$
+        <ul>
+          <li>2维的可以拆分成1维</li>
+        </ul>
+      </li>
     </ul>
   </li>
   <li>离散形式: 信号$x$ 的FFT 信号$X$
@@ -432,7 +586,7 @@
 
 <h3 id="butterfly-diagram">butterfly diagram</h3>
 
-<p>利用fft的对称性和周期性</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="algorithm" /><category term="content" /><summary type="html"><![CDATA[fourier Series 定义: $F(f)(u)=\int_{-\infty}^{\infty} f(x)e^{-2\pi i x u} dx$ 2维：$G(p,q)=F(g(x,y)) = \int\int^\infty_\infty g(x,y)e^{-i2\pi(px+qy)}dxdy$ 离散形式: 信号$x$ 的FFT 信号$X$ $X_k=\sum_{m=0}^{N-1}x_m\cdot e^{-i\cdot 2\pi km/N}=\sum_{m=0}^{N-1}x_m\cdot TW(N,k)^m$ $N$ 是信号长度 $TW(N,k) = e^{-i*2k\pi/N}$ 是FFT 的twiddle factor(旋转因子) $TW(N,k)=\cos(-2k\pi/N)+i\cdot \sin(-2k\pi/N)=TW_r(N,k)+i\cdot TW_i(N,k)$]]></summary></entry><entry><title type="html">劳动仲裁流程和资料整理</title><link href="https://roshameow.github.io//personal_homepage/docs/affair/labor-disputes-arbitration/" rel="alternate" type="text/html" title="劳动仲裁流程和资料整理" /><published>2024-05-15T00:00:00+00:00</published><updated>2024-05-21T18:45:39+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/affair/labor-disputes-arbitration</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/affair/labor-disputes-arbitration/"><![CDATA[<h2 id="材料">材料</h2>
+<p>利用fft的对称性和周期性</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="algorithm" /><category term="content" /><summary type="html"><![CDATA[fourier Series 定义: $F(f)(u)=\int_{-\infty}^{\infty} f(x)e^{-2\pi i x u} dx$ 2维：$G(p,q)=F(g(x,y)) = \int\int^\infty_\infty g(x,y)e^{-i2\pi(px+qy)}dxdy$ 2维的可以拆分成1维 离散形式: 信号$x$ 的FFT 信号$X$ $X_k=\sum_{m=0}^{N-1}x_m\cdot e^{-i\cdot 2\pi km/N}=\sum_{m=0}^{N-1}x_m\cdot TW(N,k)^m$ $N$ 是信号长度 $TW(N,k) = e^{-i*2k\pi/N}$ 是FFT 的twiddle factor(旋转因子) $TW(N,k)=\cos(-2k\pi/N)+i\cdot \sin(-2k\pi/N)=TW_r(N,k)+i\cdot TW_i(N,k)$]]></summary></entry><entry><title type="html">劳动仲裁流程和资料整理</title><link href="https://roshameow.github.io//personal_homepage/docs/affair/labor-disputes-arbitration/" rel="alternate" type="text/html" title="劳动仲裁流程和资料整理" /><published>2024-05-15T00:00:00+00:00</published><updated>2024-05-21T18:45:39+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/affair/labor-disputes-arbitration</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/affair/labor-disputes-arbitration/"><![CDATA[<h2 id="材料">材料</h2>
 
 <ul>
   <li>信息:
@@ -501,70 +655,4 @@
 
 <p>我对公司产生过侥幸心理: 中间大概10多号的时候, 同事跟我说15号可能会发工资. 虽然我当时有理有据的反驳了, 内心还是松懈了下来, 希望15号可以正常发工资不用去仲裁. 然后15号果然如我本来所料想继续拖欠, 结果还是要临时整理资料.</p>
 
-<p>好在, 资料并不复杂, 只要一鼓作气就可以摆脱和现在公司这种不健康的关系.</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="affair" /><category term="content" /><summary type="html"><![CDATA[材料]]></summary></entry><entry><title type="html">blender学习: 用布料系统做膨胀效果</title><link href="https://roshameow.github.io//personal_homepage/docs/blender/blender-learning12/" rel="alternate" type="text/html" title="blender学习: 用布料系统做膨胀效果" /><published>2024-05-13T00:00:00+00:00</published><updated>2024-05-16T19:48:22+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/blender/blender-learning12</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/blender/blender-learning12/"><![CDATA[<p>参考<a href="https://www.bilibili.com/video/BV13C41177Ze">这个教学</a></p>
-
-<h3 id="建模">建模</h3>
-
-<p>球和boundary两部分</p>
-
-<ul>
-  <li>新建一个Ico Sphere(棱角球)</li>
-  <li>在Edit Mode选中一些顶点作为boundary, 设为顶点组</li>
-  <li>给棱角球做一个表面细分并应用</li>
-  <li>在Edit Mode里用Bevel把boundary拉出一点宽度, 把顶点组改为新的boundary
-    <ul>
-      <li>要先应用表面细分再Bevel? 不然boundary的mesh会变得很复杂</li>
-    </ul>
-  </li>
-  <li>在原位把boundary复制一份(Shift+D), 和球分离(P), 稍微拉大一点(S)</li>
-  <li>给boundary添加一个2的表面细分</li>
-  <li>设置shade smooth</li>
-</ul>
-
-<h3 id="制作膨胀效果">制作膨胀效果:</h3>
-
-<ul>
-  <li>选择Physics-&gt;Cloth
-    <ul>
-      <li>Pressure = 25</li>
-      <li><a href="https://docs.blender.org/manual/en/latest/physics/cloth/settings/shape.html">Shape</a>选择boundary的顶点组
-        <ul>
-          <li>Shrinking Factor = -0.3 负数表示要cloth膨胀</li>
-        </ul>
-      </li>
-      <li>Field Weights-&gt;Gravity=0</li>
-    </ul>
-  </li>
-  <li>结果:
-    <ul>
-      <li><img src="/personal_homepage/docs/attachment/inhale.mp4" alt="inhale.mp4" width="400" /></li>
-    </ul>
-  </li>
-</ul>
-
-<h3 id="用到的blender的一些快捷键">用到的blender的一些快捷键</h3>
-
-<ul>
-  <li>Command+A(应用modifier)</li>
-  <li>Shift+D(<a href="https://docs.blender.org/manual/en/2.82/scene_layout/object/editing/duplication.html">Duplication</a>): 复制物体
-    <ul>
-      <li>RMB(右键): 保留在原来的位置</li>
-    </ul>
-  </li>
-  <li>P(<a href="https://docs.blender.org/manual/en/latest/modeling/meshes/editing/mesh/separate.html">分离</a>)
-    <ul>
-      <li>把选中的顶点建一个新的object</li>
-    </ul>
-  </li>
-  <li>Command+P(<a href="https://docs.blender.org/manual/en/latest/scene_layout/object/editing/parent.html">Parent</a>)
-    <ul>
-      <li>把后选中的object设置为先选中的object的parent </li>
-    </ul>
-  </li>
-  <li>Ctrl+B( <a href="https://docs.blender.org/manual/en/2.81/modeling/meshes/editing/subdividing/bevel.html#:~:text=The%20Bevel%20tool%20smooths%20the,above%20to%20run%20the%20tool.">Bevel</a>, 拉伸, 倒角): 把一个edge变成多个edge, 使物体边缘光滑
-    <ul>
-      <li><img src="https://docs.blender.org/manual/zh-hans/2.81/_images/modeling_meshes_editing_subdividing_bevel_example-4.png" alt="drawing" width="150" /></li>
-      <li>按Shift微调: 移动的幅度降1k倍</li>
-    </ul>
-  </li>
-</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="blender" /><category term="content" /><category term="physics" /><category term="shortcut" /><summary type="html"><![CDATA[参考这个教学]]></summary></entry></feed>
+<p>好在, 资料并不复杂, 只要一鼓作气就可以摆脱和现在公司这种不健康的关系.</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="affair" /><category term="content" /><summary type="html"><![CDATA[材料]]></summary></entry></feed>

@@ -31,7 +31,7 @@
 <meta property="twitter:title" content="EMVA1288 sensor测试" />
 <meta name="twitter:site" content="@" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-04-11T17:20:55+00:00","datePublished":"2024-04-05T00:00:00+00:00","description":"Work, Experiments and Ideas.","headline":"EMVA1288 sensor测试","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/docs/sensor/EMVA1288-sensor/"},"url":"https://roshameow.github.io//personal_homepage/docs/sensor/EMVA1288-sensor/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-07-09T22:34:06+00:00","datePublished":"2024-04-05T00:00:00+00:00","description":"Work, Experiments and Ideas.","headline":"EMVA1288 sensor测试","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/docs/sensor/EMVA1288-sensor/"},"url":"https://roshameow.github.io//personal_homepage/docs/sensor/EMVA1288-sensor/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -107,7 +107,7 @@
       <div class="page-sidebar">
         <div class="page-author h-card p-author"><img src="/personal_homepage/docs/images/logo.svg" class="author-avatar u-photo" alt=""><div class="author-info">
 
-<span class="read-time">~1 min read</span>
+<span class="read-time">1 min read</span>
 
     <time class="page-date dt-published" datetime="2024-04-05T00:00:00+00:00"><a class="u-url" href="">April 5, 2024</a>
 </time>
@@ -125,7 +125,7 @@
         
   <h3 class="page-taxonomies-title">Tags</h3>
   
-  <ul class="page-taxonomies"><li class="page-taxonomy"><a href="/personal_homepage/tags/#content" title="Pages tagged content" rel="tag">content</a></li>
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a href="/personal_homepage/tags/#emva1288" title="Pages tagged EMVA1288" rel="tag">EMVA1288</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#content" title="Pages tagged content" rel="tag">content</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#isp" title="Pages tagged isp" rel="tag">isp</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#sensor" title="Pages tagged sensor" rel="tag">sensor</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#standard" title="Pages tagged standard" rel="tag">standard</a></li>
   </ul>
 
 
@@ -136,7 +136,7 @@
 </h2>
 <!-- 1. toc
 {:toc} -->
-
+<ul class="inline_toc" id="my_toc"><li><a href="#模型">模型</a></li><li><a href="#测试">测试</a><ul><li><a href="#基础参数">基础参数</a></li><li><a href="#模型契合度">模型契合度</a></li><li><a href="#不同像素的一致性">不同像素的一致性</a></li></ul></li><li><a href="#reference">reference</a></li></ul>
 </div>
 <!-- {::options parse_block_html="false" /} -->
 
@@ -146,7 +146,22 @@
         <div class="e-content">
           <p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020231116154316.png" alt="Pasted image 20231116154316.png" width="600" /></p>
 
-<p>参数: QE $K, \eta$</p>
+<h2 id="模型">模型</h2>
+
+<ul>
+  <li><strong>系统参数</strong>: $\downarrow$
+    <ul>
+      <li>QE($\eta$) (Quantum Efficiency)</li>
+      <li>$K$ (System Gain)</li>
+      <li>$\mu_d,\sigma_d$ (read noise)</li>
+      <li>$\sigma_q$ (quantization noise) :  常数
+        <ul>
+          <li>量化误差可以看做在$[-1/2,1/2]$ 之间<a href="https://en.wikipedia.org/wiki/Continuous_uniform_distribution">均匀分布</a> , $\sigma_q^2=\int_{-1/2}^{1/2}x^2 dx=1/12$ , 单位为$DN^2$</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
 
 <table>
   <thead>
@@ -155,8 +170,6 @@
       <th>input</th>
       <th>中间结果</th>
       <th>output</th>
-      <th>参数</th>
-      <th>参数</th>
     </tr>
   </thead>
   <tbody>
@@ -165,69 +178,54 @@
       <td>p</td>
       <td>e</td>
       <td>y</td>
-      <td>qe或<br />$\eta$</td>
-      <td>$K$</td>
     </tr>
     <tr>
       <td>含义</td>
       <td>光子</td>
       <td>电子</td>
       <td>读数</td>
-      <td>QE(Quantum Efficiency)</td>
-      <td>System Gain</td>
+    </tr>
+    <tr>
+      <td>单位</td>
+      <td> </td>
+      <td>$e^{-1}$</td>
+      <td>DN(digital number)</td>
     </tr>
     <tr>
       <td>测量方式</td>
-      <td>由积分时间+ sensor面积 得出<br />公式: <br /><br />$\mu_p=\frac{\text{辐射能}}{\text{单个光子的辐射能}}=\frac{A(sensor面积)\cdot t(曝光时间)\cdot E(辐射照度)}{h(\text{普朗克常数})c(\text{光速})/\lambda(\text{波长})}$</td>
+      <td>由积分时间+ sensor面积 得出<br />公式: <br /><br />$\mu_p=\frac{\text{辐射能}}{\text{单个光子的辐射能}}=\frac{A(sensor面积)\cdot t(曝光时间)\cdot E(辐射照度)}{h(\text{普朗克常数})c(\text{光速})/\lambda(\text{波长})}$<br />除曝光时间外的变量测试中一般保持不变</td>
       <td> </td>
       <td>直接测量$y(t)$</td>
-      <td> </td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>分布</td>
-      <td>Poisson分布<br /></td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
     </tr>
     <tr>
       <td>公式关系</td>
       <td> </td>
-      <td>$\mu_e=\sigma_e^2$ <br />$K\mu_e=\mu_y-\mu_{y.dark}$</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
+      <td>$p\rightarrow e$ :<br />$\mu_e=\eta\mu_p$<br />$\sigma_e^2=\eta\sigma_p^2=\mu_e$(<a href="https://en.wikipedia.org/wiki/Poisson_distribution">Poisson分布</a>) <br /></td>
+      <td>$e\rightarrow y:$ <br />$\mu_y=K(\mu_e+\mu_d)=K\mu_e+\mu_{y.dark}$<br />$\sigma_y^2=K^2(\sigma_e^2+\sigma_d^2)+\sigma_q^2=K^2\sigma_e^2+\sigma_{y.dark}^2$<br /><br />$s_{y.50}^2=s_{y.dark}^2+PRNU_{1288}^2 (\mu_{y.50}-\mu_{y.dark})^2$ <br />(固定曝光时间, 改变像素位置<br />假设$s_{y.50}^2-s_{y.dark}^2$ 关于$(\mu_{y.50}-\mu_{y.dark})^2$ 是线性的)</td>
     </tr>
     <tr>
       <td>统计变量</td>
-      <td>$\mu_p, \sigma_p$</td>
+      <td>$\mu_p(t)$</td>
       <td> </td>
-      <td>dark noise: $\mu_{y.dark},\sigma_{y.dark}$<br />$\mu_y, \sigma_y$<br />spatial $s_y$</td>
-      <td> </td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
+      <td>dark noise: $\mu_{y.dark},\sigma_{y.dark}$<br />$\mu_y, \sigma_y$<br />spatial non-uniformity $s_y$ (per pixel)</td>
     </tr>
   </tbody>
 </table>
 
-<p>测试:</p>
+<h2 id="测试">测试</h2>
+
+<h3 id="基础参数">基础参数</h3>
+
+<p>PTC曲线: <img src="/personal_homepage/docs/attachment/Pasted%20image%2020240702173149.png" alt="Pasted image 20240702173149.png" width="400" />  SNR曲线: <img src="/personal_homepage/docs/attachment/Pasted%20image%2020240702173242.png" alt="Pasted image 20240702173242.png" width="400" /></p>
 
 <table>
   <thead>
     <tr>
       <th>测试项名称</th>
-      <th>测试</th>
+      <th>测试数据</th>
       <th>理论值</th>
       <th>含义</th>
+      <th>得到参数</th>
     </tr>
   </thead>
   <tbody>
@@ -235,58 +233,178 @@
       <td>PTC(Photon Transfer)曲线</td>
       <td>$(\mu_y-\mu_{y.dark},\sigma_y^2)$</td>
       <td>$\sigma_y^2=K(\mu_y-\mu_{y.dark})+\sigma_{y.dark}^2$<br />是一条直线</td>
+      <td> </td>
       <td>斜率 = System gain $K$</td>
     </tr>
     <tr>
-      <td>SNR曲线</td>
-      <td>($\mu_p$, SNR$=\frac{\mu_y-\mu_{y.dark}}{\sigma_y}$ )</td>
+      <td>Temporal dark noise</td>
+      <td>$\sigma_{y.dark}^2$</td>
+      <td>$\sigma^2_{y.dark}=K^2\sigma_d^2+\sigma_q^2$</td>
       <td> </td>
+      <td>$\sigma_d$<br />read noise</td>
+    </tr>
+    <tr>
+      <td>QE(Quantum Efficiency)<br />或 $\eta$</td>
+      <td>$(\mu_p, \mu_y-\mu_{y.dark})$</td>
+      <td>$\eta=\frac{\mu_e}{\mu_p}=\frac{\mu_y-\mu_{y.dark}}{K\mu_p}$</td>
+      <td>sensor的透光率</td>
+      <td>$\eta$</td>
+    </tr>
+    <tr>
+      <td>SNR曲线<br />0</td>
+      <td>($\mu_p$, SNR$=\frac{\mu_y-\mu_{y.dark}}{\sigma_y}$ )<br /><br />改变曝光时间，测量$\mu_y, \sigma_y,s_y$ 得到SNR，计算$\mu_p$<br /><br />log-log曲线</td>
+      <td>$SNR(\mu_p) =\frac{\eta\mu_p}{\sqrt{\sigma_d^2+\sigma_q^2/K^2+\eta\mu_p}}$<br /><br /><br /><br /></td>
+      <td><br />data和model差异大的时候，<br />可能：1. QE不符合线性规律 2. PTC曲线不符合模型</td>
       <td> </td>
     </tr>
     <tr>
-      <td>Sensitive Curve</td>
-      <td>$(\mu_p,\mu_y-\mu_{y.dark})$</td>
-      <td> </td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>Linearity Curve</td>
-      <td>?</td>
-      <td> </td>
+      <td>1</td>
+      <td>对应图上ideal线, <br />$(\mu_p,\sqrt{\mu_p})$  <br />在图上固定不依赖数据</td>
+      <td>$SNR_{ideal}(\mu_p)=\sqrt{\mu_p}$  <br />在log-log图上是直线</td>
+      <td>理想情况<br />$\eta=1,\sigma_d=\sigma_q=0$</td>
       <td> </td>
     </tr>
     <tr>
-      <td>Linear error</td>
-      <td>linearity curve上data值和拟合值的距离</td>
-      <td> </td>
+      <td>2<br /><br />Saturation capacity</td>
+      <td>对应图上sat线, $\mu_{p.sat}$<br /><br />统计$\mu_y$ 在最大值附近调整曝光的histogram<br />根据读数达到最大$\mu_{y.sat}$ 的时候的曝光时间计算</td>
+      <td>$SNR_{max}=\sqrt{\mu_{e.sat}}$   在曝光时间t很大的时候，SNR$\approx\sqrt{\eta\mu_p} =\sqrt{\mu_e}$</td>
+      <td>曝光时间t很大的情况<br />$\mu_e\texttt{»}\sigma_d$<br />$\mu_e\texttt{»}\sigma_q$</td>
       <td> </td>
     </tr>
     <tr>
-      <td>Deviation Linearity Curve</td>
-      <td>$(\mu_p,LE(\text{Linearity Error}))$<br />Linearity Error是<br /></td>
+      <td>3<br /><br />absolute sensitivity threshold</td>
+      <td>对应图上min线, $\mu_{p.min}$ <br /><br />由$\sigma_d, K, \sigma_q,\eta$ 共同计算<br /></td>
+      <td><br />$SNR(\mu_p)=\frac{\eta\mu_p}{\sqrt{\sigma_d^2+\sigma_q^2/K^2+\eta\mu_p}}=1$<br />是$\mu_p$的二次方程<br />$\mu_{p.min}=\frac{1}{\eta}(\sqrt{\sigma_d^2+\sigma_q^2/K^2+1/4}+\frac{1}{2})$ <br /></td>
+      <td>曝光时间t很小的情况<br />SNR=1, 再往下似乎没有意义</td>
       <td> </td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>$(\mu_p,SNR_{total}(\mu_p)=\frac{\mu_y-\mu_{y.dark}}{\sqrt{\sigma_y^2+s_y^2}})$</td>
+      <td>$SNR_{total}(\mu_p)=$<br />$\frac{\eta\mu_p}{\sqrt{\sigma_d^2+DSNU_{1288}^2+\sigma_q^2/K^2+\eta\mu_p+PRNU_{1288}^2(\eta\mu_p)^2}}$<br /></td>
+      <td>把$s_y$ 也加上</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>5<br />(DR)Dynamic range</td>
+      <td>两项, 上面2,3已经测过<br />$\mu_{p.min}$ <br />$\mu_{p.sat}$</td>
+      <td> </td>
+      <td>$DR=\frac{\mu_{p.sat}(\text{使像素值达到最大的光子数})}{\mu_{p.min}(\text{最低曝光量/绝对感光阈值对应光子数})}$</td>
       <td> </td>
     </tr>
     <tr>
       <td>Stablity Check</td>
-      <td>两项<br /> $(\mu_y-\mu_{y.dark},\sigma_y)$<br /> $(\mu_y-\mu_{y.dark},\mu[0]-\mu[1])$</td>
-      <td> </td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>darkcurrent</td>
-      <td>两项<br />$(t,\mu_{y.dark})$ <br />$(t,\sigma_{y.dark})$</td>
-      <td> </td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>Temporal dark noise</td>
+      <td>两项<br /> $(\mu_y-\mu_{y.dark},\sigma_y)$<br /> $(\mu_y-\mu_{y.dark},\mu[0]-\mu[1])$<br />两帧之前的平均的差值</td>
       <td> </td>
       <td> </td>
       <td> </td>
     </tr>
   </tbody>
 </table>
+
+<h3 id="模型契合度">模型契合度</h3>
+
+<p>Linearity Curve: <img src="/personal_homepage/docs/attachment/Pasted%20image%2020240708170242.png" alt="Pasted image 20240708170242.png" width="400" />  Deviation Linearity: <img src="/personal_homepage/docs/attachment/Pasted%20image%2020240708170310.png" alt="Pasted image 20240708170310.png" width="400" /></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>测试项名称</th>
+      <th>测试数据</th>
+      <th>理论值</th>
+      <th>含义</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Linearity Curve</td>
+      <td>$(\mu_p,\mu_y-\mu_{y.dark})$</td>
+      <td>$\mu_y-\mu_{y.dark}=\eta K\mu_e$<br />线性关系</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Deviation Linearity<br /> Curve</td>
+      <td>$(\mu_p,LE(\text{Linearity Error}))$<br />Linearity Error是linearity curve上<br />data值和拟合值的距离<br /></td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>darkcurrent</td>
+      <td>两项<br />$(t,\mu_{y.dark})$ <br />$(t,\sigma_{y.dark})$</td>
+      <td>暗电流$D$ 随温度指数变化，温度越低，噪声信号越小<br />exposure time和温度正相关</td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="不同像素的一致性">不同像素的一致性</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>测试项名称</th>
+      <th>测试数据</th>
+      <th>理论值</th>
+      <th>含义</th>
+      <th> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>DSNU<br />(dark signal<br /> nonuniformity)</td>
+      <td>$s_{y.dark}$</td>
+      <td>$DSNU_{1288}=\frac{s_{y.dark}}{K}$<br />定义</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>PRNU<br />(photoresponse<br /> nonuniformity)</td>
+      <td>$s_{y.dark}, s_{y.50}$<br />$\mu_{y.dark}, \mu_{y.50}$</td>
+      <td>$PRNU_{1288}=\frac{\sqrt{s_{y.50}^2-s_{y.dark}^2}}{\mu_{y.50}-\mu_{y.dark}}$ <br />定义</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Enhanced mean image<br />0</td>
+      <td>DSNU frame<br />和PRNU frame</td>
+      <td> </td>
+      <td>下面几项都是frame的统计值<br />以检测分布是不是有什么规律</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>1<br />histogram</td>
+      <td> </td>
+      <td> </td>
+      <td>整个frame统计</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>2<br />Accumulated histogram</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>3<br />profile</td>
+      <td> </td>
+      <td> </td>
+      <td>vertical, horizontal投影方向</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>4<br />spectrogram</td>
+      <td> </td>
+      <td> </td>
+      <td>pixel频率统计</td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="reference">reference</h2>
+
+<p>[1] “EMVA1288Linear_4.0Release.Pdf.” Accessed August 25, 2023. <a href="https://www.emva.org/wp-content/uploads/EMVA1288Linear_4.0Release.pdf">https://www.emva.org/wp-content/uploads/EMVA1288Linear_4.0Release.pdf</a>.</p>
 
         </div>
 
