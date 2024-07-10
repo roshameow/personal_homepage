@@ -20,8 +20,8 @@
 <meta name="generator" content="Jekyll v4.3.3" />
 <meta property="og:title" content="FFT计算" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="fourier Series 定义: $F(f)(u)=\int_{-\infty}^{\infty} f(x)e^{-2\pi i x u} dx$ 2维：$G(p,q)=F(g(x,y)) = \int\int^\infty_\infty g(x,y)e^{-i2\pi(px+qy)}dxdy$ 2维的可以拆分成1维 离散形式: 信号$x$ 的FFT 信号$X$ $X_k=\sum_{m=0}^{N-1}x_m\cdot e^{-i\cdot 2\pi km/N}=\sum_{m=0}^{N-1}x_m\cdot TW(N,k)^m$ $N$ 是信号长度 $TW(N,k) = e^{-i*2k\pi/N}$ 是FFT 的twiddle factor(旋转因子) $TW(N,k)=\cos(-2k\pi/N)+i\cdot \sin(-2k\pi/N)=TW_r(N,k)+i\cdot TW_i(N,k)$" />
-<meta property="og:description" content="fourier Series 定义: $F(f)(u)=\int_{-\infty}^{\infty} f(x)e^{-2\pi i x u} dx$ 2维：$G(p,q)=F(g(x,y)) = \int\int^\infty_\infty g(x,y)e^{-i2\pi(px+qy)}dxdy$ 2维的可以拆分成1维 离散形式: 信号$x$ 的FFT 信号$X$ $X_k=\sum_{m=0}^{N-1}x_m\cdot e^{-i\cdot 2\pi km/N}=\sum_{m=0}^{N-1}x_m\cdot TW(N,k)^m$ $N$ 是信号长度 $TW(N,k) = e^{-i*2k\pi/N}$ 是FFT 的twiddle factor(旋转因子) $TW(N,k)=\cos(-2k\pi/N)+i\cdot \sin(-2k\pi/N)=TW_r(N,k)+i\cdot TW_i(N,k)$" />
+<meta name="description" content="fourier Series 定义: $F(f)(u)=\int_{-\infty}^{\infty} f(x)e^{-2\pi i x u} dx$ 2维：$G(p,q)=F(g(x,y)) = \int\int^\infty_\infty g(x,y)e^{-i2\pi(px+qy)}dxdy$ 2维的可以拆分成1维 离散形式: 信号$x$ 的FFT 信号$X$ $X_k=\sum_{m=0}^{N-1}x_m\cdot e^{-i\cdot 2\pi km/N}=\sum_{m=0}^{N-1}x_m\cdot TW(N,k)^m$ $N$ 是信号长度 $k$ 是sample的位置 $TW(N,k) = e^{-i*2k\pi/N}$ 是FFT 的twiddle factor(旋转因子) $TW(N,k)=\cos(-2k\pi/N)+i\cdot \sin(-2k\pi/N)=TW_r(N,k)+i\cdot TW_i(N,k)$" />
+<meta property="og:description" content="fourier Series 定义: $F(f)(u)=\int_{-\infty}^{\infty} f(x)e^{-2\pi i x u} dx$ 2维：$G(p,q)=F(g(x,y)) = \int\int^\infty_\infty g(x,y)e^{-i2\pi(px+qy)}dxdy$ 2维的可以拆分成1维 离散形式: 信号$x$ 的FFT 信号$X$ $X_k=\sum_{m=0}^{N-1}x_m\cdot e^{-i\cdot 2\pi km/N}=\sum_{m=0}^{N-1}x_m\cdot TW(N,k)^m$ $N$ 是信号长度 $k$ 是sample的位置 $TW(N,k) = e^{-i*2k\pi/N}$ 是FFT 的twiddle factor(旋转因子) $TW(N,k)=\cos(-2k\pi/N)+i\cdot \sin(-2k\pi/N)=TW_r(N,k)+i\cdot TW_i(N,k)$" />
 <link rel="canonical" href="https://roshameow.github.io//personal_homepage/docs/algorithm/fft/" />
 <meta property="og:url" content="https://roshameow.github.io//personal_homepage/docs/algorithm/fft/" />
 <meta property="og:site_name" content="Liu, Wen’s Home Page" />
@@ -31,7 +31,7 @@
 <meta property="twitter:title" content="FFT计算" />
 <meta name="twitter:site" content="@" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-07-03T02:52:00+00:00","datePublished":"2024-05-19T00:00:00+00:00","description":"fourier Series 定义: $F(f)(u)=\\int_{-\\infty}^{\\infty} f(x)e^{-2\\pi i x u} dx$ 2维：$G(p,q)=F(g(x,y)) = \\int\\int^\\infty_\\infty g(x,y)e^{-i2\\pi(px+qy)}dxdy$ 2维的可以拆分成1维 离散形式: 信号$x$ 的FFT 信号$X$ $X_k=\\sum_{m=0}^{N-1}x_m\\cdot e^{-i\\cdot 2\\pi km/N}=\\sum_{m=0}^{N-1}x_m\\cdot TW(N,k)^m$ $N$ 是信号长度 $TW(N,k) = e^{-i*2k\\pi/N}$ 是FFT 的twiddle factor(旋转因子) $TW(N,k)=\\cos(-2k\\pi/N)+i\\cdot \\sin(-2k\\pi/N)=TW_r(N,k)+i\\cdot TW_i(N,k)$","headline":"FFT计算","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/docs/algorithm/fft/"},"url":"https://roshameow.github.io//personal_homepage/docs/algorithm/fft/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-07-10T16:49:59+00:00","datePublished":"2024-05-19T00:00:00+00:00","description":"fourier Series 定义: $F(f)(u)=\\int_{-\\infty}^{\\infty} f(x)e^{-2\\pi i x u} dx$ 2维：$G(p,q)=F(g(x,y)) = \\int\\int^\\infty_\\infty g(x,y)e^{-i2\\pi(px+qy)}dxdy$ 2维的可以拆分成1维 离散形式: 信号$x$ 的FFT 信号$X$ $X_k=\\sum_{m=0}^{N-1}x_m\\cdot e^{-i\\cdot 2\\pi km/N}=\\sum_{m=0}^{N-1}x_m\\cdot TW(N,k)^m$ $N$ 是信号长度 $k$ 是sample的位置 $TW(N,k) = e^{-i*2k\\pi/N}$ 是FFT 的twiddle factor(旋转因子) $TW(N,k)=\\cos(-2k\\pi/N)+i\\cdot \\sin(-2k\\pi/N)=TW_r(N,k)+i\\cdot TW_i(N,k)$","headline":"FFT计算","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/docs/algorithm/fft/"},"url":"https://roshameow.github.io//personal_homepage/docs/algorithm/fft/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -160,6 +160,7 @@
       <li>$X_k=\sum_{m=0}^{N-1}x_m\cdot e^{-i\cdot 2\pi km/N}=\sum_{m=0}^{N-1}x_m\cdot TW(N,k)^m$
         <ul>
           <li>$N$ 是信号长度</li>
+          <li>$k$ 是sample的位置</li>
           <li>$TW(N,k) = e^{-i*2k\pi/N}$ 是<a href="https://en.wikipedia.org/wiki/Twiddle_factor#:~:text=A%20twiddle%20factor%2C%20in%20fast,papers%20of%20the%20FFT%20literature.">FFT 的twiddle factor(旋转因子)</a>
             <ul>
               <li>$TW(N,k)=\cos(-2k\pi/N)+i\cdot \sin(-2k\pi/N)=TW_r(N,k)+i\cdot TW_i(N,k)$</li>
@@ -174,6 +175,8 @@
 <h3 id="butterfly-diagram">butterfly diagram</h3>
 
 <p>利用fft的对称性和周期性</p>
+
+<p>$X(k)=X(k)$</p>
 
 
         </div>

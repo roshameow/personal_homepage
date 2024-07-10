@@ -370,7 +370,7 @@ var store = [{
         "url": "https://roshameow.github.io//personal_homepage/docs/affair/labor-disputes-arbitration/"
       },{
         "title": "FFT计算",
-        "excerpt":"  fourier Series 定义:          $F(f)(u)=\\int_{-\\infty}^{\\infty} f(x)e^{-2\\pi i x u} dx$      2维：$G(p,q)=F(g(x,y)) = \\int\\int^\\infty_\\infty g(x,y)e^{-i2\\pi(px+qy)}dxdy$                  2维的可以拆分成1维                      离散形式: 信号$x$ 的FFT 信号$X$          $X_k=\\sum_{m=0}^{N-1}x_m\\cdot e^{-i\\cdot 2\\pi km/N}=\\sum_{m=0}^{N-1}x_m\\cdot TW(N,k)^m$                  $N$ 是信号长度          $TW(N,k) = e^{-i*2k\\pi/N}$ 是FFT 的twiddle factor(旋转因子)                          $TW(N,k)=\\cos(-2k\\pi/N)+i\\cdot \\sin(-2k\\pi/N)=TW_r(N,k)+i\\cdot TW_i(N,k)$                                          butterfly diagram 利用fft的对称性和周期性 ","categories": ["docs","algorithm"],
+        "excerpt":"  fourier Series 定义:          $F(f)(u)=\\int_{-\\infty}^{\\infty} f(x)e^{-2\\pi i x u} dx$      2维：$G(p,q)=F(g(x,y)) = \\int\\int^\\infty_\\infty g(x,y)e^{-i2\\pi(px+qy)}dxdy$                  2维的可以拆分成1维                      离散形式: 信号$x$ 的FFT 信号$X$          $X_k=\\sum_{m=0}^{N-1}x_m\\cdot e^{-i\\cdot 2\\pi km/N}=\\sum_{m=0}^{N-1}x_m\\cdot TW(N,k)^m$                  $N$ 是信号长度          $k$ 是sample的位置          $TW(N,k) = e^{-i*2k\\pi/N}$ 是FFT 的twiddle factor(旋转因子)                          $TW(N,k)=\\cos(-2k\\pi/N)+i\\cdot \\sin(-2k\\pi/N)=TW_r(N,k)+i\\cdot TW_i(N,k)$                                          butterfly diagram 利用fft的对称性和周期性 $X(k)=X(k)$ ","categories": ["docs","algorithm"],
         "tags": ["content"],
         "url": "https://roshameow.github.io//personal_homepage/docs/algorithm/fft/"
       },{
@@ -385,7 +385,7 @@ var store = [{
         "url": "https://roshameow.github.io//personal_homepage/docs/blender/blender-learning13/"
       },{
         "title": "python工具",
-        "excerpt":"启动脚本 ","categories": ["docs","tool"],
+        "excerpt":"启动脚本   创建虚拟环境  install requirement  启动python脚本例子: setup.sh ","categories": ["docs","tool"],
         "tags": ["content"],
         "url": "https://roshameow.github.io//personal_homepage/docs/tool/python-tool/"
       },{
@@ -395,7 +395,7 @@ var store = [{
         "url": "https://roshameow.github.io//personal_homepage/docs/algorithm/quadrilateral-mesh/"
       },{
         "title": "T-Display-S3开发版",
-        "excerpt":"开发方法   Arduino IDE  Esp-idf  micropython","categories": ["docs","hardware"],
+        "excerpt":"开发方法 Arduino IDE Esp-idf micropython功能实现 连接wifi 连接传感器 睡眠模式 单击, 双击, 长按 蓝牙传输图片 重置方法 https://github.com/Xinyuan-LilyGO/T-Display-S3/issues/111 ﻿﻿Connect the board via the USB cable ﻿﻿Press and hold the BOOT button, While still pressing the BOOT button, press RST ﻿﻿Release the RST ﻿﻿Release the BOOT button ﻿﻿Upload sketch ﻿﻿Once sketch is uploaded, press and...","categories": ["docs","hardware"],
         "tags": ["content"],
         "url": "https://roshameow.github.io//personal_homepage/docs/hardware/border/"
       },{
@@ -404,13 +404,18 @@ var store = [{
         "tags": ["content"],
         "url": "https://roshameow.github.io//personal_homepage/docs/affair/tax/"
       },{
-        "title": "conformal geometry学习",
-        "excerpt":"3种基本曲面 球面 平面 双曲面:fundamental group Poincaré conjecture(已证明) : closed, connected, fundamental group 是trival的曲面和球面是homeomorphic(同胚)的. 同调球 对于oriented surface, fundamental group同构 &lt;-&gt; 拓扑同胚. 把$\\pi_1(S,p)$ 的一组basis做为cut graph, 把曲面切成4g的polygonal scheme. 以此构造homeomorphism. word group 表示   fundamental group $\\pi_1(S,p)=\\Gamma/\\sim$ word group representation $&lt;G\\vert R&gt;$ 生成元 $S$ 上经过点$p$ 的loop n symbols $G=\\lbrace g_1,g_2,\\cdots,g_n\\rbrace$ (see free generated group...","categories": ["docs","math","algorithm"],
-        "tags": ["content"],
+        "title": "conformal geometry学习 (一 ) -- fundamental group",
+        "excerpt":"fundamental group分类曲面是足够精细的 Poincaré conjecture(已证明) : fundamental group trival -&gt; 曲面trival closed, connected, fundamental group 是trival的曲面和球面是homeomorphic(同胚)的. 与之相比, homology(同调) group trival -/-&gt; 曲面trival 同调球 作为反例 对于oriented surface, fundamental group同构 &lt;-&gt; 拓扑同胚. 把$\\pi_1(S,p)$ 的一组basis做为cut graph, 把曲面切成4g的polygonal scheme. 以此构造homeomorphism. word group 表示   fundamental group $\\pi_1(S,p)=\\Gamma/\\sim$ word group representation $&lt;G\\vert R&gt;$ 生成元 $S$ 上经过点$p$...","categories": ["docs","math","algorithm"],
+        "tags": ["content","fundamental_group","homeomorphic","homotopy"],
         "url": "https://roshameow.github.io//personal_homepage/docs/math/algorithm/conformal-geometry1/"
       },{
         "title": "web3钱包",
-        "excerpt":"分类 托管Vs非托管 热钱包Vs冷钱包 公链 ","categories": ["docs","web3"],
+        "excerpt":"分类 托管(Custodial Wallets): 服务商保管 密码-&gt; 服务商 -&gt; 私钥 非托管: 自己保管私钥 热钱包: 联网才能使用 冷钱包: 不需要联网公链 常用钱包 wallet\\chain support BTC(比特币) ETH以太坊 SOL(Solana) BSC(Binance Smart Chain)币安 ADA(Cardano) DOT(Polkadot) ATOM(Cosmos生态) TRX(Tron) AVAX(Avalanche) 软件 $\\downarrow$                   MetaMask   ✔️   ✔️         ✔️ Trust...","categories": ["docs","web3"],
         "tags": ["content"],
         "url": "https://roshameow.github.io//personal_homepage/docs/web3/web3-wallet/"
+      },{
+        "title": "conformal geometry学习 (二 )",
+        "excerpt":"3种基本曲面   球面  平面  双曲面:Universal Covering ","categories": ["docs"],
+        "tags": ["content","jekyll"],
+        "url": "https://roshameow.github.io//personal_homepage/docs/conformal-geometry2/"
       }]
