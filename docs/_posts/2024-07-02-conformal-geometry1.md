@@ -9,7 +9,7 @@ tags:
   - fundamental_group
   - homeomorphic
   - homotopy
-last_modified_at: 2024-07-10T16:32:37-08:00
+last_modified_at: 2024-07-14T19:08:32-08:00
 ---
 
 fundamental group分类曲面是足够精细的
@@ -38,6 +38,7 @@ fundamental group分类曲面是足够精细的
 | 合并                                                       | $\pi_1(U\cup V, p)$                                                             | $<u_1,\dots,u_k,v_1,\dots,v_m\vert \alpha_i,\beta_j,i(w_1)j(w_1)^{-1},\dots,i(w_p)j(w_p)^{-1}>$                         |
 | 联通和                                                      | $\pi_1(S_1 \texttt{\#} S_2)$                                                    |                                                                                                                         |
 |                                                          | $\pi_1(T_1 \texttt{\#}T_2 \texttt{\#}\cdots  \texttt{\#} T_g)$                  | $<a_1,\cdots,a_g,b_1,\cdots, b_g\vert \prod_{i=1}^g a_ib_ia_i^{-1} b_i^{-1}>$                                           |
+| 胞腔分解                                                     | $\pi_1(M)=\pi_1(S_2)=\pi_1(S_1\cup_{k=1}^{n_2}D_2^k)$                           | $<\gamma_1,\cdots,\gamma_k\vert\  [\partial D_2^1][\partial D_2^2],\cdots, [\partial D_2^{n_2}]>$                       |
 
 
 ## 特例
@@ -55,7 +56,7 @@ fundamental group分类曲面是足够精细的
 
 - 把$\mathbb{RP}^2$ 看成上半球面$H^2$ , 沿红线切割, 下面变成一个disk(D), 上面变成Möbius band(M, crosscap)
 - $\pi_1(M)=<\gamma>$ , $\pi_1(D)=\lbrace e\rbrace=\emptyset$ , $\pi_1(\partial M)=<\gamma^2>$ 
-	- 把Möbius strip变形成如右图, 任意和边界不相交的loop都$\sim\gamma$ , 边界上为 $\gamma\gamma^{-1}$  
+	- 把Möbius strip变形成如右图, 任意和边界不相交的loop都$\sim\gamma$ , 边界上为 $\gamma^2$   
 
 ## 曲面分解
 
@@ -88,3 +89,20 @@ fundamental group分类曲面是足够精细的
 		- $e_i\cup T$ 是loop $\gamma_i$, 得到basis $\lbrace \gamma_1, \gamma_2,\dots, \gamma_{2g}\rbrace$ 
 - 唯一性: canoical representation不唯一, 判断两个canoical representation是isomorphic的是NP-hard问题.
 	- 相当于要判断canoical basis中的曲线homotopy(同伦)
+
+### [CW-cell decomposition(胞腔分解)](https://en.wikipedia.org/wiki/CW_complex) 
+
+定义在n-dim 的manifold上
+
+- 定义: n-dim 的manifold $M$ , 有$M$ 的k-skeleton $S_0\subset S_1\subset \cdots \subset S_n=M$  
+	- 其中k-skeleton $S_k$ 是$S_{k-1}$ 粘上一些disk:  $S_k=S_{k-1}\cup D_k^1\cup D_k^2\cdots \cup D_k^{n_k}$ ,. $\partial D_k^i\subset S_{k-1}$   
+	- 0-skeleton $S_0$ 是一些离散点, $S_0=\lbrace D_0^1,\cdots, D_0^{n_0}\rbrace$ 
+- CW-cell decomposition把fundamental group的定义扩展到n-dim manifold
+	- $\pi_1(S_n)=\pi_1(S_{n-1})=\cdots=\pi_1(S_2)=\pi_1(S_1\cup_{k=1}^{n_2}D_2^k)=<\gamma_1,\cdots,\gamma_k\vert\  [\partial D_2^1][\partial D_2^2],\cdots, [\partial D_2^{n_2}]>$ 
+		- 用[Seifert-Van Kampen Theorem](https://en.wikipedia.org/wiki/Seifert–Van_Kampen_theorem) 和归纳法证明
+			- $\pi_1(D_k^{n_k})$ 是trival的, $\pi_1(\partial D_k^{n_k}=\mathbb S^{k-1})$ 在$k> 2$ 的时候也是trival的.
+			- 1-skeleton $S_1$ 是一些path, $\pi_1(S_1)=<\gamma_1,\cdots,\gamma_k>$ 提供了生成元
+			- 2-disk的边界 $\pi_1(\partial D_2^{n_j})$ 在$S_1$ 中的表示$[\partial D_2^j]$提供了等价关系
+	- surface的情况, $S_2=S_1\cup D$ 只有一个2维胞腔(面), cutgraph $\Gamma$ 就是1-skeleton $S_1$ 
+
+

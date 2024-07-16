@@ -7,7 +7,9 @@ tags:
   - content
   - idea
   - 动漫
-last_modified_at: 2024-02-02T12:16:37-08:00
+  - hex
+  - Tessellation
+last_modified_at: 2024-07-12T17:59:25-08:00
 ---
 刷到关于《葬送的芙莉莲》里面六边形魔法防御结界的讨论，根据[多面体欧拉公式](https://en.wikipedia.org/wiki/Euler_characteristic)，仅仅用正六边形是没法组成球体形状结界。我也非常理解制作组为什么不画个足球：毕竟是魔法阵，六边形画的又比较大，弄个五边形也不好看也不好解释。
 ![Pasted image 20240102192929.png]({{ '/docs/attachment/Pasted image 20240102192929.png' | relative_url }}){:width="500"} 
