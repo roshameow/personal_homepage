@@ -31,7 +31,7 @@
 <meta property="twitter:title" content="conformal geometry学习 (一 ) – fundamental group" />
 <meta name="twitter:site" content="@" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-07-11T00:32:37+00:00","datePublished":"2024-07-02T00:00:00+00:00","description":"fundamental group分类曲面是足够精细的","headline":"conformal geometry学习 (一 ) – fundamental group","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/docs/math/algorithm/conformal-geometry1/"},"url":"https://roshameow.github.io//personal_homepage/docs/math/algorithm/conformal-geometry1/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-07-15T03:08:32+00:00","datePublished":"2024-07-02T00:00:00+00:00","description":"fundamental group分类曲面是足够精细的","headline":"conformal geometry学习 (一 ) – fundamental group","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/docs/math/algorithm/conformal-geometry1/"},"url":"https://roshameow.github.io//personal_homepage/docs/math/algorithm/conformal-geometry1/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -136,7 +136,7 @@
 </h2>
 <!-- 1. toc
 {:toc} -->
-<ul class="inline_toc" id="my_toc"><li><a href="#word-group-表示">word group 表示</a></li><li><a href="#特例">特例</a><ul><li><a href="#torus-t_2">torus $T_2$</a></li><li><a href="#projective-plane-mathbbrp2">projective plane $\mathbb{R}P^2$</a></li></ul></li><li><a href="#曲面分解">曲面分解</a><ul><li><a href="#closed-oriented-曲面分解canonical-representation">closed oriented 曲面分解(Canonical Representation)</a></li></ul></li></ul>
+<ul class="inline_toc" id="my_toc"><li><a href="#word-group-表示">word group 表示</a></li><li><a href="#特例">特例</a><ul><li><a href="#torus-t_2">torus $T_2$</a></li><li><a href="#projective-plane-mathbbrp2">projective plane $\mathbb{R}P^2$</a></li></ul></li><li><a href="#曲面分解">曲面分解</a><ul><li><a href="#closed-oriented-曲面分解canonical-representation">closed oriented 曲面分解(Canonical Representation)</a></li><li><a href="#cw-cell-decomposition胞腔分解">CW-cell decomposition(胞腔分解)</a></li></ul></li></ul>
 </div>
 <!-- {::options parse_block_html="false" /} -->
 
@@ -240,6 +240,11 @@
       <td>$\pi_1(T_1 \texttt{#}T_2 \texttt{#}\cdots  \texttt{#} T_g)$</td>
       <td>$&lt;a_1,\cdots,a_g,b_1,\cdots, b_g\vert \prod_{i=1}^g a_ib_ia_i^{-1} b_i^{-1}&gt;$</td>
     </tr>
+    <tr>
+      <td>胞腔分解</td>
+      <td>$\pi_1(M)=\pi_1(S_2)=\pi_1(S_1\cup_{k=1}^{n_2}D_2^k)$</td>
+      <td>$&lt;\gamma_1,\cdots,\gamma_k\vert\  [\partial D_2^1][\partial D_2^2],\cdots, [\partial D_2^{n_2}]&gt;$</td>
+    </tr>
   </tbody>
 </table>
 
@@ -262,7 +267,7 @@
   <li>把$\mathbb{RP}^2$ 看成上半球面$H^2$ , 沿红线切割, 下面变成一个disk(D), 上面变成Möbius band(M, crosscap)</li>
   <li>$\pi_1(M)=&lt;\gamma&gt;$ , $\pi_1(D)=\lbrace e\rbrace=\emptyset$ , $\pi_1(\partial M)=&lt;\gamma^2&gt;$
     <ul>
-      <li>把Möbius strip变形成如右图, 任意和边界不相交的loop都$\sim\gamma$ , 边界上为 $\gamma\gamma^{-1}$</li>
+      <li>把Möbius strip变形成如右图, 任意和边界不相交的loop都$\sim\gamma$ , 边界上为 $\gamma^2$</li>
     </ul>
   </li>
 </ul>
@@ -331,6 +336,36 @@
     </ul>
   </li>
 </ul>
+
+<h3 id="cw-cell-decomposition胞腔分解"><a href="https://en.wikipedia.org/wiki/CW_complex">CW-cell decomposition(胞腔分解)</a></h3>
+
+<p>定义在n-dim 的manifold上</p>
+
+<ul>
+  <li>定义: n-dim 的manifold $M$ , 有$M$ 的k-skeleton $S_0\subset S_1\subset \cdots \subset S_n=M$
+    <ul>
+      <li>其中k-skeleton $S_k$ 是$S_{k-1}$ 粘上一些disk:  $S_k=S_{k-1}\cup D_k^1\cup D_k^2\cdots \cup D_k^{n_k}$ ,. $\partial D_k^i\subset S_{k-1}$   </li>
+      <li>0-skeleton $S_0$ 是一些离散点, $S_0=\lbrace D_0^1,\cdots, D_0^{n_0}\rbrace$</li>
+    </ul>
+  </li>
+  <li>CW-cell decomposition把fundamental group的定义扩展到n-dim manifold
+    <ul>
+      <li>$\pi_1(S_n)=\pi_1(S_{n-1})=\cdots=\pi_1(S_2)=\pi_1(S_1\cup_{k=1}^{n_2}D_2^k)=&lt;\gamma_1,\cdots,\gamma_k\vert\  [\partial D_2^1][\partial D_2^2],\cdots, [\partial D_2^{n_2}]&gt;$
+        <ul>
+          <li>用<a href="https://en.wikipedia.org/wiki/Seifert–Van_Kampen_theorem">Seifert-Van Kampen Theorem</a> 和归纳法证明
+            <ul>
+              <li>$\pi_1(D_k^{n_k})$ 是trival的, $\pi_1(\partial D_k^{n_k}=\mathbb S^{k-1})$ 在$k&gt; 2$ 的时候也是trival的.</li>
+              <li>1-skeleton $S_1$ 是一些path, $\pi_1(S_1)=&lt;\gamma_1,\cdots,\gamma_k&gt;$ 提供了生成元</li>
+              <li>2-disk的边界 $\pi_1(\partial D_2^{n_j})$ 在$S_1$ 中的表示$[\partial D_2^j]$提供了等价关系</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>surface的情况, $S_2=S_1\cup D$ 只有一个2维胞腔(面), cutgraph $\Gamma$ 就是1-skeleton $S_1$</li>
+    </ul>
+  </li>
+</ul>
+
 
         </div>
 
