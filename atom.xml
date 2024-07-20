@@ -1,4 +1,163 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="https://roshameow.github.io//personal_homepage/atom.xml" rel="self" type="application/atom+xml" /><link href="https://roshameow.github.io//personal_homepage/" rel="alternate" type="text/html" /><updated>2024-07-16T07:01:01+00:00</updated><id>https://roshameow.github.io//personal_homepage/atom.xml</id><title type="html">Liu, Wen’s Home Page</title><subtitle>Work, Experiments and Ideas.</subtitle><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><entry><title type="html">conformal geometry学习 (二 ) – Universal Covering</title><link href="https://roshameow.github.io//personal_homepage/docs/math/conformal-geometry2/" rel="alternate" type="text/html" title="conformal geometry学习 (二 ) – Universal Covering" /><published>2024-07-10T00:00:00+00:00</published><updated>2024-07-16T22:56:53+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/math/conformal-geometry2</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/math/conformal-geometry2/"><![CDATA[<h2 id="covering-space">covering space</h2>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="https://roshameow.github.io//personal_homepage/atom.xml" rel="self" type="application/atom+xml" /><link href="https://roshameow.github.io//personal_homepage/" rel="alternate" type="text/html" /><updated>2024-07-20T20:59:18+00:00</updated><id>https://roshameow.github.io//personal_homepage/atom.xml</id><title type="html">Liu, Wen’s Home Page</title><subtitle>Work, Experiments and Ideas.</subtitle><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><entry><title type="html">conformal geometry学习 (三 ) – Knot</title><link href="https://roshameow.github.io//personal_homepage/docs/math/conformal-geometry3/" rel="alternate" type="text/html" title="conformal geometry学习 (三 ) – Knot" /><published>2024-07-16T00:00:00+00:00</published><updated>2024-07-21T12:57:35+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/math/conformal-geometry3</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/math/conformal-geometry3/"><![CDATA[<h2 id="knot-k-mathbb-s1rightarrow-mathbb-r3-">Knot ($K: \mathbb S^1\rightarrow \mathbb R^3$ )</h2>
+
+<ul>
+  <li>等价关系(isotopic, 同位, $K_1\cong_{isotopic} K_2$ ): 存在homeomorphism(同胚)映射 $f:\mathbb R^3\rightarrow \mathbb R^3$, 把$K_1$ 映到 $K_2$ .</li>
+  <li>全部knot都和$\mathbb S^1$ 是homeomorphism(同胚)</li>
+  <li><a href="https://katlas.org/wiki/Planar_Diagrams">Planar Diagram</a> : knot在平面的投影, 记录方向和重叠部分的上下关系
+    <ul>
+      <li>同个knot的Planar Diagram可能有多种不同形式</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="判断两个knot等价isotopic">判断两个knot等价(isotopic)</h3>
+
+<h4 id="reidemeister-move-组合方法"><a href="https://mathworld.wolfram.com/ReidemeisterMoves.html">Reidemeister move</a> (组合方法)</h4>
+
+<p>$K_1$ 的diagram由$K_2$ 的diagram经由四种基本移动变换得来 &lt;-&gt; $K_1\cong_{isotopic} K_2$</p>
+
+<ul>
+  <li>对Planar diagram的intersection做四种基本移动变换: (twist, untwist), (poke,unpoke), slide, straighten</li>
+  <li>Np-hard 走的步数是节点数的指数倍?</li>
+</ul>
+
+<h4 id="gordon-luecke定理拓扑方法">Gordon-Luecke定理(拓扑方法)</h4>
+
+<p>$K_1$  的补空间和$K_2$ 的补空间同胚, 即 $(\mathbb R^3- K_1)\sim (\mathbb R^3-K_2)$  &lt;-&gt; $K_1\cong_{isotopic} K_2$</p>
+
+<ul>
+  <li>用Wirtinger表示 计算 $\pi_1(\mathbb R^3-K)$ ( 同胚&lt;-&gt; 基本群相同):
+    <ul>
+      <li>每个segment提供 <img src="/personal_homepage/docs/attachment/Pasted%20image%2020240721040411.png" alt="Pasted image 20240721040411.png" width="200" /> generators: $\lbrace x_1,x_2,\cdots,x_n\rbrace$</li>
+      <li>每个crossing提供 <img src="/personal_homepage/docs/attachment/Pasted%20image%2020240721040312.png" alt="Pasted image 20240721040312.png" width="200" /> relation: $x_i\cdot x_k=x_k\cdot x_{i+1}$ (按照generator方向)
+        <ul>
+          <li>relation会因为相互关联而化简</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="knot-genus">knot genus</h3>
+
+<ul>
+  <li><strong>knot genus</strong> 定义为Seifert surface中最小的genus: $g(K)=\min g(\Sigma)$
+    <ul>
+      <li>其中<a href="https://en.wikipedia.org/wiki/Seifert_surface">Seifert surface</a> 是orientable曲面$\Sigma_K$ , 使knot $K$是曲面的边界: $\partial \Sigma=K$</li>
+      <li>因为diagram不同, 有多种不同的Seifert surface, 计算knot的genus是一个Np-hard问题</li>
+    </ul>
+  </li>
+  <li>从diagram $D$ 构造Seifert surface $\Sigma_D$ :
+    <ul>
+      <li>方法: 给diagram一个orientation -&gt; 沿crossing 分开成Seifert cycles -&gt; 每个cycle填充disk -&gt; 在crossing处加入twist</li>
+      <li><strong>Seifert Surface的genus</strong> $g(\Sigma_D)=\frac{1-s+n}{2}$
+        <ul>
+          <li>$s$ 是Seifert cycles的个数, n 是crossing的个数</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><a href="https://mathworld.wolfram.com/KnotSum.html#:~:text=Two%20oriented%20knots%20(or%20links,40).">connected sum</a> $K_1 \texttt{#} K_2$
+    <ul>
+      <li><a href="https://mathworld.wolfram.com/KnotSum.html#:~:text=Two%20oriented%20knots%20(or%20links,40)."><img src="https://mathworld.wolfram.com/images/eps-svg/KnotSum_700.svg" alt="torus_sum.png" width="200" /></a> 把$K_1$, $K_2$ 沿某个点切开, 粘在一起</li>
+      <li><strong>connect sum的genus</strong>: $g(K_1 \texttt{#} K_2)=g(K_1)+g(K_2)$</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="knot分类trichotomy三分法">knot分类(Trichotomy,三分法)</h3>
+
+<p>所有knot都属于torus knot, Satellite Knot, hyperbolic Knot三类</p>
+
+<ul>
+  <li><strong><a href="https://en.wikipedia.org/wiki/Torus_knot">torus knot</a></strong>: knot embed在torus的<strong>表面</strong>上
+    <ul>
+      <li>(p, q)-torus knot: p是绕中间tunnel的圈数, q是绕handle的圈数(数crossing上下的规律)
+        <ul>
+          <li>(3, 2)-knot(trefoil): <a href="https://commons.wikimedia.org/wiki/File:Trefoil_knot_left.svg#/media/File:Trefoil_knot_left.svg"><img src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Trefoil_knot_left.svg" alt="Trefoil knot left.svg" width="100" /></a> (8,3)-knot: <a href="https://commons.wikimedia.org/wiki/File:TorusKnot-3-8.png#/media/File:TorusKnot-3-8.png"><img src="https://upload.wikimedia.org/wikipedia/commons/c/c3/TorusKnot-3-8.png" alt="TorusKnot-3-8.png" width="100" /></a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><strong><a href="https://en.wikipedia.org/wiki/Satellite_knot">Satellite Knot</a></strong>: knot $K$ embed在一个torus knot $J$ <strong>里面</strong>(大肠套小肠), 记作$Sat_J(K)$
+    <ul>
+      <li>分类:
+        <ul>
+          <li>cable knot: 里面的knot $K$ 也是一个torus knot
+            <ul>
+              <li><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240720115608.png" alt="Pasted image 20240720115608.png" width="100" /></li>
+            </ul>
+          </li>
+          <li>connected sum(composite knots): $K_1 \texttt{#} K_2$
+            <ul>
+              <li>swallow-follow: $K_1$(Figure 8) 看起来像是被$K_2$ (trefoil) swallow
+                <ul>
+                  <li><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240720120425.png" alt="Pasted image 20240720120425.png" width="150" /></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>Whitehead doubles: 里面的knot $K$ 是 $S_1$ 经过一些twist首尾相连
+            <ul>
+              <li><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240720120404.png" alt="Pasted image 20240720120404.png" width="100" /> 或, <a href="https://www.researchgate.net/figure/A-Whitehead-double-of-a-trefoil-knot-is-a-satellite-knot-whose-companion-knot-is-a_fig10_339015556"><img src="https://www.researchgate.net/profile/Makoto-Sakuma/publication/339015556/figure/fig10/AS:897362012680193@1590959184100/A-Whitehead-double-of-a-trefoil-knot-is-a-satellite-knot-whose-companion-knot-is-a.png" alt="Seiferthomologypushoff.png" width="100" /></a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><strong><a href="https://mathworld.wolfram.com/HyperbolicKnot.html">hyperbolic Knot</a></strong>: knot的补空间有一个complete, finite volume的双曲度量, 即补空间是hyperbolic 3-manifold(双曲三流型)</li>
+</ul>
+
+<h3 id="例子-figure-8-knot">例子: <a href="https://mathworld.wolfram.com/FigureEightKnot.html">Figure 8 Knot</a></h3>
+
+<p><strong>Seifert surface和genus</strong></p>
+
+<p>Planar Diagram: <a href="https://mathworld.wolfram.com/FigureEightKnot.html"><img src="https://mathworld.wolfram.com/images/eps-svg/FigureEightKnot_700.svg" width="100" style="transform: rotate(180deg);" /></a>  -&gt; Orientation: <img src="/personal_homepage/docs/attachment/Pasted%20image%2020240720153513.png" alt="Pasted image 20240720153513.png" width="100" /> -&gt; Seifert Cycles: <img src="/personal_homepage/docs/attachment/Pasted%20image%2020240720153554.png" alt="Pasted image 20240720153554.png" width="100" /> -&gt; Fill Cycles: <img src="/personal_homepage/docs/attachment/Pasted%20image%2020240720153643.png" alt="Pasted image 20240720153643.png" width="100" /> -&gt; Add twists: <img src="/personal_homepage/docs/attachment/Pasted%20image%2020240720153817.png" alt="Pasted image 20240720153817.png" width="100" /> -&gt; Seifert surface:  <a href="https://en.wikipedia.org/wiki/File:Seiferthomologypushoff.png#/media/File:Seiferthomologypushoff.png"><img src="https://upload.wikimedia.org/wikipedia/en/9/91/Seiferthomologypushoff.png" alt="Seiferthomologypushoff.png" width="150" style="transform: rotate(135deg);" /></a></p>
+
+<ul>
+  <li>见图示, 有3个Seifert Cycles和4个crossing</li>
+  <li>$g(\Sigma_D)=\frac{1-3+4}{2}=1$</li>
+</ul>
+
+<p><strong>Wirtinger表示</strong></p>
+
+<p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240720163841.png" alt="Pasted image 20240720163841.png" width="150" /></p>
+
+<ul>
+  <li>见图示, 4个segment对应生成元$x_1,x_2,x_3,x_4$ , 4个crossing对应relation $c_1: x_4x_3=x_3x_1$, $c_2:x_2x_1=x_1x_3$, $c_3:x_2x_4=x_4x_1$, $c_4: x_4x_2=x_2x_3$</li>
+  <li>化简得, 补空间的基本群 : $\pi_1(S^3-K)=&lt;a,b\vert\ yay^{-1}=b&gt;$
+    <ul>
+      <li>其中, $a=x_2, b=x_4$ , $y=[a^{-1},b]=a^{-1}bab^{-1}$</li>
+    </ul>
+  </li>
+  <li>得到$\mathbb H^3$ 的tessellation: $a\mapsto A=\begin{bmatrix}1&amp;-1\\ 0&amp;1\end{bmatrix}$ , $b\mapsto B=\begin{bmatrix}1&amp;0 \\ -\sigma &amp; 1\end{bmatrix}$
+    <ul>
+      <li>其中,  根据relation解得,  $\sigma=\frac{-1\pm i\sqrt{3}}{2}$</li>
+      <li>其映射: $\pi_1(S^3-K)\rightarrow Deck(\widetilde{S^3-K})\rightarrow \text{Isom}^{+}(\mathbb H^3)=PSL_2(\mathbb C)$
+        <ul>
+          <li>$\widetilde{S^3-K}$ 是3-manifold $S^3-K$ 的universal covering space</li>
+          <li>$\mathbb H^3$(Poincaré half-space) 是上半空间$\mathbb H^3=\lbrace(x,y,t)\vert\ t&gt;0\rbrace$, 有双曲度量 $ds^2=\frac{dx^2+dy^2+dt^2}{t^2}$
+            <ul>
+              <li>是一个双曲三流型</li>
+              <li>boundary $\partial \mathbb H^3=\mathbb C\cup\infty$ 又叫sphere at infinity</li>
+            </ul>
+          </li>
+          <li>$PSL_2(\mathbb C)$ 是<a href="https://en.wikipedia.org/wiki/Möbius_transformation">Möbius transforms</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="reference">reference</h2>
+<p><span id="ref"></span></p>
+
+<p>[1] https://www.math.ucdavis.edu/~jcs/pubs/satelliteknots.pdf satellite knot</p>
+
+<p>[2] Coward, Alexander, and Marc Lackenby. “An Upper Bound on <strong>Reidemeister Moves</strong>.” <em>American Journal of Mathematics</em> 136, no. 4 (2014): 1023–66.</p>
+
+<p>[3] “Tracefieldsknotes.Pdf.” Accessed July 20, 2024. <a href="https://julianlyczak.nl/seminar/knots2016-files/tracefieldsknotes.pdf">https://julianlyczak.nl/seminar/knots2016-files/tracefieldsknotes.pdf</a>. 双曲结构</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="math" /><category term="content" /><category term="knot" /><category term="isotopic" /><category term="genus" /><category term="Trichotomy" /><category term="3-manifold" /><category term="Seifert_surface" /><category term="fundamental_group" /><summary type="html"><![CDATA[Knot ($K: \mathbb S^1\rightarrow \mathbb R^3$ )]]></summary></entry><entry><title type="html">conformal geometry学习 (二 ) – Universal Covering</title><link href="https://roshameow.github.io//personal_homepage/docs/math/conformal-geometry2/" rel="alternate" type="text/html" title="conformal geometry学习 (二 ) – Universal Covering" /><published>2024-07-10T00:00:00+00:00</published><updated>2024-07-16T22:56:53+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/math/conformal-geometry2</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/math/conformal-geometry2/"><![CDATA[<h2 id="covering-space">covering space</h2>
 
 <p><img src="/personal_homepage/docs/attachment/Covering_map_edit.svg" alt="Covering_map_edit.svg" width="178" /> <a href="https://commons.wikimedia.org/wiki/File:Covering_map.svg#/media/File:Covering_map.svg"><img src="https://upload.wikimedia.org/wikipedia/commons/2/24/Covering_map.svg" alt="Covering map.svg" height="245" width="178" /></a>  $\cup S_i$ 是$U$ 的orbit</p>
 
@@ -958,36 +1117,4 @@
 
 <h2 id="后续">后续</h2>
 
-<p>发了之后完全没有流量, 而且我也看不出其他作品的好坏和点赞的关系, 看来我吃不上这碗饭😮‍💨</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="design" /><category term="content" /><category term="photoshop" /><category term="stable-diffusion" /><summary type="html"><![CDATA[]]></summary></entry><entry><title type="html">FFT计算</title><link href="https://roshameow.github.io//personal_homepage/docs/algorithm/fft/" rel="alternate" type="text/html" title="FFT计算" /><published>2024-05-19T00:00:00+00:00</published><updated>2024-07-10T16:49:59+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/algorithm/fft</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/algorithm/fft/"><![CDATA[<ul>
-  <li>fourier Series 定义:
-    <ul>
-      <li>$F(f)(u)=\int_{-\infty}^{\infty} f(x)e^{-2\pi i x u} dx$</li>
-      <li>2维：$G(p,q)=F(g(x,y)) = \int\int^\infty_\infty g(x,y)e^{-i2\pi(px+qy)}dxdy$
-        <ul>
-          <li>2维的可以拆分成1维</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li>离散形式: 信号$x$ 的FFT 信号$X$
-    <ul>
-      <li>$X_k=\sum_{m=0}^{N-1}x_m\cdot e^{-i\cdot 2\pi km/N}=\sum_{m=0}^{N-1}x_m\cdot TW(N,k)^m$
-        <ul>
-          <li>$N$ 是信号长度</li>
-          <li>$k$ 是sample的位置</li>
-          <li>$TW(N,k) = e^{-i*2k\pi/N}$ 是<a href="https://en.wikipedia.org/wiki/Twiddle_factor#:~:text=A%20twiddle%20factor%2C%20in%20fast,papers%20of%20the%20FFT%20literature.">FFT 的twiddle factor(旋转因子)</a>
-            <ul>
-              <li>$TW(N,k)=\cos(-2k\pi/N)+i\cdot \sin(-2k\pi/N)=TW_r(N,k)+i\cdot TW_i(N,k)$</li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-</ul>
-
-<h3 id="butterfly-diagram">butterfly diagram</h3>
-
-<p>利用fft的对称性和周期性</p>
-
-<p>$X(k)=X(k)$</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="algorithm" /><category term="content" /><summary type="html"><![CDATA[fourier Series 定义: $F(f)(u)=\int_{-\infty}^{\infty} f(x)e^{-2\pi i x u} dx$ 2维：$G(p,q)=F(g(x,y)) = \int\int^\infty_\infty g(x,y)e^{-i2\pi(px+qy)}dxdy$ 2维的可以拆分成1维 离散形式: 信号$x$ 的FFT 信号$X$ $X_k=\sum_{m=0}^{N-1}x_m\cdot e^{-i\cdot 2\pi km/N}=\sum_{m=0}^{N-1}x_m\cdot TW(N,k)^m$ $N$ 是信号长度 $k$ 是sample的位置 $TW(N,k) = e^{-i*2k\pi/N}$ 是FFT 的twiddle factor(旋转因子) $TW(N,k)=\cos(-2k\pi/N)+i\cdot \sin(-2k\pi/N)=TW_r(N,k)+i\cdot TW_i(N,k)$]]></summary></entry></feed>
+<p>发了之后完全没有流量, 而且我也看不出其他作品的好坏和点赞的关系, 看来我吃不上这碗饭😮‍💨</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="design" /><category term="content" /><category term="photoshop" /><category term="stable-diffusion" /><summary type="html"><![CDATA[]]></summary></entry></feed>

@@ -418,4 +418,9 @@ var store = [{
         "excerpt":"covering space $\\cup S_i$ 是$U$ 的orbit covering space $\\tilde S$ : 对于曲面$S$, 每个点$q$ 的邻域$U$, 都可以找到preimage $p^{-1}(U)=\\cup U_i$, 每个$U_i$和$U$ 都是local homeomorphism lift(提升): $S$ 上起点为$q$ 的path $\\gamma$, 选取$\\tilde S$ 上$q$ 的orbit其中一点$\\tilde q_0$ , 沿$\\gamma$ 一路的邻域拉到$\\tilde S$ 上得到lift $\\tilde \\gamma$ $p\\cdot\\tilde \\gamma =\\gamma$ 固定起始点后, $\\tilde \\gamma$ 是唯一的 Deck Transformation(甲板映射): 在covering space上的自同构, 使得projection不变. Deck...","categories": ["docs","math"],
         "tags": ["content","cover","universal_cover","deck_transformation","lift","homotopy","hyperbolic_geometry"],
         "url": "https://roshameow.github.io//personal_homepage/docs/math/conformal-geometry2/"
+      },{
+        "title": "conformal geometry学习 (三 ) -- Knot",
+        "excerpt":"Knot ($K: \\mathbb S^1\\rightarrow \\mathbb R^3$ ) 等价关系(isotopic, 同位, $K_1\\cong_{isotopic} K_2$ ): 存在homeomorphism(同胚)映射 $f:\\mathbb R^3\\rightarrow \\mathbb R^3$, 把$K_1$ 映到 $K_2$ . 全部knot都和$\\mathbb S^1$ 是homeomorphism(同胚) Planar Diagram : knot在平面的投影, 记录方向和重叠部分的上下关系 同个knot的Planar Diagram可能有多种不同形式 判断两个knot等价(isotopic) Reidemeister move (组合方法) $K_1$ 的diagram由$K_2$ 的diagram经由四种基本移动变换得来 &lt;-&gt; $K_1\\cong_{isotopic} K_2$ 对Planar diagram的intersection做四种基本移动变换: (twist, untwist), (poke,unpoke), slide, straighten Np-hard 走的步数是节点数的指数倍?Gordon-Luecke定理(拓扑方法)...","categories": ["docs","math"],
+        "tags": ["content","knot","isotopic","genus","Trichotomy","3-manifold","Seifert_surface","fundamental_group"],
+        "url": "https://roshameow.github.io//personal_homepage/docs/math/conformal-geometry3/"
       }]
