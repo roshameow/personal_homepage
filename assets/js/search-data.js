@@ -420,7 +420,12 @@ var store = [{
         "url": "https://roshameow.github.io//personal_homepage/docs/math/conformal-geometry2/"
       },{
         "title": "conformal geometry学习 (三 ) -- Knot",
-        "excerpt":"Knot ($K: \\mathbb S^1\\rightarrow \\mathbb R^3$ ) 等价关系(isotopic, 同位, $K_1\\cong_{isotopic} K_2$ ): 存在homeomorphism(同胚)映射 $f:\\mathbb R^3\\rightarrow \\mathbb R^3$, 把$K_1$ 映到 $K_2$ . 全部knot都和$\\mathbb S^1$ 是homeomorphism(同胚) Planar Diagram : knot在平面的投影, 记录方向和重叠部分的上下关系 同个knot的Planar Diagram可能有多种不同形式 判断两个knot等价(isotopic) Reidemeister move (组合方法) $K_1$ 的diagram由$K_2$ 的diagram经由四种基本移动变换得来 &lt;-&gt; $K_1\\cong_{isotopic} K_2$ 对Planar diagram的intersection做四种基本移动变换: (twist, untwist), (poke,unpoke), slide, straighten Np-hard 走的步数是节点数的指数倍?Gordon-Luecke定理(拓扑方法)...","categories": ["docs","math"],
+        "excerpt":"Knot ($K: \\mathbb S^1\\rightarrow \\mathbb R^3$ ) 等价关系(isotopic, 同位, $K_1\\cong_{isotopic} K_2$ ): 存在homeomorphism(同胚)映射 $f:\\mathbb R^3\\rightarrow \\mathbb R^3$, 把$K_1$ 映到 $K_2$ . 全部knot都和$\\mathbb S^1$ 是homeomorphism(同胚) Planar Diagram : knot在平面的投影, 记录方向和重叠部分的上下关系 同个knot的Planar Diagram可能有多种不同形式 判断两个knot等价(isotopic) Reidemeister move (组合方法) $K_1$ 的diagram由$K_2$ 的diagram经由四种基本移动变换得来 &lt;-&gt; $K_1\\cong_{isotopic} K_2$ 对Planar diagram的intersection做四种基本移动变换: (twist, untwist), (poke,unpoke), slide, straighten Np-hard 走的步数是节点数的指数倍?Gordon-Luecke定理(几何方法)...","categories": ["docs","math"],
         "tags": ["content","knot","isotopic","genus","Trichotomy","3-manifold","Seifert_surface","fundamental_group"],
         "url": "https://roshameow.github.io//personal_homepage/docs/math/conformal-geometry3/"
+      },{
+        "title": "conformal geometry学习 (四 ) -- 3-manifold",
+        "excerpt":"在局部和$\\mathbb R^3$ homeomorphic(同胚) 3-manifold和knot的本质关联 所有的3-manifold都可以由$S^3$(3 sphere) 通过Dehn Surgery得到(Lickorish-Wallace, 1960) Dehn Surgery : 从3-manifold $M$ drill 一个link的tubular neighborhood(管状邻域), 用solid torus fill 每个knot的部分. link $L$由一系列knots组成, $L=\\cup_i K_i$ 不同的link可能得到相同的3-manifold, 研究这个的是Kirby Calculus学科 .hyperbolic 3-manifold(双曲三流型) 具有恒定负曲率 Poincare half-space model($\\mathbb H^3$) 定义: $\\mathbb H^3=\\lbrace(x,y,t)\\vert\\ t&gt;0\\rbrace$, 有双曲度量 $ds^2=\\frac{dx^2+dy^2+dt^2}{t^2}$ boundary $\\partial \\mathbb H^3=\\mathbb C\\cup\\infty$ 又叫sphere at infinity 测地平面...","categories": ["docs","math"],
+        "tags": ["content","3-manifold"],
+        "url": "https://roshameow.github.io//personal_homepage/docs/math/conformal-geometry4/"
       }]

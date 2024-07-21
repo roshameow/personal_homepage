@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<!--
+    So Simple Jekyll Theme 3.2.0
+    Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+    Free for personal and commercial use under the MIT license
+    https://github.com/mmistakes/so-simple-theme/blob/master/LICENSE
+-->
+<html lang="en-US" class="no-js">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  
+
+  
+  
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>conformal geometry学习 (四 ) – 3-manifold | Liu, Wen’s Home Page</title>
+<meta name="generator" content="Jekyll v4.3.3" />
+<meta property="og:title" content="conformal geometry学习 (四 ) – 3-manifold" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="在局部和$\mathbb R^3$ homeomorphic(同胚)" />
+<meta property="og:description" content="在局部和$\mathbb R^3$ homeomorphic(同胚)" />
+<link rel="canonical" href="https://roshameow.github.io//personal_homepage/docs/math/conformal-geometry4/" />
+<meta property="og:url" content="https://roshameow.github.io//personal_homepage/docs/math/conformal-geometry4/" />
+<meta property="og:site_name" content="Liu, Wen’s Home Page" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2024-07-21T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="conformal geometry学习 (四 ) – 3-manifold" />
+<meta name="twitter:site" content="@" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-07-22T06:28:00+00:00","datePublished":"2024-07-21T00:00:00+00:00","description":"在局部和$\\mathbb R^3$ homeomorphic(同胚)","headline":"conformal geometry学习 (四 ) – 3-manifold","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/docs/math/conformal-geometry4/"},"url":"https://roshameow.github.io//personal_homepage/docs/math/conformal-geometry4/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  
+
+  <script>
+    /* Cut the mustard */
+    if ('querySelector' in document && 'addEventListener' in window) {
+      document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + 'js';
+    }
+  </script>
+
+  <link rel="stylesheet" href="/personal_homepage/assets/css/main.css">
+  <link rel="stylesheet" href="/personal_homepage/assets/css/skins/default.css">
+  
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,700,700i|Lora:400,400i,700,700i">
+  <link rel="alternate" type="application/atom+xml" title="Liu, Wen&#39;s Home Page" href="/personal_homepage/atom.xml">
+<!-- start custom head snippets -->
+
+<!-- insert favicons. use http://realfavicongenerator.net/ -->
+<link rel="shortcut icon" type="image/x-icon" href="/personal_homepage/docs/images/logo.ico">
+<!-- end custom head snippets -->
+
+</head>
+
+  <body class="layout--post  conformal-geometry学习-四-3-manifold">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#primary-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+  <div class="navigation-wrapper">
+    <a href="#menu-toggle" id="menu-toggle">Menu</a>
+    <nav id="primary-nav" class="site-nav animated drop">
+      <ul><li><a href="/personal_homepage/">Home</a></li><li><a href="/personal_homepage/posts/">Posts</a></li><li><a href="/personal_homepage/categories/">Categories</a></li><li><a href="/personal_homepage/tags/">Tags</a></li><li><a href="/personal_homepage/recipes/">Family</a></li><li><a href="/personal_homepage/search/">Search</a></li></ul>
+    </nav>
+  </div><!-- /.navigation-wrapper -->
+
+
+    <header class="masthead">
+  <div class="wrap">
+    
+    
+    
+      
+        <div class="site-title animated fadeIn"><a href="/personal_homepage/">Liu, Wen's Home Page</a></div>
+      
+      <p class="site-description animated fadeIn" itemprop="description">Work, Experiments and Ideas.</p>
+    
+  </div>
+</header><!-- /.masthead -->
+
+
+    <main id="main" class="main-content" aria-label="Content">
+  <article class="h-entry">
+    
+
+    <div class="page-wrapper">
+      <header class="page-header">
+        
+        
+        <h1 id="page-title" class="page-title p-name">conformal geometry学习 (四 ) – 3-manifold
+</h1>
+        
+      </header>
+
+      <div class="page-sidebar">
+        <div class="page-author h-card p-author"><img src="/personal_homepage/docs/images/logo.svg" class="author-avatar u-photo" alt=""><div class="author-info">
+
+<span class="read-time">1 min read</span>
+
+    <time class="page-date dt-published" datetime="2024-07-21T00:00:00+00:00"><a class="u-url" href="">July 21, 2024</a>
+</time>
+
+  </div>
+</div>
+
+        
+  <h3 class="page-taxonomies-title">Categories</h3>
+  
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a class="p-category" href="/personal_homepage/categories/#docs" title="Pages filed under docs">docs</a></li><li class="page-taxonomy"><a class="p-category" href="/personal_homepage/categories/#math" title="Pages filed under math">math</a></li>
+  </ul>
+
+
+        
+  <h3 class="page-taxonomies-title">Tags</h3>
+  
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a href="/personal_homepage/tags/#3-manifold" title="Pages tagged 3-manifold" rel="tag">3-manifold</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#content" title="Pages tagged content" rel="tag">content</a></li>
+  </ul>
+
+
+        <!-- {::options parse_block_html="true" /} -->
+<div id="entry-table-of-contents" class="toc-wrapper">
+<h2 id="toc-toggle" class="no_toc">
+  Table of Contents <i class="toc-toggle-icon fas fa-chevron-down"></i>
+</h2>
+<!-- 1. toc
+{:toc} -->
+<ul class="inline_toc" id="my_toc"><li><a href="#3-manifold和knot的本质关联">3-manifold和knot的本质关联</a></li><li><a href="#hyperbolic-3-manifold双曲三流型">hyperbolic 3-manifold(双曲三流型)</a><ul><li><a href="#poincare-half-space-modelmathbb-h3">Poincare half-space model($\mathbb H^3$)</a></li><li><a href="#性质拓扑确定几何">性质(拓扑确定几何)</a></li><li><a href="#应用">应用</a></li><li><a href="#离散化">离散化</a></li></ul></li><li><a href="#另外">另外</a></li></ul>
+</div>
+<!-- {::options parse_block_html="false" /} -->
+
+      </div>
+
+      <div class="page-content">
+        <div class="e-content">
+          <p>在局部和$\mathbb R^3$ homeomorphic(同胚)</p>
+
+<h2 id="3-manifold和knot的本质关联">3-manifold和knot的本质关联</h2>
+
+<ul>
+  <li>所有的3-manifold都可以由$S^3$(3 sphere) 通过Dehn Surgery得到(<a href="https://en.wikipedia.org/wiki/Lickorish–Wallace_theorem">Lickorish-Wallace, 1960</a>)
+    <ul>
+      <li><a href="https://en.wikipedia.org/wiki/Dehn_surgery">Dehn Surgery</a> : 从3-manifold $M$ <strong>drill</strong> 一个link的tubular neighborhood(管状邻域), 用solid torus <strong>fill</strong> 每个knot的部分.
+        <ul>
+          <li>link $L$由一系列knots组成, $L=\cup_i K_i$</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>不同的link可能得到相同的3-manifold, 研究这个的是<a href="https://en.wikipedia.org/wiki/Kirby_calculus">Kirby Calculus学科</a> .</li>
+</ul>
+
+<h2 id="hyperbolic-3-manifold双曲三流型"><a href="https://en.wikipedia.org/wiki/Hyperbolic_3-manifold">hyperbolic 3-manifold(双曲三流型)</a></h2>
+
+<p>具有恒定负曲率</p>
+
+<h3 id="poincare-half-space-modelmathbb-h3">Poincare half-space model($\mathbb H^3$)</h3>
+
+<ul>
+  <li>定义: $\mathbb H^3=\lbrace(x,y,t)\vert\ t&gt;0\rbrace$, 有双曲度量 $ds^2=\frac{dx^2+dy^2+dt^2}{t^2}$</li>
+  <li>boundary $\partial \mathbb H^3=\mathbb C\cup\infty$ 又叫sphere at infinity</li>
+  <li>测地平面 $\mathbb H^2$ 是正交于xy-plane的vertical planes , 或上半球面</li>
+  <li>测地线是正交于xy-plane 的直线或半圆</li>
+  <li>$\text{Isom}^+(\mathbb H^3)=PSL_2(\mathbb C)$ 在$\mathbb C\cup \infty$ 上是<a href="https://en.wikipedia.org/wiki/Möbius_transformation">Möbius transforms</a></li>
+  <li>horizontal planes $t=$ 是scaled Euclidean planes, 叫<a href="https://en.wikipedia.org/wiki/Horosphere">horospheres</a></li>
+</ul>
+
+<h3 id="性质拓扑确定几何">性质(拓扑确定几何)</h3>
+
+<ul>
+  <li>双曲三流型的基本群$\pi_1(M)$ -&gt; 在covering space上是等距同构 -&gt; 有到 $PSL_2(\mathbb C)$ 的离散, faithful 表示
+    <ul>
+      <li>基本群的不同元素对应 $PSL_2(\mathbb C)$ 的不同元素(faithful)</li>
+    </ul>
+  </li>
+  <li>双曲三流型$M$, 给定一个 $\epsilon&gt;0$, 可以把$M$ 分解为厚部分和薄部分 $M=M_{thick}\cup M_{thin}$ (Margulis thick-thin theorem, 1978)
+    <ul>
+      <li>$M_{thin}$ 是注入半径&lt;$\epsilon$ 的部分, 是tube和cusp
+        <ul>
+          <li>cusp是$T^2\times [0,\infty)$ with  $ds^2=\frac{dx^2+dy^2+dz^2}{z^2}$ (scaled Euclidean metric, $z\in [z_0,\infty)$ 是scale部分, x,y是$T^2$ 部分坐标)</li>
+        </ul>
+      </li>
+      <li>$M_{thick}$ 是注入半径&gt;$\epsilon$ 的部分</li>
+      <li>表示度量(注入半径)确定了几何(是否是cusp)</li>
+    </ul>
+  </li>
+  <li>双曲三流型上的双曲结构是唯一的.(Mostow-Prasad Rigidity theorem, 1968)
+    <ul>
+      <li>表示几何不变量-&gt;拓扑不变量. 即可以通过研究拓扑研究几何.</li>
+    </ul>
+  </li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>3-manifold</th>
+      <th>surface</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>hyperbolic structure唯一(刚性定理)<br />即拓扑(度量)决定几何<br />可以用几何分析方法: PDE-&gt; 黎曼度量 -&gt; 拓扑</td>
+      <td>high genus surface上有双曲度量<br />不唯一, 取决于canonical basis的选取<br />不同的度量构成<a href="https://en.wikipedia.org/wiki/Teichmüller_space">Teichmüller_space</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="应用">应用</h3>
+
+<p>存在双曲三流型结构的场景: 这些场景😮‍💨全都不太理解</p>
+<ol>
+  <li>如果三流型 $M$ 是 compact, irreducible, atoroidal(无环面), Haken manifold(有不可缩面embed) with torus boundary, $M$ 的内部是双曲的.(Geometrization of Haken manifolds, 几何化猜想的一部分)</li>
+  <li>一些link of knot的补空间有双曲结构
+    <ul>
+      <li>可以用circle packing 描述?</li>
+      <li>$S^2$ 球面的三角剖分和对偶的剖分对应circle packing(<a href="https://en.wikipedia.org/wiki/Circle_packing_theorem">Koebe-Andreev-Thurston circle packing theorem</a>)?</li>
+    </ul>
+  </li>
+  <li>fibered 3-manifolds(surface bundles)
+    <ul>
+      <li>通过曲面$S$ 上的pseudo-Anosov monodromy(单值变换) 构造的fiber bundle上, 有双曲结构</li>
+      <li>表示可以用双曲三流型理论研究曲面上的动态</li>
+    </ul>
+  </li>
+  <li>$PSL_2(\mathbb C)$ 的算术lattice $\Gamma$ 的quotient上有双曲三流型结构
+    <ul>
+      <li>比如$PSL_2(\mathcal O)$ 的finite index subgroup, 其中$\mathcal O$ 是某个数域的整数环</li>
+      <li>首先, 我都没明白这为什么是三流型…</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="离散化">离散化</h3>
+
+<ul>
+  <li>离散化成双曲多边形</li>
+  <li>基本元素是ideal tetrahedra(理想四面体):  $\mathbb H^3$ 上所有顶点在sphere at infinity($\partial \mathbb H^3=\mathbb C\cup\infty$ ) 的测地四面体
+    <ul>
+      <li>每个边有一个edge parameter $z\in \mathbb C$ , 由周围顶点的cross ratio定义.</li>
+      <li>体积计算: $Vol(\Delta(z))=Im(Li_2(z))+\log\vert z\vert \cdot arg(1-z)$
+        <ul>
+          <li>$Li_2$ 是dilogarithm function</li>
+          <li>regular ideal tetrahedron(所有两面夹角$\pi/3$) 是体积最大的</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>cusped(non-compact)双曲三流型$M$ 上的理想三角剖分:
+    <ul>
+      <li>由ideal tetrahedra(理想四面体)在faces处粘起来, 把顶点删除
+        <ol>
+          <li>edge粘合处需要乘$\pm 1$ 保证依然是双曲结构(曲率条件)</li>
+          <li>对edge parameter也需要添加condition保证completeness(完备条件)</li>
+        </ol>
+      </li>
+      <li>以上两个条件(curvature and completeness equations) 的solution set是离散的, (parameters决定了$M$ 上双曲结构?)</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="另外">另外</h2>
+
+<p>3-manifold的很多内容我还没理解, 只是分类记录下来</p>
+
+        </div>
+
+        
+
+        
+        
+  <div class="page-comments">
+    <div id="disqus_thread"></div>
+    <script>
+      var disqus_config = function () {
+        this.page.url = 'https://roshameow.github.io//personal_homepage/docs/math/conformal-geometry4/';
+        this.page.identifier = 'https://roshameow.github.io//personal_homepage/docs/math/conformal-geometry4/';
+      };
+
+      (function() {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://https-roshameow-github-io-personal-homepage.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+  </div>
+
+
+        
+
+        <nav class="page-pagination" role="navigation">
+  
+    <a class="page-previous" href="/personal_homepage/docs/math/conformal-geometry3/">
+      <h4 class="page-pagination-label">Previous</h4>
+      <span class="page-pagination-title">
+        <i class="fas fa-arrow-left"></i> conformal geometry学习 (三 ) – Knot
+
+      </span>
+    </a>
+  
+
+  
+</nav>
+
+      </div>
+    </div>
+  </article>
+</main>
+
+    <footer id="footer" class="site-footer">
+  <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+<div class="social-icons"><a class="social-icon" href="/personal_homepage/atom.xml"><i class="fas fa-rss-square fa-2x" title="Feed"></i></a><a class="social-icon" href="https://github.com/roshameow"><i class="fab fa-github-square fa-2x" title="GitHub"></i></a><a class="social-icon" href="https://www.linkedin.com/in/wen-liu-06503a7b/"><i class="fab fa-linkedin fa-2x" title="LinkedIn"></i></a><a class="social-icon" href="mailto:w.liuatnk@gmail.com"><i class="fas fa-envelope-square fa-2x" title="e-mail"></i></a></div><div class="copyright">
+    
+      <p>&copy; 2024 Liu, Wen's Home Page. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://github.com/mmistakes/so-simple-theme" rel="nofollow">So Simple</a>.</p>
+    
+  </div>
+</footer>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="/personal_homepage/assets/js/main.min.js"></script>
+<script src="https://use.fontawesome.com/releases/v5.0.12/js/all.js"></script><!-- <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'G-9TMSCDTBGN', 'auto');
+  ga('send', 'pageview');
+</script> -->
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9TMSCDTBGN"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-9TMSCDTBGN');
+</script>
+
+
+
+<!-- MathJax -->
+
+<script>
+    // http://docs.mathjax.org/en/latest/upgrading/v2.html
+    MathJax = {
+        tex: {
+            tags: "ams",    // eq numbering options: none, ams, all
+            inlineMath: [['$', '$'], ["\\(", "\\)"]],  // 设置行内数学公式的开始和结束标记
+            displayMath: [['$$', '$$'], ["\\[", "\\]"]]  // 设置行间数学公式的开始和结束标记
+        },
+        // options: {
+        //   renderActions: {
+        //     // for mathjax 3, handle <script "math/tex"> blocks inserted by kramdown
+        //     find: [10, function (doc) {
+        //       for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+        //         const display = !!node.type.match(/; *mode=display/);
+        //         const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+        //         const text = document.createTextNode('');
+        //         node.parentNode.replaceChild(text, node);
+        //         math.start = { node: text, delim: '', n: 0 };
+        //         math.end = { node: text, delim: '', n: 0 };
+        //         doc.math.push(math);
+        //       }
+        //     }, '']
+        //   }
+        // }
+    }
+</script>
+
+<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  </body>
+
+</html>

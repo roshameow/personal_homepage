@@ -1,4 +1,132 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="https://roshameow.github.io//personal_homepage/atom.xml" rel="self" type="application/atom+xml" /><link href="https://roshameow.github.io//personal_homepage/" rel="alternate" type="text/html" /><updated>2024-07-20T20:59:18+00:00</updated><id>https://roshameow.github.io//personal_homepage/atom.xml</id><title type="html">Liu, Wen’s Home Page</title><subtitle>Work, Experiments and Ideas.</subtitle><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><entry><title type="html">conformal geometry学习 (三 ) – Knot</title><link href="https://roshameow.github.io//personal_homepage/docs/math/conformal-geometry3/" rel="alternate" type="text/html" title="conformal geometry学习 (三 ) – Knot" /><published>2024-07-16T00:00:00+00:00</published><updated>2024-07-21T12:57:35+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/math/conformal-geometry3</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/math/conformal-geometry3/"><![CDATA[<h2 id="knot-k-mathbb-s1rightarrow-mathbb-r3-">Knot ($K: \mathbb S^1\rightarrow \mathbb R^3$ )</h2>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="https://roshameow.github.io//personal_homepage/atom.xml" rel="self" type="application/atom+xml" /><link href="https://roshameow.github.io//personal_homepage/" rel="alternate" type="text/html" /><updated>2024-07-21T14:35:22+00:00</updated><id>https://roshameow.github.io//personal_homepage/atom.xml</id><title type="html">Liu, Wen’s Home Page</title><subtitle>Work, Experiments and Ideas.</subtitle><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><entry><title type="html">conformal geometry学习 (四 ) – 3-manifold</title><link href="https://roshameow.github.io//personal_homepage/docs/math/conformal-geometry4/" rel="alternate" type="text/html" title="conformal geometry学习 (四 ) – 3-manifold" /><published>2024-07-21T00:00:00+00:00</published><updated>2024-07-22T06:28:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/math/conformal-geometry4</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/math/conformal-geometry4/"><![CDATA[<p>在局部和$\mathbb R^3$ homeomorphic(同胚)</p>
+
+<h2 id="3-manifold和knot的本质关联">3-manifold和knot的本质关联</h2>
+
+<ul>
+  <li>所有的3-manifold都可以由$S^3$(3 sphere) 通过Dehn Surgery得到(<a href="https://en.wikipedia.org/wiki/Lickorish–Wallace_theorem">Lickorish-Wallace, 1960</a>)
+    <ul>
+      <li><a href="https://en.wikipedia.org/wiki/Dehn_surgery">Dehn Surgery</a> : 从3-manifold $M$ <strong>drill</strong> 一个link的tubular neighborhood(管状邻域), 用solid torus <strong>fill</strong> 每个knot的部分.
+        <ul>
+          <li>link $L$由一系列knots组成, $L=\cup_i K_i$</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>不同的link可能得到相同的3-manifold, 研究这个的是<a href="https://en.wikipedia.org/wiki/Kirby_calculus">Kirby Calculus学科</a> .</li>
+</ul>
+
+<h2 id="hyperbolic-3-manifold双曲三流型"><a href="https://en.wikipedia.org/wiki/Hyperbolic_3-manifold">hyperbolic 3-manifold(双曲三流型)</a></h2>
+
+<p>具有恒定负曲率</p>
+
+<h3 id="poincare-half-space-modelmathbb-h3">Poincare half-space model($\mathbb H^3$)</h3>
+
+<ul>
+  <li>定义: $\mathbb H^3=\lbrace(x,y,t)\vert\ t&gt;0\rbrace$, 有双曲度量 $ds^2=\frac{dx^2+dy^2+dt^2}{t^2}$</li>
+  <li>boundary $\partial \mathbb H^3=\mathbb C\cup\infty$ 又叫sphere at infinity</li>
+  <li>测地平面 $\mathbb H^2$ 是正交于xy-plane的vertical planes , 或上半球面</li>
+  <li>测地线是正交于xy-plane 的直线或半圆</li>
+  <li>$\text{Isom}^+(\mathbb H^3)=PSL_2(\mathbb C)$ 在$\mathbb C\cup \infty$ 上是<a href="https://en.wikipedia.org/wiki/Möbius_transformation">Möbius transforms</a></li>
+  <li>horizontal planes $t=$ 是scaled Euclidean planes, 叫<a href="https://en.wikipedia.org/wiki/Horosphere">horospheres</a></li>
+</ul>
+
+<h3 id="性质拓扑确定几何">性质(拓扑确定几何)</h3>
+
+<ul>
+  <li>双曲三流型的基本群$\pi_1(M)$ -&gt; 在covering space上是等距同构 -&gt; 有到 $PSL_2(\mathbb C)$ 的离散, faithful 表示
+    <ul>
+      <li>基本群的不同元素对应 $PSL_2(\mathbb C)$ 的不同元素(faithful)</li>
+    </ul>
+  </li>
+  <li>双曲三流型$M$, 给定一个 $\epsilon&gt;0$, 可以把$M$ 分解为厚部分和薄部分 $M=M_{thick}\cup M_{thin}$ (Margulis thick-thin theorem, 1978)
+    <ul>
+      <li>$M_{thin}$ 是注入半径&lt;$\epsilon$ 的部分, 是tube和cusp
+        <ul>
+          <li>cusp是$T^2\times [0,\infty)$ with  $ds^2=\frac{dx^2+dy^2+dz^2}{z^2}$ (scaled Euclidean metric, $z\in [z_0,\infty)$ 是scale部分, x,y是$T^2$ 部分坐标)</li>
+        </ul>
+      </li>
+      <li>$M_{thick}$ 是注入半径&gt;$\epsilon$ 的部分</li>
+      <li>表示度量(注入半径)确定了几何(是否是cusp)</li>
+    </ul>
+  </li>
+  <li>双曲三流型上的双曲结构是唯一的.(Mostow-Prasad Rigidity theorem, 1968)
+    <ul>
+      <li>表示几何不变量-&gt;拓扑不变量. 即可以通过研究拓扑研究几何.</li>
+    </ul>
+  </li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>3-manifold</th>
+      <th>surface</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>hyperbolic structure唯一(刚性定理)<br />即拓扑(度量)决定几何<br />可以用几何分析方法: PDE-&gt; 黎曼度量 -&gt; 拓扑</td>
+      <td>high genus surface上有双曲度量<br />不唯一, 取决于canonical basis的选取<br />不同的度量构成<a href="https://en.wikipedia.org/wiki/Teichmüller_space">Teichmüller_space</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="应用">应用</h3>
+
+<p>存在双曲三流型结构的场景: 这些场景😮‍💨全都不太理解</p>
+<ol>
+  <li>如果三流型 $M$ 是 compact, irreducible, atoroidal(无环面), Haken manifold(有不可缩面embed) with torus boundary, $M$ 的内部是双曲的.(Geometrization of Haken manifolds, 几何化猜想的一部分)</li>
+  <li>一些link of knot的补空间有双曲结构
+    <ul>
+      <li>可以用circle packing 描述?</li>
+      <li>$S^2$ 球面的三角剖分和对偶的剖分对应circle packing(<a href="https://en.wikipedia.org/wiki/Circle_packing_theorem">Koebe-Andreev-Thurston circle packing theorem</a>)?</li>
+    </ul>
+  </li>
+  <li>fibered 3-manifolds(surface bundles)
+    <ul>
+      <li>通过曲面$S$ 上的pseudo-Anosov monodromy(单值变换) 构造的fiber bundle上, 有双曲结构</li>
+      <li>表示可以用双曲三流型理论研究曲面上的动态</li>
+    </ul>
+  </li>
+  <li>$PSL_2(\mathbb C)$ 的算术lattice $\Gamma$ 的quotient上有双曲三流型结构
+    <ul>
+      <li>比如$PSL_2(\mathcal O)$ 的finite index subgroup, 其中$\mathcal O$ 是某个数域的整数环</li>
+      <li>首先, 我都没明白这为什么是三流型…</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="离散化">离散化</h3>
+
+<ul>
+  <li>离散化成双曲多边形</li>
+  <li>基本元素是ideal tetrahedra(理想四面体):  $\mathbb H^3$ 上所有顶点在sphere at infinity($\partial \mathbb H^3=\mathbb C\cup\infty$ ) 的测地四面体
+    <ul>
+      <li>每个边有一个edge parameter $z\in \mathbb C$ , 由周围顶点的cross ratio定义.</li>
+      <li>体积计算: $Vol(\Delta(z))=Im(Li_2(z))+\log\vert z\vert \cdot arg(1-z)$
+        <ul>
+          <li>$Li_2$ 是dilogarithm function</li>
+          <li>regular ideal tetrahedron(所有两面夹角$\pi/3$) 是体积最大的</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>cusped(non-compact)双曲三流型$M$ 上的理想三角剖分:
+    <ul>
+      <li>由ideal tetrahedra(理想四面体)在faces处粘起来, 把顶点删除
+        <ol>
+          <li>edge粘合处需要乘$\pm 1$ 保证依然是双曲结构(曲率条件)</li>
+          <li>对edge parameter也需要添加condition保证completeness(完备条件)</li>
+        </ol>
+      </li>
+      <li>以上两个条件(curvature and completeness equations) 的solution set是离散的, (parameters决定了$M$ 上双曲结构?)</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="另外">另外</h2>
+
+<p>3-manifold的很多内容我还没理解, 只是分类记录下来</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="math" /><category term="content" /><category term="3-manifold" /><summary type="html"><![CDATA[在局部和$\mathbb R^3$ homeomorphic(同胚)]]></summary></entry><entry><title type="html">conformal geometry学习 (三 ) – Knot</title><link href="https://roshameow.github.io//personal_homepage/docs/math/conformal-geometry3/" rel="alternate" type="text/html" title="conformal geometry学习 (三 ) – Knot" /><published>2024-07-16T00:00:00+00:00</published><updated>2024-07-22T06:17:37+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/math/conformal-geometry3</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/math/conformal-geometry3/"><![CDATA[<h2 id="knot-k-mathbb-s1rightarrow-mathbb-r3-">Knot ($K: \mathbb S^1\rightarrow \mathbb R^3$ )</h2>
 
 <ul>
   <li>等价关系(isotopic, 同位, $K_1\cong_{isotopic} K_2$ ): 存在homeomorphism(同胚)映射 $f:\mathbb R^3\rightarrow \mathbb R^3$, 把$K_1$ 映到 $K_2$ .</li>
@@ -21,7 +149,7 @@
   <li>Np-hard 走的步数是节点数的指数倍?</li>
 </ul>
 
-<h4 id="gordon-luecke定理拓扑方法">Gordon-Luecke定理(拓扑方法)</h4>
+<h4 id="gordon-luecke定理几何方法">Gordon-Luecke定理(几何方法)</h4>
 
 <p>$K_1$  的补空间和$K_2$ 的补空间同胚, 即 $(\mathbb R^3- K_1)\sim (\mathbb R^3-K_2)$  &lt;-&gt; $K_1\cong_{isotopic} K_2$</p>
 
@@ -106,7 +234,11 @@
       </li>
     </ul>
   </li>
-  <li><strong><a href="https://mathworld.wolfram.com/HyperbolicKnot.html">hyperbolic Knot</a></strong>: knot的补空间有一个complete, finite volume的双曲度量, 即补空间是hyperbolic 3-manifold(双曲三流型)</li>
+  <li><strong><a href="https://mathworld.wolfram.com/HyperbolicKnot.html">hyperbolic Knot</a></strong>: knot的补空间有一个complete, finite volume的双曲度量, 即补空间是hyperbolic 3-manifold(双曲三流型)
+    <ul>
+      <li>例如Figure 8 knot</li>
+    </ul>
+  </li>
 </ul>
 
 <h3 id="例子-figure-8-knot">例子: <a href="https://mathworld.wolfram.com/FigureEightKnot.html">Figure 8 Knot</a></h3>
@@ -143,7 +275,7 @@
               <li>boundary $\partial \mathbb H^3=\mathbb C\cup\infty$ 又叫sphere at infinity</li>
             </ul>
           </li>
-          <li>$PSL_2(\mathbb C)$ 是<a href="https://en.wikipedia.org/wiki/Möbius_transformation">Möbius transforms</a></li>
+          <li>$PSL_2(\mathbb C)$ 在$\mathbb C\cup \infty$ 上是<a href="https://en.wikipedia.org/wiki/Möbius_transformation">Möbius transforms</a></li>
         </ul>
       </li>
     </ul>
@@ -455,7 +587,7 @@
       <td> </td>
     </tr>
   </tbody>
-</table>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="web3" /><category term="content" /><summary type="html"><![CDATA[分类]]></summary></entry><entry><title type="html">conformal geometry学习 (一 ) – fundamental group</title><link href="https://roshameow.github.io//personal_homepage/docs/math/algorithm/conformal-geometry1/" rel="alternate" type="text/html" title="conformal geometry学习 (一 ) – fundamental group" /><published>2024-07-02T00:00:00+00:00</published><updated>2024-07-15T03:08:32+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/math/algorithm/conformal-geometry1</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/math/algorithm/conformal-geometry1/"><![CDATA[<p>fundamental group分类曲面是足够精细的</p>
+</table>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="web3" /><category term="content" /><summary type="html"><![CDATA[分类]]></summary></entry><entry><title type="html">conformal geometry学习 (一 ) – fundamental group</title><link href="https://roshameow.github.io//personal_homepage/docs/math/algorithm/conformal-geometry1/" rel="alternate" type="text/html" title="conformal geometry学习 (一 ) – fundamental group" /><published>2024-07-02T00:00:00+00:00</published><updated>2024-07-22T06:15:16+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/math/algorithm/conformal-geometry1</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/math/algorithm/conformal-geometry1/"><![CDATA[<p>fundamental group分类曲面是足够精细的</p>
 
 <ul>
   <li><a href="https://en.wikipedia.org/wiki/Poincaré_conjecture">Poincaré conjecture(已证明)</a> : <strong>fundamental group trival -&gt; 曲面trival</strong>
@@ -575,7 +707,7 @@
 <p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240707162754.png" alt="Pasted image 20240707162754.png" width="400" /> <img src="/personal_homepage/docs/attachment/Pasted%20image%2020240710162803.png" alt="Pasted image 20240710162803.png" width="150" /></p>
 
 <ul>
-  <li>把$\mathbb{RP}^2$ 看成上半球面$H^2$ , 沿红线切割, 下面变成一个disk(D), 上面变成Möbius band(M, crosscap)</li>
+  <li>把$\mathbb{RP}^2$ 看成上半球面$\mathbb H^2$ , 沿红线切割, 下面变成一个disk(D), 上面变成Möbius band(M, crosscap)</li>
   <li>$\pi_1(M)=&lt;\gamma&gt;$ , $\pi_1(D)=\lbrace e\rbrace=\emptyset$ , $\pi_1(\partial M)=&lt;\gamma^2&gt;$
     <ul>
       <li>把Möbius strip变形成如右图, 任意和边界不相交的loop都$\sim\gamma$ , 边界上为 $\gamma^2$</li>
@@ -1081,40 +1213,4 @@
 
 <ul>
   <li>displacement和noise texture+bump的凹凸效果区别: displacement会确实更改mesh上点的位置, bump不会, bump只是改变表面法线方向来模拟.</li>
-</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="blender" /><category term="content" /><category term="shader" /><summary type="html"><![CDATA[在IOR=1.31的透明材质基础上, 添加表面的凹凸和内部的裂痕, 气泡]]></summary></entry><entry><title type="html">阿那亚戏剧节的海报制作</title><link href="https://roshameow.github.io//personal_homepage/docs/design/poster1/" rel="alternate" type="text/html" title="阿那亚戏剧节的海报制作" /><published>2024-05-24T00:00:00+00:00</published><updated>2024-05-27T19:08:11+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/design/poster1</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/design/poster1/"><![CDATA[<p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240524215103.png" alt="Pasted image 20240524215103.png" width="300" /></p>
-
-<ul>
-  <li>想法:
-    <ul>
-      <li>想着 🙌没有人👐比我👌更懂☝伽利略 选了这个主题,</li>
-      <li>虽然知道戏剧是改编自《伽利略传》, 讲的是伽利略和教廷之间的比较肮脏?的拉扯.</li>
-      <li>我希望海报呈现的是他的动机: 希望世界上所有事情都和谐漂亮的执着和品味(我个人理解).</li>
-      <li>所以希望海报是抽象的, 现代的, 干净的
-        <ul>
-          <li>因此 pass掉了非常具象的指代人身份的元素, 比如伽利略头像啊, ❗️没有语境的数学公式啊. 选了伽利略至今仍有影响的工作, 密度天平和潮汐现象</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-</ul>
-
-<h2 id="制作">制作</h2>
-
-<ul>
-  <li>背景
-    <ul>
-      <li>画了草图后用stable-diffusion的ipadapter做风格转换</li>
-    </ul>
-  </li>
-  <li>前景</li>
-</ul>
-
-<h2 id="素材">素材</h2>
-
-<p>[1] https://www.pinterest.com/pin/58546863899073827/  背景风格</p>
-
-<p>[2] https://www.pinterest.com/pin/363102788722082645/ 前景风格</p>
-
-<h2 id="后续">后续</h2>
-
-<p>发了之后完全没有流量, 而且我也看不出其他作品的好坏和点赞的关系, 看来我吃不上这碗饭😮‍💨</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="design" /><category term="content" /><category term="photoshop" /><category term="stable-diffusion" /><summary type="html"><![CDATA[]]></summary></entry></feed>
+</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="blender" /><category term="content" /><category term="shader" /><summary type="html"><![CDATA[在IOR=1.31的透明材质基础上, 添加表面的凹凸和内部的裂痕, 气泡]]></summary></entry></feed>
