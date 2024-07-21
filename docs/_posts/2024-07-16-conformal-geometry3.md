@@ -12,7 +12,7 @@ tags:
   - 3-manifold
   - Seifert_surface
   - fundamental_group
-last_modified_at: 2024-07-21T04:57:35-08:00
+last_modified_at: 2024-07-21T22:17:37-08:00
 ---
 ## Knot ($K: \mathbb S^1\rightarrow \mathbb R^3$ )
 
@@ -31,7 +31,7 @@ $K_1$ 的diagram由$K_2$ 的diagram经由四种基本移动变换得来 <-> $K_1
 - 对Planar diagram的intersection做四种基本移动变换: (twist, untwist), (poke,unpoke), slide, straighten
 - Np-hard 走的步数是节点数的指数倍?
 
-#### Gordon-Luecke定理(拓扑方法)
+#### Gordon-Luecke定理(几何方法)
 
 $K_1$  的补空间和$K_2$ 的补空间同胚, 即 $(\mathbb R^3- K_1)\sim (\mathbb R^3-K_2)$  <-> $K_1\cong_{isotopic} K_2$
 
@@ -73,6 +73,7 @@ $K_1$  的补空间和$K_2$ 的补空间同胚, 即 $(\mathbb R^3- K_1)\sim (\ma
 		- Whitehead doubles: 里面的knot $K$ 是 $S_1$ 经过一些twist首尾相连
 			- ![Pasted image 20240720120404.png]({{ '/docs/attachment/Pasted image 20240720120404.png' | relative_url }}){:width="100"} 或, <a href="https://www.researchgate.net/figure/A-Whitehead-double-of-a-trefoil-knot-is-a-satellite-knot-whose-companion-knot-is-a_fig10_339015556"><img src="https://www.researchgate.net/profile/Makoto-Sakuma/publication/339015556/figure/fig10/AS:897362012680193@1590959184100/A-Whitehead-double-of-a-trefoil-knot-is-a-satellite-knot-whose-companion-knot-is-a.png" alt="Seiferthomologypushoff.png" width="100"></a> 
 - **[hyperbolic Knot](https://mathworld.wolfram.com/HyperbolicKnot.html)**: knot的补空间有一个complete, finite volume的双曲度量, 即补空间是hyperbolic 3-manifold(双曲三流型)
+	- 例如Figure 8 knot
 
 
 
@@ -99,7 +100,7 @@ Planar Diagram: <a href="https://mathworld.wolfram.com/FigureEightKnot.html"><im
 		- $\mathbb H^3$(Poincaré half-space) 是上半空间$\mathbb H^3=\lbrace(x,y,t)\vert\ t>0\rbrace$, 有双曲度量 $ds^2=\frac{dx^2+dy^2+dt^2}{t^2}$ 
 			- 是一个双曲三流型
 			- boundary $\partial \mathbb H^3=\mathbb C\cup\infty$ 又叫sphere at infinity
-		- $PSL_2(\mathbb C)$ 是[Möbius transforms](https://en.wikipedia.org/wiki/Möbius_transformation) 
+		- $PSL_2(\mathbb C)$ 在$\mathbb C\cup \infty$ 上是[Möbius transforms](https://en.wikipedia.org/wiki/Möbius_transformation) 
 
 
 

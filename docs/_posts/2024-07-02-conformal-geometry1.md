@@ -9,7 +9,7 @@ tags:
   - fundamental_group
   - homeomorphic
   - homotopy
-last_modified_at: 2024-07-14T19:08:32-08:00
+last_modified_at: 2024-07-21T22:15:16-08:00
 ---
 
 fundamental group分类曲面是足够精细的
@@ -54,7 +54,7 @@ fundamental group分类曲面是足够精细的
 
 ![Pasted image 20240707162754.png]({{ '/docs/attachment/Pasted image 20240707162754.png' | relative_url }}){:width="400"} ![Pasted image 20240710162803.png]({{ '/docs/attachment/Pasted image 20240710162803.png' | relative_url }}){:width="150"} 
 
-- 把$\mathbb{RP}^2$ 看成上半球面$H^2$ , 沿红线切割, 下面变成一个disk(D), 上面变成Möbius band(M, crosscap)
+- 把$\mathbb{RP}^2$ 看成上半球面$\mathbb H^2$ , 沿红线切割, 下面变成一个disk(D), 上面变成Möbius band(M, crosscap)
 - $\pi_1(M)=<\gamma>$ , $\pi_1(D)=\lbrace e\rbrace=\emptyset$ , $\pi_1(\partial M)=<\gamma^2>$ 
 	- 把Möbius strip变形成如右图, 任意和边界不相交的loop都$\sim\gamma$ , 边界上为 $\gamma^2$   
 
