@@ -12,7 +12,7 @@ tags:
   - 3-manifold
   - Seifert_surface
   - fundamental_group
-last_modified_at: 2024-07-21T22:17:37-08:00
+last_modified_at: 2024-07-22T08:53:23-08:00
 ---
 ## Knot ($K: \mathbb S^1\rightarrow \mathbb R^3$ )
 
@@ -33,7 +33,7 @@ $K_1$ 的diagram由$K_2$ 的diagram经由四种基本移动变换得来 <-> $K_1
 
 #### Gordon-Luecke定理(几何方法)
 
-$K_1$  的补空间和$K_2$ 的补空间同胚, 即 $(\mathbb R^3- K_1)\sim (\mathbb R^3-K_2)$  <-> $K_1\cong_{isotopic} K_2$
+$K_1$  的补空间(3-manifold)和$K_2$ 的补空间同胚, 即 $(\mathbb R^3- K_1)\sim (\mathbb R^3-K_2)$  <-> $K_1\cong_{isotopic} K_2$
 
 -  用Wirtinger表示 计算 $\pi_1(\mathbb R^3-K)$ ( 同胚<-> 基本群相同): 
 	- 每个segment提供 ![Pasted image 20240721040411.png]({{ '/docs/attachment/Pasted image 20240721040411.png' | relative_url }}){:width="200"} generators: $\lbrace x_1,x_2,\cdots,x_n\rbrace$ 

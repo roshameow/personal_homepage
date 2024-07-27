@@ -6,10 +6,12 @@ categories:
 tags:
   - content
   - 3-manifold
-last_modified_at: 2024-07-21T22:28:00-08:00
+  - knot
+  - hyperbolic_geometry
+last_modified_at: 2024-07-26T12:35:56-08:00
 ---
 
-在局部和$\mathbb R^3$ homeomorphic(同胚) 
+3维流型, 在局部和$\mathbb R^3$ homeomorphic(同胚) 
 
 ## 3-manifold和knot的本质关联
 

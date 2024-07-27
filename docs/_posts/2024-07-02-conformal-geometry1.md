@@ -9,7 +9,7 @@ tags:
   - fundamental_group
   - homeomorphic
   - homotopy
-last_modified_at: 2024-07-21T22:15:16-08:00
+last_modified_at: 2024-07-27T09:35:51-08:00
 ---
 
 fundamental group分类曲面是足够精细的
@@ -79,7 +79,7 @@ fundamental group分类曲面是足够精细的
 	- [intersection number](https://en.wikipedia.org/wiki/Intersection_number)定义: $a_i\cdot b_i=1$ 
 		- 在曲面上intersection index=1, 定义为切向量的cross product和法向量点积 > 0
 	- 对应canonical representation: $\pi_1(S,p)=<a_1,\cdots,a_g,b_1,\cdots, b_g\vert \prod_{i=1}^g a_ib_ia_i^{-1} b_i^{-1}>$ 
-- basis计算方法: 
+- **basis计算方法**: 
 	- 火烧法: 三角剖分$M$ -> cut graph $\Gamma$  -> canonical basis
 		- 计算$M$ 的dual graph $\bar M$
 		- 计算$\bar M$ 的[spanning tree](https://en.wikipedia.org/wiki/Spanning_tree) $\bar T$
@@ -104,5 +104,6 @@ fundamental group分类曲面是足够精细的
 			- 1-skeleton $S_1$ 是一些path, $\pi_1(S_1)=<\gamma_1,\cdots,\gamma_k>$ 提供了生成元
 			- 2-disk的边界 $\pi_1(\partial D_2^{n_j})$ 在$S_1$ 中的表示$[\partial D_2^j]$提供了等价关系
 	- surface的情况, $S_2=S_1\cup D$ 只有一个2维胞腔(面), cutgraph $\Gamma$ 就是1-skeleton $S_1$ 
+		- <a href="https://www.mdpi.com/axioms/axioms-12-00942/article_deploy/html/images/axioms-12-00942-g001.png"><img src="https://www.mdpi.com/axioms/axioms-12-00942/article_deploy/html/images/axioms-12-00942-g001.png" width="300"></a> 
 
 
