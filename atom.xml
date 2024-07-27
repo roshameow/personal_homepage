@@ -1,4 +1,228 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="https://roshameow.github.io//personal_homepage/atom.xml" rel="self" type="application/atom+xml" /><link href="https://roshameow.github.io//personal_homepage/" rel="alternate" type="text/html" /><updated>2024-07-21T14:35:22+00:00</updated><id>https://roshameow.github.io//personal_homepage/atom.xml</id><title type="html">Liu, Wen’s Home Page</title><subtitle>Work, Experiments and Ideas.</subtitle><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><entry><title type="html">conformal geometry学习 (四 ) – 3-manifold</title><link href="https://roshameow.github.io//personal_homepage/docs/math/conformal-geometry4/" rel="alternate" type="text/html" title="conformal geometry学习 (四 ) – 3-manifold" /><published>2024-07-21T00:00:00+00:00</published><updated>2024-07-22T06:28:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/math/conformal-geometry4</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/math/conformal-geometry4/"><![CDATA[<p>在局部和$\mathbb R^3$ homeomorphic(同胚)</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="https://roshameow.github.io//personal_homepage/atom.xml" rel="self" type="application/atom+xml" /><link href="https://roshameow.github.io//personal_homepage/" rel="alternate" type="text/html" /><updated>2024-07-27T15:41:17+00:00</updated><id>https://roshameow.github.io//personal_homepage/atom.xml</id><title type="html">Liu, Wen’s Home Page</title><subtitle>Work, Experiments and Ideas.</subtitle><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><entry><title type="html">conformal geometry学习 (六 ) – (Simplicial) cohomology group</title><link href="https://roshameow.github.io//personal_homepage/docs/math/conformal-geometry6/" rel="alternate" type="text/html" title="conformal geometry学习 (六 ) – (Simplicial) cohomology group" /><published>2024-07-26T00:00:00+00:00</published><updated>2024-07-26T20:34:50+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/math/conformal-geometry6</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/math/conformal-geometry6/"><![CDATA[]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="math" /><category term="content" /><summary type="html"><![CDATA[]]></summary></entry><entry><title type="html">conformal geometry学习 (五 ) – homology group</title><link href="https://roshameow.github.io//personal_homepage/docs/math/conformal-geometry5/" rel="alternate" type="text/html" title="conformal geometry学习 (五 ) – homology group" /><published>2024-07-22T00:00:00+00:00</published><updated>2024-07-28T07:35:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/math/conformal-geometry5</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/math/conformal-geometry5/"><![CDATA[<h2 id="曲面的离散表示">曲面的离散表示</h2>
+
+<p>曲面可以离散化用Simplicial Complex表示</p>
+
+<ul>
+  <li>曲面 $\Sigma$ 上的triangulation(三角剖分) $T$
+    <ul>
+      <li>每个三角形边的方向沿曲面法向的逆时针</li>
+      <li>每个边有两条相互反向的half-edge</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="simplex-chain-boundary">simplex-&gt;chain-&gt;boundary</h3>
+
+<p><a href="https://commons.wikimedia.org/wiki/File:Simplicial_complex_example.svg#/media/File:Simplicial_complex_example.svg"><img src="https://upload.wikimedia.org/wikipedia/commons/5/50/Simplicial_complex_example.svg" alt="Simplicial complex example.svg" width="200" /></a></p>
+
+<ul>
+  <li>单纯复形(<a href="https://en.wikipedia.org/wiki/Simplicial_complex">Simplicial Complex</a>) $\Sigma=\cup \sigma$ 是由simplices(单型) 粘合而成
+    <ul>
+      <li>“粘合”条件: 1. simplex $\sigma\subset \Sigma$ -&gt; $\sigma$ 的facets $\tau\subset \Sigma$  2. $\sigma_1,\sigma_2\subset \Sigma$, $\sigma_1\cap \sigma_2=\tau\ne \emptyset$ 是两个simplex的交 -&gt; $\tau\subset \sigma_1$, $\tau\subset \sigma_2$ 是一个common facet</li>
+      <li><a href="https://en.wikipedia.org/wiki/Simplex">Simplex</a> $\sigma$ 是$\mathbb R^n$ 中的点集的minimal convex hull(0: simplex 是点, 1-simplex: 线段, 2-simplex: 三角形, 3-simplex: 四面体 …)
+        <ul>
+          <li>facet:  $\tau\subset \sigma$ , $\tau$ 也是个simplex</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Chain: k-chain $C_k(\Sigma,\mathbb Z)$ 是单纯复形$\Sigma$ 上同维数的simplices(单型) 的集合, with multiplicity $\sigma=\sum_i\lambda_i\sigma_i, \lambda_i\in\mathbb Z$
+    <ul>
+      <li>其中系数$\lambda_i$ 是multiplicity(经过同一个simplex的次数), 系数为负表示方向相反</li>
+      <li>chain不要求是连续的</li>
+      <li>example: 曲面上curve是1-chain, patch是2-chain</li>
+    </ul>
+  </li>
+  <li>Boundary Operator $\partial_n:C_n\rightarrow C_{n-1}$ 定义在chain上, 取simplex的边界
+    <ul>
+      <li>表达式: $\partial_n[v_0,v_1,\cdots,v_n]=\sum_{i} (-1)^i[v_0,\cdots,v_{i-1},v_{i+1},\cdots, v_n]$
+        <ul>
+          <li>$\partial_k$把$\sigma$ 映射到$\sigma$ 的边界(k-1)-simplex $\tau_i$ 的线性组合, 系数为$\tau_i\subset \sigma$ 的次序</li>
+        </ul>
+      </li>
+      <li>exact性质(boundary of a boundary): $\partial_{n-1}\partial_n=\emptyset$
+        <ul>
+          <li>boundary operator生成的(n-1)-simplex会在交接的(n-2)-simplex处方向相反
+            <ul>
+              <li>比如$[v_0,\cdots,v_{i-1},v_{i+1},\cdots,v_{j-1},v_{j+1},\cdots,v_n]$ 的两项参数为$(-1)^i(-1)^{j-1}$ (先去掉$v_i$ )和$(-1)^j(-1)^i$ (先去掉$v_j$)</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>adjoint: $\partial_n^*: C_{n-1}\rightarrow C_n$
+        <ul>
+          <li>表达式:  $\partial_n[v_0,v_1,\cdots,v_n]=\sum_{i} (-1)^i[v_0,\cdots,v_{i-1},v_{i+1},\cdots, v_n]$
+            <ul>
+              <li>把(k-1)-simplex $\tau$ 映射到相邻的k-simplex $\sigma_i$ 的线性组合, 系数为$\tau\subset \sigma_i$ 的次序</li>
+            </ul>
+          </li>
+          <li>$\partial_n^\ast\partial_n$ 表示n-simplex的相邻关系</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>closed: k-chain $\gamma\in C_k(\Sigma)$ 没有boundary, 即$\partial_k \gamma=0$</li>
+  <li>exact: k-chain $\gamma\in C_k(\Sigma)$ 是某个k+1-chain的boundary, 即 $\gamma=\partial_{k+1} \sigma$</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>一般表示</th>
+      <th>离散表示</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>surface</td>
+      <td>Simplicial Complex<br />(三角剖分得到的)</td>
+    </tr>
+    <tr>
+      <td>path</td>
+      <td>1-chain</td>
+    </tr>
+    <tr>
+      <td>loop</td>
+      <td>closed 1-chain</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="homology同调-group-simplicial-homology"><a href="https://en.wikipedia.org/wiki/Simplicial_homology">Homology(同调) group</a> (Simplicial homology)</h2>
+
+<ul>
+  <li>homologous同调等价: $\gamma_1-\gamma_2=\partial_{k+1}\sigma$</li>
+  <li>simplical form 的同调群 $H_k(\Sigma, \mathbb Z)=\frac{\text{ker}\partial_k}{\text{img}\partial_{k+1}}$
+    <ul>
+      <li>closed, not exact</li>
+    </ul>
+  </li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th>fundamental group $\pi_1(\Sigma)$</th>
+      <th>first homology group $H_1(\Sigma,\mathbb Z)$</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>定义</td>
+      <td>从曲面上某个点$p$</td>
+      <td>从曲面的三角剖分</td>
+    </tr>
+    <tr>
+      <td>生成元</td>
+      <td>经过点p的loop</td>
+      <td>closed 1-chain<br /> $\sigma=\sum_i\lambda_i\sigma_i, \lambda_i\in\mathbb Z$</td>
+    </tr>
+    <tr>
+      <td>等价关系</td>
+      <td>$\gamma\sim e$ <br />可以连续缩成一个点<br />即, 是disk的边</td>
+      <td>exact: $\gamma$ homological to 0<br />是某个平面patch(2-chain)的边<br />即, $\Sigma$ 沿$\gamma$ cut会分为两片</td>
+    </tr>
+    <tr>
+      <td><strong>性质</strong></td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>一般不是可交换群</td>
+      <td>可交换(1-chain没有经过simplex的前后顺序之分)<br /> $\gamma_1\gamma_2=\gamma_2\gamma_1$ <br />commutator $[\gamma_1,\gamma_2]=\gamma_1\gamma_2\gamma_1^{-1}\gamma_2^{-1}$ 是trival的</td>
+    </tr>
+    <tr>
+      <td><strong>关系</strong><br />Abelianization</td>
+      <td> </td>
+      <td>$H_1(\Sigma,\mathbb Z)=\pi_1(\Sigma)^{ab}=\pi_1(\Sigma)/[\pi_1(\Sigma),\pi_1(\Sigma)]$ <br />$[\pi_1(\Sigma),\pi_1(\Sigma)]$ 是commutator<br />$H_1$和$\pi_1$ generator相同</td>
+    </tr>
+    <tr>
+      <td>high-genus <br />oriented surface<br />$T_1 \texttt{#}T_2 \texttt{#}\cdots  \texttt{#} T_g$</td>
+      <td>$&lt;a_1,\cdots,a_g,b_1,\cdots, b_g\vert \prod_{i=1}^g a_ib_ia_i^{-1} b_i^{-1}&gt;$</td>
+      <td>$&lt;a_1,\cdots,a_g,b_1,\cdots, b_g&gt;^{ab}$ <br /><br />free Abelian group $\mathbb Z^{2g}$</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>同调分类比同伦分类粒度更粗</strong></p>
+
+<ul>
+  <li>homology(同调) group trival -/-&gt; 曲面trival: <a href="https://en.wikipedia.org/wiki/Homology_sphere">同调球</a></li>
+  <li>loop $\gamma$ 在homology(同调) group trival -/-&gt; 在fundamental group trival:
+    <ul>
+      <li><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240726111536.png" alt="Pasted image 20240726111536.png" width="250" /> $\gamma=a_1b_1a_1^{-1}b_1^{-1}$ 在$H_1(\Sigma,\mathbb Z)$ trival, 但是在$\pi_1(\Sigma)$ 不trival</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="homology-basis同调群基底计算">Homology Basis(同调群基底)计算</h3>
+
+<ul>
+  <li>Smith Norm方法(线性代数): 因为<strong>同调群是Abel群</strong>, 可以有$\mathbb Z$-module(向量)表示
+    <ul>
+      <li>把k-chain $C_k$ :  $\sigma=\sum_i\lambda_i\sigma_i, \lambda_i\in\mathbb Z$ 用以simplex为basis的vector表示</li>
+      <li>Boundary Operator $\partial_k:C_k\rightarrow C_{k-1}$ 用矩阵表示, adjoint Boundary Operator $\partial_k^*=\partial_{k}^T$</li>
+      <li>表示 <a href="https://en.wikipedia.org/wiki/Laplacian_matrix">Combinatorial Laplacian matrix</a>   $\Delta_k=\partial_k^T\partial_k+\partial_{k+1}\partial_{k+1}^T$
+        <ul>
+          <li>$\text{ker}\Delta_k=H_k$
+            <ul>
+              <li>$\text{ker}\Delta_k= \text{ker}\partial_k\cap\text{ker}\partial_{k+1}^T$
+                <ul>
+                  <li>$\subset$:  对于k-chain $\gamma$,  $\Delta_k\gamma=0$ -&gt; $\gamma^T\Delta_k\gamma=0$ -&gt; $\gamma^T\partial_k^T\partial_k\gamma+\gamma^T\partial_{k+1}\partial_{k+1}^T\gamma=0$ -&gt; $\gamma^T\partial_k^T\partial_k\gamma=0$, $\gamma^T\partial_{k+1}\partial_{k+1}^T\gamma=0$ -&gt; $\partial_k\gamma=0$, $\partial_{k+1}^T\gamma=0$</li>
+                </ul>
+              </li>
+              <li>$\text{ker}\partial_k\cap\text{ker}\partial_{k+1}^T=\frac{\text{ker}\partial_k}{\text{img}\partial_{k+1}}=H_k$
+                <ul>
+                  <li>inj:  k-chain $\gamma\in \text{img}\partial_{k+1}$ -&gt; $\gamma=\partial_{k+1}\tau$ -&gt; $\partial_{k+1}^T\gamma=\partial_{k+1}^T\partial_{k+1} \tau\ne 0$
+                    <ul>
+                      <li>即, $\gamma$ 在$\text{ker}\partial_{k+1}^T$ 中表示$\gamma$ 不是exact, 在$H_k$ 中非0</li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>用integer matrix的Smith norm计算$\Delta_k$ 的zero eigen value(即$\text{ker}\Delta_k$ )
+        <ul>
+          <li>Smith Norm计算也是指数级, NP-hard?</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="poincaré-duality"><a href="https://en.wikipedia.org/wiki/Poincaré_duality">Poincaré Duality</a></h3>
+
+<p><a href="https://www.researchgate.net/profile/Clement-Cances/publication/278829092/figure/fig3/AS:667718760022016@1536207966130/Triangular-mesh-T-and-Donald-dual-mesh-M-dual-volumes-vertices-interfaces.png"><img src="https://www.researchgate.net/profile/Clement-Cances/publication/278829092/figure/fig3/AS:667718760022016@1536207966130/Triangular-mesh-T-and-Donald-dual-mesh-M-dual-volumes-vertices-interfaces.png" width="200" /></a></p>
+
+<ul>
+  <li><a href="https://en.wikipedia.org/wiki/Poincaré_duality">Poincaré Duality</a>: n-dim的manifold $M$, 三角剖分$T$, 和cell decomposition $T^*$ 对偶.
+    <ul>
+      <li><strong>把每个k-simplex $\sigma$ 映射成(n-k)-cell $\sigma^\ast$</strong>: 对于包含$\sigma$ 的n-simplex $\Delta$,  $\Delta\cap\sigma^*$ 是取$\sigma\subset …\subset \Delta$ 之间的simplex的barycentres(重心点) 的convex hull
+        <ul>
+          <li><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240727223859.png" alt="Pasted image 20240727223859.png" width="100" /> 顶点(1-simplex) $\sigma$, 面(2-simplex) $\Delta$ , 灰色部分 $\Delta\cap\sigma^*$ 是顶点$\sigma$,两条边, 面$\Delta$ 的重心点的convex hull</li>
+          <li>$\sigma^*$ 只和$\sigma$ 相交, 这个intersection给出了对偶关系</li>
+        </ul>
+      </li>
+      <li><strong>把k-chain $C_k(T)$映射到(n-k)-chain $C_{n-k}(T^*)$</strong> :
+        <ul>
+          <li>$C_{n-k}(T^\ast)$ 是定义在$T^\ast$ 的多边形cell上的? 这样也可以吗?</li>
+        </ul>
+      </li>
+      <li><strong>把$H_k(M,\mathbb Z)$ 映射到 $H_{n-k}(M,\mathbb Z)$</strong>: $H_k(M,\mathbb Z)\cong H_{n-k}(M,\mathbb Z)$</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="例子">例子</h4>
+
+<ul>
+  <li>closed oriented 曲面$S=T_1 \texttt{#}T_2 \texttt{#}\cdots  \texttt{#} T_g$, 只有一个连通分支, $H_0(S,\mathbb Z)=H_2(S,\mathbb Z)=\mathbb Z$</li>
+</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="math" /><category term="content" /><summary type="html"><![CDATA[曲面的离散表示]]></summary></entry><entry><title type="html">conformal geometry学习 (四 ) – 3-manifold</title><link href="https://roshameow.github.io//personal_homepage/docs/math/conformal-geometry4/" rel="alternate" type="text/html" title="conformal geometry学习 (四 ) – 3-manifold" /><published>2024-07-21T00:00:00+00:00</published><updated>2024-07-26T20:35:56+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/math/conformal-geometry4</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/math/conformal-geometry4/"><![CDATA[<p>3维流型, 在局部和$\mathbb R^3$ homeomorphic(同胚)</p>
 
 <h2 id="3-manifold和knot的本质关联">3-manifold和knot的本质关联</h2>
 
@@ -126,7 +350,7 @@
 
 <h2 id="另外">另外</h2>
 
-<p>3-manifold的很多内容我还没理解, 只是分类记录下来</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="math" /><category term="content" /><category term="3-manifold" /><summary type="html"><![CDATA[在局部和$\mathbb R^3$ homeomorphic(同胚)]]></summary></entry><entry><title type="html">conformal geometry学习 (三 ) – Knot</title><link href="https://roshameow.github.io//personal_homepage/docs/math/conformal-geometry3/" rel="alternate" type="text/html" title="conformal geometry学习 (三 ) – Knot" /><published>2024-07-16T00:00:00+00:00</published><updated>2024-07-22T06:17:37+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/math/conformal-geometry3</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/math/conformal-geometry3/"><![CDATA[<h2 id="knot-k-mathbb-s1rightarrow-mathbb-r3-">Knot ($K: \mathbb S^1\rightarrow \mathbb R^3$ )</h2>
+<p>3-manifold的很多内容我还没理解, 只是分类记录下来</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="math" /><category term="content" /><category term="3-manifold" /><category term="knot" /><category term="hyperbolic_geometry" /><summary type="html"><![CDATA[3维流型, 在局部和$\mathbb R^3$ homeomorphic(同胚)]]></summary></entry><entry><title type="html">conformal geometry学习 (三 ) – Knot</title><link href="https://roshameow.github.io//personal_homepage/docs/math/conformal-geometry3/" rel="alternate" type="text/html" title="conformal geometry学习 (三 ) – Knot" /><published>2024-07-16T00:00:00+00:00</published><updated>2024-07-22T16:53:23+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/math/conformal-geometry3</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/math/conformal-geometry3/"><![CDATA[<h2 id="knot-k-mathbb-s1rightarrow-mathbb-r3-">Knot ($K: \mathbb S^1\rightarrow \mathbb R^3$ )</h2>
 
 <ul>
   <li>等价关系(isotopic, 同位, $K_1\cong_{isotopic} K_2$ ): 存在homeomorphism(同胚)映射 $f:\mathbb R^3\rightarrow \mathbb R^3$, 把$K_1$ 映到 $K_2$ .</li>
@@ -151,7 +375,7 @@
 
 <h4 id="gordon-luecke定理几何方法">Gordon-Luecke定理(几何方法)</h4>
 
-<p>$K_1$  的补空间和$K_2$ 的补空间同胚, 即 $(\mathbb R^3- K_1)\sim (\mathbb R^3-K_2)$  &lt;-&gt; $K_1\cong_{isotopic} K_2$</p>
+<p>$K_1$  的补空间(3-manifold)和$K_2$ 的补空间同胚, 即 $(\mathbb R^3- K_1)\sim (\mathbb R^3-K_2)$  &lt;-&gt; $K_1\cong_{isotopic} K_2$</p>
 
 <ul>
   <li>用Wirtinger表示 计算 $\pi_1(\mathbb R^3-K)$ ( 同胚&lt;-&gt; 基本群相同):
@@ -587,7 +811,7 @@
       <td> </td>
     </tr>
   </tbody>
-</table>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="web3" /><category term="content" /><summary type="html"><![CDATA[分类]]></summary></entry><entry><title type="html">conformal geometry学习 (一 ) – fundamental group</title><link href="https://roshameow.github.io//personal_homepage/docs/math/algorithm/conformal-geometry1/" rel="alternate" type="text/html" title="conformal geometry学习 (一 ) – fundamental group" /><published>2024-07-02T00:00:00+00:00</published><updated>2024-07-22T06:15:16+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/math/algorithm/conformal-geometry1</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/math/algorithm/conformal-geometry1/"><![CDATA[<p>fundamental group分类曲面是足够精细的</p>
+</table>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="web3" /><category term="content" /><summary type="html"><![CDATA[分类]]></summary></entry><entry><title type="html">conformal geometry学习 (一 ) – fundamental group</title><link href="https://roshameow.github.io//personal_homepage/docs/math/algorithm/conformal-geometry1/" rel="alternate" type="text/html" title="conformal geometry学习 (一 ) – fundamental group" /><published>2024-07-02T00:00:00+00:00</published><updated>2024-07-27T17:35:51+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/math/algorithm/conformal-geometry1</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/math/algorithm/conformal-geometry1/"><![CDATA[<p>fundamental group分类曲面是足够精细的</p>
 
 <ul>
   <li><a href="https://en.wikipedia.org/wiki/Poincaré_conjecture">Poincaré conjecture(已证明)</a> : <strong>fundamental group trival -&gt; 曲面trival</strong>
@@ -759,7 +983,7 @@
       <li>对应canonical representation: $\pi_1(S,p)=&lt;a_1,\cdots,a_g,b_1,\cdots, b_g\vert \prod_{i=1}^g a_ib_ia_i^{-1} b_i^{-1}&gt;$</li>
     </ul>
   </li>
-  <li>basis计算方法:
+  <li><strong>basis计算方法</strong>:
     <ul>
       <li>火烧法: 三角剖分$M$ -&gt; cut graph $\Gamma$  -&gt; canonical basis
         <ul>
@@ -804,7 +1028,11 @@
           </li>
         </ul>
       </li>
-      <li>surface的情况, $S_2=S_1\cup D$ 只有一个2维胞腔(面), cutgraph $\Gamma$ 就是1-skeleton $S_1$</li>
+      <li>surface的情况, $S_2=S_1\cup D$ 只有一个2维胞腔(面), cutgraph $\Gamma$ 就是1-skeleton $S_1$
+        <ul>
+          <li><a href="https://www.mdpi.com/axioms/axioms-12-00942/article_deploy/html/images/axioms-12-00942-g001.png"><img src="https://www.mdpi.com/axioms/axioms-12-00942/article_deploy/html/images/axioms-12-00942-g001.png" width="300" /></a></li>
+        </ul>
+      </li>
     </ul>
   </li>
 </ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="math" /><category term="algorithm" /><category term="content" /><category term="fundamental_group" /><category term="homeomorphic" /><category term="homotopy" /><summary type="html"><![CDATA[fundamental group分类曲面是足够精细的]]></summary></entry><entry><title type="html">报税计算</title><link href="https://roshameow.github.io//personal_homepage/docs/affair/tax/" rel="alternate" type="text/html" title="报税计算" /><published>2024-06-25T00:00:00+00:00</published><updated>2024-07-03T02:53:10+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/affair/tax</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/affair/tax/"><![CDATA[<p><a href="https://shanghai.chinatax.gov.cn">上海税务局网站</a></p>
@@ -1136,81 +1364,4 @@
 
 <p>[6] Jin, Miao, Junho Kim, Feng Luo, and Xianfeng Gu. “Discrete Surface Ricci Flow.” <em>IEEE Transactions on Visualization and Computer Graphics</em> 14 (September 1, 2008): 1030–43. <a href="https://doi.org/10.1109/TVCG.2008.57">https://doi.org/10.1109/TVCG.2008.57</a>.  <strong>计算foundamental domain的参数化</strong></p>
 
-<p>[7] Eppstein, David, Michael Goodrich, Ethan Kim, and Rasmus Tamstorf. “Motorcycle Graphs: Canonical Quad Mesh Partitioning.” <em>Comput. Graph. Forum</em> 27 (July 1, 2008): 1477–86. <a href="https://doi.org/10.1111/j.1467-8659.2008.01288.x">https://doi.org/10.1111/j.1467-8659.2008.01288.x</a>.  <strong>计算T-mesh</strong></p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="algorithm" /><category term="content" /><category term="mesh" /><category term="quad-mesh" /><summary type="html"><![CDATA[-&gt;]]></summary></entry><entry><title type="html">python工具</title><link href="https://roshameow.github.io//personal_homepage/docs/tool/python-tool/" rel="alternate" type="text/html" title="python工具" /><published>2024-06-03T00:00:00+00:00</published><updated>2024-07-10T15:11:12+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/tool/python-tool</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/tool/python-tool/"><![CDATA[<h2 id="启动脚本">启动脚本</h2>
-
-<ul>
-  <li>创建虚拟环境</li>
-  <li>install requirement</li>
-  <li>启动python脚本</li>
-</ul>
-
-<p>例子: <a href="https://gist.github.com/roshameow/607395fddc91bf77be3a2f2216fac55e#file-setup-sh"><strong>setup.sh</strong></a></p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="tool" /><category term="content" /><summary type="html"><![CDATA[启动脚本]]></summary></entry><entry><title type="html">blender学习: 冰材质</title><link href="https://roshameow.github.io//personal_homepage/docs/blender/blender-learning13/" rel="alternate" type="text/html" title="blender学习: 冰材质" /><published>2024-05-27T00:00:00+00:00</published><updated>2024-05-28T20:46:36+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/blender/blender-learning13</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/blender/blender-learning13/"><![CDATA[<p>在IOR=1.31的透明材质基础上, 添加表面的凹凸和内部的裂痕, 气泡</p>
-
-<h2 id="制作冰材质">制作冰材质:</h2>
-
-<h3 id="用volume-shader">用volume shader</h3>
-
-<p>参考<a href="https://www.youtube.com/watch?v=EUvNwscez-w">这个教学</a></p>
-
-<ol>
-  <li>用Cycles渲染器, 打开Render-&gt;<a href="https://docs.blender.org/manual/en/latest/render/cycles/render_settings/film.html">Film-&gt;Transparent-&gt; Transparent Glass</a>
-    <ul>
-      <li>但是没有用到composition所以开不开无所谓吧?</li>
-    </ul>
-  </li>
-  <li><strong>表面增加凹凸</strong>: 用Bump节点
-    <ul>
-      <li><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240527221548.png" alt="Pasted image 20240527221548.png" width="100" /></li>
-      <li>用<a href="https://docs.blender.org/manual/en/4.1/render/shader_nodes/vector/bump.html">Bump</a> 更改normal的方向: 根据输入的局部高度差
-        <ul>
-          <li>用noise texture生成纹理, 应用到bump的高度</li>
-        </ul>
-      </li>
-      <li>用相同的noise texture生成纹理, 应用到roughness
-        <ul>
-          <li>目的是让凸出的地方更粗糙? 感觉和实际不太相符</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li><strong>在内部添加crack</strong>: 用<a href="https://docs.blender.org/manual/en/latest/render/shader_nodes/textures/voronoi.html">Voronoi Texture</a> 复合Noise Texture的扭曲
-    <ul>
-      <li></li>
-      <li>texture color: <img src="/personal_homepage/docs/attachment/Pasted%20image%2020240528093833.png" alt="Pasted image 20240528093833.png" width="100" />  添加到volume后: <img src="/personal_homepage/docs/attachment/Pasted%20image%2020240528102634.png" alt="Pasted image 20240528102634.png" width="100" /></li>
-      <li>Voronoi Texture由<a href="https://en.wikipedia.org/wiki/Worley_noise">Worley noise</a> 生成
-        <ul>
-          <li>选择Distance to Edge: 生成distance map</li>
-        </ul>
-      </li>
-      <li>用<a href="https://docs.krita.org/en/reference_manual/blending_modes/lighten.html#bm-linear-light">Linear Light(线性光)</a> 的方式混合: 和add差不多, 但是会对可能saturated的值特殊处理</li>
-    </ul>
-  </li>
-  <li><strong>在内部添加一些雾气</strong>: 用noise texture生成</li>
-</ol>
-
-<ul>
-  <li>结果: 没太复刻出冰的质感, 还是更像玻璃
-    <ul>
-      <li><img src="/personal_homepage/docs/attachment/ice_glass_cycle.png" alt="ice_glass_cycle.png" width="480" /></li>
-    </ul>
-  </li>
-</ul>
-
-<h3 id="用粒子系统">用粒子系统</h3>
-
-<p>参考<a href="https://www.bilibili.com/video/BV1i5411e7VZ/">这个教学</a></p>
-
-<h2 id="实物参考">实物参考</h2>
-
-<iframe src="//player.bilibili.com/player.html?isOutside=true&amp;aid=422168352&amp;bvid=BV1a3411477N&amp;cid=458238306&amp;p=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
-
-<ul>
-  <li><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240527221116.png" alt="Pasted image 20240527221116.png" width="480" />  <img src="/personal_homepage/docs/attachment/Pasted%20image%2020240527221224.png" alt="Pasted image 20240527221224.png" width="320" /></li>
-  <li>冻的漂亮的冰里面本来就不应该有那些crack和气泡嘛</li>
-</ul>
-
-<h2 id="blender用法">blender用法</h2>
-
-<ul>
-  <li>displacement和noise texture+bump的凹凸效果区别: displacement会确实更改mesh上点的位置, bump不会, bump只是改变表面法线方向来模拟.</li>
-</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="blender" /><category term="content" /><category term="shader" /><summary type="html"><![CDATA[在IOR=1.31的透明材质基础上, 添加表面的凹凸和内部的裂痕, 气泡]]></summary></entry></feed>
+<p>[7] Eppstein, David, Michael Goodrich, Ethan Kim, and Rasmus Tamstorf. “Motorcycle Graphs: Canonical Quad Mesh Partitioning.” <em>Comput. Graph. Forum</em> 27 (July 1, 2008): 1477–86. <a href="https://doi.org/10.1111/j.1467-8659.2008.01288.x">https://doi.org/10.1111/j.1467-8659.2008.01288.x</a>.  <strong>计算T-mesh</strong></p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="algorithm" /><category term="content" /><category term="mesh" /><category term="quad-mesh" /><summary type="html"><![CDATA[-&gt;]]></summary></entry></feed>
