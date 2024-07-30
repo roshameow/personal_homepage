@@ -5,7 +5,14 @@ categories:
   - math
 tags:
   - content
-last_modified_at: 2024-07-27T23:35:00-08:00
+  - discrete
+  - triangulation
+  - 三角剖分
+  - chain
+  - simplex
+  - simplical_complex
+  - homology
+last_modified_at: 2024-07-31T00:42:10-08:00
 ---
 ## 曲面的离散表示
 
@@ -40,8 +47,8 @@ last_modified_at: 2024-07-27T23:35:00-08:00
 			- 把(k-1)-simplex $\tau$ 映射到相邻的k-simplex $\sigma_i$ 的线性组合, 系数为$\tau\subset \sigma_i$ 的次序
 		- $\partial_n^\ast\partial_n$ 表示n-simplex的相邻关系
 
-- closed: k-chain $\gamma\in C_k(\Sigma)$ 没有boundary, 即$\partial_k \gamma=0$ 
-- exact: k-chain $\gamma\in C_k(\Sigma)$ 是某个k+1-chain的boundary, 即 $\gamma=\partial_{k+1} \sigma$ 
+- closed ($Z_n$,cycles): k-chain $\gamma\in C_k(\Sigma)$ 没有boundary, 即$\partial_k \gamma=0$ 
+- exact ($B_{n+1}$,boundaries): k-chain $\gamma\in C_k(\Sigma)$ 是某个k+1-chain的boundary, 即 $\gamma=\partial_{k+1} \sigma$ 
 
 
 
@@ -58,15 +65,17 @@ last_modified_at: 2024-07-27T23:35:00-08:00
 - simplical form 的同调群 $H_k(\Sigma, \mathbb Z)=\frac{\text{ker}\partial_k}{\text{img}\partial_{k+1}}$       
 	- closed, not exact
 
-|                                                                                            | fundamental group $\pi_1(\Sigma)$                                             | first homology group $H_1(\Sigma,\mathbb Z)$                                                                                                                        |
-| ------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 定义                                                                                         | 从曲面上某个点$p$                                                                    | 从曲面的三角剖分                                                                                                                                                            |
-| 生成元                                                                                        | 经过点p的loop                                                                     | closed 1-chain<br> $\sigma=\sum_i\lambda_i\sigma_i, \lambda_i\in\mathbb Z$                                                                                          |
-| 等价关系                                                                                       | $\gamma\sim e$ <br>可以连续缩成一个点<br>即, 是disk的边                                    | exact: $\gamma$ homological to 0<br>是某个平面patch(2-chain)的边<br>即, $\Sigma$ 沿$\gamma$ cut会分为两片                                                                         |
-| **性质**                                                                                     |                                                                               |                                                                                                                                                                     |
-|                                                                                            | 一般不是可交换群                                                                      | 可交换(1-chain没有经过simplex的前后顺序之分)<br> $\gamma_1\gamma_2=\gamma_2\gamma_1$ <br>commutator $[\gamma_1,\gamma_2]=\gamma_1\gamma_2\gamma_1^{-1}\gamma_2^{-1}$ 是trival的     |
-| **关系**<br>Abelianization                                                                   |                                                                               | $H_1(\Sigma,\mathbb Z)=\pi_1(\Sigma)^{ab}=\pi_1(\Sigma)/[\pi_1(\Sigma),\pi_1(\Sigma)]$ <br>$[\pi_1(\Sigma),\pi_1(\Sigma)]$ 是commutator<br>$H_1$和$\pi_1$ generator相同 |
-| high-genus <br>oriented surface<br>$T_1 \texttt{\#}T_2 \texttt{\#}\cdots  \texttt{\#} T_g$ | $<a_1,\cdots,a_g,b_1,\cdots, b_g\vert \prod_{i=1}^g a_ib_ia_i^{-1} b_i^{-1}>$ | $<a_1,\cdots,a_g,b_1,\cdots, b_g>^{ab}$ <br><br>free Abelian group $\mathbb Z^{2g}$                                                                                 |
+|                                                                                            | fundamental group $\pi_1(\Sigma)$                                                                                                                                                          | first homology group $H_1(\Sigma,\mathbb Z)$                                                                                                                                                                                                         |
+| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 定义                                                                                         | 从曲面上某个点$p$                                                                                                                                                                                 | 从曲面的三角剖分                                                                                                                                                                                                                                             |
+| 生成元                                                                                        | 经过点p的loop                                                                                                                                                                                  | closed 1-chain<br> $\sigma=\sum_i\lambda_i\sigma_i, \lambda_i\in\mathbb Z$                                                                                                                                                                           |
+| 等价关系                                                                                       | $\gamma\sim e$ <br>可以连续缩成一个点<br>即, 是disk的边                                                                                                                                                 | exact: $\gamma$ homological to 0<br>是某个平面patch(2-chain)的边<br>即, $\Sigma$ 沿$\gamma$ cut会分为两片                                                                                                                                                          |
+| **性质**                                                                                     |                                                                                                                                                                                            |                                                                                                                                                                                                                                                      |
+|                                                                                            | 一般不是可交换群                                                                                                                                                                                   | 可交换(1-chain没有经过simplex的前后顺序之分)<br> $\gamma_1\gamma_2=\gamma_2\gamma_1$ <br>commutator $[\gamma_1,\gamma_2]=\gamma_1\gamma_2\gamma_1^{-1}\gamma_2^{-1}$ 是trival的                                                                                      |
+| **关系**<br>Abelianization                                                                   |                                                                                                                                                                                            | $H_1(\Sigma,\mathbb Z)=\pi_1(\Sigma)^{ab}=\pi_1(\Sigma)/[\pi_1(\Sigma),\pi_1(\Sigma)]$ <br>$[\pi_1(\Sigma),\pi_1(\Sigma)]$ 是commutator<br>$H_1$和$\pi_1$ generator相同                                                                                  |
+| 合并<br>$U\cup V$                                                                            | $<u_1,\dots,u_k,v_1,\dots,v_m\vert \alpha_i,\beta_j,i(w_1)j(w_1)^{-1},\dots,i(w_p)j(w_p)^{-1}>$ <br>[Seifert-Van Kampen Theorem](https://en.wikipedia.org/wiki/Seifert–Van_Kampen_theorem) | $<u_1,\dots,u_k,v_1,\dots,v_m\vert \alpha_i,\beta_j,i(w_1),j(w_1),\dots,i(w_p),j(w_p)>$<br>$H_1(U\cup V)\cong (H_1(U)\oplus H_1(V))/\text{img}(i_\ast,j_\ast)$  <br>[Mayer–Vietoris_sequence](https://en.wikipedia.org/wiki/Mayer–Vietoris_sequence) |
+| high-genus <br>oriented surface<br>$T_1 \texttt{\#}T_2 \texttt{\#}\cdots  \texttt{\#} T_g$ | $<a_1,\cdots,a_g,b_1,\cdots, b_g\vert \prod_{i=1}^g a_ib_ia_i^{-1} b_i^{-1}>$                                                                                                              | $<a_1,\cdots,a_g,b_1,\cdots, b_g>^{ab}$ <br><br>free Abelian group $\mathbb Z^{2g}$                                                                                                                                                                  |
+| non-orientable<br> surface                                                                 |                                                                                                                                                                                            |                                                                                                                                                                                                                                                      |
 
 **同调分类比同伦分类粒度更粗**
 
@@ -74,12 +83,20 @@ last_modified_at: 2024-07-27T23:35:00-08:00
 - loop $\gamma$ 在homology(同调) group trival -/-> 在fundamental group trival: 
 	- ![Pasted image 20240726111536.png]({{ '/docs/attachment/Pasted image 20240726111536.png' | relative_url }}){:width="250"} $\gamma=a_1b_1a_1^{-1}b_1^{-1}$ 在$H_1(\Sigma,\mathbb Z)$ trival, 但是在$\pi_1(\Sigma)$ 不trival
 
+### topological space分解
+
+- [Mayer–Vietoris_sequence](https://en.wikipedia.org/wiki/Mayer–Vietoris_sequence): $U, V$ open, $H_n(U\cup V)$ 和$H_n(U)$ , $H_n(V)$ 的关系
+	- $$\cdots\rightarrow H_{n+1}(U\cup V)\overset{\partial_\ast}\rightarrow H_n(U\cap V)\overset{i_\ast,j_\ast}\rightarrow H_n(U)\oplus H_n(V)\overset{k_\ast-l_\ast}\rightarrow H_{n}(U\cup V)\rightarrow \cdots$$
+		- i, j, k, l都是inclusion
+		- <a ><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Mayer_Vietoris_sequence_boundary_map_on_torus.png/224px-Mayer_Vietoris_sequence_boundary_map_on_torus.png" width="112"></a> $\partial_\ast:[x]\mapsto [\partial u]$ 
+
 
 ### Homology Basis(同调群基底)计算
 
 - Smith Norm方法(线性代数): 因为**同调群是Abel群**, 可以有$\mathbb Z$-module(向量)表示
 	- 把k-chain $C_k$ :  $\sigma=\sum_i\lambda_i\sigma_i, \lambda_i\in\mathbb Z$ 用以simplex为basis的vector表示 
 	- Boundary Operator $\partial_k:C_k\rightarrow C_{k-1}$ 用矩阵表示, adjoint Boundary Operator $\partial_k^*=\partial_{k}^T$ 
+		- $\partial_k=([\sigma_i^{k-1},\sigma_j^k]_{ij})$ , $[\sigma_i^{k-1},\sigma_j^k]$ 是k-simplex和(k-1)-simplex的连接数, 可能是+/- 1, 0(包含定向)
 	- 表示 [Combinatorial Laplacian matrix](https://en.wikipedia.org/wiki/Laplacian_matrix)   $\Delta_k=\partial_k^T\partial_k+\partial_{k+1}\partial_{k+1}^T$ 
 		- $\text{ker}\Delta_k=H_k$ 
 			- $\text{ker}\Delta_k= \text{ker}\partial_k\cap\text{ker}\partial_{k+1}^T$ 
@@ -87,21 +104,52 @@ last_modified_at: 2024-07-27T23:35:00-08:00
 			- $\text{ker}\partial_k\cap\text{ker}\partial_{k+1}^T=\frac{\text{ker}\partial_k}{\text{img}\partial_{k+1}}=H_k$ 
 				- inj:  k-chain $\gamma\in \text{img}\partial_{k+1}$ -> $\gamma=\partial_{k+1}\tau$ -> $\partial_{k+1}^T\gamma=\partial_{k+1}^T\partial_{k+1} \tau\ne 0$ 
 					- 即, $\gamma$ 在$\text{ker}\partial_{k+1}^T$ 中表示$\gamma$ 不是exact, 在$H_k$ 中非0
-	- 用integer matrix的Smith norm计算$\Delta_k$ 的zero eigen value(即$\text{ker}\Delta_k$ )
+	- 用integer matrix的Smith norm计算$\Delta_k$ 的zero eigen vector(即$\text{ker}\Delta_k$ )
 		- Smith Norm计算也是指数级, NP-hard?
 
-### [Poincaré Duality](https://en.wikipedia.org/wiki/Poincaré_duality)
+### [closed surface映射的degree](https://en.wikipedia.org/wiki/Degree_of_a_continuous_mapping)
 
-<a href="https://www.researchgate.net/profile/Clement-Cances/publication/278829092/figure/fig3/AS:667718760022016@1536207966130/Triangular-mesh-T-and-Donald-dual-mesh-M-dual-volumes-vertices-interfaces.png"><img src="https://www.researchgate.net/profile/Clement-Cances/publication/278829092/figure/fig3/AS:667718760022016@1536207966130/Triangular-mesh-T-and-Donald-dual-mesh-M-dual-volumes-vertices-interfaces.png" width="200"></a>
+- degree of mapping由homology(同调)映射的层数$c$ 定义(同调的用途)
+- closed surface之间的连续映射$f: M\rightarrow N$ , induce homology group之间的映射$f_\ast: H_2(M,\mathbb Z)\rightarrow H_2(N,\mathbb Z)$ 
+	- -> $f_\ast: \mathbb Z\rightarrow \mathbb Z$ 
+	- -> $f_\ast(z)=cz, c\in \mathbb Z$ 
+	- -> $deg(f)=c$ 
 
-- [Poincaré Duality](https://en.wikipedia.org/wiki/Poincaré_duality): n-dim的manifold $M$, 三角剖分$T$, 和cell decomposition $T^*$ 对偶.
-	- **把每个k-simplex $\sigma$ 映射成(n-k)-cell $\sigma^\ast$**: 对于包含$\sigma$ 的n-simplex $\Delta$,  $\Delta\cap\sigma^*$ 是取$\sigma\subset ...\subset \Delta$ 之间的simplex的barycentres(重心点) 的convex hull
-		- ![Pasted image 20240727223859.png]({{ '/docs/attachment/Pasted image 20240727223859.png' | relative_url }}){:width="100"} 顶点(1-simplex) $\sigma$, 面(2-simplex) $\Delta$ , 灰色部分 $\Delta\cap\sigma^*$ 是顶点$\sigma$,两条边, 面$\Delta$ 的重心点的convex hull
-		- $\sigma^*$ 只和$\sigma$ 相交, 这个intersection给出了对偶关系
-	- **把k-chain $C_k(T)$映射到(n-k)-chain $C_{n-k}(T^*)$** : 
-		- $C_{n-k}(T^\ast)$ 是定义在$T^\ast$ 的多边形cell上的? 这样也可以吗? 
-	- **把$H_k(M,\mathbb Z)$ 映射到 $H_{n-k}(M,\mathbb Z)$**: $H_k(M,\mathbb Z)\cong H_{n-k}(M,\mathbb Z)$  
+![Pasted image 20240731003422.png]({{ '/docs/attachment/Pasted image 20240731003422.png' | relative_url }}){:width="400"}  $p_1,p_2,p_3$ 都映射到$q$.  $p_3$ 是往右凸起, $K(p_3)$ 应该>0?
+- 例子1([Gauss-Bonnet](https://en.wikipedia.org/wiki/Gauss–Bonnet_theorem)): Gauss映射$G:S\rightarrow \mathbb S^2$ , 把点映射到normal vector($p\mapsto n(p)$ ).
+	- $deg(G)=1-g$. 覆盖球面1-g次
 
-#### 例子
 
-- closed oriented 曲面$S=T_1 \texttt{\#}T_2 \texttt{\#}\cdots  \texttt{\#} T_g$, 只有一个连通分支, $H_0(S,\mathbb Z)=H_2(S,\mathbb Z)=\mathbb Z$ 
+## Relative Homology(相对同调)
+
+
+|                            | 定义                                                                                                                                                  | maps                                              |
+| -------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------- |
+| simplicial complex         | $K_0\subset K$ 是subcomplex                                                                                                                          | $f:K\rightarrow L$<br>并且, $f(K_0)\subset L_0$     |
+| relative p-chain           | $C_n(K,K_0)=C_n(K)/C_n(K_0)$<br>元素是coset $c+C_n(K_0)$                                                                                               | $f_\texttt{\#}: C_n(K,K_0)\rightarrow C_n(L,L_0)$ |
+| relative boundary operator | $\partial_n:C_n(K,K_0)\rightarrow C_{n-1}(K,K_0)$<br>其中, $c\mapsto \partial_n c+C_{n-1}K_0$                                                         | $f_\texttt{\#}$ 和$\partial_n$ 可交换                 |
+| relative cycles            | $Z_n(K,K_0)=\text{ker}\partial_n$<br>$\partial_n(Z_n(K,K_0))$ 在$C_{n-1}(K,K_0)$ 中trival<br>即有, $\partial_n: Z_n(K,K_0)\hookrightarrow C_{n-1}(K_0)$ |                                                   |
+| relative boundary          | $B_n(K,K_0)=\text{img}\partial_{n+1}$                                                                                                               |                                                   |
+| relative homology          | $H_n(K,K_0)=Z_n(K,K_0)/B_n(K,K_0)$                                                                                                                  | $f_\ast: H_n(K,K_0)\rightarrow H_n(L,L_0)$        |
+
+### 分解性质
+
+- 得到long exact sequence: 
+- $$\cdots\rightarrow H_n(K_0)\overset{i_\ast}\rightarrow H_n(K)\overset{\pi_\ast}\rightarrow H_n(K,K_0)\overset{\partial}\rightarrow H_{n-1}(K_0)\rightarrow \cdots$$
+	- $i_\ast: H_n(K_0)\rightarrow H_n(K)$ 
+		- $i: K_0\rightarrow K$ 是inclusion
+	- $\pi_\ast: H_p(K)\rightarrow H_p(K,K_0)$ 给出absolute homology和relative homology的映射
+		- $\pi:(K,\emptyset)\rightarrow (K,K_0)$ 是identity
+	- $\partial: H_n(K,K_0)\rightarrow H_{n-1}(K_0)$ 把relative cycle映射到boundary
+		- 由, $\partial_n: Z_n(K,K_0)\rightarrow C_{n-1}(K_0)$ 和$\partial_n(B_n)=0$ 定义
+
+### 切除性质
+
+- [excision theorem(切除定理)](https://en.wikipedia.org/wiki/Excision_theorem): $U\subset K_0\subset K$, 则切除$U$ 后relative homology不变,  即$H_n(K,K_0)\cong H_n(K-U,K_0-U)=H_n(L,L_0)$ 
+	- 证明1: 用Smith Norm方法, $H_n$ 的basis由矩阵$\Delta_n$ 的0-eigenvector得到(具体细节🤔️?)
+		- 写出$\partial_n: C_n(K)\rightarrow C_{n-1}(K)$ 和$\partial_n: C_n(L)\rightarrow C_{n-1}(L)$ 的矩阵表示
+		- $C_n(K)$ 可以分解为$C_n(K_0)\oplus C_n(K,K_0)$ 两部分, 后部分又分解出$Z_n(K,K_0)$ 部分
+			- $Z_n(K,K_0)$ 和$Z_n(L,L_0)$ 部分维数相等?
+	- 证明2: 用long exact sequence分解(具体细节🤔️?)
+		- $K=K_0\cup(K-U)=K_0\cup L$ , $K_0\cap L=K_0-U=L_0$ 
+		
