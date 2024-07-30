@@ -31,7 +31,7 @@
 <meta property="twitter:title" content="conformal geometry学习 (五 ) – homology group" />
 <meta name="twitter:site" content="@" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-07-28T07:35:00+00:00","datePublished":"2024-07-22T00:00:00+00:00","description":"曲面的离散表示","headline":"conformal geometry学习 (五 ) – homology group","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/docs/math/conformal-geometry5/"},"url":"https://roshameow.github.io//personal_homepage/docs/math/conformal-geometry5/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-07-31T08:42:10+00:00","datePublished":"2024-07-22T00:00:00+00:00","description":"曲面的离散表示","headline":"conformal geometry学习 (五 ) – homology group","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/docs/math/conformal-geometry5/"},"url":"https://roshameow.github.io//personal_homepage/docs/math/conformal-geometry5/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -125,7 +125,7 @@
         
   <h3 class="page-taxonomies-title">Tags</h3>
   
-  <ul class="page-taxonomies"><li class="page-taxonomy"><a href="/personal_homepage/tags/#content" title="Pages tagged content" rel="tag">content</a></li>
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a href="/personal_homepage/tags/#chain" title="Pages tagged chain" rel="tag">chain</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#content" title="Pages tagged content" rel="tag">content</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#discrete" title="Pages tagged discrete" rel="tag">discrete</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#homology" title="Pages tagged homology" rel="tag">homology</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#simplex" title="Pages tagged simplex" rel="tag">simplex</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#simplical-complex" title="Pages tagged simplical_complex" rel="tag">simplical_complex</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#triangulation" title="Pages tagged triangulation" rel="tag">triangulation</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#%E4%B8%89%E8%A7%92%E5%89%96%E5%88%86" title="Pages tagged 三角剖分" rel="tag">三角剖分</a></li>
   </ul>
 
 
@@ -136,7 +136,7 @@
 </h2>
 <!-- 1. toc
 {:toc} -->
-<ul class="inline_toc" id="my_toc"><li><a href="#曲面的离散表示">曲面的离散表示</a><ul><li><a href="#simplex-chain-boundary">simplex-&gt;chain-&gt;boundary</a></li></ul></li><li><a href="#homology同调-group-simplicial-homology">Homology(同调) group (Simplicial homology)</a><ul><li><a href="#homology-basis同调群基底计算">Homology Basis(同调群基底)计算</a></li><li><a href="#poincaré-duality">Poincaré Duality</a></li></ul></li></ul>
+<ul class="inline_toc" id="my_toc"><li><a href="#曲面的离散表示">曲面的离散表示</a><ul><li><a href="#simplex-chain-boundary">simplex-&gt;chain-&gt;boundary</a></li></ul></li><li><a href="#homology同调-group-simplicial-homology">Homology(同调) group (Simplicial homology)</a><ul><li><a href="#topological-space分解">topological space分解</a></li><li><a href="#homology-basis同调群基底计算">Homology Basis(同调群基底)计算</a></li><li><a href="#closed-surface映射的degree">closed surface映射的degree</a></li></ul></li><li><a href="#relative-homology相对同调">Relative Homology(相对同调)</a><ul><li><a href="#分解性质">分解性质</a></li><li><a href="#切除性质">切除性质</a></li></ul></li></ul>
 </div>
 <!-- {::options parse_block_html="false" /} -->
 
@@ -207,8 +207,8 @@
       </li>
     </ul>
   </li>
-  <li>closed: k-chain $\gamma\in C_k(\Sigma)$ 没有boundary, 即$\partial_k \gamma=0$</li>
-  <li>exact: k-chain $\gamma\in C_k(\Sigma)$ 是某个k+1-chain的boundary, 即 $\gamma=\partial_{k+1} \sigma$</li>
+  <li>closed ($Z_n$,cycles): k-chain $\gamma\in C_k(\Sigma)$ 没有boundary, 即$\partial_k \gamma=0$</li>
+  <li>exact ($B_{n+1}$,boundaries): k-chain $\gamma\in C_k(\Sigma)$ 是某个k+1-chain的boundary, 即 $\gamma=\partial_{k+1} \sigma$</li>
 </ul>
 
 <table>
@@ -285,9 +285,19 @@
       <td>$H_1(\Sigma,\mathbb Z)=\pi_1(\Sigma)^{ab}=\pi_1(\Sigma)/[\pi_1(\Sigma),\pi_1(\Sigma)]$ <br />$[\pi_1(\Sigma),\pi_1(\Sigma)]$ 是commutator<br />$H_1$和$\pi_1$ generator相同</td>
     </tr>
     <tr>
+      <td>合并<br />$U\cup V$</td>
+      <td>$&lt;u_1,\dots,u_k,v_1,\dots,v_m\vert \alpha_i,\beta_j,i(w_1)j(w_1)^{-1},\dots,i(w_p)j(w_p)^{-1}&gt;$ <br /><a href="https://en.wikipedia.org/wiki/Seifert–Van_Kampen_theorem">Seifert-Van Kampen Theorem</a></td>
+      <td>$&lt;u_1,\dots,u_k,v_1,\dots,v_m\vert \alpha_i,\beta_j,i(w_1),j(w_1),\dots,i(w_p),j(w_p)&gt;$<br />$H_1(U\cup V)\cong (H_1(U)\oplus H_1(V))/\text{img}(i_\ast,j_\ast)$  <br /><a href="https://en.wikipedia.org/wiki/Mayer–Vietoris_sequence">Mayer–Vietoris_sequence</a></td>
+    </tr>
+    <tr>
       <td>high-genus <br />oriented surface<br />$T_1 \texttt{#}T_2 \texttt{#}\cdots  \texttt{#} T_g$</td>
       <td>$&lt;a_1,\cdots,a_g,b_1,\cdots, b_g\vert \prod_{i=1}^g a_ib_ia_i^{-1} b_i^{-1}&gt;$</td>
       <td>$&lt;a_1,\cdots,a_g,b_1,\cdots, b_g&gt;^{ab}$ <br /><br />free Abelian group $\mathbb Z^{2g}$</td>
+    </tr>
+    <tr>
+      <td>non-orientable<br /> surface</td>
+      <td> </td>
+      <td> </td>
     </tr>
   </tbody>
 </table>
@@ -303,13 +313,33 @@
   </li>
 </ul>
 
+<h3 id="topological-space分解">topological space分解</h3>
+
+<ul>
+  <li><a href="https://en.wikipedia.org/wiki/Mayer–Vietoris_sequence">Mayer–Vietoris_sequence</a>: $U, V$ open, $H_n(U\cup V)$ 和$H_n(U)$ , $H_n(V)$ 的关系
+    <ul>
+      <li>
+\[\cdots\rightarrow H_{n+1}(U\cup V)\overset{\partial_\ast}\rightarrow H_n(U\cap V)\overset{i_\ast,j_\ast}\rightarrow H_n(U)\oplus H_n(V)\overset{k_\ast-l_\ast}\rightarrow H_{n}(U\cup V)\rightarrow \cdots\]
+        <ul>
+          <li>i, j, k, l都是inclusion</li>
+          <li><a><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Mayer_Vietoris_sequence_boundary_map_on_torus.png/224px-Mayer_Vietoris_sequence_boundary_map_on_torus.png" width="112" /></a> $\partial_\ast:[x]\mapsto [\partial u]$</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
 <h3 id="homology-basis同调群基底计算">Homology Basis(同调群基底)计算</h3>
 
 <ul>
   <li>Smith Norm方法(线性代数): 因为<strong>同调群是Abel群</strong>, 可以有$\mathbb Z$-module(向量)表示
     <ul>
       <li>把k-chain $C_k$ :  $\sigma=\sum_i\lambda_i\sigma_i, \lambda_i\in\mathbb Z$ 用以simplex为basis的vector表示</li>
-      <li>Boundary Operator $\partial_k:C_k\rightarrow C_{k-1}$ 用矩阵表示, adjoint Boundary Operator $\partial_k^*=\partial_{k}^T$</li>
+      <li>Boundary Operator $\partial_k:C_k\rightarrow C_{k-1}$ 用矩阵表示, adjoint Boundary Operator $\partial_k^*=\partial_{k}^T$
+        <ul>
+          <li>$\partial_k=([\sigma_i^{k-1},\sigma_j^k]_{ij})$ , $[\sigma_i^{k-1},\sigma_j^k]$ 是k-simplex和(k-1)-simplex的连接数, 可能是+/- 1, 0(包含定向)</li>
+        </ul>
+      </li>
       <li>表示 <a href="https://en.wikipedia.org/wiki/Laplacian_matrix">Combinatorial Laplacian matrix</a>   $\Delta_k=\partial_k^T\partial_k+\partial_{k+1}\partial_{k+1}^T$
         <ul>
           <li>$\text{ker}\Delta_k=H_k$
@@ -332,7 +362,7 @@
           </li>
         </ul>
       </li>
-      <li>用integer matrix的Smith norm计算$\Delta_k$ 的zero eigen value(即$\text{ker}\Delta_k$ )
+      <li>用integer matrix的Smith norm计算$\Delta_k$ 的zero eigen vector(即$\text{ker}\Delta_k$ )
         <ul>
           <li>Smith Norm计算也是指数级, NP-hard?</li>
         </ul>
@@ -341,34 +371,122 @@
   </li>
 </ul>
 
-<h3 id="poincaré-duality"><a href="https://en.wikipedia.org/wiki/Poincaré_duality">Poincaré Duality</a></h3>
-
-<p><a href="https://www.researchgate.net/profile/Clement-Cances/publication/278829092/figure/fig3/AS:667718760022016@1536207966130/Triangular-mesh-T-and-Donald-dual-mesh-M-dual-volumes-vertices-interfaces.png"><img src="https://www.researchgate.net/profile/Clement-Cances/publication/278829092/figure/fig3/AS:667718760022016@1536207966130/Triangular-mesh-T-and-Donald-dual-mesh-M-dual-volumes-vertices-interfaces.png" width="200" /></a></p>
+<h3 id="closed-surface映射的degree"><a href="https://en.wikipedia.org/wiki/Degree_of_a_continuous_mapping">closed surface映射的degree</a></h3>
 
 <ul>
-  <li><a href="https://en.wikipedia.org/wiki/Poincaré_duality">Poincaré Duality</a>: n-dim的manifold $M$, 三角剖分$T$, 和cell decomposition $T^*$ 对偶.
+  <li>degree of mapping由homology(同调)映射的层数$c$ 定义(同调的用途)</li>
+  <li>closed surface之间的连续映射$f: M\rightarrow N$ , induce homology group之间的映射$f_\ast: H_2(M,\mathbb Z)\rightarrow H_2(N,\mathbb Z)$
     <ul>
-      <li><strong>把每个k-simplex $\sigma$ 映射成(n-k)-cell $\sigma^\ast$</strong>: 对于包含$\sigma$ 的n-simplex $\Delta$,  $\Delta\cap\sigma^*$ 是取$\sigma\subset …\subset \Delta$ 之间的simplex的barycentres(重心点) 的convex hull
-        <ul>
-          <li><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240727223859.png" alt="Pasted image 20240727223859.png" width="100" /> 顶点(1-simplex) $\sigma$, 面(2-simplex) $\Delta$ , 灰色部分 $\Delta\cap\sigma^*$ 是顶点$\sigma$,两条边, 面$\Delta$ 的重心点的convex hull</li>
-          <li>$\sigma^*$ 只和$\sigma$ 相交, 这个intersection给出了对偶关系</li>
-        </ul>
-      </li>
-      <li><strong>把k-chain $C_k(T)$映射到(n-k)-chain $C_{n-k}(T^*)$</strong> :
-        <ul>
-          <li>$C_{n-k}(T^\ast)$ 是定义在$T^\ast$ 的多边形cell上的? 这样也可以吗?</li>
-        </ul>
-      </li>
-      <li><strong>把$H_k(M,\mathbb Z)$ 映射到 $H_{n-k}(M,\mathbb Z)$</strong>: $H_k(M,\mathbb Z)\cong H_{n-k}(M,\mathbb Z)$</li>
+      <li>-&gt; $f_\ast: \mathbb Z\rightarrow \mathbb Z$</li>
+      <li>-&gt; $f_\ast(z)=cz, c\in \mathbb Z$</li>
+      <li>-&gt; $deg(f)=c$</li>
     </ul>
   </li>
 </ul>
 
-<h4 id="例子">例子</h4>
+<p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240731003422.png" alt="Pasted image 20240731003422.png" width="400" />  $p_1,p_2,p_3$ 都映射到$q$.  $p_3$ 是往右凸起, $K(p_3)$ 应该&gt;0?</p>
+<ul>
+  <li>例子1(<a href="https://en.wikipedia.org/wiki/Gauss–Bonnet_theorem">Gauss-Bonnet</a>): Gauss映射$G:S\rightarrow \mathbb S^2$ , 把点映射到normal vector($p\mapsto n(p)$ ).
+    <ul>
+      <li>$deg(G)=1-g$. 覆盖球面1-g次</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="relative-homology相对同调">Relative Homology(相对同调)</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th>定义</th>
+      <th>maps</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>simplicial complex</td>
+      <td>$K_0\subset K$ 是subcomplex</td>
+      <td>$f:K\rightarrow L$<br />并且, $f(K_0)\subset L_0$</td>
+    </tr>
+    <tr>
+      <td>relative p-chain</td>
+      <td>$C_n(K,K_0)=C_n(K)/C_n(K_0)$<br />元素是coset $c+C_n(K_0)$</td>
+      <td>$f_\texttt{#}: C_n(K,K_0)\rightarrow C_n(L,L_0)$</td>
+    </tr>
+    <tr>
+      <td>relative boundary operator</td>
+      <td>$\partial_n:C_n(K,K_0)\rightarrow C_{n-1}(K,K_0)$<br />其中, $c\mapsto \partial_n c+C_{n-1}K_0$</td>
+      <td>$f_\texttt{#}$ 和$\partial_n$ 可交换</td>
+    </tr>
+    <tr>
+      <td>relative cycles</td>
+      <td>$Z_n(K,K_0)=\text{ker}\partial_n$<br />$\partial_n(Z_n(K,K_0))$ 在$C_{n-1}(K,K_0)$ 中trival<br />即有, $\partial_n: Z_n(K,K_0)\hookrightarrow C_{n-1}(K_0)$</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>relative boundary</td>
+      <td>$B_n(K,K_0)=\text{img}\partial_{n+1}$</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>relative homology</td>
+      <td>$H_n(K,K_0)=Z_n(K,K_0)/B_n(K,K_0)$</td>
+      <td>$f_\ast: H_n(K,K_0)\rightarrow H_n(L,L_0)$</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="分解性质">分解性质</h3>
 
 <ul>
-  <li>closed oriented 曲面$S=T_1 \texttt{#}T_2 \texttt{#}\cdots  \texttt{#} T_g$, 只有一个连通分支, $H_0(S,\mathbb Z)=H_2(S,\mathbb Z)=\mathbb Z$</li>
+  <li>得到long exact sequence:</li>
+  <li>
+\[\cdots\rightarrow H_n(K_0)\overset{i_\ast}\rightarrow H_n(K)\overset{\pi_\ast}\rightarrow H_n(K,K_0)\overset{\partial}\rightarrow H_{n-1}(K_0)\rightarrow \cdots\]
+    <ul>
+      <li>$i_\ast: H_n(K_0)\rightarrow H_n(K)$
+        <ul>
+          <li>$i: K_0\rightarrow K$ 是inclusion</li>
+        </ul>
+      </li>
+      <li>$\pi_\ast: H_p(K)\rightarrow H_p(K,K_0)$ 给出absolute homology和relative homology的映射
+        <ul>
+          <li>$\pi:(K,\emptyset)\rightarrow (K,K_0)$ 是identity</li>
+        </ul>
+      </li>
+      <li>$\partial: H_n(K,K_0)\rightarrow H_{n-1}(K_0)$ 把relative cycle映射到boundary
+        <ul>
+          <li>由, $\partial_n: Z_n(K,K_0)\rightarrow C_{n-1}(K_0)$ 和$\partial_n(B_n)=0$ 定义</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
 </ul>
+
+<h3 id="切除性质">切除性质</h3>
+
+<ul>
+  <li><a href="https://en.wikipedia.org/wiki/Excision_theorem">excision theorem(切除定理)</a>: $U\subset K_0\subset K$, 则切除$U$ 后relative homology不变,  即$H_n(K,K_0)\cong H_n(K-U,K_0-U)=H_n(L,L_0)$
+    <ul>
+      <li>证明1: 用Smith Norm方法, $H_n$ 的basis由矩阵$\Delta_n$ 的0-eigenvector得到(具体细节🤔️?)
+        <ul>
+          <li>写出$\partial_n: C_n(K)\rightarrow C_{n-1}(K)$ 和$\partial_n: C_n(L)\rightarrow C_{n-1}(L)$ 的矩阵表示</li>
+          <li>$C_n(K)$ 可以分解为$C_n(K_0)\oplus C_n(K,K_0)$ 两部分, 后部分又分解出$Z_n(K,K_0)$ 部分
+            <ul>
+              <li>$Z_n(K,K_0)$ 和$Z_n(L,L_0)$ 部分维数相等?</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>证明2: 用long exact sequence分解(具体细节🤔️?)
+        <ul>
+          <li>$K=K_0\cup(K-U)=K_0\cup L$ , $K_0\cap L=K_0-U=L_0$</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
 
         </div>
 

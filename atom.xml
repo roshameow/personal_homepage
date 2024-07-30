@@ -1,4 +1,111 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="https://roshameow.github.io//personal_homepage/atom.xml" rel="self" type="application/atom+xml" /><link href="https://roshameow.github.io//personal_homepage/" rel="alternate" type="text/html" /><updated>2024-07-27T15:41:17+00:00</updated><id>https://roshameow.github.io//personal_homepage/atom.xml</id><title type="html">Liu, Wen’s Home Page</title><subtitle>Work, Experiments and Ideas.</subtitle><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><entry><title type="html">conformal geometry学习 (六 ) – (Simplicial) cohomology group</title><link href="https://roshameow.github.io//personal_homepage/docs/math/conformal-geometry6/" rel="alternate" type="text/html" title="conformal geometry学习 (六 ) – (Simplicial) cohomology group" /><published>2024-07-26T00:00:00+00:00</published><updated>2024-07-26T20:34:50+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/math/conformal-geometry6</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/math/conformal-geometry6/"><![CDATA[]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="math" /><category term="content" /><summary type="html"><![CDATA[]]></summary></entry><entry><title type="html">conformal geometry学习 (五 ) – homology group</title><link href="https://roshameow.github.io//personal_homepage/docs/math/conformal-geometry5/" rel="alternate" type="text/html" title="conformal geometry学习 (五 ) – homology group" /><published>2024-07-22T00:00:00+00:00</published><updated>2024-07-28T07:35:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/math/conformal-geometry5</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/math/conformal-geometry5/"><![CDATA[<h2 id="曲面的离散表示">曲面的离散表示</h2>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="https://roshameow.github.io//personal_homepage/atom.xml" rel="self" type="application/atom+xml" /><link href="https://roshameow.github.io//personal_homepage/" rel="alternate" type="text/html" /><updated>2024-07-30T16:56:31+00:00</updated><id>https://roshameow.github.io//personal_homepage/atom.xml</id><title type="html">Liu, Wen’s Home Page</title><subtitle>Work, Experiments and Ideas.</subtitle><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><entry><title type="html">conformal geometry学习 (七 ) – Duality</title><link href="https://roshameow.github.io//personal_homepage/docs/conformal-geometry7/" rel="alternate" type="text/html" title="conformal geometry学习 (七 ) – Duality" /><published>2024-07-29T00:00:00+00:00</published><updated>2024-07-30T05:13:37+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/conformal-geometry7</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/conformal-geometry7/"><![CDATA[<h3 id="poincaré-duality"><a href="https://en.wikipedia.org/wiki/Poincaré_duality">Poincaré Duality</a></h3>
+
+<p><a href="https://www.researchgate.net/profile/Clement-Cances/publication/278829092/figure/fig3/AS:667718760022016@1536207966130/Triangular-mesh-T-and-Donald-dual-mesh-M-dual-volumes-vertices-interfaces.png"><img src="https://www.researchgate.net/profile/Clement-Cances/publication/278829092/figure/fig3/AS:667718760022016@1536207966130/Triangular-mesh-T-and-Donald-dual-mesh-M-dual-volumes-vertices-interfaces.png" width="200" /></a></p>
+
+<ul>
+  <li><a href="https://en.wikipedia.org/wiki/Poincaré_duality">Poincaré Duality</a>: n-dim的manifold $M$, 三角剖分$T$, 和cell decomposition $T^*$ 对偶.
+    <ul>
+      <li><strong>把每个k-simplex $\sigma$ 映射成(n-k)-cell $\sigma^\ast$</strong>: 对于包含$\sigma$ 的n-simplex $\Delta$,  $\Delta\cap\sigma^*$ 是取$\sigma\subset …\subset \Delta$ 之间的simplex的barycentres(重心点) 的convex hull
+        <ul>
+          <li><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240727223859.png" alt="Pasted image 20240727223859.png" width="100" /> 顶点(1-simplex) $\sigma$, 面(2-simplex) $\Delta$ , 灰色部分 $\Delta\cap\sigma^*$ 是顶点$\sigma$,两条边, 面$\Delta$ 的重心点的convex hull</li>
+          <li>$\sigma^*$ 只和$\sigma$ 相交, 这个intersection给出了对偶关系</li>
+        </ul>
+      </li>
+      <li><strong>把k-chain $C_k(T)$映射到(n-k)-chain $C_{n-k}(T^*)$</strong> :
+        <ul>
+          <li>$C_{n-k}(T^\ast)$ 是定义在$T^\ast$ 的多边形cell上的? 这样也可以吗?</li>
+        </ul>
+      </li>
+      <li><strong>把$H_k(M,\mathbb Z)$ 映射到 $H_{n-k}(M,\mathbb Z)$</strong>: $H_k(M,\mathbb Z)\cong H_{n-k}(M,\mathbb Z)$</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="例子">例子</h4>
+
+<ul>
+  <li>closed oriented 曲面$S=T_1 \texttt{#}T_2 \texttt{#}\cdots  \texttt{#} T_g$, 只有一个连通分支, $H_0(S,\mathbb Z)=H_2(S,\mathbb Z)=\mathbb Z$</li>
+  <li>closed oriented 三流型$M$, $H_0(M)=H_3(M)=\mathbb Z$. $H_2(M)=H^1(M)$.</li>
+</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="content" /><summary type="html"><![CDATA[Poincaré Duality]]></summary></entry><entry><title type="html">conformal geometry学习 (六 ) – (Simplicial) cohomology group</title><link href="https://roshameow.github.io//personal_homepage/docs/math/conformal-geometry6/" rel="alternate" type="text/html" title="conformal geometry学习 (六 ) – (Simplicial) cohomology group" /><published>2024-07-26T00:00:00+00:00</published><updated>2024-07-31T08:46:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/math/conformal-geometry6</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/math/conformal-geometry6/"><![CDATA[<p>上同调是同调的对偶</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>同调 homology</th>
+      <th>上同调 <a href="https://en.wikipedia.org/wiki/Cohomology">(Simplicial) cohomology</a><br /><br />最初是为了表示<a href="https://en.wikipedia.org/wiki/Stiefel–Whitney_class.">stiefel whitney class</a></th>
+      <th>对偶记号</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>k-chain $\sigma$ <br />$C_k$</td>
+      <td>k-cochain(k-form) $\omega$ <br />$C^k$</td>
+      <td>bilinear operator<br />$&lt;\omega,\sigma&gt;:=\omega(\sigma)$</td>
+    </tr>
+    <tr>
+      <td>(k+1)-boundary<br />$\partial_{k+1}:C_{k+1}\rightarrow C_{k}$</td>
+      <td>k-coboundary(微分算子)<br />$\delta_k: C^k\rightarrow C^{k+1}$<br />$\delta_k(\omega)=\omega\circ \partial_{k+1},\omega\in C^k$</td>
+      <td>$&lt;\delta\omega,\sigma&gt;=&lt;\omega,\partial\sigma&gt;$ <br /><br /><a href="https://en.wikipedia.org/wiki/Stokes%27_theorem">Stokes Theorem</a></td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>closed form $\delta_k\omega=0$</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>exact form $\omega=\delta_{k-1}\sigma$</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>$H_n$<br />closed, but not exact</td>
+      <td>$H^n=\frac{\text{ker}\delta^n}{\text{img}\delta^{n-1}}$ <br />curl free, but not =gradient</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>$f_\ast: H_n(M)\rightarrow H_n(N)$</td>
+      <td>$f^\ast: H^n(N)\rightarrow H^n(M)$<br />是$f_\ast$ 的pull back</td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="一阶-cohomology-basis-计算">一阶 cohomology basis 计算</h3>
+
+<p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240731000546.png" alt="Pasted image 20240731000546.png" width="150" /></p>
+
+<ul>
+  <li>$H^1$ 是在边(1-simplex)上的函数, 使得沿每个三角形(2-chain)路径和为0 ( $\omega\in\text{ker}\delta^1$ )</li>
+  <li>$H^1\cong H_1$  可以找到一组dual basis.</li>
+  <li>closed, genus g的曲面($\Sigma$) 上<strong>一阶 cohomology basis 计算</strong> $H^1(\Sigma,\mathbb Z)$ (或$H^1(\Sigma,\mathbb R)$) : <strong>用homology basis的dual basis组成</strong>
+    <ul>
+      <li>计算homology basis $H_1(\Sigma,\mathbb Z)=span&lt;\gamma_1,\dots,\gamma_{2g}&gt;$
+        <ul>
+          <li>想办法让除同一组(tunnel, handle)之外的basis都不相交</li>
+        </ul>
+      </li>
+      <li>每个1-cycle $\gamma_i$ 定义一个1-form $\omega_i$
+        <ul>
+          <li>把$\Sigma$ 沿$\gamma_i$ 切开, 得到 $M_i$ , 边界$\partial M_i=\gamma_i^+-\gamma_i^-$</li>
+          <li>在$M_i$ 上定义 0-form $\tau_i$ , 在$\gamma_i^+$ 的顶点上取1, 在$\gamma_i^-$ 的顶点上取0, 得到1-form $\omega_i=d\tau_i$ (在边上取值是起点值-终点值)
+            <ul>
+              <li>其他地方的$\tau_i$ 可以随便取值</li>
+              <li>$\omega_i$ 在$\gamma_i^+, \gamma_i^-$ 上的边都取0, 所以是well-defined</li>
+              <li>$w_i$ 在同组$\gamma_j$ 上取1: 展开成$M_i$ 后, $\gamma_j$ 变为$\gamma_i^+$ 到$\gamma_i^-$ 的path, $d\tau_i=1$
+                <ul>
+                  <li>$w_i$ 是同组$\gamma_j$ 的对偶</li>
+                </ul>
+              </li>
+              <li>$w_i$ 在其他$\gamma_j$ 上取0: 展开成$M_i$ 后, $\gamma_j$ 依然是loop, $d\tau_i=0$</li>
+              <li>$\omega_i=d\tau_i$, 所以$d\omega_i$ 处处为0</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>所有$\omega_i$ 组成$H^1(\Sigma, \mathbb Z)$ 的basis</li>
+    </ul>
+  </li>
+</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="math" /><category term="content" /><summary type="html"><![CDATA[上同调是同调的对偶]]></summary></entry><entry><title type="html">conformal geometry学习 (五 ) – homology group</title><link href="https://roshameow.github.io//personal_homepage/docs/math/conformal-geometry5/" rel="alternate" type="text/html" title="conformal geometry学习 (五 ) – homology group" /><published>2024-07-22T00:00:00+00:00</published><updated>2024-07-31T08:42:10+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/math/conformal-geometry5</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/math/conformal-geometry5/"><![CDATA[<h2 id="曲面的离散表示">曲面的离散表示</h2>
 
 <p>曲面可以离散化用Simplicial Complex表示</p>
 
@@ -61,8 +168,8 @@
       </li>
     </ul>
   </li>
-  <li>closed: k-chain $\gamma\in C_k(\Sigma)$ 没有boundary, 即$\partial_k \gamma=0$</li>
-  <li>exact: k-chain $\gamma\in C_k(\Sigma)$ 是某个k+1-chain的boundary, 即 $\gamma=\partial_{k+1} \sigma$</li>
+  <li>closed ($Z_n$,cycles): k-chain $\gamma\in C_k(\Sigma)$ 没有boundary, 即$\partial_k \gamma=0$</li>
+  <li>exact ($B_{n+1}$,boundaries): k-chain $\gamma\in C_k(\Sigma)$ 是某个k+1-chain的boundary, 即 $\gamma=\partial_{k+1} \sigma$</li>
 </ul>
 
 <table>
@@ -139,9 +246,19 @@
       <td>$H_1(\Sigma,\mathbb Z)=\pi_1(\Sigma)^{ab}=\pi_1(\Sigma)/[\pi_1(\Sigma),\pi_1(\Sigma)]$ <br />$[\pi_1(\Sigma),\pi_1(\Sigma)]$ 是commutator<br />$H_1$和$\pi_1$ generator相同</td>
     </tr>
     <tr>
+      <td>合并<br />$U\cup V$</td>
+      <td>$&lt;u_1,\dots,u_k,v_1,\dots,v_m\vert \alpha_i,\beta_j,i(w_1)j(w_1)^{-1},\dots,i(w_p)j(w_p)^{-1}&gt;$ <br /><a href="https://en.wikipedia.org/wiki/Seifert–Van_Kampen_theorem">Seifert-Van Kampen Theorem</a></td>
+      <td>$&lt;u_1,\dots,u_k,v_1,\dots,v_m\vert \alpha_i,\beta_j,i(w_1),j(w_1),\dots,i(w_p),j(w_p)&gt;$<br />$H_1(U\cup V)\cong (H_1(U)\oplus H_1(V))/\text{img}(i_\ast,j_\ast)$  <br /><a href="https://en.wikipedia.org/wiki/Mayer–Vietoris_sequence">Mayer–Vietoris_sequence</a></td>
+    </tr>
+    <tr>
       <td>high-genus <br />oriented surface<br />$T_1 \texttt{#}T_2 \texttt{#}\cdots  \texttt{#} T_g$</td>
       <td>$&lt;a_1,\cdots,a_g,b_1,\cdots, b_g\vert \prod_{i=1}^g a_ib_ia_i^{-1} b_i^{-1}&gt;$</td>
       <td>$&lt;a_1,\cdots,a_g,b_1,\cdots, b_g&gt;^{ab}$ <br /><br />free Abelian group $\mathbb Z^{2g}$</td>
+    </tr>
+    <tr>
+      <td>non-orientable<br /> surface</td>
+      <td> </td>
+      <td> </td>
     </tr>
   </tbody>
 </table>
@@ -157,13 +274,33 @@
   </li>
 </ul>
 
+<h3 id="topological-space分解">topological space分解</h3>
+
+<ul>
+  <li><a href="https://en.wikipedia.org/wiki/Mayer–Vietoris_sequence">Mayer–Vietoris_sequence</a>: $U, V$ open, $H_n(U\cup V)$ 和$H_n(U)$ , $H_n(V)$ 的关系
+    <ul>
+      <li>
+\[\cdots\rightarrow H_{n+1}(U\cup V)\overset{\partial_\ast}\rightarrow H_n(U\cap V)\overset{i_\ast,j_\ast}\rightarrow H_n(U)\oplus H_n(V)\overset{k_\ast-l_\ast}\rightarrow H_{n}(U\cup V)\rightarrow \cdots\]
+        <ul>
+          <li>i, j, k, l都是inclusion</li>
+          <li><a><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Mayer_Vietoris_sequence_boundary_map_on_torus.png/224px-Mayer_Vietoris_sequence_boundary_map_on_torus.png" width="112" /></a> $\partial_\ast:[x]\mapsto [\partial u]$</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
 <h3 id="homology-basis同调群基底计算">Homology Basis(同调群基底)计算</h3>
 
 <ul>
   <li>Smith Norm方法(线性代数): 因为<strong>同调群是Abel群</strong>, 可以有$\mathbb Z$-module(向量)表示
     <ul>
       <li>把k-chain $C_k$ :  $\sigma=\sum_i\lambda_i\sigma_i, \lambda_i\in\mathbb Z$ 用以simplex为basis的vector表示</li>
-      <li>Boundary Operator $\partial_k:C_k\rightarrow C_{k-1}$ 用矩阵表示, adjoint Boundary Operator $\partial_k^*=\partial_{k}^T$</li>
+      <li>Boundary Operator $\partial_k:C_k\rightarrow C_{k-1}$ 用矩阵表示, adjoint Boundary Operator $\partial_k^*=\partial_{k}^T$
+        <ul>
+          <li>$\partial_k=([\sigma_i^{k-1},\sigma_j^k]_{ij})$ , $[\sigma_i^{k-1},\sigma_j^k]$ 是k-simplex和(k-1)-simplex的连接数, 可能是+/- 1, 0(包含定向)</li>
+        </ul>
+      </li>
       <li>表示 <a href="https://en.wikipedia.org/wiki/Laplacian_matrix">Combinatorial Laplacian matrix</a>   $\Delta_k=\partial_k^T\partial_k+\partial_{k+1}\partial_{k+1}^T$
         <ul>
           <li>$\text{ker}\Delta_k=H_k$
@@ -186,7 +323,7 @@
           </li>
         </ul>
       </li>
-      <li>用integer matrix的Smith norm计算$\Delta_k$ 的zero eigen value(即$\text{ker}\Delta_k$ )
+      <li>用integer matrix的Smith norm计算$\Delta_k$ 的zero eigen vector(即$\text{ker}\Delta_k$ )
         <ul>
           <li>Smith Norm计算也是指数级, NP-hard?</li>
         </ul>
@@ -195,34 +332,121 @@
   </li>
 </ul>
 
-<h3 id="poincaré-duality"><a href="https://en.wikipedia.org/wiki/Poincaré_duality">Poincaré Duality</a></h3>
-
-<p><a href="https://www.researchgate.net/profile/Clement-Cances/publication/278829092/figure/fig3/AS:667718760022016@1536207966130/Triangular-mesh-T-and-Donald-dual-mesh-M-dual-volumes-vertices-interfaces.png"><img src="https://www.researchgate.net/profile/Clement-Cances/publication/278829092/figure/fig3/AS:667718760022016@1536207966130/Triangular-mesh-T-and-Donald-dual-mesh-M-dual-volumes-vertices-interfaces.png" width="200" /></a></p>
+<h3 id="closed-surface映射的degree"><a href="https://en.wikipedia.org/wiki/Degree_of_a_continuous_mapping">closed surface映射的degree</a></h3>
 
 <ul>
-  <li><a href="https://en.wikipedia.org/wiki/Poincaré_duality">Poincaré Duality</a>: n-dim的manifold $M$, 三角剖分$T$, 和cell decomposition $T^*$ 对偶.
+  <li>degree of mapping由homology(同调)映射的层数$c$ 定义(同调的用途)</li>
+  <li>closed surface之间的连续映射$f: M\rightarrow N$ , induce homology group之间的映射$f_\ast: H_2(M,\mathbb Z)\rightarrow H_2(N,\mathbb Z)$
     <ul>
-      <li><strong>把每个k-simplex $\sigma$ 映射成(n-k)-cell $\sigma^\ast$</strong>: 对于包含$\sigma$ 的n-simplex $\Delta$,  $\Delta\cap\sigma^*$ 是取$\sigma\subset …\subset \Delta$ 之间的simplex的barycentres(重心点) 的convex hull
-        <ul>
-          <li><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240727223859.png" alt="Pasted image 20240727223859.png" width="100" /> 顶点(1-simplex) $\sigma$, 面(2-simplex) $\Delta$ , 灰色部分 $\Delta\cap\sigma^*$ 是顶点$\sigma$,两条边, 面$\Delta$ 的重心点的convex hull</li>
-          <li>$\sigma^*$ 只和$\sigma$ 相交, 这个intersection给出了对偶关系</li>
-        </ul>
-      </li>
-      <li><strong>把k-chain $C_k(T)$映射到(n-k)-chain $C_{n-k}(T^*)$</strong> :
-        <ul>
-          <li>$C_{n-k}(T^\ast)$ 是定义在$T^\ast$ 的多边形cell上的? 这样也可以吗?</li>
-        </ul>
-      </li>
-      <li><strong>把$H_k(M,\mathbb Z)$ 映射到 $H_{n-k}(M,\mathbb Z)$</strong>: $H_k(M,\mathbb Z)\cong H_{n-k}(M,\mathbb Z)$</li>
+      <li>-&gt; $f_\ast: \mathbb Z\rightarrow \mathbb Z$</li>
+      <li>-&gt; $f_\ast(z)=cz, c\in \mathbb Z$</li>
+      <li>-&gt; $deg(f)=c$</li>
     </ul>
   </li>
 </ul>
 
-<h4 id="例子">例子</h4>
+<p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240731003422.png" alt="Pasted image 20240731003422.png" width="400" />  $p_1,p_2,p_3$ 都映射到$q$.  $p_3$ 是往右凸起, $K(p_3)$ 应该&gt;0?</p>
+<ul>
+  <li>例子1(<a href="https://en.wikipedia.org/wiki/Gauss–Bonnet_theorem">Gauss-Bonnet</a>): Gauss映射$G:S\rightarrow \mathbb S^2$ , 把点映射到normal vector($p\mapsto n(p)$ ).
+    <ul>
+      <li>$deg(G)=1-g$. 覆盖球面1-g次</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="relative-homology相对同调">Relative Homology(相对同调)</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th>定义</th>
+      <th>maps</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>simplicial complex</td>
+      <td>$K_0\subset K$ 是subcomplex</td>
+      <td>$f:K\rightarrow L$<br />并且, $f(K_0)\subset L_0$</td>
+    </tr>
+    <tr>
+      <td>relative p-chain</td>
+      <td>$C_n(K,K_0)=C_n(K)/C_n(K_0)$<br />元素是coset $c+C_n(K_0)$</td>
+      <td>$f_\texttt{#}: C_n(K,K_0)\rightarrow C_n(L,L_0)$</td>
+    </tr>
+    <tr>
+      <td>relative boundary operator</td>
+      <td>$\partial_n:C_n(K,K_0)\rightarrow C_{n-1}(K,K_0)$<br />其中, $c\mapsto \partial_n c+C_{n-1}K_0$</td>
+      <td>$f_\texttt{#}$ 和$\partial_n$ 可交换</td>
+    </tr>
+    <tr>
+      <td>relative cycles</td>
+      <td>$Z_n(K,K_0)=\text{ker}\partial_n$<br />$\partial_n(Z_n(K,K_0))$ 在$C_{n-1}(K,K_0)$ 中trival<br />即有, $\partial_n: Z_n(K,K_0)\hookrightarrow C_{n-1}(K_0)$</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>relative boundary</td>
+      <td>$B_n(K,K_0)=\text{img}\partial_{n+1}$</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>relative homology</td>
+      <td>$H_n(K,K_0)=Z_n(K,K_0)/B_n(K,K_0)$</td>
+      <td>$f_\ast: H_n(K,K_0)\rightarrow H_n(L,L_0)$</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="分解性质">分解性质</h3>
 
 <ul>
-  <li>closed oriented 曲面$S=T_1 \texttt{#}T_2 \texttt{#}\cdots  \texttt{#} T_g$, 只有一个连通分支, $H_0(S,\mathbb Z)=H_2(S,\mathbb Z)=\mathbb Z$</li>
-</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="math" /><category term="content" /><summary type="html"><![CDATA[曲面的离散表示]]></summary></entry><entry><title type="html">conformal geometry学习 (四 ) – 3-manifold</title><link href="https://roshameow.github.io//personal_homepage/docs/math/conformal-geometry4/" rel="alternate" type="text/html" title="conformal geometry学习 (四 ) – 3-manifold" /><published>2024-07-21T00:00:00+00:00</published><updated>2024-07-26T20:35:56+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/math/conformal-geometry4</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/math/conformal-geometry4/"><![CDATA[<p>3维流型, 在局部和$\mathbb R^3$ homeomorphic(同胚)</p>
+  <li>得到long exact sequence:</li>
+  <li>
+\[\cdots\rightarrow H_n(K_0)\overset{i_\ast}\rightarrow H_n(K)\overset{\pi_\ast}\rightarrow H_n(K,K_0)\overset{\partial}\rightarrow H_{n-1}(K_0)\rightarrow \cdots\]
+    <ul>
+      <li>$i_\ast: H_n(K_0)\rightarrow H_n(K)$
+        <ul>
+          <li>$i: K_0\rightarrow K$ 是inclusion</li>
+        </ul>
+      </li>
+      <li>$\pi_\ast: H_p(K)\rightarrow H_p(K,K_0)$ 给出absolute homology和relative homology的映射
+        <ul>
+          <li>$\pi:(K,\emptyset)\rightarrow (K,K_0)$ 是identity</li>
+        </ul>
+      </li>
+      <li>$\partial: H_n(K,K_0)\rightarrow H_{n-1}(K_0)$ 把relative cycle映射到boundary
+        <ul>
+          <li>由, $\partial_n: Z_n(K,K_0)\rightarrow C_{n-1}(K_0)$ 和$\partial_n(B_n)=0$ 定义</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="切除性质">切除性质</h3>
+
+<ul>
+  <li><a href="https://en.wikipedia.org/wiki/Excision_theorem">excision theorem(切除定理)</a>: $U\subset K_0\subset K$, 则切除$U$ 后relative homology不变,  即$H_n(K,K_0)\cong H_n(K-U,K_0-U)=H_n(L,L_0)$
+    <ul>
+      <li>证明1: 用Smith Norm方法, $H_n$ 的basis由矩阵$\Delta_n$ 的0-eigenvector得到(具体细节🤔️?)
+        <ul>
+          <li>写出$\partial_n: C_n(K)\rightarrow C_{n-1}(K)$ 和$\partial_n: C_n(L)\rightarrow C_{n-1}(L)$ 的矩阵表示</li>
+          <li>$C_n(K)$ 可以分解为$C_n(K_0)\oplus C_n(K,K_0)$ 两部分, 后部分又分解出$Z_n(K,K_0)$ 部分
+            <ul>
+              <li>$Z_n(K,K_0)$ 和$Z_n(L,L_0)$ 部分维数相等?</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>证明2: 用long exact sequence分解(具体细节🤔️?)
+        <ul>
+          <li>$K=K_0\cup(K-U)=K_0\cup L$ , $K_0\cap L=K_0-U=L_0$</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="math" /><category term="content" /><category term="discrete" /><category term="triangulation" /><category term="三角剖分" /><category term="chain" /><category term="simplex" /><category term="simplical_complex" /><category term="homology" /><summary type="html"><![CDATA[曲面的离散表示]]></summary></entry><entry><title type="html">conformal geometry学习 (四 ) – 3-manifold</title><link href="https://roshameow.github.io//personal_homepage/docs/math/conformal-geometry4/" rel="alternate" type="text/html" title="conformal geometry学习 (四 ) – 3-manifold" /><published>2024-07-21T00:00:00+00:00</published><updated>2024-07-26T20:35:56+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/math/conformal-geometry4</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/math/conformal-geometry4/"><![CDATA[<p>3维流型, 在局部和$\mathbb R^3$ homeomorphic(同胚)</p>
 
 <h2 id="3-manifold和knot的本质关联">3-manifold和knot的本质关联</h2>
 
@@ -1095,273 +1319,4 @@
   <li>﻿﻿Release the BOOT button</li>
   <li>﻿﻿Upload sketch</li>
   <li>﻿﻿Once sketch is uploaded, press and release RST</li>
-</ol>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="hardware" /><category term="content" /><summary type="html"><![CDATA[开发方法]]></summary></entry><entry><title type="html">四边形网格生成</title><link href="https://roshameow.github.io//personal_homepage/docs/algorithm/quadrilateral-mesh/" rel="alternate" type="text/html" title="四边形网格生成" /><published>2024-06-04T00:00:00+00:00</published><updated>2024-07-03T23:46:22+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/algorithm/quadrilateral-mesh</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/algorithm/quadrilateral-mesh/"><![CDATA[<p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240610075408.png" alt="Pasted image 20240610075408.png" width="150" /> -&gt; <img src="/personal_homepage/docs/attachment/Pasted%20image%2020240610075425.png" alt="Pasted image 20240610075425.png" width="130" /></p>
-
-<p>从通用的triangle mesh生成quad mesh. quad mesh容易插值和细分(样条曲面和 Catmull-Clark细分曲面常⻅ 的定义域就是四边形)</p>
-
-<h2 id="quad-mesh-定义">quad-mesh 定义</h2>
-
-<p><img src="https://upload.wikimedia.org/wikipedia/commons/b/bb/Conformal_map.svg" alt="drawing" width="100" /></p>
-
-<ul>
-  <li>由多个topological rectangle构成,每个rectangle interior是regular grid.
-    <ul>
-      <li>topological rectangle:由复平面的rectangle做conformal(holomorphic) map变形得到
-        <ul>
-          <li><a href="https://en.wikipedia.org/wiki/Conformal_map">Conformal map(保角映射)</a> 从几何方面描述: grid映射成正交的curve</li>
-          <li><a href="https://en.wikipedia.org/wiki/Holomorphic_function">holomorphic map(全纯函数)</a> 从分析方面描述:  $\mathbb C\rightarrow \mathbb C$ , 在任意一点可导</li>
-        </ul>
-      </li>
-      <li>通过在quad-mesh上定义conformal <a href="https://en.wikipedia.org/wiki/Atlas_(topology)">atlas</a> , 得到quad- mesh是Riemann surface(see <a href="#ref">quad.2 Theorem 4.6</a>)
-        <ul>
-          <li>chart: 每个face 的 interior定义$U_f$ , edge邻域定义$U_e$ , vertex邻域定义$U_v$</li>
-          <li>transition: 每两个chart之间的transition(face-&gt;edge, edge-&gt;vertex, face-&gt;vertex)都是$\pi/2$ 的旋转+平移, 是holomorphic的</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-</ul>
-
-<p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240612152840.png" alt="Pasted image 20240612152840.png" width="400" /></p>
-
-<h2 id="等价条件">等价条件</h2>
-
-<h3 id="conditions">conditions</h3>
-
-<ul>
-  <li>Riemann surface($\Sigma,g$) with cone singularities($\mathcal S$) 是quad mesh($\mathcal Q$) 的等价条件1 :
-    <ol>
-      <li>Gauss-Bonnet condition : 在singularities处的total curvature符合<a href="https://en.wikipedia.org/wiki/Gauss–Bonnet_theorem">Gauss-Bonnet Theorem</a>
-        <ul>
-          <li>$\sum_{v_i} (4-k(v))\frac{\pi}{2}=2\pi\chi(\Sigma)=2\pi(2-2g)$
-            <ul>
-              <li>LHS: closed surface, 在singularities处的curvature是$(4-k(v))\frac{\pi}{2}$ , 其他地方的curvature=0</li>
-              <li>RHS: <a href="https://en.wikipedia.org/wiki/Euler_characteristic">Euler Character</a> = 2-2g</li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-      <li>holonomy condition: 一个cross frame沿loop平行移动, 方向旋转的⻆度为pi/2的整数倍.存在一个global smooth的cross field.
-        <ul>
-          <li><a href="https://en.wikipedia.org/wiki/Holonomy">holonomy group</a> :  $Hol(\Sigma\backslash\mathcal S,g)={e^{i\frac{k\pi}{2}},k\in\mathbb Z}\simeq \mathbb Z^3$</li>
-          <li>cross field指$\Sigma$ 的tangent bundle上的 <a href="https://en.wikipedia.org/wiki/Levi-Civita_connection" title="Levi-Civita connection">Levi-Civita connection</a></li>
-        </ul>
-      </li>
-      <li>boundary alignment condition: boundary和cross field是平行或垂直关系</li>
-      <li>finite geodesic lamination condition: 沿cross field的geodesic是有限⻓的</li>
-    </ol>
-  </li>
-  <li>等价关系推导:
-    <ul>
-      <li>quad mesh -&gt; conditions(see <a href="#ref">quad.1 Theorem 3.7</a>):
-        <ul>
-          <li>取cross field平行于edges
-            <ul>
-              <li>每次穿过不同chart时, 只会转$\pi/2$ 的整数倍</li>
-              <li>geodesic不会进入同一个face多过两次, face数是又有限的, 所以geodesic也是finite的.</li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-      <li>Riemann surface with conditions -&gt; quad mesh(see <a href="#ref">quad.1 Theorem 3.8</a>):
-        <ul>
-          <li>从singilarities出发, 沿cross field的geodesics形成quad mesh</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-</ul>
-
-<h3 id="meromorphic-quartic-differential">meromorphic quartic differential</h3>
-
-<ul>
-  <li>Riemann surface with cone singularities是quad mesh的等价条件 2:
-    <ul>
-      <li>closed quad-mesh等价于存在meromorphic quartic differential with finite trajectories
-        <ul>
-          <li>从文章看, quartic differential $(dz)^4$ 似乎并不是指外积 $\wedge^4 dz$</li>
-          <li>从quartic differential $\omega=f(z)(dz)^4$, 对应differential 1-form $\sqrt[4]{\omega}=f(z)^{\frac{1}{4}}dz$</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li>等价关系推导:
-    <ul>
-      <li>quad mesh -&gt; meromorphic quartic differential(see <a href="#ref">quad.2 Theorem 4.7</a> ):
-        <ul>
-          <li>locally 在一个face 上定义 $(dz_f)^4$ , 可以consistent的定义在其他face, edge, vertex(包括singularities)的chart上</li>
-        </ul>
-      </li>
-      <li>meromorphic quartic differential -&gt; conditions(see <a href="#ref">quad.2 Theorem 4.8</a> ):
-        <ul>
-          <li>取cross field(condition.2)为meromorphic quartic differential的horizontal &amp; vertical trajectories(see <a href="#ref">qaud.2 Definition 3.13</a> )
-            <ul>
-              <li>使$\omega=f(z)(dz)^4$ 值是real的方向, 如果$w=z(dz)^4=c(d(z^{\frac{5}{4}}))^4$ , 有5个方向, $\theta=\frac{k2\pi}{5}$</li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-</ul>
-
-<h3 id="divisor">divisor</h3>
-
-<ul>
-  <li>divisor 对应meromorphic quartic differential的等价条件3:
-    <ul>
-      <li>divisor和一个holomorphic 1-form在Abel-Jacobian map下的值相等, $\mu(D-4(\omega_0))=0$
-        <ul>
-          <li>$(\omega_0)$ 为holomorphic 1-form的zeros</li>
-          <li>Abel-Jacobian map ($\Sigma\rightarrow \Omega^1(\Sigma)^*/\Lambda$ )
-            <ul>
-              <li>$\mu:p\mapsto \int_{p}^{p_0}\cdot$
-                <ul>
-                  <li>因此可以定义在divisor上,  ($Div(\Sigma)\rightarrow \Omega^1(\Sigma)^*/\Lambda$ ), $\mu:\sum_{i=1}^n n_ip_i\mapsto \sum_{i=1}^n n_i\int_{p_i}^{p_0}\cdot$</li>
-                </ul>
-              </li>
-              <li>$\Omega^1(\Sigma)$ 为<a href="https://en.wikipedia.org/wiki/Differential_forms_on_a_Riemann_surface">holomorphic 1-form的线性空间</a> , $\Omega^1(\Sigma)^*$ 是它的对偶空间</li>
-              <li>modulo image of <a href="https://en.wikipedia.org/wiki/Homology_(mathematics)">homology group(同调群)</a>  $H_1(\Sigma,\mathbb Z)$
-                <ul>
-                  <li>记 $H_1(\Sigma,\mathbb Z)$ 的basis ${a_1,\dots,a_g,b_1,\dots,b_g}$ , 即$\Lambda=span{\int_{a_1}\cdot,\dots,\int_{a_g}\cdot,\int_{b_1}\cdot,\dots,\int_{b_g}\cdot}$
-                    <ul>
-                      <li>前半部分记为period matrix $A$, 后半部分记为period matrix $B$ (see quad.3 Definition 3.9)</li>
-                    </ul>
-                  </li>
-                </ul>
-              </li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li>等价关系推导:
-    <ul>
-      <li>quad mesh -&gt; divisor condition(see <a href="#ref">quad.2 Theorem 4.11</a> ):
-        <ul>
-          <li>divisor Q 对应的meromorphic quartic differential($\omega_Q$) 可以拆分成 $\omega_Q=f\cdot \omega_0^4$
-            <ul>
-              <li>其中$\omega_0$ 是任意holomorphic 1-form, $f$ 是meromorphic function</li>
-              <li>meromorphic function $f$ 对应principle divisor $(f)$ , $\mu((f))=0$</li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-</ul>
-
-<h2 id="从divisor生成quad-mesh的方法">从divisor生成quad-mesh的方法</h2>
-
-<p>只考虑closed oriented surface的情况. 有边界和non-oriented(Mobius strip)的情况类似.</p>
-
-<h3 id="生成t-mesh-tvef">生成T-mesh $T=(V,E,F)$</h3>
-
-<p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240612151157.png" alt="Pasted image 20240612151157.png" width="200" /></p>
-
-<ul>
-  <li>从triangle mesh计算homology group(同调群) $H_1(\Sigma,\mathbb Z)$ 的basis ${a_1,\dots,a_g,b_1,\dots,b_g}$ ,
-    <ul>
-      <li>通过reset height function构造Reeb graph抽卡保证$a_i$ 只和$b_i$ 相交(canonical basis, see <a href="#ref">4</a>)</li>
-      <li>得到holomorphic 1-form basis  $\Omega^1(\Sigma)$ (see <a href="#ref">5</a>)
-        <ul>
-          <li>loop $\gamma$ -&gt; discrete closed 1-form $\lambda_{\gamma}=dg_{\gamma}$  -&gt; harmonic 1-form $\omega_{\gamma}$ -&gt; holomorphic 1-form $\phi_{\gamma}$
-            <ul>
-              <li>由<a href="https://en.wikipedia.org/wiki/Riemann–Roch_theorem">Riemann-Roch theorem</a>, $l(D)-l(K-D)=deg(D)+1-g$, 令$D=0$, 得到 $l(K)=g$ , 即我们得到的是一组basis</li>
-            </ul>
-          </li>
-          <li>得到一个holomorphic 1-form $\phi$</li>
-          <li>得到period matrix A, B</li>
-        </ul>
-      </li>
-      <li>得到cut graph $\Gamma$</li>
-    </ul>
-  </li>
-  <li>生成singularity set $\mathcal S$
-    <ul>
-      <li>在surface上选择initial singularities
-        <ul>
-          <li>maximal Gaussian curvature as poles, or with minimal curvature as zeros</li>
-        </ul>
-      </li>
-      <li>先添加一些zeros, poles, 使其满足Gauss-Bonnet condition
-        <ul>
-          <li>local maximal Gaussian curvature as poles, or with local minimal curvature as zeros</li>
-        </ul>
-      </li>
-      <li>优化这些点, 使其满足Abel–Jacobi condition: 对应一个meromorphic quartic differential
-        <ul>
-          <li>等价于: divisor $D$ 和 $4(\phi)$  linearly equivalent, 即相差一个meromorphic function</li>
-          <li>等价于: $D$ 和 $4(\phi)$ 在Abel-Jacobian map的值相等</li>
-          <li>用gradient descent优化 $\mu(D-4(\phi))$</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li>把$\mathcal S$ 做为divisor生成一个meromorphic quartic differential $\omega$
-    <ul>
-      <li>计算cutgraph: $\Gamma\ \cup\ {\cup_{i=1}^k \gamma_i}$     (see <a href="#ref">quad.3  4.1.7</a> )
-        <ul>
-          <li>其中$\Gamma$ 为homology group  ${a_1,\dots,a_g,b_1,\dots,b_g}$ 的union</li>
-          <li>${\cup_{i=1}^k \gamma_i}$ 是sigularities $p_i$ 到cutgraph $\Gamma$ 的最短path</li>
-        </ul>
-      </li>
-      <li>得到沿上面cutgraph切开的foundamental domain $\tilde \Sigma$</li>
-      <li>计算foundamental domain $\tilde \Sigma$ 到平面$\mathbb C$ 的isometric immersion $\psi$ (see <a href="#ref">6</a>)
-        <ul>
-          <li>用Newton method优化每个vertex上的conformal  factor $u_i$</li>
-        </ul>
-      </li>
-      <li>complex domain上的$dz^4$, 用$\psi$ pull back, 得到 $\omega=\psi^* dz^4$ 为$\Sigma$ 上的一个meromorphic quartic differential</li>
-    </ul>
-  </li>
-  <li>从 $\omega$ 上$S$的横竖方向trace得到T-mesh(see <a href="#ref">7</a>)</li>
-</ul>
-
-<p>T-mesh 形成过程: <img src="/personal_homepage/docs/attachment/Pasted%20image%2020240612170414.png" alt="Pasted image 20240612170414.png" width="400" /></p>
-<h3 id="生成quad-mesh-把每个rectangle划分成grid方格">生成quad-mesh: 把每个rectangle划分成grid方格</h3>
-
-<ul>
-  <li>解$\downarrow$ 构成的线性系统方程
-    <ul>
-      <li>约束:
-        <ul>
-          <li>singularity position constraints: 共2(S-1)个(singularity set $\mathcal S$ )
-            <ul>
-              <li>$v_0$ 到$v_i$ 的path在horizontal, vertical 方向是有理数 (由path经过的edge组成 )</li>
-            </ul>
-          </li>
-          <li>deck transformation constraints: 共2x2g个
-            <ul>
-              <li>${a_1,\dots,a_g,b_1,\dots,b_g}$ 对应的路径在horizontal, vertical 方向是有理数</li>
-            </ul>
-          </li>
-          <li>face constraints: 共2(F-1)个
-            <ul>
-              <li>四边形相对边等长</li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-      <li>变量: 边长的改变量 ${x_e:e\in E}$</li>
-    </ul>
-  </li>
-</ul>
-
-<h2 id="reference">reference</h2>
-<p><span id="ref"></span></p>
-
-<p>[quad.1] Chen, Wei, Xiaopeng Zheng, Jingyao Ke, Na Lei, Zhongxuan Luo, and Xianfeng Gu. “Quadrilateral Mesh Generation I : Metric Based Method.” <em>Computer Methods in Applied Mechanics and Engineering</em> 356 (November 2019): 652–68. <a href="https://doi.org/10.1016/j.cma.2019.07.023">https://doi.org/10.1016/j.cma.2019.07.023</a>.</p>
-
-<p>[quad.2] Lei, Na, Xiaopeng Zheng, Zhongxuan Luo, Feng Luo, and Xianfeng Gu. “Quadrilateral Mesh Generation II: Meromorphic Quartic Differentials and Abel–Jacobi Condition.” <em>Computer Methods in Applied Mechanics and Engineering</em> 366 (July 2020): 112980. <a href="https://doi.org/10.1016/j.cma.2020.112980">https://doi.org/10.1016/j.cma.2020.112980</a>.</p>
-
-<p>[quad.3]  Zheng, Xiaopeng, Yiming Zhu, Wei Chen, Na Lei, Zhongxuan Luo, and Xianfeng Gu. “Quadrilateral Mesh Generation III : Optimizing Singularity Configuration Based on Abel–Jacobi Theory.” <em>Computer Methods in Applied Mechanics and Engineering</em> 387 (December 2021): 114146. <a href="https://doi.org/10.1016/j.cma.2021.114146">https://doi.org/10.1016/j.cma.2021.114146</a>.</p>
-
-<p>[4] K, DeyTamal, FanFengtao, and WangYusu. “An Efficient Computation of Handle and Tunnel Loops via Reeb Graphs.” <em>ACM Transactions on Graphics (TOG)</em>, July 21, 2013. <a href="https://doi.org/10.1145/2461912.2462017">https://doi.org/10.1145/2461912.2462017</a>. <strong>计算homology group</strong></p>
-
-<p>[5] ACM Other conferences. “Global Conformal Surface Parameterization Proceedings of the 2003 Eurographics/ACM SIGGRAPH Symposium on Geometry Processing.” World. Accessed June 5, 2024. <a href="https://doi.org/10.5555/882370.882388">https://doi.org/10.5555/882370.882388</a>.    <strong>计算holomorphic 1-form basis</strong></p>
-
-<p>[6] Jin, Miao, Junho Kim, Feng Luo, and Xianfeng Gu. “Discrete Surface Ricci Flow.” <em>IEEE Transactions on Visualization and Computer Graphics</em> 14 (September 1, 2008): 1030–43. <a href="https://doi.org/10.1109/TVCG.2008.57">https://doi.org/10.1109/TVCG.2008.57</a>.  <strong>计算foundamental domain的参数化</strong></p>
-
-<p>[7] Eppstein, David, Michael Goodrich, Ethan Kim, and Rasmus Tamstorf. “Motorcycle Graphs: Canonical Quad Mesh Partitioning.” <em>Comput. Graph. Forum</em> 27 (July 1, 2008): 1477–86. <a href="https://doi.org/10.1111/j.1467-8659.2008.01288.x">https://doi.org/10.1111/j.1467-8659.2008.01288.x</a>.  <strong>计算T-mesh</strong></p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="algorithm" /><category term="content" /><category term="mesh" /><category term="quad-mesh" /><summary type="html"><![CDATA[-&gt;]]></summary></entry></feed>
+</ol>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="hardware" /><category term="content" /><summary type="html"><![CDATA[开发方法]]></summary></entry></feed>
