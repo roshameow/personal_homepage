@@ -12,7 +12,7 @@ tags:
   - simplex
   - simplical_complex
   - homology
-last_modified_at: 2024-07-31T00:42:10-08:00
+last_modified_at: 2024-08-01T07:55:40-08:00
 ---
 ## 曲面的离散表示
 
@@ -67,7 +67,7 @@ last_modified_at: 2024-07-31T00:42:10-08:00
 
 |                                                                                            | fundamental group $\pi_1(\Sigma)$                                                                                                                                                          | first homology group $H_1(\Sigma,\mathbb Z)$                                                                                                                                                                                                         |
 | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 定义                                                                                         | 从曲面上某个点$p$                                                                                                                                                                                 | 从曲面的三角剖分                                                                                                                                                                                                                                             |
+| 定义                                                                                         | 从曲面上某个点$p$                                                                                                                                                                                 | 从曲面的三角剖分, 可以定义在任意维度                                                                                                                                                                                                                                  |
 | 生成元                                                                                        | 经过点p的loop                                                                                                                                                                                  | closed 1-chain<br> $\sigma=\sum_i\lambda_i\sigma_i, \lambda_i\in\mathbb Z$                                                                                                                                                                           |
 | 等价关系                                                                                       | $\gamma\sim e$ <br>可以连续缩成一个点<br>即, 是disk的边                                                                                                                                                 | exact: $\gamma$ homological to 0<br>是某个平面patch(2-chain)的边<br>即, $\Sigma$ 沿$\gamma$ cut会分为两片                                                                                                                                                          |
 | **性质**                                                                                     |                                                                                                                                                                                            |                                                                                                                                                                                                                                                      |
@@ -75,7 +75,7 @@ last_modified_at: 2024-07-31T00:42:10-08:00
 | **关系**<br>Abelianization                                                                   |                                                                                                                                                                                            | $H_1(\Sigma,\mathbb Z)=\pi_1(\Sigma)^{ab}=\pi_1(\Sigma)/[\pi_1(\Sigma),\pi_1(\Sigma)]$ <br>$[\pi_1(\Sigma),\pi_1(\Sigma)]$ 是commutator<br>$H_1$和$\pi_1$ generator相同                                                                                  |
 | 合并<br>$U\cup V$                                                                            | $<u_1,\dots,u_k,v_1,\dots,v_m\vert \alpha_i,\beta_j,i(w_1)j(w_1)^{-1},\dots,i(w_p)j(w_p)^{-1}>$ <br>[Seifert-Van Kampen Theorem](https://en.wikipedia.org/wiki/Seifert–Van_Kampen_theorem) | $<u_1,\dots,u_k,v_1,\dots,v_m\vert \alpha_i,\beta_j,i(w_1),j(w_1),\dots,i(w_p),j(w_p)>$<br>$H_1(U\cup V)\cong (H_1(U)\oplus H_1(V))/\text{img}(i_\ast,j_\ast)$  <br>[Mayer–Vietoris_sequence](https://en.wikipedia.org/wiki/Mayer–Vietoris_sequence) |
 | high-genus <br>oriented surface<br>$T_1 \texttt{\#}T_2 \texttt{\#}\cdots  \texttt{\#} T_g$ | $<a_1,\cdots,a_g,b_1,\cdots, b_g\vert \prod_{i=1}^g a_ib_ia_i^{-1} b_i^{-1}>$                                                                                                              | $<a_1,\cdots,a_g,b_1,\cdots, b_g>^{ab}$ <br><br>free Abelian group $\mathbb Z^{2g}$                                                                                                                                                                  |
-| non-orientable<br> surface                                                                 |                                                                                                                                                                                            |                                                                                                                                                                                                                                                      |
+| non-orientable<br> surface<br>$\mathbb {R}P^2$                                             | $<\gamma\ \vert\  \gamma^2>$                                                                                                                                                               | $\mathbb Z/2\mathbb Z$ <br>torsion(生成元阶数有限)                                                                                                                                                                                                          |
 
 **同调分类比同伦分类粒度更粗**
 
@@ -89,6 +89,16 @@ last_modified_at: 2024-07-31T00:42:10-08:00
 	- $$\cdots\rightarrow H_{n+1}(U\cup V)\overset{\partial_\ast}\rightarrow H_n(U\cap V)\overset{i_\ast,j_\ast}\rightarrow H_n(U)\oplus H_n(V)\overset{k_\ast-l_\ast}\rightarrow H_{n}(U\cup V)\rightarrow \cdots$$
 		- i, j, k, l都是inclusion
 		- <a ><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Mayer_Vietoris_sequence_boundary_map_on_torus.png/224px-Mayer_Vietoris_sequence_boundary_map_on_torus.png" width="112"></a> $\partial_\ast:[x]\mapsto [\partial u]$ 
+
+#### 例子
+
+![Pasted image 20240731133300.png]({{ '/docs/attachment/Pasted image 20240731133300.png' | relative_url }}){:width="100"} tunnel loop ![Pasted image 20240731133422.png]({{ '/docs/attachment/Pasted image 20240731133422.png' | relative_url }}){:width="100"} handle loop
+
+- closed, orientable 曲面$S$ , 内部三流型为$I$, 外部为$O$ , 有
+	- $$\cdots\rightarrow H_2(\mathbb R^3)\overset{\partial_\ast}\rightarrow H_1(S)\overset{i_\ast,j_\ast}\rightarrow H_1(I)\oplus H_1(O)\overset{k_\ast-l_\ast}\rightarrow H_1(\mathbb R^3)\rightarrow \cdots$$
+		- $H_2(\mathbb R^3)=H_1(\mathbb R^3)=0$ ($\mathbb R^3$ 可以缩到一个点, 是同伦trival-> 同调trival, Poincaré duality给出$H_2\cong H_1$ )
+	- $H_1(S)\cong H_1(I)\oplus H_1(O)$ 由内外三流型的同调确定
+		- $H_1(I)$ 的generator是tunnel loop(外部可以缩成一个点), $H_1(O)$ 的generator是handle loop
 
 
 ### Homology Basis(同调群基底)计算

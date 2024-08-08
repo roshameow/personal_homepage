@@ -1,22 +1,22 @@
 ---
 layout: post
-title: conformal geometry学习 (六 ) -- (Simplicial) cohomology group
+title: conformal geometry学习 (六 ) -- cohomology group
 categories:
   - math
 tags:
   - content
-last_modified_at: 2024-07-31T00:46:00-08:00
+last_modified_at: 2024-08-06T08:29:40-08:00
 ---
 上同调是同调的对偶
 
-| 同调 homology                                                 | 上同调 [(Simplicial) cohomology](https://en.wikipedia.org/wiki/Cohomology)<br><br>最初是为了表示[stiefel whitney class](https://en.wikipedia.org/wiki/Stiefel–Whitney_class.) | 对偶记号                                                                                                                      |
-| ----------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
-| k-chain $\sigma$ <br>$C_k$                                  | k-cochain(k-form) $\omega$ <br>$C^k$                                                                                                                                | bilinear operator<br>$<\omega,\sigma>:=\omega(\sigma)$                                                                    |
-| (k+1)-boundary<br>$\partial_{k+1}:C_{k+1}\rightarrow C_{k}$ | k-coboundary(微分算子)<br>$\delta_k: C^k\rightarrow C^{k+1}$<br>$\delta_k(\omega)=\omega\circ \partial_{k+1},\omega\in C^k$                                             | $<\delta\omega,\sigma>=<\omega,\partial\sigma>$ <br><br>[Stokes Theorem](https://en.wikipedia.org/wiki/Stokes%27_theorem) |
-|                                                             | closed form $\delta_k\omega=0$                                                                                                                                      |                                                                                                                           |
-|                                                             | exact form $\omega=\delta_{k-1}\sigma$                                                                                                                              |                                                                                                                           |
-| $H_n$<br>closed, but not exact                              | $H^n=\frac{\text{ker}\delta^n}{\text{img}\delta^{n-1}}$ <br>curl free, but not =gradient                                                                            |                                                                                                                           |
-| $f_\ast: H_n(M)\rightarrow H_n(N)$                          | $f^\ast: H^n(N)\rightarrow H^n(M)$<br>是$f_\ast$ 的pull back                                                                                                          |                                                                                                                           |
+| 同调 homology                                                 | 上同调 [(Simplicial) cohomology](https://en.wikipedia.org/wiki/Cohomology)<br><br>最初是为了表示[stiefel whitney class](https://en.wikipedia.org/wiki/Stiefel–Whitney_class.) | 对偶记号                                                                                                                      | de Rham cohomology |
+| ----------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- | ------------------ |
+| k-chain $\sigma$ <br>$C_k$                                  | k-cochain(k-form) $\omega$ <br>$C^k$                                                                                                                                | bilinear operator<br>$<\omega,\sigma>:=\omega(\sigma)$                                                                    |                    |
+| (k+1)-boundary<br>$\partial_{k+1}:C_{k+1}\rightarrow C_{k}$ | k-coboundary(微分算子)<br>$\delta_k: C^k\rightarrow C^{k+1}$<br>$\delta_k(\omega)=\omega\circ \partial_{k+1},\omega\in C^k$                                             | $<\delta\omega,\sigma>=<\omega,\partial\sigma>$ <br><br>[Stokes Theorem](https://en.wikipedia.org/wiki/Stokes%27_theorem) |                    |
+|                                                             | closed form $\delta_k\omega=0$                                                                                                                                      |                                                                                                                           |                    |
+|                                                             | exact form $\omega=\delta_{k-1}\sigma$                                                                                                                              |                                                                                                                           |                    |
+| $H_n$<br>closed, but not exact                              | $H^n=\frac{\text{ker}\delta^n}{\text{img}\delta^{n-1}}$ <br>curl free, but not =gradient                                                                            |                                                                                                                           |                    |
+| $f_\ast: H_n(M)\rightarrow H_n(N)$                          | $f^\ast: H^n(N)\rightarrow H^n(M)$<br>是$f_\ast$ 的pull back                                                                                                          |                                                                                                                           |                    |
 
 
 ### 一阶 cohomology basis 计算
