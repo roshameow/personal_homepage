@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="https://roshameow.github.io//personal_homepage/atom.xml" rel="self" type="application/atom+xml" /><link href="https://roshameow.github.io//personal_homepage/" rel="alternate" type="text/html" /><updated>2024-07-30T16:56:31+00:00</updated><id>https://roshameow.github.io//personal_homepage/atom.xml</id><title type="html">Liu, Wen’s Home Page</title><subtitle>Work, Experiments and Ideas.</subtitle><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><entry><title type="html">conformal geometry学习 (七 ) – Duality</title><link href="https://roshameow.github.io//personal_homepage/docs/conformal-geometry7/" rel="alternate" type="text/html" title="conformal geometry学习 (七 ) – Duality" /><published>2024-07-29T00:00:00+00:00</published><updated>2024-07-30T05:13:37+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/conformal-geometry7</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/conformal-geometry7/"><![CDATA[<h3 id="poincaré-duality"><a href="https://en.wikipedia.org/wiki/Poincaré_duality">Poincaré Duality</a></h3>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="https://roshameow.github.io//personal_homepage/atom.xml" rel="self" type="application/atom+xml" /><link href="https://roshameow.github.io//personal_homepage/" rel="alternate" type="text/html" /><updated>2024-08-08T04:03:55+00:00</updated><id>https://roshameow.github.io//personal_homepage/atom.xml</id><title type="html">Liu, Wen’s Home Page</title><subtitle>Work, Experiments and Ideas.</subtitle><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><entry><title type="html">conformal geometry学习 (八 ) – Persistent homology</title><link href="https://roshameow.github.io//personal_homepage/docs/math/algorithm/conformal-geometry8/" rel="alternate" type="text/html" title="conformal geometry学习 (八 ) – Persistent homology" /><published>2024-08-07T00:00:00+00:00</published><updated>2024-08-07T17:10:41+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/math/algorithm/conformal-geometry8</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/math/algorithm/conformal-geometry8/"><![CDATA[]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="math" /><category term="algorithm" /><category term="content" /><summary type="html"><![CDATA[]]></summary></entry><entry><title type="html">conformal geometry学习 (七 ) – Duality, homology relation</title><link href="https://roshameow.github.io//personal_homepage/docs/math/conformal-geometry7/" rel="alternate" type="text/html" title="conformal geometry学习 (七 ) – Duality, homology relation" /><published>2024-07-29T00:00:00+00:00</published><updated>2024-08-08T19:58:57+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/math/conformal-geometry7</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/math/conformal-geometry7/"><![CDATA[<h2 id="poincaré-duality"><a href="https://en.wikipedia.org/wiki/Poincaré_duality">Poincaré Duality</a></h2>
 
 <p><a href="https://www.researchgate.net/profile/Clement-Cances/publication/278829092/figure/fig3/AS:667718760022016@1536207966130/Triangular-mesh-T-and-Donald-dual-mesh-M-dual-volumes-vertices-interfaces.png"><img src="https://www.researchgate.net/profile/Clement-Cances/publication/278829092/figure/fig3/AS:667718760022016@1536207966130/Triangular-mesh-T-and-Donald-dual-mesh-M-dual-volumes-vertices-interfaces.png" width="200" /></a></p>
 
@@ -26,7 +26,165 @@
 <ul>
   <li>closed oriented 曲面$S=T_1 \texttt{#}T_2 \texttt{#}\cdots  \texttt{#} T_g$, 只有一个连通分支, $H_0(S,\mathbb Z)=H_2(S,\mathbb Z)=\mathbb Z$</li>
   <li>closed oriented 三流型$M$, $H_0(M)=H_3(M)=\mathbb Z$. $H_2(M)=H^1(M)$.</li>
-</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="content" /><summary type="html"><![CDATA[Poincaré Duality]]></summary></entry><entry><title type="html">conformal geometry学习 (六 ) – (Simplicial) cohomology group</title><link href="https://roshameow.github.io//personal_homepage/docs/math/conformal-geometry6/" rel="alternate" type="text/html" title="conformal geometry学习 (六 ) – (Simplicial) cohomology group" /><published>2024-07-26T00:00:00+00:00</published><updated>2024-07-31T08:46:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/math/conformal-geometry6</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/math/conformal-geometry6/"><![CDATA[<p>上同调是同调的对偶</p>
+</ul>
+
+<h2 id="lefschetz-duality"><a href="https://en.wikipedia.org/wiki/Lefschetz_duality">Lefschetz Duality</a></h2>
+
+<p>在带边界($\partial M$)的manifold $M$上, Poincaré Duality的推广</p>
+
+<ul>
+  <li>相交关系: intersection form: $\omega: H_k(M,\mathbb Z)\times H_{n-k}(M,\partial M,\mathbb Z)\rightarrow \mathbb Z$
+    <ul>
+      <li>把k-chain(k-submanifold) $[S]$ 和(n-k)-submanifold $[S^\prime]$ 映射到它们的代数相交数(<strong>algebraic intersection number</strong>)
+        <ul>
+          <li>properly embedding(横截相交): $\partial S^\prime=\partial M\cap S^\prime$</li>
+          <li>$S$ 和 $S^\prime$ 的交点是isolated, 在交点x的方向($\pm 1$ )由$T_x S\oplus T_x S^\prime$ 和$T_x M$ 确定, 代数相交数是所有交点相交数相加
+            <ul>
+              <li>$M$ 是曲面, $S,S^\prime$ 是两条曲线的情况: 切向量的cross product和法向量方向确定</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>$\omega$ 是<a href="https://en.wikipedia.org/wiki/Symplectic_vector_space">symplectic(辛形式)</a> , 即 $\omega$ 是non-degenerate + skew-symmetric(反交换)的
+        <ul>
+          <li>non-degenerate: 对于任何$\sigma$, $\omega(\sigma, \cdot)\ne 0$</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>相交关系-&gt; 对偶关系: $H^k(M,\mathbb Z)\cong H_{n-k}(M,\partial M, \mathbb Z)$
+    <ul>
+      <li>$\omega(\cdot,\sigma)\mapsto \sigma$</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="例子-1">例子</h4>
+
+<ul>
+  <li>如果$\partial M=\emptyset$, Lefschetz Duality退化成Poincaré Duality</li>
+  <li>connected, oriented, compact manifold $M$, $H^0(M,\mathbb Z)=H_n(M,\partial M,\mathbb Z)=\mathbb Z$
+    <ul>
+      <li>$H_n(M,\partial M,\mathbb Z)$ 的元素 $[M]$ 由n-simplex的orientation确定, 叫M的 <a href="https://en.wikipedia.org/wiki/Fundamental_class">fundamental class</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="一些manifold特征">一些manifold特征</h2>
+
+<ul>
+  <li>compact oriented connected n-manifold with (possibly empty) boundary $M$ , $H_k(M,\mathbb Z)\cong F_k\oplus T_k$
+    <ul>
+      <li>$F_k$ 是自由生成群, $T_k$ 是torsion(挠, 阶数有限的部分)</li>
+    </ul>
+  </li>
+  <li>k-th <a href="https://en.wikipedia.org/wiki/Betti_number">Betti number</a>:  $b_k(M)=rk(H_k(M,\mathbb Z))$</li>
+  <li><a href="https://en.wikipedia.org/wiki/Euler_characteristic">Euler characteristic</a> (sheaf定义):  $\chi(M)=\sum_{i=0}^n (-1)^ib_i$
+    <ul>
+      <li>如果$M$ 是compact三流型, $\chi(M)=\frac{1}{2}\chi(\partial M)$
+        <ul>
+          <li>如果$M$ 是closed:  $\chi(M)=0$
+            <ul>
+              <li>oriented : 由Poincaré duality, $b_i=b_{n-1}$ 相互抵消</li>
+              <li>non-orientable:  有一个oriented double cover N, $\chi(M)=\frac{1}{2}\chi(N)=0$</li>
+            </ul>
+          </li>
+          <li>如果M有boundary $\partial M$
+            <ul>
+              <li>把两个$M$ 沿$\partial M$  粘成一个double cover $N$ . $\chi(N)=2\chi(M)-\chi(\partial M)$</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="m-是oriented-compact-3-manifold的情况">$M$ 是oriented compact 3-manifold的情况</h2>
+
+<p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240805071909.png" alt="Pasted image 20240805071909.png" width="150" /> $M$(3-manifold) : 中间部分, $\alpha$(2-chain): 中间圆盘, $\beta$(1-chain): 沿边界的curve</p>
+
+<ol>
+  <li>有(relative homology) long exact sequence: $\cdots\rightarrow  H_2(M,\partial M)\overset{\partial}\rightarrow H_{1}(\partial M)\overset{i_\ast}\rightarrow H_1(M)\cdots$</li>
+  <li>有Lefschetz duality:  $\eta: H_2(M,\partial M,\mathbb Z)\times H_1(M,\mathbb Z) \rightarrow \mathbb Z$</li>
+  <li>有Poincaré duality: $\omega: H_1(\partial M)\times H_1(\partial M)\rightarrow Z$</li>
+  <li>边界surface $\partial M$ 有inherited orientation, 有 $H_1(\partial M)\cong \mathbb Z^{b_1(\partial M)}$ .</li>
+  <li>$H_2(M,\partial M,\mathbb Z)\cong \mathbb Z^{b_1(M)}\oplus T_2$ .</li>
+</ol>
+
+<p>(2+3). 对任意$\alpha\in H_2(M,\partial M,\mathbb Z)$, $\beta\in H_1(\partial M)$ 有$\omega(\partial \alpha,\beta)=\eta(\alpha,i_\ast\beta)$ (curve $\beta$ 和$\alpha$ (圆盘)相交 = $\beta$ 和 $\alpha$ 的边界(圆)相交)</p>
+
+<h3 id="自身和边界的oriented-dimension">自身和边界的oriented dimension</h3>
+
+<p>free generated部分, $H_2(M,\partial M, \mathbb Z_2)$ 的曲面对应边界的meridians(纬线), 由Lefschetz duality和曲面对偶的curve对应边界的longitude(经线)部分</p>
+
+<ul>
+  <li>$\partial:  H_2(M,\partial M,\mathbb Z)\rightarrow H_1(\partial M, \mathbb Z)$ 的image是 Lagrangian + max rank 的
+    <ul>
+      <li>Lagrangian: $H_1(\partial M)$ 上的intersection form $\omega\vert_{\text{img}\partial}\equiv 0$ (所有的image curve, 图上$\partial \alpha$ ,不相交)</li>
+      <li>maximal rank:  $\text{img}\partial$ 是rank n的. ( $rk(\text{img}\partial)= \frac{b_1(\partial M)}{2}$ )</li>
+      <li>证明:
+        <ul>
+          <li>Lagrangian: $\omega(\partial \alpha,\partial \alpha^\prime)=\eta(\alpha,i_\ast\partial\alpha^\prime)=\eta(\alpha,0)=0$
+            <ul>
+              <li>long exact sequence: $\cdots\rightarrow  H_2(M,\partial M)\overset{\partial}\rightarrow H_{1}(\partial M)\overset{i_\ast}\rightarrow H_1(M)\cdots$ 有$i_\ast\partial=0$</li>
+            </ul>
+          </li>
+          <li>rank &lt;= n: (由Poincaré duality)
+            <ul>
+              <li>$\omega$ 是<a href="https://en.wikipedia.org/wiki/Symplectic_vector_space">symplectic</a> 的 -&gt; $H_1(\partial M)$ 上有basis $\lbrace x_1,\cdots,x_n,y_1,\cdots,y_n\rbrace$ , 使$\omega(x_k,y_k)=1$ , -&gt; $\text{img}\partial$ 不能同时包含各组中的 $x_k,y_k$  -&gt; rank &lt;= n.</li>
+            </ul>
+          </li>
+          <li>rank &gt;= n: (由Lefschetz duality + exact sequence)
+            <ul>
+              <li>有以下关系:
+                <ul>
+                  <li>$rk(H_2(M,\partial M))=rk(H_1(M))=b_1(M)$ : 由Lefschetz duality</li>
+                  <li>$rk(H_1(\partial M))=b_1(\partial M)$</li>
+                  <li>$b_1(M)=rk(\text{ker}\partial) +rk(\text{img }\partial)$ : 由$\partial$ 的构造</li>
+                  <li>$b_1(\partial M)=rk(\text{ker }i_\ast)+rk(\text{img }i_\ast)$ : 由 $i_\ast$ 的构造</li>
+                  <li>$rk(\text{img}\partial)=rk(\text{ker }i_\ast)$ : 由exact sequence可得</li>
+                  <li>$rk(\text{ker}\partial)+rk(\text{img }i_\ast)\le b_1(M)$ : 对 $\alpha\in \text{ker}\partial$ , 有 $\eta(\alpha,i_\ast \beta)=\omega(\partial \alpha,\beta)=\omega(0,\beta)=0$ -&gt; $\text{ker}\partial\perp_\eta \text{img }i_\ast$</li>
+                </ul>
+              </li>
+              <li>解得$\text{img}\partial$ 和$b_1(\partial M)$ 的关系
+                <ul>
+                  <li>$rk(\text{img}\partial)&gt;=b_1(\partial M)/2$</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>$b_1(M)\ge \frac{b_1(\partial M)}{2}$ (由Lefschetz duality, $b_1(M)=rk(H_2(M,\partial M))&gt;rk(\text{img}\partial)$ )
+    <ul>
+      <li>$b_1(M)=0$ -&gt; $b_1(\partial M)=0$ : 如果$M$ 是simply connected, $\partial M$ 由sphere组成</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="non-orientable-embedding曲面">non-orientable embedding曲面</h3>
+
+<p>torsion部分, 由Lefschetz duality和曲面对偶的curve在曲面的tubular neighborhood里</p>
+
+<ul>
+  <li>non-orientable 曲面$S$ 嵌入$M$ (properly embedding: 横截相交, $\partial S=\partial M\cap S$ )
+    <ul>
+      <li>每个曲面$S$ 定义$H_2(M,\partial M, \mathbb Z_2)$ 中的一个non-trival class</li>
+      <li>$M$ 最多包含 $\text{dim} H_2(M,\partial M, \mathbb Z_2)$ 个不相交的non-orientable 曲面
+        <ul>
+          <li>对于每个non-orientable 曲面$S$, 把$S$ 加厚, 得到tubular neighborhood $S\times I$</li>
+          <li>tubular neighborhood的boundary 给出了$S$ 的一个double cover $\tilde S$</li>
+          <li>$S$ 上过$p$ 点的closed loop $\gamma$ , lift to $\tilde \gamma$ + 把$\tilde p_1$ 和 $\tilde p_2$ 连上得到的$\tilde \eta$ = closed loop $\alpha=\tilde \gamma \cdot \tilde \eta$ , $\alpha$ 和 $S$ 只交于一点</li>
+          <li>所有的$\alpha_i$ 不相交, 是linearly independent的, 最多有 $\text{dim} H_2(M,\partial M, \mathbb Z_2)$ 个</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>$b_1(M)=0$ -&gt; $\text{dim} H_2(M,\partial M, \mathbb Z_2)=0$ : 如果$M$ 是simply connected, 不包含non-orientable 曲面</li>
+</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="math" /><category term="content" /><category term="homology" /><category term="duality" /><category term="betti_number" /><category term="euler_character" /><category term="3-manifold" /><summary type="html"><![CDATA[Poincaré Duality]]></summary></entry><entry><title type="html">conformal geometry学习 (六 ) – cohomology group</title><link href="https://roshameow.github.io//personal_homepage/docs/math/conformal-geometry6/" rel="alternate" type="text/html" title="conformal geometry学习 (六 ) – cohomology group" /><published>2024-07-26T00:00:00+00:00</published><updated>2024-08-06T16:29:40+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/math/conformal-geometry6</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/math/conformal-geometry6/"><![CDATA[<p>上同调是同调的对偶</p>
 
 <table>
   <thead>
@@ -34,6 +192,7 @@
       <th>同调 homology</th>
       <th>上同调 <a href="https://en.wikipedia.org/wiki/Cohomology">(Simplicial) cohomology</a><br /><br />最初是为了表示<a href="https://en.wikipedia.org/wiki/Stiefel–Whitney_class.">stiefel whitney class</a></th>
       <th>对偶记号</th>
+      <th>de Rham cohomology</th>
     </tr>
   </thead>
   <tbody>
@@ -41,30 +200,36 @@
       <td>k-chain $\sigma$ <br />$C_k$</td>
       <td>k-cochain(k-form) $\omega$ <br />$C^k$</td>
       <td>bilinear operator<br />$&lt;\omega,\sigma&gt;:=\omega(\sigma)$</td>
+      <td> </td>
     </tr>
     <tr>
       <td>(k+1)-boundary<br />$\partial_{k+1}:C_{k+1}\rightarrow C_{k}$</td>
       <td>k-coboundary(微分算子)<br />$\delta_k: C^k\rightarrow C^{k+1}$<br />$\delta_k(\omega)=\omega\circ \partial_{k+1},\omega\in C^k$</td>
       <td>$&lt;\delta\omega,\sigma&gt;=&lt;\omega,\partial\sigma&gt;$ <br /><br /><a href="https://en.wikipedia.org/wiki/Stokes%27_theorem">Stokes Theorem</a></td>
+      <td> </td>
     </tr>
     <tr>
       <td> </td>
       <td>closed form $\delta_k\omega=0$</td>
+      <td> </td>
       <td> </td>
     </tr>
     <tr>
       <td> </td>
       <td>exact form $\omega=\delta_{k-1}\sigma$</td>
       <td> </td>
+      <td> </td>
     </tr>
     <tr>
       <td>$H_n$<br />closed, but not exact</td>
       <td>$H^n=\frac{\text{ker}\delta^n}{\text{img}\delta^{n-1}}$ <br />curl free, but not =gradient</td>
       <td> </td>
+      <td> </td>
     </tr>
     <tr>
       <td>$f_\ast: H_n(M)\rightarrow H_n(N)$</td>
       <td>$f^\ast: H^n(N)\rightarrow H^n(M)$<br />是$f_\ast$ 的pull back</td>
+      <td> </td>
       <td> </td>
     </tr>
   </tbody>
@@ -105,7 +270,7 @@
       <li>所有$\omega_i$ 组成$H^1(\Sigma, \mathbb Z)$ 的basis</li>
     </ul>
   </li>
-</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="math" /><category term="content" /><summary type="html"><![CDATA[上同调是同调的对偶]]></summary></entry><entry><title type="html">conformal geometry学习 (五 ) – homology group</title><link href="https://roshameow.github.io//personal_homepage/docs/math/conformal-geometry5/" rel="alternate" type="text/html" title="conformal geometry学习 (五 ) – homology group" /><published>2024-07-22T00:00:00+00:00</published><updated>2024-07-31T08:42:10+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/math/conformal-geometry5</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/math/conformal-geometry5/"><![CDATA[<h2 id="曲面的离散表示">曲面的离散表示</h2>
+</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="math" /><category term="content" /><summary type="html"><![CDATA[上同调是同调的对偶]]></summary></entry><entry><title type="html">conformal geometry学习 (五 ) – homology group</title><link href="https://roshameow.github.io//personal_homepage/docs/math/conformal-geometry5/" rel="alternate" type="text/html" title="conformal geometry学习 (五 ) – homology group" /><published>2024-07-22T00:00:00+00:00</published><updated>2024-08-01T15:55:40+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/math/conformal-geometry5</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/math/conformal-geometry5/"><![CDATA[<h2 id="曲面的离散表示">曲面的离散表示</h2>
 
 <p>曲面可以离散化用Simplicial Complex表示</p>
 
@@ -218,7 +383,7 @@
     <tr>
       <td>定义</td>
       <td>从曲面上某个点$p$</td>
-      <td>从曲面的三角剖分</td>
+      <td>从曲面的三角剖分, 可以定义在任意维度</td>
     </tr>
     <tr>
       <td>生成元</td>
@@ -256,9 +421,9 @@
       <td>$&lt;a_1,\cdots,a_g,b_1,\cdots, b_g&gt;^{ab}$ <br /><br />free Abelian group $\mathbb Z^{2g}$</td>
     </tr>
     <tr>
-      <td>non-orientable<br /> surface</td>
-      <td> </td>
-      <td> </td>
+      <td>non-orientable<br /> surface<br />$\mathbb {R}P^2$</td>
+      <td>$&lt;\gamma\ \vert\  \gamma^2&gt;$</td>
+      <td>$\mathbb Z/2\mathbb Z$ <br />torsion(生成元阶数有限)</td>
     </tr>
   </tbody>
 </table>
@@ -284,6 +449,28 @@
         <ul>
           <li>i, j, k, l都是inclusion</li>
           <li><a><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Mayer_Vietoris_sequence_boundary_map_on_torus.png/224px-Mayer_Vietoris_sequence_boundary_map_on_torus.png" width="112" /></a> $\partial_\ast:[x]\mapsto [\partial u]$</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="例子">例子</h4>
+
+<p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240731133300.png" alt="Pasted image 20240731133300.png" width="100" /> tunnel loop <img src="/personal_homepage/docs/attachment/Pasted%20image%2020240731133422.png" alt="Pasted image 20240731133422.png" width="100" /> handle loop</p>
+
+<ul>
+  <li>closed, orientable 曲面$S$ , 内部三流型为$I$, 外部为$O$ , 有
+    <ul>
+      <li>
+\[\cdots\rightarrow H_2(\mathbb R^3)\overset{\partial_\ast}\rightarrow H_1(S)\overset{i_\ast,j_\ast}\rightarrow H_1(I)\oplus H_1(O)\overset{k_\ast-l_\ast}\rightarrow H_1(\mathbb R^3)\rightarrow \cdots\]
+        <ul>
+          <li>$H_2(\mathbb R^3)=H_1(\mathbb R^3)=0$ ($\mathbb R^3$ 可以缩到一个点, 是同伦trival-&gt; 同调trival, Poincaré duality给出$H_2\cong H_1$ )</li>
+        </ul>
+      </li>
+      <li>$H_1(S)\cong H_1(I)\oplus H_1(O)$ 由内外三流型的同调确定
+        <ul>
+          <li>$H_1(I)$ 的generator是tunnel loop(外部可以缩成一个点), $H_1(O)$ 的generator是handle loop</li>
         </ul>
       </li>
     </ul>
@@ -1288,35 +1475,4 @@
 <p>没有走人工申报的流程, 报税大厅的人工窗口帮忙改好了专项扣除错的部分, 在app上完成的申报退税. 不过倒是收走了我填好签过字的申报表?</p>
 <h2 id="地址">地址</h2>
 
-<p><a href="https://shanghai.chinatax.gov.cn/newxbwz/wsbs/wsbsdtll/WSBSdtllCtrl-cxfjcxdom.pfv">在公众查询里</a></p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="affair" /><category term="content" /><summary type="html"><![CDATA[上海税务局网站]]></summary></entry><entry><title type="html">T-Display-S3开发版</title><link href="https://roshameow.github.io//personal_homepage/docs/hardware/border/" rel="alternate" type="text/html" title="T-Display-S3开发版" /><published>2024-06-13T00:00:00+00:00</published><updated>2024-07-10T15:17:06+00:00</updated><id>https://roshameow.github.io//personal_homepage/docs/hardware/border</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/docs/hardware/border/"><![CDATA[<h2 id="开发方法">开发方法</h2>
-
-<ol>
-  <li>Arduino IDE</li>
-  <li>Esp-idf</li>
-  <li>micropython</li>
-</ol>
-
-<h2 id="功能实现">功能实现</h2>
-
-<h3 id="连接wifi">连接wifi</h3>
-
-<h3 id="连接传感器">连接传感器</h3>
-
-<h3 id="睡眠模式">睡眠模式</h3>
-
-<h3 id="单击-双击-长按">单击, 双击, 长按</h3>
-
-<h3 id="蓝牙传输图片">蓝牙传输图片</h3>
-
-<h2 id="重置方法">重置方法</h2>
-
-<p><a href="https://github.com/Xinyuan-LilyGO/T-Display-S3/issues/111"><strong>https://github.com/Xinyuan-LilyGO/T-Display-S3/issues/111</strong></a></p>
-
-<ol>
-  <li>﻿﻿Connect the board via the USB cable</li>
-  <li>﻿﻿Press and hold the BOOT button, While still pressing the BOOT button, press RST</li>
-  <li>﻿﻿Release the RST</li>
-  <li>﻿﻿Release the BOOT button</li>
-  <li>﻿﻿Upload sketch</li>
-  <li>﻿﻿Once sketch is uploaded, press and release RST</li>
-</ol>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="hardware" /><category term="content" /><summary type="html"><![CDATA[开发方法]]></summary></entry></feed>
+<p><a href="https://shanghai.chinatax.gov.cn/newxbwz/wsbs/wsbsdtll/WSBSdtllCtrl-cxfjcxdom.pfv">在公众查询里</a></p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="docs" /><category term="affair" /><category term="content" /><summary type="html"><![CDATA[上海税务局网站]]></summary></entry></feed>

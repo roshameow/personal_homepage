@@ -31,7 +31,7 @@
 <meta property="twitter:title" content="conformal geometry学习 (五 ) – homology group" />
 <meta name="twitter:site" content="@" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-07-31T08:42:10+00:00","datePublished":"2024-07-22T00:00:00+00:00","description":"曲面的离散表示","headline":"conformal geometry学习 (五 ) – homology group","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/docs/math/conformal-geometry5/"},"url":"https://roshameow.github.io//personal_homepage/docs/math/conformal-geometry5/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-08-01T15:55:40+00:00","datePublished":"2024-07-22T00:00:00+00:00","description":"曲面的离散表示","headline":"conformal geometry学习 (五 ) – homology group","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/docs/math/conformal-geometry5/"},"url":"https://roshameow.github.io//personal_homepage/docs/math/conformal-geometry5/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -107,7 +107,7 @@
       <div class="page-sidebar">
         <div class="page-author h-card p-author"><img src="/personal_homepage/docs/images/logo.svg" class="author-avatar u-photo" alt=""><div class="author-info">
 
-<span class="read-time">2 min read</span>
+<span class="read-time">3 min read</span>
 
     <time class="page-date dt-published" datetime="2024-07-22T00:00:00+00:00"><a class="u-url" href="">July 22, 2024</a>
 </time>
@@ -257,7 +257,7 @@
     <tr>
       <td>定义</td>
       <td>从曲面上某个点$p$</td>
-      <td>从曲面的三角剖分</td>
+      <td>从曲面的三角剖分, 可以定义在任意维度</td>
     </tr>
     <tr>
       <td>生成元</td>
@@ -295,9 +295,9 @@
       <td>$&lt;a_1,\cdots,a_g,b_1,\cdots, b_g&gt;^{ab}$ <br /><br />free Abelian group $\mathbb Z^{2g}$</td>
     </tr>
     <tr>
-      <td>non-orientable<br /> surface</td>
-      <td> </td>
-      <td> </td>
+      <td>non-orientable<br /> surface<br />$\mathbb {R}P^2$</td>
+      <td>$&lt;\gamma\ \vert\  \gamma^2&gt;$</td>
+      <td>$\mathbb Z/2\mathbb Z$ <br />torsion(生成元阶数有限)</td>
     </tr>
   </tbody>
 </table>
@@ -323,6 +323,28 @@
         <ul>
           <li>i, j, k, l都是inclusion</li>
           <li><a><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Mayer_Vietoris_sequence_boundary_map_on_torus.png/224px-Mayer_Vietoris_sequence_boundary_map_on_torus.png" width="112" /></a> $\partial_\ast:[x]\mapsto [\partial u]$</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="例子">例子</h4>
+
+<p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240731133300.png" alt="Pasted image 20240731133300.png" width="100" /> tunnel loop <img src="/personal_homepage/docs/attachment/Pasted%20image%2020240731133422.png" alt="Pasted image 20240731133422.png" width="100" /> handle loop</p>
+
+<ul>
+  <li>closed, orientable 曲面$S$ , 内部三流型为$I$, 外部为$O$ , 有
+    <ul>
+      <li>
+\[\cdots\rightarrow H_2(\mathbb R^3)\overset{\partial_\ast}\rightarrow H_1(S)\overset{i_\ast,j_\ast}\rightarrow H_1(I)\oplus H_1(O)\overset{k_\ast-l_\ast}\rightarrow H_1(\mathbb R^3)\rightarrow \cdots\]
+        <ul>
+          <li>$H_2(\mathbb R^3)=H_1(\mathbb R^3)=0$ ($\mathbb R^3$ 可以缩到一个点, 是同伦trival-&gt; 同调trival, Poincaré duality给出$H_2\cong H_1$ )</li>
+        </ul>
+      </li>
+      <li>$H_1(S)\cong H_1(I)\oplus H_1(O)$ 由内外三流型的同调确定
+        <ul>
+          <li>$H_1(I)$ 的generator是tunnel loop(外部可以缩成一个点), $H_1(O)$ 的generator是handle loop</li>
         </ul>
       </li>
     </ul>
@@ -530,7 +552,7 @@
     <a class="page-next" href="/personal_homepage/docs/math/conformal-geometry6/">
       <h4 class="page-pagination-label">Next</h4>
       <span class="page-pagination-title">
-        conformal geometry学习 (六 ) – (Simplicial) cohomology group
+        conformal geometry学习 (六 ) – cohomology group
  <i class="fas fa-arrow-right"></i>
       </span>
     </a>

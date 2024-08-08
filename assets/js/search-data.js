@@ -299,13 +299,18 @@ var store = [{
         "tags": ["content","discrete","triangulation","三角剖分","chain","simplex","simplical_complex","homology"],
         "url": "https://roshameow.github.io//personal_homepage/docs/math/conformal-geometry5/"
       },{
-        "title": "conformal geometry学习 (六 ) -- (Simplicial) cohomology group",
-        "excerpt":"上同调是同调的对偶 同调 homology 上同调 (Simplicial) cohomology最初是为了表示stiefel whitney class 对偶记号 k-chain $\\sigma$ $C_k$ k-cochain(k-form) $\\omega$ $C^k$ bilinear operator$&lt;\\omega,\\sigma&gt;:=\\omega(\\sigma)$ (k+1)-boundary$\\partial_{k+1}:C_{k+1}\\rightarrow C_{k}$ k-coboundary(微分算子)$\\delta_k: C^k\\rightarrow C^{k+1}$$\\delta_k(\\omega)=\\omega\\circ \\partial_{k+1},\\omega\\in C^k$ $&lt;\\delta\\omega,\\sigma&gt;=&lt;\\omega,\\partial\\sigma&gt;$ Stokes Theorem   closed form $\\delta_k\\omega=0$     exact form $\\omega=\\delta_{k-1}\\sigma$   $H_n$closed, but not exact $H^n=\\frac{\\text{ker}\\delta^n}{\\text{img}\\delta^{n-1}}$ curl free, but not =gradient   $f_\\ast: H_n(M)\\rightarrow...","categories": ["docs","math"],
+        "title": "conformal geometry学习 (六 ) -- cohomology group",
+        "excerpt":"上同调是同调的对偶 同调 homology 上同调 (Simplicial) cohomology最初是为了表示stiefel whitney class 对偶记号 de Rham cohomology k-chain $\\sigma$ $C_k$ k-cochain(k-form) $\\omega$ $C^k$ bilinear operator$&lt;\\omega,\\sigma&gt;:=\\omega(\\sigma)$   (k+1)-boundary$\\partial_{k+1}:C_{k+1}\\rightarrow C_{k}$ k-coboundary(微分算子)$\\delta_k: C^k\\rightarrow C^{k+1}$$\\delta_k(\\omega)=\\omega\\circ \\partial_{k+1},\\omega\\in C^k$ $&lt;\\delta\\omega,\\sigma&gt;=&lt;\\omega,\\partial\\sigma&gt;$ Stokes Theorem     closed form $\\delta_k\\omega=0$       exact form $\\omega=\\delta_{k-1}\\sigma$     $H_n$closed, but not exact $H^n=\\frac{\\text{ker}\\delta^n}{\\text{img}\\delta^{n-1}}$ curl...","categories": ["docs","math"],
         "tags": ["content"],
         "url": "https://roshameow.github.io//personal_homepage/docs/math/conformal-geometry6/"
       },{
-        "title": "conformal geometry学习 (七 ) -- Duality",
-        "excerpt":"Poincaré Duality Poincaré Duality: n-dim的manifold $M$, 三角剖分$T$, 和cell decomposition $T^*$ 对偶. 把每个k-simplex $\\sigma$ 映射成(n-k)-cell $\\sigma^\\ast$: 对于包含$\\sigma$ 的n-simplex $\\Delta$, $\\Delta\\cap\\sigma^*$ 是取$\\sigma\\subset …\\subset \\Delta$ 之间的simplex的barycentres(重心点) 的convex hull 顶点(1-simplex) $\\sigma$, 面(2-simplex) $\\Delta$ , 灰色部分 $\\Delta\\cap\\sigma^*$ 是顶点$\\sigma$,两条边, 面$\\Delta$ 的重心点的convex hull $\\sigma^*$ 只和$\\sigma$ 相交, 这个intersection给出了对偶关系 把k-chain $C_k(T)$映射到(n-k)-chain $C_{n-k}(T^*)$ : $C_{n-k}(T^\\ast)$ 是定义在$T^\\ast$ 的多边形cell上的? 这样也可以吗? 把$H_k(M,\\mathbb Z)$...","categories": ["docs"],
+        "title": "conformal geometry学习 (七 ) -- Duality, homology relation",
+        "excerpt":"Poincaré Duality Poincaré Duality: n-dim的manifold $M$, 三角剖分$T$, 和cell decomposition $T^*$ 对偶. 把每个k-simplex $\\sigma$ 映射成(n-k)-cell $\\sigma^\\ast$: 对于包含$\\sigma$ 的n-simplex $\\Delta$, $\\Delta\\cap\\sigma^*$ 是取$\\sigma\\subset …\\subset \\Delta$ 之间的simplex的barycentres(重心点) 的convex hull 顶点(1-simplex) $\\sigma$, 面(2-simplex) $\\Delta$ , 灰色部分 $\\Delta\\cap\\sigma^*$ 是顶点$\\sigma$,两条边, 面$\\Delta$ 的重心点的convex hull $\\sigma^*$ 只和$\\sigma$ 相交, 这个intersection给出了对偶关系 把k-chain $C_k(T)$映射到(n-k)-chain $C_{n-k}(T^*)$ : $C_{n-k}(T^\\ast)$ 是定义在$T^\\ast$ 的多边形cell上的? 这样也可以吗? 把$H_k(M,\\mathbb Z)$...","categories": ["docs","math"],
+        "tags": ["content","homology","duality","betti_number","euler_character","3-manifold"],
+        "url": "https://roshameow.github.io//personal_homepage/docs/math/conformal-geometry7/"
+      },{
+        "title": "conformal geometry学习 (八 ) -- Persistent homology",
+        "excerpt":"","categories": ["docs","math","algorithm"],
         "tags": ["content"],
-        "url": "https://roshameow.github.io//personal_homepage/docs/conformal-geometry7/"
+        "url": "https://roshameow.github.io//personal_homepage/docs/math/algorithm/conformal-geometry8/"
       }]
