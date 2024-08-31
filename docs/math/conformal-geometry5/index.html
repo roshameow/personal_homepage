@@ -31,7 +31,7 @@
 <meta property="twitter:title" content="conformal geometry学习 (五 ) – homology group" />
 <meta name="twitter:site" content="@" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-08-01T15:55:40+00:00","datePublished":"2024-07-22T00:00:00+00:00","description":"曲面的离散表示","headline":"conformal geometry学习 (五 ) – homology group","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/docs/math/conformal-geometry5/"},"url":"https://roshameow.github.io//personal_homepage/docs/math/conformal-geometry5/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-08-20T01:49:08+00:00","datePublished":"2024-07-22T00:00:00+00:00","description":"曲面的离散表示","headline":"conformal geometry学习 (五 ) – homology group","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/docs/math/conformal-geometry5/"},"url":"https://roshameow.github.io//personal_homepage/docs/math/conformal-geometry5/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -140,6 +140,31 @@
 </div>
 <!-- {::options parse_block_html="false" /} -->
 
+        
+
+<div id="entry-table-of-contents" class="toc-wrapper">
+    <h2 id="toc-toggle" class="no_toc">
+        Related Posts <i class="toc-toggle-icon fas fa-chevron-down"></i>
+    </h2>
+    <ul>
+        
+        <li><a href="/personal_homepage/docs/game/card/">掼蛋规则</a></li>
+        
+        <li><a href="/personal_homepage/docs/affair/cat-airline/">搬家相关准备</a></li>
+        
+        <li><a href="/personal_homepage/docs/math/conformal-geometry9/">conformal geometry学习 (九 ) -- atlas</a></li>
+        
+        <li><a href="/personal_homepage/docs/affair/cat-can/">猫罐头调查</a></li>
+        
+        <li><a href="/personal_homepage/docs/photo/willow-art/">柳树怎么表现</a></li>
+        
+    </ul>
+</div>
+
+
+
+
+
       </div>
 
       <div class="page-content">
@@ -165,7 +190,7 @@
   <li>单纯复形(<a href="https://en.wikipedia.org/wiki/Simplicial_complex">Simplicial Complex</a>) $\Sigma=\cup \sigma$ 是由simplices(单型) 粘合而成
     <ul>
       <li>“粘合”条件: 1. simplex $\sigma\subset \Sigma$ -&gt; $\sigma$ 的facets $\tau\subset \Sigma$  2. $\sigma_1,\sigma_2\subset \Sigma$, $\sigma_1\cap \sigma_2=\tau\ne \emptyset$ 是两个simplex的交 -&gt; $\tau\subset \sigma_1$, $\tau\subset \sigma_2$ 是一个common facet</li>
-      <li><a href="https://en.wikipedia.org/wiki/Simplex">Simplex</a> $\sigma$ 是$\mathbb R^n$ 中的点集的minimal convex hull(0: simplex 是点, 1-simplex: 线段, 2-simplex: 三角形, 3-simplex: 四面体 …)
+      <li><a href="https://en.wikipedia.org/wiki/Simplex">Simplex</a> $\sigma$ 是$\mathbb R^n$ 中的点集的minimal convex hull(0: simplex 是点, 1-simplex: 线段, 2-simplex: 三角形, 3-simplex: 四面体 …, k-simplex有k+1
         <ul>
           <li>facet:  $\tau\subset \sigma$ , $\tau$ 也是个simplex</li>
         </ul>
@@ -174,7 +199,11 @@
   </li>
   <li>Chain: k-chain $C_k(\Sigma,\mathbb Z)$ 是单纯复形$\Sigma$ 上同维数的simplices(单型) 的集合, with multiplicity $\sigma=\sum_i\lambda_i\sigma_i, \lambda_i\in\mathbb Z$
     <ul>
-      <li>其中系数$\lambda_i$ 是multiplicity(经过同一个simplex的次数), 系数为负表示方向相反</li>
+      <li>其中系数$\lambda_i$ 是multiplicity(经过同一个simplex的次数), 系数为负表示方向相反
+        <ul>
+          <li>$C_k(\Sigma,\mathbb Z_2)$ 的情况,  $\lambda_i=1$ ,$\lambda_i^2=0$</li>
+        </ul>
+      </li>
       <li>chain不要求是连续的</li>
       <li>example: 曲面上curve是1-chain, patch是2-chain</li>
     </ul>
@@ -456,6 +485,11 @@
       <td>$H_n(K,K_0)=Z_n(K,K_0)/B_n(K,K_0)$</td>
       <td>$f_\ast: H_n(K,K_0)\rightarrow H_n(L,L_0)$</td>
     </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
   </tbody>
 </table>
 
@@ -560,6 +594,7 @@
 </nav>
 
       </div>
+
     </div>
   </article>
 </main>

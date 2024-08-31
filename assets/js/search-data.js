@@ -300,7 +300,7 @@ var store = [{
         "url": "https://roshameow.github.io//personal_homepage/docs/math/conformal-geometry5/"
       },{
         "title": "conformal geometry学习 (六 ) -- cohomology group",
-        "excerpt":"上同调是同调的对偶 同调 homology 上同调 (Simplicial) cohomology最初是为了表示stiefel whitney class 对偶记号 de Rham cohomology k-chain $\\sigma$ $C_k$ k-cochain(k-form) $\\omega$ $C^k$ bilinear operator$&lt;\\omega,\\sigma&gt;:=\\omega(\\sigma)$   (k+1)-boundary$\\partial_{k+1}:C_{k+1}\\rightarrow C_{k}$ k-coboundary(微分算子)$\\delta_k: C^k\\rightarrow C^{k+1}$$\\delta_k(\\omega)=\\omega\\circ \\partial_{k+1},\\omega\\in C^k$ $&lt;\\delta\\omega,\\sigma&gt;=&lt;\\omega,\\partial\\sigma&gt;$ Stokes Theorem     closed form $\\delta_k\\omega=0$       exact form $\\omega=\\delta_{k-1}\\sigma$     $H_n$closed, but not exact $H^n=\\frac{\\text{ker}\\delta^n}{\\text{img}\\delta^{n-1}}$ curl...","categories": ["docs","math"],
+        "excerpt":"上同调是同调的对偶 同调 homology 上同调 (Simplicial) cohomology最初是为了表示stiefel whitney class 对偶记号 tangent space de Rham cohomology$\\Omega^k(\\Sigma)$ 积分记号 k-chain $\\sigma$ $C_k$ k-cochain(k-form) $\\omega$ $C^k$ bilinear operator$&lt;\\omega,\\sigma&gt;:=\\omega(\\sigma)$   Differential 1-formco-tangent space   (k+1)-boundary$\\partial_{k+1}:C_{k+1}\\rightarrow C_{k}$ k-coboundary(微分算子)$\\delta_k: C^k\\rightarrow C^{k+1}$$\\delta_k(\\omega)=\\omega\\circ \\partial_{k+1},\\omega\\in C^k$ $&lt;\\delta\\omega,\\sigma&gt;=&lt;\\omega,\\partial\\sigma&gt;$ Stokes Theorem   exterior differential operator(外微分算子)$d^k:\\Omega^k(\\Sigma)\\rightarrow \\Omega^{k+1}(\\Sigma)$ $\\int_{\\partial M}\\omega=\\int_M d\\omega$Stokes Theorem adjoint boundaryoperator$\\partial_{k+1}^\\ast:C_{k}\\rightarrow C_{k+1}$...","categories": ["docs","math"],
         "tags": ["content"],
         "url": "https://roshameow.github.io//personal_homepage/docs/math/conformal-geometry6/"
       },{
@@ -310,7 +310,32 @@ var store = [{
         "url": "https://roshameow.github.io//personal_homepage/docs/math/conformal-geometry7/"
       },{
         "title": "conformal geometry学习 (八 ) -- Persistent homology",
-        "excerpt":"","categories": ["docs","math","algorithm"],
+        "excerpt":"一种计算 $H_k(\\Sigma,\\mathbb Z_2)$ 的方法, 计算filtration $\\mathbb K$ 中homology的变化 Persistent Homology $H_k^{l,p}=H_k(\\mathbb K_{l+p},\\mathbb Z_2)=\\frac{Z^l_k}{B_{k}^{l+p}\\cap Z^l_k}$ k-th homology: 和$\\mathbb K$ 中 (k-1)-simplex, k-simplex, (k+1)-simplex部分有关 $\\mathbb K$ 中到第l 个simplex cycle和到第(l+p) 个 simplex的image 一般到第l 个是 k-simplex, l 到 (l+p) 个是(k+1)-simplex filtration定义 filtration: $\\emptyset=\\mathbb K_{-1}\\subset \\mathbb K_0\\subset \\mathbb K_1\\subset\\cdots\\subset \\mathbb K_n=\\mathbb K$ 是simplicial complex的序列 每个$\\mathbb...","categories": ["docs","math","algorithm"],
         "tags": ["content"],
         "url": "https://roshameow.github.io//personal_homepage/docs/math/algorithm/conformal-geometry8/"
+      },{
+        "title": "柳树怎么表现",
+        "excerpt":"在上海的春天到处去赏花, 感觉没有一种花有柳树的视觉冲击力. 嫩黄的叶子让我有生命的实感, 看到叶子泛白干燥的时候, 我知道春天过去了. 但是柳树很难在照片上表现 全景:  正视像怪物一样:   局部又很呆板:   侧面视角:    人眼看柳树很有层次感, 枝干和叶子都很清晰 Vs 照片上互相遮挡没有主次国画的柳树: 傅抱石:  吴冠中:  谢稚柳:  郑午昌:  乔木:  黄幻吾:  日本画的柳树:    有风吹的动态  省略了枝干看着像紫藤花了https://www.sohu.com/a/400613164_99921257 ","categories": ["docs","photo"],
+        "tags": ["content"],
+        "url": "https://roshameow.github.io//personal_homepage/docs/photo/willow-art/"
+      },{
+        "title": "猫罐头调查",
+        "excerpt":"金交的罐头上有很多黑色的地方 ","categories": ["docs","affair"],
+        "tags": ["content"],
+        "url": "https://roshameow.github.io//personal_homepage/docs/affair/cat-can/"
+      },{
+        "title": "conformal geometry学习 (九 ) -- atlas",
+        "excerpt":"            manifold      $U_\\alpha$ homeomorphism to $\\mathbb R^n$,                  smooth manifold(differential manifold)      transition map $\\phi_{\\alpha\\beta}\\in C^\\infty(\\mathbb R^n)$ smooth              Riemann manifold      transition map 是holomorphic(conformal)      ","categories": ["docs","math"],
+        "tags": ["content"],
+        "url": "https://roshameow.github.io//personal_homepage/docs/math/conformal-geometry9/"
+      },{
+        "title": "搬家相关准备",
+        "excerpt":"猫的托运 目前只有海南航空可以, 不过没有到家直飞的航班只能选南航有氧舱, 小程序买票 电脑 大件 零散物件 各式调料 ","categories": ["docs","affair"],
+        "tags": ["content"],
+        "url": "https://roshameow.github.io//personal_homepage/docs/affair/cat-airline/"
+      },{
+        "title": "掼蛋规则",
+        "excerpt":"  升级规则  特殊花色          普通      炸弹      ","categories": ["docs","game"],
+        "tags": ["content"],
+        "url": "https://roshameow.github.io//personal_homepage/docs/game/card/"
       }]

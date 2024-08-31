@@ -31,7 +31,7 @@
 <meta property="twitter:title" content="conformal geometry学习 (六 ) – cohomology group" />
 <meta name="twitter:site" content="@" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-08-06T16:29:40+00:00","datePublished":"2024-07-26T00:00:00+00:00","description":"上同调是同调的对偶","headline":"conformal geometry学习 (六 ) – cohomology group","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/docs/math/conformal-geometry6/"},"url":"https://roshameow.github.io//personal_homepage/docs/math/conformal-geometry6/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-08-26T13:29:00+00:00","datePublished":"2024-07-26T00:00:00+00:00","description":"上同调是同调的对偶","headline":"conformal geometry学习 (六 ) – cohomology group","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/docs/math/conformal-geometry6/"},"url":"https://roshameow.github.io//personal_homepage/docs/math/conformal-geometry6/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -140,6 +140,31 @@
 </div>
 <!-- {::options parse_block_html="false" /} -->
 
+        
+
+<div id="entry-table-of-contents" class="toc-wrapper">
+    <h2 id="toc-toggle" class="no_toc">
+        Related Posts <i class="toc-toggle-icon fas fa-chevron-down"></i>
+    </h2>
+    <ul>
+        
+        <li><a href="/personal_homepage/docs/game/card/">掼蛋规则</a></li>
+        
+        <li><a href="/personal_homepage/docs/affair/cat-airline/">搬家相关准备</a></li>
+        
+        <li><a href="/personal_homepage/docs/math/conformal-geometry9/">conformal geometry学习 (九 ) -- atlas</a></li>
+        
+        <li><a href="/personal_homepage/docs/affair/cat-can/">猫罐头调查</a></li>
+        
+        <li><a href="/personal_homepage/docs/photo/willow-art/">柳树怎么表现</a></li>
+        
+    </ul>
+</div>
+
+
+
+
+
       </div>
 
       <div class="page-content">
@@ -152,7 +177,9 @@
       <th>同调 homology</th>
       <th>上同调 <a href="https://en.wikipedia.org/wiki/Cohomology">(Simplicial) cohomology</a><br /><br />最初是为了表示<a href="https://en.wikipedia.org/wiki/Stiefel–Whitney_class.">stiefel whitney class</a></th>
       <th>对偶记号</th>
-      <th>de Rham cohomology</th>
+      <th>tangent space</th>
+      <th>de Rham cohomology<br /><br />$\Omega^k(\Sigma)$</th>
+      <th>积分记号</th>
     </tr>
   </thead>
   <tbody>
@@ -161,11 +188,23 @@
       <td>k-cochain(k-form) $\omega$ <br />$C^k$</td>
       <td>bilinear operator<br />$&lt;\omega,\sigma&gt;:=\omega(\sigma)$</td>
       <td> </td>
+      <td>Differential 1-form<br />co-tangent space<br /></td>
+      <td> </td>
     </tr>
     <tr>
       <td>(k+1)-boundary<br />$\partial_{k+1}:C_{k+1}\rightarrow C_{k}$</td>
       <td>k-coboundary(微分算子)<br />$\delta_k: C^k\rightarrow C^{k+1}$<br />$\delta_k(\omega)=\omega\circ \partial_{k+1},\omega\in C^k$</td>
       <td>$&lt;\delta\omega,\sigma&gt;=&lt;\omega,\partial\sigma&gt;$ <br /><br /><a href="https://en.wikipedia.org/wiki/Stokes%27_theorem">Stokes Theorem</a></td>
+      <td> </td>
+      <td>exterior differential<br /> operator(外微分算子)<br />$d^k:\Omega^k(\Sigma)\rightarrow \Omega^{k+1}(\Sigma)$</td>
+      <td>$\int_{\partial M}\omega=\int_M d\omega$<br /><a href="https://en.wikipedia.org/wiki/Stokes%27_theorem">Stokes Theorem</a></td>
+    </tr>
+    <tr>
+      <td>adjoint boundary<br />operator<br />$\partial_{k+1}^\ast:C_{k}\rightarrow C_{k+1}$</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>codifferential operator<br />$\delta:\Omega^k(\Sigma)\rightarrow \Omega^{k-1}(\Sigma)$</td>
       <td> </td>
     </tr>
     <tr>
@@ -173,11 +212,15 @@
       <td>closed form $\delta_k\omega=0$</td>
       <td> </td>
       <td> </td>
+      <td>closed form $d^k\omega=0$</td>
+      <td> </td>
     </tr>
     <tr>
       <td> </td>
       <td>exact form $\omega=\delta_{k-1}\sigma$</td>
       <td> </td>
+      <td> </td>
+      <td>exact form $\omega=d^{k-1}\sigma$</td>
       <td> </td>
     </tr>
     <tr>
@@ -185,10 +228,14 @@
       <td>$H^n=\frac{\text{ker}\delta^n}{\text{img}\delta^{n-1}}$ <br />curl free, but not =gradient</td>
       <td> </td>
       <td> </td>
+      <td>$H^n_{dR}$</td>
+      <td> </td>
     </tr>
     <tr>
       <td>$f_\ast: H_n(M)\rightarrow H_n(N)$</td>
       <td>$f^\ast: H^n(N)\rightarrow H^n(M)$<br />是$f_\ast$ 的pull back</td>
+      <td> </td>
+      <td> </td>
       <td> </td>
       <td> </td>
     </tr>
@@ -283,6 +330,7 @@
 </nav>
 
       </div>
+
     </div>
   </article>
 </main>
