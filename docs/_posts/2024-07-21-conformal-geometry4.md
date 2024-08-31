@@ -8,7 +8,7 @@ tags:
   - 3-manifold
   - knot
   - hyperbolic_geometry
-last_modified_at: 2024-07-26T12:35:56-08:00
+last_modified_at: 2024-08-17T21:32:57-08:00
 ---
 
 3维流型, 在局部和$\mathbb R^3$ homeomorphic(同胚) 
@@ -44,7 +44,7 @@ last_modified_at: 2024-07-26T12:35:56-08:00
 		- cusp是$T^2\times [0,\infty)$ with  $ds^2=\frac{dx^2+dy^2+dz^2}{z^2}$ (scaled Euclidean metric, $z\in [z_0,\infty)$ 是scale部分, x,y是$T^2$ 部分坐标)
 	- $M_{thick}$ 是注入半径>$\epsilon$ 的部分
 	- 表示度量(注入半径)确定了几何(是否是cusp)
-- 双曲三流型上的双曲结构是唯一的.(Mostow-Prasad Rigidity theorem, 1968)
+- 双曲三流型上的双曲度量是唯一的.(Mostow-Prasad Rigidity theorem, 1968)
 	- 表示几何不变量->拓扑不变量. 即可以通过研究拓扑研究几何.
 
 | 3-manifold                                                                 | surface                                                                                                                               |

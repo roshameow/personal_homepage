@@ -12,7 +12,7 @@ tags:
   - simplex
   - simplical_complex
   - homology
-last_modified_at: 2024-08-01T07:55:40-08:00
+last_modified_at: 2024-08-19T17:49:08-08:00
 ---
 ## 曲面的离散表示
 
@@ -28,10 +28,11 @@ last_modified_at: 2024-08-01T07:55:40-08:00
 
 - 单纯复形([Simplicial Complex](https://en.wikipedia.org/wiki/Simplicial_complex)) $\Sigma=\cup \sigma$ 是由simplices(单型) 粘合而成
 	- “粘合”条件: 1. simplex $\sigma\subset \Sigma$ -> $\sigma$ 的facets $\tau\subset \Sigma$  2. $\sigma_1,\sigma_2\subset \Sigma$, $\sigma_1\cap \sigma_2=\tau\ne \emptyset$ 是两个simplex的交 -> $\tau\subset \sigma_1$, $\tau\subset \sigma_2$ 是一个common facet
-	- [Simplex](https://en.wikipedia.org/wiki/Simplex) $\sigma$ 是$\mathbb R^n$ 中的点集的minimal convex hull(0: simplex 是点, 1-simplex: 线段, 2-simplex: 三角形, 3-simplex: 四面体 ...)
+	- [Simplex](https://en.wikipedia.org/wiki/Simplex) $\sigma$ 是$\mathbb R^n$ 中的点集的minimal convex hull(0: simplex 是点, 1-simplex: 线段, 2-simplex: 三角形, 3-simplex: 四面体 ..., k-simplex有k+1
 		- facet:  $\tau\subset \sigma$ , $\tau$ 也是个simplex
 - Chain: k-chain $C_k(\Sigma,\mathbb Z)$ 是单纯复形$\Sigma$ 上同维数的simplices(单型) 的集合, with multiplicity $\sigma=\sum_i\lambda_i\sigma_i, \lambda_i\in\mathbb Z$ 
 	- 其中系数$\lambda_i$ 是multiplicity(经过同一个simplex的次数), 系数为负表示方向相反
+		- $C_k(\Sigma,\mathbb Z_2)$ 的情况,  $\lambda_i=1$ ,$\lambda_i^2=0$  
 	- chain不要求是连续的
 	- example: 曲面上curve是1-chain, patch是2-chain
 
@@ -141,6 +142,7 @@ last_modified_at: 2024-08-01T07:55:40-08:00
 | relative cycles            | $Z_n(K,K_0)=\text{ker}\partial_n$<br>$\partial_n(Z_n(K,K_0))$ 在$C_{n-1}(K,K_0)$ 中trival<br>即有, $\partial_n: Z_n(K,K_0)\hookrightarrow C_{n-1}(K_0)$ |                                                   |
 | relative boundary          | $B_n(K,K_0)=\text{img}\partial_{n+1}$                                                                                                               |                                                   |
 | relative homology          | $H_n(K,K_0)=Z_n(K,K_0)/B_n(K,K_0)$                                                                                                                  | $f_\ast: H_n(K,K_0)\rightarrow H_n(L,L_0)$        |
+|                            |                                                                                                                                                     |                                                   |
 
 ### 分解性质
 

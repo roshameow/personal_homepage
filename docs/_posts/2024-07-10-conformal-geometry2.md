@@ -11,7 +11,8 @@ tags:
   - lift
   - homotopy
   - hyperbolic_geometry
-last_modified_at: 2024-07-16T14:56:53-08:00
+last_modified_at: 2024-08-19T20:38
+created: 2024-07-10T16:34
 ---
 
 
@@ -77,7 +78,7 @@ universal性质: 记$\tilde S_u$ 是unviersal covering, 对应projection $p_u$, 
 - [双曲面](https://en.wikipedia.org/wiki/Hyperbolic_geometry): 由[Poincaré Disk Model](https://mathworld.wolfram.com/PoincareHyperbolicDisk.html)表示, 直线是和无穷远(边界)正交的圆弧, 过直线外一点有$\infty$ 条直线平行
 	- <a href="https://commons.wikimedia.org/wiki/File:HyperboloidProjection.png#/media/File:HyperboloidProjection.png"><img src="https://upload.wikimedia.org/wikipedia/commons/1/1f/HyperboloidProjection.png" alt="The hyperboloid model can be represented as the equation t2 = x12 + x22 + 1, t > 1. It can be used to construct a Poincaré disk model as a projection viewed from (t = −1, x1 = 0, x2 = 0), projecting the upper half hyperboloid onto the unit disk at t = 0. The red geodesic in the Poincaré disk model projects to the brown geodesic on the green hyperboloid." width="200"></a>
 
-- oriented closed surface的universal cover分类
+- oriented closed surface的universal cover分类(单值化定理): (几何拓扑, 由几何(genus)确定黎曼度量)
 	- genus 0: universal cover上有球面测度
 	- genus 1: universal cover上有欧式测度
 	- genus > 1: universal cover上有双曲测度

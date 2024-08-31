@@ -10,7 +10,7 @@ tags:
   - betti_number
   - euler_character
   - 3-manifold
-last_modified_at: 2024-08-08T11:58:57-08:00
+last_modified_at: 2024-08-19T20:11:09-08:00
 ---
 
 ## [Poincaré Duality](https://en.wikipedia.org/wiki/Poincaré_duality)
@@ -104,7 +104,6 @@ free generated部分, $H_2(M,\partial M, \mathbb Z_2)$ 的曲面对应边界的m
 ### non-orientable embedding曲面
 
 torsion部分, 由Lefschetz duality和曲面对偶的curve在曲面的tubular neighborhood里
-
 - non-orientable 曲面$S$ 嵌入$M$ (properly embedding: 横截相交, $\partial S=\partial M\cap S$ )
 	- 每个曲面$S$ 定义$H_2(M,\partial M, \mathbb Z_2)$ 中的一个non-trival class
 	- $M$ 最多包含 $\text{dim} H_2(M,\partial M, \mathbb Z_2)$ 个不相交的non-orientable 曲面
