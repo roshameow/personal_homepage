@@ -9,7 +9,8 @@ tags:
   - markdown
   - obsidian
   - raycast
-last_modified_at: 2024-07-07T16:14:53-08:00
+last_modified_at: 2024-08-31T17:28
+created: 2023-12-20T12:28
 ---
 用jekyll的原因无需多说。这样配置好工作流之后，除了编写内容基本没有什么麻烦的操作(登录在线网页，换编辑器，按照统一格式改文件名之类在我看来都很麻烦。。)。
 ### Ruby的环境管理，包管理方式
@@ -137,6 +138,8 @@ last_modified_at: 2024-07-07T16:14:53-08:00
 	- 模版里的toc也是不能用了，加入这个比较新的[toc.html][8] 
 3. **用gist加载代码块：** 
 	- 还是因为有些脚本里代码块解析错误，用[GitHub gist][9]就没有这个问题, 不过这种代码块的形式obsidian没法渲染
+4. **加related post:**
+	- 用jekyll默认的`site.related_posts`
 
 
 
