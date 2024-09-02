@@ -314,6 +314,11 @@ var store = [{
         "tags": ["content"],
         "url": "https://roshameow.github.io//personal_homepage/docs/math/algorithm/conformal-geometry8/"
       },{
+        "title": "persistent homology 事例 + 应用",
+        "excerpt":"pair graph 下标表示在filtration中的前后关系. 蓝色表示killer, 红色表示generator, 弧线表示kill关系. topological annulus(环带, cylinder) $H_0$ 的生成元是$v_0$ $H_1$ 的生成元是$e_2$ (对应cycle $e_0+e_1+e_2$ ) topological torus $H_0$ 的生成元为 $v_0$ $H_1$ 的生成元为$e_3$( 对应cycle $e_0+e_1+e_2+e_3$) , $e_{20}$ (对应cycle $e_{12}+e_{16}+e_{20}$) topological quadrilateral(四边形) $H_0$ 的生成元为$v_0$ , $H_1$ 的生成元为$e_{11}$记号 $\\Gamma(d)$ : 被killer $d$ kill掉的generator persistence life: $j-i-1$ , 从simplex $\\sigma_i$ generated 到被 $\\sigma_j$...","categories": ["docs","algorithm"],
+        "tags": ["content"],
+        "url": "https://roshameow.github.io//personal_homepage/docs/algorithm/persistent-homology/"
+      },{
         "title": "柳树怎么表现",
         "excerpt":"在上海的春天到处去赏花, 感觉没有一种花有柳树的视觉冲击力. 嫩黄的叶子让我有生命的实感, 看到叶子泛白干燥的时候, 我知道春天过去了. 但是柳树很难在照片上表现 全景:  正视像怪物一样:   局部又很呆板:   侧面视角:    人眼看柳树很有层次感, 枝干和叶子都很清晰 Vs 照片上互相遮挡没有主次国画的柳树: 傅抱石:  吴冠中:  谢稚柳:  郑午昌:  乔木:  黄幻吾:  日本画的柳树:    有风吹的动态  省略了枝干看着像紫藤花了https://www.sohu.com/a/400613164_99921257 ","categories": ["docs","photo"],
         "tags": ["content"],
@@ -325,12 +330,12 @@ var store = [{
         "url": "https://roshameow.github.io//personal_homepage/docs/affair/cat-can/"
       },{
         "title": "conformal geometry学习 (九 ) -- atlas",
-        "excerpt":"            manifold      $U_\\alpha$ homeomorphism to $\\mathbb R^n$,                  smooth manifold(differential manifold)      transition map $\\phi_{\\alpha\\beta}\\in C^\\infty(\\mathbb R^n)$ smooth              Riemann manifold      transition map 是holomorphic(conformal)      ","categories": ["docs","math"],
+        "excerpt":"            manifold      $U_\\alpha$ homeomorphism to $\\mathbb R^n$,                  smooth manifold(differential manifold)      transition map $\\phi_{\\alpha\\beta}\\in C^\\infty(\\mathbb R^n)$ smooth              Riemann manifold      transition map 是holomorphic(conformal)      Gauss-Bonnet ","categories": ["docs","math"],
         "tags": ["content"],
         "url": "https://roshameow.github.io//personal_homepage/docs/math/conformal-geometry9/"
       },{
         "title": "搬家相关准备",
-        "excerpt":"猫的托运 目前只有海南航空可以, 不过没有到家直飞的航班只能选南航有氧舱, 小程序买票 电脑 大件 零散物件 各式调料 ","categories": ["docs","affair"],
+        "excerpt":"猫的托运 目前只有海南航空可以, 不过没有到家直飞的航班只能选南航有氧舱, 小程序买票准备检疫合格证明 电脑 大件 零散物件 各式调料 ","categories": ["docs","affair"],
         "tags": ["content"],
         "url": "https://roshameow.github.io//personal_homepage/docs/affair/cat-airline/"
       },{
@@ -338,4 +343,9 @@ var store = [{
         "excerpt":"  升级规则  特殊花色          普通      炸弹      ","categories": ["docs","game"],
         "tags": ["content"],
         "url": "https://roshameow.github.io//personal_homepage/docs/game/card/"
+      },{
+        "title": "墙皮脱落问题",
+        "excerpt":"根据这个视频学习   原因: 热胀冷缩","categories": ["docs","house"],
+        "tags": ["content"],
+        "url": "https://roshameow.github.io//personal_homepage/docs/house/wall-problem/"
       }]

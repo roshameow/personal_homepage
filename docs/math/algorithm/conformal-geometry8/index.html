@@ -31,7 +31,7 @@
 <meta property="twitter:title" content="conformal geometry学习 (八 ) – Persistent homology" />
 <meta name="twitter:site" content="@" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-08-30T15:31:00+00:00","datePublished":"2024-08-07T00:00:00+00:00","description":"一种计算 $H_k(\\Sigma,\\mathbb Z_2)$ 的方法, 计算filtration $\\mathbb K$ 中homology的变化","headline":"conformal geometry学习 (八 ) – Persistent homology","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/docs/math/algorithm/conformal-geometry8/"},"url":"https://roshameow.github.io//personal_homepage/docs/math/algorithm/conformal-geometry8/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-09-01T11:41:00+00:00","datePublished":"2024-08-07T00:00:00+00:00","description":"一种计算 $H_k(\\Sigma,\\mathbb Z_2)$ 的方法, 计算filtration $\\mathbb K$ 中homology的变化","headline":"conformal geometry学习 (八 ) – Persistent homology","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/docs/math/algorithm/conformal-geometry8/"},"url":"https://roshameow.github.io//personal_homepage/docs/math/algorithm/conformal-geometry8/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -107,7 +107,7 @@
       <div class="page-sidebar">
         <div class="page-author h-card p-author"><img src="/personal_homepage/docs/images/logo.svg" class="author-avatar u-photo" alt=""><div class="author-info">
 
-<span class="read-time">3 min read</span>
+<span class="read-time">1 min read</span>
 
     <time class="page-date dt-published" datetime="2024-08-07T00:00:00+00:00"><a class="u-url" href="">August 7, 2024</a>
 </time>
@@ -131,22 +131,29 @@
 
         <!-- {::options parse_block_html="true" /} -->
 <div id="entry-table-of-contents" class="toc-wrapper">
-<h2 id="toc-toggle" class="no_toc">
-  Table of Contents <i class="toc-toggle-icon fas fa-chevron-down"></i>
-</h2>
-<!-- 1. toc
+  <h2 id="toc-toggle">
+    Table of Contents <i
+      class="toc-toggle-icon fas fa-chevron-down"></i>
+  </h2>
+  <!-- 1. toc
 {:toc} -->
-<ul class="inline_toc" id="my_toc"><li><a href="#filtration定义">filtration定义</a><ul><li><a href="#点云---čech-complex-filtration">点云 -&gt; Čech Complex filtration</a></li></ul></li><li><a href="#filtration同调分解">filtration同调分解</a></li><li><a href="#pair-algorithm-计算">Pair Algorithm 计算</a></li><li><a href="#pair-graph">pair graph</a><ul><li><a href="#应用">应用</a></li></ul></li></ul>
+  <!-- <div id="markdown-toc"> -->
+
+    <ul class="inline_toc" id="my_toc"><li><a href="#filtration定义">filtration定义</a><ul><li><a href="#点云---čech-complex-filtration">点云 -&gt; Čech Complex filtration</a></li></ul></li><li><a href="#filtration同调分解">filtration同调分解</a></li><li><a href="#pair-algorithm-计算">Pair Algorithm 计算</a></li></ul>
+  <!-- </div> -->
+
 </div>
 <!-- {::options parse_block_html="false" /} -->
-
         
 
 <div id="entry-table-of-contents" class="toc-wrapper">
     <h2 id="toc-toggle" class="no_toc">
         Related Posts <i class="toc-toggle-icon fas fa-chevron-down"></i>
     </h2>
+    <!-- <div id="markdown-toc"> -->
     <ul>
+        
+        <li><a href="/personal_homepage/docs/house/wall-problem/">墙皮脱落问题</a></li>
         
         <li><a href="/personal_homepage/docs/game/card/">掼蛋规则</a></li>
         
@@ -156,9 +163,9 @@
         
         <li><a href="/personal_homepage/docs/affair/cat-can/">猫罐头调查</a></li>
         
-        <li><a href="/personal_homepage/docs/photo/willow-art/">柳树怎么表现</a></li>
-        
     </ul>
+    <!-- </div> -->
+
 </div>
 
 
@@ -284,17 +291,6 @@
   </li>
 </ul>
 
-<p><strong>记号</strong></p>
-
-<ul>
-  <li>$\Gamma(d)$ : 被killer $d$ kill掉的generator</li>
-  <li>persistence life: $j-i-1$ , 从simplex $\sigma_i$  generated 到被 $\sigma_j$ kill的时间
-    <ul>
-      <li>表示了$\sigma_i$ 对应cycle $c_i$ 的拓扑稳定性</li>
-    </ul>
-  </li>
-</ul>
-
 <h2 id="pair-algorithm-计算">Pair Algorithm 计算</h2>
 
 <p>计算每个simplex的生命周期</p>
@@ -358,95 +354,6 @@
   </li>
 </ul>
 
-<h2 id="pair-graph">pair graph</h2>
-
-<ul>
-  <li>下标表示在filtration中的前后关系.</li>
-  <li>蓝色表示killer, 红色表示generator, 弧线表示kill关系.</li>
-</ul>
-
-<p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240821180208.png" alt="Pasted image 20240821180208.png" width="138" />  <img src="/personal_homepage/docs/attachment/Pasted%20image%2020240822181442.png" alt="Pasted image 20240822181442.png" width="150" />  <img src="/personal_homepage/docs/attachment/Pasted%20image%2020240821175655.png" alt="Pasted image 20240821175655.png" width="300" /></p>
-<ul>
-  <li>topological annulus(环带, cylinder)</li>
-  <li>$H_0$ 的生成元是$v_0$</li>
-  <li>$H_1$ 的生成元是$e_2$ (对应cycle $e_0+e_1+e_2$ )</li>
-</ul>
-
-<p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240821175958.png" alt="Pasted image 20240821175958.png" width="100" />  <img src="/personal_homepage/docs/attachment/Pasted%20image%2020240822181535.png" alt="Pasted image 20240822181535.png" width="150" />  <img src="/personal_homepage/docs/attachment/Pasted%20image%2020240821175901.png" alt="Pasted image 20240821175901.png" width="300" /></p>
-
-<ul>
-  <li>topological torus</li>
-  <li>$H_0$ 的生成元为 $v_0$</li>
-  <li>$H_1$ 的生成元为$e_3$( 对应cycle $e_0+e_1+e_2+e_3$) , $e_{20}$ (对应cycle $e_{12}+e_{16}+e_{20}$)</li>
-</ul>
-
-<p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240822194920.png" alt="Pasted image 20240822194920.png" width="150" />  <img src="/personal_homepage/docs/attachment/Pasted%20image%2020240822194939.png" alt="Pasted image 20240822194939.png" width="200" /></p>
-
-<ul>
-  <li>topological quadrilateral(四边形)</li>
-  <li>$H_0$ 的生成元为$v_0$ , $H_1$ 的生成元为$e_{11}$</li>
-</ul>
-
-<h3 id="应用">应用</h3>
-
-<ul>
-  <li>计算oriented surface的homology: $H_1(S)\cong H_1(I)\oplus H_1(O)$ (<a href="https://en.wikipedia.org/wiki/Mayer–Vietoris_sequence">Mayer–Vietoris_sequence</a>)
-    <ul>
-      <li>用persistent homology计算$H_1(I)$ 和$H_1(O)$ 的生成元</li>
-      <li>$H_1(S,\mathbb Z_2)$ 和$H_1(S,\mathbb Z)$ 有相同的生成元?</li>
-    </ul>
-  </li>
-  <li>
-    <p>计算三流型的homology: $H_1(M,\mathbb Z_2)\cong H_2(M,\partial M,\mathbb Z_2)$ (Lefschetz duality)</p>
-  </li>
-  <li>persistent diagram: 也可以只取k-simplex的部分
-    <ul>
-      <li>simplex 添加时间 x simplex death(被kill) 时间 $(i,j)$</li>
-      <li>simplex 添加时间 x simplex 的persistence life $(i,j-i-1)$</li>
-    </ul>
-  </li>
-  <li>persistent surface:
-    <ul>
-      <li>persistent diagram连续化: 把persistent diagram上的点 $(i,j-i-1)$ 用在位置 $(i,j-i-1)$ , 方差为$\sigma$ 的高斯分布替代</li>
-    </ul>
-  </li>
-  <li>
-    <p>persistent image: persistent surface像素化得到persistent image</p>
-  </li>
-  <li>DNA序列的linked twist map形成一个二维的点集. 用persistent image提取特征再做分类.</li>
-  <li>解Kuramoto-Sivashinsky (KS) PDE
-    <ul>
-      <li>是二维的heat image</li>
-      <li>根据不同的heat threshold(等高线), 构成image的子集的filtration
-        <ul>
-          <li>把image的像素点看成0-simplex,  相邻像素看成1-simplex, 周围2x2像素看成2-simplex</li>
-        </ul>
-      </li>
-      <li>用filtration生成的persistent image做为特征分类</li>
-    </ul>
-  </li>
-  <li>
-    <p>barcode: 横坐标 为距离 $\epsilon$ , 纵坐标为 homology的persistence life</p>
-  </li>
-  <li>自然图像: 3x3的灰度图patch, 看作9-dim的点云, 形成一个Klein bottle的拓扑</li>
-  <li>时间序列的周期性
-    <ul>
-      <li>每个长为$M$, 间隔为$\tau$ 的sliding window构成一个M维vector, 改变时间t, 得到$\mathbb R^M$ 里的一个点云</li>
-      <li>检查这个设置下, persistence diagram中最长的persistence life作为这个周期($M,\tau$ ) 的分数</li>
-      <li>分数越高, 说明点云在$\mathbb R^M$ 里(拓扑意义上)越像一个closed loop, 和时间序列本身的周期越匹配</li>
-    </ul>
-  </li>
-</ul>
-
-<p>[1]  Carlsson, Gunnar. “Topological Pattern Recognition for Point Cloud Data.” <em>Acta Numerica</em> 23 (May 2014): 289–368. <a href="https://doi.org/10.1017/S0962492914000051">https://doi.org/10.1017/S0962492914000051</a>.</p>
-
-<p>[2]  Perea, Jose, and John Harer. “<strong>Sliding Windows and Persistence</strong>: An Application of Topological Methods to Signal Analysis.” arXiv, November 25, 2013. <a href="https://doi.org/10.48550/arXiv.1307.6188">https://doi.org/10.48550/arXiv.1307.6188</a>.</p>
-
-<p>[3]  Adams, Henry, Sofya Chepushtanova, Tegan Emerson, Eric Hanson, Michael Kirby, Francis Motta, Rachel Neville, Chris Peterson, Patrick Shipman, and Lori Ziegelmeier. “Persistence Images: A Stable Vector Representation of Persistent Homology.” arXiv, July 11, 2016. <a href="https://doi.org/10.48550/arXiv.1507.06217">https://doi.org/10.48550/arXiv.1507.06217</a>.</p>
-
-<p>[4] https://github.com/ctralie/TDALabs/blob/master/SlidingWindow2-PersistentHomology.ipynb</p>
-
-<p>[5] https://ripser.scikit-tda.org/en/latest/ 计算persistent homology的python封装包</p>
 
         </div>
 
@@ -487,10 +394,10 @@
   
 
   
-    <a class="page-next" href="/personal_homepage/docs/photo/willow-art/">
+    <a class="page-next" href="/personal_homepage/docs/algorithm/persistent-homology/">
       <h4 class="page-pagination-label">Next</h4>
       <span class="page-pagination-title">
-        柳树怎么表现
+        persistent homology 事例 + 应用
  <i class="fas fa-arrow-right"></i>
       </span>
     </a>

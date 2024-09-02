@@ -31,7 +31,7 @@
 <meta property="twitter:title" content="用 jekyll+obsidian生成个人主页并部署到 github pages的工作流" />
 <meta name="twitter:site" content="@" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-07-08T00:14:53+00:00","datePublished":"2023-12-20T00:00:00+00:00","description":"用jekyll的原因无需多说。这样配置好工作流之后，除了编写内容基本没有什么麻烦的操作(登录在线网页，换编辑器，按照统一格式改文件名之类在我看来都很麻烦。。)。 Ruby的环境管理，包管理方式","headline":"用 jekyll+obsidian生成个人主页并部署到 github pages的工作流","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/docs/webpage/jekyll-blog-deploy/"},"url":"https://roshameow.github.io//personal_homepage/docs/webpage/jekyll-blog-deploy/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-08-31T17:28:00+00:00","datePublished":"2023-12-20T00:00:00+00:00","description":"用jekyll的原因无需多说。这样配置好工作流之后，除了编写内容基本没有什么麻烦的操作(登录在线网页，换编辑器，按照统一格式改文件名之类在我看来都很麻烦。。)。 Ruby的环境管理，包管理方式","headline":"用 jekyll+obsidian生成个人主页并部署到 github pages的工作流","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/docs/webpage/jekyll-blog-deploy/"},"url":"https://roshameow.github.io//personal_homepage/docs/webpage/jekyll-blog-deploy/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -131,22 +131,29 @@
 
         <!-- {::options parse_block_html="true" /} -->
 <div id="entry-table-of-contents" class="toc-wrapper">
-<h2 id="toc-toggle" class="no_toc">
-  Table of Contents <i class="toc-toggle-icon fas fa-chevron-down"></i>
-</h2>
-<!-- 1. toc
+  <h2 id="toc-toggle">
+    Table of Contents <i
+      class="toc-toggle-icon fas fa-chevron-down"></i>
+  </h2>
+  <!-- 1. toc
 {:toc} -->
-<ul class="inline_toc" id="my_toc"><li><a href="#ruby的环境管理包管理方式">Ruby的环境管理，包管理方式</a></li><li><a href="#具体配置流程">具体配置流程</a></li><li><a href="#其他配置">其他配置</a></li></ul>
+  <!-- <div id="markdown-toc"> -->
+
+    <ul class="inline_toc" id="my_toc"><li><a href="#ruby的环境管理包管理方式">Ruby的环境管理，包管理方式</a></li><li><a href="#具体配置流程">具体配置流程</a></li><li><a href="#其他配置">其他配置</a></li></ul>
+  <!-- </div> -->
+
 </div>
 <!-- {::options parse_block_html="false" /} -->
-
         
 
 <div id="entry-table-of-contents" class="toc-wrapper">
     <h2 id="toc-toggle" class="no_toc">
         Related Posts <i class="toc-toggle-icon fas fa-chevron-down"></i>
     </h2>
+    <!-- <div id="markdown-toc"> -->
     <ul>
+        
+        <li><a href="/personal_homepage/docs/house/wall-problem/">墙皮脱落问题</a></li>
         
         <li><a href="/personal_homepage/docs/game/card/">掼蛋规则</a></li>
         
@@ -156,9 +163,9 @@
         
         <li><a href="/personal_homepage/docs/affair/cat-can/">猫罐头调查</a></li>
         
-        <li><a href="/personal_homepage/docs/photo/willow-art/">柳树怎么表现</a></li>
-        
     </ul>
+    <!-- </div> -->
+
 </div>
 
 
@@ -354,6 +361,11 @@
   <li><strong>用gist加载代码块：</strong>
     <ul>
       <li>还是因为有些脚本里代码块解析错误，用<a href="https://gist.github.com">GitHub gist</a>就没有这个问题, 不过这种代码块的形式obsidian没法渲染</li>
+    </ul>
+  </li>
+  <li><strong>加related post:</strong>
+    <ul>
+      <li>用jekyll默认的<code class="language-plaintext highlighter-rouge">site.related_posts</code></li>
     </ul>
   </li>
 </ol>

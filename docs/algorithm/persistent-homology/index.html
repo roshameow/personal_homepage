@@ -16,22 +16,22 @@
   
   
   <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>各种 moving function | Liu, Wen’s Home Page</title>
+<title>persistent homology 事例 + 应用 | Liu, Wen’s Home Page</title>
 <meta name="generator" content="Jekyll v4.3.3" />
-<meta property="og:title" content="各种 moving function" />
+<meta property="og:title" content="persistent homology 事例 + 应用" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="场景 moving mean" />
-<meta property="og:description" content="场景 moving mean" />
-<link rel="canonical" href="https://roshameow.github.io//personal_homepage/docs/algorithm/moving_function/" />
-<meta property="og:url" content="https://roshameow.github.io//personal_homepage/docs/algorithm/moving_function/" />
+<meta name="description" content="pair graph" />
+<meta property="og:description" content="pair graph" />
+<link rel="canonical" href="https://roshameow.github.io//personal_homepage/docs/algorithm/persistent-homology/" />
+<meta property="og:url" content="https://roshameow.github.io//personal_homepage/docs/algorithm/persistent-homology/" />
 <meta property="og:site_name" content="Liu, Wen’s Home Page" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2024-05-05T00:00:00+00:00" />
+<meta property="article:published_time" content="2024-08-08T00:00:00+00:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="各种 moving function" />
+<meta property="twitter:title" content="persistent homology 事例 + 应用" />
 <meta name="twitter:site" content="@" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-05-16T00:59:20+00:00","datePublished":"2024-05-05T00:00:00+00:00","description":"场景 moving mean","headline":"各种 moving function","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/docs/algorithm/moving_function/"},"url":"https://roshameow.github.io//personal_homepage/docs/algorithm/moving_function/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-09-02T19:45:00+00:00","datePublished":"2024-08-08T00:00:00+00:00","description":"pair graph","headline":"persistent homology 事例 + 应用","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/docs/algorithm/persistent-homology/"},"url":"https://roshameow.github.io//personal_homepage/docs/algorithm/persistent-homology/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -58,7 +58,7 @@
 
 </head>
 
-  <body class="layout--post  各种-moving-function">
+  <body class="layout--post  persistent-homology-事例-应用">
     <nav class="skip-links">
   <h2 class="screen-reader-text">Skip links</h2>
   <ul>
@@ -99,7 +99,7 @@
       <header class="page-header">
         
         
-        <h1 id="page-title" class="page-title p-name">各种 moving function
+        <h1 id="page-title" class="page-title p-name">persistent homology 事例 + 应用
 </h1>
         
       </header>
@@ -107,9 +107,9 @@
       <div class="page-sidebar">
         <div class="page-author h-card p-author"><img src="/personal_homepage/docs/images/logo.svg" class="author-avatar u-photo" alt=""><div class="author-info">
 
-<span class="read-time">~1 min read</span>
+<span class="read-time">1 min read</span>
 
-    <time class="page-date dt-published" datetime="2024-05-05T00:00:00+00:00"><a class="u-url" href="">May 5, 2024</a>
+    <time class="page-date dt-published" datetime="2024-08-08T00:00:00+00:00"><a class="u-url" href="">August 8, 2024</a>
 </time>
 
   </div>
@@ -125,7 +125,7 @@
         
   <h3 class="page-taxonomies-title">Tags</h3>
   
-  <ul class="page-taxonomies"><li class="page-taxonomy"><a href="/personal_homepage/tags/#basic" title="Pages tagged basic" rel="tag">basic</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#content" title="Pages tagged content" rel="tag">content</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#data-structure" title="Pages tagged data_structure" rel="tag">data_structure</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#leetcode" title="Pages tagged leetcode" rel="tag">leetcode</a></li>
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a href="/personal_homepage/tags/#content" title="Pages tagged content" rel="tag">content</a></li>
   </ul>
 
 
@@ -139,7 +139,7 @@
 {:toc} -->
   <!-- <div id="markdown-toc"> -->
 
-    <ul class="inline_toc" id="my_toc"><li><a href="#场景">场景</a><ul><li><a href="#moving-mean">moving mean</a></li><li><a href="#moving-median">moving median</a></li><li><a href="#moving-minmax">moving min/max</a></li></ul></li><li><a href="#结构">结构</a><ul><li><a href="#deque双向队列">deque(双向队列)</a></li><li><a href="#heap优先队列">heap(优先队列)</a></li><li><a href="#hashtable">hashtable</a></li><li><a href="#multiset">multiset</a></li></ul></li><li><a href="#其它有用的链接">其它有用的链接</a></li></ul>
+    <ul class="inline_toc" id="my_toc"><li><a href="#pair-graph">pair graph</a></li><li><a href="#记号">记号</a></li><li><a href="#应用">应用</a><ul><li><a href="#计算homology的生成元">计算homology的生成元</a></li><li><a href="#分析点云的结构">分析点云的结构</a></li><li><a href="#提取特征">提取特征</a></li></ul></li><li><a href="#reference">reference</a></li></ul>
   <!-- </div> -->
 
 </div>
@@ -176,169 +176,140 @@
 
       <div class="page-content">
         <div class="e-content">
-          <h2 id="场景">场景</h2>
-<h3 id="moving-mean">moving mean</h3>
+          <h2 id="pair-graph">pair graph</h2>
 
-<p>leetcode 239</p>
 <ul>
-  <li>用一个queue保存window里面的数据</li>
-  <li>每次+新进的数据-出去的数据</li>
+  <li>下标表示在filtration中的前后关系.</li>
+  <li>蓝色表示killer, 红色表示generator, 弧线表示kill关系.</li>
 </ul>
 
-<h3 id="moving-median">moving median</h3>
-
-<p>leetcode 480</p>
-
+<p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240821180208.png" alt="Pasted image 20240821180208.png" width="138" />  <img src="/personal_homepage/docs/attachment/Pasted%20image%2020240822181442.png" alt="Pasted image 20240822181442.png" width="150" />  <img src="/personal_homepage/docs/attachment/Pasted%20image%2020240821175655.png" alt="Pasted image 20240821175655.png" width="300" /></p>
 <ul>
-  <li>naive: 保存window里的所有数据,排序, 找出median
-    <ul>
-      <li>每次更新进出data的顺序</li>
-    </ul>
-  </li>
-  <li>优化1: 当进出的data在median同一侧时, 不需要更新median</li>
-  <li>优化2: 不需要严格的排序, 只需要维护median两边堆的结构, 就可以找到left的最大值, 和right的最小值
-    <ul>
-      <li>用window记录进出的data</li>
-      <li>同样的data只存一个位置, 通过一个counter记录data的重复次数, 次数=0就是待删除的data</li>
-      <li>记录left_heap, right_heap的实际size, 当两边size偏离的时候移动heap</li>
-      <li>如果删除/移动的data在堆顶, 需要更新堆(把堆顶待删除的data全部删除)</li>
-    </ul>
-  </li>
-  <li>错误方向:
-    <ul>
-      <li>本来想像moving max一样只保留时间近的, median附近的data. 但是moving median中, 所有的元素都可能在之后变得重要, 所以要全部保留的
-        <ul>
-          <li>如果window_size=k, 需要&lt;2/k个更新的data, 或&gt;2/k个更新的data, 才能确定这个data不可能成为median, 这个条件达成的概率很小</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
+  <li>topological annulus(环带, cylinder)</li>
+  <li>$H_0$ 的生成元是$v_0$</li>
+  <li>$H_1$ 的生成元是$e_2$ (对应cycle $e_0+e_1+e_2$ )</li>
 </ul>
 
-<h3 id="moving-minmax">moving min/max</h3>
+<p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240821175958.png" alt="Pasted image 20240821175958.png" width="100" />  <img src="/personal_homepage/docs/attachment/Pasted%20image%2020240822181535.png" alt="Pasted image 20240822181535.png" width="150" />  <img src="/personal_homepage/docs/attachment/Pasted%20image%2020240821175901.png" alt="Pasted image 20240821175901.png" width="300" /></p>
 
-<p>leetcode 239</p>
-
-<p>以max为例</p>
 <ul>
-  <li>naive: 保存window里的所有数据, 找出max</li>
-  <li>优化1: 不需要每次计算min/max, 只需要当前max出window的时候重新计算
+  <li>topological torus</li>
+  <li>$H_0$ 的生成元为 $v_0$</li>
+  <li>$H_1$ 的生成元为$e_3$( 对应cycle $e_0+e_1+e_2+e_3$) , $e_{20}$ (对应cycle $e_{12}+e_{16}+e_{20}$)</li>
+</ul>
+
+<p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240822194920.png" alt="Pasted image 20240822194920.png" width="150" />  <img src="/personal_homepage/docs/attachment/Pasted%20image%2020240822194939.png" alt="Pasted image 20240822194939.png" width="200" /></p>
+
+<ul>
+  <li>topological quadrilateral(四边形)</li>
+  <li>$H_0$ 的生成元为$v_0$ , $H_1$ 的生成元为$e_{11}$</li>
+</ul>
+
+<h2 id="记号">记号</h2>
+
+<ul>
+  <li>$\Gamma(d)$ : 被killer $d$ kill掉的generator</li>
+  <li>persistence life: $j-i-1$ , 从simplex $\sigma_i$  generated 到被 $\sigma_j$ kill的时间
     <ul>
-      <li>记录当前max的值和index</li>
-      <li>con: 这样计算速度不稳定
-        <ul>
-          <li>比如: window_size较大, 而数据又是降序排列的时候, 每新进一个数据都要计算一次max, 时间是O(k)</li>
-        </ul>
-      </li>
+      <li>表示了$\sigma_i$ 对应cycle $c_i$ 的拓扑稳定性</li>
     </ul>
   </li>
-  <li>优化2: window里不需要全部保存, 用deque结构, 只需要按顺序保存可能成为local max的data和index (不符合降序的data永远不会成为max)
+  <li><strong>persistent diagram</strong>: 也可以只取k-simplex的部分
     <ul>
-      <li>当新data进入deque时, 把deque里&lt;=它的data删除</li>
-      <li>deque里的当前max生命耗尽时, 需要移出deque
-        <ul>
-          <li>用保存的index判断生命耗尽</li>
-          <li>或保存一份window, 如果window移除data = deque的第一个data, 把data从deque里移除
-            <ul>
-              <li>deque里不会有重复data</li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-      <li>deque里的第一个data就是local max</li>
-      <li>例子: <img src="/personal_homepage/docs/attachment/Pasted%20image%2020240515165236.png" alt="Pasted image 20240515165236.png" width="300" />
-        <ul>
-          <li>data6进入window后, 4,5就不可能成为local max了</li>
-          <li>data7进入window后, 6也不可能成为local max了</li>
-        </ul>
-      </li>
+      <li>simplex 添加时间 x simplex death(被kill) 时间 $(i,j)$</li>
+      <li>simplex 添加时间 x simplex 的persistence life $(i,j-i-1)$</li>
     </ul>
   </li>
-  <li>应用:
+  <li><strong><a href="https://en.wikipedia.org/wiki/Persistence_barcode">barcode</a></strong> : 横坐标 为距离 $\epsilon$ , 每个bar表示positive simplex的添加时间 – 死亡时间
     <ul>
-      <li>动态调整画图界面适应data</li>
-      <li>mormophic filter去除基线漂移</li>
+      <li>某个横坐标处 bar的个数为 betti number:  $b_k(\mathbb K)=rk(H_k(\mathbb K,\mathbb Z_2))=pos_k-neg_{k+1}$</li>
+      <li>每个出现的long bar表示了一个持续时间长的cycle(稳定的特征)</li>
     </ul>
   </li>
 </ul>
 
-<h2 id="结构">结构</h2>
+<h2 id="应用">应用</h2>
 
-<h3 id="deque双向队列">deque(双向队列)</h3>
+<ul class="task-list">
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />待实现</li>
+</ul>
 
-<p>支持在两端进出</p>
+<h3 id="计算homology的生成元"><strong>计算homology的生成元</strong></h3>
+
 <ul>
-  <li>用途:
+  <li>计算oriented surface的homology: $H_1(S)\cong H_1(I)\oplus H_1(O)$ (<a href="https://en.wikipedia.org/wiki/Mayer–Vietoris_sequence">Mayer–Vietoris_sequence</a>)
     <ul>
-      <li>实现LRU缓存(leetcode 146)</li>
+      <li>用persistent homology计算$H_1(I)$ 和$H_1(O)$ 的生成元
+        <ul>
+          <li>需要0-1 incidence matrix 和 1-2 incidence matrix</li>
+          <li>把$I$ 和$O$ 用<a href="https://wias-berlin.de/software/index.jsp?id=TetGen&amp;lang=1">tetGen</a> 的方法生成四面体剖分</li>
+        </ul>
+      </li>
+      <li>$H_1(S,\mathbb Z_2)$ 和$H_1(S,\mathbb Z)$ 有相同的生成元?</li>
+    </ul>
+  </li>
+  <li>计算三流型的homology: $H_1(M,\mathbb Z_2)\cong H_2(M,\partial M,\mathbb Z_2)$ (Lefschetz duality)</li>
+</ul>
+
+<h3 id="分析点云的结构"><strong>分析点云的结构</strong></h3>
+
+<ul>
+  <li>自然图像分布: 3x3的high-contrast(用variance衡量)灰度图patch $\mathcal M$ , 看作$\mathbb R^9$ 中的点云
+    <ul>
+      <li>对patch做normalization, 使mean=0, var=1.:  $\mathcal M\subset E^7\subset \mathbb R^9$</li>
+      <li>取$\mathcal M$ 的 $5\times 10^4$ 个sample set $X$ , 取$X(k,p)$ 是X中k-邻域半径较大的 $p$ percent 的那些点
+        <ul>
+          <li>如果k-邻域半径小, 说明附近点很密集, 可以被忽略…</li>
+        </ul>
+      </li>
+      <li>调整k, p到合适的数据, 观察barcode, 形成一个Klein bottle的拓扑</li>
+      <li>目的是: 理解patch的分布, 和做image compresion?</li>
+    </ul>
+  </li>
+  <li>时间序列的周期性: 每个长为$M$, 间隔为$\tau$ 的sliding window构成一个M维vector, 改变时间t, 得到$\mathbb R^M$ 里的一个点云
+    <ul>
+      <li>检查这个设置下, persistence diagram中最长的persistence life作为这个周期($M,\tau$ ) 的分数</li>
+      <li>分数越高, 说明点云在$\mathbb R^M$ 里(拓扑意义上)越像一个closed loop, 和时间序列本身的周期越匹配</li>
     </ul>
   </li>
 </ul>
 
-<h3 id="heap优先队列">heap(优先队列)</h3>
+<h3 id="提取特征"><strong>提取特征</strong></h3>
 
 <ul>
-  <li>priority_queue(C++), heapq(python)</li>
-  <li><strong>heap的数据结构</strong>:
+  <li>persistent surface:
     <ul>
-      <li><img src="https://upload.wikimedia.org/wikipedia/commons/c/c4/Max-Heap-new.svg" alt="drawing" width="200" /></li>
-      <li>parent比children大的完备二叉树(以最大堆为例)
-        <ul>
-          <li>完备是指, 从上到下每层填满, 最后一层靠左排列</li>
-        </ul>
-      </li>
-      <li>可以用数组表示: 第 $i$个节点的左子节点编号为 $2i+1$，右子节点编号为 $2i+2$，父节点编号为 $⌊\frac{i−1}{2}⌋$
-        <ul>
-          <li>完备的=可以连续存储, 数组可以在任意位置访问-&gt;可以做swap</li>
-        </ul>
-      </li>
+      <li>persistent diagram连续化: 把persistent diagram上的点 $(i,j-i-1)$ 用在位置 $(i,j-i-1)$ , 方差为$\sigma$ 的高斯分布替代</li>
     </ul>
   </li>
-  <li><strong>heap支持的操作</strong>: 都是把中间data和最后data互换, 然后在最后增删, 所以不会破坏完备性
-    <ul>
-      <li>新插入一个元素(“上浮”操作): 把新data添到heap的尾部, 不断和parent比较, 并swap到合适位置
-        <ul>
-          <li>只需要O(logk) 的swap(如果要排序就需要O(k)个swap)</li>
-        </ul>
-      </li>
-      <li>移除heap 顶的元素(“下沉”操作): 和其children比较, 跟更大的那个swap, 直到到达底部, 删除</li>
-    </ul>
+  <li>
+    <p>persistent image: persistent surface像素化得到persistent image</p>
   </li>
-  <li><strong>用途</strong>:
+  <li>DNA序列的linked twist map形成一个二维的点集. 用persistent image提取特征再做分类.</li>
+  <li>解Kuramoto-Sivashinsky (KS) PDE
     <ul>
-      <li>调度器, 用来实时添加任务, 和取出最合适的任务进行执行
+      <li>是二维的heat image</li>
+      <li>根据不同的heat threshold(等高线), 构成image的子集的filtration
         <ul>
-          <li>比如优先级最高, 或截止时间最早的任务</li>
+          <li>把image的像素点看成0-simplex,  相邻像素看成1-simplex, 周围2x2像素看成2-simplex</li>
         </ul>
       </li>
-      <li>堆排序: 每轮找到最小的data排在后面, 时间复杂度是O(nlogn)
-        <ul>
-          <li>时间稳定, inplace操作, 适合大数据量, 内存有限的场景</li>
-        </ul>
-      </li>
+      <li>用filtration生成的persistent image做为特征分类</li>
     </ul>
   </li>
 </ul>
 
-<h3 id="hashtable">hashtable</h3>
+<h2 id="reference">reference</h2>
 
-<ul>
-  <li>unordered_map(C++), Counter(python), dict, set</li>
-</ul>
+<p>[1]  Carlsson, Gunnar. “Topological Pattern Recognition for <strong>Point Cloud Data.</strong>” <em>Acta Numerica</em> 23 (May 2014): 289–368. <a href="https://doi.org/10.1017/S0962492914000051">https://doi.org/10.1017/S0962492914000051</a>.</p>
 
-<h3 id="multiset">multiset</h3>
+<p>[2]  Perea, Jose, and John Harer. “<strong>Sliding Windows and Persistence</strong>: An Application of Topological Methods to Signal Analysis.” arXiv, November 25, 2013. <a href="https://doi.org/10.48550/arXiv.1307.6188">https://doi.org/10.48550/arXiv.1307.6188</a>.</p>
 
-<ul>
-  <li>multiset(C++)
-    <ul>
-      <li>类似set, 允许重复的data, 可以按顺序遍历</li>
-    </ul>
-  </li>
-</ul>
+<p>[3]  Adams, Henry, Sofya Chepushtanova, Tegan Emerson, Eric Hanson, Michael Kirby, Francis Motta, Rachel Neville, Chris Peterson, Patrick Shipman, and Lori Ziegelmeier. “<strong>Persistence Images</strong>: A Stable Vector Representation of Persistent Homology.” arXiv, July 11, 2016. <a href="https://doi.org/10.48550/arXiv.1507.06217">https://doi.org/10.48550/arXiv.1507.06217</a>.</p>
 
-<h2 id="其它有用的链接">其它有用的链接</h2>
+<p>[4] https://github.com/ctralie/TDALabs/blob/master/SlidingWindow2-PersistentHomology.ipynb</p>
 
-<p>[1]  https://cplusplus.com/reference/unordered_map/unordered_map/</p>
+<p>[5] https://ripser.scikit-tda.org/en/latest/ 计算persistent homology的python封装包</p>
 
         </div>
 
@@ -350,8 +321,8 @@
     <div id="disqus_thread"></div>
     <script>
       var disqus_config = function () {
-        this.page.url = 'https://roshameow.github.io//personal_homepage/docs/algorithm/moving_function/';
-        this.page.identifier = 'https://roshameow.github.io//personal_homepage/docs/algorithm/moving_function/';
+        this.page.url = 'https://roshameow.github.io//personal_homepage/docs/algorithm/persistent-homology/';
+        this.page.identifier = 'https://roshameow.github.io//personal_homepage/docs/algorithm/persistent-homology/';
       };
 
       (function() {
@@ -369,20 +340,20 @@
 
         <nav class="page-pagination" role="navigation">
   
-    <a class="page-previous" href="/personal_homepage/docs/algorithm/optical_flow_train3/">
+    <a class="page-previous" href="/personal_homepage/docs/math/algorithm/conformal-geometry8/">
       <h4 class="page-pagination-label">Previous</h4>
       <span class="page-pagination-title">
-        <i class="fas fa-arrow-left"></i> 小面积光流传感器算法测试 (三) – 滤波
+        <i class="fas fa-arrow-left"></i> conformal geometry学习 (八 ) – Persistent homology
 
       </span>
     </a>
   
 
   
-    <a class="page-next" href="/personal_homepage/docs/photo/jekyll-add-logo/">
+    <a class="page-next" href="/personal_homepage/docs/photo/willow-art/">
       <h4 class="page-pagination-label">Next</h4>
       <span class="page-pagination-title">
-        给网页添加 logo
+        柳树怎么表现
  <i class="fas fa-arrow-right"></i>
       </span>
     </a>
