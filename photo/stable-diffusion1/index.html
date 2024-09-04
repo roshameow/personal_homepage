@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<!--
+    So Simple Jekyll Theme 3.2.0
+    Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+    Free for personal and commercial use under the MIT license
+    https://github.com/mmistakes/so-simple-theme/blob/master/LICENSE
+-->
+<html lang="en-US" class="no-js">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  
+
+  
+  
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>stable-diffusion的用法: 用 ipadatper+controlnet canny做风格转换 | Liu, Wen’s Home Page</title>
+<meta name="generator" content="Jekyll v4.3.3" />
+<meta property="og:title" content="stable-diffusion的用法: 用 ipadatper+controlnet canny做风格转换" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="用ipadapter和canny做风格转换" />
+<meta property="og:description" content="用ipadapter和canny做风格转换" />
+<link rel="canonical" href="https://roshameow.github.io//personal_homepage/photo/stable-diffusion1/" />
+<meta property="og:url" content="https://roshameow.github.io//personal_homepage/photo/stable-diffusion1/" />
+<meta property="og:site_name" content="Liu, Wen’s Home Page" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2024-02-07T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="stable-diffusion的用法: 用 ipadatper+controlnet canny做风格转换" />
+<meta name="twitter:site" content="@" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-02-24T19:16:16+00:00","datePublished":"2024-02-07T00:00:00+00:00","description":"用ipadapter和canny做风格转换","headline":"stable-diffusion的用法: 用 ipadatper+controlnet canny做风格转换","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/photo/stable-diffusion1/"},"url":"https://roshameow.github.io//personal_homepage/photo/stable-diffusion1/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  
+
+  <script>
+    /* Cut the mustard */
+    if ('querySelector' in document && 'addEventListener' in window) {
+      document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + 'js';
+    }
+  </script>
+
+  <link rel="stylesheet" href="/personal_homepage/assets/css/main.css">
+  <link rel="stylesheet" href="/personal_homepage/assets/css/skins/default.css">
+  
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,700,700i|Lora:400,400i,700,700i">
+  <link rel="alternate" type="application/atom+xml" title="Liu, Wen&#39;s Home Page" href="/personal_homepage/atom.xml">
+<!-- start custom head snippets -->
+
+<!-- insert favicons. use http://realfavicongenerator.net/ -->
+<link rel="shortcut icon" type="image/x-icon" href="/personal_homepage/docs/images/logo.ico">
+<!-- end custom head snippets -->
+
+</head>
+
+  <body class="layout--post  stable-diffusion的用法-用-ipadatper-controlnet-canny做风格转换">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#primary-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+  <div class="navigation-wrapper">
+    <a href="#menu-toggle" id="menu-toggle">Menu</a>
+    <nav id="primary-nav" class="site-nav animated drop">
+      <ul><li><a href="/personal_homepage/">Home</a></li><li><a href="/personal_homepage/posts/">Posts</a></li><li><a href="/personal_homepage/categories/">Categories</a></li><li><a href="/personal_homepage/tags/">Tags</a></li><li><a href="/personal_homepage/family/">Family</a></li><li><a href="/personal_homepage/search/">Search</a></li></ul>
+    </nav>
+  </div><!-- /.navigation-wrapper -->
+
+
+    <header class="masthead">
+  <div class="wrap">
+    
+    
+    
+      
+        <div class="site-title animated fadeIn"><a href="/personal_homepage/">Liu, Wen's Home Page</a></div>
+      
+      <p class="site-description animated fadeIn" itemprop="description">Work, Experiments and Ideas.</p>
+    
+  </div>
+</header><!-- /.masthead -->
+
+
+    <main id="main" class="main-content" aria-label="Content">
+  <article class="h-entry">
+    
+
+    <div class="page-wrapper">
+      <header class="page-header">
+        
+        
+        <h1 id="page-title" class="page-title p-name">stable-diffusion的用法: 用 ipadatper+controlnet canny做风格转换
+</h1>
+        
+      </header>
+
+      <div class="page-sidebar">
+        <div class="page-author h-card p-author"><img src="/personal_homepage/docs/images/logo.svg" class="author-avatar u-photo" alt=""><div class="author-info">
+
+<span class="read-time">~1 min read</span>
+
+    <time class="page-date dt-published" datetime="2024-02-07T00:00:00+00:00"><a class="u-url" href="">February 7, 2024</a>
+</time>
+
+  </div>
+</div>
+
+        
+  <h3 class="page-taxonomies-title">Categories</h3>
+  
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a class="p-category" href="/personal_homepage/categories/#photo" title="Pages filed under photo">photo</a></li>
+  </ul>
+
+
+        
+  <h3 class="page-taxonomies-title">Tags</h3>
+  
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a href="/personal_homepage/tags/#comfyui" title="Pages tagged ComfyUI" rel="tag">ComfyUI</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#canny" title="Pages tagged canny" rel="tag">canny</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#content" title="Pages tagged content" rel="tag">content</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#controlnet" title="Pages tagged controlnet" rel="tag">controlnet</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#ipadapter" title="Pages tagged ipadapter" rel="tag">ipadapter</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#sdxl" title="Pages tagged sdxl" rel="tag">sdxl</a></li>
+  </ul>
+
+
+        <!-- {::options parse_block_html="true" /} -->
+<div id="entry-table-of-contents" class="toc-wrapper">
+  <h2 id="toc-toggle">
+    Table of Contents <i
+      class="toc-toggle-icon fas fa-chevron-down"></i>
+  </h2>
+  <!-- 1. toc
+{:toc} -->
+  <!-- <div id="markdown-toc"> -->
+
+    <ul class="inline_toc" id="my_toc"><li><a href="#comfyui使用">ComfyUI使用</a></li><li><a href="#结果">结果</a></li><li><a href="#comfyui-workflow">ComfyUI workflow</a></li><li><a href="#comfyui难用的地方">ComfyUI难用的地方</a></li><li><a href="#其他讨论这个链接">其他讨论这个链接</a></li></ul>
+  <!-- </div> -->
+
+</div>
+<!-- {::options parse_block_html="false" /} -->
+        
+
+<div id="entry-table-of-contents" class="toc-wrapper">
+    <h2 id="toc-toggle" class="no_toc">
+        Related Posts <i class="toc-toggle-icon fas fa-chevron-down"></i>
+    </h2>
+    <!-- <div id="markdown-toc"> -->
+    <ul>
+        
+        <li><a href="/personal_homepage/house/wall-problem/">墙皮脱落问题</a></li>
+        
+        <li><a href="/personal_homepage/game/card/">掼蛋规则</a></li>
+        
+        <li><a href="/personal_homepage/affair/cat-airline/">搬家相关准备</a></li>
+        
+        <li><a href="/personal_homepage/math/conformal-geometry9/">conformal geometry学习 (九 ) -- atlas</a></li>
+        
+        <li><a href="/personal_homepage/affair/cat-can/">猫罐头调查</a></li>
+        
+    </ul>
+    <!-- </div> -->
+
+</div>
+
+
+
+
+
+      </div>
+
+      <div class="page-content">
+        <div class="e-content">
+          <p>用ipadapter和canny做风格转换</p>
+
+<h2 id="comfyui使用">ComfyUI使用</h2>
+
+<ol>
+  <li>调用ComfyUI中default的工作流
+    <ul>
+      <li>下载<a href="https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0">sdxl模型</a></li>
+    </ul>
+  </li>
+  <li><strong>连上IPAdapter节点</strong>
+    <ul>
+      <li>安装<a href="https://github.com/cubiq/ComfyUI_IPAdapter_plus">IPAdapter_plus插件</a>
+        <ul>
+          <li>下载需要的ipadater微调模型和clip vision编码器: 把图像用clip vision编码后输入base model的cross-attention层</li>
+        </ul>
+      </li>
+      <li>ComfyUI里连接顺序是: Checkpoint: model-&gt; IPAdapter: model -&gt; KSampler: model</li>
+      <li>weigt设为1, text prompt都空着, latent prompt也空着</li>
+    </ul>
+  </li>
+  <li><strong>连上Controlnet节点</strong>
+    <ul>
+      <li>下载<a href="https://huggingface.co/collections/diffusers/sdxl-controlnets-64f9c35846f3f06f5abe351f">canny模型</a>
+        <ul>
+          <li><del>找不到其他适合sdxl的controlnet模型</del>因为我们的原图是个线稿适合用canny</li>
+        </ul>
+      </li>
+      <li>ComfyUI里连接顺序是: Checkpoint-&gt;prompt-&gt;controlnet-&gt;Ksampler: text prompt
+        <ul>
+          <li>controlnet最后是作用在condition(positive, negative)上的, 和text promt一样</li>
+        </ul>
+      </li>
+      <li>调整controlnet权重和影响步数: stength=0.5, start_percent=0, end_percent=0.6
+        <ul>
+          <li>如果设置过大就只能得到一张有颜色的线稿图</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ol>
+
+<h2 id="结果">结果</h2>
+
+<p>原图: 
+<img src="/personal_homepage/docs/attachment/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-02-07%20224110.png" alt="屏幕截图 2024-02-07 224110.png" width="600" /> + <img src="/personal_homepage/docs/attachment/2e2b76d160ca4317bb8e095ffd8ff878.jpg.png" alt="2e2b76d160ca4317bb8e095ffd8ff878.jpg.png" width="150" /></p>
+
+<p>合成图: 
+<img src="/personal_homepage/docs/attachment/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-02-07%20224141.png" alt="屏幕截图 2024-02-07 224141.png" width="600" /></p>
+
+<ul>
+  <li>竟然可以识别龙的眼睛啊…有好几幅图都把猫眼替换到了龙眼上
+    <ul>
+      <li>如果两种图有同样的元素(眼睛之类的), 可能可以比较好的替换</li>
+      <li>最后的龙和人, 龙和山, 都不能对应起来</li>
+    </ul>
+  </li>
+  <li>ipadapter没法主动控制合成哪个图像中的哪种元素:
+    <ul>
+      <li>虽然替换了颜色, 背景, 但是没法替换材质, 笔触</li>
+      <li>有几张图还替换了原图的色块分布, 这是我们不想要的</li>
+    </ul>
+  </li>
+  <li>另外, controlnet-canny和ipadapter的龙都不能省略
+    <ul>
+      <li>如果ipadapter只用风格图:
+        <ul>
+          <li><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240208003655.png" alt="Pasted image 20240208003655.png" width="100" /> <img src="/personal_homepage/docs/attachment/Pasted%20image%2020240208003712.png" alt="Pasted image 20240208003712.png" width="100" /></li>
+          <li>增加control-net的权重也是没用的, weight=0.8时出现了噪声图案</li>
+        </ul>
+      </li>
+      <li>如果不加controlnet:
+        <ul>
+          <li><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240208003804.png" alt="Pasted image 20240208003804.png" width="100" /> <img src="/personal_homepage/docs/attachment/Pasted%20image%2020240208003819.png" alt="Pasted image 20240208003819.png" width="100" /></li>
+        </ul>
+      </li>
+      <li>看起来controlnet保持了龙的外形结构, ipadpter加龙提高了龙的权重, 不过ipadapter从龙图中究竟学到了什么? 是扁平的画风吗? 只用风格图的情况下, 确实画风更接近风格图, 但是内容也更接近了
+        <ul>
+          <li>可以通过text prompt控制吗? 但是clip又无法理解简笔画的龙.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="comfyui-workflow">ComfyUI workflow</h2>
+
+<p><a href="https://gist.github.com/roshameow/d952bf0157a25ab3e9e724df1449b160#file-ipadapter_controlnet-canny_loong_style_change-json"><strong>ipadapter_controlnet-canny_loong_style_change.json</strong></a></p>
+
+<p><img src="/personal_homepage/docs/attachment/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-02-07%20224530.png" alt="屏幕截图 2024-02-07 224530.png" width="800" /></p>
+
+<h2 id="comfyui难用的地方">ComfyUI难用的地方</h2>
+
+<ul>
+  <li>UI的奇怪地方
+    <ul>
+      <li>有参数的地方字体相对整个节点特别小, 而且没法调节. 输入text prompt的时候是根本看不清..</li>
+      <li>鼠标的十字倒是特别大…</li>
+    </ul>
+  </li>
+  <li>节点连接非常反常识
+    <ul>
+      <li>load节点
+        <ul>
+          <li>输入都在右侧, 一般会觉得应该把prompt输入模型</li>
+          <li>load节点的存在就很奇怪, 为什么不把load和apply合并到一起? 或者在右侧用菜单栏切换</li>
+          <li>model里面还有个model_name? 模型的名字一长全混在一起真的分不清啊…</li>
+        </ul>
+      </li>
+      <li>preview Image节点
+        <ul>
+          <li>为什么不直接做成一个下拉选项…</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>节点划分不明确: ComfyUI里面一个节点会用dict的形式传递多种参数
+    <ul>
+      <li>latent里面可能包含latent image, noise mask, 也可能不包含noise mask, 此时连接到需要noise mask key的latent节点就会报错</li>
+      <li>condition(positive, negative)也包含多种condition…</li>
+    </ul>
+  </li>
+  <li>为什么不能做成一个Chromium内核的本地app..
+    <ul>
+      <li>据说有一些方法可以打包成一个app?</li>
+      <li>凡需要inpaint输入的地方, 输入方式很不方便, 能和其他专门用来绘图的软件结合就好了</li>
+    </ul>
+  </li>
+  <li>虽然如此, 可以用节点和分享工作流就比webui好用太多了</li>
+</ul>
+
+<h2 id="其他讨论这个链接">其他讨论这个链接</h2>
+
+<p>[1] https://zhuanlan.zhihu.com/p/664201523 里面介绍了一个换画风的工作流, 不过例子是人像, 可能本身网络对人像的理解能力更强吧?　</p>
+
+
+        </div>
+
+        
+        <div class="page-share">
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Froshameow.github.io%2F%2Fpersonal_homepage%2Fphoto%2Fstable-diffusion1%2F" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" class="btn btn--facebook btn--small"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i> <span>Share</span></a>
+  <a href="https://twitter.com/intent/tweet?text=stable-diffusion%E7%9A%84%E7%94%A8%E6%B3%95%3A+%E7%94%A8+ipadatper%2Bcontrolnet+canny%E5%81%9A%E9%A3%8E%E6%A0%BC%E8%BD%AC%E6%8D%A2%20https%3A%2F%2Froshameow.github.io%2F%2Fpersonal_homepage%2Fphoto%2Fstable-diffusion1%2F" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" class="btn btn--twitter btn--small"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i> <span>Tweet</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Froshameow.github.io%2F%2Fpersonal_homepage%2Fphoto%2Fstable-diffusion1%2F" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" class="btn btn--linkedin btn--small"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> <span>LinkedIn</span></a>
+  <a href="https://reddit.com/submit?title=stable-diffusion%E7%9A%84%E7%94%A8%E6%B3%95%3A+%E7%94%A8+ipadatper%2Bcontrolnet+canny%E5%81%9A%E9%A3%8E%E6%A0%BC%E8%BD%AC%E6%8D%A2&url=https%3A%2F%2Froshameow.github.io%2F%2Fpersonal_homepage%2Fphoto%2Fstable-diffusion1%2F" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" class="btn btn--reddit btn--small"><i class="fab fa-fw fa-reddit" aria-hidden="true"></i> <span>Reddit</span></a>
+</div>
+
+        
+
+        
+        
+  <div class="page-comments">
+    <div id="disqus_thread"></div>
+    <script>
+      var disqus_config = function () {
+        this.page.url = 'https://roshameow.github.io//personal_homepage/photo/stable-diffusion1/';
+        this.page.identifier = 'https://roshameow.github.io//personal_homepage/photo/stable-diffusion1/';
+      };
+
+      (function() {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://https-roshameow-github-io-personal-homepage.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+  </div>
+
+
+        
+
+        <nav class="page-pagination" role="navigation">
+  
+    <a class="page-previous" href="/personal_homepage/deeplearning/attention/">
+      <h4 class="page-pagination-label">Previous</h4>
+      <span class="page-pagination-title">
+        <i class="fas fa-arrow-left"></i> 神经网络attention结构理解
+
+      </span>
+    </a>
+  
+
+  
+    <a class="page-next" href="/personal_homepage/blender/blender-learning5/">
+      <h4 class="page-pagination-label">Next</h4>
+      <span class="page-pagination-title">
+        blender学习: 做火焰效果
+ <i class="fas fa-arrow-right"></i>
+      </span>
+    </a>
+  
+</nav>
+
+      </div>
+
+    </div>
+  </article>
+</main>
+
+    <footer id="footer" class="site-footer">
+  <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+<div class="social-icons"><a class="social-icon" href="/personal_homepage/atom.xml"><i class="fas fa-rss-square fa-2x" title="Feed"></i></a><a class="social-icon" href="https://github.com/roshameow"><i class="fab fa-github-square fa-2x" title="GitHub"></i></a><a class="social-icon" href="https://www.linkedin.com/in/wen-liu-06503a7b/"><i class="fab fa-linkedin fa-2x" title="LinkedIn"></i></a><a class="social-icon" href="mailto:w.liuatnk@gmail.com"><i class="fas fa-envelope-square fa-2x" title="e-mail"></i></a></div><div class="copyright">
+    
+      <p>&copy; 2024 Liu, Wen's Home Page. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://github.com/mmistakes/so-simple-theme" rel="nofollow">So Simple</a>.</p>
+    
+  </div>
+</footer>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="/personal_homepage/assets/js/main.min.js"></script>
+<script src="https://use.fontawesome.com/releases/v5.0.12/js/all.js"></script><!-- <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'G-9TMSCDTBGN', 'auto');
+  ga('send', 'pageview');
+</script> -->
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9TMSCDTBGN"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-9TMSCDTBGN');
+</script>
+
+
+
+<!-- MathJax -->
+
+<script>
+    // http://docs.mathjax.org/en/latest/upgrading/v2.html
+    MathJax = {
+        tex: {
+            tags: "ams",    // eq numbering options: none, ams, all
+            inlineMath: [['$', '$'], ["\\(", "\\)"]],  // 设置行内数学公式的开始和结束标记
+            displayMath: [['$$', '$$'], ["\\[", "\\]"]]  // 设置行间数学公式的开始和结束标记
+        },
+        // options: {
+        //   renderActions: {
+        //     // for mathjax 3, handle <script "math/tex"> blocks inserted by kramdown
+        //     find: [10, function (doc) {
+        //       for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+        //         const display = !!node.type.match(/; *mode=display/);
+        //         const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+        //         const text = document.createTextNode('');
+        //         node.parentNode.replaceChild(text, node);
+        //         math.start = { node: text, delim: '', n: 0 };
+        //         math.end = { node: text, delim: '', n: 0 };
+        //         doc.math.push(math);
+        //       }
+        //     }, '']
+        //   }
+        // }
+    }
+</script>
+
+<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  </body>
+
+</html>

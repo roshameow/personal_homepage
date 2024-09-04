@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<!--
+    So Simple Jekyll Theme 3.2.0
+    Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+    Free for personal and commercial use under the MIT license
+    https://github.com/mmistakes/so-simple-theme/blob/master/LICENSE
+-->
+<html lang="en-US" class="no-js">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  
+
+  
+  
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Diffusion Process 和 Reverse Diffusion Process理解 | Liu, Wen’s Home Page</title>
+<meta name="generator" content="Jekyll v4.3.3" />
+<meta property="og:title" content="Diffusion Process 和 Reverse Diffusion Process理解" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="背景知识 Bayes’ rule" />
+<meta property="og:description" content="背景知识 Bayes’ rule" />
+<link rel="canonical" href="https://roshameow.github.io//personal_homepage/algorithm/stable-diffusion7/" />
+<meta property="og:url" content="https://roshameow.github.io//personal_homepage/algorithm/stable-diffusion7/" />
+<meta property="og:site_name" content="Liu, Wen’s Home Page" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2024-04-16T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Diffusion Process 和 Reverse Diffusion Process理解" />
+<meta name="twitter:site" content="@" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-07-02T08:21:14+00:00","datePublished":"2024-04-16T00:00:00+00:00","description":"背景知识 Bayes’ rule","headline":"Diffusion Process 和 Reverse Diffusion Process理解","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/algorithm/stable-diffusion7/"},"url":"https://roshameow.github.io//personal_homepage/algorithm/stable-diffusion7/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  
+
+  <script>
+    /* Cut the mustard */
+    if ('querySelector' in document && 'addEventListener' in window) {
+      document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + 'js';
+    }
+  </script>
+
+  <link rel="stylesheet" href="/personal_homepage/assets/css/main.css">
+  <link rel="stylesheet" href="/personal_homepage/assets/css/skins/default.css">
+  
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,700,700i|Lora:400,400i,700,700i">
+  <link rel="alternate" type="application/atom+xml" title="Liu, Wen&#39;s Home Page" href="/personal_homepage/atom.xml">
+<!-- start custom head snippets -->
+
+<!-- insert favicons. use http://realfavicongenerator.net/ -->
+<link rel="shortcut icon" type="image/x-icon" href="/personal_homepage/docs/images/logo.ico">
+<!-- end custom head snippets -->
+
+</head>
+
+  <body class="layout--post  diffusion-process-和-reverse-diffusion-process理解">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#primary-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+  <div class="navigation-wrapper">
+    <a href="#menu-toggle" id="menu-toggle">Menu</a>
+    <nav id="primary-nav" class="site-nav animated drop">
+      <ul><li><a href="/personal_homepage/">Home</a></li><li><a href="/personal_homepage/posts/">Posts</a></li><li><a href="/personal_homepage/categories/">Categories</a></li><li><a href="/personal_homepage/tags/">Tags</a></li><li><a href="/personal_homepage/family/">Family</a></li><li><a href="/personal_homepage/search/">Search</a></li></ul>
+    </nav>
+  </div><!-- /.navigation-wrapper -->
+
+
+    <header class="masthead">
+  <div class="wrap">
+    
+    
+    
+      
+        <div class="site-title animated fadeIn"><a href="/personal_homepage/">Liu, Wen's Home Page</a></div>
+      
+      <p class="site-description animated fadeIn" itemprop="description">Work, Experiments and Ideas.</p>
+    
+  </div>
+</header><!-- /.masthead -->
+
+
+    <main id="main" class="main-content" aria-label="Content">
+  <article class="h-entry">
+    
+
+    <div class="page-wrapper">
+      <header class="page-header">
+        
+        
+        <h1 id="page-title" class="page-title p-name">Diffusion Process 和 Reverse Diffusion Process理解
+</h1>
+        
+      </header>
+
+      <div class="page-sidebar">
+        <div class="page-author h-card p-author"><img src="/personal_homepage/docs/images/logo.svg" class="author-avatar u-photo" alt=""><div class="author-info">
+
+<span class="read-time">3 min read</span>
+
+    <time class="page-date dt-published" datetime="2024-04-16T00:00:00+00:00"><a class="u-url" href="">April 16, 2024</a>
+</time>
+
+  </div>
+</div>
+
+        
+  <h3 class="page-taxonomies-title">Categories</h3>
+  
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a class="p-category" href="/personal_homepage/categories/#algorithm" title="Pages filed under algorithm">algorithm</a></li>
+  </ul>
+
+
+        
+  <h3 class="page-taxonomies-title">Tags</h3>
+  
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a href="/personal_homepage/tags/#ddpm" title="Pages tagged DDPM" rel="tag">DDPM</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#markov-chain" title="Pages tagged Markov_chain" rel="tag">Markov_chain</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#smld" title="Pages tagged SMLD" rel="tag">SMLD</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#content" title="Pages tagged content" rel="tag">content</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#diffusion" title="Pages tagged diffusion" rel="tag">diffusion</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#sde" title="Pages tagged sde" rel="tag">sde</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#stable-diffusion" title="Pages tagged stable-diffusion" rel="tag">stable-diffusion</a></li>
+  </ul>
+
+
+        <!-- {::options parse_block_html="true" /} -->
+<div id="entry-table-of-contents" class="toc-wrapper">
+  <h2 id="toc-toggle">
+    Table of Contents <i
+      class="toc-toggle-icon fas fa-chevron-down"></i>
+  </h2>
+  <!-- 1. toc
+{:toc} -->
+  <!-- <div id="markdown-toc"> -->
+
+    <ul class="inline_toc" id="my_toc"><li><a href="#背景知识">背景知识</a><ul><li><a href="#bayes-rule">Bayes’ rule</a></li><li><a href="#sdestochastic-differential-equation">SDE(stochastic differential equation)</a></li></ul></li><li><a href="#diffusion-process--reverse-diffusion-process">Diffusion Process &amp; Reverse Diffusion Process</a><ul><li><a href="#diffusion-process">Diffusion Process</a></li><li><a href="#reverse-diffusion-process">Reverse Diffusion Process</a></li></ul></li><li><a href="#reference">reference</a></li></ul>
+  <!-- </div> -->
+
+</div>
+<!-- {::options parse_block_html="false" /} -->
+        
+
+<div id="entry-table-of-contents" class="toc-wrapper">
+    <h2 id="toc-toggle" class="no_toc">
+        Related Posts <i class="toc-toggle-icon fas fa-chevron-down"></i>
+    </h2>
+    <!-- <div id="markdown-toc"> -->
+    <ul>
+        
+        <li><a href="/personal_homepage/house/wall-problem/">墙皮脱落问题</a></li>
+        
+        <li><a href="/personal_homepage/game/card/">掼蛋规则</a></li>
+        
+        <li><a href="/personal_homepage/affair/cat-airline/">搬家相关准备</a></li>
+        
+        <li><a href="/personal_homepage/math/conformal-geometry9/">conformal geometry学习 (九 ) -- atlas</a></li>
+        
+        <li><a href="/personal_homepage/affair/cat-can/">猫罐头调查</a></li>
+        
+    </ul>
+    <!-- </div> -->
+
+</div>
+
+
+
+
+
+      </div>
+
+      <div class="page-content">
+        <div class="e-content">
+          <h2 id="背景知识">背景知识</h2>
+<h3 id="bayes-rule"><a href="https://en.wikipedia.org/wiki/Bayes%27_theorem">Bayes’ rule</a></h3>
+
+\[p(c\vert a,b) = p(a\vert c)\frac{p(c\vert b)}{p(a\vert b)}\propto p(a\vert c)p(c\vert b)\]
+
+<ul>
+  <li>考虑一种特殊情况:
+    <ul>
+      <li>RHS都是高斯分布: $p(a\vert c)\propto e^{-\frac{(a-\mu_{c\rightarrow a})^2}{2(\sigma_{c\rightarrow a})^2}}$, $p(c\vert b)\propto e^{-\frac{(c-\mu_{b\rightarrow c})^2}{2(\sigma_{b\rightarrow c})^2}}$, $p(a\vert b)\propto e^{-\frac{(a-\mu_{b\rightarrow a})^2}{2(\sigma_{b\rightarrow a})^2}}$</li>
+      <li>且其中均值是关于条件变量线性的, $\mu_{c\rightarrow a}=\kappa_{c\rightarrow a}\cdot c$ , $\mu_{c\rightarrow b}=\kappa_{c\rightarrow b}\cdot b$, $\mu_{a\rightarrow b}=\kappa_{a\rightarrow b}\cdot b$, 方差是常数</li>
+    </ul>
+  </li>
+  <li>则$p(c\vert a,b)$ 也同样为<a href="https://en.wikipedia.org/wiki/Normal_distribution">高斯分布</a>
+    <ul>
+      <li>把Bayers’ rule转成log形式: $\log p(c\vert a,b)=\log p(a\vert c) +\log p(c\vert b) +C =-\frac{(a-\kappa_{c\rightarrow a}\cdot c)^2}{2(\sigma_{c\rightarrow a})^2}-\frac{(c-\kappa_{b\rightarrow c}\cdot b)^2}{2(\sigma_{b\rightarrow c})^2}+C$</li>
+      <li>可以看到RHS依然是关于c 的二次多项式
+        <ul>
+          <li>由c的二次项系数得到方差$\frac{1}{\sigma^2}=\frac{\kappa_{c\rightarrow a}^2}{\sigma_{c\rightarrow a}^2}+\frac{1}{\sigma_{b\rightarrow c}^2}$</li>
+          <li>由c的一次项系数得到均值$\frac{\mu}{\sigma^2}=\frac{\kappa_{c\rightarrow a}\cdot a}{\sigma_{c\rightarrow a}^2}+\frac{\kappa_{b\rightarrow c}\cdot b}{\sigma_{b\rightarrow c}^2}$</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="sdestochastic-differential-equation"><a href="https://en.wikipedia.org/wiki/Stochastic_differential_equation">SDE(stochastic differential equation)</a></h3>
+
+<p>把DPM表示成
+<a href="https://en.wikipedia.org/wiki/Stochastic_differential_equation">SDE(stochastic differential equation)</a>:</p>
+<ul>
+  <li>SDE的一般形式: $dx=f(x,t)dt+g(t)dw$
+    <ul>
+      <li>$f(\cdot,t)$ 是drift coefficients 表示确定的部分</li>
+      <li>$g(\cdot)$ 是diffusion coefficients 表示随机部分参数</li>
+      <li>$\omega$ 是<a href="https://en.wikipedia.org/wiki/Wiener_process">Wiener process(布朗运动)</a> , $dw=\sqrt{t}z, z\sim N(0,1)$</li>
+    </ul>
+  </li>
+  <li>SDE的reverse: $dx=(f(x,t)-\frac{1}{2}g^2(t)\nabla_x\log p(x,t))dt+g(t)dw$
+    <ul>
+      <li>score function $\nabla_x\log p(x,t)$   指向higher density of data</li>
+      <li>前半确定部分: Probability flow ODE: $dx=(f(x,t)-\frac{1}{2}g^2(t)\nabla_x\log p(x,t))dt$</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="diffusion-process--reverse-diffusion-process">Diffusion Process &amp; Reverse Diffusion Process</h2>
+
+<h3 id="diffusion-process">Diffusion Process</h3>
+
+<p>$q(x_t\vert x_0)=N(x_t;\alpha_t x_0,\sigma^2 I)$ diffusion收敛到SDE, SDE离散化得到diffusion. Denoising diffusion probabilistic modeling (DDPM) 和Score matching with Langevin dynamics (SMLD) 可以看作两种不同的实例化.</p>
+
+<p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240623150259.png" alt="Pasted image 20240623150259.png" width="800" /></p>
+
+<ol>
+  <li>DDPM(see <a href="#ref">[3] Appendix B.</a>) to Variance Preserving(VP) SDE
+    <ul>
+      <li>$x_i=\sqrt{1-\beta_i}x_{i-1}+\sqrt{\beta_i}z_i$  $\implies$   $x_i-x_{i-1}=(\sqrt{1-\beta_i}-1)x_{i-1}+\sqrt{\beta_i}z_i$
+        <ul>
+          <li>LHS: $x_i-x_{i-1}\rightarrow dx$</li>
+          <li>RHS: $\sqrt{1-\beta_i}x_{i-1}+\sqrt{\beta_i}z_i\rightarrow (\frac{\sqrt{1-\beta(t)dt}\ -1}{dt})xdt+\sqrt{\beta(t)dt}\frac{dw}{\sqrt{dt}}\rightarrow -\frac{1}{2}\beta(t)xdt+\sqrt{\beta(t)}dw$
+            <ul>
+              <li>其中, $z_i\rightarrow \frac{dw}{\sqrt{dt}}$ , $\beta_i\rightarrow \beta(t)dt$</li>
+              <li>$lim_{dt\rightarrow 0} \frac{\sqrt{1-\beta(t)dt}-1}{dt}=-\frac{1}{2}\beta(t)$</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>DDPM Markov chain to Marginal Distribution
+    <ul>
+      <li>$x_i=\sqrt{1-\beta_i}x_{i-1}+\sqrt{\beta_i}z_i=\sqrt{1-\beta_i}(\sqrt{1-\beta_{i-1}}x_{i-2}+\sqrt{\beta_{i-1}}z_{i-1})+\sqrt{\beta_i}z_i=\dots$
+        <ul>
+          <li>$\alpha_i=\prod_{\tau=1}^i \sqrt{1-\beta_\tau}$ , 即 $\log \alpha_i=\sum_{\tau=1}^i \log\sqrt{1-\beta_\tau}$</li>
+          <li>$\sigma_i=\sqrt{1-\prod_{\tau=1}^i (1-\beta_\tau)}$</li>
+        </ul>
+      </li>
+      <li>得到$\alpha_i^2+\sigma_i^2=1$</li>
+    </ul>
+  </li>
+  <li>DDPM对应的限制, $\alpha_i^2+\sigma_i^2=1$
+    <ul>
+      <li>记 $\bar \alpha_i=\alpha_i^2$</li>
+    </ul>
+  </li>
+  <li>SMLD Markov chain to Marginal Distribution
+    <ul>
+      <li>$x_i=x_{i-1}+\sqrt{\sigma_i^2-\sigma_{i-1}^2}z_i=x_{i-2}+\sqrt{(\sigma_i^2-\sigma_{i-1}^2)+(\sigma_{i-1}^2-\sigma_{i-2}^2)}\cdot z=\dots=x_0+\sigma_i\cdot z$</li>
+    </ul>
+  </li>
+  <li>SMLD对应的限制, $\alpha_i=1$</li>
+  <li>SMLD to DDPM conversion:
+    <ul>
+      <li>$\bar \alpha_i = \frac{1}{\sigma_i^2+1}$, $\bar x_i=\frac{x_i}{\sqrt{\bar \alpha_i}}=\sqrt{\sigma_i^2+1}\cdot x_i$
+        <ul>
+          <li>从 DDPM有$\frac{x_i}{\sqrt{\bar \alpha_i}}=x_0+\sqrt{\frac{1}{\bar \alpha_i}-1}z_i$ , 使$x_i$ 和$x_0$ 的mean相同</li>
+          <li>和SMLD $x_i=x_0+\sigma_i\cdot z_i$ 对照可得</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Markov chain to SDE:
+    <ul>
+      <li>$x_i=\frac{\alpha_i}{\alpha_{i-1}}x_{i-1}+\sqrt{\sigma_i^2-\frac{\alpha_i^2}{\alpha_{i-1}^2}\cdot \sigma_{i-1}^2}\cdot z_{i-1}$ $\implies$ $x_i-x_{i-1}=(\frac{\alpha_i}{\alpha_{i-1}}-1)x_{i-1}+\sqrt{\sigma_i^2-\frac{\alpha_i^2}{\alpha_{i-1}^2}\cdot \sigma_{i-1}^2}\cdot z_{i-1}$
+        <ul>
+          <li>LHS: $x_i-x_{i-1}\rightarrow dx$</li>
+          <li>RHS: $(\frac{\alpha_i}{\alpha_{i-1}}-1)x_{i-1}+(\sigma_i^2-\frac{\alpha_i^2}{\alpha_{i-1}^2}\cdot \sigma_{i-1}^2)\cdot z_{i-1} \rightarrow (\frac{1}{\alpha}\frac{\alpha_i-\alpha_{i-1}}{dt})xdt +\sqrt{\frac{\sigma_i^2-\frac{\alpha_i^2}{\alpha_{i-1}^2}\cdot \sigma_{i-1}^2}{dt}}\cdot dw\rightarrow  (\frac{1}{\alpha_t}\frac{d\alpha_t}{dt})xdt +\sqrt{\alpha_t^2\frac{d}{dt}(\frac{\sigma_t}{\alpha_t})^2}\cdot dw\rightarrow  \frac{d\log \alpha_t}{dt}xdt +\sqrt{2\alpha_t\sigma_t\frac{d}{dt}(\frac{\sigma_t}{\alpha_t})}\cdot dw$</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Marginal Distribution to Markov Chain:
+    <ul>
+      <li>$x_i=\alpha_i x_0+\sigma_i z_i$ , $x_{i-1}=\alpha_{i-1}x_0+\sigma_{i-1}z_{i-1}$</li>
+      <li>解出$x_{i-1}\rightarrow x_{i}$ 的变换, $x_i=\frac{\alpha_i}{\alpha_{i-1}}x_{i-1}+\sqrt{\sigma_i^2-\frac{\alpha_i^2}{\alpha_{i-1}^2}\cdot \sigma_{i-1}^2}\cdot z_{i-1}$</li>
+    </ul>
+  </li>
+  <li>stochastic Process to continuous
+    <ul>
+      <li>${1,2,\dots,N, \dots} \rightarrow [0,1]$ , 采样间隔为$\frac{1}{N}$</li>
+    </ul>
+  </li>
+  <li>stochastic Process to SDE.
+    <ul>
+      <li>利用 $x_t\rightarrow x_{t+\Delta t}$ 的积分:
+        <ul>
+          <li>$x_{t+\Delta t}=\alpha_{t+\Delta t}x_0+\sigma_{t+\Delta t} z_{t+\Delta_t}$</li>
+          <li>$x_t\rightarrow x_{t+\Delta t}$: $x_{t+\Delta t}=x_t+f(t)x_t\Delta t + g(t) \sqrt{\Delta t}\cdot z=(1+f(t)\Delta t)(\alpha_t x_0+\sigma_t z_t)+g(t) \sqrt{\Delta t}\cdot z_{\Delta t}=(1+f(t)\Delta t)\alpha_t x_0+\sqrt{(1+f(t)\Delta t)^2\sigma_t^2+g(t)^2\Delta t}\cdot z$</li>
+        </ul>
+      </li>
+      <li>$\alpha_{t+\Delta t}=(1+f(t)\Delta t)\alpha_t$  $\implies$ $f(t)=\lim_{\Delta t\rightarrow 0} \frac{\frac{\alpha_{t+\Delta t}}{\alpha_t}-1}{\Delta t}=\frac{1}{\alpha_t}\lim_{\Delta t\rightarrow 0} \frac{\alpha_{t+\Delta t}-\alpha_t}{\Delta t}=\frac{1}{\alpha_t}\frac{d\alpha_t}{dt}=\frac{d\log \alpha_t}{dt}$</li>
+      <li>$\sigma_{t+\Delta t}=\sqrt{(1+f(t)\Delta t)^2\sigma_t^2+g(t)^2\Delta t}$ $\implies$ $g(t)=\lim_{\Delta t\rightarrow 0} \sqrt{\frac{\sigma_{t+\Delta t}^2-(\frac{\alpha_{t+\Delta t}}{\alpha_t})^2\sigma_t^2}{\Delta t}}=\sqrt{2\alpha_t\sigma_t\frac{d}{dt}(\frac{\sigma_t}{\alpha_t})}$</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="reverse-diffusion-process">Reverse Diffusion Process</h3>
+
+<p>除Markov Chain reverse外, 其他方法的step都不需要按照forward process的schedule</p>
+
+<ol>
+  <li><strong>Markov Chain reverse</strong>: 由<a href="https://en.wikipedia.org/wiki/Bayes%27_theorem">Bayes’ rule</a> ，$p(x_{i-1}\vert x_i,x_0) = p(x_i\vert x_{i-1})\frac{p(x_{i-1}\vert x_0)}{p(x_i\vert x_0)}$ 得到
+    <ol>
+      <li><strong>DDPM</strong>: $x_{i-1}=\frac{\sqrt{1-\beta_i}(1-\bar \alpha_{i-1})}{1-\bar \alpha_i}\cdot x_i+\frac{\beta_i\sqrt{\bar \alpha_{i-1}}}{1-\bar\alpha_i}\cdot D(x_i,\sigma_i)+\sqrt{\beta_i\frac{1-\bar\alpha_{i-1}}{1-\bar\alpha_i}}z$
+        <ul>
+          <li>其中$D(x_i,\sigma_i)$ 为网络对$x_0$ 的估计值(denoised)</li>
+          <li>$1-\beta_i=\frac{\alpha_i^2}{\alpha_{i-1}^2}=\frac{\bar \alpha_i}{\bar \alpha_{i-1}}$   (根据diffusion process,  $\beta_i,\alpha_i,\bar \alpha_i$  都可以互相得到)</li>
+          <li>在DDPM原论文中, 网络估计$x_i=\sqrt{\bar\alpha_i}x_0+\sqrt{1-\bar\alpha_i}z_i$  中的$z_i$ , 记为$\epsilon$ (noise)
+            <ul>
+              <li>此时reverse的公式替换为 $x_{i-1}=\frac{1}{\sqrt{1-\beta_i}}(x_i-\frac{\beta_i}{\sqrt{1-\bar\alpha_i}}\cdot \epsilon)+\sqrt{\beta_i\frac{1-\bar\alpha_{i-1}}{1-\bar\alpha_i}}z$</li>
+              <li>另外, 如果diffusion process由SMLD得到, 由$\bar x_i, \bar \sigma_i, D(\bar x_i,\bar \sigma_i)$ 表示
+                <ul>
+                  <li>$\bar \alpha_i=\alpha_i^2=\frac{1}{\bar \sigma_i^2+1}$ , $\bar x_i=\frac{x_i}{\sqrt{\bar \alpha_i}}=\sqrt{\bar \sigma_i^2+1}\cdot x_i$ (see diffusion process 6 DDPM to SMLD)</li>
+                  <li>$\epsilon=\frac{x_i-\sqrt{\bar \alpha_i}\cdot D(x_i;\sigma_i)}{\sqrt{1-\bar{\alpha_i}}}=\frac{\frac{x_i}{\sqrt{\bar \alpha_i}}-D(x_i;\sigma_i)}{\sqrt{\frac{1}{\bar \alpha_i}-1}}=\frac{\bar x_i-D(\bar x_i;\bar \sigma_i)}{\bar \sigma_i}$   是网络对$z_i$ 的估计值</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>随机项$z$ 的系数是$\sqrt{\beta_i\frac{1-\bar\alpha_{i-1}}{1-\bar\alpha_i}}$ 或 $\sqrt{\beta_i}$ 在实验中差别不大</li>
+        </ul>
+      </li>
+      <li><strong>SMLD</strong>: $x_{i-1}=\frac{\sigma_{i-1}^2}{\sigma_i^2}\cdot x_i+(1-\frac{\sigma_{i-1}^2}{\sigma_i^2})\cdot D(x_i,\sigma_i)+\sqrt{\frac{\sigma_{i-1}^2(\sigma_i^2-\sigma_{i-1}^2)}{\sigma_i^2}}\cdot z$   , 即$x_{i-1}=x_i-\frac{\sigma_i^2-\sigma_{i-1}^2}{\sigma_i}\cdot \epsilon+\sqrt{\frac{\sigma_{i-1}^2(\sigma_i^2-\sigma_{i-1}^2)}{\sigma_i^2}}\cdot z$
+        <ul>
+          <li>$D(x_i,\sigma_i)$ 和$\epsilon$ 和DDPM里面含义一样</li>
+        </ul>
+      </li>
+    </ol>
+  </li>
+  <li><strong>Marginal Distribution reverse</strong>: 沿用Markov Chain reverse中 $x_{i-1}=\kappa x_i+\lambda x_0+\sigma z$ 的假设, 但是去掉$p(x_i\vert x_{i-1})$ 的依赖
+    <ol>
+      <li><strong>general</strong>: $x_{i-1}=\frac{\sqrt{\sigma_{i-1}^2-\sigma^2}}{\sigma_i}\cdot x_i + (\alpha_{i-1}-\frac{\alpha_i\sqrt{\sigma_{i-1}^2-\sigma^2}}{\sigma_i})\cdot D(x_i,\sigma_i)+\sigma z$
+        <ul>
+          <li>$\alpha_{i-1}x_0+\sigma_{i-1}z_{i-1}=x_{i-1}=\kappa(\alpha_i x_0+\sigma_i z_i)+\lambda x_0+\sigma z=(\kappa\alpha_i+\lambda)x_0+\sqrt{\kappa^2\sigma_i^2+\sigma^2}\cdot z$
+            <ul>
+              <li>比较LHS和RHS, $x_0$ 和$z$ 的系数可得$\kappa, \lambda$ 关于$\sigma$ 的表达式</li>
+            </ul>
+          </li>
+          <li>比Markov Chain reverse多一个参数$\sigma$</li>
+        </ul>
+      </li>
+      <li>DDPM: 令$\alpha_i=\sqrt{\bar \alpha_i}$ , $\sigma_i=\sqrt{1-\bar \alpha_i}$ , $\sigma=\sqrt{\beta_i\frac{1-\bar\alpha_{i-1}}{1-\bar\alpha_i}}$ 得到和Markov Chain reverse相同形式(see diffusion process 3)
+        <ul>
+          <li>DDPM的另一种尝试: $\sigma=\sqrt{\beta_i}$
+            <ul>
+              <li>可以和DDPM效果类似</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>SMLD: 令$\alpha_i=1, \sigma=\sqrt{\frac{\sigma_{i-1}^2(\sigma_i^2-\sigma_{i-1}^2)}{\sigma_i^2}}$ 可得(see diffusion process 5)</li>
+      <li><strong>DDIM</strong>: $x_{i-1}=\frac{\sigma_{i-1}}{\sigma_i}\cdot x_i+(\alpha_{i-1}-\alpha_i\frac{\sigma_{i-1}}{\sigma_i})\cdot D(x_i,\sigma_i)$ , 即 $x_{i-1}=\frac{\alpha_{i-1}}{\alpha_i}( x_i-(\sigma_i-\frac{\alpha_{i}}{\alpha_{i-1}}\sigma_{i-1})\cdot \epsilon)$
+        <ul>
+          <li>令$\sigma=0$ , 此时reverse process是一个确定的过程(implicit的含义)</li>
+        </ul>
+      </li>
+    </ol>
+  </li>
+  <li><strong>SDE reverse</strong>:
+    <ul>
+      <li><strong>general</strong>: $dx=(f(t)\cdot x-\frac{1}{2}g^2(t)\nabla_x\log p(x,t))dt+g(t)dw$
+        <ul>
+          <li>$g(t)^2=2\alpha_t\sigma_t\frac{d}{dt}(\frac{\sigma_t}{\alpha_t})$</li>
+          <li>$\nabla_x\log p(x;t)\approx (D(x;\sigma)-x)/{\sigma}^2$</li>
+        </ul>
+      </li>
+      <li><strong>SMLD</strong>: $dx=\dot\sigma_t \frac{x-D(x_t,\sigma_t)}{\sigma_t}\cdot dt+\sqrt{2\dot \sigma_t \sigma_t}dw$
+        <ul>
+          <li>gradient $\frac{dx}{dt}=\dot\sigma_t \frac{x-D(x_t,\sigma_t)}{\sigma_t}$</li>
+          <li>做变量替换得, $\frac{dx}{d\sigma}=\frac{x-D(x_\sigma,\sigma)}{\sigma}=\epsilon$ (在gradient based method 例如Euler, Heun中用到)</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><strong>Probability flow ODE</strong>: (see <a href="#ref">[3] Appendix D.</a>) $dx=(f(x,t)-\frac{1}{2}g^2(t)\nabla_x\log p(x,t))dt$
+    <ul>
+      <li>SDE和Probability flow ODE有相同的marginal probability density $p_t(x)$</li>
+      <li>SMLD: $dx=\dot\sigma_t \frac{x-D(x_t,\sigma_t)}{\sigma_t}\cdot dt=\dot\sigma_t \epsilon(x_t,\sigma_t)\cdot dt$
+        <ul>
+          <li>$x_{i-1}=x_i+\int_{t_i}^{t_{i-1}} \sigma_\tau\epsilon(x_\tau,\sigma_\tau)\cdot \frac{\dot\sigma_\tau}{\sigma_\tau}\cdot d\tau=x_i-\int_{\lambda_i}^{\lambda_{i-1}} e^{-\lambda_\tau}\epsilon(x_{\tau_\lambda},\sigma_{\tau_\lambda}) d\lambda$ (DPM-solver中用到)
+            <ul>
+              <li>记$\lambda_\tau=-\log \sigma_\tau$ , $\sigma_\tau=e^{-\lambda_\tau}$</li>
+              <li>$\epsilon$ 是通过网络得到的不能直接积分, 所以需要一些方法近似</li>
+            </ul>
+          </li>
+          <li>$x_{i-1}\approx x_i -\int_{\lambda_i}^{\lambda_{i-1}} e^{-\lambda_\tau} \sum_{n=0}^{k-1} \frac{(\lambda-\lambda_i)^n}{n!}\epsilon^{(n)}(x_i,\sigma_i) d\lambda= x_i -\sum_{n=0}^{k-1} \epsilon^{(n)}(x_i,\sigma_i) \int_{\lambda_i}^{\lambda_{i-1}} e^{-\lambda_\tau}  \frac{(\lambda-\lambda_i)^n}{n!} d\lambda$
+            <ul>
+              <li>k对应DPM-Solver的阶数</li>
+              <li>DPM-Solver-1: k=1 时, 正是Euler-method
+                <ul>
+                  <li>$x_{i-1}=x_i-\epsilon\int_{\lambda_i}^{\lambda_{i-1}}e^{-\lambda_\tau}d\lambda=x_i-\epsilon\cdot(e^{-\lambda_i}-e^{-\lambda_{i-1}})=x_i-\epsilon\cdot(\sigma_{i}-\sigma_{i-1})$   正好和<strong>DDIM</strong> $\alpha_i=1$ 时的表达式重合</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ol>
+
+<h2 id="reference">reference</h2>
+<p><span id="ref"></span></p>
+
+<p>[1] Ho, Jonathan, Ajay Jain, and Pieter Abbeel. “Denoising Diffusion Probabilistic Models.” <em>arXiv:2006.11239 [Cs, Stat]</em>, December 16, 2020. <a href="http://arxiv.org/abs/2006.11239">http://arxiv.org/abs/2006.11239</a>. <strong>DDPM原作者版本</strong></p>
+
+<p>[2] Song, Jiaming, Chenlin Meng, and Stefano Ermon. “Denoising Diffusion Implicit Models.” arXiv, October 5, 2022. <a href="https://doi.org/10.48550/arXiv.2010.02502">https://doi.org/10.48550/arXiv.2010.02502</a>. <strong>DDIM</strong></p>
+
+<p>[3] Song, Yang, Jascha Sohl-Dickstein, Diederik P. Kingma, Abhishek Kumar, Stefano Ermon, and Ben Poole. “Score-Based Generative Modeling through Stochastic Differential Equations.” arXiv, February 10, 2021. <a href="https://doi.org/10.48550/arXiv.2011.13456">https://doi.org/10.48550/arXiv.2011.13456</a>.  <strong>DDPM,  SMLD, SDE, ODE</strong></p>
+
+<p>[4] 苏剑林. (Aug. 03, 2022). 《生成扩散模型漫谈（五）：一般框架之SDE篇 》[Blog post]. Retrieved from <a href="https://spaces.ac.cn/archives/9209">https://spaces.ac.cn/archives/9209</a>  和系列里面其他文章</p>
+
+<p>[5] 代码:  <a href="https://github.com/comfyanonymous/ComfyUI/blob/master/comfy/k_diffusion/sampling.py">https://github.com/comfyanonymous/ComfyUI/blob/master/comfy/k_diffusion/sampling.py</a>  <a href="https://github.com/comfyanonymous/ComfyUI/blob/master/comfy/samplers.py">https://github.com/comfyanonymous/ComfyUI/blob/master/comfy/samplers.py</a></p>
+
+
+        </div>
+
+        
+        <div class="page-share">
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Froshameow.github.io%2F%2Fpersonal_homepage%2Falgorithm%2Fstable-diffusion7%2F" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" class="btn btn--facebook btn--small"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i> <span>Share</span></a>
+  <a href="https://twitter.com/intent/tweet?text=Diffusion+Process+%E5%92%8C+Reverse+Diffusion+Process%E7%90%86%E8%A7%A3%20https%3A%2F%2Froshameow.github.io%2F%2Fpersonal_homepage%2Falgorithm%2Fstable-diffusion7%2F" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" class="btn btn--twitter btn--small"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i> <span>Tweet</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Froshameow.github.io%2F%2Fpersonal_homepage%2Falgorithm%2Fstable-diffusion7%2F" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" class="btn btn--linkedin btn--small"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> <span>LinkedIn</span></a>
+  <a href="https://reddit.com/submit?title=Diffusion+Process+%E5%92%8C+Reverse+Diffusion+Process%E7%90%86%E8%A7%A3&url=https%3A%2F%2Froshameow.github.io%2F%2Fpersonal_homepage%2Falgorithm%2Fstable-diffusion7%2F" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" class="btn btn--reddit btn--small"><i class="fab fa-fw fa-reddit" aria-hidden="true"></i> <span>Reddit</span></a>
+</div>
+
+        
+
+        
+        
+  <div class="page-comments">
+    <div id="disqus_thread"></div>
+    <script>
+      var disqus_config = function () {
+        this.page.url = 'https://roshameow.github.io//personal_homepage/algorithm/stable-diffusion7/';
+        this.page.identifier = 'https://roshameow.github.io//personal_homepage/algorithm/stable-diffusion7/';
+      };
+
+      (function() {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://https-roshameow-github-io-personal-homepage.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+  </div>
+
+
+        
+
+        <nav class="page-pagination" role="navigation">
+  
+    <a class="page-previous" href="/personal_homepage/algorithm/optical-flow-train/">
+      <h4 class="page-pagination-label">Previous</h4>
+      <span class="page-pagination-title">
+        <i class="fas fa-arrow-left"></i> 小面积光流传感器算法测试 (一)
+
+      </span>
+    </a>
+  
+
+  
+    <a class="page-next" href="/personal_homepage/deeplearning/stable-diffusion8/">
+      <h4 class="page-pagination-label">Next</h4>
+      <span class="page-pagination-title">
+        stable-diffusion中 k-sampling的不同版本 (一 )
+ <i class="fas fa-arrow-right"></i>
+      </span>
+    </a>
+  
+</nav>
+
+      </div>
+
+    </div>
+  </article>
+</main>
+
+    <footer id="footer" class="site-footer">
+  <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+<div class="social-icons"><a class="social-icon" href="/personal_homepage/atom.xml"><i class="fas fa-rss-square fa-2x" title="Feed"></i></a><a class="social-icon" href="https://github.com/roshameow"><i class="fab fa-github-square fa-2x" title="GitHub"></i></a><a class="social-icon" href="https://www.linkedin.com/in/wen-liu-06503a7b/"><i class="fab fa-linkedin fa-2x" title="LinkedIn"></i></a><a class="social-icon" href="mailto:w.liuatnk@gmail.com"><i class="fas fa-envelope-square fa-2x" title="e-mail"></i></a></div><div class="copyright">
+    
+      <p>&copy; 2024 Liu, Wen's Home Page. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://github.com/mmistakes/so-simple-theme" rel="nofollow">So Simple</a>.</p>
+    
+  </div>
+</footer>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="/personal_homepage/assets/js/main.min.js"></script>
+<script src="https://use.fontawesome.com/releases/v5.0.12/js/all.js"></script><!-- <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'G-9TMSCDTBGN', 'auto');
+  ga('send', 'pageview');
+</script> -->
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9TMSCDTBGN"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-9TMSCDTBGN');
+</script>
+
+
+
+<!-- MathJax -->
+
+<script>
+    // http://docs.mathjax.org/en/latest/upgrading/v2.html
+    MathJax = {
+        tex: {
+            tags: "ams",    // eq numbering options: none, ams, all
+            inlineMath: [['$', '$'], ["\\(", "\\)"]],  // 设置行内数学公式的开始和结束标记
+            displayMath: [['$$', '$$'], ["\\[", "\\]"]]  // 设置行间数学公式的开始和结束标记
+        },
+        // options: {
+        //   renderActions: {
+        //     // for mathjax 3, handle <script "math/tex"> blocks inserted by kramdown
+        //     find: [10, function (doc) {
+        //       for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+        //         const display = !!node.type.match(/; *mode=display/);
+        //         const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+        //         const text = document.createTextNode('');
+        //         node.parentNode.replaceChild(text, node);
+        //         math.start = { node: text, delim: '', n: 0 };
+        //         math.end = { node: text, delim: '', n: 0 };
+        //         doc.math.push(math);
+        //       }
+        //     }, '']
+        //   }
+        // }
+    }
+</script>
+
+<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  </body>
+
+</html>

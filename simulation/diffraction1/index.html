@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<!--
+    So Simple Jekyll Theme 3.2.0
+    Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+    Free for personal and commercial use under the MIT license
+    https://github.com/mmistakes/so-simple-theme/blob/master/LICENSE
+-->
+<html lang="en-US" class="no-js">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  
+
+  
+  
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>aperture衍射模型 (二) | Liu, Wen’s Home Page</title>
+<meta name="generator" content="Jekyll v4.3.3" />
+<meta property="og:title" content="aperture衍射模型 (二)" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="仿真" />
+<meta property="og:description" content="仿真" />
+<link rel="canonical" href="https://roshameow.github.io//personal_homepage/simulation/diffraction1/" />
+<meta property="og:url" content="https://roshameow.github.io//personal_homepage/simulation/diffraction1/" />
+<meta property="og:site_name" content="Liu, Wen’s Home Page" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2024-01-11T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="aperture衍射模型 (二)" />
+<meta name="twitter:site" content="@" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-07-09T20:14:29+00:00","datePublished":"2024-01-11T00:00:00+00:00","description":"仿真","headline":"aperture衍射模型 (二)","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/simulation/diffraction1/"},"url":"https://roshameow.github.io//personal_homepage/simulation/diffraction1/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  
+
+  <script>
+    /* Cut the mustard */
+    if ('querySelector' in document && 'addEventListener' in window) {
+      document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + 'js';
+    }
+  </script>
+
+  <link rel="stylesheet" href="/personal_homepage/assets/css/main.css">
+  <link rel="stylesheet" href="/personal_homepage/assets/css/skins/default.css">
+  
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,700,700i|Lora:400,400i,700,700i">
+  <link rel="alternate" type="application/atom+xml" title="Liu, Wen&#39;s Home Page" href="/personal_homepage/atom.xml">
+<!-- start custom head snippets -->
+
+<!-- insert favicons. use http://realfavicongenerator.net/ -->
+<link rel="shortcut icon" type="image/x-icon" href="/personal_homepage/docs/images/logo.ico">
+<!-- end custom head snippets -->
+
+</head>
+
+  <body class="layout--post  aperture衍射模型-二">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#primary-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+  <div class="navigation-wrapper">
+    <a href="#menu-toggle" id="menu-toggle">Menu</a>
+    <nav id="primary-nav" class="site-nav animated drop">
+      <ul><li><a href="/personal_homepage/">Home</a></li><li><a href="/personal_homepage/posts/">Posts</a></li><li><a href="/personal_homepage/categories/">Categories</a></li><li><a href="/personal_homepage/tags/">Tags</a></li><li><a href="/personal_homepage/family/">Family</a></li><li><a href="/personal_homepage/search/">Search</a></li></ul>
+    </nav>
+  </div><!-- /.navigation-wrapper -->
+
+
+    <header class="masthead">
+  <div class="wrap">
+    
+    
+    
+      
+        <div class="site-title animated fadeIn"><a href="/personal_homepage/">Liu, Wen's Home Page</a></div>
+      
+      <p class="site-description animated fadeIn" itemprop="description">Work, Experiments and Ideas.</p>
+    
+  </div>
+</header><!-- /.masthead -->
+
+
+    <main id="main" class="main-content" aria-label="Content">
+  <article class="h-entry">
+    
+
+    <div class="page-wrapper">
+      <header class="page-header">
+        
+        
+        <h1 id="page-title" class="page-title p-name">aperture衍射模型 (二)
+</h1>
+        
+      </header>
+
+      <div class="page-sidebar">
+        <div class="page-author h-card p-author"><img src="/personal_homepage/docs/images/logo.svg" class="author-avatar u-photo" alt=""><div class="author-info">
+
+<span class="read-time">~1 min read</span>
+
+    <time class="page-date dt-published" datetime="2024-01-11T00:00:00+00:00"><a class="u-url" href="">January 11, 2024</a>
+</time>
+
+  </div>
+</div>
+
+        
+  <h3 class="page-taxonomies-title">Categories</h3>
+  
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a class="p-category" href="/personal_homepage/categories/#simulation" title="Pages filed under simulation">simulation</a></li>
+  </ul>
+
+
+        
+  <h3 class="page-taxonomies-title">Tags</h3>
+  
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a href="/personal_homepage/tags/#content" title="Pages tagged content" rel="tag">content</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#physics" title="Pages tagged physics" rel="tag">physics</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#sensor" title="Pages tagged sensor" rel="tag">sensor</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#simulation" title="Pages tagged simulation" rel="tag">simulation</a></li>
+  </ul>
+
+
+        <!-- {::options parse_block_html="true" /} -->
+<div id="entry-table-of-contents" class="toc-wrapper">
+  <h2 id="toc-toggle">
+    Table of Contents <i
+      class="toc-toggle-icon fas fa-chevron-down"></i>
+  </h2>
+  <!-- 1. toc
+{:toc} -->
+  <!-- <div id="markdown-toc"> -->
+
+    <ul class="inline_toc" id="my_toc"><li><a href="#仿真">仿真</a></li><li><a href="#应用">应用</a></li><li><a href="#代码">代码</a></li><li><a href="#其他讨论这个的链接">其他讨论这个的链接：</a></li></ul>
+  <!-- </div> -->
+
+</div>
+<!-- {::options parse_block_html="false" /} -->
+        
+
+<div id="entry-table-of-contents" class="toc-wrapper">
+    <h2 id="toc-toggle" class="no_toc">
+        Related Posts <i class="toc-toggle-icon fas fa-chevron-down"></i>
+    </h2>
+    <!-- <div id="markdown-toc"> -->
+    <ul>
+        
+        <li><a href="/personal_homepage/house/wall-problem/">墙皮脱落问题</a></li>
+        
+        <li><a href="/personal_homepage/game/card/">掼蛋规则</a></li>
+        
+        <li><a href="/personal_homepage/affair/cat-airline/">搬家相关准备</a></li>
+        
+        <li><a href="/personal_homepage/math/conformal-geometry9/">conformal geometry学习 (九 ) -- atlas</a></li>
+        
+        <li><a href="/personal_homepage/affair/cat-can/">猫罐头调查</a></li>
+        
+    </ul>
+    <!-- </div> -->
+
+</div>
+
+
+
+
+
+      </div>
+
+      <div class="page-content">
+        <div class="e-content">
+          <h2 id="仿真">仿真</h2>
+
+<p><img src="/personal_homepage/docs/attachment/circle_diffraction.mp4" alt="circle_diffraction.mp4" width="200" /> <img src="/personal_homepage/docs/attachment/square_diffraction.mp4" alt="square_diffraction.mp4" width="200" /></p>
+<ol>
+  <li>在aperture区域均匀采样，发现Frensel pattern是很难出现的，在每个像素对应sample数不足1000的时候，基本观测不到。。应该是因为在那个范围内结果受$(x^\prime,y^\prime)$ 的位置影响更大, 也就表现出更大的随机性。</li>
+  <li>确实可以看到sensor到aperture距离增大后, pattern变化的全过程。</li>
+  <li>在一个网上找的<a href="https://www.falstad.com/diffraction/">Frensel diffraction仿真</a> java代码里面，作者也是通过先把部分积分形式通过公式运算先化简之后做的仿真<a href="#ref">1</a>，没有用原始的传播公式。</li>
+  <li>如果用全光谱的光源，Fraunhofer衍射中因为波长影响, 看起来的效果像是从中间不同颜色的光被diffuse了，我看一些3d建模制作里说的衍射，一般是指这种效果，可以看<a href="https://www.bilibili.com/video/BV1C5411E78d/">b站上一个用blender仿这种效果的视频</a>
+    <ul>
+      <li>另外判断天然珍珠和人造珍珠的区别的一种方法，也是看天然珍珠里面有微小的结构可以把不同波长的光区分出来的效果</li>
+      <li>blender的cycles用的是粒子模型, 没有相位变化，可能没法直接得到衍射</li>
+    </ul>
+  </li>
+</ol>
+
+<h2 id="应用">应用</h2>
+
+<ol>
+  <li><strong>在相机系统中，我们关心成像的分辨率</strong>：用Fraunhofer的模型估算相机的resolution
+    <ul>
+      <li>相机aperture参数：这两个都是dimensionless版本的aperture
+        <ul>
+          <li><a href="https://en.wikipedia.org/wiki/F-number">f-number</a>: $N=\frac{f}{D}=\frac{f}{2a}$
+            <ul>
+              <li>相机焦距$f=z$, 光圈直径$D=2a$</li>
+            </ul>
+          </li>
+          <li><a href="https://en.wikipedia.org/wiki/Numerical_aperture">numerical aperture</a> $NA=\frac{a}{\sqrt{f^2+a^2}}=\frac{1}{\sqrt{4N^2+1}}\approx \frac{1}{2N}$</li>
+        </ul>
+      </li>
+      <li>第一圈黑环处距中心距离，认为是相机的optical resolution:
+        <ul>
+          <li><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240112160824.png" alt="Pasted image 20240112160824.png" width="300" /></li>
+          <li>此时是$J_1(x)$ 的第一个0点， $J_1(ka\sin\theta)=0$，$ka\sin\theta\approx 3.83$ ，即$\sin\theta\approx \frac{3.83}{ka}=\frac{3.83\lambda}{2\pi a}=1.22\frac{\lambda}{D}$</li>
+          <li>得到optical resolution $q=r_1\sin\theta\approx \sqrt{f^2+a^2}\sin\theta=\frac{a}{NA}\sin\theta\approx \frac{a}{NA}\frac{1.22\lambda}{2a}=\frac{0.61\lambda}{NA}$</li>
+          <li>理论上，numberical aperture越大，optical resolution越小，分辨率越高(也就是衍射更不明显)</li>
+        </ul>
+      </li>
+      <li>相机的成像清晰度指标：MTF
+        <ul>
+          <li><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240112154649.png" alt="Pasted image 20240112154649.png" width="400" /></li>
+          <li><a href="https://en.wikipedia.org/wiki/Point_spread_function">PSF</a>(intensity function): $PSF=|G(p,q)|^2=|F(g(x^\prime,y^\prime))|^2$
+            <ul>
+              <li>PSF的单位是 (distance(mm),intesity)</li>
+              <li>对于圆形aperture：$PSF=\frac{J_1^2(ka\sin\theta)}{(ka\sin\theta)^2}$ , PSF的零点也就是$J_1$ 的零点</li>
+              <li>生成图像的image: $I=PSF*\text{scene}$ 是场景和PSF的卷积</li>
+            </ul>
+          </li>
+          <li><a href="https://en.wikipedia.org/wiki/Optical_transfer_function">MTF</a>: $MTF=F(PSF)$
+            <ul>
+              <li>MTF的单位是（frequency(lines/mm),response(%)）</li>
+              <li>$\frac{J_1^2(x)}{x^2}$ 的Fourier变换是个连续下降函数</li>
+              <li>根据 <a href="https://en.wikipedia.org/wiki/Fourier_transform#Applications">Fourier transform</a> time scaling的性质：因为PSF的零点$PSF_0\propto \frac{\lambda}{NA}$ , 得到MTF的cutoff点 $c(MTF)\propto \frac{NA}{\lambda}$  (即频率更高的物体就看不清了)</li>
+              <li>MTF是个衡量成像系统分辨率的常用指标，不光衍射，所有成像过程，包括软件做的deblur等操作都可以用这个指标衡量。</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><strong>用PSF做图像调制</strong> 
+    <ul>
+      <li>从PSF的表达式可以看出, PSF受距离, 波长(光的颜色), 位置影响, 可以在相机系统中主动利用这些信息</li>
+    </ul>
+  </li>
+</ol>
+
+<h2 id="代码">代码</h2>
+
+<p><a href="https://gist.github.com/roshameow/7d44196b703ade645b34b164d779cdfe#file-diffraction_simulation-py"><strong>diffraction_simulation.py</strong></a></p>
+
+<p><a href="https://gist.github.com/roshameow/7d44196b703ade645b34b164d779cdfe#file-pst_bessel-py"><strong>pst_bessel.py</strong></a></p>
+
+<h2 id="其他讨论这个的链接">其他讨论这个的链接：</h2>
+<p><span id="ref"></span>
+仿真</p>
+
+<p>[5] http://www.dauger.com/fresnel/</p>
+
+<p>[6] Dauger, Dean E. “Simulation and Study of Fresnel Diffraction for Arbitrary Two-Dimensional Apertures.” <em>Computers in Physics</em> 10 (November 1, 1996): 591–604. <a href="https://doi.org/10.1063/1.168584">https://doi.org/10.1063/1.168584</a>.</p>
+
+<p>相机resolution</p>
+
+<p>[7] https://www.microscopyu.com/tutorials/imageformation-airyna (包含一个<a href="https://en.wikipedia.org/wiki/Airy_disk">Airy disk</a> 影响清晰度的演示)</p>
+
+<p>[8] https://www.iasj.net/iasj/download/8ab5ecbce0ead154</p>
+
+<p>[9] https://micro.magnet.fsu.edu/primer/java/mtf/airydisksize/index.html</p>
+
+
+        </div>
+
+        
+        <div class="page-share">
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Froshameow.github.io%2F%2Fpersonal_homepage%2Fsimulation%2Fdiffraction1%2F" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" class="btn btn--facebook btn--small"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i> <span>Share</span></a>
+  <a href="https://twitter.com/intent/tweet?text=aperture%E8%A1%8D%E5%B0%84%E6%A8%A1%E5%9E%8B+%28%E4%BA%8C%29%20https%3A%2F%2Froshameow.github.io%2F%2Fpersonal_homepage%2Fsimulation%2Fdiffraction1%2F" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" class="btn btn--twitter btn--small"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i> <span>Tweet</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Froshameow.github.io%2F%2Fpersonal_homepage%2Fsimulation%2Fdiffraction1%2F" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" class="btn btn--linkedin btn--small"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> <span>LinkedIn</span></a>
+  <a href="https://reddit.com/submit?title=aperture%E8%A1%8D%E5%B0%84%E6%A8%A1%E5%9E%8B+%28%E4%BA%8C%29&url=https%3A%2F%2Froshameow.github.io%2F%2Fpersonal_homepage%2Fsimulation%2Fdiffraction1%2F" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" class="btn btn--reddit btn--small"><i class="fab fa-fw fa-reddit" aria-hidden="true"></i> <span>Reddit</span></a>
+</div>
+
+        
+
+        
+        
+  <div class="page-comments">
+    <div id="disqus_thread"></div>
+    <script>
+      var disqus_config = function () {
+        this.page.url = 'https://roshameow.github.io//personal_homepage/simulation/diffraction1/';
+        this.page.identifier = 'https://roshameow.github.io//personal_homepage/simulation/diffraction1/';
+      };
+
+      (function() {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://https-roshameow-github-io-personal-homepage.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+  </div>
+
+
+        
+
+        <nav class="page-pagination" role="navigation">
+  
+    <a class="page-previous" href="/personal_homepage/simulation/diffraction/">
+      <h4 class="page-pagination-label">Previous</h4>
+      <span class="page-pagination-title">
+        <i class="fas fa-arrow-left"></i> aperture衍射模型 (一)
+
+      </span>
+    </a>
+  
+
+  
+    <a class="page-next" href="/personal_homepage/data/color-moderate2/">
+      <h4 class="page-pagination-label">Next</h4>
+      <span class="page-pagination-title">
+        传感器颜色调制 (三) – 数据
+ <i class="fas fa-arrow-right"></i>
+      </span>
+    </a>
+  
+</nav>
+
+      </div>
+
+    </div>
+  </article>
+</main>
+
+    <footer id="footer" class="site-footer">
+  <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+<div class="social-icons"><a class="social-icon" href="/personal_homepage/atom.xml"><i class="fas fa-rss-square fa-2x" title="Feed"></i></a><a class="social-icon" href="https://github.com/roshameow"><i class="fab fa-github-square fa-2x" title="GitHub"></i></a><a class="social-icon" href="https://www.linkedin.com/in/wen-liu-06503a7b/"><i class="fab fa-linkedin fa-2x" title="LinkedIn"></i></a><a class="social-icon" href="mailto:w.liuatnk@gmail.com"><i class="fas fa-envelope-square fa-2x" title="e-mail"></i></a></div><div class="copyright">
+    
+      <p>&copy; 2024 Liu, Wen's Home Page. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://github.com/mmistakes/so-simple-theme" rel="nofollow">So Simple</a>.</p>
+    
+  </div>
+</footer>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="/personal_homepage/assets/js/main.min.js"></script>
+<script src="https://use.fontawesome.com/releases/v5.0.12/js/all.js"></script><!-- <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'G-9TMSCDTBGN', 'auto');
+  ga('send', 'pageview');
+</script> -->
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9TMSCDTBGN"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-9TMSCDTBGN');
+</script>
+
+
+
+<!-- MathJax -->
+
+<script>
+    // http://docs.mathjax.org/en/latest/upgrading/v2.html
+    MathJax = {
+        tex: {
+            tags: "ams",    // eq numbering options: none, ams, all
+            inlineMath: [['$', '$'], ["\\(", "\\)"]],  // 设置行内数学公式的开始和结束标记
+            displayMath: [['$$', '$$'], ["\\[", "\\]"]]  // 设置行间数学公式的开始和结束标记
+        },
+        // options: {
+        //   renderActions: {
+        //     // for mathjax 3, handle <script "math/tex"> blocks inserted by kramdown
+        //     find: [10, function (doc) {
+        //       for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+        //         const display = !!node.type.match(/; *mode=display/);
+        //         const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+        //         const text = document.createTextNode('');
+        //         node.parentNode.replaceChild(text, node);
+        //         math.start = { node: text, delim: '', n: 0 };
+        //         math.end = { node: text, delim: '', n: 0 };
+        //         doc.math.push(math);
+        //       }
+        //     }, '']
+        //   }
+        // }
+    }
+</script>
+
+<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  </body>
+
+</html>

@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<!--
+    So Simple Jekyll Theme 3.2.0
+    Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+    Free for personal and commercial use under the MIT license
+    https://github.com/mmistakes/so-simple-theme/blob/master/LICENSE
+-->
+<html lang="en-US" class="no-js">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  
+
+  
+  
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>conformal geometry学习 (八 ) – Persistent homology | Liu, Wen’s Home Page</title>
+<meta name="generator" content="Jekyll v4.3.3" />
+<meta property="og:title" content="conformal geometry学习 (八 ) – Persistent homology" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="一种计算 $H_k(\Sigma,\mathbb Z_2)$ 的方法, 计算filtration $\mathbb K$ 中homology的变化" />
+<meta property="og:description" content="一种计算 $H_k(\Sigma,\mathbb Z_2)$ 的方法, 计算filtration $\mathbb K$ 中homology的变化" />
+<link rel="canonical" href="https://roshameow.github.io//personal_homepage/math/algorithm/conformal-geometry8/" />
+<meta property="og:url" content="https://roshameow.github.io//personal_homepage/math/algorithm/conformal-geometry8/" />
+<meta property="og:site_name" content="Liu, Wen’s Home Page" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2024-08-07T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="conformal geometry学习 (八 ) – Persistent homology" />
+<meta name="twitter:site" content="@" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-09-01T11:41:00+00:00","datePublished":"2024-08-07T00:00:00+00:00","description":"一种计算 $H_k(\\Sigma,\\mathbb Z_2)$ 的方法, 计算filtration $\\mathbb K$ 中homology的变化","headline":"conformal geometry学习 (八 ) – Persistent homology","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/math/algorithm/conformal-geometry8/"},"url":"https://roshameow.github.io//personal_homepage/math/algorithm/conformal-geometry8/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  
+
+  <script>
+    /* Cut the mustard */
+    if ('querySelector' in document && 'addEventListener' in window) {
+      document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + 'js';
+    }
+  </script>
+
+  <link rel="stylesheet" href="/personal_homepage/assets/css/main.css">
+  <link rel="stylesheet" href="/personal_homepage/assets/css/skins/default.css">
+  
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,700,700i|Lora:400,400i,700,700i">
+  <link rel="alternate" type="application/atom+xml" title="Liu, Wen&#39;s Home Page" href="/personal_homepage/atom.xml">
+<!-- start custom head snippets -->
+
+<!-- insert favicons. use http://realfavicongenerator.net/ -->
+<link rel="shortcut icon" type="image/x-icon" href="/personal_homepage/docs/images/logo.ico">
+<!-- end custom head snippets -->
+
+</head>
+
+  <body class="layout--post  conformal-geometry学习-八-persistent-homology">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#primary-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+  <div class="navigation-wrapper">
+    <a href="#menu-toggle" id="menu-toggle">Menu</a>
+    <nav id="primary-nav" class="site-nav animated drop">
+      <ul><li><a href="/personal_homepage/">Home</a></li><li><a href="/personal_homepage/posts/">Posts</a></li><li><a href="/personal_homepage/categories/">Categories</a></li><li><a href="/personal_homepage/tags/">Tags</a></li><li><a href="/personal_homepage/family/">Family</a></li><li><a href="/personal_homepage/search/">Search</a></li></ul>
+    </nav>
+  </div><!-- /.navigation-wrapper -->
+
+
+    <header class="masthead">
+  <div class="wrap">
+    
+    
+    
+      
+        <div class="site-title animated fadeIn"><a href="/personal_homepage/">Liu, Wen's Home Page</a></div>
+      
+      <p class="site-description animated fadeIn" itemprop="description">Work, Experiments and Ideas.</p>
+    
+  </div>
+</header><!-- /.masthead -->
+
+
+    <main id="main" class="main-content" aria-label="Content">
+  <article class="h-entry">
+    
+
+    <div class="page-wrapper">
+      <header class="page-header">
+        
+        
+        <h1 id="page-title" class="page-title p-name">conformal geometry学习 (八 ) – Persistent homology
+</h1>
+        
+      </header>
+
+      <div class="page-sidebar">
+        <div class="page-author h-card p-author"><img src="/personal_homepage/docs/images/logo.svg" class="author-avatar u-photo" alt=""><div class="author-info">
+
+<span class="read-time">1 min read</span>
+
+    <time class="page-date dt-published" datetime="2024-08-07T00:00:00+00:00"><a class="u-url" href="">August 7, 2024</a>
+</time>
+
+  </div>
+</div>
+
+        
+  <h3 class="page-taxonomies-title">Categories</h3>
+  
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a class="p-category" href="/personal_homepage/categories/#algorithm" title="Pages filed under algorithm">algorithm</a></li><li class="page-taxonomy"><a class="p-category" href="/personal_homepage/categories/#math" title="Pages filed under math">math</a></li>
+  </ul>
+
+
+        
+  <h3 class="page-taxonomies-title">Tags</h3>
+  
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a href="/personal_homepage/tags/#content" title="Pages tagged content" rel="tag">content</a></li>
+  </ul>
+
+
+        <!-- {::options parse_block_html="true" /} -->
+<div id="entry-table-of-contents" class="toc-wrapper">
+  <h2 id="toc-toggle">
+    Table of Contents <i
+      class="toc-toggle-icon fas fa-chevron-down"></i>
+  </h2>
+  <!-- 1. toc
+{:toc} -->
+  <!-- <div id="markdown-toc"> -->
+
+    <ul class="inline_toc" id="my_toc"><li><a href="#filtration定义">filtration定义</a><ul><li><a href="#点云---čech-complex-filtration">点云 -&gt; Čech Complex filtration</a></li></ul></li><li><a href="#filtration同调分解">filtration同调分解</a></li><li><a href="#pair-algorithm-计算">Pair Algorithm 计算</a></li></ul>
+  <!-- </div> -->
+
+</div>
+<!-- {::options parse_block_html="false" /} -->
+        
+
+<div id="entry-table-of-contents" class="toc-wrapper">
+    <h2 id="toc-toggle" class="no_toc">
+        Related Posts <i class="toc-toggle-icon fas fa-chevron-down"></i>
+    </h2>
+    <!-- <div id="markdown-toc"> -->
+    <ul>
+        
+        <li><a href="/personal_homepage/house/wall-problem/">墙皮脱落问题</a></li>
+        
+        <li><a href="/personal_homepage/game/card/">掼蛋规则</a></li>
+        
+        <li><a href="/personal_homepage/affair/cat-airline/">搬家相关准备</a></li>
+        
+        <li><a href="/personal_homepage/math/conformal-geometry9/">conformal geometry学习 (九 ) -- atlas</a></li>
+        
+        <li><a href="/personal_homepage/affair/cat-can/">猫罐头调查</a></li>
+        
+    </ul>
+    <!-- </div> -->
+
+</div>
+
+
+
+
+
+      </div>
+
+      <div class="page-content">
+        <div class="e-content">
+          <p>一种计算 $H_k(\Sigma,\mathbb Z_2)$ 的方法, 计算filtration $\mathbb K$ 中homology的变化</p>
+
+<ul>
+  <li>Persistent Homology $H_k^{l,p}=H_k(\mathbb K_{l+p},\mathbb Z_2)=\frac{Z^l_k}{B_{k}^{l+p}\cap Z^l_k}$
+    <ul>
+      <li>k-th homology: 和$\mathbb K$ 中 (k-1)-simplex, k-simplex, (k+1)-simplex部分有关</li>
+      <li>$\mathbb K$ 中到第l 个simplex cycle和到第(l+p) 个 simplex的image
+        <ul>
+          <li>一般到第l 个是 k-simplex, l 到 (l+p) 个是(k+1)-simplex</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="filtration定义">filtration定义</h2>
+
+<ul>
+  <li>filtration: $\emptyset=\mathbb K_{-1}\subset \mathbb K_0\subset \mathbb K_1\subset\cdots\subset \mathbb K_n=\mathbb K$ 是simplicial complex的序列
+    <ul>
+      <li>每个$\mathbb K_{i}$ 在$\mathbb K_{i-1}$ 基础上添加一个simplex $\sigma_i$</li>
+      <li>单调性(monotonous): 添加$\sigma_i$ 的顺序是包含关系, 每个$\sigma$ 的face都在它前面</li>
+    </ul>
+  </li>
+  <li>induced p阶homology group 的map序列: $0=H_p(\mathbb K_{-1})\rightarrow H_p(\mathbb K_0)\rightarrow \cdots \rightarrow H_p(\mathbb K_n)=H_p(\mathbb K)$</li>
+</ul>
+
+<h3 id="点云---čech-complex-filtration">点云 -&gt; Čech Complex filtration</h3>
+
+<p><img src="/personal_homepage/docs/attachment/Persistent%20homology%20classification%20algorithm.jpg" alt="Persistent homology classification algorithm.jpg" width="500" /></p>
+<ul>
+  <li><a href="https://en.wikipedia.org/wiki/Čech_complex">Čech complex</a>  $\mathcal C_\epsilon$ : 把点云中 $\epsilon/2$ 球相交的点相连得到的simplicial complex
+    <ul>
+      <li><a href="https://en.wikipedia.org/wiki/Vietoris–Rips_complex">Vietoris-Rips Complex</a> $\mathcal R_\epsilon$ : 把点云中距离&lt; $\epsilon$ 的点相连得到的simplicial complex($\mathbb R^n$ 中两种定义等价)</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="filtration同调分解">filtration同调分解</h2>
+
+<p><strong>新添加的simplex分为两种: 1. 构成cycle的 2. 不构成cycle的</strong></p>
+
+<ul>
+  <li><strong>positive(generator, creator)</strong>: k-simplex $\sigma_i\subset$ 一个 k-cycle $c_i$
+    <ul>
+      <li>相当于, $\sigma_i$ 是<strong>构成 k-cycle $c_i$的最后一个边</strong>(youngest)</li>
+      <li>添加到$\sigma_i$ 的时候还没有 (k+1)-simplex 呢, 所以 $c_i$ 是non-exact的</li>
+      <li>可以让 $c_i$ 只包含$\sigma_i$ 一个positive k-simplex (lemma)
+        <ul>
+          <li>归纳法证明: 如果包含其他 positive  $\sigma_j$ 出现在$\sigma_i$ 之前, 把当时对应的cycle $c_j$ 只包含$\sigma_j$ 一个positive, 让$c_i\texttt{ += }c_i+c_j$</li>
+        </ul>
+      </li>
+      <li>$[c_i]$ 是构成$H_k(\mathbb K_i)$ 的basis</li>
+    </ul>
+  </li>
+  <li><strong>negative(killer)</strong>:
+    <ul>
+      <li>killer 导致前面相邻的(k-1)-simplex 变成boundary(kill行为)</li>
+      <li>和其<strong>kill掉的最近(youngest)的positive (k-1)-simplex组成一对pair</strong>
+        <ul>
+          <li>kill掉的 (k-1)-simplex 不一定和killer直接相邻</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>youngest positive simplex  在同调等价类中传递</strong></p>
+
+<ul>
+  <li>Collision lemma: 一对generator,killer pair $(\sigma_i,\sigma_j)$ , 如果$e$ 是Collision Free Cycle, 并且$[e]=[\partial \sigma_j]$ (和$\partial \sigma_j$ 同调等价) -&gt; $e$ 的youngest positive simplex也是 $\sigma_i$ .
+    <ul>
+      <li>Collision Free Cycle: 里面的最近的generator还没被kill</li>
+      <li>$e$ 的youngest positive simplex如果不在$\partial \sigma_j$ 中, 就在另一个更早出现的$\partial \sigma$ 里, 和Collision Free 矛盾. (证明没懂)</li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>同调分解</strong></p>
+
+<ul>
+  <li>$rk(H_k(\mathbb K,\mathbb Z_2))=pos_k-neg_{k+1}$
+    <ul>
+      <li>每个新出现的<strong>positive simplex对应linearly indepdent cycle</strong>
+        <ul>
+          <li>$\mathbb Z_2$-module里, linearly depdent的意思是 $c=\sum_i c_i$</li>
+          <li>就是说 $c$ 的youngest simplex $\sigma$ 肯定在某个之前的$c_i$ 里, 但是$\sigma$ 是刚出来的, 所以不可能</li>
+        </ul>
+      </li>
+      <li>每个新添加的<strong>negative (k+1)-simplex -&gt; 对应killed k-positive simplex -&gt; 对应kill linearly indepdent cycle</strong></li>
+    </ul>
+  </li>
+  <li>$num_k = pos_k + neg_k = rk(Z_k) + rk(B_k)$
+    <ul>
+      <li>用incidence matrix $M$ 表示(k-1)-simplex $\times$ k-simplex 的相连关系
+        <ul>
+          <li>$M$ 的列数 $num_k$ 为 $\mathbb K$ 中添加的 k-simplex的个数: 不是positive, 就是negative</li>
+          <li>每个新出现的positive simplex对应linearly indepdent cycle
+            <ul>
+              <li>经过column operation会变成0</li>
+              <li>$rkM-rkB_p=rk Z_p=pos_k$</li>
+            </ul>
+          </li>
+          <li>每个新添加的negative simplex对应killed (k-1)-simplex: pair
+            <ul>
+              <li>$rk M = rk B_p=neg_k$</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>计算同调群需要计算两个incidence matrix : (k-1)-simplex $\times$ k-simplex 和 k-simplex $\times$ (k+1)-simplex, 以得到$rk Z_k$ 和$rk B_{k+1}$</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="pair-algorithm-计算">Pair Algorithm 计算</h2>
+
+<p>计算每个simplex的生命周期</p>
+
+<ul>
+  <li>输入: filtration 当前的simplex $\sigma$</li>
+  <li>
+    <p>输出: 判断$\sigma$ 是generator还是killer, 如果是killer, 记录它的pair</p>
+  </li>
+  <li>plain(Algorithm1):
+    <ul>
+      <li>记录cycle $c=\partial \sigma=\sum_i \tau_i$
+        <ul>
+          <li>检查里面最近的(youngest) positive $\tau$ ((k-1)-simplex)
+            <ul>
+              <li>如果 $\tau$ 还没被kill过, $(\tau,\sigma)$ 组成pair, 记录$\tau$ 的killer为$\sigma$</li>
+              <li>如果$\tau$ 已经被其他killer kill过
+                <ul>
+                  <li>不停往前追踪, 用$\tau$ 对应的killer(的boundary cycle)更新 $c$ 的表达
+                    <ul>
+                      <li>更新过的$c$ 的simplex全比 $\tau$ older(检查的simplex越来越往前-&gt; 算法肯定能停止)</li>
+                      <li>如图, $\partial e_5=v_4+v_0$ , 最新点 $v_4$ 已经被$e_3$ kill, 得到$\partial e_5=v_3+v_0$, 一直往前追踪, 得到$\partial e_5=v_0+v_0=0$</li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>如果追踪到最后结果为0 -&gt; $\sigma$ 是generator</li>
+    </ul>
+  </li>
+  <li>优化1(Algorithm2, 用空间换时间):
+    <ul>
+      <li>在generator被kill时, 同时记录当时对应的boundary cycle $\Lambda_\tau$
+        <ul>
+          <li>在pair不相邻时节省计算时间</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>并行计算(代数方法): 步骤数=追踪的最长链路?
+    <ul>
+      <li>incidence matrix: k-simplex $\times$ (k+1)-simplex 的相连关系
+        <ul>
+          <li>检查每列值为 1 最后一行 (即对应的youngest simplex)
+            <ul>
+              <li>如果在之前列出现相同的index, 用前面的列更新后面的列(cycle更新的过程)</li>
+            </ul>
+          </li>
+          <li>直到所有非0的列的最后一行index都不一样
+            <ul>
+              <li>全是0的列对应generator</li>
+              <li>非零的列和最后一行index对应pair</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+
+        </div>
+
+        
+        <div class="page-share">
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Froshameow.github.io%2F%2Fpersonal_homepage%2Fmath%2Falgorithm%2Fconformal-geometry8%2F" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" class="btn btn--facebook btn--small"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i> <span>Share</span></a>
+  <a href="https://twitter.com/intent/tweet?text=conformal+geometry%E5%AD%A6%E4%B9%A0+%28%E5%85%AB+%29+--+Persistent+homology%20https%3A%2F%2Froshameow.github.io%2F%2Fpersonal_homepage%2Fmath%2Falgorithm%2Fconformal-geometry8%2F" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" class="btn btn--twitter btn--small"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i> <span>Tweet</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Froshameow.github.io%2F%2Fpersonal_homepage%2Fmath%2Falgorithm%2Fconformal-geometry8%2F" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" class="btn btn--linkedin btn--small"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> <span>LinkedIn</span></a>
+  <a href="https://reddit.com/submit?title=conformal+geometry%E5%AD%A6%E4%B9%A0+%28%E5%85%AB+%29+--+Persistent+homology&url=https%3A%2F%2Froshameow.github.io%2F%2Fpersonal_homepage%2Fmath%2Falgorithm%2Fconformal-geometry8%2F" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" class="btn btn--reddit btn--small"><i class="fab fa-fw fa-reddit" aria-hidden="true"></i> <span>Reddit</span></a>
+</div>
+
+        
+
+        
+        
+  <div class="page-comments">
+    <div id="disqus_thread"></div>
+    <script>
+      var disqus_config = function () {
+        this.page.url = 'https://roshameow.github.io//personal_homepage/math/algorithm/conformal-geometry8/';
+        this.page.identifier = 'https://roshameow.github.io//personal_homepage/math/algorithm/conformal-geometry8/';
+      };
+
+      (function() {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://https-roshameow-github-io-personal-homepage.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+  </div>
+
+
+        
+
+        <nav class="page-pagination" role="navigation">
+  
+    <a class="page-previous" href="/personal_homepage/math/conformal-geometry7/">
+      <h4 class="page-pagination-label">Previous</h4>
+      <span class="page-pagination-title">
+        <i class="fas fa-arrow-left"></i> conformal geometry学习 (七 ) – Duality, homology relation
+
+      </span>
+    </a>
+  
+
+  
+    <a class="page-next" href="/personal_homepage/algorithm/persistent-homology/">
+      <h4 class="page-pagination-label">Next</h4>
+      <span class="page-pagination-title">
+        persistent homology 事例 + 应用
+ <i class="fas fa-arrow-right"></i>
+      </span>
+    </a>
+  
+</nav>
+
+      </div>
+
+    </div>
+  </article>
+</main>
+
+    <footer id="footer" class="site-footer">
+  <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+<div class="social-icons"><a class="social-icon" href="/personal_homepage/atom.xml"><i class="fas fa-rss-square fa-2x" title="Feed"></i></a><a class="social-icon" href="https://github.com/roshameow"><i class="fab fa-github-square fa-2x" title="GitHub"></i></a><a class="social-icon" href="https://www.linkedin.com/in/wen-liu-06503a7b/"><i class="fab fa-linkedin fa-2x" title="LinkedIn"></i></a><a class="social-icon" href="mailto:w.liuatnk@gmail.com"><i class="fas fa-envelope-square fa-2x" title="e-mail"></i></a></div><div class="copyright">
+    
+      <p>&copy; 2024 Liu, Wen's Home Page. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://github.com/mmistakes/so-simple-theme" rel="nofollow">So Simple</a>.</p>
+    
+  </div>
+</footer>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="/personal_homepage/assets/js/main.min.js"></script>
+<script src="https://use.fontawesome.com/releases/v5.0.12/js/all.js"></script><!-- <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'G-9TMSCDTBGN', 'auto');
+  ga('send', 'pageview');
+</script> -->
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9TMSCDTBGN"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-9TMSCDTBGN');
+</script>
+
+
+
+<!-- MathJax -->
+
+<script>
+    // http://docs.mathjax.org/en/latest/upgrading/v2.html
+    MathJax = {
+        tex: {
+            tags: "ams",    // eq numbering options: none, ams, all
+            inlineMath: [['$', '$'], ["\\(", "\\)"]],  // 设置行内数学公式的开始和结束标记
+            displayMath: [['$$', '$$'], ["\\[", "\\]"]]  // 设置行间数学公式的开始和结束标记
+        },
+        // options: {
+        //   renderActions: {
+        //     // for mathjax 3, handle <script "math/tex"> blocks inserted by kramdown
+        //     find: [10, function (doc) {
+        //       for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+        //         const display = !!node.type.match(/; *mode=display/);
+        //         const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+        //         const text = document.createTextNode('');
+        //         node.parentNode.replaceChild(text, node);
+        //         math.start = { node: text, delim: '', n: 0 };
+        //         math.end = { node: text, delim: '', n: 0 };
+        //         doc.math.push(math);
+        //       }
+        //     }, '']
+        //   }
+        // }
+    }
+</script>
+
+<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  </body>
+
+</html>

@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<!--
+    So Simple Jekyll Theme 3.2.0
+    Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+    Free for personal and commercial use under the MIT license
+    https://github.com/mmistakes/so-simple-theme/blob/master/LICENSE
+-->
+<html lang="en-US" class="no-js">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  
+
+  
+  
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>attention的优化– flash attention加速 | Liu, Wen’s Home Page</title>
+<meta name="generator" content="Jekyll v4.3.3" />
+<meta property="og:title" content="attention的优化– flash attention加速" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="flash-attention是一种算子合并(kernel fusion)的优化. 把self-attention分块, 直接在SRAM里计算, 省去了HBM来回搬运中间结果S和P的时间(如下图). self-attention由两层矩阵乘法, softmax, 和其他eltwise计算(mask, dropout)构成." />
+<meta property="og:description" content="flash-attention是一种算子合并(kernel fusion)的优化. 把self-attention分块, 直接在SRAM里计算, 省去了HBM来回搬运中间结果S和P的时间(如下图). self-attention由两层矩阵乘法, softmax, 和其他eltwise计算(mask, dropout)构成." />
+<link rel="canonical" href="https://roshameow.github.io//personal_homepage/algorithm/attention3/" />
+<meta property="og:url" content="https://roshameow.github.io//personal_homepage/algorithm/attention3/" />
+<meta property="og:site_name" content="Liu, Wen’s Home Page" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2024-03-20T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="attention的优化– flash attention加速" />
+<meta name="twitter:site" content="@" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-04-07T17:06:18+00:00","datePublished":"2024-03-20T00:00:00+00:00","description":"flash-attention是一种算子合并(kernel fusion)的优化. 把self-attention分块, 直接在SRAM里计算, 省去了HBM来回搬运中间结果S和P的时间(如下图). self-attention由两层矩阵乘法, softmax, 和其他eltwise计算(mask, dropout)构成.","headline":"attention的优化– flash attention加速","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/algorithm/attention3/"},"url":"https://roshameow.github.io//personal_homepage/algorithm/attention3/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  
+
+  <script>
+    /* Cut the mustard */
+    if ('querySelector' in document && 'addEventListener' in window) {
+      document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + 'js';
+    }
+  </script>
+
+  <link rel="stylesheet" href="/personal_homepage/assets/css/main.css">
+  <link rel="stylesheet" href="/personal_homepage/assets/css/skins/default.css">
+  
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,700,700i|Lora:400,400i,700,700i">
+  <link rel="alternate" type="application/atom+xml" title="Liu, Wen&#39;s Home Page" href="/personal_homepage/atom.xml">
+<!-- start custom head snippets -->
+
+<!-- insert favicons. use http://realfavicongenerator.net/ -->
+<link rel="shortcut icon" type="image/x-icon" href="/personal_homepage/docs/images/logo.ico">
+<!-- end custom head snippets -->
+
+</head>
+
+  <body class="layout--post  attention的优化-flash-attention加速">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#primary-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+  <div class="navigation-wrapper">
+    <a href="#menu-toggle" id="menu-toggle">Menu</a>
+    <nav id="primary-nav" class="site-nav animated drop">
+      <ul><li><a href="/personal_homepage/">Home</a></li><li><a href="/personal_homepage/posts/">Posts</a></li><li><a href="/personal_homepage/categories/">Categories</a></li><li><a href="/personal_homepage/tags/">Tags</a></li><li><a href="/personal_homepage/family/">Family</a></li><li><a href="/personal_homepage/search/">Search</a></li></ul>
+    </nav>
+  </div><!-- /.navigation-wrapper -->
+
+
+    <header class="masthead">
+  <div class="wrap">
+    
+    
+    
+      
+        <div class="site-title animated fadeIn"><a href="/personal_homepage/">Liu, Wen's Home Page</a></div>
+      
+      <p class="site-description animated fadeIn" itemprop="description">Work, Experiments and Ideas.</p>
+    
+  </div>
+</header><!-- /.masthead -->
+
+
+    <main id="main" class="main-content" aria-label="Content">
+  <article class="h-entry">
+    
+
+    <div class="page-wrapper">
+      <header class="page-header">
+        
+        
+        <h1 id="page-title" class="page-title p-name">attention的优化– flash attention加速
+</h1>
+        
+      </header>
+
+      <div class="page-sidebar">
+        <div class="page-author h-card p-author"><img src="/personal_homepage/docs/images/logo.svg" class="author-avatar u-photo" alt=""><div class="author-info">
+
+<span class="read-time">1 min read</span>
+
+    <time class="page-date dt-published" datetime="2024-03-20T00:00:00+00:00"><a class="u-url" href="">March 20, 2024</a>
+</time>
+
+  </div>
+</div>
+
+        
+  <h3 class="page-taxonomies-title">Categories</h3>
+  
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a class="p-category" href="/personal_homepage/categories/#algorithm" title="Pages filed under algorithm">algorithm</a></li>
+  </ul>
+
+
+        
+  <h3 class="page-taxonomies-title">Tags</h3>
+  
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a href="/personal_homepage/tags/#attention" title="Pages tagged attention" rel="tag">attention</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#content" title="Pages tagged content" rel="tag">content</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#flash-attention" title="Pages tagged flash attention" rel="tag">flash attention</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#gpu" title="Pages tagged gpu" rel="tag">gpu</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#speedup" title="Pages tagged speedup" rel="tag">speedup</a></li>
+  </ul>
+
+
+        <!-- {::options parse_block_html="true" /} -->
+<div id="entry-table-of-contents" class="toc-wrapper">
+  <h2 id="toc-toggle">
+    Table of Contents <i
+      class="toc-toggle-icon fas fa-chevron-down"></i>
+  </h2>
+  <!-- 1. toc
+{:toc} -->
+  <!-- <div id="markdown-toc"> -->
+
+    <ul class="inline_toc" id="my_toc"><li><a href="#attention分块计算">attention分块计算</a><ul><li><a href="#forward计算-qkv---o">forward计算: Q,K,V -&gt; O</a></li><li><a href="#backward计算-o-do-q-k-v---dv-dk-dq">backward计算: O, dO, Q, K, V -&gt; dV, dK, dQ</a></li><li><a href="#每块占用的sram">每块占用的SRAM</a></li></ul></li><li><a href="#flash-attention-v1">flash-attention v1</a></li><li><a href="#flash-attention-v2">flash-attention v2</a></li><li><a href="#reference">reference</a></li><li><a href="#其他讨论的链接">其他讨论的链接</a></li></ul>
+  <!-- </div> -->
+
+</div>
+<!-- {::options parse_block_html="false" /} -->
+        
+
+<div id="entry-table-of-contents" class="toc-wrapper">
+    <h2 id="toc-toggle" class="no_toc">
+        Related Posts <i class="toc-toggle-icon fas fa-chevron-down"></i>
+    </h2>
+    <!-- <div id="markdown-toc"> -->
+    <ul>
+        
+        <li><a href="/personal_homepage/house/wall-problem/">墙皮脱落问题</a></li>
+        
+        <li><a href="/personal_homepage/game/card/">掼蛋规则</a></li>
+        
+        <li><a href="/personal_homepage/affair/cat-airline/">搬家相关准备</a></li>
+        
+        <li><a href="/personal_homepage/math/conformal-geometry9/">conformal geometry学习 (九 ) -- atlas</a></li>
+        
+        <li><a href="/personal_homepage/affair/cat-can/">猫罐头调查</a></li>
+        
+    </ul>
+    <!-- </div> -->
+
+</div>
+
+
+
+
+
+      </div>
+
+      <div class="page-content">
+        <div class="e-content">
+          <p>flash-attention是一种算子合并(kernel fusion)的优化. 把self-attention分块, 直接在SRAM里计算, 省去了HBM来回搬运中间结果S和P的时间(如下图).  self-attention由两层矩阵乘法, softmax, 和其他eltwise计算(mask, dropout)构成.</p>
+
+<p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240401154241.png" alt="Pasted image 20240401154241.png" width="500" /></p>
+
+<h2 id="attention分块计算">attention分块计算</h2>
+
+<h3 id="forward计算-qkv---o">forward计算: Q,K,V -&gt; O</h3>
+
+<ul>
+  <li>矩阵分块如上图: 都是在token的维度分块
+    <ul>
+      <li>i iteration循环(黄色部分)
+        <ul>
+          <li>每次i iteration需要load不同位置的 Q, O</li>
+        </ul>
+      </li>
+      <li>j iteration循环(浅色部分)
+        <ul>
+          <li>每次j iteration需要load不同位置的 K, V</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>softmax计算:
+    <ul>
+      <li>$softmax(x)=\frac{e^{x}}{\sum_j e^{x_j}}$ , 其中$\sum_j$ 是rowsum</li>
+      <li>safe softmax:  $softmax(x)=\frac{e^{x-m}}{\sum_j e^{x_j-m}}$
+        <ul>
+          <li>为了避免$\sum_j e^{x_j}$ 产生特别大的值溢出</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>softmax分块:
+    <ul>
+      <li>对于relation S的每个分块的patch $P$, 记: 局部最大值 $m_p=\max_{x\in P}(x)$, 局部rowsum $l_p=\sum_{x\in P} e^{x-m_P}$
+        <ul>
+          <li>得到: $softmax(x)=\frac{e^x\cdot e^{(m_p-m)}}{\sum_P l_p\cdot e^{(m_p-m)}}$</li>
+        </ul>
+      </li>
+      <li>写成关于$j$ 的迭代形式:(softmax和iterate i无关)
+        <ul>
+          <li>$m_{j+1}=\max(m_j, m_{local})$</li>
+          <li>local rowsum $l_{j+1}=l_j\cdot e^{(m_j-m_{j+1})}+l_{local}\cdot e^{(m_{local}-m_{j+1})}$</li>
+          <li>softmax的中间结果 $\tilde P_{local}=e^{S_{local}-m_{local}}$</li>
+          <li>$O_{j+1}=softmax(S_{j+1})V_{j+1}=\text{diag}(l_{j+1})^{-1}(\text{diag}(l_j)\cdot O_j\cdot e^{m_j-m_{j+1}}+ \tilde P_{local}V_{j+1}\cdot e^{m_{local}-m_{j+1}})$</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="backward计算-o-do-q-k-v---dv-dk-dq">backward计算: O, dO, Q, K, V -&gt; dV, dK, dQ</h3>
+
+<p>flash-attention里面因为不保存S, P的结果, 在backward的时候要对它们重新计算</p>
+
+<p>用<a href="https://en.wikipedia.org/wiki/Automatic_differentiation">reverse mode</a> 的chain rule做backward计算:  <img src="https://wikimedia.org/api/rest_v1/media/math/render/svg/e5986463d8b2e48d0da5233099bb97bc4ea89844" alt="reverse" /></p>
+<ul>
+  <li>矩阵计算: $A=BC$
+    <ul>
+      <li>$dC = \frac{\partial y}{\partial C}=\sum_{A_{ij}} \frac{\partial y}{\partial A_{ij}}\cdot \frac{\partial A_{ij}}{\partial C}=B^{T}dA$ , 类似的 $dB=dA\ C^T$</li>
+    </ul>
+  </li>
+  <li>softmax计算: $P=softmax(S)$, $P_{j}=\frac{e^{S_{j}}}{\sum_{x\in S} e^x}$  , 下面矩阵都是eltwise乘法$\downarrow$  \(\begin{align}dS&amp;=\sum_{P_{j}} dP_{j}\frac{\partial P_{j}}{\partial S}&amp;=\sum_{P_{j}} (P_{k}\mathbb 1_{j=k}-P_{j}P_{k})dP_{j}&amp;\ (\text{根据乘除法求导法则}\frac{\partial P_j}{\partial S_k}=P_j\mathbb 1_{k=j}-\frac{e^{s_{j}}e^{s_k}}{(\sum_{x\in S} e^x)^2}=diag(P)-PP^T\text{是softmax的Jacobian})\\ &amp;&amp;=P_{k}dP_{k}+(\sum_{P_{j}}P_{j}dP_{j})P_{k}&amp;=P(dP+\sum_{P_{j}}P_{j}dP_{j})\\ &amp;&amp;&amp;=P(dP+ \sum_{j} P_j(\sum_i V_{ij} dO_{j}))\  (\text{因为}PV=O)\\ &amp;&amp;&amp;=P(dP+ \sum_{j}O_{j}dO_{j})\ (\text{其中}\sum_j \text{就是rowsum})\end{align}\)</li>
+  <li>backward采用和forward相同的分块</li>
+</ul>
+
+<h3 id="每块占用的sram">每块占用的SRAM</h3>
+
+<ul>
+  <li>forward和backward采用相同的分块, backward需要的SRAM比较大, 因此直接以backward的需求量为准</li>
+  <li>backward:
+    <ul>
+      <li>Q, dQ, O, dO : Br x d</li>
+      <li>K, V, dK, dV: Bc x d</li>
+      <li>S, P, dS, dP,  : Br x Bc</li>
+      <li>l, m: Br</li>
+    </ul>
+  </li>
+  <li>在flash-attention文章里, 取 <code class="language-plaintext highlighter-rouge">Bc=floor(M/4d)</code>, <code class="language-plaintext highlighter-rouge">Br=min(floor(M/4d),d)</code> , 这样能保证SRAM够用吗❓</li>
+</ul>
+
+<h2 id="flash-attention-v1">flash-attention v1</h2>
+
+<ul>
+  <li>让iterate i为内循环, iterate j为外循环</li>
+</ul>
+
+<h2 id="flash-attention-v2">flash-attention v2</h2>
+
+<ol>
+  <li>更改iteration的顺序(一般的规则是把相关性更高的放在更内层循环)
+    <ul>
+      <li>forward时让iterate j为内循环, 因为forward最终结果为O, 这样O的分块不用反复进出</li>
+      <li>barkward时让iterate i为内循环, backward的最终结果为(dK, dV, dQ), 这样dK, dV不用反复进出</li>
+    </ul>
+  </li>
+  <li>softmax中间结果的存储:
+    <ul>
+      <li>forward正常计算, 不过不存储$l,m$, 改为存$L=m+\log (l)$
+        <ul>
+          <li>v2 forward采用j的内循环, 和$l, m$ 计算方向一致, forward的时候本来就可以inplace更新不需要存储</li>
+          <li>backward时重新计算P, $P=diag(l)^{-1}e^{S-m}=e^{S-L}$</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>优化thread blocks的并行化计算: 把i iteration和j iteration的部分也切分进行并行计算(尤其推理时batch size=1; 或训练token长度特别长, 需要减小batch_size和attention_heads时, 并行度不够)
+    <ul>
+      <li>forward时i iteration的相关性比较小, 所以切分i iteration更方便
+        <ul>
+          <li>但是每个i iteration的切分都要自己load一遍K, V了</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>优化warp的并行计算: warp之间也是并行的
+    <ul>
+      <li>v2 也是在i iteration切分warp的并行</li>
+    </ul>
+  </li>
+</ol>
+
+<h2 id="reference">reference</h2>
+
+<p>[1] Dao, Tri, Daniel Y. Fu, Stefano Ermon, Atri Rudra, and Christopher Ré. “<strong>FlashAttention</strong>: Fast and Memory-Efficient Exact Attention with IO-Awareness.” arXiv, June 23, 2022. <a href="https://doi.org/10.48550/arXiv.2205.14135">https://doi.org/10.48550/arXiv.2205.14135</a>.</p>
+
+<p>[2] Dao, Tri. “<strong>FlashAttention-2:</strong> Faster Attention with Better Parallelism and Work Partitioning.” arXiv, July 17, 2023. <a href="https://doi.org/10.48550/arXiv.2307.08691">https://doi.org/10.48550/arXiv.2307.08691</a>.</p>
+
+<p><strong>代码</strong>: <a href="https://github.com/Dao-AILab/flash-attention">https://github.com/Dao-AILab/flash-attention</a></p>
+
+<h2 id="其他讨论的链接">其他讨论的链接</h2>
+
+<p>[1] https://zhuanlan.zhihu.com/p/669926191 flash-attention v1</p>
+
+<p>[2] https://mp.weixin.qq.com/s/5K6yNj23NmNLcAQofHcT4Q flash-attention v2</p>
+
+<p>[3] https://zhuanlan.zhihu.com/p/685020608 概括</p>
+
+<p>[4] https://mp.weixin.qq.com/s/NKShFDrfDGsb0G6PAkUCGw triton的实现</p>
+
+<p>[5] https://triton-lang.org/main/getting-started/tutorials/06-fused-attention.html  基于triton的flash-attention代码</p>
+
+        </div>
+
+        
+        <div class="page-share">
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Froshameow.github.io%2F%2Fpersonal_homepage%2Falgorithm%2Fattention3%2F" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" class="btn btn--facebook btn--small"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i> <span>Share</span></a>
+  <a href="https://twitter.com/intent/tweet?text=attention%E7%9A%84%E4%BC%98%E5%8C%96--+flash+attention%E5%8A%A0%E9%80%9F%20https%3A%2F%2Froshameow.github.io%2F%2Fpersonal_homepage%2Falgorithm%2Fattention3%2F" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" class="btn btn--twitter btn--small"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i> <span>Tweet</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Froshameow.github.io%2F%2Fpersonal_homepage%2Falgorithm%2Fattention3%2F" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" class="btn btn--linkedin btn--small"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> <span>LinkedIn</span></a>
+  <a href="https://reddit.com/submit?title=attention%E7%9A%84%E4%BC%98%E5%8C%96--+flash+attention%E5%8A%A0%E9%80%9F&url=https%3A%2F%2Froshameow.github.io%2F%2Fpersonal_homepage%2Falgorithm%2Fattention3%2F" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" class="btn btn--reddit btn--small"><i class="fab fa-fw fa-reddit" aria-hidden="true"></i> <span>Reddit</span></a>
+</div>
+
+        
+
+        
+        
+  <div class="page-comments">
+    <div id="disqus_thread"></div>
+    <script>
+      var disqus_config = function () {
+        this.page.url = 'https://roshameow.github.io//personal_homepage/algorithm/attention3/';
+        this.page.identifier = 'https://roshameow.github.io//personal_homepage/algorithm/attention3/';
+      };
+
+      (function() {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://https-roshameow-github-io-personal-homepage.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+  </div>
+
+
+        
+
+        <nav class="page-pagination" role="navigation">
+  
+    <a class="page-previous" href="/personal_homepage/blender/blender-learning9/">
+      <h4 class="page-pagination-label">Previous</h4>
+      <span class="page-pagination-title">
+        <i class="fas fa-arrow-left"></i> blender学习: 镜头推移
+
+      </span>
+    </a>
+  
+
+  
+    <a class="page-next" href="/personal_homepage/blender/blender-learning10/">
+      <h4 class="page-pagination-label">Next</h4>
+      <span class="page-pagination-title">
+        blender学习: 用粒子系统做毛毡效果
+ <i class="fas fa-arrow-right"></i>
+      </span>
+    </a>
+  
+</nav>
+
+      </div>
+
+    </div>
+  </article>
+</main>
+
+    <footer id="footer" class="site-footer">
+  <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+<div class="social-icons"><a class="social-icon" href="/personal_homepage/atom.xml"><i class="fas fa-rss-square fa-2x" title="Feed"></i></a><a class="social-icon" href="https://github.com/roshameow"><i class="fab fa-github-square fa-2x" title="GitHub"></i></a><a class="social-icon" href="https://www.linkedin.com/in/wen-liu-06503a7b/"><i class="fab fa-linkedin fa-2x" title="LinkedIn"></i></a><a class="social-icon" href="mailto:w.liuatnk@gmail.com"><i class="fas fa-envelope-square fa-2x" title="e-mail"></i></a></div><div class="copyright">
+    
+      <p>&copy; 2024 Liu, Wen's Home Page. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://github.com/mmistakes/so-simple-theme" rel="nofollow">So Simple</a>.</p>
+    
+  </div>
+</footer>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="/personal_homepage/assets/js/main.min.js"></script>
+<script src="https://use.fontawesome.com/releases/v5.0.12/js/all.js"></script><!-- <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'G-9TMSCDTBGN', 'auto');
+  ga('send', 'pageview');
+</script> -->
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9TMSCDTBGN"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-9TMSCDTBGN');
+</script>
+
+
+
+<!-- MathJax -->
+
+<script>
+    // http://docs.mathjax.org/en/latest/upgrading/v2.html
+    MathJax = {
+        tex: {
+            tags: "ams",    // eq numbering options: none, ams, all
+            inlineMath: [['$', '$'], ["\\(", "\\)"]],  // 设置行内数学公式的开始和结束标记
+            displayMath: [['$$', '$$'], ["\\[", "\\]"]]  // 设置行间数学公式的开始和结束标记
+        },
+        // options: {
+        //   renderActions: {
+        //     // for mathjax 3, handle <script "math/tex"> blocks inserted by kramdown
+        //     find: [10, function (doc) {
+        //       for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+        //         const display = !!node.type.match(/; *mode=display/);
+        //         const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+        //         const text = document.createTextNode('');
+        //         node.parentNode.replaceChild(text, node);
+        //         math.start = { node: text, delim: '', n: 0 };
+        //         math.end = { node: text, delim: '', n: 0 };
+        //         doc.math.push(math);
+        //       }
+        //     }, '']
+        //   }
+        // }
+    }
+</script>
+
+<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  </body>
+
+</html>

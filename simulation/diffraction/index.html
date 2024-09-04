@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<!--
+    So Simple Jekyll Theme 3.2.0
+    Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+    Free for personal and commercial use under the MIT license
+    https://github.com/mmistakes/so-simple-theme/blob/master/LICENSE
+-->
+<html lang="en-US" class="no-js">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  
+
+  
+  
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>aperture衍射模型 (一) | Liu, Wen’s Home Page</title>
+<meta name="generator" content="Jekyll v4.3.3" />
+<meta property="og:title" content="aperture衍射模型 (一)" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="光的传播理论" />
+<meta property="og:description" content="光的传播理论" />
+<link rel="canonical" href="https://roshameow.github.io//personal_homepage/simulation/diffraction/" />
+<meta property="og:url" content="https://roshameow.github.io//personal_homepage/simulation/diffraction/" />
+<meta property="og:site_name" content="Liu, Wen’s Home Page" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2024-01-03T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="aperture衍射模型 (一)" />
+<meta name="twitter:site" content="@" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-02-15T20:13:12+00:00","datePublished":"2024-01-03T00:00:00+00:00","description":"光的传播理论","headline":"aperture衍射模型 (一)","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/simulation/diffraction/"},"url":"https://roshameow.github.io//personal_homepage/simulation/diffraction/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  
+
+  <script>
+    /* Cut the mustard */
+    if ('querySelector' in document && 'addEventListener' in window) {
+      document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + 'js';
+    }
+  </script>
+
+  <link rel="stylesheet" href="/personal_homepage/assets/css/main.css">
+  <link rel="stylesheet" href="/personal_homepage/assets/css/skins/default.css">
+  
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,700,700i|Lora:400,400i,700,700i">
+  <link rel="alternate" type="application/atom+xml" title="Liu, Wen&#39;s Home Page" href="/personal_homepage/atom.xml">
+<!-- start custom head snippets -->
+
+<!-- insert favicons. use http://realfavicongenerator.net/ -->
+<link rel="shortcut icon" type="image/x-icon" href="/personal_homepage/docs/images/logo.ico">
+<!-- end custom head snippets -->
+
+</head>
+
+  <body class="layout--post  aperture衍射模型-一">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#primary-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+  <div class="navigation-wrapper">
+    <a href="#menu-toggle" id="menu-toggle">Menu</a>
+    <nav id="primary-nav" class="site-nav animated drop">
+      <ul><li><a href="/personal_homepage/">Home</a></li><li><a href="/personal_homepage/posts/">Posts</a></li><li><a href="/personal_homepage/categories/">Categories</a></li><li><a href="/personal_homepage/tags/">Tags</a></li><li><a href="/personal_homepage/family/">Family</a></li><li><a href="/personal_homepage/search/">Search</a></li></ul>
+    </nav>
+  </div><!-- /.navigation-wrapper -->
+
+
+    <header class="masthead">
+  <div class="wrap">
+    
+    
+    
+      
+        <div class="site-title animated fadeIn"><a href="/personal_homepage/">Liu, Wen's Home Page</a></div>
+      
+      <p class="site-description animated fadeIn" itemprop="description">Work, Experiments and Ideas.</p>
+    
+  </div>
+</header><!-- /.masthead -->
+
+
+    <main id="main" class="main-content" aria-label="Content">
+  <article class="h-entry">
+    
+
+    <div class="page-wrapper">
+      <header class="page-header">
+        
+        
+        <h1 id="page-title" class="page-title p-name">aperture衍射模型 (一)
+</h1>
+        
+      </header>
+
+      <div class="page-sidebar">
+        <div class="page-author h-card p-author"><img src="/personal_homepage/docs/images/logo.svg" class="author-avatar u-photo" alt=""><div class="author-info">
+
+<span class="read-time">1 min read</span>
+
+    <time class="page-date dt-published" datetime="2024-01-03T00:00:00+00:00"><a class="u-url" href="">January 3, 2024</a>
+</time>
+
+  </div>
+</div>
+
+        
+  <h3 class="page-taxonomies-title">Categories</h3>
+  
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a class="p-category" href="/personal_homepage/categories/#simulation" title="Pages filed under simulation">simulation</a></li>
+  </ul>
+
+
+        
+  <h3 class="page-taxonomies-title">Tags</h3>
+  
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a href="/personal_homepage/tags/#content" title="Pages tagged content" rel="tag">content</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#physics" title="Pages tagged physics" rel="tag">physics</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#sensor" title="Pages tagged sensor" rel="tag">sensor</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#simulation" title="Pages tagged simulation" rel="tag">simulation</a></li>
+  </ul>
+
+
+        <!-- {::options parse_block_html="true" /} -->
+<div id="entry-table-of-contents" class="toc-wrapper">
+  <h2 id="toc-toggle">
+    Table of Contents <i
+      class="toc-toggle-icon fas fa-chevron-down"></i>
+  </h2>
+  <!-- 1. toc
+{:toc} -->
+  <!-- <div id="markdown-toc"> -->
+
+    <ul class="inline_toc" id="my_toc"><li><a href="#光的传播理论">光的传播理论</a></li><li><a href="#diffraction">diffraction</a><ul><li><a href="#fresnel-diffraction菲涅耳衍射">Fresnel diffraction(菲涅耳衍射)</a></li><li><a href="#fraunhofer-diffraction夫琅禾费衍射">Fraunhofer diffraction(夫琅禾费衍射)</a></li><li><a href="#两种diffraction的区别--">两种diffraction的区别  　</a></li></ul></li><li><a href="#其他讨论这个的链接">其他讨论这个的链接：</a></li></ul>
+  <!-- </div> -->
+
+</div>
+<!-- {::options parse_block_html="false" /} -->
+        
+
+<div id="entry-table-of-contents" class="toc-wrapper">
+    <h2 id="toc-toggle" class="no_toc">
+        Related Posts <i class="toc-toggle-icon fas fa-chevron-down"></i>
+    </h2>
+    <!-- <div id="markdown-toc"> -->
+    <ul>
+        
+        <li><a href="/personal_homepage/house/wall-problem/">墙皮脱落问题</a></li>
+        
+        <li><a href="/personal_homepage/game/card/">掼蛋规则</a></li>
+        
+        <li><a href="/personal_homepage/affair/cat-airline/">搬家相关准备</a></li>
+        
+        <li><a href="/personal_homepage/math/conformal-geometry9/">conformal geometry学习 (九 ) -- atlas</a></li>
+        
+        <li><a href="/personal_homepage/affair/cat-can/">猫罐头调查</a></li>
+        
+    </ul>
+    <!-- </div> -->
+
+</div>
+
+
+
+
+
+      </div>
+
+      <div class="page-content">
+        <div class="e-content">
+          <h2 id="光的传播理论">光的传播理论</h2>
+
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/4/48/Diffraction_geometry_2.svg" alt="drawing" width="300" /></p>
+
+<ul>
+  <li><a href="https://en.wikipedia.org/wiki/Huygens–Fresnel_principle">Huygens–Fresnel principle理论</a>：
+    <ul>
+      <li>假设光源在$(x^\prime,y^\prime,0)$ , 方向是$z$ 方向，能量是$E$</li>
+      <li>传播到$(x,y,z)$ 的electric field是$E(x,y,z)=\frac{1}{i\lambda}\cdot E \cdot\frac{e^{ikr}}{r}\cdot \frac{z}{r}$
+        <ul>
+          <li>$r$ 是$(x,y,z)$ 到光源的距离</li>
+          <li>$\lambda$ 是波长</li>
+          <li>$k$ 是wavenumber: $\frac{2\pi}{\lambda}$</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<!--more-->
+<h2 id="diffraction">diffraction</h2>
+
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/Wavelength%3Dslitwidth.gif" alt="drawing" width="150" /></p>
+
+<p>考虑由光圈所在平面到sensor这一段, 假设$z$ 固定为aperture和sensor的距离，光源为从aperture向sensor方向的平行光</p>
+
+<p>从aperture $A$ 透过的能量是 $E(x,y,z)= \int\int_A \frac{z}{i\lambda r^2} E(x^\prime,y^\prime,0)\cdot e^{ikr}\cdot dx^\prime dy^\prime$  ，形成的pattern主要<strong>受$e^{ikr}$ 这个高频项的影响</strong>,主要能观测到的pattern可以用下面两类衍射模型近似</p>
+
+<!--more-->
+<h3 id="fresnel-diffraction菲涅耳衍射">Fresnel diffraction(<a href="https://en.wikipedia.org/wiki/Fresnel_diffraction">菲涅耳衍射</a>)</h3>
+
+<ul>
+  <li><strong>假设</strong> : $r\approx z+\frac{(x-x^\prime)^2+(y-y^\prime)^2}{2z}$
+    <ul>
+      <li>$r=\sqrt{z^2+\rho^2}=z\sqrt{1+\frac{\rho^2}{z^2}}$ , 其中$\rho^2=(x-x^\prime)^2+(y-y^\prime)^2$
+        <ul>
+          <li>展开为 $r=z(1+\frac{\rho^2}{2z^2}-\frac{1}{8}(\frac{\rho^2}{z^2})^2+\cdots)\approx z+\frac{\rho^2}{2z}$</li>
+          <li>近似条件为$z\frac{1}{8}(\frac{\rho^2}{z^2})^2=o(2\pi/k)$ , 即$\frac{\rho^4}{z^3\lambda}=o(1)$, 因为我们主要关注的是$e^{ikr}$ 这个高频项的周期</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><strong>化简成Fourier变换的格式</strong>：
+    <ul>
+      <li>$\begin{align}E(x,y,z)&amp;=\frac{e^{ikz}}{i\lambda z} \int\int_A E(x^\prime,y^\prime,0)\cdot e^{\frac{ik}{2z}((x-x^\prime)^2+(y-y^\prime)^2)} dx^\prime dy^\prime \\ &amp;=\frac{e^{ikz}}{i\lambda z} \int\int_A E(x^\prime,y^\prime,0)\cdot e^{\frac{i\pi}{\lambda z}(x^2+y^2+{x^\prime}^2+{y^\prime}^2-2xx^\prime-2yy^\prime)} dx^\prime dy^\prime\ (k\text{还原成 }\frac{2\pi}{\lambda}) \\ &amp; =\frac{e^{ikz}}{i\lambda z}e^{\frac{i\pi}{\lambda z}(x^2+y^2)} \int\int_A E(x^\prime,y^\prime,0)e^{\frac{i\pi}{\lambda z}({x^\prime}^2+{y^\prime}^2)}\cdot e^{\frac{i\pi}{\lambda z}(-2xx^\prime-2yy^\prime)} dx^\prime dy^\prime \\ &amp;=\frac{e^{ikz}}{i\lambda z}e^{\frac{i\pi}{\lambda z}(x^2+y^2)} \int\int \mathbb 1_A(x^\prime,y^\prime)\cdot E(x^\prime,y^\prime,0)e^{\frac{i\pi}{\lambda z}({x^\prime}^2+{y^\prime}^2)}\cdot e^{\frac{i\pi}{\lambda}(px^\prime+py^\prime)} dx^\prime dy^\prime\ (\text{ 带入 }p=\frac{x}{\lambda z}, q=\frac{y}{\lambda z})\end{align}$</li>
+      <li>记 impulse response: $h(x,y,z)= \frac{e^{ikz}}{i\lambda z}\cdot e^{\frac{ik}{2z}(x^2+y^2)}$</li>
+      <li>记aperture function: $g(x^\prime,y^\prime)=\mathbb 1_A(x^\prime,y^\prime)\cdot E(x^\prime,y^\prime,0)e^{\frac{i\pi}{\lambda z}({x^\prime}^2+{y^\prime}^2)}$</li>
+      <li><a href="https://en.wikipedia.org/wiki/Fourier_transform#Applications">Fourier transform</a> : $G(p,q)=F(g(x^\prime,y^\prime))$</li>
+      <li>得到$E(x,y,z)=h(x,y,z)\cdot G(p,q)$ 的形式</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="fraunhofer-diffraction夫琅禾费衍射">Fraunhofer diffraction(<a href="https://en.wikipedia.org/wiki/Fraunhofer_diffraction">夫琅禾费衍射</a>)</h3>
+
+<ul>
+  <li><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240110160604.png" alt="Pasted image 20240110160604.png" width="500" /></li>
+  <li><strong>假设1</strong>：$r\approx r_1-b\cdot\cos(\phi-\Phi)\cdot\sin\theta$  (有如图几何直观，对于圆形aperture有个简便的表达方法)
+    <ul>
+      <li>近似条件：图中红线 $\approx$ 图中绿线部分
+        <ul>
+          <li>$r_1$ 是aperture中心到观测点$(x,y)$ 的距离</li>
+          <li>光源点$(x^\prime,y^\prime)$ 到中心距离为$b$ ,角度为$\phi$, 观测点$(x,y)$ 的角度为$\Phi$, $b$ 往$(x,y)$ 所在角度投影为$b\cos(\phi-\Phi)$ , 图中蓝色三角形的短边</li>
+          <li>对图中蓝色三角形$(b\cos(\phi-\Phi),\pi/2-\theta,r_1)$  用<a href="https://en.wikipedia.org/wiki/Law_of_cosines">余弦公式</a> 得到图上蓝色$r_2$ 的距离：$r_2=\sqrt{r_1^2+b^2\cos^2(\phi-\Phi)-2br_1(\cos(\pi/2-\theta)\cos(\phi-\Phi))}$</li>
+          <li>则 $r=\sqrt{r_2^2+b^2\sin^2(\phi-\Phi)}=\sqrt{r_1^2+b^2-2br_1\sin(\theta)\cos(\phi-\Phi)}$</li>
+          <li>展开为：$r=r_1(1-\frac{b}{r_1}\sin(\theta)\cos(\phi-\Phi)+\frac{b^2}{2r_1^2}\cos^2(\theta)\cos^2(\phi-\Phi)+\cdots)$</li>
+          <li>在$\frac{b^2}{2r_1}\cos^2(\theta)=o(2\pi/k)$ 条件下，即$\frac{b^2}{\lambda r_1}\cos^2\theta=o(1)$ 的情况下，得到我们的假设</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><strong>假设2</strong>: $r\approx z+\frac{x^2+y^2-2xx^\prime-2yy^\prime}{2z}$ (和Fresnel的形式更统一，也方便写成Fourier变换的形式)
+    <ul>
+      <li>近似条件：
+        <ul>
+          <li>和Frensel一样假设$\frac{\rho^4}{z^3\lambda}=o(1)$ ，另外，假设$\frac{b^2}{z\lambda}=o(1)$</li>
+        </ul>
+      </li>
+      <li>和假设1的关系：其实把假设1形式变换一下就能得到相似的形式
+        <ul>
+          <li>$r\approx r_1-b\cdot(\cos\phi\cos\Phi+\sin\phi\sin\Phi)\cdot\sin\theta$</li>
+          <li>带入： $\cos\phi=\frac{x^\prime}{b},\sin\phi=\frac{y^\prime}{b},\cos\Phi=\frac{x}{\sqrt{x^2+y^2}},\sin\Phi=\frac{y}{\sqrt{x^2+y^2}},\sin\theta=\frac{\sqrt{x^2+y^2}}{r_1}$</li>
+          <li>得到$r\approx r_1-\frac{xx^\prime+yy^\prime}{r_1}=\sqrt{z^2+x^2+y^2}-\frac{xx^\prime+yy^\prime}{r_1}\approx z+\frac{x^2+y^2}{2z}-\frac{xx^\prime+yy^\prime}{z}$ (不过这样需要进一步的假设。。)</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><strong>化简成Fourier变换的格式</strong>：
+    <ul>
+      <li>根据假设2，其他部分都和Fresnel相同, 只有$g(x^\prime,y^\prime)=\mathbb 1_A(x^\prime,y^\prime)\cdot E(x^\prime,y^\prime,0)$ 更简单了</li>
+    </ul>
+  </li>
+</ul>
+
+<blockquote>
+  <p>[!example]</p>
+
+  <ul>
+    <li><strong>圆形aperture</strong>, 并假设光源在aperture均匀分布，即$E(x^\prime,y^\prime,0)=const$ :
+      <ul>
+        <li>把$(x^\prime,y^\prime)$ 转为$(b,\phi)$ 极坐标，$\int\int_A …dx^\prime dy^\prime=\int_0^a\int_0^{2\pi}… bdbd\phi$</li>
+        <li>根据假设1，参考<a href="https://en.wikipedia.org/wiki/Bessel_function">Bessel公式</a></li>
+        <li>$\begin{align}E(x,y,z)&amp;=\frac{e^{ikr_1}}{i\lambda r_1} \int_{b=0}^a\int_{\phi=0}^{2\pi}  e^{-ikb\cdot\cos(\phi-\Phi)\cdot\sin\theta}b db d\phi\text{ (根据假设1)}\\ &amp; =\frac{e^{ikr_1}}{i\lambda r_1} \int_{b=0}^a\int_{\phi=0}^{2\pi}  e^{-ikb\cdot\cos\phi\cdot\sin\theta}b db d\phi\text{ (关于}\Phi\text{对称,可以假设=0)}\\ &amp; =\frac{e^{ikr_1}2\pi}{i\lambda r_1} \int_{b=0}^a J_0(kb\sin\theta)b db \text{ (根据Bessel公式) }\\ &amp; =e^{ikr_1}\frac{k}{i r_1} \frac{J_1(ka\sin\theta)}{ka\sin\theta}\end{align}$</li>
+        <li>另外，根据假设2，也能得到circ函数的Fourier变换是$J_1$</li>
+      </ul>
+    </li>
+    <li><strong>方形aperture</strong>, 并假设光源在aperture均匀分布：
+      <ul>
+        <li>x,y可以拆开成两个rectangular pulse, 其Fourier变换是sinc函数</li>
+      </ul>
+    </li>
+  </ul>
+</blockquote>
+
+<h3 id="两种diffraction的区别--">两种diffraction的区别  　</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th>Frensel</th>
+      <th>Fraunhofer</th>
+      <th>diffraction不明显</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>apeture function/<a href="https://en.wikipedia.org/wiki/Pupil_function">pupil function</a></td>
+      <td>$g(x^\prime,y^\prime)=\mathbb 1_A(x^\prime,y^\prime)\cdot E(x^\prime,y^\prime,0)e^{\frac{i\pi}{\lambda z}({x^\prime}^2+{y^\prime}^2)}$ <br />和aperture到observer的距离$z$ 有关；<br />改变距离，或把aperture平移，<br />都会使pattern看起来剧烈变化</td>
+      <td>$g(x^\prime,y^\prime)=\mathbb 1_A(x^\prime,y^\prime)\cdot E(x^\prime,y^\prime,0)$<br />和距离$z$ 无关; <br />结果只和观察角度$p=\frac{x}{\lambda z}, q=\frac{y}{\lambda z}$ 有关;<br />只改变$z$的情况，<br />形成的pattern看起来形状相似</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>形成条件假设</td>
+      <td>$\frac{\rho^4}{z^3\lambda}=o(1),\frac{\rho^2}{z\lambda}=O(1)$ <br />当距离$z$ 再增加的时候，<br />相对aperture更大，<br />会趋近Fraunhofer的假设2 <br /><br />带入$N_f$, <br />有时写成$N_f (a/z)^2\ll 1, N_f\sim 1$</td>
+      <td>假设1: $\frac{b^2}{\lambda r_1}\cos^2\theta=o(1)$ <br />假设2: $\frac{\rho^4}{z^3\lambda}=o(1)$ ，$\frac{b^2}{z\lambda}=o(1)$</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Fresnel number: <br />$N_F=\frac{a(\text{aperture radius})^2}{z \lambda}$<br />$N_F$ 是实际场景中,<br />diffraction种类的一个粗略的判断方法</td>
+      <td>$N_F\sim 1$<br />一般叫”near field” diffraction</td>
+      <td>$N_F\ll 1$<br />一般叫 far field diffraction</td>
+      <td>$N_f\gg 1$</td>
+    </tr>
+    <tr>
+      <td>pattern</td>
+      <td><a href="https://en.wikipedia.org/wiki/Arago_spot">泊松光斑实验</a> <br />不过实验里用的不是aperture而是中心的遮挡</td>
+      <td><a href="https://en.wikipedia.org/wiki/Airy_disk">Airy disk</a></td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="其他讨论这个的链接">其他讨论这个的链接：</h2>
+<p><span id="ref"></span>
+公式推导</p>
+
+<p>[1] https://en.wikipedia.org/wiki/Fraunhofer_diffraction_equation#CITEREFHecht2002</p>
+
+<p>[2] https://phys.libretexts.org/Bookshelves/Optics/BSc_Optics_(Konijnenberg_Adam_and_Urbach)/06%3A_Scalar_diffraction_optics/6.07%3A_Fresnel_and_Fraunhofer_Approximations</p>
+
+<p>[3] http://www.erbion.com/index_files/Modern_Optics/Ch11.pdf</p>
+
+<p>[4] https://zhuanlan.zhihu.com/p/339379109</p>
+
+
+        </div>
+
+        
+        <div class="page-share">
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Froshameow.github.io%2F%2Fpersonal_homepage%2Fsimulation%2Fdiffraction%2F" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" class="btn btn--facebook btn--small"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i> <span>Share</span></a>
+  <a href="https://twitter.com/intent/tweet?text=aperture%E8%A1%8D%E5%B0%84%E6%A8%A1%E5%9E%8B+%28%E4%B8%80%29%20https%3A%2F%2Froshameow.github.io%2F%2Fpersonal_homepage%2Fsimulation%2Fdiffraction%2F" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" class="btn btn--twitter btn--small"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i> <span>Tweet</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Froshameow.github.io%2F%2Fpersonal_homepage%2Fsimulation%2Fdiffraction%2F" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" class="btn btn--linkedin btn--small"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> <span>LinkedIn</span></a>
+  <a href="https://reddit.com/submit?title=aperture%E8%A1%8D%E5%B0%84%E6%A8%A1%E5%9E%8B+%28%E4%B8%80%29&url=https%3A%2F%2Froshameow.github.io%2F%2Fpersonal_homepage%2Fsimulation%2Fdiffraction%2F" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" class="btn btn--reddit btn--small"><i class="fab fa-fw fa-reddit" aria-hidden="true"></i> <span>Reddit</span></a>
+</div>
+
+        
+
+        
+        
+  <div class="page-comments">
+    <div id="disqus_thread"></div>
+    <script>
+      var disqus_config = function () {
+        this.page.url = 'https://roshameow.github.io//personal_homepage/simulation/diffraction/';
+        this.page.identifier = 'https://roshameow.github.io//personal_homepage/simulation/diffraction/';
+      };
+
+      (function() {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://https-roshameow-github-io-personal-homepage.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+  </div>
+
+
+        
+
+        <nav class="page-pagination" role="navigation">
+  
+    <a class="page-previous" href="/personal_homepage/geometry/hexigon-hemisphere/">
+      <h4 class="page-pagination-label">Previous</h4>
+      <span class="page-pagination-title">
+        <i class="fas fa-arrow-left"></i> 用六边形构成半球
+
+      </span>
+    </a>
+  
+
+  
+    <a class="page-next" href="/personal_homepage/simulation/diffraction1/">
+      <h4 class="page-pagination-label">Next</h4>
+      <span class="page-pagination-title">
+        aperture衍射模型 (二)
+ <i class="fas fa-arrow-right"></i>
+      </span>
+    </a>
+  
+</nav>
+
+      </div>
+
+    </div>
+  </article>
+</main>
+
+    <footer id="footer" class="site-footer">
+  <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+<div class="social-icons"><a class="social-icon" href="/personal_homepage/atom.xml"><i class="fas fa-rss-square fa-2x" title="Feed"></i></a><a class="social-icon" href="https://github.com/roshameow"><i class="fab fa-github-square fa-2x" title="GitHub"></i></a><a class="social-icon" href="https://www.linkedin.com/in/wen-liu-06503a7b/"><i class="fab fa-linkedin fa-2x" title="LinkedIn"></i></a><a class="social-icon" href="mailto:w.liuatnk@gmail.com"><i class="fas fa-envelope-square fa-2x" title="e-mail"></i></a></div><div class="copyright">
+    
+      <p>&copy; 2024 Liu, Wen's Home Page. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://github.com/mmistakes/so-simple-theme" rel="nofollow">So Simple</a>.</p>
+    
+  </div>
+</footer>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="/personal_homepage/assets/js/main.min.js"></script>
+<script src="https://use.fontawesome.com/releases/v5.0.12/js/all.js"></script><!-- <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'G-9TMSCDTBGN', 'auto');
+  ga('send', 'pageview');
+</script> -->
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9TMSCDTBGN"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-9TMSCDTBGN');
+</script>
+
+
+
+<!-- MathJax -->
+
+<script>
+    // http://docs.mathjax.org/en/latest/upgrading/v2.html
+    MathJax = {
+        tex: {
+            tags: "ams",    // eq numbering options: none, ams, all
+            inlineMath: [['$', '$'], ["\\(", "\\)"]],  // 设置行内数学公式的开始和结束标记
+            displayMath: [['$$', '$$'], ["\\[", "\\]"]]  // 设置行间数学公式的开始和结束标记
+        },
+        // options: {
+        //   renderActions: {
+        //     // for mathjax 3, handle <script "math/tex"> blocks inserted by kramdown
+        //     find: [10, function (doc) {
+        //       for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+        //         const display = !!node.type.match(/; *mode=display/);
+        //         const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+        //         const text = document.createTextNode('');
+        //         node.parentNode.replaceChild(text, node);
+        //         math.start = { node: text, delim: '', n: 0 };
+        //         math.end = { node: text, delim: '', n: 0 };
+        //         doc.math.push(math);
+        //       }
+        //     }, '']
+        //   }
+        // }
+    }
+</script>
+
+<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  </body>
+
+</html>
