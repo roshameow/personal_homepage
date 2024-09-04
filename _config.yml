@@ -85,6 +85,13 @@ plugins:
   - jekyll-feed
   - jekyll-paginate
 
+# Collections
+collections_dir: docs
+collections:
+  family:
+    output: true
+    permalink: /:collection/:path/
+
 # Front Matter Defaults
 defaults:
   # Posts defaults
@@ -93,6 +100,13 @@ defaults:
       type: posts
     values:
       layout: post
+      share: true
+  # Recipe defaults
+  - scope:
+      path: "_family"
+      type: family
+    values:
+      layout: default
       share: true
 
 # Site Author
