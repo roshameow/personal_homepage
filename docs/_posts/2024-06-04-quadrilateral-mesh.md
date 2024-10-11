@@ -7,7 +7,8 @@ tags:
   - content
   - mesh
   - quad-mesh
-last_modified_at: 2024-07-03T15:46:22-08:00
+last_modified_at: 2024-09-04T20:53
+created: 2024-06-03T21:01
 ---
 ![Pasted image 20240610075408.png]({{ '/docs/attachment/Pasted image 20240610075408.png' | relative_url }}){:width="150"} -> ![Pasted image 20240610075425.png]({{ '/docs/attachment/Pasted image 20240610075425.png' | relative_url }}){:width="130"} 
 
@@ -97,7 +98,7 @@ last_modified_at: 2024-07-03T15:46:22-08:00
 		- loop $\gamma$ -> discrete closed 1-form $\lambda_{\gamma}=dg_{\gamma}$  -> harmonic 1-form $\omega_{\gamma}$ -> holomorphic 1-form $\phi_{\gamma}$ 
 			- 由[Riemann-Roch theorem](https://en.wikipedia.org/wiki/Riemann–Roch_theorem), $l(D)-l(K-D)=deg(D)+1-g$, 令$D=0$, 得到 $l(K)=g$ , 即我们得到的是一组basis
 		- 得到一个holomorphic 1-form $\phi$
-		- 得到period matrix A, B
+		- 得到period matrix A, B: $\phi$ 在canonical 1-form basis展开的系数
 	- 得到cut graph $\Gamma$ 
 - 生成singularity set $\mathcal S$ 
 	- 在surface上选择initial singularities

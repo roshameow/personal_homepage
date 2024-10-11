@@ -5,7 +5,7 @@ categories:
   - algorithm
 tags:
   - content
-last_modified_at: 2024-09-02T19:45
+last_modified_at: 2024-09-02T19:49
 created: 2024-09-01T11:38
 ---
 ## pair graph
@@ -61,6 +61,8 @@ created: 2024-09-01T11:38
 
 ### **分析点云的结构** 
 
+比起其他方法更不依赖嵌入, 有更强的稳定性
+
 - 自然图像分布: 3x3的high-contrast(用variance衡量)灰度图patch $\mathcal M$ , 看作$\mathbb R^9$ 中的点云
 	- 对patch做normalization, 使mean=0, var=1.:  $\mathcal M\subset E^7\subset \mathbb R^9$  
 	- 取$\mathcal M$ 的 $5\times 10^4$ 个sample set $X$ , 取$X(k,p)$ 是X中k-邻域半径较大的 $p$ percent 的那些点
@@ -94,4 +96,4 @@ created: 2024-09-01T11:38
 
 [4] https://github.com/ctralie/TDALabs/blob/master/SlidingWindow2-PersistentHomology.ipynb 
 
-[5] https://ripser.scikit-tda.org/en/latest/ 计算persistent homology的python封装包
+[5] https://ripser.scikit-tda.org/en/latest/ **计算persistent homology的python封装包**

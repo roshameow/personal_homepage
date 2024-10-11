@@ -12,7 +12,8 @@ tags:
   - simplex
   - simplical_complex
   - homology
-last_modified_at: 2024-08-19T17:49:08-08:00
+last_modified_at: 2024-10-10T18:15
+created: 2024-07-21T22:35
 ---
 ## 曲面的离散表示
 
@@ -31,7 +32,7 @@ last_modified_at: 2024-08-19T17:49:08-08:00
 	- [Simplex](https://en.wikipedia.org/wiki/Simplex) $\sigma$ 是$\mathbb R^n$ 中的点集的minimal convex hull(0: simplex 是点, 1-simplex: 线段, 2-simplex: 三角形, 3-simplex: 四面体 ..., k-simplex有k+1
 		- facet:  $\tau\subset \sigma$ , $\tau$ 也是个simplex
 - Chain: k-chain $C_k(\Sigma,\mathbb Z)$ 是单纯复形$\Sigma$ 上同维数的simplices(单型) 的集合, with multiplicity $\sigma=\sum_i\lambda_i\sigma_i, \lambda_i\in\mathbb Z$ 
-	- 其中系数$\lambda_i$ 是multiplicity(经过同一个simplex的次数), 系数为负表示方向相反
+	- 其中系数$\lambda_i$ 是multiplicity(经过同一个simplex的次数), **系数为负表示方向相反**
 		- $C_k(\Sigma,\mathbb Z_2)$ 的情况,  $\lambda_i=1$ ,$\lambda_i^2=0$  
 	- chain不要求是连续的
 	- example: 曲面上curve是1-chain, patch是2-chain
@@ -51,14 +52,17 @@ last_modified_at: 2024-08-19T17:49:08-08:00
 - closed ($Z_n$,cycles): k-chain $\gamma\in C_k(\Sigma)$ 没有boundary, 即$\partial_k \gamma=0$ 
 - exact ($B_{n+1}$,boundaries): k-chain $\gamma\in C_k(\Sigma)$ 是某个k+1-chain的boundary, 即 $\gamma=\partial_{k+1} \sigma$ 
 
-
-
-
 | 一般表示    | 离散表示                            |
 | ------- | ------------------------------- |
 | surface | Simplicial Complex<br>(三角剖分得到的) |
 | path    | 1-chain                         |
 | loop    | closed 1-chain                  |
+
+### simplicial mapping(单形映射)
+
+- [单形映射](https://en.wikipedia.org/wiki/Simplicial_map) 是把simplex映射成simplex的映射
+- simplicial complex之间的连续映射都可以由[单形映射](https://en.wikipedia.org/wiki/Simplicial_map)逼近(see [simplicial approximation theorem](https://en.wikipedia.org/wiki/Simplicial_approximation_theorem) )  
+	- simplicial approximation theorem 是游戏行业的基石: 表示模型的连续变化?　
 
 ## [Homology(同调) group](https://en.wikipedia.org/wiki/Simplicial_homology) (Simplicial homology)
 
@@ -117,6 +121,7 @@ last_modified_at: 2024-08-19T17:49:08-08:00
 					- 即, $\gamma$ 在$\text{ker}\partial_{k+1}^T$ 中表示$\gamma$ 不是exact, 在$H_k$ 中非0
 	- 用integer matrix的Smith norm计算$\Delta_k$ 的zero eigen vector(即$\text{ker}\Delta_k$ )
 		- Smith Norm计算也是指数级, NP-hard?
+- 由persistent homology计算 $\mathbb Z_2$-module(主流方法)
 
 ### [closed surface映射的degree](https://en.wikipedia.org/wiki/Degree_of_a_continuous_mapping)
 
