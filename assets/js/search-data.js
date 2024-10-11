@@ -10,7 +10,7 @@ var store = [{
         "url": "https://roshameow.github.io//personal_homepage/family/guoguo/"
       },{
         "title": "Rosha",
-        "excerpt":"","categories": [],
+        "excerpt":"cannot be disclosed 钱包和里面所有的钱,卡都丢了, 在家里翻箱倒柜的找. Rosha也钻进衣柜里面叫, 难道是她发现了我在找钱包所以帮忙找到了? 是我想多了, Rosha只是在装模作样凑热闹 在上海租住的走廊里碰到了一只奶牛猫, 很新, 才6个月: 它的毛闪着光泽 Rosha来了哈尔滨之后, 明显开心很多, 每天凌晨都玩球 在香林园, Rosha躲在了木质栈桥下面3个小时, 晚上5点才出来 Rosha在外面不受我控制的躲起来其实发生过好几次 家人报了警, 附近的派出所竟然出警了! 警察提出用催泪瓦斯和强光? 这是合理的吗? 我严词拒绝家人的帮助, 屡次让他们离开, 也拒绝警方的建议. 犯了歇斯底里, 甚至试图假装大哭和陈述他们想害死我和Rosha以达到目的 我是有充足的理由的: 1. Rosha行动自如, 不出来是她的判断而不是能力 2. 他们的一系列操作, 尤其是用木棍大力戳, 聚集在周围大声的讨论, 催泪瓦斯和强光, 都可能造成严重的后果 3. 我很有自信我可以解决这件事 我害怕这种头痛砍头, 脚痛砍脚的一刀切政策. 在宠物的问题上, 完全不能信任警察. 话虽如此, 如何让家人信任我呢? 在很激动的时候, 怎么让我的话脱颖而出呢? 他们本来就信任别人多过我....","categories": [],
         "tags": [],
         "url": "https://roshameow.github.io//personal_homepage/family/rosha/"
       },{
@@ -315,7 +315,7 @@ var store = [{
         "url": "https://roshameow.github.io//personal_homepage/math/conformal-geometry5/"
       },{
         "title": "conformal geometry学习 (六 ) -- cohomology group",
-        "excerpt":"上同调是同调的对偶 同调 homology 上同调 (Simplicial) cohomology最初是为了表示stiefel whitney class 对偶记号 tangent space de Rham cohomology$\\Omega^k(\\Sigma)$ 积分记号 k-chain $\\sigma$ $C_k$ k-cochain(k-form) $\\omega$ $C^k$ bilinear operator$&lt;\\omega,\\sigma&gt;:=\\omega(\\sigma)$   Differential 1-formco-tangent space   (k+1)-boundary$\\partial_{k+1}:C_{k+1}\\rightarrow C_{k}$ k-coboundary(微分算子)$\\delta_k: C^k\\rightarrow C^{k+1}$$\\delta_k(\\omega)=\\omega\\circ \\partial_{k+1},\\omega\\in C^k$ $&lt;\\delta\\omega,\\sigma&gt;=&lt;\\omega,\\partial\\sigma&gt;$ Stokes Theorem   exterior differential operator(外微分算子)$d^k:\\Omega^k(\\Sigma)\\rightarrow \\Omega^{k+1}(\\Sigma)$ $\\int_{\\partial M}\\omega=\\int_M d\\omega$Stokes Theorem adjoint boundaryoperator$\\partial_{k+1}^\\ast:C_{k}\\rightarrow C_{k+1}$...","categories": ["math"],
+        "excerpt":"上同调是同调的对偶 同调 homology 上同调 (Simplicial) cohomology最初是为了表示fiber bundle的class 对偶记号 tangent space de Rham cohomology$\\Omega^k(M)$ 积分记号       定义在manifold依赖local coordinate chart     k-chain $\\sigma$ $C_k$ k-cochain(k-form) $\\omega$ $C^k$ bilinear operator$&lt;\\omega,\\sigma&gt;:=\\omega(\\sigma)$ tangent vector$T_p M$ Differential 1-formco-tangent space$T^\\ast_p M$   (k+1)-boundary$\\partial_{k+1}:C_{k+1}\\rightarrow C_{k}$ k-coboundary(微分算子)$\\delta_k: C^k\\rightarrow C^{k+1}$$\\delta_k(\\omega)=\\omega\\circ \\partial_{k+1},\\omega\\in C^k$ $&lt;\\delta\\omega,\\sigma&gt;=&lt;\\omega,\\partial\\sigma&gt;$ Stokes Theorem   exterior...","categories": ["math"],
         "tags": ["content"],
         "url": "https://roshameow.github.io//personal_homepage/math/conformal-geometry6/"
       },{
@@ -344,13 +344,13 @@ var store = [{
         "tags": ["content"],
         "url": "https://roshameow.github.io//personal_homepage/affair/cat-can/"
       },{
-        "title": "conformal geometry学习 (九 ) -- atlas",
-        "excerpt":"            manifold      $U_\\alpha$ homeomorphism to $\\mathbb R^n$,                  smooth manifold(differential manifold)      transition map $\\phi_{\\alpha\\beta}\\in C^\\infty(\\mathbb R^n)$ smooth              Riemann manifold      transition map 是holomorphic(conformal)      Gauss-Bonnet ","categories": ["math"],
-        "tags": ["content"],
+        "title": "conformal geometry学习 (九 ) -- homology character",
+        "excerpt":"由基本群/同调群定义指标 映射的层数 space map induced homology group都是 $\\mathbb Z\\rightarrow \\mathbb Z$ 的形式 degree of mapping$deg(f)$ closed surface 连续映射$f:M\\rightarrow N$ $f_\\ast: H_2(M,\\mathbb Z)\\rightarrow H_2(N,\\mathbb Z)$映射的像的覆盖层数 index of fixed point$Ind(f,p)$代数指标 n-dim topological space 连续自映射$f: M\\rightarrow M$从点p到像$f(x)$ 的射线和$\\partial U$ 的交点给出 $f:\\partial U\\rightarrow \\partial U$ $f_\\ast: H_{n-1}(\\partial U,\\mathbb Z)\\rightarrow H_{n-1}(\\partial U,\\mathbb Z)$映射的像的覆盖层数曲面的情况下, $H_1(\\partial U,\\mathbb...","categories": ["math"],
+        "tags": ["content","euler_character","fix_point","zero_point","index","degree_of_mapping","Lefschetz_number","tangent_vector_field","homology","发旋定理","不动点定理","Gauss_Bonnet","gaussian_map"],
         "url": "https://roshameow.github.io//personal_homepage/math/conformal-geometry9/"
       },{
         "title": "搬家相关准备",
-        "excerpt":"猫的托运 目前只有海南航空可以, 不过没有到家直飞的航班只能选南航有氧舱, 小程序买票准备检疫合格证明 电脑 大件 零散物件 各式调料 ","categories": ["affair"],
+        "excerpt":"行李 持续了一周时间, 在打包好时我长舒了一口气, 感受到了难得的宁静 猫的托运 目前只有海南航空可以, 不过没有到家直飞的航班只能选南航有氧舱, 小程序买票准备检疫合格证明 电脑 显卡拆下分装. 不过为什么显卡的卡扣要和硬盘放在一起? 大件 微波炉 + 100, 空气炸锅 猫跑轮 + 100, 猫爬架, 散步车 零散物件 各式调料, 香料, 米 +52 面油粉丝, 锅x4: 平底锅 + 20, 电煮锅+普通锅 + 30, 电饭锅 - 盆: 不锈钢盆+沥水盆 + 20 猫窝: 麻绳, 草编, 木头, 纸板, 布 猫罐头x3: +10 硅胶老化 工具...","categories": ["affair"],
         "tags": ["content"],
         "url": "https://roshameow.github.io//personal_homepage/affair/cat-airline/"
       },{
@@ -363,4 +363,39 @@ var store = [{
         "excerpt":"根据这个视频学习   原因: 热胀冷缩","categories": ["house"],
         "tags": ["content"],
         "url": "https://roshameow.github.io//personal_homepage/house/wall-problem/"
+      },{
+        "title": "给 Melvor Idle制作 Mod",
+        "excerpt":"制作   教程: https://wiki.melvoridle.com/w/Mod_Creation/Getting_Started","categories": ["game"],
+        "tags": ["content"],
+        "url": "https://roshameow.github.io//personal_homepage/game/melvor-mod/"
+      },{
+        "title": "摄像头测距",
+        "excerpt":"      问题定义: 从摄像头组拍摄的画面中得到汽车的3维bounding box     应用场景:          公路(高速)卡口      通行车道: 高速? 可以安装立柱? 离车距离&gt; 0.6m, 路侧安装高度: 1.2m ~ 2.4m, 门架式安装高度: 5m ~ 7.5m      卡车(long vehicle): &gt; 12.2m 货车: &lt; 30m        精度要求: &lt; 50mm(5厘米?)kitti测试集: https://www.cvlibs.net/datasets/kitti/eval_scene_flow.php   可能相关的研究          自动驾驶测障碍物距离      ","categories": ["algorithm"],
+        "tags": ["content"],
+        "url": "https://roshameow.github.io//personal_homepage/algorithm/vision-distance/"
+      },{
+        "title": "自制猫爬架",
+        "excerpt":"底座   水泥  木板  不锈钢","categories": ["hand_crafted"],
+        "tags": ["content"],
+        "url": "https://roshameow.github.io//personal_homepage/hand_crafted/cat-tree/"
+      },{
+        "title": "调整视频追踪物体",
+        "excerpt":"Final Cut Pro   教程  步骤:          添加原视频      在原视频上添加tracker, analysis跟踪物体的bbox      复制原视频一份      在复制视频的transformer应用之前的tracker, scale改成-100%                  tracker的坐标和画面的坐标位置相反?                    把物体移到画面中间      放大scale去掉黑边        提升视频细节","categories": ["tool"],
+        "tags": ["content"],
+        "url": "https://roshameow.github.io//personal_homepage/tool/center-track/"
+      },{
+        "title": "raycast脚本",
+        "excerpt":"  raycast脚本举例把视频转成mp4 其他软件经常生成的.avi(blender), .mov(Final Cut Pro) 都太大了不方便分享   如果用raycast 直接完成脚本功能, 遇到的困难:          raycast script执行在non-login shell, 没法调取在$PATH 里的ffmpeg 命令(see https://github.com/raycast/script-commands/issues/165)      raycast的输入框没有拖拽文件路径的功能, 感觉用起来挺麻烦的        如果用raycast脚本开启terminal, 并把命令写到clipboard里, 遇到的困难:          raycast的脚本也是脚本, 没法直接控制键盘功能, 还是要跳转到对应位置输入视频        如果放弃raycast: 写脚本完成功能, 把视频名称作为脚本参数, 用alias 在terminal启动脚本          感觉是最省事的了?      ","categories": ["tool"],
+        "tags": ["content","raycast"],
+        "url": "https://roshameow.github.io//personal_homepage/tool/raycast-script/"
+      },{
+        "title": "债券的原理",
+        "excerpt":"政府和企业发行的借款, 债券本身 = 票面价值 + 利息 + 到期时间 + 债券发行方价格 : 可能高于/低于 票面价值 分类   可转债          上市公司发行的, 可以转成股票      和股票大盘正相关      有些公司发行的有回售条款, 转股后也可以保证拿回本金(约定股价过低时回售)        纯债          利率债: 国债, 政策性金融债                  和利率负相关                    信用债      [1] http://www.csrc.gov.cn/neimenggu/c105958/c1608862/content.shtml ","categories": [],
+        "tags": ["content"],
+        "url": "https://roshameow.github.io//personal_homepage/bond/"
+      },{
+        "title": "conformal geometry学习 (十 ) -- atlas",
+        "excerpt":"            manifold      $U_\\alpha$ homeomorphism to $\\mathbb R^n$,                  smooth manifold(differential manifold)      transition map $\\phi_{\\alpha\\beta}\\in C^\\infty(\\mathbb R^n)$ smooth              Riemann surface      每片是 2-dimtransition map 是biholomorphic(conformal)atlas $\\lbrace(U_\\alpha,z_\\alpha)\\rbrace$ 叫conformal structure      ","categories": ["math"],
+        "tags": ["content"],
+        "url": "https://roshameow.github.io//personal_homepage/math/conformal-geometry10/"
       }]

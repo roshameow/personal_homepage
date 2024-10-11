@@ -1,29 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="https://roshameow.github.io//personal_homepage/atom.xml" rel="self" type="application/atom+xml" /><link href="https://roshameow.github.io//personal_homepage/" rel="alternate" type="text/html" /><updated>2024-09-04T07:27:18+00:00</updated><id>https://roshameow.github.io//personal_homepage/atom.xml</id><title type="html">Liu, Wen’s Home Page</title><subtitle>Work, Experiments and Ideas.</subtitle><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><entry><title type="html">墙皮脱落问题</title><link href="https://roshameow.github.io//personal_homepage/house/wall-problem/" rel="alternate" type="text/html" title="墙皮脱落问题" /><published>2024-09-02T00:00:00+00:00</published><updated>2024-09-02T10:32:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/house/wall-problem</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/house/wall-problem/"><![CDATA[<iframe src="//player.bilibili.com/player.html?isOutside=true&amp;aid=1156485534&amp;bvid=BV1jZ421K77t&amp;cid=1659181462&amp;p=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
-<p>根据这个视频学习</p>
-
-<ul>
-  <li>原因: 热胀冷缩</li>
-</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="house" /><category term="content" /><summary type="html"><![CDATA[根据这个视频学习]]></summary></entry><entry><title type="html">掼蛋规则</title><link href="https://roshameow.github.io//personal_homepage/game/card/" rel="alternate" type="text/html" title="掼蛋规则" /><published>2024-08-26T00:00:00+00:00</published><updated>2024-08-29T19:09:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/game/card</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/game/card/"><![CDATA[<ul>
-  <li>升级规则</li>
-  <li>特殊花色
-    <ul>
-      <li>普通</li>
-      <li>炸弹</li>
-    </ul>
-  </li>
-</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="game" /><category term="content" /><summary type="html"><![CDATA[升级规则 特殊花色 普通 炸弹]]></summary></entry><entry><title type="html">搬家相关准备</title><link href="https://roshameow.github.io//personal_homepage/affair/cat-airline/" rel="alternate" type="text/html" title="搬家相关准备" /><published>2024-08-20T00:00:00+00:00</published><updated>2024-08-31T17:11:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/affair/cat-airline</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/affair/cat-airline/"><![CDATA[<h3 id="猫的托运">猫的托运</h3>
-
-<p>目前只有海南航空可以, 不过没有到家直飞的航班
-只能选南航有氧舱, 小程序买票
-准备检疫合格证明</p>
-
-<h3 id="电脑">电脑</h3>
-
-<h3 id="大件">大件</h3>
-
-<h3 id="零散物件">零散物件</h3>
-
-<p>各式调料</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="affair" /><category term="content" /><summary type="html"><![CDATA[猫的托运]]></summary></entry><entry><title type="html">conformal geometry学习 (九 ) – atlas</title><link href="https://roshameow.github.io//personal_homepage/math/conformal-geometry9/" rel="alternate" type="text/html" title="conformal geometry学习 (九 ) – atlas" /><published>2024-08-18T00:00:00+00:00</published><updated>2024-08-31T20:39:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/math/conformal-geometry9</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/math/conformal-geometry9/"><![CDATA[<table>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.4">Jekyll</generator><link href="https://roshameow.github.io//personal_homepage/atom.xml" rel="self" type="application/atom+xml" /><link href="https://roshameow.github.io//personal_homepage/" rel="alternate" type="text/html" /><updated>2024-10-11T21:27:47+00:00</updated><id>https://roshameow.github.io//personal_homepage/atom.xml</id><title type="html">Liu, Wen’s Home Page</title><subtitle>Work, Experiments and Ideas.</subtitle><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><entry><title type="html">conformal geometry学习 (十 ) – atlas</title><link href="https://roshameow.github.io//personal_homepage/math/conformal-geometry10/" rel="alternate" type="text/html" title="conformal geometry学习 (十 ) – atlas" /><published>2024-10-09T00:00:00+00:00</published><updated>2024-10-09T11:13:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/math/conformal-geometry10</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/math/conformal-geometry10/"><![CDATA[<table>
   <thead>
     <tr>
       <th>manifold</th>
@@ -36,635 +11,181 @@
       <td>transition map $\phi_{\alpha\beta}\in C^\infty(\mathbb R^n)$ smooth</td>
     </tr>
     <tr>
-      <td>Riemann manifold</td>
-      <td>transition map 是holomorphic(conformal)</td>
+      <td>Riemann surface</td>
+      <td>每片是 2-dim<br />transition map 是biholomorphic(conformal)<br />atlas $\lbrace(U_\alpha,z_\alpha)\rbrace$ 叫conformal structure</td>
     </tr>
   </tbody>
-</table>
+</table>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="math" /><category term="content" /><summary type="html"><![CDATA[manifold $U_\alpha$ homeomorphism to $\mathbb R^n$, smooth manifold(differential manifold) transition map $\phi_{\alpha\beta}\in C^\infty(\mathbb R^n)$ smooth Riemann surface 每片是 2-dimtransition map 是biholomorphic(conformal)atlas $\lbrace(U_\alpha,z_\alpha)\rbrace$ 叫conformal structure]]></summary></entry><entry><title type="html">债券的原理</title><link href="https://roshameow.github.io//personal_homepage/bond/" rel="alternate" type="text/html" title="债券的原理" /><published>2024-10-01T00:00:00+00:00</published><updated>2024-10-10T17:22:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/bond</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/bond/"><![CDATA[<p>政府和企业发行的借款, 债券本身 = 票面价值 + 利息 + 到期时间 + 债券发行方
+价格 : 可能高于/低于 票面价值</p>
 
-<p>Gauss-Bonnet</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="math" /><category term="content" /><summary type="html"><![CDATA[manifold $U_\alpha$ homeomorphism to $\mathbb R^n$, smooth manifold(differential manifold) transition map $\phi_{\alpha\beta}\in C^\infty(\mathbb R^n)$ smooth Riemann manifold transition map 是holomorphic(conformal)]]></summary></entry><entry><title type="html">猫罐头调查</title><link href="https://roshameow.github.io//personal_homepage/affair/cat-can/" rel="alternate" type="text/html" title="猫罐头调查" /><published>2024-08-16T00:00:00+00:00</published><updated>2024-08-18T17:39:46+00:00</updated><id>https://roshameow.github.io//personal_homepage/affair/cat-can</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/affair/cat-can/"><![CDATA[<p>金交的罐头上有很多黑色的地方</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="affair" /><category term="content" /><summary type="html"><![CDATA[金交的罐头上有很多黑色的地方]]></summary></entry><entry><title type="html">柳树怎么表现</title><link href="https://roshameow.github.io//personal_homepage/photo/willow-art/" rel="alternate" type="text/html" title="柳树怎么表现" /><published>2024-08-15T00:00:00+00:00</published><updated>2024-08-16T16:36:37+00:00</updated><id>https://roshameow.github.io//personal_homepage/photo/willow-art</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/photo/willow-art/"><![CDATA[<p>在上海的春天到处去赏花, 感觉没有一种花有柳树的视觉冲击力. 嫩黄的叶子让我有生命的实感, 看到叶子泛白干燥的时候, 我知道春天过去了.</p>
-
-<p>但是柳树很难在照片上表现</p>
-
-<p>全景: <a href="https://p8.itc.cn/q_70/images03/20200609/8bcdbf54c9ba4b24be90fbc5e3503e0e.jpeg"><img src="https://p8.itc.cn/q_70/images03/20200609/8bcdbf54c9ba4b24be90fbc5e3503e0e.jpeg" width="178" /></a> 正视像怪物一样: <a href="https://www.pinterest.com/pin/970877632168572508/"><img src="https://i.pinimg.com/564x/55/78/a5/5578a516d74309456c1f4c46dc945f54.jpg" width="178" /></a>  局部又很呆板: <a href="https://pin.it/1Qjh7THkh"><img src="https://i.pinimg.com/564x/f3/94/60/f394605380c365b66f8ff7199baeb4bf.jpg" width="178" /></a>  侧面视角: <a href="https://pin.it/2ofEP97QO"><img src="https://i.pinimg.com/564x/74/01/37/74013711a66205577cf58a8af5afcad9.jpg" width="178" /></a></p>
+<h2 id="分类">分类</h2>
 
 <ul>
-  <li>人眼看柳树很有层次感, 枝干和叶子都很清晰 Vs 照片上互相遮挡没有主次</li>
-</ul>
-
-<p>国画的柳树:</p>
-
-<p>傅抱石: <a href="https://p8.itc.cn/q_70/images03/20200609/108e1ee119a0493f8d13779b80a63daa.jpeg"><img src="https://p8.itc.cn/q_70/images03/20200609/108e1ee119a0493f8d13779b80a63daa.jpeg" width="178" /></a> 吴冠中: <a href="https://p7.itc.cn/q_70/images03/20200609/b28f3949065b494eb5f0abbc5f942923.jpeg"><img src="https://p7.itc.cn/q_70/images03/20200609/b28f3949065b494eb5f0abbc5f942923.jpeg" width="178" /></a> 谢稚柳: <a href="https://p5.itc.cn/q_70/images03/20200609/6d93102f78854222bdff0249e87a1a47.jpeg"><img src="https://p5.itc.cn/q_70/images03/20200609/6d93102f78854222bdff0249e87a1a47.jpeg" width="178" /></a> 郑午昌: <a href="https://p2.itc.cn/q_70/images03/20200609/26e10603f58f4e7f880dec68d06753ef.jpeg"><img src="https://p2.itc.cn/q_70/images03/20200609/26e10603f58f4e7f880dec68d06753ef.jpeg" width="178" /></a> 乔木: <a href="https://p6.itc.cn/q_70/images03/20200609/f6d4c29cce074a4587a96426dff8ee14.jpeg"><img src="https://p6.itc.cn/q_70/images03/20200609/f6d4c29cce074a4587a96426dff8ee14.jpeg" width="178" /></a> 黄幻吾: <a href="https://p7.itc.cn/q_70/images03/20200609/a5c33c92cd264e10833ff21d8dde6d9c.jpeg "><img src="https://p7.itc.cn/q_70/images03/20200609/a5c33c92cd264e10833ff21d8dde6d9c.jpeg " width="178" /></a></p>
-
-<p>日本画的柳树:</p>
-
-<p><a href="https://www.pinterest.com/pin/564216659574040541/"><img src="https://i.pinimg.com/564x/90/a1/e6/90a1e67f2471518700e59e32e2699773.jpg" width="400" /></a></p>
-
-<ul>
-  <li>有风吹的动态</li>
-  <li>省略了枝干看着像紫藤花了</li>
-</ul>
-
-<p>https://www.sohu.com/a/400613164_99921257</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="photo" /><category term="content" /><summary type="html"><![CDATA[在上海的春天到处去赏花, 感觉没有一种花有柳树的视觉冲击力. 嫩黄的叶子让我有生命的实感, 看到叶子泛白干燥的时候, 我知道春天过去了.]]></summary></entry><entry><title type="html">persistent homology 事例 + 应用</title><link href="https://roshameow.github.io//personal_homepage/algorithm/persistent-homology/" rel="alternate" type="text/html" title="persistent homology 事例 + 应用" /><published>2024-08-08T00:00:00+00:00</published><updated>2024-09-02T19:45:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/algorithm/persistent-homology</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/algorithm/persistent-homology/"><![CDATA[<h2 id="pair-graph">pair graph</h2>
-
-<ul>
-  <li>下标表示在filtration中的前后关系.</li>
-  <li>蓝色表示killer, 红色表示generator, 弧线表示kill关系.</li>
-</ul>
-
-<p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240821180208.png" alt="Pasted image 20240821180208.png" width="138" />  <img src="/personal_homepage/docs/attachment/Pasted%20image%2020240822181442.png" alt="Pasted image 20240822181442.png" width="150" />  <img src="/personal_homepage/docs/attachment/Pasted%20image%2020240821175655.png" alt="Pasted image 20240821175655.png" width="300" /></p>
-<ul>
-  <li>topological annulus(环带, cylinder)</li>
-  <li>$H_0$ 的生成元是$v_0$</li>
-  <li>$H_1$ 的生成元是$e_2$ (对应cycle $e_0+e_1+e_2$ )</li>
-</ul>
-
-<p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240821175958.png" alt="Pasted image 20240821175958.png" width="100" />  <img src="/personal_homepage/docs/attachment/Pasted%20image%2020240822181535.png" alt="Pasted image 20240822181535.png" width="150" />  <img src="/personal_homepage/docs/attachment/Pasted%20image%2020240821175901.png" alt="Pasted image 20240821175901.png" width="300" /></p>
-
-<ul>
-  <li>topological torus</li>
-  <li>$H_0$ 的生成元为 $v_0$</li>
-  <li>$H_1$ 的生成元为$e_3$( 对应cycle $e_0+e_1+e_2+e_3$) , $e_{20}$ (对应cycle $e_{12}+e_{16}+e_{20}$)</li>
-</ul>
-
-<p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240822194920.png" alt="Pasted image 20240822194920.png" width="150" />  <img src="/personal_homepage/docs/attachment/Pasted%20image%2020240822194939.png" alt="Pasted image 20240822194939.png" width="200" /></p>
-
-<ul>
-  <li>topological quadrilateral(四边形)</li>
-  <li>$H_0$ 的生成元为$v_0$ , $H_1$ 的生成元为$e_{11}$</li>
-</ul>
-
-<h2 id="记号">记号</h2>
-
-<ul>
-  <li>$\Gamma(d)$ : 被killer $d$ kill掉的generator</li>
-  <li>persistence life: $j-i-1$ , 从simplex $\sigma_i$  generated 到被 $\sigma_j$ kill的时间
+  <li>可转债
     <ul>
-      <li>表示了$\sigma_i$ 对应cycle $c_i$ 的拓扑稳定性</li>
+      <li>上市公司发行的, 可以转成股票</li>
+      <li>和股票大盘正相关</li>
+      <li>有些公司发行的有回售条款, 转股后也可以保证拿回本金(约定股价过低时回售)</li>
     </ul>
   </li>
-  <li><strong>persistent diagram</strong>: 也可以只取k-simplex的部分
+  <li>纯债
     <ul>
-      <li>simplex 添加时间 x simplex death(被kill) 时间 $(i,j)$</li>
-      <li>simplex 添加时间 x simplex 的persistence life $(i,j-i-1)$</li>
-    </ul>
-  </li>
-  <li><strong><a href="https://en.wikipedia.org/wiki/Persistence_barcode">barcode</a></strong> : 横坐标 为距离 $\epsilon$ , 每个bar表示positive simplex的添加时间 – 死亡时间
-    <ul>
-      <li>某个横坐标处 bar的个数为 betti number:  $b_k(\mathbb K)=rk(H_k(\mathbb K,\mathbb Z_2))=pos_k-neg_{k+1}$</li>
-      <li>每个出现的long bar表示了一个持续时间长的cycle(稳定的特征)</li>
-    </ul>
-  </li>
-</ul>
-
-<h2 id="应用">应用</h2>
-
-<ul class="task-list">
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />待实现</li>
-</ul>
-
-<h3 id="计算homology的生成元"><strong>计算homology的生成元</strong></h3>
-
-<ul>
-  <li>计算oriented surface的homology: $H_1(S)\cong H_1(I)\oplus H_1(O)$ (<a href="https://en.wikipedia.org/wiki/Mayer–Vietoris_sequence">Mayer–Vietoris_sequence</a>)
-    <ul>
-      <li>用persistent homology计算$H_1(I)$ 和$H_1(O)$ 的生成元
+      <li>利率债: 国债, 政策性金融债
         <ul>
-          <li>需要0-1 incidence matrix 和 1-2 incidence matrix</li>
-          <li>把$I$ 和$O$ 用<a href="https://wias-berlin.de/software/index.jsp?id=TetGen&amp;lang=1">tetGen</a> 的方法生成四面体剖分</li>
+          <li>和利率负相关</li>
         </ul>
       </li>
-      <li>$H_1(S,\mathbb Z_2)$ 和$H_1(S,\mathbb Z)$ 有相同的生成元?</li>
+      <li>信用债</li>
     </ul>
   </li>
-  <li>计算三流型的homology: $H_1(M,\mathbb Z_2)\cong H_2(M,\partial M,\mathbb Z_2)$ (Lefschetz duality)</li>
 </ul>
 
-<h3 id="分析点云的结构"><strong>分析点云的结构</strong></h3>
+<p>[1] http://www.csrc.gov.cn/neimenggu/c105958/c1608862/content.shtml</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="content" /><summary type="html"><![CDATA[政府和企业发行的借款, 债券本身 = 票面价值 + 利息 + 到期时间 + 债券发行方 价格 : 可能高于/低于 票面价值]]></summary></entry><entry><title type="html">raycast脚本</title><link href="https://roshameow.github.io//personal_homepage/tool/raycast-script/" rel="alternate" type="text/html" title="raycast脚本" /><published>2024-09-30T00:00:00+00:00</published><updated>2024-10-12T05:25:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/tool/raycast-script</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/tool/raycast-script/"><![CDATA[<ul>
+  <li><a href="https://nicrow.com/automation/raycast-script-commands/">raycast脚本举例</a></li>
+</ul>
+
+<h3 id="把视频转成mp4">把视频转成mp4</h3>
+
+<p>其他软件经常生成的.avi(blender), .mov(Final Cut Pro) 都太大了不方便分享</p>
 
 <ul>
-  <li>自然图像分布: 3x3的high-contrast(用variance衡量)灰度图patch $\mathcal M$ , 看作$\mathbb R^9$ 中的点云
+  <li>如果用raycast 直接完成脚本功能, 遇到的困难:
+    <ol>
+      <li>raycast script执行在non-login shell, 没法调取在<code class="language-plaintext highlighter-rouge">$PATH</code> 里的<code class="language-plaintext highlighter-rouge">ffmpeg</code> 命令(see https://github.com/raycast/script-commands/issues/165)</li>
+      <li>raycast的输入框没有拖拽文件路径的功能, 感觉用起来挺麻烦的</li>
+    </ol>
+  </li>
+  <li>如果用raycast脚本开启terminal, 并把命令写到clipboard里, 遇到的困难:
+    <ol>
+      <li>raycast的脚本也是脚本, 没法直接控制键盘功能, 还是要跳转到对应位置输入视频</li>
+    </ol>
+  </li>
+  <li>如果放弃raycast: 写脚本完成功能, 把视频名称作为脚本参数, 用<code class="language-plaintext highlighter-rouge">alias</code> 在terminal启动脚本
     <ul>
-      <li>对patch做normalization, 使mean=0, var=1.:  $\mathcal M\subset E^7\subset \mathbb R^9$</li>
-      <li>取$\mathcal M$ 的 $5\times 10^4$ 个sample set $X$ , 取$X(k,p)$ 是X中k-邻域半径较大的 $p$ percent 的那些点
+      <li>感觉是最省事的了?</li>
+    </ul>
+  </li>
+</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="tool" /><category term="content" /><category term="raycast" /><summary type="html"><![CDATA[raycast脚本举例]]></summary></entry><entry><title type="html">调整视频追踪物体</title><link href="https://roshameow.github.io//personal_homepage/tool/center-track/" rel="alternate" type="text/html" title="调整视频追踪物体" /><published>2024-09-29T00:00:00+00:00</published><updated>2024-09-29T10:41:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/tool/center-track</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/tool/center-track/"><![CDATA[<p>Final Cut Pro</p>
+<ul>
+  <li><a href="https://www.bilibili.com/video/BV1oB4y1278d/">教程</a></li>
+  <li>步骤:
+    <ul>
+      <li>添加原视频</li>
+      <li>在原视频上添加tracker, analysis跟踪物体的bbox</li>
+      <li>复制原视频一份</li>
+      <li>在复制视频的transformer应用之前的tracker, scale改成-100%
         <ul>
-          <li>如果k-邻域半径小, 说明附近点很密集, 可以被忽略…</li>
+          <li>tracker的坐标和画面的坐标位置相反?</li>
         </ul>
       </li>
-      <li>调整k, p到合适的数据, 观察barcode, 形成一个Klein bottle的拓扑</li>
-      <li>目的是: 理解patch的分布, 和做image compresion?</li>
+      <li>把物体移到画面中间</li>
+      <li>放大scale去掉黑边</li>
     </ul>
   </li>
-  <li>时间序列的周期性: 每个长为$M$, 间隔为$\tau$ 的sliding window构成一个M维vector, 改变时间t, 得到$\mathbb R^M$ 里的一个点云
-    <ul>
-      <li>检查这个设置下, persistence diagram中最长的persistence life作为这个周期($M,\tau$ ) 的分数</li>
-      <li>分数越高, 说明点云在$\mathbb R^M$ 里(拓扑意义上)越像一个closed loop, 和时间序列本身的周期越匹配</li>
-    </ul>
-  </li>
-</ul>
-
-<h3 id="提取特征"><strong>提取特征</strong></h3>
+  <li>提升视频细节</li>
+</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="tool" /><category term="content" /><summary type="html"><![CDATA[Final Cut Pro 教程 步骤: 添加原视频 在原视频上添加tracker, analysis跟踪物体的bbox 复制原视频一份 在复制视频的transformer应用之前的tracker, scale改成-100% tracker的坐标和画面的坐标位置相反? 把物体移到画面中间 放大scale去掉黑边]]></summary></entry><entry><title type="html">自制猫爬架</title><link href="https://roshameow.github.io//personal_homepage/hand_crafted/cat-tree/" rel="alternate" type="text/html" title="自制猫爬架" /><published>2024-09-18T00:00:00+00:00</published><updated>2024-09-18T23:31:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/hand_crafted/cat-tree</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/hand_crafted/cat-tree/"><![CDATA[<h2 id="底座">底座</h2>
 
 <ul>
-  <li>persistent surface:
-    <ul>
-      <li>persistent diagram连续化: 把persistent diagram上的点 $(i,j-i-1)$ 用在位置 $(i,j-i-1)$ , 方差为$\sigma$ 的高斯分布替代</li>
-    </ul>
-  </li>
+  <li>水泥</li>
+  <li>木板</li>
+  <li>不锈钢</li>
+</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="hand_crafted" /><category term="content" /><summary type="html"><![CDATA[底座]]></summary></entry><entry><title type="html">摄像头测距</title><link href="https://roshameow.github.io//personal_homepage/algorithm/vision-distance/" rel="alternate" type="text/html" title="摄像头测距" /><published>2024-09-08T00:00:00+00:00</published><updated>2024-09-21T22:38:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/algorithm/vision-distance</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/algorithm/vision-distance/"><![CDATA[<ul>
   <li>
-    <p>persistent image: persistent surface像素化得到persistent image</p>
+    <p>问题定义: 从摄像头组拍摄的画面中得到汽车的3维bounding box</p>
   </li>
-  <li>DNA序列的linked twist map形成一个二维的点集. 用persistent image提取特征再做分类.</li>
-  <li>解Kuramoto-Sivashinsky (KS) PDE
+  <li>应用场景:
     <ul>
-      <li>是二维的heat image</li>
-      <li>根据不同的heat threshold(等高线), 构成image的子集的filtration
-        <ul>
-          <li>把image的像素点看成0-simplex,  相邻像素看成1-simplex, 周围2x2像素看成2-simplex</li>
-        </ul>
-      </li>
-      <li>用filtration生成的persistent image做为特征分类</li>
+      <li>公路(高速)卡口</li>
+      <li>通行车道: 高速? 可以安装立柱? 离车距离&gt; 0.6m, 路侧安装高度: 1.2m ~ 2.4m, 门架式安装高度: 5m ~ 7.5m</li>
+      <li>卡车(long vehicle): &gt; 12.2m 货车: &lt; 30m</li>
+    </ul>
+  </li>
+  <li>精度要求: &lt; 50mm(5厘米?)</li>
+</ul>
+
+<p>kitti测试集: https://www.cvlibs.net/datasets/kitti/eval_scene_flow.php</p>
+
+<ul>
+  <li>可能相关的研究
+    <ul>
+      <li>自动驾驶测障碍物距离</li>
+    </ul>
+  </li>
+</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="algorithm" /><category term="content" /><summary type="html"><![CDATA[问题定义: 从摄像头组拍摄的画面中得到汽车的3维bounding box]]></summary></entry><entry><title type="html">给 Melvor Idle制作 Mod</title><link href="https://roshameow.github.io//personal_homepage/game/melvor-mod/" rel="alternate" type="text/html" title="给 Melvor Idle制作 Mod" /><published>2024-09-07T00:00:00+00:00</published><updated>2024-09-08T19:20:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/game/melvor-mod</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/game/melvor-mod/"><![CDATA[<h2 id="制作">制作</h2>
+
+<ul>
+  <li>教程: https://wiki.melvoridle.com/w/Mod_Creation/Getting_Started</li>
+</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="game" /><category term="content" /><summary type="html"><![CDATA[制作]]></summary></entry><entry><title type="html">墙皮脱落问题</title><link href="https://roshameow.github.io//personal_homepage/house/wall-problem/" rel="alternate" type="text/html" title="墙皮脱落问题" /><published>2024-09-02T00:00:00+00:00</published><updated>2024-09-02T10:32:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/house/wall-problem</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/house/wall-problem/"><![CDATA[<iframe src="//player.bilibili.com/player.html?isOutside=true&amp;aid=1156485534&amp;bvid=BV1jZ421K77t&amp;cid=1659181462&amp;p=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
+<p>根据这个视频学习</p>
+
+<ul>
+  <li>原因: 热胀冷缩</li>
+</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="house" /><category term="content" /><summary type="html"><![CDATA[根据这个视频学习]]></summary></entry><entry><title type="html">掼蛋规则</title><link href="https://roshameow.github.io//personal_homepage/game/card/" rel="alternate" type="text/html" title="掼蛋规则" /><published>2024-08-26T00:00:00+00:00</published><updated>2024-08-29T19:09:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/game/card</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/game/card/"><![CDATA[<ul>
+  <li>升级规则</li>
+  <li>特殊花色
+    <ul>
+      <li>普通</li>
+      <li>炸弹</li>
+    </ul>
+  </li>
+</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="game" /><category term="content" /><summary type="html"><![CDATA[升级规则 特殊花色 普通 炸弹]]></summary></entry><entry><title type="html">搬家相关准备</title><link href="https://roshameow.github.io//personal_homepage/affair/cat-airline/" rel="alternate" type="text/html" title="搬家相关准备" /><published>2024-08-20T00:00:00+00:00</published><updated>2024-10-09T07:32:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/affair/cat-airline</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/affair/cat-airline/"><![CDATA[<h2 id="行李">行李</h2>
+
+<p>持续了一周时间, 在打包好时我长舒了一口气, 感受到了难得的宁静</p>
+
+<h3 id="猫的托运">猫的托运</h3>
+
+<p>目前只有海南航空可以, 不过没有到家直飞的航班
+只能选南航有氧舱, 小程序买票
+准备检疫合格证明</p>
+
+<h3 id="电脑">电脑</h3>
+
+<p>显卡拆下分装. 不过为什么显卡的卡扣要和硬盘放在一起?</p>
+
+<h3 id="大件">大件</h3>
+
+<p>微波炉 + 100, 空气炸锅</p>
+
+<p>猫跑轮 + 100, 猫爬架, 散步车</p>
+
+<h3 id="零散物件">零散物件</h3>
+
+<p>各式调料, 香料, 米 +52 面油粉丝,</p>
+
+<p>锅x4: 平底锅 + 20, 电煮锅+普通锅 + 30, 电饭锅 -</p>
+
+<p>盆: 不锈钢盆+沥水盆 + 20</p>
+
+<p>猫窝: 麻绳, 草编, 木头, 纸板, 布</p>
+
+<p>猫罐头x3:  +10</p>
+
+<p>硅胶老化</p>
+
+<h2 id="工具">工具</h2>
+
+<ul>
+  <li>需求</li>
+  <li>现有的软件:
+    <ul>
+      <li><a href="https://grocy.info">Grocy</a> : 家庭仓储管理</li>
     </ul>
   </li>
 </ul>
 
-<h2 id="reference">reference</h2>
-
-<p>[1]  Carlsson, Gunnar. “Topological Pattern Recognition for <strong>Point Cloud Data.</strong>” <em>Acta Numerica</em> 23 (May 2014): 289–368. <a href="https://doi.org/10.1017/S0962492914000051">https://doi.org/10.1017/S0962492914000051</a>.</p>
-
-<p>[2]  Perea, Jose, and John Harer. “<strong>Sliding Windows and Persistence</strong>: An Application of Topological Methods to Signal Analysis.” arXiv, November 25, 2013. <a href="https://doi.org/10.48550/arXiv.1307.6188">https://doi.org/10.48550/arXiv.1307.6188</a>.</p>
-
-<p>[3]  Adams, Henry, Sofya Chepushtanova, Tegan Emerson, Eric Hanson, Michael Kirby, Francis Motta, Rachel Neville, Chris Peterson, Patrick Shipman, and Lori Ziegelmeier. “<strong>Persistence Images</strong>: A Stable Vector Representation of Persistent Homology.” arXiv, July 11, 2016. <a href="https://doi.org/10.48550/arXiv.1507.06217">https://doi.org/10.48550/arXiv.1507.06217</a>.</p>
-
-<p>[4] https://github.com/ctralie/TDALabs/blob/master/SlidingWindow2-PersistentHomology.ipynb</p>
-
-<p>[5] https://ripser.scikit-tda.org/en/latest/ 计算persistent homology的python封装包</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="algorithm" /><category term="content" /><summary type="html"><![CDATA[pair graph]]></summary></entry><entry><title type="html">conformal geometry学习 (八 ) – Persistent homology</title><link href="https://roshameow.github.io//personal_homepage/math/algorithm/conformal-geometry8/" rel="alternate" type="text/html" title="conformal geometry学习 (八 ) – Persistent homology" /><published>2024-08-07T00:00:00+00:00</published><updated>2024-09-01T11:41:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/math/algorithm/conformal-geometry8</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/math/algorithm/conformal-geometry8/"><![CDATA[<p>一种计算 $H_k(\Sigma,\mathbb Z_2)$ 的方法, 计算filtration $\mathbb K$ 中homology的变化</p>
+<h2 id="回收">回收</h2>
 
 <ul>
-  <li>Persistent Homology $H_k^{l,p}=H_k(\mathbb K_{l+p},\mathbb Z_2)=\frac{Z^l_k}{B_{k}^{l+p}\cap Z^l_k}$
-    <ul>
-      <li>k-th homology: 和$\mathbb K$ 中 (k-1)-simplex, k-simplex, (k+1)-simplex部分有关</li>
-      <li>$\mathbb K$ 中到第l 个simplex cycle和到第(l+p) 个 simplex的image
-        <ul>
-          <li>一般到第l 个是 k-simplex, l 到 (l+p) 个是(k+1)-simplex</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
+  <li>回收♻️挺给人心理安慰🫂的, 想到自己的物品还有人使用而不是变成垃圾焚烧填埋, 就觉得自己至少没做浪费的坏事</li>
+  <li>最近在网上看到有人讨论藏族的天葬, 好诧异. 竟然有人连火葬都能接受却接受不了天葬吗? 让秃鹫把尸体回收不是比燃烧变成臭气好多了吗?</li>
 </ul>
 
-<h2 id="filtration定义">filtration定义</h2>
+<h3 id="宽带">宽带</h3>
+
+<h3 id="证件">证件</h3>
 
 <ul>
-  <li>filtration: $\emptyset=\mathbb K_{-1}\subset \mathbb K_0\subset \mathbb K_1\subset\cdots\subset \mathbb K_n=\mathbb K$ 是simplicial complex的序列
-    <ul>
-      <li>每个$\mathbb K_{i}$ 在$\mathbb K_{i-1}$ 基础上添加一个simplex $\sigma_i$</li>
-      <li>单调性(monotonous): 添加$\sigma_i$ 的顺序是包含关系, 每个$\sigma$ 的face都在它前面</li>
-    </ul>
-  </li>
-  <li>induced p阶homology group 的map序列: $0=H_p(\mathbb K_{-1})\rightarrow H_p(\mathbb K_0)\rightarrow \cdots \rightarrow H_p(\mathbb K_n)=H_p(\mathbb K)$</li>
-</ul>
-
-<h3 id="点云---čech-complex-filtration">点云 -&gt; Čech Complex filtration</h3>
-
-<p><img src="/personal_homepage/docs/attachment/Persistent%20homology%20classification%20algorithm.jpg" alt="Persistent homology classification algorithm.jpg" width="500" /></p>
-<ul>
-  <li><a href="https://en.wikipedia.org/wiki/Čech_complex">Čech complex</a>  $\mathcal C_\epsilon$ : 把点云中 $\epsilon/2$ 球相交的点相连得到的simplicial complex
-    <ul>
-      <li><a href="https://en.wikipedia.org/wiki/Vietoris–Rips_complex">Vietoris-Rips Complex</a> $\mathcal R_\epsilon$ : 把点云中距离&lt; $\epsilon$ 的点相连得到的simplicial complex($\mathbb R^n$ 中两种定义等价)</li>
-    </ul>
-  </li>
-</ul>
-
-<h2 id="filtration同调分解">filtration同调分解</h2>
-
-<p><strong>新添加的simplex分为两种: 1. 构成cycle的 2. 不构成cycle的</strong></p>
-
-<ul>
-  <li><strong>positive(generator, creator)</strong>: k-simplex $\sigma_i\subset$ 一个 k-cycle $c_i$
-    <ul>
-      <li>相当于, $\sigma_i$ 是<strong>构成 k-cycle $c_i$的最后一个边</strong>(youngest)</li>
-      <li>添加到$\sigma_i$ 的时候还没有 (k+1)-simplex 呢, 所以 $c_i$ 是non-exact的</li>
-      <li>可以让 $c_i$ 只包含$\sigma_i$ 一个positive k-simplex (lemma)
-        <ul>
-          <li>归纳法证明: 如果包含其他 positive  $\sigma_j$ 出现在$\sigma_i$ 之前, 把当时对应的cycle $c_j$ 只包含$\sigma_j$ 一个positive, 让$c_i\texttt{ += }c_i+c_j$</li>
-        </ul>
-      </li>
-      <li>$[c_i]$ 是构成$H_k(\mathbb K_i)$ 的basis</li>
-    </ul>
-  </li>
-  <li><strong>negative(killer)</strong>:
-    <ul>
-      <li>killer 导致前面相邻的(k-1)-simplex 变成boundary(kill行为)</li>
-      <li>和其<strong>kill掉的最近(youngest)的positive (k-1)-simplex组成一对pair</strong>
-        <ul>
-          <li>kill掉的 (k-1)-simplex 不一定和killer直接相邻</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-</ul>
-
-<p><strong>youngest positive simplex  在同调等价类中传递</strong></p>
-
-<ul>
-  <li>Collision lemma: 一对generator,killer pair $(\sigma_i,\sigma_j)$ , 如果$e$ 是Collision Free Cycle, 并且$[e]=[\partial \sigma_j]$ (和$\partial \sigma_j$ 同调等价) -&gt; $e$ 的youngest positive simplex也是 $\sigma_i$ .
-    <ul>
-      <li>Collision Free Cycle: 里面的最近的generator还没被kill</li>
-      <li>$e$ 的youngest positive simplex如果不在$\partial \sigma_j$ 中, 就在另一个更早出现的$\partial \sigma$ 里, 和Collision Free 矛盾. (证明没懂)</li>
-    </ul>
-  </li>
-</ul>
-
-<p><strong>同调分解</strong></p>
-
-<ul>
-  <li>$rk(H_k(\mathbb K,\mathbb Z_2))=pos_k-neg_{k+1}$
-    <ul>
-      <li>每个新出现的<strong>positive simplex对应linearly indepdent cycle</strong>
-        <ul>
-          <li>$\mathbb Z_2$-module里, linearly depdent的意思是 $c=\sum_i c_i$</li>
-          <li>就是说 $c$ 的youngest simplex $\sigma$ 肯定在某个之前的$c_i$ 里, 但是$\sigma$ 是刚出来的, 所以不可能</li>
-        </ul>
-      </li>
-      <li>每个新添加的<strong>negative (k+1)-simplex -&gt; 对应killed k-positive simplex -&gt; 对应kill linearly indepdent cycle</strong></li>
-    </ul>
-  </li>
-  <li>$num_k = pos_k + neg_k = rk(Z_k) + rk(B_k)$
-    <ul>
-      <li>用incidence matrix $M$ 表示(k-1)-simplex $\times$ k-simplex 的相连关系
-        <ul>
-          <li>$M$ 的列数 $num_k$ 为 $\mathbb K$ 中添加的 k-simplex的个数: 不是positive, 就是negative</li>
-          <li>每个新出现的positive simplex对应linearly indepdent cycle
-            <ul>
-              <li>经过column operation会变成0</li>
-              <li>$rkM-rkB_p=rk Z_p=pos_k$</li>
-            </ul>
-          </li>
-          <li>每个新添加的negative simplex对应killed (k-1)-simplex: pair
-            <ul>
-              <li>$rk M = rk B_p=neg_k$</li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-      <li>计算同调群需要计算两个incidence matrix : (k-1)-simplex $\times$ k-simplex 和 k-simplex $\times$ (k+1)-simplex, 以得到$rk Z_k$ 和$rk B_{k+1}$</li>
-    </ul>
-  </li>
-</ul>
-
-<h2 id="pair-algorithm-计算">Pair Algorithm 计算</h2>
-
-<p>计算每个simplex的生命周期</p>
-
-<ul>
-  <li>输入: filtration 当前的simplex $\sigma$</li>
-  <li>
-    <p>输出: 判断$\sigma$ 是generator还是killer, 如果是killer, 记录它的pair</p>
-  </li>
-  <li>plain(Algorithm1):
-    <ul>
-      <li>记录cycle $c=\partial \sigma=\sum_i \tau_i$
-        <ul>
-          <li>检查里面最近的(youngest) positive $\tau$ ((k-1)-simplex)
-            <ul>
-              <li>如果 $\tau$ 还没被kill过, $(\tau,\sigma)$ 组成pair, 记录$\tau$ 的killer为$\sigma$</li>
-              <li>如果$\tau$ 已经被其他killer kill过
-                <ul>
-                  <li>不停往前追踪, 用$\tau$ 对应的killer(的boundary cycle)更新 $c$ 的表达
-                    <ul>
-                      <li>更新过的$c$ 的simplex全比 $\tau$ older(检查的simplex越来越往前-&gt; 算法肯定能停止)</li>
-                      <li>如图, $\partial e_5=v_4+v_0$ , 最新点 $v_4$ 已经被$e_3$ kill, 得到$\partial e_5=v_3+v_0$, 一直往前追踪, 得到$\partial e_5=v_0+v_0=0$</li>
-                    </ul>
-                  </li>
-                </ul>
-              </li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-      <li>如果追踪到最后结果为0 -&gt; $\sigma$ 是generator</li>
-    </ul>
-  </li>
-  <li>优化1(Algorithm2, 用空间换时间):
-    <ul>
-      <li>在generator被kill时, 同时记录当时对应的boundary cycle $\Lambda_\tau$
-        <ul>
-          <li>在pair不相邻时节省计算时间</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li>并行计算(代数方法): 步骤数=追踪的最长链路?
-    <ul>
-      <li>incidence matrix: k-simplex $\times$ (k+1)-simplex 的相连关系
-        <ul>
-          <li>检查每列值为 1 最后一行 (即对应的youngest simplex)
-            <ul>
-              <li>如果在之前列出现相同的index, 用前面的列更新后面的列(cycle更新的过程)</li>
-            </ul>
-          </li>
-          <li>直到所有非0的列的最后一行index都不一样
-            <ul>
-              <li>全是0的列对应generator</li>
-              <li>非零的列和最后一行index对应pair</li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="math" /><category term="algorithm" /><category term="content" /><summary type="html"><![CDATA[一种计算 $H_k(\Sigma,\mathbb Z_2)$ 的方法, 计算filtration $\mathbb K$ 中homology的变化]]></summary></entry><entry><title type="html">conformal geometry学习 (七 ) – Duality, homology relation</title><link href="https://roshameow.github.io//personal_homepage/math/conformal-geometry7/" rel="alternate" type="text/html" title="conformal geometry学习 (七 ) – Duality, homology relation" /><published>2024-07-29T00:00:00+00:00</published><updated>2024-08-20T04:11:09+00:00</updated><id>https://roshameow.github.io//personal_homepage/math/conformal-geometry7</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/math/conformal-geometry7/"><![CDATA[<h2 id="poincaré-duality"><a href="https://en.wikipedia.org/wiki/Poincaré_duality">Poincaré Duality</a></h2>
-
-<p><a href="https://www.researchgate.net/profile/Clement-Cances/publication/278829092/figure/fig3/AS:667718760022016@1536207966130/Triangular-mesh-T-and-Donald-dual-mesh-M-dual-volumes-vertices-interfaces.png"><img src="https://www.researchgate.net/profile/Clement-Cances/publication/278829092/figure/fig3/AS:667718760022016@1536207966130/Triangular-mesh-T-and-Donald-dual-mesh-M-dual-volumes-vertices-interfaces.png" width="200" /></a></p>
-
-<ul>
-  <li><a href="https://en.wikipedia.org/wiki/Poincaré_duality">Poincaré Duality</a>: n-dim的manifold $M$, 三角剖分$T$, 和cell decomposition $T^*$ 对偶.
-    <ul>
-      <li><strong>把每个k-simplex $\sigma$ 映射成(n-k)-cell $\sigma^\ast$</strong>: 对于包含$\sigma$ 的n-simplex $\Delta$,  $\Delta\cap\sigma^*$ 是取$\sigma\subset …\subset \Delta$ 之间的simplex的barycentres(重心点) 的convex hull
-        <ul>
-          <li><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240727223859.png" alt="Pasted image 20240727223859.png" width="100" /> 顶点(1-simplex) $\sigma$, 面(2-simplex) $\Delta$ , 灰色部分 $\Delta\cap\sigma^*$ 是顶点$\sigma$,两条边, 面$\Delta$ 的重心点的convex hull</li>
-          <li>$\sigma^*$ 只和$\sigma$ 相交, 这个intersection给出了对偶关系</li>
-        </ul>
-      </li>
-      <li><strong>把k-chain $C_k(T)$映射到(n-k)-chain $C_{n-k}(T^*)$</strong> :
-        <ul>
-          <li>$C_{n-k}(T^\ast)$ 是定义在$T^\ast$ 的多边形cell上的? 这样也可以吗?</li>
-        </ul>
-      </li>
-      <li><strong>把$H_k(M,\mathbb Z)$ 映射到 $H_{n-k}(M,\mathbb Z)$</strong>: $H_k(M,\mathbb Z)\cong H_{n-k}(M,\mathbb Z)$</li>
-    </ul>
-  </li>
-</ul>
-
-<h4 id="例子">例子</h4>
-
-<ul>
-  <li>closed oriented 曲面$S=T_1 \texttt{#}T_2 \texttt{#}\cdots  \texttt{#} T_g$, 只有一个连通分支, $H_0(S,\mathbb Z)=H_2(S,\mathbb Z)=\mathbb Z$</li>
-  <li>closed oriented 三流型$M$, $H_0(M)=H_3(M)=\mathbb Z$. $H_2(M)=H^1(M)$.</li>
-</ul>
-
-<h2 id="lefschetz-duality"><a href="https://en.wikipedia.org/wiki/Lefschetz_duality">Lefschetz Duality</a></h2>
-
-<p>在带边界($\partial M$)的manifold $M$上, Poincaré Duality的推广</p>
-
-<ul>
-  <li>相交关系: intersection form: $\omega: H_k(M,\mathbb Z)\times H_{n-k}(M,\partial M,\mathbb Z)\rightarrow \mathbb Z$
-    <ul>
-      <li>把k-chain(k-submanifold) $[S]$ 和(n-k)-submanifold $[S^\prime]$ 映射到它们的代数相交数(<strong>algebraic intersection number</strong>)
-        <ul>
-          <li>properly embedding(横截相交): $\partial S^\prime=\partial M\cap S^\prime$</li>
-          <li>$S$ 和 $S^\prime$ 的交点是isolated, 在交点x的方向($\pm 1$ )由$T_x S\oplus T_x S^\prime$ 和$T_x M$ 确定, 代数相交数是所有交点相交数相加
-            <ul>
-              <li>$M$ 是曲面, $S,S^\prime$ 是两条曲线的情况: 切向量的cross product和法向量方向确定</li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-      <li>$\omega$ 是<a href="https://en.wikipedia.org/wiki/Symplectic_vector_space">symplectic(辛形式)</a> , 即 $\omega$ 是non-degenerate + skew-symmetric(反交换)的
-        <ul>
-          <li>non-degenerate: 对于任何$\sigma$, $\omega(\sigma, \cdot)\ne 0$</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li>相交关系-&gt; 对偶关系: $H^k(M,\mathbb Z)\cong H_{n-k}(M,\partial M, \mathbb Z)$
-    <ul>
-      <li>$\omega(\cdot,\sigma)\mapsto \sigma$</li>
-    </ul>
-  </li>
-</ul>
-
-<h4 id="例子-1">例子</h4>
-
-<ul>
-  <li>如果$\partial M=\emptyset$, Lefschetz Duality退化成Poincaré Duality</li>
-  <li>connected, oriented, compact manifold $M$, $H^0(M,\mathbb Z)=H_n(M,\partial M,\mathbb Z)=\mathbb Z$
-    <ul>
-      <li>$H_n(M,\partial M,\mathbb Z)$ 的元素 $[M]$ 由n-simplex的orientation确定, 叫M的 <a href="https://en.wikipedia.org/wiki/Fundamental_class">fundamental class</a></li>
-    </ul>
-  </li>
-</ul>
-
-<h2 id="一些manifold特征">一些manifold特征</h2>
-
-<ul>
-  <li>compact oriented connected n-manifold with (possibly empty) boundary $M$ , $H_k(M,\mathbb Z)\cong F_k\oplus T_k$
-    <ul>
-      <li>$F_k$ 是自由生成群, $T_k$ 是torsion(挠, 阶数有限的部分)</li>
-    </ul>
-  </li>
-  <li>k-th <a href="https://en.wikipedia.org/wiki/Betti_number">Betti number</a>:  $b_k(M)=rk(H_k(M,\mathbb Z))$</li>
-  <li><a href="https://en.wikipedia.org/wiki/Euler_characteristic">Euler characteristic</a> (sheaf定义):  $\chi(M)=\sum_{i=0}^n (-1)^ib_i$
-    <ul>
-      <li>如果$M$ 是compact三流型, $\chi(M)=\frac{1}{2}\chi(\partial M)$
-        <ul>
-          <li>如果$M$ 是closed:  $\chi(M)=0$
-            <ul>
-              <li>oriented : 由Poincaré duality, $b_i=b_{n-1}$ 相互抵消</li>
-              <li>non-orientable:  有一个oriented double cover N, $\chi(M)=\frac{1}{2}\chi(N)=0$</li>
-            </ul>
-          </li>
-          <li>如果M有boundary $\partial M$
-            <ul>
-              <li>把两个$M$ 沿$\partial M$  粘成一个double cover $N$ . $\chi(N)=2\chi(M)-\chi(\partial M)$</li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-</ul>
-
-<h2 id="m-是oriented-compact-3-manifold的情况">$M$ 是oriented compact 3-manifold的情况</h2>
-
-<p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240805071909.png" alt="Pasted image 20240805071909.png" width="150" /> $M$(3-manifold) : 中间部分, $\alpha$(2-chain): 中间圆盘, $\beta$(1-chain): 沿边界的curve</p>
-
-<ol>
-  <li>有(relative homology) long exact sequence: $\cdots\rightarrow  H_2(M,\partial M)\overset{\partial}\rightarrow H_{1}(\partial M)\overset{i_\ast}\rightarrow H_1(M)\cdots$</li>
-  <li>有Lefschetz duality:  $\eta: H_2(M,\partial M,\mathbb Z)\times H_1(M,\mathbb Z) \rightarrow \mathbb Z$</li>
-  <li>有Poincaré duality: $\omega: H_1(\partial M)\times H_1(\partial M)\rightarrow Z$</li>
-  <li>边界surface $\partial M$ 有inherited orientation, 有 $H_1(\partial M)\cong \mathbb Z^{b_1(\partial M)}$ .</li>
-  <li>$H_2(M,\partial M,\mathbb Z)\cong \mathbb Z^{b_1(M)}\oplus T_2$ .</li>
-</ol>
-
-<p>(2+3). 对任意$\alpha\in H_2(M,\partial M,\mathbb Z)$, $\beta\in H_1(\partial M)$ 有$\omega(\partial \alpha,\beta)=\eta(\alpha,i_\ast\beta)$ (curve $\beta$ 和$\alpha$ (圆盘)相交 = $\beta$ 和 $\alpha$ 的边界(圆)相交)</p>
-
-<h3 id="自身和边界的oriented-dimension">自身和边界的oriented dimension</h3>
-
-<p>free generated部分, $H_2(M,\partial M, \mathbb Z_2)$ 的曲面对应边界的meridians(纬线), 由Lefschetz duality和曲面对偶的curve对应边界的longitude(经线)部分</p>
-
-<ul>
-  <li>$\partial:  H_2(M,\partial M,\mathbb Z)\rightarrow H_1(\partial M, \mathbb Z)$ 的image是 Lagrangian + max rank 的
-    <ul>
-      <li>Lagrangian: $H_1(\partial M)$ 上的intersection form $\omega\vert_{\text{img}\partial}\equiv 0$ (所有的image curve, 图上$\partial \alpha$ ,不相交)</li>
-      <li>maximal rank:  $\text{img}\partial$ 是rank n的. ( $rk(\text{img}\partial)= \frac{b_1(\partial M)}{2}$ )</li>
-      <li>证明:
-        <ul>
-          <li>Lagrangian: $\omega(\partial \alpha,\partial \alpha^\prime)=\eta(\alpha,i_\ast\partial\alpha^\prime)=\eta(\alpha,0)=0$
-            <ul>
-              <li>long exact sequence: $\cdots\rightarrow  H_2(M,\partial M)\overset{\partial}\rightarrow H_{1}(\partial M)\overset{i_\ast}\rightarrow H_1(M)\cdots$ 有$i_\ast\partial=0$</li>
-            </ul>
-          </li>
-          <li>rank &lt;= n: (由Poincaré duality)
-            <ul>
-              <li>$\omega$ 是<a href="https://en.wikipedia.org/wiki/Symplectic_vector_space">symplectic</a> 的 -&gt; $H_1(\partial M)$ 上有basis $\lbrace x_1,\cdots,x_n,y_1,\cdots,y_n\rbrace$ , 使$\omega(x_k,y_k)=1$ , -&gt; $\text{img}\partial$ 不能同时包含各组中的 $x_k,y_k$  -&gt; rank &lt;= n.</li>
-            </ul>
-          </li>
-          <li>rank &gt;= n: (由Lefschetz duality + exact sequence)
-            <ul>
-              <li>有以下关系:
-                <ul>
-                  <li>$rk(H_2(M,\partial M))=rk(H_1(M))=b_1(M)$ : 由Lefschetz duality</li>
-                  <li>$rk(H_1(\partial M))=b_1(\partial M)$</li>
-                  <li>$b_1(M)=rk(\text{ker}\partial) +rk(\text{img }\partial)$ : 由$\partial$ 的构造</li>
-                  <li>$b_1(\partial M)=rk(\text{ker }i_\ast)+rk(\text{img }i_\ast)$ : 由 $i_\ast$ 的构造</li>
-                  <li>$rk(\text{img}\partial)=rk(\text{ker }i_\ast)$ : 由exact sequence可得</li>
-                  <li>$rk(\text{ker}\partial)+rk(\text{img }i_\ast)\le b_1(M)$ : 对 $\alpha\in \text{ker}\partial$ , 有 $\eta(\alpha,i_\ast \beta)=\omega(\partial \alpha,\beta)=\omega(0,\beta)=0$ -&gt; $\text{ker}\partial\perp_\eta \text{img }i_\ast$</li>
-                </ul>
-              </li>
-              <li>解得$\text{img}\partial$ 和$b_1(\partial M)$ 的关系
-                <ul>
-                  <li>$rk(\text{img}\partial)&gt;=b_1(\partial M)/2$</li>
-                </ul>
-              </li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li>$b_1(M)\ge \frac{b_1(\partial M)}{2}$ (由Lefschetz duality, $b_1(M)=rk(H_2(M,\partial M))&gt;rk(\text{img}\partial)$ )
-    <ul>
-      <li>$b_1(M)=0$ -&gt; $b_1(\partial M)=0$ : 如果$M$ 是simply connected, $\partial M$ 由sphere组成</li>
-    </ul>
-  </li>
-</ul>
-
-<h3 id="non-orientable-embedding曲面">non-orientable embedding曲面</h3>
-
-<p>torsion部分, 由Lefschetz duality和曲面对偶的curve在曲面的tubular neighborhood里</p>
-<ul>
-  <li>non-orientable 曲面$S$ 嵌入$M$ (properly embedding: 横截相交, $\partial S=\partial M\cap S$ )
-    <ul>
-      <li>每个曲面$S$ 定义$H_2(M,\partial M, \mathbb Z_2)$ 中的一个non-trival class</li>
-      <li>$M$ 最多包含 $\text{dim} H_2(M,\partial M, \mathbb Z_2)$ 个不相交的non-orientable 曲面
-        <ul>
-          <li>对于每个non-orientable 曲面$S$, 把$S$ 加厚, 得到tubular neighborhood $S\times I$</li>
-          <li>tubular neighborhood的boundary 给出了$S$ 的一个double cover $\tilde S$</li>
-          <li>$S$ 上过$p$ 点的closed loop $\gamma$ , lift to $\tilde \gamma$ + 把$\tilde p_1$ 和 $\tilde p_2$ 连上得到的$\tilde \eta$ = closed loop $\alpha=\tilde \gamma \cdot \tilde \eta$ , $\alpha$ 和 $S$ 只交于一点</li>
-          <li>所有的$\alpha_i$ 不相交, 是linearly independent的, 最多有 $\text{dim} H_2(M,\partial M, \mathbb Z_2)$ 个</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li>$b_1(M)=0$ -&gt; $\text{dim} H_2(M,\partial M, \mathbb Z_2)=0$ : 如果$M$ 是simply connected, 不包含non-orientable 曲面</li>
-</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="math" /><category term="content" /><category term="homology" /><category term="duality" /><category term="betti_number" /><category term="euler_character" /><category term="3-manifold" /><summary type="html"><![CDATA[Poincaré Duality]]></summary></entry><entry><title type="html">conformal geometry学习 (六 ) – cohomology group</title><link href="https://roshameow.github.io//personal_homepage/math/conformal-geometry6/" rel="alternate" type="text/html" title="conformal geometry学习 (六 ) – cohomology group" /><published>2024-07-26T00:00:00+00:00</published><updated>2024-08-26T13:29:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/math/conformal-geometry6</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/math/conformal-geometry6/"><![CDATA[<p>上同调是同调的对偶</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>同调 homology</th>
-      <th>上同调 <a href="https://en.wikipedia.org/wiki/Cohomology">(Simplicial) cohomology</a><br /><br />最初是为了表示<a href="https://en.wikipedia.org/wiki/Stiefel–Whitney_class.">stiefel whitney class</a></th>
-      <th>对偶记号</th>
-      <th>tangent space</th>
-      <th>de Rham cohomology<br /><br />$\Omega^k(\Sigma)$</th>
-      <th>积分记号</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>k-chain $\sigma$ <br />$C_k$</td>
-      <td>k-cochain(k-form) $\omega$ <br />$C^k$</td>
-      <td>bilinear operator<br />$&lt;\omega,\sigma&gt;:=\omega(\sigma)$</td>
-      <td> </td>
-      <td>Differential 1-form<br />co-tangent space<br /></td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>(k+1)-boundary<br />$\partial_{k+1}:C_{k+1}\rightarrow C_{k}$</td>
-      <td>k-coboundary(微分算子)<br />$\delta_k: C^k\rightarrow C^{k+1}$<br />$\delta_k(\omega)=\omega\circ \partial_{k+1},\omega\in C^k$</td>
-      <td>$&lt;\delta\omega,\sigma&gt;=&lt;\omega,\partial\sigma&gt;$ <br /><br /><a href="https://en.wikipedia.org/wiki/Stokes%27_theorem">Stokes Theorem</a></td>
-      <td> </td>
-      <td>exterior differential<br /> operator(外微分算子)<br />$d^k:\Omega^k(\Sigma)\rightarrow \Omega^{k+1}(\Sigma)$</td>
-      <td>$\int_{\partial M}\omega=\int_M d\omega$<br /><a href="https://en.wikipedia.org/wiki/Stokes%27_theorem">Stokes Theorem</a></td>
-    </tr>
-    <tr>
-      <td>adjoint boundary<br />operator<br />$\partial_{k+1}^\ast:C_{k}\rightarrow C_{k+1}$</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td>codifferential operator<br />$\delta:\Omega^k(\Sigma)\rightarrow \Omega^{k-1}(\Sigma)$</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td> </td>
-      <td>closed form $\delta_k\omega=0$</td>
-      <td> </td>
-      <td> </td>
-      <td>closed form $d^k\omega=0$</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td> </td>
-      <td>exact form $\omega=\delta_{k-1}\sigma$</td>
-      <td> </td>
-      <td> </td>
-      <td>exact form $\omega=d^{k-1}\sigma$</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>$H_n$<br />closed, but not exact</td>
-      <td>$H^n=\frac{\text{ker}\delta^n}{\text{img}\delta^{n-1}}$ <br />curl free, but not =gradient</td>
-      <td> </td>
-      <td> </td>
-      <td>$H^n_{dR}$</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>$f_\ast: H_n(M)\rightarrow H_n(N)$</td>
-      <td>$f^\ast: H^n(N)\rightarrow H^n(M)$<br />是$f_\ast$ 的pull back</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-    </tr>
-  </tbody>
-</table>
-
-<h3 id="一阶-cohomology-basis-计算">一阶 cohomology basis 计算</h3>
-
-<p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240731000546.png" alt="Pasted image 20240731000546.png" width="150" /></p>
-
-<ul>
-  <li>$H^1$ 是在边(1-simplex)上的函数, 使得沿每个三角形(2-chain)路径和为0 ( $\omega\in\text{ker}\delta^1$ )</li>
-  <li>$H^1\cong H_1$  可以找到一组dual basis.</li>
-  <li>closed, genus g的曲面($\Sigma$) 上<strong>一阶 cohomology basis 计算</strong> $H^1(\Sigma,\mathbb Z)$ (或$H^1(\Sigma,\mathbb R)$) : <strong>用homology basis的dual basis组成</strong>
-    <ul>
-      <li>计算homology basis $H_1(\Sigma,\mathbb Z)=span&lt;\gamma_1,\dots,\gamma_{2g}&gt;$
-        <ul>
-          <li>想办法让除同一组(tunnel, handle)之外的basis都不相交</li>
-        </ul>
-      </li>
-      <li>每个1-cycle $\gamma_i$ 定义一个1-form $\omega_i$
-        <ul>
-          <li>把$\Sigma$ 沿$\gamma_i$ 切开, 得到 $M_i$ , 边界$\partial M_i=\gamma_i^+-\gamma_i^-$</li>
-          <li>在$M_i$ 上定义 0-form $\tau_i$ , 在$\gamma_i^+$ 的顶点上取1, 在$\gamma_i^-$ 的顶点上取0, 得到1-form $\omega_i=d\tau_i$ (在边上取值是起点值-终点值)
-            <ul>
-              <li>其他地方的$\tau_i$ 可以随便取值</li>
-              <li>$\omega_i$ 在$\gamma_i^+, \gamma_i^-$ 上的边都取0, 所以是well-defined</li>
-              <li>$w_i$ 在同组$\gamma_j$ 上取1: 展开成$M_i$ 后, $\gamma_j$ 变为$\gamma_i^+$ 到$\gamma_i^-$ 的path, $d\tau_i=1$
-                <ul>
-                  <li>$w_i$ 是同组$\gamma_j$ 的对偶</li>
-                </ul>
-              </li>
-              <li>$w_i$ 在其他$\gamma_j$ 上取0: 展开成$M_i$ 后, $\gamma_j$ 依然是loop, $d\tau_i=0$</li>
-              <li>$\omega_i=d\tau_i$, 所以$d\omega_i$ 处处为0</li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-      <li>所有$\omega_i$ 组成$H^1(\Sigma, \mathbb Z)$ 的basis</li>
-    </ul>
-  </li>
-</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="math" /><category term="content" /><summary type="html"><![CDATA[上同调是同调的对偶]]></summary></entry></feed>
+  <li>身份证</li>
+  <li>户口</li>
+  <li>护照</li>
+</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="affair" /><category term="content" /><summary type="html"><![CDATA[行李]]></summary></entry></feed>

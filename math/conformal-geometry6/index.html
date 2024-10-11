@@ -17,7 +17,7 @@
   
   <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>conformal geometry学习 (六 ) – cohomology group | Liu, Wen’s Home Page</title>
-<meta name="generator" content="Jekyll v4.3.3" />
+<meta name="generator" content="Jekyll v4.3.4" />
 <meta property="og:title" content="conformal geometry学习 (六 ) – cohomology group" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="上同调是同调的对偶" />
@@ -31,7 +31,7 @@
 <meta property="twitter:title" content="conformal geometry学习 (六 ) – cohomology group" />
 <meta name="twitter:site" content="@" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-08-26T13:29:00+00:00","datePublished":"2024-07-26T00:00:00+00:00","description":"上同调是同调的对偶","headline":"conformal geometry学习 (六 ) – cohomology group","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/math/conformal-geometry6/"},"url":"https://roshameow.github.io//personal_homepage/math/conformal-geometry6/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-10-10T12:32:00+00:00","datePublished":"2024-07-26T00:00:00+00:00","description":"上同调是同调的对偶","headline":"conformal geometry学习 (六 ) – cohomology group","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/math/conformal-geometry6/"},"url":"https://roshameow.github.io//personal_homepage/math/conformal-geometry6/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -107,7 +107,7 @@
       <div class="page-sidebar">
         <div class="page-author h-card p-author"><img src="/personal_homepage/docs/images/logo.svg" class="author-avatar u-photo" alt=""><div class="author-info">
 
-<span class="read-time">~1 min read</span>
+<span class="read-time">1 min read</span>
 
     <time class="page-date dt-published" datetime="2024-07-26T00:00:00+00:00"><a class="u-url" href="">July 26, 2024</a>
 </time>
@@ -139,7 +139,7 @@
 {:toc} -->
   <!-- <div id="markdown-toc"> -->
 
-    <ul class="inline_toc" id="my_toc"><li><a href="#一阶-cohomology-basis-计算">一阶 cohomology basis 计算</a></li></ul>
+    <ul class="inline_toc" id="my_toc"><li><a href="#一阶-cohomology-basis-计算">一阶 cohomology basis 计算</a></li><li><a href="#带边界的例子">带边界的例子</a></li></ul>
   <!-- </div> -->
 
 </div>
@@ -153,15 +153,15 @@
     <!-- <div id="markdown-toc"> -->
     <ul>
         
-        <li><a href="/personal_homepage/house/wall-problem/">墙皮脱落问题</a></li>
+        <li><a href="/personal_homepage/math/conformal-geometry10/">conformal geometry学习 (十 ) -- atlas</a></li>
         
-        <li><a href="/personal_homepage/game/card/">掼蛋规则</a></li>
+        <li><a href="/personal_homepage/bond/">债券的原理</a></li>
         
-        <li><a href="/personal_homepage/affair/cat-airline/">搬家相关准备</a></li>
+        <li><a href="/personal_homepage/tool/raycast-script/">raycast脚本</a></li>
         
-        <li><a href="/personal_homepage/math/conformal-geometry9/">conformal geometry学习 (九 ) -- atlas</a></li>
+        <li><a href="/personal_homepage/tool/center-track/">调整视频追踪物体</a></li>
         
-        <li><a href="/personal_homepage/affair/cat-can/">猫罐头调查</a></li>
+        <li><a href="/personal_homepage/hand_crafted/cat-tree/">自制猫爬架</a></li>
         
     </ul>
     <!-- </div> -->
@@ -182,20 +182,28 @@
   <thead>
     <tr>
       <th>同调 homology</th>
-      <th>上同调 <a href="https://en.wikipedia.org/wiki/Cohomology">(Simplicial) cohomology</a><br /><br />最初是为了表示<a href="https://en.wikipedia.org/wiki/Stiefel–Whitney_class.">stiefel whitney class</a></th>
+      <th>上同调 <a href="https://en.wikipedia.org/wiki/Cohomology">(Simplicial) cohomology</a><br /><br />最初是为了表示<a href="https://en.wikipedia.org/wiki/Stiefel–Whitney_class.">fiber bundle的class</a></th>
       <th>对偶记号</th>
       <th>tangent space</th>
-      <th>de Rham cohomology<br /><br />$\Omega^k(\Sigma)$</th>
+      <th>de Rham cohomology<br /><br />$\Omega^k(M)$</th>
       <th>积分记号</th>
     </tr>
   </thead>
   <tbody>
     <tr>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>定义在manifold<br />依赖local coordinate chart</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
       <td>k-chain $\sigma$ <br />$C_k$</td>
       <td>k-cochain(k-form) $\omega$ <br />$C^k$</td>
       <td>bilinear operator<br />$&lt;\omega,\sigma&gt;:=\omega(\sigma)$</td>
-      <td> </td>
-      <td>Differential 1-form<br />co-tangent space<br /></td>
+      <td>tangent vector<br />$T_p M$</td>
+      <td>Differential 1-form<br />co-tangent space<br />$T^\ast_p M$</td>
       <td> </td>
     </tr>
     <tr>
@@ -203,7 +211,7 @@
       <td>k-coboundary(微分算子)<br />$\delta_k: C^k\rightarrow C^{k+1}$<br />$\delta_k(\omega)=\omega\circ \partial_{k+1},\omega\in C^k$</td>
       <td>$&lt;\delta\omega,\sigma&gt;=&lt;\omega,\partial\sigma&gt;$ <br /><br /><a href="https://en.wikipedia.org/wiki/Stokes%27_theorem">Stokes Theorem</a></td>
       <td> </td>
-      <td>exterior differential<br /> operator(外微分算子)<br />$d^k:\Omega^k(\Sigma)\rightarrow \Omega^{k+1}(\Sigma)$</td>
+      <td>exterior differential<br /> operator(外微分算子,<br />exterior derivative)<br />$d^k:\Omega^k(M)\rightarrow \Omega^{k+1}(M)$</td>
       <td>$\int_{\partial M}\omega=\int_M d\omega$<br /><a href="https://en.wikipedia.org/wiki/Stokes%27_theorem">Stokes Theorem</a></td>
     </tr>
     <tr>
@@ -211,7 +219,23 @@
       <td> </td>
       <td> </td>
       <td> </td>
-      <td>codifferential operator<br />$\delta:\Omega^k(\Sigma)\rightarrow \Omega^{k-1}(\Sigma)$</td>
+      <td>codifferential operator<br />$\delta^{k}:\Omega^{k+1}(M)\rightarrow \Omega^{k}(M)$<br />$\delta=(-1)^{kn+n+1}\ ^\ast d^\ast$</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Laplace Operator<br />$\Delta_k=\partial_k^\ast\partial_k+\partial_{k+1}\partial_{k+1}^\ast$</td>
+      <td> </td>
+      <td>symmetric<br />$&lt;\Delta \omega,\sigma&gt;=&lt;\omega,\Delta \sigma&gt;$<br />non-negative<br />$&lt;\Delta \omega,\omega&gt;\ge 0$</td>
+      <td> </td>
+      <td>$\Delta=d\delta+\delta d$</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><strong>Hodge</strong> <strong>Decomposition</strong></td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
       <td> </td>
     </tr>
     <tr>
@@ -231,11 +255,35 @@
       <td> </td>
     </tr>
     <tr>
-      <td>$H_n$<br />closed, but not exact</td>
-      <td>$H^n=\frac{\text{ker}\delta^n}{\text{img}\delta^{n-1}}$ <br />curl free, but not =gradient</td>
+      <td> </td>
+      <td>harmonic form</td>
       <td> </td>
       <td> </td>
-      <td>$H^n_{dR}$</td>
+      <td>harmonic form $\Delta \omega=0$</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>$\Omega^k=\text{img} d^{k-1}\oplus \text{img} \delta^{k+1}\oplus \mathcal H^k_\Delta$<br /><br /><a href="https://en.wikipedia.org/wiki/Hodge_theory">Hodge theory</a></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><strong>同调</strong></td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>$H_k$<br />closed, but not exact<br /><br />$H_k=\text{ker}\Delta_k$ <br /></td>
+      <td>$H^k=\frac{\text{ker}\delta^k}{\text{img}\delta^{k-1}}$ <br />curl free, but not =gradient</td>
+      <td> </td>
+      <td> </td>
+      <td>$H^k_{dR}=\frac{\text{ker} d^k}{\text{img}d^{k-1}}$ <br /><br />$H^k_{dR}\cong H^k(M,\mathbb R)$</td>
       <td> </td>
     </tr>
     <tr>
@@ -284,6 +332,23 @@
       <li>所有$\omega_i$ 组成$H^1(\Sigma, \mathbb Z)$ 的basis</li>
     </ul>
   </li>
+</ul>
+
+<h3 id="带边界的例子">带边界的例子</h3>
+
+<p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240907093602.png" alt="Pasted image 20240907093602.png" width="150" /> 中间红色为$\gamma^+$, 蓝色为$\gamma^-$</p>
+
+<ul>
+  <li>annulus $M$</li>
+  <li>$H_1(M,\mathbb Z)$ 有一个generator $\gamma$ , 如图中间loop</li>
+  <li>定义$\omega$ 如图:
+    <ul>
+      <li>在$\gamma$ 上取1, $\gamma^{-1}$ 上取-1</li>
+      <li>其余edge上按此定义, 使$d\omega=0$ (沿每个面(2-chain)路径和为0 ( $\omega\in\text{ker}\delta^1$ ))</li>
+      <li>$\int_\gamma \omega = 18$  -&gt; $\omega$ 不是exact ($\omega$ 没法表示成0-form 的image, 一圈之后会不compatible )</li>
+    </ul>
+  </li>
+  <li>$\omega$ 是$H^1(M,\mathbb R)$ 的generator</li>
 </ul>
 
 
