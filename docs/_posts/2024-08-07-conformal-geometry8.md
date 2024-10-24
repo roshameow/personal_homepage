@@ -6,7 +6,10 @@ categories:
   - algorithm
 tags:
   - content
-last_modified_at: 2024-09-01T11:41
+  - persistent_homology
+  - filtration
+  - Cech_complex
+last_modified_at: 2024-10-22T09:17
 created: 2024-08-07T09:10
 ---
 

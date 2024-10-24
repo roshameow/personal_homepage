@@ -9,7 +9,7 @@ tags:
   - markdown
   - obsidian
   - raycast
-last_modified_at: 2024-09-03T23:07
+last_modified_at: 2024-10-23T07:52
 created: 2023-12-20T12:28
 ---
 用jekyll的原因无需多说。这样配置好工作流之后，除了编写内容基本没有什么麻烦的操作(登录在线网页，换编辑器，按照统一格式改文件名之类在我看来都很麻烦。。)。
@@ -131,7 +131,10 @@ created: 2023-12-20T12:28
 		- mathjax的公式里的竖线和markdown的table的竖线冲突, 而且table的优先级更高: 把竖线用`\vert`的方式写
 		- matrix在mathjax中换行需要`\\\`  
 		- mathjax里面不能直接用`#`符号, 需要用`\texttt{\#}` 
-		- mathjax里面用`\{`不会显示括号, 需要改用`\lbrace` 或`\rbrace`  
+		- mathjax里面不会显示括号, 
+			- `\{`, 需要改用`\lbrace` 或`\rbrace`  
+			- `< >`, 需要改用`\langle`, `\rangle`
+	- mathjax渲染是需要联网的
 1. **配置google analysis:** 
 	- 我用的模版比较老，需要[把Universal analysis换成GA4][7] 
 2. **加table of content:**

@@ -17,7 +17,9 @@ tags:
   - 不动点定理
   - Gauss_Bonnet
   - gaussian_map
-last_modified_at: 2024-10-12T05:22
+  - characteristic_class
+  - obstruction
+last_modified_at: 2024-10-24T15:44
 created: 2024-08-18T09:39
 ---
 
@@ -30,10 +32,11 @@ created: 2024-08-18T09:39
 | zero index of <br>tangent vector field<br>$\text{Index}_p(v)$ | 在smooth surface上, <br>p 是连续切向量场 $\mathbb v$ 的零点<br>(在p处是0向量)<br>$B$ 是p 的邻域 | 单位切向量映射<br>$\phi: \partial B\rightarrow \mathbb S^1$<br>$q\mapsto \frac{\mathbf v(q)}{\vert \mathbf v(q)\vert}$ | $\phi_\texttt{\#}: \pi_1(\partial B)\rightarrow \pi_1(\mathbb S^1)$<br><br>单位切向量沿$\partial B$ 旋转的圈数                                                        |
 
 - 全局指标
-	- Euler Character $\chi(S)=\vert V\vert+\vert F\vert -\vert E\vert$ 
+	- [Euler characteristic](https://en.wikipedia.org/wiki/Euler_characteristic) $\chi(S)=\vert V\vert+\vert F\vert -\vert E\vert$ 
 		- 只和曲面本身有关
 	- Lefschetz number $\Lambda(f)=\sum_k(-1)^k tr(f_{\ast k}\vert H_k(M,\mathbb Z))$  自同构在所有 不同层-form 上trace的sum 
-		- 不仅和曲面, 和自同构也有关. 自同构取identity的时候就是Euler Character.
+		- 不仅和曲面, 和自同构也有关. 
+		- 自同构取identity的时候就是Euler Character. 是Euler Character的另一种定义方式. $\chi(M)=\sum_{k=0}^n (-1)^i rk(H_k(M,\mathbb Z))=\sum_{i=0}^n (-1)^kb_k$ 
 - 局部特征
 	- 自同构的 index of fixed point
 	- 切向量场的 zero index
@@ -65,7 +68,7 @@ created: 2024-08-18T09:39
 			- 有以下分解关系:
 				- $C_k=C_k/Z_k \oplus Z_k$ (分解出closed部分)
 				- $Z_k=B_k \oplus H_k$ (homology定义, 分解出boundary部分)
-				- $\partial_k: C_k/Z_k\rightarrow B_{k-1}$ 是isomorphic的 (由closed和boundary定义)
+				- $\partial_k: C_k/Z_k\rightarrow B_{k-1}$ 是isomorphic的 (由closed和boundary的定义)
 					- 由交换图![Pasted image 20241010202933.png]({{ '/docs/attachment/Pasted image 20241010202933.png' | relative_url }}){:width="250"} , 得到相似变换, $\partial_k \circ f_k \circ \partial_k^{-1}=f_{k-1}$   
 			- $tr(f_k\vert C_k)=tr(f_k\vert C_k/Z_k)+tr(f_k\vert B_k)+tr(f_k\vert H_k)=tr(f_{k-1}\vert B_k)+tr(f_k\vert B_k)+tr(f_k\vert H_k)$ 
 			- 按照k把$(-1)^k$ 的两边相加得到等式
@@ -131,6 +134,43 @@ created: 2024-08-18T09:39
 		- movable frame只能局部定义
 		- 半球的Euler Character是1 -> 头发一定会有发旋, 梳头发的时候总有梳不顺的地方
 		- [发球定理](https://en.wikipedia.org/wiki/Hairy_ball_theorem) 
-	- 对于曲面上的tangent bundle		
-		- 全局的section不存在
+	- 对于曲面上的unit tangent bundle		
+		- 全局的section不存在(存在obstruction, 拓扑障碍)
 
+
+##  曲面单位切向量丛的拓扑障碍(obstruction)
+
+用现代观点来看, 
+- 证明1中的2-form即为unit tangent bundle的**characteristic class**(示性类)
+	- 由zero index的定义
+- 0点即为UTM(unit tangent bundle)的拓扑障碍
+- 全局光滑切矢量场即为UTM的global section
+	- global section: 3流型中的封闭曲面, 和每个fiber只有一个交点
+- **characteristic class(示性类)在曲面上积分等于 [Euler characteristic](https://en.wikipedia.org/wiki/Euler_characteristic)** : $\int_M [\Omega]=\chi(M)$ 
+
+### . 同调表示fiber bundle的[示性类](https://en.wikipedia.org/wiki/Characteristic_class)
+
+只考虑UTM(unit tangent bundle) 这个fiber bundle
+
+- 构造2-manifold(曲面) $M$ 上的三角剖分$T$ , 使fiber bundle $F(M)$ 在每个三角形$\Delta$ 上是trival的($F(\Delta)=\Delta\times F$ )
+	- $F(M)$ 的section $\phi: M\rightarrow F(M)$ 
+	- fiber是$\mathbb S^1$ , $F(\Delta)$ 是个solid torus, $\pi_1(F(\Delta))=\mathbb Z$ 
+- **每个section可以定义一个2-form $\Omega$**: $\Omega(\Delta)=[\phi(\partial \Delta)]$ 
+	- section $[\phi(\partial \Delta)]$ 是在$F(\Delta)$ 上的一个loop, 即$\pi_1(F(\Delta))=\mathbb Z$ 中的元素, 是一个整数
+	- ![Pasted image 20241024143641.png]({{ '/docs/attachment/Pasted image 20241024143641.png' | relative_url }}){:width="200"}  ![Pasted image 20241024133352.png]({{ '/docs/attachment/Pasted image 20241024133352.png' | relative_url }}){:width="150"}  如图, 红绿蓝为顶点处的fiber, 黑色section $\phi(\partial \Delta)\sim e$  对应tangent vector指向同一方向
+	- ![Pasted image 20241024143941.png]({{ '/docs/attachment/Pasted image 20241024143941.png' | relative_url }}){:width="200"}  ![Pasted image 20241024143512.png]({{ '/docs/attachment/Pasted image 20241024143512.png' | relative_url }}){:width="180"}  如图, 黑色section在$F(\Delta)$ 不能缩成一个点, 中间存在tangent vector的零点(即拓扑障碍)
+		- 2-form $\Omega$ 的值为$\Delta$ 中一点$p$ 的zero index. 
+		- 也可以说黑色section不是exact的, 为$H_1(\Delta)$ 的非零元素
+- **不同的section对应同一个上同调类** $[\Omega]\in H^2(M,\mathbb R)$ : (lemma)
+	- 对于其他的section $\bar\phi$ , 和定义的2-form $\bar\Omega$, **有1-form h, 使得$\Omega-\bar \Omega=\delta h$**    
+	- 定义h: 
+		- ![Pasted image 20241018223827.png]({{ '/docs/attachment/Pasted image 20241018223827.png' | relative_url }}){:width="400"} 如图所示 h 链接前后两个三角形$\partial \Omega$ 和$\partial \bar \Omega$ 
+		- 在$\Delta$  的边 a 上, 定义$h=[l_a]=[p_i\phi(a)p_j^{-1}\bar \phi(a)^{-1}]$ 
+			- 其中a 的顶点是 $\sigma_i^0$ 和$\sigma_j^0$ 
+			- 其中$p_i$ 是$\sigma_i^0$ 的fiber上$\bar\phi$ 的像到$\phi$ 的像的path, $p_j$ 是$\sigma_j^0$ 的fiber上$\phi$ 的像到$\bar\phi$ 的像的path
+			- $l_a$ 是$p_i\phi(a)p_j^{-1}\bar \phi(a)^{-1}$ 构成的loop,  $[l_a]$ 也是$\pi_1(F(\partial\Delta))=\mathbb Z$ 中的元素
+		- 其他两边b, c也类似定义
+- 示性类$[\Omega]$ 
+	- 示性类$[\Omega]$ 不依赖local section的选取, 反应曲面的整体性质
+	- 示性类$[\Omega]$ 不是0  ->  $F(M)$ 没有global section
+		- 因为global section可以得到trival的示性类
