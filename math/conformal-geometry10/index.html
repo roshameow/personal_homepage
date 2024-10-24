@@ -16,22 +16,22 @@
   
   
   <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>conformal geometry学习 (十 ) – atlas | Liu, Wen’s Home Page</title>
+<title>conformal geometry学习 (十 ) – 举例: 球面上的unit tangent bundle manifold | Liu, Wen’s Home Page</title>
 <meta name="generator" content="Jekyll v4.3.4" />
-<meta property="og:title" content="conformal geometry学习 (十 ) – atlas" />
+<meta property="og:title" content="conformal geometry学习 (十 ) – 举例: 球面上的unit tangent bundle manifold" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="manifold $U_\alpha$ homeomorphism to $\mathbb R^n$, smooth manifold(differential manifold) transition map $\phi_{\alpha\beta}\in C^\infty(\mathbb R^n)$ smooth Riemann surface 每片是 2-dimtransition map 是biholomorphic(conformal)atlas $\lbrace(U_\alpha,z_\alpha)\rbrace$ 叫conformal structure" />
-<meta property="og:description" content="manifold $U_\alpha$ homeomorphism to $\mathbb R^n$, smooth manifold(differential manifold) transition map $\phi_{\alpha\beta}\in C^\infty(\mathbb R^n)$ smooth Riemann surface 每片是 2-dimtransition map 是biholomorphic(conformal)atlas $\lbrace(U_\alpha,z_\alpha)\rbrace$ 叫conformal structure" />
+<meta name="description" content="atlas" />
+<meta property="og:description" content="atlas" />
 <link rel="canonical" href="https://roshameow.github.io//personal_homepage/math/conformal-geometry10/" />
 <meta property="og:url" content="https://roshameow.github.io//personal_homepage/math/conformal-geometry10/" />
 <meta property="og:site_name" content="Liu, Wen’s Home Page" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2024-10-09T00:00:00+00:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="conformal geometry学习 (十 ) – atlas" />
+<meta property="twitter:title" content="conformal geometry学习 (十 ) – 举例: 球面上的unit tangent bundle manifold" />
 <meta name="twitter:site" content="@" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-10-09T11:13:00+00:00","datePublished":"2024-10-09T00:00:00+00:00","description":"manifold $U_\\alpha$ homeomorphism to $\\mathbb R^n$, smooth manifold(differential manifold) transition map $\\phi_{\\alpha\\beta}\\in C^\\infty(\\mathbb R^n)$ smooth Riemann surface 每片是 2-dimtransition map 是biholomorphic(conformal)atlas $\\lbrace(U_\\alpha,z_\\alpha)\\rbrace$ 叫conformal structure","headline":"conformal geometry学习 (十 ) – atlas","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/math/conformal-geometry10/"},"url":"https://roshameow.github.io//personal_homepage/math/conformal-geometry10/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-10-24T16:12:00+00:00","datePublished":"2024-10-09T00:00:00+00:00","description":"atlas","headline":"conformal geometry学习 (十 ) – 举例: 球面上的unit tangent bundle manifold","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/math/conformal-geometry10/"},"url":"https://roshameow.github.io//personal_homepage/math/conformal-geometry10/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -58,7 +58,7 @@
 
 </head>
 
-  <body class="layout--post  conformal-geometry学习-十-atlas">
+  <body class="layout--post  conformal-geometry学习-十-举例-球面上的unit-tangent-bundle-manifold">
     <nav class="skip-links">
   <h2 class="screen-reader-text">Skip links</h2>
   <ul>
@@ -99,7 +99,7 @@
       <header class="page-header">
         
         
-        <h1 id="page-title" class="page-title p-name">conformal geometry学习 (十 ) – atlas
+        <h1 id="page-title" class="page-title p-name">conformal geometry学习 (十 ) – 举例: 球面上的unit tangent bundle manifold
 </h1>
         
       </header>
@@ -107,7 +107,7 @@
       <div class="page-sidebar">
         <div class="page-author h-card p-author"><img src="/personal_homepage/docs/images/logo.svg" class="author-avatar u-photo" alt=""><div class="author-info">
 
-<span class="read-time">~1 min read</span>
+<span class="read-time">1 min read</span>
 
     <time class="page-date dt-published" datetime="2024-10-09T00:00:00+00:00"><a class="u-url" href="">October 9, 2024</a>
 </time>
@@ -139,7 +139,7 @@
 {:toc} -->
   <!-- <div id="markdown-toc"> -->
 
-    
+    <ul class="inline_toc" id="my_toc"><li><a href="#atlas">atlas</a></li><li><a href="#球面上的unit-tangent-bundle-manifoldutm参数化构造">球面上的unit tangent bundle manifold(UTM)参数化构造</a><ul><li><a href="#球面的atlas表示">球面的atlas表示</a></li><li><a href="#unit-tangent-bundle">unit tangent bundle</a></li><li><a href="#在赤道处粘在一起">在赤道处粘在一起</a></li><li><a href="#utm沿fiber粘在一起">UTM沿fiber粘在一起</a></li><li><a href="#unit-tangent-bundleutmmathbb-s2的fundamental-group">unit tangent bundle($UTM(\mathbb S^2)$)的fundamental group</a></li></ul></li><li><a href="#utmmathbb-s2-和-so3-旋转群的关系">$UTM(\mathbb S^2)$ 和 $SO(3)$ 旋转群的关系</a></li></ul>
   <!-- </div> -->
 
 </div>
@@ -153,15 +153,15 @@
     <!-- <div id="markdown-toc"> -->
     <ul>
         
+        <li><a href="/personal_homepage/affair/driving-test/">驾照考试</a></li>
+        
+        <li><a href="/personal_homepage/algorithm/attention4/">attention的优化-- KV Cache</a></li>
+        
         <li><a href="/personal_homepage/bond/">债券的原理</a></li>
         
         <li><a href="/personal_homepage/tool/raycast-script/">raycast脚本</a></li>
         
         <li><a href="/personal_homepage/tool/center-track/">调整视频追踪物体</a></li>
-        
-        <li><a href="/personal_homepage/hand_crafted/cat-tree/">自制猫爬架</a></li>
-        
-        <li><a href="/personal_homepage/algorithm/vision-distance/">摄像头测距</a></li>
         
     </ul>
     <!-- </div> -->
@@ -176,14 +176,20 @@
 
       <div class="page-content">
         <div class="e-content">
-          <table>
+          <h2 id="atlas">atlas</h2>
+
+<table>
   <thead>
     <tr>
-      <th>manifold</th>
-      <th>$U_\alpha$ homeomorphism to $\mathbb R^n$,</th>
+      <th>结构</th>
+      <th>条件</th>
     </tr>
   </thead>
   <tbody>
+    <tr>
+      <td>manifold</td>
+      <td>$U_\alpha$ homeomorphism to $\mathbb R^n$,</td>
+    </tr>
     <tr>
       <td>smooth manifold<br />(differential manifold)</td>
       <td>transition map $\phi_{\alpha\beta}\in C^\infty(\mathbb R^n)$ smooth</td>
@@ -194,6 +200,142 @@
     </tr>
   </tbody>
 </table>
+
+<ul>
+  <li>有T-juction的graph(比如“日” 字形的graph)是一个单纯复形, 但不是1-manifold</li>
+</ul>
+
+<h2 id="球面上的unit-tangent-bundle-manifoldutm参数化构造">球面上的unit tangent bundle manifold(<a href="https://en.wikipedia.org/wiki/Unit_tangent_bundle">UTM</a>)参数化构造</h2>
+
+<p>球面上的unit tangent bundle $UTM(\mathbb S^2)$ 是一个3流型: 在一块上是$\mathbb D^1\times \mathbb S^1$ solid torus, 两块沿torus的边界粘在一起.</p>
+
+<h3 id="球面的atlas表示">球面的atlas表示</h3>
+
+<p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020241024160430.png" alt="Pasted image 20241024160430.png" width="300" />   <img src="/personal_homepage/docs/attachment/Pasted%20image%2020241024160403.png" alt="Pasted image 20241024160403.png" width="250" /></p>
+
+<ul>
+  <li>球面的atlas表示: 把sphere $\mathbb S^2$ 分为上下两片, 用<a href="https://en.wikipedia.org/wiki/Stereographic_projection">球极投影</a>的方式映射到$\mathbb R^2\cong \mathbb C$ , 在$\mathbb R^3$ 中嵌入的坐标为$(x_1,x_2,x_3)$ , 其$x_1^2+x_2^2+x_3^2=1$
+    <ul>
+      <li>去掉North-pole的一片, $(x_1,x_2,x_3)$ 对应坐标为$z=x+iy=\frac{x_1+ix_2}{1-x_3}$ ,或表示为 $(x,y)=(\frac{x_1}{1-x_3},\frac{x_2}{1-x_3})$</li>
+      <li>去掉South-pole的一片, $(x_1,x_2,x_3)$ 对应坐标为$w=u+iv=\frac{x_1-ix_2}{1+x_3}$ ,或表示为 $(u,v)=(\frac{x_1}{1+x_3},\frac{-x_2}{1+x_3})$</li>
+      <li>两片之间的transition map: $\frac{1}{z}: w$
+        <ul>
+          <li>$\frac{1}{z}=\frac{1-x_3}{x_1+ix_2}=\frac{(x_1-ix_2)(1-x_3)}{1-x_3^2}=\frac{x_1-ix_2}{1+x_3}=w$</li>
+          <li>$u+iv=\frac{x-iy}{x^2+y^2}$</li>
+          <li>$(u,v)=(\frac{x}{x^2+y^2},\frac{-y}{x^2+y^2})$</li>
+        </ul>
+      </li>
+      <li>两片之间的Jacobian matrix: $w_z=-\frac{1}{z^2}$
+        <ul>
+          <li>$\begin{bmatrix}u_x &amp; u_y \\ v_x &amp; v_y\end{bmatrix}=\frac{1}{(x^2+y^2)^2}\begin{bmatrix}y^2-x^2 &amp; -2xy \\ 2xy &amp; y^2-x^2\end{bmatrix}$</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="unit-tangent-bundle">unit tangent bundle</h3>
+
+<ul class="task-list">
+  <li class="task-list-item">
+    <p><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />画图</p>
+  </li>
+  <li class="task-list-item">
+    <p>unit tangent bundle: 每个点处的fiber 是$\mathbb S^1$</p>
+    <ul>
+      <li>tangent vector的basis, $\partial_x=\frac{2}{(1+x^2+y^2)^2}(1-x^2+y^2,-2xy,2x)$ , $\partial_y=\frac{2}{(1+x^2+y^2)^2}(-2xy, 1+x^2-y^2,2y)$
+        <ul>
+          <li>$(x_1,x_2,x_3)=(\frac{2x}{1+x^2+y^2},\frac{2y}{1+x^2+y^2},\frac{-1+x^2+y^2}{1+x^2+y^2})$</li>
+          <li>另一片同理</li>
+        </ul>
+      </li>
+      <li>tangent vector有: $dw=w_zdz=-\frac{1}{z^2}dz$
+        <ul>
+          <li>用$dz$ 表示坐标为 $z$ 处的一个tangent vector</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="在赤道处粘在一起">在赤道处粘在一起</h3>
+
+<ul>
+  <li>在赤道处粘在一起: 沿两片粘合的边界($\mathbb S^1$) 的unit tangent bundle 是torus $T^2$ , 坐标记为$(\theta,\tau)$
+    <ul>
+      <li>球面两片: $z=e^{i\theta}\mapsto w=e^{-i\theta}$</li>
+      <li>unit tangent vector: $e^{i\tau}\mapsto e^{i(\pi-2\theta+\tau)}$</li>
+      <li>粘合的行为给出了torus的一个automophism $\phi$: $(\theta,\tau)\mapsto (-\theta, \pi-2\theta+\tau)$
+        <ul>
+          <li>在universal covering上表示如图:
+            <ul>
+              <li><img src="/personal_homepage/docs/attachment/Pasted%20image%2020241022080313.png" alt="Pasted image 20241022080313.png" width="400" /></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="utm沿fiber粘在一起">UTM沿fiber粘在一起</h3>
+
+<p>看成两个solid torus沿边界torus粘在一起</p>
+
+<ul>
+  <li>$\phi$ induce了一个$\pi_1(T^2)$ 的自同构 $\phi_{\texttt{#}}$: $a\mapsto a, b\mapsto a^{-2}b^{-1}$
+    <ul>
+      <li>$\pi_1(T^2)$ 的basis  $a: (0,s), s\in [ 0,1]$  , $b:(t,0), t\in [0,1]$
+        <ul>
+          <li>即 a 为$\theta=0$ 的fiber, b为$\tau=0$ 的section</li>
+        </ul>
+      </li>
+      <li>a 有, $(0,s)\mapsto (0, \pi+s)$ 映射为 a</li>
+      <li>b 有, $(t,0)\mapsto (-t,\pi-2t)$ 映射为$a^{-2}b^{-1}$</li>
+      <li>如图: <img src="/personal_homepage/docs/attachment/Pasted%20image%2020241021193648.png" alt="Pasted image 20241021193648.png" width="400" /> 左图solid torus是去掉North-pole的一块的UTM, 右图是去掉South-pole的一块的UTM</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="unit-tangent-bundleutmmathbb-s2的fundamental-group">unit tangent bundle($UTM(\mathbb S^2)$)的fundamental group</h3>
+
+<p>$\pi_1(UTM(\mathbb S^2))=\mathbb Z_2$</p>
+<ul>
+  <li>在$\mathbb S^2$ 的其中一片上, UTM为$\mathbb D^2\times \mathbb S^1$ , 是solid torus, 记 $\pi_1(M_1)=\langle a_1\rangle$, $\pi_1(M_2)=\langle a_2\rangle$
+    <ul>
+      <li>$a_1, a_2$ 分别为两片上fiber的生成元</li>
+    </ul>
+  </li>
+  <li>在粘合部分, UTM为$T^2$, $\pi_1(T^2)=\langle a,b\vert [a,b]\rangle$
+    <ul>
+      <li>其中, $i(a)=a_1, j(a)=a_2$</li>
+      <li>$i(b)=e$ , $j(b)=a_2^{-2}b^{-1}=a_2^{-2}$</li>
+    </ul>
+  </li>
+  <li>得到, $\pi_1(UTM(\mathbb S^2))=\langle a_1,a_2\vert a_1a_2^{-1}, a_2^{-2}\rangle=\mathbb Z_2$
+    <ul>
+      <li>$j(b)$ 在那块solid torus上$\nsim e$ , 构成拓扑障碍(obstruction)</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="utmmathbb-s2-和-so3-旋转群的关系">$UTM(\mathbb S^2)$ 和 $SO(3)$ 旋转群的关系</h2>
+
+<p>把旋转群 SO(3) 用轴角表示:  $(u,\theta)$  (转角$\theta$ 要求CCW, 即逆时针旋转)</p>
+<ul>
+  <li>转轴$u$ &lt;-&gt; 单位球面上一点</li>
+  <li>转角$\theta$ &lt;-&gt; 单位切丛的一个方向(fiber)</li>
+</ul>
+
+<p>$\pi_1(SO(3))=\mathbb Z_2$  中的非零元素称为<a href="https://en.wikipedia.org/wiki/Spinor">自旋结构(spinor)</a></p>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/j5soqexrwqY?si=DEB4zYwtzIFTbRK5" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen=""></iframe>
+<ul>
+  <li>在视频中有体现spinor的实验: 拖着水杯扭曲360度, 手臂扭曲, 2圈之后手臂可以恢复原位</li>
+</ul>
+
+<p>3-manifold quaternion(4元数) 是SO3的universal cover, $\pi_1$ 是trival的</p>
+
 
         </div>
 
@@ -233,6 +375,14 @@
     </a>
   
 
+  
+    <a class="page-next" href="/personal_homepage/algorithm/attention4/">
+      <h4 class="page-pagination-label">Next</h4>
+      <span class="page-pagination-title">
+        attention的优化– KV Cache
+ <i class="fas fa-arrow-right"></i>
+      </span>
+    </a>
   
 </nav>
 

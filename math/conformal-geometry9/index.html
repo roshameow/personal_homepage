@@ -31,7 +31,7 @@
 <meta property="twitter:title" content="conformal geometry学习 (九 ) – homology character" />
 <meta name="twitter:site" content="@" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-10-12T05:22:00+00:00","datePublished":"2024-08-18T00:00:00+00:00","description":"由基本群/同调群定义指标","headline":"conformal geometry学习 (九 ) – homology character","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/math/conformal-geometry9/"},"url":"https://roshameow.github.io//personal_homepage/math/conformal-geometry9/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-10-24T15:44:00+00:00","datePublished":"2024-08-18T00:00:00+00:00","description":"由基本群/同调群定义指标","headline":"conformal geometry学习 (九 ) – homology character","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/math/conformal-geometry9/"},"url":"https://roshameow.github.io//personal_homepage/math/conformal-geometry9/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -125,7 +125,7 @@
         
   <h3 class="page-taxonomies-title">Tags</h3>
   
-  <ul class="page-taxonomies"><li class="page-taxonomy"><a href="/personal_homepage/tags/#gauss-bonnet" title="Pages tagged Gauss_Bonnet" rel="tag">Gauss_Bonnet</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#lefschetz-number" title="Pages tagged Lefschetz_number" rel="tag">Lefschetz_number</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#content" title="Pages tagged content" rel="tag">content</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#degree-of-mapping" title="Pages tagged degree_of_mapping" rel="tag">degree_of_mapping</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#euler-character" title="Pages tagged euler_character" rel="tag">euler_character</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#fix-point" title="Pages tagged fix_point" rel="tag">fix_point</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#gaussian-map" title="Pages tagged gaussian_map" rel="tag">gaussian_map</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#homology" title="Pages tagged homology" rel="tag">homology</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#index" title="Pages tagged index" rel="tag">index</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#tangent-vector-field" title="Pages tagged tangent_vector_field" rel="tag">tangent_vector_field</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#zero-point" title="Pages tagged zero_point" rel="tag">zero_point</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#%E4%B8%8D%E5%8A%A8%E7%82%B9%E5%AE%9A%E7%90%86" title="Pages tagged 不动点定理" rel="tag">不动点定理</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#%E5%8F%91%E6%97%8B%E5%AE%9A%E7%90%86" title="Pages tagged 发旋定理" rel="tag">发旋定理</a></li>
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a href="/personal_homepage/tags/#gauss-bonnet" title="Pages tagged Gauss_Bonnet" rel="tag">Gauss_Bonnet</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#lefschetz-number" title="Pages tagged Lefschetz_number" rel="tag">Lefschetz_number</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#characteristic-class" title="Pages tagged characteristic_class" rel="tag">characteristic_class</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#content" title="Pages tagged content" rel="tag">content</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#degree-of-mapping" title="Pages tagged degree_of_mapping" rel="tag">degree_of_mapping</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#euler-character" title="Pages tagged euler_character" rel="tag">euler_character</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#fix-point" title="Pages tagged fix_point" rel="tag">fix_point</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#gaussian-map" title="Pages tagged gaussian_map" rel="tag">gaussian_map</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#homology" title="Pages tagged homology" rel="tag">homology</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#index" title="Pages tagged index" rel="tag">index</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#obstruction" title="Pages tagged obstruction" rel="tag">obstruction</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#tangent-vector-field" title="Pages tagged tangent_vector_field" rel="tag">tangent_vector_field</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#zero-point" title="Pages tagged zero_point" rel="tag">zero_point</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#%E4%B8%8D%E5%8A%A8%E7%82%B9%E5%AE%9A%E7%90%86" title="Pages tagged 不动点定理" rel="tag">不动点定理</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#%E5%8F%91%E6%97%8B%E5%AE%9A%E7%90%86" title="Pages tagged 发旋定理" rel="tag">发旋定理</a></li>
   </ul>
 
 
@@ -139,7 +139,7 @@
 {:toc} -->
   <!-- <div id="markdown-toc"> -->
 
-    <ul class="inline_toc" id="my_toc"><li><a href="#由基本群同调群定义指标">由基本群/同调群定义指标</a></li><li><a href="#closed-surface映射的degree">closed surface映射的degree</a></li><li><a href="#拓扑空间的自映射和同调特征">拓扑空间的自映射和同调特征</a></li><li><a href="#曲面的切向量场和曲面形态">曲面的切向量场和曲面形态</a><ul><li><a href="#tangent-vector">tangent vector</a></li><li><a href="#poincaré-hopf-theorem发旋定理-用euler-characteristic分析切向量场零点">Poincaré-Hopf Theorem(发旋定理): 用Euler Characteristic分析切向量场零点</a></li></ul></li></ul>
+    <ul class="inline_toc" id="my_toc"><li><a href="#由基本群同调群定义指标">由基本群/同调群定义指标</a></li><li><a href="#closed-surface映射的degree">closed surface映射的degree</a></li><li><a href="#拓扑空间的自映射和同调特征">拓扑空间的自映射和同调特征</a></li><li><a href="#曲面的切向量场和曲面形态">曲面的切向量场和曲面形态</a><ul><li><a href="#tangent-vector">tangent vector</a></li><li><a href="#poincaré-hopf-theorem发旋定理-用euler-characteristic分析切向量场零点">Poincaré-Hopf Theorem(发旋定理): 用Euler Characteristic分析切向量场零点</a></li></ul></li><li><a href="#曲面单位切向量丛的拓扑障碍obstruction">曲面单位切向量丛的拓扑障碍(obstruction)</a><ul><li><a href="#-同调表示fiber-bundle的示性类">. 同调表示fiber bundle的示性类</a></li></ul></li></ul>
   <!-- </div> -->
 
 </div>
@@ -153,15 +153,15 @@
     <!-- <div id="markdown-toc"> -->
     <ul>
         
-        <li><a href="/personal_homepage/math/conformal-geometry10/">conformal geometry学习 (十 ) -- atlas</a></li>
+        <li><a href="/personal_homepage/affair/driving-test/">驾照考试</a></li>
+        
+        <li><a href="/personal_homepage/algorithm/attention4/">attention的优化-- KV Cache</a></li>
+        
+        <li><a href="/personal_homepage/math/conformal-geometry10/">conformal geometry学习 (十 ) -- 举例: 球面上的unit tangent bundle manifold</a></li>
         
         <li><a href="/personal_homepage/bond/">债券的原理</a></li>
         
         <li><a href="/personal_homepage/tool/raycast-script/">raycast脚本</a></li>
-        
-        <li><a href="/personal_homepage/tool/center-track/">调整视频追踪物体</a></li>
-        
-        <li><a href="/personal_homepage/hand_crafted/cat-tree/">自制猫爬架</a></li>
         
     </ul>
     <!-- </div> -->
@@ -212,14 +212,15 @@
 <ul>
   <li>全局指标
     <ul>
-      <li>Euler Character $\chi(S)=\vert V\vert+\vert F\vert -\vert E\vert$
+      <li><a href="https://en.wikipedia.org/wiki/Euler_characteristic">Euler characteristic</a> $\chi(S)=\vert V\vert+\vert F\vert -\vert E\vert$
         <ul>
           <li>只和曲面本身有关</li>
         </ul>
       </li>
       <li>Lefschetz number $\Lambda(f)=\sum_k(-1)^k tr(f_{\ast k}\vert H_k(M,\mathbb Z))$  自同构在所有 不同层-form 上trace的sum
         <ul>
-          <li>不仅和曲面, 和自同构也有关. 自同构取identity的时候就是Euler Character.</li>
+          <li>不仅和曲面, 和自同构也有关.</li>
+          <li>自同构取identity的时候就是Euler Character. 是Euler Character的另一种定义方式. $\chi(M)=\sum_{k=0}^n (-1)^i rk(H_k(M,\mathbb Z))=\sum_{i=0}^n (-1)^kb_k$</li>
         </ul>
       </li>
     </ul>
@@ -274,7 +275,7 @@
                 <ul>
                   <li>$C_k=C_k/Z_k \oplus Z_k$ (分解出closed部分)</li>
                   <li>$Z_k=B_k \oplus H_k$ (homology定义, 分解出boundary部分)</li>
-                  <li>$\partial_k: C_k/Z_k\rightarrow B_{k-1}$ 是isomorphic的 (由closed和boundary定义)
+                  <li>$\partial_k: C_k/Z_k\rightarrow B_{k-1}$ 是isomorphic的 (由closed和boundary的定义)
                     <ul>
                       <li>由交换图<img src="/personal_homepage/docs/attachment/Pasted%20image%2020241010202933.png" alt="Pasted image 20241010202933.png" width="250" /> , 得到相似变换, $\partial_k \circ f_k \circ \partial_k^{-1}=f_{k-1}$</li>
                     </ul>
@@ -420,15 +421,85 @@
           <li><a href="https://en.wikipedia.org/wiki/Hairy_ball_theorem">发球定理</a></li>
         </ul>
       </li>
-      <li>对于曲面上的tangent bundle
+      <li>对于曲面上的unit tangent bundle
         <ul>
-          <li>全局的section不存在</li>
+          <li>全局的section不存在(存在obstruction, 拓扑障碍)</li>
         </ul>
       </li>
     </ul>
   </li>
 </ul>
 
+<h2 id="曲面单位切向量丛的拓扑障碍obstruction">曲面单位切向量丛的拓扑障碍(obstruction)</h2>
+
+<p>用现代观点来看,</p>
+<ul>
+  <li>证明1中的2-form即为unit tangent bundle的<strong>characteristic class</strong>(示性类)
+    <ul>
+      <li>由zero index的定义</li>
+    </ul>
+  </li>
+  <li>0点即为UTM(unit tangent bundle)的拓扑障碍</li>
+  <li>全局光滑切矢量场即为UTM的global section
+    <ul>
+      <li>global section: 3流型中的封闭曲面, 和每个fiber只有一个交点</li>
+    </ul>
+  </li>
+  <li><strong>characteristic class(示性类)在曲面上积分等于 <a href="https://en.wikipedia.org/wiki/Euler_characteristic">Euler characteristic</a></strong> : $\int_M [\Omega]=\chi(M)$</li>
+</ul>
+
+<h3 id="-同调表示fiber-bundle的示性类">. 同调表示fiber bundle的<a href="https://en.wikipedia.org/wiki/Characteristic_class">示性类</a></h3>
+
+<p>只考虑UTM(unit tangent bundle) 这个fiber bundle</p>
+
+<ul>
+  <li>构造2-manifold(曲面) $M$ 上的三角剖分$T$ , 使fiber bundle $F(M)$ 在每个三角形$\Delta$ 上是trival的($F(\Delta)=\Delta\times F$ )
+    <ul>
+      <li>$F(M)$ 的section $\phi: M\rightarrow F(M)$</li>
+      <li>fiber是$\mathbb S^1$ , $F(\Delta)$ 是个solid torus, $\pi_1(F(\Delta))=\mathbb Z$</li>
+    </ul>
+  </li>
+  <li><strong>每个section可以定义一个2-form $\Omega$</strong>: $\Omega(\Delta)=[\phi(\partial \Delta)]$
+    <ul>
+      <li>section $[\phi(\partial \Delta)]$ 是在$F(\Delta)$ 上的一个loop, 即$\pi_1(F(\Delta))=\mathbb Z$ 中的元素, 是一个整数</li>
+      <li><img src="/personal_homepage/docs/attachment/Pasted%20image%2020241024143641.png" alt="Pasted image 20241024143641.png" width="200" />  <img src="/personal_homepage/docs/attachment/Pasted%20image%2020241024133352.png" alt="Pasted image 20241024133352.png" width="150" />  如图, 红绿蓝为顶点处的fiber, 黑色section $\phi(\partial \Delta)\sim e$  对应tangent vector指向同一方向</li>
+      <li><img src="/personal_homepage/docs/attachment/Pasted%20image%2020241024143941.png" alt="Pasted image 20241024143941.png" width="200" />  <img src="/personal_homepage/docs/attachment/Pasted%20image%2020241024143512.png" alt="Pasted image 20241024143512.png" width="180" />  如图, 黑色section在$F(\Delta)$ 不能缩成一个点, 中间存在tangent vector的零点(即拓扑障碍)
+        <ul>
+          <li>2-form $\Omega$ 的值为$\Delta$ 中一点$p$ 的zero index.</li>
+          <li>也可以说黑色section不是exact的, 为$H_1(\Delta)$ 的非零元素</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><strong>不同的section对应同一个上同调类</strong> $[\Omega]\in H^2(M,\mathbb R)$ : (lemma)
+    <ul>
+      <li>对于其他的section $\bar\phi$ , 和定义的2-form $\bar\Omega$, <strong>有1-form h, 使得$\Omega-\bar \Omega=\delta h$</strong></li>
+      <li>定义h:
+        <ul>
+          <li><img src="/personal_homepage/docs/attachment/Pasted%20image%2020241018223827.png" alt="Pasted image 20241018223827.png" width="400" /> 如图所示 h 链接前后两个三角形$\partial \Omega$ 和$\partial \bar \Omega$</li>
+          <li>在$\Delta$  的边 a 上, 定义$h=[l_a]=[p_i\phi(a)p_j^{-1}\bar \phi(a)^{-1}]$
+            <ul>
+              <li>其中a 的顶点是 $\sigma_i^0$ 和$\sigma_j^0$</li>
+              <li>其中$p_i$ 是$\sigma_i^0$ 的fiber上$\bar\phi$ 的像到$\phi$ 的像的path, $p_j$ 是$\sigma_j^0$ 的fiber上$\phi$ 的像到$\bar\phi$ 的像的path</li>
+              <li>$l_a$ 是$p_i\phi(a)p_j^{-1}\bar \phi(a)^{-1}$ 构成的loop,  $[l_a]$ 也是$\pi_1(F(\partial\Delta))=\mathbb Z$ 中的元素</li>
+            </ul>
+          </li>
+          <li>其他两边b, c也类似定义</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>示性类$[\Omega]$
+    <ul>
+      <li>示性类$[\Omega]$ 不依赖local section的选取, 反应曲面的整体性质</li>
+      <li>示性类$[\Omega]$ 不是0  -&gt;  $F(M)$ 没有global section
+        <ul>
+          <li>因为global section可以得到trival的示性类</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
 
         </div>
 

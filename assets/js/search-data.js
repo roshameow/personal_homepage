@@ -326,7 +326,7 @@ var store = [{
       },{
         "title": "conformal geometry学习 (八 ) -- Persistent homology",
         "excerpt":"一种计算 $H_k(\\Sigma,\\mathbb Z_2)$ 的方法, 计算filtration $\\mathbb K$ 中homology的变化 Persistent Homology $H_k^{l,p}=H_k(\\mathbb K_{l+p},\\mathbb Z_2)=\\frac{Z^l_k}{B_{k}^{l+p}\\cap Z^l_k}$ k-th homology: 和$\\mathbb K$ 中 (k-1)-simplex, k-simplex, (k+1)-simplex部分有关 $\\mathbb K$ 中到第l 个simplex cycle和到第(l+p) 个 simplex的image 一般到第l 个是 k-simplex, l 到 (l+p) 个是(k+1)-simplex filtration定义 filtration: $\\emptyset=\\mathbb K_{-1}\\subset \\mathbb K_0\\subset \\mathbb K_1\\subset\\cdots\\subset \\mathbb K_n=\\mathbb K$ 是simplicial complex的序列 每个$\\mathbb...","categories": ["math","algorithm"],
-        "tags": ["content"],
+        "tags": ["content","persistent_homology","filtration","Cech_complex"],
         "url": "https://roshameow.github.io//personal_homepage/math/algorithm/conformal-geometry8/"
       },{
         "title": "persistent homology 事例 + 应用",
@@ -346,11 +346,11 @@ var store = [{
       },{
         "title": "conformal geometry学习 (九 ) -- homology character",
         "excerpt":"由基本群/同调群定义指标 映射的层数 space map induced homology group都是 $\\mathbb Z\\rightarrow \\mathbb Z$ 的形式 degree of mapping$deg(f)$ closed surface 连续映射$f:M\\rightarrow N$ $f_\\ast: H_2(M,\\mathbb Z)\\rightarrow H_2(N,\\mathbb Z)$映射的像的覆盖层数 index of fixed point$Ind(f,p)$代数指标 n-dim topological space 连续自映射$f: M\\rightarrow M$从点p到像$f(x)$ 的射线和$\\partial U$ 的交点给出 $f:\\partial U\\rightarrow \\partial U$ $f_\\ast: H_{n-1}(\\partial U,\\mathbb Z)\\rightarrow H_{n-1}(\\partial U,\\mathbb Z)$映射的像的覆盖层数曲面的情况下, $H_1(\\partial U,\\mathbb...","categories": ["math"],
-        "tags": ["content","euler_character","fix_point","zero_point","index","degree_of_mapping","Lefschetz_number","tangent_vector_field","homology","发旋定理","不动点定理","Gauss_Bonnet","gaussian_map"],
+        "tags": ["content","euler_character","fix_point","zero_point","index","degree_of_mapping","Lefschetz_number","tangent_vector_field","homology","发旋定理","不动点定理","Gauss_Bonnet","gaussian_map","characteristic_class","obstruction"],
         "url": "https://roshameow.github.io//personal_homepage/math/conformal-geometry9/"
       },{
         "title": "搬家相关准备",
-        "excerpt":"行李 持续了一周时间, 在打包好时我长舒了一口气, 感受到了难得的宁静 猫的托运 目前只有海南航空可以, 不过没有到家直飞的航班只能选南航有氧舱, 小程序买票准备检疫合格证明 电脑 显卡拆下分装. 不过为什么显卡的卡扣要和硬盘放在一起? 大件 微波炉 + 100, 空气炸锅 猫跑轮 + 100, 猫爬架, 散步车 零散物件 各式调料, 香料, 米 +52 面油粉丝, 锅x4: 平底锅 + 20, 电煮锅+普通锅 + 30, 电饭锅 - 盆: 不锈钢盆+沥水盆 + 20 猫窝: 麻绳, 草编, 木头, 纸板, 布 猫罐头x3: +10 硅胶老化 工具...","categories": ["affair"],
+        "excerpt":"行李 持续了一周时间, 在打包好时我长舒了一口气, 感受到了难得的宁静 猫的托运 目前只有海南航空可以, 不过没有到家直飞的航班 只能选南航有氧舱, 小程序买票 买票之后还是要打客服电话确认 准备检疫合格证明出门 提前约车是没有用的, 司机会随时取消预约, 平台没什么惩罚措施 凌晨2: 30 上海还能直接打到车, 路上也有车 航站楼, 登机口C/H电脑 显卡拆下分装. 不过为什么显卡的卡扣要和硬盘放在一起? 大件 微波炉 + 100, 空气炸锅 猫跑轮 + 100, 猫爬架, 散步车 零散物件 各式调料, 香料, 米 +52 面油粉丝, 锅x4: 平底锅 + 20, 电煮锅+普通锅 + 30, 电饭锅 - 盆: 不锈钢盆+沥水盆 +...","categories": ["affair"],
         "tags": ["content"],
         "url": "https://roshameow.github.io//personal_homepage/affair/cat-airline/"
       },{
@@ -394,8 +394,18 @@ var store = [{
         "tags": ["content"],
         "url": "https://roshameow.github.io//personal_homepage/bond/"
       },{
-        "title": "conformal geometry学习 (十 ) -- atlas",
-        "excerpt":"            manifold      $U_\\alpha$ homeomorphism to $\\mathbb R^n$,                  smooth manifold(differential manifold)      transition map $\\phi_{\\alpha\\beta}\\in C^\\infty(\\mathbb R^n)$ smooth              Riemann surface      每片是 2-dimtransition map 是biholomorphic(conformal)atlas $\\lbrace(U_\\alpha,z_\\alpha)\\rbrace$ 叫conformal structure      ","categories": ["math"],
+        "title": "conformal geometry学习 (十 ) -- 举例: 球面上的unit tangent bundle manifold",
+        "excerpt":"atlas 结构 条件 manifold $U_\\alpha$ homeomorphism to $\\mathbb R^n$, smooth manifold(differential manifold) transition map $\\phi_{\\alpha\\beta}\\in C^\\infty(\\mathbb R^n)$ smooth Riemann surface 每片是 2-dimtransition map 是biholomorphic(conformal)atlas $\\lbrace(U_\\alpha,z_\\alpha)\\rbrace$ 叫conformal structure 有T-juction的graph(比如“日” 字形的graph)是一个单纯复形, 但不是1-manifold球面上的unit tangent bundle manifold(UTM)参数化构造 球面上的unit tangent bundle $UTM(\\mathbb S^2)$ 是一个3流型: 在一块上是$\\mathbb D^1\\times \\mathbb S^1$ solid torus, 两块沿torus的边界粘在一起. 球面的atlas表示 球面的atlas表示: 把sphere $\\mathbb...","categories": ["math"],
         "tags": ["content"],
         "url": "https://roshameow.github.io//personal_homepage/math/conformal-geometry10/"
+      },{
+        "title": "attention的优化-- KV Cache",
+        "excerpt":"","categories": ["algorithm"],
+        "tags": ["content","attention"],
+        "url": "https://roshameow.github.io//personal_homepage/algorithm/attention4/"
+      },{
+        "title": "驾照考试",
+        "excerpt":"考试范围   常识: 车辆使用 + 交通信号  法律:          道路交通安全法      道路交通安全法实施条例      道路交通安全违法行为记分管理办法      道路交通事故处理程序      机动车驾驶证申领和使用规定      机动车登记规定      刑法 中和“交通”有关的条目                  刑法修正案9 133条: 符合危险驾驶罪的情况+处罚          最高人民法院关于审理交通肇事刑事案件具体应用法律若干问题的解释 : 符合交通肇事罪的情况+处罚                    工具   交管12123: 报名考试  驾校一点通 : 刷题, 模拟考试  驾考宝典: 可以按类型刷题生平第一次这么科学的复习考试😮‍💨, (第一天)刷题记笔记, 看了3个小时的考点讲解视频, (第二天)背知识点, 重刷错题, 模拟考试 ","categories": ["affair"],
+        "tags": ["content"],
+        "url": "https://roshameow.github.io//personal_homepage/affair/driving-test/"
       }]

@@ -31,7 +31,7 @@
 <meta property="twitter:title" content="用 jekyll+obsidian生成个人主页并部署到 github pages的工作流" />
 <meta name="twitter:site" content="@" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-09-03T23:07:00+00:00","datePublished":"2023-12-20T00:00:00+00:00","description":"用jekyll的原因无需多说。这样配置好工作流之后，除了编写内容基本没有什么麻烦的操作(登录在线网页，换编辑器，按照统一格式改文件名之类在我看来都很麻烦。。)。 Ruby的环境管理，包管理方式","headline":"用 jekyll+obsidian生成个人主页并部署到 github pages的工作流","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/webpage/jekyll-blog-deploy/"},"url":"https://roshameow.github.io//personal_homepage/webpage/jekyll-blog-deploy/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-10-23T07:52:00+00:00","datePublished":"2023-12-20T00:00:00+00:00","description":"用jekyll的原因无需多说。这样配置好工作流之后，除了编写内容基本没有什么麻烦的操作(登录在线网页，换编辑器，按照统一格式改文件名之类在我看来都很麻烦。。)。 Ruby的环境管理，包管理方式","headline":"用 jekyll+obsidian生成个人主页并部署到 github pages的工作流","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/webpage/jekyll-blog-deploy/"},"url":"https://roshameow.github.io//personal_homepage/webpage/jekyll-blog-deploy/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -153,15 +153,15 @@
     <!-- <div id="markdown-toc"> -->
     <ul>
         
-        <li><a href="/personal_homepage/math/conformal-geometry10/">conformal geometry学习 (十 ) -- atlas</a></li>
+        <li><a href="/personal_homepage/affair/driving-test/">驾照考试</a></li>
+        
+        <li><a href="/personal_homepage/algorithm/attention4/">attention的优化-- KV Cache</a></li>
+        
+        <li><a href="/personal_homepage/math/conformal-geometry10/">conformal geometry学习 (十 ) -- 举例: 球面上的unit tangent bundle manifold</a></li>
         
         <li><a href="/personal_homepage/bond/">债券的原理</a></li>
         
         <li><a href="/personal_homepage/tool/raycast-script/">raycast脚本</a></li>
-        
-        <li><a href="/personal_homepage/tool/center-track/">调整视频追踪物体</a></li>
-        
-        <li><a href="/personal_homepage/hand_crafted/cat-tree/">自制猫爬架</a></li>
         
     </ul>
     <!-- </div> -->
@@ -343,9 +343,15 @@
           <li>mathjax的公式里的竖线和markdown的table的竖线冲突, 而且table的优先级更高: 把竖线用<code class="language-plaintext highlighter-rouge">\vert</code>的方式写</li>
           <li>matrix在mathjax中换行需要<code class="language-plaintext highlighter-rouge">\\\</code></li>
           <li>mathjax里面不能直接用<code class="language-plaintext highlighter-rouge">#</code>符号, 需要用<code class="language-plaintext highlighter-rouge">\texttt{\#}</code></li>
-          <li>mathjax里面用<code class="language-plaintext highlighter-rouge">\{</code>不会显示括号, 需要改用<code class="language-plaintext highlighter-rouge">\lbrace</code> 或<code class="language-plaintext highlighter-rouge">\rbrace</code>  </li>
+          <li>mathjax里面不会显示括号,
+            <ul>
+              <li><code class="language-plaintext highlighter-rouge">\{</code>, 需要改用<code class="language-plaintext highlighter-rouge">\lbrace</code> 或<code class="language-plaintext highlighter-rouge">\rbrace</code>  </li>
+              <li><code class="language-plaintext highlighter-rouge">&lt; &gt;</code>, 需要改用<code class="language-plaintext highlighter-rouge">\langle</code>, <code class="language-plaintext highlighter-rouge">\rangle</code></li>
+            </ul>
+          </li>
         </ul>
       </li>
+      <li>mathjax渲染是需要联网的</li>
     </ul>
   </li>
   <li><strong>配置google analysis:</strong>
