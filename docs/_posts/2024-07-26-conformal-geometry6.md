@@ -5,7 +5,7 @@ categories:
   - math
 tags:
   - content
-last_modified_at: 2024-10-10T12:32
+last_modified_at: 2024-10-24T21:53
 created: 2024-07-26T12:34
 ---
 上同调是同调的对偶
@@ -18,8 +18,8 @@ created: 2024-07-26T12:34
 | adjoint boundary<br>operator<br>$\partial_{k+1}^\ast:C_{k}\rightarrow C_{k+1}$             |                                                                                                                                                                  |                                                                                                                           |                                         | codifferential operator<br>$\delta^{k}:\Omega^{k+1}(M)\rightarrow \Omega^{k}(M)$<br>$\delta=(-1)^{kn+n+1}\ ^\ast d^\ast$                                |                                                                                                               |
 | Laplace Operator<br>$\Delta_k=\partial_k^\ast\partial_k+\partial_{k+1}\partial_{k+1}^\ast$ |                                                                                                                                                                  | symmetric<br>$<\Delta \omega,\sigma>=<\omega,\Delta \sigma>$<br>non-negative<br>$<\Delta \omega,\omega>\ge 0$             |                                         | $\Delta=d\delta+\delta d$                                                                                                                               |                                                                                                               |
 | **Hodge** **Decomposition**                                                                |                                                                                                                                                                  |                                                                                                                           |                                         |                                                                                                                                                         |                                                                                                               |
-|                                                                                            | closed form $\delta_k\omega=0$                                                                                                                                   |                                                                                                                           |                                         | closed form $d^k\omega=0$                                                                                                                               |                                                                                                               |
-|                                                                                            | exact form $\omega=\delta_{k-1}\sigma$                                                                                                                           |                                                                                                                           |                                         | exact form $\omega=d^{k-1}\sigma$                                                                                                                       |                                                                                                               |
+|                                                                                            | closed form $\delta_k\omega=0$                                                                                                                                   |                                                                                                                           |                                         | closed form $d^k\omega=0$<br>curl free                                                                                                                  |                                                                                                               |
+|                                                                                            | exact form $\omega=\delta_{k-1}\sigma$                                                                                                                           |                                                                                                                           |                                         | exact form $\omega=d^{k-1}\sigma$<br>gradient                                                                                                           |                                                                                                               |
 |                                                                                            | harmonic form                                                                                                                                                    |                                                                                                                           |                                         | harmonic form $\Delta \omega=0$                                                                                                                         |                                                                                                               |
 |                                                                                            |                                                                                                                                                                  |                                                                                                                           |                                         | $\Omega^k=\text{img} d^{k-1}\oplus \text{img} \delta^{k+1}\oplus \mathcal H^k_\Delta$<br><br>[Hodge theory](https://en.wikipedia.org/wiki/Hodge_theory) |                                                                                                               |
 | **同调**                                                                                     |                                                                                                                                                                  |                                                                                                                           |                                         |                                                                                                                                                         |                                                                                                               |
@@ -49,14 +49,16 @@ created: 2024-07-26T12:34
 
 ### 带边界的例子
 
-![Pasted image 20240907093602.png]({{ '/docs/attachment/Pasted image 20240907093602.png' | relative_url }}){:width="150"} 中间红色为$\gamma^+$, 蓝色为$\gamma^-$ 
+1. ![Pasted image 20240907093602.png]({{ '/docs/attachment/Pasted image 20240907093602.png' | relative_url }}){:width="150"} 中间红色为$\gamma^+$, 蓝色为$\gamma^-$ 
+	- annulus $M$
+	- $H_1(M,\mathbb Z)$ 有一个generator $\gamma$ , 如图中间loop
+	- 定义$\omega$ 如图:
+		- 在$\gamma$ 上取1, $\gamma^{-1}$ 上取-1
+		- 其余edge上按此定义, 使$d\omega=0$ (沿每个面(2-chain)路径和为0 ( $\omega\in\text{ker}\delta^1$ ))
+		- $\int_\gamma \omega = 18$  -> $\omega$ 不是exact ($\omega$ 没法表示成0-form 的image, 一圈之后会不compatible )
+	- $\omega$ 是$H^1(M,\mathbb R)$ 的generator
+2. ![Uniform_curl.svg]({{ '/docs/attachment/Uniform_curl.svg' | relative_url }}){:width="200"} 如图, $\mathbb C\backslash \lbrace 0\rbrace$ 上的向量场 $\mathbf v(x,y)=(\frac{-y}{x^2+y^2},\frac{x}{x^2+y^2})$ 
+	- $\oint \omega=\oint d\theta=\oint dtan^{-1}\frac{y}{x}=2\pi$ 不是exact ($\mathbf v$ 不是gradient, )
 
-- annulus $M$
-- $H_1(M,\mathbb Z)$ 有一个generator $\gamma$ , 如图中间loop
-- 定义$\omega$ 如图:
-	- 在$\gamma$ 上取1, $\gamma^{-1}$ 上取-1
-	- 其余edge上按此定义, 使$d\omega=0$ (沿每个面(2-chain)路径和为0 ( $\omega\in\text{ker}\delta^1$ ))
-	- $\int_\gamma \omega = 18$  -> $\omega$ 不是exact ($\omega$ 没法表示成0-form 的image, 一圈之后会不compatible )
-- $\omega$ 是$H^1(M,\mathbb R)$ 的generator
 
 

@@ -5,7 +5,12 @@ categories:
   - math
 tags:
   - content
-last_modified_at: 2024-10-24T16:12
+  - utm
+  - atlas
+  - manifold
+  - 3d_rotation
+  - fundamental_group
+last_modified_at: 2024-10-24T18:02
 created: 2024-10-09T09:51
 ---
 ## atlas
@@ -27,7 +32,7 @@ created: 2024-10-09T09:51
 
 ![Pasted image 20241024160430.png]({{ '/docs/attachment/Pasted image 20241024160430.png' | relative_url }}){:width="300"}   ![Pasted image 20241024160403.png]({{ '/docs/attachment/Pasted image 20241024160403.png' | relative_url }}){:width="250"} 
 
-- 球面的atlas表示: 把sphere $\mathbb S^2$ 分为上下两片, 用[球极投影](https://en.wikipedia.org/wiki/Stereographic_projection)的方式映射到$\mathbb R^2\cong \mathbb C$ , 在$\mathbb R^3$ 中嵌入的坐标为$(x_1,x_2,x_3)$ , 其$x_1^2+x_2^2+x_3^2=1$  
+- 球面的atlas表示: 把sphere $\mathbb S^2$ 分为上下两片, 用[球极投影(Stereo-graphic projection)](https://en.wikipedia.org/wiki/Stereographic_projection)的方式映射到$\mathbb R^2\cong \mathbb C$ , 在$\mathbb R^3$ 中嵌入的坐标为$(x_1,x_2,x_3)$ , 其$x_1^2+x_2^2+x_3^2=1$  
 	- 去掉North-pole的一片, $(x_1,x_2,x_3)$ 对应坐标为$z=x+iy=\frac{x_1+ix_2}{1-x_3}$ ,或表示为 $(x,y)=(\frac{x_1}{1-x_3},\frac{x_2}{1-x_3})$ 
 	- 去掉South-pole的一片, $(x_1,x_2,x_3)$ 对应坐标为$w=u+iv=\frac{x_1-ix_2}{1+x_3}$ ,或表示为 $(u,v)=(\frac{x_1}{1+x_3},\frac{-x_2}{1+x_3})$ 
 	- 两片之间的transition map: $\frac{1}{z}: w$ 
@@ -85,11 +90,12 @@ $\pi_1(UTM(\mathbb S^2))=\mathbb Z_2$
 
 把旋转群 SO(3) 用轴角表示:  $(u,\theta)$  (转角$\theta$ 要求CCW, 即逆时针旋转)
 - 转轴$u$ <-> 单位球面上一点
-- 转角$\theta$ <-> 单位切丛的一个方向(fiber)
+- 转角$\theta$ <-> 单位切丛的一个方向
 
 $\pi_1(SO(3))=\mathbb Z_2$  中的非零元素称为[自旋结构(spinor)](https://en.wikipedia.org/wiki/Spinor)  
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/j5soqexrwqY?si=DEB4zYwtzIFTbRK5" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
 - 在视频中有体现spinor的实验: 拖着水杯扭曲360度, 手臂扭曲, 2圈之后手臂可以恢复原位
 
 3-manifold quaternion(4元数) 是SO3的universal cover, $\pi_1$ 是trival的

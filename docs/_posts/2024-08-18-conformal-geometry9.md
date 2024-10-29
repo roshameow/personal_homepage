@@ -19,7 +19,9 @@ tags:
   - gaussian_map
   - characteristic_class
   - obstruction
-last_modified_at: 2024-10-24T15:44
+  - utm
+  - fiber_bundle
+last_modified_at: 2024-10-24T16:35
 created: 2024-08-18T09:39
 ---
 
@@ -174,3 +176,7 @@ created: 2024-08-18T09:39
 	- 示性类$[\Omega]$ 不依赖local section的选取, 反应曲面的整体性质
 	- 示性类$[\Omega]$ 不是0  ->  $F(M)$ 没有global section
 		- 因为global section可以得到trival的示性类
+
+## 代码
+
+- blender画图: [**utm.py**](https://gist.github.com/roshameow/866e6c28554ce11a68bc2638e565add8#file-utm-py) 
