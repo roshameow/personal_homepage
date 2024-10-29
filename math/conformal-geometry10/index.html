@@ -31,7 +31,7 @@
 <meta property="twitter:title" content="conformal geometry学习 (十 ) – 举例: 球面上的unit tangent bundle manifold" />
 <meta name="twitter:site" content="@" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-10-24T16:12:00+00:00","datePublished":"2024-10-09T00:00:00+00:00","description":"atlas","headline":"conformal geometry学习 (十 ) – 举例: 球面上的unit tangent bundle manifold","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/math/conformal-geometry10/"},"url":"https://roshameow.github.io//personal_homepage/math/conformal-geometry10/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-10-24T18:02:00+00:00","datePublished":"2024-10-09T00:00:00+00:00","description":"atlas","headline":"conformal geometry学习 (十 ) – 举例: 球面上的unit tangent bundle manifold","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/math/conformal-geometry10/"},"url":"https://roshameow.github.io//personal_homepage/math/conformal-geometry10/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -125,7 +125,7 @@
         
   <h3 class="page-taxonomies-title">Tags</h3>
   
-  <ul class="page-taxonomies"><li class="page-taxonomy"><a href="/personal_homepage/tags/#content" title="Pages tagged content" rel="tag">content</a></li>
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a href="/personal_homepage/tags/#3d-rotation" title="Pages tagged 3d_rotation" rel="tag">3d_rotation</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#atlas" title="Pages tagged atlas" rel="tag">atlas</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#content" title="Pages tagged content" rel="tag">content</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#fundamental-group" title="Pages tagged fundamental_group" rel="tag">fundamental_group</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#manifold" title="Pages tagged manifold" rel="tag">manifold</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#utm" title="Pages tagged utm" rel="tag">utm</a></li>
   </ul>
 
 
@@ -153,6 +153,8 @@
     <!-- <div id="markdown-toc"> -->
     <ul>
         
+        <li><a href="/personal_homepage/pet/helicobacter/">猫幽门螺杆菌调查</a></li>
+        
         <li><a href="/personal_homepage/affair/driving-test/">驾照考试</a></li>
         
         <li><a href="/personal_homepage/algorithm/attention4/">attention的优化-- KV Cache</a></li>
@@ -160,8 +162,6 @@
         <li><a href="/personal_homepage/bond/">债券的原理</a></li>
         
         <li><a href="/personal_homepage/tool/raycast-script/">raycast脚本</a></li>
-        
-        <li><a href="/personal_homepage/tool/center-track/">调整视频追踪物体</a></li>
         
     </ul>
     <!-- </div> -->
@@ -214,7 +214,7 @@
 <p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020241024160430.png" alt="Pasted image 20241024160430.png" width="300" />   <img src="/personal_homepage/docs/attachment/Pasted%20image%2020241024160403.png" alt="Pasted image 20241024160403.png" width="250" /></p>
 
 <ul>
-  <li>球面的atlas表示: 把sphere $\mathbb S^2$ 分为上下两片, 用<a href="https://en.wikipedia.org/wiki/Stereographic_projection">球极投影</a>的方式映射到$\mathbb R^2\cong \mathbb C$ , 在$\mathbb R^3$ 中嵌入的坐标为$(x_1,x_2,x_3)$ , 其$x_1^2+x_2^2+x_3^2=1$
+  <li>球面的atlas表示: 把sphere $\mathbb S^2$ 分为上下两片, 用<a href="https://en.wikipedia.org/wiki/Stereographic_projection">球极投影(Stereo-graphic projection)</a>的方式映射到$\mathbb R^2\cong \mathbb C$ , 在$\mathbb R^3$ 中嵌入的坐标为$(x_1,x_2,x_3)$ , 其$x_1^2+x_2^2+x_3^2=1$
     <ul>
       <li>去掉North-pole的一片, $(x_1,x_2,x_3)$ 对应坐标为$z=x+iy=\frac{x_1+ix_2}{1-x_3}$ ,或表示为 $(x,y)=(\frac{x_1}{1-x_3},\frac{x_2}{1-x_3})$</li>
       <li>去掉South-pole的一片, $(x_1,x_2,x_3)$ 对应坐标为$w=u+iv=\frac{x_1-ix_2}{1+x_3}$ ,或表示为 $(u,v)=(\frac{x_1}{1+x_3},\frac{-x_2}{1+x_3})$</li>
@@ -324,12 +324,13 @@
 <p>把旋转群 SO(3) 用轴角表示:  $(u,\theta)$  (转角$\theta$ 要求CCW, 即逆时针旋转)</p>
 <ul>
   <li>转轴$u$ &lt;-&gt; 单位球面上一点</li>
-  <li>转角$\theta$ &lt;-&gt; 单位切丛的一个方向(fiber)</li>
+  <li>转角$\theta$ &lt;-&gt; 单位切丛的一个方向</li>
 </ul>
 
 <p>$\pi_1(SO(3))=\mathbb Z_2$  中的非零元素称为<a href="https://en.wikipedia.org/wiki/Spinor">自旋结构(spinor)</a></p>
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/j5soqexrwqY?si=DEB4zYwtzIFTbRK5" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen=""></iframe>
+
 <ul>
   <li>在视频中有体现spinor的实验: 拖着水杯扭曲360度, 手臂扭曲, 2圈之后手臂可以恢复原位</li>
 </ul>

@@ -1,4 +1,108 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.4">Jekyll</generator><link href="https://roshameow.github.io//personal_homepage/atom.xml" rel="self" type="application/atom+xml" /><link href="https://roshameow.github.io//personal_homepage/" rel="alternate" type="text/html" /><updated>2024-10-24T08:15:59+00:00</updated><id>https://roshameow.github.io//personal_homepage/atom.xml</id><title type="html">Liu, Wen’s Home Page</title><subtitle>Work, Experiments and Ideas.</subtitle><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><entry><title type="html">驾照考试</title><link href="https://roshameow.github.io//personal_homepage/affair/driving-test/" rel="alternate" type="text/html" title="驾照考试" /><published>2024-10-21T00:00:00+00:00</published><updated>2024-10-21T13:57:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/affair/driving-test</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/affair/driving-test/"><![CDATA[<h2 id="考试范围">考试范围</h2>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.4">Jekyll</generator><link href="https://roshameow.github.io//personal_homepage/atom.xml" rel="self" type="application/atom+xml" /><link href="https://roshameow.github.io//personal_homepage/" rel="alternate" type="text/html" /><updated>2024-10-29T01:55:14+00:00</updated><id>https://roshameow.github.io//personal_homepage/atom.xml</id><title type="html">Liu, Wen’s Home Page</title><subtitle>Work, Experiments and Ideas.</subtitle><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><entry><title type="html">猫幽门螺杆菌调查</title><link href="https://roshameow.github.io//personal_homepage/pet/helicobacter/" rel="alternate" type="text/html" title="猫幽门螺杆菌调查" /><published>2024-10-25T00:00:00+00:00</published><updated>2024-10-29T09:53:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/pet/helicobacter</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/pet/helicobacter/"><![CDATA[<h2 id="一篇关于猫幽门螺杆菌的实验论文">一篇关于猫幽门螺杆菌的实验论文</h2>
+
+<p>实验用58只猫的检测结果, 实验是09年的</p>
+
+<p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020241027113712.png" alt="Pasted image 20241027113712.png" width="400" /></p>
+
+<ul>
+  <li>革兰氏染色(GS), Warthin-Starry染色(WSS), 快速脲酶测试(RUT) 这几个基于活检的结果差不多
+    <ul>
+      <li>革兰氏染色(GS), Warthin-Starry染色(WSS)是光学显微镜形态学方法, 区分不出H. heilmannii和H. felis</li>
+    </ul>
+  </li>
+  <li>C13呼气测试(BT)测出阳性更多, 可能是那三种方法依赖活检, 活检取样时漏掉了幽门螺杆菌的片状定植区域</li>
+  <li>PCR独有的阳性可能是幽门螺杆菌数量太低, 其他检不出来; PCR独有的阴性可能是有PCR引物不能扩增的幽门螺杆菌的种类
+    <ul>
+      <li>实验中是用幽门窦活检样本来做的</li>
+      <li>PCR可以可靠的区分三种不同的幽门菌</li>
+    </ul>
+  </li>
+  <li><strong>实验中的58只猫只检测出来H. heilmannii</strong>, 其他两种没发现(根据PCR鉴定和形态学方法的结果)</li>
+  <li>检测结果大部分猫都是H. heilmannii阳性, 所有猫都是轻度, 中度胃炎. 没看到什么相关性.
+    <ul>
+      <li>根据白细胞量诊断轻度胃炎</li>
+      <li>根据淋巴细胞聚集诊断中度胃炎</li>
+    </ul>
+  </li>
+  <li>幽门螺杆菌H. heilmannii没法在体外培养成功</li>
+</ul>
+
+<h2 id="现在市场上的流行">现在市场上的流行</h2>
+
+<h3 id="检测方法">检测方法</h3>
+
+<ul>
+  <li>尿素酶检测: 智商税
+    <ul>
+      <li>牙垢试纸: 如果有产生尿素酶的细菌, 试纸会因碱性变粉.
+        <ul>
+          <li>产生尿素酶的细菌 $\ne$ 幽门螺杆菌.</li>
+          <li>幽门螺杆菌没法在口腔环境培养. 所以测出的够呛是幽门螺杆菌.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>抗原检测: 对应H. pylori(HP) 抗体
+    <ul>
+      <li>血清抗原: 只能检测是否感染过, 不能检测是否根除.</li>
+      <li>粪便抗原: <a href="https://medlineplus.gov/lab-tests/helicobacter-pylori-h-pylori-tests/">关于粪便检测的历史</a></li>
+    </ul>
+  </li>
+  <li>PCR扩增: 需要培养, 医院才能做. 用对应H. pylori(HP) 引物
+    <ul>
+      <li>粪便</li>
+      <li>胃镜活检样本</li>
+    </ul>
+  </li>
+  <li>C13呼气</li>
+</ul>
+
+<h3 id="治疗药物">治疗药物</h3>
+
+<ul>
+  <li>主要成分是一些复合益生菌: 想必对清除幽门螺杆菌没用, 但是好贵
+    <ul>
+      <li><a href="https://polarvita.hk/product/mage-pro-vegan/">幽必清(挪威, polarvita公司)</a></li>
+      <li><a href="https://hellotis.com/product/%ED%97%AC%EB%A1%9C%ED%8B%B0%EC%8A%A4%ED%8E%AB-%ED%97%AC%EB%A6%AC%EC%BD%94%EB%B0%94%EC%9D%B4-30%ED%8F%AC/37/category/42/display/1/">幽必清(韩国, HellotisPet 公司,Helicocare)</a></li>
+      <li>溃幽清(宠圣堂): 没有官网, 看起来像是这家<code class="language-plaintext highlighter-rouge">_青岛宠圣堂动物医院有限公司_</code> 公司?</li>
+    </ul>
+  </li>
+  <li>四联疗法改猫用
+    <ul>
+      <li>没有找到相关的依据</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="猫幽门螺杆菌和胃病的关系">猫幽门螺杆菌和胃病的关系</h2>
+
+<ul>
+  <li>目前不清楚</li>
+  <li>有人说<a href="https://vetmed.tamu.edu/gilab/staff/dr-joerg-steiner/">Jörg M. Steiner</a> 发布过相关研究, 结果是无关, 我没找到</li>
+  <li>根据网上的说法, 确实有一些猫在医院用粪便抗原或PCR检测出H. pylori(HP) 阳性?</li>
+</ul>
+
+<h2 id="reference">reference</h2>
+
+<p>[1]  Neiger, R., C. Dieterich, A. Burnens, A. Waldvogel, I. Corthésy-Theulaz, F. Halter, B. Lauterburg, and A. Schmassmann. “Detection and Prevalence of Helicobacter Infection in Pet Cats.” <em>Journal of Clinical Microbiology</em> 36, no. 3 (March 1998): 634. <a href="https://doi.org/10.1128/jcm.36.3.634-637.1998">https://doi.org/10.1128/jcm.36.3.634-637.1998</a>.</p>
+
+<p>[2]  https://www.petmd.com/cat/conditions/digestive/c_ct_helicobacter_infection 博客. 09年的, 和上面文章观点类似. 如果出现慢性呕吐或胃黏膜炎症，治疗将针对缓解这些症状.</p>
+
+<p>[3]  <a href="https://www.ingenova.cn/article-item-32.html">https://www.ingenova.cn/article-item-32.html</a> 卖各种试纸的厂家. 但是检测的必要性显然不是从实验中得到的, 可能是自己编的.</p>
+
+<p>[4] https://news.cctv.com/2023/02/02/ARTIl2cEwGSkO3ZUSDK7AbIo230202.shtml 央视对于试纸的采访.</p>
+
+<p>[5]  https://www.cofoe.com.cn/product_page/287.html 卖智商税牙垢试纸的厂家.</p>
+
+<p>[6]  http://www.syngenemed.com/product/144.html 卖血清检测抗原的厂家</p>
+
+<p>[7]  <a href="http://www.xmmedara.com/content/show/728/135">http://www.xmmedara.com/content/show/728/135</a>  卖粪便检测抗原的厂家</p>
+
+<p>[8]  <a href="https://www.taobao.com/list/item/727375876240.htm">https://www.taobao.com/list/item/727375876240.htm</a> 萌格, 在淘宝上卖粪便检测抗原, 所属<a href="https://www.konsung.com/dwyl">https://www.konsung.com/dwyl</a> 康尚集团厂家官网上无此产品.</p>
+
+<p>[9]   http://www.dawnsailbio.com/blank6.html 提供某些宠物医院PCR检测的厂家, 但是官网上无此产品</p>
+
+<p>[10]  http://www.mmtest.com.cn/product/222.html 粪便检测抗原的厂家</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="pet" /><category term="content" /><summary type="html"><![CDATA[一篇关于猫幽门螺杆菌的实验论文]]></summary></entry><entry><title type="html">驾照考试</title><link href="https://roshameow.github.io//personal_homepage/affair/driving-test/" rel="alternate" type="text/html" title="驾照考试" /><published>2024-10-21T00:00:00+00:00</published><updated>2024-10-27T08:03:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/affair/driving-test</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/affair/driving-test/"><![CDATA[<h2 id="考试范围">考试范围</h2>
 
 <ol>
   <li>常识: 车辆使用 + 交通信号</li>
@@ -28,7 +132,25 @@
   <li><a href="https://wuhan.jiakaobaodian.com/">驾考宝典</a>: 可以按类型刷题</li>
 </ul>
 
-<p>生平第一次这么科学的复习考试😮‍💨, (第一天)刷题记笔记, 看了3个小时的考点讲解视频, (第二天)背知识点, 重刷错题, 模拟考试</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="affair" /><category term="content" /><summary type="html"><![CDATA[考试范围]]></summary></entry><entry><title type="html">attention的优化– KV Cache</title><link href="https://roshameow.github.io//personal_homepage/algorithm/attention4/" rel="alternate" type="text/html" title="attention的优化– KV Cache" /><published>2024-10-14T00:00:00+00:00</published><updated>2024-10-14T16:42:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/algorithm/attention4</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/algorithm/attention4/"><![CDATA[]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="algorithm" /><category term="content" /><category term="attention" /><summary type="html"><![CDATA[]]></summary></entry><entry><title type="html">conformal geometry学习 (十 ) – 举例: 球面上的unit tangent bundle manifold</title><link href="https://roshameow.github.io//personal_homepage/math/conformal-geometry10/" rel="alternate" type="text/html" title="conformal geometry学习 (十 ) – 举例: 球面上的unit tangent bundle manifold" /><published>2024-10-09T00:00:00+00:00</published><updated>2024-10-24T16:12:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/math/conformal-geometry10</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/math/conformal-geometry10/"><![CDATA[<h2 id="atlas">atlas</h2>
+<h2 id="知识">知识</h2>
+
+<p>一些刷学分的时候顺便学的知识</p>
+<ul>
+  <li>买多少号汽油?
+    <ul>
+      <li>汽油和压缩比的关系, 标号越高, 辛烷值越高, 抵抗爆燃的能力越高, 越安全, 越贵.</li>
+      <li>汽车的压缩比越高, 越危险, 需要越高标号的汽油.</li>
+    </ul>
+  </li>
+  <li>润滑油:  颜色深说明质量好?</li>
+  <li>还有一个详细的视频教怎么换🛞</li>
+</ul>
+
+<p>生平第一次这么科学的复习考试😮‍💨, (第一天)刷题记笔记, 看了3个小时的考点讲解视频, (第二天)背知识点, 重刷错题, 模拟考试</p>
+
+<p>扣分体系足够科学吗? 受哪些因素影响呢?</p>
+
+<p>因为曾经卖分猖獗, 现在卖分要扣12分, 是怎么变成这样的呢?</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="affair" /><category term="content" /><summary type="html"><![CDATA[考试范围]]></summary></entry><entry><title type="html">attention的优化– KV Cache</title><link href="https://roshameow.github.io//personal_homepage/algorithm/attention4/" rel="alternate" type="text/html" title="attention的优化– KV Cache" /><published>2024-10-14T00:00:00+00:00</published><updated>2024-10-14T16:42:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/algorithm/attention4</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/algorithm/attention4/"><![CDATA[]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="algorithm" /><category term="content" /><category term="attention" /><summary type="html"><![CDATA[]]></summary></entry><entry><title type="html">conformal geometry学习 (十 ) – 举例: 球面上的unit tangent bundle manifold</title><link href="https://roshameow.github.io//personal_homepage/math/conformal-geometry10/" rel="alternate" type="text/html" title="conformal geometry学习 (十 ) – 举例: 球面上的unit tangent bundle manifold" /><published>2024-10-09T00:00:00+00:00</published><updated>2024-10-24T18:02:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/math/conformal-geometry10</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/math/conformal-geometry10/"><![CDATA[<h2 id="atlas">atlas</h2>
 
 <table>
   <thead>
@@ -66,7 +188,7 @@
 <p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020241024160430.png" alt="Pasted image 20241024160430.png" width="300" />   <img src="/personal_homepage/docs/attachment/Pasted%20image%2020241024160403.png" alt="Pasted image 20241024160403.png" width="250" /></p>
 
 <ul>
-  <li>球面的atlas表示: 把sphere $\mathbb S^2$ 分为上下两片, 用<a href="https://en.wikipedia.org/wiki/Stereographic_projection">球极投影</a>的方式映射到$\mathbb R^2\cong \mathbb C$ , 在$\mathbb R^3$ 中嵌入的坐标为$(x_1,x_2,x_3)$ , 其$x_1^2+x_2^2+x_3^2=1$
+  <li>球面的atlas表示: 把sphere $\mathbb S^2$ 分为上下两片, 用<a href="https://en.wikipedia.org/wiki/Stereographic_projection">球极投影(Stereo-graphic projection)</a>的方式映射到$\mathbb R^2\cong \mathbb C$ , 在$\mathbb R^3$ 中嵌入的坐标为$(x_1,x_2,x_3)$ , 其$x_1^2+x_2^2+x_3^2=1$
     <ul>
       <li>去掉North-pole的一片, $(x_1,x_2,x_3)$ 对应坐标为$z=x+iy=\frac{x_1+ix_2}{1-x_3}$ ,或表示为 $(x,y)=(\frac{x_1}{1-x_3},\frac{x_2}{1-x_3})$</li>
       <li>去掉South-pole的一片, $(x_1,x_2,x_3)$ 对应坐标为$w=u+iv=\frac{x_1-ix_2}{1+x_3}$ ,或表示为 $(u,v)=(\frac{x_1}{1+x_3},\frac{-x_2}{1+x_3})$</li>
@@ -176,17 +298,18 @@
 <p>把旋转群 SO(3) 用轴角表示:  $(u,\theta)$  (转角$\theta$ 要求CCW, 即逆时针旋转)</p>
 <ul>
   <li>转轴$u$ &lt;-&gt; 单位球面上一点</li>
-  <li>转角$\theta$ &lt;-&gt; 单位切丛的一个方向(fiber)</li>
+  <li>转角$\theta$ &lt;-&gt; 单位切丛的一个方向</li>
 </ul>
 
 <p>$\pi_1(SO(3))=\mathbb Z_2$  中的非零元素称为<a href="https://en.wikipedia.org/wiki/Spinor">自旋结构(spinor)</a></p>
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/j5soqexrwqY?si=DEB4zYwtzIFTbRK5" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen=""></iframe>
+
 <ul>
   <li>在视频中有体现spinor的实验: 拖着水杯扭曲360度, 手臂扭曲, 2圈之后手臂可以恢复原位</li>
 </ul>
 
-<p>3-manifold quaternion(4元数) 是SO3的universal cover, $\pi_1$ 是trival的</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="math" /><category term="content" /><summary type="html"><![CDATA[atlas]]></summary></entry><entry><title type="html">债券的原理</title><link href="https://roshameow.github.io//personal_homepage/bond/" rel="alternate" type="text/html" title="债券的原理" /><published>2024-10-01T00:00:00+00:00</published><updated>2024-10-10T17:22:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/bond</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/bond/"><![CDATA[<p>政府和企业发行的借款, 债券本身 = 票面价值 + 利息 + 到期时间 + 债券发行方
+<p>3-manifold quaternion(4元数) 是SO3的universal cover, $\pi_1$ 是trival的</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="math" /><category term="content" /><category term="utm" /><category term="atlas" /><category term="manifold" /><category term="3d_rotation" /><category term="fundamental_group" /><summary type="html"><![CDATA[atlas]]></summary></entry><entry><title type="html">债券的原理</title><link href="https://roshameow.github.io//personal_homepage/bond/" rel="alternate" type="text/html" title="债券的原理" /><published>2024-10-01T00:00:00+00:00</published><updated>2024-10-10T17:22:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/bond</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/bond/"><![CDATA[<p>政府和企业发行的借款, 债券本身 = 票面价值 + 利息 + 到期时间 + 债券发行方
 价格 : 可能高于/低于 票面价值</p>
 
 <h2 id="分类">分类</h2>
@@ -286,9 +409,4 @@
 
 <ul>
   <li>教程: https://wiki.melvoridle.com/w/Mod_Creation/Getting_Started</li>
-</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="game" /><category term="content" /><summary type="html"><![CDATA[制作]]></summary></entry><entry><title type="html">墙皮脱落问题</title><link href="https://roshameow.github.io//personal_homepage/house/wall-problem/" rel="alternate" type="text/html" title="墙皮脱落问题" /><published>2024-09-02T00:00:00+00:00</published><updated>2024-09-02T10:32:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/house/wall-problem</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/house/wall-problem/"><![CDATA[<iframe src="//player.bilibili.com/player.html?isOutside=true&amp;aid=1156485534&amp;bvid=BV1jZ421K77t&amp;cid=1659181462&amp;p=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
-<p>根据这个视频学习</p>
-
-<ul>
-  <li>原因: 热胀冷缩</li>
-</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="house" /><category term="content" /><summary type="html"><![CDATA[根据这个视频学习]]></summary></entry></feed>
+</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="game" /><category term="content" /><summary type="html"><![CDATA[制作]]></summary></entry></feed>

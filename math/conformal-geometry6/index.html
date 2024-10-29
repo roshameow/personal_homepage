@@ -31,7 +31,7 @@
 <meta property="twitter:title" content="conformal geometry学习 (六 ) – cohomology group" />
 <meta name="twitter:site" content="@" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-10-10T12:32:00+00:00","datePublished":"2024-07-26T00:00:00+00:00","description":"上同调是同调的对偶","headline":"conformal geometry学习 (六 ) – cohomology group","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/math/conformal-geometry6/"},"url":"https://roshameow.github.io//personal_homepage/math/conformal-geometry6/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-10-24T21:53:00+00:00","datePublished":"2024-07-26T00:00:00+00:00","description":"上同调是同调的对偶","headline":"conformal geometry学习 (六 ) – cohomology group","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/math/conformal-geometry6/"},"url":"https://roshameow.github.io//personal_homepage/math/conformal-geometry6/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -153,6 +153,8 @@
     <!-- <div id="markdown-toc"> -->
     <ul>
         
+        <li><a href="/personal_homepage/pet/helicobacter/">猫幽门螺杆菌调查</a></li>
+        
         <li><a href="/personal_homepage/affair/driving-test/">驾照考试</a></li>
         
         <li><a href="/personal_homepage/algorithm/attention4/">attention的优化-- KV Cache</a></li>
@@ -160,8 +162,6 @@
         <li><a href="/personal_homepage/math/conformal-geometry10/">conformal geometry学习 (十 ) -- 举例: 球面上的unit tangent bundle manifold</a></li>
         
         <li><a href="/personal_homepage/bond/">债券的原理</a></li>
-        
-        <li><a href="/personal_homepage/tool/raycast-script/">raycast脚本</a></li>
         
     </ul>
     <!-- </div> -->
@@ -243,7 +243,7 @@
       <td>closed form $\delta_k\omega=0$</td>
       <td> </td>
       <td> </td>
-      <td>closed form $d^k\omega=0$</td>
+      <td>closed form $d^k\omega=0$<br />curl free</td>
       <td> </td>
     </tr>
     <tr>
@@ -251,7 +251,7 @@
       <td>exact form $\omega=\delta_{k-1}\sigma$</td>
       <td> </td>
       <td> </td>
-      <td>exact form $\omega=d^{k-1}\sigma$</td>
+      <td>exact form $\omega=d^{k-1}\sigma$<br />gradient</td>
       <td> </td>
     </tr>
     <tr>
@@ -336,20 +336,27 @@
 
 <h3 id="带边界的例子">带边界的例子</h3>
 
-<p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240907093602.png" alt="Pasted image 20240907093602.png" width="150" /> 中间红色为$\gamma^+$, 蓝色为$\gamma^-$</p>
-
-<ul>
-  <li>annulus $M$</li>
-  <li>$H_1(M,\mathbb Z)$ 有一个generator $\gamma$ , 如图中间loop</li>
-  <li>定义$\omega$ 如图:
+<ol>
+  <li><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240907093602.png" alt="Pasted image 20240907093602.png" width="150" /> 中间红色为$\gamma^+$, 蓝色为$\gamma^-$
     <ul>
-      <li>在$\gamma$ 上取1, $\gamma^{-1}$ 上取-1</li>
-      <li>其余edge上按此定义, 使$d\omega=0$ (沿每个面(2-chain)路径和为0 ( $\omega\in\text{ker}\delta^1$ ))</li>
-      <li>$\int_\gamma \omega = 18$  -&gt; $\omega$ 不是exact ($\omega$ 没法表示成0-form 的image, 一圈之后会不compatible )</li>
+      <li>annulus $M$</li>
+      <li>$H_1(M,\mathbb Z)$ 有一个generator $\gamma$ , 如图中间loop</li>
+      <li>定义$\omega$ 如图:
+        <ul>
+          <li>在$\gamma$ 上取1, $\gamma^{-1}$ 上取-1</li>
+          <li>其余edge上按此定义, 使$d\omega=0$ (沿每个面(2-chain)路径和为0 ( $\omega\in\text{ker}\delta^1$ ))</li>
+          <li>$\int_\gamma \omega = 18$  -&gt; $\omega$ 不是exact ($\omega$ 没法表示成0-form 的image, 一圈之后会不compatible )</li>
+        </ul>
+      </li>
+      <li>$\omega$ 是$H^1(M,\mathbb R)$ 的generator</li>
     </ul>
   </li>
-  <li>$\omega$ 是$H^1(M,\mathbb R)$ 的generator</li>
-</ul>
+  <li><img src="/personal_homepage/docs/attachment/Uniform_curl.svg" alt="Uniform_curl.svg" width="200" /> 如图, $\mathbb C\backslash \lbrace 0\rbrace$ 上的向量场 $\mathbf v(x,y)=(\frac{-y}{x^2+y^2},\frac{x}{x^2+y^2})$
+    <ul>
+      <li>$\oint \omega=\oint d\theta=\oint dtan^{-1}\frac{y}{x}=2\pi$ 不是exact ($\mathbf v$ 不是gradient, )</li>
+    </ul>
+  </li>
+</ol>
 
 
         </div>
