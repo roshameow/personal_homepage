@@ -31,7 +31,7 @@
 <meta property="twitter:title" content="conformal geometry学习 (六 ) – cohomology group" />
 <meta name="twitter:site" content="@" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-10-24T21:53:00+00:00","datePublished":"2024-07-26T00:00:00+00:00","description":"上同调是同调的对偶","headline":"conformal geometry学习 (六 ) – cohomology group","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/math/conformal-geometry6/"},"url":"https://roshameow.github.io//personal_homepage/math/conformal-geometry6/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-11-24T08:41:00+00:00","datePublished":"2024-07-26T00:00:00+00:00","description":"上同调是同调的对偶","headline":"conformal geometry学习 (六 ) – cohomology group","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/math/conformal-geometry6/"},"url":"https://roshameow.github.io//personal_homepage/math/conformal-geometry6/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -107,7 +107,7 @@
       <div class="page-sidebar">
         <div class="page-author h-card p-author"><img src="/personal_homepage/docs/images/logo.svg" class="author-avatar u-photo" alt=""><div class="author-info">
 
-<span class="read-time">1 min read</span>
+<span class="read-time">2 min read</span>
 
     <time class="page-date dt-published" datetime="2024-07-26T00:00:00+00:00"><a class="u-url" href="">July 26, 2024</a>
 </time>
@@ -125,7 +125,7 @@
         
   <h3 class="page-taxonomies-title">Tags</h3>
   
-  <ul class="page-taxonomies"><li class="page-taxonomy"><a href="/personal_homepage/tags/#content" title="Pages tagged content" rel="tag">content</a></li>
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a href="/personal_homepage/tags/#cohomology" title="Pages tagged cohomology" rel="tag">cohomology</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#content" title="Pages tagged content" rel="tag">content</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#de-rham-cohomology" title="Pages tagged de_Rham_cohomology" rel="tag">de_Rham_cohomology</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#differential-form" title="Pages tagged differential_form" rel="tag">differential_form</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#simplicial-cohomology" title="Pages tagged simplicial_cohomology" rel="tag">simplicial_cohomology</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#tangent-vector-field" title="Pages tagged tangent_vector_field" rel="tag">tangent_vector_field</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#vector-field" title="Pages tagged vector_field" rel="tag">vector_field</a></li>
   </ul>
 
 
@@ -181,52 +181,39 @@
 <table>
   <thead>
     <tr>
-      <th>同调 homology</th>
+      <th>同调 homology<br /><br /><br />定义在离散的simplical complex</th>
       <th>上同调 <a href="https://en.wikipedia.org/wiki/Cohomology">(Simplicial) cohomology</a><br /><br />最初是为了表示<a href="https://en.wikipedia.org/wiki/Stiefel–Whitney_class.">fiber bundle的class</a></th>
       <th>对偶记号</th>
-      <th>tangent space</th>
-      <th>de Rham cohomology<br /><br />$\Omega^k(M)$</th>
+      <th>de Rham cohomology<br /><br /><br />定义在differential manifold M 上</th>
       <th>积分记号</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td>定义在manifold<br />依赖local coordinate chart</td>
-      <td> </td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>k-chain $\sigma$ <br />$C_k$</td>
-      <td>k-cochain(k-form) $\omega$ <br />$C^k$</td>
+      <td>k-chain $\sigma$ <br /><br />$C_k$</td>
+      <td>k-cochain(k-form) $\omega$ <br /><br />$C^k$</td>
       <td>bilinear operator<br />$&lt;\omega,\sigma&gt;:=\omega(\sigma)$</td>
-      <td>tangent vector<br />$T_p M$</td>
-      <td>Differential 1-form<br />co-tangent space<br />$T^\ast_p M$</td>
-      <td> </td>
+      <td><strong>differential form(微分形式)</strong><br /><strong>exterior k-form</strong>((k, 0) tensor)<br />$\underbrace{T_p M\times \cdots \times T_p M}_{k \text{ copies}} \rightarrow \mathbb R$ <br />locally表示成k个Differential 1-form的wedge product<br /> $\omega=\omega_I dx^I$ <br />$\omega_I$ 是个function<br /><br />$\Omega^k(M)$</td>
+      <td>$\int_M \omega=\sum_i\int_M f_i\omega$<br /><br />其中$f_i$ 是在一个covering charts上的partition:<br />$\sum_i f_i(p)\equiv 1,\forall p\in M$<br />$f_i(p)\ge 0,\forall p\in M$<br /><br /> 其中每个chart的积分pull back到$\mathbb R^n$ 上定义</td>
     </tr>
     <tr>
       <td>(k+1)-boundary<br />$\partial_{k+1}:C_{k+1}\rightarrow C_{k}$</td>
       <td>k-coboundary(微分算子)<br />$\delta_k: C^k\rightarrow C^{k+1}$<br />$\delta_k(\omega)=\omega\circ \partial_{k+1},\omega\in C^k$</td>
       <td>$&lt;\delta\omega,\sigma&gt;=&lt;\omega,\partial\sigma&gt;$ <br /><br /><a href="https://en.wikipedia.org/wiki/Stokes%27_theorem">Stokes Theorem</a></td>
-      <td> </td>
-      <td>exterior differential<br /> operator(外微分算子,<br />exterior derivative)<br />$d^k:\Omega^k(M)\rightarrow \Omega^{k+1}(M)$</td>
-      <td>$\int_{\partial M}\omega=\int_M d\omega$<br /><a href="https://en.wikipedia.org/wiki/Stokes%27_theorem">Stokes Theorem</a></td>
+      <td>exterior differential<br /> operator(<a href="https://en.wikipedia.org/wiki/Exterior_derivative">exterior derivative</a> , 外微分算子,)<br />$d^k:\Omega^k(M)\rightarrow \Omega^{k+1}(M)$<br />$d\omega=d(\omega_Idx^I)=(d\omega_I)\wedge dx^I$ <br />满足反对称的乘法定律</td>
+      <td>$\int_{\partial M}\omega=\int_M d\omega$<br /><a href="https://en.wikipedia.org/wiki/Stokes%27_theorem">Stokes Theorem</a><br /><br /><strong>拓扑意义算子(左侧boundary $\partial$ )和分析意义算子(右侧微分形式 $d$ ) 的对偶关系</strong></td>
     </tr>
     <tr>
       <td>adjoint boundary<br />operator<br />$\partial_{k+1}^\ast:C_{k}\rightarrow C_{k+1}$</td>
       <td> </td>
       <td> </td>
-      <td> </td>
-      <td>codifferential operator<br />$\delta^{k}:\Omega^{k+1}(M)\rightarrow \Omega^{k}(M)$<br />$\delta=(-1)^{kn+n+1}\ ^\ast d^\ast$</td>
+      <td>codifferential operator(余微分算子)<br />$\delta^{k}:\Omega^{k+1}(M)\rightarrow \Omega^{k}(M)$<br />$\delta=(-1)^{kn+n+1}\ ^\ast d^\ast$<br /><a href="https://en.wikipedia.org/wiki/Divergence">divergence(散度)</a><br /><br />$(d\omega,\eta)=(\omega,\delta\eta)$</td>
       <td> </td>
     </tr>
     <tr>
       <td>Laplace Operator<br />$\Delta_k=\partial_k^\ast\partial_k+\partial_{k+1}\partial_{k+1}^\ast$</td>
       <td> </td>
-      <td>symmetric<br />$&lt;\Delta \omega,\sigma&gt;=&lt;\omega,\Delta \sigma&gt;$<br />non-negative<br />$&lt;\Delta \omega,\omega&gt;\ge 0$</td>
-      <td> </td>
+      <td>symmetric<br />$&lt;\Delta \omega,\sigma&gt;=&lt;\omega,\Delta \sigma&gt;$<br />non-negative(<a href="https://en.wikipedia.org/wiki/Elliptic_operator">椭圆形</a> )<br />$&lt;\Delta \omega,\omega&gt;\ge 0$</td>
       <td>$\Delta=d\delta+\delta d$</td>
       <td> </td>
     </tr>
@@ -236,34 +223,43 @@
       <td> </td>
       <td> </td>
       <td> </td>
-      <td> </td>
     </tr>
     <tr>
       <td> </td>
       <td>closed form $\delta_k\omega=0$</td>
       <td> </td>
+      <td>closed form $d^k\omega=0$<br />curl free(旋量为0)<br /></td>
       <td> </td>
-      <td>closed form $d^k\omega=0$<br />curl free</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>coclosed form $\delta^k\omega = 0$ <br />div free(散度为0)</td>
       <td> </td>
     </tr>
     <tr>
       <td> </td>
       <td>exact form $\omega=\delta_{k-1}\sigma$</td>
       <td> </td>
+      <td>exact form $\omega=d^{k-1}\sigma$<br />gradient(梯度, Exterior Derivative)</td>
       <td> </td>
-      <td>exact form $\omega=d^{k-1}\sigma$<br />gradient</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>coexact form $\omega =\delta^{k+1}\sigma$ <br /></td>
       <td> </td>
     </tr>
     <tr>
       <td> </td>
       <td>harmonic form</td>
       <td> </td>
-      <td> </td>
       <td>harmonic form $\Delta \omega=0$</td>
       <td> </td>
     </tr>
     <tr>
-      <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
@@ -276,20 +272,17 @@
       <td> </td>
       <td> </td>
       <td> </td>
-      <td> </td>
     </tr>
     <tr>
       <td>$H_k$<br />closed, but not exact<br /><br />$H_k=\text{ker}\Delta_k$ <br /></td>
-      <td>$H^k=\frac{\text{ker}\delta^k}{\text{img}\delta^{k-1}}$ <br />curl free, but not =gradient</td>
+      <td>$H^k=\frac{\text{ker}\delta^k}{\text{img}\delta^{k-1}}$ <br /></td>
       <td> </td>
-      <td> </td>
-      <td>$H^k_{dR}=\frac{\text{ker} d^k}{\text{img}d^{k-1}}$ <br /><br />$H^k_{dR}\cong H^k(M,\mathbb R)$</td>
+      <td>$H^k_{dR}=\frac{\text{ker} d^k}{\text{img}d^{k-1}}$ <br />curl free, but not gradient<br /><br />$H^k_{dR}\cong H^k(M,\mathbb R)$</td>
       <td> </td>
     </tr>
     <tr>
       <td>$f_\ast: H_n(M)\rightarrow H_n(N)$</td>
       <td>$f^\ast: H^n(N)\rightarrow H^n(M)$<br />是$f_\ast$ 的pull back</td>
-      <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
@@ -344,8 +337,8 @@
       <li>定义$\omega$ 如图:
         <ul>
           <li>在$\gamma$ 上取1, $\gamma^{-1}$ 上取-1</li>
-          <li>其余edge上按此定义, 使$d\omega=0$ (沿每个面(2-chain)路径和为0 ( $\omega\in\text{ker}\delta^1$ ))</li>
-          <li>$\int_\gamma \omega = 18$  -&gt; $\omega$ 不是exact ($\omega$ 没法表示成0-form 的image, 一圈之后会不compatible )</li>
+          <li>其余edge上按此定义, 使$d\omega=0$ (沿每个面(2-chain)路径和为0 ( $\omega\in\text{ker}\delta^1$ )) -&gt; <strong>$\omega$ 是closed</strong></li>
+          <li>$\int_\gamma \omega = 18$  -&gt; <strong>$\omega$ 不是exact</strong> ($\omega$ 没法表示成0-form 的image, 一圈之后会不compatible )</li>
         </ul>
       </li>
       <li>$\omega$ 是$H^1(M,\mathbb R)$ 的generator</li>
@@ -353,10 +346,82 @@
   </li>
   <li><img src="/personal_homepage/docs/attachment/Uniform_curl.svg" alt="Uniform_curl.svg" width="200" /> 如图, $\mathbb C\backslash \lbrace 0\rbrace$ 上的向量场 $\mathbf v(x,y)=(\frac{-y}{x^2+y^2},\frac{x}{x^2+y^2})$
     <ul>
-      <li>$\oint \omega=\oint d\theta=\oint dtan^{-1}\frac{y}{x}=2\pi$ 不是exact ($\mathbf v$ 不是gradient, )</li>
+      <li>$\mathbf v$ 是differential 1-form
+        <ul>
+          <li>对应每个单位切向量(方向)一个赋值</li>
+        </ul>
+      </li>
+      <li><strong>$\mathbf v$ 是<a href="https://en.wikipedia.org/wiki/Curl_(mathematics)">curl free</a>($\mathbf v$ 是closed)</strong>
+        <ul>
+          <li>$\mathbf v=\mathbf v_x dx+\mathbf v_y dy$ -&gt; $d\mathbf v = (\frac{\partial}{\partial x}v_y-\frac{\partial}{\partial y}v_x) dxdy=0$ (由外微分定义)</li>
+          <li>$\int_{\partial D} \mathbf v=\int_D d\mathbf v=0$ 在中间有定义的小邻域$D$ 内</li>
+        </ul>
+      </li>
+      <li>$\oint \mathbf v=\oint -ydx+xdy=\oint dtan^{-1}\frac{y}{x}=\oint d\theta=2\pi$ 不是exact
+        <ul>
+          <li>沿unit circle积分</li>
+          <li>$(arctan (x))^\prime=\frac{1}{1+x^2}$</li>
+          <li><strong>$\mathbf v$ 不是gradient($\mathbf v$ 不是exact)</strong>
+            <ul>
+              <li>如果$\mathbf v=(\frac{\partial f}{\partial x},\frac{\partial f}{\partial y})$ 是某个函数$f(x,y)$ 的梯度向量, $\oint \mathbf v=\oint \frac{\partial f}{\partial x} dx+\frac{\partial f}{\partial y} dy=\oint df=0$</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
     </ul>
   </li>
 </ol>
+
+<h2 id="differential-form定义">differential form定义</h2>
+
+<p>逐步定义 tangent space -&gt; differential 1-form -&gt; m-form. 
+ 直观上, 一维的情况下, 由vector field在curve上的积分, 代替simplicial cohomology里面1-chain(loop)的对偶关系.</p>
+
+<ul>
+  <li>tangent space $T_pM$
+    <ul>
+      <li>basis 为 $\lbrace\frac{\partial}{\partial x_i}\rbrace_i$</li>
+      <li>tangent vector可以做push-forward</li>
+    </ul>
+  </li>
+  <li>Differential 1-form(co-tangent space) $T_p^\ast M$
+    <ul>
+      <li>这里我们指real dual: $\omega\in T_p^\ast M$, 即 $\omega: T_pM\rightarrow \mathbb R$ 是个线性映射</li>
+      <li>basis 为  $\lbrace dx_i \rbrace_i$ , 是 $\lbrace\frac{\partial}{\partial x_i}\rbrace_i$ 的对偶</li>
+    </ul>
+  </li>
+  <li>exterior m-form(differential m-form) $\Theta_p: T_p M\times\cdots\times T_p M\rightarrow \mathbb R$
+    <ul>
+      <li>是(m, 0) tensor
+        <ul>
+          <li>type (m, n) 的tensor  \(T: \underbrace{V \times\dots\times V}_{m \text{ copies}} \times \underbrace{ V^\ast \times\dots\times V^\ast}_{n \text{ copies}} \rightarrow \mathbb{R}\) 是multi-linear map</li>
+        </ul>
+      </li>
+      <li>有skew symmetric(反对称)性质: $\omega(\xi_{\sigma_1},\xi_{\sigma_2},\cdots,\xi_{\sigma_m})=(-1)^\sigma \omega(\xi_1,\xi_2,\cdots,\xi_m)$
+        <ul>
+          <li>其中 $\xi_1,\xi_2,\cdots,\xi_m \in T_pM$ 是m个切向量, $\sigma\in S_m$ 是$\lbrace 1,2,\cdots, m\rbrace$ 的一个permutation(排列)</li>
+        </ul>
+      </li>
+      <li>可以locally表示成differential 1-form的wedge product:  $\omega=\omega_I dx^I=\sum_{1\le i_1&lt;i_2&lt;\cdots&lt;i_m\le n}\omega_{i_1i_2\cdots i_k} dx^1\wedge dx^2\wedge\cdots\wedge dx^m$ (<a href="https://en.wikipedia.org/wiki/Differential_form">multi-index notation</a> )
+        <ul>
+          <li>$\lbrace dx^i \rbrace_i$ 是Differential 1-form $T_p^\ast M$ 的basis, n是manifold M的dimension</li>
+          <li>$\wedge$ 是<a href="https://en.wikipedia.org/wiki/Exterior_algebra">exterior wedge product</a>
+            <ul>
+              <li>$\omega_1\wedge \omega_2(\xi_{\sigma_1},\xi_{\sigma_2},\cdots,\xi_{\sigma_{m_1+m_2}}) = \sum_{\sigma\in S_{m_1+m_2}}\frac{(-1)^\sigma}{m_1 ! m_2 !} \omega_1(\xi_{\sigma_1},\xi_{\sigma_2},\cdots,\xi_{\sigma_{m_1}})\cdot\omega_2(\xi_{\sigma_1+1},\cdots,\xi_{\sigma_{m_1+m_2}})$</li>
+              <li>m个1-form的wedge product: $\omega_1\wedge\omega_2\wedge\cdots\wedge\omega_m(\xi_1,\xi_2,\cdots,\xi_m)=det(\vert\omega_i(\xi_j)\vert_{ij})$
+                <ul>
+                  <li>$\wedge$ 是 anti-symmetric: $\omega_{\sigma_1}\wedge \omega_{\sigma_2}\wedge\cdots\wedge\omega_{\sigma_m}=(-1)^\sigma \omega_1\wedge\omega_2\cdots\wedge\omega_k$  </li>
+                  <li>对参数也是skew-symmetric: $\omega(\xi_{\sigma_1},\xi_{\sigma_2},\cdots,\xi_{\sigma_m})=\omega_1\wedge\omega_2\wedge\cdots\wedge\omega_m(\xi_{\sigma_1},\xi_{\sigma_2},\cdots,\xi_{\sigma_m})=(-1)^\sigma \omega(\xi_1,\xi_2,\cdots,\xi_m)$</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>exterior m-form可以做pull-back</li>
+    </ul>
+  </li>
+</ul>
 
 
         </div>

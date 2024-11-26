@@ -315,8 +315,8 @@ var store = [{
         "url": "https://roshameow.github.io//personal_homepage/math/conformal-geometry5/"
       },{
         "title": "conformal geometry学习 (六 ) -- cohomology group",
-        "excerpt":"上同调是同调的对偶 同调 homology 上同调 (Simplicial) cohomology最初是为了表示fiber bundle的class 对偶记号 tangent space de Rham cohomology$\\Omega^k(M)$ 积分记号       定义在manifold依赖local coordinate chart     k-chain $\\sigma$ $C_k$ k-cochain(k-form) $\\omega$ $C^k$ bilinear operator$&lt;\\omega,\\sigma&gt;:=\\omega(\\sigma)$ tangent vector$T_p M$ Differential 1-formco-tangent space$T^\\ast_p M$   (k+1)-boundary$\\partial_{k+1}:C_{k+1}\\rightarrow C_{k}$ k-coboundary(微分算子)$\\delta_k: C^k\\rightarrow C^{k+1}$$\\delta_k(\\omega)=\\omega\\circ \\partial_{k+1},\\omega\\in C^k$ $&lt;\\delta\\omega,\\sigma&gt;=&lt;\\omega,\\partial\\sigma&gt;$ Stokes Theorem   exterior...","categories": ["math"],
-        "tags": ["content"],
+        "excerpt":"上同调是同调的对偶 同调 homology定义在离散的simplical complex 上同调 (Simplicial) cohomology最初是为了表示fiber bundle的class 对偶记号 de Rham cohomology定义在differential manifold M 上 积分记号 k-chain $\\sigma$ $C_k$ k-cochain(k-form) $\\omega$ $C^k$ bilinear operator$&lt;\\omega,\\sigma&gt;:=\\omega(\\sigma)$ differential form(微分形式)exterior k-form((k, 0) tensor)$\\underbrace{T_p M\\times \\cdots \\times T_p M}_{k \\text{ copies}} \\rightarrow \\mathbb R$ locally表示成k个Differential 1-form的wedge product $\\omega=\\omega_I dx^I$ $\\omega_I$ 是个function$\\Omega^k(M)$ $\\int_M \\omega=\\sum_i\\int_M f_i\\omega$其中$f_i$ 是在一个covering...","categories": ["math"],
+        "tags": ["content","cohomology","differential_form","de_Rham_cohomology","simplicial_cohomology","vector_field","tangent_vector_field"],
         "url": "https://roshameow.github.io//personal_homepage/math/conformal-geometry6/"
       },{
         "title": "conformal geometry学习 (七 ) -- Duality, homology relation",
@@ -331,7 +331,7 @@ var store = [{
       },{
         "title": "persistent homology 事例 + 应用",
         "excerpt":"pair graph 下标表示在filtration中的前后关系. 蓝色表示killer, 红色表示generator, 弧线表示kill关系. topological annulus(环带, cylinder) $H_0$ 的生成元是$v_0$ $H_1$ 的生成元是$e_2$ (对应cycle $e_0+e_1+e_2$ ) topological torus $H_0$ 的生成元为 $v_0$ $H_1$ 的生成元为$e_3$( 对应cycle $e_0+e_1+e_2+e_3$) , $e_{20}$ (对应cycle $e_{12}+e_{16}+e_{20}$) topological quadrilateral(四边形) $H_0$ 的生成元为$v_0$ , $H_1$ 的生成元为$e_{11}$记号 $\\Gamma(d)$ : 被killer $d$ kill掉的generator persistence life: $j-i-1$ , 从simplex $\\sigma_i$ generated 到被 $\\sigma_j$...","categories": ["algorithm"],
-        "tags": ["content"],
+        "tags": ["content","persistent_homology","graph","pair_graph","homology","barcode","tda","topological_data_analysis","point_cloud"],
         "url": "https://roshameow.github.io//personal_homepage/algorithm/persistent-homology/"
       },{
         "title": "柳树怎么表现",
@@ -355,12 +355,12 @@ var store = [{
         "url": "https://roshameow.github.io//personal_homepage/affair/cat-airline/"
       },{
         "title": "掼蛋规则",
-        "excerpt":"  升级规则  特殊花色          普通      炸弹      ","categories": ["game"],
+        "excerpt":"两副扑克牌(54x2=108张, 对家是一队) 升级规则: 极牌: 原始顺序 2,3,…,10,J,Q,K,A 本轮极牌最大 (比如3是极牌, 2,4,…,10,J,Q,K,A,3) 极牌参与顺子等特殊牌型时按普通牌算(J,Q,K,A,3不是顺子, 2,3,4,5,6 仍是顺子) 两张♥️极牌是万能牌, 可以填空去组特殊牌型 先出尽的一队升级, 根据队伍里另一人的名次升1,2,3级, 上一轮赢家的级数作为级牌 最后升到A并打赢的队最终胜利 特殊花色 普通: 单张, 对子 三张 (♠️8♣️8♥️8) 三带二(♠️8♣️8♥️8 ♥️6♦️6) 三连对(♠️6♣️6 ♥️7♣️7 ♥️8♦️8) 钢板(二连三, ♠️7♣️7♥️7 ♣️8♥️8♦️8) 顺子(♠️5♥️6♣️7♥️8♦️9) 炸弹: 不看上家牌型, 从小到大, 炸弹 &lt; 同花顺 « 四王炸 炸弹(♠️8♥️8♣️8♥️8♦️8) 同花顺(♥️5♥️6♥️7♥️8♥️9) 同牌型比排面大小, 炸弹和同花顺比张数, 相同张数 炸弹 &lt; 同花顺 四王炸(两小王两大王, 🃏🃏🃏🃏)...","categories": ["game"],
         "tags": ["content"],
         "url": "https://roshameow.github.io//personal_homepage/game/card/"
       },{
         "title": "墙皮脱落问题",
-        "excerpt":"根据这个视频学习   原因: 热胀冷缩","categories": ["house"],
+        "excerpt":"根据这个视频学习, 墙皮粉化, 剥落 分类 普通的起皮, 剥落 基层出现裂缝 加胶水太多遇水膨胀 墙面尘土大, 没清理, 没刷界面剂 腻子本身寿命短, 有机粘料太少, 抗热胀冷缩不达标 返碱 加阳离子氯丁胶乳耐碱 长霉 给自己手, 呼吸道做好防护, 刷次氯酸(漂白粉) 壁癌: 大面积剥落, 基层渗水漏水导致的(最常见的) 解决根本问题, 做防水 细缝用 水泥基渗透结晶(填缝剂, 矽酸质), 国标 GB18445-2012 (有争议) 有说水性聚氨酯(油性有毒), 或JS防水涂料(搭配防水卷材) 处理方法 判断基层: 木板, 石膏 从敲击声判断 用钢丝球/钢刷打磨干净基层的水泥墙面 清除所有浮灰污渍油渍 可能: 用脱漆剂去除不干净的底漆 刷907界面剂(满足国标JC/T 907-2018 的界面剂), 俗称墙固 固砂固粉 增加不同材料之间的粘性(基底Vs腻子Vs漆) 小面积用补墙膏修复, 大面积用耐水腻子...","categories": ["house"],
         "tags": ["content"],
         "url": "https://roshameow.github.io//personal_homepage/house/wall-problem/"
       },{
@@ -405,12 +405,12 @@ var store = [{
         "url": "https://roshameow.github.io//personal_homepage/algorithm/attention4/"
       },{
         "title": "驾照考试",
-        "excerpt":"考试范围 常识: 车辆使用 + 交通信号 法律: 道路交通安全法 道路交通安全法实施条例 道路交通安全违法行为记分管理办法 道路交通事故处理程序 机动车驾驶证申领和使用规定 机动车登记规定 刑法 中和“交通”有关的条目 刑法修正案9 133条: 符合危险驾驶罪的情况+处罚 最高人民法院关于审理交通肇事刑事案件具体应用法律若干问题的解释 : 符合交通肇事罪的情况+处罚 工具 交管12123: 报名考试 驾校一点通 : 刷题, 模拟考试 驾考宝典: 可以按类型刷题知识 一些刷学分的时候顺便学的知识 买多少号汽油? 汽油和压缩比的关系, 标号越高, 辛烷值越高, 抵抗爆燃的能力越高, 越安全, 越贵. 汽车的压缩比越高, 越危险, 需要越高标号的汽油. 润滑油:  颜色深说明质量好? 还有一个详细的视频教怎么换🛞生平第一次这么科学的复习考试😮‍💨, (第一天)刷题记笔记, 看了3个小时的考点讲解视频, (第二天)背知识点, 重刷错题, 模拟考试 扣分体系足够科学吗? 受哪些因素影响呢?...","categories": ["affair"],
+        "excerpt":"科目一 考试范围 常识: 车辆使用 + 交通信号 法律: 道路交通安全法 道路交通安全法实施条例 道路交通安全违法行为记分管理办法 道路交通事故处理程序 机动车驾驶证申领和使用规定 机动车登记规定 刑法 中和“交通”有关的条目 刑法修正案9 133条: 符合危险驾驶罪的情况+处罚 最高人民法院关于审理交通肇事刑事案件具体应用法律若干问题的解释 : 符合交通肇事罪的情况+处罚 工具 交管12123: 报名考试 驾校一点通 : 刷题, 模拟考试 驾考宝典: 可以按类型刷题知识 一些刷学分的时候顺便学的知识 买多少号汽油? 汽油和压缩比的关系, 标号越高, 辛烷值越高, 抵抗爆燃的能力越高, 越安全, 越贵. 汽车的压缩比越高, 越危险, 需要越高标号的汽油. 润滑油:  颜色深说明质量好? 还有一个详细的视频教怎么换🛞生平第一次这么科学的复习考试😮‍💨, (第一天)刷题记笔记, 看了3个小时的考点讲解视频, (第二天)背知识点, 重刷错题, 模拟考试 扣分体系足够科学吗?...","categories": ["affair"],
         "tags": ["content"],
         "url": "https://roshameow.github.io//personal_homepage/affair/driving-test/"
       },{
         "title": "猫幽门螺杆菌调查",
         "excerpt":"一篇关于猫幽门螺杆菌的实验论文 实验用58只猫的检测结果, 实验是09年的 革兰氏染色(GS), Warthin-Starry染色(WSS), 快速脲酶测试(RUT) 这几个基于活检的结果差不多 革兰氏染色(GS), Warthin-Starry染色(WSS)是光学显微镜形态学方法, 区分不出H. heilmannii和H. felis C13呼气测试(BT)测出阳性更多, 可能是那三种方法依赖活检, 活检取样时漏掉了幽门螺杆菌的片状定植区域 PCR独有的阳性可能是幽门螺杆菌数量太低, 其他检不出来; PCR独有的阴性可能是有PCR引物不能扩增的幽门螺杆菌的种类 实验中是用幽门窦活检样本来做的 PCR可以可靠的区分三种不同的幽门菌 实验中的58只猫只检测出来H. heilmannii, 其他两种没发现(根据PCR鉴定和形态学方法的结果) 检测结果大部分猫都是H. heilmannii阳性, 所有猫都是轻度, 中度胃炎. 没看到什么相关性. 根据白细胞量诊断轻度胃炎 根据淋巴细胞聚集诊断中度胃炎 幽门螺杆菌H. heilmannii没法在体外培养成功现在市场上的流行 检测方法 尿素酶检测: 智商税 牙垢试纸: 如果有产生尿素酶的细菌, 试纸会因碱性变粉. 产生尿素酶的细菌 $\\ne$ 幽门螺杆菌. 幽门螺杆菌没法在口腔环境培养. 所以测出的够呛是幽门螺杆菌. 抗原检测: 对应H. pylori(HP) 抗体 血清抗原: 只能检测是否感染过, 不能检测是否根除....","categories": ["pet"],
-        "tags": ["content"],
+        "tags": ["content","hp","胃病"],
         "url": "https://roshameow.github.io//personal_homepage/pet/helicobacter/"
       }]

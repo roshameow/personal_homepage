@@ -31,7 +31,7 @@
 <meta property="twitter:title" content="用 jekyll+obsidian生成个人主页并部署到 github pages的工作流" />
 <meta name="twitter:site" content="@" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-10-23T07:52:00+00:00","datePublished":"2023-12-20T00:00:00+00:00","description":"用jekyll的原因无需多说。这样配置好工作流之后，除了编写内容基本没有什么麻烦的操作(登录在线网页，换编辑器，按照统一格式改文件名之类在我看来都很麻烦。。)。 Ruby的环境管理，包管理方式","headline":"用 jekyll+obsidian生成个人主页并部署到 github pages的工作流","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/webpage/jekyll-blog-deploy/"},"url":"https://roshameow.github.io//personal_homepage/webpage/jekyll-blog-deploy/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-11-12T04:09:00+00:00","datePublished":"2023-12-20T00:00:00+00:00","description":"用jekyll的原因无需多说。这样配置好工作流之后，除了编写内容基本没有什么麻烦的操作(登录在线网页，换编辑器，按照统一格式改文件名之类在我看来都很麻烦。。)。 Ruby的环境管理，包管理方式","headline":"用 jekyll+obsidian生成个人主页并部署到 github pages的工作流","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/webpage/jekyll-blog-deploy/"},"url":"https://roshameow.github.io//personal_homepage/webpage/jekyll-blog-deploy/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -371,7 +371,16 @@
   </li>
   <li><strong>加related post:</strong>
     <ul>
-      <li>用jekyll默认的<code class="language-plaintext highlighter-rouge">site.related_posts</code></li>
+      <li>用jekyll默认的<code class="language-plaintext highlighter-rouge">site.related_posts</code>: 默认有10条最近的post, 复杂的筛选规则在github pages上不生效(据说)
+        <ul>
+          <li>其他方法:
+            <ul>
+              <li><a href="https://www.jsware.io/jekyll-related-posts/about.html">遍历tag和categories找最match的post</a>  可能会超时</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>添加和toc类似的css显示</li>
     </ul>
   </li>
   <li><strong>添加<a href="https://jekyllrb.com/docs/collections/">collection</a>:</strong>

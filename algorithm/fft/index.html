@@ -31,7 +31,7 @@
 <meta property="twitter:title" content="FFT计算" />
 <meta name="twitter:site" content="@" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-07-10T16:49:59+00:00","datePublished":"2024-05-19T00:00:00+00:00","description":"fourier Series 定义: $F(f)(u)=\\int_{-\\infty}^{\\infty} f(x)e^{-2\\pi i x u} dx$ 2维：$G(p,q)=F(g(x,y)) = \\int\\int^\\infty_\\infty g(x,y)e^{-i2\\pi(px+qy)}dxdy$ 2维的可以拆分成1维 离散形式: 信号$x$ 的FFT 信号$X$ $X_k=\\sum_{m=0}^{N-1}x_m\\cdot e^{-i\\cdot 2\\pi km/N}=\\sum_{m=0}^{N-1}x_m\\cdot TW(N,k)^m$ $N$ 是信号长度 $k$ 是sample的位置 $TW(N,k) = e^{-i*2k\\pi/N}$ 是FFT 的twiddle factor(旋转因子) $TW(N,k)=\\cos(-2k\\pi/N)+i\\cdot \\sin(-2k\\pi/N)=TW_r(N,k)+i\\cdot TW_i(N,k)$","headline":"FFT计算","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/algorithm/fft/"},"url":"https://roshameow.github.io//personal_homepage/algorithm/fft/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-11-12T03:58:00+00:00","datePublished":"2024-05-19T00:00:00+00:00","description":"fourier Series 定义: $F(f)(u)=\\int_{-\\infty}^{\\infty} f(x)e^{-2\\pi i x u} dx$ 2维：$G(p,q)=F(g(x,y)) = \\int\\int^\\infty_\\infty g(x,y)e^{-i2\\pi(px+qy)}dxdy$ 2维的可以拆分成1维 离散形式: 信号$x$ 的FFT 信号$X$ $X_k=\\sum_{m=0}^{N-1}x_m\\cdot e^{-i\\cdot 2\\pi km/N}=\\sum_{m=0}^{N-1}x_m\\cdot TW(N,k)^m$ $N$ 是信号长度 $k$ 是sample的位置 $TW(N,k) = e^{-i*2k\\pi/N}$ 是FFT 的twiddle factor(旋转因子) $TW(N,k)=\\cos(-2k\\pi/N)+i\\cdot \\sin(-2k\\pi/N)=TW_r(N,k)+i\\cdot TW_i(N,k)$","headline":"FFT计算","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/algorithm/fft/"},"url":"https://roshameow.github.io//personal_homepage/algorithm/fft/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -204,7 +204,7 @@
   </li>
 </ul>
 
-<h3 id="butterfly-diagram">butterfly diagram</h3>
+<h3 id="butterfly-diagram"><a href="https://en.wikipedia.org/wiki/Butterfly_diagram">butterfly diagram</a></h3>
 
 <p>利用fft的对称性和周期性</p>
 

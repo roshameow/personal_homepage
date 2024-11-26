@@ -31,7 +31,7 @@
 <meta property="twitter:title" content="conformal geometry学习 (九 ) – homology character" />
 <meta name="twitter:site" content="@" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-10-24T16:35:00+00:00","datePublished":"2024-08-18T00:00:00+00:00","description":"由基本群/同调群定义指标","headline":"conformal geometry学习 (九 ) – homology character","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/math/conformal-geometry9/"},"url":"https://roshameow.github.io//personal_homepage/math/conformal-geometry9/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-11-12T04:19:00+00:00","datePublished":"2024-08-18T00:00:00+00:00","description":"由基本群/同调群定义指标","headline":"conformal geometry学习 (九 ) – homology character","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/math/conformal-geometry9/"},"url":"https://roshameow.github.io//personal_homepage/math/conformal-geometry9/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -305,8 +305,12 @@
 
 <p>我们在manifold上定义<a href="https://en.wikipedia.org/wiki/Tangent_space">tangent vector</a> (其实可以由多种观点定义)</p>
 <ol>
-  <li>在atlas每个局部坐标系下表示为$\lbrace\frac{\partial}{\partial x_i}\rbrace_i$ 的函数组合: $\xi(x^1,x^2,\cdots,x^n)=\sum_{i=1}^n \xi_i(x^1,x^2,\cdots,x^n)\frac{\partial}{\partial x_i}$</li>
-  <li>在不同坐标系间有Jacobian 的转换关系(transition rule) : $\tilde \xi^i=\sum_{j=1}^n \frac{\partial \tilde x^i}{\partial x^j}\xi^j$</li>
+  <li>在atlas每个局部坐标系下表示为$\lbrace\frac{\partial}{\partial x_i}\rbrace_i$ 的函数组合: $\xi(x^1,x^2,\cdots,x^n)=\sum_{i=1}^n \xi_i(x^1,x^2,\cdots,x^n)\frac{\partial}{\partial x_i}$
+    <ul>
+      <li>$\lbrace\frac{\partial}{\partial x_i}\rbrace_i$ (自然标架场) 是在局部坐标系下只变化$x_i$ 的iso-parametric curves的速度场</li>
+    </ul>
+  </li>
+  <li>在不同局部坐标系间有Jacobian 的转换关系(transition rule) : $\tilde \xi^i=\sum_{j=1}^n \frac{\partial \tilde x^i}{\partial x^j}\xi^j$</li>
 </ol>
 
 <h3 id="poincaré-hopf-theorem发旋定理-用euler-characteristic分析切向量场零点">Poincaré-Hopf Theorem(发旋定理): 用Euler Characteristic分析切向量场零点</h3>
