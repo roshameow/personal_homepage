@@ -5,7 +5,15 @@ categories:
   - algorithm
 tags:
   - content
-last_modified_at: 2024-09-02T19:49
+  - persistent_homology
+  - graph
+  - pair_graph
+  - homology
+  - barcode
+  - tda
+  - topological_data_analysis
+  - point_cloud
+last_modified_at: 2024-11-12T14:31
 created: 2024-09-01T11:38
 ---
 ## pair graph

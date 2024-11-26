@@ -21,7 +21,7 @@ tags:
   - obstruction
   - utm
   - fiber_bundle
-last_modified_at: 2024-10-24T16:35
+last_modified_at: 2024-11-12T04:19
 created: 2024-08-18T09:39
 ---
 
@@ -86,7 +86,8 @@ created: 2024-08-18T09:39
 
  我们在manifold上定义[tangent vector](https://en.wikipedia.org/wiki/Tangent_space) (其实可以由多种观点定义)
   1. 在atlas每个局部坐标系下表示为$\lbrace\frac{\partial}{\partial x_i}\rbrace_i$ 的函数组合: $\xi(x^1,x^2,\cdots,x^n)=\sum_{i=1}^n \xi_i(x^1,x^2,\cdots,x^n)\frac{\partial}{\partial x_i}$    
-  2. 在不同坐标系间有Jacobian 的转换关系(transition rule) : $\tilde \xi^i=\sum_{j=1}^n \frac{\partial \tilde x^i}{\partial x^j}\xi^j$  
+	  - $\lbrace\frac{\partial}{\partial x_i}\rbrace_i$ (自然标架场) 是在局部坐标系下只变化$x_i$ 的iso-parametric curves的速度场
+  2. 在不同局部坐标系间有Jacobian 的转换关系(transition rule) : $\tilde \xi^i=\sum_{j=1}^n \frac{\partial \tilde x^i}{\partial x^j}\xi^j$  
 
 ### Poincaré-Hopf Theorem(发旋定理): 用Euler Characteristic分析切向量场零点
 

@@ -9,7 +9,7 @@ tags:
   - markdown
   - obsidian
   - raycast
-last_modified_at: 2024-10-23T07:52
+last_modified_at: 2024-11-12T04:09
 created: 2023-12-20T12:28
 ---
 用jekyll的原因无需多说。这样配置好工作流之后，除了编写内容基本没有什么麻烦的操作(登录在线网页，换编辑器，按照统一格式改文件名之类在我看来都很麻烦。。)。
@@ -142,8 +142,11 @@ created: 2023-12-20T12:28
 3. **用gist加载代码块：** 
 	- 还是因为有些脚本里代码块解析错误，用[GitHub gist][9]就没有这个问题, 不过这种代码块的形式obsidian没法渲染
 4. **加related post:**
-	- 用jekyll默认的`site.related_posts`
-5. **添加[collection](https://jekyllrb.com/docs/collections/):**
+	- 用jekyll默认的`site.related_posts`: 默认有10条最近的post, 复杂的筛选规则在github pages上不生效(据说)
+		- 其他方法:
+			- [遍历tag和categories找最match的post](https://www.jsware.io/jekyll-related-posts/about.html)  可能会超时
+	- 添加和toc类似的css显示
+1. **添加[collection](https://jekyllrb.com/docs/collections/):**
 	- [关于collection folder不在主文件夹的情况](https://talk.jekyllrb.com/t/jekyll-4-2-2-collections-and-folders-within-collection/7158/2) 
 	- 我添加了一个`family` 的collection, 用grid 布局
 
