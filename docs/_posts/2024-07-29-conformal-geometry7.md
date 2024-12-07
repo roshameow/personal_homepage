@@ -10,12 +10,39 @@ tags:
   - betti_number
   - euler_character
   - 3-manifold
-last_modified_at: 2024-08-19T20:11:09-08:00
+last_modified_at: 2024-12-05T22:02
+created: 2024-07-29T21:12
 ---
 
 ## [Poincaré Duality](https://en.wikipedia.org/wiki/Poincaré_duality)
 
-<a href="https://www.researchgate.net/profile/Clement-Cances/publication/278829092/figure/fig3/AS:667718760022016@1536207966130/Triangular-mesh-T-and-Donald-dual-mesh-M-dual-volumes-vertices-interfaces.png"><img src="https://www.researchgate.net/profile/Clement-Cances/publication/278829092/figure/fig3/AS:667718760022016@1536207966130/Triangular-mesh-T-and-Donald-dual-mesh-M-dual-volumes-vertices-interfaces.png" width="200"></a>
+### surface上的dual mesh
+
+| [Voronoi diagram](https://en.wikipedia.org/wiki/Voronoi_diagram) | [Delaunay三角剖分](https://en.wikipedia.org/wiki/Delaunay_triangulation) |
+| ---------------------------------------------------------------- | -------------------------------------------------------------------- |
+| cell 中的点距离最小                                                     | 顶点                                                                   |
+| 顶点                                                               | 三角形外接圆的圆心                                                            |
+| 边                                                                | dual 边的中垂线                                                           |
+
+2d 离散点集 -> [Voronoi diagram](https://en.wikipedia.org/wiki/Voronoi_diagram)  -> Delaunay三角剖分
+
+<a href="https://commons.wikimedia.org/wiki/File:Euclidean_Voronoi_diagram.svg#/media/File:Euclidean_Voronoi_diagram.svg"><img src="https://upload.wikimedia.org/wikipedia/commons/5/54/Euclidean_Voronoi_diagram.svg" alt="Euclidean Voronoi diagram.svg" width="200" ></a> 
+
+-  [Voronoi diagram](https://en.wikipedia.org/wiki/Voronoi_diagram)  : 平面上的segment, 使每个区域离中间点距离最近
+	- 不同的distance函数会得到不同的segmentation
+	- 软件生成:
+		- blender里的 [Voronoi Texture](https://docs.blender.org/manual/en/latest/render/shader_nodes/textures/voronoi.html) 
+		- opencv 中 [distance transform](https://docs.opencv.org/3.4/d2/dbd/tutorial_distance_transform.html) 再取局部最大值
+- [Delaunay三角剖分](https://en.wikipedia.org/wiki/Delaunay_triangulation) 
+	- 我们的point set是三角剖分的顶点, 边连接两个相邻Voronoi cell
+	- 特点:
+		- 每个三角形的外接圆不包含其它的点
+		- 最大化三角剖分三角形的最小角: 避免出现极瘦的三角形
+
+### homology定义
+
+
+<a href="https://commons.wikimedia.org/wiki/File:Delaunay_Voronoi.svg#/media/File:Delaunay_Voronoi.svg"><img src="https://upload.wikimedia.org/wikipedia/commons/5/56/Delaunay_Voronoi.svg" alt="Connecting the triangulation's circumcenters gives the Voronoi diagram." width="200"></a>  黑色为Delaunay triangulation $T$, 红色为Voronoi diagram  $T^*$ , 红边是黑边的中垂线
 
 - [Poincaré Duality](https://en.wikipedia.org/wiki/Poincaré_duality): n-dim的manifold $M$, 三角剖分$T$, 和cell decomposition $T^*$ 对偶.
 	- **把每个k-simplex $\sigma$ 映射成(n-k)-cell $\sigma^\ast$**: 对于包含$\sigma$ 的n-simplex $\Delta$,  $\Delta\cap\sigma^*$ 是取$\sigma\subset ...\subset \Delta$ 之间的simplex的barycentres(重心点) 的convex hull

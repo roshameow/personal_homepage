@@ -5,7 +5,8 @@ categories:
   - affair
 tags:
   - content
-last_modified_at: 2024-11-26T11:59
+  - photoshop
+last_modified_at: 2024-12-02T15:16
 created: 2024-10-21T11:25
 ---
 
@@ -14,7 +15,7 @@ created: 2024-10-21T11:25
 ### 考试范围
 
 1. 常识: 车辆使用 + 交通信号
-2. 法律:
+1. 法律:
 	- [道路交通安全法](https://www.gov.cn/banshi/2005-08/23/content_25575.htm) 
 	- [道路交通安全法实施条例](https://www.gov.cn/banshi/2005-08/23/content_25579.htm) 
 	- [道路交通安全违法行为**记分**管理办法](https://www.gov.cn/gongbao/content/2022/content_5679697.htm) 
@@ -40,6 +41,7 @@ created: 2024-10-21T11:25
 	- 汽车的压缩比越高, 越危险, 需要越高标号的汽油.
 - 润滑油:  颜色深说明质量好?
 - 还有一个详细的视频教怎么换🛞
+- 常识类有个路面限速的标志在我的记忆盲区: 黄高白低(只要记得吃🦀️有蟹黄和蟹膏, 所以**黄**色是最**高**速度)
 
 生平第一次这么科学的复习考试😮‍💨, (第一天)刷题记笔记, 看了3个小时的考点讲解视频, (第二天)背知识点, 重刷错题, 模拟考试
 
@@ -59,6 +61,7 @@ created: 2024-10-21T11:25
 		- 这个并不trival🤔️
 		- [二轮转向vs四轮转向](https://www.pcauto.com.cn/teach/qczs/0212/4785.html)
 	- 转向时, 汽车后部的位移小, 用倒库的方式能更好的进库
+	- [怎么正确转弯](https://www.chemm.com/newsDetail?article_id=36887) 
 - 简化后:  ![Pasted image 20241103201833.png]({{ '/docs/attachment/Pasted image 20241103201833.png' | relative_url }}){:width="120"}   方向盘向左, 往左绕圈 ![Pasted image 20241103201851.png]({{ '/docs/attachment/Pasted image 20241103201851.png' | relative_url }}){:width="120"}  方向盘向右, 往右绕圈
 
 ### 行驶路线
@@ -99,11 +102,31 @@ created: 2024-10-21T11:25
 
 ## 科目三
 
-### 灯光模拟
+- 灯光模拟
+- 地图
+	-  [高德地图导出](https://lbs.amap.com/api/wia/tutorial/application/export_map)  : 只能支持俯视的卫星实景地图或标准地图(最细节也看不出车道)
+		- 高德地图不支持查看街景
+	- 百度地图可以, 全景
+		- 但是地图上看不到考试用的伪装路牌
 
--  [高德地图导出](https://lbs.amap.com/api/wia/tutorial/application/export_map)  : 只能支持俯视的卫星实景地图或标准地图(最细节也看不出车道)
-	- 高德地图不支持查看街景
-- 百度地图可以, 全景
-	- 但是地图上看不到考试用的伪装路牌
+![Pasted image 20241202131823.png]({{ '/docs/attachment/Pasted image 20241202131823.png' | relative_url }}){:width="600"}
+
+- 地图制作: 提取线稿+合成
+	- 提取线稿: binary(image-gaussianblur(image))
+	- 合成: mulitiply
+
+- [多多驾到](https://www.duoluntech.com/index.php/news/detail/38.html) 
+
+## 科目四
+
+[汽车之家问答板块](https://www.autohome.com.cn/ask/2829827.html)有原理讲解
+
+- 泥泞侧滑的情形: 前反后同
+	- 后轮向右侧滑 -> 车尾向右倾斜 ->  相当于整个车是向左倾斜 ->  向右打方向盘
+- 坡上停车: 马路牙子在右侧, 遇到溜车时, 为了安全, 需要前轮往马路牙子一侧溜, 从而能卡住.(假设了旋转中心靠后轮)
+	- 上坡 -> 前轮在上, 让前轮向右溜 -> 方向盘向左
+	- 下坡 -> 前轮在下, 让前轮向右溜 -> 方向盘向右
+- 拱形路面: 题里的“自由行程”指摩擦力给的力方向
+	- 行驶在右侧 -> 路面摩擦力向左上 -> 方向盘自由行程偏左
 
 
