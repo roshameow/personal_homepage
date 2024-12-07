@@ -255,7 +255,7 @@ var store = [{
         "url": "https://roshameow.github.io//personal_homepage/algorithm/fft/"
       },{
         "title": "阿那亚戏剧节的海报制作",
-        "excerpt":"   想法:          想着 🙌没有人👐比我👌更懂☝伽利略 选了这个主题,      虽然知道戏剧是改编自《伽利略传》, 讲的是伽利略和教廷之间的比较肮脏?的拉扯.      我希望海报呈现的是他的动机: 希望世界上所有事情都和谐漂亮的执着和品味(我个人理解).      所以希望海报是抽象的, 现代的, 干净的                  因此 pass掉了非常具象的指代人身份的元素, 比如伽利略头像啊, ❗️没有语境的数学公式啊. 选了伽利略至今仍有影响的工作, 密度天平和潮汐现象                    制作   背景          画了草图后用stable-diffusion的ipadapter做风格转换        前景素材 [1] https://www.pinterest.com/pin/58546863899073827/  背景风格 [2] https://www.pinterest.com/pin/363102788722082645/ 前景风格 后续 发了之后完全没有流量, 而且我也看不出其他作品的好坏和点赞的关系, 看来我吃不上这碗饭😮‍💨 ","categories": ["design"],
+        "excerpt":"   想法:          想着 🙌没有人👐比我👌更懂☝伽利略 选了这个主题,      虽然知道戏剧是改编自《伽利略传》, 讲的是伽利略和教廷之间的比较肮脏?的拉扯.      我希望海报呈现的是他的动机: 希望世界上所有事情都和谐漂亮的执着和品味(我个人理解).      所以希望海报是抽象的, 现代的, 干净的                  因此 pass掉了非常具象的指代人身份的元素, 比如伽利略头像啊, ❗️没有语境的数学公式啊. 选了伽利略至今仍有影响的工作, 密度天平和潮汐现象                    制作   背景          画了草图后用stable-diffusion的ipadapter做风格转换      平面构成        前景素材 [1] https://www.pinterest.com/pin/58546863899073827/  背景风格 [2] https://www.pinterest.com/pin/363102788722082645/ 前景风格 后续 发了之后完全没有流量, 而且我也看不出其他作品的好坏和点赞的关系, 看来我吃不上这碗饭😮‍💨 ","categories": ["design"],
         "tags": ["content","photoshop","stable-diffusion"],
         "url": "https://roshameow.github.io//personal_homepage/design/poster1/"
       },{
@@ -320,7 +320,7 @@ var store = [{
         "url": "https://roshameow.github.io//personal_homepage/math/conformal-geometry6/"
       },{
         "title": "conformal geometry学习 (七 ) -- Duality, homology relation",
-        "excerpt":"Poincaré Duality Poincaré Duality: n-dim的manifold $M$, 三角剖分$T$, 和cell decomposition $T^*$ 对偶. 把每个k-simplex $\\sigma$ 映射成(n-k)-cell $\\sigma^\\ast$: 对于包含$\\sigma$ 的n-simplex $\\Delta$, $\\Delta\\cap\\sigma^*$ 是取$\\sigma\\subset …\\subset \\Delta$ 之间的simplex的barycentres(重心点) 的convex hull 顶点(1-simplex) $\\sigma$, 面(2-simplex) $\\Delta$ , 灰色部分 $\\Delta\\cap\\sigma^*$ 是顶点$\\sigma$,两条边, 面$\\Delta$ 的重心点的convex hull $\\sigma^*$ 只和$\\sigma$ 相交, 这个intersection给出了对偶关系 把k-chain $C_k(T)$映射到(n-k)-chain $C_{n-k}(T^*)$ : $C_{n-k}(T^\\ast)$ 是定义在$T^\\ast$ 的多边形cell上的? 这样也可以吗? 把$H_k(M,\\mathbb Z)$...","categories": ["math"],
+        "excerpt":"Poincaré Duality surface上的dual mesh Voronoi diagram Delaunay三角剖分 cell 中的点距离最小 顶点 顶点 三角形外接圆的圆心 边 dual 边的中垂线 2d 离散点集 -&gt; Voronoi diagram -&gt; Delaunay三角剖分 Voronoi diagram : 平面上的segment, 使每个区域离中间点距离最近 不同的distance函数会得到不同的segmentation 软件生成: blender里的 Voronoi Texture opencv 中 distance transform 再取局部最大值 Delaunay三角剖分 我们的point set是三角剖分的顶点, 边连接两个相邻Voronoi cell 特点: 每个三角形的外接圆不包含其它的点 最大化三角剖分三角形的最小角: 避免出现极瘦的三角形 homology定义 黑色为Delaunay triangulation $T$,...","categories": ["math"],
         "tags": ["content","homology","duality","betti_number","euler_character","3-manifold"],
         "url": "https://roshameow.github.io//personal_homepage/math/conformal-geometry7/"
       },{
@@ -405,12 +405,57 @@ var store = [{
         "url": "https://roshameow.github.io//personal_homepage/algorithm/attention4/"
       },{
         "title": "驾照考试",
-        "excerpt":"科目一 考试范围 常识: 车辆使用 + 交通信号 法律: 道路交通安全法 道路交通安全法实施条例 道路交通安全违法行为记分管理办法 道路交通事故处理程序 机动车驾驶证申领和使用规定 机动车登记规定 刑法 中和“交通”有关的条目 刑法修正案9 133条: 符合危险驾驶罪的情况+处罚 最高人民法院关于审理交通肇事刑事案件具体应用法律若干问题的解释 : 符合交通肇事罪的情况+处罚 工具 交管12123: 报名考试 驾校一点通 : 刷题, 模拟考试 驾考宝典: 可以按类型刷题知识 一些刷学分的时候顺便学的知识 买多少号汽油? 汽油和压缩比的关系, 标号越高, 辛烷值越高, 抵抗爆燃的能力越高, 越安全, 越贵. 汽车的压缩比越高, 越危险, 需要越高标号的汽油. 润滑油:  颜色深说明质量好? 还有一个详细的视频教怎么换🛞生平第一次这么科学的复习考试😮‍💨, (第一天)刷题记笔记, 看了3个小时的考点讲解视频, (第二天)背知识点, 重刷错题, 模拟考试 扣分体系足够科学吗?...","categories": ["affair"],
-        "tags": ["content"],
+        "excerpt":"科目一 考试范围 常识: 车辆使用 + 交通信号 法律: 道路交通安全法 道路交通安全法实施条例 道路交通安全违法行为记分管理办法 道路交通事故处理程序 机动车驾驶证申领和使用规定 机动车登记规定 刑法 中和“交通”有关的条目 刑法修正案9 133条: 符合危险驾驶罪的情况+处罚 最高人民法院关于审理交通肇事刑事案件具体应用法律若干问题的解释 : 符合交通肇事罪的情况+处罚 工具 交管12123: 报名考试 驾校一点通 : 刷题, 模拟考试 驾考宝典: 可以按类型刷题知识 一些刷学分的时候顺便学的知识 买多少号汽油? 汽油和压缩比的关系, 标号越高, 辛烷值越高, 抵抗爆燃的能力越高, 越安全, 越贵. 汽车的压缩比越高, 越危险, 需要越高标号的汽油. 润滑油:  颜色深说明质量好? 还有一个详细的视频教怎么换🛞 常识类有个路面限速的标志在我的记忆盲区: 黄高白低(只要记得吃🦀️有蟹黄和蟹膏, 所以黄色是最高速度)生平第一次这么科学的复习考试😮‍💨, (第一天)刷题记笔记, 看了3个小时的考点讲解视频, (第二天)背知识点,...","categories": ["affair"],
+        "tags": ["content","photoshop"],
         "url": "https://roshameow.github.io//personal_homepage/affair/driving-test/"
       },{
         "title": "猫幽门螺杆菌调查",
         "excerpt":"一篇关于猫幽门螺杆菌的实验论文 实验用58只猫的检测结果, 实验是09年的 革兰氏染色(GS), Warthin-Starry染色(WSS), 快速脲酶测试(RUT) 这几个基于活检的结果差不多 革兰氏染色(GS), Warthin-Starry染色(WSS)是光学显微镜形态学方法, 区分不出H. heilmannii和H. felis C13呼气测试(BT)测出阳性更多, 可能是那三种方法依赖活检, 活检取样时漏掉了幽门螺杆菌的片状定植区域 PCR独有的阳性可能是幽门螺杆菌数量太低, 其他检不出来; PCR独有的阴性可能是有PCR引物不能扩增的幽门螺杆菌的种类 实验中是用幽门窦活检样本来做的 PCR可以可靠的区分三种不同的幽门菌 实验中的58只猫只检测出来H. heilmannii, 其他两种没发现(根据PCR鉴定和形态学方法的结果) 检测结果大部分猫都是H. heilmannii阳性, 所有猫都是轻度, 中度胃炎. 没看到什么相关性. 根据白细胞量诊断轻度胃炎 根据淋巴细胞聚集诊断中度胃炎 幽门螺杆菌H. heilmannii没法在体外培养成功现在市场上的流行 检测方法 尿素酶检测: 智商税 牙垢试纸: 如果有产生尿素酶的细菌, 试纸会因碱性变粉. 产生尿素酶的细菌 $\\ne$ 幽门螺杆菌. 幽门螺杆菌没法在口腔环境培养. 所以测出的够呛是幽门螺杆菌. 抗原检测: 对应H. pylori(HP) 抗体 血清抗原: 只能检测是否感染过, 不能检测是否根除....","categories": ["pet"],
         "tags": ["content","hp","胃病"],
         "url": "https://roshameow.github.io//personal_homepage/pet/helicobacter/"
+      },{
+        "title": " 小红书直播方法",
+        "excerpt":"  用电脑端的小红书直播助手 指南          获取推流码                  创作中心 -&gt; 全部服务 -&gt; 主播中心 -&gt; 去开播, 选择pc, 得到6位数字验证码          在https://www.xiaohongshu.com/zhibo/obs 输入得到串联密钥                    按照参数设置obs推流: 服务器地址, 分辨率, fps, 比特率等      ","categories": ["media"],
+        "tags": ["content"],
+        "url": "https://roshameow.github.io//personal_homepage/media/redbook/"
+      },{
+        "title": "iphone快捷指令",
+        "excerpt":"iphone和windows互相复制剪切板 https://blog.csdn.net/weixin_39927850/article/details/142000408 https://sspai.com/post/78530 https://blog.csdn.net/likeyunkeji/article/details/142367760 https://sspai.com/post/84133 iPhone自动记账 https://sspai.com/post/86611https://sspai.com/post/80568   启动:          主动: 敲击两下背面      被动: 微信收款                  目前只支持mail, message, 不支持notification, 也不支持其它app                      截图  识别          来源/分类      金额        存储          用safari的url链接填写服务器上的飞书多维表格      手电筒闪烁   控制: Repeat, End Repeat  功能: flashlight打卡提醒   添加Automation分享   用文件方式分享快捷指令","categories": ["shortcut"],
+        "tags": ["content"],
+        "url": "https://roshameow.github.io//personal_homepage/shortcut/iphone-shortcut/"
+      },{
+        "title": "数学概念 -- tensor( 张量 )",
+        "excerpt":"tensor是描述多种线性量的统一形式             typen \\ m      0      1      2                  0      Scalar                            1      vector                            2                           定义 ","categories": ["math"],
+        "tags": ["content"],
+        "url": "https://roshameow.github.io//personal_homepage/math/tensor/"
+      },{
+        "title": "conformal geometry学习 (十一 ) -- Hodge Star Operator",
+        "excerpt":"Hodge Star Operator 在有Riemann metric的mainfold的微分形式上有映射 $\\ast: \\Omega^k(M)\\rightarrow \\Omega^{n-k}(M)$ 连接微分几何和复几何: 在微分几何中，它描述了manifold上的形式内积和体积 在复几何中，它帮助刻画复结构和调和理论，解释了复流形中的拓扑性质? manifold定义 两种定义 Type I选 $T_pM$ 的orthonormal basis定义 Type II用一般的basis定义 $T_pM$ 上的basis和inner product $\\lbrace\\frac{\\partial}{\\partial x_1},\\frac{\\partial}{\\partial x_2},\\cdots,\\frac{\\partial}{\\partial x_n}\\rbrace$ -&gt; $\\langle \\partial_i, \\partial_j\\rangle_g=\\mathbb 1_{ij}$ $\\lbrace\\frac{\\partial}{\\partial x_1},\\frac{\\partial}{\\partial x_2},\\cdots,\\frac{\\partial}{\\partial x_n}\\rbrace$ -&gt; $\\langle \\partial_i, \\partial_j\\rangle_g=\\mathbf g_{ij}$ $T_p^\\ast M$ 上induce一个dual inner product dual 1-form basis为$\\lbrace dx_1,dx_2,\\cdots,dx_n\\rbrace$...","categories": ["math"],
+        "tags": ["content","hodge_star","电场","Riemann_metric","harmonic_form","dual_mesh"],
+        "url": "https://roshameow.github.io//personal_homepage/math/conformal-geometry11/"
+      },{
+        "title": "洗发水成分",
+        "excerpt":"成分分类 十二烷醇=月桂醇 成分 功能 分类 成分 表面活性剂 去污         硫酸盐阴离子表活石油化工提取, 便宜, 好起泡强力但是刺激(不能区分油性杂质和皮肤细胞的脂质膜) - 月桂醇硫酸酯钠(SLS): 强力- 月桂醇聚醚硫酸酯钠(SLES): 更温和- 月桂醇聚醚硫酸酯铵     皂基类脂肪酸盐类, 好起泡, 强去污. 会让头发干涩, 损伤发质. - 月桂酸钠- 硬脂酸钠- 棕榈酸- 氢氧化钠(和脂肪酸一起形成皂基)     氨基酸清洁力和刺激性平衡 - 月桂酰肌氨酸钠- 椰油酰谷氨酸钠, 椰油酰基甲基牛磺酸钠     其它温和类的 甜菜碱类、乙磺酸类、葡糖苷类, 二乙酸二钠 活性成分        ...","categories": ["daily"],
+        "tags": ["content","shampoo"],
+        "url": "https://roshameow.github.io//personal_homepage/daily/shampoo/"
+      },{
+        "title": "conformal geometry学习 (十一 ) -- Duality, 离散",
+        "excerpt":"","categories": ["math"],
+        "tags": ["content"],
+        "url": "https://roshameow.github.io//personal_homepage/math/conformal-geometry12/"
+      },{
+        "title": "几种拍图技巧",
+        "excerpt":"","categories": ["photo"],
+        "tags": ["content"],
+        "url": "https://roshameow.github.io//personal_homepage/photo/photo1/"
+      },{
+        "title": "blender学习: 扭曲晶体路径跟随",
+        "excerpt":"参考这个教学 ","categories": ["blender"],
+        "tags": ["content"],
+        "url": "https://roshameow.github.io//personal_homepage/blender/blender-learning14/"
+      },{
+        "title": "蛇年圣诞风格海报",
+        "excerpt":"“Merry Hissmas” 今年在ai的加持下似乎只有分镜需要自己画了? ","categories": ["design"],
+        "tags": ["content"],
+        "url": "https://roshameow.github.io//personal_homepage/design/poster2/"
       }]

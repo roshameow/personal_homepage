@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<!--
+    So Simple Jekyll Theme 3.2.0
+    Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+    Free for personal and commercial use under the MIT license
+    https://github.com/mmistakes/so-simple-theme/blob/master/LICENSE
+-->
+<html lang="en-US" class="no-js">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  
+
+  
+  
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>conformal geometry学习 (十一 ) – Hodge Star Operator | Liu, Wen’s Home Page</title>
+<meta name="generator" content="Jekyll v4.3.4" />
+<meta property="og:title" content="conformal geometry学习 (十一 ) – Hodge Star Operator" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Hodge Star Operator" />
+<meta property="og:description" content="Hodge Star Operator" />
+<link rel="canonical" href="https://roshameow.github.io//personal_homepage/math/conformal-geometry11/" />
+<meta property="og:url" content="https://roshameow.github.io//personal_homepage/math/conformal-geometry11/" />
+<meta property="og:site_name" content="Liu, Wen’s Home Page" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2024-11-12T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="conformal geometry学习 (十一 ) – Hodge Star Operator" />
+<meta name="twitter:site" content="@" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-12-08T05:43:00+00:00","datePublished":"2024-11-12T00:00:00+00:00","description":"Hodge Star Operator","headline":"conformal geometry学习 (十一 ) – Hodge Star Operator","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/math/conformal-geometry11/"},"url":"https://roshameow.github.io//personal_homepage/math/conformal-geometry11/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  
+
+  <script>
+    /* Cut the mustard */
+    if ('querySelector' in document && 'addEventListener' in window) {
+      document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + 'js';
+    }
+  </script>
+
+  <link rel="stylesheet" href="/personal_homepage/assets/css/main.css">
+  <link rel="stylesheet" href="/personal_homepage/assets/css/skins/default.css">
+  
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,700,700i|Lora:400,400i,700,700i">
+  <link rel="alternate" type="application/atom+xml" title="Liu, Wen&#39;s Home Page" href="/personal_homepage/atom.xml">
+<!-- start custom head snippets -->
+
+<!-- insert favicons. use http://realfavicongenerator.net/ -->
+<link rel="shortcut icon" type="image/x-icon" href="/personal_homepage/docs/images/logo.ico">
+<!-- end custom head snippets -->
+
+</head>
+
+  <body class="layout--post  conformal-geometry学习-十一-hodge-star-operator">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#primary-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+  <div class="navigation-wrapper">
+    <a href="#menu-toggle" id="menu-toggle">Menu</a>
+    <nav id="primary-nav" class="site-nav animated drop">
+      <ul><li><a href="/personal_homepage/">Home</a></li><li><a href="/personal_homepage/posts/">Posts</a></li><li><a href="/personal_homepage/categories/">Categories</a></li><li><a href="/personal_homepage/tags/">Tags</a></li><li><a href="/personal_homepage/family/">Family</a></li><li><a href="/personal_homepage/search/">Search</a></li></ul>
+    </nav>
+  </div><!-- /.navigation-wrapper -->
+
+
+    <header class="masthead">
+  <div class="wrap">
+    
+    
+    
+      
+        <div class="site-title animated fadeIn"><a href="/personal_homepage/">Liu, Wen's Home Page</a></div>
+      
+      <p class="site-description animated fadeIn" itemprop="description">Work, Experiments and Ideas.</p>
+    
+  </div>
+</header><!-- /.masthead -->
+
+
+    <main id="main" class="main-content" aria-label="Content">
+  <article class="h-entry">
+    
+
+    <div class="page-wrapper">
+      <header class="page-header">
+        
+        
+        <h1 id="page-title" class="page-title p-name">conformal geometry学习 (十一 ) – Hodge Star Operator
+</h1>
+        
+      </header>
+
+      <div class="page-sidebar">
+        <div class="page-author h-card p-author"><img src="/personal_homepage/docs/images/logo.svg" class="author-avatar u-photo" alt=""><div class="author-info">
+
+<span class="read-time">2 min read</span>
+
+    <time class="page-date dt-published" datetime="2024-11-12T00:00:00+00:00"><a class="u-url" href="">November 12, 2024</a>
+</time>
+
+  </div>
+</div>
+
+        
+  <h3 class="page-taxonomies-title">Categories</h3>
+  
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a class="p-category" href="/personal_homepage/categories/#math" title="Pages filed under math">math</a></li>
+  </ul>
+
+
+        
+  <h3 class="page-taxonomies-title">Tags</h3>
+  
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a href="/personal_homepage/tags/#riemann-metric" title="Pages tagged Riemann_metric" rel="tag">Riemann_metric</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#content" title="Pages tagged content" rel="tag">content</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#dual-mesh" title="Pages tagged dual_mesh" rel="tag">dual_mesh</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#harmonic-form" title="Pages tagged harmonic_form" rel="tag">harmonic_form</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#hodge-star" title="Pages tagged hodge_star" rel="tag">hodge_star</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#%E7%94%B5%E5%9C%BA" title="Pages tagged 电场" rel="tag">电场</a></li>
+  </ul>
+
+
+        <!-- {::options parse_block_html="true" /} -->
+<div id="entry-table-of-contents" class="toc-wrapper">
+  <h2 id="toc-toggle">
+    Table of Contents <i
+      class="toc-toggle-icon fas fa-chevron-down"></i>
+  </h2>
+  <!-- 1. toc
+{:toc} -->
+  <!-- <div id="markdown-toc"> -->
+
+    <ul class="inline_toc" id="my_toc"><li><a href="#hodge-star-operator">Hodge Star Operator</a><ul><li><a href="#manifold定义">manifold定义</a></li><li><a href="#离散定义">离散定义</a></li></ul></li><li><a href="#举例">举例</a><ul><li><a href="#场论--静电场--双点电荷系统">场论 . 静电场 . 双点电荷系统</a></li><li><a href="#离散--局部调和形式">离散 . 局部调和形式</a></li></ul></li><li><a href="#计算调和一形式">计算调和一形式</a></li></ul>
+  <!-- </div> -->
+
+</div>
+<!-- {::options parse_block_html="false" /} -->
+        
+
+<div id="entry-table-of-contents" class="toc-wrapper">
+    <h2 id="toc-toggle" class="no_toc">
+        Related Posts <i class="toc-toggle-icon fas fa-chevron-down"></i>
+    </h2>
+    <!-- <div id="markdown-toc"> -->
+    <ul>
+        
+        <li><a href="/personal_homepage/design/poster2/">蛇年圣诞风格海报</a></li>
+        
+        <li><a href="/personal_homepage/blender/blender-learning14/">blender学习: 扭曲晶体路径跟随</a></li>
+        
+        <li><a href="/personal_homepage/photo/photo1/">几种拍图技巧</a></li>
+        
+        <li><a href="/personal_homepage/math/conformal-geometry12/">conformal geometry学习 (十一 ) -- Duality, 离散</a></li>
+        
+        <li><a href="/personal_homepage/daily/shampoo/">洗发水成分</a></li>
+        
+    </ul>
+    <!-- </div> -->
+
+</div>
+
+
+
+
+
+      </div>
+
+      <div class="page-content">
+        <div class="e-content">
+          <h2 id="hodge-star-operator">Hodge Star Operator</h2>
+
+<p>在有Riemann metric的mainfold的微分形式上有映射 $\ast: \Omega^k(M)\rightarrow \Omega^{n-k}(M)$</p>
+<ul>
+  <li>连接微分几何和复几何:
+    <ul>
+      <li>在微分几何中，它描述了manifold上的形式内积和体积</li>
+      <li>在复几何中，它帮助刻画复结构和调和理论，解释了复流形中的拓扑性质?</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="manifold定义">manifold定义</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>两种定义</th>
+      <th>Type I<br />选 $T_pM$ 的orthonormal basis定义</th>
+      <th>Type II<br />用一般的basis定义</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>$T_pM$ 上的basis<br />和inner product</td>
+      <td>$\lbrace\frac{\partial}{\partial x_1},\frac{\partial}{\partial x_2},\cdots,\frac{\partial}{\partial x_n}\rbrace$ -&gt; $\langle \partial_i, \partial_j\rangle_g=\mathbb 1_{ij}$     <br /><br /></td>
+      <td>$\lbrace\frac{\partial}{\partial x_1},\frac{\partial}{\partial x_2},\cdots,\frac{\partial}{\partial x_n}\rbrace$ -&gt; $\langle \partial_i, \partial_j\rangle_g=\mathbf g_{ij}$<br /></td>
+    </tr>
+    <tr>
+      <td>$T_p^\ast M$ 上induce一个dual inner product</td>
+      <td>dual 1-form basis为$\lbrace dx_1,dx_2,\cdots,dx_n\rbrace$</td>
+      <td>dual 1-form basis  $\lbrace dx^1,dx^2,\cdots,dx^n\rbrace$ -&gt; $\langle dx^i, dx^j\rangle_g=g^{ij}$</td>
+    </tr>
+    <tr>
+      <td>$\Omega^k$ 上的dual inner product</td>
+      <td><br />\(\langle dx_{i_1}\wedge \cdots \wedge dx_{i_k}, dx_{j_1}\wedge\cdots \wedge dx_{j_k}\rangle=\delta^{j_1 \cdots j_k}_{i_1\cdots i_k}\)</td>
+      <td><br />$\langle \omega, \eta\rangle_g$<br /><br />\(\langle dx_{i_1}\wedge \cdots \wedge dx_{i_k}, dx_{j_1}\wedge\cdots \wedge dx_{j_k}\rangle=\delta^{j_1 \cdots j_k}_{i_1\cdots i_k}\cdot g^{i_1j_1}\cdots g^{i_kj_k}\)</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>volume Element(体元)<br />$\omega_g= dx^1\wedge dx^2\wedge \cdots \wedge dx^n$</td>
+      <td>volume Element(体积形式, 体元)<br />$\omega_g=\sqrt{det(g_{ij})}\ dx^1\wedge dx^2\wedge \cdots \wedge dx^n$</td>
+    </tr>
+    <tr>
+      <td>Hodge star operator<br />$\ast: \Omega^k(M)\rightarrow \Omega^{n-k}(M)$</td>
+      <td><br />$(dx_{i_1}\wedge dx_{i_2}\wedge \cdots \wedge dx_{i_k})\overset{\ast} \mapsto (-1)^\sigma dx_{i_{k+1}}\wedge dx_{i_{k+2}}\wedge\cdots\wedge dx_{i_n}$<br />其中, $\sigma=(i_1,i_2,\cdots, i_n)$ 是一个permutation</td>
+      <td><strong>待定系数法</strong><br />对于一般$\omega\in\Omega^k$ 和$\tau\in\Omega^{n-k}$ 比较以下体元的系数<br />1. $\omega\wedge^\ast \xi=\langle\omega,\xi\rangle_g\omega_g$  <br />2. $\omega\wedge\tau$ <br />解出$^\ast \xi$ 的系数<br /><br /><strong>指标记法</strong><br />即,<br />\((dx^{i_1}\wedge dx^{i_2}\wedge \cdots \wedge dx^{i_k})\overset{\ast} \mapsto \sum_{(j_{k+1},\cdots,j_n)}\frac{\sqrt{det(g_{ij})}}{(n-k)!}\delta^{j_1 \cdots j_k}_{i_1\cdots i_k}\cdot g^{i_1j_1}\cdots g^{i_kj_k} \cdot dx^{j_{k+1}}\wedge dx^{j_{k+2}}\wedge\cdots\wedge dx^{j_n}\) <br /></td>
+    </tr>
+    <tr>
+      <td>例子<br /><br />体元和单位元</td>
+      <td>$^\ast(1)=dx^1\wedge dx^2\wedge \cdots \wedge dx^n=\omega_g$ <br />$^\ast(\omega_g)=1$</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>例子<br /><br />Riemann metric $\mathbf g=e^{2\lambda(u,v)}(du^2+dv^2)$  <br />(写成等温坐标一形式)<br />即,<br /> $\mathbf g_{ij}=\begin{bmatrix}e^\lambda &amp; 0 \\ 0 &amp; e^\lambda\end{bmatrix}$ <br /></td>
+      <td>normalize 自然标架场, 得到orthonormal标架场<br />$\frac{\partial}{\partial x_1}=e^{-\lambda}\frac{\partial}{\partial u}$ , $\frac{\partial}{\partial x_2}=e^{-\lambda}\frac{\partial}{\partial v}$ <br />对应$dx_1=e^\lambda du$ , $dx_2=e^\lambda dv$ <br /><br />Hodge star: $^\ast dx_1=dx_2$ , $^\ast dx_2=-dx_1$ , $^\ast (1)=dx_1\wedge dx_2$ <br />即得 $^\ast du=dv, ^\ast dv=-du$ , $^\ast (1)=e^{2\lambda}du\wedge dv$ <br /><br />hodge star为逆时针旋转90度<br /><br /></td>
+      <td>此时surface area element(面元)<br />$\omega_g=e^{\lambda(u,v)}du\wedge dv$ <br /><br />比较<br />1.  $\omega\wedge\tau=(\omega_1\tau_2-\omega_2\tau_1)du\wedge dv$ <br />2.  $\omega\wedge ^\ast du=\langle \omega,du\rangle_g\omega_g$<br />$=\langle\omega_1 du+\omega_2 dv, du\rangle_g e^{\lambda}du\wedge dv$<br />$=e^{-\lambda}\omega_1 e^{\lambda} du\wedge dv$  <br />$=\omega_1 du\wedge dv$<br />的系数<br /><br />得到$^\ast du=0\cdot du+1\cdot dv=dv$</td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li>Type2 待定系数 -&gt; 指标记法:
+    <ul>
+      <li>把$\tau\in \Omega^{n-k}$ 表示成$\tau=\sum_{(j_{k+1},\cdots,j_n)} (n-k)!\cdot \tau_{(j_{k+1},\cdots,j_n)}\cdot dx^{j_{k+1}}\wedge dx^{j_{k+2}}\wedge\cdots\wedge dx^{j_n}$  , 计算系数 $\tau_{(j_{k+1},\cdots,j_n)}$
+        <ul>
+          <li>$(j_{k+1},\cdots,j_n)$ 排列为递增</li>
+        </ul>
+      </li>
+      <li>比较 $\omega\wedge\tau$ 和 $\omega\wedge^\ast \xi=\langle\omega,\xi\rangle_g \omega_g$ 的系. : 即非零参数 $\omega_{(j_{1},\cdots,j_k)}$ 的系数
+        <ul>
+          <li>左侧为: $(n-k)!\cdot \tau_{(j_{k+1},\cdots,j_n)}$</li>
+          <li>右侧为: $\delta^{j_1 \cdots j_k}<em>{i_1\cdots i_k}\cdot g^{i_1j_1}\cdots g^{i_kj_k}\cdot \sqrt{det(g</em>{ij})}$</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>$\ast$ (Hodge Star Operator)在$\Omega^k(M)$ 上定义了一个内积:  $(\zeta,\eta)=\int_M \zeta\wedge^\ast\eta=\int_M \langle \zeta, \eta\rangle_g\omega_g$</li>
+</ul>
+
+<h3 id="离散定义">离散定义</h3>
+
+<p><a href="https://commons.wikimedia.org/wiki/File:Delaunay_Voronoi.svg#/media/File:Delaunay_Voronoi.svg"><img src="https://upload.wikimedia.org/wikipedia/commons/5/56/Delaunay_Voronoi.svg" alt="Connecting the triangulation's circumcenters gives the Voronoi diagram." width="150" /></a>  黑色为Delaunay triangulation $T$, 红色为Voronoi diagram  $T^*$ , 红边是黑边的中垂线</p>
+
+<p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020241205221028.png" alt="Pasted image 20241205221028.png" width="300" /> 在$T$ 的edge(1-chain) 上定义1-form</p>
+
+<ul>
+  <li>Hodge star operator $^\ast\omega(\bar e)=\frac{vol(\bar e)}{vol (e)}\omega(e)=\frac{\vert \bar e\vert}{\vert e\vert}\omega(e)=\frac{1}{2}(\text{cot } \alpha +\text{cot } \beta)\omega(e)$
+    <ul>
+      <li>$e$ (黑边)的dual edge $\bar e$ (红边), $\vert e\vert$ 和$\vert \bar e \vert$ 相当于在度量$\mathbf g$ 下的体积</li>
+      <li>$\omega\in \Omega^1$ 是T上的. -form, 映射结果$^\ast \omega$ 是  $T^*$ 上的1-form</li>
+      <li>由 圆心角的两倍=圆周角, 得到边长的比例 $\text{cot } \alpha +\text{cot } \beta$ , 称为cot edge weight</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="举例">举例</h2>
+
+<h3 id="场论--静电场--双点电荷系统">场论 . 静电场 . 双点电荷系统</h3>
+
+<p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020241122073441.png" alt="Pasted image 20241122073441.png" width="400" />  红色电力线, 为沿电场强度的轨迹; 蓝色等势线</p>
+
+<ul>
+  <li>0-form <a href="https://en.wikipedia.org/wiki/Electric_potential">电势场</a> $\phi$  : 左侧正电荷处边界电势为+1, 负电荷处电势为-1, 外边界电势为0</li>
+  <li>1-form 电场强度为电势的梯度: $E=-\nabla \phi=E_xdx+E_ydy$    (高电势流向低电势)</li>
+  <li>场强是<strong>harmonic</strong>的:
+    <ul>
+      <li>closed:  $curl\ E = \nabla \times E=(\frac{\partial E_y}{\partial x}-\frac{\partial E_x}{\partial y})dxdy = 0$  ( 2-form 旋量, 电场强度的外微分)
+        <ul>
+          <li>物理意义:
+            <ul>
+              <li>描述矢量场漩涡🌀的大小和方向</li>
+              <li>旋量的面积分 = 沿封闭路径$\partial D$ 做功 = 0 (<a href="https://en.wikipedia.org/wiki/Stokes%27_theorem">Stokes Theorem</a>)
+                <ul>
+                  <li>带电粒子沿路径$\gamma$  做功为 $W=\int_\gamma F=q\int_\gamma E=q\int_\gamma \langle E,\dot r\rangle d\tau$
+                    <ul>
+                      <li>带电粒子受到电场力 $F=qE$</li>
+                      <li>其中$\dot r$ 为沿$\gamma$ 的切向</li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>coclosed: $div\ E=\nabla\cdot E=\frac{\partial E_x}{\partial x}+\frac{\partial E_y}{\partial y}= 0$   (0-form 散度, 电场强度的余微分)
+        <ul>
+          <li>$div\ E = \delta(E)=(-1)^{kn+n+1}\ ^\ast d(^\ast E)$
+            <ol>
+              <li>hodge star $^\ast E$ 为旋转90度, $^\ast E=E_y dx - E_x dy$</li>
+              <li>外微分得到 2-form $d(^\ast E)=-(\frac{\partial E_x}{\partial x}+\frac{\partial E_y}{\partial y})dxdy$</li>
+              <li>hodge star 得到0-form $^\ast d(^\ast E)=-(\frac{\partial E_x}{\partial x}+\frac{\partial E_y}{\partial y})$</li>
+              <li>最后 $div\ E=(-1)^\ast d(^\ast E)=\frac{\partial E_x}{\partial x}+\frac{\partial E_y}{\partial y}$ (映射到0-form 即k=0,2-manifold, 即n=2 -&gt; kn+n+1 是odd)</li>
+            </ol>
+          </li>
+          <li>物理意义:
+            <ul>
+              <li>描述矢量场的发散和汇聚程度</li>
+              <li>通量 = 封闭路径$\partial D$ 的净流入量(流入量-流出量) = 0   ( <a href="https://en.wikipedia.org/wiki/Divergence_theorem">Gauss’ flux theorem(高斯通量定理)</a> )
+                <ul>
+                  <li>电通量  $\Phi=\oint_{\partial D} \langle E, \mathbf n \rangle ds=\int_D \nabla\cdot E dA$
+                    <ul>
+                      <li>其中$\mathbf n$ 是沿路径 $\partial D$ 的法向</li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li>散度 = 通量在无穷小面元的极限 = 0</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="离散--局部调和形式">离散 . 局部调和形式</h3>
+
+<ul>
+  <li>1-form $\omega$ 是harmonic条件:
+    <ul>
+      <li>closed: 沿每个三角形 $\Delta=\lbrace e_0,e_1,e_2\rbrace$ 一圈的值=0, 即 $\omega(e_0)+\omega(e_1)+\omega(e_2)=0$</li>
+      <li>coclosed:
+        <ol>
+          <li>0-form $div=-^\ast d(^\ast \omega)$ 定义在顶点 $v$ 上</li>
+          <li>是定义在dual Voronoi cell $\bar f$ 上的2-form的hodge star:  $div\ v=-^\ast d(^\ast \omega)(v)=d(^\ast\omega)(\bar f)$</li>
+          <li>是定义在Voronoi cell的边界$\bar e_0,\cdots,\bar e_k$ 上的1-form的外微分: $d(^\ast \omega)(\bar f)=^\ast \omega(\bar e_0)+\cdots+^\ast \omega(\bar e_k)$</li>
+          <li>是定义在<strong>沿顶点$v$ 为起点的边逆时针排列的边</strong> $e_0,\cdots,e_k$ 上的hodge star:  $d(^\ast \omega)(\bar f)=^\ast \omega(\bar e_0)+\cdots+^\ast \omega(\bar e_k)=w_{e_0}\omega(e_0)+\cdots+w_{e_k}\omega(e_k)$
+            <ul>
+              <li>$e_0,\cdots,e_k$ 的cot edge weight为$w_{e_0},\cdots, w_{e_k}$</li>
+            </ul>
+          </li>
+        </ol>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="计算调和一形式">计算调和一形式</h2>
+
+<p>由对应的上同调一形式得来</p>
+
+<ul>
+  <li>计算一阶cohomology class的basis: $\lbrace\omega_1,\omega_2,\cdots,\omega_{2g}\rbrace$</li>
+  <li>定义0-form $f_1,\cdots,f_{2g}$ , 使$\lbrace\omega_1+df_1,\cdots,\omega_{2g}+df_{2g}\rbrace$ 是harmonic的
+    <ul>
+      <li>closed: $\omega_i$ 是closed -&gt; $\omega_i+df_i$ 自然是closed
+        <ul>
+          <li>$\omega_i+df_i\in \omega_i+\text{img}\ d^0$ 和 $\omega_i$ 属于同个cohomology class</li>
+        </ul>
+      </li>
+      <li>coclosed: 解每个顶点处的线性的coclosed方程</li>
+    </ul>
+  </li>
+</ul>
+
+        </div>
+
+        
+
+        
+        
+  <div class="page-comments">
+    <div id="disqus_thread"></div>
+    <script>
+      var disqus_config = function () {
+        this.page.url = 'https://roshameow.github.io//personal_homepage/math/conformal-geometry11/';
+        this.page.identifier = 'https://roshameow.github.io//personal_homepage/math/conformal-geometry11/';
+      };
+
+      (function() {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://https-roshameow-github-io-personal-homepage.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+  </div>
+
+
+        
+
+        <nav class="page-pagination" role="navigation">
+  
+    <a class="page-previous" href="/personal_homepage/math/tensor/">
+      <h4 class="page-pagination-label">Previous</h4>
+      <span class="page-pagination-title">
+        <i class="fas fa-arrow-left"></i> 数学概念 – tensor( 张量 )
+
+      </span>
+    </a>
+  
+
+  
+    <a class="page-next" href="/personal_homepage/daily/shampoo/">
+      <h4 class="page-pagination-label">Next</h4>
+      <span class="page-pagination-title">
+        洗发水成分
+ <i class="fas fa-arrow-right"></i>
+      </span>
+    </a>
+  
+</nav>
+
+      </div>
+
+    </div>
+  </article>
+</main>
+
+    <footer id="footer" class="site-footer">
+  <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+<div class="social-icons"><a class="social-icon" href="/personal_homepage/atom.xml"><i class="fas fa-rss-square fa-2x" title="Feed"></i></a><a class="social-icon" href="https://github.com/roshameow"><i class="fab fa-github-square fa-2x" title="GitHub"></i></a><a class="social-icon" href="https://www.linkedin.com/in/wen-liu-06503a7b/"><i class="fab fa-linkedin fa-2x" title="LinkedIn"></i></a><a class="social-icon" href="mailto:w.liuatnk@gmail.com"><i class="fas fa-envelope-square fa-2x" title="e-mail"></i></a></div><div class="copyright">
+    
+      <p>&copy; 2024 Liu, Wen's Home Page. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://github.com/mmistakes/so-simple-theme" rel="nofollow">So Simple</a>.</p>
+    
+  </div>
+</footer>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="/personal_homepage/assets/js/main.min.js"></script>
+<script src="https://use.fontawesome.com/releases/v5.0.12/js/all.js"></script><!-- <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'G-9TMSCDTBGN', 'auto');
+  ga('send', 'pageview');
+</script> -->
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9TMSCDTBGN"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-9TMSCDTBGN');
+</script>
+
+
+
+<!-- MathJax -->
+
+<script>
+    // http://docs.mathjax.org/en/latest/upgrading/v2.html
+    MathJax = {
+        tex: {
+            tags: "ams",    // eq numbering options: none, ams, all
+            inlineMath: [['$', '$'], ["\\(", "\\)"]],  // 设置行内数学公式的开始和结束标记
+            displayMath: [['$$', '$$'], ["\\[", "\\]"]]  // 设置行间数学公式的开始和结束标记
+        },
+        // options: {
+        //   renderActions: {
+        //     // for mathjax 3, handle <script "math/tex"> blocks inserted by kramdown
+        //     find: [10, function (doc) {
+        //       for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+        //         const display = !!node.type.match(/; *mode=display/);
+        //         const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+        //         const text = document.createTextNode('');
+        //         node.parentNode.replaceChild(text, node);
+        //         math.start = { node: text, delim: '', n: 0 };
+        //         math.end = { node: text, delim: '', n: 0 };
+        //         doc.math.push(math);
+        //       }
+        //     }, '']
+        //   }
+        // }
+    }
+</script>
+
+<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  </body>
+
+</html>

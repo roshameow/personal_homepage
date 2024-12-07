@@ -31,7 +31,7 @@
 <meta property="twitter:title" content="conformal geometry学习 (七 ) – Duality, homology relation" />
 <meta name="twitter:site" content="@" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-08-20T04:11:09+00:00","datePublished":"2024-07-29T00:00:00+00:00","description":"Poincaré Duality","headline":"conformal geometry学习 (七 ) – Duality, homology relation","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/math/conformal-geometry7/"},"url":"https://roshameow.github.io//personal_homepage/math/conformal-geometry7/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-12-05T22:02:00+00:00","datePublished":"2024-07-29T00:00:00+00:00","description":"Poincaré Duality","headline":"conformal geometry学习 (七 ) – Duality, homology relation","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/math/conformal-geometry7/"},"url":"https://roshameow.github.io//personal_homepage/math/conformal-geometry7/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -107,7 +107,7 @@
       <div class="page-sidebar">
         <div class="page-author h-card p-author"><img src="/personal_homepage/docs/images/logo.svg" class="author-avatar u-photo" alt=""><div class="author-info">
 
-<span class="read-time">2 min read</span>
+<span class="read-time">3 min read</span>
 
     <time class="page-date dt-published" datetime="2024-07-29T00:00:00+00:00"><a class="u-url" href="">July 29, 2024</a>
 </time>
@@ -139,7 +139,7 @@
 {:toc} -->
   <!-- <div id="markdown-toc"> -->
 
-    <ul class="inline_toc" id="my_toc"><li><a href="#poincaré-duality">Poincaré Duality</a></li><li><a href="#lefschetz-duality">Lefschetz Duality</a></li><li><a href="#一些manifold特征">一些manifold特征</a></li><li><a href="#m-是oriented-compact-3-manifold的情况">$M$ 是oriented compact 3-manifold的情况</a><ul><li><a href="#自身和边界的oriented-dimension">自身和边界的oriented dimension</a></li><li><a href="#non-orientable-embedding曲面">non-orientable embedding曲面</a></li></ul></li></ul>
+    <ul class="inline_toc" id="my_toc"><li><a href="#poincaré-duality">Poincaré Duality</a><ul><li><a href="#surface上的dual-mesh">surface上的dual mesh</a></li><li><a href="#homology定义">homology定义</a></li></ul></li><li><a href="#lefschetz-duality">Lefschetz Duality</a></li><li><a href="#一些manifold特征">一些manifold特征</a></li><li><a href="#m-是oriented-compact-3-manifold的情况">$M$ 是oriented compact 3-manifold的情况</a><ul><li><a href="#自身和边界的oriented-dimension">自身和边界的oriented dimension</a></li><li><a href="#non-orientable-embedding曲面">non-orientable embedding曲面</a></li></ul></li></ul>
   <!-- </div> -->
 
 </div>
@@ -153,15 +153,15 @@
     <!-- <div id="markdown-toc"> -->
     <ul>
         
-        <li><a href="/personal_homepage/pet/helicobacter/">猫幽门螺杆菌调查</a></li>
+        <li><a href="/personal_homepage/design/poster2/">蛇年圣诞风格海报</a></li>
         
-        <li><a href="/personal_homepage/affair/driving-test/">驾照考试</a></li>
+        <li><a href="/personal_homepage/blender/blender-learning14/">blender学习: 扭曲晶体路径跟随</a></li>
         
-        <li><a href="/personal_homepage/algorithm/attention4/">attention的优化-- KV Cache</a></li>
+        <li><a href="/personal_homepage/photo/photo1/">几种拍图技巧</a></li>
         
-        <li><a href="/personal_homepage/math/conformal-geometry10/">conformal geometry学习 (十 ) -- 举例: 球面上的unit tangent bundle manifold</a></li>
+        <li><a href="/personal_homepage/math/conformal-geometry12/">conformal geometry学习 (十一 ) -- Duality, 离散</a></li>
         
-        <li><a href="/personal_homepage/bond/">债券的原理</a></li>
+        <li><a href="/personal_homepage/daily/shampoo/">洗发水成分</a></li>
         
     </ul>
     <!-- </div> -->
@@ -178,7 +178,63 @@
         <div class="e-content">
           <h2 id="poincaré-duality"><a href="https://en.wikipedia.org/wiki/Poincaré_duality">Poincaré Duality</a></h2>
 
-<p><a href="https://www.researchgate.net/profile/Clement-Cances/publication/278829092/figure/fig3/AS:667718760022016@1536207966130/Triangular-mesh-T-and-Donald-dual-mesh-M-dual-volumes-vertices-interfaces.png"><img src="https://www.researchgate.net/profile/Clement-Cances/publication/278829092/figure/fig3/AS:667718760022016@1536207966130/Triangular-mesh-T-and-Donald-dual-mesh-M-dual-volumes-vertices-interfaces.png" width="200" /></a></p>
+<h3 id="surface上的dual-mesh">surface上的dual mesh</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th><a href="https://en.wikipedia.org/wiki/Voronoi_diagram">Voronoi diagram</a></th>
+      <th><a href="https://en.wikipedia.org/wiki/Delaunay_triangulation">Delaunay三角剖分</a></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>cell 中的点距离最小</td>
+      <td>顶点</td>
+    </tr>
+    <tr>
+      <td>顶点</td>
+      <td>三角形外接圆的圆心</td>
+    </tr>
+    <tr>
+      <td>边</td>
+      <td>dual 边的中垂线</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>2d 离散点集 -&gt; <a href="https://en.wikipedia.org/wiki/Voronoi_diagram">Voronoi diagram</a>  -&gt; Delaunay三角剖分</p>
+
+<p><a href="https://commons.wikimedia.org/wiki/File:Euclidean_Voronoi_diagram.svg#/media/File:Euclidean_Voronoi_diagram.svg"><img src="https://upload.wikimedia.org/wikipedia/commons/5/54/Euclidean_Voronoi_diagram.svg" alt="Euclidean Voronoi diagram.svg" width="200" /></a></p>
+
+<ul>
+  <li><a href="https://en.wikipedia.org/wiki/Voronoi_diagram">Voronoi diagram</a>  : 平面上的segment, 使每个区域离中间点距离最近
+    <ul>
+      <li>不同的distance函数会得到不同的segmentation</li>
+      <li>软件生成:
+        <ul>
+          <li>blender里的 <a href="https://docs.blender.org/manual/en/latest/render/shader_nodes/textures/voronoi.html">Voronoi Texture</a></li>
+          <li>opencv 中 <a href="https://docs.opencv.org/3.4/d2/dbd/tutorial_distance_transform.html">distance transform</a> 再取局部最大值</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><a href="https://en.wikipedia.org/wiki/Delaunay_triangulation">Delaunay三角剖分</a>
+    <ul>
+      <li>我们的point set是三角剖分的顶点, 边连接两个相邻Voronoi cell</li>
+      <li>特点:
+        <ul>
+          <li>每个三角形的外接圆不包含其它的点</li>
+          <li>最大化三角剖分三角形的最小角: 避免出现极瘦的三角形</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="homology定义">homology定义</h3>
+
+<p><a href="https://commons.wikimedia.org/wiki/File:Delaunay_Voronoi.svg#/media/File:Delaunay_Voronoi.svg"><img src="https://upload.wikimedia.org/wikipedia/commons/5/56/Delaunay_Voronoi.svg" alt="Connecting the triangulation's circumcenters gives the Voronoi diagram." width="200" /></a>  黑色为Delaunay triangulation $T$, 红色为Voronoi diagram  $T^*$ , 红边是黑边的中垂线</p>
 
 <ul>
   <li><a href="https://en.wikipedia.org/wiki/Poincaré_duality">Poincaré Duality</a>: n-dim的manifold $M$, 三角剖分$T$, 和cell decomposition $T^*$ 对偶.

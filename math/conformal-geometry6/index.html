@@ -31,7 +31,7 @@
 <meta property="twitter:title" content="conformal geometry学习 (六 ) – cohomology group" />
 <meta name="twitter:site" content="@" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-11-24T08:41:00+00:00","datePublished":"2024-07-26T00:00:00+00:00","description":"上同调是同调的对偶","headline":"conformal geometry学习 (六 ) – cohomology group","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/math/conformal-geometry6/"},"url":"https://roshameow.github.io//personal_homepage/math/conformal-geometry6/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-12-05T22:21:00+00:00","datePublished":"2024-07-26T00:00:00+00:00","description":"上同调是同调的对偶","headline":"conformal geometry学习 (六 ) – cohomology group","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/math/conformal-geometry6/"},"url":"https://roshameow.github.io//personal_homepage/math/conformal-geometry6/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -153,15 +153,15 @@
     <!-- <div id="markdown-toc"> -->
     <ul>
         
-        <li><a href="/personal_homepage/pet/helicobacter/">猫幽门螺杆菌调查</a></li>
+        <li><a href="/personal_homepage/design/poster2/">蛇年圣诞风格海报</a></li>
         
-        <li><a href="/personal_homepage/affair/driving-test/">驾照考试</a></li>
+        <li><a href="/personal_homepage/blender/blender-learning14/">blender学习: 扭曲晶体路径跟随</a></li>
         
-        <li><a href="/personal_homepage/algorithm/attention4/">attention的优化-- KV Cache</a></li>
+        <li><a href="/personal_homepage/photo/photo1/">几种拍图技巧</a></li>
         
-        <li><a href="/personal_homepage/math/conformal-geometry10/">conformal geometry学习 (十 ) -- 举例: 球面上的unit tangent bundle manifold</a></li>
+        <li><a href="/personal_homepage/math/conformal-geometry12/">conformal geometry学习 (十一 ) -- Duality, 离散</a></li>
         
-        <li><a href="/personal_homepage/bond/">债券的原理</a></li>
+        <li><a href="/personal_homepage/daily/shampoo/">洗发水成分</a></li>
         
     </ul>
     <!-- </div> -->
@@ -200,14 +200,14 @@
       <td>(k+1)-boundary<br />$\partial_{k+1}:C_{k+1}\rightarrow C_{k}$</td>
       <td>k-coboundary(微分算子)<br />$\delta_k: C^k\rightarrow C^{k+1}$<br />$\delta_k(\omega)=\omega\circ \partial_{k+1},\omega\in C^k$</td>
       <td>$&lt;\delta\omega,\sigma&gt;=&lt;\omega,\partial\sigma&gt;$ <br /><br /><a href="https://en.wikipedia.org/wiki/Stokes%27_theorem">Stokes Theorem</a></td>
-      <td>exterior differential<br /> operator(<a href="https://en.wikipedia.org/wiki/Exterior_derivative">exterior derivative</a> , 外微分算子,)<br />$d^k:\Omega^k(M)\rightarrow \Omega^{k+1}(M)$<br />$d\omega=d(\omega_Idx^I)=(d\omega_I)\wedge dx^I$ <br />满足反对称的乘法定律</td>
+      <td>exterior differential<br /> operator(<a href="https://en.wikipedia.org/wiki/Exterior_derivative">exterior derivative</a> , 外微分算子,)<br />$d^k:\Omega^k(M)\rightarrow \Omega^{k+1}(M)$<br />$d\omega=d(\omega_Idx^I)=(d\omega_I)\wedge dx^I$ <br />满足反对称的<strong>乘法定律</strong></td>
       <td>$\int_{\partial M}\omega=\int_M d\omega$<br /><a href="https://en.wikipedia.org/wiki/Stokes%27_theorem">Stokes Theorem</a><br /><br /><strong>拓扑意义算子(左侧boundary $\partial$ )和分析意义算子(右侧微分形式 $d$ ) 的对偶关系</strong></td>
     </tr>
     <tr>
       <td>adjoint boundary<br />operator<br />$\partial_{k+1}^\ast:C_{k}\rightarrow C_{k+1}$</td>
-      <td> </td>
-      <td> </td>
-      <td>codifferential operator(余微分算子)<br />$\delta^{k}:\Omega^{k+1}(M)\rightarrow \Omega^{k}(M)$<br />$\delta=(-1)^{kn+n+1}\ ^\ast d^\ast$<br /><a href="https://en.wikipedia.org/wiki/Divergence">divergence(散度)</a><br /><br />$(d\omega,\eta)=(\omega,\delta\eta)$</td>
+      <td><br />hodge star:<br />$\frac{\omega(e)}{\vert e\vert}=\frac{^\ast\omega(\bar e)}{\vert \bar e\vert}$ <br />其中, $e,\bar e$ 是dual edge</td>
+      <td><br /><br />&lt;–<br />$(d\omega,\eta)=(\omega,\delta\eta)$<br />由$d$ 和 $\wedge$ 的乘法定律得到</td>
+      <td>codifferential operator(余微分算子)<br />$\delta^{k}:\Omega^{k+1}(M)\rightarrow \Omega^{k}(M)$<br />$\delta=(-1)^{kn+n+1}\ ^\ast d^\ast$<br /><a href="https://en.wikipedia.org/wiki/Divergence">divergence(散度)</a><br /><br /></td>
       <td> </td>
     </tr>
     <tr>
@@ -226,14 +226,14 @@
     </tr>
     <tr>
       <td> </td>
-      <td>closed form $\delta_k\omega=0$</td>
+      <td>closed form $\delta_k\omega=0$<br />在每个三角面片上,<br />绕一圈结果为0</td>
       <td> </td>
       <td>closed form $d^k\omega=0$<br />curl free(旋量为0)<br /></td>
       <td> </td>
     </tr>
     <tr>
       <td> </td>
-      <td> </td>
+      <td>在dual mesh的每个cell上,<br />绕一圈结果为0</td>
       <td> </td>
       <td>coclosed form $\delta^k\omega = 0$ <br />div free(散度为0)</td>
       <td> </td>
@@ -254,7 +254,7 @@
     </tr>
     <tr>
       <td> </td>
-      <td>harmonic form</td>
+      <td>harmonic form<br />离散调和</td>
       <td> </td>
       <td>harmonic form $\Delta \omega=0$</td>
       <td> </td>
@@ -263,7 +263,7 @@
       <td> </td>
       <td> </td>
       <td> </td>
-      <td>$\Omega^k=\text{img} d^{k-1}\oplus \text{img} \delta^{k+1}\oplus \mathcal H^k_\Delta$<br /><br /><a href="https://en.wikipedia.org/wiki/Hodge_theory">Hodge theory</a></td>
+      <td>$\Omega^k=\text{img} d^{k-1}\oplus \text{img} \delta^{k+1}\oplus \mathcal H^k_\Delta$<br /><br /><a href="https://en.wikipedia.org/wiki/Hodge_theory">Hodge theory</a><br /><br />$H^k_{dR}\cong\mathcal H^k_\Delta$ <br />上同调类和调和形式一一对应</td>
       <td> </td>
     </tr>
     <tr>

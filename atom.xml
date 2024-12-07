@@ -1,4 +1,518 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.4">Jekyll</generator><link href="https://roshameow.github.io//personal_homepage/atom.xml" rel="self" type="application/atom+xml" /><link href="https://roshameow.github.io//personal_homepage/" rel="alternate" type="text/html" /><updated>2024-11-26T05:11:56+00:00</updated><id>https://roshameow.github.io//personal_homepage/atom.xml</id><title type="html">Liu, Wen’s Home Page</title><subtitle>Work, Experiments and Ideas.</subtitle><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><entry><title type="html">猫幽门螺杆菌调查</title><link href="https://roshameow.github.io//personal_homepage/pet/helicobacter/" rel="alternate" type="text/html" title="猫幽门螺杆菌调查" /><published>2024-10-25T00:00:00+00:00</published><updated>2024-10-29T20:28:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/pet/helicobacter</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/pet/helicobacter/"><![CDATA[<h2 id="一篇关于猫幽门螺杆菌的实验论文">一篇关于猫幽门螺杆菌的实验论文</h2>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.4">Jekyll</generator><link href="https://roshameow.github.io//personal_homepage/atom.xml" rel="self" type="application/atom+xml" /><link href="https://roshameow.github.io//personal_homepage/" rel="alternate" type="text/html" /><updated>2024-12-07T21:48:33+00:00</updated><id>https://roshameow.github.io//personal_homepage/atom.xml</id><title type="html">Liu, Wen’s Home Page</title><subtitle>Work, Experiments and Ideas.</subtitle><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><entry><title type="html">蛇年圣诞风格海报</title><link href="https://roshameow.github.io//personal_homepage/design/poster2/" rel="alternate" type="text/html" title="蛇年圣诞风格海报" /><published>2024-12-06T00:00:00+00:00</published><updated>2024-12-06T19:16:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/design/poster2</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/design/poster2/"><![CDATA[<p>“Merry Hissmas”</p>
+
+<p>今年在ai的加持下似乎只有分镜需要自己画了?</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="design" /><category term="content" /><summary type="html"><![CDATA[“Merry Hissmas”]]></summary></entry><entry><title type="html">blender学习: 扭曲晶体路径跟随</title><link href="https://roshameow.github.io//personal_homepage/blender/blender-learning14/" rel="alternate" type="text/html" title="blender学习: 扭曲晶体路径跟随" /><published>2024-12-05T00:00:00+00:00</published><updated>2024-12-05T17:31:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/blender/blender-learning14</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/blender/blender-learning14/"><![CDATA[<p>参考<a href="https://www.youtube.com/watch?v=uRAfhJQFjRo">这个教学</a></p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="blender" /><category term="content" /><summary type="html"><![CDATA[参考这个教学]]></summary></entry><entry><title type="html">几种拍图技巧</title><link href="https://roshameow.github.io//personal_homepage/photo/photo1/" rel="alternate" type="text/html" title="几种拍图技巧" /><published>2024-12-02T00:00:00+00:00</published><updated>2024-12-02T07:19:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/photo/photo1</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/photo/photo1/"><![CDATA[]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="photo" /><category term="content" /><summary type="html"><![CDATA[]]></summary></entry><entry><title type="html">conformal geometry学习 (十一 ) – Duality, 离散</title><link href="https://roshameow.github.io//personal_homepage/math/conformal-geometry12/" rel="alternate" type="text/html" title="conformal geometry学习 (十一 ) – Duality, 离散" /><published>2024-11-24T00:00:00+00:00</published><updated>2024-12-05T22:29:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/math/conformal-geometry12</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/math/conformal-geometry12/"><![CDATA[]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="math" /><category term="content" /><summary type="html"><![CDATA[]]></summary></entry><entry><title type="html">洗发水成分</title><link href="https://roshameow.github.io//personal_homepage/daily/shampoo/" rel="alternate" type="text/html" title="洗发水成分" /><published>2024-11-22T00:00:00+00:00</published><updated>2024-12-03T10:42:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/daily/shampoo</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/daily/shampoo/"><![CDATA[<h2 id="成分分类">成分分类</h2>
+
+<p>十二烷醇=月桂醇</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>成分</th>
+      <th>功能</th>
+      <th>分类</th>
+      <th>成分</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>表面活性剂</strong></td>
+      <td>去污</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>硫酸盐<br /><br />阴离子表活<br />石油化工提取, 便宜, 好起泡<br />强力但是刺激<br />(不能区分油性杂质和皮肤细胞的脂质膜)<br /></td>
+      <td>- <del>月桂醇<strong>硫酸酯</strong>钠(SLS)</del>: 强力<br />- 月桂醇聚醚<strong>硫酸酯</strong>钠(SLES): 更温和<br />- 月桂醇聚醚<strong>硫酸酯</strong>铵</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>皂基类<br /><br />脂肪酸盐类, 好起泡, 强去污. <br />会让头发干涩, 损伤发质.<br /></td>
+      <td>- 月桂酸钠<br />- 硬脂酸钠<br />- 棕榈酸<br />- 氢氧化钠(和脂肪酸一起形成皂基)</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>氨基酸<br /><br />清洁力和刺激性平衡</td>
+      <td>- 月桂酰<strong>肌氨酸</strong>钠<br />- 椰油酰<strong>谷氨酸</strong>钠, 椰油酰基甲基牛磺酸钠</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>其它<br />温和类的</td>
+      <td>甜菜碱类、乙磺酸类、葡糖苷类, 二乙酸二钠</td>
+    </tr>
+    <tr>
+      <td>活性成分</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td><strong>去屑剂</strong></td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>广谱</td>
+      <td>- 水杨酸: 抗菌消炎, 促进角质剥落, 不适合头皮敏感的</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>马拉色菌</td>
+      <td>- 吡罗克酮乙醇胺盐(octopirox): 抑制马拉色菌,目前没发现刺激性<br />- <del>吡硫錀锌(ZPT)</del>: 单方面抑制马拉色菌, 便宜不好</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>霉菌</td>
+      <td>- 酮康唑: 抗霉菌, 抑制皮癣菌, 念珠菌感染</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td><strong>ph调节剂</strong><br />在5.5-7为佳</td>
+      <td> </td>
+      <td>柠檬酸, 盐酸, 乙酸</td>
+    </tr>
+    <tr>
+      <td>改变发质</td>
+      <td><strong>柔顺剂</strong></td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>硅油</td>
+      <td>聚二甲基硅氧烷</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>阳离子聚合物<br /><br />硅油替代品, <br />让头发顺滑or油腻, <br />把洗发水变透明, <br />可能会残留堵塞毛孔</td>
+      <td>- 瓜尔胶<br />- 聚季开头的成分: 聚季铵盐-7, 聚季铵盐-10</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td><strong>保湿</strong></td>
+      <td>多元醇类</td>
+      <td>辛甘醇, 己二醇等, 相对好的</td>
+    </tr>
+    <tr>
+      <td><strong>防腐剂</strong></td>
+      <td>防止洗发水发霉变质</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>劣质防腐剂</td>
+      <td>- <del>甲基异噻唑咻酮(MIT)</del>, <del>甲基氯异噻唑咻酮</del>, <del>脲素类</del>, <del>羟苯x脂</del></td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>普通</td>
+      <td>- 苯甲酸钠: 一般<br />- 山梨酸钾: 食品级, 安全</td>
+    </tr>
+    <tr>
+      <td>其它</td>
+      <td>跟洗发关系不大,  <br />不易清洗容易残留头皮</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>香精</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td><strong>增稠类表活</strong></td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>椰油酰胺</td>
+      <td>- 椰油酰胺 MEA, DEA, MIPA, TEA: 可能产生强致癌物亚硝胺<br />- 椰油酰胺丙基甜菜碱(CAPB)</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>丙烯酸聚合物</td>
+      <td>卡波姆, 可能产生剧毒物丙烯酰胺</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td><strong>珠光剂</strong></td>
+      <td> </td>
+      <td>乙二醇二硬脂酸酯</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>着色剂</td>
+      <td> </td>
+      <td>CI开头+数字</td>
+    </tr>
+    <tr>
+      <td>微量添加</td>
+      <td>一般不用看</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="同品牌不同功能成分区别">同品牌不同功能成分区别</h3>
+
+<ul>
+  <li>清扬净爽头皮护理去屑 Vs 清扬男士: 看起来都是挺便宜的材料
+    <ul>
+      <li>普通: 多了 乙二醇二硬脂酸酯(珠光剂), 吡罗克酮乙醇胺盐(去马拉色菌), 椰油酰胺 MEA(增稠表活), CI77019(着色剂), 甘油, 氯化钠排更靠前</li>
+      <li>男士: 多了 吡硫錀锌(去马拉色菌, 更差), 薄荷醇(闻着清爽观感好吧)</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="使用体验">使用体验</h2>
+
+<ul>
+  <li>施华蔻生姜: 去污能力强, 一点不油腻, 用一段时间会有大片头屑</li>
+  <li>欧莱雅精油润养去屑洗发露: 感觉难冲掉, 洗完还是油</li>
+  <li>霸王: 质地更稀, 有股苦味, 用着没什么问题</li>
+  <li>沙宣轻盈顺柔洗发水: 用着没什么问题</li>
+</ul>
+
+<p>从成分表里看不出哪有问题, 通过成分表看是不是可以用是不可行的吗?</p>
+
+<h2 id="品牌">品牌</h2>
+
+<ul>
+  <li>超市开架
+    <ul>
+      <li><a href="https://www.pg.com.cn/">宝洁(P&amp;G)</a>: 海飞丝, 飘柔, 潘婷</li>
+      <li>联合利华: 清扬 CLEAR, 多芬, 力士</li>
+      <li>国产: 阿道夫</li>
+      <li>资生堂(日本)</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="识别">识别</h2>
+
+<p>自动识别成分表</p>
+<ul>
+  <li>OCR 分解得到成分</li>
+  <li>颜色标注</li>
+  <li>成分分析: 过敏性提醒, 估算主要成分价格</li>
+</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="daily" /><category term="content" /><category term="shampoo" /><summary type="html"><![CDATA[成分分类]]></summary></entry><entry><title type="html">conformal geometry学习 (十一 ) – Hodge Star Operator</title><link href="https://roshameow.github.io//personal_homepage/math/conformal-geometry11/" rel="alternate" type="text/html" title="conformal geometry学习 (十一 ) – Hodge Star Operator" /><published>2024-11-12T00:00:00+00:00</published><updated>2024-12-08T05:43:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/math/conformal-geometry11</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/math/conformal-geometry11/"><![CDATA[<h2 id="hodge-star-operator">Hodge Star Operator</h2>
+
+<p>在有Riemann metric的mainfold的微分形式上有映射 $\ast: \Omega^k(M)\rightarrow \Omega^{n-k}(M)$</p>
+<ul>
+  <li>连接微分几何和复几何:
+    <ul>
+      <li>在微分几何中，它描述了manifold上的形式内积和体积</li>
+      <li>在复几何中，它帮助刻画复结构和调和理论，解释了复流形中的拓扑性质?</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="manifold定义">manifold定义</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>两种定义</th>
+      <th>Type I<br />选 $T_pM$ 的orthonormal basis定义</th>
+      <th>Type II<br />用一般的basis定义</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>$T_pM$ 上的basis<br />和inner product</td>
+      <td>$\lbrace\frac{\partial}{\partial x_1},\frac{\partial}{\partial x_2},\cdots,\frac{\partial}{\partial x_n}\rbrace$ -&gt; $\langle \partial_i, \partial_j\rangle_g=\mathbb 1_{ij}$     <br /><br /></td>
+      <td>$\lbrace\frac{\partial}{\partial x_1},\frac{\partial}{\partial x_2},\cdots,\frac{\partial}{\partial x_n}\rbrace$ -&gt; $\langle \partial_i, \partial_j\rangle_g=\mathbf g_{ij}$<br /></td>
+    </tr>
+    <tr>
+      <td>$T_p^\ast M$ 上induce一个dual inner product</td>
+      <td>dual 1-form basis为$\lbrace dx_1,dx_2,\cdots,dx_n\rbrace$</td>
+      <td>dual 1-form basis  $\lbrace dx^1,dx^2,\cdots,dx^n\rbrace$ -&gt; $\langle dx^i, dx^j\rangle_g=g^{ij}$</td>
+    </tr>
+    <tr>
+      <td>$\Omega^k$ 上的dual inner product</td>
+      <td><br />\(\langle dx_{i_1}\wedge \cdots \wedge dx_{i_k}, dx_{j_1}\wedge\cdots \wedge dx_{j_k}\rangle=\delta^{j_1 \cdots j_k}_{i_1\cdots i_k}\)</td>
+      <td><br />$\langle \omega, \eta\rangle_g$<br /><br />\(\langle dx_{i_1}\wedge \cdots \wedge dx_{i_k}, dx_{j_1}\wedge\cdots \wedge dx_{j_k}\rangle=\delta^{j_1 \cdots j_k}_{i_1\cdots i_k}\cdot g^{i_1j_1}\cdots g^{i_kj_k}\)</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>volume Element(体元)<br />$\omega_g= dx^1\wedge dx^2\wedge \cdots \wedge dx^n$</td>
+      <td>volume Element(体积形式, 体元)<br />$\omega_g=\sqrt{det(g_{ij})}\ dx^1\wedge dx^2\wedge \cdots \wedge dx^n$</td>
+    </tr>
+    <tr>
+      <td>Hodge star operator<br />$\ast: \Omega^k(M)\rightarrow \Omega^{n-k}(M)$</td>
+      <td><br />$(dx_{i_1}\wedge dx_{i_2}\wedge \cdots \wedge dx_{i_k})\overset{\ast} \mapsto (-1)^\sigma dx_{i_{k+1}}\wedge dx_{i_{k+2}}\wedge\cdots\wedge dx_{i_n}$<br />其中, $\sigma=(i_1,i_2,\cdots, i_n)$ 是一个permutation</td>
+      <td><strong>待定系数法</strong><br />对于一般$\omega\in\Omega^k$ 和$\tau\in\Omega^{n-k}$ 比较以下体元的系数<br />1. $\omega\wedge^\ast \xi=\langle\omega,\xi\rangle_g\omega_g$  <br />2. $\omega\wedge\tau$ <br />解出$^\ast \xi$ 的系数<br /><br /><strong>指标记法</strong><br />即,<br />\((dx^{i_1}\wedge dx^{i_2}\wedge \cdots \wedge dx^{i_k})\overset{\ast} \mapsto \sum_{(j_{k+1},\cdots,j_n)}\frac{\sqrt{det(g_{ij})}}{(n-k)!}\delta^{j_1 \cdots j_k}_{i_1\cdots i_k}\cdot g^{i_1j_1}\cdots g^{i_kj_k} \cdot dx^{j_{k+1}}\wedge dx^{j_{k+2}}\wedge\cdots\wedge dx^{j_n}\) <br /></td>
+    </tr>
+    <tr>
+      <td>例子<br /><br />体元和单位元</td>
+      <td>$^\ast(1)=dx^1\wedge dx^2\wedge \cdots \wedge dx^n=\omega_g$ <br />$^\ast(\omega_g)=1$</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>例子<br /><br />Riemann metric $\mathbf g=e^{2\lambda(u,v)}(du^2+dv^2)$  <br />(写成等温坐标一形式)<br />即,<br /> $\mathbf g_{ij}=\begin{bmatrix}e^\lambda &amp; 0 \\ 0 &amp; e^\lambda\end{bmatrix}$ <br /></td>
+      <td>normalize 自然标架场, 得到orthonormal标架场<br />$\frac{\partial}{\partial x_1}=e^{-\lambda}\frac{\partial}{\partial u}$ , $\frac{\partial}{\partial x_2}=e^{-\lambda}\frac{\partial}{\partial v}$ <br />对应$dx_1=e^\lambda du$ , $dx_2=e^\lambda dv$ <br /><br />Hodge star: $^\ast dx_1=dx_2$ , $^\ast dx_2=-dx_1$ , $^\ast (1)=dx_1\wedge dx_2$ <br />即得 $^\ast du=dv, ^\ast dv=-du$ , $^\ast (1)=e^{2\lambda}du\wedge dv$ <br /><br />hodge star为逆时针旋转90度<br /><br /></td>
+      <td>此时surface area element(面元)<br />$\omega_g=e^{\lambda(u,v)}du\wedge dv$ <br /><br />比较<br />1.  $\omega\wedge\tau=(\omega_1\tau_2-\omega_2\tau_1)du\wedge dv$ <br />2.  $\omega\wedge ^\ast du=\langle \omega,du\rangle_g\omega_g$<br />$=\langle\omega_1 du+\omega_2 dv, du\rangle_g e^{\lambda}du\wedge dv$<br />$=e^{-\lambda}\omega_1 e^{\lambda} du\wedge dv$  <br />$=\omega_1 du\wedge dv$<br />的系数<br /><br />得到$^\ast du=0\cdot du+1\cdot dv=dv$</td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li>Type2 待定系数 -&gt; 指标记法:
+    <ul>
+      <li>把$\tau\in \Omega^{n-k}$ 表示成$\tau=\sum_{(j_{k+1},\cdots,j_n)} (n-k)!\cdot \tau_{(j_{k+1},\cdots,j_n)}\cdot dx^{j_{k+1}}\wedge dx^{j_{k+2}}\wedge\cdots\wedge dx^{j_n}$  , 计算系数 $\tau_{(j_{k+1},\cdots,j_n)}$
+        <ul>
+          <li>$(j_{k+1},\cdots,j_n)$ 排列为递增</li>
+        </ul>
+      </li>
+      <li>比较 $\omega\wedge\tau$ 和 $\omega\wedge^\ast \xi=\langle\omega,\xi\rangle_g \omega_g$ 的系. : 即非零参数 $\omega_{(j_{1},\cdots,j_k)}$ 的系数
+        <ul>
+          <li>左侧为: $(n-k)!\cdot \tau_{(j_{k+1},\cdots,j_n)}$</li>
+          <li>右侧为: $\delta^{j_1 \cdots j_k}<em>{i_1\cdots i_k}\cdot g^{i_1j_1}\cdots g^{i_kj_k}\cdot \sqrt{det(g</em>{ij})}$</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>$\ast$ (Hodge Star Operator)在$\Omega^k(M)$ 上定义了一个内积:  $(\zeta,\eta)=\int_M \zeta\wedge^\ast\eta=\int_M \langle \zeta, \eta\rangle_g\omega_g$</li>
+</ul>
+
+<h3 id="离散定义">离散定义</h3>
+
+<p><a href="https://commons.wikimedia.org/wiki/File:Delaunay_Voronoi.svg#/media/File:Delaunay_Voronoi.svg"><img src="https://upload.wikimedia.org/wikipedia/commons/5/56/Delaunay_Voronoi.svg" alt="Connecting the triangulation's circumcenters gives the Voronoi diagram." width="150" /></a>  黑色为Delaunay triangulation $T$, 红色为Voronoi diagram  $T^*$ , 红边是黑边的中垂线</p>
+
+<p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020241205221028.png" alt="Pasted image 20241205221028.png" width="300" /> 在$T$ 的edge(1-chain) 上定义1-form</p>
+
+<ul>
+  <li>Hodge star operator $^\ast\omega(\bar e)=\frac{vol(\bar e)}{vol (e)}\omega(e)=\frac{\vert \bar e\vert}{\vert e\vert}\omega(e)=\frac{1}{2}(\text{cot } \alpha +\text{cot } \beta)\omega(e)$
+    <ul>
+      <li>$e$ (黑边)的dual edge $\bar e$ (红边), $\vert e\vert$ 和$\vert \bar e \vert$ 相当于在度量$\mathbf g$ 下的体积</li>
+      <li>$\omega\in \Omega^1$ 是T上的. -form, 映射结果$^\ast \omega$ 是  $T^*$ 上的1-form</li>
+      <li>由 圆心角的两倍=圆周角, 得到边长的比例 $\text{cot } \alpha +\text{cot } \beta$ , 称为cot edge weight</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="举例">举例</h2>
+
+<h3 id="场论--静电场--双点电荷系统">场论 . 静电场 . 双点电荷系统</h3>
+
+<p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020241122073441.png" alt="Pasted image 20241122073441.png" width="400" />  红色电力线, 为沿电场强度的轨迹; 蓝色等势线</p>
+
+<ul>
+  <li>0-form <a href="https://en.wikipedia.org/wiki/Electric_potential">电势场</a> $\phi$  : 左侧正电荷处边界电势为+1, 负电荷处电势为-1, 外边界电势为0</li>
+  <li>1-form 电场强度为电势的梯度: $E=-\nabla \phi=E_xdx+E_ydy$    (高电势流向低电势)</li>
+  <li>场强是<strong>harmonic</strong>的:
+    <ul>
+      <li>closed:  $curl\ E = \nabla \times E=(\frac{\partial E_y}{\partial x}-\frac{\partial E_x}{\partial y})dxdy = 0$  ( 2-form 旋量, 电场强度的外微分)
+        <ul>
+          <li>物理意义:
+            <ul>
+              <li>描述矢量场漩涡🌀的大小和方向</li>
+              <li>旋量的面积分 = 沿封闭路径$\partial D$ 做功 = 0 (<a href="https://en.wikipedia.org/wiki/Stokes%27_theorem">Stokes Theorem</a>)
+                <ul>
+                  <li>带电粒子沿路径$\gamma$  做功为 $W=\int_\gamma F=q\int_\gamma E=q\int_\gamma \langle E,\dot r\rangle d\tau$
+                    <ul>
+                      <li>带电粒子受到电场力 $F=qE$</li>
+                      <li>其中$\dot r$ 为沿$\gamma$ 的切向</li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>coclosed: $div\ E=\nabla\cdot E=\frac{\partial E_x}{\partial x}+\frac{\partial E_y}{\partial y}= 0$   (0-form 散度, 电场强度的余微分)
+        <ul>
+          <li>$div\ E = \delta(E)=(-1)^{kn+n+1}\ ^\ast d(^\ast E)$
+            <ol>
+              <li>hodge star $^\ast E$ 为旋转90度, $^\ast E=E_y dx - E_x dy$</li>
+              <li>外微分得到 2-form $d(^\ast E)=-(\frac{\partial E_x}{\partial x}+\frac{\partial E_y}{\partial y})dxdy$</li>
+              <li>hodge star 得到0-form $^\ast d(^\ast E)=-(\frac{\partial E_x}{\partial x}+\frac{\partial E_y}{\partial y})$</li>
+              <li>最后 $div\ E=(-1)^\ast d(^\ast E)=\frac{\partial E_x}{\partial x}+\frac{\partial E_y}{\partial y}$ (映射到0-form 即k=0,2-manifold, 即n=2 -&gt; kn+n+1 是odd)</li>
+            </ol>
+          </li>
+          <li>物理意义:
+            <ul>
+              <li>描述矢量场的发散和汇聚程度</li>
+              <li>通量 = 封闭路径$\partial D$ 的净流入量(流入量-流出量) = 0   ( <a href="https://en.wikipedia.org/wiki/Divergence_theorem">Gauss’ flux theorem(高斯通量定理)</a> )
+                <ul>
+                  <li>电通量  $\Phi=\oint_{\partial D} \langle E, \mathbf n \rangle ds=\int_D \nabla\cdot E dA$
+                    <ul>
+                      <li>其中$\mathbf n$ 是沿路径 $\partial D$ 的法向</li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li>散度 = 通量在无穷小面元的极限 = 0</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="离散--局部调和形式">离散 . 局部调和形式</h3>
+
+<ul>
+  <li>1-form $\omega$ 是harmonic条件:
+    <ul>
+      <li>closed: 沿每个三角形 $\Delta=\lbrace e_0,e_1,e_2\rbrace$ 一圈的值=0, 即 $\omega(e_0)+\omega(e_1)+\omega(e_2)=0$</li>
+      <li>coclosed:
+        <ol>
+          <li>0-form $div=-^\ast d(^\ast \omega)$ 定义在顶点 $v$ 上</li>
+          <li>是定义在dual Voronoi cell $\bar f$ 上的2-form的hodge star:  $div\ v=-^\ast d(^\ast \omega)(v)=d(^\ast\omega)(\bar f)$</li>
+          <li>是定义在Voronoi cell的边界$\bar e_0,\cdots,\bar e_k$ 上的1-form的外微分: $d(^\ast \omega)(\bar f)=^\ast \omega(\bar e_0)+\cdots+^\ast \omega(\bar e_k)$</li>
+          <li>是定义在<strong>沿顶点$v$ 为起点的边逆时针排列的边</strong> $e_0,\cdots,e_k$ 上的hodge star:  $d(^\ast \omega)(\bar f)=^\ast \omega(\bar e_0)+\cdots+^\ast \omega(\bar e_k)=w_{e_0}\omega(e_0)+\cdots+w_{e_k}\omega(e_k)$
+            <ul>
+              <li>$e_0,\cdots,e_k$ 的cot edge weight为$w_{e_0},\cdots, w_{e_k}$</li>
+            </ul>
+          </li>
+        </ol>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="计算调和一形式">计算调和一形式</h2>
+
+<p>由对应的上同调一形式得来</p>
+
+<ul>
+  <li>计算一阶cohomology class的basis: $\lbrace\omega_1,\omega_2,\cdots,\omega_{2g}\rbrace$</li>
+  <li>定义0-form $f_1,\cdots,f_{2g}$ , 使$\lbrace\omega_1+df_1,\cdots,\omega_{2g}+df_{2g}\rbrace$ 是harmonic的
+    <ul>
+      <li>closed: $\omega_i$ 是closed -&gt; $\omega_i+df_i$ 自然是closed
+        <ul>
+          <li>$\omega_i+df_i\in \omega_i+\text{img}\ d^0$ 和 $\omega_i$ 属于同个cohomology class</li>
+        </ul>
+      </li>
+      <li>coclosed: 解每个顶点处的线性的coclosed方程</li>
+    </ul>
+  </li>
+</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="math" /><category term="content" /><category term="hodge_star" /><category term="电场" /><category term="Riemann_metric" /><category term="harmonic_form" /><category term="dual_mesh" /><summary type="html"><![CDATA[Hodge Star Operator]]></summary></entry><entry><title type="html">数学概念 – tensor( 张量 )</title><link href="https://roshameow.github.io//personal_homepage/math/tensor/" rel="alternate" type="text/html" title="数学概念 – tensor( 张量 )" /><published>2024-11-11T00:00:00+00:00</published><updated>2024-11-11T19:34:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/math/tensor</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/math/tensor/"><![CDATA[<p>tensor是描述多种线性量的统一形式</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>type<br />n <code class="language-plaintext highlighter-rouge">\</code> m</th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td><a href="https://en.wikipedia.org/wiki/Scalar_(mathematics)">Scalar</a></td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td><a href="https://en.wikipedia.org/wiki/Euclidean_vector">vector</a></td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="定义">定义</h2>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="math" /><category term="content" /><summary type="html"><![CDATA[tensor是描述多种线性量的统一形式]]></summary></entry><entry><title type="html">iphone快捷指令</title><link href="https://roshameow.github.io//personal_homepage/shortcut/iphone-shortcut/" rel="alternate" type="text/html" title="iphone快捷指令" /><published>2024-11-09T00:00:00+00:00</published><updated>2024-11-18T05:16:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/shortcut/iphone-shortcut</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/shortcut/iphone-shortcut/"><![CDATA[<p>iphone和windows互相复制剪切板</p>
+
+<p>https://blog.csdn.net/weixin_39927850/article/details/142000408</p>
+
+<p>https://sspai.com/post/78530</p>
+
+<p>https://blog.csdn.net/likeyunkeji/article/details/142367760</p>
+
+<p>https://sspai.com/post/84133</p>
+
+<p>iPhone自动记账</p>
+
+<p>https://sspai.com/post/86611
+https://sspai.com/post/80568</p>
+
+<ul>
+  <li>启动:
+    <ul>
+      <li>主动: 敲击两下背面</li>
+      <li>被动: 微信收款
+        <ul>
+          <li>目前只支持mail, message, 不支持notification, 也不支持其它app</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>截图</li>
+  <li>识别
+    <ul>
+      <li>来源/分类</li>
+      <li>金额</li>
+    </ul>
+  </li>
+  <li>存储
+    <ul>
+      <li>用safari的url链接填写服务器上的飞书多维表格</li>
+    </ul>
+  </li>
+</ul>
+
+<p>手电筒闪烁</p>
+
+<ul>
+  <li>控制: <code class="language-plaintext highlighter-rouge">Repeat</code>, <code class="language-plaintext highlighter-rouge">End Repeat</code></li>
+  <li>功能: <code class="language-plaintext highlighter-rouge">flashlight</code></li>
+</ul>
+
+<p>打卡提醒</p>
+
+<ul>
+  <li>添加<code class="language-plaintext highlighter-rouge">Automation</code></li>
+</ul>
+
+<h2 id="分享">分享</h2>
+
+<ul>
+  <li><a href="https://support.apple.com/zh-cn/guide/shortcuts/apdf01f8c054/ios#:~:text=在iOS%20或iPadOS%20设备,显示快捷指令的描述%E3%80%82">用文件方式分享快捷指令</a></li>
+</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="shortcut" /><category term="content" /><summary type="html"><![CDATA[iphone和windows互相复制剪切板]]></summary></entry><entry><title type="html">小红书直播方法</title><link href="https://roshameow.github.io//personal_homepage/media/redbook/" rel="alternate" type="text/html" title="小红书直播方法" /><published>2024-11-06T00:00:00+00:00</published><updated>2024-11-17T15:16:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/media/redbook</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/media/redbook/"><![CDATA[<ul>
+  <li>用电脑端的<a href="https://www.xiaohongshu.com/zhibo/login">小红书直播助手</a> <a href="https://doc.weixin.qq.com/d。c/w3_AAsA3AbDAO09mTyAcIdQm0EXTK6lG?scode=ANAAyQcbAAgQEruBafAAsA3AbDAO0">指南</a>
+    <ul>
+      <li>获取推流码
+        <ul>
+          <li>创作中心 -&gt; 全部服务 -&gt; 主播中心 -&gt; 去开播, 选择pc, 得到6位数字验证码</li>
+          <li>在<a href="https://www.xiaohongshu.com/zhibo/obs">https://www.xiaohongshu.com/zhibo/obs</a> 输入得到串联密钥</li>
+        </ul>
+      </li>
+      <li>按照参数设置obs推流: 服务器地址, 分辨率, fps, 比特率等</li>
+    </ul>
+  </li>
+</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="media" /><category term="content" /><summary type="html"><![CDATA[用电脑端的小红书直播助手 指南 获取推流码 创作中心 -&gt; 全部服务 -&gt; 主播中心 -&gt; 去开播, 选择pc, 得到6位数字验证码 在https://www.xiaohongshu.com/zhibo/obs 输入得到串联密钥 按照参数设置obs推流: 服务器地址, 分辨率, fps, 比特率等]]></summary></entry><entry><title type="html">猫幽门螺杆菌调查</title><link href="https://roshameow.github.io//personal_homepage/pet/helicobacter/" rel="alternate" type="text/html" title="猫幽门螺杆菌调查" /><published>2024-10-25T00:00:00+00:00</published><updated>2024-10-29T20:28:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/pet/helicobacter</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/pet/helicobacter/"><![CDATA[<h2 id="一篇关于猫幽门螺杆菌的实验论文">一篇关于猫幽门螺杆菌的实验论文</h2>
 
 <p>实验用58只猫的检测结果, 实验是09年的</p>
 
@@ -102,409 +616,4 @@
 
 <p>[9]   http://www.dawnsailbio.com/blank6.html 提供某些宠物医院PCR检测的厂家, 但是官网上无此产品</p>
 
-<p>[10]  http://www.mmtest.com.cn/product/222.html 粪便检测抗原的厂家</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="pet" /><category term="content" /><category term="hp" /><category term="胃病" /><summary type="html"><![CDATA[一篇关于猫幽门螺杆菌的实验论文]]></summary></entry><entry><title type="html">驾照考试</title><link href="https://roshameow.github.io//personal_homepage/affair/driving-test/" rel="alternate" type="text/html" title="驾照考试" /><published>2024-10-21T00:00:00+00:00</published><updated>2024-11-26T11:59:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/affair/driving-test</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/affair/driving-test/"><![CDATA[<h2 id="科目一">科目一</h2>
-
-<h3 id="考试范围">考试范围</h3>
-
-<ol>
-  <li>常识: 车辆使用 + 交通信号</li>
-  <li>法律:
-    <ul>
-      <li><a href="https://www.gov.cn/banshi/2005-08/23/content_25575.htm">道路交通安全法</a></li>
-      <li><a href="https://www.gov.cn/banshi/2005-08/23/content_25579.htm">道路交通安全法实施条例</a></li>
-      <li><a href="https://www.gov.cn/gongbao/content/2022/content_5679697.htm">道路交通安全违法行为<strong>记分</strong>管理办法</a></li>
-      <li><a href="https://www.gov.cn/zhengce/2021-12/25/content_5712900.htm">道路交通事故处理程序</a></li>
-      <li><a href="https://www.gov.cn/gongbao/content/2022/content_5679696.htm">机动车驾驶证申领和使用规定</a></li>
-      <li><a href="https://www.gov.cn/gongbao/content/2022/content_5682413.htm">机动车登记规定</a></li>
-      <li><a href="http://www.npc.gov.cn/zgrdw/npc/lfzt/rlys/2008-08/21/content_1882895.htm">刑法</a> 中和“交通”有关的条目
-        <ul>
-          <li><a href="https://www.spp.gov.cn/spp/fl/201802/t20180205_364562.shtml">刑法修正案9</a> 133条: 符合危险驾驶罪的情况+处罚</li>
-          <li><a href="http://gongbao.court.gov.cn/details/cf47fe33d0a96d2b796c91004aba25.html">最高人民法院关于审理交通肇事刑事案件具体应用法律若干问题的解释</a> : 符合交通肇事罪的情况+处罚</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-</ol>
-
-<h3 id="工具">工具</h3>
-
-<ul>
-  <li>交管12123: 报名考试</li>
-  <li><a href="https://www.jxedt.com">驾校一点通</a> : 刷题, 模拟考试</li>
-  <li><a href="https://wuhan.jiakaobaodian.com/">驾考宝典</a>: 可以按类型刷题</li>
-</ul>
-
-<h3 id="知识">知识</h3>
-
-<p>一些刷学分的时候顺便学的知识</p>
-<ul>
-  <li>买多少号汽油?
-    <ul>
-      <li>汽油和压缩比的关系, 标号越高, 辛烷值越高, 抵抗爆燃的能力越高, 越安全, 越贵.</li>
-      <li>汽车的压缩比越高, 越危险, 需要越高标号的汽油.</li>
-    </ul>
-  </li>
-  <li>润滑油:  颜色深说明质量好?</li>
-  <li>还有一个详细的视频教怎么换🛞</li>
-</ul>
-
-<p>生平第一次这么科学的复习考试😮‍💨, (第一天)刷题记笔记, 看了3个小时的考点讲解视频, (第二天)背知识点, 重刷错题, 模拟考试</p>
-
-<p>扣分体系足够科学吗? 受哪些因素影响呢?</p>
-
-<p>因为曾经卖分猖獗, 现在卖分要扣12分, 是怎么变成这样的呢?</p>
-
-<h2 id="科目二">科目二</h2>
-
-<p><a href="https://zh.wikipedia.org/wiki/%E4%B8%AD%E5%8D%8E%E4%BA%BA%E6%B0%91%E5%85%B1%E5%92%8C%E5%9B%BD%E6%9C%BA%E5%8A%A8%E8%BD%A6%E9%A9%BE%E9%A9%B6%E4%BA%BA%E8%80%83%E8%AF%95">考试标准</a></p>
-
-<h3 id="方向控制">方向控制</h3>
-
-<ul>
-  <li>多数汽车只有前轮能转向, 汽车的旋转中心在后轮的中间?
-    <ul>
-      <li><img src="/personal_homepage/docs/attachment/image.gif" alt="image.gif" width="200" />
-        <ul>
-          <li>这个并不trival🤔️</li>
-          <li><a href="https://www.pcauto.com.cn/teach/qczs/0212/4785.html">二轮转向vs四轮转向</a></li>
-        </ul>
-      </li>
-      <li>转向时, 汽车后部的位移小, 用倒库的方式能更好的进库</li>
-    </ul>
-  </li>
-  <li>简化后:  <img src="/personal_homepage/docs/attachment/Pasted%20image%2020241103201833.png" alt="Pasted image 20241103201833.png" width="120" />   方向盘向左, 往左绕圈 <img src="/personal_homepage/docs/attachment/Pasted%20image%2020241103201851.png" alt="Pasted image 20241103201851.png" width="120" />  方向盘向右, 往右绕圈</li>
-</ul>
-
-<h3 id="行驶路线">行驶路线</h3>
-
-<p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020241107171616.png" alt="Pasted image 20241107171616.png" width="800" /></p>
-
-<ul>
-  <li>注意点:
-    <ul>
-      <li>驾校教的点位风险很大: 是种作弊+运气的方式, 给我带来的不是安心, 而是极度地焦虑😐, 还好驾照考试并不是为难人, 只要正确学习技术无视这些点位, 就能极大的提高成功率.
-        <ol>
-          <li>只是回半圈的点位, 容错空间非常小,</li>
-          <li>又会受座椅前后, 靠背前后, 坐姿, 转头角度, 是不是一只眼睛看的影响.</li>
-          <li>全程不是看着库, 而是要看库的另一边😓.</li>
-          <li>看那个“点位”要不停向后回头, 姿势非常不自然.</li>
-          <li>这是种作弊方法, 考试的时候在行走的安全员可能会把所谓的点位挡住.</li>
-          <li>要接受中途停车扣5分的惩罚</li>
-          <li>我确实练习过, 但是频频出错.</li>
-        </ol>
-      </li>
-      <li>实际库的宽度比我图上要小: 车🚗停在中间的话, 离左右库边线有30cm的距离. 行驶道路宽度比我图上要宽, 才能保证不压线.</li>
-      <li>需要学习判断打早还是打晚, 以及修库的方法. 经过练习之后在点位附近差的不多的话都能保证进库.
-        <ul>
-          <li>看后视镜中门把手距离库30cm距离时的情况: 打早(斜插库), 正好(库角库, 底边库, 平行库), 打晚
-            <ul>
-              <li>越早靠近库, 越要先多回正方向盘, 待门把手进库之后再调整</li>
-            </ul>
-          </li>
-          <li><a href="https://www.youtube.com/channel/UCYEajAHNuIkvry97Q9zI5lQ/videos">金牌驾校孙教练的教学</a></li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-</ul>
-
-<p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020241107171548.png" alt="Pasted image 20241107171548.png" width="800" /></p>
-
-<ul>
-  <li>注意点:
-    <ul>
-      <li>转向灯要在库里还没出发时打够3s, 不然会扣10分</li>
-      <li>左边的横线依赖肩膀(并不可靠), 用观察右后视镜库角的方式确定打方向盘时间</li>
-      <li>入库最后不用一下打死, 看库的虚线位置调整左右距离</li>
-    </ul>
-  </li>
-</ul>
-
-<p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020241107171649.png" alt="Pasted image 20241107171649.png" width="800" /></p>
-
-<ul>
-  <li>注意点:
-    <ul>
-      <li>曲线路程中看后视镜和边缘线的距离调整一下方向盘的角度</li>
-      <li>直角注意不要错过转弯的点, 转弯时一定要降速</li>
-    </ul>
-  </li>
-</ul>
-
-<p>科目二据说有个人工判罚, 会随机判人视线偏移控制一个考场同一天的通过率? 但是我没遇到</p>
-
-<h2 id="科目三">科目三</h2>
-
-<h3 id="灯光模拟">灯光模拟</h3>
-
-<ul>
-  <li><a href="https://lbs.amap.com/api/wia/tutorial/application/export_map">高德地图导出</a>  : 只能支持俯视的卫星实景地图或标准地图(最细节也看不出车道)
-    <ul>
-      <li>高德地图不支持查看街景</li>
-    </ul>
-  </li>
-  <li>百度地图可以, 全景
-    <ul>
-      <li>但是地图上看不到考试用的伪装路牌</li>
-    </ul>
-  </li>
-</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="affair" /><category term="content" /><summary type="html"><![CDATA[科目一]]></summary></entry><entry><title type="html">attention的优化– KV Cache</title><link href="https://roshameow.github.io//personal_homepage/algorithm/attention4/" rel="alternate" type="text/html" title="attention的优化– KV Cache" /><published>2024-10-14T00:00:00+00:00</published><updated>2024-10-14T16:42:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/algorithm/attention4</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/algorithm/attention4/"><![CDATA[]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="algorithm" /><category term="content" /><category term="attention" /><summary type="html"><![CDATA[]]></summary></entry><entry><title type="html">conformal geometry学习 (十 ) – 举例: 球面上的unit tangent bundle manifold</title><link href="https://roshameow.github.io//personal_homepage/math/conformal-geometry10/" rel="alternate" type="text/html" title="conformal geometry学习 (十 ) – 举例: 球面上的unit tangent bundle manifold" /><published>2024-10-09T00:00:00+00:00</published><updated>2024-10-24T18:02:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/math/conformal-geometry10</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/math/conformal-geometry10/"><![CDATA[<h2 id="atlas">atlas</h2>
-
-<table>
-  <thead>
-    <tr>
-      <th>结构</th>
-      <th>条件</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>manifold</td>
-      <td>$U_\alpha$ homeomorphism to $\mathbb R^n$,</td>
-    </tr>
-    <tr>
-      <td>smooth manifold<br />(differential manifold)</td>
-      <td>transition map $\phi_{\alpha\beta}\in C^\infty(\mathbb R^n)$ smooth</td>
-    </tr>
-    <tr>
-      <td>Riemann surface</td>
-      <td>每片是 2-dim<br />transition map 是biholomorphic(conformal)<br />atlas $\lbrace(U_\alpha,z_\alpha)\rbrace$ 叫conformal structure</td>
-    </tr>
-  </tbody>
-</table>
-
-<ul>
-  <li>有T-juction的graph(比如“日” 字形的graph)是一个单纯复形, 但不是1-manifold</li>
-</ul>
-
-<h2 id="球面上的unit-tangent-bundle-manifoldutm参数化构造">球面上的unit tangent bundle manifold(<a href="https://en.wikipedia.org/wiki/Unit_tangent_bundle">UTM</a>)参数化构造</h2>
-
-<p>球面上的unit tangent bundle $UTM(\mathbb S^2)$ 是一个3流型: 在一块上是$\mathbb D^1\times \mathbb S^1$ solid torus, 两块沿torus的边界粘在一起.</p>
-
-<h3 id="球面的atlas表示">球面的atlas表示</h3>
-
-<p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020241024160430.png" alt="Pasted image 20241024160430.png" width="300" />   <img src="/personal_homepage/docs/attachment/Pasted%20image%2020241024160403.png" alt="Pasted image 20241024160403.png" width="250" /></p>
-
-<ul>
-  <li>球面的atlas表示: 把sphere $\mathbb S^2$ 分为上下两片, 用<a href="https://en.wikipedia.org/wiki/Stereographic_projection">球极投影(Stereo-graphic projection)</a>的方式映射到$\mathbb R^2\cong \mathbb C$ , 在$\mathbb R^3$ 中嵌入的坐标为$(x_1,x_2,x_3)$ , 其$x_1^2+x_2^2+x_3^2=1$
-    <ul>
-      <li>去掉North-pole的一片, $(x_1,x_2,x_3)$ 对应坐标为$z=x+iy=\frac{x_1+ix_2}{1-x_3}$ ,或表示为 $(x,y)=(\frac{x_1}{1-x_3},\frac{x_2}{1-x_3})$</li>
-      <li>去掉South-pole的一片, $(x_1,x_2,x_3)$ 对应坐标为$w=u+iv=\frac{x_1-ix_2}{1+x_3}$ ,或表示为 $(u,v)=(\frac{x_1}{1+x_3},\frac{-x_2}{1+x_3})$</li>
-      <li>两片之间的transition map: $\frac{1}{z}: w$
-        <ul>
-          <li>$\frac{1}{z}=\frac{1-x_3}{x_1+ix_2}=\frac{(x_1-ix_2)(1-x_3)}{1-x_3^2}=\frac{x_1-ix_2}{1+x_3}=w$</li>
-          <li>$u+iv=\frac{x-iy}{x^2+y^2}$</li>
-          <li>$(u,v)=(\frac{x}{x^2+y^2},\frac{-y}{x^2+y^2})$</li>
-        </ul>
-      </li>
-      <li>两片之间的Jacobian matrix: $w_z=-\frac{1}{z^2}$
-        <ul>
-          <li>$\begin{bmatrix}u_x &amp; u_y \\ v_x &amp; v_y\end{bmatrix}=\frac{1}{(x^2+y^2)^2}\begin{bmatrix}y^2-x^2 &amp; -2xy \\ 2xy &amp; y^2-x^2\end{bmatrix}$</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-</ul>
-
-<h3 id="unit-tangent-bundle">unit tangent bundle</h3>
-
-<ul class="task-list">
-  <li class="task-list-item">
-    <p><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />画图</p>
-  </li>
-  <li class="task-list-item">
-    <p>unit tangent bundle: 每个点处的fiber 是$\mathbb S^1$</p>
-    <ul>
-      <li>tangent vector的basis, $\partial_x=\frac{2}{(1+x^2+y^2)^2}(1-x^2+y^2,-2xy,2x)$ , $\partial_y=\frac{2}{(1+x^2+y^2)^2}(-2xy, 1+x^2-y^2,2y)$
-        <ul>
-          <li>$(x_1,x_2,x_3)=(\frac{2x}{1+x^2+y^2},\frac{2y}{1+x^2+y^2},\frac{-1+x^2+y^2}{1+x^2+y^2})$</li>
-          <li>另一片同理</li>
-        </ul>
-      </li>
-      <li>tangent vector有: $dw=w_zdz=-\frac{1}{z^2}dz$
-        <ul>
-          <li>用$dz$ 表示坐标为 $z$ 处的一个tangent vector</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-</ul>
-
-<h3 id="在赤道处粘在一起">在赤道处粘在一起</h3>
-
-<ul>
-  <li>在赤道处粘在一起: 沿两片粘合的边界($\mathbb S^1$) 的unit tangent bundle 是torus $T^2$ , 坐标记为$(\theta,\tau)$
-    <ul>
-      <li>球面两片: $z=e^{i\theta}\mapsto w=e^{-i\theta}$</li>
-      <li>unit tangent vector: $e^{i\tau}\mapsto e^{i(\pi-2\theta+\tau)}$</li>
-      <li>粘合的行为给出了torus的一个automophism $\phi$: $(\theta,\tau)\mapsto (-\theta, \pi-2\theta+\tau)$
-        <ul>
-          <li>在universal covering上表示如图:
-            <ul>
-              <li><img src="/personal_homepage/docs/attachment/Pasted%20image%2020241022080313.png" alt="Pasted image 20241022080313.png" width="400" /></li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-</ul>
-
-<h3 id="utm沿fiber粘在一起">UTM沿fiber粘在一起</h3>
-
-<p>看成两个solid torus沿边界torus粘在一起</p>
-
-<ul>
-  <li>$\phi$ induce了一个$\pi_1(T^2)$ 的自同构 $\phi_{\texttt{#}}$: $a\mapsto a, b\mapsto a^{-2}b^{-1}$
-    <ul>
-      <li>$\pi_1(T^2)$ 的basis  $a: (0,s), s\in [ 0,1]$  , $b:(t,0), t\in [0,1]$
-        <ul>
-          <li>即 a 为$\theta=0$ 的fiber, b为$\tau=0$ 的section</li>
-        </ul>
-      </li>
-      <li>a 有, $(0,s)\mapsto (0, \pi+s)$ 映射为 a</li>
-      <li>b 有, $(t,0)\mapsto (-t,\pi-2t)$ 映射为$a^{-2}b^{-1}$</li>
-      <li>如图: <img src="/personal_homepage/docs/attachment/Pasted%20image%2020241021193648.png" alt="Pasted image 20241021193648.png" width="400" /> 左图solid torus是去掉North-pole的一块的UTM, 右图是去掉South-pole的一块的UTM</li>
-    </ul>
-  </li>
-</ul>
-
-<h3 id="unit-tangent-bundleutmmathbb-s2的fundamental-group">unit tangent bundle($UTM(\mathbb S^2)$)的fundamental group</h3>
-
-<p>$\pi_1(UTM(\mathbb S^2))=\mathbb Z_2$</p>
-<ul>
-  <li>在$\mathbb S^2$ 的其中一片上, UTM为$\mathbb D^2\times \mathbb S^1$ , 是solid torus, 记 $\pi_1(M_1)=\langle a_1\rangle$, $\pi_1(M_2)=\langle a_2\rangle$
-    <ul>
-      <li>$a_1, a_2$ 分别为两片上fiber的生成元</li>
-    </ul>
-  </li>
-  <li>在粘合部分, UTM为$T^2$, $\pi_1(T^2)=\langle a,b\vert [a,b]\rangle$
-    <ul>
-      <li>其中, $i(a)=a_1, j(a)=a_2$</li>
-      <li>$i(b)=e$ , $j(b)=a_2^{-2}b^{-1}=a_2^{-2}$</li>
-    </ul>
-  </li>
-  <li>得到, $\pi_1(UTM(\mathbb S^2))=\langle a_1,a_2\vert a_1a_2^{-1}, a_2^{-2}\rangle=\mathbb Z_2$
-    <ul>
-      <li>$j(b)$ 在那块solid torus上$\nsim e$ , 构成拓扑障碍(obstruction)</li>
-    </ul>
-  </li>
-</ul>
-
-<h2 id="utmmathbb-s2-和-so3-旋转群的关系">$UTM(\mathbb S^2)$ 和 $SO(3)$ 旋转群的关系</h2>
-
-<p>把旋转群 SO(3) 用轴角表示:  $(u,\theta)$  (转角$\theta$ 要求CCW, 即逆时针旋转)</p>
-<ul>
-  <li>转轴$u$ &lt;-&gt; 单位球面上一点</li>
-  <li>转角$\theta$ &lt;-&gt; 单位切丛的一个方向</li>
-</ul>
-
-<p>$\pi_1(SO(3))=\mathbb Z_2$  中的非零元素称为<a href="https://en.wikipedia.org/wiki/Spinor">自旋结构(spinor)</a></p>
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/j5soqexrwqY?si=DEB4zYwtzIFTbRK5" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen=""></iframe>
-
-<ul>
-  <li>在视频中有体现spinor的实验: 拖着水杯扭曲360度, 手臂扭曲, 2圈之后手臂可以恢复原位</li>
-</ul>
-
-<p>3-manifold quaternion(4元数) 是SO3的universal cover, $\pi_1$ 是trival的</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="math" /><category term="content" /><category term="utm" /><category term="atlas" /><category term="manifold" /><category term="3d_rotation" /><category term="fundamental_group" /><summary type="html"><![CDATA[atlas]]></summary></entry><entry><title type="html">债券的原理</title><link href="https://roshameow.github.io//personal_homepage/bond/" rel="alternate" type="text/html" title="债券的原理" /><published>2024-10-01T00:00:00+00:00</published><updated>2024-10-10T17:22:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/bond</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/bond/"><![CDATA[<p>政府和企业发行的借款, 债券本身 = 票面价值 + 利息 + 到期时间 + 债券发行方
-价格 : 可能高于/低于 票面价值</p>
-
-<h2 id="分类">分类</h2>
-
-<ul>
-  <li>可转债
-    <ul>
-      <li>上市公司发行的, 可以转成股票</li>
-      <li>和股票大盘正相关</li>
-      <li>有些公司发行的有回售条款, 转股后也可以保证拿回本金(约定股价过低时回售)</li>
-    </ul>
-  </li>
-  <li>纯债
-    <ul>
-      <li>利率债: 国债, 政策性金融债
-        <ul>
-          <li>和利率负相关</li>
-        </ul>
-      </li>
-      <li>信用债</li>
-    </ul>
-  </li>
-</ul>
-
-<p>[1] http://www.csrc.gov.cn/neimenggu/c105958/c1608862/content.shtml</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="content" /><summary type="html"><![CDATA[政府和企业发行的借款, 债券本身 = 票面价值 + 利息 + 到期时间 + 债券发行方 价格 : 可能高于/低于 票面价值]]></summary></entry><entry><title type="html">raycast脚本</title><link href="https://roshameow.github.io//personal_homepage/tool/raycast-script/" rel="alternate" type="text/html" title="raycast脚本" /><published>2024-09-30T00:00:00+00:00</published><updated>2024-10-12T05:25:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/tool/raycast-script</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/tool/raycast-script/"><![CDATA[<ul>
-  <li><a href="https://nicrow.com/automation/raycast-script-commands/">raycast脚本举例</a></li>
-</ul>
-
-<h3 id="把视频转成mp4">把视频转成mp4</h3>
-
-<p>其他软件经常生成的.avi(blender), .mov(Final Cut Pro) 都太大了不方便分享</p>
-
-<ul>
-  <li>如果用raycast 直接完成脚本功能, 遇到的困难:
-    <ol>
-      <li>raycast script执行在non-login shell, 没法调取在<code class="language-plaintext highlighter-rouge">$PATH</code> 里的<code class="language-plaintext highlighter-rouge">ffmpeg</code> 命令(see https://github.com/raycast/script-commands/issues/165)</li>
-      <li>raycast的输入框没有拖拽文件路径的功能, 感觉用起来挺麻烦的</li>
-    </ol>
-  </li>
-  <li>如果用raycast脚本开启terminal, 并把命令写到clipboard里, 遇到的困难:
-    <ol>
-      <li>raycast的脚本也是脚本, 没法直接控制键盘功能, 还是要跳转到对应位置输入视频</li>
-    </ol>
-  </li>
-  <li>如果放弃raycast: 写脚本完成功能, 把视频名称作为脚本参数, 用<code class="language-plaintext highlighter-rouge">alias</code> 在terminal启动脚本
-    <ul>
-      <li>感觉是最省事的了?</li>
-    </ul>
-  </li>
-</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="tool" /><category term="content" /><category term="raycast" /><summary type="html"><![CDATA[raycast脚本举例]]></summary></entry><entry><title type="html">调整视频追踪物体</title><link href="https://roshameow.github.io//personal_homepage/tool/center-track/" rel="alternate" type="text/html" title="调整视频追踪物体" /><published>2024-09-29T00:00:00+00:00</published><updated>2024-09-29T10:41:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/tool/center-track</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/tool/center-track/"><![CDATA[<p>Final Cut Pro</p>
-<ul>
-  <li><a href="https://www.bilibili.com/video/BV1oB4y1278d/">教程</a></li>
-  <li>步骤:
-    <ul>
-      <li>添加原视频</li>
-      <li>在原视频上添加tracker, analysis跟踪物体的bbox</li>
-      <li>复制原视频一份</li>
-      <li>在复制视频的transformer应用之前的tracker, scale改成-100%
-        <ul>
-          <li>tracker的坐标和画面的坐标位置相反?</li>
-        </ul>
-      </li>
-      <li>把物体移到画面中间</li>
-      <li>放大scale去掉黑边</li>
-    </ul>
-  </li>
-  <li>提升视频细节</li>
-</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="tool" /><category term="content" /><summary type="html"><![CDATA[Final Cut Pro 教程 步骤: 添加原视频 在原视频上添加tracker, analysis跟踪物体的bbox 复制原视频一份 在复制视频的transformer应用之前的tracker, scale改成-100% tracker的坐标和画面的坐标位置相反? 把物体移到画面中间 放大scale去掉黑边]]></summary></entry><entry><title type="html">自制猫爬架</title><link href="https://roshameow.github.io//personal_homepage/hand_crafted/cat-tree/" rel="alternate" type="text/html" title="自制猫爬架" /><published>2024-09-18T00:00:00+00:00</published><updated>2024-09-18T23:31:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/hand_crafted/cat-tree</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/hand_crafted/cat-tree/"><![CDATA[<h2 id="底座">底座</h2>
-
-<ul>
-  <li>水泥</li>
-  <li>木板</li>
-  <li>不锈钢</li>
-</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="hand_crafted" /><category term="content" /><summary type="html"><![CDATA[底座]]></summary></entry><entry><title type="html">摄像头测距</title><link href="https://roshameow.github.io//personal_homepage/algorithm/vision-distance/" rel="alternate" type="text/html" title="摄像头测距" /><published>2024-09-08T00:00:00+00:00</published><updated>2024-09-21T22:38:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/algorithm/vision-distance</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/algorithm/vision-distance/"><![CDATA[<ul>
-  <li>
-    <p>问题定义: 从摄像头组拍摄的画面中得到汽车的3维bounding box</p>
-  </li>
-  <li>应用场景:
-    <ul>
-      <li>公路(高速)卡口</li>
-      <li>通行车道: 高速? 可以安装立柱? 离车距离&gt; 0.6m, 路侧安装高度: 1.2m ~ 2.4m, 门架式安装高度: 5m ~ 7.5m</li>
-      <li>卡车(long vehicle): &gt; 12.2m 货车: &lt; 30m</li>
-    </ul>
-  </li>
-  <li>精度要求: &lt; 50mm(5厘米?)</li>
-</ul>
-
-<p>kitti测试集: https://www.cvlibs.net/datasets/kitti/eval_scene_flow.php</p>
-
-<ul>
-  <li>可能相关的研究
-    <ul>
-      <li>自动驾驶测障碍物距离</li>
-    </ul>
-  </li>
-</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="algorithm" /><category term="content" /><summary type="html"><![CDATA[问题定义: 从摄像头组拍摄的画面中得到汽车的3维bounding box]]></summary></entry><entry><title type="html">给 Melvor Idle制作 Mod</title><link href="https://roshameow.github.io//personal_homepage/game/melvor-mod/" rel="alternate" type="text/html" title="给 Melvor Idle制作 Mod" /><published>2024-09-07T00:00:00+00:00</published><updated>2024-09-08T19:20:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/game/melvor-mod</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/game/melvor-mod/"><![CDATA[<h2 id="制作">制作</h2>
-
-<ul>
-  <li>教程: https://wiki.melvoridle.com/w/Mod_Creation/Getting_Started</li>
-</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="game" /><category term="content" /><summary type="html"><![CDATA[制作]]></summary></entry></feed>
+<p>[10]  http://www.mmtest.com.cn/product/222.html 粪便检测抗原的厂家</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="pet" /><category term="content" /><category term="hp" /><category term="胃病" /><summary type="html"><![CDATA[一篇关于猫幽门螺杆菌的实验论文]]></summary></entry></feed>
