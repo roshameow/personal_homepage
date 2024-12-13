@@ -10,7 +10,7 @@ tags:
   - Riemann_metric
   - harmonic_form
   - dual_mesh
-last_modified_at: 2024-12-08T05:43
+last_modified_at: 2024-12-11T12:42
 created: 2024-11-12T17:58
 ---
 ## Hodge Star Operator
@@ -39,7 +39,7 @@ created: 2024-11-12T17:58
 		- $(j_{k+1},\cdots,j_n)$ 排列为递增
 	- 比较 $\omega\wedge\tau$ 和 $\omega\wedge^\ast \xi=\langle\omega,\xi\rangle_g \omega_g$ 的系. : 即非零参数 $\omega_{(j_{1},\cdots,j_k)}$ 的系数
 		- 左侧为: $(n-k)!\cdot \tau_{(j_{k+1},\cdots,j_n)}$ 
-		- 右侧为: $\delta^{j_1 \cdots j_k}_{i_1\cdots i_k}\cdot g^{i_1j_1}\cdots g^{i_kj_k}\cdot \sqrt{det(g_{ij})}$ 
+		- 右侧为: $$\delta^{j_1 \cdots j_k}_{i_1\cdots i_k}\cdot g^{i_1j_1}\cdots g^{i_kj_k}\cdot \sqrt{det(g_{ij})}$$ 
 - $\ast$ (Hodge Star Operator)在$\Omega^k(M)$ 上定义了一个内积:  $(\zeta,\eta)=\int_M \zeta\wedge^\ast\eta=\int_M \langle \zeta, \eta\rangle_g\omega_g$ 
 
 ### 离散定义
@@ -96,7 +96,9 @@ created: 2024-11-12T17:58
 			- $e_0,\cdots,e_k$ 的cot edge weight为$w_{e_0},\cdots, w_{e_k}$ 
 	
 
-## 计算调和一形式
+## 计算
+
+### 曲面的调和一形式
 
 由对应的上同调一形式得来
 
@@ -105,3 +107,7 @@ created: 2024-11-12T17:58
 	- closed: $\omega_i$ 是closed -> $\omega_i+df_i$ 自然是closed
 		-  $\omega_i+df_i\in \omega_i+\text{img}\ d^0$ 和 $\omega_i$ 属于同个cohomology class 
 	- coclosed: 解每个顶点处的线性的coclosed方程
+
+### [harmonic map(调和映射)](https://en.wikipedia.org/wiki/Harmonic_map) 
+
+带边单连通曲面( topological disk) -> $\mathbb D$ 
