@@ -450,8 +450,8 @@ var store = [{
         "url": "https://roshameow.github.io//personal_homepage/photo/photo1/"
       },{
         "title": "blender学习: 扭曲晶体路径跟随",
-        "excerpt":"参考这个教学 ","categories": ["blender"],
-        "tags": ["content"],
+        "excerpt":"参考这个教学 制作物体: 一组扭曲, 光滑的梭形 长方形在edit mode下添加loop cut分割 把两头缩小, 变为梭形 用propotional editing 缩放两头的面即可 调整梭形的长短, 粗细 复制多个做为动效: 固定在XZ平面, 绕中心小圈复制4个, 大圈复制8个 先复制到(-2,2), (4,0) 位置, 倍增得到小圈, 复制小圈得到大圈, 复制大圈倍增 在XZ平面上有格子可以定位, 刚复制时ctrl也可以看到坐标 多选分组调整梭形的长短, 粗细比例: 比如大圈和小圈分开调整 批量调整形态时, 需要把pivot point(轴心点) 切换成individual origins 可能需要右键 -&gt; separate selected 分开成单独的object, 用来之后设置不同的扭曲和运动. 添加Bevel(倒角) modifier保持棱角 设置limit method = angle. 调整angle. 只在四个棱(角度大)的位置设置倒角. 四边形 -&gt;...","categories": ["blender"],
+        "tags": ["content","shortcut"],
         "url": "https://roshameow.github.io//personal_homepage/blender/blender-learning14/"
       },{
         "title": "蛇年圣诞风格海报",

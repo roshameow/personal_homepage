@@ -31,7 +31,7 @@
 <meta property="twitter:title" content="blender学习: 扭曲晶体路径跟随" />
 <meta name="twitter:site" content="@" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-12-05T17:31:00+00:00","datePublished":"2024-12-05T00:00:00+00:00","description":"参考这个教学","headline":"blender学习: 扭曲晶体路径跟随","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/blender/blender-learning14/"},"url":"https://roshameow.github.io//personal_homepage/blender/blender-learning14/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-12-13T17:54:00+00:00","datePublished":"2024-12-05T00:00:00+00:00","description":"参考这个教学","headline":"blender学习: 扭曲晶体路径跟随","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/blender/blender-learning14/"},"url":"https://roshameow.github.io//personal_homepage/blender/blender-learning14/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -107,7 +107,7 @@
       <div class="page-sidebar">
         <div class="page-author h-card p-author"><img src="/personal_homepage/docs/images/logo.svg" class="author-avatar u-photo" alt=""><div class="author-info">
 
-<span class="read-time">~1 min read</span>
+<span class="read-time">1 min read</span>
 
     <time class="page-date dt-published" datetime="2024-12-05T00:00:00+00:00"><a class="u-url" href="">December 5, 2024</a>
 </time>
@@ -125,7 +125,7 @@
         
   <h3 class="page-taxonomies-title">Tags</h3>
   
-  <ul class="page-taxonomies"><li class="page-taxonomy"><a href="/personal_homepage/tags/#content" title="Pages tagged content" rel="tag">content</a></li>
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a href="/personal_homepage/tags/#content" title="Pages tagged content" rel="tag">content</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#shortcut" title="Pages tagged shortcut" rel="tag">shortcut</a></li>
   </ul>
 
 
@@ -139,7 +139,7 @@
 {:toc} -->
   <!-- <div id="markdown-toc"> -->
 
-    
+    <ul class="inline_toc" id="my_toc"><li><a href="#用到的blender的一些快捷键功能">用到的blender的一些快捷键功能</a></li><li><a href="#blender用法">blender用法</a><ul><li><a href="#edit-mode">edit mode</a></li><li><a href="#modifier">modifier</a></li></ul></li></ul>
   <!-- </div> -->
 
 </div>
@@ -178,6 +178,174 @@
         <div class="e-content">
           <p>参考<a href="https://www.youtube.com/watch?v=uRAfhJQFjRo">这个教学</a></p>
 
+<ul>
+  <li><strong>制作物体: 一组扭曲, 光滑的梭形</strong>
+    <ul>
+      <li>长方形在edit mode下添加loop cut分割</li>
+      <li>把两头缩小, 变为梭形
+        <ul>
+          <li>用<a href="https://docs.blender.org/manual/en/2.81/scene_layout/object/editing/transform/control/proportional_edit.html">propotional editing</a> 缩放两头的面即可
+            <ul>
+              <li><a href="https://docs.blender.org/manual/en/2.81/_images/scene-layout_object_editing_transform_control_proportional-edit_influence.png"><img src="https://docs.blender.org/manual/en/2.81/_images/scene-layout_object_editing_transform_control_proportional-edit_influence.png" width="250" /></a></li>
+            </ul>
+          </li>
+          <li>调整梭形的长短, 粗细</li>
+        </ul>
+      </li>
+      <li>复制多个做为动效: 固定在XZ平面, 绕中心小圈复制4个, 大圈复制8个
+        <ul>
+          <li>先复制到(-2,2), (4,0) 位置, 倍增得到小圈, 复制小圈得到大圈, 复制大圈倍增
+            <ul>
+              <li><img src="/personal_homepage/docs/attachment/Pasted%20image%2020241210113337.png" alt="Pasted image 20241210113337.png" width="150" /> 在XZ平面上有格子可以定位, 刚复制时ctrl也可以看到坐标</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>多选分组调整梭形的长短, 粗细比例: 比如大圈和小圈分开调整
+        <ul>
+          <li>批量调整形态时, 需要把<a href="https://docs.blender.org/manual/en/2.80/scene_layout/object/editing/transform/control/pivot_point/index.html">pivot point(轴心点)</a> 切换成individual origins</li>
+          <li>可能需要右键 -&gt; separate selected 分开成单独的object, 用来之后设置不同的扭曲和运动.</li>
+        </ul>
+      </li>
+      <li>添加<a href="https://docs.blender.org/manual/en/latest/modeling/modifiers/generate/bevel.html">Bevel(倒角)</a>  modifier保持棱角
+        <ul>
+          <li>设置limit method = angle. 调整angle. 只在四个棱(角度大)的位置设置倒角.</li>
+          <li>四边形 -&gt; <a href="https://docs.blender.org/manual/en/latest/_images/modeling_modifiers_generate_bevel_square.png"><img src="https://docs.blender.org/manual/en/latest/_images/modeling_modifiers_generate_bevel_square.png" width="100" /></a></li>
+        </ul>
+      </li>
+      <li>添加subdivision  光滑:
+        <ul>
+          <li><strong>如果不设置倒角, subdivision分不清棱角是由模型粗糙导致的, 还是我们本来需要的.</strong> 会把我们本来的四边形变成正多边形(近似圆形)…</li>
+          <li>还有另一种办法是在我们需要的棱周围设置<a href="https://docs.blender.org/manual/en/latest/modeling/meshes/tools/loop.html">Loop Cut</a>(卡线)</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><strong>制作路径: 用BezierCurve画出路径</strong></li>
+  <li><strong>跟随路径: 设置Y轴为跟随轴</strong>
+    <ul>
+      <li>添加<a href="https://docs.blender.org/manual/en/latest/modeling/modifiers/deform/curve.html">Curve modifier</a> :
+        <ul>
+          <li>Curve Object为路径curve</li>
+          <li>Deform Axis 为Y</li>
+        </ul>
+      </li>
+      <li>打开Transform属性, 固定X, Z轴. 保持mesh相对于Y轴位置不变.</li>
+    </ul>
+  </li>
+  <li><strong>形状随路径变化?:</strong>
+    <ul>
+      <li>添加<a href="https://docs.blender.org/manual/en/latest/modeling/modifiers/deform/simple_deform.html">Simple Deform</a> 的Twist效果
+        <ul>
+          <li>Origin为路径curve: 这样可能会导致twist的结果不可控, 想单独控制的话还是用一个空物体比较好</li>
+          <li>Axis为Y: 设置成和Curve modifier的Deform Axis一样, 只在轨道的截面上形变</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><strong>调整动画</strong>
+    <ul>
+      <li>在起点和终点插入Location的关键帧</li>
+      <li>调整graph editor</li>
+      <li>graph editor 右键 -&gt; <a href="https://docs.blender.org/manual/zh-hans/4.3/editors/graph_editor/fcurves/properties.html">handle type</a>  -&gt; vector
+        <ul>
+          <li>handle type是graph的Bezier曲线上锚点梯度的预设, vector预设就是和linear一致</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><strong>后期降噪: 用Compositing, 去除用cycle采样率不足导致的噪声</strong>
+    <ul>
+      <li>Layer Property -&gt; Include Denoising Data 打开  : 打开后才能传递Normal(法线贴图)和Albedo(反射率)</li>
+      <li>添加一个denoise node: 传递Noisy Image-&gt; Image, Denoising Normal -&gt; Normal, Denoising Albedo -&gt; Albedo
+        <ul>
+          <li>在blender里是通过调用<a href="https://www.openimagedenoise.org">OpenImageDenoise库</a> (unet based)实现: <a href="https://github.com/blender/blender/blob/blender-v4.3-release/source/blender/nodes/composite/nodes/node_composite_denoise.cc">node_composite_denoise.cc</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="/personal_homepage/docs/attachment/follow_path.mp4" alt="follow_path.mp4" width="480" /></p>
+
+<h2 id="用到的blender的一些快捷键功能">用到的blender的一些快捷键功能</h2>
+
+<ul>
+  <li><a href="https://docs.blender.org/manual/en/latest/modeling/meshes/tools/loop.html">Loop Cut</a>(卡线): 在edge中间添新的顶点
+    <ul>
+      <li>添加loop cut: Ctrl+R</li>
+      <li>选中已有的loop cut: Shift+Option+长按</li>
+    </ul>
+  </li>
+  <li>Edit Mode 下操作一个物体的mesh
+    <ul>
+      <li>取消全部选择: Option + A</li>
+      <li>定向放缩:
+        <ul>
+          <li>S+Shift+X: 放缩除X 轴外的两个轴, 即放缩YZ平面</li>
+          <li>0 缩放尺度调整为0</li>
+        </ul>
+      </li>
+      <li>多选:  <a href="https://docs.blender.org/manual/en/latest/modeling/meshes/selecting/linked.html">L</a>
+        <ul>
+          <li>鼠标放在要选择的物体上, 选中linked(相连)的mesh部分</li>
+        </ul>
+      </li>
+      <li>反选: ctrl + i</li>
+      <li>复制
+        <ul>
+          <li>在原物体上复制一个mesh: <a href="https://docs.blender.org/manual/en/latest/scene_layout/object/editing/duplicate.html">Shift + D</a></li>
+          <li>移动新mesh: Ctrl + 手势, 软件里有显示位置</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>打开关闭侧边 Transform栏: N</li>
+</ul>
+
+<h2 id="blender用法">blender用法</h2>
+
+<ul>
+  <li>配置多窗口
+    <ul>
+      <li>在底部右键 -&gt; vertical split : 把右侧配成相机视角</li>
+    </ul>
+  </li>
+  <li>调整相机视角:
+    <ul>
+      <li>View-&gt; Align View -&gt; Align Active Camera to View</li>
+      <li>View-&gt; Navigation -&gt; Walk Navigation 用wasd调整视角方向</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="edit-mode">edit mode</h3>
+
+<ul>
+  <li><a href="https://docs.blender.org/manual/en/2.80/scene_layout/object/editing/transform/control/pivot_point/index.html">pivot point(轴心点)</a> 的不同选项影响transform对link里mesh是怎么作用的
+    <ul>
+      <li><img src="/personal_homepage/docs/attachment/Pasted%20image%2020241210124924.png" alt="Pasted image 20241210124924.png" width="150" /> individual orgin:  <img src="/personal_homepage/docs/attachment/Pasted%20image%2020241210124951.png" alt="Pasted image 20241210124951.png" width="150" />  median point: <img src="/personal_homepage/docs/attachment/Pasted%20image%2020241210125026.png" alt="Pasted image 20241210125026.png" width="150" /></li>
+      <li>默认median point是以所有组的中心apply transform的.</li>
+      <li>individual origins是组里每个connect component单独作用
+        <h3 id="modifier">modifier</h3>
+      </li>
+    </ul>
+  </li>
+  <li><a href="https://docs.blender.org/manual/en/latest/modeling/modifiers/deform/simple_deform.html">Simple Deform</a> 的Twist效果
+    <ul>
+      <li><img src="/personal_homepage/docs/attachment/Pasted%20image%2020241213115547.png" alt="Pasted image 20241213115547.png" width="150" /></li>
+      <li>沿Axis扭曲, 扭曲角度由mesh上每个点到Origin的距离(指把点变化到object的局部坐标系下)决定</li>
+      <li>想控制的话, Origin还是单独用一个空物体调整比较方便</li>
+    </ul>
+  </li>
+  <li><a href="https://docs.blender.org/manual/en/latest/modeling/modifiers/deform/curve.html">Curve modifier</a> :
+    <ul>
+      <li>物体坐标由xyz-chart , 转为(curve, 垂直平面) 构成的local chart.</li>
+      <li>超出curve的范围由两端顶点的梯度做外插得到.</li>
+      <li><img src="/personal_homepage/docs/attachment/Pasted%20image%2020241211155218.png" alt="Pasted image 20241211155218.png" width="300" /> 如图Z轴替换为curve, 变换前 -&gt; 变换后(橙色)</li>
+    </ul>
+  </li>
+</ul>
 
         </div>
 
