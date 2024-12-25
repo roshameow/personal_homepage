@@ -31,7 +31,7 @@
 <meta property="twitter:title" content="conformal geometry学习 (十一 ) – Hodge Star Operator" />
 <meta name="twitter:site" content="@" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-12-11T12:42:00+00:00","datePublished":"2024-11-12T00:00:00+00:00","description":"Hodge Star Operator","headline":"conformal geometry学习 (十一 ) – Hodge Star Operator","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/math/conformal-geometry11/"},"url":"https://roshameow.github.io//personal_homepage/math/conformal-geometry11/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-12-19T22:56:00+00:00","datePublished":"2024-11-12T00:00:00+00:00","description":"Hodge Star Operator","headline":"conformal geometry学习 (十一 ) – Hodge Star Operator","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/math/conformal-geometry11/"},"url":"https://roshameow.github.io//personal_homepage/math/conformal-geometry11/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -107,7 +107,7 @@
       <div class="page-sidebar">
         <div class="page-author h-card p-author"><img src="/personal_homepage/docs/images/logo.svg" class="author-avatar u-photo" alt=""><div class="author-info">
 
-<span class="read-time">3 min read</span>
+<span class="read-time">4 min read</span>
 
     <time class="page-date dt-published" datetime="2024-11-12T00:00:00+00:00"><a class="u-url" href="">November 12, 2024</a>
 </time>
@@ -125,7 +125,7 @@
         
   <h3 class="page-taxonomies-title">Tags</h3>
   
-  <ul class="page-taxonomies"><li class="page-taxonomy"><a href="/personal_homepage/tags/#riemann-metric" title="Pages tagged Riemann_metric" rel="tag">Riemann_metric</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#content" title="Pages tagged content" rel="tag">content</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#dual-mesh" title="Pages tagged dual_mesh" rel="tag">dual_mesh</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#harmonic-form" title="Pages tagged harmonic_form" rel="tag">harmonic_form</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#hodge-star" title="Pages tagged hodge_star" rel="tag">hodge_star</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#%E7%94%B5%E5%9C%BA" title="Pages tagged 电场" rel="tag">电场</a></li>
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a href="/personal_homepage/tags/#riemann-metric" title="Pages tagged Riemann_metric" rel="tag">Riemann_metric</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#cohomology" title="Pages tagged cohomology" rel="tag">cohomology</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#content" title="Pages tagged content" rel="tag">content</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#dual-mesh" title="Pages tagged dual_mesh" rel="tag">dual_mesh</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#harmonic-energy" title="Pages tagged harmonic_energy" rel="tag">harmonic_energy</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#harmonic-form" title="Pages tagged harmonic_form" rel="tag">harmonic_form</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#harmonic-function" title="Pages tagged harmonic_function" rel="tag">harmonic_function</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#harmonic-map" title="Pages tagged harmonic_map" rel="tag">harmonic_map</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#hodge-star" title="Pages tagged hodge_star" rel="tag">hodge_star</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#%E7%94%B5%E5%9C%BA" title="Pages tagged 电场" rel="tag">电场</a></li>
   </ul>
 
 
@@ -139,7 +139,7 @@
 {:toc} -->
   <!-- <div id="markdown-toc"> -->
 
-    <ul class="inline_toc" id="my_toc"><li><a href="#hodge-star-operator">Hodge Star Operator</a><ul><li><a href="#manifold定义">manifold定义</a></li><li><a href="#离散定义">离散定义</a></li></ul></li><li><a href="#举例">举例</a><ul><li><a href="#场论--静电场--双点电荷系统">场论 . 静电场 . 双点电荷系统</a></li><li><a href="#离散--局部调和形式">离散 . 局部调和形式</a></li></ul></li><li><a href="#计算">计算</a><ul><li><a href="#曲面的调和一形式">曲面的调和一形式</a></li><li><a href="#harmonic-map调和映射">harmonic map(调和映射)</a></li></ul></li></ul>
+    <ul class="inline_toc" id="my_toc"><li><a href="#hodge-star-operator">Hodge Star Operator</a><ul><li><a href="#manifold定义">manifold定义</a></li><li><a href="#离散定义">离散定义</a></li></ul></li><li><a href="#举例--调和形式推导">举例 . 调和形式推导</a><ul><li><a href="#场论--静电场--双点电荷系统">场论 . 静电场 . 双点电荷系统</a></li><li><a href="#一般等温坐标系的调和函数">一般等温坐标系的调和函数</a></li><li><a href="#离散--局部调和形式">离散 . 局部调和形式</a></li></ul></li><li><a href="#计算">计算</a><ul><li><a href="#曲面的调和一形式">曲面的调和一形式</a></li><li><a href="#harmonic-map调和映射">harmonic map(调和映射)</a></li></ul></li></ul>
   <!-- </div> -->
 
 </div>
@@ -153,15 +153,15 @@
     <!-- <div id="markdown-toc"> -->
     <ul>
         
-        <li><a href="/personal_homepage/design/poster2/">蛇年圣诞风格海报</a></li>
+        <li><a href="/personal_homepage/blender/blender-learning17/">blender资源</a></li>
         
-        <li><a href="/personal_homepage/blender/blender-learning14/">blender学习: 扭曲晶体路径跟随</a></li>
+        <li><a href="/personal_homepage/webpage/serverless/">Serverless服务</a></li>
         
-        <li><a href="/personal_homepage/photo/photo1/">几种拍图技巧</a></li>
+        <li><a href="/personal_homepage/blender/blender-learning16/">blender学习: 五角星 ⭐️</a></li>
         
-        <li><a href="/personal_homepage/math/conformal-geometry12/">conformal geometry学习 (十一 ) -- Duality, 离散</a></li>
+        <li><a href="/personal_homepage/blender/blender-learning15/">blender学习: 用Grease pencil 涂色</a></li>
         
-        <li><a href="/personal_homepage/daily/shampoo/">洗发水成分</a></li>
+        <li><a href="/personal_homepage/design/poster2/">🐍 蛇年圣诞风格海报</a></li>
         
     </ul>
     <!-- </div> -->
@@ -230,9 +230,9 @@
       <td> </td>
     </tr>
     <tr>
-      <td>例子<br /><br />Riemann metric $\mathbf g=e^{2\lambda(u,v)}(du^2+dv^2)$  <br />(写成等温坐标一形式)<br />即,<br /> $\mathbf g_{ij}=\begin{bmatrix}e^\lambda &amp; 0 \\ 0 &amp; e^\lambda\end{bmatrix}$ <br /></td>
+      <td>例子<br /><br />Riemann metric $\mathbf g=e^{2\lambda(u,v)}(du^2+dv^2)$  <br />(写成等温坐标一形式)<br />即,<br /> $\mathbf g_{ij}=\begin{bmatrix}e^{2\lambda} &amp; 0 \\ 0 &amp; e^{2\lambda}\end{bmatrix}$ <br /></td>
       <td>normalize 自然标架场, 得到orthonormal标架场<br />$\frac{\partial}{\partial x_1}=e^{-\lambda}\frac{\partial}{\partial u}$ , $\frac{\partial}{\partial x_2}=e^{-\lambda}\frac{\partial}{\partial v}$ <br />对应$dx_1=e^\lambda du$ , $dx_2=e^\lambda dv$ <br /><br />Hodge star: $^\ast dx_1=dx_2$ , $^\ast dx_2=-dx_1$ , $^\ast (1)=dx_1\wedge dx_2$ <br />即得 $^\ast du=dv, ^\ast dv=-du$ , $^\ast (1)=e^{2\lambda}du\wedge dv$ <br /><br />hodge star为逆时针旋转90度<br /><br /></td>
-      <td>此时surface area element(面元)<br />$\omega_g=e^{\lambda(u,v)}du\wedge dv$ <br /><br />比较<br />1.  $\omega\wedge\tau=(\omega_1\tau_2-\omega_2\tau_1)du\wedge dv$ <br />2.  $\omega\wedge ^\ast du=\langle \omega,du\rangle_g\omega_g$<br />$=\langle\omega_1 du+\omega_2 dv, du\rangle_g e^{\lambda}du\wedge dv$<br />$=e^{-\lambda}\omega_1 e^{\lambda} du\wedge dv$  <br />$=\omega_1 du\wedge dv$<br />的系数<br /><br />得到$^\ast du=0\cdot du+1\cdot dv=dv$</td>
+      <td>此时surface area element(面元)<br />$\omega_g=e^{2\lambda(u,v)}du\wedge dv$ <br /><br />比较<br />1.  $\omega\wedge\tau=(\omega_1\tau_2-\omega_2\tau_1)du\wedge dv$ <br />2.  $\omega\wedge ^\ast du=\langle \omega,du\rangle_g\omega_g$<br />$=\langle\omega_1 du+\omega_2 dv, du\rangle_g e^{2\lambda}du\wedge dv$<br />$=e^{-2\lambda}\omega_1 e^{2\lambda} du\wedge dv$  <br />$=\omega_1 du\wedge dv$<br />的系数<br /><br />得到$^\ast du=0\cdot du+1\cdot dv=dv$</td>
     </tr>
   </tbody>
 </table>
@@ -272,7 +272,7 @@
   </li>
 </ul>
 
-<h2 id="举例">举例</h2>
+<h2 id="举例--调和形式推导">举例 . 调和形式推导</h2>
 
 <h3 id="场论--静电场--双点电荷系统">场论 . 静电场 . 双点电荷系统</h3>
 
@@ -304,17 +304,17 @@
       </li>
       <li>coclosed: $div\ E=\nabla\cdot E=\frac{\partial E_x}{\partial x}+\frac{\partial E_y}{\partial y}= 0$   (0-form 散度, 电场强度的余微分)
         <ul>
-          <li>$div\ E = \delta(E)=(-1)^{kn+n+1}\ ^\ast d(^\ast E)$
+          <li>$-div\ E = \delta(E)=(-1)^{kn+n+1}\ ^\ast d(^\ast E)$
             <ol>
               <li>hodge star $^\ast E$ 为旋转90度, $^\ast E=E_y dx - E_x dy$</li>
-              <li>外微分得到 2-form $d(^\ast E)=-(\frac{\partial E_x}{\partial x}+\frac{\partial E_y}{\partial y})dxdy$</li>
-              <li>hodge star 得到0-form $^\ast d(^\ast E)=-(\frac{\partial E_x}{\partial x}+\frac{\partial E_y}{\partial y})$</li>
-              <li>最后 $div\ E=(-1)^\ast d(^\ast E)=\frac{\partial E_x}{\partial x}+\frac{\partial E_y}{\partial y}$ (映射到0-form 即k=0,2-manifold, 即n=2 -&gt; kn+n+1 是odd)</li>
+              <li>外微分得到 2-form $d(^\ast E)=(\frac{\partial E_x}{\partial x}+\frac{\partial E_y}{\partial y})dxdy$</li>
+              <li>hodge star 得到0-form $^\ast d(^\ast E)=\frac{\partial E_x}{\partial x}+\frac{\partial E_y}{\partial y}$</li>
+              <li>最后 $(-1)^\ast d(^\ast E)=-(\frac{\partial E_x}{\partial x}+\frac{\partial E_y}{\partial y})=-div\ E$ (映射到0-form 即k=0,2-manifold, 即n=2 -&gt; kn+n+1 是odd)</li>
             </ol>
           </li>
           <li>物理意义:
             <ul>
-              <li>描述矢量场的发散和汇聚程度</li>
+              <li>描述矢量场的发散 ✳︎ 和汇聚程度</li>
               <li>通量 = 封闭路径$\partial D$ 的净流入量(流入量-流出量) = 0   ( <a href="https://en.wikipedia.org/wiki/Divergence_theorem">Gauss’ flux theorem(高斯通量定理)</a> )
                 <ul>
                   <li>电通量  $\Phi=\oint_{\partial D} \langle E, \mathbf n \rangle ds=\int_D \nabla\cdot E dA$
@@ -329,6 +329,32 @@
           </li>
         </ul>
       </li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="一般等温坐标系的调和函数">一般等温坐标系的调和函数</h3>
+
+<p>Riemann metric $\mathbf g=e^{2\lambda(u,v)}(du^2+dv^2)$</p>
+
+<ul>
+  <li>函数(0-form) $f$ 的Lapalace算子 : $\Delta_g f=(d\delta+\delta d)f=\delta d f= -e^{-2\lambda}(\frac{\partial^2}{\partial u^2}+\frac{\partial^2}{\partial v^2}) f$
+    <ol>
+      <li>differential operator: $df=\frac{\partial f}{\partial u}du + \frac{\partial f}{\partial v}dv=e^{-\lambda}(\frac{\partial f}{\partial u}dx + \frac{\partial f}{\partial v}dy)=\nabla_g f$</li>
+      <li>codifferential operator: $\delta df = -div(\nabla f)$ : 等价于负的 <a href="https://en.wikipedia.org/wiki/Laplace–Beltrami_operator">Lapalace–Beltrami operator</a>
+        <ol>
+          <li>hodge star $^\ast df$ 为旋转90度, $^\ast df=\frac{\partial f}{dv} du - \frac{\partial f}{du} dv$</li>
+          <li>外微分得到 2-form $d(^\ast df)=(\frac{\partial^2}{\partial u^2}f+\frac{\partial^2}{\partial v^2}f)dudv$</li>
+          <li>hodge star 得到0-form $^\ast d(^\ast df)=\omega_g(\frac{\partial^2}{\partial u^2}+\frac{\partial^2}{\partial v^2}) f=e^{-2\lambda}(\frac{\partial^2}{\partial u^2}+\frac{\partial^2}{\partial v^2}) f$</li>
+          <li>最后 $\delta df = (-1)^\ast d(^\ast df)=-\omega_g(\frac{\partial^2}{\partial u^2}+\frac{\partial^2}{\partial v^2}) f=-e^{-2\lambda}(\frac{\partial^2}{\partial u^2}+\frac{\partial^2}{\partial v^2}) f$ (映射到0-form 即k=0,2-manifold, 即n=2 -&gt; kn+n+1 是odd)</li>
+        </ol>
+      </li>
+    </ol>
+  </li>
+  <li><strong>调和函数 $f$ (满足$\Delta_g f=0$ ) 使曲面$S$ 的调和能量($E(f)=(\nabla_g f,\nabla_g f)=\int_M \langle\nabla_g f,\nabla_g f\rangle_g\omega_g$ ) 最小</strong>: $f=\text{argmin}_f E(f)$
+    <ul>
+      <li>( ) 是hodge star operator induced 内积</li>
+      <li>由$(\nabla_g f,\nabla_g f)=(f,\Delta_g f)$</li>
     </ul>
   </li>
 </ul>
@@ -377,7 +403,47 @@
 
 <h3 id="harmonic-map调和映射"><a href="https://en.wikipedia.org/wiki/Harmonic_map">harmonic map(调和映射)</a></h3>
 
-<p>带边单连通曲面( topological disk) -&gt; $\mathbb D$</p>
+<ul>
+  <li>f 是调和映射 &lt;-&gt; f在每个分量上都是调和函数 &lt;-&gt; $df$ 在曲面内部是调和一形式</li>
+</ul>
+
+<p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020241216162354.png" alt="Pasted image 20241216162354.png" width="300" /></p>
+
+<ul>
+  <li>disk harmonic map: 带边单连通曲面( topological disk) $M$  到单位圆盘的映射  $f: M\rightarrow \mathbb D$ (0-form)</li>
+  <li>计算:
+    <ol>
+      <li>随便构造边界函数 $g: \partial M\rightarrow \mathbb S^1$ , 使 g是homeomorphic(同胚) 就行: 把$\mathbb S^1$ 等分映射到对应三角形边界就行</li>
+      <li>计算每个边的 cotangent edge weight</li>
+      <li>解 $df$ 的coclosed方程(f 的Laplacian方程 )</li>
+    </ol>
+  </li>
+</ul>
+
+<p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020241216085519.png" alt="Pasted image 20241216085519.png" width="300" /></p>
+
+<ul>
+  <li>spherical harmonic map: genus 0 的closed 曲面mesh $M$ , 到单位球的映射 $\phi: M\rightarrow \mathbb S^2$</li>
+  <li>计算: spherical的情况, 有1. Laplacian ($\Delta \phi(v_i)=\sum_{v_i\sim v_j} w_{ij}(\phi(v_j)-\phi(v_i))=0$) 和2. 球面($\phi(v_i)\in \mathbb S^2$) 两个约束, 用proximal(近端算子)的方法轮流迭代
+    <ol>
+      <li>计算每个边的 cotangent edge weight</li>
+      <li>构造初始映射为 Gauss映射$G:M\rightarrow \mathbb S^2$ , 把点映射到normal vector($p\mapsto \mathbf n(p)$ ).</li>
+      <li>迭代:
+        <ol>
+          <li>计算每个顶点的 Laplacian 值</li>
+          <li>减少Laplacian部分: 从$\phi(v_i)$ 减去$\Delta\phi(v_i)$ 在切平面的投影, 即 $\phi(v_i)$ -= $\lambda D\phi(v_i)$
+            <ul>
+              <li><img src="/personal_homepage/docs/attachment/Pasted%20image%2020241219224615.png" alt="Pasted image 20241219224615.png" width="150" /></li>
+              <li>$\lambda$ 为step_size (保证迭代稳定, 不诱发自旋转? )</li>
+            </ul>
+          </li>
+          <li>重新映射回 $\mathbb S^2$ : 计算重心, 以重心为原点normalize</li>
+        </ol>
+      </li>
+    </ol>
+  </li>
+</ul>
+
 
         </div>
 

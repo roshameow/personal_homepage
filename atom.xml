@@ -1,6 +1,356 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.4">Jekyll</generator><link href="https://roshameow.github.io//personal_homepage/atom.xml" rel="self" type="application/atom+xml" /><link href="https://roshameow.github.io//personal_homepage/" rel="alternate" type="text/html" /><updated>2024-12-13T09:55:57+00:00</updated><id>https://roshameow.github.io//personal_homepage/atom.xml</id><title type="html">Liu, Wen’s Home Page</title><subtitle>Work, Experiments and Ideas.</subtitle><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><entry><title type="html">蛇年圣诞风格海报</title><link href="https://roshameow.github.io//personal_homepage/design/poster2/" rel="alternate" type="text/html" title="蛇年圣诞风格海报" /><published>2024-12-06T00:00:00+00:00</published><updated>2024-12-06T19:16:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/design/poster2</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/design/poster2/"><![CDATA[<p>“Merry Hissmas”</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.4">Jekyll</generator><link href="https://roshameow.github.io//personal_homepage/atom.xml" rel="self" type="application/atom+xml" /><link href="https://roshameow.github.io//personal_homepage/" rel="alternate" type="text/html" /><updated>2024-12-25T13:02:55+00:00</updated><id>https://roshameow.github.io//personal_homepage/atom.xml</id><title type="html">Liu, Wen’s Home Page</title><subtitle>Work, Experiments and Ideas.</subtitle><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><entry><title type="html">blender资源</title><link href="https://roshameow.github.io//personal_homepage/blender/blender-learning17/" rel="alternate" type="text/html" title="blender资源" /><published>2024-12-22T00:00:00+00:00</published><updated>2024-12-25T21:01:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/blender/blender-learning17</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/blender/blender-learning17/"><![CDATA[<h2 id="模型">模型</h2>
 
-<p>今年在ai的加持下似乎只有分镜需要自己画了?</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="design" /><category term="content" /><summary type="html"><![CDATA[“Merry Hissmas”]]></summary></entry><entry><title type="html">blender学习: 扭曲晶体路径跟随</title><link href="https://roshameow.github.io//personal_homepage/blender/blender-learning14/" rel="alternate" type="text/html" title="blender学习: 扭曲晶体路径跟随" /><published>2024-12-05T00:00:00+00:00</published><updated>2024-12-13T17:54:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/blender/blender-learning14</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/blender/blender-learning14/"><![CDATA[<p>参考<a href="https://www.youtube.com/watch?v=uRAfhJQFjRo">这个教学</a></p>
+<table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><a href="https://sketchfab.com/feed">sketchfab</a></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><a href="https://www.cgmodel.com">cg模型网</a></td>
+      <td>国风模型</td>
+    </tr>
+    <tr>
+      <td><a href="https://cubebrush.co">cubebrush</a></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><a href="https://free3d.com">free3d</a></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><a href="https://www.blender.org/download/demo-files/">blender官网demo</a></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><a href="https://blendermarket.com">blendermarket</a></td>
+      <td>.blend格式, 免费比较少</td>
+    </tr>
+    <tr>
+      <td><a href="https://www.daz3d.com">Daz</a></td>
+      <td>写实风格, 素体<br /><a href="https://render-state.to">Render-State</a> : daz链接</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="blender" /><category term="content" /><summary type="html"><![CDATA[模型]]></summary></entry><entry><title type="html">Serverless服务</title><link href="https://roshameow.github.io//personal_homepage/webpage/serverless/" rel="alternate" type="text/html" title="Serverless服务" /><published>2024-12-19T00:00:00+00:00</published><updated>2024-12-19T22:05:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/webpage/serverless</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/webpage/serverless/"><![CDATA[<h2 id="阿里云">阿里云</h2>
+
+<ul>
+  <li>负载均衡方案:
+    <ul>
+      <li>clb</li>
+      <li>nlb</li>
+      <li>alb</li>
+    </ul>
+  </li>
+</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="WebPage" /><category term="content" /><summary type="html"><![CDATA[阿里云]]></summary></entry><entry><title type="html">blender学习: 五角星 ⭐️</title><link href="https://roshameow.github.io//personal_homepage/blender/blender-learning16/" rel="alternate" type="text/html" title="blender学习: 五角星 ⭐️" /><published>2024-12-18T00:00:00+00:00</published><updated>2024-12-25T17:07:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/blender/blender-learning16</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/blender/blender-learning16/"><![CDATA[<p>参考<a href="https://www.bilibili.com/video/BV1v5kGYgEg9/">这个教学</a></p>
+
+<ul>
+  <li>添加circle mesh , 设置顶点 = 10 (刚添加时可以设置)</li>
+  <li>选择5个顶点: Edit Mode下, Select -&gt; Checker Deselect(间隔式弃选)</li>
+  <li>向内收缩形成五角星状轮廓</li>
+  <li>Extrude(挤出) 变成五角星状围栏</li>
+  <li>Loop cut(卡线) 分成三段</li>
+  <li>上下层merge变为一点</li>
+  <li>倒角(bevel), 细分(subdivide)</li>
+</ul>
+
+<p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020241218224819.png" alt="Pasted image 20241218224819.png" width="150" /></p>
+
+<h2 id="用到的blender的一些快捷键功能">用到的blender的一些快捷键功能</h2>
+
+<ul>
+  <li><a href="https://docs.blender.org/manual/en/latest/modeling/meshes/tools/loop.html">Loop Cut</a>(卡线): 在edge中间添新的顶点
+    <ul>
+      <li>添加loop cut: Ctrl+R</li>
+      <li>选中已有的loop cut: Shift+Option+长按</li>
+    </ul>
+  </li>
+  <li>E (<a href="https://docs.blender.org/manual/en/2.80/modeling/meshes/editing/duplicating/extrude.html">Extrude</a>, 挤出): 保持原顶点不变, 复制一份, 复制的和原来的用edge连接
+    <ul>
+      <li>selected face: <img src="https://docs.blender.org/manual/en/2.80/_images/modeling_meshes_editing_duplicating_extrude_face-before.png" alt="drawing" width="150" />  During extrude:  <img src="https://docs.blender.org/manual/en/2.80/_images/modeling_meshes_editing_duplicating_extrude_face-after.png" alt="drawing" width="150" />  </li>
+    </ul>
+  </li>
+  <li>Edit Mode:
+    <ul>
+      <li>融合(merge): <a href="https://docs.blender.org/manual/en/latest/modeling/meshes/editing/mesh/merge.html">M</a>
+        <ul>
+          <li>merge to point和 向内收缩到头( S + 0 ) 效果一样的</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="用blender-script的情况">用blender script的情况</h2>
+
+<ul>
+  <li>流程特别固化, 用script比交互式操作容易的多</li>
+  <li>开始我以为需要3d操作的loop cut会更麻烦, 顶点多了以后用代码就不方便描述了. 不过这个是我思维限制了, 用代码根本没必要loop cut, 直接把extrude重复多次就完了</li>
+</ul>
+
+<h3 id="把python-script-载入blender插件">把python script 载入blender插件</h3>
+
+<p><strong>安装插件</strong></p>
+
+<ol>
+  <li>进入 <strong>Edit &gt; Preferences &gt; Add-ons</strong>。</li>
+  <li>点击 <strong>Install</strong>，选择保存的 <code class="language-plaintext highlighter-rouge">.py</code> 文件。</li>
+  <li>勾选插件以启用。</li>
+</ol>
+
+<p><strong>使用插件</strong></p>
+
+<ol>
+  <li>在Object Mode下，点击 <strong>Add &gt; Mesh &gt; Create Star</strong>。</li>
+  <li>在左下角调整 <strong>Number of Points</strong>、<strong>Radius</strong> 和 <strong>Height</strong> 参数。</li>
+</ol>
+
+<h3 id="代码">代码</h3>
+
+<ul>
+  <li>script: <a href="https://gist.github.com/roshameow/2b5be662744414007ac39a4d10f530d9#file-create_star-py"><strong>create_star.py</strong></a></li>
+  <li>add-on: <a href="https://gist.github.com/roshameow/2b5be662744414007ac39a4d10f530d9#file-star_addon-py"><strong>star_addon.py</strong></a></li>
+</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="blender" /><category term="content" /><summary type="html"><![CDATA[参考这个教学]]></summary></entry><entry><title type="html">blender学习: 用Grease pencil 涂色</title><link href="https://roshameow.github.io//personal_homepage/blender/blender-learning15/" rel="alternate" type="text/html" title="blender学习: 用Grease pencil 涂色" /><published>2024-12-16T00:00:00+00:00</published><updated>2024-12-24T08:46:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/blender/blender-learning15</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/blender/blender-learning15/"><![CDATA[<p>参考<a href="https://www.youtube.com/watch?v=bX6jtVSJOog">这个教学</a></p>
+
+<ul>
+  <li>制作物体</li>
+  <li><strong>涂底色</strong>( 用<a href="https://docs.blender.org/manual/en/latest/sculpt_paint/texture_paint/introduction.html">Texture paint</a>): 设置uv展开, 在3维viewport中涂色, 实际把颜色涂在2维的 uv图上
+    <ul>
+      <li>在Edit Mode下设置uv展开:  <a href="https://docs.blender.org/manual/en/latest/modeling/meshes/editing/uv.html">Smart UV Project</a></li>
+      <li>用<a href="https://docs.blender.org/manual/en/latest/render/shader_nodes/shader/mix.html">Mix shader</a> 控制
+        <ul>
+          <li>在shader里设置两个material: base material 和 paint material, 用Mix shader连在一起
+            <ul>
+              <li>比如: Principle BSDF + Shader to RGB + Color Ramp</li>
+            </ul>
+          </li>
+          <li>在Texture paint下, <a href="https://docs.blender.org/manual/en/latest/sculpt_paint/texture_paint/tool_settings/texture_slots.html">Texture Slot</a> 中添加 material -&gt; base color
+            <ul>
+              <li>颜色设为黑色</li>
+              <li>把生成的material 的node 连接到Mix shader的 Fac(可能这个texture slot中直接弄material不方便, 所以只用一个深度的功能, 把material混合放在mix shader里?)</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>在物体上涂色</li>
+    </ul>
+  </li>
+  <li><strong>给固定主体添加抖动的外轮廓</strong>: 模拟画画的线稿
+    <ul>
+      <li>添加line art: Grease Pencil -&gt; Collection Line Art
+        <ul>
+          <li><a href="https://docs.blender.org/manual/en/latest/grease_pencil/modifiers/generate/line_art.html">modifier -&gt; Line Art </a> 调解轮廓位置, 粗细, 透明度
+            <ul>
+              <li>Edge Types Create
+                <ul>
+                  <li>Individual Silhouette(剪影): 给物体的外轮廓创建line art</li>
+                  <li>去掉 Crease(褶皱): 不然不止外轮廓, 所有面向正面的边缘都会添加line art</li>
+                  <li>去掉 intersection: 不然面和面相交的地方(阴影)也会添加line art</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>modifier -&gt; noise
+            <ul>
+              <li>调整 position(位置的随机性), strength(透明度的随机性), thickness, noise scale</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>同位置添加一个带dot dash的line art: 表现有粗有细的笔触效果
+        <ul>
+          <li>modifier -&gt; Dot dash
+            <ul>
+              <li>调整 Dash, Gap : 笔触断开的比例</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><strong>涂细节</strong>
+    <ul>
+      <li>添加GreasePencil Object
+        <ul>
+          <li>添加noise modifier: 模拟笔触效果</li>
+          <li>设置<a href="https://docs.blender.org/manual/en/latest/grease_pencil/properties/object.html">Object -&gt; Visibility</a>
+            <ul>
+              <li>选中 Grease Pencil -&gt; Use Lights: 让画面受灯光影响, 是Grease Pencil独有的property</li>
+            </ul>
+          </li>
+          <li>设置 <a href="https://docs.blender.org/manual/en/latest/scene_layout/object/properties/display.html">Object -&gt; Viewport Display</a>
+            <ul>
+              <li>选中 Show -&gt; In Front: 让画画涂层在最前面</li>
+            </ul>
+          </li>
+          <li>去掉 Data -&gt; Layers -&gt; Opacity -&gt; Use Lights 设置上面涂层不变透明?, 去掉之后就按正常的混合图层模式理解</li>
+          <li>添加多个不同颜色 material
+            <ul>
+              <li>在Material -&gt; Surface -&gt; Stroke -&gt; Base Color调整颜色</li>
+              <li>在Material -&gt; Surface -&gt; Fill 调整circle里面fill的颜色</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>设置Draw Mode,
+        <ul>
+          <li>设置绘画平面: 通过<a href="https://docs.blender.org/manual/en/latest/grease_pencil/modes/draw/stroke_placement.html">Stroke Placement</a></li>
+          <li>设置stroke:
+            <ul>
+              <li>设置 Tool -&gt; Brush Setting -&gt; <a href="https://docs.blender.org/manual/en/latest/sculpt_paint/brush/stroke.html#">Stroke</a> -&gt; Stablilize Stroke -&gt; Radius = 10px</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><strong>设置动画</strong>
+    <ul>
+      <li>把同样动画的笔触分离</li>
+      <li>用auto key 记录最终形态(2)</li>
+      <li>选中第一帧(1) shift+D 复制, 移到最终帧之后(3), 把时间线移到 (2),(3) 中间</li>
+      <li>在Edit Mode里, 用Grease Pencil -&gt; Interpolate Sequence 插入中间key frame</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="uv贴图">UV贴图</h2>
+
+<p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020230615131056.png" alt="Pasted image 20230615131056.png" width="300" /></p>
+
+<ul>
+  <li><a href="https://docs.blender.org/manual/en/latest/modeling/meshes/editing/uv.html">Smart UV Project</a> : 从mesh一个顶点相邻面扩散展开, 检查顶点处的角度</li>
+</ul>
+
+<h2 id="draw-mode">draw mode</h2>
+
+<p>通过<a href="https://docs.blender.org/manual/en/latest/grease_pencil/modes/draw/stroke_placement.html">Stroke Placement</a> 切换绘画平面</p>
+<ul>
+  <li>Origin(默认), 在object的origin : <a href="https://docs.blender.org/manual/en/latest/_images/grease-pencil_modes_draw_stroke-placement_origin.png"><img src="https://docs.blender.org/manual/en/latest/_images/grease-pencil_modes_draw_stroke-placement_origin.png" width="150" /></a>  一般不用…Object的origin不知道在哪</li>
+  <li>3d cursor(光标), 可以移动cursor放在想要的平面 <a href="https://docs.blender.org/manual/en/latest/_images/grease-pencil_modes_draw_stroke-placement_3D-cursor.png"><img src="https://docs.blender.org/manual/en/latest/_images/grease-pencil_modes_draw_stroke-placement_3D-cursor.png" width="150" /></a> 在Cursor点的位置所在的View的平面上画画</li>
+  <li>Surface <a href="https://docs.blender.org/manual/en/latest/_images/grease-pencil_modes_draw_stroke-placement_surface.png"><img src="https://docs.blender.org/manual/en/latest/_images/grease-pencil_modes_draw_stroke-placement_surface.png" width="150" /></a> Offset(离mesh的距离 )设成0.01</li>
+</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="blender" /><category term="content" /><summary type="html"><![CDATA[参考这个教学]]></summary></entry><entry><title type="html">🐍 蛇年圣诞风格海报</title><link href="https://roshameow.github.io//personal_homepage/design/poster2/" rel="alternate" type="text/html" title="🐍 蛇年圣诞风格海报" /><published>2024-12-06T00:00:00+00:00</published><updated>2024-12-25T11:55:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/design/poster2</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/design/poster2/"><![CDATA[<p><img src="/personal_homepage/docs/attachment/merry_hissmas.mp4" alt="merry_hissmas.mp4" width="360" /></p>
+
+<h2 id="merry-hissmas">“Merry Hissmas”</h2>
+
+<h3 id="时间轴">时间轴</h3>
+
+<ul>
+  <li>用chatgpt生成谐音 “Merry Hissmas”</li>
+  <li>用stable-diffusion生成主体图案然后放大
+    <ul>
+      <li>生成的图案有模糊的地方, 是因为我没有选动漫模型吗?</li>
+    </ul>
+  </li>
+  <li>添加文字和圣诞元素
+    <ul>
+      <li>用Grease Pencil 画画</li>
+      <li>开了数位板压力之后不知道怎么调粗细了, 结果笔触很细😮‍💨
+        <ul>
+          <li>还好 <a href="https://docs.blender.org/manual/en/latest/grease_pencil/modifiers/generate/outline.html">outline modifier</a> 可以用来增粗</li>
+        </ul>
+      </li>
+      <li>开auto key手写文字的时候, 因为我写的很慢, 大概要加速5倍才不那么违和</li>
+      <li>写完之后想调整文字位置, 只能每个关键帧挨个调….</li>
+      <li>调彩旗位置的时候
+        <ul>
+          <li>没法绕轴转?, 只能转完了移动, 挺麻烦的, 也要每个关键帧调</li>
+          <li>而且在grease pencil插值后就没法调整了?</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>渲染成透明背景
+    <ul>
+      <li>用FFmpeg Video, Container选Matroska, 编码格式选QT, 选RGBA(在4.3版本里只有这一个视频格式了, 没有avi了, 选QuickTime Animation也是一样)</li>
+    </ul>
+  </li>
+  <li>在video editing里加主体和背景</li>
+</ul>
+
+<h3 id="没做的">没做的</h3>
+
+<ul>
+  <li>本来想加个风吹的特效, 只有移动和放缩果然还是太丑了</li>
+  <li>本来想给蛇的主体做个mesh动画, 但是没做, 就很死板</li>
+</ul>
+
+<p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020241225083137.png" alt="Pasted image 20241225083137.png" width="360" />   <img src="/personal_homepage/docs/attachment/cat_christmas_tree.mp4" alt="cat_christmas_tree.mp4" width="360" /></p>
+
+<h2 id="cat-tree">“Cat Tree”</h2>
+
+<h3 id="步骤">步骤</h3>
+
+<ul>
+  <li>用segment anything 提取猫的轮廓</li>
+  <li>用freeform去背景提取圣诞元素的轮廓</li>
+  <li>把轮廓排在一张圣诞树背景上</li>
+  <li>存一张带透明通道(rgba) 的png图</li>
+  <li>在blender里用黑色和金色的bsdf 混合, 把透明通道作为Fac</li>
+  <li>添加移动的底光, 让金色部分反光变化</li>
+</ul>
+
+<h3 id="结果">结果</h3>
+
+<p>结果非常难看不忍直视看着难受</p>
+<ul>
+  <li>画面构成有问题:
+    <ul>
+      <li>圣诞树是歪的, 但是我也不想调整了</li>
+      <li>与其说是圣诞树, 不如说就是个三角形</li>
+      <li>里面猫和圣诞元素的疏密不合理, 大小太一致了吗? 如果加点小圆球小星星装饰能不能好点?</li>
+      <li>我的猫是长毛猫, 有些轮廓就是圆咕隆咚的看不清是啥. 像装修师傅在户外随手拼的地砖</li>
+      <li>整个画面没有一个能撑起来的主体, 如果我加一些圣诞树的引导线条能不能好点?</li>
+    </ul>
+  </li>
+  <li>shading有问题:
+    <ul>
+      <li>所以黑色卡纸的材质不是黑色把粗糙度拉满而已? 打了光以后因为漫反射是难看的灰色</li>
+      <li>金色看起来也不像金箔, 没有那种透亮的感觉</li>
+      <li>黑金配色不适合圣诞氛围, 吗? 应该不能是这个配色的问题吧? 可能还是我的画面缺乏细节缺乏立体感</li>
+    </ul>
+  </li>
+  <li>想加一个真实场景进去的, 可是追踪效果不能满意, blender只能追踪固定场景</li>
+</ul>
+
+<h3 id="参考图案">参考图案</h3>
+
+<p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020241225100057.png" alt="Pasted image 20241225100057.png" width="150" /> <img src="/personal_homepage/docs/attachment/Pasted%20image%2020241225100124.png" alt="Pasted image 20241225100124.png" width="100" />  <img src="/personal_homepage/docs/attachment/Pasted%20image%2020241225100145.png" alt="Pasted image 20241225100145.png" width="210" />   <img src="/personal_homepage/docs/attachment/Pasted%20image%2020241225101114.png" alt="Pasted image 20241225101114.png" width="140" /></p>
+
+<ul>
+  <li>看到第一张图的时候就想尝试模仿一下用平铺猫做圣诞树了</li>
+  <li>现在想想这些内部图案其实是有一定细节的, 图案也基本按“大, 中, 小” 分布</li>
+</ul>
+
+<h2 id="blender一些细节">blender一些细节</h2>
+
+<ul>
+  <li><a href="https://www.youtube.com/watch?v=4oCAzXOr5Hc">制作金箔材质</a>
+    <ul>
+      <li>黄金: 颜色 <code class="language-plaintext highlighter-rouge">FFC125</code> , <code class="language-plaintext highlighter-rouge">metallic = 1</code>, <code class="language-plaintext highlighter-rouge">rounghness = 0.2</code></li>
+      <li>添加render-&gt; eevee -&gt; Raytracing 选项 (blender 4.2以上才支持, 渲染会慢很多)
+        <ul>
+          <li>Fast GI Approximation(全局光照) -&gt; Threshold = 0.85</li>
+        </ul>
+      </li>
+      <li>法线方向添加一个 noise (scale = 3) + bump height (strength = 0.1, distance = 0.1)</li>
+    </ul>
+  </li>
+  <li>transparent node: 需要<a href="https://www.bilibili.com/opus/927286707729989632">修改混合模式</a> , 不然看起来是黑的
+    <ul>
+      <li><img src="/personal_homepage/docs/attachment/Pasted%20image%2020241225114821.png" alt="Pasted image 20241225114821.png" width="250" /> 贴图之后, 看起来像亚克力板材质, 可能是旁边的uv也被贴图覆盖了</li>
+    </ul>
+  </li>
+</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="design" /><category term="content" /><category term="stable-diffusion" /><category term="blender" /><summary type="html"><![CDATA[]]></summary></entry><entry><title type="html">blender学习: 扭曲晶体路径跟随</title><link href="https://roshameow.github.io//personal_homepage/blender/blender-learning14/" rel="alternate" type="text/html" title="blender学习: 扭曲晶体路径跟随" /><published>2024-12-05T00:00:00+00:00</published><updated>2024-12-18T21:10:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/blender/blender-learning14</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/blender/blender-learning14/"><![CDATA[<p>参考<a href="https://www.youtube.com/watch?v=uRAfhJQFjRo">这个教学</a></p>
 
 <ul>
   <li><strong>制作物体: 一组扭曲, 光滑的梭形</strong>
@@ -150,7 +500,8 @@
     <ul>
       <li><img src="/personal_homepage/docs/attachment/Pasted%20image%2020241210124924.png" alt="Pasted image 20241210124924.png" width="150" /> individual orgin:  <img src="/personal_homepage/docs/attachment/Pasted%20image%2020241210124951.png" alt="Pasted image 20241210124951.png" width="150" />  median point: <img src="/personal_homepage/docs/attachment/Pasted%20image%2020241210125026.png" alt="Pasted image 20241210125026.png" width="150" /></li>
       <li>默认median point是以所有组的中心apply transform的.</li>
-      <li>individual origins是组里每个connect component单独作用
+      <li>individual origins是组里每个connect component单独作用</li>
+      <li>! 在Object Mode表现不同
         <h3 id="modifier">modifier</h3>
       </li>
     </ul>
@@ -169,7 +520,12 @@
       <li><img src="/personal_homepage/docs/attachment/Pasted%20image%2020241211155218.png" alt="Pasted image 20241211155218.png" width="300" /> 如图Z轴替换为curve, 变换前 -&gt; 变换后(橙色)</li>
     </ul>
   </li>
-</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="blender" /><category term="content" /><category term="shortcut" /><summary type="html"><![CDATA[参考这个教学]]></summary></entry><entry><title type="html">几种拍图技巧</title><link href="https://roshameow.github.io//personal_homepage/photo/photo1/" rel="alternate" type="text/html" title="几种拍图技巧" /><published>2024-12-02T00:00:00+00:00</published><updated>2024-12-02T07:19:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/photo/photo1</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/photo/photo1/"><![CDATA[]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="photo" /><category term="content" /><summary type="html"><![CDATA[]]></summary></entry><entry><title type="html">conformal geometry学习 (十一 ) – Duality, 离散</title><link href="https://roshameow.github.io//personal_homepage/math/conformal-geometry12/" rel="alternate" type="text/html" title="conformal geometry学习 (十一 ) – Duality, 离散" /><published>2024-11-24T00:00:00+00:00</published><updated>2024-12-05T22:29:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/math/conformal-geometry12</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/math/conformal-geometry12/"><![CDATA[]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="math" /><category term="content" /><summary type="html"><![CDATA[]]></summary></entry><entry><title type="html">洗发水成分</title><link href="https://roshameow.github.io//personal_homepage/daily/shampoo/" rel="alternate" type="text/html" title="洗发水成分" /><published>2024-11-22T00:00:00+00:00</published><updated>2024-12-03T10:42:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/daily/shampoo</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/daily/shampoo/"><![CDATA[<h2 id="成分分类">成分分类</h2>
+</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="blender" /><category term="content" /><category term="shortcut" /><summary type="html"><![CDATA[参考这个教学]]></summary></entry><entry><title type="html">几种拍图技巧</title><link href="https://roshameow.github.io//personal_homepage/photo/photo1/" rel="alternate" type="text/html" title="几种拍图技巧" /><published>2024-12-02T00:00:00+00:00</published><updated>2024-12-02T07:19:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/photo/photo1</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/photo/photo1/"><![CDATA[]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="photo" /><category term="content" /><summary type="html"><![CDATA[]]></summary></entry><entry><title type="html">conformal geometry学习 (十一 ) – harmonic map</title><link href="https://roshameow.github.io//personal_homepage/math/conformal-geometry12/" rel="alternate" type="text/html" title="conformal geometry学习 (十一 ) – harmonic map" /><published>2024-11-24T00:00:00+00:00</published><updated>2024-12-16T16:20:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/math/conformal-geometry12</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/math/conformal-geometry12/"><![CDATA[<ul>
+  <li>
+    <p>uniqueness(唯一性)</p>
+  </li>
+  <li></li>
+</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="math" /><category term="content" /><summary type="html"><![CDATA[uniqueness(唯一性)]]></summary></entry><entry><title type="html">洗发水成分</title><link href="https://roshameow.github.io//personal_homepage/daily/shampoo/" rel="alternate" type="text/html" title="洗发水成分" /><published>2024-11-22T00:00:00+00:00</published><updated>2024-12-15T17:28:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/daily/shampoo</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/daily/shampoo/"><![CDATA[<h2 id="成分分类">成分分类</h2>
 
 <p>十二烷醇=月桂醇</p>
 
@@ -351,6 +707,17 @@
       <li>男士: 多了 吡硫錀锌(去马拉色菌, 更差), 薄荷醇(闻着清爽观感好吧)</li>
     </ul>
   </li>
+  <li><a href="https://chrischristensen.com/chris-christensen-clean-start-clarifying-shampoo/">克里斯汀森-开喜(狗用)</a>  Vs <a href="https://chrischristensen.com/chris-christensen-top-cat-clarifying-shampoo/">Top Cat Clarifying(猫用)</a> Vs <a href="https://chrischristensen.com/chris-christensen-top-cat-pre-bath-degreaser/#tab-warranty">猫用去油膏</a> : 增稠剂和ph调节剂成分多, 放在前面, 主要清洁成分还是硫酸盐, 后面添加了保湿护肤用的泛醇
+    <ul>
+      <li>猫用的只标识了简化成分功能, 没标具体成分</li>
+      <li>去油膏成分: THICKENER (增稠剂), EMOLLIENT (润肤剂), CONDITIONING AGENT (调理剂, <strong>改善头发质感，增加顺滑度</strong>), EMULSIFIER (乳化剂), ANTIOXIDANT (抗氧化剂), PRESERVATIVE (防腐剂), WATER
+        <ul>
+          <li>里面甚至没列出有效的关于去油的成分😮‍💨</li>
+          <li>最近连宠物医生都建议用去油膏去油, 我想里面用了破坏脂质层的硫酸盐是很大可能性的, 虽然看起来比人用的产品剂量更低, 成分也更简单, 应该不太担心残留</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
 </ul>
 
 <h2 id="使用体验">使用体验</h2>
@@ -384,7 +751,7 @@
   <li>OCR 分解得到成分</li>
   <li>颜色标注</li>
   <li>成分分析: 过敏性提醒, 估算主要成分价格</li>
-</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="daily" /><category term="content" /><category term="shampoo" /><summary type="html"><![CDATA[成分分类]]></summary></entry><entry><title type="html">conformal geometry学习 (十一 ) – Hodge Star Operator</title><link href="https://roshameow.github.io//personal_homepage/math/conformal-geometry11/" rel="alternate" type="text/html" title="conformal geometry学习 (十一 ) – Hodge Star Operator" /><published>2024-11-12T00:00:00+00:00</published><updated>2024-12-11T12:42:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/math/conformal-geometry11</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/math/conformal-geometry11/"><![CDATA[<h2 id="hodge-star-operator">Hodge Star Operator</h2>
+</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="daily" /><category term="content" /><category term="shampoo" /><summary type="html"><![CDATA[成分分类]]></summary></entry><entry><title type="html">conformal geometry学习 (十一 ) – Hodge Star Operator</title><link href="https://roshameow.github.io//personal_homepage/math/conformal-geometry11/" rel="alternate" type="text/html" title="conformal geometry学习 (十一 ) – Hodge Star Operator" /><published>2024-11-12T00:00:00+00:00</published><updated>2024-12-19T22:56:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/math/conformal-geometry11</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/math/conformal-geometry11/"><![CDATA[<h2 id="hodge-star-operator">Hodge Star Operator</h2>
 
 <p>在有Riemann metric的mainfold的微分形式上有映射 $\ast: \Omega^k(M)\rightarrow \Omega^{n-k}(M)$</p>
 <ul>
@@ -438,9 +805,9 @@
       <td> </td>
     </tr>
     <tr>
-      <td>例子<br /><br />Riemann metric $\mathbf g=e^{2\lambda(u,v)}(du^2+dv^2)$  <br />(写成等温坐标一形式)<br />即,<br /> $\mathbf g_{ij}=\begin{bmatrix}e^\lambda &amp; 0 \\ 0 &amp; e^\lambda\end{bmatrix}$ <br /></td>
+      <td>例子<br /><br />Riemann metric $\mathbf g=e^{2\lambda(u,v)}(du^2+dv^2)$  <br />(写成等温坐标一形式)<br />即,<br /> $\mathbf g_{ij}=\begin{bmatrix}e^{2\lambda} &amp; 0 \\ 0 &amp; e^{2\lambda}\end{bmatrix}$ <br /></td>
       <td>normalize 自然标架场, 得到orthonormal标架场<br />$\frac{\partial}{\partial x_1}=e^{-\lambda}\frac{\partial}{\partial u}$ , $\frac{\partial}{\partial x_2}=e^{-\lambda}\frac{\partial}{\partial v}$ <br />对应$dx_1=e^\lambda du$ , $dx_2=e^\lambda dv$ <br /><br />Hodge star: $^\ast dx_1=dx_2$ , $^\ast dx_2=-dx_1$ , $^\ast (1)=dx_1\wedge dx_2$ <br />即得 $^\ast du=dv, ^\ast dv=-du$ , $^\ast (1)=e^{2\lambda}du\wedge dv$ <br /><br />hodge star为逆时针旋转90度<br /><br /></td>
-      <td>此时surface area element(面元)<br />$\omega_g=e^{\lambda(u,v)}du\wedge dv$ <br /><br />比较<br />1.  $\omega\wedge\tau=(\omega_1\tau_2-\omega_2\tau_1)du\wedge dv$ <br />2.  $\omega\wedge ^\ast du=\langle \omega,du\rangle_g\omega_g$<br />$=\langle\omega_1 du+\omega_2 dv, du\rangle_g e^{\lambda}du\wedge dv$<br />$=e^{-\lambda}\omega_1 e^{\lambda} du\wedge dv$  <br />$=\omega_1 du\wedge dv$<br />的系数<br /><br />得到$^\ast du=0\cdot du+1\cdot dv=dv$</td>
+      <td>此时surface area element(面元)<br />$\omega_g=e^{2\lambda(u,v)}du\wedge dv$ <br /><br />比较<br />1.  $\omega\wedge\tau=(\omega_1\tau_2-\omega_2\tau_1)du\wedge dv$ <br />2.  $\omega\wedge ^\ast du=\langle \omega,du\rangle_g\omega_g$<br />$=\langle\omega_1 du+\omega_2 dv, du\rangle_g e^{2\lambda}du\wedge dv$<br />$=e^{-2\lambda}\omega_1 e^{2\lambda} du\wedge dv$  <br />$=\omega_1 du\wedge dv$<br />的系数<br /><br />得到$^\ast du=0\cdot du+1\cdot dv=dv$</td>
     </tr>
   </tbody>
 </table>
@@ -480,7 +847,7 @@
   </li>
 </ul>
 
-<h2 id="举例">举例</h2>
+<h2 id="举例--调和形式推导">举例 . 调和形式推导</h2>
 
 <h3 id="场论--静电场--双点电荷系统">场论 . 静电场 . 双点电荷系统</h3>
 
@@ -512,17 +879,17 @@
       </li>
       <li>coclosed: $div\ E=\nabla\cdot E=\frac{\partial E_x}{\partial x}+\frac{\partial E_y}{\partial y}= 0$   (0-form 散度, 电场强度的余微分)
         <ul>
-          <li>$div\ E = \delta(E)=(-1)^{kn+n+1}\ ^\ast d(^\ast E)$
+          <li>$-div\ E = \delta(E)=(-1)^{kn+n+1}\ ^\ast d(^\ast E)$
             <ol>
               <li>hodge star $^\ast E$ 为旋转90度, $^\ast E=E_y dx - E_x dy$</li>
-              <li>外微分得到 2-form $d(^\ast E)=-(\frac{\partial E_x}{\partial x}+\frac{\partial E_y}{\partial y})dxdy$</li>
-              <li>hodge star 得到0-form $^\ast d(^\ast E)=-(\frac{\partial E_x}{\partial x}+\frac{\partial E_y}{\partial y})$</li>
-              <li>最后 $div\ E=(-1)^\ast d(^\ast E)=\frac{\partial E_x}{\partial x}+\frac{\partial E_y}{\partial y}$ (映射到0-form 即k=0,2-manifold, 即n=2 -&gt; kn+n+1 是odd)</li>
+              <li>外微分得到 2-form $d(^\ast E)=(\frac{\partial E_x}{\partial x}+\frac{\partial E_y}{\partial y})dxdy$</li>
+              <li>hodge star 得到0-form $^\ast d(^\ast E)=\frac{\partial E_x}{\partial x}+\frac{\partial E_y}{\partial y}$</li>
+              <li>最后 $(-1)^\ast d(^\ast E)=-(\frac{\partial E_x}{\partial x}+\frac{\partial E_y}{\partial y})=-div\ E$ (映射到0-form 即k=0,2-manifold, 即n=2 -&gt; kn+n+1 是odd)</li>
             </ol>
           </li>
           <li>物理意义:
             <ul>
-              <li>描述矢量场的发散和汇聚程度</li>
+              <li>描述矢量场的发散 ✳︎ 和汇聚程度</li>
               <li>通量 = 封闭路径$\partial D$ 的净流入量(流入量-流出量) = 0   ( <a href="https://en.wikipedia.org/wiki/Divergence_theorem">Gauss’ flux theorem(高斯通量定理)</a> )
                 <ul>
                   <li>电通量  $\Phi=\oint_{\partial D} \langle E, \mathbf n \rangle ds=\int_D \nabla\cdot E dA$
@@ -537,6 +904,32 @@
           </li>
         </ul>
       </li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="一般等温坐标系的调和函数">一般等温坐标系的调和函数</h3>
+
+<p>Riemann metric $\mathbf g=e^{2\lambda(u,v)}(du^2+dv^2)$</p>
+
+<ul>
+  <li>函数(0-form) $f$ 的Lapalace算子 : $\Delta_g f=(d\delta+\delta d)f=\delta d f= -e^{-2\lambda}(\frac{\partial^2}{\partial u^2}+\frac{\partial^2}{\partial v^2}) f$
+    <ol>
+      <li>differential operator: $df=\frac{\partial f}{\partial u}du + \frac{\partial f}{\partial v}dv=e^{-\lambda}(\frac{\partial f}{\partial u}dx + \frac{\partial f}{\partial v}dy)=\nabla_g f$</li>
+      <li>codifferential operator: $\delta df = -div(\nabla f)$ : 等价于负的 <a href="https://en.wikipedia.org/wiki/Laplace–Beltrami_operator">Lapalace–Beltrami operator</a>
+        <ol>
+          <li>hodge star $^\ast df$ 为旋转90度, $^\ast df=\frac{\partial f}{dv} du - \frac{\partial f}{du} dv$</li>
+          <li>外微分得到 2-form $d(^\ast df)=(\frac{\partial^2}{\partial u^2}f+\frac{\partial^2}{\partial v^2}f)dudv$</li>
+          <li>hodge star 得到0-form $^\ast d(^\ast df)=\omega_g(\frac{\partial^2}{\partial u^2}+\frac{\partial^2}{\partial v^2}) f=e^{-2\lambda}(\frac{\partial^2}{\partial u^2}+\frac{\partial^2}{\partial v^2}) f$</li>
+          <li>最后 $\delta df = (-1)^\ast d(^\ast df)=-\omega_g(\frac{\partial^2}{\partial u^2}+\frac{\partial^2}{\partial v^2}) f=-e^{-2\lambda}(\frac{\partial^2}{\partial u^2}+\frac{\partial^2}{\partial v^2}) f$ (映射到0-form 即k=0,2-manifold, 即n=2 -&gt; kn+n+1 是odd)</li>
+        </ol>
+      </li>
+    </ol>
+  </li>
+  <li><strong>调和函数 $f$ (满足$\Delta_g f=0$ ) 使曲面$S$ 的调和能量($E(f)=(\nabla_g f,\nabla_g f)=\int_M \langle\nabla_g f,\nabla_g f\rangle_g\omega_g$ ) 最小</strong>: $f=\text{argmin}_f E(f)$
+    <ul>
+      <li>( ) 是hodge star operator induced 内积</li>
+      <li>由$(\nabla_g f,\nabla_g f)=(f,\Delta_g f)$</li>
     </ul>
   </li>
 </ul>
@@ -585,210 +978,43 @@
 
 <h3 id="harmonic-map调和映射"><a href="https://en.wikipedia.org/wiki/Harmonic_map">harmonic map(调和映射)</a></h3>
 
-<p>带边单连通曲面( topological disk) -&gt; $\mathbb D$</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="math" /><category term="content" /><category term="hodge_star" /><category term="电场" /><category term="Riemann_metric" /><category term="harmonic_form" /><category term="dual_mesh" /><summary type="html"><![CDATA[Hodge Star Operator]]></summary></entry><entry><title type="html">数学概念 – tensor( 张量 )</title><link href="https://roshameow.github.io//personal_homepage/math/tensor/" rel="alternate" type="text/html" title="数学概念 – tensor( 张量 )" /><published>2024-11-11T00:00:00+00:00</published><updated>2024-11-11T19:34:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/math/tensor</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/math/tensor/"><![CDATA[<p>tensor是描述多种线性量的统一形式</p>
+<ul>
+  <li>f 是调和映射 &lt;-&gt; f在每个分量上都是调和函数 &lt;-&gt; $df$ 在曲面内部是调和一形式</li>
+</ul>
 
-<table>
-  <thead>
-    <tr>
-      <th>type<br />n <code class="language-plaintext highlighter-rouge">\</code> m</th>
-      <th>0</th>
-      <th>1</th>
-      <th>2</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>0</td>
-      <td><a href="https://en.wikipedia.org/wiki/Scalar_(mathematics)">Scalar</a></td>
-      <td> </td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>1</td>
-      <td><a href="https://en.wikipedia.org/wiki/Euclidean_vector">vector</a></td>
-      <td> </td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>2</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-    </tr>
-  </tbody>
-</table>
-
-<h2 id="定义">定义</h2>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="math" /><category term="content" /><summary type="html"><![CDATA[tensor是描述多种线性量的统一形式]]></summary></entry><entry><title type="html">iphone快捷指令</title><link href="https://roshameow.github.io//personal_homepage/shortcut/iphone-shortcut/" rel="alternate" type="text/html" title="iphone快捷指令" /><published>2024-11-09T00:00:00+00:00</published><updated>2024-11-18T05:16:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/shortcut/iphone-shortcut</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/shortcut/iphone-shortcut/"><![CDATA[<p>iphone和windows互相复制剪切板</p>
-
-<p>https://blog.csdn.net/weixin_39927850/article/details/142000408</p>
-
-<p>https://sspai.com/post/78530</p>
-
-<p>https://blog.csdn.net/likeyunkeji/article/details/142367760</p>
-
-<p>https://sspai.com/post/84133</p>
-
-<p>iPhone自动记账</p>
-
-<p>https://sspai.com/post/86611
-https://sspai.com/post/80568</p>
+<p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020241216162354.png" alt="Pasted image 20241216162354.png" width="300" /></p>
 
 <ul>
-  <li>启动:
-    <ul>
-      <li>主动: 敲击两下背面</li>
-      <li>被动: 微信收款
-        <ul>
-          <li>目前只支持mail, message, 不支持notification, 也不支持其它app</li>
-        </ul>
+  <li>disk harmonic map: 带边单连通曲面( topological disk) $M$  到单位圆盘的映射  $f: M\rightarrow \mathbb D$ (0-form)</li>
+  <li>计算:
+    <ol>
+      <li>随便构造边界函数 $g: \partial M\rightarrow \mathbb S^1$ , 使 g是homeomorphic(同胚) 就行: 把$\mathbb S^1$ 等分映射到对应三角形边界就行</li>
+      <li>计算每个边的 cotangent edge weight</li>
+      <li>解 $df$ 的coclosed方程(f 的Laplacian方程 )</li>
+    </ol>
+  </li>
+</ul>
+
+<p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020241216085519.png" alt="Pasted image 20241216085519.png" width="300" /></p>
+
+<ul>
+  <li>spherical harmonic map: genus 0 的closed 曲面mesh $M$ , 到单位球的映射 $\phi: M\rightarrow \mathbb S^2$</li>
+  <li>计算: spherical的情况, 有1. Laplacian ($\Delta \phi(v_i)=\sum_{v_i\sim v_j} w_{ij}(\phi(v_j)-\phi(v_i))=0$) 和2. 球面($\phi(v_i)\in \mathbb S^2$) 两个约束, 用proximal(近端算子)的方法轮流迭代
+    <ol>
+      <li>计算每个边的 cotangent edge weight</li>
+      <li>构造初始映射为 Gauss映射$G:M\rightarrow \mathbb S^2$ , 把点映射到normal vector($p\mapsto \mathbf n(p)$ ).</li>
+      <li>迭代:
+        <ol>
+          <li>计算每个顶点的 Laplacian 值</li>
+          <li>减少Laplacian部分: 从$\phi(v_i)$ 减去$\Delta\phi(v_i)$ 在切平面的投影, 即 $\phi(v_i)$ -= $\lambda D\phi(v_i)$
+            <ul>
+              <li><img src="/personal_homepage/docs/attachment/Pasted%20image%2020241219224615.png" alt="Pasted image 20241219224615.png" width="150" /></li>
+              <li>$\lambda$ 为step_size (保证迭代稳定, 不诱发自旋转? )</li>
+            </ul>
+          </li>
+          <li>重新映射回 $\mathbb S^2$ : 计算重心, 以重心为原点normalize</li>
+        </ol>
       </li>
-    </ul>
+    </ol>
   </li>
-  <li>截图</li>
-  <li>识别
-    <ul>
-      <li>来源/分类</li>
-      <li>金额</li>
-    </ul>
-  </li>
-  <li>存储
-    <ul>
-      <li>用safari的url链接填写服务器上的飞书多维表格</li>
-    </ul>
-  </li>
-</ul>
-
-<p>手电筒闪烁</p>
-
-<ul>
-  <li>控制: <code class="language-plaintext highlighter-rouge">Repeat</code>, <code class="language-plaintext highlighter-rouge">End Repeat</code></li>
-  <li>功能: <code class="language-plaintext highlighter-rouge">flashlight</code></li>
-</ul>
-
-<p>打卡提醒</p>
-
-<ul>
-  <li>添加<code class="language-plaintext highlighter-rouge">Automation</code></li>
-</ul>
-
-<h2 id="分享">分享</h2>
-
-<ul>
-  <li><a href="https://support.apple.com/zh-cn/guide/shortcuts/apdf01f8c054/ios#:~:text=在iOS%20或iPadOS%20设备,显示快捷指令的描述%E3%80%82">用文件方式分享快捷指令</a></li>
-</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="shortcut" /><category term="content" /><summary type="html"><![CDATA[iphone和windows互相复制剪切板]]></summary></entry><entry><title type="html">小红书直播方法</title><link href="https://roshameow.github.io//personal_homepage/media/redbook/" rel="alternate" type="text/html" title="小红书直播方法" /><published>2024-11-06T00:00:00+00:00</published><updated>2024-11-17T15:16:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/media/redbook</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/media/redbook/"><![CDATA[<ul>
-  <li>用电脑端的<a href="https://www.xiaohongshu.com/zhibo/login">小红书直播助手</a> <a href="https://doc.weixin.qq.com/d。c/w3_AAsA3AbDAO09mTyAcIdQm0EXTK6lG?scode=ANAAyQcbAAgQEruBafAAsA3AbDAO0">指南</a>
-    <ul>
-      <li>获取推流码
-        <ul>
-          <li>创作中心 -&gt; 全部服务 -&gt; 主播中心 -&gt; 去开播, 选择pc, 得到6位数字验证码</li>
-          <li>在<a href="https://www.xiaohongshu.com/zhibo/obs">https://www.xiaohongshu.com/zhibo/obs</a> 输入得到串联密钥</li>
-        </ul>
-      </li>
-      <li>按照参数设置obs推流: 服务器地址, 分辨率, fps, 比特率等</li>
-    </ul>
-  </li>
-</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="media" /><category term="content" /><summary type="html"><![CDATA[用电脑端的小红书直播助手 指南 获取推流码 创作中心 -&gt; 全部服务 -&gt; 主播中心 -&gt; 去开播, 选择pc, 得到6位数字验证码 在https://www.xiaohongshu.com/zhibo/obs 输入得到串联密钥 按照参数设置obs推流: 服务器地址, 分辨率, fps, 比特率等]]></summary></entry><entry><title type="html">猫幽门螺杆菌调查</title><link href="https://roshameow.github.io//personal_homepage/pet/helicobacter/" rel="alternate" type="text/html" title="猫幽门螺杆菌调查" /><published>2024-10-25T00:00:00+00:00</published><updated>2024-10-29T20:28:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/pet/helicobacter</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/pet/helicobacter/"><![CDATA[<h2 id="一篇关于猫幽门螺杆菌的实验论文">一篇关于猫幽门螺杆菌的实验论文</h2>
-
-<p>实验用58只猫的检测结果, 实验是09年的</p>
-
-<p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020241027113712.png" alt="Pasted image 20241027113712.png" width="400" /></p>
-
-<ul>
-  <li>革兰氏染色(GS), Warthin-Starry染色(WSS), 快速脲酶测试(RUT) 这几个基于活检的结果差不多
-    <ul>
-      <li>革兰氏染色(GS), Warthin-Starry染色(WSS)是光学显微镜形态学方法, 区分不出H. heilmannii和H. felis</li>
-    </ul>
-  </li>
-  <li>C13呼气测试(BT)测出阳性更多, 可能是那三种方法依赖活检, 活检取样时漏掉了幽门螺杆菌的片状定植区域</li>
-  <li>PCR独有的阳性可能是幽门螺杆菌数量太低, 其他检不出来; PCR独有的阴性可能是有PCR引物不能扩增的幽门螺杆菌的种类
-    <ul>
-      <li>实验中是用幽门窦活检样本来做的</li>
-      <li>PCR可以可靠的区分三种不同的幽门菌</li>
-    </ul>
-  </li>
-  <li><strong>实验中的58只猫只检测出来H. heilmannii</strong>, 其他两种没发现(根据PCR鉴定和形态学方法的结果)</li>
-  <li>检测结果大部分猫都是H. heilmannii阳性, 所有猫都是轻度, 中度胃炎. 没看到什么相关性.
-    <ul>
-      <li>根据白细胞量诊断轻度胃炎</li>
-      <li>根据淋巴细胞聚集诊断中度胃炎</li>
-    </ul>
-  </li>
-  <li>幽门螺杆菌H. heilmannii没法在体外培养成功</li>
-</ul>
-
-<h2 id="现在市场上的流行">现在市场上的流行</h2>
-
-<h3 id="检测方法">检测方法</h3>
-
-<ul>
-  <li>尿素酶检测: 智商税
-    <ul>
-      <li>牙垢试纸: 如果有产生尿素酶的细菌, 试纸会因碱性变粉.
-        <ul>
-          <li>产生尿素酶的细菌 $\ne$ 幽门螺杆菌.</li>
-          <li>幽门螺杆菌没法在口腔环境培养. 所以测出的够呛是幽门螺杆菌.</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li>抗原检测: 对应H. pylori(HP) 抗体
-    <ul>
-      <li>血清抗原: 只能检测是否感染过, 不能检测是否根除.</li>
-      <li>粪便抗原: <a href="https://medlineplus.gov/lab-tests/helicobacter-pylori-h-pylori-tests/">关于粪便检测的历史</a></li>
-    </ul>
-  </li>
-  <li>PCR扩增: 需要培养, 医院才能做. 用对应H. pylori(HP) 引物
-    <ul>
-      <li>粪便</li>
-      <li>胃镜活检样本</li>
-    </ul>
-  </li>
-  <li>C13呼气</li>
-</ul>
-
-<h3 id="治疗药物">治疗药物</h3>
-
-<ul>
-  <li>主要成分是一些复合益生菌: 想必对清除幽门螺杆菌没用, 但是好贵
-    <ul>
-      <li><a href="https://polarvita.hk/product/mage-pro-vegan/">幽必清(挪威, polarvita公司)</a></li>
-      <li><a href="https://hellotis.com/product/%ED%97%AC%EB%A1%9C%ED%8B%B0%EC%8A%A4%ED%8E%AB-%ED%97%AC%EB%A6%AC%EC%BD%94%EB%B0%94%EC%9D%B4-30%ED%8F%AC/37/category/42/display/1/">幽必清(韩国, HellotisPet 公司,Helicocare)</a></li>
-      <li>溃幽清(宠圣堂): 没有官网, 看起来像是这家<code class="language-plaintext highlighter-rouge">_青岛宠圣堂动物医院有限公司_</code> 公司?</li>
-    </ul>
-  </li>
-  <li>四联疗法改猫用
-    <ul>
-      <li>没有找到相关的依据</li>
-    </ul>
-  </li>
-</ul>
-
-<h2 id="猫幽门螺杆菌和胃病的关系">猫幽门螺杆菌和胃病的关系</h2>
-
-<ul>
-  <li>目前不清楚</li>
-  <li>有人说<a href="https://vetmed.tamu.edu/gilab/staff/dr-joerg-steiner/">Jörg M. Steiner</a> 发布过相关研究, 结果是无关, 我没找到</li>
-  <li>根据网上的说法, 确实有一些猫在医院用粪便抗原或PCR检测出H. pylori(HP) 阳性?</li>
-</ul>
-
-<h2 id="reference">reference</h2>
-
-<p>[1]  Neiger, R., C. Dieterich, A. Burnens, A. Waldvogel, I. Corthésy-Theulaz, F. Halter, B. Lauterburg, and A. Schmassmann. “Detection and Prevalence of Helicobacter Infection in Pet Cats.” <em>Journal of Clinical Microbiology</em> 36, no. 3 (March 1998): 634. <a href="https://doi.org/10.1128/jcm.36.3.634-637.1998">https://doi.org/10.1128/jcm.36.3.634-637.1998</a>.</p>
-
-<p>[2]  https://www.petmd.com/cat/conditions/digestive/c_ct_helicobacter_infection 博客. 09年的, 和上面文章观点类似. 如果出现慢性呕吐或胃黏膜炎症，治疗将针对缓解这些症状.</p>
-
-<p>[3]  <a href="https://www.ingenova.cn/article-item-32.html">https://www.ingenova.cn/article-item-32.html</a> 卖各种试纸的厂家. 但是检测的必要性显然不是从实验中得到的, 可能是自己编的.</p>
-
-<p>[4] https://news.cctv.com/2023/02/02/ARTIl2cEwGSkO3ZUSDK7AbIo230202.shtml 央视对于试纸的采访.</p>
-
-<p>[5]  https://www.cofoe.com.cn/product_page/287.html 卖智商税牙垢试纸的厂家.</p>
-
-<p>[6]  http://www.syngenemed.com/product/144.html 卖血清检测抗原的厂家</p>
-
-<p>[7]  <a href="http://www.xmmedara.com/content/show/728/135">http://www.xmmedara.com/content/show/728/135</a>  卖粪便检测抗原的厂家</p>
-
-<p>[8]  <a href="https://www.taobao.com/list/item/727375876240.htm">https://www.taobao.com/list/item/727375876240.htm</a> 萌格, 在淘宝上卖粪便检测抗原, 所属<a href="https://www.konsung.com/dwyl">https://www.konsung.com/dwyl</a> 康尚集团厂家官网上无此产品.</p>
-
-<p>[9]   http://www.dawnsailbio.com/blank6.html 提供某些宠物医院PCR检测的厂家, 但是官网上无此产品</p>
-
-<p>[10]  http://www.mmtest.com.cn/product/222.html 粪便检测抗原的厂家</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="pet" /><category term="content" /><category term="hp" /><category term="胃病" /><summary type="html"><![CDATA[一篇关于猫幽门螺杆菌的实验论文]]></summary></entry></feed>
+</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="math" /><category term="content" /><category term="hodge_star" /><category term="电场" /><category term="Riemann_metric" /><category term="harmonic_form" /><category term="dual_mesh" /><category term="harmonic_function" /><category term="harmonic_map" /><category term="cohomology" /><category term="harmonic_energy" /><summary type="html"><![CDATA[Hodge Star Operator]]></summary></entry></feed>

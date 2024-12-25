@@ -375,12 +375,12 @@ var store = [{
         "url": "https://roshameow.github.io//personal_homepage/algorithm/vision-distance/"
       },{
         "title": "自制猫爬架",
-        "excerpt":"底座   水泥  木板  不锈钢","categories": ["hand_crafted"],
+        "excerpt":"底座   水泥: 桶放树干, 浇水泥  木板  不锈钢: 用不锈钢打一个底座, 把树干插在里面","categories": ["hand_crafted"],
         "tags": ["content"],
         "url": "https://roshameow.github.io//personal_homepage/hand_crafted/cat-tree/"
       },{
         "title": "调整视频追踪物体",
-        "excerpt":"Final Cut Pro   教程  步骤:          添加原视频      在原视频上添加tracker, analysis跟踪物体的bbox      复制原视频一份      在复制视频的transformer应用之前的tracker, scale改成-100%                  tracker的坐标和画面的坐标位置相反?                    把物体移到画面中间      放大scale去掉黑边        提升视频细节","categories": ["tool"],
+        "excerpt":"Final Cut Pro   教程  步骤:          添加原视频      在原视频上添加tracker, analysis跟踪物体的bbox      复制原视频一份      在复制视频的transformer应用之前的tracker, scale改成-100%                  tracker的坐标和画面的坐标位置相反?                    把物体移到画面中间      放大scale去掉黑边        提升视频细节Final Cut Pro   屏幕穿梭转场  追踪绿幕blender运动追踪   教程  上边栏 VFX -&gt; Motion Tracking  拖入视频后设置关键帧和关键点即可  blender的追踪没法追踪运动物体上的特征点","categories": ["tool"],
         "tags": ["content"],
         "url": "https://roshameow.github.io//personal_homepage/tool/center-track/"
       },{
@@ -431,7 +431,7 @@ var store = [{
       },{
         "title": "conformal geometry学习 (十一 ) -- Hodge Star Operator",
         "excerpt":"Hodge Star Operator 在有Riemann metric的mainfold的微分形式上有映射 $\\ast: \\Omega^k(M)\\rightarrow \\Omega^{n-k}(M)$ 连接微分几何和复几何: 在微分几何中，它描述了manifold上的形式内积和体积 在复几何中，它帮助刻画复结构和调和理论，解释了复流形中的拓扑性质? manifold定义 两种定义 Type I选 $T_pM$ 的orthonormal basis定义 Type II用一般的basis定义 $T_pM$ 上的basis和inner product $\\lbrace\\frac{\\partial}{\\partial x_1},\\frac{\\partial}{\\partial x_2},\\cdots,\\frac{\\partial}{\\partial x_n}\\rbrace$ -&gt; $\\langle \\partial_i, \\partial_j\\rangle_g=\\mathbb 1_{ij}$ $\\lbrace\\frac{\\partial}{\\partial x_1},\\frac{\\partial}{\\partial x_2},\\cdots,\\frac{\\partial}{\\partial x_n}\\rbrace$ -&gt; $\\langle \\partial_i, \\partial_j\\rangle_g=\\mathbf g_{ij}$ $T_p^\\ast M$ 上induce一个dual inner product dual 1-form basis为$\\lbrace dx_1,dx_2,\\cdots,dx_n\\rbrace$...","categories": ["math"],
-        "tags": ["content","hodge_star","电场","Riemann_metric","harmonic_form","dual_mesh"],
+        "tags": ["content","hodge_star","电场","Riemann_metric","harmonic_form","dual_mesh","harmonic_function","harmonic_map","cohomology","harmonic_energy"],
         "url": "https://roshameow.github.io//personal_homepage/math/conformal-geometry11/"
       },{
         "title": "洗发水成分",
@@ -439,8 +439,8 @@ var store = [{
         "tags": ["content","shampoo"],
         "url": "https://roshameow.github.io//personal_homepage/daily/shampoo/"
       },{
-        "title": "conformal geometry学习 (十一 ) -- Duality, 离散",
-        "excerpt":"","categories": ["math"],
+        "title": "conformal geometry学习 (十一 ) -- harmonic map",
+        "excerpt":"      uniqueness(唯一性)     ","categories": ["math"],
         "tags": ["content"],
         "url": "https://roshameow.github.io//personal_homepage/math/conformal-geometry12/"
       },{
@@ -454,8 +454,28 @@ var store = [{
         "tags": ["content","shortcut"],
         "url": "https://roshameow.github.io//personal_homepage/blender/blender-learning14/"
       },{
-        "title": "蛇年圣诞风格海报",
-        "excerpt":"“Merry Hissmas” 今年在ai的加持下似乎只有分镜需要自己画了? ","categories": ["design"],
-        "tags": ["content"],
+        "title": "🐍 蛇年圣诞风格海报",
+        "excerpt":"“Merry Hissmas” 时间轴 用chatgpt生成谐音 “Merry Hissmas” 用stable-diffusion生成主体图案然后放大 生成的图案有模糊的地方, 是因为我没有选动漫模型吗? 添加文字和圣诞元素 用Grease Pencil 画画 开了数位板压力之后不知道怎么调粗细了, 结果笔触很细😮‍💨 还好 outline modifier 可以用来增粗 开auto key手写文字的时候, 因为我写的很慢, 大概要加速5倍才不那么违和 写完之后想调整文字位置, 只能每个关键帧挨个调…. 调彩旗位置的时候 没法绕轴转?, 只能转完了移动, 挺麻烦的, 也要每个关键帧调 而且在grease pencil插值后就没法调整了? 渲染成透明背景 用FFmpeg Video, Container选Matroska, 编码格式选QT, 选RGBA(在4.3版本里只有这一个视频格式了, 没有avi了, 选QuickTime Animation也是一样) 在video editing里加主体和背景没做的 本来想加个风吹的特效, 只有移动和放缩果然还是太丑了 本来想给蛇的主体做个mesh动画, 但是没做, 就很死板 “Cat Tree”...","categories": ["design"],
+        "tags": ["content","stable-diffusion","blender"],
         "url": "https://roshameow.github.io//personal_homepage/design/poster2/"
+      },{
+        "title": "blender学习: 用Grease pencil 涂色",
+        "excerpt":"参考这个教学 制作物体 涂底色( 用Texture paint): 设置uv展开, 在3维viewport中涂色, 实际把颜色涂在2维的 uv图上 在Edit Mode下设置uv展开: Smart UV Project 用Mix shader 控制 在shader里设置两个material: base material 和 paint material, 用Mix shader连在一起 比如: Principle BSDF + Shader to RGB + Color Ramp 在Texture paint下, Texture Slot 中添加 material -&gt; base color 颜色设为黑色 把生成的material 的node 连接到Mix shader的 Fac(可能这个texture...","categories": ["blender"],
+        "tags": ["content"],
+        "url": "https://roshameow.github.io//personal_homepage/blender/blender-learning15/"
+      },{
+        "title": "blender学习: 五角星 ⭐️",
+        "excerpt":"参考这个教学 添加circle mesh , 设置顶点 = 10 (刚添加时可以设置) 选择5个顶点: Edit Mode下, Select -&gt; Checker Deselect(间隔式弃选) 向内收缩形成五角星状轮廓 Extrude(挤出) 变成五角星状围栏 Loop cut(卡线) 分成三段 上下层merge变为一点 倒角(bevel), 细分(subdivide) 用到的blender的一些快捷键功能 Loop Cut(卡线): 在edge中间添新的顶点 添加loop cut: Ctrl+R 选中已有的loop cut: Shift+Option+长按 E (Extrude, 挤出): 保持原顶点不变, 复制一份, 复制的和原来的用edge连接 selected face: During extrude:   Edit Mode: 融合(merge): M merge...","categories": ["blender"],
+        "tags": ["content"],
+        "url": "https://roshameow.github.io//personal_homepage/blender/blender-learning16/"
+      },{
+        "title": "Serverless服务",
+        "excerpt":"阿里云   负载均衡方案:          clb      nlb      alb      ","categories": ["WebPage"],
+        "tags": ["content"],
+        "url": "https://roshameow.github.io//personal_homepage/webpage/serverless/"
+      },{
+        "title": "blender资源",
+        "excerpt":"模型                                       sketchfab                     cg模型网      国风模型              cubebrush                     free3d                     blender官网demo                     blendermarket      .blend格式, 免费比较少              Daz      写实风格, 素体Render-State : daz链接                            ","categories": ["blender"],
+        "tags": ["content"],
+        "url": "https://roshameow.github.io//personal_homepage/blender/blender-learning17/"
       }]
