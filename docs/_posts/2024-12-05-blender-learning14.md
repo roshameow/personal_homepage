@@ -6,7 +6,7 @@ categories:
 tags:
   - content
   - shortcut
-last_modified_at: 2024-12-13T17:54
+last_modified_at: 2024-12-18T21:10
 created: 2024-12-05T17:16
 ---
 参考[这个教学](https://www.youtube.com/watch?v=uRAfhJQFjRo)
@@ -85,6 +85,7 @@ created: 2024-12-05T17:16
 	- ![Pasted image 20241210124924.png]({{ '/docs/attachment/Pasted image 20241210124924.png' | relative_url }}){:width="150"} individual orgin:  ![Pasted image 20241210124951.png]({{ '/docs/attachment/Pasted image 20241210124951.png' | relative_url }}){:width="150"}  median point: ![Pasted image 20241210125026.png]({{ '/docs/attachment/Pasted image 20241210125026.png' | relative_url }}){:width="150"} 
 	- 默认median point是以所有组的中心apply transform的.
 	- individual origins是组里每个connect component单独作用
+	- ! 在Object Mode表现不同
 ### modifier
 
 - [Simple Deform](https://docs.blender.org/manual/en/latest/modeling/modifiers/deform/simple_deform.html) 的Twist效果

@@ -5,7 +5,7 @@ categories:
   - tool
 tags:
   - content
-last_modified_at: 2024-09-29T10:41
+last_modified_at: 2024-12-25T07:38
 created: 2024-09-29T09:28
 ---
 
@@ -23,3 +23,13 @@ Final Cut Pro
 
 
 - 提升视频细节
+
+Final Cut Pro
+- [屏幕穿梭转场](https://www.bilibili.com/video/BV1xf4y1q7CV/)
+- 追踪绿幕
+
+blender运动追踪
+- [教程](https://www.bilibili.com/video/BV1Ze411X7hi)
+- 上边栏 VFX -> Motion Tracking
+- 拖入视频后设置关键帧和关键点即可
+- blender的追踪没法追踪运动物体上的特征点

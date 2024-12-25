@@ -6,7 +6,7 @@ categories:
 tags:
   - content
   - photoshop
-last_modified_at: 2024-12-02T15:16
+last_modified_at: 2024-12-14T07:58
 created: 2024-10-21T11:25
 ---
 
@@ -115,7 +115,7 @@ created: 2024-10-21T11:25
 	- 提取线稿: binary(image-gaussianblur(image))
 	- 合成: mulitiply
 
-- [多多驾到](https://www.duoluntech.com/index.php/news/detail/38.html) 
+- [多多驾到](https://www.duoluntech.com/index.php/news/detail/38.html) 查看学时
 
 ## 科目四
 
