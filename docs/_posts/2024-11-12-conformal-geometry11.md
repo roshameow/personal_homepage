@@ -14,7 +14,7 @@ tags:
   - harmonic_map
   - cohomology
   - harmonic_energy
-last_modified_at: 2024-12-19T22:56
+last_modified_at: 2024-12-26T08:04
 created: 2024-11-12T17:58
 ---
 ## Hodge Star Operator
@@ -101,7 +101,7 @@ Riemann metric $\mathbf g=e^{2\lambda(u,v)}(du^2+dv^2)$
 		4.  最后 $\delta df = (-1)^\ast d(^\ast df)=-\omega_g(\frac{\partial^2}{\partial u^2}+\frac{\partial^2}{\partial v^2}) f=-e^{-2\lambda}(\frac{\partial^2}{\partial u^2}+\frac{\partial^2}{\partial v^2}) f$ (映射到0-form 即k=0,2-manifold, 即n=2 -> kn+n+1 是odd)
 - **调和函数 $f$ (满足$\Delta_g f=0$ ) 使曲面$S$ 的调和能量($E(f)=(\nabla_g f,\nabla_g f)=\int_M \langle\nabla_g f,\nabla_g f\rangle_g\omega_g$ ) 最小**: $f=\text{argmin}_f E(f)$ 
 	- ( ) 是hodge star operator induced 内积
-	- 由$(\nabla_g f,\nabla_g f)=(f,\Delta_g f)$ 
+	- 把调和能量看成变分问题,  
 
 ### 离散 . 局部调和形式
 

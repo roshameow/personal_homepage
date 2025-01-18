@@ -9,7 +9,7 @@ tags:
   - markdown
   - obsidian
   - raycast
-last_modified_at: 2024-11-12T04:09
+last_modified_at: 2025-01-06T18:57
 created: 2023-12-20T12:28
 ---
 用jekyll的原因无需多说。这样配置好工作流之后，除了编写内容基本没有什么麻烦的操作(登录在线网页，换编辑器，按照统一格式改文件名之类在我看来都很麻烦。。)。
@@ -103,6 +103,7 @@ created: 2023-12-20T12:28
    - 问题：目前不支持增量同步，每次同步都需要遍历所有文件，但由于都是文本文件，影响较小。
 6. **和raycast联动:**
 	- 然后给脚本设置raycast的标记。这样每次在obsidian里面编辑完，直接用raycast快捷键同步。
+	- 脚本太多输出会导致raycast卡死
  ![Pasted image 20231221195227.png]({{ '/docs/attachment/Pasted image 20231221195227.png' | relative_url }}){:width="600"} 
 
 `sync_homepage.sh` 示范：
