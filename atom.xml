@@ -1,4 +1,610 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.4">Jekyll</generator><link href="https://roshameow.github.io//personal_homepage/atom.xml" rel="self" type="application/atom+xml" /><link href="https://roshameow.github.io//personal_homepage/" rel="alternate" type="text/html" /><updated>2024-12-25T13:02:55+00:00</updated><id>https://roshameow.github.io//personal_homepage/atom.xml</id><title type="html">Liu, Wen’s Home Page</title><subtitle>Work, Experiments and Ideas.</subtitle><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><entry><title type="html">blender资源</title><link href="https://roshameow.github.io//personal_homepage/blender/blender-learning17/" rel="alternate" type="text/html" title="blender资源" /><published>2024-12-22T00:00:00+00:00</published><updated>2024-12-25T21:01:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/blender/blender-learning17</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/blender/blender-learning17/"><![CDATA[<h2 id="模型">模型</h2>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.4">Jekyll</generator><link href="https://roshameow.github.io//personal_homepage/atom.xml" rel="self" type="application/atom+xml" /><link href="https://roshameow.github.io//personal_homepage/" rel="alternate" type="text/html" /><updated>2025-01-18T13:12:16+00:00</updated><id>https://roshameow.github.io//personal_homepage/atom.xml</id><title type="html">Liu, Wen’s Home Page</title><subtitle>Work, Experiments and Ideas.</subtitle><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><entry><title type="html">worldquant BRAIN 股票因子 (三) – API使用</title><link href="https://roshameow.github.io//personal_homepage/code/alphas3/" rel="alternate" type="text/html" title="worldquant BRAIN 股票因子 (三) – API使用" /><published>2025-01-18T00:00:00+00:00</published><updated>2025-01-18T21:08:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/code/alphas3</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/code/alphas3/"><![CDATA[<ul>
+  <li>测试dataset的方法: https://platform.worldquantbrain.com/learn/documentation/understanding-data/data 主要是通过coverage,</li>
+</ul>
+
+<p>[1]  https://support.worldquantbrain.com/hc/en-us/community/posts/11807866133911–BRAIN-TIPS-6-ways-to-quickly-evaluate-a-new-dataset</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="code" /><category term="content" /><category term="python" /><summary type="html"><![CDATA[测试dataset的方法: https://platform.worldquantbrain.com/learn/documentation/understanding-data/data 主要是通过coverage,]]></summary></entry><entry><title type="html">协程的用法</title><link href="https://roshameow.github.io//personal_homepage/tool/asyncio/" rel="alternate" type="text/html" title="协程的用法" /><published>2025-01-16T00:00:00+00:00</published><updated>2025-01-18T20:58:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/tool/asyncio</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/tool/asyncio/"><![CDATA[<h2 id="python-协程的用法">python 协程的用法</h2>
+
+<ul>
+  <li>yield(生成器)</li>
+  <li>future</li>
+  <li>asyncio
+    <ul>
+      <li>async 函数不会马上执行其中代码, 而是返回coroutine function</li>
+      <li>await 相当于yield from
+        <ul>
+          <li>后面可以是task/coroutine/future</li>
+        </ul>
+      </li>
+      <li>task: 可以被执行的函数
+        <ul>
+          <li>create_task 可以生成task</li>
+          <li>await 也会</li>
+          <li>asyncio.run() 的时候会执行task</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>特点:
+    <ul>
+      <li>需要每个子任务结束主动告知(运行结束, return)</li>
+    </ul>
+  </li>
+</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="tool" /><category term="content" /><category term="python" /><summary type="html"><![CDATA[python 协程的用法]]></summary></entry><entry><title type="html">worldquant BRAIN 股票因子 (二) – 因子思路</title><link href="https://roshameow.github.io//personal_homepage/finance/alphas2/" rel="alternate" type="text/html" title="worldquant BRAIN 股票因子 (二) – 因子思路" /><published>2025-01-15T00:00:00+00:00</published><updated>2025-01-18T21:09:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/finance/alphas2</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/finance/alphas2/"><![CDATA[<p>一些因子的来源和原理</p>
+
+<h2 id="对公司经营状况的预估基本数据">对公司经营状况的预估(基本数据)</h2>
+
+<p>fundamental datasets</p>
+
+<ul>
+  <li>运营盈利: 只对大型公司有效
+    <ul>
+      <li>盈利/支出
+        <ul>
+          <li><code class="language-plaintext highlighter-rouge">-rank(ebit/capex)</code>
+            <ul>
+              <li>投入更多到运营盈利上的公司不怎么样</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>资产估值/盈利
+        <ul>
+          <li><code class="language-plaintext highlighter-rouge">alpha = -group_rank(fnd2_ebitdm, industry)-group_rank(fnd2_ebitfr, industry); group_rank(fn_assets_fair_val_a,industry)&gt;0.5?alpha*2 : alpha</code>
+            <ul>
+              <li><code class="language-plaintext highlighter-rouge">fnd2_ebitdm</code> domestic ebit, <code class="language-plaintext highlighter-rouge">fnd2_ebitfr</code> foreign ebit</li>
+              <li><code class="language-plaintext highlighter-rouge">fn_assets_fair_val_a</code> 资产估值</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>留存收益: 未分配给股东的利润
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">rank(ts_delta(retained_earnings / sharesout, 90))</code>
+        <ul>
+          <li>留存收益/股本=每股留存收益: 不受公司规模影响</li>
+        </ul>
+      </li>
+      <li><code class="language-plaintext highlighter-rouge">-ts_rank(retained_earnings,250)</code>
+        <ul>
+          <li>留存收益比历史减少, 可能是分红给股东了</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>营业收入:
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">ts_rank(operating_income,252)</code>
+        <ul>
+          <li>营业收入越高越好,</li>
+          <li>结合相对股价看(operating_income/close), 如果营业收入增长而股价未能跟上，可能意味着市场尚未充分定价公司改善的前景</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>负债
+    <ul>
+      <li>短期债务: 限制同行业比较
+        <ul>
+          <li><code class="language-plaintext highlighter-rouge">zscore(cash_st/debt_st)</code>
+            <ul>
+              <li>现金流越高, 还债能力越强</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>负债公允价值（Fair Value of Liabilities）,公司负债在市场上的当前价值
+        <ul>
+          <li><code class="language-plaintext highlighter-rouge">-ts_rank(fn_liab_fair_val_l1_a,252)</code></li>
+        </ul>
+      </li>
+      <li><code class="language-plaintext highlighter-rouge">liabilities/assets</code>, <code class="language-plaintext highlighter-rouge">debt/assets</code>
+        <ul>
+          <li>高杠杆可能带来高回报</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>收入
+    <ul>
+      <li>税前收入, 销售数量(sales)
+        <ul>
+          <li><code class="language-plaintext highlighter-rouge">quantile(ts_rank(pretax_income,250))</code>
+            <ul>
+              <li>税前收入越靠前的公司越好</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>递延收入: 订阅型业务, 长期合约, 预付款业务
+        <ul>
+          <li><code class="language-plaintext highlighter-rouge">slope = ts_regression(fnd6_newqv1300_drcq,step(1),252,rettype=2); rank(slope)</code></li>
+          <li>计算<code class="language-plaintext highlighter-rouge">dr</code>(deferred revenue)的斜率, 增长说明需求增加, 可能股票会涨</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="对外部事件的响应">对外部事件的响应</h2>
+
+<ul>
+  <li>新闻影响
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">ts_backfill(vec_avg(nws12_prez_4l),504)</code>
+        <ul>
+          <li>新闻发布后股价提升4%的时间</li>
+        </ul>
+      </li>
+      <li><code class="language-plaintext highlighter-rouge">(ts_arg_max(ts_backfill(news_session_range, 20), 60))</code>
+        <ul>
+          <li>新闻后的波动范围(high-low)越大, 应该做多?? 一个季度内, 到达最大波动范围的最近时间. 越长说明波动衰减的正常. 不会极端的受到</li>
+          <li>需要用随时间变化快的decay, 和trade_when控制换手率</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>社媒:  对volume做neuntralize
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">-scl12_buzz</code>
+        <ul>
+          <li>讨论多的认为是负面情绪</li>
+        </ul>
+      </li>
+      <li><code class="language-plaintext highlighter-rouge">ts_std_dev(ts_backfill(snt_social_value,60),60)</code>
+        <ul>
+          <li>在一段时间内有关注是好事, 注意区分不同类型的股票</li>
+        </ul>
+      </li>
+      <li><code class="language-plaintext highlighter-rouge">-ts_mean(pv13_ustomergraphrank_hub_rank,504)</code>
+        <ul>
+          <li><code class="language-plaintext highlighter-rouge">hub</code> 公司在网络中的中心度, 越低说明对其他合作伙伴依赖越少, 更稳定, 注意区分不同类型的股票</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>volatility(波动率)
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">(implied_volatility_call_120/parkinson_volatility_120)^0.1</code>
+        <ul>
+          <li>历史波动率: daily return的标准差</li>
+          <li>Implied Volatility(隐含波动率): 通过期权定价模型计算</li>
+          <li>Parkinson波动率: 通过价格区间(high-low/close)计算</li>
+        </ul>
+      </li>
+      <li><code class="language-plaintext highlighter-rouge">trade_when(pcr_oi_270 &lt; 1, (implied_volatility_call_270-implied_volatility_put_270), -1)</code>
+        <ul>
+          <li><code class="language-plaintext highlighter-rouge">pcr_oi_270</code> (put-call-ratio)未平仓合约数, 小于1 的话(call&gt;put)说明市场看涨</li>
+          <li>可以根据历史波动率分组, 提升subuniverse-test, 很有效</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="对市场表现的预估量价数据">对市场表现的预估(量价数据)</h2>
+
+<p>Price-volume datasets</p>
+
+<ul>
+  <li>成交量: 根据市值(cap)分组, 不同波动时期区别对待
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">alpha = (1/volume);group = bucket(rank(cap),range ='0.25,1,0.25');group_rank(alpha,group);</code>
+        <ul>
+          <li>成交量太活跃不是好事</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>相关性
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">-ts_corr(ts_backfill(fscore_momentum,66),ts_backfill(fscore_value,66),756)</code>
+        <ul>
+          <li>估值(市盈率（P/E）、市净率（P/B）等财务指标来估算)和动量(股票价格变化率计算)的相关性高, 说明股票价格和价值分离?</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>风险
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">SR = systematic_risk_last_60_days;USR = unsystematic_risk_last_60_days;zscore(USR + SR)</code>
+        <ul>
+          <li>总风险, 高风险是好的?</li>
+          <li>去掉和指数相关性高的股票?</li>
+        </ul>
+      </li>
+      <li><code class="language-plaintext highlighter-rouge">market_ret = ts_product(1+group_mean(returns,1,market),250)-1;rfr = vec_avg(fnd6_newqeventv110_optrfrq);expected_return = rfr+beta_last_360_days_spy*(market_ret-rfr);actual_return = ts_product(returns+1,250)-1;actual_return-expected_return</code>
+        <ul>
+          <li>CAPM(Capital Asset Pricing Model): <code class="language-plaintext highlighter-rouge">rfr</code> 是risk free rate + beta * (return - rfr)</li>
+          <li>实际比CAPM计算的return高是好事</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="参考资料">参考资料</h2>
+
+<p>[1]  https://platform.worldquantbrain.com/learn/documentation</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="finance" /><category term="content" /><category term="stock" /><category term="alpha" /><summary type="html"><![CDATA[一些因子的来源和原理]]></summary></entry><entry><title type="html">worldquant BRAIN 股票因子 (一) – 仿真测试</title><link href="https://roshameow.github.io//personal_homepage/finance/alphas/" rel="alternate" type="text/html" title="worldquant BRAIN 股票因子 (一) – 仿真测试" /><published>2025-01-07T00:00:00+00:00</published><updated>2025-01-18T21:07:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/finance/alphas</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/finance/alphas/"><![CDATA[<p>选择在模拟盘中表现好的因子投资</p>
+
+<h2 id="仿真">仿真</h2>
+
+<h3 id="仿真参数">仿真参数</h3>
+
+<p>分为数据库选择, 和后处理两部分</p>
+
+<ul>
+  <li>Delay: 当天(在当天closed前根据当天数据交易), 或+1天</li>
+  <li>Test Period: 把仿真的5年时间分出一部分作为test, PnL图上orange的部分</li>
+  <li>
+    <p>Universe(股票范围): Top3000指日平均 <code class="language-plaintext highlighter-rouge">volume</code> 最大的3000支</p>
+  </li>
+  <li>Decay: 自带的一个linear decay(前n天)</li>
+  <li>pasteurized: ? 只考虑universe以内的alpha?</li>
+  <li>Nan Handling: 操作不可控? OFF的话, 有Nan的值会被平仓(全部卖出)</li>
+  <li>Unit Handling: 单位不匹配时报warning</li>
+  <li>truncation: 设置maximum weight上限: 建议设置0.05~0.1 (entailing 5-10%)之间</li>
+  <li>neutralize(标准化): 让mean(alpha)=0, 时间(<code class="language-plaintext highlighter-rouge">ts_neutralize</code>)上做neutralize避免长期趋势. 同期(<code class="language-plaintext highlighter-rouge">group_neutralize</code>)的做避免不同类型股票的不公平比较.</li>
+</ul>
+
+<h2 id="仿真交易流程">仿真交易流程</h2>
+
+<ul>
+  <li>输入为  <code class="language-plaintext highlighter-rouge">Matrix</code>, 按照时间顺序交易</li>
+  <li><a href="https://platform.worldquantbrain.com/learn/documentation/create-alphas/how-brain-platform-works">仿真交易规则</a>:
+    <ul>
+      <li>每天用恒定的账面规模(<code class="language-plaintext highlighter-rouge">book size</code>)交易,
+        <ul>
+          <li>book size 为$20 million. 有$10 million现金, 投资上限为$20million.</li>
+        </ul>
+      </li>
+      <li>alpha apply到每只股票上得到alpha value</li>
+      <li>L1 归一化,  得到每只股票的<code class="language-plaintext highlighter-rouge">weight</code></li>
+      <li>每天在每只股票上投资 <code class="language-plaintext highlighter-rouge">weight*booksize</code></li>
+      <li>计算<code class="language-plaintext highlighter-rouge">PnL</code></li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="数据">数据</h2>
+
+<p>有<code class="language-plaintext highlighter-rouge">Matrix</code>, <code class="language-plaintext highlighter-rouge">Vector</code>, <code class="language-plaintext highlighter-rouge">Group</code> 三种</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">Matrix</code> : 天数 x 股票的2d array. 普通的alpha可以用</li>
+  <li><code class="language-plaintext highlighter-rouge">Vector</code>: 每天每只股票可能有0-n个数值, 比如新闻. 需要用vector_operator处理</li>
+  <li><code class="language-plaintext highlighter-rouge">Group</code>: 每只股票一个group_id. 用于group_operator的group参数</li>
+</ul>
+
+<h2 id="测试结果">测试结果</h2>
+
+<h3 id="术语">术语</h3>
+
+<ul>
+  <li>PnL(profit and loss): <code class="language-plaintext highlighter-rouge">daily_PnL = sum(size of position * daily_return)</code>
+    <ul>
+      <li>每个股票的 <code class="language-plaintext highlighter-rouge">daily_return= (today’s close / yesterday’s close) – 1.0 </code></li>
+    </ul>
+  </li>
+  <li>Returns: <code class="language-plaintext highlighter-rouge">Return = annualized PnL / Half of Book Size</code></li>
+  <li>Drowndown: PnL最大的一次下降, 用half of booksize归一化为百分比</li>
+  <li>Long/Short(做多, 做空): 在这里就指买入/卖出
+    <ul>
+      <li>Long/short Count: 做多/做空 股票的数量</li>
+    </ul>
+  </li>
+  <li><a href="https://www.investopedia.com/terms/v/volume.asp#:~:text=Volume%20is%20the%20amount%20of,its%20daily%20open%20and%20close">Volume(成交量)</a> : 一段时间的交易数量</li>
+  <li>Margin(边缘收益): <code class="language-plaintext highlighter-rouge">Margin=PnL/TotalDollarsTraded</code>
+    <ul>
+      <li>一段时间内每个dollor的收益, 和可能会用到的手续费有关.</li>
+    </ul>
+  </li>
+  <li>cap(市值)</li>
+</ul>
+
+<h3 id="通过指标">通过指标</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th><a href="https://platform.worldquantbrain.com/learn/documentation/interpret-results/alpha-submission">指标</a></th>
+      <th>要求</th>
+      <th>公式</th>
+      <th>优化方向</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><a href="https://en.wikipedia.org/wiki/Sharpe_ratio">Sharpe(夏普率, related metric, information ratio, IR)</a></td>
+      <td>Delay-0: <code class="language-plaintext highlighter-rouge">Sharpe &gt; 2</code><br />Delay-1: <code class="language-plaintext highlighter-rouge">Sharpe &gt; 1.25</code></td>
+      <td><code class="language-plaintext highlighter-rouge">Sharpe=mean(PnL)/stdev(PnL)*sqrt(252)</code><br /><br /><code class="language-plaintext highlighter-rouge">*sqrt(252)</code> 年化</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Sub-universe Sharpe</td>
+      <td> </td>
+      <td><code class="language-plaintext highlighter-rouge">subuniverse_sharpe &gt;= 0.75 * sqrt(subuniverse_size / alpha_universe_size) * alpha_sharpe</code><br /><br />不在sub-universe 的股票赋NaN, 自动加上market neutralization, 并乘上scale?<br /><br /></td>
+      <td>让alpha少受公司规模, 流动性的影响<br />避免使用<code class="language-plaintext highlighter-rouge">1-rank(cap), rank(-assets)</code><br />对<code class="language-plaintext highlighter-rouge">volume*close</code> 不在一个水平的stock, 用不同的decay参数</td>
+    </tr>
+    <tr>
+      <td><a href="https://support.worldquantbrain.com/hc/en-us/articles/20251419309719-How-to-improve-Turnover">Turnover(换手率)</a></td>
+      <td><code class="language-plaintext highlighter-rouge">1% &lt; Turnover &lt; 70%</code><br />建议 <code class="language-plaintext highlighter-rouge">Turnover &lt; 40%</code></td>
+      <td><code class="language-plaintext highlighter-rouge">avg(daily trading volume/Booksize)</code></td>
+      <td>减少turnover: 增加滤波(decay, ts_mean)<br />用trade_when限制开仓条件</td>
+    </tr>
+    <tr>
+      <td><strong><a href="https://support.worldquantbrain.com/hc/en-us/articles/20251386376471-How-to-increase-fitness-of-alphas?">Fitness(健康度)</a></strong><br />评价alpha优劣的指标</td>
+      <td>Delay-0: <code class="language-plaintext highlighter-rouge">fitness &gt; 1.3</code><br />Delay-1: <code class="language-plaintext highlighter-rouge">fitness &gt; 1</code></td>
+      <td><code class="language-plaintext highlighter-rouge">Fitness = Sharpe*sqrt(abs(Returns)/Max(Turnover,0.125))</code></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Weight test</td>
+      <td>1. 在长时间内, non-zero weight的股票数不能太少<br />2. 某一个股票的weight不能占比太大<br /><code class="language-plaintext highlighter-rouge">max(weight) &lt; 10%</code> <br />随股票范围变动</td>
+      <td> </td>
+      <td>- truncation: 设置maximum weight上限: 建议设置0.05~0.1 (entailing 5-10%)之间<br />- 优化weight 分布: rank</td>
+    </tr>
+    <tr>
+      <td>Self Correlation</td>
+      <td>和现有alpha不相关:<br /><code class="language-plaintext highlighter-rouge">&lt; 0.7 PnL correlation</code><br />, 或优化现有alpha:<br /><code class="language-plaintext highlighter-rouge">Sharpe &gt; 110% * correlated Sharpe</code></td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><a href="https://platform.worldquantbrain.com/learn/documentation/interpret-results/parameters-simulation-results#is-semi-os-os">Out-of-sample(OS)</a></td>
+      <td>提交后在真实市场测试</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="操作">操作</h2>
+
+<ul>
+  <li>数据接口: https://platform.worldquantbrain.com/data</li>
+  <li>支持运算: https://platform.worldquantbrain.com/learn/operators</li>
+  <li><a href="https://platform.worldquantbrain.com/learn/documentation/discover-brain/introduction-brain-expression-language">代码语法</a>:
+    <ul>
+      <li>只用给出的运算符</li>
+      <li>每行用 <code class="language-plaintext highlighter-rouge">;</code> 结尾
+常用的operator</li>
+    </ul>
+  </li>
+  <li>调整分布
+    <ul>
+      <li>zscore: 让数据的mean=0, var=1. 假设数据是高斯分布的情况下标准化.</li>
+      <li>rank: 不改变单调性, 把数据调整成均匀分布</li>
+      <li>quantile 把数据调整成某个分布</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="参考资料">参考资料</h2>
+
+<p>[1]   https://support.worldquantbrain.com/hc/en-us/community/posts/28643095649943–新人科普-一文助你成为BRAIN兼职研究顾问</p>
+
+<p>[2]  https://support.worldquantbrain.com/hc/en-us/community/posts/19273239621399–Alpha灵感启示录-合集-持续更新收录中</p>
+
+<p>[3]  https://support.worldquantbrain.com/hc/en-us/community/posts/22863075241623–学习资料-BRAIN平台自学路径图推荐</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="finance" /><category term="content" /><category term="stock" /><category term="alpha" /><category term="simulation" /><summary type="html"><![CDATA[选择在模拟盘中表现好的因子投资]]></summary></entry><entry><title type="html">blender学习: 用几何节点做程序化城市</title><link href="https://roshameow.github.io//personal_homepage/blender/blender-learning18/" rel="alternate" type="text/html" title="blender学习: 用几何节点做程序化城市" /><published>2025-01-04T00:00:00+00:00</published><updated>2025-01-07T17:14:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/blender/blender-learning18</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/blender/blender-learning18/"><![CDATA[<p>参考<a href="https://www.youtube.com/watch?v=LheRoTgym8g">这个教学</a></p>
+
+<p>1:  <img src="/personal_homepage/docs/attachment/Pasted%20image%2020250105115526.png" alt="Pasted image 20250105115526.png" width="150" />  -&gt; 2:  <img src="/personal_homepage/docs/attachment/Pasted%20image%2020250105121905.png" alt="Pasted image 20250105121905.png" width="150" />  -&gt; 3: <img src="/personal_homepage/docs/attachment/Pasted%20image%2020250106164220.png" alt="Pasted image 20250106164220.png" width="150" /> -&gt; 4: <img src="/personal_homepage/docs/attachment/Pasted%20image%2020250106164521.png" alt="Pasted image 20250106164521.png" width="150" /> -&gt; 5: <img src="/personal_homepage/docs/attachment/Pasted%20image%2020250106164825.png" alt="Pasted image 20250106164825.png" width="150" /></p>
+
+<ul>
+  <li>制作道路:
+    <ol>
+      <li>制作随机网格: 随机2, 3层细分
+        <ul>
+          <li>用二层 <a href="https://docs.blender.org/manual/en/latest/modeling/geometry_nodes/mesh/operations/subdivide_mesh.html">subdivide Mesh</a></li>
+          <li>随机选一些内部网格 (<a href="https://docs.blender.org/manual/en/latest/modeling/geometry_nodes/geometry/operations/separate_geometry.html">Separate Geometry Node -&gt; Face</a> ) 再进行一层subdivide
+            <ul>
+              <li>输入Boolean的随机值</li>
+              <li>输出选中的和未选中的不同处理</li>
+              <li>用<a href="https://docs.blender.org/manual/en/latest/modeling/geometry_nodes/geometry/join_geometry.html">Join Gemetry Node</a>  融合在一起</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>制作随机扭曲: 把随机的mesh merge在一起
+        <ul>
+          <li>用<a href="https://docs.blender.org/manual/en/latest/modeling/geometry_nodes/geometry/operations/merge_by_distance.html">Merge by Distance Node</a> 融合: 输入Boolean的随机值, distance选择0.26( 稍 &gt; 2级细分, 即1/4)</li>
+          <li>再次用0.01的distance 融合: 去除重复的边</li>
+        </ul>
+      </li>
+      <li>把网格转成道路
+        <ul>
+          <li>mesh转成折线curve: <a href="https://docs.blender.org/manual/en/latest/modeling/geometry_nodes/mesh/operations/mesh_to_curve.html">Mesh to Curve</a></li>
+          <li>折线curve转成圆角曲线: <a href="https://docs.blender.org/manual/en/latest/modeling/geometry_nodes/mesh/operations/mesh_to_curve.html">Fillet Curve</a> (类似Bevel倒角的效果)
+            <ul>
+              <li>Count 控制中间点的个数, Radius控制圆角弧度大小, 选择Limit Radius 保证圆角起终点不会超出范围(什么情况是需要超出范围的吗? 这个选项总是要选)</li>
+            </ul>
+          </li>
+          <li><strong>转成道路: <a href="https://docs.blender.org/manual/en/latest/modeling/geometry_nodes/curve/operations/curve_to_mesh.html">Curve to Mesh</a> (效果为Curve沿Profile Curve 挤出)</strong>
+            <ul>
+              <li>Curve 处输入我们的道路curve</li>
+              <li>Profile Curve 处用<a href="https://docs.blender.org/manual/en/latest/modeling/geometry_nodes/curve/primitives/curve_line.html">Curve Line</a> 输入一个固定长度线段Curve</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>增加厚度: <a href="https://docs.blender.org/manual/en/latest/modeling/geometry_nodes/mesh/operations/extrude_mesh.html">Extrude Mesh Node</a> 沿面的法相挤出</li>
+      <li>关闭自动的Smooth Shading: <a href="https://docs.blender.org/manual/en/latest/modeling/geometry_nodes/mesh/write/set_shade_smooth.html">Set Shade Smooth Node</a></li>
+    </ol>
+  </li>
+</ul>
+
+<p>1: <img src="/personal_homepage/docs/attachment/Pasted%20image%2020250106204640.png" alt="Pasted image 20250106204640.png" width="150" />  -&gt; 2: <img src="/personal_homepage/docs/attachment/Pasted%20image%2020250106205132.png" alt="Pasted image 20250106205132.png" width="150" />  -&gt; 3: <img src="/personal_homepage/docs/attachment/Pasted%20image%2020250106214511.png" alt="Pasted image 20250106214511.png" width="150" /> -&gt; 4: <img src="/personal_homepage/docs/attachment/Pasted%20image%2020250106214738.png" alt="Pasted image 20250106214738.png" width="150" /></p>
+
+<ul>
+  <li>制作建筑物: 安插在道路网格的间隙
+    <ol>
+      <li>制作底座: 把折线道路(道路步骤2的结果)向内挤出
+        <ul>
+          <li><a href="https://docs.blender.org/manual/en/latest/modeling/geometry_nodes/mesh/operations/extrude_mesh.html">Extrude Mesh Node</a> 沿面的法相挤出, 但是厚度为0</li>
+          <li>选中输出<code class="language-plaintext highlighter-rouge">Top</code>(新生成的面)向内scale</li>
+        </ul>
+      </li>
+      <li>制作楼体:
+        <ul>
+          <li>把底座内部向上拉伸</li>
+          <li>去掉第一步制作底座时没用的mesh, 只保留底座拉伸部分</li>
+        </ul>
+      </li>
+      <li>制作屋顶:
+        <ul>
+          <li>选中楼体顶部:
+            <ul>
+              <li><a href="https://docs.blender.org/manual/en/3.1/modeling/geometry_nodes/input/normal.html">Normal Node</a> + <a href="https://docs.blender.org/manual/en/latest/compositing/types/vector/separate_xyz.html">Spearate XYZ Node</a> 的<code class="language-plaintext highlighter-rouge">Z</code>输出, 连接到 <a href="https://docs.blender.org/manual/en/latest/modeling/geometry_nodes/mesh/operations/extrude_mesh.html">Extrude Mesh Node</a> 的<code class="language-plaintext highlighter-rouge">Selection</code> 上</li>
+              <li>另一种方法是直接选中楼体时的<code class="language-plaintext highlighter-rouge">Top</code> 输出, 连接到 <a href="https://docs.blender.org/manual/en/latest/modeling/geometry_nodes/mesh/operations/extrude_mesh.html">Extrude Mesh Node</a> 的<code class="language-plaintext highlighter-rouge">Selection</code> 上</li>
+            </ul>
+          </li>
+          <li>把楼体顶部向下向内挤出(和上一步制作楼体的方法一样)</li>
+        </ul>
+      </li>
+      <li>把街区内部进一步切分, 和道路放在一起</li>
+    </ol>
+  </li>
+</ul>
+
+<p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020250107055846.png" alt="Pasted image 20250107055846.png" width="150" /></p>
+
+<ul>
+  <li>shading: 在cycles渲染模式下
+    <ul>
+      <li>world: 添加一个Sky Texture, 适当调整参数</li>
+      <li>object:
+        <ul>
+          <li>楼体: 每幢楼随机两个贴图
+            <ul>
+              <li>用<a href="https://docs.blender.org/manual/en/latest/render/shader_nodes/input/geometry.html">Geometry Node</a> 的random per Island(每个connected component随机) 的功能 + constant Color Ramp(把数值映射成 0 或 1 )</li>
+              <li>mix shader混合</li>
+            </ul>
+          </li>
+          <li>楼顶: 用<a href="https://docs.blender.org/manual/en/latest/render/shader_nodes/input/geometry.html">Geometry Node</a> 的normal +  <a href="https://docs.blender.org/manual/en/latest/compositing/types/vector/separate_xyz.html">Spearate XYZ Node</a> 的<code class="language-plaintext highlighter-rouge">Z</code>输出, 选中楼顶</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="texture-coordinate-的设置"><a href="https://docs.blender.org/manual/en/latest/render/shader_nodes/input/texture_coordinate.html">texture Coordinate</a> 的设置</h2>
+
+<ul>
+  <li>我们用<a href="https://docs.blender.org/manual/en/latest/render/shader_nodes/textures/image.html">Image Texture</a> 设置颜色的映射时, 把默认的 flat 改为 box
+    <ul>
+      <li>flat的映射: <img src="https://docs.blender.org/manual/en/latest/_images/render_shader-nodes_textures_image_projection-flat.png" alt="flat" />Sphere的映射方法: <img src="https://docs.blender.org/manual/en/latest/_images/render_shader-nodes_textures_image_projection-box.png" alt="box" /></li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="用到的blender的一些快捷键功能">用到的blender的一些快捷键功能</h2>
+
+<ul>
+  <li>打开关闭侧边 Transform栏: N</li>
+  <li>Object Mode:
+    <ul>
+      <li><a href="https://docs.blender.org/manual/en/latest/scene_layout/object/editing/apply.html">Apply(应用变形)</a>: Command + A
+        <ul>
+          <li>比例尺(Apply Scale): 应用后, 物体上的变换, 由比例变成实际距离?
+            <ul>
+              <li>比如400scale的物体, 应用前 0.1 的变换, 和应用后40m的变换等价</li>
+              <li>blender的滑块单位是0.1, 可能是有时候物体太大, 按比例调整不方便?</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Geometry Nodes合并成group
+    <ul>
+      <li>在原有Node输入的地方可以加input Node
+        <ul>
+          <li>input Node的参数不能改名字</li>
+          <li>Node内部的参数不能改成输入😮‍💨</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="blender" /><category term="content" /><category term="geometry_node" /><summary type="html"><![CDATA[参考这个教学]]></summary></entry><entry><title type="html">雪花制作</title><link href="https://roshameow.github.io//personal_homepage/blender/snowflake/" rel="alternate" type="text/html" title="雪花制作" /><published>2025-01-02T00:00:00+00:00</published><updated>2025-01-03T10:10:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/blender/snowflake</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/blender/snowflake/"><![CDATA[<h2 id="六方晶系"><a href="https://en.wikipedia.org/wiki/Hexagonal_crystal_family">六方晶系</a></h2>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="blender" /><category term="content" /><summary type="html"><![CDATA[六方晶系]]></summary></entry><entry><title type="html">终端配置</title><link href="https://roshameow.github.io//personal_homepage/tool/setting-shortcut/" rel="alternate" type="text/html" title="终端配置" /><published>2025-01-01T00:00:00+00:00</published><updated>2025-01-03T21:58:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/tool/setting-shortcut</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/tool/setting-shortcut/"><![CDATA[<h2 id="zsh">zsh</h2>
+
+<h2 id="powershell">powershell</h2>
+
+<ul>
+  <li>找到, 或创建<code class="language-plaintext highlighter-rouge">$PROFILE</code> 文件:
+    <ul>
+      <li>在powershell里直接输入<code class="language-plaintext highlighter-rouge">$PROFILE</code> 查看路径</li>
+      <li>创建: <code class="language-plaintext highlighter-rouge">New-Item -Path C:\MyFolder -Name "Example.txt" -ItemType File</code></li>
+      <li>查看: <code class="language-plaintext highlighter-rouge">cat</code></li>
+      <li>写入: <code class="language-plaintext highlighter-rouge">Set-Content -Path "NewFile.txt" -Value "This is a test file."</code></li>
+    </ul>
+  </li>
+  <li>打开文件</li>
+</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="tool" /><category term="content" /><summary type="html"><![CDATA[zsh]]></summary></entry><entry><title type="html">3d模型资源, 数据库</title><link href="https://roshameow.github.io//personal_homepage/data/blender-learning17/" rel="alternate" type="text/html" title="3d模型资源, 数据库" /><published>2024-12-22T00:00:00+00:00</published><updated>2025-01-06T06:50:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/data/blender-learning17</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/data/blender-learning17/"><![CDATA[<h2 id="3d模型文件格式">3d模型文件格式</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>格式</th>
+      <th>格式</th>
+      <th>特点</th>
+      <th>常用用途</th>
+      <th>开发商</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><a href="https://en.wikipedia.org/wiki/Wavefront_.obj_file">.obj</a></td>
+      <td>vertex(v): 由3d coordinate表示<br />texture(vt): 2d coordinate<br />normal(vn): 3d vector<br />face(f): vertex索引/texture索引/normal索引</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>.stl</td>
+      <td> </td>
+      <td> </td>
+      <td>3d打印</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Polygon File Format<br /><a href="https://en.wikipedia.org/wiki/PLY_(file_format)">.ply</a></td>
+      <td>1. header 数据结构<br />element 对象(vertex) 数量(14)<br />property 类型(float) 名称(x/y/z…)<br />2. 具体数据<br />两部分构成</td>
+      <td>支持颜色、法线和其他属性</td>
+      <td>点云数据</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>.fbx</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>Autodesk</td>
+    </tr>
+    <tr>
+      <td>Graphics Language Transmission Format<br /><a href="https://github.com/KhronosGroup/glTF/blob/main/specification/2.0/figures/gltfOverview-2.0.0b.png">.gltf</a>, .glb<br /></td>
+      <td> </td>
+      <td>现代, 省空间</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>.3ds</td>
+      <td> </td>
+      <td>过时</td>
+      <td>模型存储</td>
+      <td>Autodesk</td>
+    </tr>
+    <tr>
+      <td>.las</td>
+      <td> </td>
+      <td> </td>
+      <td>地理信息(GIS)</td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="模型">模型</h2>
 
 <table>
   <thead>
@@ -41,9 +647,25 @@
       <td> </td>
     </tr>
   </tbody>
-</table>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="blender" /><category term="content" /><summary type="html"><![CDATA[模型]]></summary></entry><entry><title type="html">Serverless服务</title><link href="https://roshameow.github.io//personal_homepage/webpage/serverless/" rel="alternate" type="text/html" title="Serverless服务" /><published>2024-12-19T00:00:00+00:00</published><updated>2024-12-19T22:05:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/webpage/serverless</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/webpage/serverless/"><![CDATA[<h2 id="阿里云">阿里云</h2>
+</table>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="data" /><category term="content" /><summary type="html"><![CDATA[3d模型文件格式]]></summary></entry><entry><title type="html">Serverless服务</title><link href="https://roshameow.github.io//personal_homepage/webpage/serverless/" rel="alternate" type="text/html" title="Serverless服务" /><published>2024-12-19T00:00:00+00:00</published><updated>2025-01-01T04:48:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/webpage/serverless</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/webpage/serverless/"><![CDATA[<p>租虚拟服务器代替真实服务器</p>
 
 <ul>
+  <li>优点:
+    <ul>
+      <li>减少运维麻烦: 比如操作系统的安装和管理, 硬件的配置, 网络的配置(防火墙, 隔离, 权限等), 运行环境和依赖的配置, 容灾备份等</li>
+      <li>自动扩展: 不用手动配置负载均衡器, 调整服务器数量</li>
+      <li>自动优化: 跟据函数的内存大小, 自动优化代码的执行时间和性能</li>
+      <li>可能更省钱: 用运行资源(程序执行时间, cpu, 内存, 公网流量等) 计费, 而不是服务器数量计费</li>
+    </ul>
+  </li>
+</ul>
+
+<p>AWS Lambda</p>
+
+<ul>
+  <li>每个lambda function 单独配置权限, 类似github action
+    <h2 id="阿里云">阿里云</h2>
+  </li>
   <li>负载均衡方案:
     <ul>
       <li>clb</li>
@@ -51,7 +673,7 @@
       <li>alb</li>
     </ul>
   </li>
-</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="WebPage" /><category term="content" /><summary type="html"><![CDATA[阿里云]]></summary></entry><entry><title type="html">blender学习: 五角星 ⭐️</title><link href="https://roshameow.github.io//personal_homepage/blender/blender-learning16/" rel="alternate" type="text/html" title="blender学习: 五角星 ⭐️" /><published>2024-12-18T00:00:00+00:00</published><updated>2024-12-25T17:07:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/blender/blender-learning16</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/blender/blender-learning16/"><![CDATA[<p>参考<a href="https://www.bilibili.com/video/BV1v5kGYgEg9/">这个教学</a></p>
+</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="WebPage" /><category term="content" /><summary type="html"><![CDATA[租虚拟服务器代替真实服务器]]></summary></entry><entry><title type="html">blender学习: 五角星 ⭐️</title><link href="https://roshameow.github.io//personal_homepage/blender/blender-learning16/" rel="alternate" type="text/html" title="blender学习: 五角星 ⭐️" /><published>2024-12-18T00:00:00+00:00</published><updated>2024-12-25T17:07:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/blender/blender-learning16</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/blender/blender-learning16/"><![CDATA[<p>参考<a href="https://www.bilibili.com/video/BV1v5kGYgEg9/">这个教学</a></p>
 
 <ul>
   <li>添加circle mesh , 设置顶点 = 10 (刚添加时可以设置)</li>
@@ -119,902 +741,4 @@
 <ul>
   <li>script: <a href="https://gist.github.com/roshameow/2b5be662744414007ac39a4d10f530d9#file-create_star-py"><strong>create_star.py</strong></a></li>
   <li>add-on: <a href="https://gist.github.com/roshameow/2b5be662744414007ac39a4d10f530d9#file-star_addon-py"><strong>star_addon.py</strong></a></li>
-</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="blender" /><category term="content" /><summary type="html"><![CDATA[参考这个教学]]></summary></entry><entry><title type="html">blender学习: 用Grease pencil 涂色</title><link href="https://roshameow.github.io//personal_homepage/blender/blender-learning15/" rel="alternate" type="text/html" title="blender学习: 用Grease pencil 涂色" /><published>2024-12-16T00:00:00+00:00</published><updated>2024-12-24T08:46:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/blender/blender-learning15</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/blender/blender-learning15/"><![CDATA[<p>参考<a href="https://www.youtube.com/watch?v=bX6jtVSJOog">这个教学</a></p>
-
-<ul>
-  <li>制作物体</li>
-  <li><strong>涂底色</strong>( 用<a href="https://docs.blender.org/manual/en/latest/sculpt_paint/texture_paint/introduction.html">Texture paint</a>): 设置uv展开, 在3维viewport中涂色, 实际把颜色涂在2维的 uv图上
-    <ul>
-      <li>在Edit Mode下设置uv展开:  <a href="https://docs.blender.org/manual/en/latest/modeling/meshes/editing/uv.html">Smart UV Project</a></li>
-      <li>用<a href="https://docs.blender.org/manual/en/latest/render/shader_nodes/shader/mix.html">Mix shader</a> 控制
-        <ul>
-          <li>在shader里设置两个material: base material 和 paint material, 用Mix shader连在一起
-            <ul>
-              <li>比如: Principle BSDF + Shader to RGB + Color Ramp</li>
-            </ul>
-          </li>
-          <li>在Texture paint下, <a href="https://docs.blender.org/manual/en/latest/sculpt_paint/texture_paint/tool_settings/texture_slots.html">Texture Slot</a> 中添加 material -&gt; base color
-            <ul>
-              <li>颜色设为黑色</li>
-              <li>把生成的material 的node 连接到Mix shader的 Fac(可能这个texture slot中直接弄material不方便, 所以只用一个深度的功能, 把material混合放在mix shader里?)</li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-      <li>在物体上涂色</li>
-    </ul>
-  </li>
-  <li><strong>给固定主体添加抖动的外轮廓</strong>: 模拟画画的线稿
-    <ul>
-      <li>添加line art: Grease Pencil -&gt; Collection Line Art
-        <ul>
-          <li><a href="https://docs.blender.org/manual/en/latest/grease_pencil/modifiers/generate/line_art.html">modifier -&gt; Line Art </a> 调解轮廓位置, 粗细, 透明度
-            <ul>
-              <li>Edge Types Create
-                <ul>
-                  <li>Individual Silhouette(剪影): 给物体的外轮廓创建line art</li>
-                  <li>去掉 Crease(褶皱): 不然不止外轮廓, 所有面向正面的边缘都会添加line art</li>
-                  <li>去掉 intersection: 不然面和面相交的地方(阴影)也会添加line art</li>
-                </ul>
-              </li>
-            </ul>
-          </li>
-          <li>modifier -&gt; noise
-            <ul>
-              <li>调整 position(位置的随机性), strength(透明度的随机性), thickness, noise scale</li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-      <li>同位置添加一个带dot dash的line art: 表现有粗有细的笔触效果
-        <ul>
-          <li>modifier -&gt; Dot dash
-            <ul>
-              <li>调整 Dash, Gap : 笔触断开的比例</li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li><strong>涂细节</strong>
-    <ul>
-      <li>添加GreasePencil Object
-        <ul>
-          <li>添加noise modifier: 模拟笔触效果</li>
-          <li>设置<a href="https://docs.blender.org/manual/en/latest/grease_pencil/properties/object.html">Object -&gt; Visibility</a>
-            <ul>
-              <li>选中 Grease Pencil -&gt; Use Lights: 让画面受灯光影响, 是Grease Pencil独有的property</li>
-            </ul>
-          </li>
-          <li>设置 <a href="https://docs.blender.org/manual/en/latest/scene_layout/object/properties/display.html">Object -&gt; Viewport Display</a>
-            <ul>
-              <li>选中 Show -&gt; In Front: 让画画涂层在最前面</li>
-            </ul>
-          </li>
-          <li>去掉 Data -&gt; Layers -&gt; Opacity -&gt; Use Lights 设置上面涂层不变透明?, 去掉之后就按正常的混合图层模式理解</li>
-          <li>添加多个不同颜色 material
-            <ul>
-              <li>在Material -&gt; Surface -&gt; Stroke -&gt; Base Color调整颜色</li>
-              <li>在Material -&gt; Surface -&gt; Fill 调整circle里面fill的颜色</li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-      <li>设置Draw Mode,
-        <ul>
-          <li>设置绘画平面: 通过<a href="https://docs.blender.org/manual/en/latest/grease_pencil/modes/draw/stroke_placement.html">Stroke Placement</a></li>
-          <li>设置stroke:
-            <ul>
-              <li>设置 Tool -&gt; Brush Setting -&gt; <a href="https://docs.blender.org/manual/en/latest/sculpt_paint/brush/stroke.html#">Stroke</a> -&gt; Stablilize Stroke -&gt; Radius = 10px</li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li><strong>设置动画</strong>
-    <ul>
-      <li>把同样动画的笔触分离</li>
-      <li>用auto key 记录最终形态(2)</li>
-      <li>选中第一帧(1) shift+D 复制, 移到最终帧之后(3), 把时间线移到 (2),(3) 中间</li>
-      <li>在Edit Mode里, 用Grease Pencil -&gt; Interpolate Sequence 插入中间key frame</li>
-    </ul>
-  </li>
-</ul>
-
-<h2 id="uv贴图">UV贴图</h2>
-
-<p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020230615131056.png" alt="Pasted image 20230615131056.png" width="300" /></p>
-
-<ul>
-  <li><a href="https://docs.blender.org/manual/en/latest/modeling/meshes/editing/uv.html">Smart UV Project</a> : 从mesh一个顶点相邻面扩散展开, 检查顶点处的角度</li>
-</ul>
-
-<h2 id="draw-mode">draw mode</h2>
-
-<p>通过<a href="https://docs.blender.org/manual/en/latest/grease_pencil/modes/draw/stroke_placement.html">Stroke Placement</a> 切换绘画平面</p>
-<ul>
-  <li>Origin(默认), 在object的origin : <a href="https://docs.blender.org/manual/en/latest/_images/grease-pencil_modes_draw_stroke-placement_origin.png"><img src="https://docs.blender.org/manual/en/latest/_images/grease-pencil_modes_draw_stroke-placement_origin.png" width="150" /></a>  一般不用…Object的origin不知道在哪</li>
-  <li>3d cursor(光标), 可以移动cursor放在想要的平面 <a href="https://docs.blender.org/manual/en/latest/_images/grease-pencil_modes_draw_stroke-placement_3D-cursor.png"><img src="https://docs.blender.org/manual/en/latest/_images/grease-pencil_modes_draw_stroke-placement_3D-cursor.png" width="150" /></a> 在Cursor点的位置所在的View的平面上画画</li>
-  <li>Surface <a href="https://docs.blender.org/manual/en/latest/_images/grease-pencil_modes_draw_stroke-placement_surface.png"><img src="https://docs.blender.org/manual/en/latest/_images/grease-pencil_modes_draw_stroke-placement_surface.png" width="150" /></a> Offset(离mesh的距离 )设成0.01</li>
-</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="blender" /><category term="content" /><summary type="html"><![CDATA[参考这个教学]]></summary></entry><entry><title type="html">🐍 蛇年圣诞风格海报</title><link href="https://roshameow.github.io//personal_homepage/design/poster2/" rel="alternate" type="text/html" title="🐍 蛇年圣诞风格海报" /><published>2024-12-06T00:00:00+00:00</published><updated>2024-12-25T11:55:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/design/poster2</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/design/poster2/"><![CDATA[<p><img src="/personal_homepage/docs/attachment/merry_hissmas.mp4" alt="merry_hissmas.mp4" width="360" /></p>
-
-<h2 id="merry-hissmas">“Merry Hissmas”</h2>
-
-<h3 id="时间轴">时间轴</h3>
-
-<ul>
-  <li>用chatgpt生成谐音 “Merry Hissmas”</li>
-  <li>用stable-diffusion生成主体图案然后放大
-    <ul>
-      <li>生成的图案有模糊的地方, 是因为我没有选动漫模型吗?</li>
-    </ul>
-  </li>
-  <li>添加文字和圣诞元素
-    <ul>
-      <li>用Grease Pencil 画画</li>
-      <li>开了数位板压力之后不知道怎么调粗细了, 结果笔触很细😮‍💨
-        <ul>
-          <li>还好 <a href="https://docs.blender.org/manual/en/latest/grease_pencil/modifiers/generate/outline.html">outline modifier</a> 可以用来增粗</li>
-        </ul>
-      </li>
-      <li>开auto key手写文字的时候, 因为我写的很慢, 大概要加速5倍才不那么违和</li>
-      <li>写完之后想调整文字位置, 只能每个关键帧挨个调….</li>
-      <li>调彩旗位置的时候
-        <ul>
-          <li>没法绕轴转?, 只能转完了移动, 挺麻烦的, 也要每个关键帧调</li>
-          <li>而且在grease pencil插值后就没法调整了?</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li>渲染成透明背景
-    <ul>
-      <li>用FFmpeg Video, Container选Matroska, 编码格式选QT, 选RGBA(在4.3版本里只有这一个视频格式了, 没有avi了, 选QuickTime Animation也是一样)</li>
-    </ul>
-  </li>
-  <li>在video editing里加主体和背景</li>
-</ul>
-
-<h3 id="没做的">没做的</h3>
-
-<ul>
-  <li>本来想加个风吹的特效, 只有移动和放缩果然还是太丑了</li>
-  <li>本来想给蛇的主体做个mesh动画, 但是没做, 就很死板</li>
-</ul>
-
-<p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020241225083137.png" alt="Pasted image 20241225083137.png" width="360" />   <img src="/personal_homepage/docs/attachment/cat_christmas_tree.mp4" alt="cat_christmas_tree.mp4" width="360" /></p>
-
-<h2 id="cat-tree">“Cat Tree”</h2>
-
-<h3 id="步骤">步骤</h3>
-
-<ul>
-  <li>用segment anything 提取猫的轮廓</li>
-  <li>用freeform去背景提取圣诞元素的轮廓</li>
-  <li>把轮廓排在一张圣诞树背景上</li>
-  <li>存一张带透明通道(rgba) 的png图</li>
-  <li>在blender里用黑色和金色的bsdf 混合, 把透明通道作为Fac</li>
-  <li>添加移动的底光, 让金色部分反光变化</li>
-</ul>
-
-<h3 id="结果">结果</h3>
-
-<p>结果非常难看不忍直视看着难受</p>
-<ul>
-  <li>画面构成有问题:
-    <ul>
-      <li>圣诞树是歪的, 但是我也不想调整了</li>
-      <li>与其说是圣诞树, 不如说就是个三角形</li>
-      <li>里面猫和圣诞元素的疏密不合理, 大小太一致了吗? 如果加点小圆球小星星装饰能不能好点?</li>
-      <li>我的猫是长毛猫, 有些轮廓就是圆咕隆咚的看不清是啥. 像装修师傅在户外随手拼的地砖</li>
-      <li>整个画面没有一个能撑起来的主体, 如果我加一些圣诞树的引导线条能不能好点?</li>
-    </ul>
-  </li>
-  <li>shading有问题:
-    <ul>
-      <li>所以黑色卡纸的材质不是黑色把粗糙度拉满而已? 打了光以后因为漫反射是难看的灰色</li>
-      <li>金色看起来也不像金箔, 没有那种透亮的感觉</li>
-      <li>黑金配色不适合圣诞氛围, 吗? 应该不能是这个配色的问题吧? 可能还是我的画面缺乏细节缺乏立体感</li>
-    </ul>
-  </li>
-  <li>想加一个真实场景进去的, 可是追踪效果不能满意, blender只能追踪固定场景</li>
-</ul>
-
-<h3 id="参考图案">参考图案</h3>
-
-<p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020241225100057.png" alt="Pasted image 20241225100057.png" width="150" /> <img src="/personal_homepage/docs/attachment/Pasted%20image%2020241225100124.png" alt="Pasted image 20241225100124.png" width="100" />  <img src="/personal_homepage/docs/attachment/Pasted%20image%2020241225100145.png" alt="Pasted image 20241225100145.png" width="210" />   <img src="/personal_homepage/docs/attachment/Pasted%20image%2020241225101114.png" alt="Pasted image 20241225101114.png" width="140" /></p>
-
-<ul>
-  <li>看到第一张图的时候就想尝试模仿一下用平铺猫做圣诞树了</li>
-  <li>现在想想这些内部图案其实是有一定细节的, 图案也基本按“大, 中, 小” 分布</li>
-</ul>
-
-<h2 id="blender一些细节">blender一些细节</h2>
-
-<ul>
-  <li><a href="https://www.youtube.com/watch?v=4oCAzXOr5Hc">制作金箔材质</a>
-    <ul>
-      <li>黄金: 颜色 <code class="language-plaintext highlighter-rouge">FFC125</code> , <code class="language-plaintext highlighter-rouge">metallic = 1</code>, <code class="language-plaintext highlighter-rouge">rounghness = 0.2</code></li>
-      <li>添加render-&gt; eevee -&gt; Raytracing 选项 (blender 4.2以上才支持, 渲染会慢很多)
-        <ul>
-          <li>Fast GI Approximation(全局光照) -&gt; Threshold = 0.85</li>
-        </ul>
-      </li>
-      <li>法线方向添加一个 noise (scale = 3) + bump height (strength = 0.1, distance = 0.1)</li>
-    </ul>
-  </li>
-  <li>transparent node: 需要<a href="https://www.bilibili.com/opus/927286707729989632">修改混合模式</a> , 不然看起来是黑的
-    <ul>
-      <li><img src="/personal_homepage/docs/attachment/Pasted%20image%2020241225114821.png" alt="Pasted image 20241225114821.png" width="250" /> 贴图之后, 看起来像亚克力板材质, 可能是旁边的uv也被贴图覆盖了</li>
-    </ul>
-  </li>
-</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="design" /><category term="content" /><category term="stable-diffusion" /><category term="blender" /><summary type="html"><![CDATA[]]></summary></entry><entry><title type="html">blender学习: 扭曲晶体路径跟随</title><link href="https://roshameow.github.io//personal_homepage/blender/blender-learning14/" rel="alternate" type="text/html" title="blender学习: 扭曲晶体路径跟随" /><published>2024-12-05T00:00:00+00:00</published><updated>2024-12-18T21:10:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/blender/blender-learning14</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/blender/blender-learning14/"><![CDATA[<p>参考<a href="https://www.youtube.com/watch?v=uRAfhJQFjRo">这个教学</a></p>
-
-<ul>
-  <li><strong>制作物体: 一组扭曲, 光滑的梭形</strong>
-    <ul>
-      <li>长方形在edit mode下添加loop cut分割</li>
-      <li>把两头缩小, 变为梭形
-        <ul>
-          <li>用<a href="https://docs.blender.org/manual/en/2.81/scene_layout/object/editing/transform/control/proportional_edit.html">propotional editing</a> 缩放两头的面即可
-            <ul>
-              <li><a href="https://docs.blender.org/manual/en/2.81/_images/scene-layout_object_editing_transform_control_proportional-edit_influence.png"><img src="https://docs.blender.org/manual/en/2.81/_images/scene-layout_object_editing_transform_control_proportional-edit_influence.png" width="250" /></a></li>
-            </ul>
-          </li>
-          <li>调整梭形的长短, 粗细</li>
-        </ul>
-      </li>
-      <li>复制多个做为动效: 固定在XZ平面, 绕中心小圈复制4个, 大圈复制8个
-        <ul>
-          <li>先复制到(-2,2), (4,0) 位置, 倍增得到小圈, 复制小圈得到大圈, 复制大圈倍增
-            <ul>
-              <li><img src="/personal_homepage/docs/attachment/Pasted%20image%2020241210113337.png" alt="Pasted image 20241210113337.png" width="150" /> 在XZ平面上有格子可以定位, 刚复制时ctrl也可以看到坐标</li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-      <li>多选分组调整梭形的长短, 粗细比例: 比如大圈和小圈分开调整
-        <ul>
-          <li>批量调整形态时, 需要把<a href="https://docs.blender.org/manual/en/2.80/scene_layout/object/editing/transform/control/pivot_point/index.html">pivot point(轴心点)</a> 切换成individual origins</li>
-          <li>可能需要右键 -&gt; separate selected 分开成单独的object, 用来之后设置不同的扭曲和运动.</li>
-        </ul>
-      </li>
-      <li>添加<a href="https://docs.blender.org/manual/en/latest/modeling/modifiers/generate/bevel.html">Bevel(倒角)</a>  modifier保持棱角
-        <ul>
-          <li>设置limit method = angle. 调整angle. 只在四个棱(角度大)的位置设置倒角.</li>
-          <li>四边形 -&gt; <a href="https://docs.blender.org/manual/en/latest/_images/modeling_modifiers_generate_bevel_square.png"><img src="https://docs.blender.org/manual/en/latest/_images/modeling_modifiers_generate_bevel_square.png" width="100" /></a></li>
-        </ul>
-      </li>
-      <li>添加subdivision  光滑:
-        <ul>
-          <li><strong>如果不设置倒角, subdivision分不清棱角是由模型粗糙导致的, 还是我们本来需要的.</strong> 会把我们本来的四边形变成正多边形(近似圆形)…</li>
-          <li>还有另一种办法是在我们需要的棱周围设置<a href="https://docs.blender.org/manual/en/latest/modeling/meshes/tools/loop.html">Loop Cut</a>(卡线)</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li><strong>制作路径: 用BezierCurve画出路径</strong></li>
-  <li><strong>跟随路径: 设置Y轴为跟随轴</strong>
-    <ul>
-      <li>添加<a href="https://docs.blender.org/manual/en/latest/modeling/modifiers/deform/curve.html">Curve modifier</a> :
-        <ul>
-          <li>Curve Object为路径curve</li>
-          <li>Deform Axis 为Y</li>
-        </ul>
-      </li>
-      <li>打开Transform属性, 固定X, Z轴. 保持mesh相对于Y轴位置不变.</li>
-    </ul>
-  </li>
-  <li><strong>形状随路径变化?:</strong>
-    <ul>
-      <li>添加<a href="https://docs.blender.org/manual/en/latest/modeling/modifiers/deform/simple_deform.html">Simple Deform</a> 的Twist效果
-        <ul>
-          <li>Origin为路径curve: 这样可能会导致twist的结果不可控, 想单独控制的话还是用一个空物体比较好</li>
-          <li>Axis为Y: 设置成和Curve modifier的Deform Axis一样, 只在轨道的截面上形变</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li><strong>调整动画</strong>
-    <ul>
-      <li>在起点和终点插入Location的关键帧</li>
-      <li>调整graph editor</li>
-      <li>graph editor 右键 -&gt; <a href="https://docs.blender.org/manual/zh-hans/4.3/editors/graph_editor/fcurves/properties.html">handle type</a>  -&gt; vector
-        <ul>
-          <li>handle type是graph的Bezier曲线上锚点梯度的预设, vector预设就是和linear一致</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li><strong>后期降噪: 用Compositing, 去除用cycle采样率不足导致的噪声</strong>
-    <ul>
-      <li>Layer Property -&gt; Include Denoising Data 打开  : 打开后才能传递Normal(法线贴图)和Albedo(反射率)</li>
-      <li>添加一个denoise node: 传递Noisy Image-&gt; Image, Denoising Normal -&gt; Normal, Denoising Albedo -&gt; Albedo
-        <ul>
-          <li>在blender里是通过调用<a href="https://www.openimagedenoise.org">OpenImageDenoise库</a> (unet based)实现: <a href="https://github.com/blender/blender/blob/blender-v4.3-release/source/blender/nodes/composite/nodes/node_composite_denoise.cc">node_composite_denoise.cc</a></li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-</ul>
-
-<p><img src="/personal_homepage/docs/attachment/follow_path.mp4" alt="follow_path.mp4" width="480" /></p>
-
-<h2 id="用到的blender的一些快捷键功能">用到的blender的一些快捷键功能</h2>
-
-<ul>
-  <li><a href="https://docs.blender.org/manual/en/latest/modeling/meshes/tools/loop.html">Loop Cut</a>(卡线): 在edge中间添新的顶点
-    <ul>
-      <li>添加loop cut: Ctrl+R</li>
-      <li>选中已有的loop cut: Shift+Option+长按</li>
-    </ul>
-  </li>
-  <li>Edit Mode 下操作一个物体的mesh
-    <ul>
-      <li>取消全部选择: Option + A</li>
-      <li>定向放缩:
-        <ul>
-          <li>S+Shift+X: 放缩除X 轴外的两个轴, 即放缩YZ平面</li>
-          <li>0 缩放尺度调整为0</li>
-        </ul>
-      </li>
-      <li>多选:  <a href="https://docs.blender.org/manual/en/latest/modeling/meshes/selecting/linked.html">L</a>
-        <ul>
-          <li>鼠标放在要选择的物体上, 选中linked(相连)的mesh部分</li>
-        </ul>
-      </li>
-      <li>反选: ctrl + i</li>
-      <li>复制
-        <ul>
-          <li>在原物体上复制一个mesh: <a href="https://docs.blender.org/manual/en/latest/scene_layout/object/editing/duplicate.html">Shift + D</a></li>
-          <li>移动新mesh: Ctrl + 手势, 软件里有显示位置</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li>打开关闭侧边 Transform栏: N</li>
-</ul>
-
-<h2 id="blender用法">blender用法</h2>
-
-<ul>
-  <li>配置多窗口
-    <ul>
-      <li>在底部右键 -&gt; vertical split : 把右侧配成相机视角</li>
-    </ul>
-  </li>
-  <li>调整相机视角:
-    <ul>
-      <li>View-&gt; Align View -&gt; Align Active Camera to View</li>
-      <li>View-&gt; Navigation -&gt; Walk Navigation 用wasd调整视角方向</li>
-    </ul>
-  </li>
-</ul>
-
-<h3 id="edit-mode">edit mode</h3>
-
-<ul>
-  <li><a href="https://docs.blender.org/manual/en/2.80/scene_layout/object/editing/transform/control/pivot_point/index.html">pivot point(轴心点)</a> 的不同选项影响transform对link里mesh是怎么作用的
-    <ul>
-      <li><img src="/personal_homepage/docs/attachment/Pasted%20image%2020241210124924.png" alt="Pasted image 20241210124924.png" width="150" /> individual orgin:  <img src="/personal_homepage/docs/attachment/Pasted%20image%2020241210124951.png" alt="Pasted image 20241210124951.png" width="150" />  median point: <img src="/personal_homepage/docs/attachment/Pasted%20image%2020241210125026.png" alt="Pasted image 20241210125026.png" width="150" /></li>
-      <li>默认median point是以所有组的中心apply transform的.</li>
-      <li>individual origins是组里每个connect component单独作用</li>
-      <li>! 在Object Mode表现不同
-        <h3 id="modifier">modifier</h3>
-      </li>
-    </ul>
-  </li>
-  <li><a href="https://docs.blender.org/manual/en/latest/modeling/modifiers/deform/simple_deform.html">Simple Deform</a> 的Twist效果
-    <ul>
-      <li><img src="/personal_homepage/docs/attachment/Pasted%20image%2020241213115547.png" alt="Pasted image 20241213115547.png" width="150" /></li>
-      <li>沿Axis扭曲, 扭曲角度由mesh上每个点到Origin的距离(指把点变化到object的局部坐标系下)决定</li>
-      <li>想控制的话, Origin还是单独用一个空物体调整比较方便</li>
-    </ul>
-  </li>
-  <li><a href="https://docs.blender.org/manual/en/latest/modeling/modifiers/deform/curve.html">Curve modifier</a> :
-    <ul>
-      <li>物体坐标由xyz-chart , 转为(curve, 垂直平面) 构成的local chart.</li>
-      <li>超出curve的范围由两端顶点的梯度做外插得到.</li>
-      <li><img src="/personal_homepage/docs/attachment/Pasted%20image%2020241211155218.png" alt="Pasted image 20241211155218.png" width="300" /> 如图Z轴替换为curve, 变换前 -&gt; 变换后(橙色)</li>
-    </ul>
-  </li>
-</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="blender" /><category term="content" /><category term="shortcut" /><summary type="html"><![CDATA[参考这个教学]]></summary></entry><entry><title type="html">几种拍图技巧</title><link href="https://roshameow.github.io//personal_homepage/photo/photo1/" rel="alternate" type="text/html" title="几种拍图技巧" /><published>2024-12-02T00:00:00+00:00</published><updated>2024-12-02T07:19:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/photo/photo1</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/photo/photo1/"><![CDATA[]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="photo" /><category term="content" /><summary type="html"><![CDATA[]]></summary></entry><entry><title type="html">conformal geometry学习 (十一 ) – harmonic map</title><link href="https://roshameow.github.io//personal_homepage/math/conformal-geometry12/" rel="alternate" type="text/html" title="conformal geometry学习 (十一 ) – harmonic map" /><published>2024-11-24T00:00:00+00:00</published><updated>2024-12-16T16:20:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/math/conformal-geometry12</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/math/conformal-geometry12/"><![CDATA[<ul>
-  <li>
-    <p>uniqueness(唯一性)</p>
-  </li>
-  <li></li>
-</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="math" /><category term="content" /><summary type="html"><![CDATA[uniqueness(唯一性)]]></summary></entry><entry><title type="html">洗发水成分</title><link href="https://roshameow.github.io//personal_homepage/daily/shampoo/" rel="alternate" type="text/html" title="洗发水成分" /><published>2024-11-22T00:00:00+00:00</published><updated>2024-12-15T17:28:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/daily/shampoo</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/daily/shampoo/"><![CDATA[<h2 id="成分分类">成分分类</h2>
-
-<p>十二烷醇=月桂醇</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>成分</th>
-      <th>功能</th>
-      <th>分类</th>
-      <th>成分</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><strong>表面活性剂</strong></td>
-      <td>去污</td>
-      <td> </td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td> </td>
-      <td> </td>
-      <td>硫酸盐<br /><br />阴离子表活<br />石油化工提取, 便宜, 好起泡<br />强力但是刺激<br />(不能区分油性杂质和皮肤细胞的脂质膜)<br /></td>
-      <td>- <del>月桂醇<strong>硫酸酯</strong>钠(SLS)</del>: 强力<br />- 月桂醇聚醚<strong>硫酸酯</strong>钠(SLES): 更温和<br />- 月桂醇聚醚<strong>硫酸酯</strong>铵</td>
-    </tr>
-    <tr>
-      <td> </td>
-      <td> </td>
-      <td>皂基类<br /><br />脂肪酸盐类, 好起泡, 强去污. <br />会让头发干涩, 损伤发质.<br /></td>
-      <td>- 月桂酸钠<br />- 硬脂酸钠<br />- 棕榈酸<br />- 氢氧化钠(和脂肪酸一起形成皂基)</td>
-    </tr>
-    <tr>
-      <td> </td>
-      <td> </td>
-      <td>氨基酸<br /><br />清洁力和刺激性平衡</td>
-      <td>- 月桂酰<strong>肌氨酸</strong>钠<br />- 椰油酰<strong>谷氨酸</strong>钠, 椰油酰基甲基牛磺酸钠</td>
-    </tr>
-    <tr>
-      <td> </td>
-      <td> </td>
-      <td>其它<br />温和类的</td>
-      <td>甜菜碱类、乙磺酸类、葡糖苷类, 二乙酸二钠</td>
-    </tr>
-    <tr>
-      <td>活性成分</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td> </td>
-      <td><strong>去屑剂</strong></td>
-      <td> </td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td> </td>
-      <td> </td>
-      <td>广谱</td>
-      <td>- 水杨酸: 抗菌消炎, 促进角质剥落, 不适合头皮敏感的</td>
-    </tr>
-    <tr>
-      <td> </td>
-      <td> </td>
-      <td>马拉色菌</td>
-      <td>- 吡罗克酮乙醇胺盐(octopirox): 抑制马拉色菌,目前没发现刺激性<br />- <del>吡硫錀锌(ZPT)</del>: 单方面抑制马拉色菌, 便宜不好</td>
-    </tr>
-    <tr>
-      <td> </td>
-      <td> </td>
-      <td>霉菌</td>
-      <td>- 酮康唑: 抗霉菌, 抑制皮癣菌, 念珠菌感染</td>
-    </tr>
-    <tr>
-      <td> </td>
-      <td><strong>ph调节剂</strong><br />在5.5-7为佳</td>
-      <td> </td>
-      <td>柠檬酸, 盐酸, 乙酸</td>
-    </tr>
-    <tr>
-      <td>改变发质</td>
-      <td><strong>柔顺剂</strong></td>
-      <td> </td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td> </td>
-      <td> </td>
-      <td>硅油</td>
-      <td>聚二甲基硅氧烷</td>
-    </tr>
-    <tr>
-      <td> </td>
-      <td> </td>
-      <td>阳离子聚合物<br /><br />硅油替代品, <br />让头发顺滑or油腻, <br />把洗发水变透明, <br />可能会残留堵塞毛孔</td>
-      <td>- 瓜尔胶<br />- 聚季开头的成分: 聚季铵盐-7, 聚季铵盐-10</td>
-    </tr>
-    <tr>
-      <td> </td>
-      <td><strong>保湿</strong></td>
-      <td>多元醇类</td>
-      <td>辛甘醇, 己二醇等, 相对好的</td>
-    </tr>
-    <tr>
-      <td><strong>防腐剂</strong></td>
-      <td>防止洗发水发霉变质</td>
-      <td> </td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td> </td>
-      <td> </td>
-      <td>劣质防腐剂</td>
-      <td>- <del>甲基异噻唑咻酮(MIT)</del>, <del>甲基氯异噻唑咻酮</del>, <del>脲素类</del>, <del>羟苯x脂</del></td>
-    </tr>
-    <tr>
-      <td> </td>
-      <td> </td>
-      <td>普通</td>
-      <td>- 苯甲酸钠: 一般<br />- 山梨酸钾: 食品级, 安全</td>
-    </tr>
-    <tr>
-      <td>其它</td>
-      <td>跟洗发关系不大,  <br />不易清洗容易残留头皮</td>
-      <td> </td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td> </td>
-      <td>香精</td>
-      <td> </td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td> </td>
-      <td><strong>增稠类表活</strong></td>
-      <td> </td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td> </td>
-      <td> </td>
-      <td>椰油酰胺</td>
-      <td>- 椰油酰胺 MEA, DEA, MIPA, TEA: 可能产生强致癌物亚硝胺<br />- 椰油酰胺丙基甜菜碱(CAPB)</td>
-    </tr>
-    <tr>
-      <td> </td>
-      <td> </td>
-      <td>丙烯酸聚合物</td>
-      <td>卡波姆, 可能产生剧毒物丙烯酰胺</td>
-    </tr>
-    <tr>
-      <td> </td>
-      <td><strong>珠光剂</strong></td>
-      <td> </td>
-      <td>乙二醇二硬脂酸酯</td>
-    </tr>
-    <tr>
-      <td> </td>
-      <td>着色剂</td>
-      <td> </td>
-      <td>CI开头+数字</td>
-    </tr>
-    <tr>
-      <td>微量添加</td>
-      <td>一般不用看</td>
-      <td> </td>
-      <td> </td>
-    </tr>
-  </tbody>
-</table>
-
-<h3 id="同品牌不同功能成分区别">同品牌不同功能成分区别</h3>
-
-<ul>
-  <li>清扬净爽头皮护理去屑 Vs 清扬男士: 看起来都是挺便宜的材料
-    <ul>
-      <li>普通: 多了 乙二醇二硬脂酸酯(珠光剂), 吡罗克酮乙醇胺盐(去马拉色菌), 椰油酰胺 MEA(增稠表活), CI77019(着色剂), 甘油, 氯化钠排更靠前</li>
-      <li>男士: 多了 吡硫錀锌(去马拉色菌, 更差), 薄荷醇(闻着清爽观感好吧)</li>
-    </ul>
-  </li>
-  <li><a href="https://chrischristensen.com/chris-christensen-clean-start-clarifying-shampoo/">克里斯汀森-开喜(狗用)</a>  Vs <a href="https://chrischristensen.com/chris-christensen-top-cat-clarifying-shampoo/">Top Cat Clarifying(猫用)</a> Vs <a href="https://chrischristensen.com/chris-christensen-top-cat-pre-bath-degreaser/#tab-warranty">猫用去油膏</a> : 增稠剂和ph调节剂成分多, 放在前面, 主要清洁成分还是硫酸盐, 后面添加了保湿护肤用的泛醇
-    <ul>
-      <li>猫用的只标识了简化成分功能, 没标具体成分</li>
-      <li>去油膏成分: THICKENER (增稠剂), EMOLLIENT (润肤剂), CONDITIONING AGENT (调理剂, <strong>改善头发质感，增加顺滑度</strong>), EMULSIFIER (乳化剂), ANTIOXIDANT (抗氧化剂), PRESERVATIVE (防腐剂), WATER
-        <ul>
-          <li>里面甚至没列出有效的关于去油的成分😮‍💨</li>
-          <li>最近连宠物医生都建议用去油膏去油, 我想里面用了破坏脂质层的硫酸盐是很大可能性的, 虽然看起来比人用的产品剂量更低, 成分也更简单, 应该不太担心残留</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-</ul>
-
-<h2 id="使用体验">使用体验</h2>
-
-<ul>
-  <li>施华蔻生姜: 去污能力强, 一点不油腻, 用一段时间会有大片头屑</li>
-  <li>欧莱雅精油润养去屑洗发露: 感觉难冲掉, 洗完还是油</li>
-  <li>霸王: 质地更稀, 有股苦味, 用着没什么问题</li>
-  <li>沙宣轻盈顺柔洗发水: 用着没什么问题</li>
-</ul>
-
-<p>从成分表里看不出哪有问题, 通过成分表看是不是可以用是不可行的吗?</p>
-
-<h2 id="品牌">品牌</h2>
-
-<ul>
-  <li>超市开架
-    <ul>
-      <li><a href="https://www.pg.com.cn/">宝洁(P&amp;G)</a>: 海飞丝, 飘柔, 潘婷</li>
-      <li>联合利华: 清扬 CLEAR, 多芬, 力士</li>
-      <li>国产: 阿道夫</li>
-      <li>资生堂(日本)</li>
-    </ul>
-  </li>
-</ul>
-
-<h2 id="识别">识别</h2>
-
-<p>自动识别成分表</p>
-<ul>
-  <li>OCR 分解得到成分</li>
-  <li>颜色标注</li>
-  <li>成分分析: 过敏性提醒, 估算主要成分价格</li>
-</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="daily" /><category term="content" /><category term="shampoo" /><summary type="html"><![CDATA[成分分类]]></summary></entry><entry><title type="html">conformal geometry学习 (十一 ) – Hodge Star Operator</title><link href="https://roshameow.github.io//personal_homepage/math/conformal-geometry11/" rel="alternate" type="text/html" title="conformal geometry学习 (十一 ) – Hodge Star Operator" /><published>2024-11-12T00:00:00+00:00</published><updated>2024-12-19T22:56:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/math/conformal-geometry11</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/math/conformal-geometry11/"><![CDATA[<h2 id="hodge-star-operator">Hodge Star Operator</h2>
-
-<p>在有Riemann metric的mainfold的微分形式上有映射 $\ast: \Omega^k(M)\rightarrow \Omega^{n-k}(M)$</p>
-<ul>
-  <li>连接微分几何和复几何:
-    <ul>
-      <li>在微分几何中，它描述了manifold上的形式内积和体积</li>
-      <li>在复几何中，它帮助刻画复结构和调和理论，解释了复流形中的拓扑性质?</li>
-    </ul>
-  </li>
-</ul>
-
-<h3 id="manifold定义">manifold定义</h3>
-
-<table>
-  <thead>
-    <tr>
-      <th>两种定义</th>
-      <th>Type I<br />选 $T_pM$ 的orthonormal basis定义</th>
-      <th>Type II<br />用一般的basis定义</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>$T_pM$ 上的basis<br />和inner product</td>
-      <td>$\lbrace\frac{\partial}{\partial x_1},\frac{\partial}{\partial x_2},\cdots,\frac{\partial}{\partial x_n}\rbrace$ -&gt; $\langle \partial_i, \partial_j\rangle_g=\mathbb 1_{ij}$     <br /><br /></td>
-      <td>$\lbrace\frac{\partial}{\partial x_1},\frac{\partial}{\partial x_2},\cdots,\frac{\partial}{\partial x_n}\rbrace$ -&gt; $\langle \partial_i, \partial_j\rangle_g=\mathbf g_{ij}$<br /></td>
-    </tr>
-    <tr>
-      <td>$T_p^\ast M$ 上induce一个dual inner product</td>
-      <td>dual 1-form basis为$\lbrace dx_1,dx_2,\cdots,dx_n\rbrace$</td>
-      <td>dual 1-form basis  $\lbrace dx^1,dx^2,\cdots,dx^n\rbrace$ -&gt; $\langle dx^i, dx^j\rangle_g=g^{ij}$</td>
-    </tr>
-    <tr>
-      <td>$\Omega^k$ 上的dual inner product</td>
-      <td><br />\(\langle dx_{i_1}\wedge \cdots \wedge dx_{i_k}, dx_{j_1}\wedge\cdots \wedge dx_{j_k}\rangle=\delta^{j_1 \cdots j_k}_{i_1\cdots i_k}\)</td>
-      <td><br />$\langle \omega, \eta\rangle_g$<br /><br />\(\langle dx_{i_1}\wedge \cdots \wedge dx_{i_k}, dx_{j_1}\wedge\cdots \wedge dx_{j_k}\rangle=\delta^{j_1 \cdots j_k}_{i_1\cdots i_k}\cdot g^{i_1j_1}\cdots g^{i_kj_k}\)</td>
-    </tr>
-    <tr>
-      <td> </td>
-      <td>volume Element(体元)<br />$\omega_g= dx^1\wedge dx^2\wedge \cdots \wedge dx^n$</td>
-      <td>volume Element(体积形式, 体元)<br />$\omega_g=\sqrt{det(g_{ij})}\ dx^1\wedge dx^2\wedge \cdots \wedge dx^n$</td>
-    </tr>
-    <tr>
-      <td>Hodge star operator<br />$\ast: \Omega^k(M)\rightarrow \Omega^{n-k}(M)$</td>
-      <td><br />$(dx_{i_1}\wedge dx_{i_2}\wedge \cdots \wedge dx_{i_k})\overset{\ast} \mapsto (-1)^\sigma dx_{i_{k+1}}\wedge dx_{i_{k+2}}\wedge\cdots\wedge dx_{i_n}$<br />其中, $\sigma=(i_1,i_2,\cdots, i_n)$ 是一个permutation</td>
-      <td><strong>待定系数法</strong><br />对于一般$\omega\in\Omega^k$ 和$\tau\in\Omega^{n-k}$ 比较以下体元的系数<br />1. $\omega\wedge^\ast \xi=\langle\omega,\xi\rangle_g\omega_g$  <br />2. $\omega\wedge\tau$ <br />解出$^\ast \xi$ 的系数<br /><br /><strong>指标记法</strong><br />即,<br />\((dx^{i_1}\wedge dx^{i_2}\wedge \cdots \wedge dx^{i_k})\overset{\ast} \mapsto \sum_{(j_{k+1},\cdots,j_n)}\frac{\sqrt{det(g_{ij})}}{(n-k)!}\delta^{j_1 \cdots j_k}_{i_1\cdots i_k}\cdot g^{i_1j_1}\cdots g^{i_kj_k} \cdot dx^{j_{k+1}}\wedge dx^{j_{k+2}}\wedge\cdots\wedge dx^{j_n}\) <br /></td>
-    </tr>
-    <tr>
-      <td>例子<br /><br />体元和单位元</td>
-      <td>$^\ast(1)=dx^1\wedge dx^2\wedge \cdots \wedge dx^n=\omega_g$ <br />$^\ast(\omega_g)=1$</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>例子<br /><br />Riemann metric $\mathbf g=e^{2\lambda(u,v)}(du^2+dv^2)$  <br />(写成等温坐标一形式)<br />即,<br /> $\mathbf g_{ij}=\begin{bmatrix}e^{2\lambda} &amp; 0 \\ 0 &amp; e^{2\lambda}\end{bmatrix}$ <br /></td>
-      <td>normalize 自然标架场, 得到orthonormal标架场<br />$\frac{\partial}{\partial x_1}=e^{-\lambda}\frac{\partial}{\partial u}$ , $\frac{\partial}{\partial x_2}=e^{-\lambda}\frac{\partial}{\partial v}$ <br />对应$dx_1=e^\lambda du$ , $dx_2=e^\lambda dv$ <br /><br />Hodge star: $^\ast dx_1=dx_2$ , $^\ast dx_2=-dx_1$ , $^\ast (1)=dx_1\wedge dx_2$ <br />即得 $^\ast du=dv, ^\ast dv=-du$ , $^\ast (1)=e^{2\lambda}du\wedge dv$ <br /><br />hodge star为逆时针旋转90度<br /><br /></td>
-      <td>此时surface area element(面元)<br />$\omega_g=e^{2\lambda(u,v)}du\wedge dv$ <br /><br />比较<br />1.  $\omega\wedge\tau=(\omega_1\tau_2-\omega_2\tau_1)du\wedge dv$ <br />2.  $\omega\wedge ^\ast du=\langle \omega,du\rangle_g\omega_g$<br />$=\langle\omega_1 du+\omega_2 dv, du\rangle_g e^{2\lambda}du\wedge dv$<br />$=e^{-2\lambda}\omega_1 e^{2\lambda} du\wedge dv$  <br />$=\omega_1 du\wedge dv$<br />的系数<br /><br />得到$^\ast du=0\cdot du+1\cdot dv=dv$</td>
-    </tr>
-  </tbody>
-</table>
-
-<ul>
-  <li>Type2 待定系数 -&gt; 指标记法:
-    <ul>
-      <li>把$\tau\in \Omega^{n-k}$ 表示成$\tau=\sum_{(j_{k+1},\cdots,j_n)} (n-k)!\cdot \tau_{(j_{k+1},\cdots,j_n)}\cdot dx^{j_{k+1}}\wedge dx^{j_{k+2}}\wedge\cdots\wedge dx^{j_n}$  , 计算系数 $\tau_{(j_{k+1},\cdots,j_n)}$
-        <ul>
-          <li>$(j_{k+1},\cdots,j_n)$ 排列为递增</li>
-        </ul>
-      </li>
-      <li>比较 $\omega\wedge\tau$ 和 $\omega\wedge^\ast \xi=\langle\omega,\xi\rangle_g \omega_g$ 的系. : 即非零参数 $\omega_{(j_{1},\cdots,j_k)}$ 的系数
-        <ul>
-          <li>左侧为: $(n-k)!\cdot \tau_{(j_{k+1},\cdots,j_n)}$</li>
-          <li>右侧为: \(\delta^{j_1 \cdots j_k}_{i_1\cdots i_k}\cdot g^{i_1j_1}\cdots g^{i_kj_k}\cdot \sqrt{det(g_{ij})}\)</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li>$\ast$ (Hodge Star Operator)在$\Omega^k(M)$ 上定义了一个内积:  $(\zeta,\eta)=\int_M \zeta\wedge^\ast\eta=\int_M \langle \zeta, \eta\rangle_g\omega_g$</li>
-</ul>
-
-<h3 id="离散定义">离散定义</h3>
-
-<p><a href="https://commons.wikimedia.org/wiki/File:Delaunay_Voronoi.svg#/media/File:Delaunay_Voronoi.svg"><img src="https://upload.wikimedia.org/wikipedia/commons/5/56/Delaunay_Voronoi.svg" alt="Connecting the triangulation's circumcenters gives the Voronoi diagram." width="150" /></a>  黑色为Delaunay triangulation $T$, 红色为Voronoi diagram  $T^*$ , 红边是黑边的中垂线</p>
-
-<p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020241205221028.png" alt="Pasted image 20241205221028.png" width="300" /> 在$T$ 的edge(1-chain) 上定义1-form</p>
-
-<ul>
-  <li>Hodge star operator $^\ast\omega(\bar e)=\frac{vol(\bar e)}{vol (e)}\omega(e)=\frac{\vert \bar e\vert}{\vert e\vert}\omega(e)=\frac{1}{2}(\text{cot } \alpha +\text{cot } \beta)\omega(e)$
-    <ul>
-      <li>$e$ (黑边)的dual edge $\bar e$ (红边), $\vert e\vert$ 和$\vert \bar e \vert$ 相当于在度量$\mathbf g$ 下的体积</li>
-      <li>$\omega\in \Omega^1$ 是T上的. -form, 映射结果$^\ast \omega$ 是  $T^*$ 上的1-form</li>
-      <li>由 圆心角的两倍=圆周角, 得到边长的比例 $\text{cot } \alpha +\text{cot } \beta$ , 称为cot edge weight</li>
-    </ul>
-  </li>
-</ul>
-
-<h2 id="举例--调和形式推导">举例 . 调和形式推导</h2>
-
-<h3 id="场论--静电场--双点电荷系统">场论 . 静电场 . 双点电荷系统</h3>
-
-<p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020241122073441.png" alt="Pasted image 20241122073441.png" width="400" />  红色电力线, 为沿电场强度的轨迹; 蓝色等势线</p>
-
-<ul>
-  <li>0-form <a href="https://en.wikipedia.org/wiki/Electric_potential">电势场</a> $\phi$  : 左侧正电荷处边界电势为+1, 负电荷处电势为-1, 外边界电势为0</li>
-  <li>1-form 电场强度为电势的梯度: $E=-\nabla \phi=E_xdx+E_ydy$    (高电势流向低电势)</li>
-  <li>场强是<strong>harmonic</strong>的:
-    <ul>
-      <li>closed:  $curl\ E = \nabla \times E=(\frac{\partial E_y}{\partial x}-\frac{\partial E_x}{\partial y})dxdy = 0$  ( 2-form 旋量, 电场强度的外微分)
-        <ul>
-          <li>物理意义:
-            <ul>
-              <li>描述矢量场漩涡🌀的大小和方向</li>
-              <li>旋量的面积分 = 沿封闭路径$\partial D$ 做功 = 0 (<a href="https://en.wikipedia.org/wiki/Stokes%27_theorem">Stokes Theorem</a>)
-                <ul>
-                  <li>带电粒子沿路径$\gamma$  做功为 $W=\int_\gamma F=q\int_\gamma E=q\int_\gamma \langle E,\dot r\rangle d\tau$
-                    <ul>
-                      <li>带电粒子受到电场力 $F=qE$</li>
-                      <li>其中$\dot r$ 为沿$\gamma$ 的切向</li>
-                    </ul>
-                  </li>
-                </ul>
-              </li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-      <li>coclosed: $div\ E=\nabla\cdot E=\frac{\partial E_x}{\partial x}+\frac{\partial E_y}{\partial y}= 0$   (0-form 散度, 电场强度的余微分)
-        <ul>
-          <li>$-div\ E = \delta(E)=(-1)^{kn+n+1}\ ^\ast d(^\ast E)$
-            <ol>
-              <li>hodge star $^\ast E$ 为旋转90度, $^\ast E=E_y dx - E_x dy$</li>
-              <li>外微分得到 2-form $d(^\ast E)=(\frac{\partial E_x}{\partial x}+\frac{\partial E_y}{\partial y})dxdy$</li>
-              <li>hodge star 得到0-form $^\ast d(^\ast E)=\frac{\partial E_x}{\partial x}+\frac{\partial E_y}{\partial y}$</li>
-              <li>最后 $(-1)^\ast d(^\ast E)=-(\frac{\partial E_x}{\partial x}+\frac{\partial E_y}{\partial y})=-div\ E$ (映射到0-form 即k=0,2-manifold, 即n=2 -&gt; kn+n+1 是odd)</li>
-            </ol>
-          </li>
-          <li>物理意义:
-            <ul>
-              <li>描述矢量场的发散 ✳︎ 和汇聚程度</li>
-              <li>通量 = 封闭路径$\partial D$ 的净流入量(流入量-流出量) = 0   ( <a href="https://en.wikipedia.org/wiki/Divergence_theorem">Gauss’ flux theorem(高斯通量定理)</a> )
-                <ul>
-                  <li>电通量  $\Phi=\oint_{\partial D} \langle E, \mathbf n \rangle ds=\int_D \nabla\cdot E dA$
-                    <ul>
-                      <li>其中$\mathbf n$ 是沿路径 $\partial D$ 的法向</li>
-                    </ul>
-                  </li>
-                </ul>
-              </li>
-              <li>散度 = 通量在无穷小面元的极限 = 0</li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-</ul>
-
-<h3 id="一般等温坐标系的调和函数">一般等温坐标系的调和函数</h3>
-
-<p>Riemann metric $\mathbf g=e^{2\lambda(u,v)}(du^2+dv^2)$</p>
-
-<ul>
-  <li>函数(0-form) $f$ 的Lapalace算子 : $\Delta_g f=(d\delta+\delta d)f=\delta d f= -e^{-2\lambda}(\frac{\partial^2}{\partial u^2}+\frac{\partial^2}{\partial v^2}) f$
-    <ol>
-      <li>differential operator: $df=\frac{\partial f}{\partial u}du + \frac{\partial f}{\partial v}dv=e^{-\lambda}(\frac{\partial f}{\partial u}dx + \frac{\partial f}{\partial v}dy)=\nabla_g f$</li>
-      <li>codifferential operator: $\delta df = -div(\nabla f)$ : 等价于负的 <a href="https://en.wikipedia.org/wiki/Laplace–Beltrami_operator">Lapalace–Beltrami operator</a>
-        <ol>
-          <li>hodge star $^\ast df$ 为旋转90度, $^\ast df=\frac{\partial f}{dv} du - \frac{\partial f}{du} dv$</li>
-          <li>外微分得到 2-form $d(^\ast df)=(\frac{\partial^2}{\partial u^2}f+\frac{\partial^2}{\partial v^2}f)dudv$</li>
-          <li>hodge star 得到0-form $^\ast d(^\ast df)=\omega_g(\frac{\partial^2}{\partial u^2}+\frac{\partial^2}{\partial v^2}) f=e^{-2\lambda}(\frac{\partial^2}{\partial u^2}+\frac{\partial^2}{\partial v^2}) f$</li>
-          <li>最后 $\delta df = (-1)^\ast d(^\ast df)=-\omega_g(\frac{\partial^2}{\partial u^2}+\frac{\partial^2}{\partial v^2}) f=-e^{-2\lambda}(\frac{\partial^2}{\partial u^2}+\frac{\partial^2}{\partial v^2}) f$ (映射到0-form 即k=0,2-manifold, 即n=2 -&gt; kn+n+1 是odd)</li>
-        </ol>
-      </li>
-    </ol>
-  </li>
-  <li><strong>调和函数 $f$ (满足$\Delta_g f=0$ ) 使曲面$S$ 的调和能量($E(f)=(\nabla_g f,\nabla_g f)=\int_M \langle\nabla_g f,\nabla_g f\rangle_g\omega_g$ ) 最小</strong>: $f=\text{argmin}_f E(f)$
-    <ul>
-      <li>( ) 是hodge star operator induced 内积</li>
-      <li>由$(\nabla_g f,\nabla_g f)=(f,\Delta_g f)$</li>
-    </ul>
-  </li>
-</ul>
-
-<h3 id="离散--局部调和形式">离散 . 局部调和形式</h3>
-
-<ul>
-  <li>1-form $\omega$ 是harmonic条件:
-    <ul>
-      <li>closed: 沿每个三角形 $\Delta=\lbrace e_0,e_1,e_2\rbrace$ 一圈的值=0, 即 $\omega(e_0)+\omega(e_1)+\omega(e_2)=0$</li>
-      <li>coclosed:
-        <ol>
-          <li>0-form $div=-^\ast d(^\ast \omega)$ 定义在顶点 $v$ 上</li>
-          <li>是定义在dual Voronoi cell $\bar f$ 上的2-form的hodge star:  $div\ v=-^\ast d(^\ast \omega)(v)=d(^\ast\omega)(\bar f)$</li>
-          <li>是定义在Voronoi cell的边界$\bar e_0,\cdots,\bar e_k$ 上的1-form的外微分: $d(^\ast \omega)(\bar f)=^\ast \omega(\bar e_0)+\cdots+^\ast \omega(\bar e_k)$</li>
-          <li>是定义在<strong>沿顶点$v$ 为起点的边逆时针排列的边</strong> $e_0,\cdots,e_k$ 上的hodge star:  $d(^\ast \omega)(\bar f)=^\ast \omega(\bar e_0)+\cdots+^\ast \omega(\bar e_k)=w_{e_0}\omega(e_0)+\cdots+w_{e_k}\omega(e_k)$
-            <ul>
-              <li>$e_0,\cdots,e_k$ 的cot edge weight为$w_{e_0},\cdots, w_{e_k}$</li>
-            </ul>
-          </li>
-        </ol>
-      </li>
-    </ul>
-  </li>
-</ul>
-
-<h2 id="计算">计算</h2>
-
-<h3 id="曲面的调和一形式">曲面的调和一形式</h3>
-
-<p>由对应的上同调一形式得来</p>
-
-<ul>
-  <li>计算一阶cohomology class的basis: $\lbrace\omega_1,\omega_2,\cdots,\omega_{2g}\rbrace$</li>
-  <li>定义0-form $f_1,\cdots,f_{2g}$ , 使$\lbrace\omega_1+df_1,\cdots,\omega_{2g}+df_{2g}\rbrace$ 是harmonic的
-    <ul>
-      <li>closed: $\omega_i$ 是closed -&gt; $\omega_i+df_i$ 自然是closed
-        <ul>
-          <li>$\omega_i+df_i\in \omega_i+\text{img}\ d^0$ 和 $\omega_i$ 属于同个cohomology class</li>
-        </ul>
-      </li>
-      <li>coclosed: 解每个顶点处的线性的coclosed方程</li>
-    </ul>
-  </li>
-</ul>
-
-<h3 id="harmonic-map调和映射"><a href="https://en.wikipedia.org/wiki/Harmonic_map">harmonic map(调和映射)</a></h3>
-
-<ul>
-  <li>f 是调和映射 &lt;-&gt; f在每个分量上都是调和函数 &lt;-&gt; $df$ 在曲面内部是调和一形式</li>
-</ul>
-
-<p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020241216162354.png" alt="Pasted image 20241216162354.png" width="300" /></p>
-
-<ul>
-  <li>disk harmonic map: 带边单连通曲面( topological disk) $M$  到单位圆盘的映射  $f: M\rightarrow \mathbb D$ (0-form)</li>
-  <li>计算:
-    <ol>
-      <li>随便构造边界函数 $g: \partial M\rightarrow \mathbb S^1$ , 使 g是homeomorphic(同胚) 就行: 把$\mathbb S^1$ 等分映射到对应三角形边界就行</li>
-      <li>计算每个边的 cotangent edge weight</li>
-      <li>解 $df$ 的coclosed方程(f 的Laplacian方程 )</li>
-    </ol>
-  </li>
-</ul>
-
-<p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020241216085519.png" alt="Pasted image 20241216085519.png" width="300" /></p>
-
-<ul>
-  <li>spherical harmonic map: genus 0 的closed 曲面mesh $M$ , 到单位球的映射 $\phi: M\rightarrow \mathbb S^2$</li>
-  <li>计算: spherical的情况, 有1. Laplacian ($\Delta \phi(v_i)=\sum_{v_i\sim v_j} w_{ij}(\phi(v_j)-\phi(v_i))=0$) 和2. 球面($\phi(v_i)\in \mathbb S^2$) 两个约束, 用proximal(近端算子)的方法轮流迭代
-    <ol>
-      <li>计算每个边的 cotangent edge weight</li>
-      <li>构造初始映射为 Gauss映射$G:M\rightarrow \mathbb S^2$ , 把点映射到normal vector($p\mapsto \mathbf n(p)$ ).</li>
-      <li>迭代:
-        <ol>
-          <li>计算每个顶点的 Laplacian 值</li>
-          <li>减少Laplacian部分: 从$\phi(v_i)$ 减去$\Delta\phi(v_i)$ 在切平面的投影, 即 $\phi(v_i)$ -= $\lambda D\phi(v_i)$
-            <ul>
-              <li><img src="/personal_homepage/docs/attachment/Pasted%20image%2020241219224615.png" alt="Pasted image 20241219224615.png" width="150" /></li>
-              <li>$\lambda$ 为step_size (保证迭代稳定, 不诱发自旋转? )</li>
-            </ul>
-          </li>
-          <li>重新映射回 $\mathbb S^2$ : 计算重心, 以重心为原点normalize</li>
-        </ol>
-      </li>
-    </ol>
-  </li>
-</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="math" /><category term="content" /><category term="hodge_star" /><category term="电场" /><category term="Riemann_metric" /><category term="harmonic_form" /><category term="dual_mesh" /><category term="harmonic_function" /><category term="harmonic_map" /><category term="cohomology" /><category term="harmonic_energy" /><summary type="html"><![CDATA[Hodge Star Operator]]></summary></entry></feed>
+</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="blender" /><category term="content" /><summary type="html"><![CDATA[参考这个教学]]></summary></entry></feed>

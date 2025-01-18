@@ -400,7 +400,7 @@ var store = [{
         "url": "https://roshameow.github.io//personal_homepage/math/conformal-geometry10/"
       },{
         "title": "attention的优化-- KV Cache",
-        "excerpt":"","categories": ["algorithm"],
+        "excerpt":" casual mask ","categories": ["algorithm"],
         "tags": ["content","attention"],
         "url": "https://roshameow.github.io//personal_homepage/algorithm/attention4/"
       },{
@@ -440,7 +440,7 @@ var store = [{
         "url": "https://roshameow.github.io//personal_homepage/daily/shampoo/"
       },{
         "title": "conformal geometry学习 (十一 ) -- harmonic map",
-        "excerpt":"      uniqueness(唯一性)     ","categories": ["math"],
+        "excerpt":"在复分析里被研究很多 平面调和函数性质 平面区域 $\\Omega\\subset \\mathbb R^2$ 调和函数 $f$ 使调和能量最小: $f=\\text{argmin}_f E(f)$ (满足$\\Delta_g f=0$ ) $E(f)=(\\nabla_g f,\\nabla_g f)=\\int_M \\langle\\nabla_g f,\\nabla_g f\\rangle_g\\omega_g$ (regularity, smoothness) 调和函数在开集是$C^\\infty$ (无穷可导) 的 (Mean Value property) 调和函数 $f$ 沿一个点周围一圈的平均值等于在这个点取值 (Maximum principle) 调和函数 $f$ 的最大, 最小值只能是在边界上 反证法: 如果$\\Omega$ 内部有个最值$p$ , 会违背mean value property (Uniqueness, 唯一性) 两个调和函数 $u_1,u_2$ 在边界上取值相等 -&gt;...","categories": ["math"],
         "tags": ["content"],
         "url": "https://roshameow.github.io//personal_homepage/math/conformal-geometry12/"
       },{
@@ -470,12 +470,47 @@ var store = [{
         "url": "https://roshameow.github.io//personal_homepage/blender/blender-learning16/"
       },{
         "title": "Serverless服务",
-        "excerpt":"阿里云   负载均衡方案:          clb      nlb      alb      ","categories": ["WebPage"],
+        "excerpt":"租虚拟服务器代替真实服务器   优点:          减少运维麻烦: 比如操作系统的安装和管理, 硬件的配置, 网络的配置(防火墙, 隔离, 权限等), 运行环境和依赖的配置, 容灾备份等      自动扩展: 不用手动配置负载均衡器, 调整服务器数量      自动优化: 跟据函数的内存大小, 自动优化代码的执行时间和性能      可能更省钱: 用运行资源(程序执行时间, cpu, 内存, 公网流量等) 计费, 而不是服务器数量计费      AWS Lambda   每个lambda function 单独配置权限, 类似github action    阿里云     负载均衡方案:          clb      nlb      alb      ","categories": ["WebPage"],
         "tags": ["content"],
         "url": "https://roshameow.github.io//personal_homepage/webpage/serverless/"
       },{
-        "title": "blender资源",
-        "excerpt":"模型                                       sketchfab                     cg模型网      国风模型              cubebrush                     free3d                     blender官网demo                     blendermarket      .blend格式, 免费比较少              Daz      写实风格, 素体Render-State : daz链接                            ","categories": ["blender"],
+        "title": "3d模型资源, 数据库",
+        "excerpt":"3d模型文件格式 格式 格式 特点 常用用途 开发商 .obj vertex(v): 由3d coordinate表示texture(vt): 2d coordinatenormal(vn): 3d vectorface(f): vertex索引/texture索引/normal索引       .stl     3d打印   Polygon File Format.ply 1. header 数据结构element 对象(vertex) 数量(14)property 类型(float) 名称(x/y/z…)2. 具体数据两部分构成 支持颜色、法线和其他属性 点云数据   .fbx       Autodesk Graphics Language Transmission Format.gltf, .glb   现代, 省空间...","categories": ["data"],
         "tags": ["content"],
-        "url": "https://roshameow.github.io//personal_homepage/blender/blender-learning17/"
+        "url": "https://roshameow.github.io//personal_homepage/data/blender-learning17/"
+      },{
+        "title": "终端配置",
+        "excerpt":"zsh powershell   找到, 或创建$PROFILE 文件:          在powershell里直接输入$PROFILE 查看路径      创建: New-Item -Path C:\\MyFolder -Name \"Example.txt\" -ItemType File      查看: cat      写入: Set-Content -Path \"NewFile.txt\" -Value \"This is a test file.\"        打开文件","categories": ["tool"],
+        "tags": ["content"],
+        "url": "https://roshameow.github.io//personal_homepage/tool/setting-shortcut/"
+      },{
+        "title": "雪花制作",
+        "excerpt":"六方晶系 ","categories": ["blender"],
+        "tags": ["content"],
+        "url": "https://roshameow.github.io//personal_homepage/blender/snowflake/"
+      },{
+        "title": "blender学习: 用几何节点做程序化城市",
+        "excerpt":"参考这个教学 1: -&gt; 2: -&gt; 3: -&gt; 4: -&gt; 5: 制作道路: 制作随机网格: 随机2, 3层细分 用二层 subdivide Mesh 随机选一些内部网格 (Separate Geometry Node -&gt; Face ) 再进行一层subdivide 输入Boolean的随机值 输出选中的和未选中的不同处理 用Join Gemetry Node 融合在一起 制作随机扭曲: 把随机的mesh merge在一起 用Merge by Distance Node 融合: 输入Boolean的随机值, distance选择0.26( 稍 &gt; 2级细分, 即1/4) 再次用0.01的distance 融合: 去除重复的边 把网格转成道路 mesh转成折线curve:...","categories": ["blender"],
+        "tags": ["content","geometry_node"],
+        "url": "https://roshameow.github.io//personal_homepage/blender/blender-learning18/"
+      },{
+        "title": "worldquant BRAIN 股票因子 (一) -- 仿真测试",
+        "excerpt":"选择在模拟盘中表现好的因子投资 仿真 仿真参数 分为数据库选择, 和后处理两部分 Delay: 当天(在当天closed前根据当天数据交易), 或+1天 Test Period: 把仿真的5年时间分出一部分作为test, PnL图上orange的部分 Universe(股票范围): Top3000指日平均 volume 最大的3000支 Decay: 自带的一个linear decay(前n天) pasteurized: ? 只考虑universe以内的alpha? Nan Handling: 操作不可控? OFF的话, 有Nan的值会被平仓(全部卖出) Unit Handling: 单位不匹配时报warning truncation: 设置maximum weight上限: 建议设置0.05~0.1 (entailing 5-10%)之间 neutralize(标准化): 让mean(alpha)=0, 时间(ts_neutralize)上做neutralize避免长期趋势. 同期(group_neutralize)的做避免不同类型股票的不公平比较.仿真交易流程 输入为 Matrix, 按照时间顺序交易 仿真交易规则: 每天用恒定的账面规模(book size)交易, book size 为$20 million. 有$10...","categories": ["finance"],
+        "tags": ["content","stock","alpha","simulation"],
+        "url": "https://roshameow.github.io//personal_homepage/finance/alphas/"
+      },{
+        "title": "worldquant BRAIN 股票因子 (二) -- 因子思路",
+        "excerpt":"一些因子的来源和原理 对公司经营状况的预估(基本数据) fundamental datasets 运营盈利: 只对大型公司有效 盈利/支出 -rank(ebit/capex) 投入更多到运营盈利上的公司不怎么样 资产估值/盈利 alpha = -group_rank(fnd2_ebitdm, industry)-group_rank(fnd2_ebitfr, industry); group_rank(fn_assets_fair_val_a,industry)&gt;0.5?alpha*2 : alpha fnd2_ebitdm domestic ebit, fnd2_ebitfr foreign ebit fn_assets_fair_val_a 资产估值 留存收益: 未分配给股东的利润 rank(ts_delta(retained_earnings / sharesout, 90)) 留存收益/股本=每股留存收益: 不受公司规模影响 -ts_rank(retained_earnings,250) 留存收益比历史减少, 可能是分红给股东了 营业收入: ts_rank(operating_income,252) 营业收入越高越好, 结合相对股价看(operating_income/close), 如果营业收入增长而股价未能跟上，可能意味着市场尚未充分定价公司改善的前景 负债 短期债务: 限制同行业比较 zscore(cash_st/debt_st) 现金流越高, 还债能力越强 负债公允价值（Fair Value...","categories": ["finance"],
+        "tags": ["content","stock","alpha"],
+        "url": "https://roshameow.github.io//personal_homepage/finance/alphas2/"
+      },{
+        "title": "协程的用法",
+        "excerpt":"python 协程的用法   yield(生成器)  future  asyncio          async 函数不会马上执行其中代码, 而是返回coroutine function      await 相当于yield from                  后面可以是task/coroutine/future                    task: 可以被执行的函数                  create_task 可以生成task          await 也会          asyncio.run() 的时候会执行task                      特点:          需要每个子任务结束主动告知(运行结束, return)      ","categories": ["tool"],
+        "tags": ["content","python"],
+        "url": "https://roshameow.github.io//personal_homepage/tool/asyncio/"
+      },{
+        "title": "worldquant BRAIN 股票因子 (三) -- API使用",
+        "excerpt":"  测试dataset的方法: https://platform.worldquantbrain.com/learn/documentation/understanding-data/data 主要是通过coverage,[1]  https://support.worldquantbrain.com/hc/en-us/community/posts/11807866133911–BRAIN-TIPS-6-ways-to-quickly-evaluate-a-new-dataset ","categories": ["code"],
+        "tags": ["content","python"],
+        "url": "https://roshameow.github.io//personal_homepage/code/alphas3/"
       }]

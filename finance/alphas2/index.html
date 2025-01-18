@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<!--
+    So Simple Jekyll Theme 3.2.0
+    Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+    Free for personal and commercial use under the MIT license
+    https://github.com/mmistakes/so-simple-theme/blob/master/LICENSE
+-->
+<html lang="en-US" class="no-js">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  
+
+  
+  
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>worldquant BRAIN 股票因子 (二) – 因子思路 | Liu, Wen’s Home Page</title>
+<meta name="generator" content="Jekyll v4.3.4" />
+<meta property="og:title" content="worldquant BRAIN 股票因子 (二) – 因子思路" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="一些因子的来源和原理" />
+<meta property="og:description" content="一些因子的来源和原理" />
+<link rel="canonical" href="https://roshameow.github.io//personal_homepage/finance/alphas2/" />
+<meta property="og:url" content="https://roshameow.github.io//personal_homepage/finance/alphas2/" />
+<meta property="og:site_name" content="Liu, Wen’s Home Page" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2025-01-15T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="worldquant BRAIN 股票因子 (二) – 因子思路" />
+<meta name="twitter:site" content="@" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2025-01-18T21:09:00+00:00","datePublished":"2025-01-15T00:00:00+00:00","description":"一些因子的来源和原理","headline":"worldquant BRAIN 股票因子 (二) – 因子思路","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/finance/alphas2/"},"url":"https://roshameow.github.io//personal_homepage/finance/alphas2/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  
+
+  <script>
+    /* Cut the mustard */
+    if ('querySelector' in document && 'addEventListener' in window) {
+      document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + 'js';
+    }
+  </script>
+
+  <link rel="stylesheet" href="/personal_homepage/assets/css/main.css">
+  <link rel="stylesheet" href="/personal_homepage/assets/css/skins/default.css">
+  
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,700,700i|Lora:400,400i,700,700i">
+  <link rel="alternate" type="application/atom+xml" title="Liu, Wen&#39;s Home Page" href="/personal_homepage/atom.xml">
+<!-- start custom head snippets -->
+
+<!-- insert favicons. use http://realfavicongenerator.net/ -->
+<link rel="shortcut icon" type="image/x-icon" href="/personal_homepage/docs/images/logo.ico">
+<!-- end custom head snippets -->
+
+</head>
+
+  <body class="layout--post  worldquant-brain-股票因子-二-因子思路">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#primary-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+  <div class="navigation-wrapper">
+    <a href="#menu-toggle" id="menu-toggle">Menu</a>
+    <nav id="primary-nav" class="site-nav animated drop">
+      <ul><li><a href="/personal_homepage/">Home</a></li><li><a href="/personal_homepage/posts/">Posts</a></li><li><a href="/personal_homepage/categories/">Categories</a></li><li><a href="/personal_homepage/tags/">Tags</a></li><li><a href="/personal_homepage/family/">Family</a></li><li><a href="/personal_homepage/search/">Search</a></li></ul>
+    </nav>
+  </div><!-- /.navigation-wrapper -->
+
+
+    <header class="masthead">
+  <div class="wrap">
+    
+    
+    
+      
+        <div class="site-title animated fadeIn"><a href="/personal_homepage/">Liu, Wen's Home Page</a></div>
+      
+      <p class="site-description animated fadeIn" itemprop="description">Work, Experiments and Ideas.</p>
+    
+  </div>
+</header><!-- /.masthead -->
+
+
+    <main id="main" class="main-content" aria-label="Content">
+  <article class="h-entry">
+    
+
+    <div class="page-wrapper">
+      <header class="page-header">
+        
+        
+        <h1 id="page-title" class="page-title p-name">worldquant BRAIN 股票因子 (二) – 因子思路
+</h1>
+        
+      </header>
+
+      <div class="page-sidebar">
+        <div class="page-author h-card p-author"><img src="/personal_homepage/docs/images/logo.svg" class="author-avatar u-photo" alt=""><div class="author-info">
+
+<span class="read-time">~1 min read</span>
+
+    <time class="page-date dt-published" datetime="2025-01-15T00:00:00+00:00"><a class="u-url" href="">January 15, 2025</a>
+</time>
+
+  </div>
+</div>
+
+        
+  <h3 class="page-taxonomies-title">Categories</h3>
+  
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a class="p-category" href="/personal_homepage/categories/#finance" title="Pages filed under finance">finance</a></li>
+  </ul>
+
+
+        
+  <h3 class="page-taxonomies-title">Tags</h3>
+  
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a href="/personal_homepage/tags/#alpha" title="Pages tagged alpha" rel="tag">alpha</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#content" title="Pages tagged content" rel="tag">content</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#stock" title="Pages tagged stock" rel="tag">stock</a></li>
+  </ul>
+
+
+        <!-- {::options parse_block_html="true" /} -->
+<div id="entry-table-of-contents" class="toc-wrapper">
+  <h2 id="toc-toggle">
+    Table of Contents <i
+      class="toc-toggle-icon fas fa-chevron-down"></i>
+  </h2>
+  <!-- 1. toc
+{:toc} -->
+  <!-- <div id="markdown-toc"> -->
+
+    <ul class="inline_toc" id="my_toc"><li><a href="#对公司经营状况的预估基本数据">对公司经营状况的预估(基本数据)</a></li><li><a href="#对外部事件的响应">对外部事件的响应</a></li><li><a href="#对市场表现的预估量价数据">对市场表现的预估(量价数据)</a></li><li><a href="#参考资料">参考资料</a></li></ul>
+  <!-- </div> -->
+
+</div>
+<!-- {::options parse_block_html="false" /} -->
+        
+
+<div id="entry-table-of-contents" class="toc-wrapper">
+    <h2 id="toc-toggle" class="no_toc">
+        Related Posts <i class="toc-toggle-icon fas fa-chevron-down"></i>
+    </h2>
+    <!-- <div id="markdown-toc"> -->
+    <ul>
+        
+        <li><a href="/personal_homepage/code/alphas3/">worldquant BRAIN 股票因子 (三) -- API使用</a></li>
+        
+        <li><a href="/personal_homepage/tool/asyncio/">协程的用法</a></li>
+        
+        <li><a href="/personal_homepage/finance/alphas/">worldquant BRAIN 股票因子 (一) -- 仿真测试</a></li>
+        
+        <li><a href="/personal_homepage/blender/blender-learning18/">blender学习: 用几何节点做程序化城市</a></li>
+        
+        <li><a href="/personal_homepage/blender/snowflake/">雪花制作</a></li>
+        
+    </ul>
+    <!-- </div> -->
+
+</div>
+
+
+
+
+
+      </div>
+
+      <div class="page-content">
+        <div class="e-content">
+          <p>一些因子的来源和原理</p>
+
+<h2 id="对公司经营状况的预估基本数据">对公司经营状况的预估(基本数据)</h2>
+
+<p>fundamental datasets</p>
+
+<ul>
+  <li>运营盈利: 只对大型公司有效
+    <ul>
+      <li>盈利/支出
+        <ul>
+          <li><code class="language-plaintext highlighter-rouge">-rank(ebit/capex)</code>
+            <ul>
+              <li>投入更多到运营盈利上的公司不怎么样</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>资产估值/盈利
+        <ul>
+          <li><code class="language-plaintext highlighter-rouge">alpha = -group_rank(fnd2_ebitdm, industry)-group_rank(fnd2_ebitfr, industry); group_rank(fn_assets_fair_val_a,industry)&gt;0.5?alpha*2 : alpha</code>
+            <ul>
+              <li><code class="language-plaintext highlighter-rouge">fnd2_ebitdm</code> domestic ebit, <code class="language-plaintext highlighter-rouge">fnd2_ebitfr</code> foreign ebit</li>
+              <li><code class="language-plaintext highlighter-rouge">fn_assets_fair_val_a</code> 资产估值</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>留存收益: 未分配给股东的利润
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">rank(ts_delta(retained_earnings / sharesout, 90))</code>
+        <ul>
+          <li>留存收益/股本=每股留存收益: 不受公司规模影响</li>
+        </ul>
+      </li>
+      <li><code class="language-plaintext highlighter-rouge">-ts_rank(retained_earnings,250)</code>
+        <ul>
+          <li>留存收益比历史减少, 可能是分红给股东了</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>营业收入:
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">ts_rank(operating_income,252)</code>
+        <ul>
+          <li>营业收入越高越好,</li>
+          <li>结合相对股价看(operating_income/close), 如果营业收入增长而股价未能跟上，可能意味着市场尚未充分定价公司改善的前景</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>负债
+    <ul>
+      <li>短期债务: 限制同行业比较
+        <ul>
+          <li><code class="language-plaintext highlighter-rouge">zscore(cash_st/debt_st)</code>
+            <ul>
+              <li>现金流越高, 还债能力越强</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>负债公允价值（Fair Value of Liabilities）,公司负债在市场上的当前价值
+        <ul>
+          <li><code class="language-plaintext highlighter-rouge">-ts_rank(fn_liab_fair_val_l1_a,252)</code></li>
+        </ul>
+      </li>
+      <li><code class="language-plaintext highlighter-rouge">liabilities/assets</code>, <code class="language-plaintext highlighter-rouge">debt/assets</code>
+        <ul>
+          <li>高杠杆可能带来高回报</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>收入
+    <ul>
+      <li>税前收入, 销售数量(sales)
+        <ul>
+          <li><code class="language-plaintext highlighter-rouge">quantile(ts_rank(pretax_income,250))</code>
+            <ul>
+              <li>税前收入越靠前的公司越好</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>递延收入: 订阅型业务, 长期合约, 预付款业务
+        <ul>
+          <li><code class="language-plaintext highlighter-rouge">slope = ts_regression(fnd6_newqv1300_drcq,step(1),252,rettype=2); rank(slope)</code></li>
+          <li>计算<code class="language-plaintext highlighter-rouge">dr</code>(deferred revenue)的斜率, 增长说明需求增加, 可能股票会涨</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="对外部事件的响应">对外部事件的响应</h2>
+
+<ul>
+  <li>新闻影响
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">ts_backfill(vec_avg(nws12_prez_4l),504)</code>
+        <ul>
+          <li>新闻发布后股价提升4%的时间</li>
+        </ul>
+      </li>
+      <li><code class="language-plaintext highlighter-rouge">(ts_arg_max(ts_backfill(news_session_range, 20), 60))</code>
+        <ul>
+          <li>新闻后的波动范围(high-low)越大, 应该做多?? 一个季度内, 到达最大波动范围的最近时间. 越长说明波动衰减的正常. 不会极端的受到</li>
+          <li>需要用随时间变化快的decay, 和trade_when控制换手率</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>社媒:  对volume做neuntralize
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">-scl12_buzz</code>
+        <ul>
+          <li>讨论多的认为是负面情绪</li>
+        </ul>
+      </li>
+      <li><code class="language-plaintext highlighter-rouge">ts_std_dev(ts_backfill(snt_social_value,60),60)</code>
+        <ul>
+          <li>在一段时间内有关注是好事, 注意区分不同类型的股票</li>
+        </ul>
+      </li>
+      <li><code class="language-plaintext highlighter-rouge">-ts_mean(pv13_ustomergraphrank_hub_rank,504)</code>
+        <ul>
+          <li><code class="language-plaintext highlighter-rouge">hub</code> 公司在网络中的中心度, 越低说明对其他合作伙伴依赖越少, 更稳定, 注意区分不同类型的股票</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>volatility(波动率)
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">(implied_volatility_call_120/parkinson_volatility_120)^0.1</code>
+        <ul>
+          <li>历史波动率: daily return的标准差</li>
+          <li>Implied Volatility(隐含波动率): 通过期权定价模型计算</li>
+          <li>Parkinson波动率: 通过价格区间(high-low/close)计算</li>
+        </ul>
+      </li>
+      <li><code class="language-plaintext highlighter-rouge">trade_when(pcr_oi_270 &lt; 1, (implied_volatility_call_270-implied_volatility_put_270), -1)</code>
+        <ul>
+          <li><code class="language-plaintext highlighter-rouge">pcr_oi_270</code> (put-call-ratio)未平仓合约数, 小于1 的话(call&gt;put)说明市场看涨</li>
+          <li>可以根据历史波动率分组, 提升subuniverse-test, 很有效</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="对市场表现的预估量价数据">对市场表现的预估(量价数据)</h2>
+
+<p>Price-volume datasets</p>
+
+<ul>
+  <li>成交量: 根据市值(cap)分组, 不同波动时期区别对待
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">alpha = (1/volume);group = bucket(rank(cap),range ='0.25,1,0.25');group_rank(alpha,group);</code>
+        <ul>
+          <li>成交量太活跃不是好事</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>相关性
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">-ts_corr(ts_backfill(fscore_momentum,66),ts_backfill(fscore_value,66),756)</code>
+        <ul>
+          <li>估值(市盈率（P/E）、市净率（P/B）等财务指标来估算)和动量(股票价格变化率计算)的相关性高, 说明股票价格和价值分离?</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>风险
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">SR = systematic_risk_last_60_days;USR = unsystematic_risk_last_60_days;zscore(USR + SR)</code>
+        <ul>
+          <li>总风险, 高风险是好的?</li>
+          <li>去掉和指数相关性高的股票?</li>
+        </ul>
+      </li>
+      <li><code class="language-plaintext highlighter-rouge">market_ret = ts_product(1+group_mean(returns,1,market),250)-1;rfr = vec_avg(fnd6_newqeventv110_optrfrq);expected_return = rfr+beta_last_360_days_spy*(market_ret-rfr);actual_return = ts_product(returns+1,250)-1;actual_return-expected_return</code>
+        <ul>
+          <li>CAPM(Capital Asset Pricing Model): <code class="language-plaintext highlighter-rouge">rfr</code> 是risk free rate + beta * (return - rfr)</li>
+          <li>实际比CAPM计算的return高是好事</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="参考资料">参考资料</h2>
+
+<p>[1]  https://platform.worldquantbrain.com/learn/documentation</p>
+
+        </div>
+
+        
+
+        
+        
+  <div class="page-comments">
+    <div id="disqus_thread"></div>
+    <script>
+      var disqus_config = function () {
+        this.page.url = 'https://roshameow.github.io//personal_homepage/finance/alphas2/';
+        this.page.identifier = 'https://roshameow.github.io//personal_homepage/finance/alphas2/';
+      };
+
+      (function() {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://https-roshameow-github-io-personal-homepage.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+  </div>
+
+
+        
+
+        <nav class="page-pagination" role="navigation">
+  
+    <a class="page-previous" href="/personal_homepage/finance/alphas/">
+      <h4 class="page-pagination-label">Previous</h4>
+      <span class="page-pagination-title">
+        <i class="fas fa-arrow-left"></i> worldquant BRAIN 股票因子 (一) – 仿真测试
+
+      </span>
+    </a>
+  
+
+  
+    <a class="page-next" href="/personal_homepage/tool/asyncio/">
+      <h4 class="page-pagination-label">Next</h4>
+      <span class="page-pagination-title">
+        协程的用法
+ <i class="fas fa-arrow-right"></i>
+      </span>
+    </a>
+  
+</nav>
+
+      </div>
+
+    </div>
+  </article>
+</main>
+
+    <footer id="footer" class="site-footer">
+  <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+<div class="social-icons"><a class="social-icon" href="/personal_homepage/atom.xml"><i class="fas fa-rss-square fa-2x" title="Feed"></i></a><a class="social-icon" href="https://github.com/roshameow"><i class="fab fa-github-square fa-2x" title="GitHub"></i></a><a class="social-icon" href="https://www.linkedin.com/in/wen-liu-06503a7b/"><i class="fab fa-linkedin fa-2x" title="LinkedIn"></i></a><a class="social-icon" href="mailto:w.liuatnk@gmail.com"><i class="fas fa-envelope-square fa-2x" title="e-mail"></i></a></div><div class="copyright">
+    
+      <p>&copy; 2025 Liu, Wen's Home Page. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://github.com/mmistakes/so-simple-theme" rel="nofollow">So Simple</a>.</p>
+    
+  </div>
+</footer>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="/personal_homepage/assets/js/main.min.js"></script>
+<script src="https://use.fontawesome.com/releases/v5.0.12/js/all.js"></script><!-- <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'G-9TMSCDTBGN', 'auto');
+  ga('send', 'pageview');
+</script> -->
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9TMSCDTBGN"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-9TMSCDTBGN');
+</script>
+
+
+
+<!-- MathJax -->
+
+<script>
+    // http://docs.mathjax.org/en/latest/upgrading/v2.html
+    MathJax = {
+        tex: {
+            tags: "ams",    // eq numbering options: none, ams, all
+            inlineMath: [['$', '$'], ["\\(", "\\)"]],  // 设置行内数学公式的开始和结束标记
+            displayMath: [['$$', '$$'], ["\\[", "\\]"]]  // 设置行间数学公式的开始和结束标记
+        },
+        // options: {
+        //   renderActions: {
+        //     // for mathjax 3, handle <script "math/tex"> blocks inserted by kramdown
+        //     find: [10, function (doc) {
+        //       for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+        //         const display = !!node.type.match(/; *mode=display/);
+        //         const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+        //         const text = document.createTextNode('');
+        //         node.parentNode.replaceChild(text, node);
+        //         math.start = { node: text, delim: '', n: 0 };
+        //         math.end = { node: text, delim: '', n: 0 };
+        //         doc.math.push(math);
+        //       }
+        //     }, '']
+        //   }
+        // }
+    }
+</script>
+
+<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  </body>
+
+</html>

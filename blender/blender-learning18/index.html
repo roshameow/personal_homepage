@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<!--
+    So Simple Jekyll Theme 3.2.0
+    Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+    Free for personal and commercial use under the MIT license
+    https://github.com/mmistakes/so-simple-theme/blob/master/LICENSE
+-->
+<html lang="en-US" class="no-js">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  
+
+  
+  
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>blender学习: 用几何节点做程序化城市 | Liu, Wen’s Home Page</title>
+<meta name="generator" content="Jekyll v4.3.4" />
+<meta property="og:title" content="blender学习: 用几何节点做程序化城市" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="参考这个教学" />
+<meta property="og:description" content="参考这个教学" />
+<link rel="canonical" href="https://roshameow.github.io//personal_homepage/blender/blender-learning18/" />
+<meta property="og:url" content="https://roshameow.github.io//personal_homepage/blender/blender-learning18/" />
+<meta property="og:site_name" content="Liu, Wen’s Home Page" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2025-01-04T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="blender学习: 用几何节点做程序化城市" />
+<meta name="twitter:site" content="@" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2025-01-07T17:14:00+00:00","datePublished":"2025-01-04T00:00:00+00:00","description":"参考这个教学","headline":"blender学习: 用几何节点做程序化城市","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/blender/blender-learning18/"},"url":"https://roshameow.github.io//personal_homepage/blender/blender-learning18/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  
+
+  <script>
+    /* Cut the mustard */
+    if ('querySelector' in document && 'addEventListener' in window) {
+      document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + 'js';
+    }
+  </script>
+
+  <link rel="stylesheet" href="/personal_homepage/assets/css/main.css">
+  <link rel="stylesheet" href="/personal_homepage/assets/css/skins/default.css">
+  
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,700,700i|Lora:400,400i,700,700i">
+  <link rel="alternate" type="application/atom+xml" title="Liu, Wen&#39;s Home Page" href="/personal_homepage/atom.xml">
+<!-- start custom head snippets -->
+
+<!-- insert favicons. use http://realfavicongenerator.net/ -->
+<link rel="shortcut icon" type="image/x-icon" href="/personal_homepage/docs/images/logo.ico">
+<!-- end custom head snippets -->
+
+</head>
+
+  <body class="layout--post  blender学习-用几何节点做程序化城市">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#primary-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+  <div class="navigation-wrapper">
+    <a href="#menu-toggle" id="menu-toggle">Menu</a>
+    <nav id="primary-nav" class="site-nav animated drop">
+      <ul><li><a href="/personal_homepage/">Home</a></li><li><a href="/personal_homepage/posts/">Posts</a></li><li><a href="/personal_homepage/categories/">Categories</a></li><li><a href="/personal_homepage/tags/">Tags</a></li><li><a href="/personal_homepage/family/">Family</a></li><li><a href="/personal_homepage/search/">Search</a></li></ul>
+    </nav>
+  </div><!-- /.navigation-wrapper -->
+
+
+    <header class="masthead">
+  <div class="wrap">
+    
+    
+    
+      
+        <div class="site-title animated fadeIn"><a href="/personal_homepage/">Liu, Wen's Home Page</a></div>
+      
+      <p class="site-description animated fadeIn" itemprop="description">Work, Experiments and Ideas.</p>
+    
+  </div>
+</header><!-- /.masthead -->
+
+
+    <main id="main" class="main-content" aria-label="Content">
+  <article class="h-entry">
+    
+
+    <div class="page-wrapper">
+      <header class="page-header">
+        
+        
+        <h1 id="page-title" class="page-title p-name">blender学习: 用几何节点做程序化城市
+</h1>
+        
+      </header>
+
+      <div class="page-sidebar">
+        <div class="page-author h-card p-author"><img src="/personal_homepage/docs/images/logo.svg" class="author-avatar u-photo" alt=""><div class="author-info">
+
+<span class="read-time">1 min read</span>
+
+    <time class="page-date dt-published" datetime="2025-01-04T00:00:00+00:00"><a class="u-url" href="">January 4, 2025</a>
+</time>
+
+  </div>
+</div>
+
+        
+  <h3 class="page-taxonomies-title">Categories</h3>
+  
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a class="p-category" href="/personal_homepage/categories/#blender" title="Pages filed under blender">blender</a></li>
+  </ul>
+
+
+        
+  <h3 class="page-taxonomies-title">Tags</h3>
+  
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a href="/personal_homepage/tags/#content" title="Pages tagged content" rel="tag">content</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#geometry-node" title="Pages tagged geometry_node" rel="tag">geometry_node</a></li>
+  </ul>
+
+
+        <!-- {::options parse_block_html="true" /} -->
+<div id="entry-table-of-contents" class="toc-wrapper">
+  <h2 id="toc-toggle">
+    Table of Contents <i
+      class="toc-toggle-icon fas fa-chevron-down"></i>
+  </h2>
+  <!-- 1. toc
+{:toc} -->
+  <!-- <div id="markdown-toc"> -->
+
+    <ul class="inline_toc" id="my_toc"><li><a href="#texture-coordinate-的设置">texture Coordinate 的设置</a></li><li><a href="#用到的blender的一些快捷键功能">用到的blender的一些快捷键功能</a></li></ul>
+  <!-- </div> -->
+
+</div>
+<!-- {::options parse_block_html="false" /} -->
+        
+
+<div id="entry-table-of-contents" class="toc-wrapper">
+    <h2 id="toc-toggle" class="no_toc">
+        Related Posts <i class="toc-toggle-icon fas fa-chevron-down"></i>
+    </h2>
+    <!-- <div id="markdown-toc"> -->
+    <ul>
+        
+        <li><a href="/personal_homepage/code/alphas3/">worldquant BRAIN 股票因子 (三) -- API使用</a></li>
+        
+        <li><a href="/personal_homepage/tool/asyncio/">协程的用法</a></li>
+        
+        <li><a href="/personal_homepage/finance/alphas2/">worldquant BRAIN 股票因子 (二) -- 因子思路</a></li>
+        
+        <li><a href="/personal_homepage/finance/alphas/">worldquant BRAIN 股票因子 (一) -- 仿真测试</a></li>
+        
+        <li><a href="/personal_homepage/blender/snowflake/">雪花制作</a></li>
+        
+    </ul>
+    <!-- </div> -->
+
+</div>
+
+
+
+
+
+      </div>
+
+      <div class="page-content">
+        <div class="e-content">
+          <p>参考<a href="https://www.youtube.com/watch?v=LheRoTgym8g">这个教学</a></p>
+
+<p>1:  <img src="/personal_homepage/docs/attachment/Pasted%20image%2020250105115526.png" alt="Pasted image 20250105115526.png" width="150" />  -&gt; 2:  <img src="/personal_homepage/docs/attachment/Pasted%20image%2020250105121905.png" alt="Pasted image 20250105121905.png" width="150" />  -&gt; 3: <img src="/personal_homepage/docs/attachment/Pasted%20image%2020250106164220.png" alt="Pasted image 20250106164220.png" width="150" /> -&gt; 4: <img src="/personal_homepage/docs/attachment/Pasted%20image%2020250106164521.png" alt="Pasted image 20250106164521.png" width="150" /> -&gt; 5: <img src="/personal_homepage/docs/attachment/Pasted%20image%2020250106164825.png" alt="Pasted image 20250106164825.png" width="150" /></p>
+
+<ul>
+  <li>制作道路:
+    <ol>
+      <li>制作随机网格: 随机2, 3层细分
+        <ul>
+          <li>用二层 <a href="https://docs.blender.org/manual/en/latest/modeling/geometry_nodes/mesh/operations/subdivide_mesh.html">subdivide Mesh</a></li>
+          <li>随机选一些内部网格 (<a href="https://docs.blender.org/manual/en/latest/modeling/geometry_nodes/geometry/operations/separate_geometry.html">Separate Geometry Node -&gt; Face</a> ) 再进行一层subdivide
+            <ul>
+              <li>输入Boolean的随机值</li>
+              <li>输出选中的和未选中的不同处理</li>
+              <li>用<a href="https://docs.blender.org/manual/en/latest/modeling/geometry_nodes/geometry/join_geometry.html">Join Gemetry Node</a>  融合在一起</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>制作随机扭曲: 把随机的mesh merge在一起
+        <ul>
+          <li>用<a href="https://docs.blender.org/manual/en/latest/modeling/geometry_nodes/geometry/operations/merge_by_distance.html">Merge by Distance Node</a> 融合: 输入Boolean的随机值, distance选择0.26( 稍 &gt; 2级细分, 即1/4)</li>
+          <li>再次用0.01的distance 融合: 去除重复的边</li>
+        </ul>
+      </li>
+      <li>把网格转成道路
+        <ul>
+          <li>mesh转成折线curve: <a href="https://docs.blender.org/manual/en/latest/modeling/geometry_nodes/mesh/operations/mesh_to_curve.html">Mesh to Curve</a></li>
+          <li>折线curve转成圆角曲线: <a href="https://docs.blender.org/manual/en/latest/modeling/geometry_nodes/mesh/operations/mesh_to_curve.html">Fillet Curve</a> (类似Bevel倒角的效果)
+            <ul>
+              <li>Count 控制中间点的个数, Radius控制圆角弧度大小, 选择Limit Radius 保证圆角起终点不会超出范围(什么情况是需要超出范围的吗? 这个选项总是要选)</li>
+            </ul>
+          </li>
+          <li><strong>转成道路: <a href="https://docs.blender.org/manual/en/latest/modeling/geometry_nodes/curve/operations/curve_to_mesh.html">Curve to Mesh</a> (效果为Curve沿Profile Curve 挤出)</strong>
+            <ul>
+              <li>Curve 处输入我们的道路curve</li>
+              <li>Profile Curve 处用<a href="https://docs.blender.org/manual/en/latest/modeling/geometry_nodes/curve/primitives/curve_line.html">Curve Line</a> 输入一个固定长度线段Curve</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>增加厚度: <a href="https://docs.blender.org/manual/en/latest/modeling/geometry_nodes/mesh/operations/extrude_mesh.html">Extrude Mesh Node</a> 沿面的法相挤出</li>
+      <li>关闭自动的Smooth Shading: <a href="https://docs.blender.org/manual/en/latest/modeling/geometry_nodes/mesh/write/set_shade_smooth.html">Set Shade Smooth Node</a></li>
+    </ol>
+  </li>
+</ul>
+
+<p>1: <img src="/personal_homepage/docs/attachment/Pasted%20image%2020250106204640.png" alt="Pasted image 20250106204640.png" width="150" />  -&gt; 2: <img src="/personal_homepage/docs/attachment/Pasted%20image%2020250106205132.png" alt="Pasted image 20250106205132.png" width="150" />  -&gt; 3: <img src="/personal_homepage/docs/attachment/Pasted%20image%2020250106214511.png" alt="Pasted image 20250106214511.png" width="150" /> -&gt; 4: <img src="/personal_homepage/docs/attachment/Pasted%20image%2020250106214738.png" alt="Pasted image 20250106214738.png" width="150" /></p>
+
+<ul>
+  <li>制作建筑物: 安插在道路网格的间隙
+    <ol>
+      <li>制作底座: 把折线道路(道路步骤2的结果)向内挤出
+        <ul>
+          <li><a href="https://docs.blender.org/manual/en/latest/modeling/geometry_nodes/mesh/operations/extrude_mesh.html">Extrude Mesh Node</a> 沿面的法相挤出, 但是厚度为0</li>
+          <li>选中输出<code class="language-plaintext highlighter-rouge">Top</code>(新生成的面)向内scale</li>
+        </ul>
+      </li>
+      <li>制作楼体:
+        <ul>
+          <li>把底座内部向上拉伸</li>
+          <li>去掉第一步制作底座时没用的mesh, 只保留底座拉伸部分</li>
+        </ul>
+      </li>
+      <li>制作屋顶:
+        <ul>
+          <li>选中楼体顶部:
+            <ul>
+              <li><a href="https://docs.blender.org/manual/en/3.1/modeling/geometry_nodes/input/normal.html">Normal Node</a> + <a href="https://docs.blender.org/manual/en/latest/compositing/types/vector/separate_xyz.html">Spearate XYZ Node</a> 的<code class="language-plaintext highlighter-rouge">Z</code>输出, 连接到 <a href="https://docs.blender.org/manual/en/latest/modeling/geometry_nodes/mesh/operations/extrude_mesh.html">Extrude Mesh Node</a> 的<code class="language-plaintext highlighter-rouge">Selection</code> 上</li>
+              <li>另一种方法是直接选中楼体时的<code class="language-plaintext highlighter-rouge">Top</code> 输出, 连接到 <a href="https://docs.blender.org/manual/en/latest/modeling/geometry_nodes/mesh/operations/extrude_mesh.html">Extrude Mesh Node</a> 的<code class="language-plaintext highlighter-rouge">Selection</code> 上</li>
+            </ul>
+          </li>
+          <li>把楼体顶部向下向内挤出(和上一步制作楼体的方法一样)</li>
+        </ul>
+      </li>
+      <li>把街区内部进一步切分, 和道路放在一起</li>
+    </ol>
+  </li>
+</ul>
+
+<p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020250107055846.png" alt="Pasted image 20250107055846.png" width="150" /></p>
+
+<ul>
+  <li>shading: 在cycles渲染模式下
+    <ul>
+      <li>world: 添加一个Sky Texture, 适当调整参数</li>
+      <li>object:
+        <ul>
+          <li>楼体: 每幢楼随机两个贴图
+            <ul>
+              <li>用<a href="https://docs.blender.org/manual/en/latest/render/shader_nodes/input/geometry.html">Geometry Node</a> 的random per Island(每个connected component随机) 的功能 + constant Color Ramp(把数值映射成 0 或 1 )</li>
+              <li>mix shader混合</li>
+            </ul>
+          </li>
+          <li>楼顶: 用<a href="https://docs.blender.org/manual/en/latest/render/shader_nodes/input/geometry.html">Geometry Node</a> 的normal +  <a href="https://docs.blender.org/manual/en/latest/compositing/types/vector/separate_xyz.html">Spearate XYZ Node</a> 的<code class="language-plaintext highlighter-rouge">Z</code>输出, 选中楼顶</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="texture-coordinate-的设置"><a href="https://docs.blender.org/manual/en/latest/render/shader_nodes/input/texture_coordinate.html">texture Coordinate</a> 的设置</h2>
+
+<ul>
+  <li>我们用<a href="https://docs.blender.org/manual/en/latest/render/shader_nodes/textures/image.html">Image Texture</a> 设置颜色的映射时, 把默认的 flat 改为 box
+    <ul>
+      <li>flat的映射: <img src="https://docs.blender.org/manual/en/latest/_images/render_shader-nodes_textures_image_projection-flat.png" alt="flat" />Sphere的映射方法: <img src="https://docs.blender.org/manual/en/latest/_images/render_shader-nodes_textures_image_projection-box.png" alt="box" /></li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="用到的blender的一些快捷键功能">用到的blender的一些快捷键功能</h2>
+
+<ul>
+  <li>打开关闭侧边 Transform栏: N</li>
+  <li>Object Mode:
+    <ul>
+      <li><a href="https://docs.blender.org/manual/en/latest/scene_layout/object/editing/apply.html">Apply(应用变形)</a>: Command + A
+        <ul>
+          <li>比例尺(Apply Scale): 应用后, 物体上的变换, 由比例变成实际距离?
+            <ul>
+              <li>比如400scale的物体, 应用前 0.1 的变换, 和应用后40m的变换等价</li>
+              <li>blender的滑块单位是0.1, 可能是有时候物体太大, 按比例调整不方便?</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Geometry Nodes合并成group
+    <ul>
+      <li>在原有Node输入的地方可以加input Node
+        <ul>
+          <li>input Node的参数不能改名字</li>
+          <li>Node内部的参数不能改成输入😮‍💨</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+        </div>
+
+        
+
+        
+        
+  <div class="page-comments">
+    <div id="disqus_thread"></div>
+    <script>
+      var disqus_config = function () {
+        this.page.url = 'https://roshameow.github.io//personal_homepage/blender/blender-learning18/';
+        this.page.identifier = 'https://roshameow.github.io//personal_homepage/blender/blender-learning18/';
+      };
+
+      (function() {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://https-roshameow-github-io-personal-homepage.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+  </div>
+
+
+        
+
+        <nav class="page-pagination" role="navigation">
+  
+    <a class="page-previous" href="/personal_homepage/blender/snowflake/">
+      <h4 class="page-pagination-label">Previous</h4>
+      <span class="page-pagination-title">
+        <i class="fas fa-arrow-left"></i> 雪花制作
+
+      </span>
+    </a>
+  
+
+  
+    <a class="page-next" href="/personal_homepage/finance/alphas/">
+      <h4 class="page-pagination-label">Next</h4>
+      <span class="page-pagination-title">
+        worldquant BRAIN 股票因子 (一) – 仿真测试
+ <i class="fas fa-arrow-right"></i>
+      </span>
+    </a>
+  
+</nav>
+
+      </div>
+
+    </div>
+  </article>
+</main>
+
+    <footer id="footer" class="site-footer">
+  <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+<div class="social-icons"><a class="social-icon" href="/personal_homepage/atom.xml"><i class="fas fa-rss-square fa-2x" title="Feed"></i></a><a class="social-icon" href="https://github.com/roshameow"><i class="fab fa-github-square fa-2x" title="GitHub"></i></a><a class="social-icon" href="https://www.linkedin.com/in/wen-liu-06503a7b/"><i class="fab fa-linkedin fa-2x" title="LinkedIn"></i></a><a class="social-icon" href="mailto:w.liuatnk@gmail.com"><i class="fas fa-envelope-square fa-2x" title="e-mail"></i></a></div><div class="copyright">
+    
+      <p>&copy; 2025 Liu, Wen's Home Page. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://github.com/mmistakes/so-simple-theme" rel="nofollow">So Simple</a>.</p>
+    
+  </div>
+</footer>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="/personal_homepage/assets/js/main.min.js"></script>
+<script src="https://use.fontawesome.com/releases/v5.0.12/js/all.js"></script><!-- <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'G-9TMSCDTBGN', 'auto');
+  ga('send', 'pageview');
+</script> -->
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9TMSCDTBGN"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-9TMSCDTBGN');
+</script>
+
+
+
+<!-- MathJax -->
+
+<script>
+    // http://docs.mathjax.org/en/latest/upgrading/v2.html
+    MathJax = {
+        tex: {
+            tags: "ams",    // eq numbering options: none, ams, all
+            inlineMath: [['$', '$'], ["\\(", "\\)"]],  // 设置行内数学公式的开始和结束标记
+            displayMath: [['$$', '$$'], ["\\[", "\\]"]]  // 设置行间数学公式的开始和结束标记
+        },
+        // options: {
+        //   renderActions: {
+        //     // for mathjax 3, handle <script "math/tex"> blocks inserted by kramdown
+        //     find: [10, function (doc) {
+        //       for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+        //         const display = !!node.type.match(/; *mode=display/);
+        //         const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+        //         const text = document.createTextNode('');
+        //         node.parentNode.replaceChild(text, node);
+        //         math.start = { node: text, delim: '', n: 0 };
+        //         math.end = { node: text, delim: '', n: 0 };
+        //         doc.math.push(math);
+        //       }
+        //     }, '']
+        //   }
+        // }
+    }
+</script>
+
+<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  </body>
+
+</html>

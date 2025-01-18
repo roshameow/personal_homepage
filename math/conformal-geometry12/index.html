@@ -20,8 +20,8 @@
 <meta name="generator" content="Jekyll v4.3.4" />
 <meta property="og:title" content="conformal geometry学习 (十一 ) – harmonic map" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="uniqueness(唯一性)" />
-<meta property="og:description" content="uniqueness(唯一性)" />
+<meta name="description" content="在复分析里被研究很多 平面调和函数性质" />
+<meta property="og:description" content="在复分析里被研究很多 平面调和函数性质" />
 <link rel="canonical" href="https://roshameow.github.io//personal_homepage/math/conformal-geometry12/" />
 <meta property="og:url" content="https://roshameow.github.io//personal_homepage/math/conformal-geometry12/" />
 <meta property="og:site_name" content="Liu, Wen’s Home Page" />
@@ -31,7 +31,7 @@
 <meta property="twitter:title" content="conformal geometry学习 (十一 ) – harmonic map" />
 <meta name="twitter:site" content="@" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-12-16T16:20:00+00:00","datePublished":"2024-11-24T00:00:00+00:00","description":"uniqueness(唯一性)","headline":"conformal geometry学习 (十一 ) – harmonic map","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/math/conformal-geometry12/"},"url":"https://roshameow.github.io//personal_homepage/math/conformal-geometry12/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-12-26T18:05:00+00:00","datePublished":"2024-11-24T00:00:00+00:00","description":"在复分析里被研究很多 平面调和函数性质","headline":"conformal geometry学习 (十一 ) – harmonic map","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/math/conformal-geometry12/"},"url":"https://roshameow.github.io//personal_homepage/math/conformal-geometry12/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -139,7 +139,7 @@
 {:toc} -->
   <!-- <div id="markdown-toc"> -->
 
-    
+    <ul class="inline_toc" id="my_toc"><li><a href="#平面调和函数性质">平面调和函数性质</a><ul><li><a href="#一般riemann曲面到平面凸区域的调和映射">一般Riemann曲面到平面凸区域的调和映射</a></li></ul></li></ul>
   <!-- </div> -->
 
 </div>
@@ -153,15 +153,15 @@
     <!-- <div id="markdown-toc"> -->
     <ul>
         
-        <li><a href="/personal_homepage/blender/blender-learning17/">blender资源</a></li>
+        <li><a href="/personal_homepage/code/alphas3/">worldquant BRAIN 股票因子 (三) -- API使用</a></li>
         
-        <li><a href="/personal_homepage/webpage/serverless/">Serverless服务</a></li>
+        <li><a href="/personal_homepage/tool/asyncio/">协程的用法</a></li>
         
-        <li><a href="/personal_homepage/blender/blender-learning16/">blender学习: 五角星 ⭐️</a></li>
+        <li><a href="/personal_homepage/finance/alphas2/">worldquant BRAIN 股票因子 (二) -- 因子思路</a></li>
         
-        <li><a href="/personal_homepage/blender/blender-learning15/">blender学习: 用Grease pencil 涂色</a></li>
+        <li><a href="/personal_homepage/finance/alphas/">worldquant BRAIN 股票因子 (一) -- 仿真测试</a></li>
         
-        <li><a href="/personal_homepage/design/poster2/">🐍 蛇年圣诞风格海报</a></li>
+        <li><a href="/personal_homepage/blender/blender-learning18/">blender学习: 用几何节点做程序化城市</a></li>
         
     </ul>
     <!-- </div> -->
@@ -176,13 +176,41 @@
 
       <div class="page-content">
         <div class="e-content">
-          <ul>
-  <li>
-    <p>uniqueness(唯一性)</p>
+          <p>在复分析里被研究很多</p>
+<h2 id="平面调和函数性质">平面<a href="https://en.wikipedia.org/wiki/Harmonic_function">调和函数</a>性质</h2>
+
+<p><a href="https://upload.wikimedia.org/wikipedia/commons/c/cd/Laplace%27s_equation_on_an_annulus.svg"><img src="https://upload.wikimedia.org/wikipedia/commons/c/cd/Laplace%27s_equation_on_an_annulus.svg" width="250" /></a></p>
+
+<p>平面区域 $\Omega\subset \mathbb R^2$</p>
+
+<ul>
+  <li><strong>调和函数 $f$ 使调和能量最小</strong>: $f=\text{argmin}_f E(f)$
+    <ul>
+      <li>(满足$\Delta_g f=0$ )</li>
+      <li>$E(f)=(\nabla_g f,\nabla_g f)=\int_M \langle\nabla_g f,\nabla_g f\rangle_g\omega_g$</li>
+    </ul>
   </li>
-  <li></li>
+  <li>(regularity, smoothness) 调和函数在开集是$C^\infty$ (无穷可导) 的</li>
+  <li><strong>(Mean Value property) 调和函数 $f$  沿一个点周围一圈的平均值等于在这个点取值</strong></li>
+  <li><strong>(Maximum principle) 调和函数 $f$  的最大, 最小值只能是在边界上</strong>
+    <ul>
+      <li>反证法: 如果$\Omega$ 内部有个最值$p$ , 会违背mean value property</li>
+    </ul>
+  </li>
+  <li><strong>(Uniqueness, 唯一性) 两个调和函数 $u_1,u_2$ 在边界上取值相等 -&gt; 两个函数相等.</strong>
+    <ul>
+      <li>$u_1-u_2$ 在$\partial \Omega$ 上全是0 -&gt; $u_1-u_2$ 的最大值, 最小值都是0 -&gt; $u_1-u_2\equiv 0$</li>
+    </ul>
+  </li>
 </ul>
 
+<h3 id="一般riemann曲面到平面凸区域的调和映射">一般Riemann曲面到平面凸区域的调和映射</h3>
+
+<p>$\phi:(S,\mathbf g)\rightarrow (\Omega,du^2+dv^2)$</p>
+
+<ul>
+  <li>(Rado Theorem) 调和映射$\phi$ 在边界 $\partial S\rightarrow \partial \Omega$ 上是 homoemorphic(同胚)  -&gt; $\phi$ 在S 内部是diffeomorphic的</li>
+</ul>
 
         </div>
 
@@ -245,7 +273,7 @@
 <!-- end custom footer snippets -->
 <div class="social-icons"><a class="social-icon" href="/personal_homepage/atom.xml"><i class="fas fa-rss-square fa-2x" title="Feed"></i></a><a class="social-icon" href="https://github.com/roshameow"><i class="fab fa-github-square fa-2x" title="GitHub"></i></a><a class="social-icon" href="https://www.linkedin.com/in/wen-liu-06503a7b/"><i class="fab fa-linkedin fa-2x" title="LinkedIn"></i></a><a class="social-icon" href="mailto:w.liuatnk@gmail.com"><i class="fas fa-envelope-square fa-2x" title="e-mail"></i></a></div><div class="copyright">
     
-      <p>&copy; 2024 Liu, Wen's Home Page. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://github.com/mmistakes/so-simple-theme" rel="nofollow">So Simple</a>.</p>
+      <p>&copy; 2025 Liu, Wen's Home Page. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://github.com/mmistakes/so-simple-theme" rel="nofollow">So Simple</a>.</p>
     
   </div>
 </footer>
