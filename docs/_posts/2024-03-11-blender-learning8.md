@@ -7,7 +7,8 @@ tags:
   - content
   - shader
   - curve
-last_modified_at: 2024-03-12T06:17:26-08:00
+last_modified_at: 2025-02-09T09:12
+created: 2024-03-11T22:59
 ---
 用金属材质反射world背景的流动
 ### 步骤: 
@@ -23,7 +24,7 @@ last_modified_at: 2024-03-12T06:17:26-08:00
 		- 在background添加流动材质
 			- 设置[texture Coordinate](https://docs.blender.org/manual/en/latest/render/shader_nodes/input/texture_coordinate.html)  generate->Mapping(Y=#frame/40)->background图片
 		- 得到黑色背景
-			- 添加一个黑色背景, [用Light Path的Is Camera Ray控制混合](https://blenderartists.org/t/why-use-is-camera-ray-in-the-world/650625/3) : 背景和物体分开的原理?
+			- 添加一个黑色背景, [用Light Path Node的Is Camera Ray控制混合](https://blenderartists.org/t/why-use-is-camera-ray-in-the-world/650625/3) : 背景和物体分开的原理?
 - light: 改成sun, 给物体增加反光
 - 结果: 
 	- ![color_change.mp4]({{ '/docs/attachment/color_change.mp4' | relative_url }}){:width="300"} 

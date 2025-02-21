@@ -6,7 +6,9 @@ categories:
 tags:
   - content
   - sensor
-last_modified_at: 2024-02-19T18:03:22-08:00
+  - multi-spectrum
+last_modified_at: 2025-02-12T19:03
+created: 2023-12-23T14:47
 ---
 ## 调制
 
