@@ -16,22 +16,22 @@
   
   
   <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>worldquant BRAIN 股票因子 (三) – API使用 | Liu, Wen’s Home Page</title>
-<meta name="generator" content="Jekyll v4.3.4" />
-<meta property="og:title" content="worldquant BRAIN 股票因子 (三) – API使用" />
+<title>worldquant BRAIN 股票因子 (三) – API使用和代码 | Liu, Wen’s Home Page</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="worldquant BRAIN 股票因子 (三) – API使用和代码" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="测试dataset的方法: https://platform.worldquantbrain.com/learn/documentation/understanding-data/data 主要是通过coverage," />
-<meta property="og:description" content="测试dataset的方法: https://platform.worldquantbrain.com/learn/documentation/understanding-data/data 主要是通过coverage," />
+<meta name="description" content="仿真流程" />
+<meta property="og:description" content="仿真流程" />
 <link rel="canonical" href="https://roshameow.github.io//personal_homepage/code/alphas3/" />
 <meta property="og:url" content="https://roshameow.github.io//personal_homepage/code/alphas3/" />
 <meta property="og:site_name" content="Liu, Wen’s Home Page" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2025-01-18T00:00:00+00:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="worldquant BRAIN 股票因子 (三) – API使用" />
+<meta property="twitter:title" content="worldquant BRAIN 股票因子 (三) – API使用和代码" />
 <meta name="twitter:site" content="@" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2025-01-18T21:08:00+00:00","datePublished":"2025-01-18T00:00:00+00:00","description":"测试dataset的方法: https://platform.worldquantbrain.com/learn/documentation/understanding-data/data 主要是通过coverage,","headline":"worldquant BRAIN 股票因子 (三) – API使用","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/code/alphas3/"},"url":"https://roshameow.github.io//personal_homepage/code/alphas3/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2025-02-10T20:57:00+00:00","datePublished":"2025-01-18T00:00:00+00:00","description":"仿真流程","headline":"worldquant BRAIN 股票因子 (三) – API使用和代码","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/code/alphas3/"},"url":"https://roshameow.github.io//personal_homepage/code/alphas3/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -58,7 +58,7 @@
 
 </head>
 
-  <body class="layout--post  worldquant-brain-股票因子-三-api使用">
+  <body class="layout--post  worldquant-brain-股票因子-三-api使用和代码">
     <nav class="skip-links">
   <h2 class="screen-reader-text">Skip links</h2>
   <ul>
@@ -99,7 +99,7 @@
       <header class="page-header">
         
         
-        <h1 id="page-title" class="page-title p-name">worldquant BRAIN 股票因子 (三) – API使用
+        <h1 id="page-title" class="page-title p-name">worldquant BRAIN 股票因子 (三) – API使用和代码
 </h1>
         
       </header>
@@ -125,7 +125,7 @@
         
   <h3 class="page-taxonomies-title">Tags</h3>
   
-  <ul class="page-taxonomies"><li class="page-taxonomy"><a href="/personal_homepage/tags/#content" title="Pages tagged content" rel="tag">content</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#python" title="Pages tagged python" rel="tag">python</a></li>
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a href="/personal_homepage/tags/#async" title="Pages tagged async" rel="tag">async</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#content" title="Pages tagged content" rel="tag">content</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#python" title="Pages tagged python" rel="tag">python</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#worldquant" title="Pages tagged worldquant" rel="tag">worldquant</a></li>
   </ul>
 
 
@@ -139,7 +139,7 @@
 {:toc} -->
   <!-- <div id="markdown-toc"> -->
 
-    
+    <ul class="inline_toc" id="my_toc"><li><a href="#仿真流程">仿真流程</a><ul><li><a href="#api功能">API功能</a></li><li><a href="#批量仿真流程">批量仿真流程</a></li><li><a href="#问题">问题</a></li></ul></li><li><a href="#数据测试">数据测试</a><ul><li><a href="#测试数据分布">测试数据分布</a></li><li><a href="#测试数据覆盖率">测试数据覆盖率</a></li><li><a href="#测试数据更新频率">测试数据更新频率</a></li></ul></li><li><a href="#代码">代码</a></li><li><a href="#参考资料">参考资料</a></li></ul>
   <!-- </div> -->
 
 </div>
@@ -153,15 +153,15 @@
     <!-- <div id="markdown-toc"> -->
     <ul>
         
-        <li><a href="/personal_homepage/tool/asyncio/">协程的用法</a></li>
+        <li><a href="/personal_homepage/blender/blender-learning20/">blender学习:  制作随音乐律动的视频</a></li>
         
-        <li><a href="/personal_homepage/finance/alphas2/">worldquant BRAIN 股票因子 (二) -- 因子思路</a></li>
+        <li><a href="/personal_homepage/algorithm/color-moderate3/">传感器颜色调制 (四) -- 多光谱颜色校准</a></li>
         
-        <li><a href="/personal_homepage/finance/alphas/">worldquant BRAIN 股票因子 (一) -- 仿真测试</a></li>
+        <li><a href="/personal_homepage/blender/blender-learning19/">blender学习: 制作水体</a></li>
         
-        <li><a href="/personal_homepage/blender/blender-learning18/">blender学习: 用几何节点做程序化城市</a></li>
+        <li><a href="/personal_homepage/daily/cutting-board/">切菜板成分</a></li>
         
-        <li><a href="/personal_homepage/blender/snowflake/">雪花制作</a></li>
+        <li><a href="/personal_homepage/finance/alphas4/">worldquant BRAIN 股票因子 (四) -- 因子思路</a></li>
         
     </ul>
     <!-- </div> -->
@@ -176,9 +176,113 @@
 
       <div class="page-content">
         <div class="e-content">
-          <ul>
-  <li>测试dataset的方法: https://platform.worldquantbrain.com/learn/documentation/understanding-data/data 主要是通过coverage,</li>
+          <h2 id="仿真流程">仿真流程</h2>
+
+<h3 id="api功能">API功能</h3>
+
+<ul>
+  <li>登陆: <code class="language-plaintext highlighter-rouge">https://api.worldquantbrain.com/authentication</code></li>
+  <li>获得数据字段: <code class="language-plaintext highlighter-rouge">https://api.worldquantbrain.com/data-fields?</code></li>
+  <li>发起仿真测试: <code class="language-plaintext highlighter-rouge">https://api.worldquantbrain.com/simulations</code></li>
+  <li>查询结果, 打标签: <code class="language-plaintext highlighter-rouge">https://api.worldquantbrain.com/alphas/{alpha_id}</code></li>
 </ul>
+
+<h3 id="批量仿真流程">批量仿真流程</h3>
+
+<ol>
+  <li>开启异步session</li>
+  <li>尝试登陆</li>
+  <li>生成仿真数据, 把仿真数据存入csv文件, 计算任务数量</li>
+  <li>批量开启仿真回测, 处理可能出现的任何异常(登陆超时,发送过快,回测被拒绝)
+    <ol>
+      <li>发起请求</li>
+      <li>发起回测成功(response中包含<code class="language-plaintext highlighter-rouge">Location</code>) -&gt; 获得回测状态(得到simulation id)</li>
+      <li>🔄 不断请求回测状态</li>
+      <li>回测状态变为结束(response中<code class="language-plaintext highlighter-rouge">Retry-After=0, status=[COMPLETE,WARNING]</code>) -&gt; 获得结果(得到alpha id)</li>
+    </ol>
+  </li>
+</ol>
+
+<h3 id="问题">问题</h3>
+
+<ul>
+  <li>理论上可以不去监测每个请求的发送情况. <strong>simulation id在回测结束后不会改变不会销毁</strong>. 所以, 批量发送请求拿到simulation id后, 可以后续再查看simulation的运行结果.</li>
+  <li>本身<code class="language-plaintext highlighter-rouge">sess.get</code> 请求的过程等待只能由异步解决, 但是在这个项目里, 好像也没必要?</li>
+  <li>平台限制了回测请求的并发数, 但是获取数据好像并没有限制.</li>
+  <li>我经常对<code class="language-plaintext highlighter-rouge">template.py</code>元编程, python在用<code class="language-plaintext highlighter-rouge">importlib</code> 加载模块时, 会自动加载同名的缓存. 所以要记得手动reload. 否则会发现修改无效 😮‍💨</li>
+</ul>
+
+<h2 id="数据测试">数据测试</h2>
+
+<p>利用平台的统计平均正结果(longCount) 和平均负结果(shortCount) 的功能</p>
+
+<h3 id="测试数据分布">测试数据分布</h3>
+
+<ul>
+  <li>平台支持统计 <code class="language-plaintext highlighter-rouge">{datafield} &lt; {a}</code> 的平均股票数(longCount)</li>
+  <li>用<a href="https://en.wikipedia.org/wiki/Minifloat">Minifloat</a> 的想法, 先选择 <strong>指数</strong> 的切分点, 然后把中间部分用 <strong>有效数</strong> 等分</li>
+</ul>
+
+<p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020250210190821.png" alt="Pasted image 20250210190821.png" width="400" /></p>
+
+<table class="wikitable" style="text-align: center; width: 50px">
+<tbody><tr>
+<th width="12.5%">sign(符号位)
+</th>
+<th width="50%" colspan="4">exponent(指数)
+</th>
+<th width="37.5%" colspan="3">significand(有效数)
+</th></tr>
+<tr>
+<td style="background: #d5ffff">0
+</td>
+<td style="background: #a4ffb4">0
+</td>
+<td style="background: #a4ffb4">1
+</td>
+<td style="background: #a4ffb4">1
+</td>
+<td style="background: #a4ffb4">0
+</td>
+<td style="background: #ffb2b4">1
+</td>
+<td style="background: #ffb2b4">1
+</td>
+<td style="background: #ffb2b4">0
+</td></tr></tbody></table>
+
+<ul>
+  <li>拿BF8举例,   先选择 指数 的切分点, 然后把中间部分用 有效数 等分
+    <ul>
+      <li>exponent部分(4位, 2^{-6}-2^7)为, $0110b=6$  -&gt; $2^{6-7}=\frac{1}{2}$</li>
+      <li>significand部分(3位, 0/8-7/8 )为, $110b=6$ -&gt; $1+\frac{6}{8}$</li>
+      <li>最后事例的数字为 $(1+\frac{6}{8})*\frac{1}{2}$</li>
+    </ul>
+  </li>
+  <li>第一轮选用base10的指数点做切分, 统计每个区间内的股票数</li>
+  <li>第二轮选 5%-95% 的分位点区间, 再进行等分.</li>
+</ul>
+
+<h3 id="测试数据覆盖率">测试数据覆盖率</h3>
+
+<ul>
+  <li>用 <code class="language-plaintext highlighter-rouge">({datafield} != {a})? 1: -1</code> 的正负统计平均 zeros(shortCount), non-zeros(longCount), nan(剩下的) 值</li>
+</ul>
+
+<h3 id="测试数据更新频率">测试数据更新频率</h3>
+
+<ul>
+  <li>用 <code class="language-plaintext highlighter-rouge">ts_std_dev({data_fields},{d}) != 0 ? 1 : 0</code> 统计数据在周期d天内是否更新.</li>
+  <li>d 选择一些常用的更新频率: 天, 星期, 月, 季度, 年等</li>
+</ul>
+
+<h2 id="代码">代码</h2>
+
+<ul>
+  <li><a href="https://github.com/roshameow/quantnight">https://github.com/roshameow/quantnight</a></li>
+</ul>
+
+<h2 id="参考资料">参考资料</h2>
 
 <p>[1]  https://support.worldquantbrain.com/hc/en-us/community/posts/11807866133911–BRAIN-TIPS-6-ways-to-quickly-evaluate-a-new-dataset</p>
 
@@ -220,6 +324,14 @@
     </a>
   
 
+  
+    <a class="page-next" href="/personal_homepage/finance/alphas4/">
+      <h4 class="page-pagination-label">Next</h4>
+      <span class="page-pagination-title">
+        worldquant BRAIN 股票因子 (四) – 因子思路
+ <i class="fas fa-arrow-right"></i>
+      </span>
+    </a>
   
 </nav>
 

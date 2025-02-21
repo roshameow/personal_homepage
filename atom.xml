@@ -1,16 +1,429 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.4">Jekyll</generator><link href="https://roshameow.github.io//personal_homepage/atom.xml" rel="self" type="application/atom+xml" /><link href="https://roshameow.github.io//personal_homepage/" rel="alternate" type="text/html" /><updated>2025-01-18T13:12:16+00:00</updated><id>https://roshameow.github.io//personal_homepage/atom.xml</id><title type="html">Liu, Wen’s Home Page</title><subtitle>Work, Experiments and Ideas.</subtitle><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><entry><title type="html">worldquant BRAIN 股票因子 (三) – API使用</title><link href="https://roshameow.github.io//personal_homepage/code/alphas3/" rel="alternate" type="text/html" title="worldquant BRAIN 股票因子 (三) – API使用" /><published>2025-01-18T00:00:00+00:00</published><updated>2025-01-18T21:08:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/code/alphas3</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/code/alphas3/"><![CDATA[<ul>
-  <li>测试dataset的方法: https://platform.worldquantbrain.com/learn/documentation/understanding-data/data 主要是通过coverage,</li>
-</ul>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://roshameow.github.io//personal_homepage/atom.xml" rel="self" type="application/atom+xml" /><link href="https://roshameow.github.io//personal_homepage/" rel="alternate" type="text/html" /><updated>2025-02-21T01:57:58+00:00</updated><id>https://roshameow.github.io//personal_homepage/atom.xml</id><title type="html">Liu, Wen’s Home Page</title><subtitle>Work, Experiments and Ideas.</subtitle><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><entry><title type="html">blender学习: 制作随音乐律动的视频</title><link href="https://roshameow.github.io//personal_homepage/blender/blender-learning20/" rel="alternate" type="text/html" title="blender学习: 制作随音乐律动的视频" /><published>2025-02-20T00:00:00+00:00</published><updated>2025-02-20T21:39:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/blender/blender-learning20</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/blender/blender-learning20/"><![CDATA[<p><a href="https://www.bilibili.com/video/BV1CPNpeTE5E/">参考教学</a></p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="blender" /><category term="content" /><category term="music" /><category term="geometry_node" /><category term="video_editor" /><summary type="html"><![CDATA[参考教学]]></summary></entry><entry><title type="html">传感器颜色调制 (四) – 多光谱颜色校准</title><link href="https://roshameow.github.io//personal_homepage/algorithm/color-moderate3/" rel="alternate" type="text/html" title="传感器颜色调制 (四) – 多光谱颜色校准" /><published>2025-02-12T00:00:00+00:00</published><updated>2025-02-21T09:56:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/algorithm/color-moderate3</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/algorithm/color-moderate3/"><![CDATA[<h2 id="用rgb校准多光谱数据">用RGB校准多光谱数据</h2>
 
-<p>[1]  https://support.worldquantbrain.com/hc/en-us/community/posts/11807866133911–BRAIN-TIPS-6-ways-to-quickly-evaluate-a-new-dataset</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="code" /><category term="content" /><category term="python" /><summary type="html"><![CDATA[测试dataset的方法: https://platform.worldquantbrain.com/learn/documentation/understanding-data/data 主要是通过coverage,]]></summary></entry><entry><title type="html">协程的用法</title><link href="https://roshameow.github.io//personal_homepage/tool/asyncio/" rel="alternate" type="text/html" title="协程的用法" /><published>2025-01-16T00:00:00+00:00</published><updated>2025-01-18T20:58:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/tool/asyncio</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/tool/asyncio/"><![CDATA[<h2 id="python-协程的用法">python 协程的用法</h2>
+<p>把<code class="language-plaintext highlighter-rouge">(H,W,N)</code> 的多光谱数据 <code class="language-plaintext highlighter-rouge">Y</code> , 由<code class="language-plaintext highlighter-rouge">N x 3</code> 的CCM(Color Correction Matrix) 线性映射为 <code class="language-plaintext highlighter-rouge">(H,W,3)</code> 的rgb数据 <code class="language-plaintext highlighter-rouge">X</code> . 即 $Y\cdot CCM = X$ .</p>
 
 <ul>
-  <li>yield(生成器)</li>
+  <li>虽然是线性映射, 可以在步骤前给Y 加一个 feature extraction模块, 实现非线性. 达到更低的loss.</li>
+  <li>即使只是线性映射, 多光谱数据也比3通道的数据能达到更低的loss.
+    <h3 id="求解系数">求解系数</h3>
+  </li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>Loss &amp; 约束</th>
+      <th>公式</th>
+      <th>说明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>普通L2 norm</td>
+      <td>$\min \vert\vert Y\cdot CCM - X\vert\vert_2$</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>restrict awb</td>
+      <td>$\min \vert\vert Y\cdot CCM - X\vert\vert_2$ ,  $\sum_{col}(CCM)=1$</td>
+      <td>让中性灰映射不变, 即让 (1,1,…,1)映射到(1,1,1)<br />一般是把wb(white balance)步骤放在color correction之前会这样做<br />因为wb在不同机器上表现差别更大, <br />所以给这两步设置不同的校准频率吗?</td>
+    </tr>
+    <tr>
+      <td>L2 Regularization<br />🌟</td>
+      <td>$\min \vert\vert Y\cdot CCM - X\vert\vert_2 + \lambda\cdot\vert\vert CCM \vert\vert_2$</td>
+      <td>防止CCM因为数据点比较少而过拟合<br />如果用24色卡, 考虑多光谱数据有 3n 个未知数, <br />加入约束是十分必要的, 这个也是计算最简单的约束条件</td>
+    </tr>
+    <tr>
+      <td>Lasso</td>
+      <td>$\min \vert\vert Y\cdot CCM - X\vert\vert_2 + \lambda\cdot\vert\vert CCM \vert\vert_1$</td>
+      <td>防止CCM某个数据过大外, 还能增强稀疏性<br />在color-correction里没必要</td>
+    </tr>
+    <tr>
+      <td>CIELab<br />🌟</td>
+      <td>把 X 变换到Lab空间. <br />计算 $Y\cdot CCM$ 和 X的delta E loss</td>
+      <td>Lab 是评判RGB数据是否相近的最终标准. 这一步也是必要的.<br />Lab 变换是非线性的, 这一步优化时间更长.<br />需要在线性优化得到初值之后, 第二步再做delta E 的优化.</td>
+    </tr>
+  </tbody>
+</table>
+
+<ol>
+  <li><strong>原始L2 norm</strong>:  用<strong>最小二乘法</strong></li>
+  <li><strong>restrict awb条件</strong> : 因为是线性条件, 可以直接求解.
+    <ul>
+      <li>把awb条件写成: <img src="/personal_homepage/docs/attachment/Pasted%20image%2020250220192803.png" alt="Pasted image 20250220192803.png" width="300" /> 的形式</li>
+      <li>直接代入原方程: <img src="/personal_homepage/docs/attachment/Pasted%20image%2020250220192840.png" alt="Pasted image 20250220192840.png" width="1000" />
+        <ul>
+          <li>把 Y 和 CCM 分块展开并化简. 用<strong>最小二乘法</strong>求解化简后的方程即可.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><strong>L2 Regularization</strong> : 因为正则项也是L2的, 可以直接计算.
+    <ul>
+      <li>在求导时, CCM的系数由 $2Y^T Y$ 变为 $2Y^TY+2\begin{bmatrix}\lambda&amp;&amp; \\ &amp;\lambda&amp; \\ &amp;&amp;\lambda\end{bmatrix}$ 即可</li>
+    </ul>
+  </li>
+  <li><strong>Lasso问题</strong>: 可以用近端算子轮流迭代的方法优化.</li>
+  <li><strong>Delta E</strong> : 用BFGS 的方法优化.</li>
+</ol>
+
+<h3 id="测量标准">测量标准</h3>
+
+<ul>
+  <li>数据来源:
+    <ul>
+      <li>标准色卡</li>
+      <li>色差仪测量: 理论上能组成很大的数据集, 但是很多材料没有好的反射性能</li>
+    </ul>
+  </li>
+  <li>测量环境
+    <ul>
+      <li>保证测量到的都是反射光</li>
+      <li>控制光源, 如果用色差仪和色差仪的光源保持一致</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="结果可视化">结果可视化</h3>
+
+<ul>
+  <li>色卡: <img src="/personal_homepage/docs/attachment/color_check_result.png" alt="color_check_result.png" width="300" /> 显示校准后和标准色的直观差距</li>
+  <li>Lab色彩: <img src="/personal_homepage/docs/attachment/lab_chromaticities.png" alt="lab_chromaticities.png" width="200" /> 显示数据集在ab空间的分布, 以及校准后的lab色差</li>
+  <li>在给出多光谱sensor每个通道的光谱(<code class="language-plaintext highlighter-rouge">cmf = n x 28</code> )的情况下, 可以出示下面两图: 由<code class="language-plaintext highlighter-rouge">(cmf_T * cmf)^{-1} * cmf</code> 做为系数, 还可以加入一些Regularization
+    <ul class="task-list">
+      <li>校准数据光谱: <img src="/personal_homepage/docs/attachment/color_spectrum.png" alt="color_spectrum.png" width="300" />  显示数据集的光谱分布.</li>
+      <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />多光谱映射的RGB和真实RGB的光谱差距. 即色卡上的红, 蓝, 绿三色.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="代码">代码</h3>
+
+<ul>
+  <li><a href="https://gist.github.com/roshameow/8855383a21cab1b36bba130a6cee70a5#file-color_plot-py"><strong>color_plot.py</strong></a></li>
+</ul>
+
+<h2 id="用多光谱合成高光谱数据">用多光谱合成高光谱数据</h2>
+
+<p>多光谱 + 高光谱分布 -&gt; 高光谱</p>
+
+<ul>
+  <li>数据采集: (多光谱,高光谱) 数据对
+    <ul>
+      <li>自然状态下采集的高光谱数据集(反射光+光源)</li>
+      <li>多光谱数据每个通道光谱 -&gt; 由高光谱数据合成的多光谱数据</li>
+    </ul>
+  </li>
+  <li>模型
+    <ul>
+      <li>考虑现实世界情况, 带kernel的模型(<a href="https://en.wikipedia.org/wiki/Radial_basis_function_network">rbf</a> )比较合适?</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="用多光谱做awb">用多光谱做awb</h2>
+
+<p>即在多光谱数据中去掉光源的影响. 多光谱 + 光源分布 -&gt; 光源的 rgb illuminant vector.</p>
+
+<ul>
+  <li>数据采集: (多光谱, rgb illuminant vector) 数据对
+    <ul>
+      <li>自然状态下采集的光源的高光谱数据集 -&gt; 转换成多光谱数据集和rgb illuminant vector数据集</li>
+      <li>仿真: 从已知 (相机拍摄的rgb图片,rgb illuminant vector)  + 相机的response曲线 + 光源的光谱数据集 + 反射谱数据集 -&gt; 推测出图片每个像素的光谱
+        <ul>
+          <li><code class="language-plaintext highlighter-rouge">相机的response曲线 * 光源的光谱 = rgb illuminant vector</code></li>
+          <li><code class="language-plaintext highlighter-rouge">相机的response曲线 *  光源的光谱 * 反射谱 = rgb像素</code></li>
+          <li>用<a href="https://en.wikipedia.org/wiki/Maximum_likelihood_estimation">最大似然估计</a> 的想法, 先估计出图片光源光谱, 再估计出每个像素的反射光谱</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="reference">reference</h2>
+
+<p>[1]  Koskinen, Samu, Erman Acar, and Joni-Kristian Kämäräinen. “Single Pixel Spectral Color Constancy.” <em>International Journal of Computer Vision</em>, September 1, 2023. <a href="https://doi.org/10.1007/s11263-023-01867-x">https://doi.org/10.1007/s11263-023-01867-x</a>.</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="algorithm" /><category term="content" /><category term="sensor" /><category term="multi-spectrum" /><category term="isp" /><category term="proximal_operator" /><summary type="html"><![CDATA[用RGB校准多光谱数据]]></summary></entry><entry><title type="html">blender学习: 制作水体</title><link href="https://roshameow.github.io//personal_homepage/blender/blender-learning19/" rel="alternate" type="text/html" title="blender学习: 制作水体" /><published>2025-02-10T00:00:00+00:00</published><updated>2025-02-10T12:29:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/blender/blender-learning19</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/blender/blender-learning19/"><![CDATA[<h2 id="用displacementnoise-texture制作">用displacement+noise texture制作</h2>
+
+<p><a href="https://www.youtube.com/watch?v=ke-MgwUxLjI">参考教学</a></p>
+
+<ol>
+  <li>用一个plain mesh代表水体</li>
+  <li>制作水体颜色: Glossy + <a href="https://docs.blender.org/manual/en/latest/render/shader_nodes/shader/refraction.html">Refraction(折射)</a>  + <a href="https://docs.blender.org/manual/en/latest/render/shader_nodes/shader/transparent.html">Transparent</a>
+    <ul>
+      <li>Glossy + <a href="https://docs.blender.org/manual/en/latest/render/shader_nodes/shader/refraction.html">Refraction(折射)</a> 设置一个透明效果(参考玻璃的做法)
+        <ul>
+          <li>Refraction的Roughness通过波动调节(增强动态效果)</li>
+        </ul>
+      </li>
+      <li><a href="https://docs.blender.org/manual/en/latest/render/shader_nodes/shader/transparent.html">Transparent</a>  设置成蓝色, 相当于一个蓝色滤光片. 加在最后. 只有Cycles 渲染有用.</li>
+    </ul>
+  </li>
+  <li>制作波动: 用<a href="https://docs.blender.org/manual/en/latest/modeling/geometry_nodes/texture/noise.html">noise texture node</a> 输入displacement制作
+    <ol>
+      <li>我们的输出的是2d的plain. 用3d noise和4d noise的区别是?</li>
+    </ol>
+  </li>
+</ol>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="blender" /><category term="content" /><category term="shader" /><summary type="html"><![CDATA[用displacement+noise texture制作]]></summary></entry><entry><title type="html">切菜板成分</title><link href="https://roshameow.github.io//personal_homepage/daily/cutting-board/" rel="alternate" type="text/html" title="切菜板成分" /><published>2025-02-09T00:00:00+00:00</published><updated>2025-02-10T10:18:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/daily/cutting-board</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/daily/cutting-board/"><![CDATA[<h2 id="材质">材质</h2>
+
+<p>自身硬度和使用的适用性矛盾.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>材质</th>
+      <th>耐高温</th>
+      <th>洗碗机</th>
+      <th>开裂发霉</th>
+      <th>碎屑</th>
+      <th>适用性</th>
+      <th>建议</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>不锈钢/陶瓷/石材</td>
+      <td>✔️</td>
+      <td>✔️</td>
+      <td>x</td>
+      <td>x</td>
+      <td>打滑, 伤刀</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>塑料<br />麦秸秆(内含塑料)</td>
+      <td>✔️</td>
+      <td>✔️<br /></td>
+      <td>不容易<br /></td>
+      <td>PE材质<br />高温下对人体有害</td>
+      <td> </td>
+      <td>不切需要烹饪的生食</td>
+    </tr>
+    <tr>
+      <td>木质</td>
+      <td> </td>
+      <td> </td>
+      <td>✔️<br /></td>
+      <td>不会产生有害物质</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>楠竹</td>
+      <td> </td>
+      <td> </td>
+      <td>✔️</td>
+      <td>不容易</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="daily" /><category term="content" /><summary type="html"><![CDATA[材质]]></summary></entry><entry><title type="html">worldquant BRAIN 股票因子 (四) – 因子思路</title><link href="https://roshameow.github.io//personal_homepage/finance/alphas4/" rel="alternate" type="text/html" title="worldquant BRAIN 股票因子 (四) – 因子思路" /><published>2025-01-22T00:00:00+00:00</published><updated>2025-02-18T08:36:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/finance/alphas4</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/finance/alphas4/"><![CDATA[<h2 id="事件">事件</h2>
+
+<ul>
+  <li>并购(M&amp;A)</li>
+</ul>
+
+<h2 id="分析师数据">分析师数据</h2>
+
+<ul>
+  <li>employee</li>
+  <li><code class="language-plaintext highlighter-rouge">anl4_adjusted_netincome_ft</code>  本身就是个很好的指标
+    <ul>
+      <li>各种变形<code class="language-plaintext highlighter-rouge">group_netralize, ts_mean, winsorize , +其他alpha</code> 也都可以</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">anl4_flag_erbfintax</code></li>
+  <li><code class="language-plaintext highlighter-rouge">anl4_totassets_number</code></li>
+</ul>
+
+<h2 id="一些优化alpha的通用技巧">一些优化alpha的通用技巧</h2>
+
+<ul>
+  <li><strong>双重中性化</strong>: 让alpha对两个group都做中性化, 即在group (A x B) 上中性化.
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">group=densify((group_B + 1)*1000 + group_A)</code>  把两个group编码到一个group里.</li>
+      <li>没想到两个group可以相加.</li>
+      <li>类似于transformer中常用的, 把position embedding和text embedding用sum编码到一起.</li>
+    </ul>
+  </li>
+  <li><strong>双重排序</strong>: 和双重中性化类似. 给主要datafield A 一个很大的权重. 得到字典排序的效果.</li>
+  <li><strong>设置“止盈止损”</strong>: 原来的写法好像有问题.
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">close_at_event = trade_when(event1, close, -1);  alpha = trade_when(event2, signal, abs(close - close_at_event) / close &gt; .1);</code>
+        <ul>
+          <li><code class="language-plaintext highlighter-rouge">close_at_event</code>是<code class="language-plaintext highlighter-rouge">event1</code> 上次发生时的<code class="language-plaintext highlighter-rouge">close</code>. 如果上次<code class="language-plaintext highlighter-rouge">event1</code> 的影响超过10%, 对股票强制平仓.
+            <ul>
+              <li>比如<code class="language-plaintext highlighter-rouge">event1</code> 是上涨. 连续n天下跌导致影响超过10% 时, 强制平仓.</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li><code class="language-plaintext highlighter-rouge">close_at_event = trade_when(not(event), close, -1);alpha=(abs(close - close_at_event) / close &gt; .1)? nan : signal</code> 好像更符合逻辑
+        <ul>
+          <li>event 连续发生导致影响超过 10% 则强制平仓</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><strong>月度调仓</strong>:</li>
+</ul>
+
+<h3 id="交易条件">交易条件</h3>
+
+<ul>
+  <li><strong>判断市场的波动性</strong>:
+    <ul>
+      <li>用<code class="language-plaintext highlighter-rouge">trade_when(市场波动性,alpha, -1)</code>控制alpha的适用范围.</li>
+      <li>“系统风险度量”数据集, 新闻数据集, 情绪数据集</li>
+    </ul>
+  </li>
+  <li><strong>识别市场特殊时期</strong>: 比如在回报特别差的时期关闭交易
+      <code class="language-plaintext highlighter-rouge">count_of_each_group = group_count(1,subindustry); #计算每个组别的股票数量  
+      drawdown_num = if_else(returns&lt;-0.09,1,0); #如果大幅下跌则计数1，否则为0  
+      sum_of_drawdown = group_sum(drawdown_num,subindustry); #计算每天各组内大幅下跌股票的总数  
+      ratio = sum_of_drawdown/count_of_each_group; #计算出各组的大幅下跌股票数量占比  
+      alpha = if_else(ratio&gt;0.6,nan,signal) #如果本组超过60%的股票都在大幅下跌，则赋值nan.</code></li>
+  <li><strong>只取特殊股票交易</strong>:
+    <ul>
+      <li>比如市值靠前的股票: <code class="language-plaintext highlighter-rouge">filter = if_else(rank(cap)&gt;0.9,1,nan)</code></li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="参考资料">参考资料</h2>
+
+<p>[1]   <a href="https://support.worldquantbrain.com/hc/en-us/community/posts/15152019662487--%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%96%99-BRAIN%E5%B0%8F%E8%B4%B4%E5%A3%AB-%E8%BF%99%E9%87%8C%E6%9C%89%E4%BD%A0%E6%83%B3%E8%A6%81%E7%9A%84%E7%A1%AC%E6%A0%B8%E5%86%85%E5%AE%B9-%E6%8C%81%E7%BB%AD%E5%91%A8%E6%9B%B4%E4%B8%AD">【学习资料】BRAIN小贴士(这里有你想要的硬核内容！持续周更中）</a></p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="finance" /><category term="content" /><summary type="html"><![CDATA[事件]]></summary></entry><entry><title type="html">worldquant BRAIN 股票因子 (三) – API使用和代码</title><link href="https://roshameow.github.io//personal_homepage/code/alphas3/" rel="alternate" type="text/html" title="worldquant BRAIN 股票因子 (三) – API使用和代码" /><published>2025-01-18T00:00:00+00:00</published><updated>2025-02-10T20:57:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/code/alphas3</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/code/alphas3/"><![CDATA[<h2 id="仿真流程">仿真流程</h2>
+
+<h3 id="api功能">API功能</h3>
+
+<ul>
+  <li>登陆: <code class="language-plaintext highlighter-rouge">https://api.worldquantbrain.com/authentication</code></li>
+  <li>获得数据字段: <code class="language-plaintext highlighter-rouge">https://api.worldquantbrain.com/data-fields?</code></li>
+  <li>发起仿真测试: <code class="language-plaintext highlighter-rouge">https://api.worldquantbrain.com/simulations</code></li>
+  <li>查询结果, 打标签: <code class="language-plaintext highlighter-rouge">https://api.worldquantbrain.com/alphas/{alpha_id}</code></li>
+</ul>
+
+<h3 id="批量仿真流程">批量仿真流程</h3>
+
+<ol>
+  <li>开启异步session</li>
+  <li>尝试登陆</li>
+  <li>生成仿真数据, 把仿真数据存入csv文件, 计算任务数量</li>
+  <li>批量开启仿真回测, 处理可能出现的任何异常(登陆超时,发送过快,回测被拒绝)
+    <ol>
+      <li>发起请求</li>
+      <li>发起回测成功(response中包含<code class="language-plaintext highlighter-rouge">Location</code>) -&gt; 获得回测状态(得到simulation id)</li>
+      <li>🔄 不断请求回测状态</li>
+      <li>回测状态变为结束(response中<code class="language-plaintext highlighter-rouge">Retry-After=0, status=[COMPLETE,WARNING]</code>) -&gt; 获得结果(得到alpha id)</li>
+    </ol>
+  </li>
+</ol>
+
+<h3 id="问题">问题</h3>
+
+<ul>
+  <li>理论上可以不去监测每个请求的发送情况. <strong>simulation id在回测结束后不会改变不会销毁</strong>. 所以, 批量发送请求拿到simulation id后, 可以后续再查看simulation的运行结果.</li>
+  <li>本身<code class="language-plaintext highlighter-rouge">sess.get</code> 请求的过程等待只能由异步解决, 但是在这个项目里, 好像也没必要?</li>
+  <li>平台限制了回测请求的并发数, 但是获取数据好像并没有限制.</li>
+  <li>我经常对<code class="language-plaintext highlighter-rouge">template.py</code>元编程, python在用<code class="language-plaintext highlighter-rouge">importlib</code> 加载模块时, 会自动加载同名的缓存. 所以要记得手动reload. 否则会发现修改无效 😮‍💨</li>
+</ul>
+
+<h2 id="数据测试">数据测试</h2>
+
+<p>利用平台的统计平均正结果(longCount) 和平均负结果(shortCount) 的功能</p>
+
+<h3 id="测试数据分布">测试数据分布</h3>
+
+<ul>
+  <li>平台支持统计 <code class="language-plaintext highlighter-rouge">{datafield} &lt; {a}</code> 的平均股票数(longCount)</li>
+  <li>用<a href="https://en.wikipedia.org/wiki/Minifloat">Minifloat</a> 的想法, 先选择 <strong>指数</strong> 的切分点, 然后把中间部分用 <strong>有效数</strong> 等分</li>
+</ul>
+
+<p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020250210190821.png" alt="Pasted image 20250210190821.png" width="400" /></p>
+
+<table class="wikitable" style="text-align: center; width: 50px">
+<tbody><tr>
+<th width="12.5%">sign(符号位)
+</th>
+<th width="50%" colspan="4">exponent(指数)
+</th>
+<th width="37.5%" colspan="3">significand(有效数)
+</th></tr>
+<tr>
+<td style="background: #d5ffff">0
+</td>
+<td style="background: #a4ffb4">0
+</td>
+<td style="background: #a4ffb4">1
+</td>
+<td style="background: #a4ffb4">1
+</td>
+<td style="background: #a4ffb4">0
+</td>
+<td style="background: #ffb2b4">1
+</td>
+<td style="background: #ffb2b4">1
+</td>
+<td style="background: #ffb2b4">0
+</td></tr></tbody></table>
+
+<ul>
+  <li>拿BF8举例,   先选择 指数 的切分点, 然后把中间部分用 有效数 等分
+    <ul>
+      <li>exponent部分(4位, 2^{-6}-2^7)为, $0110b=6$  -&gt; $2^{6-7}=\frac{1}{2}$</li>
+      <li>significand部分(3位, 0/8-7/8 )为, $110b=6$ -&gt; $1+\frac{6}{8}$</li>
+      <li>最后事例的数字为 $(1+\frac{6}{8})*\frac{1}{2}$</li>
+    </ul>
+  </li>
+  <li>第一轮选用base10的指数点做切分, 统计每个区间内的股票数</li>
+  <li>第二轮选 5%-95% 的分位点区间, 再进行等分.</li>
+</ul>
+
+<h3 id="测试数据覆盖率">测试数据覆盖率</h3>
+
+<ul>
+  <li>用 <code class="language-plaintext highlighter-rouge">({datafield} != {a})? 1: -1</code> 的正负统计平均 zeros(shortCount), non-zeros(longCount), nan(剩下的) 值</li>
+</ul>
+
+<h3 id="测试数据更新频率">测试数据更新频率</h3>
+
+<ul>
+  <li>用 <code class="language-plaintext highlighter-rouge">ts_std_dev({data_fields},{d}) != 0 ? 1 : 0</code> 统计数据在周期d天内是否更新.</li>
+  <li>d 选择一些常用的更新频率: 天, 星期, 月, 季度, 年等</li>
+</ul>
+
+<h2 id="代码">代码</h2>
+
+<ul>
+  <li><a href="https://github.com/roshameow/quantnight">https://github.com/roshameow/quantnight</a></li>
+</ul>
+
+<h2 id="参考资料">参考资料</h2>
+
+<p>[1]  https://support.worldquantbrain.com/hc/en-us/community/posts/11807866133911–BRAIN-TIPS-6-ways-to-quickly-evaluate-a-new-dataset</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="code" /><category term="content" /><category term="python" /><category term="async" /><category term="worldquant" /><summary type="html"><![CDATA[仿真流程]]></summary></entry><entry><title type="html">协程的用法</title><link href="https://roshameow.github.io//personal_homepage/tool/asyncio/" rel="alternate" type="text/html" title="协程的用法" /><published>2025-01-16T00:00:00+00:00</published><updated>2025-02-10T20:16:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/tool/asyncio</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/tool/asyncio/"><![CDATA[<p>协程就是单线程多任务, 在一个任务等待的时候干点别的其他的任务. 所以包含等待的函数都要用协程的版本: 在需要时交出event loop的控制权.</p>
+<h2 id="python-协程的用法">python 协程的用法</h2>
+
+<p>在python里把一个协程函数也叫coroutine</p>
+
+<ul>
+  <li>yield(生成器): 会把当前函数挂起, 交出event loop的控制权给调用方, 再次调用函数时从暂停处继续.
+    <ul>
+      <li>包含yield的函数会变成一个coroutine</li>
+      <li><code class="language-plaintext highlighter-rouge">next()</code>会激活coroutine</li>
+      <li>一个主要用法是用于创建超大的list, 不会直接创建好占用内存.</li>
+      <li>缺点是无法直接得到list的size</li>
+    </ul>
+  </li>
+  <li>yield from
+    <ul>
+      <li>可以自动循环可迭代对象</li>
+    </ul>
+  </li>
   <li>future</li>
   <li>asyncio
     <ul>
-      <li>async 函数不会马上执行其中代码, 而是返回coroutine function</li>
-      <li>await 相当于yield from
+      <li>async 函数不会马上执行其中代码, 而是返回coroutine</li>
+      <li>await 相当于yield from: 捕获StopIteration异常, 把StopIteration的value属性的值变为yield from表达式的值
         <ul>
           <li>后面可以是task/coroutine/future</li>
         </ul>
@@ -24,12 +437,21 @@
       </li>
     </ul>
   </li>
+  <li>aiohttp</li>
   <li>特点:
     <ul>
       <li>需要每个子任务结束主动告知(运行结束, return)</li>
     </ul>
   </li>
-</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="tool" /><category term="content" /><category term="python" /><summary type="html"><![CDATA[python 协程的用法]]></summary></entry><entry><title type="html">worldquant BRAIN 股票因子 (二) – 因子思路</title><link href="https://roshameow.github.io//personal_homepage/finance/alphas2/" rel="alternate" type="text/html" title="worldquant BRAIN 股票因子 (二) – 因子思路" /><published>2025-01-15T00:00:00+00:00</published><updated>2025-01-18T21:09:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/finance/alphas2</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/finance/alphas2/"><![CDATA[<p>一些因子的来源和原理</p>
+  <li>可以用<code class="language-plaintext highlighter-rouge">inspect</code> 的<code class="language-plaintext highlighter-rouge">getgeneratorstate</code> 查看协程(coroutine)的状态</li>
+</ul>
+
+<h2 id="javascript的用法">javascript的用法</h2>
+
+<ul>
+  <li>callback</li>
+  <li>promise</li>
+</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="tool" /><category term="content" /><category term="python" /><category term="async" /><category term="异步" /><summary type="html"><![CDATA[协程就是单线程多任务, 在一个任务等待的时候干点别的其他的任务. 所以包含等待的函数都要用协程的版本: 在需要时交出event loop的控制权. python 协程的用法]]></summary></entry><entry><title type="html">worldquant BRAIN 股票因子 (二) – 因子思路</title><link href="https://roshameow.github.io//personal_homepage/finance/alphas2/" rel="alternate" type="text/html" title="worldquant BRAIN 股票因子 (二) – 因子思路" /><published>2025-01-15T00:00:00+00:00</published><updated>2025-02-18T08:47:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/finance/alphas2</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/finance/alphas2/"><![CDATA[<p>一些因子的来源和原理</p>
 
 <h2 id="对公司经营状况的预估基本数据">对公司经营状况的预估(基本数据)</h2>
 
@@ -43,6 +465,7 @@
           <li><code class="language-plaintext highlighter-rouge">-rank(ebit/capex)</code>
             <ul>
               <li>投入更多到运营盈利上的公司不怎么样</li>
+              <li><code class="language-plaintext highlighter-rouge">0.3*group_rank(ebit/assets,subindustry)- 0.7*group_neutralize(ts_mean(ebit,210)/ts_mean(capex,210),subindustry)</code></li>
             </ul>
           </li>
         </ul>
@@ -135,16 +558,21 @@
       <li><code class="language-plaintext highlighter-rouge">ts_backfill(vec_avg(nws12_prez_4l),504)</code>
         <ul>
           <li>新闻发布后股价提升4%的时间</li>
+          <li><code class="language-plaintext highlighter-rouge">ts_backfill(vec_sum(nws12_prez_57p),600)</code></li>
+          <li><code class="language-plaintext highlighter-rouge">alpha=ts_backfill(vec_avg(nws12_prez_4l),504); trade_when(volume&gt;adv20,alpha,-1)</code></li>
         </ul>
       </li>
       <li><code class="language-plaintext highlighter-rouge">(ts_arg_max(ts_backfill(news_session_range, 20), 60))</code>
         <ul>
+          <li><code class="language-plaintext highlighter-rouge">signed_power(ts_backfill(vec_avg(nws12_prez_4l),504)*(1+rank(volume)),2)</code></li>
           <li>新闻后的波动范围(high-low)越大, 应该做多?? 一个季度内, 到达最大波动范围的最近时间. 越长说明波动衰减的正常. 不会极端的受到</li>
           <li>需要用随时间变化快的decay, 和trade_when控制换手率</li>
         </ul>
       </li>
+      <li><code class="language-plaintext highlighter-rouge">news_tot_ticks</code> 市场上所有交易品种一天内变价次数之和</li>
     </ul>
   </li>
+  <li>新闻情绪</li>
   <li>社媒:  对volume做neuntralize
     <ul>
       <li><code class="language-plaintext highlighter-rouge">-scl12_buzz</code>
@@ -155,6 +583,12 @@
       <li><code class="language-plaintext highlighter-rouge">ts_std_dev(ts_backfill(snt_social_value,60),60)</code>
         <ul>
           <li>在一段时间内有关注是好事, 注意区分不同类型的股票</li>
+          <li>优化: <code class="language-plaintext highlighter-rouge">C60=correlation_last_60_days_spy;Alpha=zscore(ts_std_dev(ts_backfill(snt_social_value, 60),60));trade_when (C60&lt;0.4,Alpha, C60&gt;0.6)</code>
+            <ul>
+              <li>做zscore 变换</li>
+              <li>和标普指数(SPY) 相关性不能太高(关键)</li>
+            </ul>
+          </li>
         </ul>
       </li>
       <li><code class="language-plaintext highlighter-rouge">-ts_mean(pv13_ustomergraphrank_hub_rank,504)</code>
@@ -187,7 +621,16 @@
 
 <p>Price-volume datasets</p>
 
+<h3 id="常用数据">常用数据</h3>
+
 <ul>
+  <li>开盘价, 收盘价,</li>
+  <li>vwap(volume weighted avg price) 当天的平均</li>
+  <li>adv20(avg days volume 20, 过去20天的平均volume)
+    <ul>
+      <li>一个常用的条件是<code class="language-plaintext highlighter-rouge">trade_when(volume &gt; adv20, alpha, -1)</code> 表示流动性突然变高</li>
+    </ul>
+  </li>
   <li>成交量: 根据市值(cap)分组, 不同波动时期区别对待
     <ul>
       <li><code class="language-plaintext highlighter-rouge">alpha = (1/volume);group = bucket(rank(cap),range ='0.25,1,0.25');group_rank(alpha,group);</code>
@@ -196,6 +639,10 @@
         </ul>
       </li>
     </ul>
+  </li>
+  <li>5日回归: <code class="language-plaintext highlighter-rouge">-rank(close-ts_mean(close,5))</code></li>
+  <li>
+    <p>turnover</p>
   </li>
   <li>相关性
     <ul>
@@ -211,13 +658,13 @@
       <li><code class="language-plaintext highlighter-rouge">SR = systematic_risk_last_60_days;USR = unsystematic_risk_last_60_days;zscore(USR + SR)</code>
         <ul>
           <li>总风险, 高风险是好的?</li>
-          <li>去掉和指数相关性高的股票?</li>
+          <li>去掉和指数相关性高的股票? <code class="language-plaintext highlighter-rouge">trade_when(correlation_last_60_days_spy &gt; 0.6, zscore(systematic_risk_last_60_days + unsystematic_risk_last_60_days),-1)</code></li>
         </ul>
       </li>
       <li><code class="language-plaintext highlighter-rouge">market_ret = ts_product(1+group_mean(returns,1,market),250)-1;rfr = vec_avg(fnd6_newqeventv110_optrfrq);expected_return = rfr+beta_last_360_days_spy*(market_ret-rfr);actual_return = ts_product(returns+1,250)-1;actual_return-expected_return</code>
         <ul>
           <li>CAPM(Capital Asset Pricing Model): <code class="language-plaintext highlighter-rouge">rfr</code> 是risk free rate + beta * (return - rfr)</li>
-          <li>实际比CAPM计算的return高是好事</li>
+          <li>如果股票的CAMP-adjusted return是正数, 说明是好事</li>
         </ul>
       </li>
     </ul>
@@ -226,7 +673,11 @@
 
 <h2 id="参考资料">参考资料</h2>
 
-<p>[1]  https://platform.worldquantbrain.com/learn/documentation</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="finance" /><category term="content" /><category term="stock" /><category term="alpha" /><summary type="html"><![CDATA[一些因子的来源和原理]]></summary></entry><entry><title type="html">worldquant BRAIN 股票因子 (一) – 仿真测试</title><link href="https://roshameow.github.io//personal_homepage/finance/alphas/" rel="alternate" type="text/html" title="worldquant BRAIN 股票因子 (一) – 仿真测试" /><published>2025-01-07T00:00:00+00:00</published><updated>2025-01-18T21:07:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/finance/alphas</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/finance/alphas/"><![CDATA[<p>选择在模拟盘中表现好的因子投资</p>
+<p>[1]  https://platform.worldquantbrain.com/learn/documentation</p>
+
+<p>[2]  Kakushadze, Zura. “101 Formulaic Alphas.” SSRN Scholarly Paper. Rochester, NY: Social Science Research Network, December 9, 2015. <a href="https://doi.org/10.2139/ssrn.2701346">https://doi.org/10.2139/ssrn.2701346</a>.    <strong>Alpha101</strong> 主要用到量价数据</p>
+
+<p>[3] Wang, Ying, Bohui Zhang, and Xiaoneng Zhu. “<strong>The Momentum of News.</strong>” SSRN Scholarly Paper. Rochester, NY: Social Science Research Network, October 16, 2018. <a href="https://doi.org/10.2139/ssrn.3267337">https://doi.org/10.2139/ssrn.3267337</a>.   新闻动量和基本面相关</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="finance" /><category term="content" /><category term="stock" /><category term="alpha" /><summary type="html"><![CDATA[一些因子的来源和原理]]></summary></entry><entry><title type="html">worldquant BRAIN 股票因子 (一) – 仿真测试</title><link href="https://roshameow.github.io//personal_homepage/finance/alphas/" rel="alternate" type="text/html" title="worldquant BRAIN 股票因子 (一) – 仿真测试" /><published>2025-01-07T00:00:00+00:00</published><updated>2025-02-19T11:28:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/finance/alphas</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/finance/alphas/"><![CDATA[<p>选择在模拟盘中表现好的因子投资</p>
 
 <h2 id="仿真">仿真</h2>
 
@@ -235,17 +686,22 @@
 <p>分为数据库选择, 和后处理两部分</p>
 
 <ul>
-  <li>Delay: 当天(在当天closed前根据当天数据交易), 或+1天</li>
+  <li>Delay: 当天(在当天closed前根据当天数据交易), 或+1天(早上交易, 根据昨天的数据)</li>
   <li>Test Period: 把仿真的5年时间分出一部分作为test, PnL图上orange的部分</li>
   <li>
     <p>Universe(股票范围): Top3000指日平均 <code class="language-plaintext highlighter-rouge">volume</code> 最大的3000支</p>
   </li>
-  <li>Decay: 自带的一个linear decay(前n天)</li>
+  <li>Decay: 自带的一个linear decay(前n天), 是在最后的normalized weight上进行decay</li>
   <li>pasteurized: ? 只考虑universe以内的alpha?</li>
   <li>Nan Handling: 操作不可控? OFF的话, 有Nan的值会被平仓(全部卖出)</li>
   <li>Unit Handling: 单位不匹配时报warning</li>
   <li>truncation: 设置maximum weight上限: 建议设置0.05~0.1 (entailing 5-10%)之间</li>
-  <li>neutralize(标准化): 让mean(alpha)=0, 时间(<code class="language-plaintext highlighter-rouge">ts_neutralize</code>)上做neutralize避免长期趋势. 同期(<code class="language-plaintext highlighter-rouge">group_neutralize</code>)的做避免不同类型股票的不公平比较.</li>
+  <li>neutralize(标准化): 让mean(alpha)=0,
+    <ul>
+      <li>时间(<code class="language-plaintext highlighter-rouge">ts_neutralize</code>)上做neutralize避免长期趋势. (多空中性化).</li>
+      <li>同期(<code class="language-plaintext highlighter-rouge">group_neutralize</code>)的做避免不同类型股票的不公平比较.</li>
+    </ul>
+  </li>
 </ul>
 
 <h2 id="仿真交易流程">仿真交易流程</h2>
@@ -260,7 +716,11 @@
         </ul>
       </li>
       <li>alpha apply到每只股票上得到alpha value</li>
-      <li>L1 归一化,  得到每只股票的<code class="language-plaintext highlighter-rouge">weight</code></li>
+      <li>L1 归一化,  得到每只股票的<code class="language-plaintext highlighter-rouge">weight</code>
+        <ul>
+          <li>不同neutralize组的booksize是分别计算的? 比如有两个sector, 每个sector scale到 0.5/abs(sector_sum)?</li>
+        </ul>
+      </li>
       <li>每天在每只股票上投资 <code class="language-plaintext highlighter-rouge">weight*booksize</code></li>
       <li>计算<code class="language-plaintext highlighter-rouge">PnL</code></li>
     </ul>
@@ -300,6 +760,7 @@
     </ul>
   </li>
   <li>cap(市值)</li>
+  <li>Call/Put(看涨/看跌)</li>
 </ul>
 
 <h3 id="通过指标">通过指标</h3>
@@ -322,27 +783,33 @@
     </tr>
     <tr>
       <td>Sub-universe Sharpe</td>
-      <td> </td>
+      <td>建议 <code class="language-plaintext highlighter-rouge">subuniverse_sharpe &gt; 0.7*sharpe</code></td>
       <td><code class="language-plaintext highlighter-rouge">subuniverse_sharpe &gt;= 0.75 * sqrt(subuniverse_size / alpha_universe_size) * alpha_sharpe</code><br /><br />不在sub-universe 的股票赋NaN, 自动加上market neutralization, 并乘上scale?<br /><br /></td>
-      <td>让alpha少受公司规模, 流动性的影响<br />避免使用<code class="language-plaintext highlighter-rouge">1-rank(cap), rank(-assets)</code><br />对<code class="language-plaintext highlighter-rouge">volume*close</code> 不在一个水平的stock, 用不同的decay参数</td>
+      <td>让alpha少受公司规模, 流动性的影响<br />避免使用<code class="language-plaintext highlighter-rouge">1-rank(cap), rank(-assets)</code><br />对<code class="language-plaintext highlighter-rouge">volume*close</code> 不在一个水平的stock,</td>
     </tr>
     <tr>
       <td><a href="https://support.worldquantbrain.com/hc/en-us/articles/20251419309719-How-to-improve-Turnover">Turnover(换手率)</a></td>
-      <td><code class="language-plaintext highlighter-rouge">1% &lt; Turnover &lt; 70%</code><br />建议 <code class="language-plaintext highlighter-rouge">Turnover &lt; 40%</code></td>
+      <td><code class="language-plaintext highlighter-rouge">1% &lt; Turnover &lt; 70%</code><br />建议 <code class="language-plaintext highlighter-rouge">Turnover &lt; 25%</code></td>
       <td><code class="language-plaintext highlighter-rouge">avg(daily trading volume/Booksize)</code></td>
-      <td>减少turnover: 增加滤波(decay, ts_mean)<br />用trade_when限制开仓条件</td>
+      <td>减少turnover: <br />1. 增加滤波(decay, ts_mean)<br />2. 用trade_when设置交易条件<br />3. 用<code class="language-plaintext highlighter-rouge">hump</code> operator</td>
     </tr>
     <tr>
       <td><strong><a href="https://support.worldquantbrain.com/hc/en-us/articles/20251386376471-How-to-increase-fitness-of-alphas?">Fitness(健康度)</a></strong><br />评价alpha优劣的指标</td>
       <td>Delay-0: <code class="language-plaintext highlighter-rouge">fitness &gt; 1.3</code><br />Delay-1: <code class="language-plaintext highlighter-rouge">fitness &gt; 1</code></td>
       <td><code class="language-plaintext highlighter-rouge">Fitness = Sharpe*sqrt(abs(Returns)/Max(Turnover,0.125))</code></td>
-      <td> </td>
+      <td>降低turnover</td>
+    </tr>
+    <tr>
+      <td>Margin</td>
+      <td>建议 <code class="language-plaintext highlighter-rouge">margin &gt; 4bps</code></td>
+      <td><code class="language-plaintext highlighter-rouge">avg(PnL/total traded dollars)</code></td>
+      <td>降低turnover</td>
     </tr>
     <tr>
       <td>Weight test</td>
       <td>1. 在长时间内, non-zero weight的股票数不能太少<br />2. 某一个股票的weight不能占比太大<br /><code class="language-plaintext highlighter-rouge">max(weight) &lt; 10%</code> <br />随股票范围变动</td>
       <td> </td>
-      <td>- truncation: 设置maximum weight上限: 建议设置0.05~0.1 (entailing 5-10%)之间<br />- 优化weight 分布: rank</td>
+      <td>- truncation: 设置maximum weight上限: 建议设置0.05~0.1 (entailing 5-10%)之间<br />- 调整weight 分布: rank<br />- <a href="https://support.worldquantbrain.com/hc/en-us/articles/19248385997719-Weight-Coverage-common-issues-and-advice?">解决coverage不够的问题</a>:1. 用<code class="language-plaintext highlighter-rouge">ts_backfill</code>填补一些更新频率不够的 2. 用<code class="language-plaintext highlighter-rouge">group_count</code>检测当天的覆盖率</td>
     </tr>
     <tr>
       <td>Self Correlation</td>
@@ -356,13 +823,24 @@
       <td> </td>
       <td> </td>
     </tr>
+    <tr>
+      <td>IS Ladder Sharpe(阶梯测试)</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
   </tbody>
 </table>
 
 <h2 id="操作">操作</h2>
 
 <ul>
-  <li>数据接口: https://platform.worldquantbrain.com/data</li>
+  <li>数据接口: https://platform.worldquantbrain.com/data
+    <ul>
+      <li>datafield是变量名</li>
+      <li>dataset是数据集</li>
+    </ul>
+  </li>
   <li>支持运算: https://platform.worldquantbrain.com/learn/operators</li>
   <li><a href="https://platform.worldquantbrain.com/learn/documentation/discover-brain/introduction-brain-expression-language">代码语法</a>:
     <ul>
@@ -371,11 +849,89 @@
 常用的operator</li>
     </ul>
   </li>
+  <li>填空(<code class="language-plaintext highlighter-rouge">ts_backfill</code>,  <code class="language-plaintext highlighter-rouge">group_backfill</code>): 把数据里的nan用有效值补上
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">group_backfill</code> 是在d天, group里取所有的有效值, 做winsorized mean</li>
+    </ul>
+  </li>
+  <li>统计
+    <ul>
+      <li>mean(<code class="language-plaintext highlighter-rouge">group_mean,</code>)
+        <ul>
+          <li><code class="language-plaintext highlighter-rouge">group_sum</code></li>
+          <li><code class="language-plaintext highlighter-rouge">group_count</code> : 统计valid value. 和 group_sum(is_nan ) 一样吗?</li>
+        </ul>
+      </li>
+      <li>std_dev(<code class="language-plaintext highlighter-rouge">group_std_dev</code>)</li>
+      <li>ir(<code class="language-plaintext highlighter-rouge">ts_ir</code>): 信噪比, mean/std</li>
+      <li>kurt(<code class="language-plaintext highlighter-rouge">ts_kurtosis</code>):</li>
+      <li>max (<code class="language-plaintext highlighter-rouge">ts_max_diff</code>)</li>
+    </ul>
+  </li>
   <li>调整分布
     <ul>
-      <li>zscore: 让数据的mean=0, var=1. 假设数据是高斯分布的情况下标准化.</li>
-      <li>rank: 不改变单调性, 把数据调整成均匀分布</li>
-      <li>quantile 把数据调整成某个分布</li>
+      <li>neutralize(<code class="language-plaintext highlighter-rouge">group_neutralize,ts_av_diff</code>): 让数据 mean=0</li>
+      <li>zscore(<code class="language-plaintext highlighter-rouge">zscore, group_zscore, ts_zsore</code>): 让数据 mean=0, var=1. 假设数据是高斯分布的情况下标准化.</li>
+      <li>rank(<code class="language-plaintext highlighter-rouge">rank, group_rank, ts_rank</code>): 不改变单调性, 把数据调整成0-1之间的均匀分布</li>
+      <li>quantile(<code class="language-plaintext highlighter-rouge">quantile, ts_quantile</code>) 把数据调整成某个分布
+        <ul>
+          <li>会先做一个rank把数据调整到0-1, 再做线性变换到 (1/n)-(1-1/n), 然后再用三种分布调整</li>
+          <li>支持均匀分布, gaussian分布和<a href="https://en.wikipedia.org/wiki/Cauchy_distribution">Cauchy分布</a>
+            <ul>
+              <li><strong>把输入调整成return, 可以用来做随机采样?</strong></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>缩尾: 中间部分数据不变, 用来处理长尾分布.
+        <ul>
+          <li><code class="language-plaintext highlighter-rouge">tail</code> : 手动设置lower, upper bound</li>
+          <li><code class="language-plaintext highlighter-rouge">winsorize</code>:  离群数据的截断的范围由std确定</li>
+        </ul>
+      </li>
+      <li>scale(<code class="language-plaintext highlighter-rouge">scale, group_scale, ts_scale</code>): 让数据在0-1之间. 线性scale</li>
+      <li>线性分段函数改变数据分布: 比如<code class="language-plaintext highlighter-rouge">a&lt;0.1? (1.1-a):(a&gt;0.8? 1.8-a:1)</code> , 可以构造任何分布.</li>
+      <li>非线性的改变数据分布(<code class="language-plaintext highlighter-rouge">power, -inverse, log(x+1),arctan</code>)</li>
+    </ul>
+  </li>
+  <li>计算相关关系
+    <ul>
+      <li>ts_regression(y,x): 用一个数据线性拟合另一个数据. 调节rettype 获得对应参数
+        <ul>
+          <li>error_term(rettype=0): 相当于用x数据做y的baseline_wander (y信号是主信号)</li>
+          <li>slope($\beta$ , rettype=2): 得到数据x关于数据y的系数,
+            <ul>
+              <li>可以用这个信号作为一个阈值</li>
+              <li>得到的 <code class="language-plaintext highlighter-rouge">slope * x</code> 可以用做把y对多个x做分解, 得到的分解量. 和rettype=3 类似.</li>
+            </ul>
+          </li>
+          <li>y-estimate(rettype=3): 相当于用x数据线性构建信号, 调节出一个和y 距离最近的参数. (x信号是主信号)</li>
+          <li>$R^2=1-\frac{SSE}{SST}$ (决定系数, rettype=6): 表示线性模型的有用程度.(比直接取均值好的程度.). (反应了x对y的预测能力.)
+            <ul>
+              <li>SSE是模型预测值与实际值 $y_i$ 的平方和. SST是均值与实际值 $y_i$ 的平方和. 这两个越接近, 即$R^2$ 越小, 说明模型和直接取均值效果差不多.</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>分组
+    <ul>
+      <li>floor: 用整数量化成n个区间.</li>
+      <li>bucket: 把0-1的值平均分为n个区间.
+        <ul>
+          <li><code class="language-plaintext highlighter-rouge">floor(rank(cap)*4.99)</code> 和<code class="language-plaintext highlighter-rouge">bucket(rank(cap),range="0.1,1,0.2")</code> 是差不多的效果.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>控制
+    <ul>
+      <li>hump: 根据数据变动, 只有两种action(不动, 移动hump threshold)
+        <ul>
+          <li>对周期比较长的数据(比如基本面数据)可以这样做</li>
+        </ul>
+      </li>
     </ul>
   </li>
 </ul>
@@ -525,220 +1081,4 @@
       </li>
     </ul>
   </li>
-</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="blender" /><category term="content" /><category term="geometry_node" /><summary type="html"><![CDATA[参考这个教学]]></summary></entry><entry><title type="html">雪花制作</title><link href="https://roshameow.github.io//personal_homepage/blender/snowflake/" rel="alternate" type="text/html" title="雪花制作" /><published>2025-01-02T00:00:00+00:00</published><updated>2025-01-03T10:10:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/blender/snowflake</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/blender/snowflake/"><![CDATA[<h2 id="六方晶系"><a href="https://en.wikipedia.org/wiki/Hexagonal_crystal_family">六方晶系</a></h2>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="blender" /><category term="content" /><summary type="html"><![CDATA[六方晶系]]></summary></entry><entry><title type="html">终端配置</title><link href="https://roshameow.github.io//personal_homepage/tool/setting-shortcut/" rel="alternate" type="text/html" title="终端配置" /><published>2025-01-01T00:00:00+00:00</published><updated>2025-01-03T21:58:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/tool/setting-shortcut</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/tool/setting-shortcut/"><![CDATA[<h2 id="zsh">zsh</h2>
-
-<h2 id="powershell">powershell</h2>
-
-<ul>
-  <li>找到, 或创建<code class="language-plaintext highlighter-rouge">$PROFILE</code> 文件:
-    <ul>
-      <li>在powershell里直接输入<code class="language-plaintext highlighter-rouge">$PROFILE</code> 查看路径</li>
-      <li>创建: <code class="language-plaintext highlighter-rouge">New-Item -Path C:\MyFolder -Name "Example.txt" -ItemType File</code></li>
-      <li>查看: <code class="language-plaintext highlighter-rouge">cat</code></li>
-      <li>写入: <code class="language-plaintext highlighter-rouge">Set-Content -Path "NewFile.txt" -Value "This is a test file."</code></li>
-    </ul>
-  </li>
-  <li>打开文件</li>
-</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="tool" /><category term="content" /><summary type="html"><![CDATA[zsh]]></summary></entry><entry><title type="html">3d模型资源, 数据库</title><link href="https://roshameow.github.io//personal_homepage/data/blender-learning17/" rel="alternate" type="text/html" title="3d模型资源, 数据库" /><published>2024-12-22T00:00:00+00:00</published><updated>2025-01-06T06:50:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/data/blender-learning17</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/data/blender-learning17/"><![CDATA[<h2 id="3d模型文件格式">3d模型文件格式</h2>
-
-<table>
-  <thead>
-    <tr>
-      <th>格式</th>
-      <th>格式</th>
-      <th>特点</th>
-      <th>常用用途</th>
-      <th>开发商</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><a href="https://en.wikipedia.org/wiki/Wavefront_.obj_file">.obj</a></td>
-      <td>vertex(v): 由3d coordinate表示<br />texture(vt): 2d coordinate<br />normal(vn): 3d vector<br />face(f): vertex索引/texture索引/normal索引</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>.stl</td>
-      <td> </td>
-      <td> </td>
-      <td>3d打印</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>Polygon File Format<br /><a href="https://en.wikipedia.org/wiki/PLY_(file_format)">.ply</a></td>
-      <td>1. header 数据结构<br />element 对象(vertex) 数量(14)<br />property 类型(float) 名称(x/y/z…)<br />2. 具体数据<br />两部分构成</td>
-      <td>支持颜色、法线和其他属性</td>
-      <td>点云数据</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>.fbx</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td>Autodesk</td>
-    </tr>
-    <tr>
-      <td>Graphics Language Transmission Format<br /><a href="https://github.com/KhronosGroup/glTF/blob/main/specification/2.0/figures/gltfOverview-2.0.0b.png">.gltf</a>, .glb<br /></td>
-      <td> </td>
-      <td>现代, 省空间</td>
-      <td> </td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>.3ds</td>
-      <td> </td>
-      <td>过时</td>
-      <td>模型存储</td>
-      <td>Autodesk</td>
-    </tr>
-    <tr>
-      <td>.las</td>
-      <td> </td>
-      <td> </td>
-      <td>地理信息(GIS)</td>
-      <td> </td>
-    </tr>
-  </tbody>
-</table>
-
-<h2 id="模型">模型</h2>
-
-<table>
-  <thead>
-    <tr>
-      <th> </th>
-      <th> </th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><a href="https://sketchfab.com/feed">sketchfab</a></td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td><a href="https://www.cgmodel.com">cg模型网</a></td>
-      <td>国风模型</td>
-    </tr>
-    <tr>
-      <td><a href="https://cubebrush.co">cubebrush</a></td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td><a href="https://free3d.com">free3d</a></td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td><a href="https://www.blender.org/download/demo-files/">blender官网demo</a></td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td><a href="https://blendermarket.com">blendermarket</a></td>
-      <td>.blend格式, 免费比较少</td>
-    </tr>
-    <tr>
-      <td><a href="https://www.daz3d.com">Daz</a></td>
-      <td>写实风格, 素体<br /><a href="https://render-state.to">Render-State</a> : daz链接</td>
-    </tr>
-    <tr>
-      <td> </td>
-      <td> </td>
-    </tr>
-  </tbody>
-</table>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="data" /><category term="content" /><summary type="html"><![CDATA[3d模型文件格式]]></summary></entry><entry><title type="html">Serverless服务</title><link href="https://roshameow.github.io//personal_homepage/webpage/serverless/" rel="alternate" type="text/html" title="Serverless服务" /><published>2024-12-19T00:00:00+00:00</published><updated>2025-01-01T04:48:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/webpage/serverless</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/webpage/serverless/"><![CDATA[<p>租虚拟服务器代替真实服务器</p>
-
-<ul>
-  <li>优点:
-    <ul>
-      <li>减少运维麻烦: 比如操作系统的安装和管理, 硬件的配置, 网络的配置(防火墙, 隔离, 权限等), 运行环境和依赖的配置, 容灾备份等</li>
-      <li>自动扩展: 不用手动配置负载均衡器, 调整服务器数量</li>
-      <li>自动优化: 跟据函数的内存大小, 自动优化代码的执行时间和性能</li>
-      <li>可能更省钱: 用运行资源(程序执行时间, cpu, 内存, 公网流量等) 计费, 而不是服务器数量计费</li>
-    </ul>
-  </li>
-</ul>
-
-<p>AWS Lambda</p>
-
-<ul>
-  <li>每个lambda function 单独配置权限, 类似github action
-    <h2 id="阿里云">阿里云</h2>
-  </li>
-  <li>负载均衡方案:
-    <ul>
-      <li>clb</li>
-      <li>nlb</li>
-      <li>alb</li>
-    </ul>
-  </li>
-</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="WebPage" /><category term="content" /><summary type="html"><![CDATA[租虚拟服务器代替真实服务器]]></summary></entry><entry><title type="html">blender学习: 五角星 ⭐️</title><link href="https://roshameow.github.io//personal_homepage/blender/blender-learning16/" rel="alternate" type="text/html" title="blender学习: 五角星 ⭐️" /><published>2024-12-18T00:00:00+00:00</published><updated>2024-12-25T17:07:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/blender/blender-learning16</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/blender/blender-learning16/"><![CDATA[<p>参考<a href="https://www.bilibili.com/video/BV1v5kGYgEg9/">这个教学</a></p>
-
-<ul>
-  <li>添加circle mesh , 设置顶点 = 10 (刚添加时可以设置)</li>
-  <li>选择5个顶点: Edit Mode下, Select -&gt; Checker Deselect(间隔式弃选)</li>
-  <li>向内收缩形成五角星状轮廓</li>
-  <li>Extrude(挤出) 变成五角星状围栏</li>
-  <li>Loop cut(卡线) 分成三段</li>
-  <li>上下层merge变为一点</li>
-  <li>倒角(bevel), 细分(subdivide)</li>
-</ul>
-
-<p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020241218224819.png" alt="Pasted image 20241218224819.png" width="150" /></p>
-
-<h2 id="用到的blender的一些快捷键功能">用到的blender的一些快捷键功能</h2>
-
-<ul>
-  <li><a href="https://docs.blender.org/manual/en/latest/modeling/meshes/tools/loop.html">Loop Cut</a>(卡线): 在edge中间添新的顶点
-    <ul>
-      <li>添加loop cut: Ctrl+R</li>
-      <li>选中已有的loop cut: Shift+Option+长按</li>
-    </ul>
-  </li>
-  <li>E (<a href="https://docs.blender.org/manual/en/2.80/modeling/meshes/editing/duplicating/extrude.html">Extrude</a>, 挤出): 保持原顶点不变, 复制一份, 复制的和原来的用edge连接
-    <ul>
-      <li>selected face: <img src="https://docs.blender.org/manual/en/2.80/_images/modeling_meshes_editing_duplicating_extrude_face-before.png" alt="drawing" width="150" />  During extrude:  <img src="https://docs.blender.org/manual/en/2.80/_images/modeling_meshes_editing_duplicating_extrude_face-after.png" alt="drawing" width="150" />  </li>
-    </ul>
-  </li>
-  <li>Edit Mode:
-    <ul>
-      <li>融合(merge): <a href="https://docs.blender.org/manual/en/latest/modeling/meshes/editing/mesh/merge.html">M</a>
-        <ul>
-          <li>merge to point和 向内收缩到头( S + 0 ) 效果一样的</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-</ul>
-
-<h2 id="用blender-script的情况">用blender script的情况</h2>
-
-<ul>
-  <li>流程特别固化, 用script比交互式操作容易的多</li>
-  <li>开始我以为需要3d操作的loop cut会更麻烦, 顶点多了以后用代码就不方便描述了. 不过这个是我思维限制了, 用代码根本没必要loop cut, 直接把extrude重复多次就完了</li>
-</ul>
-
-<h3 id="把python-script-载入blender插件">把python script 载入blender插件</h3>
-
-<p><strong>安装插件</strong></p>
-
-<ol>
-  <li>进入 <strong>Edit &gt; Preferences &gt; Add-ons</strong>。</li>
-  <li>点击 <strong>Install</strong>，选择保存的 <code class="language-plaintext highlighter-rouge">.py</code> 文件。</li>
-  <li>勾选插件以启用。</li>
-</ol>
-
-<p><strong>使用插件</strong></p>
-
-<ol>
-  <li>在Object Mode下，点击 <strong>Add &gt; Mesh &gt; Create Star</strong>。</li>
-  <li>在左下角调整 <strong>Number of Points</strong>、<strong>Radius</strong> 和 <strong>Height</strong> 参数。</li>
-</ol>
-
-<h3 id="代码">代码</h3>
-
-<ul>
-  <li>script: <a href="https://gist.github.com/roshameow/2b5be662744414007ac39a4d10f530d9#file-create_star-py"><strong>create_star.py</strong></a></li>
-  <li>add-on: <a href="https://gist.github.com/roshameow/2b5be662744414007ac39a4d10f530d9#file-star_addon-py"><strong>star_addon.py</strong></a></li>
-</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="blender" /><category term="content" /><summary type="html"><![CDATA[参考这个教学]]></summary></entry></feed>
+</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="blender" /><category term="content" /><category term="geometry_node" /><summary type="html"><![CDATA[参考这个教学]]></summary></entry></feed>

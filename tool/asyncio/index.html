@@ -17,11 +17,11 @@
   
   <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>协程的用法 | Liu, Wen’s Home Page</title>
-<meta name="generator" content="Jekyll v4.3.4" />
+<meta name="generator" content="Jekyll v4.4.1" />
 <meta property="og:title" content="协程的用法" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="python 协程的用法" />
-<meta property="og:description" content="python 协程的用法" />
+<meta name="description" content="协程就是单线程多任务, 在一个任务等待的时候干点别的其他的任务. 所以包含等待的函数都要用协程的版本: 在需要时交出event loop的控制权. python 协程的用法" />
+<meta property="og:description" content="协程就是单线程多任务, 在一个任务等待的时候干点别的其他的任务. 所以包含等待的函数都要用协程的版本: 在需要时交出event loop的控制权. python 协程的用法" />
 <link rel="canonical" href="https://roshameow.github.io//personal_homepage/tool/asyncio/" />
 <meta property="og:url" content="https://roshameow.github.io//personal_homepage/tool/asyncio/" />
 <meta property="og:site_name" content="Liu, Wen’s Home Page" />
@@ -31,7 +31,7 @@
 <meta property="twitter:title" content="协程的用法" />
 <meta name="twitter:site" content="@" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2025-01-18T20:58:00+00:00","datePublished":"2025-01-16T00:00:00+00:00","description":"python 协程的用法","headline":"协程的用法","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/tool/asyncio/"},"url":"https://roshameow.github.io//personal_homepage/tool/asyncio/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2025-02-10T20:16:00+00:00","datePublished":"2025-01-16T00:00:00+00:00","description":"协程就是单线程多任务, 在一个任务等待的时候干点别的其他的任务. 所以包含等待的函数都要用协程的版本: 在需要时交出event loop的控制权. python 协程的用法","headline":"协程的用法","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/tool/asyncio/"},"url":"https://roshameow.github.io//personal_homepage/tool/asyncio/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -125,7 +125,7 @@
         
   <h3 class="page-taxonomies-title">Tags</h3>
   
-  <ul class="page-taxonomies"><li class="page-taxonomy"><a href="/personal_homepage/tags/#content" title="Pages tagged content" rel="tag">content</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#python" title="Pages tagged python" rel="tag">python</a></li>
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a href="/personal_homepage/tags/#async" title="Pages tagged async" rel="tag">async</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#content" title="Pages tagged content" rel="tag">content</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#python" title="Pages tagged python" rel="tag">python</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#%E5%BC%82%E6%AD%A5" title="Pages tagged 异步" rel="tag">异步</a></li>
   </ul>
 
 
@@ -139,7 +139,7 @@
 {:toc} -->
   <!-- <div id="markdown-toc"> -->
 
-    <ul class="inline_toc" id="my_toc"><li><a href="#python-协程的用法">python 协程的用法</a></li></ul>
+    <ul class="inline_toc" id="my_toc"><li><a href="#python-协程的用法">python 协程的用法</a></li><li><a href="#javascript的用法">javascript的用法</a></li></ul>
   <!-- </div> -->
 
 </div>
@@ -153,15 +153,15 @@
     <!-- <div id="markdown-toc"> -->
     <ul>
         
-        <li><a href="/personal_homepage/code/alphas3/">worldquant BRAIN 股票因子 (三) -- API使用</a></li>
+        <li><a href="/personal_homepage/blender/blender-learning20/">blender学习:  制作随音乐律动的视频</a></li>
         
-        <li><a href="/personal_homepage/finance/alphas2/">worldquant BRAIN 股票因子 (二) -- 因子思路</a></li>
+        <li><a href="/personal_homepage/algorithm/color-moderate3/">传感器颜色调制 (四) -- 多光谱颜色校准</a></li>
         
-        <li><a href="/personal_homepage/finance/alphas/">worldquant BRAIN 股票因子 (一) -- 仿真测试</a></li>
+        <li><a href="/personal_homepage/blender/blender-learning19/">blender学习: 制作水体</a></li>
         
-        <li><a href="/personal_homepage/blender/blender-learning18/">blender学习: 用几何节点做程序化城市</a></li>
+        <li><a href="/personal_homepage/daily/cutting-board/">切菜板成分</a></li>
         
-        <li><a href="/personal_homepage/blender/snowflake/">雪花制作</a></li>
+        <li><a href="/personal_homepage/finance/alphas4/">worldquant BRAIN 股票因子 (四) -- 因子思路</a></li>
         
     </ul>
     <!-- </div> -->
@@ -176,15 +176,30 @@
 
       <div class="page-content">
         <div class="e-content">
-          <h2 id="python-协程的用法">python 协程的用法</h2>
+          <p>协程就是单线程多任务, 在一个任务等待的时候干点别的其他的任务. 所以包含等待的函数都要用协程的版本: 在需要时交出event loop的控制权.</p>
+<h2 id="python-协程的用法">python 协程的用法</h2>
+
+<p>在python里把一个协程函数也叫coroutine</p>
 
 <ul>
-  <li>yield(生成器)</li>
+  <li>yield(生成器): 会把当前函数挂起, 交出event loop的控制权给调用方, 再次调用函数时从暂停处继续.
+    <ul>
+      <li>包含yield的函数会变成一个coroutine</li>
+      <li><code class="language-plaintext highlighter-rouge">next()</code>会激活coroutine</li>
+      <li>一个主要用法是用于创建超大的list, 不会直接创建好占用内存.</li>
+      <li>缺点是无法直接得到list的size</li>
+    </ul>
+  </li>
+  <li>yield from
+    <ul>
+      <li>可以自动循环可迭代对象</li>
+    </ul>
+  </li>
   <li>future</li>
   <li>asyncio
     <ul>
-      <li>async 函数不会马上执行其中代码, 而是返回coroutine function</li>
-      <li>await 相当于yield from
+      <li>async 函数不会马上执行其中代码, 而是返回coroutine</li>
+      <li>await 相当于yield from: 捕获StopIteration异常, 把StopIteration的value属性的值变为yield from表达式的值
         <ul>
           <li>后面可以是task/coroutine/future</li>
         </ul>
@@ -198,11 +213,20 @@
       </li>
     </ul>
   </li>
+  <li>aiohttp</li>
   <li>特点:
     <ul>
       <li>需要每个子任务结束主动告知(运行结束, return)</li>
     </ul>
   </li>
+  <li>可以用<code class="language-plaintext highlighter-rouge">inspect</code> 的<code class="language-plaintext highlighter-rouge">getgeneratorstate</code> 查看协程(coroutine)的状态</li>
+</ul>
+
+<h2 id="javascript的用法">javascript的用法</h2>
+
+<ul>
+  <li>callback</li>
+  <li>promise</li>
 </ul>
 
         </div>
@@ -247,7 +271,7 @@
     <a class="page-next" href="/personal_homepage/code/alphas3/">
       <h4 class="page-pagination-label">Next</h4>
       <span class="page-pagination-title">
-        worldquant BRAIN 股票因子 (三) – API使用
+        worldquant BRAIN 股票因子 (三) – API使用和代码
  <i class="fas fa-arrow-right"></i>
       </span>
     </a>

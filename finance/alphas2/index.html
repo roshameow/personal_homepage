@@ -17,7 +17,7 @@
   
   <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>worldquant BRAIN 股票因子 (二) – 因子思路 | Liu, Wen’s Home Page</title>
-<meta name="generator" content="Jekyll v4.3.4" />
+<meta name="generator" content="Jekyll v4.4.1" />
 <meta property="og:title" content="worldquant BRAIN 股票因子 (二) – 因子思路" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="一些因子的来源和原理" />
@@ -31,7 +31,7 @@
 <meta property="twitter:title" content="worldquant BRAIN 股票因子 (二) – 因子思路" />
 <meta name="twitter:site" content="@" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2025-01-18T21:09:00+00:00","datePublished":"2025-01-15T00:00:00+00:00","description":"一些因子的来源和原理","headline":"worldquant BRAIN 股票因子 (二) – 因子思路","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/finance/alphas2/"},"url":"https://roshameow.github.io//personal_homepage/finance/alphas2/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2025-02-18T08:47:00+00:00","datePublished":"2025-01-15T00:00:00+00:00","description":"一些因子的来源和原理","headline":"worldquant BRAIN 股票因子 (二) – 因子思路","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/finance/alphas2/"},"url":"https://roshameow.github.io//personal_homepage/finance/alphas2/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -107,7 +107,7 @@
       <div class="page-sidebar">
         <div class="page-author h-card p-author"><img src="/personal_homepage/docs/images/logo.svg" class="author-avatar u-photo" alt=""><div class="author-info">
 
-<span class="read-time">~1 min read</span>
+<span class="read-time">1 min read</span>
 
     <time class="page-date dt-published" datetime="2025-01-15T00:00:00+00:00"><a class="u-url" href="">January 15, 2025</a>
 </time>
@@ -139,7 +139,7 @@
 {:toc} -->
   <!-- <div id="markdown-toc"> -->
 
-    <ul class="inline_toc" id="my_toc"><li><a href="#对公司经营状况的预估基本数据">对公司经营状况的预估(基本数据)</a></li><li><a href="#对外部事件的响应">对外部事件的响应</a></li><li><a href="#对市场表现的预估量价数据">对市场表现的预估(量价数据)</a></li><li><a href="#参考资料">参考资料</a></li></ul>
+    <ul class="inline_toc" id="my_toc"><li><a href="#对公司经营状况的预估基本数据">对公司经营状况的预估(基本数据)</a></li><li><a href="#对外部事件的响应">对外部事件的响应</a></li><li><a href="#对市场表现的预估量价数据">对市场表现的预估(量价数据)</a><ul><li><a href="#常用数据">常用数据</a></li></ul></li><li><a href="#参考资料">参考资料</a></li></ul>
   <!-- </div> -->
 
 </div>
@@ -153,15 +153,15 @@
     <!-- <div id="markdown-toc"> -->
     <ul>
         
-        <li><a href="/personal_homepage/code/alphas3/">worldquant BRAIN 股票因子 (三) -- API使用</a></li>
+        <li><a href="/personal_homepage/blender/blender-learning20/">blender学习:  制作随音乐律动的视频</a></li>
         
-        <li><a href="/personal_homepage/tool/asyncio/">协程的用法</a></li>
+        <li><a href="/personal_homepage/algorithm/color-moderate3/">传感器颜色调制 (四) -- 多光谱颜色校准</a></li>
         
-        <li><a href="/personal_homepage/finance/alphas/">worldquant BRAIN 股票因子 (一) -- 仿真测试</a></li>
+        <li><a href="/personal_homepage/blender/blender-learning19/">blender学习: 制作水体</a></li>
         
-        <li><a href="/personal_homepage/blender/blender-learning18/">blender学习: 用几何节点做程序化城市</a></li>
+        <li><a href="/personal_homepage/daily/cutting-board/">切菜板成分</a></li>
         
-        <li><a href="/personal_homepage/blender/snowflake/">雪花制作</a></li>
+        <li><a href="/personal_homepage/finance/alphas4/">worldquant BRAIN 股票因子 (四) -- 因子思路</a></li>
         
     </ul>
     <!-- </div> -->
@@ -190,6 +190,7 @@
           <li><code class="language-plaintext highlighter-rouge">-rank(ebit/capex)</code>
             <ul>
               <li>投入更多到运营盈利上的公司不怎么样</li>
+              <li><code class="language-plaintext highlighter-rouge">0.3*group_rank(ebit/assets,subindustry)- 0.7*group_neutralize(ts_mean(ebit,210)/ts_mean(capex,210),subindustry)</code></li>
             </ul>
           </li>
         </ul>
@@ -282,16 +283,21 @@
       <li><code class="language-plaintext highlighter-rouge">ts_backfill(vec_avg(nws12_prez_4l),504)</code>
         <ul>
           <li>新闻发布后股价提升4%的时间</li>
+          <li><code class="language-plaintext highlighter-rouge">ts_backfill(vec_sum(nws12_prez_57p),600)</code></li>
+          <li><code class="language-plaintext highlighter-rouge">alpha=ts_backfill(vec_avg(nws12_prez_4l),504); trade_when(volume&gt;adv20,alpha,-1)</code></li>
         </ul>
       </li>
       <li><code class="language-plaintext highlighter-rouge">(ts_arg_max(ts_backfill(news_session_range, 20), 60))</code>
         <ul>
+          <li><code class="language-plaintext highlighter-rouge">signed_power(ts_backfill(vec_avg(nws12_prez_4l),504)*(1+rank(volume)),2)</code></li>
           <li>新闻后的波动范围(high-low)越大, 应该做多?? 一个季度内, 到达最大波动范围的最近时间. 越长说明波动衰减的正常. 不会极端的受到</li>
           <li>需要用随时间变化快的decay, 和trade_when控制换手率</li>
         </ul>
       </li>
+      <li><code class="language-plaintext highlighter-rouge">news_tot_ticks</code> 市场上所有交易品种一天内变价次数之和</li>
     </ul>
   </li>
+  <li>新闻情绪</li>
   <li>社媒:  对volume做neuntralize
     <ul>
       <li><code class="language-plaintext highlighter-rouge">-scl12_buzz</code>
@@ -302,6 +308,12 @@
       <li><code class="language-plaintext highlighter-rouge">ts_std_dev(ts_backfill(snt_social_value,60),60)</code>
         <ul>
           <li>在一段时间内有关注是好事, 注意区分不同类型的股票</li>
+          <li>优化: <code class="language-plaintext highlighter-rouge">C60=correlation_last_60_days_spy;Alpha=zscore(ts_std_dev(ts_backfill(snt_social_value, 60),60));trade_when (C60&lt;0.4,Alpha, C60&gt;0.6)</code>
+            <ul>
+              <li>做zscore 变换</li>
+              <li>和标普指数(SPY) 相关性不能太高(关键)</li>
+            </ul>
+          </li>
         </ul>
       </li>
       <li><code class="language-plaintext highlighter-rouge">-ts_mean(pv13_ustomergraphrank_hub_rank,504)</code>
@@ -334,7 +346,16 @@
 
 <p>Price-volume datasets</p>
 
+<h3 id="常用数据">常用数据</h3>
+
 <ul>
+  <li>开盘价, 收盘价,</li>
+  <li>vwap(volume weighted avg price) 当天的平均</li>
+  <li>adv20(avg days volume 20, 过去20天的平均volume)
+    <ul>
+      <li>一个常用的条件是<code class="language-plaintext highlighter-rouge">trade_when(volume &gt; adv20, alpha, -1)</code> 表示流动性突然变高</li>
+    </ul>
+  </li>
   <li>成交量: 根据市值(cap)分组, 不同波动时期区别对待
     <ul>
       <li><code class="language-plaintext highlighter-rouge">alpha = (1/volume);group = bucket(rank(cap),range ='0.25,1,0.25');group_rank(alpha,group);</code>
@@ -343,6 +364,10 @@
         </ul>
       </li>
     </ul>
+  </li>
+  <li>5日回归: <code class="language-plaintext highlighter-rouge">-rank(close-ts_mean(close,5))</code></li>
+  <li>
+    <p>turnover</p>
   </li>
   <li>相关性
     <ul>
@@ -358,13 +383,13 @@
       <li><code class="language-plaintext highlighter-rouge">SR = systematic_risk_last_60_days;USR = unsystematic_risk_last_60_days;zscore(USR + SR)</code>
         <ul>
           <li>总风险, 高风险是好的?</li>
-          <li>去掉和指数相关性高的股票?</li>
+          <li>去掉和指数相关性高的股票? <code class="language-plaintext highlighter-rouge">trade_when(correlation_last_60_days_spy &gt; 0.6, zscore(systematic_risk_last_60_days + unsystematic_risk_last_60_days),-1)</code></li>
         </ul>
       </li>
       <li><code class="language-plaintext highlighter-rouge">market_ret = ts_product(1+group_mean(returns,1,market),250)-1;rfr = vec_avg(fnd6_newqeventv110_optrfrq);expected_return = rfr+beta_last_360_days_spy*(market_ret-rfr);actual_return = ts_product(returns+1,250)-1;actual_return-expected_return</code>
         <ul>
           <li>CAPM(Capital Asset Pricing Model): <code class="language-plaintext highlighter-rouge">rfr</code> 是risk free rate + beta * (return - rfr)</li>
-          <li>实际比CAPM计算的return高是好事</li>
+          <li>如果股票的CAMP-adjusted return是正数, 说明是好事</li>
         </ul>
       </li>
     </ul>
@@ -374,6 +399,10 @@
 <h2 id="参考资料">参考资料</h2>
 
 <p>[1]  https://platform.worldquantbrain.com/learn/documentation</p>
+
+<p>[2]  Kakushadze, Zura. “101 Formulaic Alphas.” SSRN Scholarly Paper. Rochester, NY: Social Science Research Network, December 9, 2015. <a href="https://doi.org/10.2139/ssrn.2701346">https://doi.org/10.2139/ssrn.2701346</a>.    <strong>Alpha101</strong> 主要用到量价数据</p>
+
+<p>[3] Wang, Ying, Bohui Zhang, and Xiaoneng Zhu. “<strong>The Momentum of News.</strong>” SSRN Scholarly Paper. Rochester, NY: Social Science Research Network, October 16, 2018. <a href="https://doi.org/10.2139/ssrn.3267337">https://doi.org/10.2139/ssrn.3267337</a>.   新闻动量和基本面相关</p>
 
         </div>
 

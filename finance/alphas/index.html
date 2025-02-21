@@ -17,7 +17,7 @@
   
   <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>worldquant BRAIN 股票因子 (一) – 仿真测试 | Liu, Wen’s Home Page</title>
-<meta name="generator" content="Jekyll v4.3.4" />
+<meta name="generator" content="Jekyll v4.4.1" />
 <meta property="og:title" content="worldquant BRAIN 股票因子 (一) – 仿真测试" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="选择在模拟盘中表现好的因子投资" />
@@ -31,7 +31,7 @@
 <meta property="twitter:title" content="worldquant BRAIN 股票因子 (一) – 仿真测试" />
 <meta name="twitter:site" content="@" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2025-01-18T21:07:00+00:00","datePublished":"2025-01-07T00:00:00+00:00","description":"选择在模拟盘中表现好的因子投资","headline":"worldquant BRAIN 股票因子 (一) – 仿真测试","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/finance/alphas/"},"url":"https://roshameow.github.io//personal_homepage/finance/alphas/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2025-02-19T11:28:00+00:00","datePublished":"2025-01-07T00:00:00+00:00","description":"选择在模拟盘中表现好的因子投资","headline":"worldquant BRAIN 股票因子 (一) – 仿真测试","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/finance/alphas/"},"url":"https://roshameow.github.io//personal_homepage/finance/alphas/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -107,7 +107,7 @@
       <div class="page-sidebar">
         <div class="page-author h-card p-author"><img src="/personal_homepage/docs/images/logo.svg" class="author-avatar u-photo" alt=""><div class="author-info">
 
-<span class="read-time">1 min read</span>
+<span class="read-time">2 min read</span>
 
     <time class="page-date dt-published" datetime="2025-01-07T00:00:00+00:00"><a class="u-url" href="">January 7, 2025</a>
 </time>
@@ -153,15 +153,15 @@
     <!-- <div id="markdown-toc"> -->
     <ul>
         
-        <li><a href="/personal_homepage/code/alphas3/">worldquant BRAIN 股票因子 (三) -- API使用</a></li>
+        <li><a href="/personal_homepage/blender/blender-learning20/">blender学习:  制作随音乐律动的视频</a></li>
         
-        <li><a href="/personal_homepage/tool/asyncio/">协程的用法</a></li>
+        <li><a href="/personal_homepage/algorithm/color-moderate3/">传感器颜色调制 (四) -- 多光谱颜色校准</a></li>
         
-        <li><a href="/personal_homepage/finance/alphas2/">worldquant BRAIN 股票因子 (二) -- 因子思路</a></li>
+        <li><a href="/personal_homepage/blender/blender-learning19/">blender学习: 制作水体</a></li>
         
-        <li><a href="/personal_homepage/blender/blender-learning18/">blender学习: 用几何节点做程序化城市</a></li>
+        <li><a href="/personal_homepage/daily/cutting-board/">切菜板成分</a></li>
         
-        <li><a href="/personal_homepage/blender/snowflake/">雪花制作</a></li>
+        <li><a href="/personal_homepage/finance/alphas4/">worldquant BRAIN 股票因子 (四) -- 因子思路</a></li>
         
     </ul>
     <!-- </div> -->
@@ -185,17 +185,22 @@
 <p>分为数据库选择, 和后处理两部分</p>
 
 <ul>
-  <li>Delay: 当天(在当天closed前根据当天数据交易), 或+1天</li>
+  <li>Delay: 当天(在当天closed前根据当天数据交易), 或+1天(早上交易, 根据昨天的数据)</li>
   <li>Test Period: 把仿真的5年时间分出一部分作为test, PnL图上orange的部分</li>
   <li>
     <p>Universe(股票范围): Top3000指日平均 <code class="language-plaintext highlighter-rouge">volume</code> 最大的3000支</p>
   </li>
-  <li>Decay: 自带的一个linear decay(前n天)</li>
+  <li>Decay: 自带的一个linear decay(前n天), 是在最后的normalized weight上进行decay</li>
   <li>pasteurized: ? 只考虑universe以内的alpha?</li>
   <li>Nan Handling: 操作不可控? OFF的话, 有Nan的值会被平仓(全部卖出)</li>
   <li>Unit Handling: 单位不匹配时报warning</li>
   <li>truncation: 设置maximum weight上限: 建议设置0.05~0.1 (entailing 5-10%)之间</li>
-  <li>neutralize(标准化): 让mean(alpha)=0, 时间(<code class="language-plaintext highlighter-rouge">ts_neutralize</code>)上做neutralize避免长期趋势. 同期(<code class="language-plaintext highlighter-rouge">group_neutralize</code>)的做避免不同类型股票的不公平比较.</li>
+  <li>neutralize(标准化): 让mean(alpha)=0,
+    <ul>
+      <li>时间(<code class="language-plaintext highlighter-rouge">ts_neutralize</code>)上做neutralize避免长期趋势. (多空中性化).</li>
+      <li>同期(<code class="language-plaintext highlighter-rouge">group_neutralize</code>)的做避免不同类型股票的不公平比较.</li>
+    </ul>
+  </li>
 </ul>
 
 <h2 id="仿真交易流程">仿真交易流程</h2>
@@ -210,7 +215,11 @@
         </ul>
       </li>
       <li>alpha apply到每只股票上得到alpha value</li>
-      <li>L1 归一化,  得到每只股票的<code class="language-plaintext highlighter-rouge">weight</code></li>
+      <li>L1 归一化,  得到每只股票的<code class="language-plaintext highlighter-rouge">weight</code>
+        <ul>
+          <li>不同neutralize组的booksize是分别计算的? 比如有两个sector, 每个sector scale到 0.5/abs(sector_sum)?</li>
+        </ul>
+      </li>
       <li>每天在每只股票上投资 <code class="language-plaintext highlighter-rouge">weight*booksize</code></li>
       <li>计算<code class="language-plaintext highlighter-rouge">PnL</code></li>
     </ul>
@@ -250,6 +259,7 @@
     </ul>
   </li>
   <li>cap(市值)</li>
+  <li>Call/Put(看涨/看跌)</li>
 </ul>
 
 <h3 id="通过指标">通过指标</h3>
@@ -272,27 +282,33 @@
     </tr>
     <tr>
       <td>Sub-universe Sharpe</td>
-      <td> </td>
+      <td>建议 <code class="language-plaintext highlighter-rouge">subuniverse_sharpe &gt; 0.7*sharpe</code></td>
       <td><code class="language-plaintext highlighter-rouge">subuniverse_sharpe &gt;= 0.75 * sqrt(subuniverse_size / alpha_universe_size) * alpha_sharpe</code><br /><br />不在sub-universe 的股票赋NaN, 自动加上market neutralization, 并乘上scale?<br /><br /></td>
-      <td>让alpha少受公司规模, 流动性的影响<br />避免使用<code class="language-plaintext highlighter-rouge">1-rank(cap), rank(-assets)</code><br />对<code class="language-plaintext highlighter-rouge">volume*close</code> 不在一个水平的stock, 用不同的decay参数</td>
+      <td>让alpha少受公司规模, 流动性的影响<br />避免使用<code class="language-plaintext highlighter-rouge">1-rank(cap), rank(-assets)</code><br />对<code class="language-plaintext highlighter-rouge">volume*close</code> 不在一个水平的stock,</td>
     </tr>
     <tr>
       <td><a href="https://support.worldquantbrain.com/hc/en-us/articles/20251419309719-How-to-improve-Turnover">Turnover(换手率)</a></td>
-      <td><code class="language-plaintext highlighter-rouge">1% &lt; Turnover &lt; 70%</code><br />建议 <code class="language-plaintext highlighter-rouge">Turnover &lt; 40%</code></td>
+      <td><code class="language-plaintext highlighter-rouge">1% &lt; Turnover &lt; 70%</code><br />建议 <code class="language-plaintext highlighter-rouge">Turnover &lt; 25%</code></td>
       <td><code class="language-plaintext highlighter-rouge">avg(daily trading volume/Booksize)</code></td>
-      <td>减少turnover: 增加滤波(decay, ts_mean)<br />用trade_when限制开仓条件</td>
+      <td>减少turnover: <br />1. 增加滤波(decay, ts_mean)<br />2. 用trade_when设置交易条件<br />3. 用<code class="language-plaintext highlighter-rouge">hump</code> operator</td>
     </tr>
     <tr>
       <td><strong><a href="https://support.worldquantbrain.com/hc/en-us/articles/20251386376471-How-to-increase-fitness-of-alphas?">Fitness(健康度)</a></strong><br />评价alpha优劣的指标</td>
       <td>Delay-0: <code class="language-plaintext highlighter-rouge">fitness &gt; 1.3</code><br />Delay-1: <code class="language-plaintext highlighter-rouge">fitness &gt; 1</code></td>
       <td><code class="language-plaintext highlighter-rouge">Fitness = Sharpe*sqrt(abs(Returns)/Max(Turnover,0.125))</code></td>
-      <td> </td>
+      <td>降低turnover</td>
+    </tr>
+    <tr>
+      <td>Margin</td>
+      <td>建议 <code class="language-plaintext highlighter-rouge">margin &gt; 4bps</code></td>
+      <td><code class="language-plaintext highlighter-rouge">avg(PnL/total traded dollars)</code></td>
+      <td>降低turnover</td>
     </tr>
     <tr>
       <td>Weight test</td>
       <td>1. 在长时间内, non-zero weight的股票数不能太少<br />2. 某一个股票的weight不能占比太大<br /><code class="language-plaintext highlighter-rouge">max(weight) &lt; 10%</code> <br />随股票范围变动</td>
       <td> </td>
-      <td>- truncation: 设置maximum weight上限: 建议设置0.05~0.1 (entailing 5-10%)之间<br />- 优化weight 分布: rank</td>
+      <td>- truncation: 设置maximum weight上限: 建议设置0.05~0.1 (entailing 5-10%)之间<br />- 调整weight 分布: rank<br />- <a href="https://support.worldquantbrain.com/hc/en-us/articles/19248385997719-Weight-Coverage-common-issues-and-advice?">解决coverage不够的问题</a>:1. 用<code class="language-plaintext highlighter-rouge">ts_backfill</code>填补一些更新频率不够的 2. 用<code class="language-plaintext highlighter-rouge">group_count</code>检测当天的覆盖率</td>
     </tr>
     <tr>
       <td>Self Correlation</td>
@@ -306,13 +322,24 @@
       <td> </td>
       <td> </td>
     </tr>
+    <tr>
+      <td>IS Ladder Sharpe(阶梯测试)</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
   </tbody>
 </table>
 
 <h2 id="操作">操作</h2>
 
 <ul>
-  <li>数据接口: https://platform.worldquantbrain.com/data</li>
+  <li>数据接口: https://platform.worldquantbrain.com/data
+    <ul>
+      <li>datafield是变量名</li>
+      <li>dataset是数据集</li>
+    </ul>
+  </li>
   <li>支持运算: https://platform.worldquantbrain.com/learn/operators</li>
   <li><a href="https://platform.worldquantbrain.com/learn/documentation/discover-brain/introduction-brain-expression-language">代码语法</a>:
     <ul>
@@ -321,11 +348,89 @@
 常用的operator</li>
     </ul>
   </li>
+  <li>填空(<code class="language-plaintext highlighter-rouge">ts_backfill</code>,  <code class="language-plaintext highlighter-rouge">group_backfill</code>): 把数据里的nan用有效值补上
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">group_backfill</code> 是在d天, group里取所有的有效值, 做winsorized mean</li>
+    </ul>
+  </li>
+  <li>统计
+    <ul>
+      <li>mean(<code class="language-plaintext highlighter-rouge">group_mean,</code>)
+        <ul>
+          <li><code class="language-plaintext highlighter-rouge">group_sum</code></li>
+          <li><code class="language-plaintext highlighter-rouge">group_count</code> : 统计valid value. 和 group_sum(is_nan ) 一样吗?</li>
+        </ul>
+      </li>
+      <li>std_dev(<code class="language-plaintext highlighter-rouge">group_std_dev</code>)</li>
+      <li>ir(<code class="language-plaintext highlighter-rouge">ts_ir</code>): 信噪比, mean/std</li>
+      <li>kurt(<code class="language-plaintext highlighter-rouge">ts_kurtosis</code>):</li>
+      <li>max (<code class="language-plaintext highlighter-rouge">ts_max_diff</code>)</li>
+    </ul>
+  </li>
   <li>调整分布
     <ul>
-      <li>zscore: 让数据的mean=0, var=1. 假设数据是高斯分布的情况下标准化.</li>
-      <li>rank: 不改变单调性, 把数据调整成均匀分布</li>
-      <li>quantile 把数据调整成某个分布</li>
+      <li>neutralize(<code class="language-plaintext highlighter-rouge">group_neutralize,ts_av_diff</code>): 让数据 mean=0</li>
+      <li>zscore(<code class="language-plaintext highlighter-rouge">zscore, group_zscore, ts_zsore</code>): 让数据 mean=0, var=1. 假设数据是高斯分布的情况下标准化.</li>
+      <li>rank(<code class="language-plaintext highlighter-rouge">rank, group_rank, ts_rank</code>): 不改变单调性, 把数据调整成0-1之间的均匀分布</li>
+      <li>quantile(<code class="language-plaintext highlighter-rouge">quantile, ts_quantile</code>) 把数据调整成某个分布
+        <ul>
+          <li>会先做一个rank把数据调整到0-1, 再做线性变换到 (1/n)-(1-1/n), 然后再用三种分布调整</li>
+          <li>支持均匀分布, gaussian分布和<a href="https://en.wikipedia.org/wiki/Cauchy_distribution">Cauchy分布</a>
+            <ul>
+              <li><strong>把输入调整成return, 可以用来做随机采样?</strong></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>缩尾: 中间部分数据不变, 用来处理长尾分布.
+        <ul>
+          <li><code class="language-plaintext highlighter-rouge">tail</code> : 手动设置lower, upper bound</li>
+          <li><code class="language-plaintext highlighter-rouge">winsorize</code>:  离群数据的截断的范围由std确定</li>
+        </ul>
+      </li>
+      <li>scale(<code class="language-plaintext highlighter-rouge">scale, group_scale, ts_scale</code>): 让数据在0-1之间. 线性scale</li>
+      <li>线性分段函数改变数据分布: 比如<code class="language-plaintext highlighter-rouge">a&lt;0.1? (1.1-a):(a&gt;0.8? 1.8-a:1)</code> , 可以构造任何分布.</li>
+      <li>非线性的改变数据分布(<code class="language-plaintext highlighter-rouge">power, -inverse, log(x+1),arctan</code>)</li>
+    </ul>
+  </li>
+  <li>计算相关关系
+    <ul>
+      <li>ts_regression(y,x): 用一个数据线性拟合另一个数据. 调节rettype 获得对应参数
+        <ul>
+          <li>error_term(rettype=0): 相当于用x数据做y的baseline_wander (y信号是主信号)</li>
+          <li>slope($\beta$ , rettype=2): 得到数据x关于数据y的系数,
+            <ul>
+              <li>可以用这个信号作为一个阈值</li>
+              <li>得到的 <code class="language-plaintext highlighter-rouge">slope * x</code> 可以用做把y对多个x做分解, 得到的分解量. 和rettype=3 类似.</li>
+            </ul>
+          </li>
+          <li>y-estimate(rettype=3): 相当于用x数据线性构建信号, 调节出一个和y 距离最近的参数. (x信号是主信号)</li>
+          <li>$R^2=1-\frac{SSE}{SST}$ (决定系数, rettype=6): 表示线性模型的有用程度.(比直接取均值好的程度.). (反应了x对y的预测能力.)
+            <ul>
+              <li>SSE是模型预测值与实际值 $y_i$ 的平方和. SST是均值与实际值 $y_i$ 的平方和. 这两个越接近, 即$R^2$ 越小, 说明模型和直接取均值效果差不多.</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>分组
+    <ul>
+      <li>floor: 用整数量化成n个区间.</li>
+      <li>bucket: 把0-1的值平均分为n个区间.
+        <ul>
+          <li><code class="language-plaintext highlighter-rouge">floor(rank(cap)*4.99)</code> 和<code class="language-plaintext highlighter-rouge">bucket(rank(cap),range="0.1,1,0.2")</code> 是差不多的效果.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>控制
+    <ul>
+      <li>hump: 根据数据变动, 只有两种action(不动, 移动hump threshold)
+        <ul>
+          <li>对周期比较长的数据(比如基本面数据)可以这样做</li>
+        </ul>
+      </li>
     </ul>
   </li>
 </ul>

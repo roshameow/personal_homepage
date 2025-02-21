@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<!--
+    So Simple Jekyll Theme 3.2.0
+    Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+    Free for personal and commercial use under the MIT license
+    https://github.com/mmistakes/so-simple-theme/blob/master/LICENSE
+-->
+<html lang="en-US" class="no-js">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  
+
+  
+  
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>传感器颜色调制 (四) – 多光谱颜色校准 | Liu, Wen’s Home Page</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="传感器颜色调制 (四) – 多光谱颜色校准" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="用RGB校准多光谱数据" />
+<meta property="og:description" content="用RGB校准多光谱数据" />
+<link rel="canonical" href="https://roshameow.github.io//personal_homepage/algorithm/color-moderate3/" />
+<meta property="og:url" content="https://roshameow.github.io//personal_homepage/algorithm/color-moderate3/" />
+<meta property="og:site_name" content="Liu, Wen’s Home Page" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2025-02-12T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="传感器颜色调制 (四) – 多光谱颜色校准" />
+<meta name="twitter:site" content="@" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2025-02-21T09:56:00+00:00","datePublished":"2025-02-12T00:00:00+00:00","description":"用RGB校准多光谱数据","headline":"传感器颜色调制 (四) – 多光谱颜色校准","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/algorithm/color-moderate3/"},"url":"https://roshameow.github.io//personal_homepage/algorithm/color-moderate3/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  
+
+  <script>
+    /* Cut the mustard */
+    if ('querySelector' in document && 'addEventListener' in window) {
+      document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + 'js';
+    }
+  </script>
+
+  <link rel="stylesheet" href="/personal_homepage/assets/css/main.css">
+  <link rel="stylesheet" href="/personal_homepage/assets/css/skins/default.css">
+  
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,700,700i|Lora:400,400i,700,700i">
+  <link rel="alternate" type="application/atom+xml" title="Liu, Wen&#39;s Home Page" href="/personal_homepage/atom.xml">
+<!-- start custom head snippets -->
+
+<!-- insert favicons. use http://realfavicongenerator.net/ -->
+<link rel="shortcut icon" type="image/x-icon" href="/personal_homepage/docs/images/logo.ico">
+<!-- end custom head snippets -->
+
+</head>
+
+  <body class="layout--post  传感器颜色调制-四-多光谱颜色校准">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#primary-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+  <div class="navigation-wrapper">
+    <a href="#menu-toggle" id="menu-toggle">Menu</a>
+    <nav id="primary-nav" class="site-nav animated drop">
+      <ul><li><a href="/personal_homepage/">Home</a></li><li><a href="/personal_homepage/posts/">Posts</a></li><li><a href="/personal_homepage/categories/">Categories</a></li><li><a href="/personal_homepage/tags/">Tags</a></li><li><a href="/personal_homepage/family/">Family</a></li><li><a href="/personal_homepage/search/">Search</a></li></ul>
+    </nav>
+  </div><!-- /.navigation-wrapper -->
+
+
+    <header class="masthead">
+  <div class="wrap">
+    
+    
+    
+      
+        <div class="site-title animated fadeIn"><a href="/personal_homepage/">Liu, Wen's Home Page</a></div>
+      
+      <p class="site-description animated fadeIn" itemprop="description">Work, Experiments and Ideas.</p>
+    
+  </div>
+</header><!-- /.masthead -->
+
+
+    <main id="main" class="main-content" aria-label="Content">
+  <article class="h-entry">
+    
+
+    <div class="page-wrapper">
+      <header class="page-header">
+        
+        
+        <h1 id="page-title" class="page-title p-name">传感器颜色调制 (四) – 多光谱颜色校准
+</h1>
+        
+      </header>
+
+      <div class="page-sidebar">
+        <div class="page-author h-card p-author"><img src="/personal_homepage/docs/images/logo.svg" class="author-avatar u-photo" alt=""><div class="author-info">
+
+<span class="read-time">1 min read</span>
+
+    <time class="page-date dt-published" datetime="2025-02-12T00:00:00+00:00"><a class="u-url" href="">February 12, 2025</a>
+</time>
+
+  </div>
+</div>
+
+        
+  <h3 class="page-taxonomies-title">Categories</h3>
+  
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a class="p-category" href="/personal_homepage/categories/#algorithm" title="Pages filed under algorithm">algorithm</a></li>
+  </ul>
+
+
+        
+  <h3 class="page-taxonomies-title">Tags</h3>
+  
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a href="/personal_homepage/tags/#content" title="Pages tagged content" rel="tag">content</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#isp" title="Pages tagged isp" rel="tag">isp</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#multi-spectrum" title="Pages tagged multi-spectrum" rel="tag">multi-spectrum</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#proximal-operator" title="Pages tagged proximal_operator" rel="tag">proximal_operator</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#sensor" title="Pages tagged sensor" rel="tag">sensor</a></li>
+  </ul>
+
+
+        <!-- {::options parse_block_html="true" /} -->
+<div id="entry-table-of-contents" class="toc-wrapper">
+  <h2 id="toc-toggle">
+    Table of Contents <i
+      class="toc-toggle-icon fas fa-chevron-down"></i>
+  </h2>
+  <!-- 1. toc
+{:toc} -->
+  <!-- <div id="markdown-toc"> -->
+
+    <ul class="inline_toc" id="my_toc"><li><a href="#用rgb校准多光谱数据">用RGB校准多光谱数据</a><ul><li><a href="#求解系数">求解系数</a></li><li><a href="#测量标准">测量标准</a></li><li><a href="#结果可视化">结果可视化</a></li><li><a href="#代码">代码</a></li></ul></li><li><a href="#用多光谱合成高光谱数据">用多光谱合成高光谱数据</a></li><li><a href="#用多光谱做awb">用多光谱做awb</a></li><li><a href="#reference">reference</a></li></ul>
+  <!-- </div> -->
+
+</div>
+<!-- {::options parse_block_html="false" /} -->
+        
+
+<div id="entry-table-of-contents" class="toc-wrapper">
+    <h2 id="toc-toggle" class="no_toc">
+        Related Posts <i class="toc-toggle-icon fas fa-chevron-down"></i>
+    </h2>
+    <!-- <div id="markdown-toc"> -->
+    <ul>
+        
+        <li><a href="/personal_homepage/blender/blender-learning20/">blender学习:  制作随音乐律动的视频</a></li>
+        
+        <li><a href="/personal_homepage/blender/blender-learning19/">blender学习: 制作水体</a></li>
+        
+        <li><a href="/personal_homepage/daily/cutting-board/">切菜板成分</a></li>
+        
+        <li><a href="/personal_homepage/finance/alphas4/">worldquant BRAIN 股票因子 (四) -- 因子思路</a></li>
+        
+        <li><a href="/personal_homepage/code/alphas3/">worldquant BRAIN 股票因子 (三) -- API使用和代码</a></li>
+        
+    </ul>
+    <!-- </div> -->
+
+</div>
+
+
+
+
+
+      </div>
+
+      <div class="page-content">
+        <div class="e-content">
+          <h2 id="用rgb校准多光谱数据">用RGB校准多光谱数据</h2>
+
+<p>把<code class="language-plaintext highlighter-rouge">(H,W,N)</code> 的多光谱数据 <code class="language-plaintext highlighter-rouge">Y</code> , 由<code class="language-plaintext highlighter-rouge">N x 3</code> 的CCM(Color Correction Matrix) 线性映射为 <code class="language-plaintext highlighter-rouge">(H,W,3)</code> 的rgb数据 <code class="language-plaintext highlighter-rouge">X</code> . 即 $Y\cdot CCM = X$ .</p>
+
+<ul>
+  <li>虽然是线性映射, 可以在步骤前给Y 加一个 feature extraction模块, 实现非线性. 达到更低的loss.</li>
+  <li>即使只是线性映射, 多光谱数据也比3通道的数据能达到更低的loss.
+    <h3 id="求解系数">求解系数</h3>
+  </li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>Loss &amp; 约束</th>
+      <th>公式</th>
+      <th>说明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>普通L2 norm</td>
+      <td>$\min \vert\vert Y\cdot CCM - X\vert\vert_2$</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>restrict awb</td>
+      <td>$\min \vert\vert Y\cdot CCM - X\vert\vert_2$ ,  $\sum_{col}(CCM)=1$</td>
+      <td>让中性灰映射不变, 即让 (1,1,…,1)映射到(1,1,1)<br />一般是把wb(white balance)步骤放在color correction之前会这样做<br />因为wb在不同机器上表现差别更大, <br />所以给这两步设置不同的校准频率吗?</td>
+    </tr>
+    <tr>
+      <td>L2 Regularization<br />🌟</td>
+      <td>$\min \vert\vert Y\cdot CCM - X\vert\vert_2 + \lambda\cdot\vert\vert CCM \vert\vert_2$</td>
+      <td>防止CCM因为数据点比较少而过拟合<br />如果用24色卡, 考虑多光谱数据有 3n 个未知数, <br />加入约束是十分必要的, 这个也是计算最简单的约束条件</td>
+    </tr>
+    <tr>
+      <td>Lasso</td>
+      <td>$\min \vert\vert Y\cdot CCM - X\vert\vert_2 + \lambda\cdot\vert\vert CCM \vert\vert_1$</td>
+      <td>防止CCM某个数据过大外, 还能增强稀疏性<br />在color-correction里没必要</td>
+    </tr>
+    <tr>
+      <td>CIELab<br />🌟</td>
+      <td>把 X 变换到Lab空间. <br />计算 $Y\cdot CCM$ 和 X的delta E loss</td>
+      <td>Lab 是评判RGB数据是否相近的最终标准. 这一步也是必要的.<br />Lab 变换是非线性的, 这一步优化时间更长.<br />需要在线性优化得到初值之后, 第二步再做delta E 的优化.</td>
+    </tr>
+  </tbody>
+</table>
+
+<ol>
+  <li><strong>原始L2 norm</strong>:  用<strong>最小二乘法</strong></li>
+  <li><strong>restrict awb条件</strong> : 因为是线性条件, 可以直接求解.
+    <ul>
+      <li>把awb条件写成: <img src="/personal_homepage/docs/attachment/Pasted%20image%2020250220192803.png" alt="Pasted image 20250220192803.png" width="300" /> 的形式</li>
+      <li>直接代入原方程: <img src="/personal_homepage/docs/attachment/Pasted%20image%2020250220192840.png" alt="Pasted image 20250220192840.png" width="1000" />
+        <ul>
+          <li>把 Y 和 CCM 分块展开并化简. 用<strong>最小二乘法</strong>求解化简后的方程即可.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><strong>L2 Regularization</strong> : 因为正则项也是L2的, 可以直接计算.
+    <ul>
+      <li>在求导时, CCM的系数由 $2Y^T Y$ 变为 $2Y^TY+2\begin{bmatrix}\lambda&amp;&amp; \\ &amp;\lambda&amp; \\ &amp;&amp;\lambda\end{bmatrix}$ 即可</li>
+    </ul>
+  </li>
+  <li><strong>Lasso问题</strong>: 可以用近端算子轮流迭代的方法优化.</li>
+  <li><strong>Delta E</strong> : 用BFGS 的方法优化.</li>
+</ol>
+
+<h3 id="测量标准">测量标准</h3>
+
+<ul>
+  <li>数据来源:
+    <ul>
+      <li>标准色卡</li>
+      <li>色差仪测量: 理论上能组成很大的数据集, 但是很多材料没有好的反射性能</li>
+    </ul>
+  </li>
+  <li>测量环境
+    <ul>
+      <li>保证测量到的都是反射光</li>
+      <li>控制光源, 如果用色差仪和色差仪的光源保持一致</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="结果可视化">结果可视化</h3>
+
+<ul>
+  <li>色卡: <img src="/personal_homepage/docs/attachment/color_check_result.png" alt="color_check_result.png" width="300" /> 显示校准后和标准色的直观差距</li>
+  <li>Lab色彩: <img src="/personal_homepage/docs/attachment/lab_chromaticities.png" alt="lab_chromaticities.png" width="200" /> 显示数据集在ab空间的分布, 以及校准后的lab色差</li>
+  <li>在给出多光谱sensor每个通道的光谱(<code class="language-plaintext highlighter-rouge">cmf = n x 28</code> )的情况下, 可以出示下面两图: 由<code class="language-plaintext highlighter-rouge">(cmf_T * cmf)^{-1} * cmf</code> 做为系数, 还可以加入一些Regularization
+    <ul class="task-list">
+      <li>校准数据光谱: <img src="/personal_homepage/docs/attachment/color_spectrum.png" alt="color_spectrum.png" width="300" />  显示数据集的光谱分布.</li>
+      <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />多光谱映射的RGB和真实RGB的光谱差距. 即色卡上的红, 蓝, 绿三色.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="代码">代码</h3>
+
+<ul>
+  <li><a href="https://gist.github.com/roshameow/8855383a21cab1b36bba130a6cee70a5#file-color_plot-py"><strong>color_plot.py</strong></a></li>
+</ul>
+
+<h2 id="用多光谱合成高光谱数据">用多光谱合成高光谱数据</h2>
+
+<p>多光谱 + 高光谱分布 -&gt; 高光谱</p>
+
+<ul>
+  <li>数据采集: (多光谱,高光谱) 数据对
+    <ul>
+      <li>自然状态下采集的高光谱数据集(反射光+光源)</li>
+      <li>多光谱数据每个通道光谱 -&gt; 由高光谱数据合成的多光谱数据</li>
+    </ul>
+  </li>
+  <li>模型
+    <ul>
+      <li>考虑现实世界情况, 带kernel的模型(<a href="https://en.wikipedia.org/wiki/Radial_basis_function_network">rbf</a> )比较合适?</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="用多光谱做awb">用多光谱做awb</h2>
+
+<p>即在多光谱数据中去掉光源的影响. 多光谱 + 光源分布 -&gt; 光源的 rgb illuminant vector.</p>
+
+<ul>
+  <li>数据采集: (多光谱, rgb illuminant vector) 数据对
+    <ul>
+      <li>自然状态下采集的光源的高光谱数据集 -&gt; 转换成多光谱数据集和rgb illuminant vector数据集</li>
+      <li>仿真: 从已知 (相机拍摄的rgb图片,rgb illuminant vector)  + 相机的response曲线 + 光源的光谱数据集 + 反射谱数据集 -&gt; 推测出图片每个像素的光谱
+        <ul>
+          <li><code class="language-plaintext highlighter-rouge">相机的response曲线 * 光源的光谱 = rgb illuminant vector</code></li>
+          <li><code class="language-plaintext highlighter-rouge">相机的response曲线 *  光源的光谱 * 反射谱 = rgb像素</code></li>
+          <li>用<a href="https://en.wikipedia.org/wiki/Maximum_likelihood_estimation">最大似然估计</a> 的想法, 先估计出图片光源光谱, 再估计出每个像素的反射光谱</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="reference">reference</h2>
+
+<p>[1]  Koskinen, Samu, Erman Acar, and Joni-Kristian Kämäräinen. “Single Pixel Spectral Color Constancy.” <em>International Journal of Computer Vision</em>, September 1, 2023. <a href="https://doi.org/10.1007/s11263-023-01867-x">https://doi.org/10.1007/s11263-023-01867-x</a>.</p>
+
+        </div>
+
+        
+
+        
+        
+  <div class="page-comments">
+    <div id="disqus_thread"></div>
+    <script>
+      var disqus_config = function () {
+        this.page.url = 'https://roshameow.github.io//personal_homepage/algorithm/color-moderate3/';
+        this.page.identifier = 'https://roshameow.github.io//personal_homepage/algorithm/color-moderate3/';
+      };
+
+      (function() {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://https-roshameow-github-io-personal-homepage.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+  </div>
+
+
+        
+
+        <nav class="page-pagination" role="navigation">
+  
+    <a class="page-previous" href="/personal_homepage/blender/blender-learning19/">
+      <h4 class="page-pagination-label">Previous</h4>
+      <span class="page-pagination-title">
+        <i class="fas fa-arrow-left"></i> blender学习: 制作水体
+
+      </span>
+    </a>
+  
+
+  
+    <a class="page-next" href="/personal_homepage/blender/blender-learning20/">
+      <h4 class="page-pagination-label">Next</h4>
+      <span class="page-pagination-title">
+        blender学习:  制作随音乐律动的视频
+ <i class="fas fa-arrow-right"></i>
+      </span>
+    </a>
+  
+</nav>
+
+      </div>
+
+    </div>
+  </article>
+</main>
+
+    <footer id="footer" class="site-footer">
+  <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+<div class="social-icons"><a class="social-icon" href="/personal_homepage/atom.xml"><i class="fas fa-rss-square fa-2x" title="Feed"></i></a><a class="social-icon" href="https://github.com/roshameow"><i class="fab fa-github-square fa-2x" title="GitHub"></i></a><a class="social-icon" href="https://www.linkedin.com/in/wen-liu-06503a7b/"><i class="fab fa-linkedin fa-2x" title="LinkedIn"></i></a><a class="social-icon" href="mailto:w.liuatnk@gmail.com"><i class="fas fa-envelope-square fa-2x" title="e-mail"></i></a></div><div class="copyright">
+    
+      <p>&copy; 2025 Liu, Wen's Home Page. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://github.com/mmistakes/so-simple-theme" rel="nofollow">So Simple</a>.</p>
+    
+  </div>
+</footer>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="/personal_homepage/assets/js/main.min.js"></script>
+<script src="https://use.fontawesome.com/releases/v5.0.12/js/all.js"></script><!-- <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'G-9TMSCDTBGN', 'auto');
+  ga('send', 'pageview');
+</script> -->
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9TMSCDTBGN"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-9TMSCDTBGN');
+</script>
+
+
+
+<!-- MathJax -->
+
+<script>
+    // http://docs.mathjax.org/en/latest/upgrading/v2.html
+    MathJax = {
+        tex: {
+            tags: "ams",    // eq numbering options: none, ams, all
+            inlineMath: [['$', '$'], ["\\(", "\\)"]],  // 设置行内数学公式的开始和结束标记
+            displayMath: [['$$', '$$'], ["\\[", "\\]"]]  // 设置行间数学公式的开始和结束标记
+        },
+        // options: {
+        //   renderActions: {
+        //     // for mathjax 3, handle <script "math/tex"> blocks inserted by kramdown
+        //     find: [10, function (doc) {
+        //       for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+        //         const display = !!node.type.match(/; *mode=display/);
+        //         const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+        //         const text = document.createTextNode('');
+        //         node.parentNode.replaceChild(text, node);
+        //         math.start = { node: text, delim: '', n: 0 };
+        //         math.end = { node: text, delim: '', n: 0 };
+        //         doc.math.push(math);
+        //       }
+        //     }, '']
+        //   }
+        // }
+    }
+</script>
+
+<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  </body>
+
+</html>
