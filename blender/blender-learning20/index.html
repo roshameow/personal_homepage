@@ -31,7 +31,7 @@
 <meta property="twitter:title" content="blender学习: 制作随音乐律动的视频" />
 <meta name="twitter:site" content="@" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2025-02-20T21:39:00+00:00","datePublished":"2025-02-20T00:00:00+00:00","description":"参考教学","headline":"blender学习: 制作随音乐律动的视频","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/blender/blender-learning20/"},"url":"https://roshameow.github.io//personal_homepage/blender/blender-learning20/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2025-02-21T13:43:00+00:00","datePublished":"2025-02-20T00:00:00+00:00","description":"参考教学","headline":"blender学习: 制作随音乐律动的视频","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/blender/blender-learning20/"},"url":"https://roshameow.github.io//personal_homepage/blender/blender-learning20/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -178,6 +178,26 @@
         <div class="e-content">
           <p><a href="https://www.bilibili.com/video/BV1CPNpeTE5E/">参考教学</a></p>
 
+<ul>
+  <li>设置物体随1d强度变化:
+    <ul>
+      <li>在plane mesh上添加Cloud Texture, 把strength打上关键帧</li>
+      <li>用geometry node在变形的mesh上添加instance
+        <ul>
+          <li>把material的link从Data改为Object才能给instance添加材质</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>添加音乐:
+    <ul>
+      <li>设置物体随音乐(1d)运动: 用Graph Editor的<a href="https://docs.blender.org/manual/en/latest/editors/graph_editor/channels/editing.html">Channel</a> -&gt; Sound to Samples 功能, 让strength随音乐变化</li>
+      <li>设置播放音乐: 在Video Sequencer里添加音乐</li>
+    </ul>
+  </li>
+</ul>
+
+<iframe src="//player.bilibili.com/player.html?isOutside=true&amp;aid=114040038755496&amp;bvid=BV1pTAZeNEhW&amp;cid=28499775428&amp;p=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
 
         </div>
 
