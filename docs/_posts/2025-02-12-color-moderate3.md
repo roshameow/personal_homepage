@@ -9,7 +9,7 @@ tags:
   - multi-spectrum
   - isp
   - proximal_operator
-last_modified_at: 2025-02-21T09:56
+last_modified_at: 2025-03-11T19:22
 created: 2025-02-12T18:56
 ---
 ## 用RGB校准多光谱数据
@@ -18,6 +18,7 @@ created: 2025-02-12T18:56
 
 - 虽然是线性映射, 可以在步骤前给Y 加一个 feature extraction模块, 实现非线性. 达到更低的loss.
 - 即使只是线性映射, 多光谱数据也比3通道的数据能达到更低的loss.
+
 ### 求解系数
 
 | Loss & 约束               | 公式                                                                                     | 说明                                                                                                                               |
