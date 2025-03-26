@@ -1,4 +1,177 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://roshameow.github.io//personal_homepage/atom.xml" rel="self" type="application/atom+xml" /><link href="https://roshameow.github.io//personal_homepage/" rel="alternate" type="text/html" /><updated>2025-02-21T06:08:29+00:00</updated><id>https://roshameow.github.io//personal_homepage/atom.xml</id><title type="html">Liu, Wen’s Home Page</title><subtitle>Work, Experiments and Ideas.</subtitle><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><entry><title type="html">blender学习: 制作随音乐律动的视频</title><link href="https://roshameow.github.io//personal_homepage/blender/blender-learning20/" rel="alternate" type="text/html" title="blender学习: 制作随音乐律动的视频" /><published>2025-02-20T00:00:00+00:00</published><updated>2025-02-21T13:43:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/blender/blender-learning20</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/blender/blender-learning20/"><![CDATA[<p><a href="https://www.bilibili.com/video/BV1CPNpeTE5E/">参考教学</a></p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://roshameow.github.io//personal_homepage/atom.xml" rel="self" type="application/atom+xml" /><link href="https://roshameow.github.io//personal_homepage/" rel="alternate" type="text/html" /><updated>2025-03-26T11:29:56+00:00</updated><id>https://roshameow.github.io//personal_homepage/atom.xml</id><title type="html">Liu, Wen’s Home Page</title><subtitle>Work, Experiments and Ideas.</subtitle><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><entry><title type="html">blender学习: 内发光效果</title><link href="https://roshameow.github.io//personal_homepage/blender/blender-learning21/" rel="alternate" type="text/html" title="blender学习: 内发光效果" /><published>2025-03-11T00:00:00+00:00</published><updated>2025-03-11T19:40:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/blender/blender-learning21</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/blender/blender-learning21/"><![CDATA[<ul>
+  <li>设置透明+自发光
+    <ul>
+      <li>用transparent shader和emmision shader合成</li>
+      <li>用<a href="https://docs.blender.org/manual/en/latest/render/shader_nodes/input/layer_weight.html">layer weight node</a>控制参数
+        <ul>
+          <li>Frensnel 模式(对比度更高): 和frensel node一样公式, 把用IOR调节, 改成0-1调节weight</li>
+          <li>Facing 模式: 按face面向镜头的角度调节weight</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>添加辉光: 用Compositing的<a href="https://docs.blender.org/manual/en/latest/compositing/types/filter/glare.html">glare node</a>  -&gt; Fog Glow</li>
+</ul>
+
+<p><img src="/personal_homepage/docs/attachment/glow.jpeg" alt="glow.jpeg" width="480" /></p>
+
+<ul>
+  <li>问题:
+    <ul>
+      <li>怎么设置物体前后的遮挡?</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="渲染模式">渲染模式</h2>
+
+<p>shader边栏 -&gt; Options -&gt; Settings -&gt; Surface -&gt;<a href="https://docs.blender.org/manual/en/latest/render/eevee/material_settings.html">Render Method</a></p>
+
+<ul>
+  <li><strong>Dithered Mode（抖动模式）</strong> : 效果更好, 性能开销更大
+    <ul>
+      <li>支持半透明渲染</li>
+      <li>支持raytracing</li>
+      <li>deferred rendering技术</li>
+    </ul>
+  </li>
+  <li><strong>Blended Mode（混合模式）</strong>
+    <ul>
+      <li>前向渲染(forward rendering）技术</li>
+      <li>透明表面的排序基于对象原点, 可能导致渲染错误</li>
+    </ul>
+  </li>
+</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="blender" /><category term="content" /><summary type="html"><![CDATA[设置透明+自发光 用transparent shader和emmision shader合成 用layer weight node控制参数 Frensnel 模式(对比度更高): 和frensel node一样公式, 把用IOR调节, 改成0-1调节weight Facing 模式: 按face面向镜头的角度调节weight 添加辉光: 用Compositing的glare node -&gt; Fog Glow]]></summary></entry><entry><title type="html">筛选适合阅读的论文</title><link href="https://roshameow.github.io//personal_homepage/tool/papers/" rel="alternate" type="text/html" title="筛选适合阅读的论文" /><published>2025-03-09T00:00:00+00:00</published><updated>2025-03-10T13:35:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/tool/papers</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/tool/papers/"><![CDATA[<table>
+  <thead>
+    <tr>
+      <th>搜索步骤</th>
+      <th>目的</th>
+      <th>输入-&gt;输出</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>一级搜索</td>
+      <td>按时间, 类别, 标题搜索文章</td>
+      <td>获取标题, 作者, 文章链接, summary</td>
+    </tr>
+    <tr>
+      <td>二级搜索</td>
+      <td>判断summary是否对主题有用</td>
+      <td>summary + prompt -&gt; yes/no</td>
+    </tr>
+    <tr>
+      <td>三级搜索</td>
+      <td>判断文章内容</td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li>一级搜索(按时间, 类别, 标题搜索文章) —&gt; 获取标题, 作者, 文章链接, summary
+    <ul>
+      <li>arxiv搜索: <a href="https://info.arxiv.org/help/api/basics.html#python_simple_example">arxiv api调用</a>, 或者可以直接用<a href="https://pypi.org/project/arxiv/">avxiv的python包</a></li>
+    </ul>
+  </li>
+  <li>二级搜索: 判断summary是否对主题有用 -&gt; summary + prompt
+    <ul>
+      <li>Does this paper describe how to find abnormal returns in stocks? Just answer yes or no</li>
+      <li>f”The following is the content of a research paper:\n{pdf_text}\n\nQuestion: {question_str}”},</li>
+      <li>gemini</li>
+      <li><a href="https://huggingface.co/tasks/zero-shot-classification">Hugging Face 的 Zero-Shot Classification pipeline</a></li>
+      <li>classifier = pipeline(“zero-shot-classification”, model=”facebook/bart-large-mnli”)</li>
+    </ul>
+  </li>
+  <li>三级搜索: 下载文章内容</li>
+</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="tool" /><category term="content" /><summary type="html"><![CDATA[搜索步骤 目的 输入-&gt;输出 一级搜索 按时间, 类别, 标题搜索文章 获取标题, 作者, 文章链接, summary 二级搜索 判断summary是否对主题有用 summary + prompt -&gt; yes/no 三级搜索 判断文章内容  ]]></summary></entry><entry><title type="html">worldquant BRAIN 股票因子 (五 ) – 数据集理解</title><link href="https://roshameow.github.io//personal_homepage/finance/alpha5/" rel="alternate" type="text/html" title="worldquant BRAIN 股票因子 (五 ) – 数据集理解" /><published>2025-02-26T00:00:00+00:00</published><updated>2025-03-11T19:04:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/finance/alpha5</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/finance/alpha5/"><![CDATA[<table>
+  <thead>
+    <tr>
+      <th>数据集</th>
+      <th>特点</th>
+      <th>信号</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>模型数据集(model)</td>
+      <td>大多是分数形式</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>基本面数据</td>
+      <td> </td>
+      <td>1. <code class="language-plaintext highlighter-rouge">PE(市盈率) = eps/close</code><br />2. <code class="language-plaintext highlighter-rouge">PS(市销率) = close*sharesout/revenue</code><br />3. cashflow/price<br />4. cashflow/sales<br />5. margin, pretax margin, operating margin <br />6. enterprise value</td>
+    </tr>
+    <tr>
+      <td>风险数据</td>
+      <td> </td>
+      <td>1. 用risk factor做neutralize<br />2. 用risk-return 代替returns<br />3.</td>
+    </tr>
+    <tr>
+      <td>量价数据</td>
+      <td>完整</td>
+      <td>1. 交易量激增(volume spike) <br />2. -returns</td>
+    </tr>
+    <tr>
+      <td>社交媒体数据</td>
+      <td>更新频率高<br />有时效性: 尽量不要超过1季度</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>期权数据集(Options)</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>分析师数据<br /></td>
+      <td>很多是vector数据<br />更新频率低<br />有很多异常值</td>
+      <td>1. 预测和当前值的差异<br />2. 预测值随时间变化<br />3. 分析师修订模型数据</td>
+    </tr>
+    <tr>
+      <td>宏观数据(Macro)</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>other数据</td>
+      <td> </td>
+      <td>1. group分类数据</td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li>risk, analyst, model里和基本面, 量价类似字段可以用</li>
+</ul>
+
+<p>[1]  <a href="https://support.worldquantbrain.com/hc/en-us/community/posts/25238147759383-Getting-started-with-Model-Datasets">Getting started with Model Datasets</a></p>
+
+<p>[2]   <a href="https://support.worldquantbrain.com/hc/en-us/community/posts/27569589603863-Dataset-Deepdives-Option23-Option-Implied-Volatility-and-Greeks">Dataset Deepdives - Option23 (Option Implied Volatility and Greeks)</a></p>
+
+<p><a href="https://support.worldquantbrain.com/hc/en-us/search/click?data=BAh7DjoHaWRsKwiX%2B3xcARk6D2FjY291bnRfaWRpA9GrqjoJdHlwZUkiE2NvbW11bml0eV9wb3N0BjoGRVQ6CHVybEkidGh0dHBzOi8vc3VwcG9ydC53b3JsZHF1YW50YnJhaW4uY29tL2hjL2VuLXVzL2NvbW11bml0eS9wb3N0cy8yNzQ5MzYzNzM1NjQzOS1HZXR0aW5nLXN0YXJ0ZWQtd2l0aC1PdGhlci1EYXRhc2V0cwY7CFQ6DnNlYXJjaF9pZEkiKWFiZTEwYzA1LTI2ZDQtNDNlMC1hZDQ4LWRmYjkyYzkxMTY2NQY7CEY6CXJhbmtpBjoLbG9jYWxlSSIKZW4tdXMGOwhUOgpxdWVyeUkiDERhdGFzZXQGOwhUOhJyZXN1bHRzX2NvdW50aQIVAg%3D%3D--1a113d5587a51377ecd6cbba3b0d37108204fca9">Getting started with Other Datasets</a></p>
+
+<p><a href="https://support.worldquantbrain.com/hc/en-us/search/click?data=BAh7DjoHaWRsKwgXIIY39BY6D2FjY291bnRfaWRpA9GrqjoJdHlwZUkiE2NvbW11bml0eV9wb3N0BjoGRVQ6CHVybEkidmh0dHBzOi8vc3VwcG9ydC53b3JsZHF1YW50YnJhaW4uY29tL2hjL2VuLXVzL2NvbW11bml0eS9wb3N0cy8yNTIzODE1OTM2ODIxNS1HZXR0aW5nLXN0YXJ0ZWQtd2l0aC1BbmFseXN0LURhdGFzZXRzBjsIVDoOc2VhcmNoX2lkSSIpYWJlMTBjMDUtMjZkNC00M2UwLWFkNDgtZGZiOTJjOTExNjY1BjsIRjoJcmFua2kLOgtsb2NhbGVJIgplbi11cwY7CFQ6CnF1ZXJ5SSIMRGF0YXNldAY7CFQ6EnJlc3VsdHNfY291bnRpAhUC--7d41cbe8f4f4c83252fe5d5dd87da810c7ab50af">Getting started with Analyst Datasets</a></p>
+
+<p><a href="https://support.worldquantbrain.com/hc/en-us/search/click?data=BAh7DjoHaWRsKwiXzoQjsxg6D2FjY291bnRfaWRpA9GrqjoJdHlwZUkiE2NvbW11bml0eV9wb3N0BjoGRVQ6CHVybEkidGh0dHBzOi8vc3VwcG9ydC53b3JsZHF1YW50YnJhaW4uY29tL2hjL2VuLXVzL2NvbW11bml0eS9wb3N0cy8yNzE1NzY3NDExODgwNy1HZXR0aW5nLXN0YXJ0ZWQtd2l0aC1NYWNyby1EYXRhc2V0cwY7CFQ6DnNlYXJjaF9pZEkiKWFiZTEwYzA1LTI2ZDQtNDNlMC1hZDQ4LWRmYjkyYzkxMTY2NQY7CEY6CXJhbmtpDToLbG9jYWxlSSIKZW4tdXMGOwhUOgpxdWVyeUkiDERhdGFzZXQGOwhUOhJyZXN1bHRzX2NvdW50aQIVAg%3D%3D--121adf6e6b285a27d1e48e3471e2d6751e0d0298">Getting started with Macro Datasets</a></p>
+
+<p><a href="https://support.worldquantbrain.com/hc/en-us/search/click?data=BAh7DjoHaWRsKwgXI2Vf6hY6D2FjY291bnRfaWRpA9GrqjoJdHlwZUkiE2NvbW11bml0eV9wb3N0BjoGRVQ6CHVybEkifWh0dHBzOi8vc3VwcG9ydC53b3JsZHF1YW50YnJhaW4uY29tL2hjL2VuLXVzL2NvbW11bml0eS9wb3N0cy8yNTE5NTg3ODYyMTk3NS1HZXR0aW5nLXN0YXJ0ZWQtd2l0aC1TaG9ydC1JbnRlcmVzdC1EYXRhc2V0cwY7CFQ6DnNlYXJjaF9pZEkiKWFiZTEwYzA1LTI2ZDQtNDNlMC1hZDQ4LWRmYjkyYzkxMTY2NQY7CEY6CXJhbmtpDjoLbG9jYWxlSSIKZW4tdXMGOwhUOgpxdWVyeUkiDERhdGFzZXQGOwhUOhJyZXN1bHRzX2NvdW50aQIVAg%3D%3D--b4adf985bfba378be9fcd826f2750f37f550ca32">Getting started with Short Interest Datasets</a></p>
+
+<p><a href="https://support.worldquantbrain.com/hc/en-us/search/click?data=BAh7DjoHaWRsKwiX0dY29BY6D2FjY291bnRfaWRpA9GrqjoJdHlwZUkiE2NvbW11bml0eV9wb3N0BjoGRVQ6CHVybEkic2h0dHBzOi8vc3VwcG9ydC53b3JsZHF1YW50YnJhaW4uY29tL2hjL2VuLXVzL2NvbW11bml0eS9wb3N0cy8yNTIzODE0Nzg3OTMxOS1HZXR0aW5nLXN0YXJ0ZWQtd2l0aC1OZXdzLURhdGFzZXRzBjsIVDoOc2VhcmNoX2lkSSIpZWIyMmRmYmItNTQyOC00NGM2LTgyOWQtNmZjMzEwYTJlOTA5BjsIRjoJcmFua2kGOgtsb2NhbGVJIgplbi11cwY7CFQ6CnF1ZXJ5SSIMRGF0YXNldAY7CFQ6EnJlc3VsdHNfY291bnRpAhUC--39a7b6d0be102d6f6c783e197b971724fd36f65e">Getting started with News Datasets</a></p>
+
+<p><a href="https://support.worldquantbrain.com/hc/en-us/search/click?data=BAh7DjoHaWRsKwgXRn18HAg6D2FjY291bnRfaWRpA9GrqjoJdHlwZUkiE2NvbW11bml0eV9wb3N0BjoGRVQ6CHVybEkidGh0dHBzOi8vc3VwcG9ydC53b3JsZHF1YW50YnJhaW4uY29tL2hjL2VuLXVzL2NvbW11bml0eS9wb3N0cy84OTE4NDQwNjkxMjIzLS1CUkFJTi1USVBTLVdvcmtpbmctb24tbmV3cy1kYXRhc2V0cwY7CFQ6DnNlYXJjaF9pZEkiKWViMjJkZmJiLTU0MjgtNDRjNi04MjlkLTZmYzMxMGEyZTkwOQY7CEY6CXJhbmtpDjoLbG9jYWxlSSIKZW4tdXMGOwhUOgpxdWVyeUkiDERhdGFzZXQGOwhUOhJyZXN1bHRzX2NvdW50aQIVAg%3D%3D--d7743b72fe92fbf5766ce002c9f062e42e46de28">[BRAIN TIPS] Working on news datasets</a></p>
+
+<p><a href="https://support.worldquantbrain.com/hc/en-us/search/click?data=BAh7DjoHaWRsKwgXyowEehg6D2FjY291bnRfaWRpA9GrqjoJdHlwZUkiE2NvbW11bml0eV9wb3N0BjoGRVQ6CHVybEkie2h0dHBzOi8vc3VwcG9ydC53b3JsZHF1YW50YnJhaW4uY29tL2hjL2VuLXVzL2NvbW11bml0eS9wb3N0cy8yNjkxMjM0MTQxMjM3NS1HZXR0aW5nLXN0YXJ0ZWQtd2l0aC1QcmljZS1Wb2x1bWUtRGF0YXNldHMGOwhUOg5zZWFyY2hfaWRJIillYjIyZGZiYi01NDI4LTQ0YzYtODI5ZC02ZmMzMTBhMmU5MDkGOwhGOglyYW5raQs6C2xvY2FsZUkiCmVuLXVzBjsIVDoKcXVlcnlJIgxEYXRhc2V0BjsIVDoScmVzdWx0c19jb3VudGkCFQI%3D--6831292c011ffde15c6d6b4707258387474ab5cc">Getting started with Price Volume Datasets</a></p>
+
+<p><a href="https://support.worldquantbrain.com/hc/en-us/search/click?data=BAh7DjoHaWRsKwgXjrgfAhc6D2FjY291bnRfaWRpA9GrqjoJdHlwZUkiE2NvbW11bml0eV9wb3N0BjoGRVQ6CHVybEkie2h0dHBzOi8vc3VwcG9ydC53b3JsZHF1YW50YnJhaW4uY29tL2hjL2VuLXVzL2NvbW11bml0eS9wb3N0cy8yNTI5Nzg4OTU2MjEzNS1HZXR0aW5nLXN0YXJ0ZWQtd2l0aC1Tb2NpYWwtTWVkaWEtRGF0YXNldHMGOwhUOg5zZWFyY2hfaWRJIillYjIyZGZiYi01NDI4LTQ0YzYtODI5ZC02ZmMzMTBhMmU5MDkGOwhGOglyYW5raQ86C2xvY2FsZUkiCmVuLXVzBjsIVDoKcXVlcnlJIgxEYXRhc2V0BjsIVDoScmVzdWx0c19jb3VudGkCFQI%3D--7610f0e36b333735c4cb87f268d0e201fd078682">Getting started with Social Media Datasets</a></p>
+
+<p><a href="https://support.worldquantbrain.com/hc/en-us/search/click?data=BAh7DjoHaWRsKwgXLifBOxc6D2FjY291bnRfaWRpA9GrqjoJdHlwZUkiE2NvbW11bml0eV9wb3N0BjoGRVQ6CHVybEkid2h0dHBzOi8vc3VwcG9ydC53b3JsZHF1YW50YnJhaW4uY29tL2hjL2VuLXVzL2NvbW11bml0eS9wb3N0cy8yNTU0NTQxMTA3OTcwMy1HZXR0aW5nLXN0YXJ0ZWQtd2l0aC1FYXJuaW5ncy1EYXRhc2V0cwY7CFQ6DnNlYXJjaF9pZEkiKWViMjJkZmJiLTU0MjgtNDRjNi04MjlkLTZmYzMxMGEyZTkwOQY7CEY6CXJhbmtpDDoLbG9jYWxlSSIKZW4tdXMGOwhUOgpxdWVyeUkiDERhdGFzZXQGOwhUOhJyZXN1bHRzX2NvdW50aQIVAg%3D%3D--9854e3b1f92395e565e0d67bbfa6b52544a373f0">Getting started with Earnings Datasets</a></p>
+
+<p><a href="https://support.worldquantbrain.com/hc/en-us/search/click?data=BAh7DjoHaWRsKwgXqrcWsxg6D2FjY291bnRfaWRpA9GrqjoJdHlwZUkiE2NvbW11bml0eV9wb3N0BjoGRVQ6CHVybEkic2h0dHBzOi8vc3VwcG9ydC53b3JsZHF1YW50YnJhaW4uY29tL2hjL2VuLXVzL2NvbW11bml0eS9wb3N0cy8yNzE1NzQ1OTM0Nzk5MS1HZXR0aW5nLXN0YXJ0ZWQtd2l0aC1SaXNrLURhdGFzZXRzBjsIVDoOc2VhcmNoX2lkSSIpZWIyMmRmYmItNTQyOC00NGM2LTgyOWQtNmZjMzEwYTJlOTA5BjsIRjoJcmFua2kHOgtsb2NhbGVJIgplbi11cwY7CFQ6CnF1ZXJ5SSIMRGF0YXNldAY7CFQ6EnJlc3VsdHNfY291bnRpAhUC--904afdab3aa709384b5d21857ffab7f1cf76ccc7">Getting started with Risk Datasets</a></p>
+
+<p><a href="https://support.worldquantbrain.com/hc/en-us/search/click?data=BAh7DjoHaWRsKwgXSDO9nRY6D2FjY291bnRfaWRpA9GrqjoJdHlwZUkiE2NvbW11bml0eV9wb3N0BjoGRVQ6CHVybEkieGh0dHBzOi8vc3VwcG9ydC53b3JsZHF1YW50YnJhaW4uY29tL2hjL2VuLXVzL2NvbW11bml0eS9wb3N0cy8yNDg2NjczOTkzMTE1OS1HZXR0aW5nLXN0YXJ0ZWQtd2l0aC1TZW50aW1lbnQtRGF0YXNldHMGOwhUOg5zZWFyY2hfaWRJIik4YzM4ZjUzZi1iN2ExLTQzOTAtYWE3MS1lZDg2Nzk0M2VjYzIGOwhGOglyYW5raQs6C2xvY2FsZUkiCmVuLXVzBjsIVDoKcXVlcnlJIgxEYXRhc2V0BjsIVDoScmVzdWx0c19jb3VudGkCFQI%3D--5d7188588972d8e822582aea6b26a5ddd4697ca7">Getting started with Sentiment Datasets</a></p>
+
+<p><a href="https://support.worldquantbrain.com/hc/en-us/search/click?data=BAh7DjoHaWRsKwiXEsaUPBI6D2FjY291bnRfaWRpA9GrqjoJdHlwZUkiE2NvbW11bml0eV9wb3N0BjoGRVQ6CHVybEkiAYFodHRwczovL3N1cHBvcnQud29ybGRxdWFudGJyYWluLmNvbS9oYy9lbi11cy9jb21tdW5pdHkvcG9zdHMvMjAwNTE0MDMzNDY1ODMtLUJSQUlOLVRJUFMtRmluZGluZy1BbHBoYXMtRnVuZGFtZW50YWwtYW5kLU1vZGVsLURhdGEGOwhUOg5zZWFyY2hfaWRJIiljOTdiZmU5NC0xZjY5LTRmZGQtYjE2Zi0zY2RjZTdjMTk0NzAGOwhGOglyYW5raQs6C2xvY2FsZUkiCmVuLXVzBjsIVDoKcXVlcnlJIhhmdW5kYW1lbnRhbCBEYXRhc2V0BjsIVDoScmVzdWx0c19jb3VudGkCcAI%3D--870dfda40a16a3b1195f26c7d4cc0546b1e3f354">[BRAIN TIPS] Finding Alphas: Fundamental and Model Data</a></p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="finance" /><category term="content" /><summary type="html"><![CDATA[数据集 特点 信号 模型数据集(model) 大多是分数形式   基本面数据   1. PE(市盈率) = eps/close2. PS(市销率) = close*sharesout/revenue3. cashflow/price4. cashflow/sales5. margin, pretax margin, operating margin 6. enterprise value 风险数据   1. 用risk factor做neutralize2. 用risk-return 代替returns3. 量价数据 完整 1. 交易量激增(volume spike) 2. -returns 社交媒体数据 更新频率高有时效性: 尽量不要超过1季度   期权数据集(Options)     分析师数据 很多是vector数据更新频率低有很多异常值 1. 预测和当前值的差异2. 预测值随时间变化3. 分析师修订模型数据 宏观数据(Macro)     other数据   1. group分类数据]]></summary></entry><entry><title type="html">blender学习: 制作随音乐律动的视频</title><link href="https://roshameow.github.io//personal_homepage/blender/blender-learning20/" rel="alternate" type="text/html" title="blender学习: 制作随音乐律动的视频" /><published>2025-02-20T00:00:00+00:00</published><updated>2025-02-21T13:43:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/blender/blender-learning20</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/blender/blender-learning20/"><![CDATA[<p><a href="https://www.bilibili.com/video/BV1CPNpeTE5E/">参考教学</a></p>
 
 <ul>
   <li>设置物体随1d强度变化:
@@ -19,16 +192,16 @@
   </li>
 </ul>
 
-<iframe src="//player.bilibili.com/player.html?isOutside=true&amp;aid=114040038755496&amp;bvid=BV1pTAZeNEhW&amp;cid=28499775428&amp;p=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="blender" /><category term="content" /><category term="music" /><category term="geometry_node" /><category term="video_editor" /><summary type="html"><![CDATA[参考教学]]></summary></entry><entry><title type="html">传感器颜色调制 (四) – 多光谱颜色校准</title><link href="https://roshameow.github.io//personal_homepage/algorithm/color-moderate3/" rel="alternate" type="text/html" title="传感器颜色调制 (四) – 多光谱颜色校准" /><published>2025-02-12T00:00:00+00:00</published><updated>2025-02-21T09:56:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/algorithm/color-moderate3</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/algorithm/color-moderate3/"><![CDATA[<h2 id="用rgb校准多光谱数据">用RGB校准多光谱数据</h2>
+<iframe src="//player.bilibili.com/player.html?isOutside=true&amp;aid=114040038755496&amp;bvid=BV1pTAZeNEhW&amp;cid=28499775428&amp;p=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="blender" /><category term="content" /><category term="music" /><category term="geometry_node" /><category term="video_editor" /><summary type="html"><![CDATA[参考教学]]></summary></entry><entry><title type="html">传感器颜色调制 (四) – 多光谱颜色校准</title><link href="https://roshameow.github.io//personal_homepage/algorithm/color-moderate3/" rel="alternate" type="text/html" title="传感器颜色调制 (四) – 多光谱颜色校准" /><published>2025-02-12T00:00:00+00:00</published><updated>2025-03-11T19:22:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/algorithm/color-moderate3</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/algorithm/color-moderate3/"><![CDATA[<h2 id="用rgb校准多光谱数据">用RGB校准多光谱数据</h2>
 
 <p>把<code class="language-plaintext highlighter-rouge">(H,W,N)</code> 的多光谱数据 <code class="language-plaintext highlighter-rouge">Y</code> , 由<code class="language-plaintext highlighter-rouge">N x 3</code> 的CCM(Color Correction Matrix) 线性映射为 <code class="language-plaintext highlighter-rouge">(H,W,3)</code> 的rgb数据 <code class="language-plaintext highlighter-rouge">X</code> . 即 $Y\cdot CCM = X$ .</p>
 
 <ul>
   <li>虽然是线性映射, 可以在步骤前给Y 加一个 feature extraction模块, 实现非线性. 达到更低的loss.</li>
-  <li>即使只是线性映射, 多光谱数据也比3通道的数据能达到更低的loss.
-    <h3 id="求解系数">求解系数</h3>
-  </li>
+  <li>即使只是线性映射, 多光谱数据也比3通道的数据能达到更低的loss.</li>
 </ul>
+
+<h3 id="求解系数">求解系数</h3>
 
 <table>
   <thead>
@@ -238,7 +411,7 @@
       <td> </td>
     </tr>
   </tbody>
-</table>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="daily" /><category term="content" /><summary type="html"><![CDATA[材质]]></summary></entry><entry><title type="html">worldquant BRAIN 股票因子 (四) – 因子思路</title><link href="https://roshameow.github.io//personal_homepage/finance/alphas4/" rel="alternate" type="text/html" title="worldquant BRAIN 股票因子 (四) – 因子思路" /><published>2025-01-22T00:00:00+00:00</published><updated>2025-02-18T08:36:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/finance/alphas4</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/finance/alphas4/"><![CDATA[<h2 id="事件">事件</h2>
+</table>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="daily" /><category term="content" /><summary type="html"><![CDATA[材质]]></summary></entry><entry><title type="html">worldquant BRAIN 股票因子 (四) – 因子思路</title><link href="https://roshameow.github.io//personal_homepage/finance/alphas4/" rel="alternate" type="text/html" title="worldquant BRAIN 股票因子 (四) – 因子思路" /><published>2025-01-22T00:00:00+00:00</published><updated>2025-02-27T18:55:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/finance/alphas4</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/finance/alphas4/"><![CDATA[<h2 id="事件">事件</h2>
 
 <ul>
   <li>并购(M&amp;A)</li>
@@ -286,7 +459,22 @@
       </li>
     </ul>
   </li>
-  <li><strong>月度调仓</strong>:</li>
+  <li><strong>月度调仓</strong>: 让仓位最多保持一个月, 是为了在量化结果的同时保持灵活性
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">D = days_from_last_change(event);Alpha = trade_when(D &lt; period, signal, D &gt; period);Alpha</code>
+        <ul>
+          <li>event是离散指标(比如: 5日均线&gt;10日均线)</li>
+          <li>D 距上次调仓的时间, period是规定时间(一个月)</li>
+          <li>情况:
+            <ul>
+              <li>event 指标变化 -&gt; D = 0, 调仓</li>
+              <li>event 指标在规定时间内一直没变化 -&gt; D &gt;规定时间, 超时, 关闭仓位</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
 </ul>
 
 <h3 id="交易条件">交易条件</h3>
@@ -303,7 +491,19 @@
       drawdown_num = if_else(returns&lt;-0.09,1,0); #如果大幅下跌则计数1，否则为0  
       sum_of_drawdown = group_sum(drawdown_num,subindustry); #计算每天各组内大幅下跌股票的总数  
       ratio = sum_of_drawdown/count_of_each_group; #计算出各组的大幅下跌股票数量占比  
-      alpha = if_else(ratio&gt;0.6,nan,signal) #如果本组超过60%的股票都在大幅下跌，则赋值nan.</code></li>
+      alpha = if_else(ratio&gt;0.6,nan,signal); #如果本组超过60%的股票都在大幅下跌，则赋值nan.</code>
+    <ul>
+      <li>关闭多天:
+        <ul>
+          <li><code class="language-plaintext highlighter-rouge">alpha = if_else(days_from_last_change(ratio&lt;0.6) &lt; 200,nan,signal); #关闭200天</code>
+            <ul>
+              <li>大幅下跌事件 出现/消失 200天后才能解锁交易</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
   <li><strong>只取特殊股票交易</strong>:
     <ul>
       <li>比如市值靠前的股票: <code class="language-plaintext highlighter-rouge">filter = if_else(rank(cap)&gt;0.9,1,nan)</code></li>
@@ -472,634 +672,4 @@
 <ul>
   <li>callback</li>
   <li>promise</li>
-</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="tool" /><category term="content" /><category term="python" /><category term="async" /><category term="异步" /><summary type="html"><![CDATA[协程就是单线程多任务, 在一个任务等待的时候干点别的其他的任务. 所以包含等待的函数都要用协程的版本: 在需要时交出event loop的控制权. python 协程的用法]]></summary></entry><entry><title type="html">worldquant BRAIN 股票因子 (二) – 因子思路</title><link href="https://roshameow.github.io//personal_homepage/finance/alphas2/" rel="alternate" type="text/html" title="worldquant BRAIN 股票因子 (二) – 因子思路" /><published>2025-01-15T00:00:00+00:00</published><updated>2025-02-18T08:47:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/finance/alphas2</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/finance/alphas2/"><![CDATA[<p>一些因子的来源和原理</p>
-
-<h2 id="对公司经营状况的预估基本数据">对公司经营状况的预估(基本数据)</h2>
-
-<p>fundamental datasets</p>
-
-<ul>
-  <li>运营盈利: 只对大型公司有效
-    <ul>
-      <li>盈利/支出
-        <ul>
-          <li><code class="language-plaintext highlighter-rouge">-rank(ebit/capex)</code>
-            <ul>
-              <li>投入更多到运营盈利上的公司不怎么样</li>
-              <li><code class="language-plaintext highlighter-rouge">0.3*group_rank(ebit/assets,subindustry)- 0.7*group_neutralize(ts_mean(ebit,210)/ts_mean(capex,210),subindustry)</code></li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-      <li>资产估值/盈利
-        <ul>
-          <li><code class="language-plaintext highlighter-rouge">alpha = -group_rank(fnd2_ebitdm, industry)-group_rank(fnd2_ebitfr, industry); group_rank(fn_assets_fair_val_a,industry)&gt;0.5?alpha*2 : alpha</code>
-            <ul>
-              <li><code class="language-plaintext highlighter-rouge">fnd2_ebitdm</code> domestic ebit, <code class="language-plaintext highlighter-rouge">fnd2_ebitfr</code> foreign ebit</li>
-              <li><code class="language-plaintext highlighter-rouge">fn_assets_fair_val_a</code> 资产估值</li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li>留存收益: 未分配给股东的利润
-    <ul>
-      <li><code class="language-plaintext highlighter-rouge">rank(ts_delta(retained_earnings / sharesout, 90))</code>
-        <ul>
-          <li>留存收益/股本=每股留存收益: 不受公司规模影响</li>
-        </ul>
-      </li>
-      <li><code class="language-plaintext highlighter-rouge">-ts_rank(retained_earnings,250)</code>
-        <ul>
-          <li>留存收益比历史减少, 可能是分红给股东了</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li>营业收入:
-    <ul>
-      <li><code class="language-plaintext highlighter-rouge">ts_rank(operating_income,252)</code>
-        <ul>
-          <li>营业收入越高越好,</li>
-          <li>结合相对股价看(operating_income/close), 如果营业收入增长而股价未能跟上，可能意味着市场尚未充分定价公司改善的前景</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li>负债
-    <ul>
-      <li>短期债务: 限制同行业比较
-        <ul>
-          <li><code class="language-plaintext highlighter-rouge">zscore(cash_st/debt_st)</code>
-            <ul>
-              <li>现金流越高, 还债能力越强</li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-      <li>负债公允价值（Fair Value of Liabilities）,公司负债在市场上的当前价值
-        <ul>
-          <li><code class="language-plaintext highlighter-rouge">-ts_rank(fn_liab_fair_val_l1_a,252)</code></li>
-        </ul>
-      </li>
-      <li><code class="language-plaintext highlighter-rouge">liabilities/assets</code>, <code class="language-plaintext highlighter-rouge">debt/assets</code>
-        <ul>
-          <li>高杠杆可能带来高回报</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li>收入
-    <ul>
-      <li>税前收入, 销售数量(sales)
-        <ul>
-          <li><code class="language-plaintext highlighter-rouge">quantile(ts_rank(pretax_income,250))</code>
-            <ul>
-              <li>税前收入越靠前的公司越好</li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-      <li>递延收入: 订阅型业务, 长期合约, 预付款业务
-        <ul>
-          <li><code class="language-plaintext highlighter-rouge">slope = ts_regression(fnd6_newqv1300_drcq,step(1),252,rettype=2); rank(slope)</code></li>
-          <li>计算<code class="language-plaintext highlighter-rouge">dr</code>(deferred revenue)的斜率, 增长说明需求增加, 可能股票会涨</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-</ul>
-
-<h2 id="对外部事件的响应">对外部事件的响应</h2>
-
-<ul>
-  <li>新闻影响
-    <ul>
-      <li><code class="language-plaintext highlighter-rouge">ts_backfill(vec_avg(nws12_prez_4l),504)</code>
-        <ul>
-          <li>新闻发布后股价提升4%的时间</li>
-          <li><code class="language-plaintext highlighter-rouge">ts_backfill(vec_sum(nws12_prez_57p),600)</code></li>
-          <li><code class="language-plaintext highlighter-rouge">alpha=ts_backfill(vec_avg(nws12_prez_4l),504); trade_when(volume&gt;adv20,alpha,-1)</code></li>
-        </ul>
-      </li>
-      <li><code class="language-plaintext highlighter-rouge">(ts_arg_max(ts_backfill(news_session_range, 20), 60))</code>
-        <ul>
-          <li><code class="language-plaintext highlighter-rouge">signed_power(ts_backfill(vec_avg(nws12_prez_4l),504)*(1+rank(volume)),2)</code></li>
-          <li>新闻后的波动范围(high-low)越大, 应该做多?? 一个季度内, 到达最大波动范围的最近时间. 越长说明波动衰减的正常. 不会极端的受到</li>
-          <li>需要用随时间变化快的decay, 和trade_when控制换手率</li>
-        </ul>
-      </li>
-      <li><code class="language-plaintext highlighter-rouge">news_tot_ticks</code> 市场上所有交易品种一天内变价次数之和</li>
-    </ul>
-  </li>
-  <li>新闻情绪</li>
-  <li>社媒:  对volume做neuntralize
-    <ul>
-      <li><code class="language-plaintext highlighter-rouge">-scl12_buzz</code>
-        <ul>
-          <li>讨论多的认为是负面情绪</li>
-        </ul>
-      </li>
-      <li><code class="language-plaintext highlighter-rouge">ts_std_dev(ts_backfill(snt_social_value,60),60)</code>
-        <ul>
-          <li>在一段时间内有关注是好事, 注意区分不同类型的股票</li>
-          <li>优化: <code class="language-plaintext highlighter-rouge">C60=correlation_last_60_days_spy;Alpha=zscore(ts_std_dev(ts_backfill(snt_social_value, 60),60));trade_when (C60&lt;0.4,Alpha, C60&gt;0.6)</code>
-            <ul>
-              <li>做zscore 变换</li>
-              <li>和标普指数(SPY) 相关性不能太高(关键)</li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-      <li><code class="language-plaintext highlighter-rouge">-ts_mean(pv13_ustomergraphrank_hub_rank,504)</code>
-        <ul>
-          <li><code class="language-plaintext highlighter-rouge">hub</code> 公司在网络中的中心度, 越低说明对其他合作伙伴依赖越少, 更稳定, 注意区分不同类型的股票</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li>volatility(波动率)
-    <ul>
-      <li><code class="language-plaintext highlighter-rouge">(implied_volatility_call_120/parkinson_volatility_120)^0.1</code>
-        <ul>
-          <li>历史波动率: daily return的标准差</li>
-          <li>Implied Volatility(隐含波动率): 通过期权定价模型计算</li>
-          <li>Parkinson波动率: 通过价格区间(high-low/close)计算</li>
-        </ul>
-      </li>
-      <li><code class="language-plaintext highlighter-rouge">trade_when(pcr_oi_270 &lt; 1, (implied_volatility_call_270-implied_volatility_put_270), -1)</code>
-        <ul>
-          <li><code class="language-plaintext highlighter-rouge">pcr_oi_270</code> (put-call-ratio)未平仓合约数, 小于1 的话(call&gt;put)说明市场看涨</li>
-          <li>可以根据历史波动率分组, 提升subuniverse-test, 很有效</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-</ul>
-
-<h2 id="对市场表现的预估量价数据">对市场表现的预估(量价数据)</h2>
-
-<p>Price-volume datasets</p>
-
-<h3 id="常用数据">常用数据</h3>
-
-<ul>
-  <li>开盘价, 收盘价,</li>
-  <li>vwap(volume weighted avg price) 当天的平均</li>
-  <li>adv20(avg days volume 20, 过去20天的平均volume)
-    <ul>
-      <li>一个常用的条件是<code class="language-plaintext highlighter-rouge">trade_when(volume &gt; adv20, alpha, -1)</code> 表示流动性突然变高</li>
-    </ul>
-  </li>
-  <li>成交量: 根据市值(cap)分组, 不同波动时期区别对待
-    <ul>
-      <li><code class="language-plaintext highlighter-rouge">alpha = (1/volume);group = bucket(rank(cap),range ='0.25,1,0.25');group_rank(alpha,group);</code>
-        <ul>
-          <li>成交量太活跃不是好事</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li>5日回归: <code class="language-plaintext highlighter-rouge">-rank(close-ts_mean(close,5))</code></li>
-  <li>
-    <p>turnover</p>
-  </li>
-  <li>相关性
-    <ul>
-      <li><code class="language-plaintext highlighter-rouge">-ts_corr(ts_backfill(fscore_momentum,66),ts_backfill(fscore_value,66),756)</code>
-        <ul>
-          <li>估值(市盈率（P/E）、市净率（P/B）等财务指标来估算)和动量(股票价格变化率计算)的相关性高, 说明股票价格和价值分离?</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li>风险
-    <ul>
-      <li><code class="language-plaintext highlighter-rouge">SR = systematic_risk_last_60_days;USR = unsystematic_risk_last_60_days;zscore(USR + SR)</code>
-        <ul>
-          <li>总风险, 高风险是好的?</li>
-          <li>去掉和指数相关性高的股票? <code class="language-plaintext highlighter-rouge">trade_when(correlation_last_60_days_spy &gt; 0.6, zscore(systematic_risk_last_60_days + unsystematic_risk_last_60_days),-1)</code></li>
-        </ul>
-      </li>
-      <li><code class="language-plaintext highlighter-rouge">market_ret = ts_product(1+group_mean(returns,1,market),250)-1;rfr = vec_avg(fnd6_newqeventv110_optrfrq);expected_return = rfr+beta_last_360_days_spy*(market_ret-rfr);actual_return = ts_product(returns+1,250)-1;actual_return-expected_return</code>
-        <ul>
-          <li>CAPM(Capital Asset Pricing Model): <code class="language-plaintext highlighter-rouge">rfr</code> 是risk free rate + beta * (return - rfr)</li>
-          <li>如果股票的CAMP-adjusted return是正数, 说明是好事</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-</ul>
-
-<h2 id="参考资料">参考资料</h2>
-
-<p>[1]  https://platform.worldquantbrain.com/learn/documentation</p>
-
-<p>[2]  Kakushadze, Zura. “101 Formulaic Alphas.” SSRN Scholarly Paper. Rochester, NY: Social Science Research Network, December 9, 2015. <a href="https://doi.org/10.2139/ssrn.2701346">https://doi.org/10.2139/ssrn.2701346</a>.    <strong>Alpha101</strong> 主要用到量价数据</p>
-
-<p>[3] Wang, Ying, Bohui Zhang, and Xiaoneng Zhu. “<strong>The Momentum of News.</strong>” SSRN Scholarly Paper. Rochester, NY: Social Science Research Network, October 16, 2018. <a href="https://doi.org/10.2139/ssrn.3267337">https://doi.org/10.2139/ssrn.3267337</a>.   新闻动量和基本面相关</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="finance" /><category term="content" /><category term="stock" /><category term="alpha" /><summary type="html"><![CDATA[一些因子的来源和原理]]></summary></entry><entry><title type="html">worldquant BRAIN 股票因子 (一) – 仿真测试</title><link href="https://roshameow.github.io//personal_homepage/finance/alphas/" rel="alternate" type="text/html" title="worldquant BRAIN 股票因子 (一) – 仿真测试" /><published>2025-01-07T00:00:00+00:00</published><updated>2025-02-19T11:28:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/finance/alphas</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/finance/alphas/"><![CDATA[<p>选择在模拟盘中表现好的因子投资</p>
-
-<h2 id="仿真">仿真</h2>
-
-<h3 id="仿真参数">仿真参数</h3>
-
-<p>分为数据库选择, 和后处理两部分</p>
-
-<ul>
-  <li>Delay: 当天(在当天closed前根据当天数据交易), 或+1天(早上交易, 根据昨天的数据)</li>
-  <li>Test Period: 把仿真的5年时间分出一部分作为test, PnL图上orange的部分</li>
-  <li>
-    <p>Universe(股票范围): Top3000指日平均 <code class="language-plaintext highlighter-rouge">volume</code> 最大的3000支</p>
-  </li>
-  <li>Decay: 自带的一个linear decay(前n天), 是在最后的normalized weight上进行decay</li>
-  <li>pasteurized: ? 只考虑universe以内的alpha?</li>
-  <li>Nan Handling: 操作不可控? OFF的话, 有Nan的值会被平仓(全部卖出)</li>
-  <li>Unit Handling: 单位不匹配时报warning</li>
-  <li>truncation: 设置maximum weight上限: 建议设置0.05~0.1 (entailing 5-10%)之间</li>
-  <li>neutralize(标准化): 让mean(alpha)=0,
-    <ul>
-      <li>时间(<code class="language-plaintext highlighter-rouge">ts_neutralize</code>)上做neutralize避免长期趋势. (多空中性化).</li>
-      <li>同期(<code class="language-plaintext highlighter-rouge">group_neutralize</code>)的做避免不同类型股票的不公平比较.</li>
-    </ul>
-  </li>
-</ul>
-
-<h2 id="仿真交易流程">仿真交易流程</h2>
-
-<ul>
-  <li>输入为  <code class="language-plaintext highlighter-rouge">Matrix</code>, 按照时间顺序交易</li>
-  <li><a href="https://platform.worldquantbrain.com/learn/documentation/create-alphas/how-brain-platform-works">仿真交易规则</a>:
-    <ul>
-      <li>每天用恒定的账面规模(<code class="language-plaintext highlighter-rouge">book size</code>)交易,
-        <ul>
-          <li>book size 为$20 million. 有$10 million现金, 投资上限为$20million.</li>
-        </ul>
-      </li>
-      <li>alpha apply到每只股票上得到alpha value</li>
-      <li>L1 归一化,  得到每只股票的<code class="language-plaintext highlighter-rouge">weight</code>
-        <ul>
-          <li>不同neutralize组的booksize是分别计算的? 比如有两个sector, 每个sector scale到 0.5/abs(sector_sum)?</li>
-        </ul>
-      </li>
-      <li>每天在每只股票上投资 <code class="language-plaintext highlighter-rouge">weight*booksize</code></li>
-      <li>计算<code class="language-plaintext highlighter-rouge">PnL</code></li>
-    </ul>
-  </li>
-</ul>
-
-<h2 id="数据">数据</h2>
-
-<p>有<code class="language-plaintext highlighter-rouge">Matrix</code>, <code class="language-plaintext highlighter-rouge">Vector</code>, <code class="language-plaintext highlighter-rouge">Group</code> 三种</p>
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">Matrix</code> : 天数 x 股票的2d array. 普通的alpha可以用</li>
-  <li><code class="language-plaintext highlighter-rouge">Vector</code>: 每天每只股票可能有0-n个数值, 比如新闻. 需要用vector_operator处理</li>
-  <li><code class="language-plaintext highlighter-rouge">Group</code>: 每只股票一个group_id. 用于group_operator的group参数</li>
-</ul>
-
-<h2 id="测试结果">测试结果</h2>
-
-<h3 id="术语">术语</h3>
-
-<ul>
-  <li>PnL(profit and loss): <code class="language-plaintext highlighter-rouge">daily_PnL = sum(size of position * daily_return)</code>
-    <ul>
-      <li>每个股票的 <code class="language-plaintext highlighter-rouge">daily_return= (today’s close / yesterday’s close) – 1.0 </code></li>
-    </ul>
-  </li>
-  <li>Returns: <code class="language-plaintext highlighter-rouge">Return = annualized PnL / Half of Book Size</code></li>
-  <li>Drowndown: PnL最大的一次下降, 用half of booksize归一化为百分比</li>
-  <li>Long/Short(做多, 做空): 在这里就指买入/卖出
-    <ul>
-      <li>Long/short Count: 做多/做空 股票的数量</li>
-    </ul>
-  </li>
-  <li><a href="https://www.investopedia.com/terms/v/volume.asp#:~:text=Volume%20is%20the%20amount%20of,its%20daily%20open%20and%20close">Volume(成交量)</a> : 一段时间的交易数量</li>
-  <li>Margin(边缘收益): <code class="language-plaintext highlighter-rouge">Margin=PnL/TotalDollarsTraded</code>
-    <ul>
-      <li>一段时间内每个dollor的收益, 和可能会用到的手续费有关.</li>
-    </ul>
-  </li>
-  <li>cap(市值)</li>
-  <li>Call/Put(看涨/看跌)</li>
-</ul>
-
-<h3 id="通过指标">通过指标</h3>
-
-<table>
-  <thead>
-    <tr>
-      <th><a href="https://platform.worldquantbrain.com/learn/documentation/interpret-results/alpha-submission">指标</a></th>
-      <th>要求</th>
-      <th>公式</th>
-      <th>优化方向</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><a href="https://en.wikipedia.org/wiki/Sharpe_ratio">Sharpe(夏普率, related metric, information ratio, IR)</a></td>
-      <td>Delay-0: <code class="language-plaintext highlighter-rouge">Sharpe &gt; 2</code><br />Delay-1: <code class="language-plaintext highlighter-rouge">Sharpe &gt; 1.25</code></td>
-      <td><code class="language-plaintext highlighter-rouge">Sharpe=mean(PnL)/stdev(PnL)*sqrt(252)</code><br /><br /><code class="language-plaintext highlighter-rouge">*sqrt(252)</code> 年化</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>Sub-universe Sharpe</td>
-      <td>建议 <code class="language-plaintext highlighter-rouge">subuniverse_sharpe &gt; 0.7*sharpe</code></td>
-      <td><code class="language-plaintext highlighter-rouge">subuniverse_sharpe &gt;= 0.75 * sqrt(subuniverse_size / alpha_universe_size) * alpha_sharpe</code><br /><br />不在sub-universe 的股票赋NaN, 自动加上market neutralization, 并乘上scale?<br /><br /></td>
-      <td>让alpha少受公司规模, 流动性的影响<br />避免使用<code class="language-plaintext highlighter-rouge">1-rank(cap), rank(-assets)</code><br />对<code class="language-plaintext highlighter-rouge">volume*close</code> 不在一个水平的stock,</td>
-    </tr>
-    <tr>
-      <td><a href="https://support.worldquantbrain.com/hc/en-us/articles/20251419309719-How-to-improve-Turnover">Turnover(换手率)</a></td>
-      <td><code class="language-plaintext highlighter-rouge">1% &lt; Turnover &lt; 70%</code><br />建议 <code class="language-plaintext highlighter-rouge">Turnover &lt; 25%</code></td>
-      <td><code class="language-plaintext highlighter-rouge">avg(daily trading volume/Booksize)</code></td>
-      <td>减少turnover: <br />1. 增加滤波(decay, ts_mean)<br />2. 用trade_when设置交易条件<br />3. 用<code class="language-plaintext highlighter-rouge">hump</code> operator</td>
-    </tr>
-    <tr>
-      <td><strong><a href="https://support.worldquantbrain.com/hc/en-us/articles/20251386376471-How-to-increase-fitness-of-alphas?">Fitness(健康度)</a></strong><br />评价alpha优劣的指标</td>
-      <td>Delay-0: <code class="language-plaintext highlighter-rouge">fitness &gt; 1.3</code><br />Delay-1: <code class="language-plaintext highlighter-rouge">fitness &gt; 1</code></td>
-      <td><code class="language-plaintext highlighter-rouge">Fitness = Sharpe*sqrt(abs(Returns)/Max(Turnover,0.125))</code></td>
-      <td>降低turnover</td>
-    </tr>
-    <tr>
-      <td>Margin</td>
-      <td>建议 <code class="language-plaintext highlighter-rouge">margin &gt; 4bps</code></td>
-      <td><code class="language-plaintext highlighter-rouge">avg(PnL/total traded dollars)</code></td>
-      <td>降低turnover</td>
-    </tr>
-    <tr>
-      <td>Weight test</td>
-      <td>1. 在长时间内, non-zero weight的股票数不能太少<br />2. 某一个股票的weight不能占比太大<br /><code class="language-plaintext highlighter-rouge">max(weight) &lt; 10%</code> <br />随股票范围变动</td>
-      <td> </td>
-      <td>- truncation: 设置maximum weight上限: 建议设置0.05~0.1 (entailing 5-10%)之间<br />- 调整weight 分布: rank<br />- <a href="https://support.worldquantbrain.com/hc/en-us/articles/19248385997719-Weight-Coverage-common-issues-and-advice?">解决coverage不够的问题</a>:1. 用<code class="language-plaintext highlighter-rouge">ts_backfill</code>填补一些更新频率不够的 2. 用<code class="language-plaintext highlighter-rouge">group_count</code>检测当天的覆盖率</td>
-    </tr>
-    <tr>
-      <td>Self Correlation</td>
-      <td>和现有alpha不相关:<br /><code class="language-plaintext highlighter-rouge">&lt; 0.7 PnL correlation</code><br />, 或优化现有alpha:<br /><code class="language-plaintext highlighter-rouge">Sharpe &gt; 110% * correlated Sharpe</code></td>
-      <td> </td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td><a href="https://platform.worldquantbrain.com/learn/documentation/interpret-results/parameters-simulation-results#is-semi-os-os">Out-of-sample(OS)</a></td>
-      <td>提交后在真实市场测试</td>
-      <td> </td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>IS Ladder Sharpe(阶梯测试)</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-    </tr>
-  </tbody>
-</table>
-
-<h2 id="操作">操作</h2>
-
-<ul>
-  <li>数据接口: https://platform.worldquantbrain.com/data
-    <ul>
-      <li>datafield是变量名</li>
-      <li>dataset是数据集</li>
-    </ul>
-  </li>
-  <li>支持运算: https://platform.worldquantbrain.com/learn/operators</li>
-  <li><a href="https://platform.worldquantbrain.com/learn/documentation/discover-brain/introduction-brain-expression-language">代码语法</a>:
-    <ul>
-      <li>只用给出的运算符</li>
-      <li>每行用 <code class="language-plaintext highlighter-rouge">;</code> 结尾
-常用的operator</li>
-    </ul>
-  </li>
-  <li>填空(<code class="language-plaintext highlighter-rouge">ts_backfill</code>,  <code class="language-plaintext highlighter-rouge">group_backfill</code>): 把数据里的nan用有效值补上
-    <ul>
-      <li><code class="language-plaintext highlighter-rouge">group_backfill</code> 是在d天, group里取所有的有效值, 做winsorized mean</li>
-    </ul>
-  </li>
-  <li>统计
-    <ul>
-      <li>mean(<code class="language-plaintext highlighter-rouge">group_mean,</code>)
-        <ul>
-          <li><code class="language-plaintext highlighter-rouge">group_sum</code></li>
-          <li><code class="language-plaintext highlighter-rouge">group_count</code> : 统计valid value. 和 group_sum(is_nan ) 一样吗?</li>
-        </ul>
-      </li>
-      <li>std_dev(<code class="language-plaintext highlighter-rouge">group_std_dev</code>)</li>
-      <li>ir(<code class="language-plaintext highlighter-rouge">ts_ir</code>): 信噪比, mean/std</li>
-      <li>kurt(<code class="language-plaintext highlighter-rouge">ts_kurtosis</code>):</li>
-      <li>max (<code class="language-plaintext highlighter-rouge">ts_max_diff</code>)</li>
-    </ul>
-  </li>
-  <li>调整分布
-    <ul>
-      <li>neutralize(<code class="language-plaintext highlighter-rouge">group_neutralize,ts_av_diff</code>): 让数据 mean=0</li>
-      <li>zscore(<code class="language-plaintext highlighter-rouge">zscore, group_zscore, ts_zsore</code>): 让数据 mean=0, var=1. 假设数据是高斯分布的情况下标准化.</li>
-      <li>rank(<code class="language-plaintext highlighter-rouge">rank, group_rank, ts_rank</code>): 不改变单调性, 把数据调整成0-1之间的均匀分布</li>
-      <li>quantile(<code class="language-plaintext highlighter-rouge">quantile, ts_quantile</code>) 把数据调整成某个分布
-        <ul>
-          <li>会先做一个rank把数据调整到0-1, 再做线性变换到 (1/n)-(1-1/n), 然后再用三种分布调整</li>
-          <li>支持均匀分布, gaussian分布和<a href="https://en.wikipedia.org/wiki/Cauchy_distribution">Cauchy分布</a>
-            <ul>
-              <li><strong>把输入调整成return, 可以用来做随机采样?</strong></li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-      <li>缩尾: 中间部分数据不变, 用来处理长尾分布.
-        <ul>
-          <li><code class="language-plaintext highlighter-rouge">tail</code> : 手动设置lower, upper bound</li>
-          <li><code class="language-plaintext highlighter-rouge">winsorize</code>:  离群数据的截断的范围由std确定</li>
-        </ul>
-      </li>
-      <li>scale(<code class="language-plaintext highlighter-rouge">scale, group_scale, ts_scale</code>): 让数据在0-1之间. 线性scale</li>
-      <li>线性分段函数改变数据分布: 比如<code class="language-plaintext highlighter-rouge">a&lt;0.1? (1.1-a):(a&gt;0.8? 1.8-a:1)</code> , 可以构造任何分布.</li>
-      <li>非线性的改变数据分布(<code class="language-plaintext highlighter-rouge">power, -inverse, log(x+1),arctan</code>)</li>
-    </ul>
-  </li>
-  <li>计算相关关系
-    <ul>
-      <li>ts_regression(y,x): 用一个数据线性拟合另一个数据. 调节rettype 获得对应参数
-        <ul>
-          <li>error_term(rettype=0): 相当于用x数据做y的baseline_wander (y信号是主信号)</li>
-          <li>slope($\beta$ , rettype=2): 得到数据x关于数据y的系数,
-            <ul>
-              <li>可以用这个信号作为一个阈值</li>
-              <li>得到的 <code class="language-plaintext highlighter-rouge">slope * x</code> 可以用做把y对多个x做分解, 得到的分解量. 和rettype=3 类似.</li>
-            </ul>
-          </li>
-          <li>y-estimate(rettype=3): 相当于用x数据线性构建信号, 调节出一个和y 距离最近的参数. (x信号是主信号)</li>
-          <li>$R^2=1-\frac{SSE}{SST}$ (决定系数, rettype=6): 表示线性模型的有用程度.(比直接取均值好的程度.). (反应了x对y的预测能力.)
-            <ul>
-              <li>SSE是模型预测值与实际值 $y_i$ 的平方和. SST是均值与实际值 $y_i$ 的平方和. 这两个越接近, 即$R^2$ 越小, 说明模型和直接取均值效果差不多.</li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li>分组
-    <ul>
-      <li>floor: 用整数量化成n个区间.</li>
-      <li>bucket: 把0-1的值平均分为n个区间.
-        <ul>
-          <li><code class="language-plaintext highlighter-rouge">floor(rank(cap)*4.99)</code> 和<code class="language-plaintext highlighter-rouge">bucket(rank(cap),range="0.1,1,0.2")</code> 是差不多的效果.</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li>控制
-    <ul>
-      <li>hump: 根据数据变动, 只有两种action(不动, 移动hump threshold)
-        <ul>
-          <li>对周期比较长的数据(比如基本面数据)可以这样做</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-</ul>
-
-<h2 id="参考资料">参考资料</h2>
-
-<p>[1]   https://support.worldquantbrain.com/hc/en-us/community/posts/28643095649943–新人科普-一文助你成为BRAIN兼职研究顾问</p>
-
-<p>[2]  https://support.worldquantbrain.com/hc/en-us/community/posts/19273239621399–Alpha灵感启示录-合集-持续更新收录中</p>
-
-<p>[3]  https://support.worldquantbrain.com/hc/en-us/community/posts/22863075241623–学习资料-BRAIN平台自学路径图推荐</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="finance" /><category term="content" /><category term="stock" /><category term="alpha" /><category term="simulation" /><summary type="html"><![CDATA[选择在模拟盘中表现好的因子投资]]></summary></entry><entry><title type="html">blender学习: 用几何节点做程序化城市</title><link href="https://roshameow.github.io//personal_homepage/blender/blender-learning18/" rel="alternate" type="text/html" title="blender学习: 用几何节点做程序化城市" /><published>2025-01-04T00:00:00+00:00</published><updated>2025-01-07T17:14:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/blender/blender-learning18</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/blender/blender-learning18/"><![CDATA[<p>参考<a href="https://www.youtube.com/watch?v=LheRoTgym8g">这个教学</a></p>
-
-<p>1:  <img src="/personal_homepage/docs/attachment/Pasted%20image%2020250105115526.png" alt="Pasted image 20250105115526.png" width="150" />  -&gt; 2:  <img src="/personal_homepage/docs/attachment/Pasted%20image%2020250105121905.png" alt="Pasted image 20250105121905.png" width="150" />  -&gt; 3: <img src="/personal_homepage/docs/attachment/Pasted%20image%2020250106164220.png" alt="Pasted image 20250106164220.png" width="150" /> -&gt; 4: <img src="/personal_homepage/docs/attachment/Pasted%20image%2020250106164521.png" alt="Pasted image 20250106164521.png" width="150" /> -&gt; 5: <img src="/personal_homepage/docs/attachment/Pasted%20image%2020250106164825.png" alt="Pasted image 20250106164825.png" width="150" /></p>
-
-<ul>
-  <li>制作道路:
-    <ol>
-      <li>制作随机网格: 随机2, 3层细分
-        <ul>
-          <li>用二层 <a href="https://docs.blender.org/manual/en/latest/modeling/geometry_nodes/mesh/operations/subdivide_mesh.html">subdivide Mesh</a></li>
-          <li>随机选一些内部网格 (<a href="https://docs.blender.org/manual/en/latest/modeling/geometry_nodes/geometry/operations/separate_geometry.html">Separate Geometry Node -&gt; Face</a> ) 再进行一层subdivide
-            <ul>
-              <li>输入Boolean的随机值</li>
-              <li>输出选中的和未选中的不同处理</li>
-              <li>用<a href="https://docs.blender.org/manual/en/latest/modeling/geometry_nodes/geometry/join_geometry.html">Join Gemetry Node</a>  融合在一起</li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-      <li>制作随机扭曲: 把随机的mesh merge在一起
-        <ul>
-          <li>用<a href="https://docs.blender.org/manual/en/latest/modeling/geometry_nodes/geometry/operations/merge_by_distance.html">Merge by Distance Node</a> 融合: 输入Boolean的随机值, distance选择0.26( 稍 &gt; 2级细分, 即1/4)</li>
-          <li>再次用0.01的distance 融合: 去除重复的边</li>
-        </ul>
-      </li>
-      <li>把网格转成道路
-        <ul>
-          <li>mesh转成折线curve: <a href="https://docs.blender.org/manual/en/latest/modeling/geometry_nodes/mesh/operations/mesh_to_curve.html">Mesh to Curve</a></li>
-          <li>折线curve转成圆角曲线: <a href="https://docs.blender.org/manual/en/latest/modeling/geometry_nodes/mesh/operations/mesh_to_curve.html">Fillet Curve</a> (类似Bevel倒角的效果)
-            <ul>
-              <li>Count 控制中间点的个数, Radius控制圆角弧度大小, 选择Limit Radius 保证圆角起终点不会超出范围(什么情况是需要超出范围的吗? 这个选项总是要选)</li>
-            </ul>
-          </li>
-          <li><strong>转成道路: <a href="https://docs.blender.org/manual/en/latest/modeling/geometry_nodes/curve/operations/curve_to_mesh.html">Curve to Mesh</a> (效果为Curve沿Profile Curve 挤出)</strong>
-            <ul>
-              <li>Curve 处输入我们的道路curve</li>
-              <li>Profile Curve 处用<a href="https://docs.blender.org/manual/en/latest/modeling/geometry_nodes/curve/primitives/curve_line.html">Curve Line</a> 输入一个固定长度线段Curve</li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-      <li>增加厚度: <a href="https://docs.blender.org/manual/en/latest/modeling/geometry_nodes/mesh/operations/extrude_mesh.html">Extrude Mesh Node</a> 沿面的法相挤出</li>
-      <li>关闭自动的Smooth Shading: <a href="https://docs.blender.org/manual/en/latest/modeling/geometry_nodes/mesh/write/set_shade_smooth.html">Set Shade Smooth Node</a></li>
-    </ol>
-  </li>
-</ul>
-
-<p>1: <img src="/personal_homepage/docs/attachment/Pasted%20image%2020250106204640.png" alt="Pasted image 20250106204640.png" width="150" />  -&gt; 2: <img src="/personal_homepage/docs/attachment/Pasted%20image%2020250106205132.png" alt="Pasted image 20250106205132.png" width="150" />  -&gt; 3: <img src="/personal_homepage/docs/attachment/Pasted%20image%2020250106214511.png" alt="Pasted image 20250106214511.png" width="150" /> -&gt; 4: <img src="/personal_homepage/docs/attachment/Pasted%20image%2020250106214738.png" alt="Pasted image 20250106214738.png" width="150" /></p>
-
-<ul>
-  <li>制作建筑物: 安插在道路网格的间隙
-    <ol>
-      <li>制作底座: 把折线道路(道路步骤2的结果)向内挤出
-        <ul>
-          <li><a href="https://docs.blender.org/manual/en/latest/modeling/geometry_nodes/mesh/operations/extrude_mesh.html">Extrude Mesh Node</a> 沿面的法相挤出, 但是厚度为0</li>
-          <li>选中输出<code class="language-plaintext highlighter-rouge">Top</code>(新生成的面)向内scale</li>
-        </ul>
-      </li>
-      <li>制作楼体:
-        <ul>
-          <li>把底座内部向上拉伸</li>
-          <li>去掉第一步制作底座时没用的mesh, 只保留底座拉伸部分</li>
-        </ul>
-      </li>
-      <li>制作屋顶:
-        <ul>
-          <li>选中楼体顶部:
-            <ul>
-              <li><a href="https://docs.blender.org/manual/en/3.1/modeling/geometry_nodes/input/normal.html">Normal Node</a> + <a href="https://docs.blender.org/manual/en/latest/compositing/types/vector/separate_xyz.html">Spearate XYZ Node</a> 的<code class="language-plaintext highlighter-rouge">Z</code>输出, 连接到 <a href="https://docs.blender.org/manual/en/latest/modeling/geometry_nodes/mesh/operations/extrude_mesh.html">Extrude Mesh Node</a> 的<code class="language-plaintext highlighter-rouge">Selection</code> 上</li>
-              <li>另一种方法是直接选中楼体时的<code class="language-plaintext highlighter-rouge">Top</code> 输出, 连接到 <a href="https://docs.blender.org/manual/en/latest/modeling/geometry_nodes/mesh/operations/extrude_mesh.html">Extrude Mesh Node</a> 的<code class="language-plaintext highlighter-rouge">Selection</code> 上</li>
-            </ul>
-          </li>
-          <li>把楼体顶部向下向内挤出(和上一步制作楼体的方法一样)</li>
-        </ul>
-      </li>
-      <li>把街区内部进一步切分, 和道路放在一起</li>
-    </ol>
-  </li>
-</ul>
-
-<p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020250107055846.png" alt="Pasted image 20250107055846.png" width="150" /></p>
-
-<ul>
-  <li>shading: 在cycles渲染模式下
-    <ul>
-      <li>world: 添加一个Sky Texture, 适当调整参数</li>
-      <li>object:
-        <ul>
-          <li>楼体: 每幢楼随机两个贴图
-            <ul>
-              <li>用<a href="https://docs.blender.org/manual/en/latest/render/shader_nodes/input/geometry.html">Geometry Node</a> 的random per Island(每个connected component随机) 的功能 + constant Color Ramp(把数值映射成 0 或 1 )</li>
-              <li>mix shader混合</li>
-            </ul>
-          </li>
-          <li>楼顶: 用<a href="https://docs.blender.org/manual/en/latest/render/shader_nodes/input/geometry.html">Geometry Node</a> 的normal +  <a href="https://docs.blender.org/manual/en/latest/compositing/types/vector/separate_xyz.html">Spearate XYZ Node</a> 的<code class="language-plaintext highlighter-rouge">Z</code>输出, 选中楼顶</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-</ul>
-
-<h2 id="texture-coordinate-的设置"><a href="https://docs.blender.org/manual/en/latest/render/shader_nodes/input/texture_coordinate.html">texture Coordinate</a> 的设置</h2>
-
-<ul>
-  <li>我们用<a href="https://docs.blender.org/manual/en/latest/render/shader_nodes/textures/image.html">Image Texture</a> 设置颜色的映射时, 把默认的 flat 改为 box
-    <ul>
-      <li>flat的映射: <img src="https://docs.blender.org/manual/en/latest/_images/render_shader-nodes_textures_image_projection-flat.png" alt="flat" />Sphere的映射方法: <img src="https://docs.blender.org/manual/en/latest/_images/render_shader-nodes_textures_image_projection-box.png" alt="box" /></li>
-    </ul>
-  </li>
-</ul>
-
-<h2 id="用到的blender的一些快捷键功能">用到的blender的一些快捷键功能</h2>
-
-<ul>
-  <li>打开关闭侧边 Transform栏: N</li>
-  <li>Object Mode:
-    <ul>
-      <li><a href="https://docs.blender.org/manual/en/latest/scene_layout/object/editing/apply.html">Apply(应用变形)</a>: Command + A
-        <ul>
-          <li>比例尺(Apply Scale): 应用后, 物体上的变换, 由比例变成实际距离?
-            <ul>
-              <li>比如400scale的物体, 应用前 0.1 的变换, 和应用后40m的变换等价</li>
-              <li>blender的滑块单位是0.1, 可能是有时候物体太大, 按比例调整不方便?</li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li>Geometry Nodes合并成group
-    <ul>
-      <li>在原有Node输入的地方可以加input Node
-        <ul>
-          <li>input Node的参数不能改名字</li>
-          <li>Node内部的参数不能改成输入😮‍💨</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="blender" /><category term="content" /><category term="geometry_node" /><summary type="html"><![CDATA[参考这个教学]]></summary></entry></feed>
+</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="tool" /><category term="content" /><category term="python" /><category term="async" /><category term="异步" /><summary type="html"><![CDATA[协程就是单线程多任务, 在一个任务等待的时候干点别的其他的任务. 所以包含等待的函数都要用协程的版本: 在需要时交出event loop的控制权. python 协程的用法]]></summary></entry></feed>

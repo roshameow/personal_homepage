@@ -31,7 +31,7 @@
 <meta property="twitter:title" content="worldquant BRAIN 股票因子 (四) – 因子思路" />
 <meta name="twitter:site" content="@" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2025-02-18T08:36:00+00:00","datePublished":"2025-01-22T00:00:00+00:00","description":"事件","headline":"worldquant BRAIN 股票因子 (四) – 因子思路","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/finance/alphas4/"},"url":"https://roshameow.github.io//personal_homepage/finance/alphas4/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2025-02-27T18:55:00+00:00","datePublished":"2025-01-22T00:00:00+00:00","description":"事件","headline":"worldquant BRAIN 股票因子 (四) – 因子思路","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/finance/alphas4/"},"url":"https://roshameow.github.io//personal_homepage/finance/alphas4/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -153,15 +153,15 @@
     <!-- <div id="markdown-toc"> -->
     <ul>
         
+        <li><a href="/personal_homepage/blender/blender-learning21/">blender学习:  内发光效果</a></li>
+        
+        <li><a href="/personal_homepage/tool/papers/">筛选适合阅读的论文</a></li>
+        
+        <li><a href="/personal_homepage/finance/alpha5/">worldquant BRAIN 股票因子 (五 ) -- 数据集理解</a></li>
+        
         <li><a href="/personal_homepage/blender/blender-learning20/">blender学习:  制作随音乐律动的视频</a></li>
         
         <li><a href="/personal_homepage/algorithm/color-moderate3/">传感器颜色调制 (四) -- 多光谱颜色校准</a></li>
-        
-        <li><a href="/personal_homepage/blender/blender-learning19/">blender学习: 制作水体</a></li>
-        
-        <li><a href="/personal_homepage/daily/cutting-board/">切菜板成分</a></li>
-        
-        <li><a href="/personal_homepage/code/alphas3/">worldquant BRAIN 股票因子 (三) -- API使用和代码</a></li>
         
     </ul>
     <!-- </div> -->
@@ -224,7 +224,22 @@
       </li>
     </ul>
   </li>
-  <li><strong>月度调仓</strong>:</li>
+  <li><strong>月度调仓</strong>: 让仓位最多保持一个月, 是为了在量化结果的同时保持灵活性
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">D = days_from_last_change(event);Alpha = trade_when(D &lt; period, signal, D &gt; period);Alpha</code>
+        <ul>
+          <li>event是离散指标(比如: 5日均线&gt;10日均线)</li>
+          <li>D 距上次调仓的时间, period是规定时间(一个月)</li>
+          <li>情况:
+            <ul>
+              <li>event 指标变化 -&gt; D = 0, 调仓</li>
+              <li>event 指标在规定时间内一直没变化 -&gt; D &gt;规定时间, 超时, 关闭仓位</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
 </ul>
 
 <h3 id="交易条件">交易条件</h3>
@@ -241,7 +256,19 @@
       drawdown_num = if_else(returns&lt;-0.09,1,0); #如果大幅下跌则计数1，否则为0  
       sum_of_drawdown = group_sum(drawdown_num,subindustry); #计算每天各组内大幅下跌股票的总数  
       ratio = sum_of_drawdown/count_of_each_group; #计算出各组的大幅下跌股票数量占比  
-      alpha = if_else(ratio&gt;0.6,nan,signal) #如果本组超过60%的股票都在大幅下跌，则赋值nan.</code></li>
+      alpha = if_else(ratio&gt;0.6,nan,signal); #如果本组超过60%的股票都在大幅下跌，则赋值nan.</code>
+    <ul>
+      <li>关闭多天:
+        <ul>
+          <li><code class="language-plaintext highlighter-rouge">alpha = if_else(days_from_last_change(ratio&lt;0.6) &lt; 200,nan,signal); #关闭200天</code>
+            <ul>
+              <li>大幅下跌事件 出现/消失 200天后才能解锁交易</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
   <li><strong>只取特殊股票交易</strong>:
     <ul>
       <li>比如市值靠前的股票: <code class="language-plaintext highlighter-rouge">filter = if_else(rank(cap)&gt;0.9,1,nan)</code></li>

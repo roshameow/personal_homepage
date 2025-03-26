@@ -31,7 +31,7 @@
 <meta property="twitter:title" content="worldquant BRAIN 股票因子 (一) – 仿真测试" />
 <meta name="twitter:site" content="@" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2025-02-19T11:28:00+00:00","datePublished":"2025-01-07T00:00:00+00:00","description":"选择在模拟盘中表现好的因子投资","headline":"worldquant BRAIN 股票因子 (一) – 仿真测试","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/finance/alphas/"},"url":"https://roshameow.github.io//personal_homepage/finance/alphas/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2025-03-10T14:08:00+00:00","datePublished":"2025-01-07T00:00:00+00:00","description":"选择在模拟盘中表现好的因子投资","headline":"worldquant BRAIN 股票因子 (一) – 仿真测试","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/finance/alphas/"},"url":"https://roshameow.github.io//personal_homepage/finance/alphas/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -153,15 +153,15 @@
     <!-- <div id="markdown-toc"> -->
     <ul>
         
+        <li><a href="/personal_homepage/blender/blender-learning21/">blender学习:  内发光效果</a></li>
+        
+        <li><a href="/personal_homepage/tool/papers/">筛选适合阅读的论文</a></li>
+        
+        <li><a href="/personal_homepage/finance/alpha5/">worldquant BRAIN 股票因子 (五 ) -- 数据集理解</a></li>
+        
         <li><a href="/personal_homepage/blender/blender-learning20/">blender学习:  制作随音乐律动的视频</a></li>
         
         <li><a href="/personal_homepage/algorithm/color-moderate3/">传感器颜色调制 (四) -- 多光谱颜色校准</a></li>
-        
-        <li><a href="/personal_homepage/blender/blender-learning19/">blender学习: 制作水体</a></li>
-        
-        <li><a href="/personal_homepage/daily/cutting-board/">切菜板成分</a></li>
-        
-        <li><a href="/personal_homepage/finance/alphas4/">worldquant BRAIN 股票因子 (四) -- 因子思路</a></li>
         
     </ul>
     <!-- </div> -->
@@ -276,7 +276,7 @@
   <tbody>
     <tr>
       <td><a href="https://en.wikipedia.org/wiki/Sharpe_ratio">Sharpe(夏普率, related metric, information ratio, IR)</a></td>
-      <td>Delay-0: <code class="language-plaintext highlighter-rouge">Sharpe &gt; 2</code><br />Delay-1: <code class="language-plaintext highlighter-rouge">Sharpe &gt; 1.25</code></td>
+      <td>Delay-0: <code class="language-plaintext highlighter-rouge">Sharpe &gt; 2</code><br />Delay-1: <code class="language-plaintext highlighter-rouge">Sharpe &gt; 1.58</code></td>
       <td><code class="language-plaintext highlighter-rouge">Sharpe=mean(PnL)/stdev(PnL)*sqrt(252)</code><br /><br /><code class="language-plaintext highlighter-rouge">*sqrt(252)</code> 年化</td>
       <td> </td>
     </tr>
@@ -285,6 +285,12 @@
       <td>建议 <code class="language-plaintext highlighter-rouge">subuniverse_sharpe &gt; 0.7*sharpe</code></td>
       <td><code class="language-plaintext highlighter-rouge">subuniverse_sharpe &gt;= 0.75 * sqrt(subuniverse_size / alpha_universe_size) * alpha_sharpe</code><br /><br />不在sub-universe 的股票赋NaN, 自动加上market neutralization, 并乘上scale?<br /><br /></td>
       <td>让alpha少受公司规模, 流动性的影响<br />避免使用<code class="language-plaintext highlighter-rouge">1-rank(cap), rank(-assets)</code><br />对<code class="language-plaintext highlighter-rouge">volume*close</code> 不在一个水平的stock,</td>
+    </tr>
+    <tr>
+      <td>IS Ladder Sharpe(阶梯测试)</td>
+      <td>FAIL_THRESHOLD=Sharpe<br />PASS_THRESHOLD<br />时间段越长越会降低</td>
+      <td>从近两年, 3年 -…-&gt; 10年测试<br />如果通过FAIL_THRESHOLD只是进入下一阶段测试, <br />如果通过PASS_THRESHOLD则可以立即通过</td>
+      <td>控制drawback</td>
     </tr>
     <tr>
       <td><a href="https://support.worldquantbrain.com/hc/en-us/articles/20251419309719-How-to-improve-Turnover">Turnover(换手率)</a></td>
@@ -300,9 +306,9 @@
     </tr>
     <tr>
       <td>Margin</td>
-      <td>建议 <code class="language-plaintext highlighter-rouge">margin &gt; 4bps</code></td>
+      <td>建议 <code class="language-plaintext highlighter-rouge">margin &gt; 4bps</code><br />USA 5<br />EUR 10<br />ASI 15</td>
       <td><code class="language-plaintext highlighter-rouge">avg(PnL/total traded dollars)</code></td>
-      <td>降低turnover</td>
+      <td>降低turnover<br />提高return</td>
     </tr>
     <tr>
       <td>Weight test</td>
@@ -319,12 +325,6 @@
     <tr>
       <td><a href="https://platform.worldquantbrain.com/learn/documentation/interpret-results/parameters-simulation-results#is-semi-os-os">Out-of-sample(OS)</a></td>
       <td>提交后在真实市场测试</td>
-      <td> </td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>IS Ladder Sharpe(阶梯测试)</td>
-      <td> </td>
       <td> </td>
       <td> </td>
     </tr>
@@ -369,7 +369,7 @@
   </li>
   <li>调整分布
     <ul>
-      <li>neutralize(<code class="language-plaintext highlighter-rouge">group_neutralize,ts_av_diff</code>): 让数据 mean=0</li>
+      <li>neutralize(<code class="language-plaintext highlighter-rouge">normalize, group_neutralize,ts_av_diff</code>): 让数据 mean=0</li>
       <li>zscore(<code class="language-plaintext highlighter-rouge">zscore, group_zscore, ts_zsore</code>): 让数据 mean=0, var=1. 假设数据是高斯分布的情况下标准化.</li>
       <li>rank(<code class="language-plaintext highlighter-rouge">rank, group_rank, ts_rank</code>): 不改变单调性, 把数据调整成0-1之间的均匀分布</li>
       <li>quantile(<code class="language-plaintext highlighter-rouge">quantile, ts_quantile</code>) 把数据调整成某个分布
@@ -402,6 +402,12 @@
             <ul>
               <li>可以用这个信号作为一个阈值</li>
               <li>得到的 <code class="language-plaintext highlighter-rouge">slope * x</code> 可以用做把y对多个x做分解, 得到的分解量. 和rettype=3 类似.</li>
+              <li>让 x 是<code class="language-plaintext highlighter-rouge">step(1)</code> , 得到y随时间的斜率.</li>
+            </ul>
+          </li>
+          <li>std(rettype=8): 和$\beta$ 相关的error term?
+            <ul>
+              <li>和rettype2配合, 计算ir</li>
             </ul>
           </li>
           <li>y-estimate(rettype=3): 相当于用x数据线性构建信号, 调节出一个和y 距离最近的参数. (x信号是主信号)</li>

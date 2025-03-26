@@ -16,22 +16,22 @@
   
   
   <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>stable-diffusion的结构和微调模型 | Liu, Wen’s Home Page</title>
+<title>blender学习: 内发光效果 | Liu, Wen’s Home Page</title>
 <meta name="generator" content="Jekyll v4.4.1" />
-<meta property="og:title" content="stable-diffusion的结构和微调模型" />
+<meta property="og:title" content="blender学习: 内发光效果" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="stable-diffusion结构和controlnet插件" />
-<meta property="og:description" content="stable-diffusion结构和controlnet插件" />
-<link rel="canonical" href="https://roshameow.github.io//personal_homepage/deeplearning/stable-diffusion6/" />
-<meta property="og:url" content="https://roshameow.github.io//personal_homepage/deeplearning/stable-diffusion6/" />
+<meta name="description" content="设置透明+自发光 用transparent shader和emmision shader合成 用layer weight node控制参数 Frensnel 模式(对比度更高): 和frensel node一样公式, 把用IOR调节, 改成0-1调节weight Facing 模式: 按face面向镜头的角度调节weight 添加辉光: 用Compositing的glare node -&gt; Fog Glow" />
+<meta property="og:description" content="设置透明+自发光 用transparent shader和emmision shader合成 用layer weight node控制参数 Frensnel 模式(对比度更高): 和frensel node一样公式, 把用IOR调节, 改成0-1调节weight Facing 模式: 按face面向镜头的角度调节weight 添加辉光: 用Compositing的glare node -&gt; Fog Glow" />
+<link rel="canonical" href="https://roshameow.github.io//personal_homepage/blender/blender-learning21/" />
+<meta property="og:url" content="https://roshameow.github.io//personal_homepage/blender/blender-learning21/" />
 <meta property="og:site_name" content="Liu, Wen’s Home Page" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2024-02-29T00:00:00+00:00" />
+<meta property="article:published_time" content="2025-03-11T00:00:00+00:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="stable-diffusion的结构和微调模型" />
+<meta property="twitter:title" content="blender学习: 内发光效果" />
 <meta name="twitter:site" content="@" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-03-27T20:30:05+00:00","datePublished":"2024-02-29T00:00:00+00:00","description":"stable-diffusion结构和controlnet插件","headline":"stable-diffusion的结构和微调模型","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/deeplearning/stable-diffusion6/"},"url":"https://roshameow.github.io//personal_homepage/deeplearning/stable-diffusion6/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2025-03-11T19:40:00+00:00","datePublished":"2025-03-11T00:00:00+00:00","description":"设置透明+自发光 用transparent shader和emmision shader合成 用layer weight node控制参数 Frensnel 模式(对比度更高): 和frensel node一样公式, 把用IOR调节, 改成0-1调节weight Facing 模式: 按face面向镜头的角度调节weight 添加辉光: 用Compositing的glare node -&gt; Fog Glow","headline":"blender学习: 内发光效果","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/blender/blender-learning21/"},"url":"https://roshameow.github.io//personal_homepage/blender/blender-learning21/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -58,7 +58,7 @@
 
 </head>
 
-  <body class="layout--post  stable-diffusion的结构和微调模型">
+  <body class="layout--post  blender学习-内发光效果">
     <nav class="skip-links">
   <h2 class="screen-reader-text">Skip links</h2>
   <ul>
@@ -99,7 +99,7 @@
       <header class="page-header">
         
         
-        <h1 id="page-title" class="page-title p-name">stable-diffusion的结构和微调模型
+        <h1 id="page-title" class="page-title p-name">blender学习:  内发光效果
 </h1>
         
       </header>
@@ -109,7 +109,7 @@
 
 <span class="read-time">~1 min read</span>
 
-    <time class="page-date dt-published" datetime="2024-02-29T00:00:00+00:00"><a class="u-url" href="">February 29, 2024</a>
+    <time class="page-date dt-published" datetime="2025-03-11T00:00:00+00:00"><a class="u-url" href="">March 11, 2025</a>
 </time>
 
   </div>
@@ -118,14 +118,14 @@
         
   <h3 class="page-taxonomies-title">Categories</h3>
   
-  <ul class="page-taxonomies"><li class="page-taxonomy"><a class="p-category" href="/personal_homepage/categories/#deeplearning" title="Pages filed under deeplearning">deeplearning</a></li>
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a class="p-category" href="/personal_homepage/categories/#blender" title="Pages filed under blender">blender</a></li>
   </ul>
 
 
         
   <h3 class="page-taxonomies-title">Tags</h3>
   
-  <ul class="page-taxonomies"><li class="page-taxonomy"><a href="/personal_homepage/tags/#attention" title="Pages tagged attention" rel="tag">attention</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#content" title="Pages tagged content" rel="tag">content</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#controlnet" title="Pages tagged controlnet" rel="tag">controlnet</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#gligen" title="Pages tagged gligen" rel="tag">gligen</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#ipadapter" title="Pages tagged ipadapter" rel="tag">ipadapter</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#lora" title="Pages tagged lora" rel="tag">lora</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#stable-diffusion" title="Pages tagged stable-diffusion" rel="tag">stable-diffusion</a></li>
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a href="/personal_homepage/tags/#content" title="Pages tagged content" rel="tag">content</a></li>
   </ul>
 
 
@@ -139,7 +139,7 @@
 {:toc} -->
   <!-- <div id="markdown-toc"> -->
 
-    <ul class="inline_toc" id="my_toc"><li><a href="#stable-diffusion结构和controlnet插件">stable-diffusion结构和controlnet插件</a></li><li><a href="#resnetblock-spatialtransfomer-结构和插件">Resnetblock, SpatialTransfomer 结构和插件</a></li><li><a href="#各种embedding编码方式">各种embedding编码方式</a></li><li><a href="#reference">reference</a></li></ul>
+    <ul class="inline_toc" id="my_toc"><li><a href="#渲染模式">渲染模式</a></li></ul>
   <!-- </div> -->
 
 </div>
@@ -153,8 +153,6 @@
     <!-- <div id="markdown-toc"> -->
     <ul>
         
-        <li><a href="/personal_homepage/blender/blender-learning21/">blender学习:  内发光效果</a></li>
-        
         <li><a href="/personal_homepage/tool/papers/">筛选适合阅读的论文</a></li>
         
         <li><a href="/personal_homepage/finance/alpha5/">worldquant BRAIN 股票因子 (五 ) -- 数据集理解</a></li>
@@ -162,6 +160,8 @@
         <li><a href="/personal_homepage/blender/blender-learning20/">blender学习:  制作随音乐律动的视频</a></li>
         
         <li><a href="/personal_homepage/algorithm/color-moderate3/">传感器颜色调制 (四) -- 多光谱颜色校准</a></li>
+        
+        <li><a href="/personal_homepage/blender/blender-learning19/">blender学习: 制作水体</a></li>
         
     </ul>
     <!-- </div> -->
@@ -176,94 +176,50 @@
 
       <div class="page-content">
         <div class="e-content">
-          <h2 id="stable-diffusion结构和controlnet插件">stable-diffusion结构和controlnet插件</h2>
+          <ul>
+  <li>设置透明+自发光
+    <ul>
+      <li>用transparent shader和emmision shader合成</li>
+      <li>用<a href="https://docs.blender.org/manual/en/latest/render/shader_nodes/input/layer_weight.html">layer weight node</a>控制参数
+        <ul>
+          <li>Frensnel 模式(对比度更高): 和frensel node一样公式, 把用IOR调节, 改成0-1调节weight</li>
+          <li>Facing 模式: 按face面向镜头的角度调节weight</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>添加辉光: 用Compositing的<a href="https://docs.blender.org/manual/en/latest/compositing/types/filter/glare.html">glare node</a>  -&gt; Fog Glow</li>
+</ul>
 
-<p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240306124200.png" alt="Pasted image 20240306124200.png" width="500" /></p>
+<p><img src="/personal_homepage/docs/attachment/glow.jpeg" alt="glow.jpeg" width="480" /></p>
 
 <ul>
-  <li>controlnet保持和stable-diffusion u-net上半部分相同的结构</li>
-  <li>controlnet输入是和原图一样的hint图像
+  <li>问题:
     <ul>
-      <li>比如controlnet-openpose输入的不是关节坐标数据, 而是彩色的人体坐标图</li>
-      <li>这也是像controlnet-tile, controlnet-inpaint等从任务角度明明不需要hint image还是要输入一个的原因</li>
+      <li>怎么设置物体前后的遮挡?</li>
     </ul>
   </li>
 </ul>
 
-<h2 id="resnetblock-spatialtransfomer-结构和插件">Resnetblock, SpatialTransfomer 结构和插件</h2>
+<h2 id="渲染模式">渲染模式</h2>
 
-<p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240306123108.png" alt="Pasted image 20240306123108.png" width="300" /> <img src="/personal_homepage/docs/attachment/Pasted%20image%2020240306123128.png" alt="Pasted image 20240306123128.png" width="500" /></p>
+<p>shader边栏 -&gt; Options -&gt; Settings -&gt; Surface -&gt;<a href="https://docs.blender.org/manual/en/latest/render/eevee/material_settings.html">Render Method</a></p>
 
 <ul>
-  <li>lora可以应用在网络的任何线性结构上, 比如:
+  <li><strong>Dithered Mode（抖动模式）</strong> : 效果更好, 性能开销更大
     <ul>
-      <li>attention里面的q,k,v,out层</li>
-      <li>feedforward里面的linear层</li>
-      <li>clip里面的mlp, fc层</li>
+      <li>支持半透明渲染</li>
+      <li>支持raytracing</li>
+      <li>deferred rendering技术</li>
     </ul>
   </li>
-  <li>这几种模型的作用的粒度不一样, 从小到大是: lora(线性层) &lt; Gligen=IpAdapter(SpatialTransformer层) &lt; Controlnet(U-net的block)
+  <li><strong>Blended Mode（混合模式）</strong>
     <ul>
-      <li>模型的size也是依次变大</li>
+      <li>前向渲染(forward rendering）技术</li>
+      <li>透明表面的排序基于对象原点, 可能导致渲染错误</li>
     </ul>
   </li>
 </ul>
-
-<h2 id="各种embedding编码方式">各种embedding编码方式</h2>
-
-<table>
-  <thead>
-    <tr>
-      <th>类型</th>
-      <th>输入</th>
-      <th>编码</th>
-      <th>公式</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td> </td>
-      <td>图像</td>
-      <td>可训练的hint block网络(controlnet)<br />或clip vision(ipadapter)</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td> </td>
-      <td>文字</td>
-      <td>clip</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>一维特征 $\mathbb R$</td>
-      <td>time</td>
-      <td><a href="https://github.com/comfyanonymous/ComfyUI/blob/55f37baae85a5f3ef6d87743445fcce1f0477ba9/comfy/ldm/modules/diffusionmodules/model.py#L32">Sinusoidal Embedding</a>  <br />三角编码</td>
-      <td>$[\sin\frac{t}{10000^{2n/d}},\cdots,\cos\frac{t}{10000^{2n/d}},\cdots]\in \mathbb R^d$<br />temperature 10000<br />token t<br />embedding dim d, $n\in [0,d/2]$</td>
-    </tr>
-    <tr>
-      <td>多维特征 $\mathbb R^k$</td>
-      <td>boundingbox<br />keypoints</td>
-      <td><a href="https://github.com/gligen/GLIGEN/blob/f9dccb9c6cf48bad03c3666290a7dec8c5e58f3c/ldm/modules/diffusionmodules/util.py#L12">Fourier Embedding</a> (gligen)<br />就是在三角编码在k维度上做tile</td>
-      <td> </td>
-    </tr>
-  </tbody>
-</table>
-
-<ul>
-  <li>在gligen里面, 用text encoder编码的关键词embedding和对应的用Fourier Embedding编码的bounding box concat之后再用MLP融合成grounding token</li>
-  <li>stable diffusion里面编码方式大部分都是不参与网络训练的</li>
-</ul>
-
-<h2 id="reference">reference</h2>
-<p><span id="ref"></span>
-[1] Hu, Edward J., Yelong Shen, Phillip Wallis, Zeyuan Allen-Zhu, Yuanzhi Li, Shean Wang, Lu Wang, and Weizhu Chen. “<strong>LoRA</strong>: Low-Rank Adaptation of Large Language Models.” arXiv, October 16, 2021. <a href="https://doi.org/10.48550/arXiv.2106.09685">https://doi.org/10.48550/arXiv.2106.09685</a>.</p>
-
-<p>[2] Zhang, Lvmin, and Maneesh Agrawala. “Adding Conditional <strong>Control</strong> to Text-to-Image Diffusion Models.” arXiv, February 10, 2023. <a href="https://doi.org/10.48550/arXiv.2302.05543">https://doi.org/10.48550/arXiv.2302.05543</a>.</p>
-
-<p>[3] Ye, Hu, Jun Zhang, Sibo Liu, Xiao Han, and Wei Yang. “<strong>IP-Adapter</strong>: Text Compatible Image Prompt Adapter for Text-to-Image Diffusion Models.” arXiv.org, August 13, 2023. <a href="https://arxiv.org/abs/2308.06721v1">https://arxiv.org/abs/2308.06721v1</a>.</p>
-
-<p>[4] Li, Yuheng, Haotian Liu, Qingyang Wu, Fangzhou Mu, Jianwei Yang, Jianfeng Gao, Chunyuan Li, and Yong Jae Lee. “<strong>GLIGEN</strong>: Open-Set Grounded Text-to-Image Generation.” arXiv, April 16, 2023. <a href="https://doi.org/10.48550/arXiv.2301.07093">https://doi.org/10.48550/arXiv.2301.07093</a>.</p>
-
-<p>代码: 参考comfyui里<code class="language-plaintext highlighter-rouge">comfy.ldm.modules.diffusionmodules.openaimodel.py</code> 的实现, 除了controlnet是加在<code class="language-plaintext highlighter-rouge">condition</code> 流里面, 其他几种都是通过<code class="language-plaintext highlighter-rouge">model.patches</code> 切换网络分支实现的.</p>
 
 
         </div>
@@ -276,8 +232,8 @@
     <div id="disqus_thread"></div>
     <script>
       var disqus_config = function () {
-        this.page.url = 'https://roshameow.github.io//personal_homepage/deeplearning/stable-diffusion6/';
-        this.page.identifier = 'https://roshameow.github.io//personal_homepage/deeplearning/stable-diffusion6/';
+        this.page.url = 'https://roshameow.github.io//personal_homepage/blender/blender-learning21/';
+        this.page.identifier = 'https://roshameow.github.io//personal_homepage/blender/blender-learning21/';
       };
 
       (function() {
@@ -295,23 +251,15 @@
 
         <nav class="page-pagination" role="navigation">
   
-    <a class="page-previous" href="/personal_homepage/tool/stable-diffusion5/">
+    <a class="page-previous" href="/personal_homepage/tool/papers/">
       <h4 class="page-pagination-label">Previous</h4>
       <span class="page-pagination-title">
-        <i class="fas fa-arrow-left"></i> stable-diffusion的用法: 常用插件
+        <i class="fas fa-arrow-left"></i> 筛选适合阅读的论文
 
       </span>
     </a>
   
 
-  
-    <a class="page-next" href="/personal_homepage/blender/blender-learning7/">
-      <h4 class="page-pagination-label">Next</h4>
-      <span class="page-pagination-title">
-        blender学习: 做卡通描边
- <i class="fas fa-arrow-right"></i>
-      </span>
-    </a>
   
 </nav>
 

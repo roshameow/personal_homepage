@@ -110,7 +110,7 @@
   
   <li>
     <a href="#2025">
-      <strong>2025</strong> <span class="taxonomy-count">12</span>
+      <strong>2025</strong> <span class="taxonomy-count">15</span>
     </a>
   </li>
   
@@ -133,6 +133,198 @@
 <section id="2025" class="taxonomy-section">
   <h2 class="taxonomy-title">2025</h2>
   <div class="entries-list">
+    
+    
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
+        <a href="/personal_homepage/blender/blender-learning21/" rel="bookmark">blender学习:  内发光效果
+</a>
+      
+    </h3>
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <ul>
+  <li>设置透明+自发光
+    <ul>
+      <li>用transparent shader和emmision shader合成</li>
+      <li>用<a href="https://docs.blender.org/manual/en/latest/render/shader_nodes/input/layer_weight.html">layer weight node</a>控制参数
+        <ul>
+          <li>Frensnel 模式(对比度更高): 和frensel node一样公式, 把用IOR调节, 改成0-1调节weight</li>
+          <li>Facing 模式: 按face面向镜头的角度调节weight</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>添加辉光: 用Compositing的<a href="https://docs.blender.org/manual/en/latest/compositing/types/filter/glare.html">glare node</a>  -&gt; Fog Glow</li>
+</ul>
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">~1 min read</span>
+
+      <time class="entry-date dt-published" datetime="2025-03-11T00:00:00+00:00">March 11, 2025
+  </time>
+    </footer>
+  
+</article>
+
+    
+    
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
+        <a href="/personal_homepage/tool/papers/" rel="bookmark">筛选适合阅读的论文
+</a>
+      
+    </h3>
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <table>
+  <thead>
+    <tr>
+      <th>搜索步骤</th>
+      <th>目的</th>
+      <th>输入-&gt;输出</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>一级搜索</td>
+      <td>按时间, 类别, 标题搜索文章</td>
+      <td>获取标题, 作者, 文章链接, summary</td>
+    </tr>
+    <tr>
+      <td>二级搜索</td>
+      <td>判断summary是否对主题有用</td>
+      <td>summary + prompt -&gt; yes/no</td>
+    </tr>
+    <tr>
+      <td>三级搜索</td>
+      <td>判断文章内容</td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">~1 min read</span>
+
+      <time class="entry-date dt-published" datetime="2025-03-09T00:00:00+00:00">March 9, 2025
+  </time>
+    </footer>
+  
+</article>
+
+    
+    
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
+        <a href="/personal_homepage/finance/alpha5/" rel="bookmark">worldquant BRAIN 股票因子 (五 ) – 数据集理解
+</a>
+      
+    </h3>
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <table>
+  <thead>
+    <tr>
+      <th>数据集</th>
+      <th>特点</th>
+      <th>信号</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>模型数据集(model)</td>
+      <td>大多是分数形式</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>基本面数据</td>
+      <td> </td>
+      <td>1. <code class="language-plaintext highlighter-rouge">PE(市盈率) = eps/close</code><br />2. <code class="language-plaintext highlighter-rouge">PS(市销率) = close*sharesout/revenue</code><br />3. cashflow/price<br />4. cashflow/sales<br />5. margin, pretax margin, operating margin <br />6. enterprise value</td>
+    </tr>
+    <tr>
+      <td>风险数据</td>
+      <td> </td>
+      <td>1. 用risk factor做neutralize<br />2. 用risk-return 代替returns<br />3.</td>
+    </tr>
+    <tr>
+      <td>量价数据</td>
+      <td>完整</td>
+      <td>1. 交易量激增(volume spike) <br />2. -returns</td>
+    </tr>
+    <tr>
+      <td>社交媒体数据</td>
+      <td>更新频率高<br />有时效性: 尽量不要超过1季度</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>期权数据集(Options)</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>分析师数据<br /></td>
+      <td>很多是vector数据<br />更新频率低<br />有很多异常值</td>
+      <td>1. 预测和当前值的差异<br />2. 预测值随时间变化<br />3. 分析师修订模型数据</td>
+    </tr>
+    <tr>
+      <td>宏观数据(Macro)</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>other数据</td>
+      <td> </td>
+      <td>1. group分类数据</td>
+    </tr>
+  </tbody>
+</table>
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">~1 min read</span>
+
+      <time class="entry-date dt-published" datetime="2025-02-26T00:00:00+00:00">February 26, 2025
+  </time>
+    </footer>
+  
+</article>
+
     
     
 

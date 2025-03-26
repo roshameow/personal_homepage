@@ -500,7 +500,7 @@ var store = [{
         "url": "https://roshameow.github.io//personal_homepage/finance/alphas/"
       },{
         "title": "worldquant BRAIN 股票因子 (二) -- 因子思路",
-        "excerpt":"一些因子的来源和原理 对公司经营状况的预估(基本数据) fundamental datasets 运营盈利: 只对大型公司有效 盈利/支出 -rank(ebit/capex) 投入更多到运营盈利上的公司不怎么样 0.3*group_rank(ebit/assets,subindustry)- 0.7*group_neutralize(ts_mean(ebit,210)/ts_mean(capex,210),subindustry) 资产估值/盈利 alpha = -group_rank(fnd2_ebitdm, industry)-group_rank(fnd2_ebitfr, industry); group_rank(fn_assets_fair_val_a,industry)&gt;0.5?alpha*2 : alpha fnd2_ebitdm domestic ebit, fnd2_ebitfr foreign ebit fn_assets_fair_val_a 资产估值 留存收益: 未分配给股东的利润 rank(ts_delta(retained_earnings / sharesout, 90)) 留存收益/股本=每股留存收益: 不受公司规模影响 -ts_rank(retained_earnings,250) 留存收益比历史减少, 可能是分红给股东了 营业收入: ts_rank(operating_income,252) 营业收入越高越好, 结合相对股价看(operating_income/close), 如果营业收入增长而股价未能跟上，可能意味着市场尚未充分定价公司改善的前景 负债 短期债务: 限制同行业比较 zscore(cash_st/debt_st) 现金流越高, 还债能力越强...","categories": ["finance"],
+        "excerpt":"一些因子的来源和原理 对公司经营状况的预估(基本数据) fundamental datasets 运营盈利: 只对大型公司有效 盈利/支出 -rank(ebit/capex) 投入更多到运营盈利上的公司不怎么样 0.3*group_rank(ebit/assets,subindustry)- 0.7*group_neutralize(ts_mean(ebit,210)/ts_mean(capex,210),subindustry) -rank((ebit+assets)/capex) 资产估值/盈利 alpha = -group_rank(fnd2_ebitdm, industry)-group_rank(fnd2_ebitfr, industry); group_rank(fn_assets_fair_val_a,industry)&gt;0.5?alpha*2 : alpha fnd2_ebitdm domestic ebit, fnd2_ebitfr foreign ebit fn_assets_fair_val_a 资产估值 留存收益: 未分配给股东的利润 rank(ts_delta(retained_earnings / sharesout, 66)) 留存收益/股本=每股留存收益: 不受公司规模影响 -ts_rank(retained_earnings,250) 留存收益比历史减少, 可能是分红给股东了 营业收入: ts_rank(operating_income,252) 营业收入越高越好, 结合相对股价看(operating_income/close), 如果营业收入增长而股价未能跟上，可能意味着市场尚未充分定价公司改善的前景 结合市值(operating_income/cap) ts_rank(fnd6_fopo/debt_lt,252) 和长期负债的比值 负债 短期债务:...","categories": ["finance"],
         "tags": ["content","stock","alpha"],
         "url": "https://roshameow.github.io//personal_homepage/finance/alphas2/"
       },{
@@ -530,7 +530,7 @@ var store = [{
         "url": "https://roshameow.github.io//personal_homepage/blender/blender-learning19/"
       },{
         "title": "传感器颜色调制 (四) -- 多光谱颜色校准",
-        "excerpt":"用RGB校准多光谱数据 把(H,W,N) 的多光谱数据 Y , 由N x 3 的CCM(Color Correction Matrix) 线性映射为 (H,W,3) 的rgb数据 X . 即 $Y\\cdot CCM = X$ . 虽然是线性映射, 可以在步骤前给Y 加一个 feature extraction模块, 实现非线性. 达到更低的loss. 即使只是线性映射, 多光谱数据也比3通道的数据能达到更低的loss. 求解系数 Loss &amp; 约束 公式 说明 普通L2 norm $\\min \\vert\\vert Y\\cdot CCM - X\\vert\\vert_2$   restrict awb $\\min \\vert\\vert...","categories": ["algorithm"],
+        "excerpt":"用RGB校准多光谱数据 把(H,W,N) 的多光谱数据 Y , 由N x 3 的CCM(Color Correction Matrix) 线性映射为 (H,W,3) 的rgb数据 X . 即 $Y\\cdot CCM = X$ . 虽然是线性映射, 可以在步骤前给Y 加一个 feature extraction模块, 实现非线性. 达到更低的loss. 即使只是线性映射, 多光谱数据也比3通道的数据能达到更低的loss.求解系数 Loss &amp; 约束 公式 说明 普通L2 norm $\\min \\vert\\vert Y\\cdot CCM - X\\vert\\vert_2$   restrict awb $\\min \\vert\\vert Y\\cdot...","categories": ["algorithm"],
         "tags": ["content","sensor","multi-spectrum","isp","proximal_operator"],
         "url": "https://roshameow.github.io//personal_homepage/algorithm/color-moderate3/"
       },{
@@ -538,4 +538,19 @@ var store = [{
         "excerpt":"参考教学   设置物体随1d强度变化:          在plane mesh上添加Cloud Texture, 把strength打上关键帧      用geometry node在变形的mesh上添加instance                  把material的link从Data改为Object才能给instance添加材质                      添加音乐:          设置物体随音乐(1d)运动: 用Graph Editor的Channel -&gt; Sound to Samples 功能, 让strength随音乐变化      设置播放音乐: 在Video Sequencer里添加音乐      ","categories": ["blender"],
         "tags": ["content","music","geometry_node","video_editor"],
         "url": "https://roshameow.github.io//personal_homepage/blender/blender-learning20/"
+      },{
+        "title": "worldquant BRAIN 股票因子 (五 ) -- 数据集理解",
+        "excerpt":"数据集 特点 信号 模型数据集(model) 大多是分数形式   基本面数据   1. PE(市盈率) = eps/close2. PS(市销率) = close*sharesout/revenue3. cashflow/price4. cashflow/sales5. margin, pretax margin, operating margin 6. enterprise value 风险数据   1. 用risk factor做neutralize2. 用risk-return 代替returns3. 量价数据 完整 1. 交易量激增(volume spike) 2. -returns 社交媒体数据 更新频率高有时效性: 尽量不要超过1季度   期权数据集(Options)     分析师数据 很多是vector数据更新频率低有很多异常值 1. 预测和当前值的差异2....","categories": ["finance"],
+        "tags": ["content"],
+        "url": "https://roshameow.github.io//personal_homepage/finance/alpha5/"
+      },{
+        "title": "筛选适合阅读的论文",
+        "excerpt":"搜索步骤 目的 输入-&gt;输出 一级搜索 按时间, 类别, 标题搜索文章 获取标题, 作者, 文章链接, summary 二级搜索 判断summary是否对主题有用 summary + prompt -&gt; yes/no 三级搜索 判断文章内容   一级搜索(按时间, 类别, 标题搜索文章) —&gt; 获取标题, 作者, 文章链接, summary arxiv搜索: arxiv api调用, 或者可以直接用avxiv的python包 二级搜索: 判断summary是否对主题有用 -&gt; summary + prompt Does this paper describe how to find abnormal returns in stocks?...","categories": ["tool"],
+        "tags": ["content"],
+        "url": "https://roshameow.github.io//personal_homepage/tool/papers/"
+      },{
+        "title": "blender学习:  内发光效果",
+        "excerpt":"  设置透明+自发光          用transparent shader和emmision shader合成      用layer weight node控制参数                  Frensnel 模式(对比度更高): 和frensel node一样公式, 把用IOR调节, 改成0-1调节weight          Facing 模式: 按face面向镜头的角度调节weight                      添加辉光: 用Compositing的glare node  -&gt; Fog Glow   问题:          怎么设置物体前后的遮挡?      渲染模式 shader边栏 -&gt; Options -&gt; Settings -&gt; Surface -&gt;Render Method   Dithered Mode（抖动模式） : 效果更好, 性能开销更大          支持半透明渲染      支持raytracing      deferred rendering技术        Blended Mode（混合模式）          前向渲染(forward rendering）技术      透明表面的排序基于对象原点, 可能导致渲染错误      ","categories": ["blender"],
+        "tags": ["content"],
+        "url": "https://roshameow.github.io//personal_homepage/blender/blender-learning21/"
       }]

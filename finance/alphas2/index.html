@@ -31,7 +31,7 @@
 <meta property="twitter:title" content="worldquant BRAIN 股票因子 (二) – 因子思路" />
 <meta name="twitter:site" content="@" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2025-02-18T08:47:00+00:00","datePublished":"2025-01-15T00:00:00+00:00","description":"一些因子的来源和原理","headline":"worldquant BRAIN 股票因子 (二) – 因子思路","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/finance/alphas2/"},"url":"https://roshameow.github.io//personal_homepage/finance/alphas2/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2025-03-10T20:23:00+00:00","datePublished":"2025-01-15T00:00:00+00:00","description":"一些因子的来源和原理","headline":"worldquant BRAIN 股票因子 (二) – 因子思路","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/finance/alphas2/"},"url":"https://roshameow.github.io//personal_homepage/finance/alphas2/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -153,15 +153,15 @@
     <!-- <div id="markdown-toc"> -->
     <ul>
         
+        <li><a href="/personal_homepage/blender/blender-learning21/">blender学习:  内发光效果</a></li>
+        
+        <li><a href="/personal_homepage/tool/papers/">筛选适合阅读的论文</a></li>
+        
+        <li><a href="/personal_homepage/finance/alpha5/">worldquant BRAIN 股票因子 (五 ) -- 数据集理解</a></li>
+        
         <li><a href="/personal_homepage/blender/blender-learning20/">blender学习:  制作随音乐律动的视频</a></li>
         
         <li><a href="/personal_homepage/algorithm/color-moderate3/">传感器颜色调制 (四) -- 多光谱颜色校准</a></li>
-        
-        <li><a href="/personal_homepage/blender/blender-learning19/">blender学习: 制作水体</a></li>
-        
-        <li><a href="/personal_homepage/daily/cutting-board/">切菜板成分</a></li>
-        
-        <li><a href="/personal_homepage/finance/alphas4/">worldquant BRAIN 股票因子 (四) -- 因子思路</a></li>
         
     </ul>
     <!-- </div> -->
@@ -191,6 +191,7 @@
             <ul>
               <li>投入更多到运营盈利上的公司不怎么样</li>
               <li><code class="language-plaintext highlighter-rouge">0.3*group_rank(ebit/assets,subindustry)- 0.7*group_neutralize(ts_mean(ebit,210)/ts_mean(capex,210),subindustry)</code></li>
+              <li><code class="language-plaintext highlighter-rouge">-rank((ebit+assets)/capex)</code></li>
             </ul>
           </li>
         </ul>
@@ -209,7 +210,7 @@
   </li>
   <li>留存收益: 未分配给股东的利润
     <ul>
-      <li><code class="language-plaintext highlighter-rouge">rank(ts_delta(retained_earnings / sharesout, 90))</code>
+      <li><code class="language-plaintext highlighter-rouge">rank(ts_delta(retained_earnings / sharesout, 66))</code>
         <ul>
           <li>留存收益/股本=每股留存收益: 不受公司规模影响</li>
         </ul>
@@ -227,6 +228,12 @@
         <ul>
           <li>营业收入越高越好,</li>
           <li>结合相对股价看(operating_income/close), 如果营业收入增长而股价未能跟上，可能意味着市场尚未充分定价公司改善的前景</li>
+          <li>结合市值(operating_income/cap)</li>
+        </ul>
+      </li>
+      <li><code class="language-plaintext highlighter-rouge">ts_rank(fnd6_fopo/debt_lt,252)</code>
+        <ul>
+          <li>和长期负债的比值</li>
         </ul>
       </li>
     </ul>
@@ -245,6 +252,7 @@
       <li>负债公允价值（Fair Value of Liabilities）,公司负债在市场上的当前价值
         <ul>
           <li><code class="language-plaintext highlighter-rouge">-ts_rank(fn_liab_fair_val_l1_a,252)</code></li>
+          <li>时间改成半年120</li>
         </ul>
       </li>
       <li><code class="language-plaintext highlighter-rouge">liabilities/assets</code>, <code class="language-plaintext highlighter-rouge">debt/assets</code>
@@ -271,6 +279,11 @@
           <li>计算<code class="language-plaintext highlighter-rouge">dr</code>(deferred revenue)的斜率, 增长说明需求增加, 可能股票会涨</li>
         </ul>
       </li>
+      <li>外汇收入: 做多
+        <ul>
+          <li><code class="language-plaintext highlighter-rouge">ts_mean(fn_oth_income_loss_fx_transaction_and_tax_translation_adj_a,252)</code></li>
+        </ul>
+      </li>
     </ul>
   </li>
 </ul>
@@ -285,11 +298,11 @@
           <li>新闻发布后股价提升4%的时间</li>
           <li><code class="language-plaintext highlighter-rouge">ts_backfill(vec_sum(nws12_prez_57p),600)</code></li>
           <li><code class="language-plaintext highlighter-rouge">alpha=ts_backfill(vec_avg(nws12_prez_4l),504); trade_when(volume&gt;adv20,alpha,-1)</code></li>
+          <li><code class="language-plaintext highlighter-rouge">signed_power(ts_backfill(vec_avg(nws12_prez_4l),504)*(1+rank(volume)),2)</code></li>
         </ul>
       </li>
       <li><code class="language-plaintext highlighter-rouge">(ts_arg_max(ts_backfill(news_session_range, 20), 60))</code>
         <ul>
-          <li><code class="language-plaintext highlighter-rouge">signed_power(ts_backfill(vec_avg(nws12_prez_4l),504)*(1+rank(volume)),2)</code></li>
           <li>新闻后的波动范围(high-low)越大, 应该做多?? 一个季度内, 到达最大波动范围的最近时间. 越长说明波动衰减的正常. 不会极端的受到</li>
           <li>需要用随时间变化快的decay, 和trade_when控制换手率</li>
         </ul>

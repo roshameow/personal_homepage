@@ -112,6 +112,125 @@
   <header class="entry-header">
     <h3 class="entry-title p-name">
       
+        <a href="/personal_homepage/algorithm/fft/" rel="bookmark">FFT计算
+</a>
+      
+    </h3>
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <ul>
+  <li>fourier Series 定义:
+    <ul>
+      <li>$F(f)(u)=\int_{-\infty}^{\infty} f(x)e^{-2\pi i x u} dx$</li>
+      <li>2维：$G(p,q)=F(g(x,y)) = \int\int^\infty_\infty g(x,y)e^{-i2\pi(px+qy)}dxdy$
+        <ul>
+          <li>2维的可以拆分成1维</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>离散形式: 信号$x$ 的FFT 信号$X$
+    <ul>
+      <li>$X_k=\sum_{m=0}^{N-1}x_m\cdot e^{-i\cdot 2\pi km/N}=\sum_{m=0}^{N-1}x_m\cdot TW(N,k)^m$
+        <ul>
+          <li>$N$ 是信号长度</li>
+          <li>$k$ 是sample的位置</li>
+          <li>$TW(N,k) = e^{-i*2k\pi/N}$ 是<a href="https://en.wikipedia.org/wiki/Twiddle_factor#:~:text=A%20twiddle%20factor%2C%20in%20fast,papers%20of%20the%20FFT%20literature.">FFT 的twiddle factor(旋转因子)</a>
+            <ul>
+              <li>$TW(N,k)=\cos(-2k\pi/N)+i\cdot \sin(-2k\pi/N)=TW_r(N,k)+i\cdot TW_i(N,k)$</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">~1 min read</span>
+
+      <time class="entry-date dt-published" datetime="2024-05-19T00:00:00+00:00">May 19, 2024
+  </time>
+    </footer>
+  
+</article>
+
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
+        <a href="/personal_homepage/affair/labor-disputes-arbitration/" rel="bookmark">劳动仲裁流程和资料整理
+</a>
+      
+    </h3>
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <h2 id="材料">材料</h2>
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">~1 min read</span>
+
+      <time class="entry-date dt-published" datetime="2024-05-15T00:00:00+00:00">May 15, 2024
+  </time>
+    </footer>
+  
+</article>
+
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
+        <a href="/personal_homepage/blender/blender-learning12/" rel="bookmark">blender学习: 用布料系统做膨胀效果
+</a>
+      
+    </h3>
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <p>参考<a href="https://www.bilibili.com/video/BV13C41177Ze">这个教学</a></p>
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">~1 min read</span>
+
+      <time class="entry-date dt-published" datetime="2024-05-13T00:00:00+00:00">May 13, 2024
+  </time>
+    </footer>
+  
+</article>
+
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
         <a href="/personal_homepage/photo/jekyll-add-logo/" rel="bookmark">给网页添加 logo
 </a>
       
@@ -320,100 +439,6 @@
 <span class="read-time">2 min read</span>
 
       <time class="entry-date dt-published" datetime="2024-04-17T00:00:00+00:00">April 17, 2024
-  </time>
-    </footer>
-  
-</article>
-
-
-<article class="entry h-entry">
-  <header class="entry-header">
-    <h3 class="entry-title p-name">
-      
-        <a href="/personal_homepage/algorithm/stable-diffusion7/" rel="bookmark">Diffusion Process 和 Reverse Diffusion Process理解
-</a>
-      
-    </h3>
-    
-  </header>
-  
-    <div class="entry-excerpt p-summary">
-      
-        <h2 id="背景知识">背景知识</h2>
-<h3 id="bayes-rule"><a href="https://en.wikipedia.org/wiki/Bayes%27_theorem">Bayes’ rule</a></h3>
-
-      
-    </div>
-  
-  
-    <footer class="entry-meta">
-      
-
-<span class="read-time">3 min read</span>
-
-      <time class="entry-date dt-published" datetime="2024-04-16T00:00:00+00:00">April 16, 2024
-  </time>
-    </footer>
-  
-</article>
-
-
-<article class="entry h-entry">
-  <header class="entry-header">
-    <h3 class="entry-title p-name">
-      
-        <a href="/personal_homepage/algorithm/optical-flow-train/" rel="bookmark">小面积光流传感器算法测试 (一)
-</a>
-      
-    </h3>
-    
-  </header>
-  
-    <div class="entry-excerpt p-summary">
-      
-        <p>大概分为: preprocess -&gt; instant flow compute -&gt; filter correct 三个步骤</p>
-
-      
-    </div>
-  
-  
-    <footer class="entry-meta">
-      
-
-<span class="read-time">1 min read</span>
-
-      <time class="entry-date dt-published" datetime="2024-04-11T00:00:00+00:00">April 11, 2024
-  </time>
-    </footer>
-  
-</article>
-
-
-<article class="entry h-entry">
-  <header class="entry-header">
-    <h3 class="entry-title p-name">
-      
-        <a href="/personal_homepage/geometry/ring-pattern/" rel="bookmark">画一个环形的重复图样
-</a>
-      
-    </h3>
-    
-  </header>
-  
-    <div class="entry-excerpt p-summary">
-      
-        <p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020240410165502.png" alt="Pasted image 20240410165502.png" width="200" /></p>
-
-      
-    </div>
-  
-  
-    <footer class="entry-meta">
-      
-
-<span class="read-time">~1 min read</span>
-
-      <time class="entry-date dt-published" datetime="2024-04-10T00:00:00+00:00">April 10, 2024
   </time>
     </footer>
   

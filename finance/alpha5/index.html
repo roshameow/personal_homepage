@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<!--
+    So Simple Jekyll Theme 3.2.0
+    Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+    Free for personal and commercial use under the MIT license
+    https://github.com/mmistakes/so-simple-theme/blob/master/LICENSE
+-->
+<html lang="en-US" class="no-js">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  
+
+  
+  
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>worldquant BRAIN 股票因子 (五 ) – 数据集理解 | Liu, Wen’s Home Page</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="worldquant BRAIN 股票因子 (五 ) – 数据集理解" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="数据集 特点 信号 模型数据集(model) 大多是分数形式   基本面数据   1. PE(市盈率) = eps/close2. PS(市销率) = close*sharesout/revenue3. cashflow/price4. cashflow/sales5. margin, pretax margin, operating margin 6. enterprise value 风险数据   1. 用risk factor做neutralize2. 用risk-return 代替returns3. 量价数据 完整 1. 交易量激增(volume spike) 2. -returns 社交媒体数据 更新频率高有时效性: 尽量不要超过1季度   期权数据集(Options)     分析师数据 很多是vector数据更新频率低有很多异常值 1. 预测和当前值的差异2. 预测值随时间变化3. 分析师修订模型数据 宏观数据(Macro)     other数据   1. group分类数据" />
+<meta property="og:description" content="数据集 特点 信号 模型数据集(model) 大多是分数形式   基本面数据   1. PE(市盈率) = eps/close2. PS(市销率) = close*sharesout/revenue3. cashflow/price4. cashflow/sales5. margin, pretax margin, operating margin 6. enterprise value 风险数据   1. 用risk factor做neutralize2. 用risk-return 代替returns3. 量价数据 完整 1. 交易量激增(volume spike) 2. -returns 社交媒体数据 更新频率高有时效性: 尽量不要超过1季度   期权数据集(Options)     分析师数据 很多是vector数据更新频率低有很多异常值 1. 预测和当前值的差异2. 预测值随时间变化3. 分析师修订模型数据 宏观数据(Macro)     other数据   1. group分类数据" />
+<link rel="canonical" href="https://roshameow.github.io//personal_homepage/finance/alpha5/" />
+<meta property="og:url" content="https://roshameow.github.io//personal_homepage/finance/alpha5/" />
+<meta property="og:site_name" content="Liu, Wen’s Home Page" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2025-02-26T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="worldquant BRAIN 股票因子 (五 ) – 数据集理解" />
+<meta name="twitter:site" content="@" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2025-03-11T19:04:00+00:00","datePublished":"2025-02-26T00:00:00+00:00","description":"数据集 特点 信号 模型数据集(model) 大多是分数形式   基本面数据   1. PE(市盈率) = eps/close2. PS(市销率) = close*sharesout/revenue3. cashflow/price4. cashflow/sales5. margin, pretax margin, operating margin 6. enterprise value 风险数据   1. 用risk factor做neutralize2. 用risk-return 代替returns3. 量价数据 完整 1. 交易量激增(volume spike) 2. -returns 社交媒体数据 更新频率高有时效性: 尽量不要超过1季度   期权数据集(Options)     分析师数据 很多是vector数据更新频率低有很多异常值 1. 预测和当前值的差异2. 预测值随时间变化3. 分析师修订模型数据 宏观数据(Macro)     other数据   1. group分类数据","headline":"worldquant BRAIN 股票因子 (五 ) – 数据集理解","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/finance/alpha5/"},"url":"https://roshameow.github.io//personal_homepage/finance/alpha5/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  
+
+  <script>
+    /* Cut the mustard */
+    if ('querySelector' in document && 'addEventListener' in window) {
+      document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + 'js';
+    }
+  </script>
+
+  <link rel="stylesheet" href="/personal_homepage/assets/css/main.css">
+  <link rel="stylesheet" href="/personal_homepage/assets/css/skins/default.css">
+  
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,700,700i|Lora:400,400i,700,700i">
+  <link rel="alternate" type="application/atom+xml" title="Liu, Wen&#39;s Home Page" href="/personal_homepage/atom.xml">
+<!-- start custom head snippets -->
+
+<!-- insert favicons. use http://realfavicongenerator.net/ -->
+<link rel="shortcut icon" type="image/x-icon" href="/personal_homepage/docs/images/logo.ico">
+<!-- end custom head snippets -->
+
+</head>
+
+  <body class="layout--post  worldquant-brain-股票因子-五-数据集理解">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#primary-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+  <div class="navigation-wrapper">
+    <a href="#menu-toggle" id="menu-toggle">Menu</a>
+    <nav id="primary-nav" class="site-nav animated drop">
+      <ul><li><a href="/personal_homepage/">Home</a></li><li><a href="/personal_homepage/posts/">Posts</a></li><li><a href="/personal_homepage/categories/">Categories</a></li><li><a href="/personal_homepage/tags/">Tags</a></li><li><a href="/personal_homepage/family/">Family</a></li><li><a href="/personal_homepage/search/">Search</a></li></ul>
+    </nav>
+  </div><!-- /.navigation-wrapper -->
+
+
+    <header class="masthead">
+  <div class="wrap">
+    
+    
+    
+      
+        <div class="site-title animated fadeIn"><a href="/personal_homepage/">Liu, Wen's Home Page</a></div>
+      
+      <p class="site-description animated fadeIn" itemprop="description">Work, Experiments and Ideas.</p>
+    
+  </div>
+</header><!-- /.masthead -->
+
+
+    <main id="main" class="main-content" aria-label="Content">
+  <article class="h-entry">
+    
+
+    <div class="page-wrapper">
+      <header class="page-header">
+        
+        
+        <h1 id="page-title" class="page-title p-name">worldquant BRAIN 股票因子 (五 ) – 数据集理解
+</h1>
+        
+      </header>
+
+      <div class="page-sidebar">
+        <div class="page-author h-card p-author"><img src="/personal_homepage/docs/images/logo.svg" class="author-avatar u-photo" alt=""><div class="author-info">
+
+<span class="read-time">~1 min read</span>
+
+    <time class="page-date dt-published" datetime="2025-02-26T00:00:00+00:00"><a class="u-url" href="">February 26, 2025</a>
+</time>
+
+  </div>
+</div>
+
+        
+  <h3 class="page-taxonomies-title">Categories</h3>
+  
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a class="p-category" href="/personal_homepage/categories/#finance" title="Pages filed under finance">finance</a></li>
+  </ul>
+
+
+        
+  <h3 class="page-taxonomies-title">Tags</h3>
+  
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a href="/personal_homepage/tags/#content" title="Pages tagged content" rel="tag">content</a></li>
+  </ul>
+
+
+        <!-- {::options parse_block_html="true" /} -->
+<div id="entry-table-of-contents" class="toc-wrapper">
+  <h2 id="toc-toggle">
+    Table of Contents <i
+      class="toc-toggle-icon fas fa-chevron-down"></i>
+  </h2>
+  <!-- 1. toc
+{:toc} -->
+  <!-- <div id="markdown-toc"> -->
+
+    
+  <!-- </div> -->
+
+</div>
+<!-- {::options parse_block_html="false" /} -->
+        
+
+<div id="entry-table-of-contents" class="toc-wrapper">
+    <h2 id="toc-toggle" class="no_toc">
+        Related Posts <i class="toc-toggle-icon fas fa-chevron-down"></i>
+    </h2>
+    <!-- <div id="markdown-toc"> -->
+    <ul>
+        
+        <li><a href="/personal_homepage/blender/blender-learning21/">blender学习:  内发光效果</a></li>
+        
+        <li><a href="/personal_homepage/tool/papers/">筛选适合阅读的论文</a></li>
+        
+        <li><a href="/personal_homepage/blender/blender-learning20/">blender学习:  制作随音乐律动的视频</a></li>
+        
+        <li><a href="/personal_homepage/algorithm/color-moderate3/">传感器颜色调制 (四) -- 多光谱颜色校准</a></li>
+        
+        <li><a href="/personal_homepage/blender/blender-learning19/">blender学习: 制作水体</a></li>
+        
+    </ul>
+    <!-- </div> -->
+
+</div>
+
+
+
+
+
+      </div>
+
+      <div class="page-content">
+        <div class="e-content">
+          <table>
+  <thead>
+    <tr>
+      <th>数据集</th>
+      <th>特点</th>
+      <th>信号</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>模型数据集(model)</td>
+      <td>大多是分数形式</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>基本面数据</td>
+      <td> </td>
+      <td>1. <code class="language-plaintext highlighter-rouge">PE(市盈率) = eps/close</code><br />2. <code class="language-plaintext highlighter-rouge">PS(市销率) = close*sharesout/revenue</code><br />3. cashflow/price<br />4. cashflow/sales<br />5. margin, pretax margin, operating margin <br />6. enterprise value</td>
+    </tr>
+    <tr>
+      <td>风险数据</td>
+      <td> </td>
+      <td>1. 用risk factor做neutralize<br />2. 用risk-return 代替returns<br />3.</td>
+    </tr>
+    <tr>
+      <td>量价数据</td>
+      <td>完整</td>
+      <td>1. 交易量激增(volume spike) <br />2. -returns</td>
+    </tr>
+    <tr>
+      <td>社交媒体数据</td>
+      <td>更新频率高<br />有时效性: 尽量不要超过1季度</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>期权数据集(Options)</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>分析师数据<br /></td>
+      <td>很多是vector数据<br />更新频率低<br />有很多异常值</td>
+      <td>1. 预测和当前值的差异<br />2. 预测值随时间变化<br />3. 分析师修订模型数据</td>
+    </tr>
+    <tr>
+      <td>宏观数据(Macro)</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>other数据</td>
+      <td> </td>
+      <td>1. group分类数据</td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li>risk, analyst, model里和基本面, 量价类似字段可以用</li>
+</ul>
+
+<p>[1]  <a href="https://support.worldquantbrain.com/hc/en-us/community/posts/25238147759383-Getting-started-with-Model-Datasets">Getting started with Model Datasets</a></p>
+
+<p>[2]   <a href="https://support.worldquantbrain.com/hc/en-us/community/posts/27569589603863-Dataset-Deepdives-Option23-Option-Implied-Volatility-and-Greeks">Dataset Deepdives - Option23 (Option Implied Volatility and Greeks)</a></p>
+
+<p><a href="https://support.worldquantbrain.com/hc/en-us/search/click?data=BAh7DjoHaWRsKwiX%2B3xcARk6D2FjY291bnRfaWRpA9GrqjoJdHlwZUkiE2NvbW11bml0eV9wb3N0BjoGRVQ6CHVybEkidGh0dHBzOi8vc3VwcG9ydC53b3JsZHF1YW50YnJhaW4uY29tL2hjL2VuLXVzL2NvbW11bml0eS9wb3N0cy8yNzQ5MzYzNzM1NjQzOS1HZXR0aW5nLXN0YXJ0ZWQtd2l0aC1PdGhlci1EYXRhc2V0cwY7CFQ6DnNlYXJjaF9pZEkiKWFiZTEwYzA1LTI2ZDQtNDNlMC1hZDQ4LWRmYjkyYzkxMTY2NQY7CEY6CXJhbmtpBjoLbG9jYWxlSSIKZW4tdXMGOwhUOgpxdWVyeUkiDERhdGFzZXQGOwhUOhJyZXN1bHRzX2NvdW50aQIVAg%3D%3D--1a113d5587a51377ecd6cbba3b0d37108204fca9">Getting started with Other Datasets</a></p>
+
+<p><a href="https://support.worldquantbrain.com/hc/en-us/search/click?data=BAh7DjoHaWRsKwgXIIY39BY6D2FjY291bnRfaWRpA9GrqjoJdHlwZUkiE2NvbW11bml0eV9wb3N0BjoGRVQ6CHVybEkidmh0dHBzOi8vc3VwcG9ydC53b3JsZHF1YW50YnJhaW4uY29tL2hjL2VuLXVzL2NvbW11bml0eS9wb3N0cy8yNTIzODE1OTM2ODIxNS1HZXR0aW5nLXN0YXJ0ZWQtd2l0aC1BbmFseXN0LURhdGFzZXRzBjsIVDoOc2VhcmNoX2lkSSIpYWJlMTBjMDUtMjZkNC00M2UwLWFkNDgtZGZiOTJjOTExNjY1BjsIRjoJcmFua2kLOgtsb2NhbGVJIgplbi11cwY7CFQ6CnF1ZXJ5SSIMRGF0YXNldAY7CFQ6EnJlc3VsdHNfY291bnRpAhUC--7d41cbe8f4f4c83252fe5d5dd87da810c7ab50af">Getting started with Analyst Datasets</a></p>
+
+<p><a href="https://support.worldquantbrain.com/hc/en-us/search/click?data=BAh7DjoHaWRsKwiXzoQjsxg6D2FjY291bnRfaWRpA9GrqjoJdHlwZUkiE2NvbW11bml0eV9wb3N0BjoGRVQ6CHVybEkidGh0dHBzOi8vc3VwcG9ydC53b3JsZHF1YW50YnJhaW4uY29tL2hjL2VuLXVzL2NvbW11bml0eS9wb3N0cy8yNzE1NzY3NDExODgwNy1HZXR0aW5nLXN0YXJ0ZWQtd2l0aC1NYWNyby1EYXRhc2V0cwY7CFQ6DnNlYXJjaF9pZEkiKWFiZTEwYzA1LTI2ZDQtNDNlMC1hZDQ4LWRmYjkyYzkxMTY2NQY7CEY6CXJhbmtpDToLbG9jYWxlSSIKZW4tdXMGOwhUOgpxdWVyeUkiDERhdGFzZXQGOwhUOhJyZXN1bHRzX2NvdW50aQIVAg%3D%3D--121adf6e6b285a27d1e48e3471e2d6751e0d0298">Getting started with Macro Datasets</a></p>
+
+<p><a href="https://support.worldquantbrain.com/hc/en-us/search/click?data=BAh7DjoHaWRsKwgXI2Vf6hY6D2FjY291bnRfaWRpA9GrqjoJdHlwZUkiE2NvbW11bml0eV9wb3N0BjoGRVQ6CHVybEkifWh0dHBzOi8vc3VwcG9ydC53b3JsZHF1YW50YnJhaW4uY29tL2hjL2VuLXVzL2NvbW11bml0eS9wb3N0cy8yNTE5NTg3ODYyMTk3NS1HZXR0aW5nLXN0YXJ0ZWQtd2l0aC1TaG9ydC1JbnRlcmVzdC1EYXRhc2V0cwY7CFQ6DnNlYXJjaF9pZEkiKWFiZTEwYzA1LTI2ZDQtNDNlMC1hZDQ4LWRmYjkyYzkxMTY2NQY7CEY6CXJhbmtpDjoLbG9jYWxlSSIKZW4tdXMGOwhUOgpxdWVyeUkiDERhdGFzZXQGOwhUOhJyZXN1bHRzX2NvdW50aQIVAg%3D%3D--b4adf985bfba378be9fcd826f2750f37f550ca32">Getting started with Short Interest Datasets</a></p>
+
+<p><a href="https://support.worldquantbrain.com/hc/en-us/search/click?data=BAh7DjoHaWRsKwiX0dY29BY6D2FjY291bnRfaWRpA9GrqjoJdHlwZUkiE2NvbW11bml0eV9wb3N0BjoGRVQ6CHVybEkic2h0dHBzOi8vc3VwcG9ydC53b3JsZHF1YW50YnJhaW4uY29tL2hjL2VuLXVzL2NvbW11bml0eS9wb3N0cy8yNTIzODE0Nzg3OTMxOS1HZXR0aW5nLXN0YXJ0ZWQtd2l0aC1OZXdzLURhdGFzZXRzBjsIVDoOc2VhcmNoX2lkSSIpZWIyMmRmYmItNTQyOC00NGM2LTgyOWQtNmZjMzEwYTJlOTA5BjsIRjoJcmFua2kGOgtsb2NhbGVJIgplbi11cwY7CFQ6CnF1ZXJ5SSIMRGF0YXNldAY7CFQ6EnJlc3VsdHNfY291bnRpAhUC--39a7b6d0be102d6f6c783e197b971724fd36f65e">Getting started with News Datasets</a></p>
+
+<p><a href="https://support.worldquantbrain.com/hc/en-us/search/click?data=BAh7DjoHaWRsKwgXRn18HAg6D2FjY291bnRfaWRpA9GrqjoJdHlwZUkiE2NvbW11bml0eV9wb3N0BjoGRVQ6CHVybEkidGh0dHBzOi8vc3VwcG9ydC53b3JsZHF1YW50YnJhaW4uY29tL2hjL2VuLXVzL2NvbW11bml0eS9wb3N0cy84OTE4NDQwNjkxMjIzLS1CUkFJTi1USVBTLVdvcmtpbmctb24tbmV3cy1kYXRhc2V0cwY7CFQ6DnNlYXJjaF9pZEkiKWViMjJkZmJiLTU0MjgtNDRjNi04MjlkLTZmYzMxMGEyZTkwOQY7CEY6CXJhbmtpDjoLbG9jYWxlSSIKZW4tdXMGOwhUOgpxdWVyeUkiDERhdGFzZXQGOwhUOhJyZXN1bHRzX2NvdW50aQIVAg%3D%3D--d7743b72fe92fbf5766ce002c9f062e42e46de28">[BRAIN TIPS] Working on news datasets</a></p>
+
+<p><a href="https://support.worldquantbrain.com/hc/en-us/search/click?data=BAh7DjoHaWRsKwgXyowEehg6D2FjY291bnRfaWRpA9GrqjoJdHlwZUkiE2NvbW11bml0eV9wb3N0BjoGRVQ6CHVybEkie2h0dHBzOi8vc3VwcG9ydC53b3JsZHF1YW50YnJhaW4uY29tL2hjL2VuLXVzL2NvbW11bml0eS9wb3N0cy8yNjkxMjM0MTQxMjM3NS1HZXR0aW5nLXN0YXJ0ZWQtd2l0aC1QcmljZS1Wb2x1bWUtRGF0YXNldHMGOwhUOg5zZWFyY2hfaWRJIillYjIyZGZiYi01NDI4LTQ0YzYtODI5ZC02ZmMzMTBhMmU5MDkGOwhGOglyYW5raQs6C2xvY2FsZUkiCmVuLXVzBjsIVDoKcXVlcnlJIgxEYXRhc2V0BjsIVDoScmVzdWx0c19jb3VudGkCFQI%3D--6831292c011ffde15c6d6b4707258387474ab5cc">Getting started with Price Volume Datasets</a></p>
+
+<p><a href="https://support.worldquantbrain.com/hc/en-us/search/click?data=BAh7DjoHaWRsKwgXjrgfAhc6D2FjY291bnRfaWRpA9GrqjoJdHlwZUkiE2NvbW11bml0eV9wb3N0BjoGRVQ6CHVybEkie2h0dHBzOi8vc3VwcG9ydC53b3JsZHF1YW50YnJhaW4uY29tL2hjL2VuLXVzL2NvbW11bml0eS9wb3N0cy8yNTI5Nzg4OTU2MjEzNS1HZXR0aW5nLXN0YXJ0ZWQtd2l0aC1Tb2NpYWwtTWVkaWEtRGF0YXNldHMGOwhUOg5zZWFyY2hfaWRJIillYjIyZGZiYi01NDI4LTQ0YzYtODI5ZC02ZmMzMTBhMmU5MDkGOwhGOglyYW5raQ86C2xvY2FsZUkiCmVuLXVzBjsIVDoKcXVlcnlJIgxEYXRhc2V0BjsIVDoScmVzdWx0c19jb3VudGkCFQI%3D--7610f0e36b333735c4cb87f268d0e201fd078682">Getting started with Social Media Datasets</a></p>
+
+<p><a href="https://support.worldquantbrain.com/hc/en-us/search/click?data=BAh7DjoHaWRsKwgXLifBOxc6D2FjY291bnRfaWRpA9GrqjoJdHlwZUkiE2NvbW11bml0eV9wb3N0BjoGRVQ6CHVybEkid2h0dHBzOi8vc3VwcG9ydC53b3JsZHF1YW50YnJhaW4uY29tL2hjL2VuLXVzL2NvbW11bml0eS9wb3N0cy8yNTU0NTQxMTA3OTcwMy1HZXR0aW5nLXN0YXJ0ZWQtd2l0aC1FYXJuaW5ncy1EYXRhc2V0cwY7CFQ6DnNlYXJjaF9pZEkiKWViMjJkZmJiLTU0MjgtNDRjNi04MjlkLTZmYzMxMGEyZTkwOQY7CEY6CXJhbmtpDDoLbG9jYWxlSSIKZW4tdXMGOwhUOgpxdWVyeUkiDERhdGFzZXQGOwhUOhJyZXN1bHRzX2NvdW50aQIVAg%3D%3D--9854e3b1f92395e565e0d67bbfa6b52544a373f0">Getting started with Earnings Datasets</a></p>
+
+<p><a href="https://support.worldquantbrain.com/hc/en-us/search/click?data=BAh7DjoHaWRsKwgXqrcWsxg6D2FjY291bnRfaWRpA9GrqjoJdHlwZUkiE2NvbW11bml0eV9wb3N0BjoGRVQ6CHVybEkic2h0dHBzOi8vc3VwcG9ydC53b3JsZHF1YW50YnJhaW4uY29tL2hjL2VuLXVzL2NvbW11bml0eS9wb3N0cy8yNzE1NzQ1OTM0Nzk5MS1HZXR0aW5nLXN0YXJ0ZWQtd2l0aC1SaXNrLURhdGFzZXRzBjsIVDoOc2VhcmNoX2lkSSIpZWIyMmRmYmItNTQyOC00NGM2LTgyOWQtNmZjMzEwYTJlOTA5BjsIRjoJcmFua2kHOgtsb2NhbGVJIgplbi11cwY7CFQ6CnF1ZXJ5SSIMRGF0YXNldAY7CFQ6EnJlc3VsdHNfY291bnRpAhUC--904afdab3aa709384b5d21857ffab7f1cf76ccc7">Getting started with Risk Datasets</a></p>
+
+<p><a href="https://support.worldquantbrain.com/hc/en-us/search/click?data=BAh7DjoHaWRsKwgXSDO9nRY6D2FjY291bnRfaWRpA9GrqjoJdHlwZUkiE2NvbW11bml0eV9wb3N0BjoGRVQ6CHVybEkieGh0dHBzOi8vc3VwcG9ydC53b3JsZHF1YW50YnJhaW4uY29tL2hjL2VuLXVzL2NvbW11bml0eS9wb3N0cy8yNDg2NjczOTkzMTE1OS1HZXR0aW5nLXN0YXJ0ZWQtd2l0aC1TZW50aW1lbnQtRGF0YXNldHMGOwhUOg5zZWFyY2hfaWRJIik4YzM4ZjUzZi1iN2ExLTQzOTAtYWE3MS1lZDg2Nzk0M2VjYzIGOwhGOglyYW5raQs6C2xvY2FsZUkiCmVuLXVzBjsIVDoKcXVlcnlJIgxEYXRhc2V0BjsIVDoScmVzdWx0c19jb3VudGkCFQI%3D--5d7188588972d8e822582aea6b26a5ddd4697ca7">Getting started with Sentiment Datasets</a></p>
+
+<p><a href="https://support.worldquantbrain.com/hc/en-us/search/click?data=BAh7DjoHaWRsKwiXEsaUPBI6D2FjY291bnRfaWRpA9GrqjoJdHlwZUkiE2NvbW11bml0eV9wb3N0BjoGRVQ6CHVybEkiAYFodHRwczovL3N1cHBvcnQud29ybGRxdWFudGJyYWluLmNvbS9oYy9lbi11cy9jb21tdW5pdHkvcG9zdHMvMjAwNTE0MDMzNDY1ODMtLUJSQUlOLVRJUFMtRmluZGluZy1BbHBoYXMtRnVuZGFtZW50YWwtYW5kLU1vZGVsLURhdGEGOwhUOg5zZWFyY2hfaWRJIiljOTdiZmU5NC0xZjY5LTRmZGQtYjE2Zi0zY2RjZTdjMTk0NzAGOwhGOglyYW5raQs6C2xvY2FsZUkiCmVuLXVzBjsIVDoKcXVlcnlJIhhmdW5kYW1lbnRhbCBEYXRhc2V0BjsIVDoScmVzdWx0c19jb3VudGkCcAI%3D--870dfda40a16a3b1195f26c7d4cc0546b1e3f354">[BRAIN TIPS] Finding Alphas: Fundamental and Model Data</a></p>
+
+
+        </div>
+
+        
+
+        
+        
+  <div class="page-comments">
+    <div id="disqus_thread"></div>
+    <script>
+      var disqus_config = function () {
+        this.page.url = 'https://roshameow.github.io//personal_homepage/finance/alpha5/';
+        this.page.identifier = 'https://roshameow.github.io//personal_homepage/finance/alpha5/';
+      };
+
+      (function() {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://https-roshameow-github-io-personal-homepage.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+  </div>
+
+
+        
+
+        <nav class="page-pagination" role="navigation">
+  
+    <a class="page-previous" href="/personal_homepage/blender/blender-learning20/">
+      <h4 class="page-pagination-label">Previous</h4>
+      <span class="page-pagination-title">
+        <i class="fas fa-arrow-left"></i> blender学习:  制作随音乐律动的视频
+
+      </span>
+    </a>
+  
+
+  
+    <a class="page-next" href="/personal_homepage/tool/papers/">
+      <h4 class="page-pagination-label">Next</h4>
+      <span class="page-pagination-title">
+        筛选适合阅读的论文
+ <i class="fas fa-arrow-right"></i>
+      </span>
+    </a>
+  
+</nav>
+
+      </div>
+
+    </div>
+  </article>
+</main>
+
+    <footer id="footer" class="site-footer">
+  <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+<div class="social-icons"><a class="social-icon" href="/personal_homepage/atom.xml"><i class="fas fa-rss-square fa-2x" title="Feed"></i></a><a class="social-icon" href="https://github.com/roshameow"><i class="fab fa-github-square fa-2x" title="GitHub"></i></a><a class="social-icon" href="https://www.linkedin.com/in/wen-liu-06503a7b/"><i class="fab fa-linkedin fa-2x" title="LinkedIn"></i></a><a class="social-icon" href="mailto:w.liuatnk@gmail.com"><i class="fas fa-envelope-square fa-2x" title="e-mail"></i></a></div><div class="copyright">
+    
+      <p>&copy; 2025 Liu, Wen's Home Page. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://github.com/mmistakes/so-simple-theme" rel="nofollow">So Simple</a>.</p>
+    
+  </div>
+</footer>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="/personal_homepage/assets/js/main.min.js"></script>
+<script src="https://use.fontawesome.com/releases/v5.0.12/js/all.js"></script><!-- <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'G-9TMSCDTBGN', 'auto');
+  ga('send', 'pageview');
+</script> -->
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9TMSCDTBGN"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-9TMSCDTBGN');
+</script>
+
+
+
+<!-- MathJax -->
+
+<script>
+    // http://docs.mathjax.org/en/latest/upgrading/v2.html
+    MathJax = {
+        tex: {
+            tags: "ams",    // eq numbering options: none, ams, all
+            inlineMath: [['$', '$'], ["\\(", "\\)"]],  // 设置行内数学公式的开始和结束标记
+            displayMath: [['$$', '$$'], ["\\[", "\\]"]]  // 设置行间数学公式的开始和结束标记
+        },
+        // options: {
+        //   renderActions: {
+        //     // for mathjax 3, handle <script "math/tex"> blocks inserted by kramdown
+        //     find: [10, function (doc) {
+        //       for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+        //         const display = !!node.type.match(/; *mode=display/);
+        //         const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+        //         const text = document.createTextNode('');
+        //         node.parentNode.replaceChild(text, node);
+        //         math.start = { node: text, delim: '', n: 0 };
+        //         math.end = { node: text, delim: '', n: 0 };
+        //         doc.math.push(math);
+        //       }
+        //     }, '']
+        //   }
+        // }
+    }
+</script>
+
+<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  </body>
+
+</html>
