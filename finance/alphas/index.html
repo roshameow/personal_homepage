@@ -31,7 +31,7 @@
 <meta property="twitter:title" content="worldquant BRAIN 股票因子 (一) – 仿真测试" />
 <meta name="twitter:site" content="@" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2025-03-10T14:08:00+00:00","datePublished":"2025-01-07T00:00:00+00:00","description":"选择在模拟盘中表现好的因子投资","headline":"worldquant BRAIN 股票因子 (一) – 仿真测试","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/finance/alphas/"},"url":"https://roshameow.github.io//personal_homepage/finance/alphas/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2025-05-11T11:18:00+00:00","datePublished":"2025-01-07T00:00:00+00:00","description":"选择在模拟盘中表现好的因子投资","headline":"worldquant BRAIN 股票因子 (一) – 仿真测试","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/finance/alphas/"},"url":"https://roshameow.github.io//personal_homepage/finance/alphas/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -153,15 +153,15 @@
     <!-- <div id="markdown-toc"> -->
     <ul>
         
-        <li><a href="/personal_homepage/blender/blender-learning21/">blender学习:  内发光效果</a></li>
+        <li><a href="/personal_homepage/algorithm/alpha9/">拉格朗日乘子法应用 (一)</a></li>
         
-        <li><a href="/personal_homepage/tool/papers/">筛选适合阅读的论文</a></li>
+        <li><a href="/personal_homepage/tool/packing/">Tauri 项目 Build 与 Release 实践总结</a></li>
         
-        <li><a href="/personal_homepage/finance/alpha5/">worldquant BRAIN 股票因子 (五 ) -- 数据集理解</a></li>
+        <li><a href="/personal_homepage/algorithm/alpha8/">选出最佳的表达式组合</a></li>
         
-        <li><a href="/personal_homepage/blender/blender-learning20/">blender学习:  制作随音乐律动的视频</a></li>
+        <li><a href="/personal_homepage/algorithm/alpha7/">选出最佳的因子组合</a></li>
         
-        <li><a href="/personal_homepage/algorithm/color-moderate3/">传感器颜色调制 (四) -- 多光谱颜色校准</a></li>
+        <li><a href="/personal_homepage/tool/auto-code/">设置开机自启动自运行程序</a></li>
         
     </ul>
     <!-- </div> -->
@@ -397,12 +397,26 @@
     <ul>
       <li>ts_regression(y,x): 用一个数据线性拟合另一个数据. 调节rettype 获得对应参数
         <ul>
-          <li>error_term(rettype=0): 相当于用x数据做y的baseline_wander (y信号是主信号)</li>
-          <li>slope($\beta$ , rettype=2): 得到数据x关于数据y的系数,
+          <li>error_term($\epsilon$ ,rettype=0): <del>相当于用x数据做y的baseline_wander</del> (y信号是主信号)
             <ul>
+              <li>$\epsilon = y-(\alpha + \beta x)=(y-\bar y)-\beta(x-\bar x)$</li>
+            </ul>
+          </li>
+          <li>interception($\alpha$, rettype=1):
+            <ul>
+              <li>$\alpha=\bar y-\beta \bar x$</li>
+            </ul>
+          </li>
+          <li>slope($\beta$ , rettype=2): 得到数据x关于数据y的系数
+            <ul>
+              <li>$\beta=\frac{\sum(x-\bar x)(y-\bar y)}{\sum(x-\bar x)^2}$ , 是$y=\beta \cdot x+ \epsilon$ 做最小二乘法的解, 也是 y 在x方向的投影系数. <em>这个所谓的斜率是y关于x的斜率, 不是拟合之后的结果的斜率, 体现的是相关性而不是信号本身</em> . 和ts_corr, ts_covariance某种程度上可以相互替换
+                <ul>
+                  <li>ts_covariance 相当于 $\sum xy - (\sum x)(\sum y)$</li>
+                </ul>
+              </li>
               <li>可以用这个信号作为一个阈值</li>
               <li>得到的 <code class="language-plaintext highlighter-rouge">slope * x</code> 可以用做把y对多个x做分解, 得到的分解量. 和rettype=3 类似.</li>
-              <li>让 x 是<code class="language-plaintext highlighter-rouge">step(1)</code> , 得到y随时间的斜率.</li>
+              <li>让 x 是<code class="language-plaintext highlighter-rouge">ts_step(1)</code> , 得到y关于时间的斜率.</li>
             </ul>
           </li>
           <li>std(rettype=8): 和$\beta$ 相关的error term?
@@ -410,7 +424,11 @@
               <li>和rettype2配合, 计算ir</li>
             </ul>
           </li>
-          <li>y-estimate(rettype=3): 相当于用x数据线性构建信号, 调节出一个和y 距离最近的参数. (x信号是主信号)</li>
+          <li>y-estimate(rettype=3): 相当于用x数据线性构建信号, 调节出一个和y 距离最近的参数. (x信号是主信号)
+            <ul>
+              <li>用<code class="language-plaintext highlighter-rouge">ts_regression(y,x)*y</code></li>
+            </ul>
+          </li>
           <li>$R^2=1-\frac{SSE}{SST}$ (决定系数, rettype=6): 表示线性模型的有用程度.(比直接取均值好的程度.). (反应了x对y的预测能力.)
             <ul>
               <li>SSE是模型预测值与实际值 $y_i$ 的平方和. SST是均值与实际值 $y_i$ 的平方和. 这两个越接近, 即$R^2$ 越小, 说明模型和直接取均值效果差不多.</li>

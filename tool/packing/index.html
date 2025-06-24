@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<!--
+    So Simple Jekyll Theme 3.2.0
+    Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+    Free for personal and commercial use under the MIT license
+    https://github.com/mmistakes/so-simple-theme/blob/master/LICENSE
+-->
+<html lang="en-US" class="no-js">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  
+
+  
+  
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Tauri 项目 Build 与 Release 实践总结 | Liu, Wen’s Home Page</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Tauri 项目 Build 与 Release 实践总结" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="本文记录了我在使用 Tauri 构建桌面端应用时遇到的一些坑和解决方案，包括配置文件管理、macOS 编译、GitHub Actions 自动构建等内容。" />
+<meta property="og:description" content="本文记录了我在使用 Tauri 构建桌面端应用时遇到的一些坑和解决方案，包括配置文件管理、macOS 编译、GitHub Actions 自动构建等内容。" />
+<link rel="canonical" href="https://roshameow.github.io//personal_homepage/tool/packing/" />
+<meta property="og:url" content="https://roshameow.github.io//personal_homepage/tool/packing/" />
+<meta property="og:site_name" content="Liu, Wen’s Home Page" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2025-06-17T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Tauri 项目 Build 与 Release 实践总结" />
+<meta name="twitter:site" content="@" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-12-22T06:14:38+00:00","datePublished":"2025-06-17T00:00:00+00:00","description":"本文记录了我在使用 Tauri 构建桌面端应用时遇到的一些坑和解决方案，包括配置文件管理、macOS 编译、GitHub Actions 自动构建等内容。","headline":"Tauri 项目 Build 与 Release 实践总结","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/tool/packing/"},"url":"https://roshameow.github.io//personal_homepage/tool/packing/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  
+
+  <script>
+    /* Cut the mustard */
+    if ('querySelector' in document && 'addEventListener' in window) {
+      document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + 'js';
+    }
+  </script>
+
+  <link rel="stylesheet" href="/personal_homepage/assets/css/main.css">
+  <link rel="stylesheet" href="/personal_homepage/assets/css/skins/default.css">
+  
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,700,700i|Lora:400,400i,700,700i">
+  <link rel="alternate" type="application/atom+xml" title="Liu, Wen&#39;s Home Page" href="/personal_homepage/atom.xml">
+<!-- start custom head snippets -->
+
+<!-- insert favicons. use http://realfavicongenerator.net/ -->
+<link rel="shortcut icon" type="image/x-icon" href="/personal_homepage/docs/images/logo.ico">
+<!-- end custom head snippets -->
+
+</head>
+
+  <body class="layout--post  tauri-项目-build-与-release-实践总结">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#primary-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+  <div class="navigation-wrapper">
+    <a href="#menu-toggle" id="menu-toggle">Menu</a>
+    <nav id="primary-nav" class="site-nav animated drop">
+      <ul><li><a href="/personal_homepage/">Home</a></li><li><a href="/personal_homepage/posts/">Posts</a></li><li><a href="/personal_homepage/categories/">Categories</a></li><li><a href="/personal_homepage/tags/">Tags</a></li><li><a href="/personal_homepage/family/">Family</a></li><li><a href="/personal_homepage/search/">Search</a></li></ul>
+    </nav>
+  </div><!-- /.navigation-wrapper -->
+
+
+    <header class="masthead">
+  <div class="wrap">
+    
+    
+    
+      
+        <div class="site-title animated fadeIn"><a href="/personal_homepage/">Liu, Wen's Home Page</a></div>
+      
+      <p class="site-description animated fadeIn" itemprop="description">Work, Experiments and Ideas.</p>
+    
+  </div>
+</header><!-- /.masthead -->
+
+
+    <main id="main" class="main-content" aria-label="Content">
+  <article class="h-entry">
+    
+
+    <div class="page-wrapper">
+      <header class="page-header">
+        
+        
+        <h1 id="page-title" class="page-title p-name">Tauri 项目 Build 与 Release 实践总结
+</h1>
+        
+      </header>
+
+      <div class="page-sidebar">
+        <div class="page-author h-card p-author"><img src="/personal_homepage/docs/images/logo.svg" class="author-avatar u-photo" alt=""><div class="author-info">
+
+<span class="read-time">~1 min read</span>
+
+    <time class="page-date dt-published" datetime="2025-06-17T00:00:00+00:00"><a class="u-url" href="">June 17, 2025</a>
+</time>
+
+  </div>
+</div>
+
+        
+  <h3 class="page-taxonomies-title">Categories</h3>
+  
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a class="p-category" href="/personal_homepage/categories/#tool" title="Pages filed under tool">tool</a></li>
+  </ul>
+
+
+        
+  <h3 class="page-taxonomies-title">Tags</h3>
+  
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a href="/personal_homepage/tags/#build" title="Pages tagged build" rel="tag">build</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#content" title="Pages tagged content" rel="tag">content</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#github" title="Pages tagged github" rel="tag">github</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#github-actions" title="Pages tagged github_actions" rel="tag">github_actions</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#macos" title="Pages tagged macos" rel="tag">macos</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#rust" title="Pages tagged rust" rel="tag">rust</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#tauri" title="Pages tagged tauri" rel="tag">tauri</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#vue" title="Pages tagged vue" rel="tag">vue</a></li>
+  </ul>
+
+
+        <!-- {::options parse_block_html="true" /} -->
+<div id="entry-table-of-contents" class="toc-wrapper">
+  <h2 id="toc-toggle">
+    Table of Contents <i
+      class="toc-toggle-icon fas fa-chevron-down"></i>
+  </h2>
+  <!-- 1. toc
+{:toc} -->
+  <!-- <div id="markdown-toc"> -->
+
+    <ul class="inline_toc" id="my_toc"><li><a href="#一配置文件的独立处理">一、配置文件的独立处理</a><ul><li><a href="#1-前端配置configjs">1. 前端配置（config.js）</a></li><li><a href="#2-后端配置configtoml">2. 后端配置（config.toml）</a></li><li><a href="#3-git-提交管理">3. Git 提交管理</a></li></ul></li><li><a href="#二macos-本地编译问题">二、macOS 本地编译问题</a><ul><li><a href="#1-app-无法打开">1. App 无法打开</a></li><li><a href="#2-程序签名问题">2. 程序签名问题</a></li></ul></li><li><a href="#三release-打包与自动发布">三、Release 打包与自动发布</a><ul><li><a href="#1-github-actions-自动发布">1. GitHub Actions 自动发布</a></li><li><a href="#2-linux-版本的处理">2. Linux 版本的处理</a></li><li><a href="#3-权限与-token-设置">3. 权限与 Token 设置</a></li></ul></li><li><a href="#四项目代码和效果">四、项目代码和效果</a></li></ul>
+  <!-- </div> -->
+
+</div>
+<!-- {::options parse_block_html="false" /} -->
+        
+
+<div id="entry-table-of-contents" class="toc-wrapper">
+    <h2 id="toc-toggle" class="no_toc">
+        Related Posts <i class="toc-toggle-icon fas fa-chevron-down"></i>
+    </h2>
+    <!-- <div id="markdown-toc"> -->
+    <ul>
+        
+        <li><a href="/personal_homepage/algorithm/alpha9/">拉格朗日乘子法应用 (一)</a></li>
+        
+        <li><a href="/personal_homepage/algorithm/alpha8/">选出最佳的表达式组合</a></li>
+        
+        <li><a href="/personal_homepage/algorithm/alpha7/">选出最佳的因子组合</a></li>
+        
+        <li><a href="/personal_homepage/tool/auto-code/">设置开机自启动自运行程序</a></li>
+        
+        <li><a href="/personal_homepage/tool/alpha6/">worldquant BRAIN 股票因子 (六 ) -- 代码优化</a></li>
+        
+    </ul>
+    <!-- </div> -->
+
+</div>
+
+
+
+
+
+      </div>
+
+      <div class="page-content">
+        <div class="e-content">
+          <p>本文记录了我在使用 Tauri 构建桌面端应用时遇到的一些坑和解决方案，包括配置文件管理、macOS 编译、GitHub Actions 自动构建等内容。</p>
+
+<hr />
+
+<h2 id="一配置文件的独立处理">一、配置文件的独立处理</h2>
+
+<p>由于 Tauri 项目同时包含前端（Web）和后端（Rust），不同平台和开发者可能有各自的本地路径配置，需要<strong>将配置文件与代码分离</strong>。</p>
+
+<h3 id="1-前端配置configjs">1. 前端配置（<code class="language-plaintext highlighter-rouge">config.js</code>）</h3>
+
+<ul>
+  <li>使用 <code class="language-plaintext highlighter-rouge">config.js</code> 统一保存前端默认路径配置。在项目build阶段，如果没有这个配置文件，打包过程会失败。</li>
+  <li>为避免这种问题，我在 <code class="language-plaintext highlighter-rouge">vite.config.js</code> 中自定义了一个插件，用于在打包前生成一个默认的配置文件。</li>
+  <li>⚠️ 避免使用动态 <code class="language-plaintext highlighter-rouge">import</code> 处理配置文件路径——AI 建议我去写额外的脚本处理 <code class="language-plaintext highlighter-rouge">import</code>，<strong>事实是import错误是属于无法处理的类型</strong>。</li>
+</ul>
+
+<h3 id="2-后端配置configtoml">2. 后端配置（<code class="language-plaintext highlighter-rouge">config.toml</code>）</h3>
+
+<ul class="task-list">
+  <li>Rust 后端通过 <code class="language-plaintext highlighter-rouge">config.toml</code> 统一保存<strong>脚本路径、参数设置、数据库地址</strong>等。</li>
+  <li>专门写了一个脚本模块和一个数据库模块来负责读取配置，并在 <code class="language-plaintext highlighter-rouge">main.rs</code> 中加载配置并注册到 <code class="language-plaintext highlighter-rouge">tauri::State</code>。</li>
+  <li>macOS 下 release 模式运行正常：只需将 <code class="language-plaintext highlighter-rouge">config.toml</code> 放入 <code class="language-plaintext highlighter-rouge">app/Resources/</code> 目录即可。</li>
+  <li>Windows 下暂时无法通过此方式生效，仍需进一步处理资源路径。</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />将 MongoDB 的 collection 名称也提取为配置项，不再硬编码于逻辑中。</li>
+</ul>
+
+<h3 id="3-git-提交管理">3. Git 提交管理</h3>
+
+<ul>
+  <li>在 <code class="language-plaintext highlighter-rouge">.gitignore</code> 中忽略本地配置文件（如 <code class="language-plaintext highlighter-rouge">config.js</code>、<code class="language-plaintext highlighter-rouge">config.toml</code>）和所有build产物。</li>
+</ul>
+
+<hr />
+
+<h2 id="二macos-本地编译问题">二、macOS 本地编译问题</h2>
+
+<h3 id="1-app-无法打开">1. App 无法打开</h3>
+
+<ul>
+  <li>使用 <code class="language-plaintext highlighter-rouge">otool -L</code> 查看动态库依赖，发现缺少 <code class="language-plaintext highlighter-rouge">libiconv.2</code>。
+    <ul>
+      <li>尽管 macOS 系统自带 <code class="language-plaintext highlighter-rouge">/usr/lib/libiconv.2.dylib</code>，但这个库是只读的，<strong>不能用于打包 release</strong>。</li>
+      <li>解决办法：通过 Homebrew 安装并指定使用自定义版本。</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="2-程序签名问题">2. 程序签名问题</h3>
+
+<ul>
+  <li>使用命令检查签名有效性：<code class="language-plaintext highlighter-rouge">codesign --verify --deep --strict --verbose=2 YourApp.app</code></li>
+  <li>如果没有注册 Apple Developer，macOS 默认会阻止启动未签名的应用。无法解决.
+    <ul>
+      <li>暂时解决方案：<strong>使用 <code class="language-plaintext highlighter-rouge">xattr</code> 命令移除安全隔离标记</strong>：<code class="language-plaintext highlighter-rouge">    sudo xattr -r -d com.apple.quarantine YourApp.app</code></li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<h2 id="三release-打包与自动发布">三、Release 打包与自动发布</h2>
+
+<h3 id="1-github-actions-自动发布">1. GitHub Actions 自动发布</h3>
+
+<ul>
+  <li>使用 <a href="https://github.com/tauri-apps/tauri-action">tauri-action</a> 提供的 GitHub Action 来自动构建并发布 release。</li>
+  <li>几乎无需修改配置，开箱即用，非常适合桌面端分发。</li>
+</ul>
+
+<h3 id="2-linux-版本的处理">2. Linux 版本的处理</h3>
+
+<ul>
+  <li>原本打算支持 Ubuntu 构建，但桌面依赖繁杂、反正也没人用, 直接放弃构建 Linux 版本。</li>
+</ul>
+
+<h3 id="3-权限与-token-设置">3. 权限与 Token 设置</h3>
+
+<ul>
+  <li>GitHub Action 发布 Release 时，需要为该 Action 赋予 <code class="language-plaintext highlighter-rouge">write</code> 权限。</li>
+  <li>必须使用一个具备 <code class="language-plaintext highlighter-rouge">repo</code> 和 <code class="language-plaintext highlighter-rouge">release</code> 权限的 GitHub Token，并配置为项目的 Secret。
+    <ul>
+      <li>⚠️ 注意：GitHub Token 只能生成一次，请妥善保管。我就因为保存不当，只能重新生成😿。</li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<h2 id="四项目代码和效果">四、项目代码和效果</h2>
+
+<p>👉 <a href="https://github.com/roshameow/quantnight-frontend">quantnight-frontend GitHub 仓库</a></p>
+
+<iframe src="//player.bilibili.com/player.html?isOutside=true&amp;aid=114699215572489&amp;bvid=BV1CKNqzrEQd&amp;cid=30550526818&amp;p=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
+
+
+        </div>
+
+        
+
+        
+        
+  <div class="page-comments">
+    <div id="disqus_thread"></div>
+    <script>
+      var disqus_config = function () {
+        this.page.url = 'https://roshameow.github.io//personal_homepage/tool/packing/';
+        this.page.identifier = 'https://roshameow.github.io//personal_homepage/tool/packing/';
+      };
+
+      (function() {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://https-roshameow-github-io-personal-homepage.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+  </div>
+
+
+        
+
+        <nav class="page-pagination" role="navigation">
+  
+    <a class="page-previous" href="/personal_homepage/algorithm/alpha8/">
+      <h4 class="page-pagination-label">Previous</h4>
+      <span class="page-pagination-title">
+        <i class="fas fa-arrow-left"></i> 选出最佳的表达式组合
+
+      </span>
+    </a>
+  
+
+  
+    <a class="page-next" href="/personal_homepage/algorithm/alpha9/">
+      <h4 class="page-pagination-label">Next</h4>
+      <span class="page-pagination-title">
+        拉格朗日乘子法应用 (一)
+ <i class="fas fa-arrow-right"></i>
+      </span>
+    </a>
+  
+</nav>
+
+      </div>
+
+    </div>
+  </article>
+</main>
+
+    <footer id="footer" class="site-footer">
+  <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+<div class="social-icons"><a class="social-icon" href="/personal_homepage/atom.xml"><i class="fas fa-rss-square fa-2x" title="Feed"></i></a><a class="social-icon" href="https://github.com/roshameow"><i class="fab fa-github-square fa-2x" title="GitHub"></i></a><a class="social-icon" href="https://www.linkedin.com/in/wen-liu-06503a7b/"><i class="fab fa-linkedin fa-2x" title="LinkedIn"></i></a><a class="social-icon" href="mailto:w.liuatnk@gmail.com"><i class="fas fa-envelope-square fa-2x" title="e-mail"></i></a></div><div class="copyright">
+    
+      <p>&copy; 2025 Liu, Wen's Home Page. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://github.com/mmistakes/so-simple-theme" rel="nofollow">So Simple</a>.</p>
+    
+  </div>
+</footer>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="/personal_homepage/assets/js/main.min.js"></script>
+<script src="https://use.fontawesome.com/releases/v5.0.12/js/all.js"></script><!-- <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'G-9TMSCDTBGN', 'auto');
+  ga('send', 'pageview');
+</script> -->
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9TMSCDTBGN"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-9TMSCDTBGN');
+</script>
+
+
+
+<!-- MathJax -->
+
+<script>
+    // http://docs.mathjax.org/en/latest/upgrading/v2.html
+    MathJax = {
+        tex: {
+            tags: "ams",    // eq numbering options: none, ams, all
+            inlineMath: [['$', '$'], ["\\(", "\\)"]],  // 设置行内数学公式的开始和结束标记
+            displayMath: [['$$', '$$'], ["\\[", "\\]"]]  // 设置行间数学公式的开始和结束标记
+        },
+        // options: {
+        //   renderActions: {
+        //     // for mathjax 3, handle <script "math/tex"> blocks inserted by kramdown
+        //     find: [10, function (doc) {
+        //       for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+        //         const display = !!node.type.match(/; *mode=display/);
+        //         const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+        //         const text = document.createTextNode('');
+        //         node.parentNode.replaceChild(text, node);
+        //         math.start = { node: text, delim: '', n: 0 };
+        //         math.end = { node: text, delim: '', n: 0 };
+        //         doc.math.push(math);
+        //       }
+        //     }, '']
+        //   }
+        // }
+    }
+</script>
+
+<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  </body>
+
+</html>

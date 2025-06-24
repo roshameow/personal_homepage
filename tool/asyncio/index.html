@@ -31,7 +31,7 @@
 <meta property="twitter:title" content="协程的用法" />
 <meta name="twitter:site" content="@" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2025-02-10T20:16:00+00:00","datePublished":"2025-01-16T00:00:00+00:00","description":"协程就是单线程多任务, 在一个任务等待的时候干点别的其他的任务. 所以包含等待的函数都要用协程的版本: 在需要时交出event loop的控制权. python 协程的用法","headline":"协程的用法","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/tool/asyncio/"},"url":"https://roshameow.github.io//personal_homepage/tool/asyncio/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2025-04-14T15:56:00+00:00","datePublished":"2025-01-16T00:00:00+00:00","description":"协程就是单线程多任务, 在一个任务等待的时候干点别的其他的任务. 所以包含等待的函数都要用协程的版本: 在需要时交出event loop的控制权. python 协程的用法","headline":"协程的用法","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/tool/asyncio/"},"url":"https://roshameow.github.io//personal_homepage/tool/asyncio/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -139,7 +139,7 @@
 {:toc} -->
   <!-- <div id="markdown-toc"> -->
 
-    <ul class="inline_toc" id="my_toc"><li><a href="#python-协程的用法">python 协程的用法</a></li><li><a href="#javascript的用法">javascript的用法</a></li></ul>
+    <ul class="inline_toc" id="my_toc"><li><a href="#python-协程的用法">python 协程的用法</a></li><li><a href="#javascript的用法">javascript的用法</a></li><li><a href="#java21的虚拟线程">java21的虚拟线程</a></li></ul>
   <!-- </div> -->
 
 </div>
@@ -153,15 +153,15 @@
     <!-- <div id="markdown-toc"> -->
     <ul>
         
-        <li><a href="/personal_homepage/blender/blender-learning21/">blender学习:  内发光效果</a></li>
+        <li><a href="/personal_homepage/algorithm/alpha9/">拉格朗日乘子法应用 (一)</a></li>
         
-        <li><a href="/personal_homepage/tool/papers/">筛选适合阅读的论文</a></li>
+        <li><a href="/personal_homepage/tool/packing/">Tauri 项目 Build 与 Release 实践总结</a></li>
         
-        <li><a href="/personal_homepage/finance/alpha5/">worldquant BRAIN 股票因子 (五 ) -- 数据集理解</a></li>
+        <li><a href="/personal_homepage/algorithm/alpha8/">选出最佳的表达式组合</a></li>
         
-        <li><a href="/personal_homepage/blender/blender-learning20/">blender学习:  制作随音乐律动的视频</a></li>
+        <li><a href="/personal_homepage/algorithm/alpha7/">选出最佳的因子组合</a></li>
         
-        <li><a href="/personal_homepage/algorithm/color-moderate3/">传感器颜色调制 (四) -- 多光谱颜色校准</a></li>
+        <li><a href="/personal_homepage/tool/auto-code/">设置开机自启动自运行程序</a></li>
         
     </ul>
     <!-- </div> -->
@@ -182,7 +182,7 @@
 <p>在python里把一个协程函数也叫coroutine</p>
 
 <ul>
-  <li>yield(生成器): 会把当前函数挂起, 交出event loop的控制权给调用方, 再次调用函数时从暂停处继续.
+  <li>yield(生成器): 会把当前函数挂起, 保留当前执行状态, 交出event loop的控制权给调用方, 再次调用函数时从暂停处继续.
     <ul>
       <li>包含yield的函数会变成一个coroutine</li>
       <li><code class="language-plaintext highlighter-rouge">next()</code>会激活coroutine</li>
@@ -190,7 +190,7 @@
       <li>缺点是无法直接得到list的size</li>
     </ul>
   </li>
-  <li>yield from
+  <li>yield from: 交出控制权
     <ul>
       <li>可以自动循环可迭代对象</li>
     </ul>
@@ -228,6 +228,10 @@
   <li>callback</li>
   <li>promise</li>
 </ul>
+
+<h2 id="java21的虚拟线程">java21的虚拟线程</h2>
+
+<p>[1]  https://www.bilibili.com/video/BV18i4y1u7Cr/</p>
 
         </div>
 

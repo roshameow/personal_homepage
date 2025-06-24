@@ -124,7 +124,7 @@
     
       <li>
         <a href="#blender">
-          <strong>blender</strong> <span class="taxonomy-count">21</span>
+          <strong>blender</strong> <span class="taxonomy-count">22</span>
         </a>
       </li>
     
@@ -134,7 +134,7 @@
     
       <li>
         <a href="#algorithm">
-          <strong>algorithm</strong> <span class="taxonomy-count">16</span>
+          <strong>algorithm</strong> <span class="taxonomy-count">20</span>
         </a>
       </li>
     
@@ -153,8 +153,8 @@
     
     
       <li>
-        <a href="#photo">
-          <strong>photo</strong> <span class="taxonomy-count">11</span>
+        <a href="#tool">
+          <strong>tool</strong> <span class="taxonomy-count">12</span>
         </a>
       </li>
     
@@ -163,8 +163,8 @@
     
     
       <li>
-        <a href="#tool">
-          <strong>tool</strong> <span class="taxonomy-count">8</span>
+        <a href="#photo">
+          <strong>photo</strong> <span class="taxonomy-count">11</span>
         </a>
       </li>
     
@@ -332,6 +332,40 @@
   <header class="entry-header">
     <h3 class="entry-title p-name">
       
+        <a href="/personal_homepage/blender/blender-learning22/" rel="bookmark">blender学习:  几何节点花瓣
+</a>
+      
+    </h3>
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020250407185737.png" alt="Pasted image 20250407185737.png" width="300" /> -&gt; <img src="/personal_homepage/docs/attachment/Pasted%20image%2020250407185806.png" alt="Pasted image 20250407185806.png" width="300" /> -&gt; <img src="/personal_homepage/docs/attachment/Pasted%20image%2020250511182348.png" alt="Pasted image 20250511182348.png" width="180" /></p>
+
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">~1 min read</span>
+
+      <time class="entry-date dt-published" datetime="2025-04-02T00:00:00+00:00">April 2, 2025
+  </time>
+    </footer>
+  
+</article>
+
+            
+              
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
         <a href="/personal_homepage/blender/blender-learning21/" rel="bookmark">blender学习:  内发光效果
 </a>
       
@@ -342,7 +376,7 @@
     <div class="entry-excerpt p-summary">
       
         <ul>
-  <li>设置透明+自发光
+  <li>设置材质: 透明+自发光
     <ul>
       <li>用transparent shader和emmision shader合成</li>
       <li>用<a href="https://docs.blender.org/manual/en/latest/render/shader_nodes/input/layer_weight.html">layer weight node</a>控制参数
@@ -1094,6 +1128,150 @@
       
         
           <div class="entries-list">
+            
+              
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
+        <a href="/personal_homepage/algorithm/alpha9/" rel="bookmark">拉格朗日乘子法应用 (一)
+</a>
+      
+    </h3>
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <p><a href="https://en.wikipedia.org/wiki/Modern_portfolio_theory">Modern_portfolio_theory</a></p>
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">2 min read</span>
+
+      <time class="entry-date dt-published" datetime="2025-06-22T00:00:00+00:00">June 22, 2025
+  </time>
+    </footer>
+  
+</article>
+
+            
+              
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
+        <a href="/personal_homepage/algorithm/alpha8/" rel="bookmark">选出最佳的表达式组合
+</a>
+      
+    </h3>
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <p>从给定的100个左右operator, 和10多个参数, 结合生成表达式</p>
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">~1 min read</span>
+
+      <time class="entry-date dt-published" datetime="2025-05-27T00:00:00+00:00">May 27, 2025
+  </time>
+    </footer>
+  
+</article>
+
+            
+              
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
+        <a href="/personal_homepage/algorithm/alpha7/" rel="bookmark">选出最佳的因子组合
+</a>
+      
+    </h3>
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <p>遗传算法(Genetic Algorithm):
+	1. generate a bunch of solutions
+	2. 算子：选择算子(selection)：
+					Roulette Wheel Selection(轮盘赌): 1. 适应性越强概率越大，随机选择父母
+												2. Use accumulation of probability and bisect
+												e.g. probability [0.25,0.25,0.5], accumulation [0.25,0.5,1], when using bisect —0—0.25—1—0.5—2—[prabablility bigger-&gt;interval of accumulation is bigger-&gt; has more chance to be choosen]
+					Tournament Selection(锦标赛)：1. random choose n 个个体，选出其中最好的
+					Linear(Exp) Ranking Selection: 排序，按照顺序线性(exp)确定probablility
+			交叉算子：uniform crossover: 变换father和mother的一些位
+					  中间重组(浮点数)：取father和mother的随机中间数
+			变异算子：flipbit: 异或（二进制），随机替换（实数）
+	3. 编码二进制：range=(a,b), eps = 精度 -&gt;int((x-b)/eps)转为二进制（编码位数： log((b-a)/eps) ）
+	！4. 遗产算法的编码非常重要？：要保证交叉算子起作用，即亲代可以强强联合，不然就和变异算子没有差别了</p>
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">~1 min read</span>
+
+      <time class="entry-date dt-published" datetime="2025-05-26T00:00:00+00:00">May 26, 2025
+  </time>
+    </footer>
+  
+</article>
+
+            
+              
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
+        <a href="/personal_homepage/algorithm/cluster/" rel="bookmark">聚类
+</a>
+      
+    </h3>
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <h2 id="距离">距离</h2>
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">~1 min read</span>
+
+      <time class="entry-date dt-published" datetime="2025-03-18T00:00:00+00:00">March 18, 2025
+  </time>
+    </footer>
+  
+</article>
+
             
               
 
@@ -2199,6 +2377,510 @@
 
   
   
+    <section id="tool" class="taxonomy-section">
+      <h2 class="taxonomy-title">tool</h2>
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+          <div class="entries-list">
+            
+              
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
+        <a href="/personal_homepage/tool/packing/" rel="bookmark">Tauri 项目 Build 与 Release 实践总结
+</a>
+      
+    </h3>
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <p>本文记录了我在使用 Tauri 构建桌面端应用时遇到的一些坑和解决方案，包括配置文件管理、macOS 编译、GitHub Actions 自动构建等内容。</p>
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">~1 min read</span>
+
+      <time class="entry-date dt-published" datetime="2025-06-17T00:00:00+00:00">June 17, 2025
+  </time>
+    </footer>
+  
+</article>
+
+            
+              
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
+        <a href="/personal_homepage/tool/auto-code/" rel="bookmark">设置开机自启动自运行程序
+</a>
+      
+    </h3>
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <h2 id="macos">macos</h2>
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">~1 min read</span>
+
+      <time class="entry-date dt-published" datetime="2025-04-30T00:00:00+00:00">April 30, 2025
+  </time>
+    </footer>
+  
+</article>
+
+            
+              
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
+        <a href="/personal_homepage/tool/alpha6/" rel="bookmark">worldquant BRAIN 股票因子 (六 ) – 代码优化
+</a>
+      
+    </h3>
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <p>我最终选择了使用 <strong>Tauri</strong> 来构建我的桌面回测应用。本文记录了开发过程中需求梳理、初始化步骤、遇到的坑以及一些性能优化技巧。</p>
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">1 min read</span>
+
+      <time class="entry-date dt-published" datetime="2025-04-17T00:00:00+00:00">April 17, 2025
+  </time>
+    </footer>
+  
+</article>
+
+            
+              
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
+        <a href="/personal_homepage/tool/MCP/" rel="bookmark">MCP协议理解
+</a>
+      
+    </h3>
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <p>MCP(Model Context Protocol)</p>
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">~1 min read</span>
+
+      <time class="entry-date dt-published" datetime="2025-04-04T00:00:00+00:00">April 4, 2025
+  </time>
+    </footer>
+  
+</article>
+
+            
+              
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
+        <a href="/personal_homepage/tool/papers/" rel="bookmark">筛选适合阅读的论文
+</a>
+      
+    </h3>
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <table>
+  <thead>
+    <tr>
+      <th>搜索步骤</th>
+      <th>目的</th>
+      <th>输入-&gt;输出</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>一级搜索</td>
+      <td>按时间, 类别, 标题搜索文章</td>
+      <td>获取标题, 作者, 文章链接, summary</td>
+    </tr>
+    <tr>
+      <td>二级搜索</td>
+      <td>判断summary是否对主题有用</td>
+      <td>summary + prompt -&gt; yes/no</td>
+    </tr>
+    <tr>
+      <td>三级搜索</td>
+      <td>判断文章内容</td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">~1 min read</span>
+
+      <time class="entry-date dt-published" datetime="2025-03-09T00:00:00+00:00">March 9, 2025
+  </time>
+    </footer>
+  
+</article>
+
+            
+              
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
+        <a href="/personal_homepage/tool/asyncio/" rel="bookmark">协程的用法
+</a>
+      
+    </h3>
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <p>协程就是单线程多任务, 在一个任务等待的时候干点别的其他的任务. 所以包含等待的函数都要用协程的版本: 在需要时交出event loop的控制权.</p>
+<h2 id="python-协程的用法">python 协程的用法</h2>
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">~1 min read</span>
+
+      <time class="entry-date dt-published" datetime="2025-01-16T00:00:00+00:00">January 16, 2025
+  </time>
+    </footer>
+  
+</article>
+
+            
+              
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
+        <a href="/personal_homepage/tool/setting-shortcut/" rel="bookmark">终端配置
+</a>
+      
+    </h3>
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <h2 id="zsh">zsh</h2>
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">~1 min read</span>
+
+      <time class="entry-date dt-published" datetime="2025-01-01T00:00:00+00:00">January 1, 2025
+  </time>
+    </footer>
+  
+</article>
+
+            
+              
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
+        <a href="/personal_homepage/tool/raycast-script/" rel="bookmark">raycast脚本
+</a>
+      
+    </h3>
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <ul>
+  <li><a href="https://nicrow.com/automation/raycast-script-commands/">raycast脚本举例</a></li>
+</ul>
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">~1 min read</span>
+
+      <time class="entry-date dt-published" datetime="2024-09-30T00:00:00+00:00">September 30, 2024
+  </time>
+    </footer>
+  
+</article>
+
+            
+              
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
+        <a href="/personal_homepage/tool/center-track/" rel="bookmark">调整视频追踪物体
+</a>
+      
+    </h3>
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <p>Final Cut Pro</p>
+<ul>
+  <li><a href="https://www.bilibili.com/video/BV1oB4y1278d/">教程</a></li>
+  <li>步骤:
+    <ul>
+      <li>添加原视频</li>
+      <li>在原视频上添加tracker, analysis跟踪物体的bbox</li>
+      <li>复制原视频一份</li>
+      <li>在复制视频的transformer应用之前的tracker, scale改成-100%
+        <ul>
+          <li>tracker的坐标和画面的坐标位置相反?</li>
+        </ul>
+      </li>
+      <li>把物体移到画面中间</li>
+      <li>放大scale去掉黑边</li>
+    </ul>
+  </li>
+</ul>
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">~1 min read</span>
+
+      <time class="entry-date dt-published" datetime="2024-09-29T00:00:00+00:00">September 29, 2024
+  </time>
+    </footer>
+  
+</article>
+
+            
+              
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
+        <a href="/personal_homepage/tool/python-tool/" rel="bookmark">python工具
+</a>
+      
+    </h3>
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <h2 id="启动脚本">启动脚本</h2>
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">~1 min read</span>
+
+      <time class="entry-date dt-published" datetime="2024-06-03T00:00:00+00:00">June 3, 2024
+  </time>
+    </footer>
+  
+</article>
+
+            
+              
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
+        <a href="/personal_homepage/tool/pyside6-tech/" rel="bookmark">pyside6一些功能的用法
+</a>
+      
+    </h3>
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <p>pyside是qt的python封装, API的调用方法基本差不多. 用pyside从零开始写一个gui用于标注或测试(调参数或者看中间结果), 每次花费时间都比想象的要少的多. 功能方便而且代码的可读性非常好.</p>
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">~1 min read</span>
+
+      <time class="entry-date dt-published" datetime="2024-04-01T00:00:00+00:00">April 1, 2024
+  </time>
+    </footer>
+  
+</article>
+
+            
+              
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
+        <a href="/personal_homepage/tool/stable-diffusion5/" rel="bookmark">stable-diffusion的用法: 常用插件
+</a>
+      
+    </h3>
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <p>ComfyUI使用时用到的插件</p>
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">~1 min read</span>
+
+      <time class="entry-date dt-published" datetime="2024-02-27T00:00:00+00:00">February 27, 2024
+  </time>
+    </footer>
+  
+</article>
+
+            
+          </div>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+      <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
+    </section>
+  
+
+  
+  
     <section id="photo" class="taxonomy-section">
       <h2 class="taxonomy-title">photo</h2>
       
@@ -2595,378 +3277,6 @@
       
         
       
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-      <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
-    </section>
-  
-
-  
-  
-    <section id="tool" class="taxonomy-section">
-      <h2 class="taxonomy-title">tool</h2>
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-          <div class="entries-list">
-            
-              
-
-<article class="entry h-entry">
-  <header class="entry-header">
-    <h3 class="entry-title p-name">
-      
-        <a href="/personal_homepage/tool/papers/" rel="bookmark">筛选适合阅读的论文
-</a>
-      
-    </h3>
-    
-  </header>
-  
-    <div class="entry-excerpt p-summary">
-      
-        <table>
-  <thead>
-    <tr>
-      <th>搜索步骤</th>
-      <th>目的</th>
-      <th>输入-&gt;输出</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>一级搜索</td>
-      <td>按时间, 类别, 标题搜索文章</td>
-      <td>获取标题, 作者, 文章链接, summary</td>
-    </tr>
-    <tr>
-      <td>二级搜索</td>
-      <td>判断summary是否对主题有用</td>
-      <td>summary + prompt -&gt; yes/no</td>
-    </tr>
-    <tr>
-      <td>三级搜索</td>
-      <td>判断文章内容</td>
-      <td> </td>
-    </tr>
-  </tbody>
-</table>
-
-      
-    </div>
-  
-  
-    <footer class="entry-meta">
-      
-
-<span class="read-time">~1 min read</span>
-
-      <time class="entry-date dt-published" datetime="2025-03-09T00:00:00+00:00">March 9, 2025
-  </time>
-    </footer>
-  
-</article>
-
-            
-              
-
-<article class="entry h-entry">
-  <header class="entry-header">
-    <h3 class="entry-title p-name">
-      
-        <a href="/personal_homepage/tool/asyncio/" rel="bookmark">协程的用法
-</a>
-      
-    </h3>
-    
-  </header>
-  
-    <div class="entry-excerpt p-summary">
-      
-        <p>协程就是单线程多任务, 在一个任务等待的时候干点别的其他的任务. 所以包含等待的函数都要用协程的版本: 在需要时交出event loop的控制权.</p>
-<h2 id="python-协程的用法">python 协程的用法</h2>
-
-      
-    </div>
-  
-  
-    <footer class="entry-meta">
-      
-
-<span class="read-time">~1 min read</span>
-
-      <time class="entry-date dt-published" datetime="2025-01-16T00:00:00+00:00">January 16, 2025
-  </time>
-    </footer>
-  
-</article>
-
-            
-              
-
-<article class="entry h-entry">
-  <header class="entry-header">
-    <h3 class="entry-title p-name">
-      
-        <a href="/personal_homepage/tool/setting-shortcut/" rel="bookmark">终端配置
-</a>
-      
-    </h3>
-    
-  </header>
-  
-    <div class="entry-excerpt p-summary">
-      
-        <h2 id="zsh">zsh</h2>
-
-      
-    </div>
-  
-  
-    <footer class="entry-meta">
-      
-
-<span class="read-time">~1 min read</span>
-
-      <time class="entry-date dt-published" datetime="2025-01-01T00:00:00+00:00">January 1, 2025
-  </time>
-    </footer>
-  
-</article>
-
-            
-              
-
-<article class="entry h-entry">
-  <header class="entry-header">
-    <h3 class="entry-title p-name">
-      
-        <a href="/personal_homepage/tool/raycast-script/" rel="bookmark">raycast脚本
-</a>
-      
-    </h3>
-    
-  </header>
-  
-    <div class="entry-excerpt p-summary">
-      
-        <ul>
-  <li><a href="https://nicrow.com/automation/raycast-script-commands/">raycast脚本举例</a></li>
-</ul>
-
-      
-    </div>
-  
-  
-    <footer class="entry-meta">
-      
-
-<span class="read-time">~1 min read</span>
-
-      <time class="entry-date dt-published" datetime="2024-09-30T00:00:00+00:00">September 30, 2024
-  </time>
-    </footer>
-  
-</article>
-
-            
-              
-
-<article class="entry h-entry">
-  <header class="entry-header">
-    <h3 class="entry-title p-name">
-      
-        <a href="/personal_homepage/tool/center-track/" rel="bookmark">调整视频追踪物体
-</a>
-      
-    </h3>
-    
-  </header>
-  
-    <div class="entry-excerpt p-summary">
-      
-        <p>Final Cut Pro</p>
-<ul>
-  <li><a href="https://www.bilibili.com/video/BV1oB4y1278d/">教程</a></li>
-  <li>步骤:
-    <ul>
-      <li>添加原视频</li>
-      <li>在原视频上添加tracker, analysis跟踪物体的bbox</li>
-      <li>复制原视频一份</li>
-      <li>在复制视频的transformer应用之前的tracker, scale改成-100%
-        <ul>
-          <li>tracker的坐标和画面的坐标位置相反?</li>
-        </ul>
-      </li>
-      <li>把物体移到画面中间</li>
-      <li>放大scale去掉黑边</li>
-    </ul>
-  </li>
-</ul>
-
-      
-    </div>
-  
-  
-    <footer class="entry-meta">
-      
-
-<span class="read-time">~1 min read</span>
-
-      <time class="entry-date dt-published" datetime="2024-09-29T00:00:00+00:00">September 29, 2024
-  </time>
-    </footer>
-  
-</article>
-
-            
-              
-
-<article class="entry h-entry">
-  <header class="entry-header">
-    <h3 class="entry-title p-name">
-      
-        <a href="/personal_homepage/tool/python-tool/" rel="bookmark">python工具
-</a>
-      
-    </h3>
-    
-  </header>
-  
-    <div class="entry-excerpt p-summary">
-      
-        <h2 id="启动脚本">启动脚本</h2>
-
-      
-    </div>
-  
-  
-    <footer class="entry-meta">
-      
-
-<span class="read-time">~1 min read</span>
-
-      <time class="entry-date dt-published" datetime="2024-06-03T00:00:00+00:00">June 3, 2024
-  </time>
-    </footer>
-  
-</article>
-
-            
-              
-
-<article class="entry h-entry">
-  <header class="entry-header">
-    <h3 class="entry-title p-name">
-      
-        <a href="/personal_homepage/tool/pyside6-tech/" rel="bookmark">pyside6一些功能的用法
-</a>
-      
-    </h3>
-    
-  </header>
-  
-    <div class="entry-excerpt p-summary">
-      
-        <p>pyside是qt的python封装, API的调用方法基本差不多. 用pyside从零开始写一个gui用于标注或测试(调参数或者看中间结果), 每次花费时间都比想象的要少的多. 功能方便而且代码的可读性非常好.</p>
-
-      
-    </div>
-  
-  
-    <footer class="entry-meta">
-      
-
-<span class="read-time">~1 min read</span>
-
-      <time class="entry-date dt-published" datetime="2024-04-01T00:00:00+00:00">April 1, 2024
-  </time>
-    </footer>
-  
-</article>
-
-            
-              
-
-<article class="entry h-entry">
-  <header class="entry-header">
-    <h3 class="entry-title p-name">
-      
-        <a href="/personal_homepage/tool/stable-diffusion5/" rel="bookmark">stable-diffusion的用法: 常用插件
-</a>
-      
-    </h3>
-    
-  </header>
-  
-    <div class="entry-excerpt p-summary">
-      
-        <p>ComfyUI使用时用到的插件</p>
-
-      
-    </div>
-  
-  
-    <footer class="entry-meta">
-      
-
-<span class="read-time">~1 min read</span>
-
-      <time class="entry-date dt-published" datetime="2024-02-27T00:00:00+00:00">February 27, 2024
-  </time>
-    </footer>
-  
-</article>
-
-            
-          </div>
         
       
         
@@ -3774,7 +4084,7 @@
     <tr>
       <td>基本面数据</td>
       <td> </td>
-      <td>1. <code class="language-plaintext highlighter-rouge">PE(市盈率) = eps/close</code><br />2. <code class="language-plaintext highlighter-rouge">PS(市销率) = close*sharesout/revenue</code><br />3. cashflow/price<br />4. cashflow/sales<br />5. margin, pretax margin, operating margin <br />6. enterprise value</td>
+      <td>1. <code class="language-plaintext highlighter-rouge">PE(市盈率) = eps/close</code><br />2. <code class="language-plaintext highlighter-rouge">PS(市销率) = close*sharesout/revenue</code><br />3. cashflow/price<br />4. cashflow/sales<br />5. margin, pretax margin, operating margin <br />6. enterprise value<br />7. long term debt/operating income</td>
     </tr>
     <tr>
       <td>风险数据</td>
@@ -3783,7 +4093,7 @@
     </tr>
     <tr>
       <td>量价数据</td>
-      <td>完整</td>
+      <td>完整, 所有市场都有</td>
       <td>1. 交易量激增(volume spike) <br />2. -returns</td>
     </tr>
     <tr>
@@ -3794,7 +4104,7 @@
     <tr>
       <td>期权数据集(Options)</td>
       <td> </td>
-      <td> </td>
+      <td>1. IV_call, IV_put配对</td>
     </tr>
     <tr>
       <td>分析师数据<br /></td>
@@ -3809,7 +4119,12 @@
     <tr>
       <td>other数据</td>
       <td> </td>
-      <td>1. group分类数据</td>
+      <td>1. group分类数据<br />2. 用matrix 特征数据自己制作group</td>
+    </tr>
+    <tr>
+      <td>期权数据</td>
+      <td> </td>
+      <td>1. O/S volume ratio=期权未平仓量/volume</td>
     </tr>
   </tbody>
 </table>

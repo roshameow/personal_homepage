@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<!--
+    So Simple Jekyll Theme 3.2.0
+    Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+    Free for personal and commercial use under the MIT license
+    https://github.com/mmistakes/so-simple-theme/blob/master/LICENSE
+-->
+<html lang="en-US" class="no-js">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  
+
+  
+  
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>worldquant BRAIN 股票因子 (六 ) – 代码优化 | Liu, Wen’s Home Page</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="worldquant BRAIN 股票因子 (六 ) – 代码优化" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="我最终选择了使用 Tauri 来构建我的桌面回测应用。本文记录了开发过程中需求梳理、初始化步骤、遇到的坑以及一些性能优化技巧。" />
+<meta property="og:description" content="我最终选择了使用 Tauri 来构建我的桌面回测应用。本文记录了开发过程中需求梳理、初始化步骤、遇到的坑以及一些性能优化技巧。" />
+<link rel="canonical" href="https://roshameow.github.io//personal_homepage/tool/alpha6/" />
+<meta property="og:url" content="https://roshameow.github.io//personal_homepage/tool/alpha6/" />
+<meta property="og:site_name" content="Liu, Wen’s Home Page" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2025-04-17T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="worldquant BRAIN 股票因子 (六 ) – 代码优化" />
+<meta name="twitter:site" content="@" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2025-05-13T23:01:00+00:00","datePublished":"2025-04-17T00:00:00+00:00","description":"我最终选择了使用 Tauri 来构建我的桌面回测应用。本文记录了开发过程中需求梳理、初始化步骤、遇到的坑以及一些性能优化技巧。","headline":"worldquant BRAIN 股票因子 (六 ) – 代码优化","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/tool/alpha6/"},"url":"https://roshameow.github.io//personal_homepage/tool/alpha6/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  
+
+  <script>
+    /* Cut the mustard */
+    if ('querySelector' in document && 'addEventListener' in window) {
+      document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + 'js';
+    }
+  </script>
+
+  <link rel="stylesheet" href="/personal_homepage/assets/css/main.css">
+  <link rel="stylesheet" href="/personal_homepage/assets/css/skins/default.css">
+  
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,700,700i|Lora:400,400i,700,700i">
+  <link rel="alternate" type="application/atom+xml" title="Liu, Wen&#39;s Home Page" href="/personal_homepage/atom.xml">
+<!-- start custom head snippets -->
+
+<!-- insert favicons. use http://realfavicongenerator.net/ -->
+<link rel="shortcut icon" type="image/x-icon" href="/personal_homepage/docs/images/logo.ico">
+<!-- end custom head snippets -->
+
+</head>
+
+  <body class="layout--post  worldquant-brain-股票因子-六-代码优化">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#primary-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+  <div class="navigation-wrapper">
+    <a href="#menu-toggle" id="menu-toggle">Menu</a>
+    <nav id="primary-nav" class="site-nav animated drop">
+      <ul><li><a href="/personal_homepage/">Home</a></li><li><a href="/personal_homepage/posts/">Posts</a></li><li><a href="/personal_homepage/categories/">Categories</a></li><li><a href="/personal_homepage/tags/">Tags</a></li><li><a href="/personal_homepage/family/">Family</a></li><li><a href="/personal_homepage/search/">Search</a></li></ul>
+    </nav>
+  </div><!-- /.navigation-wrapper -->
+
+
+    <header class="masthead">
+  <div class="wrap">
+    
+    
+    
+      
+        <div class="site-title animated fadeIn"><a href="/personal_homepage/">Liu, Wen's Home Page</a></div>
+      
+      <p class="site-description animated fadeIn" itemprop="description">Work, Experiments and Ideas.</p>
+    
+  </div>
+</header><!-- /.masthead -->
+
+
+    <main id="main" class="main-content" aria-label="Content">
+  <article class="h-entry">
+    
+
+    <div class="page-wrapper">
+      <header class="page-header">
+        
+        
+        <h1 id="page-title" class="page-title p-name">worldquant BRAIN 股票因子 (六 ) – 代码优化
+</h1>
+        
+      </header>
+
+      <div class="page-sidebar">
+        <div class="page-author h-card p-author"><img src="/personal_homepage/docs/images/logo.svg" class="author-avatar u-photo" alt=""><div class="author-info">
+
+<span class="read-time">1 min read</span>
+
+    <time class="page-date dt-published" datetime="2025-04-17T00:00:00+00:00"><a class="u-url" href="">April 17, 2025</a>
+</time>
+
+  </div>
+</div>
+
+        
+  <h3 class="page-taxonomies-title">Categories</h3>
+  
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a class="p-category" href="/personal_homepage/categories/#tool" title="Pages filed under tool">tool</a></li>
+  </ul>
+
+
+        
+  <h3 class="page-taxonomies-title">Tags</h3>
+  
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a href="/personal_homepage/tags/#mongodb" title="Pages tagged Mongodb" rel="tag">Mongodb</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#content" title="Pages tagged content" rel="tag">content</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#tauri" title="Pages tagged tauri" rel="tag">tauri</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#vue" title="Pages tagged vue" rel="tag">vue</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#worldquant" title="Pages tagged worldquant" rel="tag">worldquant</a></li>
+  </ul>
+
+
+        <!-- {::options parse_block_html="true" /} -->
+<div id="entry-table-of-contents" class="toc-wrapper">
+  <h2 id="toc-toggle">
+    Table of Contents <i
+      class="toc-toggle-icon fas fa-chevron-down"></i>
+  </h2>
+  <!-- 1. toc
+{:toc} -->
+  <!-- <div id="markdown-toc"> -->
+
+    <ul class="inline_toc" id="my_toc"><li><a href="#需求梳理">需求梳理</a><ul><li><a href="#核心功能">核心功能</a></li><li><a href="#任务流程设计">任务流程设计</a></li></ul></li><li><a href="#初始化与开发环境搭建">初始化与开发环境搭建</a></li><li><a href="#-开发与常见问题记录">🧱 开发与常见问题记录</a><ul><li><a href="#前端部分vue--naive-ui">前端部分（Vue + Naive UI）</a></li><li><a href="#后端部分rust">后端部分（Rust）</a></li><li><a href="#数据库部分mongodb">数据库部分（MongoDB）</a></li><li><a href="#脚本触发与执行">脚本触发与执行</a></li></ul></li><li><a href="#mongodb数据库总结">Mongodb数据库总结</a><ul><li><a href="#回测过程相比csv">回测过程(相比csv)</a></li><li><a href="#结果查看">结果查看</a></li></ul></li></ul>
+  <!-- </div> -->
+
+</div>
+<!-- {::options parse_block_html="false" /} -->
+        
+
+<div id="entry-table-of-contents" class="toc-wrapper">
+    <h2 id="toc-toggle" class="no_toc">
+        Related Posts <i class="toc-toggle-icon fas fa-chevron-down"></i>
+    </h2>
+    <!-- <div id="markdown-toc"> -->
+    <ul>
+        
+        <li><a href="/personal_homepage/algorithm/alpha9/">拉格朗日乘子法应用 (一)</a></li>
+        
+        <li><a href="/personal_homepage/tool/packing/">Tauri 项目 Build 与 Release 实践总结</a></li>
+        
+        <li><a href="/personal_homepage/algorithm/alpha8/">选出最佳的表达式组合</a></li>
+        
+        <li><a href="/personal_homepage/algorithm/alpha7/">选出最佳的因子组合</a></li>
+        
+        <li><a href="/personal_homepage/tool/auto-code/">设置开机自启动自运行程序</a></li>
+        
+    </ul>
+    <!-- </div> -->
+
+</div>
+
+
+
+
+
+      </div>
+
+      <div class="page-content">
+        <div class="e-content">
+          <p>我最终选择了使用 <strong>Tauri</strong> 来构建我的桌面回测应用。本文记录了开发过程中需求梳理、初始化步骤、遇到的坑以及一些性能优化技巧。</p>
+
+<hr />
+
+<h2 id="需求梳理">需求梳理</h2>
+
+<h3 id="核心功能">核心功能</h3>
+
+<ol>
+  <li><strong>跨平台运行</strong></li>
+  <li><strong>触发 Python 脚本执行</strong></li>
+  <li><strong>与 MongoDB 后端数据库交互</strong></li>
+  <li><strong>前端展示任务管理卡片（Card）、结果表格（Table）、收益图表（Chart）</strong></li>
+</ol>
+
+<h3 id="任务流程设计">任务流程设计</h3>
+
+<ol>
+  <li>在本地生成待回测任务列表</li>
+  <li>将任务列表推送到远程</li>
+  <li>远程启动任务</li>
+  <li>支持中途暂停任务执行
+    <ol>
+      <li>任务的执行要求是：<strong>异步限流 + 分组并发</strong></li>
+      <li>这类任务需要数据库分页管理，适合使用“生产者-消费者”模型来处理。</li>
+    </ol>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="初始化与开发环境搭建">初始化与开发环境搭建</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>工具/依赖</th>
+      <th>说明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>node.js + npm包管理</td>
+      <td><a href="https://nodejs.org/">https://nodejs.org/</a> 下载与安装</td>
+    </tr>
+    <tr>
+      <td>Rust工具链</td>
+      <td>安装命令: curl https://sh.rustup.rs -sSf | sh</td>
+    </tr>
+    <tr>
+      <td>Rust 依赖（macOS）</td>
+      <td>安装命令: xcode-select –install</td>
+    </tr>
+    <tr>
+      <td>Tauri CLI</td>
+      <td>命令：<code class="language-plaintext highlighter-rouge">npm create tauri-app</code>，可自动创建 Tauri 2 项目框架</td>
+    </tr>
+    <tr>
+      <td>启动项目</td>
+      <td>进入项目目录后运行：<code class="language-plaintext highlighter-rouge">npm install &amp;&amp; npm run tauri dev</code></td>
+    </tr>
+    <tr>
+      <td>开启调试模式</td>
+      <td>编辑 <code class="language-plaintext highlighter-rouge">tauri.conf.json</code> 中的 <code class="language-plaintext highlighter-rouge">"window": { "devtools": true }</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="-开发与常见问题记录">🧱 开发与常见问题记录</h2>
+
+<h3 id="前端部分vue--naive-ui">前端部分（Vue + Naive UI）</h3>
+
+<ul>
+  <li><strong>打开 DevTools</strong>：mac 快捷键为 <code class="language-plaintext highlighter-rouge">Cmd + Option + I</code>，不是 F12。</li>
+  <li><strong>状态共享</strong>：使用 <code class="language-plaintext highlighter-rouge">Pinia</code> 的 <code class="language-plaintext highlighter-rouge">taskStore</code> 来管理任务列表，实现多组件共享，减少无意义的读数据库, 可以理解成一种本地缓存吧。</li>
+  <li><strong>错误调试</strong>：如 <code class="language-plaintext highlighter-rouge">Unhandled Promise Rejection: TypeError: null is not an object (evaluating 'instance.subTree.component')</code>，可类比为 Python 的 KeyError，说明代码访问了不存在的变量。</li>
+  <li><strong>禁用拼写检查</strong>：在 <code class="language-plaintext highlighter-rouge">v-input</code> 中添加 <code class="language-plaintext highlighter-rouge">spellcheck: false</code>。</li>
+  <li><strong>请求竞态问题（Race Condition）</strong>：
+    <ul>
+      <li>输入搜索框 <code class="language-plaintext highlighter-rouge">1 → 15</code> 会同时触发 <code class="language-plaintext highlighter-rouge">1</code> 和 <code class="language-plaintext highlighter-rouge">15</code> 的请求，后发请求(15)可能被先返回的(1)结果覆盖。</li>
+      <li>解决方法：前端维护请求版本号，只保留最新的请求结果。</li>
+    </ul>
+  </li>
+  <li><strong>分页问题</strong>：<code class="language-plaintext highlighter-rouge">naive-ui</code> 的 <code class="language-plaintext highlighter-rouge">data-table</code> 不会记录当前页
+    <ul>
+      <li>初步尝试自己管理分页 + 滚动加载，但最后放弃了这个方法😮‍💨, 因为不仅是翻页, 排序也被naive-ui封装在内部, 自己实现太麻烦。</li>
+      <li>最终选择：<strong>从渲染后的 DOM(Document object Model) 中直接读取当前页元素 ID</strong>。
+        <ul>
+          <li>DOM(Document object Model) 是浏览器解析html之后生成的树形结构</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><strong>css样式问题</strong>：
+    <ul>
+      <li>有些样式必须加 <code class="language-plaintext highlighter-rouge">!important</code> 才能覆盖 <code class="language-plaintext highlighter-rouge">naive-ui</code> 的默认值。</li>
+      <li>表格显示不全时, 我希望增加行高显示完全. 但是在用ai写代码的时候, 我一直自认为这是expand. 误导了ai, 一直在给我推expand组件, 走了很多弯路😮‍💨 其实应该用定义css实现。</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="后端部分rust">后端部分（Rust）</h3>
+
+<ul>
+  <li><strong><code class="language-plaintext highlighter-rouge">invoke</code> 的使用</strong>：位于 <code class="language-plaintext highlighter-rouge">@tauri-apps/api/core</code>(tauri 2.0的情况)，只能在 WebView 中调用，不能在npm run dev打开的浏览器端口中调试</li>
+  <li><strong>参数匹配问题</strong>：Rust 会自动将 小驼峰(camelCase) 转成 蛇形(snake_case)，需确保参数名一致。</li>
+  <li><strong>函数注册</strong>：所有后端 API 函数都需在 <code class="language-plaintext highlighter-rouge">main.rs</code> 中注册</li>
+  <li><strong>日志调试</strong>：打印完整log用于调试非常重要, 尤其调用外部脚本时, 统一调用函数, 把log打印写在里面.</li>
+  <li><strong>异步数据库访问</strong>：使用 <code class="language-plaintext highlighter-rouge">futures_util::stream::TryStreamExt</code> 提供的 <code class="language-plaintext highlighter-rouge">try_next</code>，需手动引入 trait。</li>
+  <li><strong>共享状态管理（State）</strong>：
+    <ul>
+      <li>使用 <code class="language-plaintext highlighter-rouge">tauri::State</code> 来注册共享数据，如数据库客户端、全局监听状态, 脚本环境和参数等。</li>
+      <li>Rust 的所有多线程共享<strong>必须显式声明同步策略</strong>。</li>
+      <li>使用 <code class="language-plaintext highlighter-rouge">OnceCell</code> 实现全局状态的懒加载，避免重复初始化。</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="数据库部分mongodb">数据库部分（MongoDB）</h3>
+
+<ul>
+  <li><strong>监听任务变化</strong>：使用 <code class="language-plaintext highlighter-rouge">ChangeStreamOptions</code> 监听数据库变更，需开启 <code class="language-plaintext highlighter-rouge">replica set</code> （副本集）模式。
+    <ul>
+      <li>打开本地数据库命令： <code class="language-plaintext highlighter-rouge">mongod --config /usr/local/mongodb/mongod.conf --replSet rs0 --fork</code></li>
+    </ul>
+  </li>
+  <li><strong>任务删除后自动停止监听</strong>。</li>
+  <li><strong>使用异步库 Motor</strong>：
+    <ul>
+      <li>替代传统的 PyMongo（伪异步），性能提升明显。</li>
+    </ul>
+  </li>
+  <li><strong>同步数据问题</strong>：
+    <ul>
+      <li>使用 BSON 快速传输数据时，会产生10倍以上的瞬时占用，超过 MongoDB Atlas免费 500MB 限额。</li>
+      <li>解决方法：开启 <code class="language-plaintext highlighter-rouge">mongorestore</code> 的 <code class="language-plaintext highlighter-rouge">numInsertionWorkersPerCollection</code> 限制。</li>
+    </ul>
+  </li>
+  <li><strong>增量拉取时防止重复数据</strong>。</li>
+  <li><strong>MongoDB API 使用</strong>：
+    <ul>
+      <li>在 MongoDB Atlas 中创建 Service Account 与 API Key: 在 IDENTITY&amp;ACCESS-&gt; Applications 里创建</li>
+      <li>Projectid是网址 可从浏览器 URL 中获取。</li>
+    </ul>
+  </li>
+  <li><strong>查询优化</strong>：
+    <ul>
+      <li>创建索引加速查询。</li>
+      <li>查询时排除大字段字段，避免无谓传输。</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="脚本触发与执行">脚本触发与执行</h3>
+
+<ul>
+  <li>JSON 参数转义地狱，最终选择使用temp file进行参数传递。</li>
+  <li>所有脚本路径、参数与环境变量统一写入 <code class="language-plaintext highlighter-rouge">config.toml</code> 进行集中管理。</li>
+</ul>
+
+<hr />
+
+<h2 id="mongodb数据库总结">Mongodb数据库总结</h2>
+
+<h3 id="回测过程相比csv">回测过程(相比csv)</h3>
+
+<ul>
+  <li>存储具备压缩特性，节省大量空间。</li>
+  <li>使用异步 API 调用，避免频繁本地 I/O。</li>
+  <li>支持实时监听任务进度。</li>
+</ul>
+
+<h3 id="结果查看">结果查看</h3>
+
+<ul>
+  <li>支持灵活的条件查询。</li>
+  <li>前后端分离，API 接口易于调用。
+    <ul>
+      <li>缺点是必须配合前端，无法像 CSV 文件直接系统自带app打开处理。</li>
+    </ul>
+  </li>
+</ul>
+
+
+        </div>
+
+        
+
+        
+        
+  <div class="page-comments">
+    <div id="disqus_thread"></div>
+    <script>
+      var disqus_config = function () {
+        this.page.url = 'https://roshameow.github.io//personal_homepage/tool/alpha6/';
+        this.page.identifier = 'https://roshameow.github.io//personal_homepage/tool/alpha6/';
+      };
+
+      (function() {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://https-roshameow-github-io-personal-homepage.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+  </div>
+
+
+        
+
+        <nav class="page-pagination" role="navigation">
+  
+    <a class="page-previous" href="/personal_homepage/tool/MCP/">
+      <h4 class="page-pagination-label">Previous</h4>
+      <span class="page-pagination-title">
+        <i class="fas fa-arrow-left"></i> MCP协议理解
+
+      </span>
+    </a>
+  
+
+  
+    <a class="page-next" href="/personal_homepage/tool/auto-code/">
+      <h4 class="page-pagination-label">Next</h4>
+      <span class="page-pagination-title">
+        设置开机自启动自运行程序
+ <i class="fas fa-arrow-right"></i>
+      </span>
+    </a>
+  
+</nav>
+
+      </div>
+
+    </div>
+  </article>
+</main>
+
+    <footer id="footer" class="site-footer">
+  <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+<div class="social-icons"><a class="social-icon" href="/personal_homepage/atom.xml"><i class="fas fa-rss-square fa-2x" title="Feed"></i></a><a class="social-icon" href="https://github.com/roshameow"><i class="fab fa-github-square fa-2x" title="GitHub"></i></a><a class="social-icon" href="https://www.linkedin.com/in/wen-liu-06503a7b/"><i class="fab fa-linkedin fa-2x" title="LinkedIn"></i></a><a class="social-icon" href="mailto:w.liuatnk@gmail.com"><i class="fas fa-envelope-square fa-2x" title="e-mail"></i></a></div><div class="copyright">
+    
+      <p>&copy; 2025 Liu, Wen's Home Page. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://github.com/mmistakes/so-simple-theme" rel="nofollow">So Simple</a>.</p>
+    
+  </div>
+</footer>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="/personal_homepage/assets/js/main.min.js"></script>
+<script src="https://use.fontawesome.com/releases/v5.0.12/js/all.js"></script><!-- <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'G-9TMSCDTBGN', 'auto');
+  ga('send', 'pageview');
+</script> -->
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9TMSCDTBGN"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-9TMSCDTBGN');
+</script>
+
+
+
+<!-- MathJax -->
+
+<script>
+    // http://docs.mathjax.org/en/latest/upgrading/v2.html
+    MathJax = {
+        tex: {
+            tags: "ams",    // eq numbering options: none, ams, all
+            inlineMath: [['$', '$'], ["\\(", "\\)"]],  // 设置行内数学公式的开始和结束标记
+            displayMath: [['$$', '$$'], ["\\[", "\\]"]]  // 设置行间数学公式的开始和结束标记
+        },
+        // options: {
+        //   renderActions: {
+        //     // for mathjax 3, handle <script "math/tex"> blocks inserted by kramdown
+        //     find: [10, function (doc) {
+        //       for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+        //         const display = !!node.type.match(/; *mode=display/);
+        //         const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+        //         const text = document.createTextNode('');
+        //         node.parentNode.replaceChild(text, node);
+        //         math.start = { node: text, delim: '', n: 0 };
+        //         math.end = { node: text, delim: '', n: 0 };
+        //         doc.math.push(math);
+        //       }
+        //     }, '']
+        //   }
+        // }
+    }
+</script>
+
+<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  </body>
+
+</html>

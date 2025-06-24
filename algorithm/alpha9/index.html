@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<!--
+    So Simple Jekyll Theme 3.2.0
+    Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+    Free for personal and commercial use under the MIT license
+    https://github.com/mmistakes/so-simple-theme/blob/master/LICENSE
+-->
+<html lang="en-US" class="no-js">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  
+
+  
+  
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>拉格朗日乘子法应用 (一) | Liu, Wen’s Home Page</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="拉格朗日乘子法应用 (一)" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Modern_portfolio_theory" />
+<meta property="og:description" content="Modern_portfolio_theory" />
+<link rel="canonical" href="https://roshameow.github.io//personal_homepage/algorithm/alpha9/" />
+<meta property="og:url" content="https://roshameow.github.io//personal_homepage/algorithm/alpha9/" />
+<meta property="og:site_name" content="Liu, Wen’s Home Page" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2025-06-22T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="拉格朗日乘子法应用 (一)" />
+<meta name="twitter:site" content="@" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-12-22T06:14:38+00:00","datePublished":"2025-06-22T00:00:00+00:00","description":"Modern_portfolio_theory","headline":"拉格朗日乘子法应用 (一)","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/algorithm/alpha9/"},"url":"https://roshameow.github.io//personal_homepage/algorithm/alpha9/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  
+
+  <script>
+    /* Cut the mustard */
+    if ('querySelector' in document && 'addEventListener' in window) {
+      document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + 'js';
+    }
+  </script>
+
+  <link rel="stylesheet" href="/personal_homepage/assets/css/main.css">
+  <link rel="stylesheet" href="/personal_homepage/assets/css/skins/default.css">
+  
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,700,700i|Lora:400,400i,700,700i">
+  <link rel="alternate" type="application/atom+xml" title="Liu, Wen&#39;s Home Page" href="/personal_homepage/atom.xml">
+<!-- start custom head snippets -->
+
+<!-- insert favicons. use http://realfavicongenerator.net/ -->
+<link rel="shortcut icon" type="image/x-icon" href="/personal_homepage/docs/images/logo.ico">
+<!-- end custom head snippets -->
+
+</head>
+
+  <body class="layout--post  拉格朗日乘子法应用-一">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#primary-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+  <div class="navigation-wrapper">
+    <a href="#menu-toggle" id="menu-toggle">Menu</a>
+    <nav id="primary-nav" class="site-nav animated drop">
+      <ul><li><a href="/personal_homepage/">Home</a></li><li><a href="/personal_homepage/posts/">Posts</a></li><li><a href="/personal_homepage/categories/">Categories</a></li><li><a href="/personal_homepage/tags/">Tags</a></li><li><a href="/personal_homepage/family/">Family</a></li><li><a href="/personal_homepage/search/">Search</a></li></ul>
+    </nav>
+  </div><!-- /.navigation-wrapper -->
+
+
+    <header class="masthead">
+  <div class="wrap">
+    
+    
+    
+      
+        <div class="site-title animated fadeIn"><a href="/personal_homepage/">Liu, Wen's Home Page</a></div>
+      
+      <p class="site-description animated fadeIn" itemprop="description">Work, Experiments and Ideas.</p>
+    
+  </div>
+</header><!-- /.masthead -->
+
+
+    <main id="main" class="main-content" aria-label="Content">
+  <article class="h-entry">
+    
+
+    <div class="page-wrapper">
+      <header class="page-header">
+        
+        
+        <h1 id="page-title" class="page-title p-name">拉格朗日乘子法应用 (一)
+</h1>
+        
+      </header>
+
+      <div class="page-sidebar">
+        <div class="page-author h-card p-author"><img src="/personal_homepage/docs/images/logo.svg" class="author-avatar u-photo" alt=""><div class="author-info">
+
+<span class="read-time">2 min read</span>
+
+    <time class="page-date dt-published" datetime="2025-06-22T00:00:00+00:00"><a class="u-url" href="">June 22, 2025</a>
+</time>
+
+  </div>
+</div>
+
+        
+  <h3 class="page-taxonomies-title">Categories</h3>
+  
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a class="p-category" href="/personal_homepage/categories/#algorithm" title="Pages filed under algorithm">algorithm</a></li>
+  </ul>
+
+
+        
+  <h3 class="page-taxonomies-title">Tags</h3>
+  
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a href="/personal_homepage/tags/#content" title="Pages tagged content" rel="tag">content</a></li>
+  </ul>
+
+
+        <!-- {::options parse_block_html="true" /} -->
+<div id="entry-table-of-contents" class="toc-wrapper">
+  <h2 id="toc-toggle">
+    Table of Contents <i
+      class="toc-toggle-icon fas fa-chevron-down"></i>
+  </h2>
+  <!-- 1. toc
+{:toc} -->
+  <!-- <div id="markdown-toc"> -->
+
+    <ul class="inline_toc" id="my_toc"><li><a href="#拉格朗日乘子法lagrange-multiplier-一般问题">拉格朗日乘子法（Lagrange multiplier ）一般问题</a></li><li><a href="#示例">示例</a><ul><li><a href="#一markowitz-投资组合模型最大化-sharpe">一、Markowitz 投资组合模型：最大化 Sharpe</a></li><li><a href="#二plain-pca最大化数据投影方差">二、Plain PCA：最大化数据投影方差</a></li><li><a href="#三pca压缩视角下的拉格朗日优化">三、PCA压缩视角下的拉格朗日优化</a></li></ul></li></ul>
+  <!-- </div> -->
+
+</div>
+<!-- {::options parse_block_html="false" /} -->
+        
+
+<div id="entry-table-of-contents" class="toc-wrapper">
+    <h2 id="toc-toggle" class="no_toc">
+        Related Posts <i class="toc-toggle-icon fas fa-chevron-down"></i>
+    </h2>
+    <!-- <div id="markdown-toc"> -->
+    <ul>
+        
+        <li><a href="/personal_homepage/tool/packing/">Tauri 项目 Build 与 Release 实践总结</a></li>
+        
+        <li><a href="/personal_homepage/algorithm/alpha8/">选出最佳的表达式组合</a></li>
+        
+        <li><a href="/personal_homepage/algorithm/alpha7/">选出最佳的因子组合</a></li>
+        
+        <li><a href="/personal_homepage/tool/auto-code/">设置开机自启动自运行程序</a></li>
+        
+        <li><a href="/personal_homepage/tool/alpha6/">worldquant BRAIN 股票因子 (六 ) -- 代码优化</a></li>
+        
+    </ul>
+    <!-- </div> -->
+
+</div>
+
+
+
+
+
+      </div>
+
+      <div class="page-content">
+        <div class="e-content">
+          <p><a href="https://en.wikipedia.org/wiki/Modern_portfolio_theory">Modern_portfolio_theory</a></p>
+
+<h2 id="拉格朗日乘子法lagrange-multiplier-一般问题">拉格朗日乘子法（<a href="https://en.wikipedia.org/wiki/Lagrange_multiplier">Lagrange multiplier</a> ）一般问题</h2>
+
+<p>问题: $\min_x f(x),\  g(x)=0$</p>
+
+<p>解决: 构建Lagrangian $\mathcal L (x,\lambda)=f(x)-\lambda g(x)$ ,  解$\nabla_x f-\lambda \nabla_x g=0$ . Lagrangian的维数更低, 更好解.</p>
+
+<h2 id="示例">示例</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>应用场景</th>
+      <th>优化目标</th>
+      <th>约束条件</th>
+      <th>解</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Markowitz 投资组合</td>
+      <td>最大 Sharpe 比</td>
+      <td>$w^T \Sigma w = 1$</td>
+      <td>$w \propto \Sigma^{-1} \mu$</td>
+    </tr>
+    <tr>
+      <td>PCA 最大方差方向</td>
+      <td>最大 $|Ax|^2$</td>
+      <td>$x^T x = 1$</td>
+      <td>$x$ 是 $A^T A$ 最大特征向量</td>
+    </tr>
+    <tr>
+      <td>PCA 最小压缩误差</td>
+      <td>最小 $|A - A V V^T|$</td>
+      <td>$V^T V = I$</td>
+      <td>$V$ 是 $A^T A$ 最大特征子空间</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h3 id="一markowitz-投资组合模型最大化-sharpe">一、Markowitz 投资组合模型：最大化 Sharpe</h3>
+
+<p>我们希望在给定的一段时间内 $T$，在一个包含 $N$ 支股票的股票池中，找到一个组合权重向量 $w \in \mathbb{R}^{N \times 1}$，使得组合的 <strong>Sharpe 比</strong> 最大：</p>
+
+\[\text{Sharpe} = \frac{w^T \mu}{\sqrt{w^T \Sigma w}}\]
+
+<ul>
+  <li>记portfolio的权重为 w(N x 1), 股票池内股票的returns为 R(N x T), 前T天组合股票的return为 $wR=\sum_i w_i\cdot r_{it}$</li>
+  <li>$Sharpe =\frac{mean}{std dev} =\frac{\sum_t \sum_i w_i\cdot r_{it}}{\sqrt{\sum_t (\sum_i w_i\cdot \bar r_{it})^2}}=\frac{\sum_i w_i (\sum_t r_{it})}{\sqrt{\sum_t \sum_{ij} w_i\cdot \bar r_{it}\bar r_{jt}\cdot w_j}}=\frac{\sum_i w_i (\sum_t r_{it})}{\sqrt{\sum_{ij} w_i\cdot (\sum_t \bar r_{it}\bar r_{jt})\cdot w_j}}=\frac{w^T \mu}{\sqrt{w^T\Sigma w}}$
+    <ul>
+      <li>记$\mu=\sum_t r_{it}$ (N x 1) , 是每只股票的历史平均收益率, 即ts_mean(stats.returns, T)</li>
+      <li>记 $\Sigma=\sum_t \bar r_{it}\bar r_{jt}$ (N x N), 是收益率协方差矩阵, 即ts_mean(self_corr(ts_av_diff(stats.returns,T),1),T)</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="拉格朗日乘子法求解">拉格朗日乘子法求解</h4>
+
+<p>Sharpe对w比例不敏感, 我们将问题转化为：</p>
+
+\[\max_w w^T \mu \quad \text{s.t. } w^T \Sigma w = 1\]
+
+<p>构造拉格朗日函数：</p>
+
+\[\mathcal{L}(w, \lambda) = w^T \mu - \lambda (w^T \Sigma w - 1)\]
+
+<p>对 $w$ 求梯度并令其为零：</p>
+
+\[\nabla_w \mathcal{L} = \mu - 2\lambda \Sigma w = 0
+\quad \Rightarrow \quad w \propto \Sigma^{-1} \mu\]
+
+<p>也就是说，最优解的方向与协方差矩阵的逆乘以期望收益向量的方向一致。这就是经典 Markowitz 模型的解析解。</p>
+
+<hr />
+
+<h3 id="二plain-pca最大化数据投影方差">二、Plain PCA：最大化数据投影方差</h3>
+
+<p>在主成分分析中，我们希望找到一个方向 $x \in \mathbb{R}^{d \times 1}$，使得数据在该方向上的投影方差最大，约束是单位长度 $|x|=1$。假设数据矩阵为 $A \in \mathbb{R}^{n \times d}$，则问题形式为：</p>
+
+\[\max_x \|Ax\|^2 \quad \text{s.t. } \|x\|^2 = 1\]
+
+<p>拉格朗日函数为：</p>
+
+\[\mathcal{L}(x, \lambda) = x^T A^T A x - \lambda (x^T x - 1)\]
+
+<p>对 $x$ 求导并设为 0：</p>
+
+\[\nabla_x \mathcal{L} = 2 A^T A x - 2\lambda x = 0 
+\quad \Rightarrow \quad A^T A x = \lambda x\]
+
+<p>这表明 $x$ 是矩阵 $A^T A$ 的特征向量，对应最大特征值的方向即为最大方差方向，也就是第一主成分。</p>
+
+<hr />
+
+<h3 id="三pca压缩视角下的拉格朗日优化">三、PCA压缩视角下的拉格朗日优化</h3>
+
+<p>从数据压缩角度看，我们希望用一个PCA压缩(列变换)后子空间 $Z= AV\in \mathbb{R}^{w \times k}$ 来逼近原始数据矩阵 $A \in \mathbb{R}^{w \times h}$。PCA 等价于找到一个低维正交投影矩阵 $V \in \mathbb{R}^{h \times k}$，使得重构误差最小：</p>
+
+\[\min_{V} \|A - A V V^T\|_F^2 \quad \text{s.t. } V^T V = I\]
+
+<h4 id="拉格朗日乘子法求解-1">拉格朗日乘子法求解</h4>
+
+<p>问题可以转换为 Plain PCA:</p>
+
+\[\max_{V} \|A V\|_F^2 \quad \text{s.t. } V^T V = I\]
+
+<h4 id="推导">推导</h4>
+
+<p>展开 Frobenius 范数：</p>
+
+\[\begin{aligned}
+\|A - A V V^T\|_F^2 
+&amp;= \text{tr}\left((A - A V V^T)^T (A - A V V^T)\right) \\
+&amp;= \text{tr}(A^T A - A^T A V V^T - V V^T A^T A + V V^T A^T A V V^T) \\
+&amp;= \text{tr}(A^T A) - 2\text{tr}(V^T A^T A V) + \text{tr}(V^T A^T A V) \\
+&amp;= \text{tr}(A^T A) - \text{tr}(V^T A^T A V)
+\end{aligned}\]
+
+<p>于是优化目标就变为：</p>
+
+\[\min_{V^T V = I} \|A - A V V^T\|_F^2 
+= \text{const} - \max_{V^T V = I} \text{tr}(V^T A^T A V)\]
+
+<p>也就是说：</p>
+
+\[\max_{V^T V = I} \text{tr}(V^T A^T A V)
+\quad \text{即最大化投影后的方差总和}\]
+
+
+        </div>
+
+        
+
+        
+        
+  <div class="page-comments">
+    <div id="disqus_thread"></div>
+    <script>
+      var disqus_config = function () {
+        this.page.url = 'https://roshameow.github.io//personal_homepage/algorithm/alpha9/';
+        this.page.identifier = 'https://roshameow.github.io//personal_homepage/algorithm/alpha9/';
+      };
+
+      (function() {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://https-roshameow-github-io-personal-homepage.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+  </div>
+
+
+        
+
+        <nav class="page-pagination" role="navigation">
+  
+    <a class="page-previous" href="/personal_homepage/tool/packing/">
+      <h4 class="page-pagination-label">Previous</h4>
+      <span class="page-pagination-title">
+        <i class="fas fa-arrow-left"></i> Tauri 项目 Build 与 Release 实践总结
+
+      </span>
+    </a>
+  
+
+  
+</nav>
+
+      </div>
+
+    </div>
+  </article>
+</main>
+
+    <footer id="footer" class="site-footer">
+  <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+<div class="social-icons"><a class="social-icon" href="/personal_homepage/atom.xml"><i class="fas fa-rss-square fa-2x" title="Feed"></i></a><a class="social-icon" href="https://github.com/roshameow"><i class="fab fa-github-square fa-2x" title="GitHub"></i></a><a class="social-icon" href="https://www.linkedin.com/in/wen-liu-06503a7b/"><i class="fab fa-linkedin fa-2x" title="LinkedIn"></i></a><a class="social-icon" href="mailto:w.liuatnk@gmail.com"><i class="fas fa-envelope-square fa-2x" title="e-mail"></i></a></div><div class="copyright">
+    
+      <p>&copy; 2025 Liu, Wen's Home Page. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://github.com/mmistakes/so-simple-theme" rel="nofollow">So Simple</a>.</p>
+    
+  </div>
+</footer>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="/personal_homepage/assets/js/main.min.js"></script>
+<script src="https://use.fontawesome.com/releases/v5.0.12/js/all.js"></script><!-- <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'G-9TMSCDTBGN', 'auto');
+  ga('send', 'pageview');
+</script> -->
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9TMSCDTBGN"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-9TMSCDTBGN');
+</script>
+
+
+
+<!-- MathJax -->
+
+<script>
+    // http://docs.mathjax.org/en/latest/upgrading/v2.html
+    MathJax = {
+        tex: {
+            tags: "ams",    // eq numbering options: none, ams, all
+            inlineMath: [['$', '$'], ["\\(", "\\)"]],  // 设置行内数学公式的开始和结束标记
+            displayMath: [['$$', '$$'], ["\\[", "\\]"]]  // 设置行间数学公式的开始和结束标记
+        },
+        // options: {
+        //   renderActions: {
+        //     // for mathjax 3, handle <script "math/tex"> blocks inserted by kramdown
+        //     find: [10, function (doc) {
+        //       for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+        //         const display = !!node.type.match(/; *mode=display/);
+        //         const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+        //         const text = document.createTextNode('');
+        //         node.parentNode.replaceChild(text, node);
+        //         math.start = { node: text, delim: '', n: 0 };
+        //         math.end = { node: text, delim: '', n: 0 };
+        //         doc.math.push(math);
+        //       }
+        //     }, '']
+        //   }
+        // }
+    }
+</script>
+
+<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  </body>
+
+</html>

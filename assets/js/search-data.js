@@ -389,8 +389,8 @@ var store = [{
         "tags": ["content","raycast"],
         "url": "https://roshameow.github.io//personal_homepage/tool/raycast-script/"
       },{
-        "title": "债券的原理",
-        "excerpt":"政府和企业发行的借款, 债券本身 = 票面价值 + 利息 + 到期时间 + 债券发行方价格 : 可能高于/低于 票面价值 分类   可转债          上市公司发行的, 可以转成股票      和股票大盘正相关      有些公司发行的有回售条款, 转股后也可以保证拿回本金(约定股价过低时回售)        纯债          利率债: 国债, 政策性金融债                  和利率负相关                    信用债      [1] http://www.csrc.gov.cn/neimenggu/c105958/c1608862/content.shtml ","categories": [],
+        "title": "金融衍生品",
+        "excerpt":"债券 政府和企业发行的借款, 债券本身 = 票面价值 + 利息 + 到期时间 + 债券发行方价格 : 可能高于/低于 票面价值 分类 可转债 上市公司发行的, 可以转成股票 和股票大盘正相关 有些公司发行的有回售条款, 转股后也可以保证拿回本金(约定股价过低时回售) 纯债 利率债: 国债, 政策性金融债 和利率负相关 信用债 期权 是金融市场交易中自然产生的一种交易需求, 由期权清算公司(如美国的 OCC) 负责. 支付权利金(Premium), 可以买入或卖出很多股票, 最多只亏损权利金. 波动率高的时期, 权利金会更贵. 美式期权: 可以在到期前任何时间行权(exercise) 欧式期权: 必须到期日行权用法: 对冲风险: 买股票的同时, 买看跌期权(put) 对冲风险: 损失权利金, 保证股票亏损不会超过 put 的执行价（Strike Price） 定价模型:...","categories": [],
         "tags": ["content"],
         "url": "https://roshameow.github.io//personal_homepage/bond/"
       },{
@@ -400,7 +400,7 @@ var store = [{
         "url": "https://roshameow.github.io//personal_homepage/math/conformal-geometry10/"
       },{
         "title": "attention的优化-- KV Cache",
-        "excerpt":" casual mask ","categories": ["algorithm"],
+        "excerpt":" casual mask MLA ","categories": ["algorithm"],
         "tags": ["content","attention"],
         "url": "https://roshameow.github.io//personal_homepage/algorithm/attention4/"
       },{
@@ -470,7 +470,7 @@ var store = [{
         "url": "https://roshameow.github.io//personal_homepage/blender/blender-learning16/"
       },{
         "title": "Serverless服务",
-        "excerpt":"租虚拟服务器代替真实服务器   优点:          减少运维麻烦: 比如操作系统的安装和管理, 硬件的配置, 网络的配置(防火墙, 隔离, 权限等), 运行环境和依赖的配置, 容灾备份等      自动扩展: 不用手动配置负载均衡器, 调整服务器数量      自动优化: 跟据函数的内存大小, 自动优化代码的执行时间和性能      可能更省钱: 用运行资源(程序执行时间, cpu, 内存, 公网流量等) 计费, 而不是服务器数量计费      AWS Lambda   每个lambda function 单独配置权限, 类似github action    阿里云     负载均衡方案:          clb      nlb      alb      ","categories": ["WebPage"],
+        "excerpt":"租虚拟服务器代替真实服务器 优点: 减少运维麻烦: 比如操作系统的安装和管理, 硬件的配置, 网络的配置(防火墙, 隔离, 权限等), 运行环境和依赖的配置, 容灾备份等 自动扩展: 不用手动配置负载均衡器, 调整服务器数量 自动优化: 跟据函数的内存大小, 自动优化代码的执行时间和性能 可能更省钱: 用运行资源(程序执行时间, cpu, 内存, 公网流量等) 计费, 而不是服务器数量计费 AWS S3, Dy..db, Lambda, SQS/SNS, Fargate, API Gateway 每个lambda function 单独配置权限, 类似github action 阿里云 负载均衡方案: clb nlb alb 普通服务器 配置流程: 绑定密钥登陆. 一般是.pem 文件 把密钥放在常用的地方 修改权限: chmod 400...","categories": ["WebPage"],
         "tags": ["content"],
         "url": "https://roshameow.github.io//personal_homepage/webpage/serverless/"
       },{
@@ -505,12 +505,12 @@ var store = [{
         "url": "https://roshameow.github.io//personal_homepage/finance/alphas2/"
       },{
         "title": "协程的用法",
-        "excerpt":"协程就是单线程多任务, 在一个任务等待的时候干点别的其他的任务. 所以包含等待的函数都要用协程的版本: 在需要时交出event loop的控制权. python 协程的用法 在python里把一个协程函数也叫coroutine yield(生成器): 会把当前函数挂起, 交出event loop的控制权给调用方, 再次调用函数时从暂停处继续. 包含yield的函数会变成一个coroutine next()会激活coroutine 一个主要用法是用于创建超大的list, 不会直接创建好占用内存. 缺点是无法直接得到list的size yield from 可以自动循环可迭代对象 future asyncio async 函数不会马上执行其中代码, 而是返回coroutine await 相当于yield from: 捕获StopIteration异常, 把StopIteration的value属性的值变为yield from表达式的值 后面可以是task/coroutine/future task: 可以被执行的函数 create_task 可以生成task await 也会 asyncio.run() 的时候会执行task aiohttp 特点: 需要每个子任务结束主动告知(运行结束, return) 可以用inspect 的getgeneratorstate 查看协程(coroutine)的状态javascript的用法 callback promise...","categories": ["tool"],
+        "excerpt":"协程就是单线程多任务, 在一个任务等待的时候干点别的其他的任务. 所以包含等待的函数都要用协程的版本: 在需要时交出event loop的控制权. python 协程的用法 在python里把一个协程函数也叫coroutine yield(生成器): 会把当前函数挂起, 保留当前执行状态, 交出event loop的控制权给调用方, 再次调用函数时从暂停处继续. 包含yield的函数会变成一个coroutine next()会激活coroutine 一个主要用法是用于创建超大的list, 不会直接创建好占用内存. 缺点是无法直接得到list的size yield from: 交出控制权 可以自动循环可迭代对象 future asyncio async 函数不会马上执行其中代码, 而是返回coroutine await 相当于yield from: 捕获StopIteration异常, 把StopIteration的value属性的值变为yield from表达式的值 后面可以是task/coroutine/future task: 可以被执行的函数 create_task 可以生成task await 也会 asyncio.run() 的时候会执行task aiohttp 特点: 需要每个子任务结束主动告知(运行结束, return) 可以用inspect 的getgeneratorstate 查看协程(coroutine)的状态javascript的用法...","categories": ["tool"],
         "tags": ["content","python","async","异步"],
         "url": "https://roshameow.github.io//personal_homepage/tool/asyncio/"
       },{
         "title": "worldquant BRAIN 股票因子 (三) -- API使用和代码",
-        "excerpt":"仿真流程 API功能 登陆: https://api.worldquantbrain.com/authentication 获得数据字段: https://api.worldquantbrain.com/data-fields? 发起仿真测试: https://api.worldquantbrain.com/simulations 查询结果, 打标签: https://api.worldquantbrain.com/alphas/{alpha_id}批量仿真流程 开启异步session 尝试登陆 生成仿真数据, 把仿真数据存入csv文件, 计算任务数量 批量开启仿真回测, 处理可能出现的任何异常(登陆超时,发送过快,回测被拒绝) 发起请求 发起回测成功(response中包含Location) -&gt; 获得回测状态(得到simulation id) 🔄 不断请求回测状态 回测状态变为结束(response中Retry-After=0, status=[COMPLETE,WARNING]) -&gt; 获得结果(得到alpha id) 问题 理论上可以不去监测每个请求的发送情况. simulation id在回测结束后不会改变不会销毁. 所以, 批量发送请求拿到simulation id后, 可以后续再查看simulation的运行结果. 本身sess.get 请求的过程等待只能由异步解决, 但是在这个项目里, 好像也没必要? 平台限制了回测请求的并发数, 但是获取数据好像并没有限制. 我经常对template.py元编程, python在用importlib 加载模块时, 会自动加载同名的缓存. 所以要记得手动reload. 否则会发现修改无效...","categories": ["code"],
+        "excerpt":"仿真流程 API功能 登陆: https://api.worldquantbrain.com/authentication 获得数据字段: https://api.worldquantbrain.com/data-fields? 发起仿真测试: https://api.worldquantbrain.com/simulations 查询结果, 打标签: https://api.worldquantbrain.com/alphas/{alpha_id}批量仿真流程 开启异步session 尝试登陆 生成仿真数据, 把仿真数据存入csv文件, 计算任务数量 批量开启仿真回测, 处理可能出现的任何异常(登陆超时,发送过快,回测被拒绝) 发起请求 发起回测成功(response中包含Location) -&gt; 获得回测状态(得到simulation id) 🔄 不断请求回测状态 回测状态变为结束(response中Retry-After=0, status=[COMPLETE,WARNING]) -&gt; 获得结果(得到alpha id) 几种网络问题处理 time-out: cancel 任务 退出登陆(401): 重新登陆 + 重试 超出发送限制(429): sleep + 重试 Gateway time-out(504): sleep + 重试 未知错误: 结束问题 理论上可以不去监测每个请求的发送情况....","categories": ["code"],
         "tags": ["content","python","async","worldquant"],
         "url": "https://roshameow.github.io//personal_homepage/code/alphas3/"
       },{
@@ -540,7 +540,7 @@ var store = [{
         "url": "https://roshameow.github.io//personal_homepage/blender/blender-learning20/"
       },{
         "title": "worldquant BRAIN 股票因子 (五 ) -- 数据集理解",
-        "excerpt":"数据集 特点 信号 模型数据集(model) 大多是分数形式   基本面数据   1. PE(市盈率) = eps/close2. PS(市销率) = close*sharesout/revenue3. cashflow/price4. cashflow/sales5. margin, pretax margin, operating margin 6. enterprise value 风险数据   1. 用risk factor做neutralize2. 用risk-return 代替returns3. 量价数据 完整 1. 交易量激增(volume spike) 2. -returns 社交媒体数据 更新频率高有时效性: 尽量不要超过1季度   期权数据集(Options)     分析师数据 很多是vector数据更新频率低有很多异常值 1. 预测和当前值的差异2....","categories": ["finance"],
+        "excerpt":"数据集 特点 信号 模型数据集(model) 大多是分数形式   基本面数据   1. PE(市盈率) = eps/close2. PS(市销率) = close*sharesout/revenue3. cashflow/price4. cashflow/sales5. margin, pretax margin, operating margin 6. enterprise value7. long term debt/operating income 风险数据   1. 用risk factor做neutralize2. 用risk-return 代替returns3. 量价数据 完整, 所有市场都有 1. 交易量激增(volume spike) 2. -returns 社交媒体数据 更新频率高有时效性: 尽量不要超过1季度   期权数据集(Options)  ...","categories": ["finance"],
         "tags": ["content"],
         "url": "https://roshameow.github.io//personal_homepage/finance/alpha5/"
       },{
@@ -550,7 +550,52 @@ var store = [{
         "url": "https://roshameow.github.io//personal_homepage/tool/papers/"
       },{
         "title": "blender学习:  内发光效果",
-        "excerpt":"  设置透明+自发光          用transparent shader和emmision shader合成      用layer weight node控制参数                  Frensnel 模式(对比度更高): 和frensel node一样公式, 把用IOR调节, 改成0-1调节weight          Facing 模式: 按face面向镜头的角度调节weight                      添加辉光: 用Compositing的glare node  -&gt; Fog Glow   问题:          怎么设置物体前后的遮挡?      渲染模式 shader边栏 -&gt; Options -&gt; Settings -&gt; Surface -&gt;Render Method   Dithered Mode（抖动模式） : 效果更好, 性能开销更大          支持半透明渲染      支持raytracing      deferred rendering技术        Blended Mode（混合模式）          前向渲染(forward rendering）技术      透明表面的排序基于对象原点, 可能导致渲染错误      ","categories": ["blender"],
+        "excerpt":"设置材质: 透明+自发光 用transparent shader和emmision shader合成 用layer weight node控制参数 Frensnel 模式(对比度更高): 和frensel node一样公式, 把用IOR调节, 改成0-1调节weight Facing 模式: 按face面向镜头的角度调节weight 添加辉光: 用Compositing的glare node -&gt; Fog Glow 问题: 怎么设置物体前后的遮挡? 渲染模式 shader边栏 -&gt; Options -&gt; Settings -&gt; Surface -&gt;Render Method Dithered Mode（抖动模式） : 效果更好, 性能开销更大 支持半透明渲染 支持raytracing deferred rendering技术 Blended Mode（混合模式） 前向渲染(forward rendering）技术 透明表面的排序基于对象原点, 可能导致渲染错误...","categories": ["blender"],
         "tags": ["content"],
         "url": "https://roshameow.github.io//personal_homepage/blender/blender-learning21/"
+      },{
+        "title": "聚类",
+        "excerpt":"距离   cos距离:文本聚类 ","categories": ["algorithm"],
+        "tags": ["content"],
+        "url": "https://roshameow.github.io//personal_homepage/algorithm/cluster/"
+      },{
+        "title": "blender学习:  几何节点花瓣",
+        "excerpt":"-&gt; -&gt; 制作花瓣 制作基础图形(一片花瓣): 添加plane -&gt; 添加loop cut -&gt; 制作一面宽一面窄的梭形(打开proportional editing调整中间线的长度) 添加细分的modifier 制作一圈花瓣: 添加一个圆环采样: Curve Circle -&gt; Curve to Points 在每个采样点上添加花瓣的instance 给花瓣的位置和旋转添加random 制作花萼 添加一个uv sphere, 压扁 制作花茎: 添加一个tube ($\\mathbb R^1\\times \\mathbb S^1$ ) 用curve to mesh node : curve用Curve line profile curve用Curve Circle 在geometry node -&gt; Add -&gt; Curve -&gt;...","categories": ["blender"],
+        "tags": ["content"],
+        "url": "https://roshameow.github.io//personal_homepage/blender/blender-learning22/"
+      },{
+        "title": "MCP协议理解",
+        "excerpt":"MCP(Model Context Protocol) ","categories": ["tool"],
+        "tags": ["content"],
+        "url": "https://roshameow.github.io//personal_homepage/tool/MCP/"
+      },{
+        "title": "worldquant BRAIN 股票因子 (六 ) -- 代码优化",
+        "excerpt":"我最终选择了使用 Tauri 来构建我的桌面回测应用。本文记录了开发过程中需求梳理、初始化步骤、遇到的坑以及一些性能优化技巧。 需求梳理 核心功能 跨平台运行 触发 Python 脚本执行 与 MongoDB 后端数据库交互 前端展示任务管理卡片（Card）、结果表格（Table）、收益图表（Chart）任务流程设计 在本地生成待回测任务列表 将任务列表推送到远程 远程启动任务 支持中途暂停任务执行 任务的执行要求是：异步限流 + 分组并发 这类任务需要数据库分页管理，适合使用“生产者-消费者”模型来处理。 初始化与开发环境搭建 工具/依赖 说明 node.js + npm包管理 https://nodejs.org/ 下载与安装 Rust工具链 安装命令: curl https://sh.rustup.rs -sSf | sh Rust 依赖（macOS） 安装命令: xcode-select –install Tauri CLI 命令：npm create tauri-app，可自动创建 Tauri 2 项目框架 启动项目...","categories": ["tool"],
+        "tags": ["content","Mongodb","tauri","vue","worldquant"],
+        "url": "https://roshameow.github.io//personal_homepage/tool/alpha6/"
+      },{
+        "title": "设置开机自启动自运行程序",
+        "excerpt":"macos 用系统自带的LaunchAgents是最方便的   LaunchAgents 的配置文件是一个 .plist 文件（Property List），放在以下路径: ~/Library/LaunchAgents/com.alpha.fetcher.plist          文件名推荐以项目的命名空间命名，保持唯一性        💡 注意事项:          命令行参数分开写：在 &lt;ProgramArguments&gt; 中，命令行每一项(空格分开的)都必须单独写成一个 &lt;string&gt; 元素，包括脚本路径和参数。      日志路径要存在：StandardOutPath 和 StandardErrorPath 指定的目录必须事先存在，否则任务无法运行。        加载与卸载脚本          launchctl load 加载自动脚本, lauchctl unload 卸载脚本      例子 com.pnl.fetcher.plist ","categories": ["tool"],
+        "tags": ["content","macos"],
+        "url": "https://roshameow.github.io//personal_homepage/tool/auto-code/"
+      },{
+        "title": "选出最佳的因子组合",
+        "excerpt":"遗传算法(Genetic Algorithm): 1. generate a bunch of solutions 2. 算子：选择算子(selection)： Roulette Wheel Selection(轮盘赌): 1. 适应性越强概率越大，随机选择父母 2. Use accumulation of probability and bisect e.g. probability [0.25,0.25,0.5], accumulation [0.25,0.5,1], when using bisect —0—0.25—1—0.5—2—[prabablility bigger-&gt;interval of accumulation is bigger-&gt; has more chance to be choosen] Tournament Selection(锦标赛)：1. random choose n 个个体，选出其中最好的 Linear(Exp) Ranking...","categories": ["algorithm"],
+        "tags": ["content"],
+        "url": "https://roshameow.github.io//personal_homepage/algorithm/alpha7/"
+      },{
+        "title": "选出最佳的表达式组合",
+        "excerpt":"从给定的100个左右operator, 和10多个参数, 结合生成表达式 建模 ast(Abstract Syntax Tree)建模 制作leaf node: 表达式最初的参数(days, numbers, states) 制作regular node: operator 规范operator的参数和return 类型: 用python typing的Callable 定义node的名称和分类 定义ExpressionNode类: 对象: 当前op(leaf or regular) + chirdren(复合的表达式) + return type 方法: 添加tree样式和string样式的打印 添加变异功能: 同类型node替换 制作随机生成ExpressionNode的函数: 从root node递归生成, 到leaf node停止 每步根据参数type选择return type符合的candidates随机添加 给不同类型的node设置不同概率 MDP(Markov Decision Process)建模 把生成ExpressionNode的每一步拆开. 把每个node的return type和args type抽象出来 写成token...","categories": ["algorithm"],
+        "tags": ["content"],
+        "url": "https://roshameow.github.io//personal_homepage/algorithm/alpha8/"
+      },{
+        "title": "Tauri 项目 Build 与 Release 实践总结",
+        "excerpt":"本文记录了我在使用 Tauri 构建桌面端应用时遇到的一些坑和解决方案，包括配置文件管理、macOS 编译、GitHub Actions 自动构建等内容。 一、配置文件的独立处理 由于 Tauri 项目同时包含前端（Web）和后端（Rust），不同平台和开发者可能有各自的本地路径配置，需要将配置文件与代码分离。 1. 前端配置（config.js） 使用 config.js 统一保存前端默认路径配置。在项目build阶段，如果没有这个配置文件，打包过程会失败。 为避免这种问题，我在 vite.config.js 中自定义了一个插件，用于在打包前生成一个默认的配置文件。 ⚠️ 避免使用动态 import 处理配置文件路径——AI 建议我去写额外的脚本处理 import，事实是import错误是属于无法处理的类型。2. 后端配置（config.toml） Rust 后端通过 config.toml 统一保存脚本路径、参数设置、数据库地址等。 专门写了一个脚本模块和一个数据库模块来负责读取配置，并在 main.rs 中加载配置并注册到 tauri::State。 macOS 下 release 模式运行正常：只需将 config.toml 放入 app/Resources/ 目录即可。 Windows 下暂时无法通过此方式生效，仍需进一步处理资源路径。 将 MongoDB 的 collection 名称也提取为配置项，不再硬编码于逻辑中。3. Git 提交管理...","categories": ["tool"],
+        "tags": ["content","tauri","github","github_actions","vue","rust","build","macos"],
+        "url": "https://roshameow.github.io//personal_homepage/tool/packing/"
+      },{
+        "title": "拉格朗日乘子法应用 (一)",
+        "excerpt":"Modern_portfolio_theory 拉格朗日乘子法（Lagrange multiplier ）一般问题 问题: $\\min_x f(x),\\ g(x)=0$ 解决: 构建Lagrangian $\\mathcal L (x,\\lambda)=f(x)-\\lambda g(x)$ , 解$\\nabla_x f-\\lambda \\nabla_x g=0$ . Lagrangian的维数更低, 更好解. 示例 应用场景 优化目标 约束条件 解 Markowitz 投资组合 最大 Sharpe 比 $w^T \\Sigma w = 1$ $w \\propto \\Sigma^{-1} \\mu$ PCA 最大方差方向 最大 $|Ax|^2$ $x^T x = 1$ $x$...","categories": ["algorithm"],
+        "tags": ["content"],
+        "url": "https://roshameow.github.io//personal_homepage/algorithm/alpha9/"
       }]

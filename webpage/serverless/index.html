@@ -31,7 +31,7 @@
 <meta property="twitter:title" content="Serverless服务" />
 <meta name="twitter:site" content="@" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2025-01-01T04:48:00+00:00","datePublished":"2024-12-19T00:00:00+00:00","description":"租虚拟服务器代替真实服务器","headline":"Serverless服务","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/webpage/serverless/"},"url":"https://roshameow.github.io//personal_homepage/webpage/serverless/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2025-04-03T11:29:00+00:00","datePublished":"2024-12-19T00:00:00+00:00","description":"租虚拟服务器代替真实服务器","headline":"Serverless服务","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/webpage/serverless/"},"url":"https://roshameow.github.io//personal_homepage/webpage/serverless/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -139,7 +139,7 @@
 {:toc} -->
   <!-- <div id="markdown-toc"> -->
 
-    <ul class="inline_toc" id="my_toc"><li><a href="#阿里云">阿里云</a></li></ul>
+    <ul class="inline_toc" id="my_toc"><li><a href="#阿里云">阿里云</a></li><li><a href="#普通服务器">普通服务器</a></li></ul>
   <!-- </div> -->
 
 </div>
@@ -153,15 +153,15 @@
     <!-- <div id="markdown-toc"> -->
     <ul>
         
-        <li><a href="/personal_homepage/blender/blender-learning21/">blender学习:  内发光效果</a></li>
+        <li><a href="/personal_homepage/algorithm/alpha9/">拉格朗日乘子法应用 (一)</a></li>
         
-        <li><a href="/personal_homepage/tool/papers/">筛选适合阅读的论文</a></li>
+        <li><a href="/personal_homepage/tool/packing/">Tauri 项目 Build 与 Release 实践总结</a></li>
         
-        <li><a href="/personal_homepage/finance/alpha5/">worldquant BRAIN 股票因子 (五 ) -- 数据集理解</a></li>
+        <li><a href="/personal_homepage/algorithm/alpha8/">选出最佳的表达式组合</a></li>
         
-        <li><a href="/personal_homepage/blender/blender-learning20/">blender学习:  制作随音乐律动的视频</a></li>
+        <li><a href="/personal_homepage/algorithm/alpha7/">选出最佳的因子组合</a></li>
         
-        <li><a href="/personal_homepage/algorithm/color-moderate3/">传感器颜色调制 (四) -- 多光谱颜色校准</a></li>
+        <li><a href="/personal_homepage/tool/auto-code/">设置开机自启动自运行程序</a></li>
         
     </ul>
     <!-- </div> -->
@@ -189,7 +189,7 @@
   </li>
 </ul>
 
-<p>AWS Lambda</p>
+<p>AWS S3, Dy..db, Lambda, SQS/SNS, Fargate, API Gateway</p>
 
 <ul>
   <li>每个lambda function 单独配置权限, 类似github action
@@ -200,6 +200,66 @@
       <li>clb</li>
       <li>nlb</li>
       <li>alb</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="普通服务器">普通服务器</h2>
+
+<ul>
+  <li>配置流程:
+    <ul>
+      <li>绑定密钥登陆. 一般是<code class="language-plaintext highlighter-rouge">.pem</code> 文件
+        <ul>
+          <li>把密钥放在常用的地方</li>
+          <li>修改权限: <code class="language-plaintext highlighter-rouge">chmod 400 密钥名.pem</code></li>
+          <li> 登陆: <code class="language-plaintext highlighter-rouge">ssh -i ~/.ssh/密钥名.pem ubuntu@远程ip</code>
+            <ul>
+              <li>或在<code class="language-plaintext highlighter-rouge">~/.ssh/config</code> 中配置host</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>挂载文件系统:
+        <ul>
+          <li>在本地和远程安装<code class="language-plaintext highlighter-rouge">sshf</code>: 尽量不要传太多文件. 基于ssh传输. 有点卡</li>
+          <li>登陆: <code class="language-plaintext highlighter-rouge">sshfs -o IdentityFile=密钥.pem ubuntu@远程ip:/home/ubuntu 本地挂载文件夹 -o debug</code></li>
+          <li>卸载: <code class="language-plaintext highlighter-rouge">unmount 本地挂载文件夹</code></li>
+        </ul>
+      </li>
+      <li>安装python虚拟环境
+        <ul>
+          <li><code class="language-plaintext highlighter-rouge">sudo apt install python3-venv</code></li>
+          <li><code class="language-plaintext highlighter-rouge">python3 -m venv my_env</code></li>
+          <li><code class="language-plaintext highlighter-rouge">source my_env/bin/activate</code></li>
+        </ul>
+      </li>
+      <li>在虚拟环境中安装packages</li>
+    </ul>
+  </li>
+  <li>遇到的问题:
+    <ul>
+      <li>mac:
+        <ul>
+          <li>挂载需要安装macFUSE :
+            <ul>
+              <li>需要降低mac的安全防护: 允许third party kernel extensions(see <a href="https://github.com/macfuse/macfuse/wiki/Getting-Started">https://github.com/macfuse/macfuse/wiki/Getting-Started</a> )</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>腾讯云
+        <ul>
+          <li>终端可以用Orcaterm 操作. 有文件系统, 也能直接用命令行, <del>感觉挺方便的</del> : 😮‍💨 总要微信扫码登录和验证实在太烦了, 没法长时间使用</li>
+          <li>在虚拟环境下用pip装package还是会不讲道理报错, 需要禁用外部环境管理检查: <code class="language-plaintext highlighter-rouge">export PIP_BREAK_SYSTEM_PACKAGES=1</code></li>
+          <li>没有自带tmux, 要自己安装一下</li>
+        </ul>
+      </li>
+      <li>亚马逊ec2
+        <ul>
+          <li>cpu用超了(list太大之类)会直接卡住无法登陆. 不过等一会儿进程会自动被kill.😂 就又可以了</li>
+        </ul>
+      </li>
     </ul>
   </li>
 </ul>

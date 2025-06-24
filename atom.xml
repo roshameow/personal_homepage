@@ -1,5 +1,527 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://roshameow.github.io//personal_homepage/atom.xml" rel="self" type="application/atom+xml" /><link href="https://roshameow.github.io//personal_homepage/" rel="alternate" type="text/html" /><updated>2025-03-26T11:29:56+00:00</updated><id>https://roshameow.github.io//personal_homepage/atom.xml</id><title type="html">Liu, Wen’s Home Page</title><subtitle>Work, Experiments and Ideas.</subtitle><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><entry><title type="html">blender学习: 内发光效果</title><link href="https://roshameow.github.io//personal_homepage/blender/blender-learning21/" rel="alternate" type="text/html" title="blender学习: 内发光效果" /><published>2025-03-11T00:00:00+00:00</published><updated>2025-03-11T19:40:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/blender/blender-learning21</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/blender/blender-learning21/"><![CDATA[<ul>
-  <li>设置透明+自发光
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://roshameow.github.io//personal_homepage/atom.xml" rel="self" type="application/atom+xml" /><link href="https://roshameow.github.io//personal_homepage/" rel="alternate" type="text/html" /><updated>2025-06-24T04:45:59+00:00</updated><id>https://roshameow.github.io//personal_homepage/atom.xml</id><title type="html">Liu, Wen’s Home Page</title><subtitle>Work, Experiments and Ideas.</subtitle><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><entry><title type="html">拉格朗日乘子法应用 (一)</title><link href="https://roshameow.github.io//personal_homepage/algorithm/alpha9/" rel="alternate" type="text/html" title="拉格朗日乘子法应用 (一)" /><published>2025-06-22T00:00:00+00:00</published><updated>2023-12-22T06:14:38+00:00</updated><id>https://roshameow.github.io//personal_homepage/algorithm/alpha9</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/algorithm/alpha9/"><![CDATA[<p><a href="https://en.wikipedia.org/wiki/Modern_portfolio_theory">Modern_portfolio_theory</a></p>
+
+<h2 id="拉格朗日乘子法lagrange-multiplier-一般问题">拉格朗日乘子法（<a href="https://en.wikipedia.org/wiki/Lagrange_multiplier">Lagrange multiplier</a> ）一般问题</h2>
+
+<p>问题: $\min_x f(x),\  g(x)=0$</p>
+
+<p>解决: 构建Lagrangian $\mathcal L (x,\lambda)=f(x)-\lambda g(x)$ ,  解$\nabla_x f-\lambda \nabla_x g=0$ . Lagrangian的维数更低, 更好解.</p>
+
+<h2 id="示例">示例</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>应用场景</th>
+      <th>优化目标</th>
+      <th>约束条件</th>
+      <th>解</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Markowitz 投资组合</td>
+      <td>最大 Sharpe 比</td>
+      <td>$w^T \Sigma w = 1$</td>
+      <td>$w \propto \Sigma^{-1} \mu$</td>
+    </tr>
+    <tr>
+      <td>PCA 最大方差方向</td>
+      <td>最大 $|Ax|^2$</td>
+      <td>$x^T x = 1$</td>
+      <td>$x$ 是 $A^T A$ 最大特征向量</td>
+    </tr>
+    <tr>
+      <td>PCA 最小压缩误差</td>
+      <td>最小 $|A - A V V^T|$</td>
+      <td>$V^T V = I$</td>
+      <td>$V$ 是 $A^T A$ 最大特征子空间</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h3 id="一markowitz-投资组合模型最大化-sharpe">一、Markowitz 投资组合模型：最大化 Sharpe</h3>
+
+<p>我们希望在给定的一段时间内 $T$，在一个包含 $N$ 支股票的股票池中，找到一个组合权重向量 $w \in \mathbb{R}^{N \times 1}$，使得组合的 <strong>Sharpe 比</strong> 最大：</p>
+
+\[\text{Sharpe} = \frac{w^T \mu}{\sqrt{w^T \Sigma w}}\]
+
+<ul>
+  <li>记portfolio的权重为 w(N x 1), 股票池内股票的returns为 R(N x T), 前T天组合股票的return为 $wR=\sum_i w_i\cdot r_{it}$</li>
+  <li>$Sharpe =\frac{mean}{std dev} =\frac{\sum_t \sum_i w_i\cdot r_{it}}{\sqrt{\sum_t (\sum_i w_i\cdot \bar r_{it})^2}}=\frac{\sum_i w_i (\sum_t r_{it})}{\sqrt{\sum_t \sum_{ij} w_i\cdot \bar r_{it}\bar r_{jt}\cdot w_j}}=\frac{\sum_i w_i (\sum_t r_{it})}{\sqrt{\sum_{ij} w_i\cdot (\sum_t \bar r_{it}\bar r_{jt})\cdot w_j}}=\frac{w^T \mu}{\sqrt{w^T\Sigma w}}$
+    <ul>
+      <li>记$\mu=\sum_t r_{it}$ (N x 1) , 是每只股票的历史平均收益率, 即ts_mean(stats.returns, T)</li>
+      <li>记 $\Sigma=\sum_t \bar r_{it}\bar r_{jt}$ (N x N), 是收益率协方差矩阵, 即ts_mean(self_corr(ts_av_diff(stats.returns,T),1),T)</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="拉格朗日乘子法求解">拉格朗日乘子法求解</h4>
+
+<p>Sharpe对w比例不敏感, 我们将问题转化为：</p>
+
+\[\max_w w^T \mu \quad \text{s.t. } w^T \Sigma w = 1\]
+
+<p>构造拉格朗日函数：</p>
+
+\[\mathcal{L}(w, \lambda) = w^T \mu - \lambda (w^T \Sigma w - 1)\]
+
+<p>对 $w$ 求梯度并令其为零：</p>
+
+\[\nabla_w \mathcal{L} = \mu - 2\lambda \Sigma w = 0
+\quad \Rightarrow \quad w \propto \Sigma^{-1} \mu\]
+
+<p>也就是说，最优解的方向与协方差矩阵的逆乘以期望收益向量的方向一致。这就是经典 Markowitz 模型的解析解。</p>
+
+<hr />
+
+<h3 id="二plain-pca最大化数据投影方差">二、Plain PCA：最大化数据投影方差</h3>
+
+<p>在主成分分析中，我们希望找到一个方向 $x \in \mathbb{R}^{d \times 1}$，使得数据在该方向上的投影方差最大，约束是单位长度 $|x|=1$。假设数据矩阵为 $A \in \mathbb{R}^{n \times d}$，则问题形式为：</p>
+
+\[\max_x \|Ax\|^2 \quad \text{s.t. } \|x\|^2 = 1\]
+
+<p>拉格朗日函数为：</p>
+
+\[\mathcal{L}(x, \lambda) = x^T A^T A x - \lambda (x^T x - 1)\]
+
+<p>对 $x$ 求导并设为 0：</p>
+
+\[\nabla_x \mathcal{L} = 2 A^T A x - 2\lambda x = 0 
+\quad \Rightarrow \quad A^T A x = \lambda x\]
+
+<p>这表明 $x$ 是矩阵 $A^T A$ 的特征向量，对应最大特征值的方向即为最大方差方向，也就是第一主成分。</p>
+
+<hr />
+
+<h3 id="三pca压缩视角下的拉格朗日优化">三、PCA压缩视角下的拉格朗日优化</h3>
+
+<p>从数据压缩角度看，我们希望用一个PCA压缩(列变换)后子空间 $Z= AV\in \mathbb{R}^{w \times k}$ 来逼近原始数据矩阵 $A \in \mathbb{R}^{w \times h}$。PCA 等价于找到一个低维正交投影矩阵 $V \in \mathbb{R}^{h \times k}$，使得重构误差最小：</p>
+
+\[\min_{V} \|A - A V V^T\|_F^2 \quad \text{s.t. } V^T V = I\]
+
+<h4 id="拉格朗日乘子法求解-1">拉格朗日乘子法求解</h4>
+
+<p>问题可以转换为 Plain PCA:</p>
+
+\[\max_{V} \|A V\|_F^2 \quad \text{s.t. } V^T V = I\]
+
+<h4 id="推导">推导</h4>
+
+<p>展开 Frobenius 范数：</p>
+
+\[\begin{aligned}
+\|A - A V V^T\|_F^2 
+&amp;= \text{tr}\left((A - A V V^T)^T (A - A V V^T)\right) \\
+&amp;= \text{tr}(A^T A - A^T A V V^T - V V^T A^T A + V V^T A^T A V V^T) \\
+&amp;= \text{tr}(A^T A) - 2\text{tr}(V^T A^T A V) + \text{tr}(V^T A^T A V) \\
+&amp;= \text{tr}(A^T A) - \text{tr}(V^T A^T A V)
+\end{aligned}\]
+
+<p>于是优化目标就变为：</p>
+
+\[\min_{V^T V = I} \|A - A V V^T\|_F^2 
+= \text{const} - \max_{V^T V = I} \text{tr}(V^T A^T A V)\]
+
+<p>也就是说：</p>
+
+\[\max_{V^T V = I} \text{tr}(V^T A^T A V)
+\quad \text{即最大化投影后的方差总和}\]]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="algorithm" /><category term="content" /><summary type="html"><![CDATA[Modern_portfolio_theory]]></summary></entry><entry><title type="html">Tauri 项目 Build 与 Release 实践总结</title><link href="https://roshameow.github.io//personal_homepage/tool/packing/" rel="alternate" type="text/html" title="Tauri 项目 Build 与 Release 实践总结" /><published>2025-06-17T00:00:00+00:00</published><updated>2023-12-22T06:14:38+00:00</updated><id>https://roshameow.github.io//personal_homepage/tool/packing</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/tool/packing/"><![CDATA[<p>本文记录了我在使用 Tauri 构建桌面端应用时遇到的一些坑和解决方案，包括配置文件管理、macOS 编译、GitHub Actions 自动构建等内容。</p>
+
+<hr />
+
+<h2 id="一配置文件的独立处理">一、配置文件的独立处理</h2>
+
+<p>由于 Tauri 项目同时包含前端（Web）和后端（Rust），不同平台和开发者可能有各自的本地路径配置，需要<strong>将配置文件与代码分离</strong>。</p>
+
+<h3 id="1-前端配置configjs">1. 前端配置（<code class="language-plaintext highlighter-rouge">config.js</code>）</h3>
+
+<ul>
+  <li>使用 <code class="language-plaintext highlighter-rouge">config.js</code> 统一保存前端默认路径配置。在项目build阶段，如果没有这个配置文件，打包过程会失败。</li>
+  <li>为避免这种问题，我在 <code class="language-plaintext highlighter-rouge">vite.config.js</code> 中自定义了一个插件，用于在打包前生成一个默认的配置文件。</li>
+  <li>⚠️ 避免使用动态 <code class="language-plaintext highlighter-rouge">import</code> 处理配置文件路径——AI 建议我去写额外的脚本处理 <code class="language-plaintext highlighter-rouge">import</code>，<strong>事实是import错误是属于无法处理的类型</strong>。</li>
+</ul>
+
+<h3 id="2-后端配置configtoml">2. 后端配置（<code class="language-plaintext highlighter-rouge">config.toml</code>）</h3>
+
+<ul class="task-list">
+  <li>Rust 后端通过 <code class="language-plaintext highlighter-rouge">config.toml</code> 统一保存<strong>脚本路径、参数设置、数据库地址</strong>等。</li>
+  <li>专门写了一个脚本模块和一个数据库模块来负责读取配置，并在 <code class="language-plaintext highlighter-rouge">main.rs</code> 中加载配置并注册到 <code class="language-plaintext highlighter-rouge">tauri::State</code>。</li>
+  <li>macOS 下 release 模式运行正常：只需将 <code class="language-plaintext highlighter-rouge">config.toml</code> 放入 <code class="language-plaintext highlighter-rouge">app/Resources/</code> 目录即可。</li>
+  <li>Windows 下暂时无法通过此方式生效，仍需进一步处理资源路径。</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />将 MongoDB 的 collection 名称也提取为配置项，不再硬编码于逻辑中。</li>
+</ul>
+
+<h3 id="3-git-提交管理">3. Git 提交管理</h3>
+
+<ul>
+  <li>在 <code class="language-plaintext highlighter-rouge">.gitignore</code> 中忽略本地配置文件（如 <code class="language-plaintext highlighter-rouge">config.js</code>、<code class="language-plaintext highlighter-rouge">config.toml</code>）和所有build产物。</li>
+</ul>
+
+<hr />
+
+<h2 id="二macos-本地编译问题">二、macOS 本地编译问题</h2>
+
+<h3 id="1-app-无法打开">1. App 无法打开</h3>
+
+<ul>
+  <li>使用 <code class="language-plaintext highlighter-rouge">otool -L</code> 查看动态库依赖，发现缺少 <code class="language-plaintext highlighter-rouge">libiconv.2</code>。
+    <ul>
+      <li>尽管 macOS 系统自带 <code class="language-plaintext highlighter-rouge">/usr/lib/libiconv.2.dylib</code>，但这个库是只读的，<strong>不能用于打包 release</strong>。</li>
+      <li>解决办法：通过 Homebrew 安装并指定使用自定义版本。</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="2-程序签名问题">2. 程序签名问题</h3>
+
+<ul>
+  <li>使用命令检查签名有效性：<code class="language-plaintext highlighter-rouge">codesign --verify --deep --strict --verbose=2 YourApp.app</code></li>
+  <li>如果没有注册 Apple Developer，macOS 默认会阻止启动未签名的应用。无法解决.
+    <ul>
+      <li>暂时解决方案：<strong>使用 <code class="language-plaintext highlighter-rouge">xattr</code> 命令移除安全隔离标记</strong>：<code class="language-plaintext highlighter-rouge">    sudo xattr -r -d com.apple.quarantine YourApp.app</code></li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<h2 id="三release-打包与自动发布">三、Release 打包与自动发布</h2>
+
+<h3 id="1-github-actions-自动发布">1. GitHub Actions 自动发布</h3>
+
+<ul>
+  <li>使用 <a href="https://github.com/tauri-apps/tauri-action">tauri-action</a> 提供的 GitHub Action 来自动构建并发布 release。</li>
+  <li>几乎无需修改配置，开箱即用，非常适合桌面端分发。</li>
+</ul>
+
+<h3 id="2-linux-版本的处理">2. Linux 版本的处理</h3>
+
+<ul>
+  <li>原本打算支持 Ubuntu 构建，但桌面依赖繁杂、反正也没人用, 直接放弃构建 Linux 版本。</li>
+</ul>
+
+<h3 id="3-权限与-token-设置">3. 权限与 Token 设置</h3>
+
+<ul>
+  <li>GitHub Action 发布 Release 时，需要为该 Action 赋予 <code class="language-plaintext highlighter-rouge">write</code> 权限。</li>
+  <li>必须使用一个具备 <code class="language-plaintext highlighter-rouge">repo</code> 和 <code class="language-plaintext highlighter-rouge">release</code> 权限的 GitHub Token，并配置为项目的 Secret。
+    <ul>
+      <li>⚠️ 注意：GitHub Token 只能生成一次，请妥善保管。我就因为保存不当，只能重新生成😿。</li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<h2 id="四项目代码和效果">四、项目代码和效果</h2>
+
+<p>👉 <a href="https://github.com/roshameow/quantnight-frontend">quantnight-frontend GitHub 仓库</a></p>
+
+<iframe src="//player.bilibili.com/player.html?isOutside=true&amp;aid=114699215572489&amp;bvid=BV1CKNqzrEQd&amp;cid=30550526818&amp;p=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="tool" /><category term="content" /><category term="tauri" /><category term="github" /><category term="github_actions" /><category term="vue" /><category term="rust" /><category term="build" /><category term="macos" /><summary type="html"><![CDATA[本文记录了我在使用 Tauri 构建桌面端应用时遇到的一些坑和解决方案，包括配置文件管理、macOS 编译、GitHub Actions 自动构建等内容。]]></summary></entry><entry><title type="html">选出最佳的表达式组合</title><link href="https://roshameow.github.io//personal_homepage/algorithm/alpha8/" rel="alternate" type="text/html" title="选出最佳的表达式组合" /><published>2025-05-27T00:00:00+00:00</published><updated>2023-12-22T06:14:38+00:00</updated><id>https://roshameow.github.io//personal_homepage/algorithm/alpha8</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/algorithm/alpha8/"><![CDATA[<p>从给定的100个左右operator, 和10多个参数, 结合生成表达式</p>
+
+<h2 id="建模">建模</h2>
+
+<h3 id="astabstract-syntax-tree建模">ast(Abstract Syntax Tree)建模</h3>
+
+<ul>
+  <li>制作leaf node: 表达式最初的参数(days, numbers, states)</li>
+  <li>制作regular node: operator
+    <ul>
+      <li>规范operator的参数和return 类型: 用python typing的<code class="language-plaintext highlighter-rouge">Callable</code></li>
+      <li>定义node的名称和分类</li>
+    </ul>
+  </li>
+  <li>定义ExpressionNode类:
+    <ul>
+      <li>对象: 当前op(leaf or regular) + chirdren(复合的表达式) + return type</li>
+      <li>方法:
+        <ul>
+          <li>添加tree样式和string样式的打印</li>
+          <li>添加变异功能: 同类型node替换</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>制作随机生成ExpressionNode的函数: 从root node递归生成, 到leaf node停止
+    <ul>
+      <li>每步根据参数type选择return type符合的candidates随机添加</li>
+      <li>给不同类型的node设置不同概率</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="mdpmarkov-decision-process建模">MDP(Markov Decision Process)建模</h2>
+
+<p>把生成ExpressionNode的每一步拆开.</p>
+<ul>
+  <li>把每个node的return type和args type抽象出来</li>
+  <li>写成token</li>
+</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="algorithm" /><category term="content" /><summary type="html"><![CDATA[从给定的100个左右operator, 和10多个参数, 结合生成表达式]]></summary></entry><entry><title type="html">选出最佳的因子组合</title><link href="https://roshameow.github.io//personal_homepage/algorithm/alpha7/" rel="alternate" type="text/html" title="选出最佳的因子组合" /><published>2025-05-26T00:00:00+00:00</published><updated>2023-12-22T06:14:38+00:00</updated><id>https://roshameow.github.io//personal_homepage/algorithm/alpha7</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/algorithm/alpha7/"><![CDATA[<p>遗传算法(Genetic Algorithm):
+	1. generate a bunch of solutions
+	2. 算子：选择算子(selection)：
+					Roulette Wheel Selection(轮盘赌): 1. 适应性越强概率越大，随机选择父母
+												2. Use accumulation of probability and bisect
+												e.g. probability [0.25,0.25,0.5], accumulation [0.25,0.5,1], when using bisect —0—0.25—1—0.5—2—[prabablility bigger-&gt;interval of accumulation is bigger-&gt; has more chance to be choosen]
+					Tournament Selection(锦标赛)：1. random choose n 个个体，选出其中最好的
+					Linear(Exp) Ranking Selection: 排序，按照顺序线性(exp)确定probablility
+			交叉算子：uniform crossover: 变换father和mother的一些位
+					  中间重组(浮点数)：取father和mother的随机中间数
+			变异算子：flipbit: 异或（二进制），随机替换（实数）
+	3. 编码二进制：range=(a,b), eps = 精度 -&gt;int((x-b)/eps)转为二进制（编码位数： log((b-a)/eps) ）
+	！4. 遗产算法的编码非常重要？：要保证交叉算子起作用，即亲代可以强强联合，不然就和变异算子没有差别了</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="algorithm" /><category term="content" /><summary type="html"><![CDATA[遗传算法(Genetic Algorithm): 1. generate a bunch of solutions 2. 算子：选择算子(selection)： Roulette Wheel Selection(轮盘赌): 1. 适应性越强概率越大，随机选择父母 2. Use accumulation of probability and bisect e.g. probability [0.25,0.25,0.5], accumulation [0.25,0.5,1], when using bisect —0—0.25—1—0.5—2—[prabablility bigger-&gt;interval of accumulation is bigger-&gt; has more chance to be choosen] Tournament Selection(锦标赛)：1. random choose n 个个体，选出其中最好的 Linear(Exp) Ranking Selection: 排序，按照顺序线性(exp)确定probablility 交叉算子：uniform crossover: 变换father和mother的一些位 中间重组(浮点数)：取father和mother的随机中间数 变异算子：flipbit: 异或（二进制），随机替换（实数） 3. 编码二进制：range=(a,b), eps = 精度 -&gt;int((x-b)/eps)转为二进制（编码位数： log((b-a)/eps) ） ！4. 遗产算法的编码非常重要？：要保证交叉算子起作用，即亲代可以强强联合，不然就和变异算子没有差别了]]></summary></entry><entry><title type="html">设置开机自启动自运行程序</title><link href="https://roshameow.github.io//personal_homepage/tool/auto-code/" rel="alternate" type="text/html" title="设置开机自启动自运行程序" /><published>2025-04-30T00:00:00+00:00</published><updated>2025-05-04T22:50:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/tool/auto-code</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/tool/auto-code/"><![CDATA[<h2 id="macos">macos</h2>
+
+<p>用系统自带的LaunchAgents是最方便的</p>
+
+<ul>
+  <li>LaunchAgents 的配置文件是一个 <code class="language-plaintext highlighter-rouge">.plist</code> 文件（Property List），放在以下路径: <code class="language-plaintext highlighter-rouge">~/Library/LaunchAgents/com.alpha.fetcher.plist</code>
+    <ul>
+      <li>文件名推荐以项目的命名空间命名，保持唯一性</li>
+    </ul>
+  </li>
+  <li>💡 注意事项:
+    <ul>
+      <li><strong>命令行参数分开写</strong>：在 <code class="language-plaintext highlighter-rouge">&lt;ProgramArguments&gt;</code> 中，<strong>命令行每一项(空格分开的)都必须单独写成一个 <code class="language-plaintext highlighter-rouge">&lt;string&gt;</code> 元素</strong>，包括脚本路径和参数。</li>
+      <li><strong>日志路径要存在</strong>：<code class="language-plaintext highlighter-rouge">StandardOutPath</code> 和 <code class="language-plaintext highlighter-rouge">StandardErrorPath</code> 指定的目录必须事先存在，否则任务无法运行。</li>
+    </ul>
+  </li>
+  <li>加载与卸载脚本
+    <ul>
+      <li>launchctl load 加载自动脚本, lauchctl unload 卸载脚本</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="例子">例子</h3>
+
+<p><a href="https://gist.github.com/roshameow/f2a5238bc688ec3bc902ea00da66f31a#file-com-pnl-fetcher-plist"><strong>com.pnl.fetcher.plist</strong></a></p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="tool" /><category term="content" /><category term="macos" /><summary type="html"><![CDATA[macos]]></summary></entry><entry><title type="html">worldquant BRAIN 股票因子 (六 ) – 代码优化</title><link href="https://roshameow.github.io//personal_homepage/tool/alpha6/" rel="alternate" type="text/html" title="worldquant BRAIN 股票因子 (六 ) – 代码优化" /><published>2025-04-17T00:00:00+00:00</published><updated>2025-05-13T23:01:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/tool/alpha6</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/tool/alpha6/"><![CDATA[<p>我最终选择了使用 <strong>Tauri</strong> 来构建我的桌面回测应用。本文记录了开发过程中需求梳理、初始化步骤、遇到的坑以及一些性能优化技巧。</p>
+
+<hr />
+
+<h2 id="需求梳理">需求梳理</h2>
+
+<h3 id="核心功能">核心功能</h3>
+
+<ol>
+  <li><strong>跨平台运行</strong></li>
+  <li><strong>触发 Python 脚本执行</strong></li>
+  <li><strong>与 MongoDB 后端数据库交互</strong></li>
+  <li><strong>前端展示任务管理卡片（Card）、结果表格（Table）、收益图表（Chart）</strong></li>
+</ol>
+
+<h3 id="任务流程设计">任务流程设计</h3>
+
+<ol>
+  <li>在本地生成待回测任务列表</li>
+  <li>将任务列表推送到远程</li>
+  <li>远程启动任务</li>
+  <li>支持中途暂停任务执行
+    <ol>
+      <li>任务的执行要求是：<strong>异步限流 + 分组并发</strong></li>
+      <li>这类任务需要数据库分页管理，适合使用“生产者-消费者”模型来处理。</li>
+    </ol>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="初始化与开发环境搭建">初始化与开发环境搭建</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>工具/依赖</th>
+      <th>说明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>node.js + npm包管理</td>
+      <td><a href="https://nodejs.org/">https://nodejs.org/</a> 下载与安装</td>
+    </tr>
+    <tr>
+      <td>Rust工具链</td>
+      <td>安装命令: curl https://sh.rustup.rs -sSf | sh</td>
+    </tr>
+    <tr>
+      <td>Rust 依赖（macOS）</td>
+      <td>安装命令: xcode-select –install</td>
+    </tr>
+    <tr>
+      <td>Tauri CLI</td>
+      <td>命令：<code class="language-plaintext highlighter-rouge">npm create tauri-app</code>，可自动创建 Tauri 2 项目框架</td>
+    </tr>
+    <tr>
+      <td>启动项目</td>
+      <td>进入项目目录后运行：<code class="language-plaintext highlighter-rouge">npm install &amp;&amp; npm run tauri dev</code></td>
+    </tr>
+    <tr>
+      <td>开启调试模式</td>
+      <td>编辑 <code class="language-plaintext highlighter-rouge">tauri.conf.json</code> 中的 <code class="language-plaintext highlighter-rouge">"window": { "devtools": true }</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="-开发与常见问题记录">🧱 开发与常见问题记录</h2>
+
+<h3 id="前端部分vue--naive-ui">前端部分（Vue + Naive UI）</h3>
+
+<ul>
+  <li><strong>打开 DevTools</strong>：mac 快捷键为 <code class="language-plaintext highlighter-rouge">Cmd + Option + I</code>，不是 F12。</li>
+  <li><strong>状态共享</strong>：使用 <code class="language-plaintext highlighter-rouge">Pinia</code> 的 <code class="language-plaintext highlighter-rouge">taskStore</code> 来管理任务列表，实现多组件共享，减少无意义的读数据库, 可以理解成一种本地缓存吧。</li>
+  <li><strong>错误调试</strong>：如 <code class="language-plaintext highlighter-rouge">Unhandled Promise Rejection: TypeError: null is not an object (evaluating 'instance.subTree.component')</code>，可类比为 Python 的 KeyError，说明代码访问了不存在的变量。</li>
+  <li><strong>禁用拼写检查</strong>：在 <code class="language-plaintext highlighter-rouge">v-input</code> 中添加 <code class="language-plaintext highlighter-rouge">spellcheck: false</code>。</li>
+  <li><strong>请求竞态问题（Race Condition）</strong>：
+    <ul>
+      <li>输入搜索框 <code class="language-plaintext highlighter-rouge">1 → 15</code> 会同时触发 <code class="language-plaintext highlighter-rouge">1</code> 和 <code class="language-plaintext highlighter-rouge">15</code> 的请求，后发请求(15)可能被先返回的(1)结果覆盖。</li>
+      <li>解决方法：前端维护请求版本号，只保留最新的请求结果。</li>
+    </ul>
+  </li>
+  <li><strong>分页问题</strong>：<code class="language-plaintext highlighter-rouge">naive-ui</code> 的 <code class="language-plaintext highlighter-rouge">data-table</code> 不会记录当前页
+    <ul>
+      <li>初步尝试自己管理分页 + 滚动加载，但最后放弃了这个方法😮‍💨, 因为不仅是翻页, 排序也被naive-ui封装在内部, 自己实现太麻烦。</li>
+      <li>最终选择：<strong>从渲染后的 DOM(Document object Model) 中直接读取当前页元素 ID</strong>。
+        <ul>
+          <li>DOM(Document object Model) 是浏览器解析html之后生成的树形结构</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><strong>css样式问题</strong>：
+    <ul>
+      <li>有些样式必须加 <code class="language-plaintext highlighter-rouge">!important</code> 才能覆盖 <code class="language-plaintext highlighter-rouge">naive-ui</code> 的默认值。</li>
+      <li>表格显示不全时, 我希望增加行高显示完全. 但是在用ai写代码的时候, 我一直自认为这是expand. 误导了ai, 一直在给我推expand组件, 走了很多弯路😮‍💨 其实应该用定义css实现。</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="后端部分rust">后端部分（Rust）</h3>
+
+<ul>
+  <li><strong><code class="language-plaintext highlighter-rouge">invoke</code> 的使用</strong>：位于 <code class="language-plaintext highlighter-rouge">@tauri-apps/api/core</code>(tauri 2.0的情况)，只能在 WebView 中调用，不能在npm run dev打开的浏览器端口中调试</li>
+  <li><strong>参数匹配问题</strong>：Rust 会自动将 小驼峰(camelCase) 转成 蛇形(snake_case)，需确保参数名一致。</li>
+  <li><strong>函数注册</strong>：所有后端 API 函数都需在 <code class="language-plaintext highlighter-rouge">main.rs</code> 中注册</li>
+  <li><strong>日志调试</strong>：打印完整log用于调试非常重要, 尤其调用外部脚本时, 统一调用函数, 把log打印写在里面.</li>
+  <li><strong>异步数据库访问</strong>：使用 <code class="language-plaintext highlighter-rouge">futures_util::stream::TryStreamExt</code> 提供的 <code class="language-plaintext highlighter-rouge">try_next</code>，需手动引入 trait。</li>
+  <li><strong>共享状态管理（State）</strong>：
+    <ul>
+      <li>使用 <code class="language-plaintext highlighter-rouge">tauri::State</code> 来注册共享数据，如数据库客户端、全局监听状态, 脚本环境和参数等。</li>
+      <li>Rust 的所有多线程共享<strong>必须显式声明同步策略</strong>。</li>
+      <li>使用 <code class="language-plaintext highlighter-rouge">OnceCell</code> 实现全局状态的懒加载，避免重复初始化。</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="数据库部分mongodb">数据库部分（MongoDB）</h3>
+
+<ul>
+  <li><strong>监听任务变化</strong>：使用 <code class="language-plaintext highlighter-rouge">ChangeStreamOptions</code> 监听数据库变更，需开启 <code class="language-plaintext highlighter-rouge">replica set</code> （副本集）模式。
+    <ul>
+      <li>打开本地数据库命令： <code class="language-plaintext highlighter-rouge">mongod --config /usr/local/mongodb/mongod.conf --replSet rs0 --fork</code></li>
+    </ul>
+  </li>
+  <li><strong>任务删除后自动停止监听</strong>。</li>
+  <li><strong>使用异步库 Motor</strong>：
+    <ul>
+      <li>替代传统的 PyMongo（伪异步），性能提升明显。</li>
+    </ul>
+  </li>
+  <li><strong>同步数据问题</strong>：
+    <ul>
+      <li>使用 BSON 快速传输数据时，会产生10倍以上的瞬时占用，超过 MongoDB Atlas免费 500MB 限额。</li>
+      <li>解决方法：开启 <code class="language-plaintext highlighter-rouge">mongorestore</code> 的 <code class="language-plaintext highlighter-rouge">numInsertionWorkersPerCollection</code> 限制。</li>
+    </ul>
+  </li>
+  <li><strong>增量拉取时防止重复数据</strong>。</li>
+  <li><strong>MongoDB API 使用</strong>：
+    <ul>
+      <li>在 MongoDB Atlas 中创建 Service Account 与 API Key: 在 IDENTITY&amp;ACCESS-&gt; Applications 里创建</li>
+      <li>Projectid是网址 可从浏览器 URL 中获取。</li>
+    </ul>
+  </li>
+  <li><strong>查询优化</strong>：
+    <ul>
+      <li>创建索引加速查询。</li>
+      <li>查询时排除大字段字段，避免无谓传输。</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="脚本触发与执行">脚本触发与执行</h3>
+
+<ul>
+  <li>JSON 参数转义地狱，最终选择使用temp file进行参数传递。</li>
+  <li>所有脚本路径、参数与环境变量统一写入 <code class="language-plaintext highlighter-rouge">config.toml</code> 进行集中管理。</li>
+</ul>
+
+<hr />
+
+<h2 id="mongodb数据库总结">Mongodb数据库总结</h2>
+
+<h3 id="回测过程相比csv">回测过程(相比csv)</h3>
+
+<ul>
+  <li>存储具备压缩特性，节省大量空间。</li>
+  <li>使用异步 API 调用，避免频繁本地 I/O。</li>
+  <li>支持实时监听任务进度。</li>
+</ul>
+
+<h3 id="结果查看">结果查看</h3>
+
+<ul>
+  <li>支持灵活的条件查询。</li>
+  <li>前后端分离，API 接口易于调用。
+    <ul>
+      <li>缺点是必须配合前端，无法像 CSV 文件直接系统自带app打开处理。</li>
+    </ul>
+  </li>
+</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="tool" /><category term="content" /><category term="Mongodb" /><category term="tauri" /><category term="vue" /><category term="worldquant" /><summary type="html"><![CDATA[我最终选择了使用 Tauri 来构建我的桌面回测应用。本文记录了开发过程中需求梳理、初始化步骤、遇到的坑以及一些性能优化技巧。]]></summary></entry><entry><title type="html">MCP协议理解</title><link href="https://roshameow.github.io//personal_homepage/tool/MCP/" rel="alternate" type="text/html" title="MCP协议理解" /><published>2025-04-04T00:00:00+00:00</published><updated>2025-04-04T20:20:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/tool/MCP</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/tool/MCP/"><![CDATA[<p>MCP(Model Context Protocol)</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="tool" /><category term="content" /><summary type="html"><![CDATA[MCP(Model Context Protocol)]]></summary></entry><entry><title type="html">blender学习: 几何节点花瓣</title><link href="https://roshameow.github.io//personal_homepage/blender/blender-learning22/" rel="alternate" type="text/html" title="blender学习: 几何节点花瓣" /><published>2025-04-02T00:00:00+00:00</published><updated>2025-05-14T07:44:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/blender/blender-learning22</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/blender/blender-learning22/"><![CDATA[<p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020250407185737.png" alt="Pasted image 20250407185737.png" width="300" /> -&gt; <img src="/personal_homepage/docs/attachment/Pasted%20image%2020250407185806.png" alt="Pasted image 20250407185806.png" width="300" /> -&gt; <img src="/personal_homepage/docs/attachment/Pasted%20image%2020250511182348.png" alt="Pasted image 20250511182348.png" width="180" /></p>
+
+<ul>
+  <li>制作花瓣
+    <ul>
+      <li>制作基础图形(一片花瓣):
+        <ul>
+          <li>添加plane -&gt; 添加loop cut -&gt; 制作一面宽一面窄的梭形(打开proportional editing调整中间线的长度)</li>
+          <li>添加细分的modifier</li>
+        </ul>
+      </li>
+      <li>制作一圈花瓣:
+        <ul>
+          <li>添加一个圆环采样: Curve Circle -&gt; Curve to Points</li>
+          <li>在每个采样点上添加花瓣的instance</li>
+          <li>给花瓣的位置和旋转添加random</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>制作花萼
+    <ul>
+      <li>添加一个uv sphere, 压扁</li>
+    </ul>
+  </li>
+  <li>制作花茎: 添加一个tube ($\mathbb R^1\times \mathbb S^1$ )
+    <ul>
+      <li>用<a href="https://docs.blender.org/manual/en/latest/modeling/geometry_nodes/curve/operations/curve_to_mesh.html">curve to mesh node</a> : curve用<a href="https://docs.blender.org/manual/zh-hans/4.0/modeling/geometry_nodes/curve/primitives/curve_line.html">Curve line</a> profile curve用<a href="https://docs.blender.org/manual/en/latest/modeling/geometry_nodes/curve/primitives/curve_circle.html">Curve Circle</a>
+        <ul>
+          <li>在geometry node -&gt; Add -&gt; Curve -&gt; Primitive(基础元素)里</li>
+        </ul>
+      </li>
+      <li>给Cuvre Line添加<a href="https://docs.blender.org/manual/en/latest/modeling/geometry_nodes/curve/operations/resample_curve.html">Resample Curve</a> 增加cut便于弯曲</li>
+      <li>把花茎独立出来变成object便于上色和控制</li>
+    </ul>
+  </li>
+</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="blender" /><category term="content" /><summary type="html"><![CDATA[-&gt; -&gt;]]></summary></entry><entry><title type="html">聚类</title><link href="https://roshameow.github.io//personal_homepage/algorithm/cluster/" rel="alternate" type="text/html" title="聚类" /><published>2025-03-18T00:00:00+00:00</published><updated>2025-03-26T19:28:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/algorithm/cluster</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/algorithm/cluster/"><![CDATA[<h2 id="距离">距离</h2>
+
+<ul>
+  <li>cos距离:</li>
+</ul>
+
+<h2 id="文本聚类">文本聚类</h2>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="algorithm" /><category term="content" /><summary type="html"><![CDATA[距离]]></summary></entry><entry><title type="html">blender学习: 内发光效果</title><link href="https://roshameow.github.io//personal_homepage/blender/blender-learning21/" rel="alternate" type="text/html" title="blender学习: 内发光效果" /><published>2025-03-11T00:00:00+00:00</published><updated>2025-03-11T19:42:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/blender/blender-learning21</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/blender/blender-learning21/"><![CDATA[<ul>
+  <li>设置材质: 透明+自发光
     <ul>
       <li>用transparent shader和emmision shader合成</li>
       <li>用<a href="https://docs.blender.org/manual/en/latest/render/shader_nodes/input/layer_weight.html">layer weight node</a>控制参数
@@ -41,635 +563,4 @@
       <li>透明表面的排序基于对象原点, 可能导致渲染错误</li>
     </ul>
   </li>
-</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="blender" /><category term="content" /><summary type="html"><![CDATA[设置透明+自发光 用transparent shader和emmision shader合成 用layer weight node控制参数 Frensnel 模式(对比度更高): 和frensel node一样公式, 把用IOR调节, 改成0-1调节weight Facing 模式: 按face面向镜头的角度调节weight 添加辉光: 用Compositing的glare node -&gt; Fog Glow]]></summary></entry><entry><title type="html">筛选适合阅读的论文</title><link href="https://roshameow.github.io//personal_homepage/tool/papers/" rel="alternate" type="text/html" title="筛选适合阅读的论文" /><published>2025-03-09T00:00:00+00:00</published><updated>2025-03-10T13:35:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/tool/papers</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/tool/papers/"><![CDATA[<table>
-  <thead>
-    <tr>
-      <th>搜索步骤</th>
-      <th>目的</th>
-      <th>输入-&gt;输出</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>一级搜索</td>
-      <td>按时间, 类别, 标题搜索文章</td>
-      <td>获取标题, 作者, 文章链接, summary</td>
-    </tr>
-    <tr>
-      <td>二级搜索</td>
-      <td>判断summary是否对主题有用</td>
-      <td>summary + prompt -&gt; yes/no</td>
-    </tr>
-    <tr>
-      <td>三级搜索</td>
-      <td>判断文章内容</td>
-      <td> </td>
-    </tr>
-  </tbody>
-</table>
-
-<ul>
-  <li>一级搜索(按时间, 类别, 标题搜索文章) —&gt; 获取标题, 作者, 文章链接, summary
-    <ul>
-      <li>arxiv搜索: <a href="https://info.arxiv.org/help/api/basics.html#python_simple_example">arxiv api调用</a>, 或者可以直接用<a href="https://pypi.org/project/arxiv/">avxiv的python包</a></li>
-    </ul>
-  </li>
-  <li>二级搜索: 判断summary是否对主题有用 -&gt; summary + prompt
-    <ul>
-      <li>Does this paper describe how to find abnormal returns in stocks? Just answer yes or no</li>
-      <li>f”The following is the content of a research paper:\n{pdf_text}\n\nQuestion: {question_str}”},</li>
-      <li>gemini</li>
-      <li><a href="https://huggingface.co/tasks/zero-shot-classification">Hugging Face 的 Zero-Shot Classification pipeline</a></li>
-      <li>classifier = pipeline(“zero-shot-classification”, model=”facebook/bart-large-mnli”)</li>
-    </ul>
-  </li>
-  <li>三级搜索: 下载文章内容</li>
-</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="tool" /><category term="content" /><summary type="html"><![CDATA[搜索步骤 目的 输入-&gt;输出 一级搜索 按时间, 类别, 标题搜索文章 获取标题, 作者, 文章链接, summary 二级搜索 判断summary是否对主题有用 summary + prompt -&gt; yes/no 三级搜索 判断文章内容  ]]></summary></entry><entry><title type="html">worldquant BRAIN 股票因子 (五 ) – 数据集理解</title><link href="https://roshameow.github.io//personal_homepage/finance/alpha5/" rel="alternate" type="text/html" title="worldquant BRAIN 股票因子 (五 ) – 数据集理解" /><published>2025-02-26T00:00:00+00:00</published><updated>2025-03-11T19:04:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/finance/alpha5</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/finance/alpha5/"><![CDATA[<table>
-  <thead>
-    <tr>
-      <th>数据集</th>
-      <th>特点</th>
-      <th>信号</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>模型数据集(model)</td>
-      <td>大多是分数形式</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>基本面数据</td>
-      <td> </td>
-      <td>1. <code class="language-plaintext highlighter-rouge">PE(市盈率) = eps/close</code><br />2. <code class="language-plaintext highlighter-rouge">PS(市销率) = close*sharesout/revenue</code><br />3. cashflow/price<br />4. cashflow/sales<br />5. margin, pretax margin, operating margin <br />6. enterprise value</td>
-    </tr>
-    <tr>
-      <td>风险数据</td>
-      <td> </td>
-      <td>1. 用risk factor做neutralize<br />2. 用risk-return 代替returns<br />3.</td>
-    </tr>
-    <tr>
-      <td>量价数据</td>
-      <td>完整</td>
-      <td>1. 交易量激增(volume spike) <br />2. -returns</td>
-    </tr>
-    <tr>
-      <td>社交媒体数据</td>
-      <td>更新频率高<br />有时效性: 尽量不要超过1季度</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>期权数据集(Options)</td>
-      <td> </td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>分析师数据<br /></td>
-      <td>很多是vector数据<br />更新频率低<br />有很多异常值</td>
-      <td>1. 预测和当前值的差异<br />2. 预测值随时间变化<br />3. 分析师修订模型数据</td>
-    </tr>
-    <tr>
-      <td>宏观数据(Macro)</td>
-      <td> </td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>other数据</td>
-      <td> </td>
-      <td>1. group分类数据</td>
-    </tr>
-  </tbody>
-</table>
-
-<ul>
-  <li>risk, analyst, model里和基本面, 量价类似字段可以用</li>
-</ul>
-
-<p>[1]  <a href="https://support.worldquantbrain.com/hc/en-us/community/posts/25238147759383-Getting-started-with-Model-Datasets">Getting started with Model Datasets</a></p>
-
-<p>[2]   <a href="https://support.worldquantbrain.com/hc/en-us/community/posts/27569589603863-Dataset-Deepdives-Option23-Option-Implied-Volatility-and-Greeks">Dataset Deepdives - Option23 (Option Implied Volatility and Greeks)</a></p>
-
-<p><a href="https://support.worldquantbrain.com/hc/en-us/search/click?data=BAh7DjoHaWRsKwiX%2B3xcARk6D2FjY291bnRfaWRpA9GrqjoJdHlwZUkiE2NvbW11bml0eV9wb3N0BjoGRVQ6CHVybEkidGh0dHBzOi8vc3VwcG9ydC53b3JsZHF1YW50YnJhaW4uY29tL2hjL2VuLXVzL2NvbW11bml0eS9wb3N0cy8yNzQ5MzYzNzM1NjQzOS1HZXR0aW5nLXN0YXJ0ZWQtd2l0aC1PdGhlci1EYXRhc2V0cwY7CFQ6DnNlYXJjaF9pZEkiKWFiZTEwYzA1LTI2ZDQtNDNlMC1hZDQ4LWRmYjkyYzkxMTY2NQY7CEY6CXJhbmtpBjoLbG9jYWxlSSIKZW4tdXMGOwhUOgpxdWVyeUkiDERhdGFzZXQGOwhUOhJyZXN1bHRzX2NvdW50aQIVAg%3D%3D--1a113d5587a51377ecd6cbba3b0d37108204fca9">Getting started with Other Datasets</a></p>
-
-<p><a href="https://support.worldquantbrain.com/hc/en-us/search/click?data=BAh7DjoHaWRsKwgXIIY39BY6D2FjY291bnRfaWRpA9GrqjoJdHlwZUkiE2NvbW11bml0eV9wb3N0BjoGRVQ6CHVybEkidmh0dHBzOi8vc3VwcG9ydC53b3JsZHF1YW50YnJhaW4uY29tL2hjL2VuLXVzL2NvbW11bml0eS9wb3N0cy8yNTIzODE1OTM2ODIxNS1HZXR0aW5nLXN0YXJ0ZWQtd2l0aC1BbmFseXN0LURhdGFzZXRzBjsIVDoOc2VhcmNoX2lkSSIpYWJlMTBjMDUtMjZkNC00M2UwLWFkNDgtZGZiOTJjOTExNjY1BjsIRjoJcmFua2kLOgtsb2NhbGVJIgplbi11cwY7CFQ6CnF1ZXJ5SSIMRGF0YXNldAY7CFQ6EnJlc3VsdHNfY291bnRpAhUC--7d41cbe8f4f4c83252fe5d5dd87da810c7ab50af">Getting started with Analyst Datasets</a></p>
-
-<p><a href="https://support.worldquantbrain.com/hc/en-us/search/click?data=BAh7DjoHaWRsKwiXzoQjsxg6D2FjY291bnRfaWRpA9GrqjoJdHlwZUkiE2NvbW11bml0eV9wb3N0BjoGRVQ6CHVybEkidGh0dHBzOi8vc3VwcG9ydC53b3JsZHF1YW50YnJhaW4uY29tL2hjL2VuLXVzL2NvbW11bml0eS9wb3N0cy8yNzE1NzY3NDExODgwNy1HZXR0aW5nLXN0YXJ0ZWQtd2l0aC1NYWNyby1EYXRhc2V0cwY7CFQ6DnNlYXJjaF9pZEkiKWFiZTEwYzA1LTI2ZDQtNDNlMC1hZDQ4LWRmYjkyYzkxMTY2NQY7CEY6CXJhbmtpDToLbG9jYWxlSSIKZW4tdXMGOwhUOgpxdWVyeUkiDERhdGFzZXQGOwhUOhJyZXN1bHRzX2NvdW50aQIVAg%3D%3D--121adf6e6b285a27d1e48e3471e2d6751e0d0298">Getting started with Macro Datasets</a></p>
-
-<p><a href="https://support.worldquantbrain.com/hc/en-us/search/click?data=BAh7DjoHaWRsKwgXI2Vf6hY6D2FjY291bnRfaWRpA9GrqjoJdHlwZUkiE2NvbW11bml0eV9wb3N0BjoGRVQ6CHVybEkifWh0dHBzOi8vc3VwcG9ydC53b3JsZHF1YW50YnJhaW4uY29tL2hjL2VuLXVzL2NvbW11bml0eS9wb3N0cy8yNTE5NTg3ODYyMTk3NS1HZXR0aW5nLXN0YXJ0ZWQtd2l0aC1TaG9ydC1JbnRlcmVzdC1EYXRhc2V0cwY7CFQ6DnNlYXJjaF9pZEkiKWFiZTEwYzA1LTI2ZDQtNDNlMC1hZDQ4LWRmYjkyYzkxMTY2NQY7CEY6CXJhbmtpDjoLbG9jYWxlSSIKZW4tdXMGOwhUOgpxdWVyeUkiDERhdGFzZXQGOwhUOhJyZXN1bHRzX2NvdW50aQIVAg%3D%3D--b4adf985bfba378be9fcd826f2750f37f550ca32">Getting started with Short Interest Datasets</a></p>
-
-<p><a href="https://support.worldquantbrain.com/hc/en-us/search/click?data=BAh7DjoHaWRsKwiX0dY29BY6D2FjY291bnRfaWRpA9GrqjoJdHlwZUkiE2NvbW11bml0eV9wb3N0BjoGRVQ6CHVybEkic2h0dHBzOi8vc3VwcG9ydC53b3JsZHF1YW50YnJhaW4uY29tL2hjL2VuLXVzL2NvbW11bml0eS9wb3N0cy8yNTIzODE0Nzg3OTMxOS1HZXR0aW5nLXN0YXJ0ZWQtd2l0aC1OZXdzLURhdGFzZXRzBjsIVDoOc2VhcmNoX2lkSSIpZWIyMmRmYmItNTQyOC00NGM2LTgyOWQtNmZjMzEwYTJlOTA5BjsIRjoJcmFua2kGOgtsb2NhbGVJIgplbi11cwY7CFQ6CnF1ZXJ5SSIMRGF0YXNldAY7CFQ6EnJlc3VsdHNfY291bnRpAhUC--39a7b6d0be102d6f6c783e197b971724fd36f65e">Getting started with News Datasets</a></p>
-
-<p><a href="https://support.worldquantbrain.com/hc/en-us/search/click?data=BAh7DjoHaWRsKwgXRn18HAg6D2FjY291bnRfaWRpA9GrqjoJdHlwZUkiE2NvbW11bml0eV9wb3N0BjoGRVQ6CHVybEkidGh0dHBzOi8vc3VwcG9ydC53b3JsZHF1YW50YnJhaW4uY29tL2hjL2VuLXVzL2NvbW11bml0eS9wb3N0cy84OTE4NDQwNjkxMjIzLS1CUkFJTi1USVBTLVdvcmtpbmctb24tbmV3cy1kYXRhc2V0cwY7CFQ6DnNlYXJjaF9pZEkiKWViMjJkZmJiLTU0MjgtNDRjNi04MjlkLTZmYzMxMGEyZTkwOQY7CEY6CXJhbmtpDjoLbG9jYWxlSSIKZW4tdXMGOwhUOgpxdWVyeUkiDERhdGFzZXQGOwhUOhJyZXN1bHRzX2NvdW50aQIVAg%3D%3D--d7743b72fe92fbf5766ce002c9f062e42e46de28">[BRAIN TIPS] Working on news datasets</a></p>
-
-<p><a href="https://support.worldquantbrain.com/hc/en-us/search/click?data=BAh7DjoHaWRsKwgXyowEehg6D2FjY291bnRfaWRpA9GrqjoJdHlwZUkiE2NvbW11bml0eV9wb3N0BjoGRVQ6CHVybEkie2h0dHBzOi8vc3VwcG9ydC53b3JsZHF1YW50YnJhaW4uY29tL2hjL2VuLXVzL2NvbW11bml0eS9wb3N0cy8yNjkxMjM0MTQxMjM3NS1HZXR0aW5nLXN0YXJ0ZWQtd2l0aC1QcmljZS1Wb2x1bWUtRGF0YXNldHMGOwhUOg5zZWFyY2hfaWRJIillYjIyZGZiYi01NDI4LTQ0YzYtODI5ZC02ZmMzMTBhMmU5MDkGOwhGOglyYW5raQs6C2xvY2FsZUkiCmVuLXVzBjsIVDoKcXVlcnlJIgxEYXRhc2V0BjsIVDoScmVzdWx0c19jb3VudGkCFQI%3D--6831292c011ffde15c6d6b4707258387474ab5cc">Getting started with Price Volume Datasets</a></p>
-
-<p><a href="https://support.worldquantbrain.com/hc/en-us/search/click?data=BAh7DjoHaWRsKwgXjrgfAhc6D2FjY291bnRfaWRpA9GrqjoJdHlwZUkiE2NvbW11bml0eV9wb3N0BjoGRVQ6CHVybEkie2h0dHBzOi8vc3VwcG9ydC53b3JsZHF1YW50YnJhaW4uY29tL2hjL2VuLXVzL2NvbW11bml0eS9wb3N0cy8yNTI5Nzg4OTU2MjEzNS1HZXR0aW5nLXN0YXJ0ZWQtd2l0aC1Tb2NpYWwtTWVkaWEtRGF0YXNldHMGOwhUOg5zZWFyY2hfaWRJIillYjIyZGZiYi01NDI4LTQ0YzYtODI5ZC02ZmMzMTBhMmU5MDkGOwhGOglyYW5raQ86C2xvY2FsZUkiCmVuLXVzBjsIVDoKcXVlcnlJIgxEYXRhc2V0BjsIVDoScmVzdWx0c19jb3VudGkCFQI%3D--7610f0e36b333735c4cb87f268d0e201fd078682">Getting started with Social Media Datasets</a></p>
-
-<p><a href="https://support.worldquantbrain.com/hc/en-us/search/click?data=BAh7DjoHaWRsKwgXLifBOxc6D2FjY291bnRfaWRpA9GrqjoJdHlwZUkiE2NvbW11bml0eV9wb3N0BjoGRVQ6CHVybEkid2h0dHBzOi8vc3VwcG9ydC53b3JsZHF1YW50YnJhaW4uY29tL2hjL2VuLXVzL2NvbW11bml0eS9wb3N0cy8yNTU0NTQxMTA3OTcwMy1HZXR0aW5nLXN0YXJ0ZWQtd2l0aC1FYXJuaW5ncy1EYXRhc2V0cwY7CFQ6DnNlYXJjaF9pZEkiKWViMjJkZmJiLTU0MjgtNDRjNi04MjlkLTZmYzMxMGEyZTkwOQY7CEY6CXJhbmtpDDoLbG9jYWxlSSIKZW4tdXMGOwhUOgpxdWVyeUkiDERhdGFzZXQGOwhUOhJyZXN1bHRzX2NvdW50aQIVAg%3D%3D--9854e3b1f92395e565e0d67bbfa6b52544a373f0">Getting started with Earnings Datasets</a></p>
-
-<p><a href="https://support.worldquantbrain.com/hc/en-us/search/click?data=BAh7DjoHaWRsKwgXqrcWsxg6D2FjY291bnRfaWRpA9GrqjoJdHlwZUkiE2NvbW11bml0eV9wb3N0BjoGRVQ6CHVybEkic2h0dHBzOi8vc3VwcG9ydC53b3JsZHF1YW50YnJhaW4uY29tL2hjL2VuLXVzL2NvbW11bml0eS9wb3N0cy8yNzE1NzQ1OTM0Nzk5MS1HZXR0aW5nLXN0YXJ0ZWQtd2l0aC1SaXNrLURhdGFzZXRzBjsIVDoOc2VhcmNoX2lkSSIpZWIyMmRmYmItNTQyOC00NGM2LTgyOWQtNmZjMzEwYTJlOTA5BjsIRjoJcmFua2kHOgtsb2NhbGVJIgplbi11cwY7CFQ6CnF1ZXJ5SSIMRGF0YXNldAY7CFQ6EnJlc3VsdHNfY291bnRpAhUC--904afdab3aa709384b5d21857ffab7f1cf76ccc7">Getting started with Risk Datasets</a></p>
-
-<p><a href="https://support.worldquantbrain.com/hc/en-us/search/click?data=BAh7DjoHaWRsKwgXSDO9nRY6D2FjY291bnRfaWRpA9GrqjoJdHlwZUkiE2NvbW11bml0eV9wb3N0BjoGRVQ6CHVybEkieGh0dHBzOi8vc3VwcG9ydC53b3JsZHF1YW50YnJhaW4uY29tL2hjL2VuLXVzL2NvbW11bml0eS9wb3N0cy8yNDg2NjczOTkzMTE1OS1HZXR0aW5nLXN0YXJ0ZWQtd2l0aC1TZW50aW1lbnQtRGF0YXNldHMGOwhUOg5zZWFyY2hfaWRJIik4YzM4ZjUzZi1iN2ExLTQzOTAtYWE3MS1lZDg2Nzk0M2VjYzIGOwhGOglyYW5raQs6C2xvY2FsZUkiCmVuLXVzBjsIVDoKcXVlcnlJIgxEYXRhc2V0BjsIVDoScmVzdWx0c19jb3VudGkCFQI%3D--5d7188588972d8e822582aea6b26a5ddd4697ca7">Getting started with Sentiment Datasets</a></p>
-
-<p><a href="https://support.worldquantbrain.com/hc/en-us/search/click?data=BAh7DjoHaWRsKwiXEsaUPBI6D2FjY291bnRfaWRpA9GrqjoJdHlwZUkiE2NvbW11bml0eV9wb3N0BjoGRVQ6CHVybEkiAYFodHRwczovL3N1cHBvcnQud29ybGRxdWFudGJyYWluLmNvbS9oYy9lbi11cy9jb21tdW5pdHkvcG9zdHMvMjAwNTE0MDMzNDY1ODMtLUJSQUlOLVRJUFMtRmluZGluZy1BbHBoYXMtRnVuZGFtZW50YWwtYW5kLU1vZGVsLURhdGEGOwhUOg5zZWFyY2hfaWRJIiljOTdiZmU5NC0xZjY5LTRmZGQtYjE2Zi0zY2RjZTdjMTk0NzAGOwhGOglyYW5raQs6C2xvY2FsZUkiCmVuLXVzBjsIVDoKcXVlcnlJIhhmdW5kYW1lbnRhbCBEYXRhc2V0BjsIVDoScmVzdWx0c19jb3VudGkCcAI%3D--870dfda40a16a3b1195f26c7d4cc0546b1e3f354">[BRAIN TIPS] Finding Alphas: Fundamental and Model Data</a></p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="finance" /><category term="content" /><summary type="html"><![CDATA[数据集 特点 信号 模型数据集(model) 大多是分数形式   基本面数据   1. PE(市盈率) = eps/close2. PS(市销率) = close*sharesout/revenue3. cashflow/price4. cashflow/sales5. margin, pretax margin, operating margin 6. enterprise value 风险数据   1. 用risk factor做neutralize2. 用risk-return 代替returns3. 量价数据 完整 1. 交易量激增(volume spike) 2. -returns 社交媒体数据 更新频率高有时效性: 尽量不要超过1季度   期权数据集(Options)     分析师数据 很多是vector数据更新频率低有很多异常值 1. 预测和当前值的差异2. 预测值随时间变化3. 分析师修订模型数据 宏观数据(Macro)     other数据   1. group分类数据]]></summary></entry><entry><title type="html">blender学习: 制作随音乐律动的视频</title><link href="https://roshameow.github.io//personal_homepage/blender/blender-learning20/" rel="alternate" type="text/html" title="blender学习: 制作随音乐律动的视频" /><published>2025-02-20T00:00:00+00:00</published><updated>2025-02-21T13:43:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/blender/blender-learning20</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/blender/blender-learning20/"><![CDATA[<p><a href="https://www.bilibili.com/video/BV1CPNpeTE5E/">参考教学</a></p>
-
-<ul>
-  <li>设置物体随1d强度变化:
-    <ul>
-      <li>在plane mesh上添加Cloud Texture, 把strength打上关键帧</li>
-      <li>用geometry node在变形的mesh上添加instance
-        <ul>
-          <li>把material的link从Data改为Object才能给instance添加材质</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li>添加音乐:
-    <ul>
-      <li>设置物体随音乐(1d)运动: 用Graph Editor的<a href="https://docs.blender.org/manual/en/latest/editors/graph_editor/channels/editing.html">Channel</a> -&gt; Sound to Samples 功能, 让strength随音乐变化</li>
-      <li>设置播放音乐: 在Video Sequencer里添加音乐</li>
-    </ul>
-  </li>
-</ul>
-
-<iframe src="//player.bilibili.com/player.html?isOutside=true&amp;aid=114040038755496&amp;bvid=BV1pTAZeNEhW&amp;cid=28499775428&amp;p=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="blender" /><category term="content" /><category term="music" /><category term="geometry_node" /><category term="video_editor" /><summary type="html"><![CDATA[参考教学]]></summary></entry><entry><title type="html">传感器颜色调制 (四) – 多光谱颜色校准</title><link href="https://roshameow.github.io//personal_homepage/algorithm/color-moderate3/" rel="alternate" type="text/html" title="传感器颜色调制 (四) – 多光谱颜色校准" /><published>2025-02-12T00:00:00+00:00</published><updated>2025-03-11T19:22:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/algorithm/color-moderate3</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/algorithm/color-moderate3/"><![CDATA[<h2 id="用rgb校准多光谱数据">用RGB校准多光谱数据</h2>
-
-<p>把<code class="language-plaintext highlighter-rouge">(H,W,N)</code> 的多光谱数据 <code class="language-plaintext highlighter-rouge">Y</code> , 由<code class="language-plaintext highlighter-rouge">N x 3</code> 的CCM(Color Correction Matrix) 线性映射为 <code class="language-plaintext highlighter-rouge">(H,W,3)</code> 的rgb数据 <code class="language-plaintext highlighter-rouge">X</code> . 即 $Y\cdot CCM = X$ .</p>
-
-<ul>
-  <li>虽然是线性映射, 可以在步骤前给Y 加一个 feature extraction模块, 实现非线性. 达到更低的loss.</li>
-  <li>即使只是线性映射, 多光谱数据也比3通道的数据能达到更低的loss.</li>
-</ul>
-
-<h3 id="求解系数">求解系数</h3>
-
-<table>
-  <thead>
-    <tr>
-      <th>Loss &amp; 约束</th>
-      <th>公式</th>
-      <th>说明</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>普通L2 norm</td>
-      <td>$\min \vert\vert Y\cdot CCM - X\vert\vert_2$</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>restrict awb</td>
-      <td>$\min \vert\vert Y\cdot CCM - X\vert\vert_2$ ,  $\sum_{col}(CCM)=1$</td>
-      <td>让中性灰映射不变, 即让 (1,1,…,1)映射到(1,1,1)<br />一般是把wb(white balance)步骤放在color correction之前会这样做<br />因为wb在不同机器上表现差别更大, <br />所以给这两步设置不同的校准频率吗?</td>
-    </tr>
-    <tr>
-      <td>L2 Regularization<br />🌟</td>
-      <td>$\min \vert\vert Y\cdot CCM - X\vert\vert_2 + \lambda\cdot\vert\vert CCM \vert\vert_2$</td>
-      <td>防止CCM因为数据点比较少而过拟合<br />如果用24色卡, 考虑多光谱数据有 3n 个未知数, <br />加入约束是十分必要的, 这个也是计算最简单的约束条件</td>
-    </tr>
-    <tr>
-      <td>Lasso</td>
-      <td>$\min \vert\vert Y\cdot CCM - X\vert\vert_2 + \lambda\cdot\vert\vert CCM \vert\vert_1$</td>
-      <td>防止CCM某个数据过大外, 还能增强稀疏性<br />在color-correction里没必要</td>
-    </tr>
-    <tr>
-      <td>CIELab<br />🌟</td>
-      <td>把 X 变换到Lab空间. <br />计算 $Y\cdot CCM$ 和 X的delta E loss</td>
-      <td>Lab 是评判RGB数据是否相近的最终标准. 这一步也是必要的.<br />Lab 变换是非线性的, 这一步优化时间更长.<br />需要在线性优化得到初值之后, 第二步再做delta E 的优化.</td>
-    </tr>
-  </tbody>
-</table>
-
-<ol>
-  <li><strong>原始L2 norm</strong>:  用<strong>最小二乘法</strong></li>
-  <li><strong>restrict awb条件</strong> : 因为是线性条件, 可以直接求解.
-    <ul>
-      <li>把awb条件写成: <img src="/personal_homepage/docs/attachment/Pasted%20image%2020250220192803.png" alt="Pasted image 20250220192803.png" width="300" /> 的形式</li>
-      <li>直接代入原方程: <img src="/personal_homepage/docs/attachment/Pasted%20image%2020250220192840.png" alt="Pasted image 20250220192840.png" width="1000" />
-        <ul>
-          <li>把 Y 和 CCM 分块展开并化简. 用<strong>最小二乘法</strong>求解化简后的方程即可.</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li><strong>L2 Regularization</strong> : 因为正则项也是L2的, 可以直接计算.
-    <ul>
-      <li>在求导时, CCM的系数由 $2Y^T Y$ 变为 $2Y^TY+2\begin{bmatrix}\lambda&amp;&amp; \\ &amp;\lambda&amp; \\ &amp;&amp;\lambda\end{bmatrix}$ 即可</li>
-    </ul>
-  </li>
-  <li><strong>Lasso问题</strong>: 可以用近端算子轮流迭代的方法优化.</li>
-  <li><strong>Delta E</strong> : 用BFGS 的方法优化.</li>
-</ol>
-
-<h3 id="测量标准">测量标准</h3>
-
-<ul>
-  <li>数据来源:
-    <ul>
-      <li>标准色卡</li>
-      <li>色差仪测量: 理论上能组成很大的数据集, 但是很多材料没有好的反射性能</li>
-    </ul>
-  </li>
-  <li>测量环境
-    <ul>
-      <li>保证测量到的都是反射光</li>
-      <li>控制光源, 如果用色差仪和色差仪的光源保持一致</li>
-    </ul>
-  </li>
-</ul>
-
-<h3 id="结果可视化">结果可视化</h3>
-
-<ul>
-  <li>色卡: <img src="/personal_homepage/docs/attachment/color_check_result.png" alt="color_check_result.png" width="300" /> 显示校准后和标准色的直观差距</li>
-  <li>Lab色彩: <img src="/personal_homepage/docs/attachment/lab_chromaticities.png" alt="lab_chromaticities.png" width="200" /> 显示数据集在ab空间的分布, 以及校准后的lab色差</li>
-  <li>在给出多光谱sensor每个通道的光谱(<code class="language-plaintext highlighter-rouge">cmf = n x 28</code> )的情况下, 可以出示下面两图: 由<code class="language-plaintext highlighter-rouge">(cmf_T * cmf)^{-1} * cmf</code> 做为系数, 还可以加入一些Regularization
-    <ul class="task-list">
-      <li>校准数据光谱: <img src="/personal_homepage/docs/attachment/color_spectrum.png" alt="color_spectrum.png" width="300" />  显示数据集的光谱分布.</li>
-      <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />多光谱映射的RGB和真实RGB的光谱差距. 即色卡上的红, 蓝, 绿三色.</li>
-    </ul>
-  </li>
-</ul>
-
-<h3 id="代码">代码</h3>
-
-<ul>
-  <li><a href="https://gist.github.com/roshameow/8855383a21cab1b36bba130a6cee70a5#file-color_plot-py"><strong>color_plot.py</strong></a></li>
-</ul>
-
-<h2 id="用多光谱合成高光谱数据">用多光谱合成高光谱数据</h2>
-
-<p>多光谱 + 高光谱分布 -&gt; 高光谱</p>
-
-<ul>
-  <li>数据采集: (多光谱,高光谱) 数据对
-    <ul>
-      <li>自然状态下采集的高光谱数据集(反射光+光源)</li>
-      <li>多光谱数据每个通道光谱 -&gt; 由高光谱数据合成的多光谱数据</li>
-    </ul>
-  </li>
-  <li>模型
-    <ul>
-      <li>考虑现实世界情况, 带kernel的模型(<a href="https://en.wikipedia.org/wiki/Radial_basis_function_network">rbf</a> )比较合适?</li>
-    </ul>
-  </li>
-</ul>
-
-<h2 id="用多光谱做awb">用多光谱做awb</h2>
-
-<p>即在多光谱数据中去掉光源的影响. 多光谱 + 光源分布 -&gt; 光源的 rgb illuminant vector.</p>
-
-<ul>
-  <li>数据采集: (多光谱, rgb illuminant vector) 数据对
-    <ul>
-      <li>自然状态下采集的光源的高光谱数据集 -&gt; 转换成多光谱数据集和rgb illuminant vector数据集</li>
-      <li>仿真: 从已知 (相机拍摄的rgb图片,rgb illuminant vector)  + 相机的response曲线 + 光源的光谱数据集 + 反射谱数据集 -&gt; 推测出图片每个像素的光谱
-        <ul>
-          <li><code class="language-plaintext highlighter-rouge">相机的response曲线 * 光源的光谱 = rgb illuminant vector</code></li>
-          <li><code class="language-plaintext highlighter-rouge">相机的response曲线 *  光源的光谱 * 反射谱 = rgb像素</code></li>
-          <li>用<a href="https://en.wikipedia.org/wiki/Maximum_likelihood_estimation">最大似然估计</a> 的想法, 先估计出图片光源光谱, 再估计出每个像素的反射光谱</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-</ul>
-
-<h2 id="reference">reference</h2>
-
-<p>[1]  Koskinen, Samu, Erman Acar, and Joni-Kristian Kämäräinen. “Single Pixel Spectral Color Constancy.” <em>International Journal of Computer Vision</em>, September 1, 2023. <a href="https://doi.org/10.1007/s11263-023-01867-x">https://doi.org/10.1007/s11263-023-01867-x</a>.</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="algorithm" /><category term="content" /><category term="sensor" /><category term="multi-spectrum" /><category term="isp" /><category term="proximal_operator" /><summary type="html"><![CDATA[用RGB校准多光谱数据]]></summary></entry><entry><title type="html">blender学习: 制作水体</title><link href="https://roshameow.github.io//personal_homepage/blender/blender-learning19/" rel="alternate" type="text/html" title="blender学习: 制作水体" /><published>2025-02-10T00:00:00+00:00</published><updated>2025-02-10T12:29:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/blender/blender-learning19</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/blender/blender-learning19/"><![CDATA[<h2 id="用displacementnoise-texture制作">用displacement+noise texture制作</h2>
-
-<p><a href="https://www.youtube.com/watch?v=ke-MgwUxLjI">参考教学</a></p>
-
-<ol>
-  <li>用一个plain mesh代表水体</li>
-  <li>制作水体颜色: Glossy + <a href="https://docs.blender.org/manual/en/latest/render/shader_nodes/shader/refraction.html">Refraction(折射)</a>  + <a href="https://docs.blender.org/manual/en/latest/render/shader_nodes/shader/transparent.html">Transparent</a>
-    <ul>
-      <li>Glossy + <a href="https://docs.blender.org/manual/en/latest/render/shader_nodes/shader/refraction.html">Refraction(折射)</a> 设置一个透明效果(参考玻璃的做法)
-        <ul>
-          <li>Refraction的Roughness通过波动调节(增强动态效果)</li>
-        </ul>
-      </li>
-      <li><a href="https://docs.blender.org/manual/en/latest/render/shader_nodes/shader/transparent.html">Transparent</a>  设置成蓝色, 相当于一个蓝色滤光片. 加在最后. 只有Cycles 渲染有用.</li>
-    </ul>
-  </li>
-  <li>制作波动: 用<a href="https://docs.blender.org/manual/en/latest/modeling/geometry_nodes/texture/noise.html">noise texture node</a> 输入displacement制作
-    <ol>
-      <li>我们的输出的是2d的plain. 用3d noise和4d noise的区别是?</li>
-    </ol>
-  </li>
-</ol>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="blender" /><category term="content" /><category term="shader" /><summary type="html"><![CDATA[用displacement+noise texture制作]]></summary></entry><entry><title type="html">切菜板成分</title><link href="https://roshameow.github.io//personal_homepage/daily/cutting-board/" rel="alternate" type="text/html" title="切菜板成分" /><published>2025-02-09T00:00:00+00:00</published><updated>2025-02-10T10:18:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/daily/cutting-board</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/daily/cutting-board/"><![CDATA[<h2 id="材质">材质</h2>
-
-<p>自身硬度和使用的适用性矛盾.</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>材质</th>
-      <th>耐高温</th>
-      <th>洗碗机</th>
-      <th>开裂发霉</th>
-      <th>碎屑</th>
-      <th>适用性</th>
-      <th>建议</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>不锈钢/陶瓷/石材</td>
-      <td>✔️</td>
-      <td>✔️</td>
-      <td>x</td>
-      <td>x</td>
-      <td>打滑, 伤刀</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>塑料<br />麦秸秆(内含塑料)</td>
-      <td>✔️</td>
-      <td>✔️<br /></td>
-      <td>不容易<br /></td>
-      <td>PE材质<br />高温下对人体有害</td>
-      <td> </td>
-      <td>不切需要烹饪的生食</td>
-    </tr>
-    <tr>
-      <td>木质</td>
-      <td> </td>
-      <td> </td>
-      <td>✔️<br /></td>
-      <td>不会产生有害物质</td>
-      <td> </td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>楠竹</td>
-      <td> </td>
-      <td> </td>
-      <td>✔️</td>
-      <td>不容易</td>
-      <td> </td>
-      <td> </td>
-    </tr>
-  </tbody>
-</table>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="daily" /><category term="content" /><summary type="html"><![CDATA[材质]]></summary></entry><entry><title type="html">worldquant BRAIN 股票因子 (四) – 因子思路</title><link href="https://roshameow.github.io//personal_homepage/finance/alphas4/" rel="alternate" type="text/html" title="worldquant BRAIN 股票因子 (四) – 因子思路" /><published>2025-01-22T00:00:00+00:00</published><updated>2025-02-27T18:55:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/finance/alphas4</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/finance/alphas4/"><![CDATA[<h2 id="事件">事件</h2>
-
-<ul>
-  <li>并购(M&amp;A)</li>
-</ul>
-
-<h2 id="分析师数据">分析师数据</h2>
-
-<ul>
-  <li>employee</li>
-  <li><code class="language-plaintext highlighter-rouge">anl4_adjusted_netincome_ft</code>  本身就是个很好的指标
-    <ul>
-      <li>各种变形<code class="language-plaintext highlighter-rouge">group_netralize, ts_mean, winsorize , +其他alpha</code> 也都可以</li>
-    </ul>
-  </li>
-  <li><code class="language-plaintext highlighter-rouge">anl4_flag_erbfintax</code></li>
-  <li><code class="language-plaintext highlighter-rouge">anl4_totassets_number</code></li>
-</ul>
-
-<h2 id="一些优化alpha的通用技巧">一些优化alpha的通用技巧</h2>
-
-<ul>
-  <li><strong>双重中性化</strong>: 让alpha对两个group都做中性化, 即在group (A x B) 上中性化.
-    <ul>
-      <li><code class="language-plaintext highlighter-rouge">group=densify((group_B + 1)*1000 + group_A)</code>  把两个group编码到一个group里.</li>
-      <li>没想到两个group可以相加.</li>
-      <li>类似于transformer中常用的, 把position embedding和text embedding用sum编码到一起.</li>
-    </ul>
-  </li>
-  <li><strong>双重排序</strong>: 和双重中性化类似. 给主要datafield A 一个很大的权重. 得到字典排序的效果.</li>
-  <li><strong>设置“止盈止损”</strong>: 原来的写法好像有问题.
-    <ul>
-      <li><code class="language-plaintext highlighter-rouge">close_at_event = trade_when(event1, close, -1);  alpha = trade_when(event2, signal, abs(close - close_at_event) / close &gt; .1);</code>
-        <ul>
-          <li><code class="language-plaintext highlighter-rouge">close_at_event</code>是<code class="language-plaintext highlighter-rouge">event1</code> 上次发生时的<code class="language-plaintext highlighter-rouge">close</code>. 如果上次<code class="language-plaintext highlighter-rouge">event1</code> 的影响超过10%, 对股票强制平仓.
-            <ul>
-              <li>比如<code class="language-plaintext highlighter-rouge">event1</code> 是上涨. 连续n天下跌导致影响超过10% 时, 强制平仓.</li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-      <li><code class="language-plaintext highlighter-rouge">close_at_event = trade_when(not(event), close, -1);alpha=(abs(close - close_at_event) / close &gt; .1)? nan : signal</code> 好像更符合逻辑
-        <ul>
-          <li>event 连续发生导致影响超过 10% 则强制平仓</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li><strong>月度调仓</strong>: 让仓位最多保持一个月, 是为了在量化结果的同时保持灵活性
-    <ul>
-      <li><code class="language-plaintext highlighter-rouge">D = days_from_last_change(event);Alpha = trade_when(D &lt; period, signal, D &gt; period);Alpha</code>
-        <ul>
-          <li>event是离散指标(比如: 5日均线&gt;10日均线)</li>
-          <li>D 距上次调仓的时间, period是规定时间(一个月)</li>
-          <li>情况:
-            <ul>
-              <li>event 指标变化 -&gt; D = 0, 调仓</li>
-              <li>event 指标在规定时间内一直没变化 -&gt; D &gt;规定时间, 超时, 关闭仓位</li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-</ul>
-
-<h3 id="交易条件">交易条件</h3>
-
-<ul>
-  <li><strong>判断市场的波动性</strong>:
-    <ul>
-      <li>用<code class="language-plaintext highlighter-rouge">trade_when(市场波动性,alpha, -1)</code>控制alpha的适用范围.</li>
-      <li>“系统风险度量”数据集, 新闻数据集, 情绪数据集</li>
-    </ul>
-  </li>
-  <li><strong>识别市场特殊时期</strong>: 比如在回报特别差的时期关闭交易
-      <code class="language-plaintext highlighter-rouge">count_of_each_group = group_count(1,subindustry); #计算每个组别的股票数量  
-      drawdown_num = if_else(returns&lt;-0.09,1,0); #如果大幅下跌则计数1，否则为0  
-      sum_of_drawdown = group_sum(drawdown_num,subindustry); #计算每天各组内大幅下跌股票的总数  
-      ratio = sum_of_drawdown/count_of_each_group; #计算出各组的大幅下跌股票数量占比  
-      alpha = if_else(ratio&gt;0.6,nan,signal); #如果本组超过60%的股票都在大幅下跌，则赋值nan.</code>
-    <ul>
-      <li>关闭多天:
-        <ul>
-          <li><code class="language-plaintext highlighter-rouge">alpha = if_else(days_from_last_change(ratio&lt;0.6) &lt; 200,nan,signal); #关闭200天</code>
-            <ul>
-              <li>大幅下跌事件 出现/消失 200天后才能解锁交易</li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li><strong>只取特殊股票交易</strong>:
-    <ul>
-      <li>比如市值靠前的股票: <code class="language-plaintext highlighter-rouge">filter = if_else(rank(cap)&gt;0.9,1,nan)</code></li>
-    </ul>
-  </li>
-</ul>
-
-<h2 id="参考资料">参考资料</h2>
-
-<p>[1]   <a href="https://support.worldquantbrain.com/hc/en-us/community/posts/15152019662487--%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%96%99-BRAIN%E5%B0%8F%E8%B4%B4%E5%A3%AB-%E8%BF%99%E9%87%8C%E6%9C%89%E4%BD%A0%E6%83%B3%E8%A6%81%E7%9A%84%E7%A1%AC%E6%A0%B8%E5%86%85%E5%AE%B9-%E6%8C%81%E7%BB%AD%E5%91%A8%E6%9B%B4%E4%B8%AD">【学习资料】BRAIN小贴士(这里有你想要的硬核内容！持续周更中）</a></p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="finance" /><category term="content" /><summary type="html"><![CDATA[事件]]></summary></entry><entry><title type="html">worldquant BRAIN 股票因子 (三) – API使用和代码</title><link href="https://roshameow.github.io//personal_homepage/code/alphas3/" rel="alternate" type="text/html" title="worldquant BRAIN 股票因子 (三) – API使用和代码" /><published>2025-01-18T00:00:00+00:00</published><updated>2025-02-10T20:57:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/code/alphas3</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/code/alphas3/"><![CDATA[<h2 id="仿真流程">仿真流程</h2>
-
-<h3 id="api功能">API功能</h3>
-
-<ul>
-  <li>登陆: <code class="language-plaintext highlighter-rouge">https://api.worldquantbrain.com/authentication</code></li>
-  <li>获得数据字段: <code class="language-plaintext highlighter-rouge">https://api.worldquantbrain.com/data-fields?</code></li>
-  <li>发起仿真测试: <code class="language-plaintext highlighter-rouge">https://api.worldquantbrain.com/simulations</code></li>
-  <li>查询结果, 打标签: <code class="language-plaintext highlighter-rouge">https://api.worldquantbrain.com/alphas/{alpha_id}</code></li>
-</ul>
-
-<h3 id="批量仿真流程">批量仿真流程</h3>
-
-<ol>
-  <li>开启异步session</li>
-  <li>尝试登陆</li>
-  <li>生成仿真数据, 把仿真数据存入csv文件, 计算任务数量</li>
-  <li>批量开启仿真回测, 处理可能出现的任何异常(登陆超时,发送过快,回测被拒绝)
-    <ol>
-      <li>发起请求</li>
-      <li>发起回测成功(response中包含<code class="language-plaintext highlighter-rouge">Location</code>) -&gt; 获得回测状态(得到simulation id)</li>
-      <li>🔄 不断请求回测状态</li>
-      <li>回测状态变为结束(response中<code class="language-plaintext highlighter-rouge">Retry-After=0, status=[COMPLETE,WARNING]</code>) -&gt; 获得结果(得到alpha id)</li>
-    </ol>
-  </li>
-</ol>
-
-<h3 id="问题">问题</h3>
-
-<ul>
-  <li>理论上可以不去监测每个请求的发送情况. <strong>simulation id在回测结束后不会改变不会销毁</strong>. 所以, 批量发送请求拿到simulation id后, 可以后续再查看simulation的运行结果.</li>
-  <li>本身<code class="language-plaintext highlighter-rouge">sess.get</code> 请求的过程等待只能由异步解决, 但是在这个项目里, 好像也没必要?</li>
-  <li>平台限制了回测请求的并发数, 但是获取数据好像并没有限制.</li>
-  <li>我经常对<code class="language-plaintext highlighter-rouge">template.py</code>元编程, python在用<code class="language-plaintext highlighter-rouge">importlib</code> 加载模块时, 会自动加载同名的缓存. 所以要记得手动reload. 否则会发现修改无效 😮‍💨</li>
-</ul>
-
-<h2 id="数据测试">数据测试</h2>
-
-<p>利用平台的统计平均正结果(longCount) 和平均负结果(shortCount) 的功能</p>
-
-<h3 id="测试数据分布">测试数据分布</h3>
-
-<ul>
-  <li>平台支持统计 <code class="language-plaintext highlighter-rouge">{datafield} &lt; {a}</code> 的平均股票数(longCount)</li>
-  <li>用<a href="https://en.wikipedia.org/wiki/Minifloat">Minifloat</a> 的想法, 先选择 <strong>指数</strong> 的切分点, 然后把中间部分用 <strong>有效数</strong> 等分</li>
-</ul>
-
-<p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020250210190821.png" alt="Pasted image 20250210190821.png" width="400" /></p>
-
-<table class="wikitable" style="text-align: center; width: 50px">
-<tbody><tr>
-<th width="12.5%">sign(符号位)
-</th>
-<th width="50%" colspan="4">exponent(指数)
-</th>
-<th width="37.5%" colspan="3">significand(有效数)
-</th></tr>
-<tr>
-<td style="background: #d5ffff">0
-</td>
-<td style="background: #a4ffb4">0
-</td>
-<td style="background: #a4ffb4">1
-</td>
-<td style="background: #a4ffb4">1
-</td>
-<td style="background: #a4ffb4">0
-</td>
-<td style="background: #ffb2b4">1
-</td>
-<td style="background: #ffb2b4">1
-</td>
-<td style="background: #ffb2b4">0
-</td></tr></tbody></table>
-
-<ul>
-  <li>拿BF8举例,   先选择 指数 的切分点, 然后把中间部分用 有效数 等分
-    <ul>
-      <li>exponent部分(4位, 2^{-6}-2^7)为, $0110b=6$  -&gt; $2^{6-7}=\frac{1}{2}$</li>
-      <li>significand部分(3位, 0/8-7/8 )为, $110b=6$ -&gt; $1+\frac{6}{8}$</li>
-      <li>最后事例的数字为 $(1+\frac{6}{8})*\frac{1}{2}$</li>
-    </ul>
-  </li>
-  <li>第一轮选用base10的指数点做切分, 统计每个区间内的股票数</li>
-  <li>第二轮选 5%-95% 的分位点区间, 再进行等分.</li>
-</ul>
-
-<h3 id="测试数据覆盖率">测试数据覆盖率</h3>
-
-<ul>
-  <li>用 <code class="language-plaintext highlighter-rouge">({datafield} != {a})? 1: -1</code> 的正负统计平均 zeros(shortCount), non-zeros(longCount), nan(剩下的) 值</li>
-</ul>
-
-<h3 id="测试数据更新频率">测试数据更新频率</h3>
-
-<ul>
-  <li>用 <code class="language-plaintext highlighter-rouge">ts_std_dev({data_fields},{d}) != 0 ? 1 : 0</code> 统计数据在周期d天内是否更新.</li>
-  <li>d 选择一些常用的更新频率: 天, 星期, 月, 季度, 年等</li>
-</ul>
-
-<h2 id="代码">代码</h2>
-
-<ul>
-  <li><a href="https://github.com/roshameow/quantnight">https://github.com/roshameow/quantnight</a></li>
-</ul>
-
-<h2 id="参考资料">参考资料</h2>
-
-<p>[1]  https://support.worldquantbrain.com/hc/en-us/community/posts/11807866133911–BRAIN-TIPS-6-ways-to-quickly-evaluate-a-new-dataset</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="code" /><category term="content" /><category term="python" /><category term="async" /><category term="worldquant" /><summary type="html"><![CDATA[仿真流程]]></summary></entry><entry><title type="html">协程的用法</title><link href="https://roshameow.github.io//personal_homepage/tool/asyncio/" rel="alternate" type="text/html" title="协程的用法" /><published>2025-01-16T00:00:00+00:00</published><updated>2025-02-10T20:16:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/tool/asyncio</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/tool/asyncio/"><![CDATA[<p>协程就是单线程多任务, 在一个任务等待的时候干点别的其他的任务. 所以包含等待的函数都要用协程的版本: 在需要时交出event loop的控制权.</p>
-<h2 id="python-协程的用法">python 协程的用法</h2>
-
-<p>在python里把一个协程函数也叫coroutine</p>
-
-<ul>
-  <li>yield(生成器): 会把当前函数挂起, 交出event loop的控制权给调用方, 再次调用函数时从暂停处继续.
-    <ul>
-      <li>包含yield的函数会变成一个coroutine</li>
-      <li><code class="language-plaintext highlighter-rouge">next()</code>会激活coroutine</li>
-      <li>一个主要用法是用于创建超大的list, 不会直接创建好占用内存.</li>
-      <li>缺点是无法直接得到list的size</li>
-    </ul>
-  </li>
-  <li>yield from
-    <ul>
-      <li>可以自动循环可迭代对象</li>
-    </ul>
-  </li>
-  <li>future</li>
-  <li>asyncio
-    <ul>
-      <li>async 函数不会马上执行其中代码, 而是返回coroutine</li>
-      <li>await 相当于yield from: 捕获StopIteration异常, 把StopIteration的value属性的值变为yield from表达式的值
-        <ul>
-          <li>后面可以是task/coroutine/future</li>
-        </ul>
-      </li>
-      <li>task: 可以被执行的函数
-        <ul>
-          <li>create_task 可以生成task</li>
-          <li>await 也会</li>
-          <li>asyncio.run() 的时候会执行task</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li>aiohttp</li>
-  <li>特点:
-    <ul>
-      <li>需要每个子任务结束主动告知(运行结束, return)</li>
-    </ul>
-  </li>
-  <li>可以用<code class="language-plaintext highlighter-rouge">inspect</code> 的<code class="language-plaintext highlighter-rouge">getgeneratorstate</code> 查看协程(coroutine)的状态</li>
-</ul>
-
-<h2 id="javascript的用法">javascript的用法</h2>
-
-<ul>
-  <li>callback</li>
-  <li>promise</li>
-</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="tool" /><category term="content" /><category term="python" /><category term="async" /><category term="异步" /><summary type="html"><![CDATA[协程就是单线程多任务, 在一个任务等待的时候干点别的其他的任务. 所以包含等待的函数都要用协程的版本: 在需要时交出event loop的控制权. python 协程的用法]]></summary></entry></feed>
+</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="blender" /><category term="content" /><summary type="html"><![CDATA[设置材质: 透明+自发光 用transparent shader和emmision shader合成 用layer weight node控制参数 Frensnel 模式(对比度更高): 和frensel node一样公式, 把用IOR调节, 改成0-1调节weight Facing 模式: 按face面向镜头的角度调节weight 添加辉光: 用Compositing的glare node -&gt; Fog Glow]]></summary></entry></feed>
