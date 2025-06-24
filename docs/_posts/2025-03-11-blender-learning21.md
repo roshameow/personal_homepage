@@ -5,11 +5,11 @@ categories:
   - blender
 tags:
   - content
-last_modified_at: 2025-03-11T19:40
+last_modified_at: 2025-03-11T19:42
 created: 2025-03-11T11:27
 ---
 
-- 设置透明+自发光
+- 设置材质: 透明+自发光
 	- 用transparent shader和emmision shader合成
 	- 用[layer weight node](https://docs.blender.org/manual/en/latest/render/shader_nodes/input/layer_weight.html)控制参数
 		- Frensnel 模式(对比度更高): 和frensel node一样公式, 把用IOR调节, 改成0-1调节weight
