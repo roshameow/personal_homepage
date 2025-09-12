@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<!--
+    So Simple Jekyll Theme 3.2.0
+    Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+    Free for personal and commercial use under the MIT license
+    https://github.com/mmistakes/so-simple-theme/blob/master/LICENSE
+-->
+<html lang="en-US" class="no-js">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  
+
+  
+  
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>代码语法解析 | Liu, Wen’s Home Page</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="代码语法解析" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="三元运算符(ternary)解析" />
+<meta property="og:description" content="三元运算符(ternary)解析" />
+<link rel="canonical" href="https://roshameow.github.io//personal_homepage/code/algorithm/string/" />
+<meta property="og:url" content="https://roshameow.github.io//personal_homepage/code/algorithm/string/" />
+<meta property="og:site_name" content="Liu, Wen’s Home Page" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2025-08-10T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="代码语法解析" />
+<meta name="twitter:site" content="@" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2025-09-12T05:24:00+00:00","datePublished":"2025-08-10T00:00:00+00:00","description":"三元运算符(ternary)解析","headline":"代码语法解析","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/code/algorithm/string/"},"url":"https://roshameow.github.io//personal_homepage/code/algorithm/string/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  
+
+  <script>
+    /* Cut the mustard */
+    if ('querySelector' in document && 'addEventListener' in window) {
+      document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + 'js';
+    }
+  </script>
+
+  <link rel="stylesheet" href="/personal_homepage/assets/css/main.css">
+  <link rel="stylesheet" href="/personal_homepage/assets/css/skins/default.css">
+  
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,700,700i|Lora:400,400i,700,700i">
+  <link rel="alternate" type="application/atom+xml" title="Liu, Wen&#39;s Home Page" href="/personal_homepage/atom.xml">
+<!-- start custom head snippets -->
+
+<!-- insert favicons. use http://realfavicongenerator.net/ -->
+<link rel="shortcut icon" type="image/x-icon" href="/personal_homepage/docs/images/logo.ico">
+<!-- end custom head snippets -->
+
+</head>
+
+  <body class="layout--post  代码语法解析">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#primary-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+  <div class="navigation-wrapper">
+    <a href="#menu-toggle" id="menu-toggle">Menu</a>
+    <nav id="primary-nav" class="site-nav animated drop">
+      <ul><li><a href="/personal_homepage/">Home</a></li><li><a href="/personal_homepage/posts/">Posts</a></li><li><a href="/personal_homepage/categories/">Categories</a></li><li><a href="/personal_homepage/tags/">Tags</a></li><li><a href="/personal_homepage/family/">Family</a></li><li><a href="/personal_homepage/search/">Search</a></li></ul>
+    </nav>
+  </div><!-- /.navigation-wrapper -->
+
+
+    <header class="masthead">
+  <div class="wrap">
+    
+    
+    
+      
+        <div class="site-title animated fadeIn"><a href="/personal_homepage/">Liu, Wen's Home Page</a></div>
+      
+      <p class="site-description animated fadeIn" itemprop="description">Work, Experiments and Ideas.</p>
+    
+  </div>
+</header><!-- /.masthead -->
+
+
+    <main id="main" class="main-content" aria-label="Content">
+  <article class="h-entry">
+    
+
+    <div class="page-wrapper">
+      <header class="page-header">
+        
+        
+        <h1 id="page-title" class="page-title p-name">代码语法解析
+</h1>
+        
+      </header>
+
+      <div class="page-sidebar">
+        <div class="page-author h-card p-author"><img src="/personal_homepage/docs/images/logo.svg" class="author-avatar u-photo" alt=""><div class="author-info">
+
+<span class="read-time">1 min read</span>
+
+    <time class="page-date dt-published" datetime="2025-08-10T00:00:00+00:00"><a class="u-url" href="">August 10, 2025</a>
+</time>
+
+  </div>
+</div>
+
+        
+  <h3 class="page-taxonomies-title">Categories</h3>
+  
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a class="p-category" href="/personal_homepage/categories/#algorithm" title="Pages filed under algorithm">algorithm</a></li><li class="page-taxonomy"><a class="p-category" href="/personal_homepage/categories/#code" title="Pages filed under code">code</a></li>
+  </ul>
+
+
+        
+  <h3 class="page-taxonomies-title">Tags</h3>
+  
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a href="/personal_homepage/tags/#ast" title="Pages tagged ast" rel="tag">ast</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#content" title="Pages tagged content" rel="tag">content</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#dsl" title="Pages tagged dsl" rel="tag">dsl</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#parser" title="Pages tagged parser" rel="tag">parser</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#pratt" title="Pages tagged pratt" rel="tag">pratt</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#python" title="Pages tagged python" rel="tag">python</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#regularization" title="Pages tagged regularization" rel="tag">regularization</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#string" title="Pages tagged string" rel="tag">string</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#ternary" title="Pages tagged ternary" rel="tag">ternary</a></li>
+  </ul>
+
+
+        <!-- {::options parse_block_html="true" /} -->
+<div id="entry-table-of-contents" class="toc-wrapper">
+  <h2 id="toc-toggle">
+    Table of Contents <i
+      class="toc-toggle-icon fas fa-chevron-down"></i>
+  </h2>
+  <!-- 1. toc
+{:toc} -->
+  <!-- <div id="markdown-toc"> -->
+
+    <ul class="inline_toc" id="my_toc"><li><a href="#三元运算符ternary解析">三元运算符(ternary)解析</a><ul><li><a href="#直接用字符串替换">直接用字符串替换</a></li><li><a href="#写parser处理">写parser处理</a></li><li><a href="#parse优化">parse优化</a></li></ul></li></ul>
+  <!-- </div> -->
+
+</div>
+<!-- {::options parse_block_html="false" /} -->
+        
+
+<div id="entry-table-of-contents" class="toc-wrapper">
+    <h2 id="toc-toggle" class="no_toc">
+        Related Posts <i class="toc-toggle-icon fas fa-chevron-down"></i>
+    </h2>
+    <!-- <div id="markdown-toc"> -->
+    <ul>
+        
+        <li><a href="/personal_homepage/photo/stable-diffusion10/">nano-banana 效果</a></li>
+        
+        <li><a href="/personal_homepage/tool/mac/dictionary/">mac系统字典</a></li>
+        
+        <li><a href="/personal_homepage/daily/washing-machine/">洗衣机分类</a></li>
+        
+        <li><a href="/personal_homepage/tool/vscode-extension/">给 VsCode 安装插件</a></li>
+        
+        <li><a href="/personal_homepage/algorithm/alpha10/">选出最佳的表达式组合</a></li>
+        
+    </ul>
+    <!-- </div> -->
+
+</div>
+
+
+
+
+
+      </div>
+
+      <div class="page-content">
+        <div class="e-content">
+          <h2 id="三元运算符ternary解析">三元运算符(ternary)解析</h2>
+
+<p>把 <code class="language-plaintext highlighter-rouge">...?...:...</code> 处理成<code class="language-plaintext highlighter-rouge">if_else(...,...,...)</code> 的形式.</p>
+
+<p>初衷是用正则替换把对应DSL的operator转换成python语言, 然后用python的ast 直接解析. 但是三元运算符的处理比较复杂, Python 中并没有直接对应的语法结构, 导致没法简单的替换.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>方法</th>
+      <th>优缺点</th>
+      <th>复杂度</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>用正则表达式替换三元运算符</td>
+      <td>思路naive, 但是可读性差，难以维护</td>
+      <td>低</td>
+    </tr>
+    <tr>
+      <td>设计语法树解析器（Parser）</td>
+      <td>灵活性高，但实现较复杂</td>
+      <td>中</td>
+    </tr>
+    <tr>
+      <td>结合 Pratt Parser 优化解析</td>
+      <td>代码简洁, 可读性高, 扩展性好</td>
+      <td>高</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="直接用字符串替换">直接用字符串替换</h3>
+
+<ul>
+  <li>用字符串正则查找tenary并替换</li>
+  <li>递归处理?: 和括号, =, 逗号的关系
+    <ul>
+      <li>处理 括号, 逗号 都依赖栈来正确处理嵌套结构</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="写parser处理">写parser处理</h3>
+
+<p>可以通过编写自定义的解析器来处理三元运算符。下面是一些处理流程：</p>
+<ol>
+  <li>定义:
+    <ol>
+      <li><strong>定义 AST 节点</strong>：设计不同类型的节点来表示表达式，如常量、变量、运算符等。</li>
+      <li><strong>Tokenize</strong>：将源代码字符串分割成 tokens（例如：数字、运算符、字符串等）。
+        <ol>
+          <li>例如: ``a&lt;0.2?<code class="language-plaintext highlighter-rouge"> → </code>[(“NAME”,”a”) (“OP”,”&lt;”) (“NUMBER”,”0.2”) (“QMARK”,”?”)]`</li>
+        </ol>
+      </li>
+      <li><strong>定义优先级</strong>: <strong>找表达式中最低的优先级处理</strong>.</li>
+    </ol>
+  </li>
+  <li>具体流程:
+    <ol>
+      <li><strong>预处理（字符串替换/注释/关键字替换）</strong>
+        <ul>
+          <li>把wq expr 中的<code class="language-plaintext highlighter-rouge">'...'</code> / <code class="language-plaintext highlighter-rouge">"..."</code> 用占位符替换
+            <ul>
+              <li><code class="language-plaintext highlighter-rouge">ts_sum(group_zscore(a&lt;0.2? (a+0.7):(a&gt;0.9? a:0.9),bucket(rank(cap),range='0.1, 1, 0.1')),5) -&gt; ts_sum(group_zscore(a&lt;0.2? (a+0.7):(a&gt;0.9? a:0.9),bucket(rank(cap),range=__STR_CONST_0__)),5)</code></li>
+            </ul>
+          </li>
+          <li>做若干文本替换（or/and/not → logical_or/logical_and/…、–→+、NaN→nan 等）。</li>
+          <li>删除注释（/* … */ 与行注释 // 或 #）。</li>
+          <li>按分号 ; 切分成多条<strong>语句</strong>，逐条 tokenize() → parse_expr() → to_python()。</li>
+          <li>token 化</li>
+          <li>自顶向下递归解析（赋值 → 三元→ 二元按最低 precedence 为根 → 原子/函数/一元）</li>
+        </ul>
+      </li>
+      <li><strong>解析每句代码:</strong>
+        <ul>
+          <li>顶层赋值检测
+            <ul>
+              <li>去掉最外层的分号</li>
+              <li>检查最外层(用括号记录层数)的赋值 <code class="language-plaintext highlighter-rouge">=</code>, 把赋值语句的左右两侧分开.</li>
+            </ul>
+          </li>
+          <li>三元检测
+            <ul>
+              <li>检查最外层 ? 的第一个位置作为三元入口, 再从 <code class="language-plaintext highlighter-rouge">?</code> 后扫描并找到对应的最外层 <code class="language-plaintext highlighter-rouge">:</code>（depth=0）的位置</li>
+              <li>每当遇到括号要剥去括号重新检测三元</li>
+            </ul>
+          </li>
+          <li>二元检测(binop)
+            <ul>
+              <li>检查最外层优先级最低的op. 优先级相同, 取最右边的op拆分(左结合)</li>
+            </ul>
+          </li>
+          <li>一元检测(atom):
+            <ul>
+              <li>检查 一元运算符(!, -) -&gt; 单token原子(number, string, name) -&gt; function call -&gt; 检查每个参数</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li><strong>构建 AST</strong>
+        <ul>
+          <li>递归生成 Python 代码: 对不同节点分别处理</li>
+          <li>还原字符串并输出</li>
+          <li>每条语句生成的 Python 片段再还原字符串常量占位符.</li>
+        </ul>
+      </li>
+      <li><strong>收集所有处理过的</strong>语句<strong>并最终用 \n 拼接返回</strong></li>
+    </ol>
+  </li>
+</ol>
+
+<ul>
+  <li>⚠️ 注意点: ast解析<strong>一定要注意代码的覆盖率. 保证不会出现不认识的token, operator, 分支情况</strong>.</li>
+</ul>
+
+<h3 id="parse优化">parse优化</h3>
+
+<h4 id="token优化">token优化</h4>
+
+<p>把预处理步骤内化到token中统一处理.</p>
+<h4 id="pratt优化">pratt优化</h4>
+
+<p>Pratt parser 其实是 <strong>自顶向下递归下降解析器</strong>的一种优化方式: 不是从最低优先级的字符开始, 而是随着解析从左往右动态的构建ast.</p>
+
+<ul>
+  <li>每个token除了优先级外, 定义两个方法: (nud和led)
+    <ul>
+      <li>nud(null denotation, 前序) 当token出现在表达式开头时</li>
+      <li>led(left denotation, 中序) 当 token 出现在 <strong>表达式中间</strong>（左边有东西）时调用</li>
+    </ul>
+  </li>
+</ul>
+
+<p>下面是一个DSL对应的token行为表格.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Token/操作符</th>
+      <th>进入 nud / led</th>
+      <th>触发条件</th>
+      <th>动作描述</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>NUMBER</strong></td>
+      <td>nud</td>
+      <td>token 类型是 <code class="language-plaintext highlighter-rouge">"NUMBER"</code></td>
+      <td>- 若全是数字 → <code class="language-plaintext highlighter-rouge">Const(int)</code><br />- 否则 → <code class="language-plaintext highlighter-rouge">Const(float)</code></td>
+    </tr>
+    <tr>
+      <td><strong>STRING</strong></td>
+      <td>nud</td>
+      <td>token 类型是 <code class="language-plaintext highlighter-rouge">"STRING"</code></td>
+      <td>构造 <code class="language-plaintext highlighter-rouge">Const(str)</code>，去掉引号</td>
+    </tr>
+    <tr>
+      <td><strong>NAME(变量)</strong></td>
+      <td>nud</td>
+      <td>token 类型是 <code class="language-plaintext highlighter-rouge">"NAME"</code><br />且 peek不是<code class="language-plaintext highlighter-rouge">(</code></td>
+      <td>返回 <code class="language-plaintext highlighter-rouge">Name</code></td>
+    </tr>
+    <tr>
+      <td><strong>NAME (调用)</strong></td>
+      <td>nud</td>
+      <td>token 类型是 <code class="language-plaintext highlighter-rouge">"NAME"</code> 且 peek=<code class="language-plaintext highlighter-rouge">(</code><br /><br /> <strong>函数调用</strong></td>
+      <td>- 消费 <code class="language-plaintext highlighter-rouge">(</code> → 解析参数列表<br />- 参数支持关键字：<code class="language-plaintext highlighter-rouge">key = value</code><br />- 遇到 <code class="language-plaintext highlighter-rouge">,</code> 继续，否则结束<br />- 消费 <code class="language-plaintext highlighter-rouge">)</code> <br />→ 返回 <code class="language-plaintext highlighter-rouge">Call(Name, args)</code></td>
+    </tr>
+    <tr>
+      <td><strong>LPAREN</strong></td>
+      <td>nud</td>
+      <td>当前 token = <code class="language-plaintext highlighter-rouge">(</code><br /><br /><a href="#ref">3</a></td>
+      <td>- 进入子表达式解析（<code class="language-plaintext highlighter-rouge">rbp=-1000</code>）<br />- 必须遇到 <code class="language-plaintext highlighter-rouge">)</code> 结束<br />- 返回子树</td>
+    </tr>
+    <tr>
+      <td><strong>+ / - (unary)</strong></td>
+      <td>nud</td>
+      <td>token=OP 且值为 <code class="language-plaintext highlighter-rouge">+/-</code>，在前缀位置</td>
+      <td>以 <code class="language-plaintext highlighter-rouge">get_prec("U+/-")</code> 为 rbp 递归解析右操作数 <br />→ <code class="language-plaintext highlighter-rouge">UnaryOp</code></td>
+    </tr>
+    <tr>
+      <td><strong>! (unary not)</strong></td>
+      <td>nud</td>
+      <td>token=OP 且值为 <code class="language-plaintext highlighter-rouge">!</code></td>
+      <td>以 <code class="language-plaintext highlighter-rouge">get_prec("!")</code> 为 rbp 递归解析右操作数 <br />→ <code class="language-plaintext highlighter-rouge">UnaryOp("!", expr)</code></td>
+    </tr>
+    <tr>
+      <td><strong>QMARK (?)</strong></td>
+      <td>led</td>
+      <td>peek = <code class="language-plaintext highlighter-rouge">QMARK</code> <br />且 <code class="language-plaintext highlighter-rouge">TERNARY_PREC &gt; rbp</code></td>
+      <td>- 消费 <code class="language-plaintext highlighter-rouge">?</code><br />- 解析 true_part (<code class="language-plaintext highlighter-rouge">rbp=TERNARY_PREC</code>)<br />- 期望 <code class="language-plaintext highlighter-rouge">:</code><br />- 解析 false_part (<code class="language-plaintext highlighter-rouge">rbp=TERNARY_PREC</code>)<br />- 构造 <code class="language-plaintext highlighter-rouge">Ternary(left, true, false)</code></td>
+    </tr>
+    <tr>
+      <td><strong>二元运算符</strong> <br />(如 <code class="language-plaintext highlighter-rouge">+ - * / ^ &lt; &gt; == != &amp;&amp;</code>)</td>
+      <td>led</td>
+      <td><code class="language-plaintext highlighter-rouge">peek</code> 发现下一个 token 是操作符 (<code class="language-plaintext highlighter-rouge">OP</code>)，<br />并且该操作符的优先级<br /><code class="language-plaintext highlighter-rouge">lbp &gt; rbp</code> <a href="#ref">1</a> <a href="#ref">2</a> <br /></td>
+      <td>- 消费当前操作符（op）<br />- 结合性处理：<br />   如果操作符是左结合（默认情况），则 next_rbp = lbp；<br />   如果操作符是右结合（如 =、^），则 next_rbp = lbp - 0.0001（轻微调整优先级, 为了遇到相同的运算符时继续解析）<br />- 递归调用 parse_expression(next_rbp) 来解析右操作数（right）<br />- 生成 BinOp(left, op, right) 节点</td>
+    </tr>
+    <tr>
+      <td><strong>LPAREN (函数调用)</strong><br /><br /></td>
+      <td>led</td>
+      <td>peek = <code class="language-plaintext highlighter-rouge">(</code><br /><a href="#ref">3</a><br />支持<strong>更一般化的函数调用</strong>. <br />比如, <br />(a+b)(x)、foo()(x) 这种高阶调用</td>
+      <td>- 消费 <code class="language-plaintext highlighter-rouge">(</code> → 解析参数列表<br />- 参数使用 <code class="language-plaintext highlighter-rouge">parse_expression(rbp=-1000)</code><br />- <code class="language-plaintext highlighter-rouge">,</code> 分隔，直到遇到 <code class="language-plaintext highlighter-rouge">)</code><br />- 构造 <code class="language-plaintext highlighter-rouge">Call(left, args)</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>表格解释 $\downarrow$ :</p>
+
+<p><span id="ref"></span></p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">lbp</code>（left binding precedence, 左操作数绑定优先级, 当前op的优先级）, <code class="language-plaintext highlighter-rouge">rbp</code> (右操作符绑定优先级, 上一个op的优先级)
+    <ul>
+      <li>当下一个op优先级更高时, ast会不断加深. 当下一个op优先级不足时, ast会从底向上直到找到合适的位置添加</li>
+      <li>比如 a = b = c, 在第二个等号处, 把第一个等号的优先级稍稍降低, 保证右侧的优先级更高. 解析为 a = (b = c)</li>
+      <li>括号总是最优先的, 直接把rdp降到最低</li>
+    </ul>
+  </li>
+</ul>
+
+<p>a + b x c -d: 
+<img src="/personal_homepage/docs/attachment/Pasted%20image%2020250912052333.png" alt="Pasted image 20250912052333.png" width="800" /></p>
+
+<p>a = b = c:</p>
+
+<p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020250912052438.png" alt="Pasted image 20250912052438.png" width="300" /></p>
+
+
+        </div>
+
+        
+
+        
+        
+  <div class="page-comments">
+    <div id="disqus_thread"></div>
+    <script>
+      var disqus_config = function () {
+        this.page.url = 'https://roshameow.github.io//personal_homepage/code/algorithm/string/';
+        this.page.identifier = 'https://roshameow.github.io//personal_homepage/code/algorithm/string/';
+      };
+
+      (function() {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://https-roshameow-github-io-personal-homepage.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+  </div>
+
+
+        
+
+        <nav class="page-pagination" role="navigation">
+  
+    <a class="page-previous" href="/personal_homepage/daily/washing-machine/">
+      <h4 class="page-pagination-label">Previous</h4>
+      <span class="page-pagination-title">
+        <i class="fas fa-arrow-left"></i> 洗衣机分类
+
+      </span>
+    </a>
+  
+
+  
+    <a class="page-next" href="/personal_homepage/tool/mac/dictionary/">
+      <h4 class="page-pagination-label">Next</h4>
+      <span class="page-pagination-title">
+        mac系统字典
+ <i class="fas fa-arrow-right"></i>
+      </span>
+    </a>
+  
+</nav>
+
+      </div>
+
+    </div>
+  </article>
+</main>
+
+    <footer id="footer" class="site-footer">
+  <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+<div class="social-icons"><a class="social-icon" href="/personal_homepage/atom.xml"><i class="fas fa-rss-square fa-2x" title="Feed"></i></a><a class="social-icon" href="https://github.com/roshameow"><i class="fab fa-github-square fa-2x" title="GitHub"></i></a><a class="social-icon" href="https://www.linkedin.com/in/wen-liu-06503a7b/"><i class="fab fa-linkedin fa-2x" title="LinkedIn"></i></a><a class="social-icon" href="mailto:w.liuatnk@gmail.com"><i class="fas fa-envelope-square fa-2x" title="e-mail"></i></a></div><div class="copyright">
+    
+      <p>&copy; 2025 Liu, Wen's Home Page. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://github.com/mmistakes/so-simple-theme" rel="nofollow">So Simple</a>.</p>
+    
+  </div>
+</footer>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="/personal_homepage/assets/js/main.min.js"></script>
+<script src="https://use.fontawesome.com/releases/v5.0.12/js/all.js"></script><!-- <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'G-9TMSCDTBGN', 'auto');
+  ga('send', 'pageview');
+</script> -->
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9TMSCDTBGN"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-9TMSCDTBGN');
+</script>
+
+
+
+<!-- MathJax -->
+
+<script>
+    // http://docs.mathjax.org/en/latest/upgrading/v2.html
+    MathJax = {
+        tex: {
+            tags: "ams",    // eq numbering options: none, ams, all
+            inlineMath: [['$', '$'], ["\\(", "\\)"]],  // 设置行内数学公式的开始和结束标记
+            displayMath: [['$$', '$$'], ["\\[", "\\]"]]  // 设置行间数学公式的开始和结束标记
+        },
+        // options: {
+        //   renderActions: {
+        //     // for mathjax 3, handle <script "math/tex"> blocks inserted by kramdown
+        //     find: [10, function (doc) {
+        //       for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+        //         const display = !!node.type.match(/; *mode=display/);
+        //         const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+        //         const text = document.createTextNode('');
+        //         node.parentNode.replaceChild(text, node);
+        //         math.start = { node: text, delim: '', n: 0 };
+        //         math.end = { node: text, delim: '', n: 0 };
+        //         doc.math.push(math);
+        //       }
+        //     }, '']
+        //   }
+        // }
+    }
+</script>
+
+<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  </body>
+
+</html>

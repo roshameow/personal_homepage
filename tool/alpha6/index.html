@@ -31,7 +31,7 @@
 <meta property="twitter:title" content="worldquant BRAIN 股票因子 (六 ) – 代码优化" />
 <meta name="twitter:site" content="@" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2025-05-13T23:01:00+00:00","datePublished":"2025-04-17T00:00:00+00:00","description":"我最终选择了使用 Tauri 来构建我的桌面回测应用。本文记录了开发过程中需求梳理、初始化步骤、遇到的坑以及一些性能优化技巧。","headline":"worldquant BRAIN 股票因子 (六 ) – 代码优化","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/tool/alpha6/"},"url":"https://roshameow.github.io//personal_homepage/tool/alpha6/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2025-09-02T17:11:00+00:00","datePublished":"2025-04-17T00:00:00+00:00","description":"我最终选择了使用 Tauri 来构建我的桌面回测应用。本文记录了开发过程中需求梳理、初始化步骤、遇到的坑以及一些性能优化技巧。","headline":"worldquant BRAIN 股票因子 (六 ) – 代码优化","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/tool/alpha6/"},"url":"https://roshameow.github.io//personal_homepage/tool/alpha6/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -153,15 +153,15 @@
     <!-- <div id="markdown-toc"> -->
     <ul>
         
-        <li><a href="/personal_homepage/algorithm/alpha9/">拉格朗日乘子法应用 (一)</a></li>
+        <li><a href="/personal_homepage/photo/stable-diffusion10/">nano-banana 效果</a></li>
         
-        <li><a href="/personal_homepage/tool/packing/">Tauri 项目 Build 与 Release 实践总结</a></li>
+        <li><a href="/personal_homepage/tool/mac/dictionary/">mac系统字典</a></li>
         
-        <li><a href="/personal_homepage/algorithm/alpha8/">选出最佳的表达式组合</a></li>
+        <li><a href="/personal_homepage/code/algorithm/string/">代码语法解析</a></li>
         
-        <li><a href="/personal_homepage/algorithm/alpha7/">选出最佳的因子组合</a></li>
+        <li><a href="/personal_homepage/daily/washing-machine/">洗衣机分类</a></li>
         
-        <li><a href="/personal_homepage/tool/auto-code/">设置开机自启动自运行程序</a></li>
+        <li><a href="/personal_homepage/tool/vscode-extension/">给 VsCode 安装插件</a></li>
         
     </ul>
     <!-- </div> -->
@@ -201,6 +201,7 @@
     <ol>
       <li>任务的执行要求是：<strong>异步限流 + 分组并发</strong></li>
       <li>这类任务需要数据库分页管理，适合使用“生产者-消费者”模型来处理。</li>
+      <li>在代码中循环(或监听)数据库的更新, 适应随时插入priority任务.</li>
     </ol>
   </li>
 </ol>
@@ -269,6 +270,7 @@
           <li>DOM(Document object Model) 是浏览器解析html之后生成的树形结构</li>
         </ul>
       </li>
+      <li>最后我还是自己管理了分页, 因为不想一次性加载全部数据库</li>
     </ul>
   </li>
   <li><strong>css样式问题</strong>：
@@ -285,7 +287,11 @@
   <li><strong><code class="language-plaintext highlighter-rouge">invoke</code> 的使用</strong>：位于 <code class="language-plaintext highlighter-rouge">@tauri-apps/api/core</code>(tauri 2.0的情况)，只能在 WebView 中调用，不能在npm run dev打开的浏览器端口中调试</li>
   <li><strong>参数匹配问题</strong>：Rust 会自动将 小驼峰(camelCase) 转成 蛇形(snake_case)，需确保参数名一致。</li>
   <li><strong>函数注册</strong>：所有后端 API 函数都需在 <code class="language-plaintext highlighter-rouge">main.rs</code> 中注册</li>
-  <li><strong>日志调试</strong>：打印完整log用于调试非常重要, 尤其调用外部脚本时, 统一调用函数, 把log打印写在里面.</li>
+  <li><strong>日志调试</strong>：打印完整log用于调试非常重要, 尤其调用外部脚本时, 统一调用函数, 把log打印写在里面.
+    <ul>
+      <li>用async函数和tokio 库设置stdout, stderr实时刷新</li>
+    </ul>
+  </li>
   <li><strong>异步数据库访问</strong>：使用 <code class="language-plaintext highlighter-rouge">futures_util::stream::TryStreamExt</code> 提供的 <code class="language-plaintext highlighter-rouge">try_next</code>，需手动引入 trait。</li>
   <li><strong>共享状态管理（State）</strong>：
     <ul>
@@ -336,6 +342,7 @@
 <ul>
   <li>JSON 参数转义地狱，最终选择使用temp file进行参数传递。</li>
   <li>所有脚本路径、参数与环境变量统一写入 <code class="language-plaintext highlighter-rouge">config.toml</code> 进行集中管理。</li>
+  <li><strong>使用事件循环运行带异常捕获的主逻辑</strong>(<code class="language-plaintext highlighter-rouge">asyncio.get_event_loop()</code> 和 <code class="language-plaintext highlighter-rouge">traceback.format_exc()</code>), 输出定位到错误代码级别的log.</li>
 </ul>
 
 <hr />

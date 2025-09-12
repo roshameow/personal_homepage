@@ -1,6 +1,496 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://roshameow.github.io//personal_homepage/atom.xml" rel="self" type="application/atom+xml" /><link href="https://roshameow.github.io//personal_homepage/" rel="alternate" type="text/html" /><updated>2025-06-24T04:45:59+00:00</updated><id>https://roshameow.github.io//personal_homepage/atom.xml</id><title type="html">Liu, Wen’s Home Page</title><subtitle>Work, Experiments and Ideas.</subtitle><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><entry><title type="html">拉格朗日乘子法应用 (一)</title><link href="https://roshameow.github.io//personal_homepage/algorithm/alpha9/" rel="alternate" type="text/html" title="拉格朗日乘子法应用 (一)" /><published>2025-06-22T00:00:00+00:00</published><updated>2023-12-22T06:14:38+00:00</updated><id>https://roshameow.github.io//personal_homepage/algorithm/alpha9</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/algorithm/alpha9/"><![CDATA[<p><a href="https://en.wikipedia.org/wiki/Modern_portfolio_theory">Modern_portfolio_theory</a></p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://roshameow.github.io//personal_homepage/atom.xml" rel="self" type="application/atom+xml" /><link href="https://roshameow.github.io//personal_homepage/" rel="alternate" type="text/html" /><updated>2025-09-12T01:51:36+00:00</updated><id>https://roshameow.github.io//personal_homepage/atom.xml</id><title type="html">Liu, Wen’s Home Page</title><subtitle>Work, Experiments and Ideas.</subtitle><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><entry><title type="html">nano-banana 效果</title><link href="https://roshameow.github.io//personal_homepage/photo/stable-diffusion10/" rel="alternate" type="text/html" title="nano-banana 效果" /><published>2025-09-02T00:00:00+00:00</published><updated>2025-09-02T19:30:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/photo/stable-diffusion10</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/photo/stable-diffusion10/"><![CDATA[]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="photo" /><category term="content" /><summary type="html"><![CDATA[]]></summary></entry><entry><title type="html">mac系统字典</title><link href="https://roshameow.github.io//personal_homepage/tool/mac/dictionary/" rel="alternate" type="text/html" title="mac系统字典" /><published>2025-08-16T00:00:00+00:00</published><updated>2025-08-19T18:47:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/tool/mac/dictionary</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/tool/mac/dictionary/"><![CDATA[<p>目标是把 MongoDB 里存放的术语和定义，打包成可以在 <strong>macOS 自带“字典”应用</strong>中查询的本地词典。</p>
 
-<h2 id="拉格朗日乘子法lagrange-multiplier-一般问题">拉格朗日乘子法（<a href="https://en.wikipedia.org/wiki/Lagrange_multiplier">Lagrange multiplier</a> ）一般问题</h2>
+<h2 id="成功步骤">成功步骤</h2>
+
+<p>用脚本实现1-2-3步骤即可. 代码:  <a href="https://gist.github.com/roshameow/15d29ace410e296cdbd0da4c4531ba14#file-mongo_2_dictionary-py"><strong>mongo_2_dictionary.py</strong></a></p>
+
+<ol>
+  <li>把数据转成 <strong>Apple Dictionary 支持的 TSV 格式</strong>。
+    <ul>
+      <li>⚠️ 避坑：不要用 <code class="language-plaintext highlighter-rouge">\t\n</code> , 用 <strong>HTML 标签</strong>来控制排版，用 <code class="language-plaintext highlighter-rouge">&lt;div&gt;</code> 表示新行，用 <code class="language-plaintext highlighter-rouge">&lt;br&gt;</code> 来做分隔。这样避免了特殊字符被误解析。</li>
+    </ul>
+  </li>
+  <li>用  <a href="https://github.com/ilius/pyglossary">PyGlossary</a> 把 <code class="language-plaintext highlighter-rouge">.tsv</code> 转成 AppleDict 的源文件。<code class="language-plaintext highlighter-rouge">pyglossary dictionary_dump.tsv output.dictionary --read-format=Tabfile --write-format=AppleDict</code>
+    <ul>
+      <li>⚠️ 避坑：不要用 CSV,  一开始我试过 CSV，但 AppleDict 的编译脚本会直接解析失败。</li>
+    </ul>
+  </li>
+  <li>编译 Apple Dictionary
+    <ul>
+      <li>PyGlossary 会生成一个字典目录，里面包含：<code class="language-plaintext highlighter-rouge">.xml</code> 源文件,  <code class="language-plaintext highlighter-rouge">.css</code> 样式文件, <code class="language-plaintext highlighter-rouge">.plist</code> 配置文件, <code class="language-plaintext highlighter-rouge">Makefile</code></li>
+      <li>正常情况下，进入目录直接运行：<code class="language-plaintext highlighter-rouge">make ; make install</code></li>
+    </ul>
+  </li>
+  <li>安装完成后，打开 macOS 自带的“字典”应用，在settting里勾选新字典。</li>
+</ol>
+
+<h2 id="工具和坑点总结">工具和坑点总结</h2>
+
+<ul>
+  <li><strong>需要安装 Dictionary Development Kit (DDK)</strong>
+    <ul>
+      <li>据说macOS 有自带的 <code class="language-plaintext highlighter-rouge">dictutil</code> 我没有找到。</li>
+      <li>DDK 要单独安装（Xcode 附带）。</li>
+    </ul>
+  </li>
+  <li><strong>不要用 DDK 官方的 <code class="language-plaintext highlighter-rouge">build_dict.sh</code></strong>, 用  <a href="https://github.com/ilius/pyglossary">PyGlossary</a> 生成
+    <ul>
+      <li>这个脚本里调用的 <code class="language-plaintext highlighter-rouge">make_line.pl</code> ，perl 脚本里有 bug。无法解决. xml 格式也非常讨厌</li>
+    </ul>
+  </li>
+  <li><strong>样式限制</strong>
+    <ul>
+      <li>Apple Dictionary 对标题样式是写死的，没法自定义。</li>
+    </ul>
+  </li>
+  <li><strong>调试</strong>
+    <ul>
+      <li>我在自己本地的dev版app上调试, 发现字典不是实时更新的, <strong>需要重启之后才会加载新的</strong> (可能是<code class="language-plaintext highlighter-rouge">DictionaryServices.framework</code> 的行为特性, 每个app单独一个缓存, 字典也在里面, 不会热更新)</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="结果">结果</h2>
+
+<p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020250819114921.png" alt="Pasted image 20250819114921.png" width="300" /></p>
+
+<ul>
+  <li>效果和官方字典差不多</li>
+  <li>但是在一些网页的在线代码编辑器(可能用的是自绘控件, 而不是macos的Cocoa文本系统)和微信(lookup被软件禁用)不能用</li>
+</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="tool" /><category term="mac" /><category term="content" /><summary type="html"><![CDATA[目标是把 MongoDB 里存放的术语和定义，打包成可以在 macOS 自带“字典”应用中查询的本地词典。]]></summary></entry><entry><title type="html">代码语法解析</title><link href="https://roshameow.github.io//personal_homepage/code/algorithm/string/" rel="alternate" type="text/html" title="代码语法解析" /><published>2025-08-10T00:00:00+00:00</published><updated>2025-09-12T05:24:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/code/algorithm/string</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/code/algorithm/string/"><![CDATA[<h2 id="三元运算符ternary解析">三元运算符(ternary)解析</h2>
+
+<p>把 <code class="language-plaintext highlighter-rouge">...?...:...</code> 处理成<code class="language-plaintext highlighter-rouge">if_else(...,...,...)</code> 的形式.</p>
+
+<p>初衷是用正则替换把对应DSL的operator转换成python语言, 然后用python的ast 直接解析. 但是三元运算符的处理比较复杂, Python 中并没有直接对应的语法结构, 导致没法简单的替换.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>方法</th>
+      <th>优缺点</th>
+      <th>复杂度</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>用正则表达式替换三元运算符</td>
+      <td>思路naive, 但是可读性差，难以维护</td>
+      <td>低</td>
+    </tr>
+    <tr>
+      <td>设计语法树解析器（Parser）</td>
+      <td>灵活性高，但实现较复杂</td>
+      <td>中</td>
+    </tr>
+    <tr>
+      <td>结合 Pratt Parser 优化解析</td>
+      <td>代码简洁, 可读性高, 扩展性好</td>
+      <td>高</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="直接用字符串替换">直接用字符串替换</h3>
+
+<ul>
+  <li>用字符串正则查找tenary并替换</li>
+  <li>递归处理?: 和括号, =, 逗号的关系
+    <ul>
+      <li>处理 括号, 逗号 都依赖栈来正确处理嵌套结构</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="写parser处理">写parser处理</h3>
+
+<p>可以通过编写自定义的解析器来处理三元运算符。下面是一些处理流程：</p>
+<ol>
+  <li>定义:
+    <ol>
+      <li><strong>定义 AST 节点</strong>：设计不同类型的节点来表示表达式，如常量、变量、运算符等。</li>
+      <li><strong>Tokenize</strong>：将源代码字符串分割成 tokens（例如：数字、运算符、字符串等）。
+        <ol>
+          <li>例如: ``a&lt;0.2?<code class="language-plaintext highlighter-rouge"> → </code>[(“NAME”,”a”) (“OP”,”&lt;”) (“NUMBER”,”0.2”) (“QMARK”,”?”)]`</li>
+        </ol>
+      </li>
+      <li><strong>定义优先级</strong>: <strong>找表达式中最低的优先级处理</strong>.</li>
+    </ol>
+  </li>
+  <li>具体流程:
+    <ol>
+      <li><strong>预处理（字符串替换/注释/关键字替换）</strong>
+        <ul>
+          <li>把wq expr 中的<code class="language-plaintext highlighter-rouge">'...'</code> / <code class="language-plaintext highlighter-rouge">"..."</code> 用占位符替换
+            <ul>
+              <li><code class="language-plaintext highlighter-rouge">ts_sum(group_zscore(a&lt;0.2? (a+0.7):(a&gt;0.9? a:0.9),bucket(rank(cap),range='0.1, 1, 0.1')),5) -&gt; ts_sum(group_zscore(a&lt;0.2? (a+0.7):(a&gt;0.9? a:0.9),bucket(rank(cap),range=__STR_CONST_0__)),5)</code></li>
+            </ul>
+          </li>
+          <li>做若干文本替换（or/and/not → logical_or/logical_and/…、–→+、NaN→nan 等）。</li>
+          <li>删除注释（/* … */ 与行注释 // 或 #）。</li>
+          <li>按分号 ; 切分成多条<strong>语句</strong>，逐条 tokenize() → parse_expr() → to_python()。</li>
+          <li>token 化</li>
+          <li>自顶向下递归解析（赋值 → 三元→ 二元按最低 precedence 为根 → 原子/函数/一元）</li>
+        </ul>
+      </li>
+      <li><strong>解析每句代码:</strong>
+        <ul>
+          <li>顶层赋值检测
+            <ul>
+              <li>去掉最外层的分号</li>
+              <li>检查最外层(用括号记录层数)的赋值 <code class="language-plaintext highlighter-rouge">=</code>, 把赋值语句的左右两侧分开.</li>
+            </ul>
+          </li>
+          <li>三元检测
+            <ul>
+              <li>检查最外层 ? 的第一个位置作为三元入口, 再从 <code class="language-plaintext highlighter-rouge">?</code> 后扫描并找到对应的最外层 <code class="language-plaintext highlighter-rouge">:</code>（depth=0）的位置</li>
+              <li>每当遇到括号要剥去括号重新检测三元</li>
+            </ul>
+          </li>
+          <li>二元检测(binop)
+            <ul>
+              <li>检查最外层优先级最低的op. 优先级相同, 取最右边的op拆分(左结合)</li>
+            </ul>
+          </li>
+          <li>一元检测(atom):
+            <ul>
+              <li>检查 一元运算符(!, -) -&gt; 单token原子(number, string, name) -&gt; function call -&gt; 检查每个参数</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li><strong>构建 AST</strong>
+        <ul>
+          <li>递归生成 Python 代码: 对不同节点分别处理</li>
+          <li>还原字符串并输出</li>
+          <li>每条语句生成的 Python 片段再还原字符串常量占位符.</li>
+        </ul>
+      </li>
+      <li><strong>收集所有处理过的</strong>语句<strong>并最终用 \n 拼接返回</strong></li>
+    </ol>
+  </li>
+</ol>
+
+<ul>
+  <li>⚠️ 注意点: ast解析<strong>一定要注意代码的覆盖率. 保证不会出现不认识的token, operator, 分支情况</strong>.</li>
+</ul>
+
+<h3 id="parse优化">parse优化</h3>
+
+<h4 id="token优化">token优化</h4>
+
+<p>把预处理步骤内化到token中统一处理.</p>
+<h4 id="pratt优化">pratt优化</h4>
+
+<p>Pratt parser 其实是 <strong>自顶向下递归下降解析器</strong>的一种优化方式: 不是从最低优先级的字符开始, 而是随着解析从左往右动态的构建ast.</p>
+
+<ul>
+  <li>每个token除了优先级外, 定义两个方法: (nud和led)
+    <ul>
+      <li>nud(null denotation, 前序) 当token出现在表达式开头时</li>
+      <li>led(left denotation, 中序) 当 token 出现在 <strong>表达式中间</strong>（左边有东西）时调用</li>
+    </ul>
+  </li>
+</ul>
+
+<p>下面是一个DSL对应的token行为表格.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Token/操作符</th>
+      <th>进入 nud / led</th>
+      <th>触发条件</th>
+      <th>动作描述</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>NUMBER</strong></td>
+      <td>nud</td>
+      <td>token 类型是 <code class="language-plaintext highlighter-rouge">"NUMBER"</code></td>
+      <td>- 若全是数字 → <code class="language-plaintext highlighter-rouge">Const(int)</code><br />- 否则 → <code class="language-plaintext highlighter-rouge">Const(float)</code></td>
+    </tr>
+    <tr>
+      <td><strong>STRING</strong></td>
+      <td>nud</td>
+      <td>token 类型是 <code class="language-plaintext highlighter-rouge">"STRING"</code></td>
+      <td>构造 <code class="language-plaintext highlighter-rouge">Const(str)</code>，去掉引号</td>
+    </tr>
+    <tr>
+      <td><strong>NAME(变量)</strong></td>
+      <td>nud</td>
+      <td>token 类型是 <code class="language-plaintext highlighter-rouge">"NAME"</code><br />且 peek不是<code class="language-plaintext highlighter-rouge">(</code></td>
+      <td>返回 <code class="language-plaintext highlighter-rouge">Name</code></td>
+    </tr>
+    <tr>
+      <td><strong>NAME (调用)</strong></td>
+      <td>nud</td>
+      <td>token 类型是 <code class="language-plaintext highlighter-rouge">"NAME"</code> 且 peek=<code class="language-plaintext highlighter-rouge">(</code><br /><br /> <strong>函数调用</strong></td>
+      <td>- 消费 <code class="language-plaintext highlighter-rouge">(</code> → 解析参数列表<br />- 参数支持关键字：<code class="language-plaintext highlighter-rouge">key = value</code><br />- 遇到 <code class="language-plaintext highlighter-rouge">,</code> 继续，否则结束<br />- 消费 <code class="language-plaintext highlighter-rouge">)</code> <br />→ 返回 <code class="language-plaintext highlighter-rouge">Call(Name, args)</code></td>
+    </tr>
+    <tr>
+      <td><strong>LPAREN</strong></td>
+      <td>nud</td>
+      <td>当前 token = <code class="language-plaintext highlighter-rouge">(</code><br /><br /><a href="#ref">3</a></td>
+      <td>- 进入子表达式解析（<code class="language-plaintext highlighter-rouge">rbp=-1000</code>）<br />- 必须遇到 <code class="language-plaintext highlighter-rouge">)</code> 结束<br />- 返回子树</td>
+    </tr>
+    <tr>
+      <td><strong>+ / - (unary)</strong></td>
+      <td>nud</td>
+      <td>token=OP 且值为 <code class="language-plaintext highlighter-rouge">+/-</code>，在前缀位置</td>
+      <td>以 <code class="language-plaintext highlighter-rouge">get_prec("U+/-")</code> 为 rbp 递归解析右操作数 <br />→ <code class="language-plaintext highlighter-rouge">UnaryOp</code></td>
+    </tr>
+    <tr>
+      <td><strong>! (unary not)</strong></td>
+      <td>nud</td>
+      <td>token=OP 且值为 <code class="language-plaintext highlighter-rouge">!</code></td>
+      <td>以 <code class="language-plaintext highlighter-rouge">get_prec("!")</code> 为 rbp 递归解析右操作数 <br />→ <code class="language-plaintext highlighter-rouge">UnaryOp("!", expr)</code></td>
+    </tr>
+    <tr>
+      <td><strong>QMARK (?)</strong></td>
+      <td>led</td>
+      <td>peek = <code class="language-plaintext highlighter-rouge">QMARK</code> <br />且 <code class="language-plaintext highlighter-rouge">TERNARY_PREC &gt; rbp</code></td>
+      <td>- 消费 <code class="language-plaintext highlighter-rouge">?</code><br />- 解析 true_part (<code class="language-plaintext highlighter-rouge">rbp=TERNARY_PREC</code>)<br />- 期望 <code class="language-plaintext highlighter-rouge">:</code><br />- 解析 false_part (<code class="language-plaintext highlighter-rouge">rbp=TERNARY_PREC</code>)<br />- 构造 <code class="language-plaintext highlighter-rouge">Ternary(left, true, false)</code></td>
+    </tr>
+    <tr>
+      <td><strong>二元运算符</strong> <br />(如 <code class="language-plaintext highlighter-rouge">+ - * / ^ &lt; &gt; == != &amp;&amp;</code>)</td>
+      <td>led</td>
+      <td><code class="language-plaintext highlighter-rouge">peek</code> 发现下一个 token 是操作符 (<code class="language-plaintext highlighter-rouge">OP</code>)，<br />并且该操作符的优先级<br /><code class="language-plaintext highlighter-rouge">lbp &gt; rbp</code> <a href="#ref">1</a> <a href="#ref">2</a> <br /></td>
+      <td>- 消费当前操作符（op）<br />- 结合性处理：<br />   如果操作符是左结合（默认情况），则 next_rbp = lbp；<br />   如果操作符是右结合（如 =、^），则 next_rbp = lbp - 0.0001（轻微调整优先级, 为了遇到相同的运算符时继续解析）<br />- 递归调用 parse_expression(next_rbp) 来解析右操作数（right）<br />- 生成 BinOp(left, op, right) 节点</td>
+    </tr>
+    <tr>
+      <td><strong>LPAREN (函数调用)</strong><br /><br /></td>
+      <td>led</td>
+      <td>peek = <code class="language-plaintext highlighter-rouge">(</code><br /><a href="#ref">3</a><br />支持<strong>更一般化的函数调用</strong>. <br />比如, <br />(a+b)(x)、foo()(x) 这种高阶调用</td>
+      <td>- 消费 <code class="language-plaintext highlighter-rouge">(</code> → 解析参数列表<br />- 参数使用 <code class="language-plaintext highlighter-rouge">parse_expression(rbp=-1000)</code><br />- <code class="language-plaintext highlighter-rouge">,</code> 分隔，直到遇到 <code class="language-plaintext highlighter-rouge">)</code><br />- 构造 <code class="language-plaintext highlighter-rouge">Call(left, args)</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>表格解释 $\downarrow$ :</p>
+
+<p><span id="ref"></span></p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">lbp</code>（left binding precedence, 左操作数绑定优先级, 当前op的优先级）, <code class="language-plaintext highlighter-rouge">rbp</code> (右操作符绑定优先级, 上一个op的优先级)
+    <ul>
+      <li>当下一个op优先级更高时, ast会不断加深. 当下一个op优先级不足时, ast会从底向上直到找到合适的位置添加</li>
+      <li>比如 a = b = c, 在第二个等号处, 把第一个等号的优先级稍稍降低, 保证右侧的优先级更高. 解析为 a = (b = c)</li>
+      <li>括号总是最优先的, 直接把rdp降到最低</li>
+    </ul>
+  </li>
+</ul>
+
+<p>a + b x c -d: 
+<img src="/personal_homepage/docs/attachment/Pasted%20image%2020250912052333.png" alt="Pasted image 20250912052333.png" width="800" /></p>
+
+<p>a = b = c:</p>
+
+<p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020250912052438.png" alt="Pasted image 20250912052438.png" width="300" /></p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="code" /><category term="algorithm" /><category term="content" /><category term="ast" /><category term="string" /><category term="regularization" /><category term="parser" /><category term="pratt" /><category term="ternary" /><category term="python" /><category term="dsl" /><summary type="html"><![CDATA[三元运算符(ternary)解析]]></summary></entry><entry><title type="html">洗衣机分类</title><link href="https://roshameow.github.io//personal_homepage/daily/washing-machine/" rel="alternate" type="text/html" title="洗衣机分类" /><published>2025-08-01T00:00:00+00:00</published><updated>2025-08-01T12:00:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/daily/washing-machine</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/daily/washing-machine/"><![CDATA[<ul>
+  <li>洗衣机</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>类型</th>
+      <th>容量范围</th>
+      <th>洗涤时间</th>
+      <th>用水量(次)</th>
+      <th>价格区间</th>
+      <th>优点</th>
+      <th>缺点</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>波轮</strong></td>
+      <td>6–12kg</td>
+      <td>30–50分钟</td>
+      <td>70–120L</td>
+      <td>¥800–3,000</td>
+      <td>价格低、洗得快、投衣方便</td>
+      <td>耗水高、衣物易缠绕、磨损略大</td>
+    </tr>
+    <tr>
+      <td><strong>滚筒</strong></td>
+      <td>6–12kg</td>
+      <td>60–90分钟</td>
+      <td>40–70L</td>
+      <td>¥1,500–8,000</td>
+      <td>洗净好、节水、脱水强、可加热洗</td>
+      <td>时间长、需弯腰、价格偏高</td>
+    </tr>
+    <tr>
+      <td><strong>双筒（双子洗）</strong></td>
+      <td>3+6kg</td>
+      <td>30–60分钟</td>
+      <td>60–100L</td>
+      <td>¥3,000–8,000</td>
+      <td>可分洗内外衣、节省空间</td>
+      <td>容量小、价格高</td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li>烘干机</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>类型</th>
+      <th>容量范围</th>
+      <th>烘干时间</th>
+      <th>耗电量(次)</th>
+      <th>价格区间</th>
+      <th>优点</th>
+      <th>缺点</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>排风式</strong></td>
+      <td>6–10kg</td>
+      <td>40–60分钟</td>
+      <td>2–3 kWh</td>
+      <td>¥1,500–3,000</td>
+      <td>快速烘干、价格低、结构简单</td>
+      <td>需排风管、耗能高、室内热潮湿</td>
+    </tr>
+    <tr>
+      <td><strong>冷凝式</strong></td>
+      <td>6–10kg</td>
+      <td>70–120分钟</td>
+      <td>1.5–2 kWh</td>
+      <td>¥2,000–5,000</td>
+      <td>无需排风、安装灵活</td>
+      <td>时间长、温度高伤衣物</td>
+    </tr>
+    <tr>
+      <td><strong>热泵式</strong></td>
+      <td>7–10kg</td>
+      <td>90–150分钟</td>
+      <td>0.8–1.2 kWh</td>
+      <td>¥4,000–12,000</td>
+      <td>节能、低温护衣、无需外排风</td>
+      <td>价格高、时间长、维修贵</td>
+    </tr>
+    <tr>
+      <td><strong>洗烘一体机</strong></td>
+      <td>4–7kg</td>
+      <td>120–300分钟</td>
+      <td>1.5–2.5 kWh</td>
+      <td>¥2,000–10,000</td>
+      <td>节省空间、全自动</td>
+      <td>烘干容量小、速度慢、易闷味</td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li>洗烘一体</li>
+</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="daily" /><category term="content" /><summary type="html"><![CDATA[洗衣机]]></summary></entry><entry><title type="html">给 VsCode 安装插件</title><link href="https://roshameow.github.io//personal_homepage/tool/vscode-extension/" rel="alternate" type="text/html" title="给 VsCode 安装插件" /><published>2025-07-05T00:00:00+00:00</published><updated>2023-12-22T06:14:38+00:00</updated><id>https://roshameow.github.io//personal_homepage/tool/vscode-extension</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/tool/vscode-extension/"><![CDATA[<p>当我们使用大量自定义的 DSL（领域特定语言）构建表达式，例如：<code class="language-plaintext highlighter-rouge">add(multiply(pasteurize(x), y), z)</code>
+这些函数（如 add, multiply, pasteurize）并不是 Python 的标准函数，而是平台自定义的 Operators。我们希望在 VSCode 中输入这些函数时：</p>
+<ul>
+  <li>能够自动补全</li>
+  <li>鼠标悬停时显示函数定义和用途</li>
+</ul>
+
+<h2 id="开发">开发</h2>
+
+<h3 id="开发环境配置">开发环境配置</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm <span class="nb">install</span> <span class="nt">-g</span> yo generator-code
+yo code
+</code></pre></div></div>
+
+<p>在执行 yo code 时，选择插件的配置选项：</p>
+<ul>
+  <li>Identifier：插件的唯一名称</li>
+  <li>Bundler：建议使用 esbuild，它简单且高效</li>
+</ul>
+
+<h3 id="插件功能实现">插件功能实现</h3>
+
+<ul>
+  <li>写主逻辑(在<code class="language-plaintext highlighter-rouge">src/extension.ts</code>中): 读取json, 定义activate行为(自动补全, 悬停提示…)</li>
+  <li>配置项目: 在package.json里, 配置activationEvents, contributes.languanage等信息. 在files里添加assets
+    <ul>
+      <li>设置在extension.settting里加载本地配置文件: <code class="language-plaintext highlighter-rouge">configuration.properties</code></li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="调试">调试</h3>
+
+<p>用View -&gt; Output -&gt; Extension Host查看log. 乱七八糟的log很多时, 搜索插件的Identifier定位.</p>
+
+<h3 id="打包">打包</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm <span class="nb">install</span> <span class="nt">-g</span> vsce
+npm run compile
+vsce package
+</code></pre></div></div>
+
+<ul>
+  <li>生成的<code class="language-plaintext highlighter-rouge">.vsix</code> 文件可以用于在VsCode里安装</li>
+</ul>
+
+<h3 id="安装">安装</h3>
+
+<p>命令行 <code class="language-plaintext highlighter-rouge">code --install-extension .vsix 文件</code></p>
+
+<p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020250706064758.png" alt="Pasted image 20250706064758.png" width="600" /></p>
+
+<h2 id="代码">代码</h2>
+
+<p><a href="https://github.com/roshameow/field-operator-hints">https://github.com/roshameow/field-operator-hints</a></p>
+
+<h2 id="vscode-marketplace-发布插件">VsCode Marketplace 发布插件</h2>
+
+<p>用github用户登陆, 发布到 <a href="https://marketplace.visualstudio.com/vscode">Visual Studio Code Marketplace</a> 即可</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="tool" /><category term="content" /><category term="typescript" /><category term="vscode" /><category term="dsl" /><summary type="html"><![CDATA[当我们使用大量自定义的 DSL（领域特定语言）构建表达式，例如：add(multiply(pasteurize(x), y), z) 这些函数（如 add, multiply, pasteurize）并不是 Python 的标准函数，而是平台自定义的 Operators。我们希望在 VSCode 中输入这些函数时： 能够自动补全 鼠标悬停时显示函数定义和用途]]></summary></entry><entry><title type="html">选出最佳的表达式组合</title><link href="https://roshameow.github.io//personal_homepage/algorithm/alpha10/" rel="alternate" type="text/html" title="选出最佳的表达式组合" /><published>2025-06-25T00:00:00+00:00</published><updated>2023-12-22T06:14:38+00:00</updated><id>https://roshameow.github.io//personal_homepage/algorithm/alpha10</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/algorithm/alpha10/"><![CDATA[<p>从给定的100个左右operator, 和10多个参数, 结合生成表达式</p>
+
+<h2 id="建模">建模</h2>
+
+<h3 id="astabstract-syntax-tree建模">ast(Abstract Syntax Tree)建模</h3>
+
+<ul>
+  <li>制作leaf node: 表达式最初的参数(days, numbers, states)</li>
+  <li>制作regular node: operator
+    <ul>
+      <li>规范operator的参数和return 类型: 用python typing的<code class="language-plaintext highlighter-rouge">Callable</code></li>
+      <li>定义node的名称和分类</li>
+    </ul>
+  </li>
+  <li>定义ExpressionNode类:
+    <ul>
+      <li>对象: 当前op(leaf or regular) + chirdren(复合的表达式) + return type</li>
+      <li>方法:
+        <ul>
+          <li>添加tree样式和string样式的打印</li>
+          <li>添加变异功能: 同类型node替换</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>制作随机生成ExpressionNode的函数: 从root node递归生成, 到leaf node停止
+    <ul>
+      <li>每步根据参数type选择return type符合的candidates随机添加</li>
+      <li>给不同类型的node设置不同概率</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="mdpmarkov-decision-process建模">MDP(Markov Decision Process)建模</h2>
+
+<p>把生成ExpressionNode的每一步拆开. 用dfs的方式遍历:</p>
+<ul>
+  <li>把每个node的return type和args type抽象出来</li>
+  <li>写成State, 用stack记录未被填充的regular node</li>
+  <li>Action : node</li>
+  <li>transition: 添加node</li>
+</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="algorithm" /><category term="content" /><summary type="html"><![CDATA[从给定的100个左右operator, 和10多个参数, 结合生成表达式]]></summary></entry><entry><title type="html">拉格朗日乘子法应用 (一 )</title><link href="https://roshameow.github.io//personal_homepage/algorithm/alpha9/" rel="alternate" type="text/html" title="拉格朗日乘子法应用 (一 )" /><published>2025-06-22T00:00:00+00:00</published><updated>2025-08-27T01:06:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/algorithm/alpha9</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/algorithm/alpha9/"><![CDATA[<h2 id="拉格朗日乘子法lagrange-multiplier-一般问题">拉格朗日乘子法（<a href="https://en.wikipedia.org/wiki/Lagrange_multiplier">Lagrange multiplier</a> ）一般问题</h2>
 
 <p>问题: $\min_x f(x),\  g(x)=0$</p>
 
@@ -42,6 +532,8 @@
 <hr />
 
 <h3 id="一markowitz-投资组合模型最大化-sharpe">一、Markowitz 投资组合模型：最大化 Sharpe</h3>
+
+<p><a href="https://en.wikipedia.org/wiki/Modern_portfolio_theory">Modern_portfolio_theory</a></p>
 
 <p>我们希望在给定的一段时间内 $T$，在一个包含 $N$ 支股票的股票池中，找到一个组合权重向量 $w \in \mathbb{R}^{N \times 1}$，使得组合的 <strong>Sharpe 比</strong> 最大：</p>
 
@@ -127,7 +619,7 @@
 <p>也就是说：</p>
 
 \[\max_{V^T V = I} \text{tr}(V^T A^T A V)
-\quad \text{即最大化投影后的方差总和}\]]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="algorithm" /><category term="content" /><summary type="html"><![CDATA[Modern_portfolio_theory]]></summary></entry><entry><title type="html">Tauri 项目 Build 与 Release 实践总结</title><link href="https://roshameow.github.io//personal_homepage/tool/packing/" rel="alternate" type="text/html" title="Tauri 项目 Build 与 Release 实践总结" /><published>2025-06-17T00:00:00+00:00</published><updated>2023-12-22T06:14:38+00:00</updated><id>https://roshameow.github.io//personal_homepage/tool/packing</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/tool/packing/"><![CDATA[<p>本文记录了我在使用 Tauri 构建桌面端应用时遇到的一些坑和解决方案，包括配置文件管理、macOS 编译、GitHub Actions 自动构建等内容。</p>
+\quad \text{即最大化投影后的方差总和}\]]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="algorithm" /><category term="content" /><category term="Lagrange_multiplier" /><category term="Markowitz_model" /><summary type="html"><![CDATA[拉格朗日乘子法（Lagrange multiplier ）一般问题]]></summary></entry><entry><title type="html">Tauri 项目 Build 与 Release 实践总结</title><link href="https://roshameow.github.io//personal_homepage/tool/packing/" rel="alternate" type="text/html" title="Tauri 项目 Build 与 Release 实践总结" /><published>2025-06-17T00:00:00+00:00</published><updated>2023-12-22T06:14:38+00:00</updated><id>https://roshameow.github.io//personal_homepage/tool/packing</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/tool/packing/"><![CDATA[<p>本文记录了我在使用 Tauri 构建桌面端应用时遇到的一些坑和解决方案，包括配置文件管理、macOS 编译、GitHub Actions 自动构建等内容。</p>
 
 <hr />
 
@@ -219,46 +711,64 @@
 
 <p>👉 <a href="https://github.com/roshameow/quantnight-frontend">quantnight-frontend GitHub 仓库</a></p>
 
-<iframe src="//player.bilibili.com/player.html?isOutside=true&amp;aid=114699215572489&amp;bvid=BV1CKNqzrEQd&amp;cid=30550526818&amp;p=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="tool" /><category term="content" /><category term="tauri" /><category term="github" /><category term="github_actions" /><category term="vue" /><category term="rust" /><category term="build" /><category term="macos" /><summary type="html"><![CDATA[本文记录了我在使用 Tauri 构建桌面端应用时遇到的一些坑和解决方案，包括配置文件管理、macOS 编译、GitHub Actions 自动构建等内容。]]></summary></entry><entry><title type="html">选出最佳的表达式组合</title><link href="https://roshameow.github.io//personal_homepage/algorithm/alpha8/" rel="alternate" type="text/html" title="选出最佳的表达式组合" /><published>2025-05-27T00:00:00+00:00</published><updated>2023-12-22T06:14:38+00:00</updated><id>https://roshameow.github.io//personal_homepage/algorithm/alpha8</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/algorithm/alpha8/"><![CDATA[<p>从给定的100个左右operator, 和10多个参数, 结合生成表达式</p>
-
-<h2 id="建模">建模</h2>
-
-<h3 id="astabstract-syntax-tree建模">ast(Abstract Syntax Tree)建模</h3>
+<iframe src="//player.bilibili.com/player.html?isOutside=true&amp;aid=114699215572489&amp;bvid=BV1CKNqzrEQd&amp;cid=30550526818&amp;p=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="tool" /><category term="content" /><category term="tauri" /><category term="github" /><category term="github_actions" /><category term="vue" /><category term="rust" /><category term="build" /><category term="macos" /><summary type="html"><![CDATA[本文记录了我在使用 Tauri 构建桌面端应用时遇到的一些坑和解决方案，包括配置文件管理、macOS 编译、GitHub Actions 自动构建等内容。]]></summary></entry><entry><title type="html">组合交易</title><link href="https://roshameow.github.io//personal_homepage/finance/alpha8/" rel="alternate" type="text/html" title="组合交易" /><published>2025-05-27T00:00:00+00:00</published><updated>2023-12-22T06:14:38+00:00</updated><id>https://roshameow.github.io//personal_homepage/finance/alpha8</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/finance/alpha8/"><![CDATA[<h2 id="单个alpha仿真交易流程">单个alpha仿真交易流程</h2>
 
 <ul>
-  <li>制作leaf node: 表达式最初的参数(days, numbers, states)</li>
-  <li>制作regular node: operator
+  <li>输入为  <code class="language-plaintext highlighter-rouge">Matrix</code>(T x I ), 按照时间顺序交易</li>
+  <li><a href="https://platform.worldquantbrain.com/learn/documentation/create-alphas/how-brain-platform-works">仿真交易规则</a>:
     <ul>
-      <li>规范operator的参数和return 类型: 用python typing的<code class="language-plaintext highlighter-rouge">Callable</code></li>
-      <li>定义node的名称和分类</li>
-    </ul>
-  </li>
-  <li>定义ExpressionNode类:
-    <ul>
-      <li>对象: 当前op(leaf or regular) + chirdren(复合的表达式) + return type</li>
-      <li>方法:
+      <li>每天用恒定的账面规模(<code class="language-plaintext highlighter-rouge">book size</code>)交易,
         <ul>
-          <li>添加tree样式和string样式的打印</li>
-          <li>添加变异功能: 同类型node替换</li>
+          <li>book size 为$20 million. 有$10 million现金, 投资上限为$20million.</li>
         </ul>
       </li>
-    </ul>
-  </li>
-  <li>制作随机生成ExpressionNode的函数: 从root node递归生成, 到leaf node停止
-    <ul>
-      <li>每步根据参数type选择return type符合的candidates随机添加</li>
-      <li>给不同类型的node设置不同概率</li>
+      <li>alpha apply到每只股票上得到alpha value</li>
+      <li><strong>L1 归一化</strong>,  得到每只股票的<code class="language-plaintext highlighter-rouge">weight</code>
+        <ul>
+          <li>不同neutralize组的booksize是分别计算的? 比如有两个sector, 每个sector scale到 0.5/abs(sector_sum)?</li>
+        </ul>
+      </li>
+      <li>每天在每只股票上投资 <code class="language-plaintext highlighter-rouge">weight*booksize</code></li>
+      <li>计算<code class="language-plaintext highlighter-rouge">PnL</code></li>
     </ul>
   </li>
 </ul>
 
-<h2 id="mdpmarkov-decision-process建模">MDP(Markov Decision Process)建模</h2>
+<h2 id="组合combo">组合(combo)</h2>
 
-<p>把生成ExpressionNode的每一步拆开.</p>
+<p>先选择一个alpha pool $\alpha_n$ (N x T x I) 一个权重 $w_n$ (N x T). 按照权重线性组合alpha $\tilde\alpha$ ( T x I ) , 按照$\tilde\alpha$ 交易. $\tilde\alpha=\sum_n w_n\alpha_n$ . 展开写为</p>
+
+\[\tilde\alpha_{ti}=\frac{\sum_n w_{nt}\alpha_{nti}}{\sum_i\vert\sum_n w_{nt}\alpha_{nti}\vert}\quad ,\sum_n w_{nt}=1\]
+
+<p>记每个instrument的当天return $r_{ti}$ . 每个alpha的当天return $R_{nt}=\frac{\sum_i \alpha_{nti}r_{ti}}{\sum_i \vert \alpha_{nti}\vert}$ , 当天组合alpha的实际return $R_t = \sum_i \tilde\alpha_{ti}r_{ti}$</p>
+
+<h3 id="equal-weight-的定义与优势">Equal Weight 的定义与优势</h3>
+
+<p>当我们取<strong>equal weight</strong>时, 组合 $\tilde \alpha$ 退化成</p>
+
+\[\tilde\alpha_{ti}=\frac{\sum_n \alpha_{nti}}{\sum_i\vert\sum_n \alpha_{nti}\vert}\]
+
+<p>这种简单的平均权重组合在实务中表现出非常强的鲁棒性和实用性，具体原因包括：</p>
+
 <ul>
-  <li>把每个node的return type和args type抽象出来</li>
-  <li>写成token</li>
-</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="algorithm" /><category term="content" /><summary type="html"><![CDATA[从给定的100个左右operator, 和10多个参数, 结合生成表达式]]></summary></entry><entry><title type="html">选出最佳的因子组合</title><link href="https://roshameow.github.io//personal_homepage/algorithm/alpha7/" rel="alternate" type="text/html" title="选出最佳的因子组合" /><published>2025-05-26T00:00:00+00:00</published><updated>2023-12-22T06:14:38+00:00</updated><id>https://roshameow.github.io//personal_homepage/algorithm/alpha7</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/algorithm/alpha7/"><![CDATA[<p>遗传算法(Genetic Algorithm):
+  <li><strong>共识信号增强</strong>：多个 alpha 对某些 instrument 给出同向信号时，该方向上的权重被加强，更有可能体现真正的市场信息。</li>
+  <li>
+    <p><strong>波动抑制</strong>：对同一个 instrument，允许做空的情况下, 不同 alpha 的信号$\alpha_{nti}$ 可能方向相反，合并后会互相抵消, 甚至变成0，降低组合在这些标的上的持仓强度：</p>
+
+\[对某些i,\quad\left| \tilde\alpha_{ti} \right| &lt; \min_n \frac{|\alpha_{nti}|}{\sum_i |\alpha_{nti}|}.\]
+
+    <p>从而自动避开一些高风险或噪声较大的标的。</p>
+  </li>
+  <li><strong>组合收益优于子因子</strong>：在允许做多做空的情况下，equal weight 组合往往能取得比所有子 alpha 都更高的收益。这是因为它在分散风险的同时保留了共识部分的 alpha。</li>
+</ul>
+
+<hr />
+
+<h4 id="做多限制下的局限与扩展">做多限制下的局限与扩展</h4>
+
+<p>当我们只允许做多（即 $\alpha_{nti} \ge 0$）时，equal weight 组合的收益只能处于各子 alpha 收益之间，无法超越它们。这是因为组合是一个凸组合，不具备“负相关对冲”的好处。(简化的考虑, 对于正数abcd, 有 $\min\lbrace\frac{a}{c},\frac{b}{d}\rbrace\le\frac{a+b}{c+d}\le \max\lbrace\frac{a}{c},\frac{b}{d}\rbrace$ )</p>
+
+<p>不过，因为我们允许使用 <strong>负权重组合 alpha</strong>，即允许某些 $w_{nt} &lt; 0$，我们可以构造 <strong>long-short 的 alpha 组合</strong>，进一步提升组合收益和稳健性.</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="finance" /><category term="content" /><category term="alpha" /><category term="L1_norm" /><category term="simulation" /><category term="combo" /><category term="equal_weight" /><summary type="html"><![CDATA[单个alpha仿真交易流程]]></summary></entry><entry><title type="html">选出最佳的因子组合</title><link href="https://roshameow.github.io//personal_homepage/algorithm/alpha7/" rel="alternate" type="text/html" title="选出最佳的因子组合" /><published>2025-05-26T00:00:00+00:00</published><updated>2023-12-22T06:14:38+00:00</updated><id>https://roshameow.github.io//personal_homepage/algorithm/alpha7</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/algorithm/alpha7/"><![CDATA[<p>遗传算法(Genetic Algorithm):
 	1. generate a bunch of solutions
 	2. 算子：选择算子(selection)：
 					Roulette Wheel Selection(轮盘赌): 1. 适应性越强概率越大，随机选择父母
@@ -270,297 +780,4 @@
 					  中间重组(浮点数)：取father和mother的随机中间数
 			变异算子：flipbit: 异或（二进制），随机替换（实数）
 	3. 编码二进制：range=(a,b), eps = 精度 -&gt;int((x-b)/eps)转为二进制（编码位数： log((b-a)/eps) ）
-	！4. 遗产算法的编码非常重要？：要保证交叉算子起作用，即亲代可以强强联合，不然就和变异算子没有差别了</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="algorithm" /><category term="content" /><summary type="html"><![CDATA[遗传算法(Genetic Algorithm): 1. generate a bunch of solutions 2. 算子：选择算子(selection)： Roulette Wheel Selection(轮盘赌): 1. 适应性越强概率越大，随机选择父母 2. Use accumulation of probability and bisect e.g. probability [0.25,0.25,0.5], accumulation [0.25,0.5,1], when using bisect —0—0.25—1—0.5—2—[prabablility bigger-&gt;interval of accumulation is bigger-&gt; has more chance to be choosen] Tournament Selection(锦标赛)：1. random choose n 个个体，选出其中最好的 Linear(Exp) Ranking Selection: 排序，按照顺序线性(exp)确定probablility 交叉算子：uniform crossover: 变换father和mother的一些位 中间重组(浮点数)：取father和mother的随机中间数 变异算子：flipbit: 异或（二进制），随机替换（实数） 3. 编码二进制：range=(a,b), eps = 精度 -&gt;int((x-b)/eps)转为二进制（编码位数： log((b-a)/eps) ） ！4. 遗产算法的编码非常重要？：要保证交叉算子起作用，即亲代可以强强联合，不然就和变异算子没有差别了]]></summary></entry><entry><title type="html">设置开机自启动自运行程序</title><link href="https://roshameow.github.io//personal_homepage/tool/auto-code/" rel="alternate" type="text/html" title="设置开机自启动自运行程序" /><published>2025-04-30T00:00:00+00:00</published><updated>2025-05-04T22:50:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/tool/auto-code</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/tool/auto-code/"><![CDATA[<h2 id="macos">macos</h2>
-
-<p>用系统自带的LaunchAgents是最方便的</p>
-
-<ul>
-  <li>LaunchAgents 的配置文件是一个 <code class="language-plaintext highlighter-rouge">.plist</code> 文件（Property List），放在以下路径: <code class="language-plaintext highlighter-rouge">~/Library/LaunchAgents/com.alpha.fetcher.plist</code>
-    <ul>
-      <li>文件名推荐以项目的命名空间命名，保持唯一性</li>
-    </ul>
-  </li>
-  <li>💡 注意事项:
-    <ul>
-      <li><strong>命令行参数分开写</strong>：在 <code class="language-plaintext highlighter-rouge">&lt;ProgramArguments&gt;</code> 中，<strong>命令行每一项(空格分开的)都必须单独写成一个 <code class="language-plaintext highlighter-rouge">&lt;string&gt;</code> 元素</strong>，包括脚本路径和参数。</li>
-      <li><strong>日志路径要存在</strong>：<code class="language-plaintext highlighter-rouge">StandardOutPath</code> 和 <code class="language-plaintext highlighter-rouge">StandardErrorPath</code> 指定的目录必须事先存在，否则任务无法运行。</li>
-    </ul>
-  </li>
-  <li>加载与卸载脚本
-    <ul>
-      <li>launchctl load 加载自动脚本, lauchctl unload 卸载脚本</li>
-    </ul>
-  </li>
-</ul>
-
-<h3 id="例子">例子</h3>
-
-<p><a href="https://gist.github.com/roshameow/f2a5238bc688ec3bc902ea00da66f31a#file-com-pnl-fetcher-plist"><strong>com.pnl.fetcher.plist</strong></a></p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="tool" /><category term="content" /><category term="macos" /><summary type="html"><![CDATA[macos]]></summary></entry><entry><title type="html">worldquant BRAIN 股票因子 (六 ) – 代码优化</title><link href="https://roshameow.github.io//personal_homepage/tool/alpha6/" rel="alternate" type="text/html" title="worldquant BRAIN 股票因子 (六 ) – 代码优化" /><published>2025-04-17T00:00:00+00:00</published><updated>2025-05-13T23:01:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/tool/alpha6</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/tool/alpha6/"><![CDATA[<p>我最终选择了使用 <strong>Tauri</strong> 来构建我的桌面回测应用。本文记录了开发过程中需求梳理、初始化步骤、遇到的坑以及一些性能优化技巧。</p>
-
-<hr />
-
-<h2 id="需求梳理">需求梳理</h2>
-
-<h3 id="核心功能">核心功能</h3>
-
-<ol>
-  <li><strong>跨平台运行</strong></li>
-  <li><strong>触发 Python 脚本执行</strong></li>
-  <li><strong>与 MongoDB 后端数据库交互</strong></li>
-  <li><strong>前端展示任务管理卡片（Card）、结果表格（Table）、收益图表（Chart）</strong></li>
-</ol>
-
-<h3 id="任务流程设计">任务流程设计</h3>
-
-<ol>
-  <li>在本地生成待回测任务列表</li>
-  <li>将任务列表推送到远程</li>
-  <li>远程启动任务</li>
-  <li>支持中途暂停任务执行
-    <ol>
-      <li>任务的执行要求是：<strong>异步限流 + 分组并发</strong></li>
-      <li>这类任务需要数据库分页管理，适合使用“生产者-消费者”模型来处理。</li>
-    </ol>
-  </li>
-</ol>
-
-<hr />
-
-<h2 id="初始化与开发环境搭建">初始化与开发环境搭建</h2>
-
-<table>
-  <thead>
-    <tr>
-      <th>工具/依赖</th>
-      <th>说明</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>node.js + npm包管理</td>
-      <td><a href="https://nodejs.org/">https://nodejs.org/</a> 下载与安装</td>
-    </tr>
-    <tr>
-      <td>Rust工具链</td>
-      <td>安装命令: curl https://sh.rustup.rs -sSf | sh</td>
-    </tr>
-    <tr>
-      <td>Rust 依赖（macOS）</td>
-      <td>安装命令: xcode-select –install</td>
-    </tr>
-    <tr>
-      <td>Tauri CLI</td>
-      <td>命令：<code class="language-plaintext highlighter-rouge">npm create tauri-app</code>，可自动创建 Tauri 2 项目框架</td>
-    </tr>
-    <tr>
-      <td>启动项目</td>
-      <td>进入项目目录后运行：<code class="language-plaintext highlighter-rouge">npm install &amp;&amp; npm run tauri dev</code></td>
-    </tr>
-    <tr>
-      <td>开启调试模式</td>
-      <td>编辑 <code class="language-plaintext highlighter-rouge">tauri.conf.json</code> 中的 <code class="language-plaintext highlighter-rouge">"window": { "devtools": true }</code></td>
-    </tr>
-  </tbody>
-</table>
-
-<hr />
-
-<h2 id="-开发与常见问题记录">🧱 开发与常见问题记录</h2>
-
-<h3 id="前端部分vue--naive-ui">前端部分（Vue + Naive UI）</h3>
-
-<ul>
-  <li><strong>打开 DevTools</strong>：mac 快捷键为 <code class="language-plaintext highlighter-rouge">Cmd + Option + I</code>，不是 F12。</li>
-  <li><strong>状态共享</strong>：使用 <code class="language-plaintext highlighter-rouge">Pinia</code> 的 <code class="language-plaintext highlighter-rouge">taskStore</code> 来管理任务列表，实现多组件共享，减少无意义的读数据库, 可以理解成一种本地缓存吧。</li>
-  <li><strong>错误调试</strong>：如 <code class="language-plaintext highlighter-rouge">Unhandled Promise Rejection: TypeError: null is not an object (evaluating 'instance.subTree.component')</code>，可类比为 Python 的 KeyError，说明代码访问了不存在的变量。</li>
-  <li><strong>禁用拼写检查</strong>：在 <code class="language-plaintext highlighter-rouge">v-input</code> 中添加 <code class="language-plaintext highlighter-rouge">spellcheck: false</code>。</li>
-  <li><strong>请求竞态问题（Race Condition）</strong>：
-    <ul>
-      <li>输入搜索框 <code class="language-plaintext highlighter-rouge">1 → 15</code> 会同时触发 <code class="language-plaintext highlighter-rouge">1</code> 和 <code class="language-plaintext highlighter-rouge">15</code> 的请求，后发请求(15)可能被先返回的(1)结果覆盖。</li>
-      <li>解决方法：前端维护请求版本号，只保留最新的请求结果。</li>
-    </ul>
-  </li>
-  <li><strong>分页问题</strong>：<code class="language-plaintext highlighter-rouge">naive-ui</code> 的 <code class="language-plaintext highlighter-rouge">data-table</code> 不会记录当前页
-    <ul>
-      <li>初步尝试自己管理分页 + 滚动加载，但最后放弃了这个方法😮‍💨, 因为不仅是翻页, 排序也被naive-ui封装在内部, 自己实现太麻烦。</li>
-      <li>最终选择：<strong>从渲染后的 DOM(Document object Model) 中直接读取当前页元素 ID</strong>。
-        <ul>
-          <li>DOM(Document object Model) 是浏览器解析html之后生成的树形结构</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li><strong>css样式问题</strong>：
-    <ul>
-      <li>有些样式必须加 <code class="language-plaintext highlighter-rouge">!important</code> 才能覆盖 <code class="language-plaintext highlighter-rouge">naive-ui</code> 的默认值。</li>
-      <li>表格显示不全时, 我希望增加行高显示完全. 但是在用ai写代码的时候, 我一直自认为这是expand. 误导了ai, 一直在给我推expand组件, 走了很多弯路😮‍💨 其实应该用定义css实现。</li>
-    </ul>
-  </li>
-</ul>
-
-<h3 id="后端部分rust">后端部分（Rust）</h3>
-
-<ul>
-  <li><strong><code class="language-plaintext highlighter-rouge">invoke</code> 的使用</strong>：位于 <code class="language-plaintext highlighter-rouge">@tauri-apps/api/core</code>(tauri 2.0的情况)，只能在 WebView 中调用，不能在npm run dev打开的浏览器端口中调试</li>
-  <li><strong>参数匹配问题</strong>：Rust 会自动将 小驼峰(camelCase) 转成 蛇形(snake_case)，需确保参数名一致。</li>
-  <li><strong>函数注册</strong>：所有后端 API 函数都需在 <code class="language-plaintext highlighter-rouge">main.rs</code> 中注册</li>
-  <li><strong>日志调试</strong>：打印完整log用于调试非常重要, 尤其调用外部脚本时, 统一调用函数, 把log打印写在里面.</li>
-  <li><strong>异步数据库访问</strong>：使用 <code class="language-plaintext highlighter-rouge">futures_util::stream::TryStreamExt</code> 提供的 <code class="language-plaintext highlighter-rouge">try_next</code>，需手动引入 trait。</li>
-  <li><strong>共享状态管理（State）</strong>：
-    <ul>
-      <li>使用 <code class="language-plaintext highlighter-rouge">tauri::State</code> 来注册共享数据，如数据库客户端、全局监听状态, 脚本环境和参数等。</li>
-      <li>Rust 的所有多线程共享<strong>必须显式声明同步策略</strong>。</li>
-      <li>使用 <code class="language-plaintext highlighter-rouge">OnceCell</code> 实现全局状态的懒加载，避免重复初始化。</li>
-    </ul>
-  </li>
-</ul>
-
-<h3 id="数据库部分mongodb">数据库部分（MongoDB）</h3>
-
-<ul>
-  <li><strong>监听任务变化</strong>：使用 <code class="language-plaintext highlighter-rouge">ChangeStreamOptions</code> 监听数据库变更，需开启 <code class="language-plaintext highlighter-rouge">replica set</code> （副本集）模式。
-    <ul>
-      <li>打开本地数据库命令： <code class="language-plaintext highlighter-rouge">mongod --config /usr/local/mongodb/mongod.conf --replSet rs0 --fork</code></li>
-    </ul>
-  </li>
-  <li><strong>任务删除后自动停止监听</strong>。</li>
-  <li><strong>使用异步库 Motor</strong>：
-    <ul>
-      <li>替代传统的 PyMongo（伪异步），性能提升明显。</li>
-    </ul>
-  </li>
-  <li><strong>同步数据问题</strong>：
-    <ul>
-      <li>使用 BSON 快速传输数据时，会产生10倍以上的瞬时占用，超过 MongoDB Atlas免费 500MB 限额。</li>
-      <li>解决方法：开启 <code class="language-plaintext highlighter-rouge">mongorestore</code> 的 <code class="language-plaintext highlighter-rouge">numInsertionWorkersPerCollection</code> 限制。</li>
-    </ul>
-  </li>
-  <li><strong>增量拉取时防止重复数据</strong>。</li>
-  <li><strong>MongoDB API 使用</strong>：
-    <ul>
-      <li>在 MongoDB Atlas 中创建 Service Account 与 API Key: 在 IDENTITY&amp;ACCESS-&gt; Applications 里创建</li>
-      <li>Projectid是网址 可从浏览器 URL 中获取。</li>
-    </ul>
-  </li>
-  <li><strong>查询优化</strong>：
-    <ul>
-      <li>创建索引加速查询。</li>
-      <li>查询时排除大字段字段，避免无谓传输。</li>
-    </ul>
-  </li>
-</ul>
-
-<h3 id="脚本触发与执行">脚本触发与执行</h3>
-
-<ul>
-  <li>JSON 参数转义地狱，最终选择使用temp file进行参数传递。</li>
-  <li>所有脚本路径、参数与环境变量统一写入 <code class="language-plaintext highlighter-rouge">config.toml</code> 进行集中管理。</li>
-</ul>
-
-<hr />
-
-<h2 id="mongodb数据库总结">Mongodb数据库总结</h2>
-
-<h3 id="回测过程相比csv">回测过程(相比csv)</h3>
-
-<ul>
-  <li>存储具备压缩特性，节省大量空间。</li>
-  <li>使用异步 API 调用，避免频繁本地 I/O。</li>
-  <li>支持实时监听任务进度。</li>
-</ul>
-
-<h3 id="结果查看">结果查看</h3>
-
-<ul>
-  <li>支持灵活的条件查询。</li>
-  <li>前后端分离，API 接口易于调用。
-    <ul>
-      <li>缺点是必须配合前端，无法像 CSV 文件直接系统自带app打开处理。</li>
-    </ul>
-  </li>
-</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="tool" /><category term="content" /><category term="Mongodb" /><category term="tauri" /><category term="vue" /><category term="worldquant" /><summary type="html"><![CDATA[我最终选择了使用 Tauri 来构建我的桌面回测应用。本文记录了开发过程中需求梳理、初始化步骤、遇到的坑以及一些性能优化技巧。]]></summary></entry><entry><title type="html">MCP协议理解</title><link href="https://roshameow.github.io//personal_homepage/tool/MCP/" rel="alternate" type="text/html" title="MCP协议理解" /><published>2025-04-04T00:00:00+00:00</published><updated>2025-04-04T20:20:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/tool/MCP</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/tool/MCP/"><![CDATA[<p>MCP(Model Context Protocol)</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="tool" /><category term="content" /><summary type="html"><![CDATA[MCP(Model Context Protocol)]]></summary></entry><entry><title type="html">blender学习: 几何节点花瓣</title><link href="https://roshameow.github.io//personal_homepage/blender/blender-learning22/" rel="alternate" type="text/html" title="blender学习: 几何节点花瓣" /><published>2025-04-02T00:00:00+00:00</published><updated>2025-05-14T07:44:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/blender/blender-learning22</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/blender/blender-learning22/"><![CDATA[<p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020250407185737.png" alt="Pasted image 20250407185737.png" width="300" /> -&gt; <img src="/personal_homepage/docs/attachment/Pasted%20image%2020250407185806.png" alt="Pasted image 20250407185806.png" width="300" /> -&gt; <img src="/personal_homepage/docs/attachment/Pasted%20image%2020250511182348.png" alt="Pasted image 20250511182348.png" width="180" /></p>
-
-<ul>
-  <li>制作花瓣
-    <ul>
-      <li>制作基础图形(一片花瓣):
-        <ul>
-          <li>添加plane -&gt; 添加loop cut -&gt; 制作一面宽一面窄的梭形(打开proportional editing调整中间线的长度)</li>
-          <li>添加细分的modifier</li>
-        </ul>
-      </li>
-      <li>制作一圈花瓣:
-        <ul>
-          <li>添加一个圆环采样: Curve Circle -&gt; Curve to Points</li>
-          <li>在每个采样点上添加花瓣的instance</li>
-          <li>给花瓣的位置和旋转添加random</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li>制作花萼
-    <ul>
-      <li>添加一个uv sphere, 压扁</li>
-    </ul>
-  </li>
-  <li>制作花茎: 添加一个tube ($\mathbb R^1\times \mathbb S^1$ )
-    <ul>
-      <li>用<a href="https://docs.blender.org/manual/en/latest/modeling/geometry_nodes/curve/operations/curve_to_mesh.html">curve to mesh node</a> : curve用<a href="https://docs.blender.org/manual/zh-hans/4.0/modeling/geometry_nodes/curve/primitives/curve_line.html">Curve line</a> profile curve用<a href="https://docs.blender.org/manual/en/latest/modeling/geometry_nodes/curve/primitives/curve_circle.html">Curve Circle</a>
-        <ul>
-          <li>在geometry node -&gt; Add -&gt; Curve -&gt; Primitive(基础元素)里</li>
-        </ul>
-      </li>
-      <li>给Cuvre Line添加<a href="https://docs.blender.org/manual/en/latest/modeling/geometry_nodes/curve/operations/resample_curve.html">Resample Curve</a> 增加cut便于弯曲</li>
-      <li>把花茎独立出来变成object便于上色和控制</li>
-    </ul>
-  </li>
-</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="blender" /><category term="content" /><summary type="html"><![CDATA[-&gt; -&gt;]]></summary></entry><entry><title type="html">聚类</title><link href="https://roshameow.github.io//personal_homepage/algorithm/cluster/" rel="alternate" type="text/html" title="聚类" /><published>2025-03-18T00:00:00+00:00</published><updated>2025-03-26T19:28:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/algorithm/cluster</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/algorithm/cluster/"><![CDATA[<h2 id="距离">距离</h2>
-
-<ul>
-  <li>cos距离:</li>
-</ul>
-
-<h2 id="文本聚类">文本聚类</h2>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="algorithm" /><category term="content" /><summary type="html"><![CDATA[距离]]></summary></entry><entry><title type="html">blender学习: 内发光效果</title><link href="https://roshameow.github.io//personal_homepage/blender/blender-learning21/" rel="alternate" type="text/html" title="blender学习: 内发光效果" /><published>2025-03-11T00:00:00+00:00</published><updated>2025-03-11T19:42:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/blender/blender-learning21</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/blender/blender-learning21/"><![CDATA[<ul>
-  <li>设置材质: 透明+自发光
-    <ul>
-      <li>用transparent shader和emmision shader合成</li>
-      <li>用<a href="https://docs.blender.org/manual/en/latest/render/shader_nodes/input/layer_weight.html">layer weight node</a>控制参数
-        <ul>
-          <li>Frensnel 模式(对比度更高): 和frensel node一样公式, 把用IOR调节, 改成0-1调节weight</li>
-          <li>Facing 模式: 按face面向镜头的角度调节weight</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li>添加辉光: 用Compositing的<a href="https://docs.blender.org/manual/en/latest/compositing/types/filter/glare.html">glare node</a>  -&gt; Fog Glow</li>
-</ul>
-
-<p><img src="/personal_homepage/docs/attachment/glow.jpeg" alt="glow.jpeg" width="480" /></p>
-
-<ul>
-  <li>问题:
-    <ul>
-      <li>怎么设置物体前后的遮挡?</li>
-    </ul>
-  </li>
-</ul>
-
-<h2 id="渲染模式">渲染模式</h2>
-
-<p>shader边栏 -&gt; Options -&gt; Settings -&gt; Surface -&gt;<a href="https://docs.blender.org/manual/en/latest/render/eevee/material_settings.html">Render Method</a></p>
-
-<ul>
-  <li><strong>Dithered Mode（抖动模式）</strong> : 效果更好, 性能开销更大
-    <ul>
-      <li>支持半透明渲染</li>
-      <li>支持raytracing</li>
-      <li>deferred rendering技术</li>
-    </ul>
-  </li>
-  <li><strong>Blended Mode（混合模式）</strong>
-    <ul>
-      <li>前向渲染(forward rendering）技术</li>
-      <li>透明表面的排序基于对象原点, 可能导致渲染错误</li>
-    </ul>
-  </li>
-</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="blender" /><category term="content" /><summary type="html"><![CDATA[设置材质: 透明+自发光 用transparent shader和emmision shader合成 用layer weight node控制参数 Frensnel 模式(对比度更高): 和frensel node一样公式, 把用IOR调节, 改成0-1调节weight Facing 模式: 按face面向镜头的角度调节weight 添加辉光: 用Compositing的glare node -&gt; Fog Glow]]></summary></entry></feed>
+	！4. 遗产算法的编码非常重要？：要保证交叉算子起作用，即亲代可以强强联合，不然就和变异算子没有差别了</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="algorithm" /><category term="content" /><summary type="html"><![CDATA[遗传算法(Genetic Algorithm): 1. generate a bunch of solutions 2. 算子：选择算子(selection)： Roulette Wheel Selection(轮盘赌): 1. 适应性越强概率越大，随机选择父母 2. Use accumulation of probability and bisect e.g. probability [0.25,0.25,0.5], accumulation [0.25,0.5,1], when using bisect —0—0.25—1—0.5—2—[prabablility bigger-&gt;interval of accumulation is bigger-&gt; has more chance to be choosen] Tournament Selection(锦标赛)：1. random choose n 个个体，选出其中最好的 Linear(Exp) Ranking Selection: 排序，按照顺序线性(exp)确定probablility 交叉算子：uniform crossover: 变换father和mother的一些位 中间重组(浮点数)：取father和mother的随机中间数 变异算子：flipbit: 异或（二进制），随机替换（实数） 3. 编码二进制：range=(a,b), eps = 精度 -&gt;int((x-b)/eps)转为二进制（编码位数： log((b-a)/eps) ） ！4. 遗产算法的编码非常重要？：要保证交叉算子起作用，即亲代可以强强联合，不然就和变异算子没有差别了]]></summary></entry></feed>

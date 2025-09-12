@@ -445,7 +445,7 @@ var store = [{
         "url": "https://roshameow.github.io//personal_homepage/math/conformal-geometry12/"
       },{
         "title": "几种拍图技巧",
-        "excerpt":"","categories": ["photo"],
+        "excerpt":"荷花🪷 https://www.xiaohongshu.com/explore/684fe13a00000000220068d5https://www.dcfever.com/column/read.php?id=2574 手持相机摇拍: 设置相机多重曝光, 我的Sony A6300不支持多重曝光, 只有ev0.3 3张的连续阶段曝光, 快门时间也不允许我拍一张清晰的, 一张模糊的呀? ","categories": ["photo"],
         "tags": ["content"],
         "url": "https://roshameow.github.io//personal_homepage/photo/photo1/"
       },{
@@ -555,7 +555,7 @@ var store = [{
         "url": "https://roshameow.github.io//personal_homepage/blender/blender-learning21/"
       },{
         "title": "聚类",
-        "excerpt":"距离   cos距离:文本聚类 ","categories": ["algorithm"],
+        "excerpt":"距离   cos距离:文本聚类 Faiss ","categories": ["algorithm"],
         "tags": ["content"],
         "url": "https://roshameow.github.io//personal_homepage/algorithm/cluster/"
       },{
@@ -565,12 +565,12 @@ var store = [{
         "url": "https://roshameow.github.io//personal_homepage/blender/blender-learning22/"
       },{
         "title": "MCP协议理解",
-        "excerpt":"MCP(Model Context Protocol) ","categories": ["tool"],
+        "excerpt":"MCP(Model Context Protocol) 功能: 和本地环境有强交互需要的, 需要修改文件的   读取我电脑的terminal history, 总结常用功能, 结合项目文件, 给项目写readme  快速配置环境, 跑通一个开源项目","categories": ["tool"],
         "tags": ["content"],
         "url": "https://roshameow.github.io//personal_homepage/tool/MCP/"
       },{
         "title": "worldquant BRAIN 股票因子 (六 ) -- 代码优化",
-        "excerpt":"我最终选择了使用 Tauri 来构建我的桌面回测应用。本文记录了开发过程中需求梳理、初始化步骤、遇到的坑以及一些性能优化技巧。 需求梳理 核心功能 跨平台运行 触发 Python 脚本执行 与 MongoDB 后端数据库交互 前端展示任务管理卡片（Card）、结果表格（Table）、收益图表（Chart）任务流程设计 在本地生成待回测任务列表 将任务列表推送到远程 远程启动任务 支持中途暂停任务执行 任务的执行要求是：异步限流 + 分组并发 这类任务需要数据库分页管理，适合使用“生产者-消费者”模型来处理。 初始化与开发环境搭建 工具/依赖 说明 node.js + npm包管理 https://nodejs.org/ 下载与安装 Rust工具链 安装命令: curl https://sh.rustup.rs -sSf | sh Rust 依赖（macOS） 安装命令: xcode-select –install Tauri CLI 命令：npm create tauri-app，可自动创建 Tauri 2 项目框架 启动项目...","categories": ["tool"],
+        "excerpt":"我最终选择了使用 Tauri 来构建我的桌面回测应用。本文记录了开发过程中需求梳理、初始化步骤、遇到的坑以及一些性能优化技巧。 需求梳理 核心功能 跨平台运行 触发 Python 脚本执行 与 MongoDB 后端数据库交互 前端展示任务管理卡片（Card）、结果表格（Table）、收益图表（Chart）任务流程设计 在本地生成待回测任务列表 将任务列表推送到远程 远程启动任务 支持中途暂停任务执行 任务的执行要求是：异步限流 + 分组并发 这类任务需要数据库分页管理，适合使用“生产者-消费者”模型来处理。 在代码中循环(或监听)数据库的更新, 适应随时插入priority任务. 初始化与开发环境搭建 工具/依赖 说明 node.js + npm包管理 https://nodejs.org/ 下载与安装 Rust工具链 安装命令: curl https://sh.rustup.rs -sSf | sh Rust 依赖（macOS） 安装命令: xcode-select –install Tauri CLI 命令：npm create tauri-app，可自动创建 Tauri 2...","categories": ["tool"],
         "tags": ["content","Mongodb","tauri","vue","worldquant"],
         "url": "https://roshameow.github.io//personal_homepage/tool/alpha6/"
       },{
@@ -584,18 +584,48 @@ var store = [{
         "tags": ["content"],
         "url": "https://roshameow.github.io//personal_homepage/algorithm/alpha7/"
       },{
-        "title": "选出最佳的表达式组合",
-        "excerpt":"从给定的100个左右operator, 和10多个参数, 结合生成表达式 建模 ast(Abstract Syntax Tree)建模 制作leaf node: 表达式最初的参数(days, numbers, states) 制作regular node: operator 规范operator的参数和return 类型: 用python typing的Callable 定义node的名称和分类 定义ExpressionNode类: 对象: 当前op(leaf or regular) + chirdren(复合的表达式) + return type 方法: 添加tree样式和string样式的打印 添加变异功能: 同类型node替换 制作随机生成ExpressionNode的函数: 从root node递归生成, 到leaf node停止 每步根据参数type选择return type符合的candidates随机添加 给不同类型的node设置不同概率 MDP(Markov Decision Process)建模 把生成ExpressionNode的每一步拆开. 把每个node的return type和args type抽象出来 写成token...","categories": ["algorithm"],
-        "tags": ["content"],
-        "url": "https://roshameow.github.io//personal_homepage/algorithm/alpha8/"
+        "title": "组合交易",
+        "excerpt":"单个alpha仿真交易流程 输入为 Matrix(T x I ), 按照时间顺序交易 仿真交易规则: 每天用恒定的账面规模(book size)交易, book size 为$20 million. 有$10 million现金, 投资上限为$20million. alpha apply到每只股票上得到alpha value L1 归一化, 得到每只股票的weight 不同neutralize组的booksize是分别计算的? 比如有两个sector, 每个sector scale到 0.5/abs(sector_sum)? 每天在每只股票上投资 weight*booksize 计算PnL 组合(combo) 先选择一个alpha pool $\\alpha_n$ (N x T x I) 一个权重 $w_n$ (N x T). 按照权重线性组合alpha $\\tilde\\alpha$ ( T x...","categories": ["finance"],
+        "tags": ["content","alpha","L1_norm","simulation","combo","equal_weight"],
+        "url": "https://roshameow.github.io//personal_homepage/finance/alpha8/"
       },{
         "title": "Tauri 项目 Build 与 Release 实践总结",
         "excerpt":"本文记录了我在使用 Tauri 构建桌面端应用时遇到的一些坑和解决方案，包括配置文件管理、macOS 编译、GitHub Actions 自动构建等内容。 一、配置文件的独立处理 由于 Tauri 项目同时包含前端（Web）和后端（Rust），不同平台和开发者可能有各自的本地路径配置，需要将配置文件与代码分离。 1. 前端配置（config.js） 使用 config.js 统一保存前端默认路径配置。在项目build阶段，如果没有这个配置文件，打包过程会失败。 为避免这种问题，我在 vite.config.js 中自定义了一个插件，用于在打包前生成一个默认的配置文件。 ⚠️ 避免使用动态 import 处理配置文件路径——AI 建议我去写额外的脚本处理 import，事实是import错误是属于无法处理的类型。2. 后端配置（config.toml） Rust 后端通过 config.toml 统一保存脚本路径、参数设置、数据库地址等。 专门写了一个脚本模块和一个数据库模块来负责读取配置，并在 main.rs 中加载配置并注册到 tauri::State。 macOS 下 release 模式运行正常：只需将 config.toml 放入 app/Resources/ 目录即可。 Windows 下暂时无法通过此方式生效，仍需进一步处理资源路径。 将 MongoDB 的 collection 名称也提取为配置项，不再硬编码于逻辑中。3. Git 提交管理...","categories": ["tool"],
         "tags": ["content","tauri","github","github_actions","vue","rust","build","macos"],
         "url": "https://roshameow.github.io//personal_homepage/tool/packing/"
       },{
-        "title": "拉格朗日乘子法应用 (一)",
-        "excerpt":"Modern_portfolio_theory 拉格朗日乘子法（Lagrange multiplier ）一般问题 问题: $\\min_x f(x),\\ g(x)=0$ 解决: 构建Lagrangian $\\mathcal L (x,\\lambda)=f(x)-\\lambda g(x)$ , 解$\\nabla_x f-\\lambda \\nabla_x g=0$ . Lagrangian的维数更低, 更好解. 示例 应用场景 优化目标 约束条件 解 Markowitz 投资组合 最大 Sharpe 比 $w^T \\Sigma w = 1$ $w \\propto \\Sigma^{-1} \\mu$ PCA 最大方差方向 最大 $|Ax|^2$ $x^T x = 1$ $x$...","categories": ["algorithm"],
-        "tags": ["content"],
+        "title": "拉格朗日乘子法应用 (一 )",
+        "excerpt":"拉格朗日乘子法（Lagrange multiplier ）一般问题 问题: $\\min_x f(x),\\ g(x)=0$ 解决: 构建Lagrangian $\\mathcal L (x,\\lambda)=f(x)-\\lambda g(x)$ , 解$\\nabla_x f-\\lambda \\nabla_x g=0$ . Lagrangian的维数更低, 更好解. 示例 应用场景 优化目标 约束条件 解 Markowitz 投资组合 最大 Sharpe 比 $w^T \\Sigma w = 1$ $w \\propto \\Sigma^{-1} \\mu$ PCA 最大方差方向 最大 $|Ax|^2$ $x^T x = 1$ $x$ 是...","categories": ["algorithm"],
+        "tags": ["content","Lagrange_multiplier","Markowitz_model"],
         "url": "https://roshameow.github.io//personal_homepage/algorithm/alpha9/"
+      },{
+        "title": "选出最佳的表达式组合",
+        "excerpt":"从给定的100个左右operator, 和10多个参数, 结合生成表达式 建模 ast(Abstract Syntax Tree)建模 制作leaf node: 表达式最初的参数(days, numbers, states) 制作regular node: operator 规范operator的参数和return 类型: 用python typing的Callable 定义node的名称和分类 定义ExpressionNode类: 对象: 当前op(leaf or regular) + chirdren(复合的表达式) + return type 方法: 添加tree样式和string样式的打印 添加变异功能: 同类型node替换 制作随机生成ExpressionNode的函数: 从root node递归生成, 到leaf node停止 每步根据参数type选择return type符合的candidates随机添加 给不同类型的node设置不同概率 MDP(Markov Decision Process)建模 把生成ExpressionNode的每一步拆开. 用dfs的方式遍历: 把每个node的return type和args type抽象出来...","categories": ["algorithm"],
+        "tags": ["content"],
+        "url": "https://roshameow.github.io//personal_homepage/algorithm/alpha10/"
+      },{
+        "title": "给 VsCode 安装插件",
+        "excerpt":"当我们使用大量自定义的 DSL（领域特定语言）构建表达式，例如：add(multiply(pasteurize(x), y), z)这些函数（如 add, multiply, pasteurize）并不是 Python 的标准函数，而是平台自定义的 Operators。我们希望在 VSCode 中输入这些函数时： 能够自动补全 鼠标悬停时显示函数定义和用途开发 开发环境配置 npm install -g yo generator-codeyo code在执行 yo code 时，选择插件的配置选项： Identifier：插件的唯一名称 Bundler：建议使用 esbuild，它简单且高效插件功能实现 写主逻辑(在src/extension.ts中): 读取json, 定义activate行为(自动补全, 悬停提示…) 配置项目: 在package.json里, 配置activationEvents, contributes.languanage等信息. 在files里添加assets 设置在extension.settting里加载本地配置文件: configuration.properties 调试 用View -&gt; Output -&gt; Extension Host查看log. 乱七八糟的log很多时, 搜索插件的Identifier定位. 打包 npm install...","categories": ["tool"],
+        "tags": ["content","typescript","vscode","dsl"],
+        "url": "https://roshameow.github.io//personal_homepage/tool/vscode-extension/"
+      },{
+        "title": "洗衣机分类",
+        "excerpt":"洗衣机 类型 容量范围 洗涤时间 用水量(次) 价格区间 优点 缺点 波轮 6–12kg 30–50分钟 70–120L ¥800–3,000 价格低、洗得快、投衣方便 耗水高、衣物易缠绕、磨损略大 滚筒 6–12kg 60–90分钟 40–70L ¥1,500–8,000 洗净好、节水、脱水强、可加热洗 时间长、需弯腰、价格偏高 双筒（双子洗） 3+6kg 30–60分钟 60–100L ¥3,000–8,000 可分洗内外衣、节省空间 容量小、价格高 烘干机 类型 容量范围 烘干时间 耗电量(次) 价格区间 优点 缺点 排风式 6–10kg 40–60分钟 2–3 kWh ¥1,500–3,000 快速烘干、价格低、结构简单 需排风管、耗能高、室内热潮湿 冷凝式 6–10kg 70–120分钟 1.5–2 kWh...","categories": ["daily"],
+        "tags": ["content"],
+        "url": "https://roshameow.github.io//personal_homepage/daily/washing-machine/"
+      },{
+        "title": "代码语法解析",
+        "excerpt":"三元运算符(ternary)解析 把 ...?...:... 处理成if_else(...,...,...) 的形式. 初衷是用正则替换把对应DSL的operator转换成python语言, 然后用python的ast 直接解析. 但是三元运算符的处理比较复杂, Python 中并没有直接对应的语法结构, 导致没法简单的替换. 方法 优缺点 复杂度 用正则表达式替换三元运算符 思路naive, 但是可读性差，难以维护 低 设计语法树解析器（Parser） 灵活性高，但实现较复杂 中 结合 Pratt Parser 优化解析 代码简洁, 可读性高, 扩展性好 高 直接用字符串替换 用字符串正则查找tenary并替换 递归处理?: 和括号, =, 逗号的关系 处理 括号, 逗号 都依赖栈来正确处理嵌套结构 写parser处理 可以通过编写自定义的解析器来处理三元运算符。下面是一些处理流程： 定义: 定义 AST 节点：设计不同类型的节点来表示表达式，如常量、变量、运算符等。 Tokenize：将源代码字符串分割成 tokens（例如：数字、运算符、字符串等）。 例如: ``a&lt;0.2? → [(“NAME”,”a”)...","categories": ["code","algorithm"],
+        "tags": ["content","ast","string","regularization","parser","pratt","ternary","python","dsl"],
+        "url": "https://roshameow.github.io//personal_homepage/code/algorithm/string/"
+      },{
+        "title": "mac系统字典",
+        "excerpt":"目标是把 MongoDB 里存放的术语和定义，打包成可以在 macOS 自带“字典”应用中查询的本地词典。 成功步骤 用脚本实现1-2-3步骤即可. 代码: mongo_2_dictionary.py 把数据转成 Apple Dictionary 支持的 TSV 格式。 ⚠️ 避坑：不要用 \\t\\n , 用 HTML 标签来控制排版，用 &lt;div&gt; 表示新行，用 &lt;br&gt; 来做分隔。这样避免了特殊字符被误解析。 用  PyGlossary 把 .tsv 转成 AppleDict 的源文件。pyglossary dictionary_dump.tsv output.dictionary --read-format=Tabfile --write-format=AppleDict ⚠️ 避坑：不要用 CSV, 一开始我试过 CSV，但 AppleDict 的编译脚本会直接解析失败。 编译 Apple Dictionary PyGlossary 会生成一个字典目录，里面包含：.xml 源文件, .css 样式文件, .plist 配置文件, Makefile 正常情况下，进入目录直接运行：make ; make install 安装完成后，打开 macOS 自带的“字典”应用，在settting里勾选新字典。工具和坑点总结 需要安装 Dictionary...","categories": ["tool","mac"],
+        "tags": ["content"],
+        "url": "https://roshameow.github.io//personal_homepage/tool/mac/dictionary/"
+      },{
+        "title": "nano-banana 效果",
+        "excerpt":"","categories": ["photo"],
+        "tags": ["content"],
+        "url": "https://roshameow.github.io//personal_homepage/photo/stable-diffusion10/"
       }]

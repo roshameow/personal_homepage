@@ -31,7 +31,7 @@
 <meta property="twitter:title" content="worldquant BRAIN 股票因子 (一) – 仿真测试" />
 <meta name="twitter:site" content="@" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2025-05-11T11:18:00+00:00","datePublished":"2025-01-07T00:00:00+00:00","description":"选择在模拟盘中表现好的因子投资","headline":"worldquant BRAIN 股票因子 (一) – 仿真测试","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/finance/alphas/"},"url":"https://roshameow.github.io//personal_homepage/finance/alphas/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2025-08-13T19:19:00+00:00","datePublished":"2025-01-07T00:00:00+00:00","description":"选择在模拟盘中表现好的因子投资","headline":"worldquant BRAIN 股票因子 (一) – 仿真测试","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/finance/alphas/"},"url":"https://roshameow.github.io//personal_homepage/finance/alphas/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -153,15 +153,15 @@
     <!-- <div id="markdown-toc"> -->
     <ul>
         
-        <li><a href="/personal_homepage/algorithm/alpha9/">拉格朗日乘子法应用 (一)</a></li>
+        <li><a href="/personal_homepage/photo/stable-diffusion10/">nano-banana 效果</a></li>
         
-        <li><a href="/personal_homepage/tool/packing/">Tauri 项目 Build 与 Release 实践总结</a></li>
+        <li><a href="/personal_homepage/tool/mac/dictionary/">mac系统字典</a></li>
         
-        <li><a href="/personal_homepage/algorithm/alpha8/">选出最佳的表达式组合</a></li>
+        <li><a href="/personal_homepage/code/algorithm/string/">代码语法解析</a></li>
         
-        <li><a href="/personal_homepage/algorithm/alpha7/">选出最佳的因子组合</a></li>
+        <li><a href="/personal_homepage/daily/washing-machine/">洗衣机分类</a></li>
         
-        <li><a href="/personal_homepage/tool/auto-code/">设置开机自启动自运行程序</a></li>
+        <li><a href="/personal_homepage/tool/vscode-extension/">给 VsCode 安装插件</a></li>
         
     </ul>
     <!-- </div> -->
@@ -215,7 +215,7 @@
         </ul>
       </li>
       <li>alpha apply到每只股票上得到alpha value</li>
-      <li>L1 归一化,  得到每只股票的<code class="language-plaintext highlighter-rouge">weight</code>
+      <li><strong>L1 归一化</strong>,  得到每只股票的<code class="language-plaintext highlighter-rouge">weight</code>
         <ul>
           <li>不同neutralize组的booksize是分别计算的? 比如有两个sector, 每个sector scale到 0.5/abs(sector_sum)?</li>
         </ul>
@@ -382,13 +382,14 @@
           </li>
         </ul>
       </li>
+      <li>normalize(<code class="language-plaintext highlighter-rouge">scale, group_normalize</code>): 相当于L1 normalize</li>
       <li>缩尾: 中间部分数据不变, 用来处理长尾分布.
         <ul>
           <li><code class="language-plaintext highlighter-rouge">tail</code> : 手动设置lower, upper bound</li>
           <li><code class="language-plaintext highlighter-rouge">winsorize</code>:  离群数据的截断的范围由std确定</li>
         </ul>
       </li>
-      <li>scale(<code class="language-plaintext highlighter-rouge">scale, group_scale, ts_scale</code>): 让数据在0-1之间. 线性scale</li>
+      <li>scale(<code class="language-plaintext highlighter-rouge">group_scale, ts_scale</code>): 让数据在0-1之间. 线性scale</li>
       <li>线性分段函数改变数据分布: 比如<code class="language-plaintext highlighter-rouge">a&lt;0.1? (1.1-a):(a&gt;0.8? 1.8-a:1)</code> , 可以构造任何分布.</li>
       <li>非线性的改变数据分布(<code class="language-plaintext highlighter-rouge">power, -inverse, log(x+1),arctan</code>)</li>
     </ul>
@@ -411,7 +412,8 @@
             <ul>
               <li>$\beta=\frac{\sum(x-\bar x)(y-\bar y)}{\sum(x-\bar x)^2}$ , 是$y=\beta \cdot x+ \epsilon$ 做最小二乘法的解, 也是 y 在x方向的投影系数. <em>这个所谓的斜率是y关于x的斜率, 不是拟合之后的结果的斜率, 体现的是相关性而不是信号本身</em> . 和ts_corr, ts_covariance某种程度上可以相互替换
                 <ul>
-                  <li>ts_covariance 相当于 $\sum xy - (\sum x)(\sum y)$</li>
+                  <li>ts_corr 是$\frac{\sum(x-\bar x)(y-\bar y)}{\sqrt(\sum(x-\bar x)^2\sum(y-\bar y)^2)}$</li>
+                  <li>ts_covariance 相当于 $\sum xy - (\sum x)(\sum y)$  $\sum(x-\bar x)(y-\bar y)$</li>
                 </ul>
               </li>
               <li>可以用这个信号作为一个阈值</li>
@@ -426,7 +428,7 @@
           </li>
           <li>y-estimate(rettype=3): 相当于用x数据线性构建信号, 调节出一个和y 距离最近的参数. (x信号是主信号)
             <ul>
-              <li>用<code class="language-plaintext highlighter-rouge">ts_regression(y,x)*y</code></li>
+              <li>用<code class="language-plaintext highlighter-rouge">ts_regression(y,x)*x</code></li>
             </ul>
           </li>
           <li>$R^2=1-\frac{SSE}{SST}$ (决定系数, rettype=6): 表示线性模型的有用程度.(比直接取均值好的程度.). (反应了x对y的预测能力.)
@@ -436,6 +438,8 @@
           </li>
         </ul>
       </li>
+      <li>regression_proj 和 vector_proj 的关系: vector_proj是没有中心化的, $\frac{\sum xy}{\sum x^2}\cdot x$</li>
+      <li>regression/vector_proj 和 regression/vector_neut的关系: neut 是 y - proj(y)</li>
     </ul>
   </li>
   <li>分组
