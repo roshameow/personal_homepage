@@ -8,7 +8,8 @@ tags:
   - dataset
   - pytorch
   - script
-last_modified_at: 2024-04-17T12:27:21-08:00
+last_modified_at: 2025-09-11T15:52
+created: 2024-01-15T19:01
 ---
 各种颜色调制的数据对难以采集, 所以现在大部分颜色调制还是用多光谱数据仿真得到.
 ## 多光谱数据集
