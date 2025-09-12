@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://roshameow.github.io//personal_homepage/atom.xml" rel="self" type="application/atom+xml" /><link href="https://roshameow.github.io//personal_homepage/" rel="alternate" type="text/html" /><updated>2025-09-12T01:51:36+00:00</updated><id>https://roshameow.github.io//personal_homepage/atom.xml</id><title type="html">Liu, Wen’s Home Page</title><subtitle>Work, Experiments and Ideas.</subtitle><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><entry><title type="html">nano-banana 效果</title><link href="https://roshameow.github.io//personal_homepage/photo/stable-diffusion10/" rel="alternate" type="text/html" title="nano-banana 效果" /><published>2025-09-02T00:00:00+00:00</published><updated>2025-09-02T19:30:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/photo/stable-diffusion10</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/photo/stable-diffusion10/"><![CDATA[]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="photo" /><category term="content" /><summary type="html"><![CDATA[]]></summary></entry><entry><title type="html">mac系统字典</title><link href="https://roshameow.github.io//personal_homepage/tool/mac/dictionary/" rel="alternate" type="text/html" title="mac系统字典" /><published>2025-08-16T00:00:00+00:00</published><updated>2025-08-19T18:47:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/tool/mac/dictionary</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/tool/mac/dictionary/"><![CDATA[<p>目标是把 MongoDB 里存放的术语和定义，打包成可以在 <strong>macOS 自带“字典”应用</strong>中查询的本地词典。</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://roshameow.github.io//personal_homepage/atom.xml" rel="self" type="application/atom+xml" /><link href="https://roshameow.github.io//personal_homepage/" rel="alternate" type="text/html" /><updated>2025-09-12T09:40:01+00:00</updated><id>https://roshameow.github.io//personal_homepage/atom.xml</id><title type="html">Liu, Wen’s Home Page</title><subtitle>Work, Experiments and Ideas.</subtitle><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><entry><title type="html">nano-banana 效果</title><link href="https://roshameow.github.io//personal_homepage/photo/stable-diffusion10/" rel="alternate" type="text/html" title="nano-banana 效果" /><published>2025-09-02T00:00:00+00:00</published><updated>2025-09-02T19:30:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/photo/stable-diffusion10</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/photo/stable-diffusion10/"><![CDATA[]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="photo" /><category term="content" /><summary type="html"><![CDATA[]]></summary></entry><entry><title type="html">mac系统字典</title><link href="https://roshameow.github.io//personal_homepage/tool/mac/dictionary/" rel="alternate" type="text/html" title="mac系统字典" /><published>2025-08-16T00:00:00+00:00</published><updated>2025-08-19T18:47:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/tool/mac/dictionary</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/tool/mac/dictionary/"><![CDATA[<p>目标是把 MongoDB 里存放的术语和定义，打包成可以在 <strong>macOS 自带“字典”应用</strong>中查询的本地词典。</p>
 
 <h2 id="成功步骤">成功步骤</h2>
 
@@ -57,7 +57,7 @@
 <ul>
   <li>效果和官方字典差不多</li>
   <li>但是在一些网页的在线代码编辑器(可能用的是自绘控件, 而不是macos的Cocoa文本系统)和微信(lookup被软件禁用)不能用</li>
-</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="tool" /><category term="mac" /><category term="content" /><summary type="html"><![CDATA[目标是把 MongoDB 里存放的术语和定义，打包成可以在 macOS 自带“字典”应用中查询的本地词典。]]></summary></entry><entry><title type="html">代码语法解析</title><link href="https://roshameow.github.io//personal_homepage/code/algorithm/string/" rel="alternate" type="text/html" title="代码语法解析" /><published>2025-08-10T00:00:00+00:00</published><updated>2025-09-12T05:24:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/code/algorithm/string</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/code/algorithm/string/"><![CDATA[<h2 id="三元运算符ternary解析">三元运算符(ternary)解析</h2>
+</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="tool" /><category term="mac" /><category term="content" /><summary type="html"><![CDATA[目标是把 MongoDB 里存放的术语和定义，打包成可以在 macOS 自带“字典”应用中查询的本地词典。]]></summary></entry><entry><title type="html">代码语法解析</title><link href="https://roshameow.github.io//personal_homepage/code/algorithm/string/" rel="alternate" type="text/html" title="代码语法解析" /><published>2025-08-10T00:00:00+00:00</published><updated>2025-09-12T17:38:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/code/algorithm/string</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/code/algorithm/string/"><![CDATA[<h2 id="三元运算符ternary解析">三元运算符(ternary)解析</h2>
 
 <p>把 <code class="language-plaintext highlighter-rouge">...?...:...</code> 处理成<code class="language-plaintext highlighter-rouge">if_else(...,...,...)</code> 的形式.</p>
 
@@ -68,24 +68,28 @@
     <tr>
       <th>方法</th>
       <th>优缺点</th>
-      <th>复杂度</th>
+      <th>类比排序思路</th>
+      <th>平均复杂度</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td>用正则表达式替换三元运算符</td>
       <td>思路naive, 但是可读性差，难以维护</td>
-      <td>低</td>
+      <td> </td>
+      <td>O(n logn)+kO(n)<br />全字符串扫描+递归</td>
     </tr>
     <tr>
       <td>设计语法树解析器（Parser）</td>
-      <td>灵活性高，但实现较复杂</td>
-      <td>中</td>
+      <td>灵活性高, 但实现较复杂</td>
+      <td>选择排序</td>
+      <td>O(n logn)<br />近似二分递归</td>
     </tr>
     <tr>
-      <td>结合 Pratt Parser 优化解析</td>
+      <td>结合 <a href="https://www.google.com/search?client=safari&amp;rls=en&amp;q=pratt+parser&amp;ie=UTF-8&amp;oe=UTF-8">Pratt Parser</a> 优化解析</td>
       <td>代码简洁, 可读性高, 扩展性好</td>
-      <td>高</td>
+      <td>插入排序/堆排序</td>
+      <td>O(n)<br />线性扫描</td>
     </tr>
   </tbody>
 </table>
@@ -129,7 +133,7 @@
           <li>删除注释（/* … */ 与行注释 // 或 #）。</li>
           <li>按分号 ; 切分成多条<strong>语句</strong>，逐条 tokenize() → parse_expr() → to_python()。</li>
           <li>token 化</li>
-          <li>自顶向下递归解析（赋值 → 三元→ 二元按最低 precedence 为根 → 原子/函数/一元）</li>
+          <li>自顶向下递归解析（赋值 → 三元→ 二元<strong>按最低 precedence 为根</strong> → 原子/函数/一元）</li>
         </ul>
       </li>
       <li><strong>解析每句代码:</strong>
@@ -285,7 +289,15 @@
 
 <p>a = b = c:</p>
 
-<p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020250912052438.png" alt="Pasted image 20250912052438.png" width="300" /></p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="code" /><category term="algorithm" /><category term="content" /><category term="ast" /><category term="string" /><category term="regularization" /><category term="parser" /><category term="pratt" /><category term="ternary" /><category term="python" /><category term="dsl" /><summary type="html"><![CDATA[三元运算符(ternary)解析]]></summary></entry><entry><title type="html">洗衣机分类</title><link href="https://roshameow.github.io//personal_homepage/daily/washing-machine/" rel="alternate" type="text/html" title="洗衣机分类" /><published>2025-08-01T00:00:00+00:00</published><updated>2025-08-01T12:00:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/daily/washing-machine</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/daily/washing-machine/"><![CDATA[<ul>
+<p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020250912052438.png" alt="Pasted image 20250912052438.png" width="300" /></p>
+
+<h3 id="代码">代码</h3>
+
+<ul>
+  <li><a href="https://gist.github.com/roshameow/01c0191fae3c534050fa6ab076640549#file-replace_ternary-py"><strong>replace_ternary.py</strong></a></li>
+  <li><a href="https://gist.github.com/roshameow/01c0191fae3c534050fa6ab076640549#file-parser-py"><strong>parser.py</strong></a></li>
+  <li><a href="https://gist.github.com/roshameow/01c0191fae3c534050fa6ab076640549#file-pratt_parser-py"><strong>pratt_parser.py</strong></a></li>
+</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="code" /><category term="algorithm" /><category term="content" /><category term="ast" /><category term="string" /><category term="regularization" /><category term="parser" /><category term="pratt" /><category term="ternary" /><category term="python" /><category term="dsl" /><summary type="html"><![CDATA[三元运算符(ternary)解析]]></summary></entry><entry><title type="html">洗衣机分类</title><link href="https://roshameow.github.io//personal_homepage/daily/washing-machine/" rel="alternate" type="text/html" title="洗衣机分类" /><published>2025-08-01T00:00:00+00:00</published><updated>2025-08-01T12:00:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/daily/washing-machine</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/daily/washing-machine/"><![CDATA[<ul>
   <li>洗衣机</li>
 </ul>
 

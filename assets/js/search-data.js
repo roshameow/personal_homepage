@@ -615,7 +615,7 @@ var store = [{
         "url": "https://roshameow.github.io//personal_homepage/daily/washing-machine/"
       },{
         "title": "代码语法解析",
-        "excerpt":"三元运算符(ternary)解析 把 ...?...:... 处理成if_else(...,...,...) 的形式. 初衷是用正则替换把对应DSL的operator转换成python语言, 然后用python的ast 直接解析. 但是三元运算符的处理比较复杂, Python 中并没有直接对应的语法结构, 导致没法简单的替换. 方法 优缺点 复杂度 用正则表达式替换三元运算符 思路naive, 但是可读性差，难以维护 低 设计语法树解析器（Parser） 灵活性高，但实现较复杂 中 结合 Pratt Parser 优化解析 代码简洁, 可读性高, 扩展性好 高 直接用字符串替换 用字符串正则查找tenary并替换 递归处理?: 和括号, =, 逗号的关系 处理 括号, 逗号 都依赖栈来正确处理嵌套结构 写parser处理 可以通过编写自定义的解析器来处理三元运算符。下面是一些处理流程： 定义: 定义 AST 节点：设计不同类型的节点来表示表达式，如常量、变量、运算符等。 Tokenize：将源代码字符串分割成 tokens（例如：数字、运算符、字符串等）。 例如: ``a&lt;0.2? → [(“NAME”,”a”)...","categories": ["code","algorithm"],
+        "excerpt":"三元运算符(ternary)解析 把 ...?...:... 处理成if_else(...,...,...) 的形式. 初衷是用正则替换把对应DSL的operator转换成python语言, 然后用python的ast 直接解析. 但是三元运算符的处理比较复杂, Python 中并没有直接对应的语法结构, 导致没法简单的替换. 方法 优缺点 类比排序思路 平均复杂度 用正则表达式替换三元运算符 思路naive, 但是可读性差，难以维护   O(n logn)+kO(n)全字符串扫描+递归 设计语法树解析器（Parser） 灵活性高, 但实现较复杂 选择排序 O(n logn)近似二分递归 结合 Pratt Parser 优化解析 代码简洁, 可读性高, 扩展性好 插入排序/堆排序 O(n)线性扫描 直接用字符串替换 用字符串正则查找tenary并替换 递归处理?: 和括号, =, 逗号的关系 处理 括号, 逗号 都依赖栈来正确处理嵌套结构 写parser处理 可以通过编写自定义的解析器来处理三元运算符。下面是一些处理流程： 定义:...","categories": ["code","algorithm"],
         "tags": ["content","ast","string","regularization","parser","pratt","ternary","python","dsl"],
         "url": "https://roshameow.github.io//personal_homepage/code/algorithm/string/"
       },{

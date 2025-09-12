@@ -31,7 +31,7 @@
 <meta property="twitter:title" content="代码语法解析" />
 <meta name="twitter:site" content="@" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2025-09-12T05:24:00+00:00","datePublished":"2025-08-10T00:00:00+00:00","description":"三元运算符(ternary)解析","headline":"代码语法解析","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/code/algorithm/string/"},"url":"https://roshameow.github.io//personal_homepage/code/algorithm/string/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2025-09-12T17:38:00+00:00","datePublished":"2025-08-10T00:00:00+00:00","description":"三元运算符(ternary)解析","headline":"代码语法解析","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/code/algorithm/string/"},"url":"https://roshameow.github.io//personal_homepage/code/algorithm/string/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -139,7 +139,7 @@
 {:toc} -->
   <!-- <div id="markdown-toc"> -->
 
-    <ul class="inline_toc" id="my_toc"><li><a href="#三元运算符ternary解析">三元运算符(ternary)解析</a><ul><li><a href="#直接用字符串替换">直接用字符串替换</a></li><li><a href="#写parser处理">写parser处理</a></li><li><a href="#parse优化">parse优化</a></li></ul></li></ul>
+    <ul class="inline_toc" id="my_toc"><li><a href="#三元运算符ternary解析">三元运算符(ternary)解析</a><ul><li><a href="#直接用字符串替换">直接用字符串替换</a></li><li><a href="#写parser处理">写parser处理</a></li><li><a href="#parse优化">parse优化</a></li><li><a href="#代码">代码</a></li></ul></li></ul>
   <!-- </div> -->
 
 </div>
@@ -187,24 +187,28 @@
     <tr>
       <th>方法</th>
       <th>优缺点</th>
-      <th>复杂度</th>
+      <th>类比排序思路</th>
+      <th>平均复杂度</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td>用正则表达式替换三元运算符</td>
       <td>思路naive, 但是可读性差，难以维护</td>
-      <td>低</td>
+      <td> </td>
+      <td>O(n logn)+kO(n)<br />全字符串扫描+递归</td>
     </tr>
     <tr>
       <td>设计语法树解析器（Parser）</td>
-      <td>灵活性高，但实现较复杂</td>
-      <td>中</td>
+      <td>灵活性高, 但实现较复杂</td>
+      <td>选择排序</td>
+      <td>O(n logn)<br />近似二分递归</td>
     </tr>
     <tr>
-      <td>结合 Pratt Parser 优化解析</td>
+      <td>结合 <a href="https://www.google.com/search?client=safari&amp;rls=en&amp;q=pratt+parser&amp;ie=UTF-8&amp;oe=UTF-8">Pratt Parser</a> 优化解析</td>
       <td>代码简洁, 可读性高, 扩展性好</td>
-      <td>高</td>
+      <td>插入排序/堆排序</td>
+      <td>O(n)<br />线性扫描</td>
     </tr>
   </tbody>
 </table>
@@ -248,7 +252,7 @@
           <li>删除注释（/* … */ 与行注释 // 或 #）。</li>
           <li>按分号 ; 切分成多条<strong>语句</strong>，逐条 tokenize() → parse_expr() → to_python()。</li>
           <li>token 化</li>
-          <li>自顶向下递归解析（赋值 → 三元→ 二元按最低 precedence 为根 → 原子/函数/一元）</li>
+          <li>自顶向下递归解析（赋值 → 三元→ 二元<strong>按最低 precedence 为根</strong> → 原子/函数/一元）</li>
         </ul>
       </li>
       <li><strong>解析每句代码:</strong>
@@ -405,6 +409,14 @@
 <p>a = b = c:</p>
 
 <p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020250912052438.png" alt="Pasted image 20250912052438.png" width="300" /></p>
+
+<h3 id="代码">代码</h3>
+
+<ul>
+  <li><a href="https://gist.github.com/roshameow/01c0191fae3c534050fa6ab076640549#file-replace_ternary-py"><strong>replace_ternary.py</strong></a></li>
+  <li><a href="https://gist.github.com/roshameow/01c0191fae3c534050fa6ab076640549#file-parser-py"><strong>parser.py</strong></a></li>
+  <li><a href="https://gist.github.com/roshameow/01c0191fae3c534050fa6ab076640549#file-pratt_parser-py"><strong>pratt_parser.py</strong></a></li>
+</ul>
 
 
         </div>
