@@ -5,5 +5,11 @@ layout: page
 {{ content }}
 
 <div class="entries-{{ page.entries_layout | default: 'list' }}">
-  {% include posts-category.html taxonomy=page.taxonomy %}
+  {% if page.posts.size > 0 %}
+    {% for entry in page.posts %}
+      {% include entry.html %}
+    {% endfor %}
+  {% else %}
+    {% include posts-category.html taxonomy=page.taxonomy %}
+  {% endif %}
 </div>

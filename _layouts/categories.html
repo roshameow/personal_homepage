@@ -47,35 +47,18 @@ layout: page
 {% assign category_counts = category_counts | split: "|" %}
 
 
-<ul class="taxonomy-index">
+<ul class="taxonomy-index-grid">
   {% for category_names in category_names_array %}
     {% assign category_names_list = category_names | split: "," %}
     {% assign category_count = category_counts[forloop.index0] %}
     {% for category_name in category_names_list %}
+      {% assign category_slug = category_name | slugify %}
+      {% assign category_url = "/categories/" | append: category_slug | append: "/" | relative_url %}
       <li>
-        <a href="#{{ category_name | slugify }}">
+        <a href="{{ category_url }}">
           <strong>{{ category_name }}</strong> <span class="taxonomy-count">{{ category_count }}</span>
         </a>
       </li>
     {% endfor %}
   {% endfor %}
 </ul>
-
-{% for category_names in category_names_array %}
-  {% assign category_names_list = category_names | split: "," %}
-  {% for category_name in category_names_list %}
-    <section id="{{ category_name | slugify | downcase }}" class="taxonomy-section">
-      <h2 class="taxonomy-title">{{ category_name }}</h2>
-      {% for category in site.categories %}
-        {% if category[0] == category_name %}
-          <div class="entries-{{ page.entries_layout | default: 'list' }}">
-            {% for entry in category.last %}
-              {% include entry.html %}
-            {% endfor %}
-          </div>
-        {% endif %}
-      {% endfor %}
-      <a href="#page-title" class="back-to-top">{{ site.data.text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>
-    </section>
-  {% endfor %}
-{% endfor %}

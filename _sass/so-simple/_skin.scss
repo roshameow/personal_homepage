@@ -56,6 +56,17 @@ blockquote {
   }
 }
 
+.taxonomy-index-grid {
+  a {
+    border-color: $border-color;
+
+    &:hover {
+      color: $accent-color;
+      border-color: $accent-color;
+    }
+  }
+}
+
 .taxonomy-section {
   &:not(:last-child) {
     border-bottom-color: $border-color;

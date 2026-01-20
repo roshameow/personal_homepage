@@ -84,6 +84,14 @@ plugins:
   - jekyll-sitemap
   - jekyll-feed
   - jekyll-paginate
+  - jekyll-archives
+
+jekyll-archives:
+  enabled:
+    - categories
+  layout: 'category'
+  permalinks:
+    category: '/categories/:name/'
 
 # Collections
 collections_dir: docs
@@ -134,4 +142,3 @@ footer_links:
   - title: e-mail
     url: mailto:w.liuatnk@gmail.com
     icon: fas fa-envelope-square
-

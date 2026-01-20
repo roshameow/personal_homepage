@@ -2,10 +2,10 @@
 layout: post
 title: 墙皮脱落问题
 categories:
-  - house
+  - daily
 tags:
   - content
-last_modified_at: 2024-10-30T11:24
+last_modified_at: 2026-01-20T17:08
 created: 2024-09-02T10:27
 ---
 
