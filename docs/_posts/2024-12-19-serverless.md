@@ -5,7 +5,7 @@ categories:
   - WebPage
 tags:
   - content
-last_modified_at: 2025-04-03T11:29
+last_modified_at: 2025-11-29T11:06
 created: 2024-12-19T22:00
 ---
 租虚拟服务器代替真实服务器
@@ -56,3 +56,11 @@ AWS S3, Dy..db, Lambda, SQS/SNS, Fargate, API Gateway
 		- 没有自带tmux, 要自己安装一下
 	- 亚马逊ec2
 		- cpu用超了(list太大之类)会直接卡住无法登陆. 不过等一会儿进程会自动被kill.😂 就又可以了
+
+- 服务器遇到内存问题怎么排查:
+	1. 设置swap文件避免服务器直接崩溃
+		1. `free -m` 查看内存, 查看swap文件是否生效
+		2. `cat /etc/fstab` 确认系统重启后也能自动启用swap
+	2. 设置python脚本, 监控swap是否被起用. 写入log
+		1. 设置开机自启动
+		2. 这个`mem_monitor.service` 反复重启, 写入大量日志, 反倒把我的磁盘占满了...
