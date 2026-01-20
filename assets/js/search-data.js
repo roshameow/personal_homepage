@@ -360,9 +360,9 @@ var store = [{
         "url": "https://roshameow.github.io//personal_homepage/game/card/"
       },{
         "title": "墙皮脱落问题",
-        "excerpt":"根据这个视频学习, 墙皮粉化, 剥落 分类 普通的起皮, 剥落 基层出现裂缝 加胶水太多遇水膨胀 墙面尘土大, 没清理, 没刷界面剂 腻子本身寿命短, 有机粘料太少, 抗热胀冷缩不达标 返碱 加阳离子氯丁胶乳耐碱 长霉 给自己手, 呼吸道做好防护, 刷次氯酸(漂白粉) 壁癌: 大面积剥落, 基层渗水漏水导致的(最常见的) 解决根本问题, 做防水 细缝用 水泥基渗透结晶(填缝剂, 矽酸质), 国标 GB18445-2012 (有争议) 有说水性聚氨酯(油性有毒), 或JS防水涂料(搭配防水卷材) 处理方法 判断基层: 木板, 石膏 从敲击声判断 用钢丝球/钢刷打磨干净基层的水泥墙面 清除所有浮灰污渍油渍 可能: 用脱漆剂去除不干净的底漆 刷907界面剂(满足国标JC/T 907-2018 的界面剂), 俗称墙固 固砂固粉 增加不同材料之间的粘性(基底Vs腻子Vs漆) 小面积用补墙膏修复, 大面积用耐水腻子...","categories": ["house"],
+        "excerpt":"根据这个视频学习, 墙皮粉化, 剥落 分类 普通的起皮, 剥落 基层出现裂缝 加胶水太多遇水膨胀 墙面尘土大, 没清理, 没刷界面剂 腻子本身寿命短, 有机粘料太少, 抗热胀冷缩不达标 返碱 加阳离子氯丁胶乳耐碱 长霉 给自己手, 呼吸道做好防护, 刷次氯酸(漂白粉) 壁癌: 大面积剥落, 基层渗水漏水导致的(最常见的) 解决根本问题, 做防水 细缝用 水泥基渗透结晶(填缝剂, 矽酸质), 国标 GB18445-2012 (有争议) 有说水性聚氨酯(油性有毒), 或JS防水涂料(搭配防水卷材) 处理方法 判断基层: 木板, 石膏 从敲击声判断 用钢丝球/钢刷打磨干净基层的水泥墙面 清除所有浮灰污渍油渍 可能: 用脱漆剂去除不干净的底漆 刷907界面剂(满足国标JC/T 907-2018 的界面剂), 俗称墙固 固砂固粉 增加不同材料之间的粘性(基底Vs腻子Vs漆) 小面积用补墙膏修复, 大面积用耐水腻子...","categories": ["daily"],
         "tags": ["content"],
-        "url": "https://roshameow.github.io//personal_homepage/house/wall-problem/"
+        "url": "https://roshameow.github.io//personal_homepage/daily/wall-problem/"
       },{
         "title": "给 Melvor Idle制作 Mod",
         "excerpt":"制作   教程: https://wiki.melvoridle.com/w/Mod_Creation/Getting_Started","categories": ["game"],
@@ -645,7 +645,7 @@ var store = [{
         "url": "https://roshameow.github.io//personal_homepage/tool/message/"
       },{
         "title": "代码模块的多维索引",
-        "excerpt":"非常好的追问。你的直觉非常敏锐——“tag 化组织代码是否会成为未来方向”，确实是软件工程界正在隐隐靠近的一种趋势，只是目前还没有被主流编程语言（包括 Python）完全接纳。 我来帮你分层分析一下，从语言设计、工程实践、AI 辅助开发、以及知识结构演化四个角度看，它的潜在未来。 🧩 一、从语言设计角度看：从「物理模块」到「语义模块」 传统语言的模块系统是文件层级绑定的命名空间： Python：import module.submodule Java：package com.example.util C++：基于 include 路径 Rust：基于 mod 文件树但未来趋势正往语义模块（semantic module）发展，也就是： 模块不由文件夹决定，而由「意图」或「语义标签」定义。 一些现代语言的迹象： Swift Package Manager 已经支持 target-based 依赖，可跨文件复用； Rust Crates + feature flags 开始允许 feature-based 组合； CUE / Bazel 通过标签（labels）管理依赖； ReScript / Rome / Deno 正在探索 import maps 与语义分组。这说明整个行业在从 “文件组织” 向...","categories": ["code"],
+        "excerpt":"记录讨论代码模块多维索引的发展 🧩 一、从语言设计角度看：从「物理模块」到「语义模块」 传统语言的模块系统是文件层级绑定的命名空间： Python：import module.submodule Java：package com.example.util C++：基于 include 路径 Rust：基于 mod 文件树但未来趋势正往语义模块（semantic module）发展，也就是： 模块不由文件夹决定，而由「意图」或「语义标签」定义。 一些现代语言的迹象： Swift Package Manager 已经支持 target-based 依赖，可跨文件复用； Rust Crates + feature flags 开始允许 feature-based 组合； CUE / Bazel 通过标签（labels）管理依赖； ReScript / Rome / Deno 正在探索 import maps 与语义分组。这说明整个行业在从 “文件组织” 向 “语义组织” 过渡。 🧠 二、从工程实践看：tag...","categories": ["code"],
         "tags": ["content"],
         "url": "https://roshameow.github.io//personal_homepage/code/tag-code/"
       },{
