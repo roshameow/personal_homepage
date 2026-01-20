@@ -436,7 +436,7 @@ var store = [{
       },{
         "title": "洗发水成分",
         "excerpt":"成分分类 十二烷醇=月桂醇 成分 功能 分类 成分 表面活性剂 去污         硫酸盐阴离子表活石油化工提取, 便宜, 好起泡强力但是刺激(不能区分油性杂质和皮肤细胞的脂质膜) - 月桂醇硫酸酯钠(SLS): 强力- 月桂醇聚醚硫酸酯钠(SLES): 更温和- 月桂醇聚醚硫酸酯铵     皂基类脂肪酸盐类, 好起泡, 强去污. 会让头发干涩, 损伤发质. - 月桂酸钠- 硬脂酸钠- 棕榈酸- 氢氧化钠(和脂肪酸一起形成皂基)     氨基酸清洁力和刺激性平衡 - 月桂酰肌氨酸钠- 椰油酰谷氨酸钠, 椰油酰基甲基牛磺酸钠     其它温和类的 甜菜碱类、乙磺酸类、葡糖苷类, 二乙酸二钠 活性成分        ...","categories": ["daily"],
-        "tags": ["content","shampoo"],
+        "tags": ["content","shampoo","日用品"],
         "url": "https://roshameow.github.io//personal_homepage/daily/shampoo/"
       },{
         "title": "conformal geometry学习 (十一 ) -- harmonic map",
@@ -510,7 +510,7 @@ var store = [{
         "url": "https://roshameow.github.io//personal_homepage/tool/asyncio/"
       },{
         "title": "worldquant BRAIN 股票因子 (三) -- API使用和代码",
-        "excerpt":"仿真流程 API功能 登陆: https://api.worldquantbrain.com/authentication 获得数据字段: https://api.worldquantbrain.com/data-fields? 发起仿真测试: https://api.worldquantbrain.com/simulations 查询结果, 打标签: https://api.worldquantbrain.com/alphas/{alpha_id}批量仿真流程 开启异步session 尝试登陆 生成仿真数据, 把仿真数据存入csv文件, 计算任务数量 批量开启仿真回测, 处理可能出现的任何异常(登陆超时,发送过快,回测被拒绝) 发起请求 发起回测成功(response中包含Location) -&gt; 获得回测状态(得到simulation id) 🔄 不断请求回测状态 回测状态变为结束(response中Retry-After=0, status=[COMPLETE,WARNING]) -&gt; 获得结果(得到alpha id) 几种网络问题处理 time-out: cancel 任务 退出登陆(401): 重新登陆 + 重试 超出发送限制(429): sleep + 重试 Gateway time-out(504): sleep + 重试 未知错误: 结束问题 理论上可以不去监测每个请求的发送情况....","categories": ["code"],
+        "excerpt":"仿真流程 API功能 登陆: https://api.worldquantbrain.com/authentication 获得数据字段: https://api.worldquantbrain.com/data-fields? 发起仿真测试: https://api.worldquantbrain.com/simulations 查询结果, 打标签: https://api.worldquantbrain.com/alphas/{alpha_id}批量仿真流程 开启异步session 尝试登陆 生成仿真数据, 把仿真数据存入csv文件, 计算任务数量 批量开启仿真回测, 处理可能出现的任何异常(登陆超时,发送过快,回测被拒绝) 发起请求 发起回测成功(response中包含Location) -&gt; 获得回测状态(得到simulation id) 🔄 不断请求回测状态 回测状态变为结束(response中Retry-After=0, status=[COMPLETE,WARNING]) -&gt; 获得结果(得到alpha id) 几种网络问题处理 用工具函数统一的封装get, patch, post请求. time-out: cancel 任务 退出登陆(401): 重新登陆 + 重试 超出发送限制(429): sleep + 重试 Gateway time-out(504): sleep + 重试...","categories": ["code"],
         "tags": ["content","python","async","worldquant"],
         "url": "https://roshameow.github.io//personal_homepage/code/alphas3/"
       },{
@@ -565,7 +565,7 @@ var store = [{
         "url": "https://roshameow.github.io//personal_homepage/blender/blender-learning22/"
       },{
         "title": "MCP协议理解",
-        "excerpt":"MCP(Model Context Protocol) 功能: 和本地环境有强交互需要的, 需要修改文件的   读取我电脑的terminal history, 总结常用功能, 结合项目文件, 给项目写readme  快速配置环境, 跑通一个开源项目","categories": ["tool"],
+        "excerpt":"MCP(Model Context Protocol) 功能: 和本地环境有强交互需要的, 需要修改文件的 读取我电脑的terminal history, 总结常用功能, 结合项目文件, 给项目写readme 快速配置环境, 跑通一个开源项目概念对比：Function Calling vs Agent vs MCP vs Skills 1. 核心定义 Function Calling (函数调用) 定义: LLM 的一种基础能力。模型不直接执行代码，而是输出一个结构化数据（通常是 JSON），声明“我想调用这个函数，参数是这些”。宿主程序捕获这个请求，执行实际代码，并将结果传回给 LLM。 角色: LLM 的“手”和“眼”。它是实现工具使用的底层机制。 Agent (智能体) 定义: 一个拥有自主性的系统架构。它利用 LLM 进行感知、规划（Planning）、记忆（Memory），并主动使用工具（Tool Use）来完成复杂的、多步骤的目标。 角色: 独立工作的“员工”。它是上层的逻辑编排者。 Skills (技能/插件) 定义: 通常指一组特定领域能力的打包封装（在 Semantic Kernel 等框架中常见）。它将相关的 Prompts...","categories": ["tool"],
         "tags": ["content"],
         "url": "https://roshameow.github.io//personal_homepage/tool/MCP/"
       },{
@@ -584,7 +584,7 @@ var store = [{
         "tags": ["content"],
         "url": "https://roshameow.github.io//personal_homepage/algorithm/alpha7/"
       },{
-        "title": "组合交易",
+        "title": "组合交易 (一)",
         "excerpt":"单个alpha仿真交易流程 输入为 Matrix(T x I ), 按照时间顺序交易 仿真交易规则: 每天用恒定的账面规模(book size)交易, book size 为$20 million. 有$10 million现金, 投资上限为$20million. alpha apply到每只股票上得到alpha value L1 归一化, 得到每只股票的weight 不同neutralize组的booksize是分别计算的? 比如有两个sector, 每个sector scale到 0.5/abs(sector_sum)? 每天在每只股票上投资 weight*booksize 计算PnL 组合(combo) 先选择一个alpha pool $\\alpha_n$ (N x T x I) 一个权重 $w_n$ (N x T). 按照权重线性组合alpha $\\tilde\\alpha$ ( T x...","categories": ["finance"],
         "tags": ["content","alpha","L1_norm","simulation","combo","equal_weight"],
         "url": "https://roshameow.github.io//personal_homepage/finance/alpha8/"
@@ -605,7 +605,7 @@ var store = [{
         "url": "https://roshameow.github.io//personal_homepage/algorithm/alpha10/"
       },{
         "title": "给 VsCode 安装插件",
-        "excerpt":"当我们使用大量自定义的 DSL（领域特定语言）构建表达式，例如：add(multiply(pasteurize(x), y), z)这些函数（如 add, multiply, pasteurize）并不是 Python 的标准函数，而是平台自定义的 Operators。我们希望在 VSCode 中输入这些函数时： 能够自动补全 鼠标悬停时显示函数定义和用途开发 开发环境配置 npm install -g yo generator-codeyo code在执行 yo code 时，选择插件的配置选项： Identifier：插件的唯一名称 Bundler：建议使用 esbuild，它简单且高效插件功能实现 写主逻辑(在src/extension.ts中): 读取json, 定义activate行为(自动补全, 悬停提示…) 配置项目: 在package.json里, 配置activationEvents, contributes.languanage等信息. 在files里添加assets 设置在extension.settting里加载本地配置文件: configuration.properties 调试 用View -&gt; Output -&gt; Extension Host查看log. 乱七八糟的log很多时, 搜索插件的Identifier定位. 打包 npm install...","categories": ["tool"],
+        "excerpt":"当我们使用大量自定义的 DSL（领域特定语言）来构建表达式时，例如： add(multiply(pasteurize(x), y), z)这些函数（如 add、multiply、pasteurize）并不是 Python 的标准函数，而是平台自定义的 Operators。为了提升开发体验，我们希望在 VSCode 中输入这些函数时能够： 自动补全函数名 鼠标悬停时显示函数定义与用途 callout查找: 输入/selection 下拉所有selection字段一、开发环境准备 安装 Yeoman 和 VSCode 插件生成器： npm install -g yo generator-codeyo code在执行 yo code 时，选择以下配置： Identifier：插件的唯一标识名 Bundler：推荐使用 esbuild（简单高效）生成的模板项目会包含基本的结构与示例代码。 二、插件功能实现 插件的核心逻辑在 src/extension.ts 中实现，主要包括： 加载数据源(Loader)从本地 JSON 文件中读取 Operators 定义。 注册 Provider 自动补全：CompletionItemProvider 悬停提示：HoverProvider 定义激活行为（activate）在插件被加载时执行初始化逻辑。 配置插件信息（package.json） activationEvents：定义何时激活插件（例如在打开 Python...","categories": ["tool"],
         "tags": ["content","typescript","vscode","dsl"],
         "url": "https://roshameow.github.io//personal_homepage/tool/vscode-extension/"
       },{
@@ -615,7 +615,7 @@ var store = [{
         "url": "https://roshameow.github.io//personal_homepage/daily/washing-machine/"
       },{
         "title": "代码语法解析",
-        "excerpt":"三元运算符(ternary)解析 把 ...?...:... 处理成if_else(...,...,...) 的形式. 初衷是用正则替换把对应DSL的operator转换成python语言, 然后用python的ast 直接解析. 但是三元运算符的处理比较复杂, Python 中并没有直接对应的语法结构, 导致没法简单的替换. 方法 优缺点 类比排序思路 平均复杂度 用正则表达式替换三元运算符 思路naive, 但是可读性差，难以维护   O(n logn)+kO(n)全字符串扫描+递归 设计语法树解析器（Parser） 灵活性高, 但实现较复杂 选择排序 O(n logn)近似二分递归 结合 Pratt Parser 优化解析 代码简洁, 可读性高, 扩展性好 插入排序/堆排序 O(n)线性扫描 直接用字符串替换 用字符串正则查找tenary并替换 递归处理?: 和括号, =, 逗号的关系 处理 括号, 逗号 都依赖栈来正确处理嵌套结构 写parser处理 可以通过编写自定义的解析器来处理三元运算符。下面是一些处理流程： 定义:...","categories": ["code","algorithm"],
+        "excerpt":"三元运算符(ternary)解析 把 ...?...:... 处理成if_else(...,...,...) 的形式. 初衷是用正则替换把对应DSL的operator转换成python语言, 然后用python的ast 直接解析. 但是三元运算符的处理比较复杂, Python 中并没有直接对应的语法结构, 导致没法简单的替换. 可以把字符串token解析成AST 的构建过程理解成“对运算符按优先级排序”的过程. 方法 优缺点 类比排序思路 平均复杂度 用正则表达式替换三元运算符 思路naive, 但是可读性差，难以维护   O(n logn)+kO(n)全字符串扫描+递归 设计语法树解析器（Parser） 灵活性高, 但实现较复杂 选择排序 O(n logn)近似二分递归 结合 Pratt Parser 优化解析 代码简洁, 可读性高, 扩展性好 插入排序/堆排序 O(n)线性扫描 直接用字符串替换 用字符串正则查找tenary并替换 递归处理?: 和括号, =, 逗号的关系 处理 括号, 逗号 都依赖栈来正确处理嵌套结构 写parser处理...","categories": ["code","algorithm"],
         "tags": ["content","ast","string","regularization","parser","pratt","ternary","python","dsl"],
         "url": "https://roshameow.github.io//personal_homepage/code/algorithm/string/"
       },{
@@ -624,8 +624,43 @@ var store = [{
         "tags": ["content"],
         "url": "https://roshameow.github.io//personal_homepage/tool/mac/dictionary/"
       },{
-        "title": "nano-banana 效果",
-        "excerpt":"","categories": ["photo"],
+        "title": "nano-banana 效果: 常用的作图功能",
+        "excerpt":"换背景(inpaint) 修改局部 ","categories": ["photo"],
         "tags": ["content"],
         "url": "https://roshameow.github.io//personal_homepage/photo/stable-diffusion10/"
+      },{
+        "title": "pv 衍生数据",
+        "excerpt":"pv数据 0阶数据 (原始) 一阶数据 (派生) 二阶数据 (高阶特征 &amp; 技术指标) 三阶数据 (组合/因子) open   cumret:prod(1+returns)-1excess_ret:returns - rffear:ts_mean(abs(returns - market_return)/(abs(returns)+abs(market_return)), 20) liquidity-adjusted return:returns / (1+Illiquidity) close returns:(close - close[-1]) / close[-1]—vwap:sum(close*volume)/sum(volume) volatility:ts_std(returns, 20)RSI (relative strength index)MACD (EMA_diff(close))ROC:(close_t/close_{t-n} - 1) risk-adjusted momentum:momentum / volatility high   maxdrawdown:(peak(close) - trough(close)) / peak(close)Williams %R:(HH_n - close)/(HH_n-LL_n) volume-adjusted...","categories": ["data"],
+        "tags": ["content"],
+        "url": "https://roshameow.github.io//personal_homepage/data/alpha11/"
+      },{
+        "title": "hash映射",
+        "excerpt":"估算alpha id 和什么有关 有些hash会非常相似. 目的, 得到alpha id的全部编码信息: 秒级的timestamp+machine id 44/s. 2640/min. 1w consultant. 每人回测100/ 5min. 44x3600x24/10000 = 380 次/天. 这和实际结果很不符合. 1天5w. 假设1: 可能的方案 做法 特点 输入 输出 密码学hash函数(SHA-256 / SHA-1 / MD5) 碎纸机:→ 生成和输出相同的初始值加入输入的内容进行各种非线性混合重复多次 1. 相近的输入会输出完全不同的结果2. 可以人为制造hash冲突 任意长度二进制文本 md5: 128bit/32hexSHA-256: 256bit 多项式除法的校验码(CRC32) 把输入的任意长度看成(mod2)多项式$M(x)$→ 指定生成多项式$G(x)$ 得到输出为 residue $R(x)$实际中通过移位+XOR实现 1. 常见的变化, 输出可预测(单比特错、双比特错、突发错)...","categories": ["algorithm"],
+        "tags": ["content"],
+        "url": "https://roshameow.github.io//personal_homepage/algorithm/alpha12/"
+      },{
+        "title": "服务器发送消息通知",
+        "excerpt":"发送文字/表格/图片的混合消息   飞书: 支持富文本和卡片          普通消息      消息卡片                  打开 飞书开放平台。          在企业自建应用, 创建机器人                          获得机器人的App ID, App Secret              在权限管理, 给机器人添加上传图片的权限: im:message                                  图片需要先上传到平台, 在消息里用链接                  每次token只能保存两个小时.                                                              在开放平台的开发文档里搜发送卡片的各种示例                          llm没法知道专用格式. 可能需要可以上网的agent                                            邮件: 支持html渲染          在gmail开启两步验证, 然后开启 https://myaccount.google.com/apppasswords 就可以      ","categories": ["tool"],
+        "tags": ["content"],
+        "url": "https://roshameow.github.io//personal_homepage/tool/message/"
+      },{
+        "title": "代码模块的多维索引",
+        "excerpt":"非常好的追问。你的直觉非常敏锐——“tag 化组织代码是否会成为未来方向”，确实是软件工程界正在隐隐靠近的一种趋势，只是目前还没有被主流编程语言（包括 Python）完全接纳。 我来帮你分层分析一下，从语言设计、工程实践、AI 辅助开发、以及知识结构演化四个角度看，它的潜在未来。 🧩 一、从语言设计角度看：从「物理模块」到「语义模块」 传统语言的模块系统是文件层级绑定的命名空间： Python：import module.submodule Java：package com.example.util C++：基于 include 路径 Rust：基于 mod 文件树但未来趋势正往语义模块（semantic module）发展，也就是： 模块不由文件夹决定，而由「意图」或「语义标签」定义。 一些现代语言的迹象： Swift Package Manager 已经支持 target-based 依赖，可跨文件复用； Rust Crates + feature flags 开始允许 feature-based 组合； CUE / Bazel 通过标签（labels）管理依赖； ReScript / Rome / Deno 正在探索 import maps 与语义分组。这说明整个行业在从 “文件组织” 向...","categories": ["code"],
+        "tags": ["content"],
+        "url": "https://roshameow.github.io//personal_homepage/code/tag-code/"
+      },{
+        "title": "消毒液",
+        "excerpt":"","categories": ["daily"],
+        "tags": ["content"],
+        "url": "https://roshameow.github.io//personal_homepage/daily/disinfectant/"
+      },{
+        "title": "组合交易 (二)",
+        "excerpt":"单个alpha的性能 维度 指标名称 描述 计算公式 特点 表现和未来一天returns的关系 daily pnl   $S_t\\cdot R_{t+1}$ 最直接   Quintile Long–Short Strategy（五分位多空策略）   $R_{Q5}-R_{Q1}$ 常用投资研究方法   Information Coefficient(IC) 计算alpha值和未来一天returns的Pearson相关性 \\(IC_t = \\rho(S_t,R_{t+1}) = \\frac{\\sum_{i=1}^N (S_{i,t} - \\bar{S}_t)(R_{i,t+1} - \\bar{R}_{t+1})}{\\sqrt{\\sum_{i=1}^N (S_{i,t} - \\bar{S}_t)^2 \\sum_{i=1}^N (R_{i,t+1} - \\bar{R}_{t+1})^2}}\\) 容易受到极端值影响   Fama-MacBeth Regression 计算alpha值对未来returns的beta系数 Linear Regression Model:$R_{i,t+1} =...","categories": ["finance"],
+        "tags": ["content"],
+        "url": "https://roshameow.github.io//personal_homepage/finance/alpha13/"
+      },{
+        "title": "怎么把一个小功能润色成用户产品",
+        "excerpt":"通过学习这个 优秀的案例 学了一些我没做到, 不过不知道有没有用的技巧. 应该有点用吧? 更专业的github   README          隐私声明： 明确告知用户“纯前端运行，图片数据不离机”。这是这个产品最大的卖点之一。如果你的算法能在本地跑，一定要大写加粗告诉用户。      开源/原理透明：在页面底部放上原理解释和原理的文章链接      安装方法       免责声明：Disclaimer（仅供学习交流，后果自负)        Demo GIF  LICENSE  Shields.io badges  About 区域填满降低使用门槛   纯前端实现(不登陆, 不注册, 不配置)  Web版          极简的功能        插件化          通用Userscript      试验 尝试小范围的宣传自己的开源项目, 发现很困难   设计了很多开放性接口, 但是没人会使用, 没有配套文档. 别人并不会看readme. 想要的是安装后就能直接使用的app  不够通用.  每个界面, 每个按钮都要有用.","categories": ["tool"],
+        "tags": ["content"],
+        "url": "https://roshameow.github.io//personal_homepage/tool/feature2product/"
       }]

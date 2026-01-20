@@ -31,7 +31,7 @@
 <meta property="twitter:title" content="worldquant BRAIN 股票因子 (六 ) – 代码优化" />
 <meta name="twitter:site" content="@" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2025-09-02T17:11:00+00:00","datePublished":"2025-04-17T00:00:00+00:00","description":"我最终选择了使用 Tauri 来构建我的桌面回测应用。本文记录了开发过程中需求梳理、初始化步骤、遇到的坑以及一些性能优化技巧。","headline":"worldquant BRAIN 股票因子 (六 ) – 代码优化","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/tool/alpha6/"},"url":"https://roshameow.github.io//personal_homepage/tool/alpha6/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2025-12-14T23:46:00+00:00","datePublished":"2025-04-17T00:00:00+00:00","description":"我最终选择了使用 Tauri 来构建我的桌面回测应用。本文记录了开发过程中需求梳理、初始化步骤、遇到的坑以及一些性能优化技巧。","headline":"worldquant BRAIN 股票因子 (六 ) – 代码优化","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/tool/alpha6/"},"url":"https://roshameow.github.io//personal_homepage/tool/alpha6/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -139,7 +139,7 @@
 {:toc} -->
   <!-- <div id="markdown-toc"> -->
 
-    <ul class="inline_toc" id="my_toc"><li><a href="#需求梳理">需求梳理</a><ul><li><a href="#核心功能">核心功能</a></li><li><a href="#任务流程设计">任务流程设计</a></li></ul></li><li><a href="#初始化与开发环境搭建">初始化与开发环境搭建</a></li><li><a href="#-开发与常见问题记录">🧱 开发与常见问题记录</a><ul><li><a href="#前端部分vue--naive-ui">前端部分（Vue + Naive UI）</a></li><li><a href="#后端部分rust">后端部分（Rust）</a></li><li><a href="#数据库部分mongodb">数据库部分（MongoDB）</a></li><li><a href="#脚本触发与执行">脚本触发与执行</a></li></ul></li><li><a href="#mongodb数据库总结">Mongodb数据库总结</a><ul><li><a href="#回测过程相比csv">回测过程(相比csv)</a></li><li><a href="#结果查看">结果查看</a></li></ul></li></ul>
+    <ul class="inline_toc" id="my_toc"><li><a href="#需求梳理">需求梳理</a><ul><li><a href="#核心功能">核心功能</a></li><li><a href="#任务流程设计">任务流程设计</a></li></ul></li><li><a href="#初始化与开发环境搭建">初始化与开发环境搭建</a></li><li><a href="#-开发与常见问题记录">🧱 开发与常见问题记录</a><ul><li><a href="#前端部分vue--naive-ui">前端部分（Vue + Naive UI）</a></li><li><a href="#后端部分rust">后端部分（Rust）</a></li><li><a href="#数据库部分mongodb">数据库部分（MongoDB）</a></li><li><a href="#脚本触发与执行">脚本触发与执行</a></li><li><a href="#release部分">release部分</a></li></ul></li><li><a href="#mongodb数据库总结">Mongodb数据库总结</a><ul><li><a href="#回测过程相比csv">回测过程(相比csv)</a></li><li><a href="#结果查看">结果查看</a></li></ul></li></ul>
   <!-- </div> -->
 
 </div>
@@ -153,15 +153,15 @@
     <!-- <div id="markdown-toc"> -->
     <ul>
         
-        <li><a href="/personal_homepage/photo/stable-diffusion10/">nano-banana 效果</a></li>
+        <li><a href="/personal_homepage/tool/feature2product/">怎么把一个小功能润色成用户产品</a></li>
         
-        <li><a href="/personal_homepage/tool/mac/dictionary/">mac系统字典</a></li>
+        <li><a href="/personal_homepage/finance/alpha13/">组合交易 (二)</a></li>
         
-        <li><a href="/personal_homepage/code/algorithm/string/">代码语法解析</a></li>
+        <li><a href="/personal_homepage/daily/disinfectant/">消毒液</a></li>
         
-        <li><a href="/personal_homepage/daily/washing-machine/">洗衣机分类</a></li>
+        <li><a href="/personal_homepage/code/tag-code/">代码模块的多维索引</a></li>
         
-        <li><a href="/personal_homepage/tool/vscode-extension/">给 VsCode 安装插件</a></li>
+        <li><a href="/personal_homepage/tool/message/">服务器发送消息通知</a></li>
         
     </ul>
     <!-- </div> -->
@@ -270,13 +270,14 @@
           <li>DOM(Document object Model) 是浏览器解析html之后生成的树形结构</li>
         </ul>
       </li>
-      <li>最后我还是自己管理了分页, 因为不想一次性加载全部数据库</li>
+      <li>最后我还是自己管理了分页, 因为不想一次性加载全部数据库. 并且把query, 排序都移到后端处理.</li>
     </ul>
   </li>
   <li><strong>css样式问题</strong>：
     <ul>
       <li>有些样式必须加 <code class="language-plaintext highlighter-rouge">!important</code> 才能覆盖 <code class="language-plaintext highlighter-rouge">naive-ui</code> 的默认值。</li>
       <li>表格显示不全时, 我希望增加行高显示完全. 但是在用ai写代码的时候, 我一直自认为这是expand. 误导了ai, 一直在给我推expand组件, 走了很多弯路😮‍💨 其实应该用定义css实现。</li>
+      <li>在调整样式时, 用调试功能<code class="language-plaintext highlighter-rouge">inspect element</code>确认组件的真实名称. 不要让ai从代码猜测.</li>
     </ul>
   </li>
 </ul>
@@ -308,6 +309,7 @@
   <li><strong>监听任务变化</strong>：使用 <code class="language-plaintext highlighter-rouge">ChangeStreamOptions</code> 监听数据库变更，需开启 <code class="language-plaintext highlighter-rouge">replica set</code> （副本集）模式。
     <ul>
       <li>打开本地数据库命令： <code class="language-plaintext highlighter-rouge">mongod --config /usr/local/mongodb/mongod.conf --replSet rs0 --fork</code></li>
+      <li><strong>用全局的监听</strong>, 否则每次app运行时间一长, 加载就变慢.</li>
     </ul>
   </li>
   <li><strong>任务删除后自动停止监听</strong>。</li>
@@ -343,6 +345,13 @@
   <li>JSON 参数转义地狱，最终选择使用temp file进行参数传递。</li>
   <li>所有脚本路径、参数与环境变量统一写入 <code class="language-plaintext highlighter-rouge">config.toml</code> 进行集中管理。</li>
   <li><strong>使用事件循环运行带异常捕获的主逻辑</strong>(<code class="language-plaintext highlighter-rouge">asyncio.get_event_loop()</code> 和 <code class="language-plaintext highlighter-rouge">traceback.format_exc()</code>), 输出定位到错误代码级别的log.</li>
+</ul>
+
+<h3 id="release部分">release部分</h3>
+
+<ul>
+  <li>把配置的逻辑全部从代码中抽出, 写在配置文件里. 用设置界面显示和修改配置文件</li>
+  <li>build时给用户生成一个resource, 把配置文件放在里面, 让用户可以不通过源码更改配置</li>
 </ul>
 
 <hr />
@@ -430,7 +439,7 @@
 <!-- end custom footer snippets -->
 <div class="social-icons"><a class="social-icon" href="/personal_homepage/atom.xml"><i class="fas fa-rss-square fa-2x" title="Feed"></i></a><a class="social-icon" href="https://github.com/roshameow"><i class="fab fa-github-square fa-2x" title="GitHub"></i></a><a class="social-icon" href="https://www.linkedin.com/in/wen-liu-06503a7b/"><i class="fab fa-linkedin fa-2x" title="LinkedIn"></i></a><a class="social-icon" href="mailto:w.liuatnk@gmail.com"><i class="fas fa-envelope-square fa-2x" title="e-mail"></i></a></div><div class="copyright">
     
-      <p>&copy; 2025 Liu, Wen's Home Page. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://github.com/mmistakes/so-simple-theme" rel="nofollow">So Simple</a>.</p>
+      <p>&copy; 2026 Liu, Wen's Home Page. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://github.com/mmistakes/so-simple-theme" rel="nofollow">So Simple</a>.</p>
     
   </div>
 </footer>

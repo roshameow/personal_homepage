@@ -31,7 +31,7 @@
 <meta property="twitter:title" content="MCP协议理解" />
 <meta name="twitter:site" content="@" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2025-08-24T10:38:00+00:00","datePublished":"2025-04-04T00:00:00+00:00","description":"MCP(Model Context Protocol)","headline":"MCP协议理解","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/tool/MCP/"},"url":"https://roshameow.github.io//personal_homepage/tool/MCP/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2026-01-07T11:07:00+00:00","datePublished":"2025-04-04T00:00:00+00:00","description":"MCP(Model Context Protocol)","headline":"MCP协议理解","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/tool/MCP/"},"url":"https://roshameow.github.io//personal_homepage/tool/MCP/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -139,7 +139,7 @@
 {:toc} -->
   <!-- <div id="markdown-toc"> -->
 
-    
+    <ul class="inline_toc" id="my_toc"><li><a href="#概念对比function-calling-vs-agent-vs-mcp-vs-skills">概念对比：Function Calling vs Agent vs MCP vs Skills</a><ul><li><a href="#1-核心定义">1. 核心定义</a></li><li><a href="#2-关系与区别">2. 关系与区别</a></li><li><a href="#3-适用场景">3. 适用场景</a></li></ul></li></ul>
   <!-- </div> -->
 
 </div>
@@ -153,15 +153,15 @@
     <!-- <div id="markdown-toc"> -->
     <ul>
         
-        <li><a href="/personal_homepage/photo/stable-diffusion10/">nano-banana 效果</a></li>
+        <li><a href="/personal_homepage/tool/feature2product/">怎么把一个小功能润色成用户产品</a></li>
         
-        <li><a href="/personal_homepage/tool/mac/dictionary/">mac系统字典</a></li>
+        <li><a href="/personal_homepage/finance/alpha13/">组合交易 (二)</a></li>
         
-        <li><a href="/personal_homepage/code/algorithm/string/">代码语法解析</a></li>
+        <li><a href="/personal_homepage/daily/disinfectant/">消毒液</a></li>
         
-        <li><a href="/personal_homepage/daily/washing-machine/">洗衣机分类</a></li>
+        <li><a href="/personal_homepage/code/tag-code/">代码模块的多维索引</a></li>
         
-        <li><a href="/personal_homepage/tool/vscode-extension/">给 VsCode 安装插件</a></li>
+        <li><a href="/personal_homepage/tool/message/">服务器发送消息通知</a></li>
         
     </ul>
     <!-- </div> -->
@@ -183,6 +183,84 @@
   <li>读取我电脑的terminal history, 总结常用功能, 结合项目文件, 给项目写readme</li>
   <li>快速配置环境, 跑通一个开源项目</li>
 </ul>
+
+<h2 id="概念对比function-calling-vs-agent-vs-mcp-vs-skills">概念对比：Function Calling vs Agent vs MCP vs Skills</h2>
+
+<h3 id="1-核心定义">1. 核心定义</h3>
+
+<ul>
+  <li><strong>Function Calling (函数调用)</strong>
+    <ul>
+      <li><strong>定义</strong>: LLM 的一种基础能力。模型不直接执行代码，而是输出一个结构化数据（通常是 JSON），声明“我想调用这个函数，参数是这些”。宿主程序捕获这个请求，执行实际代码，并将结果传回给 LLM。</li>
+      <li><strong>角色</strong>: LLM 的<strong>“手”和“眼”</strong>。它是实现工具使用的底层机制。</li>
+    </ul>
+  </li>
+  <li><strong>Agent (智能体)</strong>
+    <ul>
+      <li><strong>定义</strong>: 一个拥有自主性的系统架构。它利用 LLM 进行感知、规划（Planning）、记忆（Memory），并主动使用工具（Tool Use）来完成复杂的、多步骤的目标。</li>
+      <li><strong>角色</strong>: 独立工作的<strong>“员工”</strong>。它是上层的逻辑编排者。</li>
+    </ul>
+  </li>
+  <li><strong>Skills (技能/插件)</strong>
+    <ul>
+      <li><strong>定义</strong>: 通常指一组特定领域能力的打包封装（在 Semantic Kernel 等框架中常见）。它将相关的 Prompts 和 Functions 组合在一起，形成一个功能模块。</li>
+      <li><strong>角色</strong>: Agent 的<strong>“工具箱”</strong>。它是功能的组织单位。</li>
+    </ul>
+  </li>
+  <li><strong>MCP (Model Context Protocol)</strong>
+    <ul>
+      <li><strong>定义</strong>: 一个开放标准协议。它标准化了 AI 应用（Client）如何连接到外部数据（Resources）和工具（Tools）。</li>
+      <li><strong>角色</strong>: AI 时代的<strong>“USB 接口”</strong>。它是基础设施层的连接标准，旨在解决“每个工具都要写一遍适配代码”的问题。</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="2-关系与区别">2. 关系与区别</h3>
+
+<ul>
+  <li><strong>Function Calling 是原子能力</strong>: 无论是 Agent 还是 MCP 暴露的工具，底层通常都依赖模型输出 JSON 这种 Function Calling 能力来触发。</li>
+  <li><strong>MCP 是连接标准</strong>:
+    <ul>
+      <li><em>传统方式</em>: 为了让 Agent 读数据库，开发者要手写 Python 代码封装 SQL 查询并转为 Function。</li>
+      <li><em>MCP方式</em>: 数据库运行一个 MCP Server，Agent (作为 Client) 自动发现并使用数据库暴露的资源和工具，无需专门写胶水代码。</li>
+    </ul>
+  </li>
+  <li><strong>Skills 是管理方式</strong>: 开发者将多个 Function 整理成一个 Skill 赋予 Agent。</li>
+</ul>
+
+<h3 id="3-适用场景">3. 适用场景</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">概念</th>
+      <th style="text-align: left">适用场景</th>
+      <th style="text-align: left">典型例子</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><strong>Function Calling</strong></td>
+      <td style="text-align: left"><strong>单步、确定的操作</strong>。需要模型输出结构化数据时。</td>
+      <td style="text-align: left">让 AI 提取用户句子中的日期和地点：“帮我订明天去上海的票”。</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>Skills</strong></td>
+      <td style="text-align: left"><strong>模块化开发</strong>。需要复用特定领域的业务逻辑时。</td>
+      <td style="text-align: left">开发一个“办公三件套”技能包（发邮件、查日历、写文档），供不同的 Bot 调用。</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>Agent</strong></td>
+      <td style="text-align: left"><strong>复杂任务闭环</strong>。需要多步推理、容错、自主决策时。</td>
+      <td style="text-align: left">“帮我调研一下 MCP 协议的优缺点，写一篇博客，并发布到我的网站上”。</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>MCP</strong></td>
+      <td style="text-align: left"><strong>生态集成与解耦</strong>。需要连接本地环境、异构数据源，且希望一次开发到处运行时。</td>
+      <td style="text-align: left">Cursor/Claude Desktop 等编辑器读取本地 Git、Postgres、Notion 数据。</td>
+    </tr>
+  </tbody>
+</table>
 
         </div>
 
@@ -245,7 +323,7 @@
 <!-- end custom footer snippets -->
 <div class="social-icons"><a class="social-icon" href="/personal_homepage/atom.xml"><i class="fas fa-rss-square fa-2x" title="Feed"></i></a><a class="social-icon" href="https://github.com/roshameow"><i class="fab fa-github-square fa-2x" title="GitHub"></i></a><a class="social-icon" href="https://www.linkedin.com/in/wen-liu-06503a7b/"><i class="fab fa-linkedin fa-2x" title="LinkedIn"></i></a><a class="social-icon" href="mailto:w.liuatnk@gmail.com"><i class="fas fa-envelope-square fa-2x" title="e-mail"></i></a></div><div class="copyright">
     
-      <p>&copy; 2025 Liu, Wen's Home Page. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://github.com/mmistakes/so-simple-theme" rel="nofollow">So Simple</a>.</p>
+      <p>&copy; 2026 Liu, Wen's Home Page. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://github.com/mmistakes/so-simple-theme" rel="nofollow">So Simple</a>.</p>
     
   </div>
 </footer>

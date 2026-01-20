@@ -20,8 +20,8 @@
 <meta name="generator" content="Jekyll v4.4.1" />
 <meta property="og:title" content="给 VsCode 安装插件" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="当我们使用大量自定义的 DSL（领域特定语言）构建表达式，例如：add(multiply(pasteurize(x), y), z) 这些函数（如 add, multiply, pasteurize）并不是 Python 的标准函数，而是平台自定义的 Operators。我们希望在 VSCode 中输入这些函数时： 能够自动补全 鼠标悬停时显示函数定义和用途" />
-<meta property="og:description" content="当我们使用大量自定义的 DSL（领域特定语言）构建表达式，例如：add(multiply(pasteurize(x), y), z) 这些函数（如 add, multiply, pasteurize）并不是 Python 的标准函数，而是平台自定义的 Operators。我们希望在 VSCode 中输入这些函数时： 能够自动补全 鼠标悬停时显示函数定义和用途" />
+<meta name="description" content="Work, Experiments and Ideas." />
+<meta property="og:description" content="Work, Experiments and Ideas." />
 <link rel="canonical" href="https://roshameow.github.io//personal_homepage/tool/vscode-extension/" />
 <meta property="og:url" content="https://roshameow.github.io//personal_homepage/tool/vscode-extension/" />
 <meta property="og:site_name" content="Liu, Wen’s Home Page" />
@@ -31,7 +31,7 @@
 <meta property="twitter:title" content="给 VsCode 安装插件" />
 <meta name="twitter:site" content="@" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-12-22T06:14:38+00:00","datePublished":"2025-07-05T00:00:00+00:00","description":"当我们使用大量自定义的 DSL（领域特定语言）构建表达式，例如：add(multiply(pasteurize(x), y), z) 这些函数（如 add, multiply, pasteurize）并不是 Python 的标准函数，而是平台自定义的 Operators。我们希望在 VSCode 中输入这些函数时： 能够自动补全 鼠标悬停时显示函数定义和用途","headline":"给 VsCode 安装插件","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/tool/vscode-extension/"},"url":"https://roshameow.github.io//personal_homepage/tool/vscode-extension/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2025-10-19T09:51:00+00:00","datePublished":"2025-07-05T00:00:00+00:00","description":"Work, Experiments and Ideas.","headline":"给 VsCode 安装插件","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/tool/vscode-extension/"},"url":"https://roshameow.github.io//personal_homepage/tool/vscode-extension/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -139,7 +139,7 @@
 {:toc} -->
   <!-- <div id="markdown-toc"> -->
 
-    <ul class="inline_toc" id="my_toc"><li><a href="#开发">开发</a><ul><li><a href="#开发环境配置">开发环境配置</a></li><li><a href="#插件功能实现">插件功能实现</a></li><li><a href="#调试">调试</a></li><li><a href="#打包">打包</a></li><li><a href="#安装">安装</a></li></ul></li><li><a href="#代码">代码</a></li><li><a href="#vscode-marketplace-发布插件">VsCode Marketplace 发布插件</a></li></ul>
+    <ul class="inline_toc" id="my_toc"><li><a href="#一开发环境准备">一、开发环境准备</a></li><li><a href="#二插件功能实现">二、插件功能实现</a></li><li><a href="#三调试技巧">三、调试技巧</a></li><li><a href="#四插件打包">四、插件打包</a></li><li><a href="#五本地安装">五、本地安装</a></li><li><a href="#六发布到-vscode-marketplace">六、发布到 VSCode Marketplace</a></li><li><a href="#代码">代码</a></li></ul>
   <!-- </div> -->
 
 </div>
@@ -153,15 +153,15 @@
     <!-- <div id="markdown-toc"> -->
     <ul>
         
-        <li><a href="/personal_homepage/photo/stable-diffusion10/">nano-banana 效果</a></li>
+        <li><a href="/personal_homepage/tool/feature2product/">怎么把一个小功能润色成用户产品</a></li>
         
-        <li><a href="/personal_homepage/tool/mac/dictionary/">mac系统字典</a></li>
+        <li><a href="/personal_homepage/finance/alpha13/">组合交易 (二)</a></li>
         
-        <li><a href="/personal_homepage/code/algorithm/string/">代码语法解析</a></li>
+        <li><a href="/personal_homepage/daily/disinfectant/">消毒液</a></li>
         
-        <li><a href="/personal_homepage/daily/washing-machine/">洗衣机分类</a></li>
+        <li><a href="/personal_homepage/code/tag-code/">代码模块的多维索引</a></li>
         
-        <li><a href="/personal_homepage/algorithm/alpha10/">选出最佳的表达式组合</a></li>
+        <li><a href="/personal_homepage/tool/message/">服务器发送消息通知</a></li>
         
     </ul>
     <!-- </div> -->
@@ -176,66 +176,122 @@
 
       <div class="page-content">
         <div class="e-content">
-          <p>当我们使用大量自定义的 DSL（领域特定语言）构建表达式，例如：<code class="language-plaintext highlighter-rouge">add(multiply(pasteurize(x), y), z)</code>
-这些函数（如 add, multiply, pasteurize）并不是 Python 的标准函数，而是平台自定义的 Operators。我们希望在 VSCode 中输入这些函数时：</p>
+          <p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020250706064758.png" alt="Pasted image 20250706064758.png" width="600" /></p>
+
+<p>当我们使用大量自定义的 DSL（领域特定语言）来构建表达式时，例如：</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">add</span><span class="p">(</span><span class="nf">multiply</span><span class="p">(</span><span class="nf">pasteurize</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">y</span><span class="p">),</span> <span class="n">z</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>这些函数（如 <code class="language-plaintext highlighter-rouge">add</code>、<code class="language-plaintext highlighter-rouge">multiply</code>、<code class="language-plaintext highlighter-rouge">pasteurize</code>）并不是 Python 的标准函数，而是平台自定义的 <strong>Operators</strong>。
+为了提升开发体验，我们希望在 VSCode 中输入这些函数时能够：</p>
+
 <ul>
-  <li>能够自动补全</li>
-  <li>鼠标悬停时显示函数定义和用途</li>
+  <li>自动补全函数名</li>
+  <li>鼠标悬停时显示函数定义与用途</li>
+  <li>callout查找: 输入/selection 下拉所有selection字段</li>
 </ul>
 
-<h2 id="开发">开发</h2>
+<h2 id="一开发环境准备">一、开发环境准备</h2>
 
-<h3 id="开发环境配置">开发环境配置</h3>
+<p>安装 Yeoman 和 VSCode 插件生成器：</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm <span class="nb">install</span> <span class="nt">-g</span> yo generator-code
 yo code
 </code></pre></div></div>
 
-<p>在执行 yo code 时，选择插件的配置选项：</p>
+<p>在执行 <code class="language-plaintext highlighter-rouge">yo code</code> 时，选择以下配置：</p>
+
 <ul>
-  <li>Identifier：插件的唯一名称</li>
-  <li>Bundler：建议使用 esbuild，它简单且高效</li>
+  <li><strong>Identifier</strong>：插件的唯一标识名</li>
+  <li><strong>Bundler</strong>：推荐使用 <code class="language-plaintext highlighter-rouge">esbuild</code>（简单高效）</li>
 </ul>
 
-<h3 id="插件功能实现">插件功能实现</h3>
+<p>生成的模板项目会包含基本的结构与示例代码。</p>
 
-<ul>
-  <li>写主逻辑(在<code class="language-plaintext highlighter-rouge">src/extension.ts</code>中): 读取json, 定义activate行为(自动补全, 悬停提示…)</li>
-  <li>配置项目: 在package.json里, 配置activationEvents, contributes.languanage等信息. 在files里添加assets
+<h2 id="二插件功能实现">二、插件功能实现</h2>
+
+<p>插件的核心逻辑在 <code class="language-plaintext highlighter-rouge">src/extension.ts</code> 中实现，主要包括：</p>
+
+<ol>
+  <li><strong>加载数据源(Loader)</strong>
+从本地 JSON 文件中读取 Operators 定义。</li>
+  <li><strong>注册 Provider</strong>
     <ul>
-      <li>设置在extension.settting里加载本地配置文件: <code class="language-plaintext highlighter-rouge">configuration.properties</code></li>
+      <li>自动补全：<code class="language-plaintext highlighter-rouge">CompletionItemProvider</code></li>
+      <li>悬停提示：<code class="language-plaintext highlighter-rouge">HoverProvider</code></li>
     </ul>
   </li>
-</ul>
+  <li><strong>定义激活行为（activate）</strong>
+在插件被加载时执行初始化逻辑。</li>
+  <li><strong>配置插件信息（package.json）</strong>
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">activationEvents</code>：定义何时激活插件（例如在打开 Python 文件时）</li>
+      <li><code class="language-plaintext highlighter-rouge">contributes.languages</code>：声明支持的语言类型</li>
+      <li><code class="language-plaintext highlighter-rouge">contributes.configuration</code>：声明可在设置中配置的属性
+        <ul>
+          <li>如, 在 <code class="language-plaintext highlighter-rouge">configuration.properties</code> 中自定义json文件加载路径</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ol>
 
-<h3 id="调试">调试</h3>
+<h2 id="三调试技巧">三、调试技巧</h2>
 
-<p>用View -&gt; Output -&gt; Extension Host查看log. 乱七八糟的log很多时, 搜索插件的Identifier定位.</p>
+<ol>
+  <li>默认的 <strong>Extension Host Output</strong>(<code class="language-plaintext highlighter-rouge">View -&gt; Output -&gt; Extension Host</code>) 面板常常被其他插件日志淹没, 在搜索栏中输入插件的标识符快速定位. (这个方法会找不到<code class="language-plaintext highlighter-rouge">console.log</code> )</li>
+  <li>改用自定义日志通道：</li>
+</ol>
 
-<h3 id="打包">打包</h3>
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">outputChannel</span> <span class="o">=</span> <span class="nx">vscode</span><span class="p">.</span><span class="nb">window</span><span class="p">.</span><span class="nf">createOutputChannel</span><span class="p">(</span><span class="dl">'</span><span class="s1">channel name</span><span class="dl">'</span><span class="p">);</span>
+<span class="nx">outputChannel</span><span class="p">.</span><span class="nf">appendLine</span><span class="p">(</span><span class="dl">'</span><span class="s1">Plugin activated.</span><span class="dl">'</span><span class="p">);</span>
+<span class="nx">outputChannel</span><span class="p">.</span><span class="nf">show</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>这样可以在 “Output → channel name” 中单独查看日志，避免混乱。</p>
+
+<h2 id="四插件打包">四、插件打包</h2>
+
+<p>在项目根目录执行以下命令：</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm <span class="nb">install</span> <span class="nt">-g</span> vsce
 npm run compile
 vsce package
 </code></pre></div></div>
 
-<ul>
-  <li>生成的<code class="language-plaintext highlighter-rouge">.vsix</code> 文件可以用于在VsCode里安装</li>
-</ul>
+<p>完成后，会生成一个 <code class="language-plaintext highlighter-rouge">.vsix</code> 文件。
+该文件就是 VSCode 插件包，可供安装和分发。</p>
 
-<h3 id="安装">安装</h3>
+<h2 id="五本地安装">五、本地安装</h2>
 
-<p>命令行 <code class="language-plaintext highlighter-rouge">code --install-extension .vsix 文件</code></p>
+<p>通过命令行安装插件：</p>
 
-<p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020250706064758.png" alt="Pasted image 20250706064758.png" width="600" /></p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>code <span class="nt">--install-extension</span> your-plugin.vsix
+</code></pre></div></div>
+
+<p>安装成功后，即可在 VSCode 中启用插件功能。</p>
+
+<blockquote>
+  <p>✅ 提示：也可以通过 “扩展” 面板 → “从 VSIX 安装…” 手动安装。</p>
+</blockquote>
+
+<h2 id="六发布到-vscode-marketplace">六、发布到 VSCode Marketplace</h2>
+
+<p>很多软件的插件发布麻烦, 但是vscode发布开源插件非常省事👍</p>
+
+<ol>
+  <li>使用 GitHub 账号登录 <a href="https://marketplace.visualstudio.com/vscode">Visual Studio Code Marketplace</a>。</li>
+  <li>上传 <code class="language-plaintext highlighter-rouge">.vsix</code> 文件或通过命令行发布。</li>
+  <li>提供插件描述、图标和 README 内容。</li>
+</ol>
+
+<p>完成后，即可通过 VSCode 扩展市场直接搜索并安装插件。</p>
 
 <h2 id="代码">代码</h2>
 
-<p><a href="https://github.com/roshameow/field-operator-hints">https://github.com/roshameow/field-operator-hints</a></p>
+<p>👉 <a href="https://github.com/roshameow/field-operator-hints">GitHub: roshameow/field-operator-hints</a></p>
 
-<h2 id="vscode-marketplace-发布插件">VsCode Marketplace 发布插件</h2>
-
-<p>用github用户登陆, 发布到 <a href="https://marketplace.visualstudio.com/vscode">Visual Studio Code Marketplace</a> 即可</p>
 
         </div>
 
@@ -298,7 +354,7 @@ vsce package
 <!-- end custom footer snippets -->
 <div class="social-icons"><a class="social-icon" href="/personal_homepage/atom.xml"><i class="fas fa-rss-square fa-2x" title="Feed"></i></a><a class="social-icon" href="https://github.com/roshameow"><i class="fab fa-github-square fa-2x" title="GitHub"></i></a><a class="social-icon" href="https://www.linkedin.com/in/wen-liu-06503a7b/"><i class="fab fa-linkedin fa-2x" title="LinkedIn"></i></a><a class="social-icon" href="mailto:w.liuatnk@gmail.com"><i class="fas fa-envelope-square fa-2x" title="e-mail"></i></a></div><div class="copyright">
     
-      <p>&copy; 2025 Liu, Wen's Home Page. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://github.com/mmistakes/so-simple-theme" rel="nofollow">So Simple</a>.</p>
+      <p>&copy; 2026 Liu, Wen's Home Page. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://github.com/mmistakes/so-simple-theme" rel="nofollow">So Simple</a>.</p>
     
   </div>
 </footer>

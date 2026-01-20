@@ -31,7 +31,7 @@
 <meta property="twitter:title" content="Serverless服务" />
 <meta name="twitter:site" content="@" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2025-04-03T11:29:00+00:00","datePublished":"2024-12-19T00:00:00+00:00","description":"租虚拟服务器代替真实服务器","headline":"Serverless服务","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/webpage/serverless/"},"url":"https://roshameow.github.io//personal_homepage/webpage/serverless/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2025-11-29T11:06:00+00:00","datePublished":"2024-12-19T00:00:00+00:00","description":"租虚拟服务器代替真实服务器","headline":"Serverless服务","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/webpage/serverless/"},"url":"https://roshameow.github.io//personal_homepage/webpage/serverless/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -153,15 +153,15 @@
     <!-- <div id="markdown-toc"> -->
     <ul>
         
-        <li><a href="/personal_homepage/photo/stable-diffusion10/">nano-banana 效果</a></li>
+        <li><a href="/personal_homepage/tool/feature2product/">怎么把一个小功能润色成用户产品</a></li>
         
-        <li><a href="/personal_homepage/tool/mac/dictionary/">mac系统字典</a></li>
+        <li><a href="/personal_homepage/finance/alpha13/">组合交易 (二)</a></li>
         
-        <li><a href="/personal_homepage/code/algorithm/string/">代码语法解析</a></li>
+        <li><a href="/personal_homepage/daily/disinfectant/">消毒液</a></li>
         
-        <li><a href="/personal_homepage/daily/washing-machine/">洗衣机分类</a></li>
+        <li><a href="/personal_homepage/code/tag-code/">代码模块的多维索引</a></li>
         
-        <li><a href="/personal_homepage/tool/vscode-extension/">给 VsCode 安装插件</a></li>
+        <li><a href="/personal_homepage/tool/message/">服务器发送消息通知</a></li>
         
     </ul>
     <!-- </div> -->
@@ -262,6 +262,22 @@
       </li>
     </ul>
   </li>
+  <li>服务器遇到内存问题怎么排查:
+    <ol>
+      <li>设置swap文件避免服务器直接崩溃
+        <ol>
+          <li><code class="language-plaintext highlighter-rouge">free -m</code> 查看内存, 查看swap文件是否生效</li>
+          <li><code class="language-plaintext highlighter-rouge">cat /etc/fstab</code> 确认系统重启后也能自动启用swap</li>
+        </ol>
+      </li>
+      <li>设置python脚本, 监控swap是否被起用. 写入log
+        <ol>
+          <li>设置开机自启动</li>
+          <li>这个<code class="language-plaintext highlighter-rouge">mem_monitor.service</code> 反复重启, 写入大量日志, 反倒把我的磁盘占满了…</li>
+        </ol>
+      </li>
+    </ol>
+  </li>
 </ul>
 
         </div>
@@ -325,7 +341,7 @@
 <!-- end custom footer snippets -->
 <div class="social-icons"><a class="social-icon" href="/personal_homepage/atom.xml"><i class="fas fa-rss-square fa-2x" title="Feed"></i></a><a class="social-icon" href="https://github.com/roshameow"><i class="fab fa-github-square fa-2x" title="GitHub"></i></a><a class="social-icon" href="https://www.linkedin.com/in/wen-liu-06503a7b/"><i class="fab fa-linkedin fa-2x" title="LinkedIn"></i></a><a class="social-icon" href="mailto:w.liuatnk@gmail.com"><i class="fas fa-envelope-square fa-2x" title="e-mail"></i></a></div><div class="copyright">
     
-      <p>&copy; 2025 Liu, Wen's Home Page. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://github.com/mmistakes/so-simple-theme" rel="nofollow">So Simple</a>.</p>
+      <p>&copy; 2026 Liu, Wen's Home Page. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://github.com/mmistakes/so-simple-theme" rel="nofollow">So Simple</a>.</p>
     
   </div>
 </footer>
