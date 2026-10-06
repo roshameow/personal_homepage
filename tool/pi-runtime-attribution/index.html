@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<!--
+    So Simple Jekyll Theme 3.2.0
+    Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+    Free for personal and commercial use under the MIT license
+    https://github.com/mmistakes/so-simple-theme/blob/master/LICENSE
+-->
+<html lang="en-US" class="no-js">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  
+
+  
+  
+  <!-- Begin Jekyll SEO tag v2.9.1 -->
+<title>Pi Desktop的开发难点: “会话的状态” | Liu, Wen’s Home Page</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Pi Desktop的开发难点: “会话的状态”" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Pi Desktop 里最难修的功能，是侧边栏那枚很小的状态 chip：这个会话现在的运行状态？" />
+<meta name="twitter:description" property="og:description" content="Pi Desktop 里最难修的功能，是侧边栏那枚很小的状态 chip：这个会话现在的运行状态？" />
+<link rel="canonical" href="https://roshameow.github.io//personal_homepage/tool/pi-runtime-attribution/" />
+<meta property="og:url" content="https://roshameow.github.io//personal_homepage/tool/pi-runtime-attribution/" />
+<meta property="og:site_name" content="Liu, Wen’s Home Page" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2026-08-12T00:00:00+00:00" />
+<meta property="article:modified_time" content="2026-10-06T10:48:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="Pi Desktop的开发难点: “会话的状态”" />
+<meta name="twitter:site" content="@" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2026-10-06T10:48:00+00:00","datePublished":"2026-08-12T00:00:00+00:00","description":"Pi Desktop 里最难修的功能，是侧边栏那枚很小的状态 chip：这个会话现在的运行状态？","headline":"Pi Desktop的开发难点: “会话的状态”","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/tool/pi-runtime-attribution/"},"url":"https://roshameow.github.io//personal_homepage/tool/pi-runtime-attribution/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  
+
+  <script>
+    /* Cut the mustard */
+    if ('querySelector' in document && 'addEventListener' in window) {
+      document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + 'js';
+    }
+  </script>
+
+  <link rel="stylesheet" href="/personal_homepage/assets/css/main.css">
+  <link rel="stylesheet" href="/personal_homepage/assets/css/skins/default.css">
+  
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,700,700i|Lora:400,400i,700,700i">
+  <link rel="alternate" type="application/atom+xml" title="Liu, Wen&#39;s Home Page" href="/personal_homepage/atom.xml">
+<!-- start custom head snippets -->
+
+<!-- insert favicons. use http://realfavicongenerator.net/ -->
+<link rel="shortcut icon" type="image/x-icon" href="/personal_homepage/docs/images/logo.ico">
+<!-- end custom head snippets -->
+
+</head>
+
+  <body class="layout--post  pi-desktop的开发难点-会话的状态">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#primary-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+  <div class="navigation-wrapper">
+    <a href="#menu-toggle" id="menu-toggle">Menu</a>
+    <nav id="primary-nav" class="site-nav animated drop">
+      <ul><li><a href="/personal_homepage/">Home</a></li><li><a href="/personal_homepage/posts/">Posts</a></li><li><a href="/personal_homepage/categories/">Categories</a></li><li><a href="/personal_homepage/tags/">Tags</a></li><li><a href="/personal_homepage/family/">Family</a></li><li><a href="/personal_homepage/search/">Search</a></li></ul>
+    </nav>
+  </div><!-- /.navigation-wrapper -->
+
+
+    <header class="masthead">
+  <div class="wrap">
+    
+    
+    
+      
+        <div class="site-title animated fadeIn"><a href="/personal_homepage/">Liu, Wen's Home Page</a></div>
+      
+      <p class="site-description animated fadeIn" itemprop="description">Work, Experiments and Ideas.</p>
+    
+  </div>
+</header><!-- /.masthead -->
+
+
+    <main id="main" class="main-content" aria-label="Content">
+  <article class="h-entry">
+    
+
+    <div class="page-wrapper">
+      <header class="page-header">
+        
+        
+        <h1 id="page-title" class="page-title p-name">Pi Desktop的开发难点: “会话的状态”
+</h1>
+        
+      </header>
+
+      <div class="page-sidebar">
+        <div class="page-author h-card p-author"><img src="/personal_homepage/docs/images/logo.svg" class="author-avatar u-photo" alt=""><div class="author-info">
+
+<span class="read-time">4 min read</span>
+
+    <time class="page-date dt-published" datetime="2026-08-12T00:00:00+00:00"><a class="u-url" href="">August 12, 2026</a>
+</time>
+
+  </div>
+</div>
+
+        
+  <h3 class="page-taxonomies-title">Categories</h3>
+  
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a class="p-category" href="/personal_homepage/categories/#tool" title="Pages filed under tool">tool</a></li>
+  </ul>
+
+
+        
+  <h3 class="page-taxonomies-title">Tags</h3>
+  
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a href="/personal_homepage/tags/#debugging" title="Pages tagged debugging" rel="tag">debugging</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#macos" title="Pages tagged macOS" rel="tag">macOS</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#pi" title="Pages tagged pi" rel="tag">pi</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#rmux" title="Pages tagged rmux" rel="tag">rmux</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#tauri" title="Pages tagged tauri" rel="tag">tauri</a></li>
+  </ul>
+
+
+        <!-- {::options parse_block_html="true" /} -->
+<div id="entry-table-of-contents" class="toc-wrapper">
+  <h2 id="toc-toggle">
+    Table of Contents <i
+      class="toc-toggle-icon fas fa-chevron-down"></i>
+  </h2>
+  <!-- 1. toc
+{:toc} -->
+  <!-- <div id="markdown-toc"> -->
+
+    <ul class="inline_toc" id="my_toc"><li><a href="#1-会话和pid绑定who">1. 会话和pid绑定(who)</a></li><li><a href="#2-runtime-状态认知解耦">2. runtime 状态认知解耦</a></li><li><a href="#3-agent在处理这个问题时犯的具体错误和迭代过程">3. agent在处理这个问题时犯的具体错误和迭代过程</a><ul><li><a href="#31-从-ps-读取---session">3.1 从 ps 读取 --session</a></li><li><a href="#32-用最近修改的会话文件">3.2 用最近修改的会话文件</a></li><li><a href="#33-用-rmux-窗口名">3.3 用 RMUX 窗口名</a></li><li><a href="#34-用-pi_session-作为权威选项">3.4 用 @pi_session 作为权威选项</a></li><li><a href="#35-tty-修好了我在哪但还没回答我是谁">3.5 tty 修好了“我在哪”，但还没回答“我是谁”</a></li><li><a href="#36-中间结果每个进程写自己的-pid-注册文件">3.6 中间结果：每个进程写自己的 pid 注册文件</a></li><li><a href="#37-注册表也必须验证">3.7 注册表也必须验证</a></li><li><a href="#38-当前归属链">3.8 当前归属链</a></li><li><a href="#39-dead-pane重复窗口与-attach">3.9 dead pane、重复窗口与 attach</a></li><li><a href="#310-reload-让-subagent-身份问题再次出现">3.10 reload 让 subagent 身份问题再次出现</a></li><li><a href="#311-远程模式为什么不能照搬本机进程判断">3.11 远程模式为什么不能照搬本机进程判断</a></li><li><a href="#312-最后得到的结论">3.12 最后得到的结论</a></li></ul></li></ul>
+  <!-- </div> -->
+
+</div>
+<!-- {::options parse_block_html="false" /} -->
+        
+
+<div id="entry-table-of-contents" class="toc-wrapper">
+    <h2 id="toc-toggle" class="no_toc">
+        Related Posts <i class="toc-toggle-icon fas fa-chevron-down"></i>
+    </h2>
+    <!-- <div id="markdown-toc"> -->
+    <ul>
+        
+        <li><a href="/personal_homepage/tool/pi-desktop/">Pi Desktop：从会话浏览器到跨机器工作台</a></li>
+        
+        <li><a href="/personal_homepage/daily/sticker/">用AI做了一套微信表情包:从微信头像缓存到提交上架</a></li>
+        
+        <li><a href="/personal_homepage/daily/agent-blog-writing/">用AI agent复现我的博客风格</a></li>
+        
+        <li><a href="/personal_homepage/tool/lesson/">听课app开发调研</a></li>
+        
+        <li><a href="/personal_homepage/daily/mac/">mac电脑的奇怪问题</a></li>
+        
+    </ul>
+    <!-- </div> -->
+
+</div>
+
+
+
+
+
+      </div>
+
+      <div class="page-content">
+        <div class="e-content">
+          <p>Pi Desktop 里最难修的功能，是侧边栏那枚很小的状态 chip：<strong>这个会话现在的运行状态</strong>？</p>
+
+<p>它可能在普通终端、RMUX pane、远程主机，也可能进程已经退出，只剩 remain-on-exit 保存的死画面。更麻烦的是，显示错位置不会立即报错；界面仍然完整，只是把操作发给了错误的会话。这类“看起来合理”的错误最危险。</p>
+
+<p>下面讲下原理和迭代过程.</p>
+
+<h2 id="1-会话和pid绑定who">1. 会话和pid绑定(who)</h2>
+
+<p>为什么会话和pid绑定是个难题?? 根本原因在于<strong>生命周期与操作系统抽象的深层错配</strong>：</p>
+
+<ol>
+  <li><strong>生命周期的断层</strong>：
+    <ul>
+      <li><strong>Session JSONL（业务实体）</strong>：具有<strong>长持久性</strong>。它记录了完整的思维链与执行树，寿命跨越数天、数月，支持反复暂停与 <code class="language-plaintext highlighter-rouge">resume</code>。</li>
+      <li><strong>PID（内核资源）</strong>：具有<strong>极短的易逝性与复用性</strong>。它只是内核进程表里循环利用的一个整数标签。进程退出后，内核下一秒就可能把相同的 PID 赋予一个无关的临时脚本。</li>
+    </ul>
+  </li>
+  <li><strong>关系基数是时序上的 1 对多</strong>：
+    <ul>
+      <li>同一个session，昨天是 PID 1024 在跑，今天是 PID 5088 在跑；</li>
+      <li>用户在两个终端同时打开同一会话的并发多对一。</li>
+      <li>进程执行 /new，PID 没变，但它脱钩了旧 session，指向了新 session。</li>
+    </ul>
+  </li>
+</ol>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">追踪维度</th>
+      <th style="text-align: left">操作系统理论能力 (Textbook)</th>
+      <th style="text-align: left">真实 CLI 场景失效细节 (Physical Failure)</th>
+      <th style="text-align: left">早期妥协尝试及致命漏洞 (Early Flaws)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><strong>正向：进程参数</strong><br /><code class="language-plaintext highlighter-rouge">PID → argv</code></td>
+      <td style="text-align: left">内核维护进程命令行：<br /><code class="language-plaintext highlighter-rouge">ps -p &lt;pid&gt; -o args=</code> 可查看启动参数</td>
+      <td style="text-align: left"><strong>参数被运行时擦除</strong>：<br />CLI（如 Node/pi）启动时为防 Token 泄露或美化，在内存中主动抹洗 <code class="language-plaintext highlighter-rouge">process.argv</code>，<code class="language-plaintext highlighter-rouge">ps</code> 查出来只剩裸词 <code class="language-plaintext highlighter-rouge">pi</code></td>
+      <td style="text-align: left"><strong>无法提取</strong>：<br /><code class="language-plaintext highlighter-rouge">ps</code> 扫出来的所有进程全叫 <code class="language-plaintext highlighter-rouge">pi</code>，彻底丢失 <code class="language-plaintext highlighter-rouge">--session</code> 标志</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>正向：文件描述符</strong><br /><code class="language-plaintext highlighter-rouge">PID → FD → inode</code></td>
+      <td style="text-align: left">内核维护打开的文件表：<br /><code class="language-plaintext highlighter-rouge">lsof -p &lt;pid&gt;</code> 或 <code class="language-plaintext highlighter-rouge">proc_pidinfo</code> 可查持有的文件</td>
+      <td style="text-align: left"><strong>句柄为短命瞬态</strong>：<br />JSONL 写入使用微秒级 <code class="language-plaintext highlighter-rouge">appendFile</code>（打开→追加→立即关闭）。99.9% 的时间（LLM 推理、等待）该文件<strong>压根不在内核 FD 表中</strong></td>
+      <td style="text-align: left"><strong>抓取落空 + CPU 暴增</strong>：<br /><code class="language-plaintext highlighter-rouge">lsof</code> 绝大多数时候抓不到 session 文件，且每秒调用一次的 <code class="language-plaintext highlighter-rouge">fork/exec</code> 吞噬 5%~10% CPU</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>反向：文件查进程</strong><a href="#unix-pid-file">1</a><br /><code class="language-plaintext highlighter-rouge">Session → PID</code></td>
+      <td style="text-align: left"><strong>内核天然不支持</strong>：<br />POSIX 只有进程到文件的单向映射，无全系统 inode 反向活进程广播机制</td>
+      <td style="text-align: left"><strong>生命周期错配</strong>：<br />JSONL 存活数月，PID 循环复用；同一个 Session 昨天被 PID 100 跑，今天被 PID 200 恢复</td>
+      <td style="text-align: left"><strong>使用 mtime（最后修改时间）</strong>：<br />并发任务互相抢最新修改时间，造成正在流式打字的任务画面在 UI 上疯狂跳变</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><a id="unix-pid-file"></a></p>
+
+<ul>
+  <li>一个类似的问题是: 经典的Unix服务都要搞.pid文件. 用于给服务端的守护进程注册一个pid 用来查询 , 就是因为内核天然不支持从文件反查进程</li>
+  <li>最终解决方案: <strong>创建注册表统一管理</strong>, 确定 pid ↔ sessionPath 注册机制</li>
+</ul>
+
+<ol>
+  <li>更细节的问题: 如何管理注册表的生命周期
+    <ul>
+      <li>判断pid是否存活: 防止runtime目录无限增长</li>
+      <li>解决 PID 回收复用：记录进程的运行时间, 不许系统复用pid给不同session</li>
+      <li>支持终端与 Pane 的层级穿透：在真实开发中，pi 绝大多数不是孤立跑的，而是跑在 RMUX Pane 里的</li>
+    </ul>
+
+    <div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[RMUX Pane (PID 7000: zsh)]
+   └── [node wrapper (PID 7001)]
+          └── [pi engine (PID 7002)]
+                 └── [subagent / bash tool (PID 7003)]
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left"><strong>中间层：窗口环境</strong><br /><code class="language-plaintext highlighter-rouge">Pane/TTY → Session</code></th>
+      <th style="text-align: left">TMUX/RMUX 支持窗口变量：<br /><code class="language-plaintext highlighter-rouge">set-option -w @pi_session</code> 保存状态</th>
+      <th style="text-align: left"><strong>共享槽污染 (Shared State)</strong>：<br /><code class="language-plaintext highlighter-rouge">display-message</code> 默认取当前活跃窗口，终端中的 pi 或后台任务会把路径误写进别人的 Pane</th>
+      <th style="text-align: left"><strong>窗口名 id8 碰撞 + option 脏写</strong>：<br />普通终端没有 Pane 概念；前 8 位 UUID 实测碰撞；写入槽被其他进程覆盖</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><strong>生存期：PID 回收</strong><br /><code class="language-plaintext highlighter-rouge">PID Liveness</code></td>
+      <td style="text-align: left">借用内核探活信号：<br /><code class="language-plaintext highlighter-rouge">kill -0 &lt;pid&gt;</code> 判定进程是否活着</td>
+      <td style="text-align: left"><strong>PID 回收还魂 (Recycling)</strong>：<br /><code class="language-plaintext highlighter-rouge">kill -9</code> 无法触发清理钩子；macOS 会迅速将释放的 PID 分配给无关的新进程</td>
+      <td style="text-align: left"><strong>幽灵存活</strong>：<br />已退出的会话被误判为存活（因为新运行的某个进程恰好分到了同一个 PID）</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="2-runtime-状态认知解耦">2. runtime 状态认知解耦</h2>
+
+<p>runtime 状态其实包含两个维度：</p>
+
+<ul>
+  <li><strong>位置(where)</strong>：term / RMUX attached / RMUX detached / dead pane；</li>
+  <li><strong>活动(what)</strong>：running / sleeping / interrupted / finished。</li>
+</ul>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>               ┌── 查系统/RMUX API ──────&gt; 【位置 (Where)】：term / attached / detached / dead
+[PID ↔ Session]
+               └── 查进程信号 + JSONL尾部 ─&gt; 【活动 (What)】：running / sleeping / finished / interrupted
+</code></pre></div></div>
+
+<p>一个会话可以位于 detached RMUX 中，但当前没有生成内容；subagent 也可以进程仍活着，却正在执行长时间 <code class="language-plaintext highlighter-rouge">sleep</code>。因此 <code class="language-plaintext highlighter-rouge">inRmux</code> 不能直接推出 <code class="language-plaintext highlighter-rouge">running</code>，终端标签页关闭也不能推出任务结束。</p>
+
+<p>界面最终保留了这组位置 chip：</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>chip</th>
+      <th>含义</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">● rmux</code></td>
+      <td>RMUX session 有客户端附着</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">○ rmux</code></td>
+      <td>RMUX session 存在，但当前分离</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">✕ rmux</code></td>
+      <td>pane 已死，remain-on-exit 仍保留画面</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">● term</code></td>
+      <td>pi 在普通终端中运行</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>活动状态则由会话文件变化、task log 尾部事件和进程存活共同判断。</p>
+
+<h2 id="3-agent在处理这个问题时犯的具体错误和迭代过程">3. agent在处理这个问题时犯的具体错误和迭代过程</h2>
+
+<p>最初开发用的deepseek-v4-flash只会解决眼下问题, 不会分析整体架构, 所以反复出错迭代了20版左右才收敛到最终的注册表方案</p>
+
+<h3 id="31-从-ps-读取---session">3.1 从 <code class="language-plaintext highlighter-rouge">ps</code> 读取 <code class="language-plaintext highlighter-rouge">--session</code></h3>
+
+<p>第一版想从进程命令行找：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ps <span class="nt">-o</span> <span class="nb">command</span><span class="o">=</span> <span class="nt">-p</span> &lt;pid&gt;
+</code></pre></div></div>
+
+<p>但 pi 启动后会把 argv 清理到只剩 <code class="language-plaintext highlighter-rouge">pi</code>，<code class="language-plaintext highlighter-rouge">--session &lt;path&gt;</code> 不再可见。<code class="language-plaintext highlighter-rouge">ps</code> 仍能提供 pid、tty、cwd 和启动时长，却不能回答“正在写哪份 JSONL”。</p>
+
+<h3 id="32-用最近修改的会话文件">3.2 用最近修改的会话文件</h3>
+
+<p>如果一个项目只有一个 pi，拿 mtime 最新的会话看起来可行；同项目并行两个终端 pi 时，两者却都会指向同一个“最新文件”。而且 mtime 表示最后一次写入，不表示进程启动时选择了哪个会话。一个运行了 12 小时的真实会话，反而可能输给刚创建但从未使用的诱饵文件。</p>
+
+<p>mtime 只能做旧客户端的最后 fallback。需要比较启动时刻时，文件名里的创建时间戳比 mtime 稳定。</p>
+
+<h3 id="33-用-rmux-窗口名">3.3 用 RMUX 窗口名</h3>
+
+<p>我先用 <code class="language-plaintext highlighter-rouge">s&lt;id8&gt;</code> 表示会话，随后真的遇到两个 UUID 共享前 8 位。后来改成每个 pi 一个独立 RMUX session：</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pi-&lt;encoded-cwd&gt;-&lt;id12&gt;
+</code></pre></div></div>
+
+<p>窗口固定为 <code class="language-plaintext highlighter-rouge">main</code>。id12 避免了实测碰撞；独立 session 还解决了另一个 tmux 语义问题：attach 到同一 session 的某个 window，会改变该 session 的活动窗口，多个客户端可能一起跳走。</p>
+
+<p>窗口名比 mtime 强，但手动复用旧窗口、pim 的通用窗口名、历史 id8 窗口都使它无法成为唯一真相。</p>
+
+<h3 id="34-用-pi_session-作为权威选项">3.4 用 <code class="language-plaintext highlighter-rouge">@pi_session</code> 作为权威选项</h3>
+
+<p>下一版让窗口保存：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rmux set-option <span class="nt">-w</span> <span class="nt">-t</span> &lt;session&gt;:&lt;window&gt; @pi_session &lt;session-path&gt;
+</code></pre></div></div>
+
+<p>这里 <code class="language-plaintext highlighter-rouge">-w</code> 不能漏；否则自定义 option 落在 session 级，多个窗口会全部声称自己属于最后写入的会话。</p>
+
+<p>即使 scope 正确，共享 option 仍会被错误写入。最典型的污染是：进程直接调用不带 target 的 <code class="language-plaintext highlighter-rouge">rmux display-message</code>，得到的是 daemon 当前窗口，不一定是调用进程所在窗口。普通终端里的 pi，甚至可能拿到“上次活跃的 RMUX 窗口”，然后把自己的会话路径写进别人家。</p>
+
+<p>这揭示了真正的问题：<strong><code class="language-plaintext highlighter-rouge">@pi_session</code> 是一个共享可变槽；只要多个进程都能写，它就不是身份。</strong></p>
+
+<h3 id="35-tty-修好了我在哪但还没回答我是谁">3.5 tty 修好了“我在哪”，但还没回答“我是谁”</h3>
+
+<p>为了避免 <code class="language-plaintext highlighter-rouge">display-message</code> 的 current-window 语义，扩展改成从本进程 tty 反查 pane：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ps <span class="nt">-o</span> <span class="nb">tty</span><span class="o">=</span> <span class="nt">-p</span> &lt;pid&gt;
+rmux list-panes <span class="nt">-a</span> <span class="nt">-F</span> <span class="s1">'#{pane_tty}|#{session_name}:#{window_name}|#{pane_pid}'</span>
+</code></pre></div></div>
+
+<p>tty 与 pane 一一对应，所以它能精确回答“当前进程位于哪个 pane”，也不会受窗口是否 active 影响。查找与 <code class="language-plaintext highlighter-rouge">set-option</code> 一起重试，避免窗口刚创建时的瞬时竞态。</p>
+
+<p>但普通终端 pi 没有 RMUX pane，同项目多个终端进程仍然只能靠启发式映射。tty 解决了位置，没有给进程提供跨环境统一的会话身份。</p>
+
+<h3 id="36-中间结果每个进程写自己的-pid-注册文件">3.6 中间结果：每个进程写自己的 pid 注册文件</h3>
+
+<p>结构性修复是给每个 pi 一个私有身份槽：</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>~/.pi/agent/runtime/&lt;pid&gt;.jsonl
+</code></pre></div></div>
+
+<p>记录示意：</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pi_runtime"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"pid"</span><span class="p">:</span><span class="w"> </span><span class="mi">72344</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"panePid"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"sessionPath"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/Users/me/.pi/agent/sessions/...jsonl"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"cwd"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/Users/me/Code/project"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"startedAt"</span><span class="p">:</span><span class="w"> </span><span class="mi">1786000000000</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"tty"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ttys002"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>这六个字段各有用途：</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">pid</code>：注册文件的唯一所有者；</li>
+  <li><code class="language-plaintext highlighter-rouge">panePid</code>：pi 由 pane 内 shell 启动时，Desktop 可从 pane 顶层 pid 反查；</li>
+  <li><code class="language-plaintext highlighter-rouge">sessionPath</code>：直接给出会话，不再猜测；</li>
+  <li><code class="language-plaintext highlighter-rouge">cwd</code>：兼容旧数据和诊断；</li>
+  <li><code class="language-plaintext highlighter-rouge">startedAt</code>：防止 pid 被系统回收后错误复用旧条目；</li>
+  <li><code class="language-plaintext highlighter-rouge">tty</code>：判断 <code class="language-plaintext highlighter-rouge">panePid=null</code> 是真实终端，还是启动时 pane 查找暂时失败。</li>
+</ul>
+
+<p>与 <code class="language-plaintext highlighter-rouge">@pi_session</code> 相比，关键变化不是“文件比 option 可靠”，而是<strong>写入模型从多人共享一个槽，变成每个进程只写自己的槽。</strong></p>
+
+<h3 id="37-注册表也必须验证">3.7 注册表也必须验证</h3>
+
+<p>注册文件不是天然可信。Desktop 读取时会经过几道检查。</p>
+
+<h4 id="371-进程必须仍然存活">3.7.1 进程必须仍然存活</h4>
+
+<p>本地使用 <code class="language-plaintext highlighter-rouge">kill -0 &lt;pid&gt;</code>。死条目在扫描时直接删除，runtime 目录不会无限增长。</p>
+
+<h4 id="372-防止-pid-复用">3.7.2 防止 pid 复用</h4>
+
+<p>仅检查 pid 存活仍不够：旧 pi 退出后，系统可能把相同 pid 分配给无关的新进程。</p>
+
+<p>Desktop 比较：</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>当前进程 etime &gt;= 当前时间 - startedAt - 30s
+</code></pre></div></div>
+
+<p>若当前进程明显比注册文件年轻，就拒绝该条目。最初这里还踩过一个单位 bug：扩展写的是 <code class="language-plaintext highlighter-rouge">Date.now()</code> 毫秒，Rust 按秒计算，age 变成负数，防护在生产里等于没运行。现在 <code class="language-plaintext highlighter-rouge">startedAt &gt; 1e10</code> 时先除以 1000，兼容毫秒和旧的秒格式（<code class="language-plaintext highlighter-rouge">bd4cdb6</code>）。</p>
+
+<p>多个条目的 etime 通过一次批量 <code class="language-plaintext highlighter-rouge">ps -p pid1,pid2,...</code> 获取，不再每个条目启动一次 <code class="language-plaintext highlighter-rouge">ps</code>。</p>
+
+<h4 id="373-会话文件必须存在">3.7.3 会话文件必须存在</h4>
+
+<p><code class="language-plaintext highlighter-rouge">/new</code> 被中断时，注册表和 <code class="language-plaintext highlighter-rouge">@pi_session</code> 可能仍指向已经删除的文件。如果直接接受，旧路径会吞掉 pane 的真实归属。现在只有 <code class="language-plaintext highlighter-rouge">sessionPath</code> 仍为文件时才走注册表 fast path，否则继续进入窗口名与启发式 fallback（<code class="language-plaintext highlighter-rouge">c4712e2</code>）。</p>
+
+<h3 id="38-当前归属链">3.8 当前归属链</h3>
+
+<p>对于 RMUX pane，当前优先级可以概括为：</p>
+
+<ol>
+  <li><strong>pid 注册表直连</strong>：pane pid 直接命中，或某条记录的 <code class="language-plaintext highlighter-rouge">panePid</code> 命中；</li>
+  <li><strong>窗口 option 与 id12 互验</strong>：<code class="language-plaintext highlighter-rouge">@pi_session</code> 有效，且不与窗口名冲突；</li>
+  <li><strong>窗口名 id12</strong>：从 <code class="language-plaintext highlighter-rouge">pi-&lt;cwd&gt;-&lt;id12&gt;</code> 定位会话；</li>
+  <li><strong>历史兼容</strong>：旧 <code class="language-plaintext highlighter-rouge">s&lt;id8&gt;</code>、subagent taskId 窗口；</li>
+  <li><strong>最后 fallback</strong>：pane cwd + 进程启动时间，与会话文件名创建时间比较。</li>
+</ol>
+
+<p>对于普通终端：</p>
+
+<ol>
+  <li>找 <code class="language-plaintext highlighter-rouge">panePid=null</code> 且 tty 不属于任何 RMUX pane 的注册条目；</li>
+  <li>直接使用条目中的 <code class="language-plaintext highlighter-rouge">sessionPath</code>；</li>
+  <li>只有未安装新扩展的旧 pi，才退回 <code class="language-plaintext highlighter-rouge">ps comm=pi</code> 与“项目内最新非 RMUX 会话”的启发式。</li>
+</ol>
+
+<p>所以旧文章里“同项目多个终端 pi 仍无法区分”的风险已经被解决；注册后的两个进程拥有不同 pid 文件，会各自指向自己的会话。</p>
+
+<h3 id="39-dead-pane重复窗口与-attach">3.9 dead pane、重复窗口与 attach</h3>
+
+<p>归属正确后，还要处理生命周期。</p>
+
+<p>RMUX 开启 remain-on-exit 后，进程退出不代表 pane 消失。只检查 <code class="language-plaintext highlighter-rouge">has-session</code> 会把用户 attach 到崩溃画面。现在 runtime map 读取 <code class="language-plaintext highlighter-rouge">pane_dead</code>：同一会话有多条记录时活 pane 胜过死 pane；整个目标只剩死 pane 时，可以关闭并重建；超过 6 小时的死窗口会被清理，但 JSONL 不动。</p>
+
+<p>Open TUI 和 Attach 也会先查询 runtime map。目标已在 RMUX 中就复用；已在普通终端运行则拒绝再启动。这里不是 UI 洁癖，而是数据安全：两个 pi 同时 append 同一个 JSONL 可能损坏会话。</p>
+
+<p>“Detach”和“Close RMUX session”因此必须分开：前者只断开客户端，pi 继续运行；后者会 kill 整个 session，是硬停止，界面需要二次确认。</p>
+
+<h3 id="310-reload-让-subagent-身份问题再次出现">3.10 reload 让 subagent 身份问题再次出现</h3>
+
+<p>runtime 归属稳定后，reload 又暴露了另一类“一对多”关系：一个子会话 UUID 可以先后对应多个 taskId。旧 task 已死，新 task 正在运行，如果索引 first-wins，界面会一直显示 interrupted。</p>
+
+<p>当前做法是保留 UUID 对应的全部 taskId，优先选择存活任务；多个 mirror 的首条文本也全部保留。更重要的是，新版 durable 日志写入 <code class="language-plaintext highlighter-rouge">pi_subagent_parent</code>，Desktop 用明确的父 UUID 关联，文本匹配只兼容旧日志（<code class="language-plaintext highlighter-rouge">bbca171</code>、<code class="language-plaintext highlighter-rouge">4261af3</code>、<code class="language-plaintext highlighter-rouge">9ea6b8d</code>）。</p>
+
+<p>这是同一条原则的延伸：<strong>有稳定 ID 时，不要让时间顺序或相似文本承担身份职责。</strong></p>
+
+<h3 id="311-远程模式为什么不能照搬本机进程判断">3.11 远程模式为什么不能照搬本机进程判断</h3>
+
+<p>远程 source 使用 rsync 拉取会话树，并同步两份状态快照：远端 <code class="language-plaintext highlighter-rouge">ps</code> 和 <code class="language-plaintext highlighter-rouge">rmux list-panes</code>。本机的 <code class="language-plaintext highlighter-rouge">kill -0</code>、<code class="language-plaintext highlighter-rouge">ps</code> 不认识远端 pid；早期代码误查本机 pid，导致所有远端 pane 都被判死，Attach 失败，Open TUI 还会尝试新建重复 session（<code class="language-plaintext highlighter-rouge">ca45e85</code>）。</p>
+
+<p>现在远端 pane liveness 只从同步的 host 快照判断，<code class="language-plaintext highlighter-rouge">@pi_session</code> 中的远端绝对路径也会映射到本地 cache path。远端状态因此是“最近一次同步时的视图”，不是实时 RPC 流；刷新 source 才会更新快照。目前远端快照也没有 client attachment 信息，所以远端 chip 不应被理解为精确的 attached/detached 实时状态。</p>
+
+<p>这是一项有意保留的边界：浏览和控制仍然可靠，但远程状态具有快照延迟。</p>
+
+<h3 id="312-最后得到的结论">3.12 最后得到的结论</h3>
+
+<p>这段调试最初看起来像“把状态 chip 修准”，实际是在区分三类信息：</p>
+
+<ul>
+  <li><strong>身份</strong>：哪个进程对应哪个会话；</li>
+  <li><strong>位置</strong>：进程位于哪个 tty / pane / host；</li>
+  <li><strong>活动</strong>：进程和任务处于什么生命周期状态。</li>
+</ul>
+
+<p>窗口名、mtime、current window 和文本相似度都只能提供相关性，不能提供身份。最终稳定下来的不是某个更聪明的启发式，而是一套更小的信任边界：</p>
+
+<ol>
+  <li>每个进程只写自己的 pid 文件；</li>
+  <li>Desktop 验证存活、进程年龄和会话文件；</li>
+  <li>RMUX option 与窗口名只做交叉校验和兼容 fallback；</li>
+  <li>远程状态明确按快照处理，不假装成本机实时信息。</li>
+</ol>
+
+<p><strong>如果一个归属判定还依赖“另一个写入方不会写错”，它就还没有真正修完。</strong></p>
+
+<blockquote>
+  <p>关键修复</p>
+
+  <ul>
+    <li><code class="language-plaintext highlighter-rouge">2e1b29d</code>：每个 pi 使用独立 RMUX session，窗口名升级到 id12</li>
+    <li><code class="language-plaintext highlighter-rouge">7ea7f90</code>：<code class="language-plaintext highlighter-rouge">@pi_session</code> 改为 window scope</li>
+    <li><code class="language-plaintext highlighter-rouge">8368008</code>：窗口名与被污染 option 冲突时，id12 胜出</li>
+    <li><code class="language-plaintext highlighter-rouge">e2ec2c5</code> / <code class="language-plaintext highlighter-rouge">d90a034</code>：用本进程 tty 定位 pane，并整体重试</li>
+    <li><code class="language-plaintext highlighter-rouge">9afd082</code> / <code class="language-plaintext highlighter-rouge">35b6c9e</code>：pid runtime registry 成为 RMUX 与终端归属主路径</li>
+    <li><code class="language-plaintext highlighter-rouge">bd4cdb6</code> / <code class="language-plaintext highlighter-rouge">c4712e2</code>：修正 startedAt 单位，并拒绝已删除的 session path</li>
+    <li><code class="language-plaintext highlighter-rouge">b2e9f68</code>：注册表和 pane 的进程检查批量化</li>
+    <li><code class="language-plaintext highlighter-rouge">ca45e85</code>：远端 liveness 改读 host 进程快照</li>
+  </ul>
+</blockquote>
+
+        </div>
+
+        
+
+        
+        
+  <div class="page-comments">
+    <div id="disqus_thread"></div>
+    <script>
+      var disqus_config = function () {
+        this.page.url = 'https://roshameow.github.io//personal_homepage/tool/pi-runtime-attribution/';
+        this.page.identifier = 'https://roshameow.github.io//personal_homepage/tool/pi-runtime-attribution/';
+      };
+
+      (function() {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://https-roshameow-github-io-personal-homepage.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+  </div>
+
+
+        
+
+        <nav class="page-pagination" role="navigation">
+  
+    <a class="page-previous" href="/personal_homepage/tool/pi-desktop/">
+      <h4 class="page-pagination-label">Previous</h4>
+      <span class="page-pagination-title">
+        <i class="fas fa-arrow-left"></i> Pi Desktop：从会话浏览器到跨机器工作台
+
+      </span>
+    </a>
+  
+
+  
+</nav>
+
+      </div>
+
+    </div>
+  </article>
+</main>
+
+    <footer id="footer" class="site-footer">
+  <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+<div class="social-icons"><a class="social-icon" href="/personal_homepage/atom.xml"><i class="fas fa-rss-square fa-2x" title="Feed"></i></a><a class="social-icon" href="https://github.com/roshameow"><i class="fab fa-github-square fa-2x" title="GitHub"></i></a><a class="social-icon" href="https://www.linkedin.com/in/wen-liu-06503a7b/"><i class="fab fa-linkedin fa-2x" title="LinkedIn"></i></a><a class="social-icon" href="mailto:w.liuatnk@gmail.com"><i class="fas fa-envelope-square fa-2x" title="e-mail"></i></a></div><div class="copyright">
+    
+      <p>&copy; 2026 Liu, Wen's Home Page. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://github.com/mmistakes/so-simple-theme" rel="nofollow">So Simple</a>.</p>
+    
+  </div>
+</footer>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="/personal_homepage/assets/js/main.min.js"></script>
+<script src="https://use.fontawesome.com/releases/v5.0.12/js/all.js"></script><script src="/personal_homepage/assets/js/content-tables.js" defer></script><!-- <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'G-9TMSCDTBGN', 'auto');
+  ga('send', 'pageview');
+</script> -->
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9TMSCDTBGN"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-9TMSCDTBGN');
+</script>
+
+
+
+<!-- MathJax -->
+
+<script>
+    // http://docs.mathjax.org/en/latest/upgrading/v2.html
+    MathJax = {
+        tex: {
+            tags: "ams",    // eq numbering options: none, ams, all
+            inlineMath: [['$', '$'], ["\\(", "\\)"]],  // 设置行内数学公式的开始和结束标记
+            displayMath: [['$$', '$$'], ["\\[", "\\]"]]  // 设置行间数学公式的开始和结束标记
+        },
+        // options: {
+        //   renderActions: {
+        //     // for mathjax 3, handle <script "math/tex"> blocks inserted by kramdown
+        //     find: [10, function (doc) {
+        //       for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+        //         const display = !!node.type.match(/; *mode=display/);
+        //         const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+        //         const text = document.createTextNode('');
+        //         node.parentNode.replaceChild(text, node);
+        //         math.start = { node: text, delim: '', n: 0 };
+        //         math.end = { node: text, delim: '', n: 0 };
+        //         doc.math.push(math);
+        //       }
+        //     }, '']
+        //   }
+        // }
+    }
+</script>
+
+<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+
+
+<!-- Mermaid -->
+<style>
+  .mermaid-list {
+    display: flex;
+    gap: 2em;
+    flex-wrap: wrap;
+    justify-content: center;
+    font-family: "Source Sans Pro", sans-serif;
+    margin: 1.5em 0;
+  }
+  .mermaid-list-col {
+    min-width: 180px;
+  }
+  .mermaid-list-col h4 {
+    margin: 0 0 0.4em 0;
+    font-size: 0.95em;
+    font-weight: 700;
+    color: #34374C;
+  }
+  .mermaid-list-col ul {
+    margin: 0;
+    padding-left: 1.2em;
+    line-height: 1.6;
+  }
+  pre.mermaid {
+    text-align: center;
+    background: transparent;
+    padding: 1em 0;
+    overflow: visible;
+    font-family: "Source Sans Pro", sans-serif !important;
+  }
+  pre.mermaid svg {
+    max-width: 100%;
+    height: auto;
+    overflow: visible;
+  }
+</style>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('code.language-mermaid').forEach(function(code) {
+      var text = code.textContent;
+      var parent = code.closest('.highlighter-rouge') || code.parentElement;
+
+      // 解析 subgraph 块
+      var sgRe = /subgraph\s+\w+\["(.+?)"\]([\s\S]*?)end/g;
+      var match, subgraphs = [];
+      while ((match = sgRe.exec(text)) !== null) {
+        var title = match[1];
+        var body = match[2];
+        var items = [];
+        body.split('\n').forEach(function(line) {
+          line = line.trim();
+          var m = line.match(/^\w+\["(.+?)"\]/);
+          if (m) items.push(m[1]);
+        });
+        if (items.length) subgraphs.push({ title: title, items: items });
+      }
+
+      if (subgraphs.length > 1) {
+        // 有多列 subgraph → 渲染为 HTML 列表
+        var div = document.createElement('div');
+        div.className = 'mermaid-list';
+        subgraphs.forEach(function(sg) {
+          var col = document.createElement('div');
+          col.className = 'mermaid-list-col';
+          col.innerHTML = '<h4>' + sg.title + '</h4><ul>' +
+            sg.items.map(function(i) { return '<li>' + i + '</li>'; }).join('') +
+            '</ul>';
+          div.appendChild(col);
+        });
+        var wrapper = parent.closest('.highlighter-rouge') || parent;
+        wrapper.parentNode.replaceChild(div, wrapper);
+      } else {
+        // 单图 → 正常用 Mermaid 渲染
+        var pre = document.createElement('pre');
+        pre.className = 'mermaid';
+        pre.textContent = text;
+        var wrapper = parent.closest('.highlighter-rouge') || parent;
+        wrapper.parentNode.replaceChild(pre, wrapper);
+      }
+    });
+    mermaid.run();
+  });
+</script>
+
+
+  </body>
+
+</html>

@@ -15,24 +15,24 @@
 
   
   
-  <!-- Begin Jekyll SEO tag v2.9.0 -->
-<title>选出最佳的因子组合 | Liu, Wen’s Home Page</title>
+  <!-- Begin Jekyll SEO tag v2.9.1 -->
+<title>因子组合优化 | Liu, Wen’s Home Page</title>
 <meta name="generator" content="Jekyll v4.4.1" />
-<meta property="og:title" content="选出最佳的因子组合" />
+<meta property="og:title" content="因子组合优化" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="遗传算法(Genetic Algorithm): 1. generate a bunch of solutions 2. 算子：选择算子(selection)： Roulette Wheel Selection(轮盘赌): 1. 适应性越强概率越大，随机选择父母 2. Use accumulation of probability and bisect e.g. probability [0.25,0.25,0.5], accumulation [0.25,0.5,1], when using bisect —0—0.25—1—0.5—2—[prabablility bigger-&gt;interval of accumulation is bigger-&gt; has more chance to be choosen] Tournament Selection(锦标赛)：1. random choose n 个个体，选出其中最好的 Linear(Exp) Ranking Selection: 排序，按照顺序线性(exp)确定probablility 交叉算子：uniform crossover: 变换father和mother的一些位 中间重组(浮点数)：取father和mother的随机中间数 变异算子：flipbit: 异或（二进制），随机替换（实数） 3. 编码二进制：range=(a,b), eps = 精度 -&gt;int((x-b)/eps)转为二进制（编码位数： log((b-a)/eps) ） ！4. 遗产算法的编码非常重要？：要保证交叉算子起作用，即亲代可以强强联合，不然就和变异算子没有差别了" />
-<meta name="twitter:description" property="og:description" content="遗传算法(Genetic Algorithm): 1. generate a bunch of solutions 2. 算子：选择算子(selection)： Roulette Wheel Selection(轮盘赌): 1. 适应性越强概率越大，随机选择父母 2. Use accumulation of probability and bisect e.g. probability [0.25,0.25,0.5], accumulation [0.25,0.5,1], when using bisect —0—0.25—1—0.5—2—[prabablility bigger-&gt;interval of accumulation is bigger-&gt; has more chance to be choosen] Tournament Selection(锦标赛)：1. random choose n 个个体，选出其中最好的 Linear(Exp) Ranking Selection: 排序，按照顺序线性(exp)确定probablility 交叉算子：uniform crossover: 变换father和mother的一些位 中间重组(浮点数)：取father和mother的随机中间数 变异算子：flipbit: 异或（二进制），随机替换（实数） 3. 编码二进制：range=(a,b), eps = 精度 -&gt;int((x-b)/eps)转为二进制（编码位数： log((b-a)/eps) ） ！4. 遗产算法的编码非常重要？：要保证交叉算子起作用，即亲代可以强强联合，不然就和变异算子没有差别了" />
+<meta name="description" content="问题: 从 $N$ 个候选集中挑选出 $K$ 个，构建一个能够最大化综合得分的组合。得分计算复杂, 所以我们考虑启发式的算法." />
+<meta name="twitter:description" property="og:description" content="问题: 从 $N$ 个候选集中挑选出 $K$ 个，构建一个能够最大化综合得分的组合。得分计算复杂, 所以我们考虑启发式的算法." />
 <link rel="canonical" href="https://roshameow.github.io//personal_homepage/algorithm/alpha7/" />
 <meta property="og:url" content="https://roshameow.github.io//personal_homepage/algorithm/alpha7/" />
 <meta property="og:site_name" content="Liu, Wen’s Home Page" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2025-05-26T00:00:00+00:00" />
-<meta property="article:modified_time" content="2023-12-22T06:14:38+00:00" />
+<meta property="article:modified_time" content="2026-04-27T12:14:00+00:00" />
 <meta name="twitter:card" content="summary" />
-<meta name="twitter:title" content="选出最佳的因子组合" />
+<meta name="twitter:title" content="因子组合优化" />
 <meta name="twitter:site" content="@" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-12-22T06:14:38+00:00","datePublished":"2025-05-26T00:00:00+00:00","description":"遗传算法(Genetic Algorithm): 1. generate a bunch of solutions 2. 算子：选择算子(selection)： Roulette Wheel Selection(轮盘赌): 1. 适应性越强概率越大，随机选择父母 2. Use accumulation of probability and bisect e.g. probability [0.25,0.25,0.5], accumulation [0.25,0.5,1], when using bisect —0—0.25—1—0.5—2—[prabablility bigger-&gt;interval of accumulation is bigger-&gt; has more chance to be choosen] Tournament Selection(锦标赛)：1. random choose n 个个体，选出其中最好的 Linear(Exp) Ranking Selection: 排序，按照顺序线性(exp)确定probablility 交叉算子：uniform crossover: 变换father和mother的一些位 中间重组(浮点数)：取father和mother的随机中间数 变异算子：flipbit: 异或（二进制），随机替换（实数） 3. 编码二进制：range=(a,b), eps = 精度 -&gt;int((x-b)/eps)转为二进制（编码位数： log((b-a)/eps) ） ！4. 遗产算法的编码非常重要？：要保证交叉算子起作用，即亲代可以强强联合，不然就和变异算子没有差别了","headline":"选出最佳的因子组合","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/algorithm/alpha7/"},"url":"https://roshameow.github.io//personal_homepage/algorithm/alpha7/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2026-04-27T12:14:00+00:00","datePublished":"2025-05-26T00:00:00+00:00","description":"问题: 从 $N$ 个候选集中挑选出 $K$ 个，构建一个能够最大化综合得分的组合。得分计算复杂, 所以我们考虑启发式的算法.","headline":"因子组合优化","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/algorithm/alpha7/"},"url":"https://roshameow.github.io//personal_homepage/algorithm/alpha7/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -59,7 +59,7 @@
 
 </head>
 
-  <body class="layout--post  选出最佳的因子组合">
+  <body class="layout--post  因子组合优化">
     <nav class="skip-links">
   <h2 class="screen-reader-text">Skip links</h2>
   <ul>
@@ -100,7 +100,7 @@
       <header class="page-header">
         
         
-        <h1 id="page-title" class="page-title p-name">选出最佳的因子组合
+        <h1 id="page-title" class="page-title p-name">因子组合优化
 </h1>
         
       </header>
@@ -126,7 +126,7 @@
         
   <h3 class="page-taxonomies-title">Tags</h3>
   
-  <ul class="page-taxonomies"><li class="page-taxonomy"><a href="/personal_homepage/tags/#content" title="Pages tagged content" rel="tag">content</a></li>
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a href="/personal_homepage/tags/#alpha" title="Pages tagged Alpha" rel="tag">Alpha</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#ga" title="Pages tagged GA" rel="tag">GA</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#greedy" title="Pages tagged Greedy" rel="tag">Greedy</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#optimization" title="Pages tagged Optimization" rel="tag">Optimization</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#portfolio" title="Pages tagged Portfolio" rel="tag">Portfolio</a></li>
   </ul>
 
 
@@ -140,7 +140,7 @@
 {:toc} -->
   <!-- <div id="markdown-toc"> -->
 
-    
+    <ul class="inline_toc" id="my_toc"><li><a href="#1-greedy-boost算法的优化">1. greedy boost算法的优化</a></li><li><a href="#2-遗传算法的优化">2. 遗传算法的优化</a></li><li><a href="#3-算法性能对比总结">3. 算法性能对比总结</a></li></ul>
   <!-- </div> -->
 
 </div>
@@ -154,15 +154,15 @@
     <!-- <div id="markdown-toc"> -->
     <ul>
         
-        <li><a href="/personal_homepage/tool/feature2product/">怎么把一个小功能润色成用户产品</a></li>
+        <li><a href="/personal_homepage/tool/pi-runtime-attribution/">Pi Desktop的开发难点: “会话的状态”</a></li>
         
-        <li><a href="/personal_homepage/finance/alpha13/">组合交易 (二)</a></li>
+        <li><a href="/personal_homepage/tool/pi-desktop/">Pi Desktop：从会话浏览器到跨机器工作台</a></li>
         
-        <li><a href="/personal_homepage/daily/disinfectant/">消毒液</a></li>
+        <li><a href="/personal_homepage/daily/sticker/">用AI做了一套微信表情包:从微信头像缓存到提交上架</a></li>
         
-        <li><a href="/personal_homepage/code/tag-code/">代码模块的多维索引</a></li>
+        <li><a href="/personal_homepage/daily/agent-blog-writing/">用AI agent复现我的博客风格</a></li>
         
-        <li><a href="/personal_homepage/tool/message/">服务器发送消息通知</a></li>
+        <li><a href="/personal_homepage/tool/lesson/">听课app开发调研</a></li>
         
     </ul>
     <!-- </div> -->
@@ -177,19 +177,59 @@
 
       <div class="page-content">
         <div class="e-content">
-          <p>遗传算法(Genetic Algorithm):
-	1. generate a bunch of solutions
-	2. 算子：选择算子(selection)：
-					Roulette Wheel Selection(轮盘赌): 1. 适应性越强概率越大，随机选择父母
-												2. Use accumulation of probability and bisect
-												e.g. probability [0.25,0.25,0.5], accumulation [0.25,0.5,1], when using bisect —0—0.25—1—0.5—2—[prabablility bigger-&gt;interval of accumulation is bigger-&gt; has more chance to be choosen]
-					Tournament Selection(锦标赛)：1. random choose n 个个体，选出其中最好的
-					Linear(Exp) Ranking Selection: 排序，按照顺序线性(exp)确定probablility
-			交叉算子：uniform crossover: 变换father和mother的一些位
-					  中间重组(浮点数)：取father和mother的随机中间数
-			变异算子：flipbit: 异或（二进制），随机替换（实数）
-	3. 编码二进制：range=(a,b), eps = 精度 -&gt;int((x-b)/eps)转为二进制（编码位数： log((b-a)/eps) ）
-	！4. 遗产算法的编码非常重要？：要保证交叉算子起作用，即亲代可以强强联合，不然就和变异算子没有差别了</p>
+          <p>问题: 从 $N$ 个候选集中挑选出 $K$ 个，构建一个能够最大化综合得分的组合。得分计算复杂, 所以我们考虑启发式的算法.</p>
+
+<h3 id="1-greedy-boost算法的优化">1. greedy boost算法的优化</h3>
+
+<h4 id="a-精准种子筛选-precise-seed-selection">A. 精准种子筛选 (Precise Seed Selection)</h4>
+<ul>
+  <li><strong>增量正交过滤</strong>：结合单因子的 <code class="language-plaintext highlighter-rouge">predict_score</code> 计算 <code class="language-plaintext highlighter-rouge">seed_priority</code>,  按优先级排序后，只有与<strong>已选种子集</strong>最大相关性 <strong>&lt; 0.7</strong> 的因子才能入选。这保证了搜索起点的逻辑多样性。</li>
+</ul>
+
+<h4 id="b-双阶段呼吸逻辑-expansion--purging">B. 双阶段呼吸逻辑 (Expansion &amp; Purging)</h4>
+<ol>
+  <li><strong>扩张阶段 (Expansion) - 带 Top-K 随机化</strong>：
+    <ul>
+      <li><strong>Top-K 采样(非绝对贪心)</strong>：从能提升分数的 <strong>Top-K</strong>（默认 3）个候选者中<strong>随机抽取一个</strong>加入组合。</li>
+    </ul>
+  </li>
+  <li><strong>清理阶段 (Purging) - 呼吸机制</strong>：扩张停止后，尝试移除组合中的每一个因子。只要移除后分数能提升 &gt;0.001，就将其剔除。</li>
+  <li><strong>振荡收敛</strong>：上述两个阶段在 <code class="language-plaintext highlighter-rouge">while True</code> 中交替，直到没有任何变动。</li>
+</ol>
+
+<hr />
+
+<h3 id="2-遗传算法的优化">2. 遗传算法的优化</h3>
+
+<h4 id="a-初始化组合">A. 初始化组合</h4>
+<ul>
+  <li><strong>启发式权重初始化</strong>：利用 <code class="language-plaintext highlighter-rouge">ind_scores</code> 分布进行概率采样。</li>
+  <li><strong>参数选择</strong>: pop_size(初始化种群数量) gen_size(迭代次数)
+    <ul>
+      <li>完全随机的情况下, <strong>pop_size</strong>为了保证某个特定因子在初始种群中至少出现一次的概率达到 99%：每个个体没有被选中的概率为 $1-\frac{50}{4439} \approx 0.989$。在 pop_size = N 个个体中一次都没出现的概率：$(0.989)^N &lt; 0.01$ 解得：$N &gt; 418$。</li>
+      <li>每次迭代的选择操作都会有劣势基因被彻底淘汰, gen_size应该是pop_size的对数( <a href="https://en.wikipedia.org/wiki/Birth–death_process">Birth–death_process</a> )
+        <h4 id="b-交叉和局部搜索">B. 交叉和局部搜索</h4>
+      </li>
+    </ul>
+  </li>
+  <li><strong>共性保留交叉</strong>：锁定父母共有的“优良基因块”，仅对分歧位进行交叉。</li>
+  <li><strong>Memetic 局部搜索</strong>：在初始化和变异后，强制执行缩减版的“扩张-收缩”爬山逻辑。</li>
+</ul>
+
+<hr />
+
+<h3 id="3-算法性能对比总结">3. 算法性能对比总结</h3>
+
+<ul>
+  <li>遗传算法的交叉特性适合的场景应该是<strong>局部中度相关</strong>, 而这个问题是<strong>高度非线性耦合</strong> 的, 导致交叉反倒破坏了组合结构无法产出更优组合1</li>
+  <li>组合数为 $C(400, 50) \approx 10^{64}$ 数量级, 不适合用任何完全随机的操作.</li>
+  <li>greedy boost和遗传算法的优化手段趋同, 最后结果也相似</li>
+</ul>
+
+<h2 id="代码">代码</h2>
+
+<p><a href="https://gist.github.com/roshameow/b4d295a62b31a44b1cfa8658a8a1d1a5#file-ga_optimize_portfolio-py"><strong>ga_optimize_portfolio.py</strong></a>,<br />
+<a href="https://gist.github.com/roshameow/b4d295a62b31a44b1cfa8658a8a1d1a5#file-optimize_wl_portfolio-py"><strong>optimize_wl_portfolio.py</strong></a></p>
 
         </div>
 
@@ -260,7 +300,7 @@
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"
   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <script src="/personal_homepage/assets/js/main.min.js"></script>
-<script src="https://use.fontawesome.com/releases/v5.0.12/js/all.js"></script><!-- <script>
+<script src="https://use.fontawesome.com/releases/v5.0.12/js/all.js"></script><script src="/personal_homepage/assets/js/content-tables.js" defer></script><!-- <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -312,6 +352,95 @@
 </script>
 
 <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+
+
+<!-- Mermaid -->
+<style>
+  .mermaid-list {
+    display: flex;
+    gap: 2em;
+    flex-wrap: wrap;
+    justify-content: center;
+    font-family: "Source Sans Pro", sans-serif;
+    margin: 1.5em 0;
+  }
+  .mermaid-list-col {
+    min-width: 180px;
+  }
+  .mermaid-list-col h4 {
+    margin: 0 0 0.4em 0;
+    font-size: 0.95em;
+    font-weight: 700;
+    color: #34374C;
+  }
+  .mermaid-list-col ul {
+    margin: 0;
+    padding-left: 1.2em;
+    line-height: 1.6;
+  }
+  pre.mermaid {
+    text-align: center;
+    background: transparent;
+    padding: 1em 0;
+    overflow: visible;
+    font-family: "Source Sans Pro", sans-serif !important;
+  }
+  pre.mermaid svg {
+    max-width: 100%;
+    height: auto;
+    overflow: visible;
+  }
+</style>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('code.language-mermaid').forEach(function(code) {
+      var text = code.textContent;
+      var parent = code.closest('.highlighter-rouge') || code.parentElement;
+
+      // 解析 subgraph 块
+      var sgRe = /subgraph\s+\w+\["(.+?)"\]([\s\S]*?)end/g;
+      var match, subgraphs = [];
+      while ((match = sgRe.exec(text)) !== null) {
+        var title = match[1];
+        var body = match[2];
+        var items = [];
+        body.split('\n').forEach(function(line) {
+          line = line.trim();
+          var m = line.match(/^\w+\["(.+?)"\]/);
+          if (m) items.push(m[1]);
+        });
+        if (items.length) subgraphs.push({ title: title, items: items });
+      }
+
+      if (subgraphs.length > 1) {
+        // 有多列 subgraph → 渲染为 HTML 列表
+        var div = document.createElement('div');
+        div.className = 'mermaid-list';
+        subgraphs.forEach(function(sg) {
+          var col = document.createElement('div');
+          col.className = 'mermaid-list-col';
+          col.innerHTML = '<h4>' + sg.title + '</h4><ul>' +
+            sg.items.map(function(i) { return '<li>' + i + '</li>'; }).join('') +
+            '</ul>';
+          div.appendChild(col);
+        });
+        var wrapper = parent.closest('.highlighter-rouge') || parent;
+        wrapper.parentNode.replaceChild(div, wrapper);
+      } else {
+        // 单图 → 正常用 Mermaid 渲染
+        var pre = document.createElement('pre');
+        pre.className = 'mermaid';
+        pre.textContent = text;
+        var wrapper = parent.closest('.highlighter-rouge') || parent;
+        wrapper.parentNode.replaceChild(pre, wrapper);
+      }
+    });
+    mermaid.run();
+  });
+</script>
+
 
   </body>
 

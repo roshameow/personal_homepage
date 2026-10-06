@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<!--
+    So Simple Jekyll Theme 3.2.0
+    Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+    Free for personal and commercial use under the MIT license
+    https://github.com/mmistakes/so-simple-theme/blob/master/LICENSE
+-->
+<html lang="en-US" class="no-js">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  
+
+  
+  
+  <!-- Begin Jekyll SEO tag v2.9.1 -->
+<title>用AI做了一套微信表情包:从微信头像缓存到提交上架 | Liu, Wen’s Home Page</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="用AI做了一套微信表情包:从微信头像缓存到提交上架" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="目标:把历史微信头像(都是我家猫的照片)做成一套微信表情包,并在微信表情开放平台提交上架。" />
+<meta name="twitter:description" property="og:description" content="目标:把历史微信头像(都是我家猫的照片)做成一套微信表情包,并在微信表情开放平台提交上架。" />
+<link rel="canonical" href="https://roshameow.github.io//personal_homepage/daily/sticker/" />
+<meta property="og:url" content="https://roshameow.github.io//personal_homepage/daily/sticker/" />
+<meta property="og:site_name" content="Liu, Wen’s Home Page" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2026-08-09T00:00:00+00:00" />
+<meta property="article:modified_time" content="2026-08-09T12:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="用AI做了一套微信表情包:从微信头像缓存到提交上架" />
+<meta name="twitter:site" content="@" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2026-08-09T12:00:00+00:00","datePublished":"2026-08-09T00:00:00+00:00","description":"目标:把历史微信头像(都是我家猫的照片)做成一套微信表情包,并在微信表情开放平台提交上架。","headline":"用AI做了一套微信表情包:从微信头像缓存到提交上架","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/daily/sticker/"},"url":"https://roshameow.github.io//personal_homepage/daily/sticker/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  
+
+  <script>
+    /* Cut the mustard */
+    if ('querySelector' in document && 'addEventListener' in window) {
+      document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + 'js';
+    }
+  </script>
+
+  <link rel="stylesheet" href="/personal_homepage/assets/css/main.css">
+  <link rel="stylesheet" href="/personal_homepage/assets/css/skins/default.css">
+  
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,700,700i|Lora:400,400i,700,700i">
+  <link rel="alternate" type="application/atom+xml" title="Liu, Wen&#39;s Home Page" href="/personal_homepage/atom.xml">
+<!-- start custom head snippets -->
+
+<!-- insert favicons. use http://realfavicongenerator.net/ -->
+<link rel="shortcut icon" type="image/x-icon" href="/personal_homepage/docs/images/logo.ico">
+<!-- end custom head snippets -->
+
+</head>
+
+  <body class="layout--post  用ai做了一套微信表情包-从微信头像缓存到提交上架">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#primary-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+  <div class="navigation-wrapper">
+    <a href="#menu-toggle" id="menu-toggle">Menu</a>
+    <nav id="primary-nav" class="site-nav animated drop">
+      <ul><li><a href="/personal_homepage/">Home</a></li><li><a href="/personal_homepage/posts/">Posts</a></li><li><a href="/personal_homepage/categories/">Categories</a></li><li><a href="/personal_homepage/tags/">Tags</a></li><li><a href="/personal_homepage/family/">Family</a></li><li><a href="/personal_homepage/search/">Search</a></li></ul>
+    </nav>
+  </div><!-- /.navigation-wrapper -->
+
+
+    <header class="masthead">
+  <div class="wrap">
+    
+    
+    
+      
+        <div class="site-title animated fadeIn"><a href="/personal_homepage/">Liu, Wen's Home Page</a></div>
+      
+      <p class="site-description animated fadeIn" itemprop="description">Work, Experiments and Ideas.</p>
+    
+  </div>
+</header><!-- /.masthead -->
+
+
+    <main id="main" class="main-content" aria-label="Content">
+  <article class="h-entry">
+    
+
+    <div class="page-wrapper">
+      <header class="page-header">
+        
+        
+        <h1 id="page-title" class="page-title p-name">用AI做了一套微信表情包:从微信头像缓存到提交上架
+</h1>
+        
+      </header>
+
+      <div class="page-sidebar">
+        <div class="page-author h-card p-author"><img src="/personal_homepage/docs/images/logo.svg" class="author-avatar u-photo" alt=""><div class="author-info">
+
+<span class="read-time">2 min read</span>
+
+    <time class="page-date dt-published" datetime="2026-08-09T00:00:00+00:00"><a class="u-url" href="">August 9, 2026</a>
+</time>
+
+  </div>
+</div>
+
+        
+  <h3 class="page-taxonomies-title">Categories</h3>
+  
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a class="p-category" href="/personal_homepage/categories/#daily" title="Pages filed under daily">daily</a></li>
+  </ul>
+
+
+        
+  <h3 class="page-taxonomies-title">Tags</h3>
+  
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a href="/personal_homepage/tags/#ai" title="Pages tagged AI" rel="tag">AI</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#gemini" title="Pages tagged Gemini" rel="tag">Gemini</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#playwright" title="Pages tagged Playwright" rel="tag">Playwright</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#%E5%BE%AE%E4%BF%A1" title="Pages tagged 微信" rel="tag">微信</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#%E8%A1%A8%E6%83%85%E5%8C%85" title="Pages tagged 表情包" rel="tag">表情包</a></li>
+  </ul>
+
+
+        <!-- {::options parse_block_html="true" /} -->
+<div id="entry-table-of-contents" class="toc-wrapper">
+  <h2 id="toc-toggle">
+    Table of Contents <i
+      class="toc-toggle-icon fas fa-chevron-down"></i>
+  </h2>
+  <!-- 1. toc
+{:toc} -->
+  <!-- <div id="markdown-toc"> -->
+
+    <ul class="inline_toc" id="my_toc"><li><a href="#1-素材挖掘">1. 素材挖掘</a><ul><li><a href="#11-微信头像缓存在哪">1.1 微信头像缓存在哪</a></li><li><a href="#12-批量识图蒙太奇--agy">1.2 批量识图:蒙太奇 + agy</a></li><li><a href="#13-从猫到我的猫">1.3 从”猫”到”我的猫”</a></li><li><a href="#14-去重63-张其实只有-27-张不同">1.4 去重:63 张其实只有 27 张不同</a></li></ul></li><li><a href="#2-文案创作">2. 文案创作</a><ul><li><a href="#21-网感的迭代">2.1 “网感”的迭代</a></li><li><a href="#22-选择交互">2.2 选择交互</a></li></ul></li><li><a href="#3-表情制作">3. 表情制作</a><ul><li><a href="#31-文字样式迭代-6-版">3.1 文字样式迭代 6 版</a></li><li><a href="#32-横幅三次被否">3.2 横幅:三次被否</a></li></ul></li><li><a href="#4-平台提交">4. 平台提交</a><ul><li><a href="#41-登录">4.1 登录</a></li><li><a href="#42-表单卡点">4.2 表单卡点</a></li><li><a href="#43-提交">4.3 提交</a></li></ul></li><li><a href="#5-顺带产出">5. 顺带产出</a></li><li><a href="#总结">总结</a></li></ul>
+  <!-- </div> -->
+
+</div>
+<!-- {::options parse_block_html="false" /} -->
+        
+
+<div id="entry-table-of-contents" class="toc-wrapper">
+    <h2 id="toc-toggle" class="no_toc">
+        Related Posts <i class="toc-toggle-icon fas fa-chevron-down"></i>
+    </h2>
+    <!-- <div id="markdown-toc"> -->
+    <ul>
+        
+        <li><a href="/personal_homepage/tool/pi-runtime-attribution/">Pi Desktop的开发难点: “会话的状态”</a></li>
+        
+        <li><a href="/personal_homepage/tool/pi-desktop/">Pi Desktop：从会话浏览器到跨机器工作台</a></li>
+        
+        <li><a href="/personal_homepage/daily/agent-blog-writing/">用AI agent复现我的博客风格</a></li>
+        
+        <li><a href="/personal_homepage/tool/lesson/">听课app开发调研</a></li>
+        
+        <li><a href="/personal_homepage/daily/mac/">mac电脑的奇怪问题</a></li>
+        
+    </ul>
+    <!-- </div> -->
+
+</div>
+
+
+
+
+
+      </div>
+
+      <div class="page-content">
+        <div class="e-content">
+          <p>目标:把历史微信头像(都是我家猫的照片)做成一套微信表情包,并在微信表情开放平台提交上架。</p>
+
+<p>整体流程分四步:素材挖掘(微信本地缓存 + agy 识图)→ 文案创作(Gemini 生成 + 人工把关)→ 表情制作(PIL 生成 240×240 透明圆角图)→ 平台提交(Playwright 自动化)。最终「玳瑁烟大王」17 张静态表情提交成功,进入审核。</p>
+
+<blockquote>
+  <p>[!timeline] 整体流程</p>
+  <ul>
+    <li><strong>10:00</strong> · 定位微信头像缓存,140+7839 张待筛选</li>
+    <li><strong>10:20</strong> · 发现 agy 可识图,prompt 写图片路径即可</li>
+    <li><strong>10:40</strong> · 蒙太奇批量识别,140 张 → 70 张猫</li>
+    <li><strong>11:00</strong> · 正样本匹配过滤,确认 63 张是我的猫</li>
+    <li><strong>11:10</strong> · 感知哈希去重,仅 27 张不同照片</li>
+    <li><strong>11:30</strong> · 文案 v1 直译,无网感</li>
+    <li><strong>12:00</strong> · 文案 v2 网红梗,太油</li>
+    <li><strong>12:30</strong> · 文案 v3 简短口语,定稿 17 个</li>
+    <li><strong>13:30</strong> · 文字样式迭代 6 版,透明圆角定稿</li>
+    <li><strong>15:00</strong> · 横幅重做(高清原图裁剪)</li>
+    <li><strong>15:30</strong> · Playwright 登录,创建专辑</li>
+    <li><strong>16:00</strong> · 名称被占用 → 玳瑁烟大王</li>
+    <li><strong>17:00</strong> · 素材/含义词/弹窗全部处理</li>
+    <li><strong>17:30</strong> · 提交成功,等待审核</li>
+  </ul>
+</blockquote>
+
+<h2 id="1-素材挖掘">1. 素材挖掘</h2>
+
+<h3 id="11-微信头像缓存在哪">1.1 微信头像缓存在哪</h3>
+
+<p>微信 Mac 版把所有出现过的头像缓存在本地。消息数据库是 SQLCipher 加密的,头像缓存是明文 jpg:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>~/Library/Containers/com.tencent.xinWeChat/.../2.0b4.0.9/
+├── Avatar/              <span class="c"># 应用级:140 张,时间跨度 2021-2026</span>
+└── cc7e82cd.../Avatar/  <span class="c"># 账户级:7839 张 + 572 张 HD</span>
+</code></pre></div></div>
+
+<h3 id="12-批量识图蒙太奇--agy">1.2 批量识图:蒙太奇 + agy</h3>
+
+<p>逐张识别太慢。把 25 张缩略图拼成 5×5 蒙太奇,让 Gemini 一次识别哪些格子是猫。140 张只用了 6 次调用,识别出 70 张猫图。</p>
+
+<p>识图工具是 Antigravity CLI(<code class="language-plaintext highlighter-rouge">agy</code>)。关键用法:图片绝对路径必须写在 prompt 文本里,agy 才会把它作为多模态输入附加:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>agy <span class="nt">-p</span> <span class="s2">"识别这张图: /path/to/img.jpg"</span> <span class="nt">--dangerously-skip-permissions</span>
+</code></pre></div></div>
+
+<h3 id="13-从猫到我的猫">1.3 从”猫”到”我的猫”</h3>
+
+<p>70 张猫图里混着好友的猫头像。做法:</p>
+<ol>
+  <li>人工确认 15 张正样本</li>
+  <li>颜色直方图 + 感知哈希粗筛(区分度不足,背景色干扰大)</li>
+  <li>让 Gemini 看”样本拼图 + 待确认拼图”,按毛色/花纹判断是否同一只个体</li>
+</ol>
+
+<p>最终确认 63 张。</p>
+
+<h3 id="14-去重63-张其实只有-27-张不同">1.4 去重:63 张其实只有 27 张不同</h3>
+
+<p>感知哈希去重后发现:<strong>微信把同一张图以不同文件名缓存了多次</strong>。63 张去重后只剩 27 张不同的照片。这正是”历史头像”的本质——每次换头像,同一张图可能被存成多个 hash 文件名。</p>
+
+<p>27 张选 24 张做一套,够用。后因我对其中 7 张不满意且无更多素材,改为 17 张(微信最少 16 张)。</p>
+
+<h2 id="2-文案创作">2. 文案创作</h2>
+
+<h3 id="21-网感的迭代">2.1 “网感”的迭代</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>版本</th>
+      <th>做法</th>
+      <th>结果</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>v1</td>
+      <td>按姿态直译(“震惊!”“求摸摸”)</td>
+      <td>太平,无网感</td>
+    </tr>
+    <tr>
+      <td>v2</td>
+      <td>网红梗堆砌(“泰裤辣”“栓Q”“我真的会谢”)</td>
+      <td>更差,太油</td>
+    </tr>
+    <tr>
+      <td>v3</td>
+      <td>简短口语有画面感,参考”仰望大佬”“彻底摆烂”</td>
+      <td>通过</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>结论:网感 ≠ 网红梗。简短(2-6 字)、日常口语、有画面感、略带幽默,不要梗堆砌。</p>
+
+<p>我附加的约束:禁脏话、禁”喵”字、”仰望大佬”必须保留。</p>
+
+<h3 id="22-选择交互">2.2 选择交互</h3>
+
+<p>光给文案我对不上图。生成<strong>带图选择卡</strong>:每张猫图 + 编号 + 3~5 个备选文案,我报”编号+数字”即可。</p>
+
+<p>最终 17 个文案:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>编号</th>
+      <th>文案</th>
+      <th>编号</th>
+      <th>文案</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>01</td>
+      <td>什么情况?</td>
+      <td>09</td>
+      <td>彻底摆烂</td>
+    </tr>
+    <tr>
+      <td>02</td>
+      <td>被拿捏了</td>
+      <td>10</td>
+      <td>拒绝打工</td>
+    </tr>
+    <tr>
+      <td>03</td>
+      <td>你在教我做事?</td>
+      <td>11</td>
+      <td>有事?</td>
+    </tr>
+    <tr>
+      <td>04</td>
+      <td>吃瓜中</td>
+      <td>12</td>
+      <td>思考复杂的人生</td>
+    </tr>
+    <tr>
+      <td>05</td>
+      <td>听不懂你说啥</td>
+      <td>13</td>
+      <td>别问我</td>
+    </tr>
+    <tr>
+      <td>06</td>
+      <td>让我来拉扯一下</td>
+      <td>14</td>
+      <td>优雅</td>
+    </tr>
+    <tr>
+      <td>07</td>
+      <td>审判你的罪行</td>
+      <td>15</td>
+      <td>仰望大佬</td>
+    </tr>
+    <tr>
+      <td>08</td>
+      <td>悄悄探头</td>
+      <td>16</td>
+      <td>电量仅剩1%</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>17</td>
+      <td>原地隐身</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="3-表情制作">3. 表情制作</h2>
+
+<h3 id="31-文字样式迭代-6-版">3.1 文字样式迭代 6 版</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>版本</th>
+      <th>样式</th>
+      <th>问题</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>v1</td>
+      <td>白底 + 下方文字条</td>
+      <td>整体不满意</td>
+    </tr>
+    <tr>
+      <td>v2</td>
+      <td>文字叠图上 + 黑描边</td>
+      <td>字太大、融合差</td>
+    </tr>
+    <tr>
+      <td>v3</td>
+      <td>白字柔和阴影,固定底部</td>
+      <td>位置太固定</td>
+    </tr>
+    <tr>
+      <td>v4</td>
+      <td>智能找空白区放文字</td>
+      <td>长文案被圆角截掉</td>
+    </tr>
+    <tr>
+      <td>v5</td>
+      <td>动态字号 + 边界约束</td>
+      <td>圆角变黑色</td>
+    </tr>
+    <tr>
+      <td>v6</td>
+      <td>RGBA 透明圆角</td>
+      <td>定稿</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>智能定位:分 4×4 网格找局部方差最小的块(最平坦区域)放文字,避开猫脸,每张位置自然不同。</p>
+
+<p>黑角 bug 的根源:<code class="language-plaintext highlighter-rouge">canvas.convert('RGB')</code> 会把透明像素变成纯黑(0,0,0),圆角区域因此变黑角。修复:直接保存 RGBA PNG(微信支持透明背景)。</p>
+
+<h3 id="32-横幅三次被否">3.2 横幅:三次被否</h3>
+
+<p>微信要求横幅 750×400、<strong>图片中避免出现任何文字</strong>。前 3 版:带文字(违规)→ 贴纸拼图(“几个图片拼的”)→ 渐变装饰(“太丑”)。</p>
+
+<p>问题本质:把 240×240 的贴纸拉大到 320px,又糊又变形。正确做法是用<strong>高清原图按比例裁剪</strong>(1080×1080 → 750:400),清晰自然。</p>
+
+<h2 id="4-平台提交">4. 平台提交</h2>
+
+<h3 id="41-登录">4.1 登录</h3>
+
+<p>Playwright 无法复用 Safari 登录态,启动自动化浏览器重新扫码,再用 <code class="language-plaintext highlighter-rouge">storage_state</code> 保存登录态供 headless 复用。<code class="language-plaintext highlighter-rouge">playwright install</code> 版本与本地 Chromium 不匹配,直接指定已有浏览器可执行路径解决。</p>
+
+<h3 id="42-表单卡点">4.2 表单卡点</h3>
+
+<p>按踩坑顺序记录:</p>
+
+<p><strong>名称被占用</strong>。”猫猫日常”提交时提示已存在。通用名都易重名,改用猫的毛色特征起名——我家猫是”玳瑁烟色”,定名「玳瑁烟大王」,一次通过。</p>
+
+<p><strong>fill() 不触发 Vue 事件</strong>。Playwright <code class="language-plaintext highlighter-rouge">fill()</code> 填入的值保存后丢失——表单用 Vue 双向绑定,需要模拟真实键盘输入并 dispatch 事件:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">await</span> <span class="n">el</span><span class="p">.</span><span class="nf">click</span><span class="p">()</span>
+<span class="k">await</span> <span class="n">el</span><span class="p">.</span><span class="nf">fill</span><span class="p">(</span><span class="sh">''</span><span class="p">)</span>
+<span class="k">await</span> <span class="n">page</span><span class="p">.</span><span class="n">keyboard</span><span class="p">.</span><span class="nf">type</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">delay</span><span class="o">=</span><span class="mi">60</span><span class="p">)</span>
+<span class="k">await</span> <span class="n">el</span><span class="p">.</span><span class="nf">dispatch_event</span><span class="p">(</span><span class="sh">'</span><span class="s">input</span><span class="sh">'</span><span class="p">)</span>
+<span class="k">await</span> <span class="n">el</span><span class="p">.</span><span class="nf">dispatch_event</span><span class="p">(</span><span class="sh">'</span><span class="s">change</span><span class="sh">'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><strong>级联下拉选角色</strong>。”角色/内容”是两级级联:先选”宠物/动物角色”,再出现二级菜单选”猫”。第一级选项被覆盖层拦截 pointer events,需 <code class="language-plaintext highlighter-rouge">force=True</code> 或 JS <code class="language-plaintext highlighter-rouge">click()</code>。</p>
+
+<p><strong>含义词必填 + 4 字静默截断</strong>。每个表情必须填”含义词”(聊天页显示名),输入框是点击表情卡片后才出现的(<code class="language-plaintext highlighter-rouge">placeholder="输入含义词"</code>),需先激活全部 17 个再填。6 字的”你在教我做事”被静默截成 4 字”你在教我”——填完必须回头核对。</p>
+
+<p><strong>裁剪弹窗</strong>。上传横幅/封面/图标后有”裁剪 XXX”对话框,不点”确定”素材等于没传(提交时报”横幅不能为空”)。</p>
+
+<p><strong>类型与主题</strong>。默认”动态表情”,选”静态”后有确认弹窗,漏点会变回动态;主题 radio 必选(选了”怼人/斗图”)。</p>
+
+<p><strong>agy 免费额度</strong>。批量识别 HD 头像时连续超时,根因是 <code class="language-plaintext highlighter-rouge">Individual quota reached</code>(免费额度用完,3.5 小时重置)。文本 prompt 还能过,图片请求(耗 token 高)直接卡死。</p>
+
+<h3 id="43-提交">4.3 提交</h3>
+
+<p>全部字段验证通过后提交,页面返回”表情提交成功,请耐心等待审核”。作品 ID <code class="language-plaintext highlighter-rouge">stiker_178619483496f62efcde2da135</code>,审核通常 1-5 个工作日。</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>项目</th>
+      <th>内容</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>名称</td>
+      <td>玳瑁烟大王</td>
+    </tr>
+    <tr>
+      <td>类型</td>
+      <td>静态表情专辑(17 张)</td>
+    </tr>
+    <tr>
+      <td>角色</td>
+      <td>宠物/动物角色 → 猫</td>
+    </tr>
+    <tr>
+      <td>风格</td>
+      <td>日常、软萌可爱、搞笑</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="5-顺带产出">5. 顺带产出</h2>
+
+<p>把 agy 的识图/搜索能力封装成了可复用工具:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">agy_bridge.py</code>:MCP server,暴露 <code class="language-plaintext highlighter-rouge">agy_vision</code>(批量识图)/ <code class="language-plaintext highlighter-rouge">agy_websearch</code> / <code class="language-plaintext highlighter-rouge">agy_ask</code></li>
+  <li><code class="language-plaintext highlighter-rouge">agy-vision-websearch</code> 插件:<code class="language-plaintext highlighter-rouge">agy plugin validate</code> 通过,已安装</li>
+  <li>能力研究报告:<code class="language-plaintext highlighter-rouge">docs/agy_capability_report.md</code></li>
+</ul>
+
+<h2 id="总结">总结</h2>
+
+<ul>
+  <li><strong>微信不保留自己的头像历史</strong>。本地缓存是”出现过的人”的头像,自己的旧头像只能靠好友端缓存间接找回,且同图多缓存导致大量重复,去重后素材远少于预期。</li>
+  <li><strong>AI 配文案不等于网感</strong>。网红梗堆砌反而最不讨喜;简短口语、有画面感的文案才耐看。审美仍需人工把关。</li>
+  <li><strong>自动化提交的坑集中在”表单事件”</strong>。Vue 双向绑定、级联下拉、裁剪弹窗、静默截断,每个都是”看起来成功实际失败”的陷阱,必须保存后重新打开页面验证。</li>
+</ul>
+
+        </div>
+
+        
+
+        
+        
+  <div class="page-comments">
+    <div id="disqus_thread"></div>
+    <script>
+      var disqus_config = function () {
+        this.page.url = 'https://roshameow.github.io//personal_homepage/daily/sticker/';
+        this.page.identifier = 'https://roshameow.github.io//personal_homepage/daily/sticker/';
+      };
+
+      (function() {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://https-roshameow-github-io-personal-homepage.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+  </div>
+
+
+        
+
+        <nav class="page-pagination" role="navigation">
+  
+    <a class="page-previous" href="/personal_homepage/daily/agent-blog-writing/">
+      <h4 class="page-pagination-label">Previous</h4>
+      <span class="page-pagination-title">
+        <i class="fas fa-arrow-left"></i> 用AI agent复现我的博客风格
+
+      </span>
+    </a>
+  
+
+  
+    <a class="page-next" href="/personal_homepage/tool/pi-desktop/">
+      <h4 class="page-pagination-label">Next</h4>
+      <span class="page-pagination-title">
+        Pi Desktop：从会话浏览器到跨机器工作台
+ <i class="fas fa-arrow-right"></i>
+      </span>
+    </a>
+  
+</nav>
+
+      </div>
+
+    </div>
+  </article>
+</main>
+
+    <footer id="footer" class="site-footer">
+  <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+<div class="social-icons"><a class="social-icon" href="/personal_homepage/atom.xml"><i class="fas fa-rss-square fa-2x" title="Feed"></i></a><a class="social-icon" href="https://github.com/roshameow"><i class="fab fa-github-square fa-2x" title="GitHub"></i></a><a class="social-icon" href="https://www.linkedin.com/in/wen-liu-06503a7b/"><i class="fab fa-linkedin fa-2x" title="LinkedIn"></i></a><a class="social-icon" href="mailto:w.liuatnk@gmail.com"><i class="fas fa-envelope-square fa-2x" title="e-mail"></i></a></div><div class="copyright">
+    
+      <p>&copy; 2026 Liu, Wen's Home Page. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://github.com/mmistakes/so-simple-theme" rel="nofollow">So Simple</a>.</p>
+    
+  </div>
+</footer>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="/personal_homepage/assets/js/main.min.js"></script>
+<script src="https://use.fontawesome.com/releases/v5.0.12/js/all.js"></script><script src="/personal_homepage/assets/js/content-tables.js" defer></script><!-- <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'G-9TMSCDTBGN', 'auto');
+  ga('send', 'pageview');
+</script> -->
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9TMSCDTBGN"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-9TMSCDTBGN');
+</script>
+
+
+
+<!-- MathJax -->
+
+<script>
+    // http://docs.mathjax.org/en/latest/upgrading/v2.html
+    MathJax = {
+        tex: {
+            tags: "ams",    // eq numbering options: none, ams, all
+            inlineMath: [['$', '$'], ["\\(", "\\)"]],  // 设置行内数学公式的开始和结束标记
+            displayMath: [['$$', '$$'], ["\\[", "\\]"]]  // 设置行间数学公式的开始和结束标记
+        },
+        // options: {
+        //   renderActions: {
+        //     // for mathjax 3, handle <script "math/tex"> blocks inserted by kramdown
+        //     find: [10, function (doc) {
+        //       for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+        //         const display = !!node.type.match(/; *mode=display/);
+        //         const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+        //         const text = document.createTextNode('');
+        //         node.parentNode.replaceChild(text, node);
+        //         math.start = { node: text, delim: '', n: 0 };
+        //         math.end = { node: text, delim: '', n: 0 };
+        //         doc.math.push(math);
+        //       }
+        //     }, '']
+        //   }
+        // }
+    }
+</script>
+
+<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+
+
+<!-- Mermaid -->
+<style>
+  .mermaid-list {
+    display: flex;
+    gap: 2em;
+    flex-wrap: wrap;
+    justify-content: center;
+    font-family: "Source Sans Pro", sans-serif;
+    margin: 1.5em 0;
+  }
+  .mermaid-list-col {
+    min-width: 180px;
+  }
+  .mermaid-list-col h4 {
+    margin: 0 0 0.4em 0;
+    font-size: 0.95em;
+    font-weight: 700;
+    color: #34374C;
+  }
+  .mermaid-list-col ul {
+    margin: 0;
+    padding-left: 1.2em;
+    line-height: 1.6;
+  }
+  pre.mermaid {
+    text-align: center;
+    background: transparent;
+    padding: 1em 0;
+    overflow: visible;
+    font-family: "Source Sans Pro", sans-serif !important;
+  }
+  pre.mermaid svg {
+    max-width: 100%;
+    height: auto;
+    overflow: visible;
+  }
+</style>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('code.language-mermaid').forEach(function(code) {
+      var text = code.textContent;
+      var parent = code.closest('.highlighter-rouge') || code.parentElement;
+
+      // 解析 subgraph 块
+      var sgRe = /subgraph\s+\w+\["(.+?)"\]([\s\S]*?)end/g;
+      var match, subgraphs = [];
+      while ((match = sgRe.exec(text)) !== null) {
+        var title = match[1];
+        var body = match[2];
+        var items = [];
+        body.split('\n').forEach(function(line) {
+          line = line.trim();
+          var m = line.match(/^\w+\["(.+?)"\]/);
+          if (m) items.push(m[1]);
+        });
+        if (items.length) subgraphs.push({ title: title, items: items });
+      }
+
+      if (subgraphs.length > 1) {
+        // 有多列 subgraph → 渲染为 HTML 列表
+        var div = document.createElement('div');
+        div.className = 'mermaid-list';
+        subgraphs.forEach(function(sg) {
+          var col = document.createElement('div');
+          col.className = 'mermaid-list-col';
+          col.innerHTML = '<h4>' + sg.title + '</h4><ul>' +
+            sg.items.map(function(i) { return '<li>' + i + '</li>'; }).join('') +
+            '</ul>';
+          div.appendChild(col);
+        });
+        var wrapper = parent.closest('.highlighter-rouge') || parent;
+        wrapper.parentNode.replaceChild(div, wrapper);
+      } else {
+        // 单图 → 正常用 Mermaid 渲染
+        var pre = document.createElement('pre');
+        pre.className = 'mermaid';
+        pre.textContent = text;
+        var wrapper = parent.closest('.highlighter-rouge') || parent;
+        wrapper.parentNode.replaceChild(pre, wrapper);
+      }
+    });
+    mermaid.run();
+  });
+</script>
+
+
+  </body>
+
+</html>

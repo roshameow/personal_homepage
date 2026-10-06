@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<!--
+    So Simple Jekyll Theme 3.2.0
+    Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+    Free for personal and commercial use under the MIT license
+    https://github.com/mmistakes/so-simple-theme/blob/master/LICENSE
+-->
+<html lang="en-US" class="no-js">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  
+
+  
+  
+  <!-- Begin Jekyll SEO tag v2.9.1 -->
+<title>听课app开发调研 | Liu, Wen’s Home Page</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="听课app开发调研" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="本报告致力于提供全球视频提取课件、自动识别、场景检测领域的全量级深度分析。涵盖了从顶层商业平台到基层开源算法的每一个技术细节，旨在为 LessonCap 的长远发展提供无可辩驳的决策依据。" />
+<meta name="twitter:description" property="og:description" content="本报告致力于提供全球视频提取课件、自动识别、场景检测领域的全量级深度分析。涵盖了从顶层商业平台到基层开源算法的每一个技术细节，旨在为 LessonCap 的长远发展提供无可辩驳的决策依据。" />
+<link rel="canonical" href="https://roshameow.github.io//personal_homepage/tool/lesson/" />
+<meta property="og:url" content="https://roshameow.github.io//personal_homepage/tool/lesson/" />
+<meta property="og:site_name" content="Liu, Wen’s Home Page" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2026-06-20T00:00:00+00:00" />
+<meta property="article:modified_time" content="2026-06-20T16:43:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="听课app开发调研" />
+<meta name="twitter:site" content="@" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2026-06-20T16:43:00+00:00","datePublished":"2026-06-20T00:00:00+00:00","description":"本报告致力于提供全球视频提取课件、自动识别、场景检测领域的全量级深度分析。涵盖了从顶层商业平台到基层开源算法的每一个技术细节，旨在为 LessonCap 的长远发展提供无可辩驳的决策依据。","headline":"听课app开发调研","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/tool/lesson/"},"url":"https://roshameow.github.io//personal_homepage/tool/lesson/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  
+
+  <script>
+    /* Cut the mustard */
+    if ('querySelector' in document && 'addEventListener' in window) {
+      document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + 'js';
+    }
+  </script>
+
+  <link rel="stylesheet" href="/personal_homepage/assets/css/main.css">
+  <link rel="stylesheet" href="/personal_homepage/assets/css/skins/default.css">
+  
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,700,700i|Lora:400,400i,700,700i">
+  <link rel="alternate" type="application/atom+xml" title="Liu, Wen&#39;s Home Page" href="/personal_homepage/atom.xml">
+<!-- start custom head snippets -->
+
+<!-- insert favicons. use http://realfavicongenerator.net/ -->
+<link rel="shortcut icon" type="image/x-icon" href="/personal_homepage/docs/images/logo.ico">
+<!-- end custom head snippets -->
+
+</head>
+
+  <body class="layout--post  听课app开发调研">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#primary-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+  <div class="navigation-wrapper">
+    <a href="#menu-toggle" id="menu-toggle">Menu</a>
+    <nav id="primary-nav" class="site-nav animated drop">
+      <ul><li><a href="/personal_homepage/">Home</a></li><li><a href="/personal_homepage/posts/">Posts</a></li><li><a href="/personal_homepage/categories/">Categories</a></li><li><a href="/personal_homepage/tags/">Tags</a></li><li><a href="/personal_homepage/family/">Family</a></li><li><a href="/personal_homepage/search/">Search</a></li></ul>
+    </nav>
+  </div><!-- /.navigation-wrapper -->
+
+
+    <header class="masthead">
+  <div class="wrap">
+    
+    
+    
+      
+        <div class="site-title animated fadeIn"><a href="/personal_homepage/">Liu, Wen's Home Page</a></div>
+      
+      <p class="site-description animated fadeIn" itemprop="description">Work, Experiments and Ideas.</p>
+    
+  </div>
+</header><!-- /.masthead -->
+
+
+    <main id="main" class="main-content" aria-label="Content">
+  <article class="h-entry">
+    
+
+    <div class="page-wrapper">
+      <header class="page-header">
+        
+        
+        <h1 id="page-title" class="page-title p-name">听课app开发调研
+</h1>
+        
+      </header>
+
+      <div class="page-sidebar">
+        <div class="page-author h-card p-author"><img src="/personal_homepage/docs/images/logo.svg" class="author-avatar u-photo" alt=""><div class="author-info">
+
+<span class="read-time">2 min read</span>
+
+    <time class="page-date dt-published" datetime="2026-06-20T00:00:00+00:00"><a class="u-url" href="">June 20, 2026</a>
+</time>
+
+  </div>
+</div>
+
+        
+  <h3 class="page-taxonomies-title">Categories</h3>
+  
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a class="p-category" href="/personal_homepage/categories/#tool" title="Pages filed under tool">tool</a></li>
+  </ul>
+
+
+        
+  <h3 class="page-taxonomies-title">Tags</h3>
+  
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a href="/personal_homepage/tags/#content" title="Pages tagged content" rel="tag">content</a></li>
+  </ul>
+
+
+        <!-- {::options parse_block_html="true" /} -->
+<div id="entry-table-of-contents" class="toc-wrapper">
+  <h2 id="toc-toggle">
+    Table of Contents <i
+      class="toc-toggle-icon fas fa-chevron-down"></i>
+  </h2>
+  <!-- 1. toc
+{:toc} -->
+  <!-- <div id="markdown-toc"> -->
+
+    <ul class="inline_toc" id="my_toc"><li><a href="#1-全球主流视频转课件工具深度对比矩阵-无损版">1. 全球主流“视频转课件”工具深度对比矩阵 (无损版)</a></li><li><a href="#2-核心翻页检测算法技术细节深度拆解-the-science">2. 核心翻页检测算法技术细节深度拆解 (The Science)</a><ul><li><a href="#21-dhash-difference-hash---lessoncap-目前采用">2.1 dHash (Difference Hash) - 【LessonCap 目前采用】</a></li><li><a href="#22-phash-perceptual-hash">2.2 pHash (Perceptual Hash)</a></li><li><a href="#23-ssim-structural-similarity---lessoncap-升级目标">2.3 SSIM (Structural Similarity) - 【LessonCap 升级目标】</a></li><li><a href="#24-hmm-hidden-markov-model---天花板算法">2.4 HMM (Hidden Markov Model) - 【天花板算法】</a></li></ul></li><li><a href="#3-lessoncap-的竞争壁垒与护城河-product-moat">3. LessonCap 的竞争壁垒与护城河 (Product Moat)</a></li><li><a href="#4-未来-12-个月详细开发路线图-2026-roadmap">4. 未来 12 个月详细开发路线图 (2026 Roadmap)</a><ul><li><a href="#phase-2-智能化飞跃-智能去重与文字化">Phase 2: 智能化飞跃 (智能去重与文字化)</a></li><li><a href="#phase-3-生产力生态-联动与外设">Phase 3: 生产力生态 (联动与外设)</a></li></ul></li></ul>
+  <!-- </div> -->
+
+</div>
+<!-- {::options parse_block_html="false" /} -->
+        
+
+<div id="entry-table-of-contents" class="toc-wrapper">
+    <h2 id="toc-toggle" class="no_toc">
+        Related Posts <i class="toc-toggle-icon fas fa-chevron-down"></i>
+    </h2>
+    <!-- <div id="markdown-toc"> -->
+    <ul>
+        
+        <li><a href="/personal_homepage/tool/pi-runtime-attribution/">Pi Desktop的开发难点: “会话的状态”</a></li>
+        
+        <li><a href="/personal_homepage/tool/pi-desktop/">Pi Desktop：从会话浏览器到跨机器工作台</a></li>
+        
+        <li><a href="/personal_homepage/daily/sticker/">用AI做了一套微信表情包:从微信头像缓存到提交上架</a></li>
+        
+        <li><a href="/personal_homepage/daily/agent-blog-writing/">用AI agent复现我的博客风格</a></li>
+        
+        <li><a href="/personal_homepage/daily/mac/">mac电脑的奇怪问题</a></li>
+        
+    </ul>
+    <!-- </div> -->
+
+</div>
+
+
+
+
+
+      </div>
+
+      <div class="page-content">
+        <div class="e-content">
+          <p>本报告致力于提供全球视频提取课件、自动识别、场景检测领域的<strong>全量级深度分析</strong>。涵盖了从顶层商业平台到基层开源算法的每一个技术细节，旨在为 LessonCap 的长远发展提供无可辩驳的决策依据。</p>
+
+<hr />
+
+<h2 id="1-全球主流视频转课件工具深度对比矩阵-无损版">1. 全球主流“视频转课件”工具深度对比矩阵 (无损版)</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">产品名称</th>
+      <th style="text-align: left">定位与目标群体</th>
+      <th style="text-align: left">翻页检测逻辑 / 核心算法</th>
+      <th style="text-align: left">OCR 与 搜索精度</th>
+      <th style="text-align: left">核心优势 (Pro)</th>
+      <th style="text-align: left">核心劣势 (Con)</th>
+      <th style="text-align: left">2025 AI 进化趋势</th>
+      <th style="text-align: left">价格 / 链接</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><strong>Panopto</strong></td>
+      <td style="text-align: left">顶级学术机构、企业知识库<br /><br />商业封闭视频软件</td>
+      <td style="text-align: left"><strong>元数据流同步</strong>：通过客户端插件直接监控 Office 进程的翻页中断信号。</td>
+      <td style="text-align: left"><strong>全文本倒排索引</strong>：不仅扫描 OCR，还结合 PPT 原始文本轨道。搜索词可精确到 0.1 秒。</td>
+      <td style="text-align: left">1. <strong>学术搜索之王</strong>：支持跨数万视频全局搜索。 2. <strong>Access AI</strong>：自动生成带层级的逻辑章节。</td>
+      <td style="text-align: left">1. <strong>围墙花园</strong>：必须使用配套录制器，不支持第三方视频。 2. <strong>私有云部署</strong>：门槛极高。</td>
+      <td style="text-align: left"><strong>Generative Summaries</strong>：自动将 1 小时视频生成 500 字精简摘要。</td>
+      <td style="text-align: left">企业订阅 / <a href="https://www.panopto.com/">官网</a></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>Kaltura</strong></td>
+      <td style="text-align: left">跨国企业内训、在线教育<br /><br /></td>
+      <td style="text-align: left"><strong>Thumb Cue Points</strong>：利用服务端算力，对上传视频进行非线性视觉特征提取。</td>
+      <td style="text-align: left"><strong>REACH 高级 OCR</strong>：支持 150+ 语言，甚至包括手写数学公式识别。</td>
+      <td style="text-align: left">1. <strong>学练闭环</strong>：2025 Genie AI 能基于识别课件自动生成课后题。 2. <strong>多视角播放</strong>：支持画中画自由切换。</td>
+      <td style="text-align: left">1. <strong>非实时监测</strong>：仅限后期处理。 2. <strong>合规性门槛</strong>：主要针对 B 端大客户。</td>
+      <td style="text-align: left"><strong>Interactive Genie</strong>：AI 助手能根据课件内容回答学生提问。</td>
+      <td style="text-align: left">企业授权 / <a href="https://corp.kaltura.com/">官网</a></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>Microsoft Stream</strong></td>
+      <td style="text-align: left">M365 生态企业用户</td>
+      <td style="text-align: left"><strong>Vision AI 模型</strong>：基于 Azure Computer Vision 实时识别画面中的视觉锚点切换。</td>
+      <td style="text-align: left"><strong>SharePoint 全局索引</strong>：视频文字无需打开视频即可在 Win11 文件管理器搜到。</td>
+      <td style="text-align: left">1. <strong>Copilot 全力驱动</strong>：直接问 AI “这页 PPT 的重点是什么？”。 2. <strong>零安装</strong>：集成在 M365 套件中。</td>
+      <td style="text-align: left">1. <strong>通用性极差</strong>：离开 Teams 录像和 Office 视频，识别率大幅下降。 2. <strong>流量费用</strong>：OCR 扫描按量计费。</td>
+      <td style="text-align: left"><strong>Vision-to-Text Copilot</strong>：AI 实时解释视频中的复杂图表和代码。</td>
+      <td style="text-align: left">M365 包含 / <a href="https://www.microsoft.com/stream">官网</a></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>飞书妙记 / 钉钉闪记</strong></td>
+      <td style="text-align: left">国内职场及网课人群</td>
+      <td style="text-align: left"><strong>多模态语义识别</strong>：结合 NLP（语义理解）与 CV（视觉变动）的双重校验。</td>
+      <td style="text-align: left"><strong>中文深度优化 OCR</strong>：针对中文手写、复杂排版 PPT 进行了模型预训练。</td>
+      <td style="text-align: left">1. <strong>中文语境体验最佳</strong>：会议总结与重点提炼极快。 2. <strong>点击跳转</strong>：课件截图作为锚点，点击即看原片。</td>
+      <td style="text-align: left">1. <strong>仅限自家会议</strong>：无法处理 B 站、Zoom 等外部直播源。 2. <strong>隐私依赖</strong>：强制云端处理。</td>
+      <td style="text-align: left"><strong>AI 全量纪要</strong>：不仅提取课件，还自动生成思维导图笔记。</td>
+      <td style="text-align: left">基础版免费 / <a href="https://www.feishu.cn/">官网</a></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>Video2PPT (Comm)</strong></td>
+      <td style="text-align: left">独立生产力用户</td>
+      <td style="text-align: left"><strong>云端 AI 降噪识别</strong>：专门针对“脏”视频。能识别并强行移除画面中挡住 PPT 的讲师人脸。</td>
+      <td style="text-align: left">基础 OCR 提取，支持导出可编辑的 .pptx 格式。</td>
+      <td style="text-align: left">1. <strong>人脸移除</strong>：唯一能把挡住的 PPT 画面“算”出来的工具。 2. <strong>直接产出 PPT</strong>：适合二次修改。</td>
+      <td style="text-align: left">1. <strong>隐私泄露风险</strong>：资料必须经过第三方服务器。 2. <strong>价格敏感</strong>：按月订阅，单价较高。</td>
+      <td style="text-align: left"><strong>Dynamic Denoising</strong>：自动过滤掉视频播放过程中的低画质伪影。</td>
+      <td style="text-align: left">订阅制 / <a href="https://www.video2ppt.com/">官网</a></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>Slide Catcher Pro</strong></td>
+      <td style="text-align: left">macOS 资深极客</td>
+      <td style="text-align: left"><strong>Vision Framework</strong>：调用 macOS 原生图像接口。利用苹果芯片的 NPU 进行硬件加速。</td>
+      <td style="text-align: left"><strong>Apple 原生 OCR</strong>：不依赖网络，隐私保护性极强。精度达到系统级。</td>
+      <td style="text-align: left">1. <strong>极速与省电</strong>：充分压榨 M1/M2/M3 芯片。 2. <strong>本地化</strong>：无需上传，数据不出本地。</td>
+      <td style="text-align: left">1. <strong>不支持实时监测</strong>：仅限处理录像文件。 2. <strong>平台限制</strong>：无 Windows 版本。</td>
+      <td style="text-align: left"><strong>Vision OS 联动</strong>：开始支持 Vision Pro 空间的课件投放。</td>
+      <td style="text-align: left">买断制 / <a href="https://slidecatcherpro.com/">官网</a></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>vid2slides (OSS)</strong></td>
+      <td style="text-align: left">开发者、研究人员</td>
+      <td style="text-align: left"><strong>HMM (隐马尔可夫模型)</strong>：利用概率统计模型区分“临时干扰”与“真实翻页”。</td>
+      <td style="text-align: left">集成 Tesseract OCR，支持生成 PDF。</td>
+      <td style="text-align: left">1. <strong>技术天花板</strong>：算法理论最强，能处理最复杂的教学环境。</td>
+      <td style="text-align: left">1. <strong>无界面</strong>：仅限命令行操作。 2. <strong>配置极难</strong>：需要 Python 深度环境。</td>
+      <td style="text-align: left">无。</td>
+      <td style="text-align: left">开源 / <a href="https://github.com/patrickmineault/vid2slides">GitHub</a></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>mp4-to-pdf (OSS)</strong></td>
+      <td style="text-align: left">CLI 极客</td>
+      <td style="text-align: left"><strong>PySceneDetect</strong>：基于场景检测工业标准库，识别视频镜头的切变。</td>
+      <td style="text-align: left">内置 Tesseract + OpenAI Whisper (语音转文字)。</td>
+      <td style="text-align: left">1. <strong>功能大而全</strong>：全本地运行，集成程度极高。</td>
+      <td style="text-align: left">1. <strong>臃肿不堪</strong>：体积通常 &gt;500MB。 2. <strong>处理极慢</strong>：单线程分析效率低。</td>
+      <td style="text-align: left">无。</td>
+      <td style="text-align: left">开源 / <a href="https://github.com/lucianosarno/mp4-to-pdf">GitHub</a></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>LessonCap</strong></td>
+      <td style="text-align: left"><strong>大众学生 / 职场个人</strong></td>
+      <td style="text-align: left"><strong>dHash + 数学级像素锁定</strong>：自研 V36 像素匹配算法，实现实时屏幕监测。</td>
+      <td style="text-align: left"><strong>原生 API 实现 (规划中)</strong>：体积零增加，全文搜索。</td>
+      <td style="text-align: left">1. <strong>通吃万物</strong>：支持任何播放器、任何直播。 2. <strong>极致轻量</strong>：仅 15MB 绿色免安装。 3. <strong>实时生成</strong>：课程结束，笔记即出。</td>
+      <td style="text-align: left">1. <strong>去重算法待精进</strong>：对滚动弹幕的过滤尚有提升空间。</td>
+      <td style="text-align: left"><strong>SSIM 结构相似性升级</strong>：实现 100% 弹幕免疫。</td>
+      <td style="text-align: left">开源 / <a href="https://github.com/roshameow/LessonCap">GitHub</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="2-核心翻页检测算法技术细节深度拆解-the-science">2. 核心翻页检测算法技术细节深度拆解 (The Science)</h2>
+
+<p>在 LessonCap 的下一步迭代中，我们将从 dHash 升级到 SSIM。以下是各算法的<strong>无损技术对比</strong>：</p>
+
+<h3 id="21-dhash-difference-hash---lessoncap-目前采用">2.1 dHash (Difference Hash) - 【LessonCap 目前采用】</h3>
+<ul>
+  <li><strong>原理</strong>：将图像缩放至 9x8 灰度图，计算相邻像素的梯度（左像素是否比右像素亮），生成 64 位二进制指纹。</li>
+  <li><strong>数学本质</strong>：基于<strong>一阶导数</strong>的结构特征提取。</li>
+  <li><strong>评价</strong>：计算开销极低（每秒可处理数百帧），对亮度、对比度变化不敏感。<strong>局限性</strong>是对于滚动弹幕这种改变了局部像素梯度的干扰，容错率有限。</li>
+</ul>
+
+<h3 id="22-phash-perceptual-hash">2.2 pHash (Perceptual Hash)</h3>
+<ul>
+  <li><strong>原理</strong>：采用 <strong>DCT (离散余弦变换)</strong> 将图像转为频率域，保留低频分量。</li>
+  <li><strong>数学本质</strong>：基于<strong>频率分布</strong>的特征提取。</li>
+  <li><strong>评价</strong>：比 dHash 更稳健，能过滤掉一些高频噪点。但计算成本翻倍，对实时直播监测有微小延迟。</li>
+</ul>
+
+<h3 id="23-ssim-structural-similarity---lessoncap-升级目标">2.3 SSIM (Structural Similarity) - 【LessonCap 升级目标】</h3>
+<ul>
+  <li><strong>原理</strong>：通过对比两张图像的<strong>亮度 (Luminance)、对比度 (Contrast) 和结构 (Structure)</strong> 三个维度。</li>
+  <li><strong>数学模型</strong>：SSIM(x,y) = [l(x,y)^alpha] * [c(x,y)^beta] * [s(x,y)^gamma]。</li>
+  <li><strong>评价</strong>：这是目前最接近人类肉眼判断的指标。它能识别出“文字内容没变，只是上面飘过了一行弹幕”这种场景。它是解决“弹幕干扰”的终极武器。</li>
+</ul>
+
+<h3 id="24-hmm-hidden-markov-model---天花板算法">2.4 HMM (Hidden Markov Model) - 【天花板算法】</h3>
+<ul>
+  <li><strong>原理</strong>：将视频建模为一系列隐藏状态（如：幻灯片A、转场中、幻灯片B）。通过 <strong>Viterbi 算法</strong> 计算观察序列（当前帧）背后最可能的隐藏状态路径。</li>
+  <li><strong>评价</strong>：能自动“抹平”讲师在镜头前走动产生的假翻页。但它需要对每一类视频进行“概率训练”，不符合 LessonCap “即开即用”的工具属性。</li>
+</ul>
+
+<hr />
+
+<h2 id="3-lessoncap-的竞争壁垒与护城河-product-moat">3. LessonCap 的竞争壁垒与护城河 (Product Moat)</h2>
+
+<ol>
+  <li><strong>场景通杀性 (Unrestricted Sources)</strong>：不受软件的“私有协议”限制。用户可以在任何播放器、任何网页、任何会议软件上使用。</li>
+  <li><strong>极致轻量化 (Go + Wails)</strong>：相比 Python 实现的项目（体积几百MB，需要安装各种环境），LessonCap 编译后仅 15MB 左右，内存占用不到 50MB。</li>
+  <li><strong>100% 隐私零风险 (Total Local)</strong>：所有识别（包括未来的 OCR）全部调用操作系统本地接口，不与任何互联网服务通信。</li>
+</ol>
+
+<hr />
+
+<h2 id="4-未来-12-个月详细开发路线图-2026-roadmap">4. 未来 12 个月详细开发路线图 (2026 Roadmap)</h2>
+
+<h3 id="phase-2-智能化飞跃-智能去重与文字化">Phase 2: 智能化飞跃 (智能去重与文字化)</h3>
+<ul class="task-list">
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" /><strong>SSIM 智能去重内核</strong>：引入结构相似性比对，将翻页识别精度提升至 99.9%，并实现弹幕完全过滤。</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" /><strong>原生系统 OCR 集成</strong>：
+    <ul>
+      <li><strong>macOS</strong>: 接入 <code class="language-plaintext highlighter-rouge">Apple Vision Framework</code>。</li>
+      <li><strong>Windows</strong>: 接入 <code class="language-plaintext highlighter-rouge">Windows.Media.Ocr</code>。</li>
+      <li><strong>结果</strong>：PDF 课件将带有隐藏的文字层，支持直接 Ctrl+F 搜索。</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="phase-3-生产力生态-联动与外设">Phase 3: 生产力生态 (联动与外设)</h3>
+<ul class="task-list">
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" /><strong>多显示器支持</strong>：自动探测副屏 DPI，解决 4K 扩展屏下的坐标错位。</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" /><strong>笔记软件一键导入</strong>：支持自动将截图发送至 Obsidian, Logseq 或 Notion。</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" /><strong>Markdown 联动</strong>：自动生成一个包含所有课件截图、时间戳和备注的 <code class="language-plaintext highlighter-rouge">.md</code> 索引文件。</li>
+</ul>
+
+<hr />
+<p><em>报告生成日期：2026年6月14日</em>
+<em>结论：LessonCap 的核心使命是成为“每个学生桌面上的必备笔记伴侣”。</em></p>
+
+        </div>
+
+        
+
+        
+        
+  <div class="page-comments">
+    <div id="disqus_thread"></div>
+    <script>
+      var disqus_config = function () {
+        this.page.url = 'https://roshameow.github.io//personal_homepage/tool/lesson/';
+        this.page.identifier = 'https://roshameow.github.io//personal_homepage/tool/lesson/';
+      };
+
+      (function() {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://https-roshameow-github-io-personal-homepage.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+  </div>
+
+
+        
+
+        <nav class="page-pagination" role="navigation">
+  
+    <a class="page-previous" href="/personal_homepage/daily/mac/">
+      <h4 class="page-pagination-label">Previous</h4>
+      <span class="page-pagination-title">
+        <i class="fas fa-arrow-left"></i> mac电脑的奇怪问题
+
+      </span>
+    </a>
+  
+
+  
+    <a class="page-next" href="/personal_homepage/daily/agent-blog-writing/">
+      <h4 class="page-pagination-label">Next</h4>
+      <span class="page-pagination-title">
+        用AI agent复现我的博客风格
+ <i class="fas fa-arrow-right"></i>
+      </span>
+    </a>
+  
+</nav>
+
+      </div>
+
+    </div>
+  </article>
+</main>
+
+    <footer id="footer" class="site-footer">
+  <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+<div class="social-icons"><a class="social-icon" href="/personal_homepage/atom.xml"><i class="fas fa-rss-square fa-2x" title="Feed"></i></a><a class="social-icon" href="https://github.com/roshameow"><i class="fab fa-github-square fa-2x" title="GitHub"></i></a><a class="social-icon" href="https://www.linkedin.com/in/wen-liu-06503a7b/"><i class="fab fa-linkedin fa-2x" title="LinkedIn"></i></a><a class="social-icon" href="mailto:w.liuatnk@gmail.com"><i class="fas fa-envelope-square fa-2x" title="e-mail"></i></a></div><div class="copyright">
+    
+      <p>&copy; 2026 Liu, Wen's Home Page. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://github.com/mmistakes/so-simple-theme" rel="nofollow">So Simple</a>.</p>
+    
+  </div>
+</footer>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="/personal_homepage/assets/js/main.min.js"></script>
+<script src="https://use.fontawesome.com/releases/v5.0.12/js/all.js"></script><script src="/personal_homepage/assets/js/content-tables.js" defer></script><!-- <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'G-9TMSCDTBGN', 'auto');
+  ga('send', 'pageview');
+</script> -->
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9TMSCDTBGN"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-9TMSCDTBGN');
+</script>
+
+
+
+<!-- MathJax -->
+
+<script>
+    // http://docs.mathjax.org/en/latest/upgrading/v2.html
+    MathJax = {
+        tex: {
+            tags: "ams",    // eq numbering options: none, ams, all
+            inlineMath: [['$', '$'], ["\\(", "\\)"]],  // 设置行内数学公式的开始和结束标记
+            displayMath: [['$$', '$$'], ["\\[", "\\]"]]  // 设置行间数学公式的开始和结束标记
+        },
+        // options: {
+        //   renderActions: {
+        //     // for mathjax 3, handle <script "math/tex"> blocks inserted by kramdown
+        //     find: [10, function (doc) {
+        //       for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+        //         const display = !!node.type.match(/; *mode=display/);
+        //         const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+        //         const text = document.createTextNode('');
+        //         node.parentNode.replaceChild(text, node);
+        //         math.start = { node: text, delim: '', n: 0 };
+        //         math.end = { node: text, delim: '', n: 0 };
+        //         doc.math.push(math);
+        //       }
+        //     }, '']
+        //   }
+        // }
+    }
+</script>
+
+<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+
+
+<!-- Mermaid -->
+<style>
+  .mermaid-list {
+    display: flex;
+    gap: 2em;
+    flex-wrap: wrap;
+    justify-content: center;
+    font-family: "Source Sans Pro", sans-serif;
+    margin: 1.5em 0;
+  }
+  .mermaid-list-col {
+    min-width: 180px;
+  }
+  .mermaid-list-col h4 {
+    margin: 0 0 0.4em 0;
+    font-size: 0.95em;
+    font-weight: 700;
+    color: #34374C;
+  }
+  .mermaid-list-col ul {
+    margin: 0;
+    padding-left: 1.2em;
+    line-height: 1.6;
+  }
+  pre.mermaid {
+    text-align: center;
+    background: transparent;
+    padding: 1em 0;
+    overflow: visible;
+    font-family: "Source Sans Pro", sans-serif !important;
+  }
+  pre.mermaid svg {
+    max-width: 100%;
+    height: auto;
+    overflow: visible;
+  }
+</style>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('code.language-mermaid').forEach(function(code) {
+      var text = code.textContent;
+      var parent = code.closest('.highlighter-rouge') || code.parentElement;
+
+      // 解析 subgraph 块
+      var sgRe = /subgraph\s+\w+\["(.+?)"\]([\s\S]*?)end/g;
+      var match, subgraphs = [];
+      while ((match = sgRe.exec(text)) !== null) {
+        var title = match[1];
+        var body = match[2];
+        var items = [];
+        body.split('\n').forEach(function(line) {
+          line = line.trim();
+          var m = line.match(/^\w+\["(.+?)"\]/);
+          if (m) items.push(m[1]);
+        });
+        if (items.length) subgraphs.push({ title: title, items: items });
+      }
+
+      if (subgraphs.length > 1) {
+        // 有多列 subgraph → 渲染为 HTML 列表
+        var div = document.createElement('div');
+        div.className = 'mermaid-list';
+        subgraphs.forEach(function(sg) {
+          var col = document.createElement('div');
+          col.className = 'mermaid-list-col';
+          col.innerHTML = '<h4>' + sg.title + '</h4><ul>' +
+            sg.items.map(function(i) { return '<li>' + i + '</li>'; }).join('') +
+            '</ul>';
+          div.appendChild(col);
+        });
+        var wrapper = parent.closest('.highlighter-rouge') || parent;
+        wrapper.parentNode.replaceChild(div, wrapper);
+      } else {
+        // 单图 → 正常用 Mermaid 渲染
+        var pre = document.createElement('pre');
+        pre.className = 'mermaid';
+        pre.textContent = text;
+        var wrapper = parent.closest('.highlighter-rouge') || parent;
+        wrapper.parentNode.replaceChild(pre, wrapper);
+      }
+    });
+    mermaid.run();
+  });
+</script>
+
+
+  </body>
+
+</html>

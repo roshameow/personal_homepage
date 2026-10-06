@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<!--
+    So Simple Jekyll Theme 3.2.0
+    Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+    Free for personal and commercial use under the MIT license
+    https://github.com/mmistakes/so-simple-theme/blob/master/LICENSE
+-->
+<html lang="en-US" class="no-js">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  
+
+  
+  
+  <!-- Begin Jekyll SEO tag v2.9.1 -->
+<title>Pi Desktop：从会话浏览器到跨机器工作台 | Liu, Wen’s Home Page</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Pi Desktop：从会话浏览器到跨机器工作台" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="我最初只是想给 pi coding agent 补一个桌面会话浏览器：按项目查看 JSONL、展开工具调用，需要时从原会话继续聊。" />
+<meta name="twitter:description" property="og:description" content="我最初只是想给 pi coding agent 补一个桌面会话浏览器：按项目查看 JSONL、展开工具调用，需要时从原会话继续聊。" />
+<link rel="canonical" href="https://roshameow.github.io//personal_homepage/tool/pi-desktop/" />
+<meta property="og:url" content="https://roshameow.github.io//personal_homepage/tool/pi-desktop/" />
+<meta property="og:site_name" content="Liu, Wen’s Home Page" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2026-08-11T00:00:00+00:00" />
+<meta property="article:modified_time" content="2026-09-26T17:39:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="Pi Desktop：从会话浏览器到跨机器工作台" />
+<meta name="twitter:site" content="@" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2026-09-26T17:39:00+00:00","datePublished":"2026-08-11T00:00:00+00:00","description":"我最初只是想给 pi coding agent 补一个桌面会话浏览器：按项目查看 JSONL、展开工具调用，需要时从原会话继续聊。","headline":"Pi Desktop：从会话浏览器到跨机器工作台","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/tool/pi-desktop/"},"url":"https://roshameow.github.io//personal_homepage/tool/pi-desktop/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  
+
+  <script>
+    /* Cut the mustard */
+    if ('querySelector' in document && 'addEventListener' in window) {
+      document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + 'js';
+    }
+  </script>
+
+  <link rel="stylesheet" href="/personal_homepage/assets/css/main.css">
+  <link rel="stylesheet" href="/personal_homepage/assets/css/skins/default.css">
+  
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,700,700i|Lora:400,400i,700,700i">
+  <link rel="alternate" type="application/atom+xml" title="Liu, Wen&#39;s Home Page" href="/personal_homepage/atom.xml">
+<!-- start custom head snippets -->
+
+<!-- insert favicons. use http://realfavicongenerator.net/ -->
+<link rel="shortcut icon" type="image/x-icon" href="/personal_homepage/docs/images/logo.ico">
+<!-- end custom head snippets -->
+
+</head>
+
+  <body class="layout--post  pi-desktop-从会话浏览器到跨机器工作台">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#primary-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+  <div class="navigation-wrapper">
+    <a href="#menu-toggle" id="menu-toggle">Menu</a>
+    <nav id="primary-nav" class="site-nav animated drop">
+      <ul><li><a href="/personal_homepage/">Home</a></li><li><a href="/personal_homepage/posts/">Posts</a></li><li><a href="/personal_homepage/categories/">Categories</a></li><li><a href="/personal_homepage/tags/">Tags</a></li><li><a href="/personal_homepage/family/">Family</a></li><li><a href="/personal_homepage/search/">Search</a></li></ul>
+    </nav>
+  </div><!-- /.navigation-wrapper -->
+
+
+    <header class="masthead">
+  <div class="wrap">
+    
+    
+    
+      
+        <div class="site-title animated fadeIn"><a href="/personal_homepage/">Liu, Wen's Home Page</a></div>
+      
+      <p class="site-description animated fadeIn" itemprop="description">Work, Experiments and Ideas.</p>
+    
+  </div>
+</header><!-- /.masthead -->
+
+
+    <main id="main" class="main-content" aria-label="Content">
+  <article class="h-entry">
+    
+
+    <div class="page-wrapper">
+      <header class="page-header">
+        
+        
+        <h1 id="page-title" class="page-title p-name">Pi Desktop：从会话浏览器到跨机器工作台
+</h1>
+        
+      </header>
+
+      <div class="page-sidebar">
+        <div class="page-author h-card p-author"><img src="/personal_homepage/docs/images/logo.svg" class="author-avatar u-photo" alt=""><div class="author-info">
+
+<span class="read-time">2 min read</span>
+
+    <time class="page-date dt-published" datetime="2026-08-11T00:00:00+00:00"><a class="u-url" href="">August 11, 2026</a>
+</time>
+
+  </div>
+</div>
+
+        
+  <h3 class="page-taxonomies-title">Categories</h3>
+  
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a class="p-category" href="/personal_homepage/categories/#tool" title="Pages filed under tool">tool</a></li>
+  </ul>
+
+
+        
+  <h3 class="page-taxonomies-title">Tags</h3>
+  
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a href="/personal_homepage/tags/#content" title="Pages tagged content" rel="tag">content</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#jekyll" title="Pages tagged jekyll" rel="tag">jekyll</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#macos" title="Pages tagged macOS" rel="tag">macOS</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#pi" title="Pages tagged pi" rel="tag">pi</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#rmux" title="Pages tagged rmux" rel="tag">rmux</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#tauri" title="Pages tagged tauri" rel="tag">tauri</a></li>
+  </ul>
+
+
+        <!-- {::options parse_block_html="true" /} -->
+<div id="entry-table-of-contents" class="toc-wrapper">
+  <h2 id="toc-toggle">
+    Table of Contents <i
+      class="toc-toggle-icon fas fa-chevron-down"></i>
+  </h2>
+  <!-- 1. toc
+{:toc} -->
+  <!-- <div id="markdown-toc"> -->
+
+    <ul class="inline_toc" id="my_toc"><li><a href="#1-现在它解决什么问题">1. 现在它解决什么问题</a></li><li><a href="#2-架构直接复用本机-pi">2. 架构：直接复用本机 pi</a></li><li><a href="#3-最难的不是解析而是-runtime-归属">3. 最难的不是解析，而是 runtime 归属</a></li><li><a href="#4-subagent-不是一个文件而是一段生命周期">4. subagent 不是一个文件，而是一段生命周期</a></li><li><a href="#5-性能优化做了两轮">5. 性能优化做了两轮</a><ul><li><a href="#51-第一轮少读文件">5.1 第一轮：少读文件</a></li><li><a href="#52-第二轮不能阻塞-ui也不能让轮询重做旧工作">5.2 第二轮：不能阻塞 UI，也不能让轮询重做旧工作</a></li></ul></li><li><a href="#6-从本地查看器到远程工作台">6. 从本地查看器到远程工作台</a></li><li><a href="#7-macos-的小坑打开标签页比想象中难">7. macOS 的小坑：打开标签页比想象中难</a></li><li><a href="#8-项目目前的状态">8. 项目目前的状态</a></li></ul>
+  <!-- </div> -->
+
+</div>
+<!-- {::options parse_block_html="false" /} -->
+        
+
+<div id="entry-table-of-contents" class="toc-wrapper">
+    <h2 id="toc-toggle" class="no_toc">
+        Related Posts <i class="toc-toggle-icon fas fa-chevron-down"></i>
+    </h2>
+    <!-- <div id="markdown-toc"> -->
+    <ul>
+        
+        <li><a href="/personal_homepage/tool/pi-runtime-attribution/">Pi Desktop的开发难点: “会话的状态”</a></li>
+        
+        <li><a href="/personal_homepage/daily/sticker/">用AI做了一套微信表情包:从微信头像缓存到提交上架</a></li>
+        
+        <li><a href="/personal_homepage/daily/agent-blog-writing/">用AI agent复现我的博客风格</a></li>
+        
+        <li><a href="/personal_homepage/tool/lesson/">听课app开发调研</a></li>
+        
+        <li><a href="/personal_homepage/daily/mac/">mac电脑的奇怪问题</a></li>
+        
+    </ul>
+    <!-- </div> -->
+
+</div>
+
+
+
+
+
+      </div>
+
+      <div class="page-content">
+        <div class="e-content">
+          <p>我最初只是想给 <a href="https://github.com/badlogic/pi-mono">pi coding agent</a> 补一个桌面会话浏览器：按项目查看 JSONL、展开工具调用，需要时从原会话继续聊。</p>
+
+<p>后来它逐渐变成了一个工作台：能把主会话和 subagent 放回同一棵树里，知道每个 pi 正运行在终端还是 RMUX，能 attach、detach 和结束后台进程，还能浏览远程机器，甚至把本机会话转移过去继续运行。</p>
+
+<p>项目源码：<a href="https://github.com/roshameow/pi-session-viewer">pi-session-viewer</a>。仓库里也有不读取本机数据的合成会话 demo，方便先看界面。</p>
+
+<h2 id="1-现在它解决什么问题">1. 现在它解决什么问题</h2>
+
+<p>我同时跑多个项目和 subagent 后，终端本身不再是一个好索引：</p>
+
+<ul>
+  <li>会话文件在 <code class="language-plaintext highlighter-rouge">~/.pi/agent/sessions/</code>，终端标签却散落在不同窗口；</li>
+  <li>主会话、subagent 日志和 mirror 文件彼此有关，但目录结构表达不出来；</li>
+  <li>关掉标签页不等于任务结束，RMUX 里的 pi 可能仍在后台运行；</li>
+  <li>同一个会话如果被两个 pi 同时续写，JSONL 有损坏风险；</li>
+  <li>长任务转到另一台 Mac 后，本机又看不到它的进度。</li>
+</ul>
+
+<p>Pi Desktop 因此围绕四件事组织界面：</p>
+
+<ol>
+  <li><strong>浏览</strong>：按工作目录列出会话，渲染消息、thinking、工具调用、输出和模型信息；</li>
+  <li><strong>关联</strong>：把 durable subagent 挂回父会话，并区分 running、sleeping、interrupted、finished；</li>
+  <li><strong>控制</strong>：继续会话，打开或附着 TUI，detach，关闭 RMUX session；</li>
+  <li><strong>定位</strong>：显示会话是在本机终端、本机 RMUX、远程 RMUX，还是只剩一个死 pane。</li>
+</ol>
+
+<p>这里最重要的设计是：<strong>“在哪里”与“是否还在运行”是两条状态。</strong></p>
+
+<p><code class="language-plaintext highlighter-rouge">○ rmux</code> 表示会话仍在 RMUX 中但没有客户端附着，不代表它此刻正在生成内容；<code class="language-plaintext highlighter-rouge">✕ rmux</code> 表示 remain-on-exit 留下的死 pane；<code class="language-plaintext highlighter-rouge">● term</code> 才表示普通终端里的活进程。位置和活动状态混在一起，界面很快就会撒谎。</p>
+
+<h2 id="2-架构直接复用本机-pi">2. 架构：直接复用本机 pi</h2>
+
+<p>技术栈很简单：React 18 + Vite 做前端，Tauri v2 + Rust 做本地后端。</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>React UI
+  ├─ Sidebar：项目、主会话、subagent、runtime chip
+  ├─ Thread：JSONL 消息树、工具调用、流式输出
+  └─ Composer：继续会话
+
+Rust / Tauri
+  ├─ sessions.rs：解析、索引、runtime 归属、缓存
+  ├─ agent.rs：spawn pi --mode json，转发事件流
+  ├─ remote.rs：SSH/rsync、远程快照、会话转移
+  └─ lib.rs：Tauri commands、RMUX 与 Terminal 集成
+</code></pre></div></div>
+
+<p>我没有再加 Node sidecar。pi 已经提供 <code class="language-plaintext highlighter-rouge">--mode json</code> 的增量事件流；执行：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pi <span class="nt">--session</span> &lt;file&gt; <span class="nt">--mode</span> json
+</code></pre></div></div>
+
+<p>就能继续原会话，并由 pi 自己把新内容写回同一个 JSONL。Rust 只负责启动进程、逐行转发 stdout。这样认证、模型、扩展和配置都继续使用用户现有的 pi 环境。</p>
+
+<h2 id="3-最难的不是解析而是-runtime-归属">3. 最难的不是解析，而是 runtime 归属</h2>
+
+<p>一开始我以为从 <code class="language-plaintext highlighter-rouge">ps</code> 找 <code class="language-plaintext highlighter-rouge">--session</code> 就够了，实测 pi 会把 argv 清理到只剩进程名。后面的窗口名、<code class="language-plaintext highlighter-rouge">@pi_session</code>、tty、pid 注册表，都是为了解决同一个问题：<strong>某个活进程究竟对应哪份会话文件。</strong></p>
+
+<p>目前主路径是每个 pi 在启动时写一个私有注册文件：</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>~/.pi/agent/runtime/&lt;pid&gt;.jsonl
+</code></pre></div></div>
+
+<p>里面记录 <code class="language-plaintext highlighter-rouge">pid</code>、<code class="language-plaintext highlighter-rouge">panePid</code>、<code class="language-plaintext highlighter-rouge">sessionPath</code>、<code class="language-plaintext highlighter-rouge">cwd</code>、<code class="language-plaintext highlighter-rouge">startedAt</code> 和 <code class="language-plaintext highlighter-rouge">tty</code>。Desktop 用进程 pid 或 pane 顶层 pid 直接找到会话，不再根据“最近修改的文件”猜测。</p>
+
+<p>RMUX 仍保留两层兼容信息：</p>
+
+<ul>
+  <li>每个主会话使用独立的 <code class="language-plaintext highlighter-rouge">pi-&lt;cwd&gt;-&lt;id12&gt;</code> session；</li>
+  <li>窗口的 <code class="language-plaintext highlighter-rouge">@pi_session</code> 保存会话路径。</li>
+</ul>
+
+<p>但它们现在是注册表缺失时的 fallback，而不是唯一真相。窗口名中的 id12 还会与 <code class="language-plaintext highlighter-rouge">@pi_session</code> 互相校验，避免错误写入污染归属。完整演进放在下一篇：<a href="/personal_homepage/tool/pi-runtime-attribution/">Pi runtime 归属：不要猜“哪个会话正在跑”</a>。</p>
+
+<p>这一套也让防重复启动变得可靠：Open TUI 或 Attach 前先检查目标会话是否已有活进程，避免两个 pi 同时 append 同一份 JSONL。</p>
+
+<h2 id="4-subagent-不是一个文件而是一段生命周期">4. subagent 不是一个文件，而是一段生命周期</h2>
+
+<p><code class="language-plaintext highlighter-rouge">pi-subagent-durable</code> 会产生真实子会话、mirror 和 task log。第一版只用 mirror header 的 UUID 关联，遇到 reload 就开始出错：同一个子会话会有多个 taskId，旧任务已死，新任务仍在跑；后生成的 mirror 还可能覆盖最初用于匹配父任务的文本。</p>
+
+<p>现在索引做了三件事：</p>
+
+<ol>
+  <li>一个 UUID 保留所有 taskId，状态优先选择仍存活的任务；</li>
+  <li>一个 UUID 保留所有 mirror 的首条任务文本，旧日志仍可做兼容匹配；</li>
+  <li>新日志中的 <code class="language-plaintext highlighter-rouge">pi_subagent_parent</code> 明确记录父会话 UUID，作为首选关联，文本相似度只服务旧数据。</li>
+</ol>
+
+<p>这比“根据文件名拼关系”稳定得多。reload 后，子会话仍挂在原父会话下，running/sleeping 状态也跟随新的 live task，而不是停在已经死亡的旧 task 上。</p>
+
+<h2 id="5-性能优化做了两轮">5. 性能优化做了两轮</h2>
+
+<h3 id="51-第一轮少读文件">5.1 第一轮：少读文件</h3>
+
+<p>早期在 129 个会话上，<code class="language-plaintext highlighter-rouge">list_sessions</code> 从约 2.25 秒降到 117 毫秒。主要手段是：</p>
+
+<ul>
+  <li>header 和首条消息只做有界读取；</li>
+  <li>按 <code class="language-plaintext highlighter-rouge">(mtime, size)</code> 缓存 metadata、detail 和父子关联；</li>
+  <li>巨型会话默认只挂载尾部 150 条消息，按需向前展开；</li>
+  <li>Markdown 组件 memo 化。</li>
+</ul>
+
+<p>这解决了“文件越大越慢”，但没有解决“刷新时整个应用都被堵住”。</p>
+
+<h3 id="52-第二轮不能阻塞-ui也不能让轮询重做旧工作">5.2 第二轮：不能阻塞 UI，也不能让轮询重做旧工作</h3>
+
+<p>会话增长到 470 多份后，问题重新出现：<code class="language-plaintext highlighter-rouge">list_projects</code>、<code class="language-plaintext highlighter-rouge">list_sessions</code>、<code class="language-plaintext highlighter-rouge">session_detail</code> 各自可能耗时 6–8 秒。更关键的是，Tauri v2 的同步 command 会占住 UI 线程，打开应用能冻结十几秒，10 秒轮询还会重复制造卡顿。</p>
+
+<p>后来的修复分成四层：</p>
+
+<ul>
+  <li><strong>调度层</strong>：所有重命令改为 async wrapper，并用 <code class="language-plaintext highlighter-rouge">spawn_blocking</code> 放到阻塞线程池；</li>
+  <li><strong>系统调用层</strong>：逐 pane 的 <code class="language-plaintext highlighter-rouge">kill -0</code>、<code class="language-plaintext highlighter-rouge">ps</code>、<code class="language-plaintext highlighter-rouge">list-clients</code> 改成批量快照；</li>
+  <li><strong>数据层</strong>：项目列表、会话列表、进程快照、日志尾部都做指纹或 TTL 缓存；</li>
+  <li><strong>渲染层</strong>：没有变化就保留原对象引用；流式事件增量归并为 block，每 80ms 最多刷新一次，而不是每个 token 重建整段历史。</li>
+</ul>
+
+<p>轮询也从 <code class="language-plaintext highlighter-rouge">setInterval</code> 改成递归 <code class="language-plaintext highlighter-rouge">setTimeout</code>：上一轮结束后才安排下一轮，窗口在后台时暂停，避免慢扫描重叠。task log 的状态判定则只读末尾 64KB，不再每 10 秒读取几十 MB 的完整日志。</p>
+
+<p>开发机上的一组观察值是：</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>操作</th>
+      <th style="text-align: right">优化前</th>
+      <th style="text-align: right">优化后</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">list_projects</code>（472 files）</td>
+      <td style="text-align: right">8.4s</td>
+      <td style="text-align: right">0.6s；缓存命中约 2ms</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">list_sessions</code></td>
+      <td style="text-align: right">6.5s</td>
+      <td style="text-align: right">1.2s；无变化时约 2ms</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">list_running</code></td>
+      <td style="text-align: right">520ms</td>
+      <td style="text-align: right">44ms</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>这些数字来自真实使用环境，不是严谨 benchmark；真正有用的结论是：<strong>缓存只能降低工作量，<code class="language-plaintext highlighter-rouge">spawn_blocking</code> 才保证工作量再大也不拖死界面。</strong></p>
+
+<h2 id="6-从本地查看器到远程工作台">6. 从本地查看器到远程工作台</h2>
+
+<p>远程支持没有重写解析器，而是增加了一个 source 层。切换到 SSH host 时，Desktop 会：</p>
+
+<ol>
+  <li>用 rsync 把远端 <code class="language-plaintext highlighter-rouge">~/.pi/agent/</code> 的 sessions、agent-logs 和 runtime 缓存到本机：
+<code class="language-plaintext highlighter-rouge">~/.pi/remote/&lt;host&gt;/agent/</code>；</li>
+  <li>用一次 SSH 请求抓取 <code class="language-plaintext highlighter-rouge">ps</code> 与 RMUX pane 快照；</li>
+  <li>让原有 <code class="language-plaintext highlighter-rouge">sessions.rs</code> 改读这棵本地缓存；</li>
+  <li>Attach、Detach、Close 等动作再通过 SSH 回到远端执行。</li>
+</ol>
+
+<p>这样，JSONL 解析、subagent 索引和绝大多数 UI 逻辑都不需要区分本地与远程。SSH 使用 ControlMaster/ControlPersist 复用连接，rsync 与状态快照共享同一条连接，避免每次切 source 都重新握手。</p>
+
+<p>右键 <strong>Transfer to Remote</strong> 则做相反方向的迁移：收集主会话和相关 subagent mirror，将 JSONL 中的本地项目根目录替换为远端 cwd，上传到远端 sessions 目录，再在远端新建一个 detached RMUX session，执行 <code class="language-plaintext highlighter-rouge">pi --session</code> 继续运行。</p>
+
+<p>这里有一个明确边界：<strong>迁移的是会话记录，不是正在运行的进程。</strong> subagent 进程不会穿过机器搬家；Desktop 会附加提示，让父会话按 durable 进度重新发起未完成的任务。</p>
+
+<h2 id="7-macos-的小坑打开标签页比想象中难">7. macOS 的小坑：打开标签页比想象中难</h2>
+
+<p>Terminal.app 的 AppleScript <code class="language-plaintext highlighter-rouge">do script</code> 会复用前台标签页。若前台正运行 raw-mode TUI，命令可能直接被打进 pi 的 stdin。可靠做法是发送 <code class="language-plaintext highlighter-rouge">Cmd+T</code>，再在新标签页执行 attach；而模拟按键需要 Accessibility 权限。</p>
+
+<p>主 app 每次重建，unsigned binary 的 cdhash 都可能变化，TCC 授权随之失效。最终我把<strong>按键操作放进一个不随 app 重建的 <code class="language-plaintext highlighter-rouge">tab-open-helper</code>，单独授权它</strong>。helper 成功后直接信任返回，不再用异步的 tab 数量做二次判断，否则会同时打开标签和窗口。</p>
+
+<p>这不是核心功能，却很典型：桌面应用里，业务逻辑正确不等于系统集成可靠。</p>
+
+<h2 id="8-项目目前的状态">8. 项目目前的状态</h2>
+
+<p>代码已经公开，并补了三种无需真实会话的入口：合成会话浏览 demo、20 秒示意动画和静态截图。当前仍以源码构建为主，macOS 是主要开发平台；仓库没有把本地自签名构建包装成“正式、公证过的发行版”。</p>
+
+<p>回头看，Pi Desktop 的主线并不是“给 CLI 套一个 GUI”，而是把散落在文件、进程、RMUX 和远程机器里的状态重新拼成可信视图。最值得保留的三条经验是：</p>
+
+<ol>
+  <li><strong>身份不要靠时间和文本猜，尽量让运行进程注册自己；</strong></li>
+  <li><strong>耗时工作不仅要缓存，还必须离开 UI 线程；</strong></li>
+  <li><strong>远程支持优先复用现有本地模型：同步数据与快照，比复制整套逻辑更稳。</strong></li>
+</ol>
+
+<blockquote>
+  <p>[!timeline] 关键演进</p>
+  <ul>
+    <li><strong>08-10 / 08-11</strong>：会话浏览、继续会话、每 pi 独立 RMUX、runtime chip、窗口化渲染</li>
+    <li><strong>08-12</strong>：pid runtime registry，终端与 RMUX 归属从启发式改为直连</li>
+    <li><strong>08-13 / 08-15</strong>：reload 多 task 状态、subagent 多 mirror、远程 source switcher</li>
+    <li><strong>08-17 / 08-21</strong>：列表缓存、主线程解阻塞、批量系统调用与稳定引用</li>
+    <li><strong>08-23</strong>：会话转移到远端，修复远端 pane liveness</li>
+    <li><strong>09-04 / 09-09</strong>：轮询与流式渲染降 CPU，远端父子关系改为显式标记优先</li>
+    <li><strong>09-15 / 09-16</strong>：公开 demo、可复现示意动画与截图</li>
+  </ul>
+</blockquote>
+
+        </div>
+
+        
+
+        
+        
+  <div class="page-comments">
+    <div id="disqus_thread"></div>
+    <script>
+      var disqus_config = function () {
+        this.page.url = 'https://roshameow.github.io//personal_homepage/tool/pi-desktop/';
+        this.page.identifier = 'https://roshameow.github.io//personal_homepage/tool/pi-desktop/';
+      };
+
+      (function() {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://https-roshameow-github-io-personal-homepage.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+  </div>
+
+
+        
+
+        <nav class="page-pagination" role="navigation">
+  
+    <a class="page-previous" href="/personal_homepage/daily/sticker/">
+      <h4 class="page-pagination-label">Previous</h4>
+      <span class="page-pagination-title">
+        <i class="fas fa-arrow-left"></i> 用AI做了一套微信表情包:从微信头像缓存到提交上架
+
+      </span>
+    </a>
+  
+
+  
+    <a class="page-next" href="/personal_homepage/tool/pi-runtime-attribution/">
+      <h4 class="page-pagination-label">Next</h4>
+      <span class="page-pagination-title">
+        Pi Desktop的开发难点: “会话的状态”
+ <i class="fas fa-arrow-right"></i>
+      </span>
+    </a>
+  
+</nav>
+
+      </div>
+
+    </div>
+  </article>
+</main>
+
+    <footer id="footer" class="site-footer">
+  <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+<div class="social-icons"><a class="social-icon" href="/personal_homepage/atom.xml"><i class="fas fa-rss-square fa-2x" title="Feed"></i></a><a class="social-icon" href="https://github.com/roshameow"><i class="fab fa-github-square fa-2x" title="GitHub"></i></a><a class="social-icon" href="https://www.linkedin.com/in/wen-liu-06503a7b/"><i class="fab fa-linkedin fa-2x" title="LinkedIn"></i></a><a class="social-icon" href="mailto:w.liuatnk@gmail.com"><i class="fas fa-envelope-square fa-2x" title="e-mail"></i></a></div><div class="copyright">
+    
+      <p>&copy; 2026 Liu, Wen's Home Page. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://github.com/mmistakes/so-simple-theme" rel="nofollow">So Simple</a>.</p>
+    
+  </div>
+</footer>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="/personal_homepage/assets/js/main.min.js"></script>
+<script src="https://use.fontawesome.com/releases/v5.0.12/js/all.js"></script><script src="/personal_homepage/assets/js/content-tables.js" defer></script><!-- <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'G-9TMSCDTBGN', 'auto');
+  ga('send', 'pageview');
+</script> -->
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9TMSCDTBGN"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-9TMSCDTBGN');
+</script>
+
+
+
+<!-- MathJax -->
+
+<script>
+    // http://docs.mathjax.org/en/latest/upgrading/v2.html
+    MathJax = {
+        tex: {
+            tags: "ams",    // eq numbering options: none, ams, all
+            inlineMath: [['$', '$'], ["\\(", "\\)"]],  // 设置行内数学公式的开始和结束标记
+            displayMath: [['$$', '$$'], ["\\[", "\\]"]]  // 设置行间数学公式的开始和结束标记
+        },
+        // options: {
+        //   renderActions: {
+        //     // for mathjax 3, handle <script "math/tex"> blocks inserted by kramdown
+        //     find: [10, function (doc) {
+        //       for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+        //         const display = !!node.type.match(/; *mode=display/);
+        //         const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+        //         const text = document.createTextNode('');
+        //         node.parentNode.replaceChild(text, node);
+        //         math.start = { node: text, delim: '', n: 0 };
+        //         math.end = { node: text, delim: '', n: 0 };
+        //         doc.math.push(math);
+        //       }
+        //     }, '']
+        //   }
+        // }
+    }
+</script>
+
+<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+
+
+<!-- Mermaid -->
+<style>
+  .mermaid-list {
+    display: flex;
+    gap: 2em;
+    flex-wrap: wrap;
+    justify-content: center;
+    font-family: "Source Sans Pro", sans-serif;
+    margin: 1.5em 0;
+  }
+  .mermaid-list-col {
+    min-width: 180px;
+  }
+  .mermaid-list-col h4 {
+    margin: 0 0 0.4em 0;
+    font-size: 0.95em;
+    font-weight: 700;
+    color: #34374C;
+  }
+  .mermaid-list-col ul {
+    margin: 0;
+    padding-left: 1.2em;
+    line-height: 1.6;
+  }
+  pre.mermaid {
+    text-align: center;
+    background: transparent;
+    padding: 1em 0;
+    overflow: visible;
+    font-family: "Source Sans Pro", sans-serif !important;
+  }
+  pre.mermaid svg {
+    max-width: 100%;
+    height: auto;
+    overflow: visible;
+  }
+</style>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('code.language-mermaid').forEach(function(code) {
+      var text = code.textContent;
+      var parent = code.closest('.highlighter-rouge') || code.parentElement;
+
+      // 解析 subgraph 块
+      var sgRe = /subgraph\s+\w+\["(.+?)"\]([\s\S]*?)end/g;
+      var match, subgraphs = [];
+      while ((match = sgRe.exec(text)) !== null) {
+        var title = match[1];
+        var body = match[2];
+        var items = [];
+        body.split('\n').forEach(function(line) {
+          line = line.trim();
+          var m = line.match(/^\w+\["(.+?)"\]/);
+          if (m) items.push(m[1]);
+        });
+        if (items.length) subgraphs.push({ title: title, items: items });
+      }
+
+      if (subgraphs.length > 1) {
+        // 有多列 subgraph → 渲染为 HTML 列表
+        var div = document.createElement('div');
+        div.className = 'mermaid-list';
+        subgraphs.forEach(function(sg) {
+          var col = document.createElement('div');
+          col.className = 'mermaid-list-col';
+          col.innerHTML = '<h4>' + sg.title + '</h4><ul>' +
+            sg.items.map(function(i) { return '<li>' + i + '</li>'; }).join('') +
+            '</ul>';
+          div.appendChild(col);
+        });
+        var wrapper = parent.closest('.highlighter-rouge') || parent;
+        wrapper.parentNode.replaceChild(div, wrapper);
+      } else {
+        // 单图 → 正常用 Mermaid 渲染
+        var pre = document.createElement('pre');
+        pre.className = 'mermaid';
+        pre.textContent = text;
+        var wrapper = parent.closest('.highlighter-rouge') || parent;
+        wrapper.parentNode.replaceChild(pre, wrapper);
+      }
+    });
+    mermaid.run();
+  });
+</script>
+
+
+  </body>
+
+</html>

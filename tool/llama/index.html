@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<!--
+    So Simple Jekyll Theme 3.2.0
+    Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+    Free for personal and commercial use under the MIT license
+    https://github.com/mmistakes/so-simple-theme/blob/master/LICENSE
+-->
+<html lang="en-US" class="no-js">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  
+
+  
+  
+  <!-- Begin Jekyll SEO tag v2.9.1 -->
+<title>本地模型尝试 | Liu, Wen’s Home Page</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="本地模型尝试" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="记录一下在 Windows 环境下配置 llama.cpp 的全过程，包括编译、启动参数调优、网络排查以及接入开发工具链的细节。" />
+<meta name="twitter:description" property="og:description" content="记录一下在 Windows 环境下配置 llama.cpp 的全过程，包括编译、启动参数调优、网络排查以及接入开发工具链的细节。" />
+<link rel="canonical" href="https://roshameow.github.io//personal_homepage/tool/llama/" />
+<meta property="og:url" content="https://roshameow.github.io//personal_homepage/tool/llama/" />
+<meta property="og:site_name" content="Liu, Wen’s Home Page" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2026-06-02T00:00:00+00:00" />
+<meta property="article:modified_time" content="2026-06-10T15:23:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="本地模型尝试" />
+<meta name="twitter:site" content="@" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2026-06-10T15:23:00+00:00","datePublished":"2026-06-02T00:00:00+00:00","description":"记录一下在 Windows 环境下配置 llama.cpp 的全过程，包括编译、启动参数调优、网络排查以及接入开发工具链的细节。","headline":"本地模型尝试","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/tool/llama/"},"url":"https://roshameow.github.io//personal_homepage/tool/llama/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  
+
+  <script>
+    /* Cut the mustard */
+    if ('querySelector' in document && 'addEventListener' in window) {
+      document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + 'js';
+    }
+  </script>
+
+  <link rel="stylesheet" href="/personal_homepage/assets/css/main.css">
+  <link rel="stylesheet" href="/personal_homepage/assets/css/skins/default.css">
+  
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,700,700i|Lora:400,400i,700,700i">
+  <link rel="alternate" type="application/atom+xml" title="Liu, Wen&#39;s Home Page" href="/personal_homepage/atom.xml">
+<!-- start custom head snippets -->
+
+<!-- insert favicons. use http://realfavicongenerator.net/ -->
+<link rel="shortcut icon" type="image/x-icon" href="/personal_homepage/docs/images/logo.ico">
+<!-- end custom head snippets -->
+
+</head>
+
+  <body class="layout--post  本地模型尝试">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#primary-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+  <div class="navigation-wrapper">
+    <a href="#menu-toggle" id="menu-toggle">Menu</a>
+    <nav id="primary-nav" class="site-nav animated drop">
+      <ul><li><a href="/personal_homepage/">Home</a></li><li><a href="/personal_homepage/posts/">Posts</a></li><li><a href="/personal_homepage/categories/">Categories</a></li><li><a href="/personal_homepage/tags/">Tags</a></li><li><a href="/personal_homepage/family/">Family</a></li><li><a href="/personal_homepage/search/">Search</a></li></ul>
+    </nav>
+  </div><!-- /.navigation-wrapper -->
+
+
+    <header class="masthead">
+  <div class="wrap">
+    
+    
+    
+      
+        <div class="site-title animated fadeIn"><a href="/personal_homepage/">Liu, Wen's Home Page</a></div>
+      
+      <p class="site-description animated fadeIn" itemprop="description">Work, Experiments and Ideas.</p>
+    
+  </div>
+</header><!-- /.masthead -->
+
+
+    <main id="main" class="main-content" aria-label="Content">
+  <article class="h-entry">
+    
+
+    <div class="page-wrapper">
+      <header class="page-header">
+        
+        
+        <h1 id="page-title" class="page-title p-name">本地模型尝试
+</h1>
+        
+      </header>
+
+      <div class="page-sidebar">
+        <div class="page-author h-card p-author"><img src="/personal_homepage/docs/images/logo.svg" class="author-avatar u-photo" alt=""><div class="author-info">
+
+<span class="read-time">1 min read</span>
+
+    <time class="page-date dt-published" datetime="2026-06-02T00:00:00+00:00"><a class="u-url" href="">June 2, 2026</a>
+</time>
+
+  </div>
+</div>
+
+        
+  <h3 class="page-taxonomies-title">Categories</h3>
+  
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a class="p-category" href="/personal_homepage/categories/#tool" title="Pages filed under tool">tool</a></li>
+  </ul>
+
+
+        
+  <h3 class="page-taxonomies-title">Tags</h3>
+  
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a href="/personal_homepage/tags/#claude-code" title="Pages tagged claude_code" rel="tag">claude_code</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#content" title="Pages tagged content" rel="tag">content</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#hugging-face" title="Pages tagged hugging_face" rel="tag">hugging_face</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#llama" title="Pages tagged llama" rel="tag">llama</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#llm" title="Pages tagged llm" rel="tag">llm</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#pi" title="Pages tagged pi" rel="tag">pi</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#qwen" title="Pages tagged qwen" rel="tag">qwen</a></li>
+  </ul>
+
+
+        <!-- {::options parse_block_html="true" /} -->
+<div id="entry-table-of-contents" class="toc-wrapper">
+  <h2 id="toc-toggle">
+    Table of Contents <i
+      class="toc-toggle-icon fas fa-chevron-down"></i>
+  </h2>
+  <!-- 1. toc
+{:toc} -->
+  <!-- <div id="markdown-toc"> -->
+
+    <ul class="inline_toc" id="my_toc"><li><a href="#1-编译与环境">1. 编译与环境</a><ul><li><a href="#编译踩坑记录">编译踩坑记录</a></li><li><a href="#编译步骤">编译步骤</a></li><li><a href="#开启服务">开启服务</a></li></ul></li><li><a href="#2-模型选择与下载">2. 模型选择与下载</a><ul><li><a href="#实测模型对比">实测模型对比</a></li><li><a href="#下载方法">下载方法</a></li></ul></li><li><a href="#3-服务启动与参数">3. 服务启动与参数</a></li><li><a href="#4-远程访问与网络配置">4. 远程访问与网络配置</a><ul><li><a href="#局域网连通性排查">局域网连通性排查</a></li><li><a href="#模型调用测试">模型调用测试</a></li></ul></li><li><a href="#5-cli-工具链集成">5. CLI 工具链集成</a><ul><li><a href="#claude-code-精简启动">Claude Code 精简启动</a></li><li><a href="#pi-ai-coding-assistant">Pi (AI Coding Assistant)</a></li></ul></li></ul>
+  <!-- </div> -->
+
+</div>
+<!-- {::options parse_block_html="false" /} -->
+        
+
+<div id="entry-table-of-contents" class="toc-wrapper">
+    <h2 id="toc-toggle" class="no_toc">
+        Related Posts <i class="toc-toggle-icon fas fa-chevron-down"></i>
+    </h2>
+    <!-- <div id="markdown-toc"> -->
+    <ul>
+        
+        <li><a href="/personal_homepage/tool/pi-runtime-attribution/">Pi Desktop的开发难点: “会话的状态”</a></li>
+        
+        <li><a href="/personal_homepage/tool/pi-desktop/">Pi Desktop：从会话浏览器到跨机器工作台</a></li>
+        
+        <li><a href="/personal_homepage/daily/sticker/">用AI做了一套微信表情包:从微信头像缓存到提交上架</a></li>
+        
+        <li><a href="/personal_homepage/daily/agent-blog-writing/">用AI agent复现我的博客风格</a></li>
+        
+        <li><a href="/personal_homepage/tool/lesson/">听课app开发调研</a></li>
+        
+    </ul>
+    <!-- </div> -->
+
+</div>
+
+
+
+
+
+      </div>
+
+      <div class="page-content">
+        <div class="e-content">
+          <p>记录一下在 Windows 环境下配置 <code class="language-plaintext highlighter-rouge">llama.cpp</code> 的全过程，包括编译、启动参数调优、网络排查以及接入开发工具链的细节。</p>
+
+<h2 id="1-编译与环境">1. 编译与环境</h2>
+
+<h3 id="编译踩坑记录">编译踩坑记录</h3>
+<ul>
+  <li><strong>OpenSSL 找不到</strong>: 产生的 Warning 可以忽略。本地和局域网连接不需要 HTTPS。</li>
+  <li><strong>WebUI 找不到</strong>: 产生的 Error 可以通过禁用 WebUI 解决。</li>
+</ul>
+
+<h3 id="编译步骤">编译步骤</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> ~/Code/External/llama.cpp
+<span class="nb">rm</span> <span class="nt">-rf</span> build
+cmake <span class="nt">-B</span> build <span class="nt">-DGGML_CUDA</span><span class="o">=</span>ON <span class="nt">-DLLAMA_BUILD_WEBUI</span><span class="o">=</span>OFF
+cmake <span class="nt">--build</span> build <span class="nt">-j</span>
+</code></pre></div></div>
+
+<h3 id="开启服务">开启服务</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./build/bin/llama-server <span class="nt">-m</span> xxx.gguf <span class="nt">--host</span> 0.0.0.0 <span class="nt">--port</span> 8080
+</code></pre></div></div>
+<hr />
+
+<h2 id="2-模型选择与下载">2. 模型选择与下载</h2>
+
+<p>我的windows环境是 <strong>RTX 4080 (16GB 显存)</strong>。</p>
+<h3 id="实测模型对比">实测模型对比</h3>
+<ul>
+  <li><strong>Qwen3.6-27B (IQ4_XS)</strong>:  可以用, 逻辑遵循和工具调用上都正常。</li>
+  <li><strong>Qwen3-Coder-30B-A3B (IQ4_XS)</strong>:  实测效果不好，很笨。</li>
+</ul>
+
+<h3 id="下载方法">下载方法</h3>
+
+<p>从 Hugging Face 下载 GGUF 格式的模型, 用的unsloth版本.</p>
+<ul>
+  <li>支持 <code class="language-plaintext highlighter-rouge">wget</code> 直接下载。</li>
+  <li>使用 <code class="language-plaintext highlighter-rouge">huggingface-cli</code>，支持 <strong>文件校验</strong> 和 <strong>断点续传</strong>。</li>
+</ul>
+
+<p><strong>使用 <code class="language-plaintext highlighter-rouge">wget</code> 下载示例：</strong></p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wget https://huggingface.co/unsloth/Qwen3-Coder-30B-A3B-Instruct-GGUF/resolve/main/Qwen3-Coder-30B-A3B-Instruct-IQ4_XS.gguf
+</code></pre></div></div>
+
+<p><strong>使用 <code class="language-plaintext highlighter-rouge">huggingface-cli</code> 下载示例：</strong></p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 下载指定模型 (示例：Qwen 27B 的 IQ4_XS 版本)</span>
+huggingface-cli download Qwen/Qwen2.5-Coder-32B-Instruct-GGUF <span class="se">\</span>
+    Qwen2.5-Coder-32B-Instruct-IQ4_XS.gguf <span class="se">\</span>
+    <span class="nt">--local-dir</span> models <span class="nt">--local-dir-use-symlinks</span> False
+</code></pre></div></div>
+
+<hr />
+<h2 id="3-服务启动与参数">3. 服务启动与参数</h2>
+
+<p>启动 llama-server, 我使用的启动命令如下，针对 Qwen-27B 级别的模型进行了优化：</p>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">.</span><span class="n">/build/bin/llama-server</span><span class="w"> </span><span class="nx">\</span><span class="w">
+  </span><span class="nt">-m</span><span class="w"> </span><span class="n">/models/qwen.gguf</span><span class="w"> </span><span class="nx">\</span><span class="w">
+  </span><span class="nt">--host</span><span class="w"> </span><span class="mf">0.0</span><span class="o">.</span><span class="nf">0</span><span class="o">.</span><span class="nf">0</span><span class="w"> </span><span class="n">\</span><span class="w"> </span><span class="c">#允许监听局域网内所有接口，以便我的 Mac 访问</span><span class="w">
+  </span><span class="nt">--port</span><span class="w"> </span><span class="mi">8080</span><span class="w"> </span><span class="n">\</span><span class="w"> </span><span class="c"># 端口号, 记得要设置防火墙放行</span><span class="w">
+  </span><span class="nt">-ngl</span><span class="w"> </span><span class="mi">999</span><span class="w"> </span><span class="n">\</span><span class="w"> </span><span class="c">#指定卸载到 GPU 的层数, 999意思就是强制将所有模型层卸载至显存, 纯gpu推理</span><span class="w">
+  </span><span class="nt">-c</span><span class="w"> </span><span class="mi">65536</span><span class="w"> </span><span class="n">\</span><span class="w"> </span><span class="c">#设置上下文窗口, 64K context或者32k</span><span class="w">
+  </span><span class="nt">-np</span><span class="w"> </span><span class="mi">1</span><span class="n">\</span><span class="w"> </span><span class="c">#并行处理的序列数（Number of Parallel Sequences), 我用Qwen-27B基本把显存占满了, 只能设置1</span><span class="w">
+  </span><span class="nt">-b</span><span class="w"> </span><span class="mi">2048</span><span class="w"> </span><span class="n">\</span><span class="w"> </span><span class="c">#Batch Size, gpu最大接收token数</span><span class="w">
+  </span><span class="nt">-ub</span><span class="w"> </span><span class="mi">512</span><span class="w"> </span><span class="n">\</span><span class="w"> </span><span class="c">#UBatch Size, 切分size, 每次送到gpu的size, 控制显存占用峰值</span><span class="w">
+  </span><span class="nt">--flash-attn</span><span class="w"> </span><span class="n">on</span><span class="w"> </span><span class="nx">\</span><span class="w"> </span><span class="c">#降低显存占用并提升注意力机制计算速度</span><span class="w">
+  </span><span class="nt">--metriccs</span><span class="w"> </span><span class="n">\</span><span class="w">  </span><span class="c"># 启用 Prometheus 格式的监控指标, 可以看http://localhost:8080/metrics 监控请求延迟、token 生成速度、缓存命中率、显存占用等</span><span class="w">
+  </span><span class="nt">--cache-type-k</span><span class="err"> </span><span class="n">q4_0</span><span class="w"> </span><span class="nx">\</span><span class="w">  </span><span class="c">#KV Cache 的量化类型</span><span class="w">
+  </span><span class="nt">--cache-type-v</span><span class="err"> </span><span class="n">q4_0</span><span class="w"> </span><span class="nx">\</span><span class="w">
+  </span><span class="c">#-- jinja \ # jinja模版解析prompt, 让toolcall 更稳定. 开不开好像区别不大</span><span class="w">
+  </span><span class="nt">--resoning-fomat</span><span class="w"> </span><span class="n">none</span><span class="w"> </span><span class="c">#并不关闭推理，只影响 API 输出</span><span class="w">
+  </span><span class="nt">-reasoning</span><span class="w"> </span><span class="n">off</span><span class="w"> </span><span class="nx">\</span><span class="w">      </span><span class="c"># 禁用 reasoning 功能</span><span class="w">
+  </span><span class="nt">--reasoning-budget</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="n">\</span><span class="w"> </span><span class="c"># 将推理预算设为 0</span><span class="w">
+</span></code></pre></div></div>
+
+<ol>
+  <li><strong>模板残留</strong>：输出中仍有空 <code class="language-plaintext highlighter-rouge">&lt;think&gt;&lt;/think&gt;</code> 标签是由于 <code class="language-plaintext highlighter-rouge">--jinja</code> 强制套用了 GGUF 内嵌模板（Qwen 模板写死了该占位符）。我最后也没通过参数解决这个空<code class="language-plaintext highlighter-rouge">&lt;think&gt;&lt;/think&gt;</code> 的问题.</li>
+</ol>
+
+<h2 id="4-远程访问与网络配置">4. 远程访问与网络配置</h2>
+
+<h3 id="局域网连通性排查">局域网连通性排查</h3>
+
+<p>在 Mac 访问 Windows 端口失败时，按以下步骤排查：</p>
+<ol>
+  <li><strong>Ping 测试</strong>: <code class="language-plaintext highlighter-rouge">ping 192.168.1.2</code> 成功，确认基础链路正常。</li>
+  <li><strong>端口探测</strong>: 运行 <code class="language-plaintext highlighter-rouge">nc -zv 192.168.1.2 8080</code>
+    <ul>
+      <li>返回 <code class="language-plaintext highlighter-rouge">Operation timed out</code>。ICMP通但TCP不通，是典型的防火墙丢弃包（Drop）特征。
+        <ul>
+          <li><strong>解决</strong>: 在powershell里以管理员权限设置放行端口: <code class="language-plaintext highlighter-rouge">New-NetFirewallRule -DisplayName "llama-server" -Direction Inbound -LocalPort 8080 -Protocol TCP -Action Allow</code></li>
+        </ul>
+      </li>
+      <li>返回 <code class="language-plaintext highlighter-rouge">Connection refused</code>. 说明防火墙已放行，ssh没启动, 去wsl2拉起ssh服务.
+        <ul>
+          <li><strong>解决</strong>: <code class="language-plaintext highlighter-rouge">sudo service ssh start</code></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="模型调用测试">模型调用测试</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 测试模型列表</span>
+curl http://localhost:8080/v1/models
+
+<span class="c"># 测试对话接口</span>
+curl http://localhost:8080/v1/chat/completions <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+  <span class="nt">-d</span> <span class="s1">'{
+    "messages": [
+      {
+        "role": "user",
+        "content": "write a python quicksort"
+      }
+    ]
+  }'</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="5-cli-工具链集成">5. CLI 工具链集成</h2>
+
+<p>将本地算力接入了 <code class="language-plaintext highlighter-rouge">pi</code> 和 <code class="language-plaintext highlighter-rouge">claude</code> 等开发工具。</p>
+
+<h3 id="claude-code-精简启动">Claude Code 精简启动</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">ANTHROPIC_BASE_URL</span><span class="o">=</span>http://localhost:8080
+<span class="nb">export </span><span class="nv">ANTHROPIC_AUTH_TOKEN</span><span class="o">=</span>dummy
+<span class="nb">export </span><span class="nv">ANTHROPIC_API_KEY</span><span class="o">=</span>dummy
+<span class="nb">export </span><span class="nv">CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC</span><span class="o">=</span>1
+<span class="nb">export </span><span class="nv">CLAUDE_CODE_ATTRIBUTION_HEADER</span><span class="o">=</span>0
+<span class="nb">export </span><span class="nv">CLAUDE_CODE_DISABLE_1M_CONTEXT</span><span class="o">=</span>1
+</code></pre></div></div>
+
+<p>Claude Code 默认启动会携带约 <strong>28k tokens</strong> 的负载，我采用极简模式启动以确保本地模型不会因为上下文过载而“变笨”：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 精简模式：跳过 28k tokens 的冗余加载，仅保留核心工具</span>
+claude <span class="nt">--model</span> local-coder <span class="se">\</span>
+    <span class="nt">--bare</span> <span class="se">\</span>
+    <span class="nt">--tools</span> <span class="s1">'Read,Edit,Write,Bash,Grep,Glob,LS'</span> <span class="se">\</span>
+    <span class="nt">--disable-slash-commands</span>
+</code></pre></div></div>
+
+<p>但是这样用不了skills了, 我尝试用extension的方式加载, 没成功</p>
+
+<h3 id="pi-ai-coding-assistant">Pi (AI Coding Assistant)</h3>
+
+<p>在 <code class="language-plaintext highlighter-rouge">~/.pi/agent/models.json</code> 中将 API 类型设为 <code class="language-plaintext highlighter-rouge">openai-completions</code>。这种模式会通过 System Prompt 注入工具定义，就不用更复杂的协议了。</p>
+
+        </div>
+
+        
+
+        
+        
+  <div class="page-comments">
+    <div id="disqus_thread"></div>
+    <script>
+      var disqus_config = function () {
+        this.page.url = 'https://roshameow.github.io//personal_homepage/tool/llama/';
+        this.page.identifier = 'https://roshameow.github.io//personal_homepage/tool/llama/';
+      };
+
+      (function() {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://https-roshameow-github-io-personal-homepage.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+  </div>
+
+
+        
+
+        <nav class="page-pagination" role="navigation">
+  
+    <a class="page-previous" href="/personal_homepage/tool/llm-protocal/">
+      <h4 class="page-pagination-label">Previous</h4>
+      <span class="page-pagination-title">
+        <i class="fas fa-arrow-left"></i> LLM接口协议梳理
+
+      </span>
+    </a>
+  
+
+  
+    <a class="page-next" href="/personal_homepage/daily/mac/">
+      <h4 class="page-pagination-label">Next</h4>
+      <span class="page-pagination-title">
+        mac电脑的奇怪问题
+ <i class="fas fa-arrow-right"></i>
+      </span>
+    </a>
+  
+</nav>
+
+      </div>
+
+    </div>
+  </article>
+</main>
+
+    <footer id="footer" class="site-footer">
+  <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+<div class="social-icons"><a class="social-icon" href="/personal_homepage/atom.xml"><i class="fas fa-rss-square fa-2x" title="Feed"></i></a><a class="social-icon" href="https://github.com/roshameow"><i class="fab fa-github-square fa-2x" title="GitHub"></i></a><a class="social-icon" href="https://www.linkedin.com/in/wen-liu-06503a7b/"><i class="fab fa-linkedin fa-2x" title="LinkedIn"></i></a><a class="social-icon" href="mailto:w.liuatnk@gmail.com"><i class="fas fa-envelope-square fa-2x" title="e-mail"></i></a></div><div class="copyright">
+    
+      <p>&copy; 2026 Liu, Wen's Home Page. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://github.com/mmistakes/so-simple-theme" rel="nofollow">So Simple</a>.</p>
+    
+  </div>
+</footer>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="/personal_homepage/assets/js/main.min.js"></script>
+<script src="https://use.fontawesome.com/releases/v5.0.12/js/all.js"></script><script src="/personal_homepage/assets/js/content-tables.js" defer></script><!-- <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'G-9TMSCDTBGN', 'auto');
+  ga('send', 'pageview');
+</script> -->
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9TMSCDTBGN"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-9TMSCDTBGN');
+</script>
+
+
+
+<!-- MathJax -->
+
+<script>
+    // http://docs.mathjax.org/en/latest/upgrading/v2.html
+    MathJax = {
+        tex: {
+            tags: "ams",    // eq numbering options: none, ams, all
+            inlineMath: [['$', '$'], ["\\(", "\\)"]],  // 设置行内数学公式的开始和结束标记
+            displayMath: [['$$', '$$'], ["\\[", "\\]"]]  // 设置行间数学公式的开始和结束标记
+        },
+        // options: {
+        //   renderActions: {
+        //     // for mathjax 3, handle <script "math/tex"> blocks inserted by kramdown
+        //     find: [10, function (doc) {
+        //       for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+        //         const display = !!node.type.match(/; *mode=display/);
+        //         const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+        //         const text = document.createTextNode('');
+        //         node.parentNode.replaceChild(text, node);
+        //         math.start = { node: text, delim: '', n: 0 };
+        //         math.end = { node: text, delim: '', n: 0 };
+        //         doc.math.push(math);
+        //       }
+        //     }, '']
+        //   }
+        // }
+    }
+</script>
+
+<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+
+
+<!-- Mermaid -->
+<style>
+  .mermaid-list {
+    display: flex;
+    gap: 2em;
+    flex-wrap: wrap;
+    justify-content: center;
+    font-family: "Source Sans Pro", sans-serif;
+    margin: 1.5em 0;
+  }
+  .mermaid-list-col {
+    min-width: 180px;
+  }
+  .mermaid-list-col h4 {
+    margin: 0 0 0.4em 0;
+    font-size: 0.95em;
+    font-weight: 700;
+    color: #34374C;
+  }
+  .mermaid-list-col ul {
+    margin: 0;
+    padding-left: 1.2em;
+    line-height: 1.6;
+  }
+  pre.mermaid {
+    text-align: center;
+    background: transparent;
+    padding: 1em 0;
+    overflow: visible;
+    font-family: "Source Sans Pro", sans-serif !important;
+  }
+  pre.mermaid svg {
+    max-width: 100%;
+    height: auto;
+    overflow: visible;
+  }
+</style>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('code.language-mermaid').forEach(function(code) {
+      var text = code.textContent;
+      var parent = code.closest('.highlighter-rouge') || code.parentElement;
+
+      // 解析 subgraph 块
+      var sgRe = /subgraph\s+\w+\["(.+?)"\]([\s\S]*?)end/g;
+      var match, subgraphs = [];
+      while ((match = sgRe.exec(text)) !== null) {
+        var title = match[1];
+        var body = match[2];
+        var items = [];
+        body.split('\n').forEach(function(line) {
+          line = line.trim();
+          var m = line.match(/^\w+\["(.+?)"\]/);
+          if (m) items.push(m[1]);
+        });
+        if (items.length) subgraphs.push({ title: title, items: items });
+      }
+
+      if (subgraphs.length > 1) {
+        // 有多列 subgraph → 渲染为 HTML 列表
+        var div = document.createElement('div');
+        div.className = 'mermaid-list';
+        subgraphs.forEach(function(sg) {
+          var col = document.createElement('div');
+          col.className = 'mermaid-list-col';
+          col.innerHTML = '<h4>' + sg.title + '</h4><ul>' +
+            sg.items.map(function(i) { return '<li>' + i + '</li>'; }).join('') +
+            '</ul>';
+          div.appendChild(col);
+        });
+        var wrapper = parent.closest('.highlighter-rouge') || parent;
+        wrapper.parentNode.replaceChild(div, wrapper);
+      } else {
+        // 单图 → 正常用 Mermaid 渲染
+        var pre = document.createElement('pre');
+        pre.className = 'mermaid';
+        pre.textContent = text;
+        var wrapper = parent.closest('.highlighter-rouge') || parent;
+        wrapper.parentNode.replaceChild(pre, wrapper);
+      }
+    });
+    mermaid.run();
+  });
+</script>
+
+
+  </body>
+
+</html>

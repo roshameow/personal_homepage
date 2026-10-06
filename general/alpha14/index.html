@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<!--
+    So Simple Jekyll Theme 3.2.0
+    Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+    Free for personal and commercial use under the MIT license
+    https://github.com/mmistakes/so-simple-theme/blob/master/LICENSE
+-->
+<html lang="en-US" class="no-js">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  
+
+  
+  
+  <!-- Begin Jekyll SEO tag v2.9.1 -->
+<title>用 Agent 对黑盒公式进行逆向工程 | Liu, Wen’s Home Page</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="用 Agent 对黑盒公式进行逆向工程" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="面对一组只有输入输出的多维黑盒数据，如果我们确信其背后存在一个由人类专家设计的简洁内部公式，应该如何将其精准还原？" />
+<meta name="twitter:description" property="og:description" content="面对一组只有输入输出的多维黑盒数据，如果我们确信其背后存在一个由人类专家设计的简洁内部公式，应该如何将其精准还原？" />
+<link rel="canonical" href="https://roshameow.github.io//personal_homepage/general/alpha14/" />
+<meta property="og:url" content="https://roshameow.github.io//personal_homepage/general/alpha14/" />
+<meta property="og:site_name" content="Liu, Wen’s Home Page" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2026-03-23T00:00:00+00:00" />
+<meta property="article:modified_time" content="2026-04-05T15:11:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="用 Agent 对黑盒公式进行逆向工程" />
+<meta name="twitter:site" content="@" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2026-04-05T15:11:00+00:00","datePublished":"2026-03-23T00:00:00+00:00","description":"面对一组只有输入输出的多维黑盒数据，如果我们确信其背后存在一个由人类专家设计的简洁内部公式，应该如何将其精准还原？","headline":"用 Agent 对黑盒公式进行逆向工程","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/general/alpha14/"},"url":"https://roshameow.github.io//personal_homepage/general/alpha14/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  
+
+  <script>
+    /* Cut the mustard */
+    if ('querySelector' in document && 'addEventListener' in window) {
+      document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + 'js';
+    }
+  </script>
+
+  <link rel="stylesheet" href="/personal_homepage/assets/css/main.css">
+  <link rel="stylesheet" href="/personal_homepage/assets/css/skins/default.css">
+  
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,700,700i|Lora:400,400i,700,700i">
+  <link rel="alternate" type="application/atom+xml" title="Liu, Wen&#39;s Home Page" href="/personal_homepage/atom.xml">
+<!-- start custom head snippets -->
+
+<!-- insert favicons. use http://realfavicongenerator.net/ -->
+<link rel="shortcut icon" type="image/x-icon" href="/personal_homepage/docs/images/logo.ico">
+<!-- end custom head snippets -->
+
+</head>
+
+  <body class="layout--post  用-agent-对黑盒公式进行逆向工程">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#primary-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+  <div class="navigation-wrapper">
+    <a href="#menu-toggle" id="menu-toggle">Menu</a>
+    <nav id="primary-nav" class="site-nav animated drop">
+      <ul><li><a href="/personal_homepage/">Home</a></li><li><a href="/personal_homepage/posts/">Posts</a></li><li><a href="/personal_homepage/categories/">Categories</a></li><li><a href="/personal_homepage/tags/">Tags</a></li><li><a href="/personal_homepage/family/">Family</a></li><li><a href="/personal_homepage/search/">Search</a></li></ul>
+    </nav>
+  </div><!-- /.navigation-wrapper -->
+
+
+    <header class="masthead">
+  <div class="wrap">
+    
+    
+    
+      
+        <div class="site-title animated fadeIn"><a href="/personal_homepage/">Liu, Wen's Home Page</a></div>
+      
+      <p class="site-description animated fadeIn" itemprop="description">Work, Experiments and Ideas.</p>
+    
+  </div>
+</header><!-- /.masthead -->
+
+
+    <main id="main" class="main-content" aria-label="Content">
+  <article class="h-entry">
+    
+
+    <div class="page-wrapper">
+      <header class="page-header">
+        
+        
+        <h1 id="page-title" class="page-title p-name">用 Agent 对黑盒公式进行逆向工程
+</h1>
+        
+      </header>
+
+      <div class="page-sidebar">
+        <div class="page-author h-card p-author"><img src="/personal_homepage/docs/images/logo.svg" class="author-avatar u-photo" alt=""><div class="author-info">
+
+<span class="read-time">~1 min read</span>
+
+    <time class="page-date dt-published" datetime="2026-03-23T00:00:00+00:00"><a class="u-url" href="">March 23, 2026</a>
+</time>
+
+  </div>
+</div>
+
+        
+  <h3 class="page-taxonomies-title">Categories</h3>
+  
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a class="p-category" href="/personal_homepage/categories/#general" title="Pages filed under general">general</a></li>
+  </ul>
+
+
+        
+  <h3 class="page-taxonomies-title">Tags</h3>
+  
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a href="/personal_homepage/tags/#content" title="Pages tagged content" rel="tag">content</a></li>
+  </ul>
+
+
+        <!-- {::options parse_block_html="true" /} -->
+<div id="entry-table-of-contents" class="toc-wrapper">
+  <h2 id="toc-toggle">
+    Table of Contents <i
+      class="toc-toggle-icon fas fa-chevron-down"></i>
+  </h2>
+  <!-- 1. toc
+{:toc} -->
+  <!-- <div id="markdown-toc"> -->
+
+    <ul class="inline_toc" id="my_toc"><li><a href="#一-核心方法论-general-methodology">一、 核心方法论 (General Methodology)</a><ul><li><a href="#核心迭代循环-the-core-iterative-loop">核心迭代循环 (The Core Iterative Loop)</a></li><li><a href="#终极收敛-the-ultimate-convergence">终极收敛 (The Ultimate Convergence)</a></li></ul></li><li><a href="#二-实战演进is-score公式逆向纪实">二、 实战演进：IS Score公式逆向纪实</a></li><li><a href="#三-agent的帮助">三. agent的帮助</a></li></ul>
+  <!-- </div> -->
+
+</div>
+<!-- {::options parse_block_html="false" /} -->
+        
+
+<div id="entry-table-of-contents" class="toc-wrapper">
+    <h2 id="toc-toggle" class="no_toc">
+        Related Posts <i class="toc-toggle-icon fas fa-chevron-down"></i>
+    </h2>
+    <!-- <div id="markdown-toc"> -->
+    <ul>
+        
+        <li><a href="/personal_homepage/tool/pi-runtime-attribution/">Pi Desktop的开发难点: “会话的状态”</a></li>
+        
+        <li><a href="/personal_homepage/tool/pi-desktop/">Pi Desktop：从会话浏览器到跨机器工作台</a></li>
+        
+        <li><a href="/personal_homepage/daily/sticker/">用AI做了一套微信表情包:从微信头像缓存到提交上架</a></li>
+        
+        <li><a href="/personal_homepage/daily/agent-blog-writing/">用AI agent复现我的博客风格</a></li>
+        
+        <li><a href="/personal_homepage/tool/lesson/">听课app开发调研</a></li>
+        
+    </ul>
+    <!-- </div> -->
+
+</div>
+
+
+
+
+
+      </div>
+
+      <div class="page-content">
+        <div class="e-content">
+          <p>面对一组只有输入输出的多维黑盒数据，如果我们确信其背后存在一个由人类专家设计的简洁内部公式，应该如何将其精准还原？</p>
+
+<p>本文以破解 IS Score 评分为例，完整记录了我们如何借助 Agent 的力量，从海量数据统计起步，最终不仅实现了 100% 预测全中，还成功提取出了极具“物理美感”的底层解析式。</p>
+
+<h2 id="一-核心方法论-general-methodology">一、 核心方法论 (General Methodology)</h2>
+
+<p>在面对一个多维黑盒时，直接丢给神经网络或多项式拟合往往只能得到毫无意义的过拟合参数。通用且有效的逆向工程步骤如下：</p>
+<ol>
+  <li><strong>探索性拟合 (Exploratory Fitting)</strong>
+    <ul>
+      <li>早期拟合的核心是“在多不在精”。应尽可能尝试多种影响因素作为分量，统计它们与目标值的相关性，尝试基础的线性拟合、Log 变换、Power Law (幂律) 等模型，以此圈定大致的解空间。</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="核心迭代循环-the-core-iterative-loop">核心迭代循环 (The Core Iterative Loop)</h3>
+
+<p>在初步探索后，逆向工程绝不是一条直线，而是一个在以下几个步骤中不断循环、螺旋上升逼近真相的过程：</p>
+
+<ol>
+  <li><strong>分离与控制变量 (Isolate &amp; Control Components)</strong>
+    <ul>
+      <li>随着实验的推进，会不断有变量的作用被部分甚至完全确定。一旦验证了某一部分结构是完全正确的，就应该尝试锁定其参数，将其作为常数项提出来进行降维。固定已知、剥离相对确定的变量后，我们才能对剩余的未知维度进行更高精度的探索。</li>
+    </ul>
+  </li>
+  <li><strong>残差与异常值分析 (Outlier Analysis)</strong>
+    <ul>
+      <li>在每剥离或固定一层规律后，必须将分析重心转向此时残差极大的 Outlier（异常点）。</li>
+      <li>将异常点的关键标签拆解出来，在原图上进行标记和验证。这一步的根本目的是定位并验证产生异常的底层原因，从而寻找目前拟合公式存在的漏洞。</li>
+    </ul>
+  </li>
+  <li><strong>切片与分段 (Slicing &amp; Segmentation)</strong>
+    <ul>
+      <li>观察数据分布，寻找分界点。如果发现不同数据区间表现出截然不同的斜率或规律，就应该将其拆开分段处理（而不是强求用一个复杂的连续方程拟合全部数据）。分段在实战中有两种完全不同的场景与目的：
+        <ul>
+          <li><strong>还原真实阈值</strong>：底层业务逻辑本身就存在硬性的阈值开关，分段是为了真实还原这些逻辑。</li>
+          <li><strong>降维控制变量</strong>：纯粹作为把复杂问题拆解的战术手段。即使我们明知整体可能是一个连续函数，但在探索中途还不知道某些变量的精确形态时，可以通过窄区间的分段切片来锁定这些未知维度的影响，从而为解析已知维度创造干净的环境。此外，强烈建议在数据中寻找那些“天然控制变量”的数据切片（例如某个维度恰好为 0），这些极端的切片能直接消除该变量带来的不确定性，提供极其纯粹、精准的信息，极大加速拟合与推导过程。</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><strong>多项式探路与形态猜测 (Polynomial Probing &amp; Shape Guessing)</strong>
+    <ul>
+      <li>当成功剥离出某个未知的单变量函数时，不要急于用复杂的公式盲猜。最稳妥的方法是先用高阶多项式进行纯数学拟合，并将离散的散点画成连续的曲线图。通过观察多项式曲线的几何形态，再对照常见的函数库去猜测它更简单、更具物理意义的解析式表达。</li>
+    </ul>
+  </li>
+  <li><strong>规律融合 (Fusion)</strong>
+    <ul>
+      <li>随着模型精度的提高，如果我们在对不同切片进行分析时，发现它们背后其实受同一种更高维度的数学规律支配（例如曾经被割裂的两段折线，其实是同一个连续的对数或指数函数在不同区间的表现），此时就应该大胆尝试将这些分段重新融合为一个统一的方程。融合能极大地提升模型的泛化能力。</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="终极收敛-the-ultimate-convergence">终极收敛 (The Ultimate Convergence)</h3>
+
+<ol>
+  <li><strong>模型泛化与次优化 (Sub-optimization &amp; Physical Elegance)</strong>
+    <ul>
+      <li>机器跑出来的初始高精模型往往充满了“过拟合”的丑陋痕迹，我们需要在确保精度的同时，向着“物理美感”进行次优化：</li>
+      <li><strong>优化变量组合 (公式化简)</strong>：在得到初步的复杂关联后，尝试对其进行代数化简与收敛。如果化简后模型依然能解释绝大部分方差，说明我们找对了核心特征。</li>
+      <li><strong>优化系数 (强制向人类偏好收敛)</strong>：工程系统是由人类设计的，人类天然偏好简洁、整数、干净的分数或特定行业的物理常数。将机器拟合出的“丑陋小数”强制约束为有意义的整数或常数倍数。如果约束后残差没有显著增大，甚至完全消失（错误抵消被消除），那就说明我们真正触及了底层的设计灵魂。</li>
+    </ul>
+  </li>
+</ol>
+
+<h2 id="二-实战演进is-score公式逆向纪实">二、 实战演进：IS Score公式逆向纪实</h2>
+
+<p><img src="/personal_homepage/docs/attachment/DCC2026_complex_analysis.png" alt="DCC2026_complex_analysis.png" width="200" /> <img src="/personal_homepage/docs/attachment/DCC2026_regimes_detail.png" alt="DCC2026_regimes_detail.png" width="150" /> <img src="/personal_homepage/docs/attachment/DCC2026_geometric_kink_refined.png" alt="DCC2026_geometric_kink_refined.png" width="240" /></p>
+
+<p>在实际破解 IS Score 评分的过程中，我们的推进严格遵循了上述方法论，以下是突破公式的全部关键节点：</p>
+
+<ol>
+  <li><strong>确定基本线性结构</strong>：首先分析出 Sharpe 和 Turnover 的参数是 1。</li>
+  <li><strong>正负域分离</strong>：发现正负分数的计算逻辑不对称，分析出正负应该分段处理。</li>
+  <li><strong>定位换手底噪</strong>：针对低换手率的异常高估，分析出 Turnover 有个固定的 Offset (即 $Turnover + 0.1$)。</li>
+  <li><strong>收益与回撤的耦合</strong>：
+    <ul>
+      <li>发现 Returns 和 Drawdown 总是呈现出共用指数的特性。</li>
+      <li>进一步分析出 Returns 和 Drawdown 是深度耦合在一起的。</li>
+    </ul>
+  </li>
+  <li><strong>Calmar 比率的截断与降维</strong>：
+    <ul>
+      <li>锁定这部分耦合后，分析出它们构成了 Calmar 比率 ($Returns / Drawdown$)，且系统对高 Calmar 比率是有强行截断的。</li>
+      <li>分析出 Calmar 比率在上升期存在一个明显的曲线衰减变换（边际效用递减）。</li>
+      <li>为此我们遍历了 Log、Michaelis-Menten 饱和函数、Power law 等多种函数形态，在取得初步进展后，最终锁定了反双曲正弦函数 (<code class="language-plaintext highlighter-rouge">arcsinh</code>) 形态。</li>
+    </ul>
+  </li>
+  <li><strong>终极微调与物理收敛</strong>：
+    <ul>
+      <li>在去掉所有完全正确的已知参数（如 Sharpe / (Turnover + 0.1)）后，对剩下的、在更简易模型上的残差进行微调参数。</li>
+      <li>经过次优化与常数强约束，最终发现了完美吻合的 <code class="language-plaintext highlighter-rouge">arcsinh</code> 与 <code class="language-plaintext highlighter-rouge">200*Calmar^2</code> 的物理方程。</li>
+    </ul>
+  </li>
+</ol>
+
+<p><strong>最终，我们得到了零误差（全量预测完美吻合）、且充满物理设计美感的终极解析式：</strong> $Score = C_{curve} \times P(Calmar) \times \frac{Sharpe + 0.0001}{Turnover + 0.10}$, 
+$P(Calmar) = 0.34108 \times \text{arcsinh}(200.0 \cdot Calmar^{2})$</p>
+
+<h2 id="三-agent的帮助">三. agent的帮助</h2>
+
+<p>虽然agent可以快速写代码验证, 但是agent就是我在生活中遇见的所有蠢人合订本, 需要花特别大的力气和它对抗:</p>
+
+<p>武断：基于不充分信息，构造看似合理但站不住脚的前提<br />
+冒进：试图“一步到位”，跳过最小验证<br />
+偏见:  用个例支撑结论，把偶然当规律
+逃避：方案失败，不复盘路径，直接否定问题<br />
+盲试：没有假设结构的尝试, 不停换方法 
+偷换：把“感觉可行”当成“已经可行”
+浮夸：用语言强度掩盖方法粗糙</p>
+
+<p> </p>
+
+        </div>
+
+        
+
+        
+        
+  <div class="page-comments">
+    <div id="disqus_thread"></div>
+    <script>
+      var disqus_config = function () {
+        this.page.url = 'https://roshameow.github.io//personal_homepage/general/alpha14/';
+        this.page.identifier = 'https://roshameow.github.io//personal_homepage/general/alpha14/';
+      };
+
+      (function() {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://https-roshameow-github-io-personal-homepage.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+  </div>
+
+
+        
+
+        <nav class="page-pagination" role="navigation">
+  
+    <a class="page-previous" href="/personal_homepage/design/horse/">
+      <h4 class="page-pagination-label">Previous</h4>
+      <span class="page-pagination-title">
+        <i class="fas fa-arrow-left"></i> 马年主题
+
+      </span>
+    </a>
+  
+
+  
+    <a class="page-next" href="/personal_homepage/data/finance/alpha15/">
+      <h4 class="page-pagination-label">Next</h4>
+      <span class="page-pagination-title">
+        处理新闻数据
+ <i class="fas fa-arrow-right"></i>
+      </span>
+    </a>
+  
+</nav>
+
+      </div>
+
+    </div>
+  </article>
+</main>
+
+    <footer id="footer" class="site-footer">
+  <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+<div class="social-icons"><a class="social-icon" href="/personal_homepage/atom.xml"><i class="fas fa-rss-square fa-2x" title="Feed"></i></a><a class="social-icon" href="https://github.com/roshameow"><i class="fab fa-github-square fa-2x" title="GitHub"></i></a><a class="social-icon" href="https://www.linkedin.com/in/wen-liu-06503a7b/"><i class="fab fa-linkedin fa-2x" title="LinkedIn"></i></a><a class="social-icon" href="mailto:w.liuatnk@gmail.com"><i class="fas fa-envelope-square fa-2x" title="e-mail"></i></a></div><div class="copyright">
+    
+      <p>&copy; 2026 Liu, Wen's Home Page. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://github.com/mmistakes/so-simple-theme" rel="nofollow">So Simple</a>.</p>
+    
+  </div>
+</footer>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="/personal_homepage/assets/js/main.min.js"></script>
+<script src="https://use.fontawesome.com/releases/v5.0.12/js/all.js"></script><script src="/personal_homepage/assets/js/content-tables.js" defer></script><!-- <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'G-9TMSCDTBGN', 'auto');
+  ga('send', 'pageview');
+</script> -->
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9TMSCDTBGN"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-9TMSCDTBGN');
+</script>
+
+
+
+<!-- MathJax -->
+
+<script>
+    // http://docs.mathjax.org/en/latest/upgrading/v2.html
+    MathJax = {
+        tex: {
+            tags: "ams",    // eq numbering options: none, ams, all
+            inlineMath: [['$', '$'], ["\\(", "\\)"]],  // 设置行内数学公式的开始和结束标记
+            displayMath: [['$$', '$$'], ["\\[", "\\]"]]  // 设置行间数学公式的开始和结束标记
+        },
+        // options: {
+        //   renderActions: {
+        //     // for mathjax 3, handle <script "math/tex"> blocks inserted by kramdown
+        //     find: [10, function (doc) {
+        //       for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+        //         const display = !!node.type.match(/; *mode=display/);
+        //         const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+        //         const text = document.createTextNode('');
+        //         node.parentNode.replaceChild(text, node);
+        //         math.start = { node: text, delim: '', n: 0 };
+        //         math.end = { node: text, delim: '', n: 0 };
+        //         doc.math.push(math);
+        //       }
+        //     }, '']
+        //   }
+        // }
+    }
+</script>
+
+<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+
+
+<!-- Mermaid -->
+<style>
+  .mermaid-list {
+    display: flex;
+    gap: 2em;
+    flex-wrap: wrap;
+    justify-content: center;
+    font-family: "Source Sans Pro", sans-serif;
+    margin: 1.5em 0;
+  }
+  .mermaid-list-col {
+    min-width: 180px;
+  }
+  .mermaid-list-col h4 {
+    margin: 0 0 0.4em 0;
+    font-size: 0.95em;
+    font-weight: 700;
+    color: #34374C;
+  }
+  .mermaid-list-col ul {
+    margin: 0;
+    padding-left: 1.2em;
+    line-height: 1.6;
+  }
+  pre.mermaid {
+    text-align: center;
+    background: transparent;
+    padding: 1em 0;
+    overflow: visible;
+    font-family: "Source Sans Pro", sans-serif !important;
+  }
+  pre.mermaid svg {
+    max-width: 100%;
+    height: auto;
+    overflow: visible;
+  }
+</style>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('code.language-mermaid').forEach(function(code) {
+      var text = code.textContent;
+      var parent = code.closest('.highlighter-rouge') || code.parentElement;
+
+      // 解析 subgraph 块
+      var sgRe = /subgraph\s+\w+\["(.+?)"\]([\s\S]*?)end/g;
+      var match, subgraphs = [];
+      while ((match = sgRe.exec(text)) !== null) {
+        var title = match[1];
+        var body = match[2];
+        var items = [];
+        body.split('\n').forEach(function(line) {
+          line = line.trim();
+          var m = line.match(/^\w+\["(.+?)"\]/);
+          if (m) items.push(m[1]);
+        });
+        if (items.length) subgraphs.push({ title: title, items: items });
+      }
+
+      if (subgraphs.length > 1) {
+        // 有多列 subgraph → 渲染为 HTML 列表
+        var div = document.createElement('div');
+        div.className = 'mermaid-list';
+        subgraphs.forEach(function(sg) {
+          var col = document.createElement('div');
+          col.className = 'mermaid-list-col';
+          col.innerHTML = '<h4>' + sg.title + '</h4><ul>' +
+            sg.items.map(function(i) { return '<li>' + i + '</li>'; }).join('') +
+            '</ul>';
+          div.appendChild(col);
+        });
+        var wrapper = parent.closest('.highlighter-rouge') || parent;
+        wrapper.parentNode.replaceChild(div, wrapper);
+      } else {
+        // 单图 → 正常用 Mermaid 渲染
+        var pre = document.createElement('pre');
+        pre.className = 'mermaid';
+        pre.textContent = text;
+        var wrapper = parent.closest('.highlighter-rouge') || parent;
+        wrapper.parentNode.replaceChild(pre, wrapper);
+      }
+    });
+    mermaid.run();
+  });
+</script>
+
+
+  </body>
+
+</html>

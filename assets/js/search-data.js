@@ -484,8 +484,8 @@ var store = [{
         "tags": ["content"],
         "url": "https://roshameow.github.io//personal_homepage/tool/setting-shortcut/"
       },{
-        "title": "雪花制作",
-        "excerpt":"六方晶系 ","categories": ["blender"],
+        "title": "雪花制作 ❄️",
+        "excerpt":"六方晶系 Diffusion-limited aggregation (DLA)方法 Window frost, 分形生长, fractal frost, 竹叶 https://www.bilibili.com/video/BV1DEDjYaEto?spm_id_from=333.788.recommend_more_video.0&amp;vd_source=9cd152be6fbc1b9ad36a33604a13fb6e 曼德勃罗集 冰花, 廿釉冰晶瓷 https://www.bilibili.com/video/BV1Yg4y1S7DH/?spm_id_from=333.337.search-card.all.click&amp;vd_source=9cd152be6fbc1b9ad36a33604a13fb6e 冰晶6边形 https://www.sciencedirect.com/science/article/abs/pii/S089417771100197X ","categories": ["blender"],
         "tags": ["content"],
         "url": "https://roshameow.github.io//personal_homepage/blender/snowflake/"
       },{
@@ -555,7 +555,7 @@ var store = [{
         "url": "https://roshameow.github.io//personal_homepage/blender/blender-learning21/"
       },{
         "title": "聚类",
-        "excerpt":"距离   cos距离:文本聚类 Faiss ","categories": ["algorithm"],
+        "excerpt":"距离   cos距离:文本聚类 Faiss distortion对Pearson Correlation的影响 ","categories": ["algorithm"],
         "tags": ["content"],
         "url": "https://roshameow.github.io//personal_homepage/algorithm/cluster/"
       },{
@@ -579,9 +579,9 @@ var store = [{
         "tags": ["content","macos"],
         "url": "https://roshameow.github.io//personal_homepage/tool/auto-code/"
       },{
-        "title": "选出最佳的因子组合",
-        "excerpt":"遗传算法(Genetic Algorithm): 1. generate a bunch of solutions 2. 算子：选择算子(selection)： Roulette Wheel Selection(轮盘赌): 1. 适应性越强概率越大，随机选择父母 2. Use accumulation of probability and bisect e.g. probability [0.25,0.25,0.5], accumulation [0.25,0.5,1], when using bisect —0—0.25—1—0.5—2—[prabablility bigger-&gt;interval of accumulation is bigger-&gt; has more chance to be choosen] Tournament Selection(锦标赛)：1. random choose n 个个体，选出其中最好的 Linear(Exp) Ranking...","categories": ["algorithm"],
-        "tags": ["content"],
+        "title": "因子组合优化",
+        "excerpt":"问题: 从 $N$ 个候选集中挑选出 $K$ 个，构建一个能够最大化综合得分的组合。得分计算复杂, 所以我们考虑启发式的算法. 1. greedy boost算法的优化 A. 精准种子筛选 (Precise Seed Selection) 增量正交过滤：结合单因子的 predict_score 计算 seed_priority, 按优先级排序后，只有与已选种子集最大相关性 &lt; 0.7 的因子才能入选。这保证了搜索起点的逻辑多样性。B. 双阶段呼吸逻辑 (Expansion &amp; Purging) 扩张阶段 (Expansion) - 带 Top-K 随机化： Top-K 采样(非绝对贪心)：从能提升分数的 Top-K（默认 3）个候选者中随机抽取一个加入组合。 清理阶段 (Purging) - 呼吸机制：扩张停止后，尝试移除组合中的每一个因子。只要移除后分数能提升 &gt;0.001，就将其剔除。 振荡收敛：上述两个阶段在 while True 中交替，直到没有任何变动。2. 遗传算法的优化 A. 初始化组合 启发式权重初始化：利用...","categories": ["algorithm"],
+        "tags": ["Alpha","Portfolio","Optimization","GA","Greedy"],
         "url": "https://roshameow.github.io//personal_homepage/algorithm/alpha7/"
       },{
         "title": "组合交易 (一)",
@@ -615,7 +615,7 @@ var store = [{
         "url": "https://roshameow.github.io//personal_homepage/daily/washing-machine/"
       },{
         "title": "代码语法解析",
-        "excerpt":"三元运算符(ternary)解析 把 ...?...:... 处理成if_else(...,...,...) 的形式. 初衷是用正则替换把对应DSL的operator转换成python语言, 然后用python的ast 直接解析. 但是三元运算符的处理比较复杂, Python 中并没有直接对应的语法结构, 导致没法简单的替换. 可以把字符串token解析成AST 的构建过程理解成“对运算符按优先级排序”的过程. 方法 优缺点 类比排序思路 平均复杂度 用正则表达式替换三元运算符 思路naive, 但是可读性差，难以维护   O(n logn)+kO(n)全字符串扫描+递归 设计语法树解析器（Parser） 灵活性高, 但实现较复杂 选择排序 O(n logn)近似二分递归 结合 Pratt Parser 优化解析 代码简洁, 可读性高, 扩展性好 插入排序/堆排序 O(n)线性扫描 直接用字符串替换 用字符串正则查找tenary并替换 递归处理?: 和括号, =, 逗号的关系 处理 括号, 逗号 都依赖栈来正确处理嵌套结构 写parser处理...","categories": ["code","algorithm"],
+        "excerpt":"三元运算符(ternary)解析 目标是将 DSL 中的三元运算符 ... ? ... : ... 转换为 if_else(..., ..., ...) 的函数调用形式。 初衷是用正则替换把对应DSL的operator转换成python语言, 然后用python的ast 直接解析. 但是三元运算符的处理比较复杂, Python 中并没有直接对应的语法结构, 导致没法简单的替换. 可以把字符串token解析成AST 的构建过程理解成“对运算符按优先级排序”的过程. 方法 优缺点 类比排序思路 平均复杂度 用正则表达式替换三元运算符 思路naive, 但是可读性差，难以维护   O(n logn)+kO(n)全字符串扫描+递归 设计语法树解析器（Parser） 灵活性高, 但实现较复杂 选择排序 O(n logn)近似二分递归 结合 Pratt Parser 优化解析 代码简洁, 可读性高, 扩展性好 插入排序/堆排序 O(n)线性扫描 方案一：直接用字符串替换 用字符串正则查找tenary并替换 递归处理?: 和括号, =, 逗号的关系...","categories": ["code","algorithm"],
         "tags": ["content","ast","string","regularization","parser","pratt","ternary","python","dsl"],
         "url": "https://roshameow.github.io//personal_homepage/code/algorithm/string/"
       },{
@@ -649,13 +649,13 @@ var store = [{
         "tags": ["content"],
         "url": "https://roshameow.github.io//personal_homepage/code/tag-code/"
       },{
-        "title": "消毒液",
-        "excerpt":"","categories": ["daily"],
-        "tags": ["content"],
+        "title": "常用消毒液成分分类与安全性调研",
+        "excerpt":"核心成分与使用全图谱 成分类别 代表成分 优缺点对比 洗衣兼容 使用场景 宠物安全 氧化剂类 次氯酸钠 (84) 优：价格极低、杀菌广谱且强力。缺：腐蚀性强、漂白织物、刺鼻。 严禁混合破坏去渍酶；漂白损伤彩色织物 重污染消杀：卫生间/厨房排水口除味、瓷砖缝隙去霉、病毒暴发期（如诺如）的硬表面封锁。 ❌   过硫酸氢钾 (卫可) 优：宠物医院标准，针对猫瘟有效。缺：粉末需现配，价格略高。 不建议有机物（洗衣液）会显著降低效能 传染病深度消杀：宠物医院级环境灭毒、传染病家庭康复后的全屋大清扫（广谱性极强）。 ✅   次氯酸(HClO) 优：杀菌力是84的数十倍，无毒害。缺：极不稳定，怕光怕热易失效。 严禁混合遇碱性洗涤剂或污水有机物瞬间失效 安全免洗场景：餐具/水果/玩具消毒、母婴环境空气雾化、洗后衣物局部汗味清除（随手喷）。 ✅ **酚类 ** PCMX (滴露经典) 优：性质稳定，对织物损伤较小。缺：遇水变白发粘、强松木味。 不建议混合和阴离子表活拮抗，杀菌率下跌 皮肤与居家：皮肤小伤口/粉刺消毒、地板擦拭、怀疑有真菌/霉菌感染时的衣物单独浸泡。 ❌   PCMX (衣物除菌液) 优：针对洗衣优化，不发粘，性质温和。缺：杀菌谱略窄，对猫仍有毒。 ✅ 基本兼容 日常织物：贴身衣物随洗除菌、消除长期穿着产生的尴尬异味、被褥除螨抑菌。 ❌ 季铵盐和柔顺剂的季铵盐不一样, 分子链较短 苯扎氯铵 (BAC)(威露士/净安) 优：无色无味、无腐蚀性、低刺激。也有柠檬/薰衣草味版缺：长期用易生耐药性，效率较慢。 绝对禁忌阳离子类，与阴离子洗衣粉相遇会结块失效 温和全能场景：高档彩色织物、内衣、精密电子产品外壳、皮革家具、公共场合手部高频接触位（无感消杀）。...","categories": ["daily"],
+        "tags": ["content","disinfectant","日用品","宠物安全"],
         "url": "https://roshameow.github.io//personal_homepage/daily/disinfectant/"
       },{
         "title": "组合交易 (二)",
-        "excerpt":"单个alpha的性能 维度 指标名称 描述 计算公式 特点 表现和未来一天returns的关系 daily pnl   $S_t\\cdot R_{t+1}$ 最直接   Quintile Long–Short Strategy（五分位多空策略）   $R_{Q5}-R_{Q1}$ 常用投资研究方法   Information Coefficient(IC) 计算alpha值和未来一天returns的Pearson相关性 \\(IC_t = \\rho(S_t,R_{t+1}) = \\frac{\\sum_{i=1}^N (S_{i,t} - \\bar{S}_t)(R_{i,t+1} - \\bar{R}_{t+1})}{\\sqrt{\\sum_{i=1}^N (S_{i,t} - \\bar{S}_t)^2 \\sum_{i=1}^N (R_{i,t+1} - \\bar{R}_{t+1})^2}}\\) 容易受到极端值影响   Fama-MacBeth Regression 计算alpha值对未来returns的beta系数 Linear Regression Model:$R_{i,t+1} =...","categories": ["finance"],
+        "excerpt":"单个alpha的性能 维度 指标名称 描述 计算公式 特点 表现和未来一天returns的关系 daily pnl   $S_t\\cdot R_{t+1}=\\sum_i S_{i,t}R_{i,t+1}$ 最直接   Quintile Long–Short Strategy（五分位多空策略）   $R_{Q5}-R_{Q1}$ 常用投资研究方法   Information Coefficient(IC) 计算alpha值和未来一天returns的Pearson相关性 \\(IC_t = \\rho(S_t,R_{t+1}) = \\frac{\\sum_{i=1}^N (S_{i,t} - \\bar{S}_t)(R_{i,t+1} - \\bar{R}_{t+1})}{\\sqrt{\\sum_{i=1}^N (S_{i,t} - \\bar{S}_t)^2 \\sum_{i=1}^N (R_{i,t+1} - \\bar{R}_{t+1})^2}}\\) 容易受到极端值影响   Fama-MacBeth Regression 计算alpha值对未来returns的beta系数 Linear Regression Model:$R_{i,t+1}...","categories": ["finance"],
         "tags": ["content"],
         "url": "https://roshameow.github.io//personal_homepage/finance/alpha13/"
       },{
@@ -663,4 +663,84 @@ var store = [{
         "excerpt":"通过学习这个 优秀的案例 学了一些我没做到, 不过不知道有没有用的技巧. 应该有点用吧? 更专业的github   README          隐私声明： 明确告知用户“纯前端运行，图片数据不离机”。这是这个产品最大的卖点之一。如果你的算法能在本地跑，一定要大写加粗告诉用户。      开源/原理透明：在页面底部放上原理解释和原理的文章链接      安装方法       免责声明：Disclaimer（仅供学习交流，后果自负)        Demo GIF  LICENSE  Shields.io badges  About 区域填满降低使用门槛   纯前端实现(不登陆, 不注册, 不配置)  Web版          极简的功能        插件化          通用Userscript      试验 尝试小范围的宣传自己的开源项目, 发现很困难   设计了很多开放性接口, 但是没人会使用, 没有配套文档. 别人并不会看readme. 想要的是安装后就能直接使用的app  不够通用.  每个界面, 每个按钮都要有用.","categories": ["tool"],
         "tags": ["content"],
         "url": "https://roshameow.github.io//personal_homepage/tool/feature2product/"
+      },{
+        "title": "抓包分析软件实际请求",
+        "excerpt":"看到request具体内容 proxyman node.js用Chrome的DevTools打断点查看变量 ","categories": ["tool"],
+        "tags": ["content"],
+        "url": "https://roshameow.github.io//personal_homepage/tool/proxy/"
+      },{
+        "title": "量子计算",
+        "excerpt":"Born Rule Qubit DiVincenzo标准列出了一个物理系统要成为合适的量子比特（qubit）必须满足的五项具体要求： 物理上构建量子比特的能力 (The ability to construct a qubit, physically)： 系统必须具备可扩展性（Scalability），且量子比特必须是被良好表征的（well-characterised qubit）,。 初始化量子态的能力 (The ability to initialize a quantum state)： 这通常指的是能够进行“简单的初始化”（Simple initialization），即能够将系统复位到一个已知的基准状态,,。 长相干时间 (Long coherence times)： 具体来说，相干时间必须远长于量子门操作所需的时间（Coherence time much longer than gate operation time），以保证在信息丢失前能完成足够的计算操作,,。 通用的量子门集合 (A universal set of quantum gates)： 这包括能够执行单量子比特门（Single-qubit gates）和双量子比特门（Two-qubit gates），它们的组合可以实现任意的量子计算,。 进行测量的能力 (The ability to...","categories": ["algorithm"],
+        "tags": ["content"],
+        "url": "https://roshameow.github.io//personal_homepage/algorithm/quantum-computing/"
+      },{
+        "title": "马年主题",
+        "excerpt":"尝试一些马年的元素 最开始是想直接用blender渲染水墨风的马来着, 可是最近一直没有时间精力去学习, 想用AI偷懒 AI尝试 代码: 但是想不出什么方法让代“码”可视化 也许是这种蚀刻风格: Cyberpunk Line Art, Tech-Minimalism, Geometric Abstraction, Vector Futurism 结合彩窗/屏风: 参考来源 小红书链接 直接用prompt, 在gemini生成视频: 生成的是古典教堂玫瑰窗风格, 每个玻璃有具体造型的马, 马是5毛钱特效的粒子光效 尝试用gpt规定玻璃碎裂到成为马的整个动态 碎片漂浮, 重组 / 变成光流 / 打开错位 / 浮雕-&gt; 提示的动效都非常老套走捷径 尝试找一些玻璃装置的灵感 视角转换/阴影/折叠展开 总之gpt一直绕开我提议的碎裂场景 装置 直接让gemini生成玻璃装置: 只是一个平平无奇的玻璃马 扑克牌: 感觉扑克牌是平面的应该简单很多 给gemini参考图(《重返未来1999》的战斗技能卡面) 生成带马的图片, 经过几次文字迭代来纠正它的理解 多次微调生成黑桃系列AJQK. 保留中间步骤生成的好的元素. 统一风格 生成其他花色. 越往后生成的马越偏离我原来的风格,...","categories": ["design"],
+        "tags": ["content"],
+        "url": "https://roshameow.github.io//personal_homepage/design/horse/"
+      },{
+        "title": "用 Agent 对黑盒公式进行逆向工程",
+        "excerpt":"面对一组只有输入输出的多维黑盒数据，如果我们确信其背后存在一个由人类专家设计的简洁内部公式，应该如何将其精准还原？ 本文以破解 IS Score 评分为例，完整记录了我们如何借助 Agent 的力量，从海量数据统计起步，最终不仅实现了 100% 预测全中，还成功提取出了极具“物理美感”的底层解析式。 一、 核心方法论 (General Methodology) 在面对一个多维黑盒时，直接丢给神经网络或多项式拟合往往只能得到毫无意义的过拟合参数。通用且有效的逆向工程步骤如下： 探索性拟合 (Exploratory Fitting) 早期拟合的核心是“在多不在精”。应尽可能尝试多种影响因素作为分量，统计它们与目标值的相关性，尝试基础的线性拟合、Log 变换、Power Law (幂律) 等模型，以此圈定大致的解空间。 核心迭代循环 (The Core Iterative Loop) 在初步探索后，逆向工程绝不是一条直线，而是一个在以下几个步骤中不断循环、螺旋上升逼近真相的过程： 分离与控制变量 (Isolate &amp; Control Components) 随着实验的推进，会不断有变量的作用被部分甚至完全确定。一旦验证了某一部分结构是完全正确的，就应该尝试锁定其参数，将其作为常数项提出来进行降维。固定已知、剥离相对确定的变量后，我们才能对剩余的未知维度进行更高精度的探索。 残差与异常值分析 (Outlier Analysis) 在每剥离或固定一层规律后，必须将分析重心转向此时残差极大的 Outlier（异常点）。 将异常点的关键标签拆解出来，在原图上进行标记和验证。这一步的根本目的是定位并验证产生异常的底层原因，从而寻找目前拟合公式存在的漏洞。 切片与分段 (Slicing &amp; Segmentation) 观察数据分布，寻找分界点。如果发现不同数据区间表现出截然不同的斜率或规律，就应该将其拆开分段处理（而不是强求用一个复杂的连续方程拟合全部数据）。分段在实战中有两种完全不同的场景与目的： 还原真实阈值：底层业务逻辑本身就存在硬性的阈值开关，分段是为了真实还原这些逻辑。 降维控制变量：纯粹作为把复杂问题拆解的战术手段。即使我们明知整体可能是一个连续函数，但在探索中途还不知道某些变量的精确形态时，可以通过窄区间的分段切片来锁定这些未知维度的影响，从而为解析已知维度创造干净的环境。此外，强烈建议在数据中寻找那些“天然控制变量”的数据切片（例如某个维度恰好为 0），这些极端的切片能直接消除该变量带来的不确定性，提供极其纯粹、精准的信息，极大加速拟合与推导过程。 多项式探路与形态猜测 (Polynomial...","categories": ["general"],
+        "tags": ["content"],
+        "url": "https://roshameow.github.io//personal_homepage/general/alpha14/"
+      },{
+        "title": "处理新闻数据",
+        "excerpt":"新闻数据处理：从非结构化文本到因子矩阵 在处理金融新闻数据（如 WorldQuant Brain 竞赛中的 Alpha 挖掘）时，核心挑战在于如何将碎片化的新闻 Chunks（段落）转化为具有预测能力的“日期-实体”评分矩阵。 一、 标准处理管线 (Standard Pipeline) 主题检索 (Retrieval)：根据预设的主题（Themes）进行数据拉取。 数据映射与矩阵合成 (Mapping &amp; Synthesis)： 核心数据结构：API 返回的每一条原始数据均为一个 Chunk，包含核心字段：Content（段落内容）, Relevance（相关性评分）, Sentiment（情绪评分）, Entity_id（关联实体）, Date（发布日期）。 物理映射：将每个 Chunk 的评分根据其 Date 和 Entity_id 直接填充到对应的矩阵坐标中，形成横轴为 Entity、纵轴为 Date 的原始特征矩阵。 数据校验 (Validation)：在进入 Alpha 研究前，对矩阵的覆盖率（Coverage）、空值率（NaN Ratio）以及极端值分布进行工程化检查。二、 关键优化策略 (Optimization Strategies) 1. 搜索效率：Smart-batching 痛点：全量检索容易触发 API 单次 1,000 Chunks...","categories": ["data","finance"],
+        "tags": ["content","news","data_structure","data","RAG","llm","pipeline","sentiment","search"],
+        "url": "https://roshameow.github.io//personal_homepage/data/finance/alpha15/"
+      },{
+        "title": "用大模型蒸馏人的原理与实践",
+        "excerpt":"资料收集 -&gt; 按主题检索 -&gt; 填入固定格式, 生成skill 具体实现步骤 第一步：资料来源图谱（Source Data Map） 资料分类 具体来源 获取手段 保存方式 公众公开资料 著作、博客、访谈、YouTube、X/微博、论文 RSS、Web Agent、YT 转文字 按信源属性 (如 01-writings.md) 职场数字资产 飞书/钉钉文档、周报、Slack 消息、Email 企业 API、Bot、邮件导出 按功能分层 (如 work.md) 私人即时通讯 微信、iMessage、WhatsApp、Telegram WeChatMsg、SQLite 导出 按日期/快照 (如 snapshot.json) 个人生活记忆 备忘录、手机相册 (OCR)、日记、生平年表 手动导入、手机备份提取 按语义 Slug (如 memory.md) 主观观察补丁 熟人口述、你的评价、性格标签 (INTJ) 人类主观录入 动态修正层...","categories": ["general"],
+        "tags": ["AI","llm","蒸馏"],
+        "url": "https://roshameow.github.io//personal_homepage/general/person-skill/"
+      },{
+        "title": "动态调整搜索优先级：从 PROSAC 到 Alpha 实战演进",
+        "excerpt":"在量化回测中，Alpha 搜索不仅仅是一个算力问题，更是一个资源分配问题。传统的 RANSAC（随机采样一致性）在面对海量 Datafields 时效率极低，而 PROSAC 提供了一种渐进式（Progressive）的思考框架。 1. Alpha 搜索的三个核心难点 在尝试自动化挖掘 Alpha 时，我们面临的挑战远比几何模型拟合复杂： 搜索范围极广 (Dimensionality Curse)：Datafields 数量庞大，加上算子组合、参数空间，理论搜索空间呈指数级爆炸。 有效 Alpha 极稀疏 (Sparse Signals)：在数亿种组合中，真正能通过过拟合测试、具有预测能力的信号寥寥无几。(尾部识别) 协同效应与相关性 (Synergy &amp; Correlation)：单一字段的优劣并不代表全部。Alpha 的最终效果往往取决于字段间的组合正交性，而单纯的线性排序无法捕捉这种“1+1&gt;2”的化学反应。2. PROSAC 的策略关键：$T_n$ 的本质 PROSAC 引入 $T_n$（增长函数）的核心目的不是为了“等待”，而是为了在有限预算内建立先验知识与随机探索的桥梁。 \\[T_n = T_{max} \\frac{\\binom{n}{m}}{\\binom{N}{m}}\\]其关键点在于： 模拟进度：$T_n$ 模拟了如果使用完全随机搜索，此时你应该触达的“高质量子集”深度。 确定性覆盖：它保证了即使先验排序完全错误，算法在 $T_{max}$ 结束时也能退化为全空间扫描，不留盲区。 非线性偏置：对于组合搜索 ($m&gt;1$)，$T_n$ 强制算法在早期极度聚焦于高潜力字段的深度挖掘。3. Progressive 策略在 Alpha 领域真的有意义吗？ 直白地说，死板的“线性披露”在...","categories": ["algorithm"],
+        "tags": ["Alpha","Search","PROSAC","Optimization"],
+        "url": "https://roshameow.github.io//personal_homepage/algorithm/alpha16/"
+      },{
+        "title": "时序上的参数优化和神经网络",
+        "excerpt":"问题: 对给出的固定字段和feature, 怎么连续的调参 特征: pv原始数据 已知有信号的现成特征 loss: -sharpe 可以用的样本数很少. 66为周期的话, 5年的样本数只有 5x512/66=17 个 样本少其实就是约束少, 容易过拟合的意思 模型容量 把mu和sigma拆开成线性的 activation demean, L1 优化 SGD普通 Adam: 解决各个特征大小不均衡的问题 方案一：横截面分组算 Loss（Cross-Sectional Sub-Portfolio Sharpe） 这是量化因子投资中解决 Sharpe 样本数不足最经典的办法。 • 具体做法：不要把 3000 只股票聚合成一个全市场组合去算 Sharpe。而是将这 3000 只股票在横截面上切分成 K 个互不重叠的子组合（例如：按行业分成 11 个板块组合，或者随机均匀分成 10个子组合，每个组合约 300 只股票）。• Loss 函数改写：对每一个 66 天的 Batch，分别计算这...","categories": ["algorithm"],
+        "tags": ["content"],
+        "url": "https://roshameow.github.io//personal_homepage/algorithm/alpha17/"
+      },{
+        "title": "LLM接口协议梳理",
+        "excerpt":"梳理一下主流 LLM 接口的请求/响应结构、调用模式，以及各协议的差异，方便选型和对接时快速对照。 flowchart LRsubgraph req[\"请求侧 — 客户端发什么\"]direction TBR1[\"输入 prompt / input / messages\"]R2[\"历史 messages[] 或 state ID\"]R3[\"system / instructions\"]R4[\"工具声明 tools[]\"]R5[\"stream / 其他配置\"]R1 --- R2 --- R3 --- R4 --- R5end subgraph model[\"模型执行\"]direction TBM1[\"组装上下文\"]M2[\"推理\"]M3[\"决定输出\"]M1 --- M2 --- M3end subgraph resp[\"响应侧 — 模型返回什么\"]direction TBS1[\"文本输出\"]S2[\"工具调用 tool call\"]S3[\"停止原因 stop / finish reason\"]S4[\"usage token...","categories": ["tool"],
+        "tags": ["content","llm"],
+        "url": "https://roshameow.github.io//personal_homepage/tool/llm-protocal/"
+      },{
+        "title": "本地模型尝试",
+        "excerpt":"记录一下在 Windows 环境下配置 llama.cpp 的全过程，包括编译、启动参数调优、网络排查以及接入开发工具链的细节。 1. 编译与环境 编译踩坑记录 OpenSSL 找不到: 产生的 Warning 可以忽略。本地和局域网连接不需要 HTTPS。 WebUI 找不到: 产生的 Error 可以通过禁用 WebUI 解决。编译步骤 cd ~/Code/External/llama.cpprm -rf buildcmake -B build -DGGML_CUDA=ON -DLLAMA_BUILD_WEBUI=OFFcmake --build build -j开启服务 ./build/bin/llama-server -m xxx.gguf --host 0.0.0.0 --port 80802. 模型选择与下载 我的windows环境是 RTX 4080 (16GB 显存)。 实测模型对比 Qwen3.6-27B (IQ4_XS): 可以用, 逻辑遵循和工具调用上都正常。...","categories": ["tool"],
+        "tags": ["content","llm","qwen","hugging_face","llama","claude_code","pi"],
+        "url": "https://roshameow.github.io//personal_homepage/tool/llama/"
+      },{
+        "title": "mac电脑的奇怪问题",
+        "excerpt":"交换内存 遇到系统卡顿, 电脑发热, 很大可能是系统疯狂读写swap内存 检查 Swap 与物理内存状态 # 查看 Swap 使用量 和 内存压缩/物理内存情况sysctl vm.swapusage &amp;&amp; top -l 1 | grep -E \"^PhysMem|^VM\"输出示例解析： 重点关注swap和compressor vm.swapusage: total = 18432.00M used = 16904.25M free = 1527.75M (encrypted)PhysMem: 31G used (3493M wired, 14G compressor), 76M unused.VM: 329T vsize, 5684M framework vsize, 33786912(0) swapins, 39293032(0)...","categories": ["daily"],
+        "tags": ["content"],
+        "url": "https://roshameow.github.io//personal_homepage/daily/mac/"
+      },{
+        "title": "听课app开发调研",
+        "excerpt":"本报告致力于提供全球视频提取课件、自动识别、场景检测领域的全量级深度分析。涵盖了从顶层商业平台到基层开源算法的每一个技术细节，旨在为 LessonCap 的长远发展提供无可辩驳的决策依据。 1. 全球主流“视频转课件”工具深度对比矩阵 (无损版) 产品名称 定位与目标群体 翻页检测逻辑 / 核心算法 OCR 与 搜索精度 核心优势 (Pro) 核心劣势 (Con) 2025 AI 进化趋势 价格 / 链接 Panopto 顶级学术机构、企业知识库商业封闭视频软件 元数据流同步：通过客户端插件直接监控 Office 进程的翻页中断信号。 全文本倒排索引：不仅扫描 OCR，还结合 PPT 原始文本轨道。搜索词可精确到 0.1 秒。 1. 学术搜索之王：支持跨数万视频全局搜索。 2. Access AI：自动生成带层级的逻辑章节。 1. 围墙花园：必须使用配套录制器，不支持第三方视频。 2. 私有云部署：门槛极高。 Generative Summaries：自动将 1 小时视频生成 500 字精简摘要。...","categories": ["tool"],
+        "tags": ["content"],
+        "url": "https://roshameow.github.io//personal_homepage/tool/lesson/"
+      },{
+        "title": "用AI agent复现我的博客风格",
+        "excerpt":"让 agent 代写博客,卡住我的不是内容,是风格。反复改了几版都不对味,最后把博客库全量统计了一遍,整理出可复用的风格特征,并用 subagent 迭代验证到收敛。这篇分四部分:风格素材库(可直接喂给 AI)、采样过程与迭代、写《AI 做微信表情包》的实战、subagent 迭代实践。 1. 我的写作风格(素材库) 以下特征基于全库 144 篇、53 万字的统计,跨主题稳定。本素材库是完整的风格约束,不依赖任何具体博客内容;如需感知风格,可另读样例博客(仅学写法,样例的具体内容禁止进入新博客)。 结构:数字分节。正文用 ## 1. 素材挖掘、### 1.1 微信头像缓存在哪 这样的层级组织,每个小节一个独立的技术点。不用「一、二、三」,不用章节标题散文式引言。 信息密度高,每节一个具体技术点,展开充分。一个小节讲清一个坑:现象是什么 → 根因是什么 → 怎么解决,但要把坑讲透——现象、根因、解决、随手例子、相关数据都展开,一个小节至少是一个完整段落(3 句以上)。禁止一句话小节:不要写”### xxx”标题下只有一句正文;每个小节必须有实质展开,全文各小节内容量大致均衡。不要展开讲解背景,不要”总的来说”。 硬核记录,不写散文。技术细节全部落具体:命令、路径、报错原文、参数、代码块、gist 链接直接贴。sticker 里写”微信缓存路径是 ~/Library/Containers/com.tencent.xinWeChat/.../2.0b4.0.9/“,写”canvas.convert('RGB') 会把透明像素变成纯黑(0,0,0)”,都是落地的记录。 表格用于版本/参数对比。多轮迭代、多参数比较时用表格,每行一个版本/参数,列是维度。sticker 的”文字样式迭代 6 版”表格就是模板。 关键结论加粗。每节最重要的一句用 **加粗**,比如 sticker 里的”63 张去重后只剩 27 张不同的照片”、”微信把同一张图以不同文件名缓存了多次”。 记录驱动,不是讲解驱动。写”我做了什么、发现了什么、怀疑什么”,不是写给读者看的教程。开头一句话进主题,sticker 开头是”目标:把历史微信头像(都是我家猫的照片)做成一套微信表情包”。 开场是”目标 → 流程 N...","categories": ["daily"],
+        "tags": ["content"],
+        "url": "https://roshameow.github.io//personal_homepage/daily/agent-blog-writing/"
+      },{
+        "title": "用AI做了一套微信表情包:从微信头像缓存到提交上架",
+        "excerpt":"目标:把历史微信头像(都是我家猫的照片)做成一套微信表情包,并在微信表情开放平台提交上架。 整体流程分四步:素材挖掘(微信本地缓存 + agy 识图)→ 文案创作(Gemini 生成 + 人工把关)→ 表情制作(PIL 生成 240×240 透明圆角图)→ 平台提交(Playwright 自动化)。最终「玳瑁烟大王」17 张静态表情提交成功,进入审核。 [!timeline] 整体流程 10:00 · 定位微信头像缓存,140+7839 张待筛选 10:20 · 发现 agy 可识图,prompt 写图片路径即可 10:40 · 蒙太奇批量识别,140 张 → 70 张猫 11:00 · 正样本匹配过滤,确认 63 张是我的猫 11:10 · 感知哈希去重,仅 27 张不同照片 11:30 · 文案 v1 直译,无网感...","categories": ["daily"],
+        "tags": ["微信","表情包","AI","Gemini","Playwright"],
+        "url": "https://roshameow.github.io//personal_homepage/daily/sticker/"
+      },{
+        "title": "Pi Desktop：从会话浏览器到跨机器工作台",
+        "excerpt":"我最初只是想给 pi coding agent 补一个桌面会话浏览器：按项目查看 JSONL、展开工具调用，需要时从原会话继续聊。 后来它逐渐变成了一个工作台：能把主会话和 subagent 放回同一棵树里，知道每个 pi 正运行在终端还是 RMUX，能 attach、detach 和结束后台进程，还能浏览远程机器，甚至把本机会话转移过去继续运行。 项目源码：pi-session-viewer。仓库里也有不读取本机数据的合成会话 demo，方便先看界面。 1. 现在它解决什么问题 我同时跑多个项目和 subagent 后，终端本身不再是一个好索引： 会话文件在 ~/.pi/agent/sessions/，终端标签却散落在不同窗口； 主会话、subagent 日志和 mirror 文件彼此有关，但目录结构表达不出来； 关掉标签页不等于任务结束，RMUX 里的 pi 可能仍在后台运行； 同一个会话如果被两个 pi 同时续写，JSONL 有损坏风险； 长任务转到另一台 Mac 后，本机又看不到它的进度。Pi Desktop 因此围绕四件事组织界面： 浏览：按工作目录列出会话，渲染消息、thinking、工具调用、输出和模型信息； 关联：把 durable subagent 挂回父会话，并区分 running、sleeping、interrupted、finished； 控制：继续会话，打开或附着 TUI，detach，关闭 RMUX session；...","categories": ["tool"],
+        "tags": ["content","jekyll","pi","tauri","rmux","macOS"],
+        "url": "https://roshameow.github.io//personal_homepage/tool/pi-desktop/"
+      },{
+        "title": "Pi Desktop的开发难点: “会话的状态”",
+        "excerpt":"Pi Desktop 里最难修的功能，是侧边栏那枚很小的状态 chip：这个会话现在的运行状态？ 它可能在普通终端、RMUX pane、远程主机，也可能进程已经退出，只剩 remain-on-exit 保存的死画面。更麻烦的是，显示错位置不会立即报错；界面仍然完整，只是把操作发给了错误的会话。这类“看起来合理”的错误最危险。 下面讲下原理和迭代过程. 1. 会话和pid绑定(who) 为什么会话和pid绑定是个难题?? 根本原因在于生命周期与操作系统抽象的深层错配： 生命周期的断层： Session JSONL（业务实体）：具有长持久性。它记录了完整的思维链与执行树，寿命跨越数天、数月，支持反复暂停与 resume。 PID（内核资源）：具有极短的易逝性与复用性。它只是内核进程表里循环利用的一个整数标签。进程退出后，内核下一秒就可能把相同的 PID 赋予一个无关的临时脚本。 关系基数是时序上的 1 对多： 同一个session，昨天是 PID 1024 在跑，今天是 PID 5088 在跑； 用户在两个终端同时打开同一会话的并发多对一。 进程执行 /new，PID 没变，但它脱钩了旧 session，指向了新 session。 追踪维度 操作系统理论能力 (Textbook) 真实 CLI 场景失效细节 (Physical Failure) 早期妥协尝试及致命漏洞 (Early Flaws) 正向：进程参数PID → argv...","categories": ["tool"],
+        "tags": ["pi","tauri","rmux","macOS","debugging"],
+        "url": "https://roshameow.github.io//personal_homepage/tool/pi-runtime-attribution/"
       }]

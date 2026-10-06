@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<!--
+    So Simple Jekyll Theme 3.2.0
+    Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+    Free for personal and commercial use under the MIT license
+    https://github.com/mmistakes/so-simple-theme/blob/master/LICENSE
+-->
+<html lang="en-US" class="no-js">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  
+
+  
+  
+  <!-- Begin Jekyll SEO tag v2.9.1 -->
+<title>用AI agent复现我的博客风格 | Liu, Wen’s Home Page</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="用AI agent复现我的博客风格" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="让 agent 代写博客,卡住我的不是内容,是风格。反复改了几版都不对味,最后把博客库全量统计了一遍,整理出可复用的风格特征,并用 subagent 迭代验证到收敛。这篇分四部分:风格素材库(可直接喂给 AI)、采样过程与迭代、写《AI 做微信表情包》的实战、subagent 迭代实践。" />
+<meta name="twitter:description" property="og:description" content="让 agent 代写博客,卡住我的不是内容,是风格。反复改了几版都不对味,最后把博客库全量统计了一遍,整理出可复用的风格特征,并用 subagent 迭代验证到收敛。这篇分四部分:风格素材库(可直接喂给 AI)、采样过程与迭代、写《AI 做微信表情包》的实战、subagent 迭代实践。" />
+<link rel="canonical" href="https://roshameow.github.io//personal_homepage/daily/agent-blog-writing/" />
+<meta property="og:url" content="https://roshameow.github.io//personal_homepage/daily/agent-blog-writing/" />
+<meta property="og:site_name" content="Liu, Wen’s Home Page" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2026-08-09T00:00:00+00:00" />
+<meta property="article:modified_time" content="2026-08-11T01:58:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="用AI agent复现我的博客风格" />
+<meta name="twitter:site" content="@" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2026-08-11T01:58:00+00:00","datePublished":"2026-08-09T00:00:00+00:00","description":"让 agent 代写博客,卡住我的不是内容,是风格。反复改了几版都不对味,最后把博客库全量统计了一遍,整理出可复用的风格特征,并用 subagent 迭代验证到收敛。这篇分四部分:风格素材库(可直接喂给 AI)、采样过程与迭代、写《AI 做微信表情包》的实战、subagent 迭代实践。","headline":"用AI agent复现我的博客风格","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/daily/agent-blog-writing/"},"url":"https://roshameow.github.io//personal_homepage/daily/agent-blog-writing/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  
+
+  <script>
+    /* Cut the mustard */
+    if ('querySelector' in document && 'addEventListener' in window) {
+      document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + 'js';
+    }
+  </script>
+
+  <link rel="stylesheet" href="/personal_homepage/assets/css/main.css">
+  <link rel="stylesheet" href="/personal_homepage/assets/css/skins/default.css">
+  
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,700,700i|Lora:400,400i,700,700i">
+  <link rel="alternate" type="application/atom+xml" title="Liu, Wen&#39;s Home Page" href="/personal_homepage/atom.xml">
+<!-- start custom head snippets -->
+
+<!-- insert favicons. use http://realfavicongenerator.net/ -->
+<link rel="shortcut icon" type="image/x-icon" href="/personal_homepage/docs/images/logo.ico">
+<!-- end custom head snippets -->
+
+</head>
+
+  <body class="layout--post  用ai-agent复现我的博客风格">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#primary-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+  <div class="navigation-wrapper">
+    <a href="#menu-toggle" id="menu-toggle">Menu</a>
+    <nav id="primary-nav" class="site-nav animated drop">
+      <ul><li><a href="/personal_homepage/">Home</a></li><li><a href="/personal_homepage/posts/">Posts</a></li><li><a href="/personal_homepage/categories/">Categories</a></li><li><a href="/personal_homepage/tags/">Tags</a></li><li><a href="/personal_homepage/family/">Family</a></li><li><a href="/personal_homepage/search/">Search</a></li></ul>
+    </nav>
+  </div><!-- /.navigation-wrapper -->
+
+
+    <header class="masthead">
+  <div class="wrap">
+    
+    
+    
+      
+        <div class="site-title animated fadeIn"><a href="/personal_homepage/">Liu, Wen's Home Page</a></div>
+      
+      <p class="site-description animated fadeIn" itemprop="description">Work, Experiments and Ideas.</p>
+    
+  </div>
+</header><!-- /.masthead -->
+
+
+    <main id="main" class="main-content" aria-label="Content">
+  <article class="h-entry">
+    
+
+    <div class="page-wrapper">
+      <header class="page-header">
+        
+        
+        <h1 id="page-title" class="page-title p-name">用AI agent复现我的博客风格
+</h1>
+        
+      </header>
+
+      <div class="page-sidebar">
+        <div class="page-author h-card p-author"><img src="/personal_homepage/docs/images/logo.svg" class="author-avatar u-photo" alt=""><div class="author-info">
+
+<span class="read-time">1 min read</span>
+
+    <time class="page-date dt-published" datetime="2026-08-09T00:00:00+00:00"><a class="u-url" href="">August 9, 2026</a>
+</time>
+
+  </div>
+</div>
+
+        
+  <h3 class="page-taxonomies-title">Categories</h3>
+  
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a class="p-category" href="/personal_homepage/categories/#daily" title="Pages filed under daily">daily</a></li>
+  </ul>
+
+
+        
+  <h3 class="page-taxonomies-title">Tags</h3>
+  
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a href="/personal_homepage/tags/#content" title="Pages tagged content" rel="tag">content</a></li>
+  </ul>
+
+
+        <!-- {::options parse_block_html="true" /} -->
+<div id="entry-table-of-contents" class="toc-wrapper">
+  <h2 id="toc-toggle">
+    Table of Contents <i
+      class="toc-toggle-icon fas fa-chevron-down"></i>
+  </h2>
+  <!-- 1. toc
+{:toc} -->
+  <!-- <div id="markdown-toc"> -->
+
+    <ul class="inline_toc" id="my_toc"><li><a href="#1-我的写作风格素材库">1. 我的写作风格(素材库)</a></li><li><a href="#2-采样过程与迭代">2. 采样过程与迭代</a><ul><li><a href="#21-第一次采样4-篇样本风格判断全错">2.1 第一次采样:4 篇样本,风格判断全错</a></li><li><a href="#22-全库重统计144-篇53-万字">2.2 全库重统计:144 篇、53 万字</a></li><li><a href="#23-定位迭代三次收敛到个人实验记录">2.3 定位迭代:三次收敛到”个人实验记录”</a></li></ul></li><li><a href="#3-写ai-做微信表情包博客的实战">3. 写《AI 做微信表情包》博客的实战</a><ul><li><a href="#31-初稿是公众号味直接重写">3.1 初稿是公众号味,直接重写</a></li><li><a href="#32-mermaid-timeline-解析失败改用-callout">3.2 Mermaid timeline 解析失败,改用 callout</a></li><li><a href="#33-视角替换agent-把我写成用户">3.3 视角替换:agent 把我写成”用户”</a></li><li><a href="#34-三轮迭代才收敛">3.4 三轮迭代才收敛</a></li></ul></li><li><a href="#4-subagent-迭代实践">4. subagent 迭代实践</a><ul><li><a href="#41-第一次验证输出是散文信息密度低">4.1 第一次验证:输出是散文,信息密度低</a></li><li><a href="#42-第二次验证小节太碎一句话一个小节">4.2 第二次验证:小节太碎,一句话一个小节</a></li><li><a href="#43-第三次验证收敛">4.3 第三次验证:收敛</a></li><li><a href="#44-结论">4.4 结论</a></li></ul></li></ul>
+  <!-- </div> -->
+
+</div>
+<!-- {::options parse_block_html="false" /} -->
+        
+
+<div id="entry-table-of-contents" class="toc-wrapper">
+    <h2 id="toc-toggle" class="no_toc">
+        Related Posts <i class="toc-toggle-icon fas fa-chevron-down"></i>
+    </h2>
+    <!-- <div id="markdown-toc"> -->
+    <ul>
+        
+        <li><a href="/personal_homepage/tool/pi-runtime-attribution/">Pi Desktop的开发难点: “会话的状态”</a></li>
+        
+        <li><a href="/personal_homepage/tool/pi-desktop/">Pi Desktop：从会话浏览器到跨机器工作台</a></li>
+        
+        <li><a href="/personal_homepage/daily/sticker/">用AI做了一套微信表情包:从微信头像缓存到提交上架</a></li>
+        
+        <li><a href="/personal_homepage/tool/lesson/">听课app开发调研</a></li>
+        
+        <li><a href="/personal_homepage/daily/mac/">mac电脑的奇怪问题</a></li>
+        
+    </ul>
+    <!-- </div> -->
+
+</div>
+
+
+
+
+
+      </div>
+
+      <div class="page-content">
+        <div class="e-content">
+          <p>让 agent 代写博客,卡住我的不是内容,是风格。反复改了几版都不对味,最后把博客库全量统计了一遍,整理出可复用的风格特征,并用 subagent 迭代验证到收敛。这篇分四部分:风格素材库(可直接喂给 AI)、采样过程与迭代、写《AI 做微信表情包》的实战、subagent 迭代实践。</p>
+
+<h2 id="1-我的写作风格素材库">1. 我的写作风格(素材库)</h2>
+<blockquote>
+
+  <p>以下特征基于全库 144 篇、53 万字的统计,跨主题稳定。<strong>本素材库是完整的风格约束,不依赖任何具体博客内容</strong>;如需感知风格,可另读样例博客(仅学写法,样例的具体内容禁止进入新博客)。</p>
+
+  <p><strong>结构:数字分节</strong>。正文用 <code class="language-plaintext highlighter-rouge">## 1. 素材挖掘</code>、<code class="language-plaintext highlighter-rouge">### 1.1 微信头像缓存在哪</code> 这样的层级组织,每个小节一个独立的技术点。不用「一、二、三」,不用章节标题散文式引言。</p>
+
+  <p><strong>信息密度高,每节一个具体技术点,展开充分</strong>。一个小节讲清一个坑:现象是什么 → 根因是什么 → 怎么解决,<strong>但要把坑讲透</strong>——现象、根因、解决、随手例子、相关数据都展开,一个小节至少是一个完整段落(3 句以上)。<strong>禁止一句话小节</strong>:不要写”### xxx”标题下只有一句正文;每个小节必须有实质展开,全文各小节内容量大致均衡。不要展开讲解背景,不要”总的来说”。</p>
+
+  <p><strong>硬核记录,不写散文</strong>。技术细节全部落具体:命令、路径、报错原文、参数、代码块、gist 链接直接贴。sticker 里写”微信缓存路径是 <code class="language-plaintext highlighter-rouge">~/Library/Containers/com.tencent.xinWeChat/.../2.0b4.0.9/</code>“,写”<code class="language-plaintext highlighter-rouge">canvas.convert('RGB')</code> 会把透明像素变成纯黑(0,0,0)”,都是落地的记录。</p>
+
+  <p><strong>表格用于版本/参数对比</strong>。多轮迭代、多参数比较时用表格,每行一个版本/参数,列是维度。sticker 的”文字样式迭代 6 版”表格就是模板。</p>
+
+  <p><strong>关键结论加粗</strong>。每节最重要的一句用 <code class="language-plaintext highlighter-rouge">**加粗**</code>,比如 sticker 里的”63 张去重后只剩 27 张不同的照片”、”微信把同一张图以不同文件名缓存了多次”。</p>
+
+  <p><strong>记录驱动,不是讲解驱动</strong>。写”我做了什么、发现了什么、怀疑什么”,不是写给读者看的教程。开头一句话进主题,sticker 开头是”目标:把历史微信头像(都是我家猫的照片)做成一套微信表情包”。</p>
+
+  <p><strong>开场是”目标 → 流程 N 步 → 结果”三段式,不是复盘</strong>。sticker 开场三句:① 一句”目标:把 A 做成 B 并在 C 提交上架”(一个动作链,主语明确);② 一句”整体流程分四步:A → B → C → D”(每步带括号工具/方法);③ 一句最终结果(“最终「玳瑁烟大王」17 张静态表情提交成功,进入审核”,带具体数字与状态)。<strong>禁止复盘式开场</strong>:「从 X 到 Y 连发 N 条提交,核心是把 Z 做对」「8 月 X 日到深夜」这类时间+统计总结是 AI 腔。目标句里不塞技术栈、仓库路径、GitHub 链接、冒号罗列的功能清单——这些留给正文小节,开场只给动作链。</p>
+
+  <p><strong>中英混排是肌肉记忆</strong>。专业术语全部保留英文,不翻译:agy、Playwright、RGBA、Mermaid timeline、Obsidian、callout、prompt、token。统计显示 70% 的行含英文术语。</p>
+
+  <p><strong>结论带个人评估</strong>。直接下判断:sticker 里”通用名都易重名,改用毛色特征起名,一次通过”。不用”可能”“或许”。</p>
+
+  <p><strong>疑问直接写进正文</strong>。实验中的未解疑问原样保留,是记录的一部分。</p>
+
+  <p><strong>emoji 少但会用</strong>。🤔️ 表疑问,😮💨 表无奈,用于情绪,不是装饰。一篇文一两个就够,sticker 那篇全篇没有也是可以的。</p>
+
+  <p><strong>段落正常写</strong>。句子完整、信息密度高、直接不啰嗦。碎片化短句堆砌是坏习惯,不继承;但也不要写长段落散文。<strong>每个小节至少一个完整段落(3-5 句),段内把点讲透,不用一句话充一个段落;小节之间内容量要均衡,不要有的三行、有的三句</strong>。</p>
+
+  <p><strong>视角规则</strong>:”我”是博客作者本人,AI/agent 是工具。禁止第三人称称呼(“用户”“自家猫”)。</p>
+
+  <p><strong>反例(agent 默认倾向,要禁止)</strong>:公众号式开头(“突发奇想”“过程曲折”)、复盘式开场(「从 17:32 到 23:42 连发 40 条提交,核心是把 Z 做对」这类时间+提交数统计)、完整论证链(“原因是…所以…综上所述”)、术语翻译、空洞过渡句、段落式平铺、只有描述没有具体细节。</p>
+
+  <p><strong>格式取舍</strong>:特殊格式优先零依赖方案。时间线用 Obsidian callout(<code class="language-plaintext highlighter-rouge">&gt; [!timeline]</code> + <code class="language-plaintext highlighter-rouge">**10:00** · 事件</code>),不用 Mermaid timeline(在 Obsidian 解析不稳定,时间点冒号与语法冲突)。</p>
+
+  <h2 id="2-采样过程与迭代">2. 采样过程与迭代</h2>
+</blockquote>
+
+<p>素材库不是一次写出来的,是两次采样、三次定位迭代磨出来的。第一次采样就翻车了,重做全库统计才拿到靠谱的数据。</p>
+
+<h3 id="21-第一次采样4-篇样本风格判断全错">2.1 第一次采样:4 篇样本,风格判断全错</h3>
+
+<p>第一次只挑了 4 篇博客(alpha 系列和工具教程)喂给 agent,主题集中在量化。Gemini 第一轮分析把”正交”“压榨”“真谛”列为我的常用语——这三个词在量化博客里高频出现,却是主题术语,不是写作特征。<strong>根因是样本主题单一:agent 分不清”主题词汇”和”风格词汇”,把内容词误判成了文风</strong>。这一轮唯一的价值是让我意识到采样方法错了,于是重做全库统计。</p>
+
+<h3 id="22-全库重统计144-篇53-万字">2.2 全库重统计:144 篇、53 万字</h3>
+
+<p>全库 144 篇、53 万字,按主题分类:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>主题</th>
+      <th>篇数</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>量化</td>
+      <td>17</td>
+    </tr>
+    <tr>
+      <td>几何</td>
+      <td>12</td>
+    </tr>
+    <tr>
+      <td>blender</td>
+      <td>22</td>
+    </tr>
+    <tr>
+      <td>AI 生成</td>
+      <td>10</td>
+    </tr>
+    <tr>
+      <td>色彩</td>
+      <td>6</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>统计了三个风格指标:emoji 只有 42/144 篇在用(29%),<strong>中英混排率平均 70%</strong>,口语判断词里”就是”出现 33 篇、”直白地说”只有 2 篇。结果推翻了好几个直觉判断:我以为自己不用 emoji,实际上有 29% 的篇目在用;”直白地说”极少出现,真正的口语连接词是”就是”。<strong>风格采样必须跨主题、够数量,单主题样本会让 agent 把主题词汇误判成风格</strong>——这是采样流程里最硬的一条。</p>
+
+<h3 id="23-定位迭代三次收敛到个人实验记录">2.3 定位迭代:三次收敛到”个人实验记录”</h3>
+
+<p>理解自己写的是什么,也迭代了几轮:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>版本</th>
+      <th>定位</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>第一轮</td>
+      <td>干货文章</td>
+    </tr>
+    <tr>
+      <td>第二轮</td>
+      <td>技术笔记</td>
+    </tr>
+    <tr>
+      <td>第三轮</td>
+      <td>实验记录</td>
+    </tr>
+    <tr>
+      <td>最终</td>
+      <td>个人实验记录</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>最准确的说法是:我的博客是个人实验记录,记录驱动、带疑问、带个人评估,不是教程</strong>。差别在”个人”二字——记录是给自己的,不是输出给读者的。这个定位定准了,后面的写作才有方向;定位错了,特征清单写得再全也对不上味。</p>
+
+<h2 id="3-写ai-做微信表情包博客的实战">3. 写《AI 做微信表情包》博客的实战</h2>
+
+<blockquote>
+  <p>[!timeline] 实战过程</p>
+  <ul>
+    <li><strong>第一轮</strong> · 初稿公众号味(突发奇想开头/emoji/术语翻译),直接重写</li>
+    <li><strong>第二轮</strong> · Mermaid timeline 解析失败(10:00 冒号与语法冲突),改 callout + 列表</li>
+    <li><strong>第三轮</strong> · 视角替换:agent 写”用户”“自家猫”,全文换成”我”“我家猫”</li>
+    <li><strong>收尾</strong> · 三轮收敛;样本+清单+规则给全的话一轮能到位</li>
+  </ul>
+</blockquote>
+
+<p>素材库和采样方法定型后,我用它写《AI 做微信表情包》,实际走了三轮。三轮里每轮一个明确问题:初稿重写、时间线格式、视角替换,下面按顺序记录。</p>
+
+<h3 id="31-初稿是公众号味直接重写">3.1 初稿是公众号味,直接重写</h3>
+
+<p>初稿完全没对上素材库:agent 写了”突发奇想”“过程曲折”开头,全文 emoji,术语全翻译(Playwright 写成”浏览器自动化工具”,agy 写成”识别工具”)。对照反例清单,公众号式开头、emoji、术语翻译三条全踩,而且都踩在最基础的条目上。<strong>没有修补价值,直接重写</strong>。</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>初稿问题</th>
+      <th>素材库规则</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>“突发奇想”开头</td>
+      <td>开头一句话进主题</td>
+    </tr>
+    <tr>
+      <td>全文 emoji</td>
+      <td>emoji 少用,一篇一两个</td>
+    </tr>
+    <tr>
+      <td>Playwright → 浏览器自动化工具</td>
+      <td>术语保留英文</td>
+    </tr>
+    <tr>
+      <td>agy → 识别工具</td>
+      <td>术语保留英文</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="32-mermaid-timeline-解析失败改用-callout">3.2 Mermaid timeline 解析失败,改用 callout</h3>
+
+<p>时间线本来想用 Mermaid timeline 画,Obsidian 解析失败:时间点 <code class="language-plaintext highlighter-rouge">10:00</code> 的冒号与 <code class="language-plaintext highlighter-rouge">时间 : 事件</code> 语法冲突,去掉冒号后仍有版本兼容问题。<strong>改用 callout + 列表,<code class="language-plaintext highlighter-rouge">&gt; [!timeline]</code> 下一行一条 <code class="language-plaintext highlighter-rouge">**10:00** · 事件</code></strong>。这次失败直接固化成素材库 1.5 的格式取舍规则:特殊格式优先零依赖方案。</p>
+
+<h3 id="33-视角替换agent-把我写成用户">3.3 视角替换:agent 把我写成”用户”</h3>
+
+<p>视角上 agent 把我写成”用户”,把猫写成”自家猫”,全文手动替换成”我”“我家猫”才收敛。<strong>视角错误不是措辞问题,是身份问题</strong>——”我”是作者本人,agent 是工具,第三人称一出现整篇就变味。这类替换没有规则可写,只能逐句排查。</p>
+
+<h3 id="34-三轮迭代才收敛">3.4 三轮迭代才收敛</h3>
+
+<p>整篇博客走了三轮:初稿重写一轮,时间线格式一轮,视角替换一轮。<strong>如果一开始把样本、特征清单、视角规则、格式要求一次给全,一轮能到位,不用像这次三轮收敛</strong>。</p>
+
+<h2 id="4-subagent-迭代实践">4. subagent 迭代实践</h2>
+
+<p>素材库本身也经历了三次 subagent 验证,每次输出暴露一个问题,就把规则固化进素材库,直到收敛。这个循环是素材库质量的关键:不验证,素材库只是我的自说自话。</p>
+
+<h3 id="41-第一次验证输出是散文信息密度低">4.1 第一次验证:输出是散文,信息密度低</h3>
+
+<p>初版素材库开 subagent,输出是讲解味散文:每节一段话描述特征,但没有具体技术细节支撑,结构也松散。对照表情包那篇博客(sticker),差距明显——sticker 是数字分节、每节一个技术点、硬核记录,subagent 输出全都没有。<strong>问题在素材库:只描述了”语气”,没约束”结构”和”信息密度”</strong>。</p>
+
+<p>这一轮还暴露一个坑:初版素材库引用了 sticker 作为”最佳样例”,subagent 读它会直接把表情包的具体内容抄进新博客——<strong>素材库一旦绑定具体样例,内容就被污染,而且以后写别的主题也复用不了</strong>。修正:素材库与内容解耦,样例只学写法,内容隔离声明写进任务。</p>
+
+<h3 id="42-第二次验证小节太碎一句话一个小节">4.2 第二次验证:小节太碎,一句话一个小节</h3>
+
+<p>补上”数字分节、每节一个技术点、硬核记录、表格、加粗”后重开 subagent,结构和密度都对了,新问题出现:<strong>一个小节只有一句话</strong>——12 个 x.x,每个标题下孤零零一句,像提纲不像正文。根因是素材库要求”每节一个技术点”时没强调展开量,agent 就按最省的方式写。</p>
+
+<p><strong>修改素材库:加”每个小节至少一个完整段落(3-5 句),禁止一句话小节,小节之间内容量均衡”</strong>,并把相近特征合并成组,保证每节有料可写。</p>
+
+<h3 id="43-第三次验证收敛">4.3 第三次验证:收敛</h3>
+
+<p>第二次修改后重开 subagent,小节合并成组、每节完整展开,结构、密度、表格、加粗、中英混排、视角全部到位,这次收敛了。<strong>整个验证流程:subagent 输出 → 对照 sticker 找差距 → 差距固化成素材库规则 → 重开 subagent</strong>。每次只暴露最明显的问题,一轮修一个,三轮收敛。</p>
+
+<h3 id="44-结论">4.4 结论</h3>
+
+<ul>
+  <li><strong>素材库必须可迭代</strong>:不经过 subagent 验证的素材库,只是自我感觉;每次输出暴露的问题,都是素材库缺的规则。</li>
+  <li><strong>素材库与内容解耦</strong>:不能引用具体博客当样例(会被 hack),样例只学写法,内容隔离声明写进任务。</li>
+  <li><strong>约束要写”量”</strong>:”每节一个技术点”不够,还要”至少一个完整段落、禁止一句话小节、内容量均衡”——agent 会按最省的方式执行,量必须显式。</li>
+  <li><strong>对照标杆审稿</strong>:每次验证都拿 sticker 当标杆对比,差距就是下一轮要加的规则。</li>
+</ul>
+
+        </div>
+
+        
+
+        
+        
+  <div class="page-comments">
+    <div id="disqus_thread"></div>
+    <script>
+      var disqus_config = function () {
+        this.page.url = 'https://roshameow.github.io//personal_homepage/daily/agent-blog-writing/';
+        this.page.identifier = 'https://roshameow.github.io//personal_homepage/daily/agent-blog-writing/';
+      };
+
+      (function() {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://https-roshameow-github-io-personal-homepage.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+  </div>
+
+
+        
+
+        <nav class="page-pagination" role="navigation">
+  
+    <a class="page-previous" href="/personal_homepage/tool/lesson/">
+      <h4 class="page-pagination-label">Previous</h4>
+      <span class="page-pagination-title">
+        <i class="fas fa-arrow-left"></i> 听课app开发调研
+
+      </span>
+    </a>
+  
+
+  
+    <a class="page-next" href="/personal_homepage/daily/sticker/">
+      <h4 class="page-pagination-label">Next</h4>
+      <span class="page-pagination-title">
+        用AI做了一套微信表情包:从微信头像缓存到提交上架
+ <i class="fas fa-arrow-right"></i>
+      </span>
+    </a>
+  
+</nav>
+
+      </div>
+
+    </div>
+  </article>
+</main>
+
+    <footer id="footer" class="site-footer">
+  <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+<div class="social-icons"><a class="social-icon" href="/personal_homepage/atom.xml"><i class="fas fa-rss-square fa-2x" title="Feed"></i></a><a class="social-icon" href="https://github.com/roshameow"><i class="fab fa-github-square fa-2x" title="GitHub"></i></a><a class="social-icon" href="https://www.linkedin.com/in/wen-liu-06503a7b/"><i class="fab fa-linkedin fa-2x" title="LinkedIn"></i></a><a class="social-icon" href="mailto:w.liuatnk@gmail.com"><i class="fas fa-envelope-square fa-2x" title="e-mail"></i></a></div><div class="copyright">
+    
+      <p>&copy; 2026 Liu, Wen's Home Page. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://github.com/mmistakes/so-simple-theme" rel="nofollow">So Simple</a>.</p>
+    
+  </div>
+</footer>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="/personal_homepage/assets/js/main.min.js"></script>
+<script src="https://use.fontawesome.com/releases/v5.0.12/js/all.js"></script><script src="/personal_homepage/assets/js/content-tables.js" defer></script><!-- <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'G-9TMSCDTBGN', 'auto');
+  ga('send', 'pageview');
+</script> -->
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9TMSCDTBGN"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-9TMSCDTBGN');
+</script>
+
+
+
+<!-- MathJax -->
+
+<script>
+    // http://docs.mathjax.org/en/latest/upgrading/v2.html
+    MathJax = {
+        tex: {
+            tags: "ams",    // eq numbering options: none, ams, all
+            inlineMath: [['$', '$'], ["\\(", "\\)"]],  // 设置行内数学公式的开始和结束标记
+            displayMath: [['$$', '$$'], ["\\[", "\\]"]]  // 设置行间数学公式的开始和结束标记
+        },
+        // options: {
+        //   renderActions: {
+        //     // for mathjax 3, handle <script "math/tex"> blocks inserted by kramdown
+        //     find: [10, function (doc) {
+        //       for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+        //         const display = !!node.type.match(/; *mode=display/);
+        //         const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+        //         const text = document.createTextNode('');
+        //         node.parentNode.replaceChild(text, node);
+        //         math.start = { node: text, delim: '', n: 0 };
+        //         math.end = { node: text, delim: '', n: 0 };
+        //         doc.math.push(math);
+        //       }
+        //     }, '']
+        //   }
+        // }
+    }
+</script>
+
+<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+
+
+<!-- Mermaid -->
+<style>
+  .mermaid-list {
+    display: flex;
+    gap: 2em;
+    flex-wrap: wrap;
+    justify-content: center;
+    font-family: "Source Sans Pro", sans-serif;
+    margin: 1.5em 0;
+  }
+  .mermaid-list-col {
+    min-width: 180px;
+  }
+  .mermaid-list-col h4 {
+    margin: 0 0 0.4em 0;
+    font-size: 0.95em;
+    font-weight: 700;
+    color: #34374C;
+  }
+  .mermaid-list-col ul {
+    margin: 0;
+    padding-left: 1.2em;
+    line-height: 1.6;
+  }
+  pre.mermaid {
+    text-align: center;
+    background: transparent;
+    padding: 1em 0;
+    overflow: visible;
+    font-family: "Source Sans Pro", sans-serif !important;
+  }
+  pre.mermaid svg {
+    max-width: 100%;
+    height: auto;
+    overflow: visible;
+  }
+</style>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('code.language-mermaid').forEach(function(code) {
+      var text = code.textContent;
+      var parent = code.closest('.highlighter-rouge') || code.parentElement;
+
+      // 解析 subgraph 块
+      var sgRe = /subgraph\s+\w+\["(.+?)"\]([\s\S]*?)end/g;
+      var match, subgraphs = [];
+      while ((match = sgRe.exec(text)) !== null) {
+        var title = match[1];
+        var body = match[2];
+        var items = [];
+        body.split('\n').forEach(function(line) {
+          line = line.trim();
+          var m = line.match(/^\w+\["(.+?)"\]/);
+          if (m) items.push(m[1]);
+        });
+        if (items.length) subgraphs.push({ title: title, items: items });
+      }
+
+      if (subgraphs.length > 1) {
+        // 有多列 subgraph → 渲染为 HTML 列表
+        var div = document.createElement('div');
+        div.className = 'mermaid-list';
+        subgraphs.forEach(function(sg) {
+          var col = document.createElement('div');
+          col.className = 'mermaid-list-col';
+          col.innerHTML = '<h4>' + sg.title + '</h4><ul>' +
+            sg.items.map(function(i) { return '<li>' + i + '</li>'; }).join('') +
+            '</ul>';
+          div.appendChild(col);
+        });
+        var wrapper = parent.closest('.highlighter-rouge') || parent;
+        wrapper.parentNode.replaceChild(div, wrapper);
+      } else {
+        // 单图 → 正常用 Mermaid 渲染
+        var pre = document.createElement('pre');
+        pre.className = 'mermaid';
+        pre.textContent = text;
+        var wrapper = parent.closest('.highlighter-rouge') || parent;
+        wrapper.parentNode.replaceChild(pre, wrapper);
+      }
+    });
+    mermaid.run();
+  });
+</script>
+
+
+  </body>
+
+</html>

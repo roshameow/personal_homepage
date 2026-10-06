@@ -15,7 +15,7 @@
 
   
   
-  <!-- Begin Jekyll SEO tag v2.9.0 -->
+  <!-- Begin Jekyll SEO tag v2.9.1 -->
 <title>代码语法解析 | Liu, Wen’s Home Page</title>
 <meta name="generator" content="Jekyll v4.4.1" />
 <meta property="og:title" content="代码语法解析" />
@@ -27,12 +27,12 @@
 <meta property="og:site_name" content="Liu, Wen’s Home Page" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2025-08-10T00:00:00+00:00" />
-<meta property="article:modified_time" content="2025-09-12T17:50:00+00:00" />
+<meta property="article:modified_time" content="2026-05-30T18:41:00+00:00" />
 <meta name="twitter:card" content="summary" />
 <meta name="twitter:title" content="代码语法解析" />
 <meta name="twitter:site" content="@" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2025-09-12T17:50:00+00:00","datePublished":"2025-08-10T00:00:00+00:00","description":"三元运算符(ternary)解析","headline":"代码语法解析","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/code/algorithm/string/"},"url":"https://roshameow.github.io//personal_homepage/code/algorithm/string/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2026-05-30T18:41:00+00:00","datePublished":"2025-08-10T00:00:00+00:00","description":"三元运算符(ternary)解析","headline":"代码语法解析","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/code/algorithm/string/"},"url":"https://roshameow.github.io//personal_homepage/code/algorithm/string/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -108,7 +108,7 @@
       <div class="page-sidebar">
         <div class="page-author h-card p-author"><img src="/personal_homepage/docs/images/logo.svg" class="author-avatar u-photo" alt=""><div class="author-info">
 
-<span class="read-time">1 min read</span>
+<span class="read-time">2 min read</span>
 
     <time class="page-date dt-published" datetime="2025-08-10T00:00:00+00:00"><a class="u-url" href="">August 10, 2025</a>
 </time>
@@ -140,7 +140,7 @@
 {:toc} -->
   <!-- <div id="markdown-toc"> -->
 
-    <ul class="inline_toc" id="my_toc"><li><a href="#三元运算符ternary解析">三元运算符(ternary)解析</a><ul><li><a href="#直接用字符串替换">直接用字符串替换</a></li><li><a href="#写parser处理">写parser处理</a></li><li><a href="#parse优化">parse优化</a></li><li><a href="#代码">代码</a></li></ul></li></ul>
+    <ul class="inline_toc" id="my_toc"><li><a href="#三元运算符ternary解析">三元运算符(ternary)解析</a><ul><li><a href="#方案一直接用字符串替换">方案一：直接用字符串替换</a></li><li><a href="#方案二手写传统-parser-处理">方案二：手写传统 Parser 处理</a></li><li><a href="#方案三parse-优化-pratt-parser">方案三：Parse 优化 (Pratt Parser)</a></li><li><a href="#代码">代码</a></li></ul></li></ul>
   <!-- </div> -->
 
 </div>
@@ -154,15 +154,15 @@
     <!-- <div id="markdown-toc"> -->
     <ul>
         
-        <li><a href="/personal_homepage/tool/feature2product/">怎么把一个小功能润色成用户产品</a></li>
+        <li><a href="/personal_homepage/tool/pi-runtime-attribution/">Pi Desktop的开发难点: “会话的状态”</a></li>
         
-        <li><a href="/personal_homepage/finance/alpha13/">组合交易 (二)</a></li>
+        <li><a href="/personal_homepage/tool/pi-desktop/">Pi Desktop：从会话浏览器到跨机器工作台</a></li>
         
-        <li><a href="/personal_homepage/daily/disinfectant/">消毒液</a></li>
+        <li><a href="/personal_homepage/daily/sticker/">用AI做了一套微信表情包:从微信头像缓存到提交上架</a></li>
         
-        <li><a href="/personal_homepage/code/tag-code/">代码模块的多维索引</a></li>
+        <li><a href="/personal_homepage/daily/agent-blog-writing/">用AI agent复现我的博客风格</a></li>
         
-        <li><a href="/personal_homepage/tool/message/">服务器发送消息通知</a></li>
+        <li><a href="/personal_homepage/tool/lesson/">听课app开发调研</a></li>
         
     </ul>
     <!-- </div> -->
@@ -179,11 +179,11 @@
         <div class="e-content">
           <h2 id="三元运算符ternary解析">三元运算符(ternary)解析</h2>
 
-<p>把 <code class="language-plaintext highlighter-rouge">...?...:...</code> 处理成<code class="language-plaintext highlighter-rouge">if_else(...,...,...)</code> 的形式.</p>
+<p>目标是将 DSL 中的三元运算符 <code class="language-plaintext highlighter-rouge">... ? ... : ...</code> 转换为 <code class="language-plaintext highlighter-rouge">if_else(..., ..., ...)</code> 的函数调用形式。</p>
 
 <p>初衷是用正则替换把对应DSL的operator转换成python语言, 然后用python的ast 直接解析. 但是三元运算符的处理比较复杂, Python 中并没有直接对应的语法结构, 导致没法简单的替换.</p>
 
-<p>可以把字符串token解析成<strong>AST 的构建过程</strong>理解成“对运算符按优先级排序”的过程.</p>
+<p>可以把字符串token解析成<strong>AST 的构建过程</strong>理解成“<strong>对运算符按优先级排序</strong>”的过程.</p>
 
 <table>
   <thead>
@@ -216,98 +216,82 @@
   </tbody>
 </table>
 
-<h3 id="直接用字符串替换">直接用字符串替换</h3>
+<h3 id="方案一直接用字符串替换">方案一：直接用字符串替换</h3>
 
 <ul>
   <li>用字符串正则查找tenary并替换</li>
-  <li>递归处理?: 和括号, =, 逗号的关系
+  <li>递归处理?: 和括号, =, 逗号的关系</li>
+  <li><strong>致命缺陷</strong>：处理括号和逗号时，严重依赖外置的栈 (Stack) 状态来维系嵌套结构，代码难以维护。</li>
+</ul>
+
+<h3 id="方案二手写传统-parser-处理">方案二：手写传统 Parser 处理</h3>
+
+<p>通过编写自定义的解析器来自顶向下处理表达式。核心处理流程如下：</p>
+
+<h4 id="1-前期定义">1. 前期定义</h4>
+<ul>
+  <li><strong>定义 AST 节点</strong>：设计不同类型的节点类来表示表达式，如常量、变量、运算符等。</li>
+  <li><strong>Tokenize（词法分析）</strong>：将源代码字符串分割成 tokens（数字、运算符、字符串等）。
     <ul>
-      <li>处理 括号, 逗号 都依赖栈来正确处理嵌套结构</li>
+      <li><em>示例</em>：<code class="language-plaintext highlighter-rouge">a&lt;0.2?</code> $\rightarrow$ <code class="language-plaintext highlighter-rouge">[("NAME","a"), ("OP","&lt;"), ("NUMBER","0.2"), ("QMARK","?")]</code></li>
     </ul>
   </li>
+  <li><strong>定义优先级</strong>：核心原则是<strong>找到表达式中优先级最低的符号优先处理（作为根节点）</strong>。</li>
 </ul>
 
-<h3 id="写parser处理">写parser处理</h3>
+<h4 id="2-具体执行流程">2. 具体执行流程</h4>
 
-<p>可以通过编写自定义的解析器来处理三元运算符。下面是一些处理流程：</p>
-<ol>
-  <li>定义:
-    <ol>
-      <li><strong>定义 AST 节点</strong>：设计不同类型的节点来表示表达式，如常量、变量、运算符等。</li>
-      <li><strong>Tokenize</strong>：将源代码字符串分割成 tokens（例如：数字、运算符、字符串等）。
-        <ol>
-          <li>例如: ``a&lt;0.2?<code class="language-plaintext highlighter-rouge"> → </code>[(“NAME”,”a”) (“OP”,”&lt;”) (“NUMBER”,”0.2”) (“QMARK”,”?”)]`</li>
-        </ol>
-      </li>
-      <li><strong>定义优先级</strong>: <strong>找表达式中最低的优先级处理</strong>.</li>
-    </ol>
-  </li>
-  <li>具体流程:
-    <ol>
-      <li><strong>预处理（字符串替换/注释/关键字替换）</strong>
-        <ul>
-          <li>把wq expr 中的<code class="language-plaintext highlighter-rouge">'...'</code> / <code class="language-plaintext highlighter-rouge">"..."</code> 用占位符替换
-            <ul>
-              <li><code class="language-plaintext highlighter-rouge">ts_sum(group_zscore(a&lt;0.2? (a+0.7):(a&gt;0.9? a:0.9),bucket(rank(cap),range='0.1, 1, 0.1')),5) -&gt; ts_sum(group_zscore(a&lt;0.2? (a+0.7):(a&gt;0.9? a:0.9),bucket(rank(cap),range=__STR_CONST_0__)),5)</code></li>
-            </ul>
-          </li>
-          <li>做若干文本替换（or/and/not → logical_or/logical_and/…、–→+、NaN→nan 等）。</li>
-          <li>删除注释（/* … */ 与行注释 // 或 #）。</li>
-          <li>按分号 ; 切分成多条<strong>语句</strong>，逐条 tokenize() → parse_expr() → to_python()。</li>
-          <li>token 化</li>
-          <li>自顶向下递归解析（赋值 → 三元→ 二元<strong>按最低 precedence 为根</strong> → 原子/函数/一元）</li>
-        </ul>
-      </li>
-      <li><strong>解析每句代码:</strong>
-        <ul>
-          <li>顶层赋值检测
-            <ul>
-              <li>去掉最外层的分号</li>
-              <li>检查最外层(用括号记录层数)的赋值 <code class="language-plaintext highlighter-rouge">=</code>, 把赋值语句的左右两侧分开.</li>
-            </ul>
-          </li>
-          <li>三元检测
-            <ul>
-              <li>检查最外层 ? 的第一个位置作为三元入口, 再从 <code class="language-plaintext highlighter-rouge">?</code> 后扫描并找到对应的最外层 <code class="language-plaintext highlighter-rouge">:</code>（depth=0）的位置</li>
-              <li>每当遇到括号要剥去括号重新检测三元</li>
-            </ul>
-          </li>
-          <li>二元检测(binop)
-            <ul>
-              <li>检查最外层优先级最低的op. 优先级相同, 取最右边的op拆分(左结合)</li>
-            </ul>
-          </li>
-          <li>一元检测(atom):
-            <ul>
-              <li>检查 一元运算符(!, -) -&gt; 单token原子(number, string, name) -&gt; function call -&gt; 检查每个参数</li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-      <li><strong>构建 AST</strong>
-        <ul>
-          <li>递归生成 Python 代码: 对不同节点分别处理</li>
-          <li>还原字符串并输出</li>
-          <li>每条语句生成的 Python 片段再还原字符串常量占位符.</li>
-        </ul>
-      </li>
-      <li><strong>收集所有处理过的</strong>语句<strong>并最终用 \n 拼接返回</strong></li>
-    </ol>
-  </li>
-</ol>
-
+<p><strong>① 预处理（清理与替换）</strong></p>
 <ul>
-  <li>⚠️ 注意点: ast解析<strong>一定要注意代码的覆盖率. 保证不会出现不认识的token, operator, 分支情况</strong>.</li>
+  <li>提取并占位：把表达式中的字符串 <code class="language-plaintext highlighter-rouge">'...'</code> 或 <code class="language-plaintext highlighter-rouge">"..."</code> 提取出来用占位符替换，防止内部字符干扰解析。
+    <ul>
+      <li><em>示例</em>：<code class="language-plaintext highlighter-rouge">range='0.1, 1, 0.1'</code> $\rightarrow$ <code class="language-plaintext highlighter-rouge">range=__STR_CONST_0__</code></li>
+    </ul>
+  </li>
+  <li>文本级转换：统一关键字（<code class="language-plaintext highlighter-rouge">or/and/not</code> $\rightarrow$ <code class="language-plaintext highlighter-rouge">logical_or/...</code>）、修复连号（<code class="language-plaintext highlighter-rouge">--</code> $\rightarrow$ <code class="language-plaintext highlighter-rouge">+</code>）、规范化（<code class="language-plaintext highlighter-rouge">NaN</code> $\rightarrow$ <code class="language-plaintext highlighter-rouge">nan</code>）。</li>
+  <li>移除注释（<code class="language-plaintext highlighter-rouge">/* ... */</code> 与行注释 <code class="language-plaintext highlighter-rouge">//</code> 或 <code class="language-plaintext highlighter-rouge">#</code>）。</li>
+  <li>语句切分：按分号 <code class="language-plaintext highlighter-rouge">;</code> 切分成多条语句，进入核心流水线：<code class="language-plaintext highlighter-rouge">tokenize() $\rightarrow$ parse_expr() $\rightarrow$ to_python()</code>。</li>
 </ul>
 
-<h3 id="parse优化">parse优化</h3>
+<p><strong>② 自顶向下递归解析（Parse）</strong>
+按照优先级从低到高进行检测：</p>
+<ul>
+  <li><strong>赋值检测</strong>：去掉最外层分号；检查最外层（用括号记录层数）的赋值 <code class="language-plaintext highlighter-rouge">=</code>，剥离左右两侧。</li>
+  <li><strong>三元检测</strong>：寻找最外层 <code class="language-plaintext highlighter-rouge">?</code> 作为入口，向后扫描寻找同层级（depth=0）的 <code class="language-plaintext highlighter-rouge">:</code>；每次遇到外层括号需剥去并重新检测。</li>
+  <li><strong>二元检测 (BinOp)</strong>：寻找最外层优先级最低的运算符。若优先级相同，则取最右侧的运算符拆分（左结合特性）。</li>
+  <li><strong>一元与原子检测 (Atom)</strong>：检查一元运算符（<code class="language-plaintext highlighter-rouge">!</code>, <code class="language-plaintext highlighter-rouge">-</code>） $\rightarrow$ 单 Token 原子（数字, 字符串, 变量名） $\rightarrow$ 函数调用（逐个检查参数）。</li>
+</ul>
+
+<p><strong>③ 构建 AST 与代码还原</strong></p>
+<ul>
+  <li>递归生成 Python 代码：对不同的 AST 节点对象分别调用处理逻辑。</li>
+  <li>还原占位符：每条语句生成 Python 片段后，将预处理时的“字符串常量占位符”替换回原字符串。</li>
+  <li>输出：收集所有处理过的语句，最终用 <code class="language-plaintext highlighter-rouge">\n</code> 拼接并返回。</li>
+</ul>
+
+<blockquote>
+  <p>⚠️ <strong>注意点</strong>：AST 解析一定要注意<strong>代码的覆盖率</strong>，保证在任何分支下都不会出现未定义的 token、operator 或异常的分支情况。</p>
+</blockquote>
+
+<h3 id="方案三parse-优化-pratt-parser">方案三：Parse 优化 (Pratt Parser)</h3>
 
 <h4 id="token优化">token优化</h4>
 
 <p>把预处理步骤内化到token中统一处理.</p>
+
+<blockquote>
+  <p>⚠️ 避坑指南：Tokenizer 正则短路问题。
+当把 DSL 转换为 Token 流时，如果使用正则表达式的命名分组（<code class="language-plaintext highlighter-rouge">(?P&lt;NAME&gt;...)</code>），<strong>分组的声明顺序极其重要</strong>，因为正则引擎会执行<strong>短路匹配</strong>（匹配到第一个成功的组就立即返回截断）：</p>
+</blockquote>
+
+<ul>
+  <li><strong>错误示例</strong>：如果把操作符 <code class="language-plaintext highlighter-rouge">OP</code> (<code class="language-plaintext highlighter-rouge">[+\-*/]</code>) 排在注释 <code class="language-plaintext highlighter-rouge">COMMENT</code> (<code class="language-plaintext highlighter-rouge">//.*</code>) 前面，当代码出现 <code class="language-plaintext highlighter-rouge">// comment</code> 时，引擎会率先用 <code class="language-plaintext highlighter-rouge">OP</code> 规则抢走第一个 <code class="language-plaintext highlighter-rouge">/</code>，再抢走第二个 <code class="language-plaintext highlighter-rouge">/</code>。剩下的 <code class="language-plaintext highlighter-rouge">comment</code> 会被当作普通的 <code class="language-plaintext highlighter-rouge">NAME</code>。最终导致 Pratt Parser 抛出类似 <code class="language-plaintext highlighter-rouge">Unexpected token in nud: OP /</code> 的灾难性错误。</li>
+  <li><strong>正确做法</strong>：匹配范围<strong>更长、更具体</strong>的规则（如 <code class="language-plaintext highlighter-rouge">//</code> 注释、<code class="language-plaintext highlighter-rouge">==</code> 双等号）<strong>必须</strong>排在匹配范围<strong>更短、更宽泛</strong>的规则（如 <code class="language-plaintext highlighter-rouge">/</code> 单除号、<code class="language-plaintext highlighter-rouge">=</code> 单等号）之前。</li>
+</ul>
+
 <h4 id="pratt优化">pratt优化</h4>
 
-<p>Pratt parser 其实是 <strong>自顶向下递归下降解析器</strong>的一种优化方式: 不是从最低优先级的字符开始, 而是随着解析从左往右动态的构建ast.</p>
+<p>Pratt Parser 本质上是<strong>自顶向下递归下降解析器</strong>的一种优雅优化方式：它<strong>不是</strong>每次找最低优先级的字符，而是随着解析<strong>从左往右动态地构建 AST</strong>。</p>
 
 <ul>
   <li>每个token除了优先级外, 定义两个方法: (nud和led)
@@ -491,7 +475,7 @@
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"
   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <script src="/personal_homepage/assets/js/main.min.js"></script>
-<script src="https://use.fontawesome.com/releases/v5.0.12/js/all.js"></script><!-- <script>
+<script src="https://use.fontawesome.com/releases/v5.0.12/js/all.js"></script><script src="/personal_homepage/assets/js/content-tables.js" defer></script><!-- <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -543,6 +527,95 @@
 </script>
 
 <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+
+
+<!-- Mermaid -->
+<style>
+  .mermaid-list {
+    display: flex;
+    gap: 2em;
+    flex-wrap: wrap;
+    justify-content: center;
+    font-family: "Source Sans Pro", sans-serif;
+    margin: 1.5em 0;
+  }
+  .mermaid-list-col {
+    min-width: 180px;
+  }
+  .mermaid-list-col h4 {
+    margin: 0 0 0.4em 0;
+    font-size: 0.95em;
+    font-weight: 700;
+    color: #34374C;
+  }
+  .mermaid-list-col ul {
+    margin: 0;
+    padding-left: 1.2em;
+    line-height: 1.6;
+  }
+  pre.mermaid {
+    text-align: center;
+    background: transparent;
+    padding: 1em 0;
+    overflow: visible;
+    font-family: "Source Sans Pro", sans-serif !important;
+  }
+  pre.mermaid svg {
+    max-width: 100%;
+    height: auto;
+    overflow: visible;
+  }
+</style>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('code.language-mermaid').forEach(function(code) {
+      var text = code.textContent;
+      var parent = code.closest('.highlighter-rouge') || code.parentElement;
+
+      // 解析 subgraph 块
+      var sgRe = /subgraph\s+\w+\["(.+?)"\]([\s\S]*?)end/g;
+      var match, subgraphs = [];
+      while ((match = sgRe.exec(text)) !== null) {
+        var title = match[1];
+        var body = match[2];
+        var items = [];
+        body.split('\n').forEach(function(line) {
+          line = line.trim();
+          var m = line.match(/^\w+\["(.+?)"\]/);
+          if (m) items.push(m[1]);
+        });
+        if (items.length) subgraphs.push({ title: title, items: items });
+      }
+
+      if (subgraphs.length > 1) {
+        // 有多列 subgraph → 渲染为 HTML 列表
+        var div = document.createElement('div');
+        div.className = 'mermaid-list';
+        subgraphs.forEach(function(sg) {
+          var col = document.createElement('div');
+          col.className = 'mermaid-list-col';
+          col.innerHTML = '<h4>' + sg.title + '</h4><ul>' +
+            sg.items.map(function(i) { return '<li>' + i + '</li>'; }).join('') +
+            '</ul>';
+          div.appendChild(col);
+        });
+        var wrapper = parent.closest('.highlighter-rouge') || parent;
+        wrapper.parentNode.replaceChild(div, wrapper);
+      } else {
+        // 单图 → 正常用 Mermaid 渲染
+        var pre = document.createElement('pre');
+        pre.className = 'mermaid';
+        pre.textContent = text;
+        var wrapper = parent.closest('.highlighter-rouge') || parent;
+        wrapper.parentNode.replaceChild(pre, wrapper);
+      }
+    });
+    mermaid.run();
+  });
+</script>
+
 
   </body>
 

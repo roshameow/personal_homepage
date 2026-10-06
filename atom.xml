@@ -1,994 +1,1962 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://roshameow.github.io//personal_homepage/atom.xml" rel="self" type="application/atom+xml" /><link href="https://roshameow.github.io//personal_homepage/" rel="alternate" type="text/html" /><updated>2026-09-15T01:01:35+00:00</updated><id>https://roshameow.github.io//personal_homepage/atom.xml</id><title type="html">Liu, Wen’s Home Page</title><subtitle>Work, Experiments and Ideas.</subtitle><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><entry><title type="html">怎么把一个小功能润色成用户产品</title><link href="https://roshameow.github.io//personal_homepage/tool/feature2product/" rel="alternate" type="text/html" title="怎么把一个小功能润色成用户产品" /><published>2026-01-01T00:00:00+00:00</published><updated>2026-01-11T20:59:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/tool/feature2product</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/tool/feature2product/"><![CDATA[<p>通过学习这个 <a href="https://github.com/journey-ad/gemini-watermark-remover">优秀的案例</a> 学了一些我没做到, 不过不知道有没有用的技巧. 应该有点用吧?</p>
-<h2 id="更专业的github">更专业的github</h2>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://roshameow.github.io//personal_homepage/atom.xml" rel="self" type="application/atom+xml" /><link href="https://roshameow.github.io//personal_homepage/" rel="alternate" type="text/html" /><updated>2026-10-06T03:07:19+00:00</updated><id>https://roshameow.github.io//personal_homepage/atom.xml</id><title type="html">Liu, Wen’s Home Page</title><subtitle>Work, Experiments and Ideas.</subtitle><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><entry><title type="html">Pi Desktop的开发难点: “会话的状态”</title><link href="https://roshameow.github.io//personal_homepage/tool/pi-runtime-attribution/" rel="alternate" type="text/html" title="Pi Desktop的开发难点: “会话的状态”" /><published>2026-08-12T00:00:00+00:00</published><updated>2026-10-06T10:48:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/tool/pi-runtime-attribution</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/tool/pi-runtime-attribution/"><![CDATA[<p>Pi Desktop 里最难修的功能，是侧边栏那枚很小的状态 chip：<strong>这个会话现在的运行状态</strong>？</p>
 
-<ul>
-  <li>README
-    <ul>
-      <li>隐私声明： 明确告知用户“纯前端运行，图片数据不离机”。这是这个产品最大的卖点之一。如果你的算法能在本地跑，一定要大写加粗告诉用户。</li>
-      <li>开源/原理透明：在页面底部放上原理解释和原理的文章链接</li>
-      <li>安装方法</li>
-      <li> 免责声明：Disclaimer（仅供学习交流，后果自负)</li>
-    </ul>
-  </li>
-  <li>Demo GIF</li>
-  <li>LICENSE</li>
-  <li>Shields.io badges</li>
-  <li>About 区域填满</li>
-</ul>
+<p>它可能在普通终端、RMUX pane、远程主机，也可能进程已经退出，只剩 remain-on-exit 保存的死画面。更麻烦的是，显示错位置不会立即报错；界面仍然完整，只是把操作发给了错误的会话。这类“看起来合理”的错误最危险。</p>
 
-<h2 id="降低使用门槛">降低使用门槛</h2>
+<p>下面讲下原理和迭代过程.</p>
 
-<ul>
-  <li>纯前端实现(不登陆, 不注册, 不配置)</li>
-  <li>Web版
-    <ul>
-      <li>极简的功能</li>
-    </ul>
-  </li>
-  <li>插件化
-    <ul>
-      <li>通用Userscript</li>
-    </ul>
-  </li>
-</ul>
+<h2 id="1-会话和pid绑定who">1. 会话和pid绑定(who)</h2>
 
-<h2 id="试验">试验</h2>
+<p>为什么会话和pid绑定是个难题?? 根本原因在于<strong>生命周期与操作系统抽象的深层错配</strong>：</p>
 
-<p>尝试小范围的宣传自己的开源项目, 发现很困难</p>
 <ol>
-  <li>设计了很多开放性接口, 但是没人会使用, 没有配套文档. 别人并不会看readme. 想要的是安装后就能直接使用的app</li>
-  <li>不够通用.</li>
-  <li>每个界面, 每个按钮都要有用.</li>
-</ol>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="tool" /><category term="content" /><summary type="html"><![CDATA[通过学习这个 优秀的案例 学了一些我没做到, 不过不知道有没有用的技巧. 应该有点用吧? 更专业的github]]></summary></entry><entry><title type="html">组合交易 (二)</title><link href="https://roshameow.github.io//personal_homepage/finance/alpha13/" rel="alternate" type="text/html" title="组合交易 (二)" /><published>2025-12-24T00:00:00+00:00</published><updated>2026-01-18T19:11:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/finance/alpha13</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/finance/alpha13/"><![CDATA[<h2 id="单个alpha的性能">单个alpha的性能</h2>
-
-<table>
-  <thead>
-    <tr>
-      <th style="text-align: left">维度</th>
-      <th style="text-align: left">指标名称</th>
-      <th style="text-align: left">描述</th>
-      <th style="text-align: left">计算公式</th>
-      <th>特点</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align: left"><strong>表现</strong><br />和未来一天returns的关系</td>
-      <td style="text-align: left">daily pnl</td>
-      <td style="text-align: left"> </td>
-      <td style="text-align: left">$S_t\cdot R_{t+1}$</td>
-      <td>最直接</td>
-    </tr>
-    <tr>
-      <td style="text-align: left"> </td>
-      <td style="text-align: left">Quintile Long–Short Strategy（五分位多空策略）</td>
-      <td style="text-align: left"> </td>
-      <td style="text-align: left">$R_{Q5}-R_{Q1}$</td>
-      <td>常用投资研究方法</td>
-    </tr>
-    <tr>
-      <td style="text-align: left"> </td>
-      <td style="text-align: left">Information Coefficient(IC)</td>
-      <td style="text-align: left">计算alpha值和未来一天returns的Pearson相关性</td>
-      <td style="text-align: left">\(IC_t = \rho(S_t,R_{t+1}) = \frac{\sum_{i=1}^N (S_{i,t} - \bar{S}_t)(R_{i,t+1} - \bar{R}_{t+1})}{\sqrt{\sum_{i=1}^N (S_{i,t} - \bar{S}_t)^2 \sum_{i=1}^N (R_{i,t+1} - \bar{R}_{t+1})^2}}\)</td>
-      <td>容易受到极端值影响</td>
-    </tr>
-    <tr>
-      <td style="text-align: left"> </td>
-      <td style="text-align: left">Fama-MacBeth Regression</td>
-      <td style="text-align: left">计算alpha值对未来returns的beta系数</td>
-      <td style="text-align: left">Linear Regression Model:<br />$R_{i,t+1} = \lambda_{0,t} + \lambda_{1,t} S_{i,t} + \epsilon_{i,t+1}$<br /><br />\(\lambda_{1,t} = \frac{\sum_{i=1}^N (S_{i,t} - \bar{S}_t)(R_{i,t+1} - \bar{R}_{t+1})}{\sum_{i=1}^N (S_{i,t} - \bar{S}_t)^2}\)</td>
-      <td>还可以得出alpha和现有alpha的冗余度</td>
-    </tr>
-    <tr>
-      <td style="text-align: left"> </td>
-      <td style="text-align: left">RankIC</td>
-      <td style="text-align: left">计算alpha排名和returns排名的<a href="https://en.wikipedia.org/wiki/Spearman%27s_rank_correlation_coefficient">Spearman相关性</a> <br />(是Pearson相关系数的rank版, <br />完全等价, 计算简单) <a href="#1-rankic-spearman-公式推导">1</a></td>
-      <td style="text-align: left">$RankIC_t = \rho(\text{rank}(S_t), \text{rank}(R_{t+h}))$<br />$= 1 - \frac{6 \sum d_i^2}{N(N^2 - 1)}$</td>
-      <td>alpha不受单调非线性变换的影响, 更稳定</td>
-    </tr>
-    <tr>
-      <td style="text-align: left"> </td>
-      <td style="text-align: left">Predictive Power Score（PPS）</td>
-      <td style="text-align: left">IC和RankIC的线性组合</td>
-      <td style="text-align: left">$PPS = w_1 \cdot IC + w_2 \cdot RankIC$</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td style="text-align: left"><strong>费率</strong><br />自身时序上的关系</td>
-      <td style="text-align: left">turnover</td>
-      <td style="text-align: left">衡量 alpha 信号在前后两个交易日的持仓变化程度</td>
-      <td style="text-align: left">\(\text{Turnover}_t = \frac{\sum_i \vert S_{t,i} - S_{t-1,i} \vert}{2}\)</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td style="text-align: left"> </td>
-      <td style="text-align: left">Signal Autocorrelation</td>
-      <td style="text-align: left">Alpha 前后两天的自相关性</td>
-      <td style="text-align: left">$AutoCorr = \rho(S_t, S_{t-1})$</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td style="text-align: left"> </td>
-      <td style="text-align: left">Relative Rank Entropy（RRE）</td>
-      <td style="text-align: left">用 KL散度 计算前后两天alpha分布的差异</td>
-      <td style="text-align: left">$D_{KL}(P_t \parallel P_{t-1}) = \sum P_t(i) \ln \frac{P_t(i)}{P_{t-1}(i)}$</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td style="text-align: left"><strong>稳定性</strong><br /><br /></td>
-      <td style="text-align: left">Perturbation Fidelity Score（PFS）</td>
-      <td style="text-align: left">加入轻微扰动后信号的相关性<br />- 加入guassian noise<br />- 加入 t 分布</td>
-      <td style="text-align: left">$PFS = \rho(S, S + \epsilon), \epsilon \sim N(0, \sigma^2)$</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td style="text-align: left"><strong>金融逻辑</strong></td>
-      <td style="text-align: left">llm打分</td>
-      <td style="text-align: left">- 是否符合经济直觉<br />- 是否可解释<br />- 是否有金融含义</td>
-      <td style="text-align: left">$\text{Score} = \text{LLM}(Prompt, \text{AlphaLogic})$</td>
-      <td> </td>
-    </tr>
-  </tbody>
-</table>
-
-<h3 id="1-rankic-spearman-公式推导">1: RankIC (Spearman) 公式推导</h3>
-
-<p>Spearman相关系数本质上是<strong>秩(Rank)变量之间的Pearson相关系数</strong>。</p>
-
-<p>对于 $N$ 个样本，alpha排名和returns排名 $x_i, y_i$ 均为 $1, 2, …, N$ 的排列。
-已知前 $N$ 个整数的性质:</p>
-<ol>
-  <li><strong>均值</strong>: $\bar{x} = \bar{y} = \frac{N+1}{2}$</li>
-  <li><strong>方差项</strong>: $\sum (x_i - \bar{x})^2 = \frac{N(N^2 - 1)}{12}$</li>
+  <li><strong>生命周期的断层</strong>：
+    <ul>
+      <li><strong>Session JSONL（业务实体）</strong>：具有<strong>长持久性</strong>。它记录了完整的思维链与执行树，寿命跨越数天、数月，支持反复暂停与 <code class="language-plaintext highlighter-rouge">resume</code>。</li>
+      <li><strong>PID（内核资源）</strong>：具有<strong>极短的易逝性与复用性</strong>。它只是内核进程表里循环利用的一个整数标签。进程退出后，内核下一秒就可能把相同的 PID 赋予一个无关的临时脚本。</li>
+    </ul>
+  </li>
+  <li><strong>关系基数是时序上的 1 对多</strong>：
+    <ul>
+      <li>同一个session，昨天是 PID 1024 在跑，今天是 PID 5088 在跑；</li>
+      <li>用户在两个终端同时打开同一会话的并发多对一。</li>
+      <li>进程执行 /new，PID 没变，但它脱钩了旧 session，指向了新 session。</li>
+    </ul>
+  </li>
 </ol>
 
-<p>定义秩差 $d_i = x_i - y_i$，则:
-\(\sum d_i^2 = \sum (x_i - y_i)^2 = \sum x_i^2 + \sum y_i^2 - 2\sum x_i y_i\)
-由于 $\sum x_i^2 = \sum y_i^2$ (都是 $1^2 + … + N^2$)，代入得:
-\(\sum x_i y_i = \sum x_i^2 - \frac{1}{2} \sum d_i^2\)</p>
-
-<p>代入 Pearson 相关系数公式:
-\(\begin{aligned}
-\rho &amp;= \frac{\sum (x_i - \bar{x})(y_i - \bar{y})}{\sqrt{\sum (x_i - \bar{x})^2 \sum (y_i - \bar{y})^2}} \\
-&amp;= \frac{\sum x_i y_i - N\bar{x}\bar{y}}{\sum (x_i - \bar{x})^2} \quad (\text{分母两项相等}) \\
-&amp;= \frac{(\sum x_i^2 - \frac{1}{2}\sum d_i^2) - N\bar{x}^2}{\sum x_i^2 - N\bar{x}^2} \\
-&amp;= 1 - \frac{\frac{1}{2}\sum d_i^2}{\frac{N(N^2-1)}{12}} \\
-&amp;= 1 - \frac{6 \sum d_i^2}{N(N^2 - 1)}
-\end{aligned}\)</p>
-
-<h2 id="组合alpha的性能">组合alpha的性能</h2>
-
 <table>
   <thead>
     <tr>
-      <th style="text-align: left">维度</th>
-      <th style="text-align: left">指标名称</th>
-      <th style="text-align: left">描述</th>
-      <th style="text-align: left">计算公式</th>
-      <th>特点</th>
+      <th style="text-align: left">追踪维度</th>
+      <th style="text-align: left">操作系统理论能力 (Textbook)</th>
+      <th style="text-align: left">真实 CLI 场景失效细节 (Physical Failure)</th>
+      <th style="text-align: left">早期妥协尝试及致命漏洞 (Early Flaws)</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td style="text-align: left">多样性<br /><br />不考虑组合方式</td>
-      <td style="text-align: left">Diversity Entropy (DE)</td>
-      <td style="text-align: left">衡量 Alpha 集合的非线性相关性与冗余度</td>
-      <td style="text-align: left">对 $\Sigma$ 进行特征分解，得到特征值 $\lambda_1, \lambda_2, \dots, \lambda_m$。<br /><br />$DE = -\frac{\sum p_i \ln p_i}{\ln m}, \quad p_i = \frac{\lambda_i}{\sum \lambda_j}$</td>
-      <td>量化得出系统的冗余度</td>
+      <td style="text-align: left"><strong>正向：进程参数</strong><br /><code class="language-plaintext highlighter-rouge">PID → argv</code></td>
+      <td style="text-align: left">内核维护进程命令行：<br /><code class="language-plaintext highlighter-rouge">ps -p &lt;pid&gt; -o args=</code> 可查看启动参数</td>
+      <td style="text-align: left"><strong>参数被运行时擦除</strong>：<br />CLI（如 Node/pi）启动时为防 Token 泄露或美化，在内存中主动抹洗 <code class="language-plaintext highlighter-rouge">process.argv</code>，<code class="language-plaintext highlighter-rouge">ps</code> 查出来只剩裸词 <code class="language-plaintext highlighter-rouge">pi</code></td>
+      <td style="text-align: left"><strong>无法提取</strong>：<br /><code class="language-plaintext highlighter-rouge">ps</code> 扫出来的所有进程全叫 <code class="language-plaintext highlighter-rouge">pi</code>，彻底丢失 <code class="language-plaintext highlighter-rouge">--session</code> 标志</td>
     </tr>
     <tr>
-      <td style="text-align: left">平衡性<br /><br />只考虑每个instrument线性组合</td>
-      <td style="text-align: left">Risk Contribution(RC)</td>
-      <td style="text-align: left">衡量总风险($\sigma$) 变化时对每个alpha 增量均匀(风险贡献不均衡度) <a href="#2-风险分解">2</a><br /><br />由<a href="https://en.wikipedia.org/wiki/Homogeneous_function#Euler's_theorem">欧拉定理</a> , 分解为风险贡献 (Risk Contribution, RC):<br />$\sigma =w_i\frac{\partial \sigma}{\partial w_i}=\Sigma_i \frac{w_i(\Sigma w)_i}{\sigma}=RC_i$</td>
-      <td style="text-align: left">Risk Parity (风险平价)<br /><br /><br /><br />$\min_{w_i} \sum_{i=1}^N (RC_i - \frac{\sigma}{N})^2$</td>
-      <td>变量无主次, 分解变简单<br /><br />适合用cyclic coordinate descend优化$w_i$</td>
+      <td style="text-align: left"><strong>正向：文件描述符</strong><br /><code class="language-plaintext highlighter-rouge">PID → FD → inode</code></td>
+      <td style="text-align: left">内核维护打开的文件表：<br /><code class="language-plaintext highlighter-rouge">lsof -p &lt;pid&gt;</code> 或 <code class="language-plaintext highlighter-rouge">proc_pidinfo</code> 可查持有的文件</td>
+      <td style="text-align: left"><strong>句柄为短命瞬态</strong>：<br />JSONL 写入使用微秒级 <code class="language-plaintext highlighter-rouge">appendFile</code>（打开→追加→立即关闭）。99.9% 的时间（LLM 推理、等待）该文件<strong>压根不在内核 FD 表中</strong></td>
+      <td style="text-align: left"><strong>抓取落空 + CPU 暴增</strong>：<br /><code class="language-plaintext highlighter-rouge">lsof</code> 绝大多数时候抓不到 session 文件，且每秒调用一次的 <code class="language-plaintext highlighter-rouge">fork/exec</code> 吞噬 5%~10% CPU</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>反向：文件查进程</strong><a href="#unix-pid-file">1</a><br /><code class="language-plaintext highlighter-rouge">Session → PID</code></td>
+      <td style="text-align: left"><strong>内核天然不支持</strong>：<br />POSIX 只有进程到文件的单向映射，无全系统 inode 反向活进程广播机制</td>
+      <td style="text-align: left"><strong>生命周期错配</strong>：<br />JSONL 存活数月，PID 循环复用；同一个 Session 昨天被 PID 100 跑，今天被 PID 200 恢复</td>
+      <td style="text-align: left"><strong>使用 mtime（最后修改时间）</strong>：<br />并发任务互相抢最新修改时间，造成正在流式打字的任务画面在 UI 上疯狂跳变</td>
     </tr>
   </tbody>
 </table>
 
-<h3 id="2-风险分解">2. 风险分解</h3>
-
-<p>用协方差矩阵 $\Sigma$  衡量样本的组合相关性</p>
-
-\[\frac{\partial \sigma}{\partial w_i}=\frac{\partial}{\partial w_i}( \sqrt{w^T\Sigma w}) \overset{\text{幂函数求导}}{=} \frac{1}{2\sqrt{w^T\Sigma w}} \cdot \frac{\partial (w^T\Sigma w)}{\partial w_i} = \frac{1}{2\sigma} \cdot 2(\Sigma w)_i = \frac{(\Sigma w)_i}{\sigma}\]
-
-<p>其中关于 $w^T\Sigma w$ 的求导细节展开如下:
-\(\begin{aligned}
-\frac{\partial (w^T\Sigma w)}{\partial w_i} &amp;= \frac{\partial}{\partial w_i} \left(\sum_j \sum_k w_j \Sigma_{jk} w_k\right) \\
-&amp;= \frac{\partial}{\partial w_i} \left( w_i \Sigma_{ii} w_i + \sum_{k \neq i} w_i \Sigma_{ik} w_k + \sum_{j \neq i} w_j \Sigma_{ji} w_i + \sum_{j \neq i, k \neq i} w_j \Sigma_{jk} w_k \right) \\
-&amp;= 2w_i \Sigma_{ii} + \sum_{k \neq i} \Sigma_{ik} w_k + \sum_{j \neq i} w_j \Sigma_{ji} \\
-&amp;= \sum_{k} \Sigma_{ik} w_k + \sum_{j} w_j \Sigma_{ji} \\
-&amp;= (\Sigma w)_i + (\Sigma^T w)_i \\
-&amp;= 2(\Sigma w)_i \quad (\text{因协方差矩阵对称 } \Sigma = \Sigma^T)
-\end{aligned}\)</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="finance" /><category term="content" /><summary type="html"><![CDATA[单个alpha的性能]]></summary></entry><entry><title type="html">消毒液</title><link href="https://roshameow.github.io//personal_homepage/daily/disinfectant/" rel="alternate" type="text/html" title="消毒液" /><published>2025-11-10T00:00:00+00:00</published><updated>2025-11-10T08:06:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/daily/disinfectant</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/daily/disinfectant/"><![CDATA[]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="daily" /><category term="content" /><summary type="html"><![CDATA[]]></summary></entry><entry><title type="html">代码模块的多维索引</title><link href="https://roshameow.github.io//personal_homepage/code/tag-code/" rel="alternate" type="text/html" title="代码模块的多维索引" /><published>2025-11-06T00:00:00+00:00</published><updated>2026-01-20T17:46:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/code/tag-code</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/code/tag-code/"><![CDATA[<p>记录讨论代码模块多维索引的发展</p>
-
-<h2 id="-一从语言设计角度看从物理模块到语义模块">🧩 一、从语言设计角度看：从「物理模块」到「语义模块」</h2>
-
-<p>传统语言的模块系统是<strong>文件层级绑定的命名空间</strong>：</p>
+<p><a id="unix-pid-file"></a></p>
 
 <ul>
-  <li>Python：<code class="language-plaintext highlighter-rouge">import module.submodule</code></li>
-  <li>Java：<code class="language-plaintext highlighter-rouge">package com.example.util</code></li>
-  <li>C++：基于 include 路径</li>
-  <li>Rust：基于 <code class="language-plaintext highlighter-rouge">mod</code> 文件树</li>
+  <li>一个类似的问题是: 经典的Unix服务都要搞.pid文件. 用于给服务端的守护进程注册一个pid 用来查询 , 就是因为内核天然不支持从文件反查进程</li>
+  <li>最终解决方案: <strong>创建注册表统一管理</strong>, 确定 pid ↔ sessionPath 注册机制</li>
 </ul>
 
-<p>但未来趋势正往<strong>语义模块（semantic module）</strong>发展，也就是：</p>
+<ol>
+  <li>更细节的问题: 如何管理注册表的生命周期
+    <ul>
+      <li>判断pid是否存活: 防止runtime目录无限增长</li>
+      <li>解决 PID 回收复用：记录进程的运行时间, 不许系统复用pid给不同session</li>
+      <li>支持终端与 Pane 的层级穿透：在真实开发中，pi 绝大多数不是孤立跑的，而是跑在 RMUX Pane 里的</li>
+    </ul>
+
+    <div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[RMUX Pane (PID 7000: zsh)]
+   └── [node wrapper (PID 7001)]
+          └── [pi engine (PID 7002)]
+                 └── [subagent / bash tool (PID 7003)]
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left"><strong>中间层：窗口环境</strong><br /><code class="language-plaintext highlighter-rouge">Pane/TTY → Session</code></th>
+      <th style="text-align: left">TMUX/RMUX 支持窗口变量：<br /><code class="language-plaintext highlighter-rouge">set-option -w @pi_session</code> 保存状态</th>
+      <th style="text-align: left"><strong>共享槽污染 (Shared State)</strong>：<br /><code class="language-plaintext highlighter-rouge">display-message</code> 默认取当前活跃窗口，终端中的 pi 或后台任务会把路径误写进别人的 Pane</th>
+      <th style="text-align: left"><strong>窗口名 id8 碰撞 + option 脏写</strong>：<br />普通终端没有 Pane 概念；前 8 位 UUID 实测碰撞；写入槽被其他进程覆盖</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><strong>生存期：PID 回收</strong><br /><code class="language-plaintext highlighter-rouge">PID Liveness</code></td>
+      <td style="text-align: left">借用内核探活信号：<br /><code class="language-plaintext highlighter-rouge">kill -0 &lt;pid&gt;</code> 判定进程是否活着</td>
+      <td style="text-align: left"><strong>PID 回收还魂 (Recycling)</strong>：<br /><code class="language-plaintext highlighter-rouge">kill -9</code> 无法触发清理钩子；macOS 会迅速将释放的 PID 分配给无关的新进程</td>
+      <td style="text-align: left"><strong>幽灵存活</strong>：<br />已退出的会话被误判为存活（因为新运行的某个进程恰好分到了同一个 PID）</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="2-runtime-状态认知解耦">2. runtime 状态认知解耦</h2>
+
+<p>runtime 状态其实包含两个维度：</p>
+
+<ul>
+  <li><strong>位置(where)</strong>：term / RMUX attached / RMUX detached / dead pane；</li>
+  <li><strong>活动(what)</strong>：running / sleeping / interrupted / finished。</li>
+</ul>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>               ┌── 查系统/RMUX API ──────&gt; 【位置 (Where)】：term / attached / detached / dead
+[PID ↔ Session]
+               └── 查进程信号 + JSONL尾部 ─&gt; 【活动 (What)】：running / sleeping / finished / interrupted
+</code></pre></div></div>
+
+<p>一个会话可以位于 detached RMUX 中，但当前没有生成内容；subagent 也可以进程仍活着，却正在执行长时间 <code class="language-plaintext highlighter-rouge">sleep</code>。因此 <code class="language-plaintext highlighter-rouge">inRmux</code> 不能直接推出 <code class="language-plaintext highlighter-rouge">running</code>，终端标签页关闭也不能推出任务结束。</p>
+
+<p>界面最终保留了这组位置 chip：</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>chip</th>
+      <th>含义</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">● rmux</code></td>
+      <td>RMUX session 有客户端附着</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">○ rmux</code></td>
+      <td>RMUX session 存在，但当前分离</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">✕ rmux</code></td>
+      <td>pane 已死，remain-on-exit 仍保留画面</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">● term</code></td>
+      <td>pi 在普通终端中运行</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>活动状态则由会话文件变化、task log 尾部事件和进程存活共同判断。</p>
+
+<h2 id="3-agent在处理这个问题时犯的具体错误和迭代过程">3. agent在处理这个问题时犯的具体错误和迭代过程</h2>
+
+<p>最初开发用的deepseek-v4-flash只会解决眼下问题, 不会分析整体架构, 所以反复出错迭代了20版左右才收敛到最终的注册表方案</p>
+
+<h3 id="31-从-ps-读取---session">3.1 从 <code class="language-plaintext highlighter-rouge">ps</code> 读取 <code class="language-plaintext highlighter-rouge">--session</code></h3>
+
+<p>第一版想从进程命令行找：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ps <span class="nt">-o</span> <span class="nb">command</span><span class="o">=</span> <span class="nt">-p</span> &lt;pid&gt;
+</code></pre></div></div>
+
+<p>但 pi 启动后会把 argv 清理到只剩 <code class="language-plaintext highlighter-rouge">pi</code>，<code class="language-plaintext highlighter-rouge">--session &lt;path&gt;</code> 不再可见。<code class="language-plaintext highlighter-rouge">ps</code> 仍能提供 pid、tty、cwd 和启动时长，却不能回答“正在写哪份 JSONL”。</p>
+
+<h3 id="32-用最近修改的会话文件">3.2 用最近修改的会话文件</h3>
+
+<p>如果一个项目只有一个 pi，拿 mtime 最新的会话看起来可行；同项目并行两个终端 pi 时，两者却都会指向同一个“最新文件”。而且 mtime 表示最后一次写入，不表示进程启动时选择了哪个会话。一个运行了 12 小时的真实会话，反而可能输给刚创建但从未使用的诱饵文件。</p>
+
+<p>mtime 只能做旧客户端的最后 fallback。需要比较启动时刻时，文件名里的创建时间戳比 mtime 稳定。</p>
+
+<h3 id="33-用-rmux-窗口名">3.3 用 RMUX 窗口名</h3>
+
+<p>我先用 <code class="language-plaintext highlighter-rouge">s&lt;id8&gt;</code> 表示会话，随后真的遇到两个 UUID 共享前 8 位。后来改成每个 pi 一个独立 RMUX session：</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pi-&lt;encoded-cwd&gt;-&lt;id12&gt;
+</code></pre></div></div>
+
+<p>窗口固定为 <code class="language-plaintext highlighter-rouge">main</code>。id12 避免了实测碰撞；独立 session 还解决了另一个 tmux 语义问题：attach 到同一 session 的某个 window，会改变该 session 的活动窗口，多个客户端可能一起跳走。</p>
+
+<p>窗口名比 mtime 强，但手动复用旧窗口、pim 的通用窗口名、历史 id8 窗口都使它无法成为唯一真相。</p>
+
+<h3 id="34-用-pi_session-作为权威选项">3.4 用 <code class="language-plaintext highlighter-rouge">@pi_session</code> 作为权威选项</h3>
+
+<p>下一版让窗口保存：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rmux set-option <span class="nt">-w</span> <span class="nt">-t</span> &lt;session&gt;:&lt;window&gt; @pi_session &lt;session-path&gt;
+</code></pre></div></div>
+
+<p>这里 <code class="language-plaintext highlighter-rouge">-w</code> 不能漏；否则自定义 option 落在 session 级，多个窗口会全部声称自己属于最后写入的会话。</p>
+
+<p>即使 scope 正确，共享 option 仍会被错误写入。最典型的污染是：进程直接调用不带 target 的 <code class="language-plaintext highlighter-rouge">rmux display-message</code>，得到的是 daemon 当前窗口，不一定是调用进程所在窗口。普通终端里的 pi，甚至可能拿到“上次活跃的 RMUX 窗口”，然后把自己的会话路径写进别人家。</p>
+
+<p>这揭示了真正的问题：<strong><code class="language-plaintext highlighter-rouge">@pi_session</code> 是一个共享可变槽；只要多个进程都能写，它就不是身份。</strong></p>
+
+<h3 id="35-tty-修好了我在哪但还没回答我是谁">3.5 tty 修好了“我在哪”，但还没回答“我是谁”</h3>
+
+<p>为了避免 <code class="language-plaintext highlighter-rouge">display-message</code> 的 current-window 语义，扩展改成从本进程 tty 反查 pane：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ps <span class="nt">-o</span> <span class="nb">tty</span><span class="o">=</span> <span class="nt">-p</span> &lt;pid&gt;
+rmux list-panes <span class="nt">-a</span> <span class="nt">-F</span> <span class="s1">'#{pane_tty}|#{session_name}:#{window_name}|#{pane_pid}'</span>
+</code></pre></div></div>
+
+<p>tty 与 pane 一一对应，所以它能精确回答“当前进程位于哪个 pane”，也不会受窗口是否 active 影响。查找与 <code class="language-plaintext highlighter-rouge">set-option</code> 一起重试，避免窗口刚创建时的瞬时竞态。</p>
+
+<p>但普通终端 pi 没有 RMUX pane，同项目多个终端进程仍然只能靠启发式映射。tty 解决了位置，没有给进程提供跨环境统一的会话身份。</p>
+
+<h3 id="36-中间结果每个进程写自己的-pid-注册文件">3.6 中间结果：每个进程写自己的 pid 注册文件</h3>
+
+<p>结构性修复是给每个 pi 一个私有身份槽：</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>~/.pi/agent/runtime/&lt;pid&gt;.jsonl
+</code></pre></div></div>
+
+<p>记录示意：</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pi_runtime"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"pid"</span><span class="p">:</span><span class="w"> </span><span class="mi">72344</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"panePid"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"sessionPath"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/Users/me/.pi/agent/sessions/...jsonl"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"cwd"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/Users/me/Code/project"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"startedAt"</span><span class="p">:</span><span class="w"> </span><span class="mi">1786000000000</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"tty"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ttys002"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>这六个字段各有用途：</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">pid</code>：注册文件的唯一所有者；</li>
+  <li><code class="language-plaintext highlighter-rouge">panePid</code>：pi 由 pane 内 shell 启动时，Desktop 可从 pane 顶层 pid 反查；</li>
+  <li><code class="language-plaintext highlighter-rouge">sessionPath</code>：直接给出会话，不再猜测；</li>
+  <li><code class="language-plaintext highlighter-rouge">cwd</code>：兼容旧数据和诊断；</li>
+  <li><code class="language-plaintext highlighter-rouge">startedAt</code>：防止 pid 被系统回收后错误复用旧条目；</li>
+  <li><code class="language-plaintext highlighter-rouge">tty</code>：判断 <code class="language-plaintext highlighter-rouge">panePid=null</code> 是真实终端，还是启动时 pane 查找暂时失败。</li>
+</ul>
+
+<p>与 <code class="language-plaintext highlighter-rouge">@pi_session</code> 相比，关键变化不是“文件比 option 可靠”，而是<strong>写入模型从多人共享一个槽，变成每个进程只写自己的槽。</strong></p>
+
+<h3 id="37-注册表也必须验证">3.7 注册表也必须验证</h3>
+
+<p>注册文件不是天然可信。Desktop 读取时会经过几道检查。</p>
+
+<h4 id="371-进程必须仍然存活">3.7.1 进程必须仍然存活</h4>
+
+<p>本地使用 <code class="language-plaintext highlighter-rouge">kill -0 &lt;pid&gt;</code>。死条目在扫描时直接删除，runtime 目录不会无限增长。</p>
+
+<h4 id="372-防止-pid-复用">3.7.2 防止 pid 复用</h4>
+
+<p>仅检查 pid 存活仍不够：旧 pi 退出后，系统可能把相同 pid 分配给无关的新进程。</p>
+
+<p>Desktop 比较：</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>当前进程 etime &gt;= 当前时间 - startedAt - 30s
+</code></pre></div></div>
+
+<p>若当前进程明显比注册文件年轻，就拒绝该条目。最初这里还踩过一个单位 bug：扩展写的是 <code class="language-plaintext highlighter-rouge">Date.now()</code> 毫秒，Rust 按秒计算，age 变成负数，防护在生产里等于没运行。现在 <code class="language-plaintext highlighter-rouge">startedAt &gt; 1e10</code> 时先除以 1000，兼容毫秒和旧的秒格式（<code class="language-plaintext highlighter-rouge">bd4cdb6</code>）。</p>
+
+<p>多个条目的 etime 通过一次批量 <code class="language-plaintext highlighter-rouge">ps -p pid1,pid2,...</code> 获取，不再每个条目启动一次 <code class="language-plaintext highlighter-rouge">ps</code>。</p>
+
+<h4 id="373-会话文件必须存在">3.7.3 会话文件必须存在</h4>
+
+<p><code class="language-plaintext highlighter-rouge">/new</code> 被中断时，注册表和 <code class="language-plaintext highlighter-rouge">@pi_session</code> 可能仍指向已经删除的文件。如果直接接受，旧路径会吞掉 pane 的真实归属。现在只有 <code class="language-plaintext highlighter-rouge">sessionPath</code> 仍为文件时才走注册表 fast path，否则继续进入窗口名与启发式 fallback（<code class="language-plaintext highlighter-rouge">c4712e2</code>）。</p>
+
+<h3 id="38-当前归属链">3.8 当前归属链</h3>
+
+<p>对于 RMUX pane，当前优先级可以概括为：</p>
+
+<ol>
+  <li><strong>pid 注册表直连</strong>：pane pid 直接命中，或某条记录的 <code class="language-plaintext highlighter-rouge">panePid</code> 命中；</li>
+  <li><strong>窗口 option 与 id12 互验</strong>：<code class="language-plaintext highlighter-rouge">@pi_session</code> 有效，且不与窗口名冲突；</li>
+  <li><strong>窗口名 id12</strong>：从 <code class="language-plaintext highlighter-rouge">pi-&lt;cwd&gt;-&lt;id12&gt;</code> 定位会话；</li>
+  <li><strong>历史兼容</strong>：旧 <code class="language-plaintext highlighter-rouge">s&lt;id8&gt;</code>、subagent taskId 窗口；</li>
+  <li><strong>最后 fallback</strong>：pane cwd + 进程启动时间，与会话文件名创建时间比较。</li>
+</ol>
+
+<p>对于普通终端：</p>
+
+<ol>
+  <li>找 <code class="language-plaintext highlighter-rouge">panePid=null</code> 且 tty 不属于任何 RMUX pane 的注册条目；</li>
+  <li>直接使用条目中的 <code class="language-plaintext highlighter-rouge">sessionPath</code>；</li>
+  <li>只有未安装新扩展的旧 pi，才退回 <code class="language-plaintext highlighter-rouge">ps comm=pi</code> 与“项目内最新非 RMUX 会话”的启发式。</li>
+</ol>
+
+<p>所以旧文章里“同项目多个终端 pi 仍无法区分”的风险已经被解决；注册后的两个进程拥有不同 pid 文件，会各自指向自己的会话。</p>
+
+<h3 id="39-dead-pane重复窗口与-attach">3.9 dead pane、重复窗口与 attach</h3>
+
+<p>归属正确后，还要处理生命周期。</p>
+
+<p>RMUX 开启 remain-on-exit 后，进程退出不代表 pane 消失。只检查 <code class="language-plaintext highlighter-rouge">has-session</code> 会把用户 attach 到崩溃画面。现在 runtime map 读取 <code class="language-plaintext highlighter-rouge">pane_dead</code>：同一会话有多条记录时活 pane 胜过死 pane；整个目标只剩死 pane 时，可以关闭并重建；超过 6 小时的死窗口会被清理，但 JSONL 不动。</p>
+
+<p>Open TUI 和 Attach 也会先查询 runtime map。目标已在 RMUX 中就复用；已在普通终端运行则拒绝再启动。这里不是 UI 洁癖，而是数据安全：两个 pi 同时 append 同一个 JSONL 可能损坏会话。</p>
+
+<p>“Detach”和“Close RMUX session”因此必须分开：前者只断开客户端，pi 继续运行；后者会 kill 整个 session，是硬停止，界面需要二次确认。</p>
+
+<h3 id="310-reload-让-subagent-身份问题再次出现">3.10 reload 让 subagent 身份问题再次出现</h3>
+
+<p>runtime 归属稳定后，reload 又暴露了另一类“一对多”关系：一个子会话 UUID 可以先后对应多个 taskId。旧 task 已死，新 task 正在运行，如果索引 first-wins，界面会一直显示 interrupted。</p>
+
+<p>当前做法是保留 UUID 对应的全部 taskId，优先选择存活任务；多个 mirror 的首条文本也全部保留。更重要的是，新版 durable 日志写入 <code class="language-plaintext highlighter-rouge">pi_subagent_parent</code>，Desktop 用明确的父 UUID 关联，文本匹配只兼容旧日志（<code class="language-plaintext highlighter-rouge">bbca171</code>、<code class="language-plaintext highlighter-rouge">4261af3</code>、<code class="language-plaintext highlighter-rouge">9ea6b8d</code>）。</p>
+
+<p>这是同一条原则的延伸：<strong>有稳定 ID 时，不要让时间顺序或相似文本承担身份职责。</strong></p>
+
+<h3 id="311-远程模式为什么不能照搬本机进程判断">3.11 远程模式为什么不能照搬本机进程判断</h3>
+
+<p>远程 source 使用 rsync 拉取会话树，并同步两份状态快照：远端 <code class="language-plaintext highlighter-rouge">ps</code> 和 <code class="language-plaintext highlighter-rouge">rmux list-panes</code>。本机的 <code class="language-plaintext highlighter-rouge">kill -0</code>、<code class="language-plaintext highlighter-rouge">ps</code> 不认识远端 pid；早期代码误查本机 pid，导致所有远端 pane 都被判死，Attach 失败，Open TUI 还会尝试新建重复 session（<code class="language-plaintext highlighter-rouge">ca45e85</code>）。</p>
+
+<p>现在远端 pane liveness 只从同步的 host 快照判断，<code class="language-plaintext highlighter-rouge">@pi_session</code> 中的远端绝对路径也会映射到本地 cache path。远端状态因此是“最近一次同步时的视图”，不是实时 RPC 流；刷新 source 才会更新快照。目前远端快照也没有 client attachment 信息，所以远端 chip 不应被理解为精确的 attached/detached 实时状态。</p>
+
+<p>这是一项有意保留的边界：浏览和控制仍然可靠，但远程状态具有快照延迟。</p>
+
+<h3 id="312-最后得到的结论">3.12 最后得到的结论</h3>
+
+<p>这段调试最初看起来像“把状态 chip 修准”，实际是在区分三类信息：</p>
+
+<ul>
+  <li><strong>身份</strong>：哪个进程对应哪个会话；</li>
+  <li><strong>位置</strong>：进程位于哪个 tty / pane / host；</li>
+  <li><strong>活动</strong>：进程和任务处于什么生命周期状态。</li>
+</ul>
+
+<p>窗口名、mtime、current window 和文本相似度都只能提供相关性，不能提供身份。最终稳定下来的不是某个更聪明的启发式，而是一套更小的信任边界：</p>
+
+<ol>
+  <li>每个进程只写自己的 pid 文件；</li>
+  <li>Desktop 验证存活、进程年龄和会话文件；</li>
+  <li>RMUX option 与窗口名只做交叉校验和兼容 fallback；</li>
+  <li>远程状态明确按快照处理，不假装成本机实时信息。</li>
+</ol>
+
+<p><strong>如果一个归属判定还依赖“另一个写入方不会写错”，它就还没有真正修完。</strong></p>
 
 <blockquote>
-  <p>模块不由文件夹决定，而由「意图」或「语义标签」定义。</p>
+  <p>关键修复</p>
+
+  <ul>
+    <li><code class="language-plaintext highlighter-rouge">2e1b29d</code>：每个 pi 使用独立 RMUX session，窗口名升级到 id12</li>
+    <li><code class="language-plaintext highlighter-rouge">7ea7f90</code>：<code class="language-plaintext highlighter-rouge">@pi_session</code> 改为 window scope</li>
+    <li><code class="language-plaintext highlighter-rouge">8368008</code>：窗口名与被污染 option 冲突时，id12 胜出</li>
+    <li><code class="language-plaintext highlighter-rouge">e2ec2c5</code> / <code class="language-plaintext highlighter-rouge">d90a034</code>：用本进程 tty 定位 pane，并整体重试</li>
+    <li><code class="language-plaintext highlighter-rouge">9afd082</code> / <code class="language-plaintext highlighter-rouge">35b6c9e</code>：pid runtime registry 成为 RMUX 与终端归属主路径</li>
+    <li><code class="language-plaintext highlighter-rouge">bd4cdb6</code> / <code class="language-plaintext highlighter-rouge">c4712e2</code>：修正 startedAt 单位，并拒绝已删除的 session path</li>
+    <li><code class="language-plaintext highlighter-rouge">b2e9f68</code>：注册表和 pane 的进程检查批量化</li>
+    <li><code class="language-plaintext highlighter-rouge">ca45e85</code>：远端 liveness 改读 host 进程快照</li>
+  </ul>
+</blockquote>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="tool" /><category term="pi" /><category term="tauri" /><category term="rmux" /><category term="macOS" /><category term="debugging" /><summary type="html"><![CDATA[Pi Desktop 里最难修的功能，是侧边栏那枚很小的状态 chip：这个会话现在的运行状态？]]></summary></entry><entry><title type="html">Pi Desktop：从会话浏览器到跨机器工作台</title><link href="https://roshameow.github.io//personal_homepage/tool/pi-desktop/" rel="alternate" type="text/html" title="Pi Desktop：从会话浏览器到跨机器工作台" /><published>2026-08-11T00:00:00+00:00</published><updated>2026-09-26T17:39:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/tool/pi-desktop</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/tool/pi-desktop/"><![CDATA[<p>我最初只是想给 <a href="https://github.com/badlogic/pi-mono">pi coding agent</a> 补一个桌面会话浏览器：按项目查看 JSONL、展开工具调用，需要时从原会话继续聊。</p>
+
+<p>后来它逐渐变成了一个工作台：能把主会话和 subagent 放回同一棵树里，知道每个 pi 正运行在终端还是 RMUX，能 attach、detach 和结束后台进程，还能浏览远程机器，甚至把本机会话转移过去继续运行。</p>
+
+<p>项目源码：<a href="https://github.com/roshameow/pi-session-viewer">pi-session-viewer</a>。仓库里也有不读取本机数据的合成会话 demo，方便先看界面。</p>
+
+<h2 id="1-现在它解决什么问题">1. 现在它解决什么问题</h2>
+
+<p>我同时跑多个项目和 subagent 后，终端本身不再是一个好索引：</p>
+
+<ul>
+  <li>会话文件在 <code class="language-plaintext highlighter-rouge">~/.pi/agent/sessions/</code>，终端标签却散落在不同窗口；</li>
+  <li>主会话、subagent 日志和 mirror 文件彼此有关，但目录结构表达不出来；</li>
+  <li>关掉标签页不等于任务结束，RMUX 里的 pi 可能仍在后台运行；</li>
+  <li>同一个会话如果被两个 pi 同时续写，JSONL 有损坏风险；</li>
+  <li>长任务转到另一台 Mac 后，本机又看不到它的进度。</li>
+</ul>
+
+<p>Pi Desktop 因此围绕四件事组织界面：</p>
+
+<ol>
+  <li><strong>浏览</strong>：按工作目录列出会话，渲染消息、thinking、工具调用、输出和模型信息；</li>
+  <li><strong>关联</strong>：把 durable subagent 挂回父会话，并区分 running、sleeping、interrupted、finished；</li>
+  <li><strong>控制</strong>：继续会话，打开或附着 TUI，detach，关闭 RMUX session；</li>
+  <li><strong>定位</strong>：显示会话是在本机终端、本机 RMUX、远程 RMUX，还是只剩一个死 pane。</li>
+</ol>
+
+<p>这里最重要的设计是：<strong>“在哪里”与“是否还在运行”是两条状态。</strong></p>
+
+<p><code class="language-plaintext highlighter-rouge">○ rmux</code> 表示会话仍在 RMUX 中但没有客户端附着，不代表它此刻正在生成内容；<code class="language-plaintext highlighter-rouge">✕ rmux</code> 表示 remain-on-exit 留下的死 pane；<code class="language-plaintext highlighter-rouge">● term</code> 才表示普通终端里的活进程。位置和活动状态混在一起，界面很快就会撒谎。</p>
+
+<h2 id="2-架构直接复用本机-pi">2. 架构：直接复用本机 pi</h2>
+
+<p>技术栈很简单：React 18 + Vite 做前端，Tauri v2 + Rust 做本地后端。</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>React UI
+  ├─ Sidebar：项目、主会话、subagent、runtime chip
+  ├─ Thread：JSONL 消息树、工具调用、流式输出
+  └─ Composer：继续会话
+
+Rust / Tauri
+  ├─ sessions.rs：解析、索引、runtime 归属、缓存
+  ├─ agent.rs：spawn pi --mode json，转发事件流
+  ├─ remote.rs：SSH/rsync、远程快照、会话转移
+  └─ lib.rs：Tauri commands、RMUX 与 Terminal 集成
+</code></pre></div></div>
+
+<p>我没有再加 Node sidecar。pi 已经提供 <code class="language-plaintext highlighter-rouge">--mode json</code> 的增量事件流；执行：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pi <span class="nt">--session</span> &lt;file&gt; <span class="nt">--mode</span> json
+</code></pre></div></div>
+
+<p>就能继续原会话，并由 pi 自己把新内容写回同一个 JSONL。Rust 只负责启动进程、逐行转发 stdout。这样认证、模型、扩展和配置都继续使用用户现有的 pi 环境。</p>
+
+<h2 id="3-最难的不是解析而是-runtime-归属">3. 最难的不是解析，而是 runtime 归属</h2>
+
+<p>一开始我以为从 <code class="language-plaintext highlighter-rouge">ps</code> 找 <code class="language-plaintext highlighter-rouge">--session</code> 就够了，实测 pi 会把 argv 清理到只剩进程名。后面的窗口名、<code class="language-plaintext highlighter-rouge">@pi_session</code>、tty、pid 注册表，都是为了解决同一个问题：<strong>某个活进程究竟对应哪份会话文件。</strong></p>
+
+<p>目前主路径是每个 pi 在启动时写一个私有注册文件：</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>~/.pi/agent/runtime/&lt;pid&gt;.jsonl
+</code></pre></div></div>
+
+<p>里面记录 <code class="language-plaintext highlighter-rouge">pid</code>、<code class="language-plaintext highlighter-rouge">panePid</code>、<code class="language-plaintext highlighter-rouge">sessionPath</code>、<code class="language-plaintext highlighter-rouge">cwd</code>、<code class="language-plaintext highlighter-rouge">startedAt</code> 和 <code class="language-plaintext highlighter-rouge">tty</code>。Desktop 用进程 pid 或 pane 顶层 pid 直接找到会话，不再根据“最近修改的文件”猜测。</p>
+
+<p>RMUX 仍保留两层兼容信息：</p>
+
+<ul>
+  <li>每个主会话使用独立的 <code class="language-plaintext highlighter-rouge">pi-&lt;cwd&gt;-&lt;id12&gt;</code> session；</li>
+  <li>窗口的 <code class="language-plaintext highlighter-rouge">@pi_session</code> 保存会话路径。</li>
+</ul>
+
+<p>但它们现在是注册表缺失时的 fallback，而不是唯一真相。窗口名中的 id12 还会与 <code class="language-plaintext highlighter-rouge">@pi_session</code> 互相校验，避免错误写入污染归属。完整演进放在下一篇：<a href="/personal_homepage/tool/pi-runtime-attribution/">Pi runtime 归属：不要猜“哪个会话正在跑”</a>。</p>
+
+<p>这一套也让防重复启动变得可靠：Open TUI 或 Attach 前先检查目标会话是否已有活进程，避免两个 pi 同时 append 同一份 JSONL。</p>
+
+<h2 id="4-subagent-不是一个文件而是一段生命周期">4. subagent 不是一个文件，而是一段生命周期</h2>
+
+<p><code class="language-plaintext highlighter-rouge">pi-subagent-durable</code> 会产生真实子会话、mirror 和 task log。第一版只用 mirror header 的 UUID 关联，遇到 reload 就开始出错：同一个子会话会有多个 taskId，旧任务已死，新任务仍在跑；后生成的 mirror 还可能覆盖最初用于匹配父任务的文本。</p>
+
+<p>现在索引做了三件事：</p>
+
+<ol>
+  <li>一个 UUID 保留所有 taskId，状态优先选择仍存活的任务；</li>
+  <li>一个 UUID 保留所有 mirror 的首条任务文本，旧日志仍可做兼容匹配；</li>
+  <li>新日志中的 <code class="language-plaintext highlighter-rouge">pi_subagent_parent</code> 明确记录父会话 UUID，作为首选关联，文本相似度只服务旧数据。</li>
+</ol>
+
+<p>这比“根据文件名拼关系”稳定得多。reload 后，子会话仍挂在原父会话下，running/sleeping 状态也跟随新的 live task，而不是停在已经死亡的旧 task 上。</p>
+
+<h2 id="5-性能优化做了两轮">5. 性能优化做了两轮</h2>
+
+<h3 id="51-第一轮少读文件">5.1 第一轮：少读文件</h3>
+
+<p>早期在 129 个会话上，<code class="language-plaintext highlighter-rouge">list_sessions</code> 从约 2.25 秒降到 117 毫秒。主要手段是：</p>
+
+<ul>
+  <li>header 和首条消息只做有界读取；</li>
+  <li>按 <code class="language-plaintext highlighter-rouge">(mtime, size)</code> 缓存 metadata、detail 和父子关联；</li>
+  <li>巨型会话默认只挂载尾部 150 条消息，按需向前展开；</li>
+  <li>Markdown 组件 memo 化。</li>
+</ul>
+
+<p>这解决了“文件越大越慢”，但没有解决“刷新时整个应用都被堵住”。</p>
+
+<h3 id="52-第二轮不能阻塞-ui也不能让轮询重做旧工作">5.2 第二轮：不能阻塞 UI，也不能让轮询重做旧工作</h3>
+
+<p>会话增长到 470 多份后，问题重新出现：<code class="language-plaintext highlighter-rouge">list_projects</code>、<code class="language-plaintext highlighter-rouge">list_sessions</code>、<code class="language-plaintext highlighter-rouge">session_detail</code> 各自可能耗时 6–8 秒。更关键的是，Tauri v2 的同步 command 会占住 UI 线程，打开应用能冻结十几秒，10 秒轮询还会重复制造卡顿。</p>
+
+<p>后来的修复分成四层：</p>
+
+<ul>
+  <li><strong>调度层</strong>：所有重命令改为 async wrapper，并用 <code class="language-plaintext highlighter-rouge">spawn_blocking</code> 放到阻塞线程池；</li>
+  <li><strong>系统调用层</strong>：逐 pane 的 <code class="language-plaintext highlighter-rouge">kill -0</code>、<code class="language-plaintext highlighter-rouge">ps</code>、<code class="language-plaintext highlighter-rouge">list-clients</code> 改成批量快照；</li>
+  <li><strong>数据层</strong>：项目列表、会话列表、进程快照、日志尾部都做指纹或 TTL 缓存；</li>
+  <li><strong>渲染层</strong>：没有变化就保留原对象引用；流式事件增量归并为 block，每 80ms 最多刷新一次，而不是每个 token 重建整段历史。</li>
+</ul>
+
+<p>轮询也从 <code class="language-plaintext highlighter-rouge">setInterval</code> 改成递归 <code class="language-plaintext highlighter-rouge">setTimeout</code>：上一轮结束后才安排下一轮，窗口在后台时暂停，避免慢扫描重叠。task log 的状态判定则只读末尾 64KB，不再每 10 秒读取几十 MB 的完整日志。</p>
+
+<p>开发机上的一组观察值是：</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>操作</th>
+      <th style="text-align: right">优化前</th>
+      <th style="text-align: right">优化后</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">list_projects</code>（472 files）</td>
+      <td style="text-align: right">8.4s</td>
+      <td style="text-align: right">0.6s；缓存命中约 2ms</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">list_sessions</code></td>
+      <td style="text-align: right">6.5s</td>
+      <td style="text-align: right">1.2s；无变化时约 2ms</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">list_running</code></td>
+      <td style="text-align: right">520ms</td>
+      <td style="text-align: right">44ms</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>这些数字来自真实使用环境，不是严谨 benchmark；真正有用的结论是：<strong>缓存只能降低工作量，<code class="language-plaintext highlighter-rouge">spawn_blocking</code> 才保证工作量再大也不拖死界面。</strong></p>
+
+<h2 id="6-从本地查看器到远程工作台">6. 从本地查看器到远程工作台</h2>
+
+<p>远程支持没有重写解析器，而是增加了一个 source 层。切换到 SSH host 时，Desktop 会：</p>
+
+<ol>
+  <li>用 rsync 把远端 <code class="language-plaintext highlighter-rouge">~/.pi/agent/</code> 的 sessions、agent-logs 和 runtime 缓存到本机：
+<code class="language-plaintext highlighter-rouge">~/.pi/remote/&lt;host&gt;/agent/</code>；</li>
+  <li>用一次 SSH 请求抓取 <code class="language-plaintext highlighter-rouge">ps</code> 与 RMUX pane 快照；</li>
+  <li>让原有 <code class="language-plaintext highlighter-rouge">sessions.rs</code> 改读这棵本地缓存；</li>
+  <li>Attach、Detach、Close 等动作再通过 SSH 回到远端执行。</li>
+</ol>
+
+<p>这样，JSONL 解析、subagent 索引和绝大多数 UI 逻辑都不需要区分本地与远程。SSH 使用 ControlMaster/ControlPersist 复用连接，rsync 与状态快照共享同一条连接，避免每次切 source 都重新握手。</p>
+
+<p>右键 <strong>Transfer to Remote</strong> 则做相反方向的迁移：收集主会话和相关 subagent mirror，将 JSONL 中的本地项目根目录替换为远端 cwd，上传到远端 sessions 目录，再在远端新建一个 detached RMUX session，执行 <code class="language-plaintext highlighter-rouge">pi --session</code> 继续运行。</p>
+
+<p>这里有一个明确边界：<strong>迁移的是会话记录，不是正在运行的进程。</strong> subagent 进程不会穿过机器搬家；Desktop 会附加提示，让父会话按 durable 进度重新发起未完成的任务。</p>
+
+<h2 id="7-macos-的小坑打开标签页比想象中难">7. macOS 的小坑：打开标签页比想象中难</h2>
+
+<p>Terminal.app 的 AppleScript <code class="language-plaintext highlighter-rouge">do script</code> 会复用前台标签页。若前台正运行 raw-mode TUI，命令可能直接被打进 pi 的 stdin。可靠做法是发送 <code class="language-plaintext highlighter-rouge">Cmd+T</code>，再在新标签页执行 attach；而模拟按键需要 Accessibility 权限。</p>
+
+<p>主 app 每次重建，unsigned binary 的 cdhash 都可能变化，TCC 授权随之失效。最终我把<strong>按键操作放进一个不随 app 重建的 <code class="language-plaintext highlighter-rouge">tab-open-helper</code>，单独授权它</strong>。helper 成功后直接信任返回，不再用异步的 tab 数量做二次判断，否则会同时打开标签和窗口。</p>
+
+<p>这不是核心功能，却很典型：桌面应用里，业务逻辑正确不等于系统集成可靠。</p>
+
+<h2 id="8-项目目前的状态">8. 项目目前的状态</h2>
+
+<p>代码已经公开，并补了三种无需真实会话的入口：合成会话浏览 demo、20 秒示意动画和静态截图。当前仍以源码构建为主，macOS 是主要开发平台；仓库没有把本地自签名构建包装成“正式、公证过的发行版”。</p>
+
+<p>回头看，Pi Desktop 的主线并不是“给 CLI 套一个 GUI”，而是把散落在文件、进程、RMUX 和远程机器里的状态重新拼成可信视图。最值得保留的三条经验是：</p>
+
+<ol>
+  <li><strong>身份不要靠时间和文本猜，尽量让运行进程注册自己；</strong></li>
+  <li><strong>耗时工作不仅要缓存，还必须离开 UI 线程；</strong></li>
+  <li><strong>远程支持优先复用现有本地模型：同步数据与快照，比复制整套逻辑更稳。</strong></li>
+</ol>
+
+<blockquote>
+  <p>[!timeline] 关键演进</p>
+  <ul>
+    <li><strong>08-10 / 08-11</strong>：会话浏览、继续会话、每 pi 独立 RMUX、runtime chip、窗口化渲染</li>
+    <li><strong>08-12</strong>：pid runtime registry，终端与 RMUX 归属从启发式改为直连</li>
+    <li><strong>08-13 / 08-15</strong>：reload 多 task 状态、subagent 多 mirror、远程 source switcher</li>
+    <li><strong>08-17 / 08-21</strong>：列表缓存、主线程解阻塞、批量系统调用与稳定引用</li>
+    <li><strong>08-23</strong>：会话转移到远端，修复远端 pane liveness</li>
+    <li><strong>09-04 / 09-09</strong>：轮询与流式渲染降 CPU，远端父子关系改为显式标记优先</li>
+    <li><strong>09-15 / 09-16</strong>：公开 demo、可复现示意动画与截图</li>
+  </ul>
+</blockquote>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="tool" /><category term="content" /><category term="jekyll" /><category term="pi" /><category term="tauri" /><category term="rmux" /><category term="macOS" /><summary type="html"><![CDATA[我最初只是想给 pi coding agent 补一个桌面会话浏览器：按项目查看 JSONL、展开工具调用，需要时从原会话继续聊。]]></summary></entry><entry><title type="html">用AI agent复现我的博客风格</title><link href="https://roshameow.github.io//personal_homepage/daily/agent-blog-writing/" rel="alternate" type="text/html" title="用AI agent复现我的博客风格" /><published>2026-08-09T00:00:00+00:00</published><updated>2026-08-11T01:58:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/daily/agent-blog-writing</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/daily/agent-blog-writing/"><![CDATA[<p>让 agent 代写博客,卡住我的不是内容,是风格。反复改了几版都不对味,最后把博客库全量统计了一遍,整理出可复用的风格特征,并用 subagent 迭代验证到收敛。这篇分四部分:风格素材库(可直接喂给 AI)、采样过程与迭代、写《AI 做微信表情包》的实战、subagent 迭代实践。</p>
+
+<h2 id="1-我的写作风格素材库">1. 我的写作风格(素材库)</h2>
+<blockquote>
+
+  <p>以下特征基于全库 144 篇、53 万字的统计,跨主题稳定。<strong>本素材库是完整的风格约束,不依赖任何具体博客内容</strong>;如需感知风格,可另读样例博客(仅学写法,样例的具体内容禁止进入新博客)。</p>
+
+  <p><strong>结构:数字分节</strong>。正文用 <code class="language-plaintext highlighter-rouge">## 1. 素材挖掘</code>、<code class="language-plaintext highlighter-rouge">### 1.1 微信头像缓存在哪</code> 这样的层级组织,每个小节一个独立的技术点。不用「一、二、三」,不用章节标题散文式引言。</p>
+
+  <p><strong>信息密度高,每节一个具体技术点,展开充分</strong>。一个小节讲清一个坑:现象是什么 → 根因是什么 → 怎么解决,<strong>但要把坑讲透</strong>——现象、根因、解决、随手例子、相关数据都展开,一个小节至少是一个完整段落(3 句以上)。<strong>禁止一句话小节</strong>:不要写”### xxx”标题下只有一句正文;每个小节必须有实质展开,全文各小节内容量大致均衡。不要展开讲解背景,不要”总的来说”。</p>
+
+  <p><strong>硬核记录,不写散文</strong>。技术细节全部落具体:命令、路径、报错原文、参数、代码块、gist 链接直接贴。sticker 里写”微信缓存路径是 <code class="language-plaintext highlighter-rouge">~/Library/Containers/com.tencent.xinWeChat/.../2.0b4.0.9/</code>“,写”<code class="language-plaintext highlighter-rouge">canvas.convert('RGB')</code> 会把透明像素变成纯黑(0,0,0)”,都是落地的记录。</p>
+
+  <p><strong>表格用于版本/参数对比</strong>。多轮迭代、多参数比较时用表格,每行一个版本/参数,列是维度。sticker 的”文字样式迭代 6 版”表格就是模板。</p>
+
+  <p><strong>关键结论加粗</strong>。每节最重要的一句用 <code class="language-plaintext highlighter-rouge">**加粗**</code>,比如 sticker 里的”63 张去重后只剩 27 张不同的照片”、”微信把同一张图以不同文件名缓存了多次”。</p>
+
+  <p><strong>记录驱动,不是讲解驱动</strong>。写”我做了什么、发现了什么、怀疑什么”,不是写给读者看的教程。开头一句话进主题,sticker 开头是”目标:把历史微信头像(都是我家猫的照片)做成一套微信表情包”。</p>
+
+  <p><strong>开场是”目标 → 流程 N 步 → 结果”三段式,不是复盘</strong>。sticker 开场三句:① 一句”目标:把 A 做成 B 并在 C 提交上架”(一个动作链,主语明确);② 一句”整体流程分四步:A → B → C → D”(每步带括号工具/方法);③ 一句最终结果(“最终「玳瑁烟大王」17 张静态表情提交成功,进入审核”,带具体数字与状态)。<strong>禁止复盘式开场</strong>:「从 X 到 Y 连发 N 条提交,核心是把 Z 做对」「8 月 X 日到深夜」这类时间+统计总结是 AI 腔。目标句里不塞技术栈、仓库路径、GitHub 链接、冒号罗列的功能清单——这些留给正文小节,开场只给动作链。</p>
+
+  <p><strong>中英混排是肌肉记忆</strong>。专业术语全部保留英文,不翻译:agy、Playwright、RGBA、Mermaid timeline、Obsidian、callout、prompt、token。统计显示 70% 的行含英文术语。</p>
+
+  <p><strong>结论带个人评估</strong>。直接下判断:sticker 里”通用名都易重名,改用毛色特征起名,一次通过”。不用”可能”“或许”。</p>
+
+  <p><strong>疑问直接写进正文</strong>。实验中的未解疑问原样保留,是记录的一部分。</p>
+
+  <p><strong>emoji 少但会用</strong>。🤔️ 表疑问,😮💨 表无奈,用于情绪,不是装饰。一篇文一两个就够,sticker 那篇全篇没有也是可以的。</p>
+
+  <p><strong>段落正常写</strong>。句子完整、信息密度高、直接不啰嗦。碎片化短句堆砌是坏习惯,不继承;但也不要写长段落散文。<strong>每个小节至少一个完整段落(3-5 句),段内把点讲透,不用一句话充一个段落;小节之间内容量要均衡,不要有的三行、有的三句</strong>。</p>
+
+  <p><strong>视角规则</strong>:”我”是博客作者本人,AI/agent 是工具。禁止第三人称称呼(“用户”“自家猫”)。</p>
+
+  <p><strong>反例(agent 默认倾向,要禁止)</strong>:公众号式开头(“突发奇想”“过程曲折”)、复盘式开场(「从 17:32 到 23:42 连发 40 条提交,核心是把 Z 做对」这类时间+提交数统计)、完整论证链(“原因是…所以…综上所述”)、术语翻译、空洞过渡句、段落式平铺、只有描述没有具体细节。</p>
+
+  <p><strong>格式取舍</strong>:特殊格式优先零依赖方案。时间线用 Obsidian callout(<code class="language-plaintext highlighter-rouge">&gt; [!timeline]</code> + <code class="language-plaintext highlighter-rouge">**10:00** · 事件</code>),不用 Mermaid timeline(在 Obsidian 解析不稳定,时间点冒号与语法冲突)。</p>
+
+  <h2 id="2-采样过程与迭代">2. 采样过程与迭代</h2>
 </blockquote>
 
-<p>一些现代语言的迹象：</p>
+<p>素材库不是一次写出来的,是两次采样、三次定位迭代磨出来的。第一次采样就翻车了,重做全库统计才拿到靠谱的数据。</p>
 
-<ul>
-  <li><strong>Swift Package Manager</strong> 已经支持 target-based 依赖，可跨文件复用；</li>
-  <li><strong>Rust Crates + feature flags</strong> 开始允许 feature-based 组合；</li>
-  <li><strong>CUE / Bazel</strong> 通过标签（labels）管理依赖；</li>
-  <li><strong>ReScript / Rome / Deno</strong> 正在探索 import maps 与语义分组。</li>
-</ul>
+<h3 id="21-第一次采样4-篇样本风格判断全错">2.1 第一次采样:4 篇样本,风格判断全错</h3>
 
-<p>这说明整个行业在从 “文件组织” 向 “语义组织” 过渡。</p>
+<p>第一次只挑了 4 篇博客(alpha 系列和工具教程)喂给 agent,主题集中在量化。Gemini 第一轮分析把”正交”“压榨”“真谛”列为我的常用语——这三个词在量化博客里高频出现,却是主题术语,不是写作特征。<strong>根因是样本主题单一:agent 分不清”主题词汇”和”风格词汇”,把内容词误判成了文风</strong>。这一轮唯一的价值是让我意识到采样方法错了,于是重做全库统计。</p>
 
-<hr />
+<h3 id="22-全库重统计144-篇53-万字">2.2 全库重统计:144 篇、53 万字</h3>
 
-<h2 id="-二从工程实践看tag-是多维索引的一种形式">🧠 二、从工程实践看：tag 是“多维索引”的一种形式</h2>
+<p>全库 144 篇、53 万字,按主题分类:</p>
 
-<p>软件结构现在普遍面对的一个问题是：</p>
+<table>
+  <thead>
+    <tr>
+      <th>主题</th>
+      <th>篇数</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>量化</td>
+      <td>17</td>
+    </tr>
+    <tr>
+      <td>几何</td>
+      <td>12</td>
+    </tr>
+    <tr>
+      <td>blender</td>
+      <td>22</td>
+    </tr>
+    <tr>
+      <td>AI 生成</td>
+      <td>10</td>
+    </tr>
+    <tr>
+      <td>色彩</td>
+      <td>6</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>统计了三个风格指标:emoji 只有 42/144 篇在用(29%),<strong>中英混排率平均 70%</strong>,口语判断词里”就是”出现 33 篇、”直白地说”只有 2 篇。结果推翻了好几个直觉判断:我以为自己不用 emoji,实际上有 29% 的篇目在用;”直白地说”极少出现,真正的口语连接词是”就是”。<strong>风格采样必须跨主题、够数量,单主题样本会让 agent 把主题词汇误判成风格</strong>——这是采样流程里最硬的一条。</p>
+
+<h3 id="23-定位迭代三次收敛到个人实验记录">2.3 定位迭代:三次收敛到”个人实验记录”</h3>
+
+<p>理解自己写的是什么,也迭代了几轮:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>版本</th>
+      <th>定位</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>第一轮</td>
+      <td>干货文章</td>
+    </tr>
+    <tr>
+      <td>第二轮</td>
+      <td>技术笔记</td>
+    </tr>
+    <tr>
+      <td>第三轮</td>
+      <td>实验记录</td>
+    </tr>
+    <tr>
+      <td>最终</td>
+      <td>个人实验记录</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>最准确的说法是:我的博客是个人实验记录,记录驱动、带疑问、带个人评估,不是教程</strong>。差别在”个人”二字——记录是给自己的,不是输出给读者的。这个定位定准了,后面的写作才有方向;定位错了,特征清单写得再全也对不上味。</p>
+
+<h2 id="3-写ai-做微信表情包博客的实战">3. 写《AI 做微信表情包》博客的实战</h2>
 
 <blockquote>
-  <p>代码的「用途」比代码的「位置」更重要。</p>
+  <p>[!timeline] 实战过程</p>
+  <ul>
+    <li><strong>第一轮</strong> · 初稿公众号味(突发奇想开头/emoji/术语翻译),直接重写</li>
+    <li><strong>第二轮</strong> · Mermaid timeline 解析失败(10:00 冒号与语法冲突),改 callout + 列表</li>
+    <li><strong>第三轮</strong> · 视角替换:agent 写”用户”“自家猫”,全文换成”我”“我家猫”</li>
+    <li><strong>收尾</strong> · 三轮收敛;样本+清单+规则给全的话一轮能到位</li>
+  </ul>
 </blockquote>
 
-<p>比如：</p>
+<p>素材库和采样方法定型后,我用它写《AI 做微信表情包》,实际走了三轮。三轮里每轮一个明确问题:初稿重写、时间线格式、视角替换,下面按顺序记录。</p>
 
-<ul>
-  <li>一个函数同时属于 “data-cleaning” 和 “ML-preprocessing”；</li>
-  <li>一个模块既是 “API endpoint” 又是 “business rule”；</li>
-  <li>一个 class 在 “experiment” 和 “production” 中都被使用。</li>
-</ul>
+<h3 id="31-初稿是公众号味直接重写">3.1 初稿是公众号味,直接重写</h3>
 
-<p><strong>文件夹结构只能表达单继承</strong>。
-但现代系统需要<strong>多继承式逻辑分类</strong>，这就是 tag 的优势。</p>
-
-<p>你可以理解为：</p>
-
-<ul>
-  <li>文件夹层级 = 树状组织；</li>
-  <li>tag 体系 = 多维超图组织。</li>
-</ul>
-
-<p>在大型项目中，已经有类似趋势：</p>
-
-<ul>
-  <li><strong>monorepo + metadata-based build</strong>（如 Google 的 Blaze / Bazel）</li>
-  <li><strong>component registry</strong>（如 Web Components、React Storybook、Unity ECS）</li>
-  <li><strong>ML pipeline DAG</strong>（节点通过类型和标签组装）</li>
-  <li><strong>Infrastructure as Code (IaC)</strong> 的资源管理，也通过标签做分组调度</li>
-</ul>
-
-<p>这些都不是传统意义上的“目录组织”，而是“属性驱动组织”。</p>
-
-<hr />
-
-<h2 id="-三从-ai-辅助开发看tag-模块是机器可理解的知识单元">🤖 三、从 AI 辅助开发看：tag 模块是「机器可理解的知识单元」</h2>
-
-<p>在 AI 代码生成/检索领域，tag 化的组织方式简直是理想形态：</p>
-
-<ul>
-  <li>AI 可以根据任务语义（“时间序列特征提取”）直接检索带有对应 tag 的函数；</li>
-  <li>tag 可以承载更丰富的上下文（依赖关系、使用场景、复杂度、作者）；</li>
-  <li>在代码搜索、重构、自动文档生成中，这类“语义索引”比路径树高效得多。</li>
-</ul>
-
-<p>这其实是<strong>代码转向知识图谱化（code as knowledge graph）</strong>的一个趋势。
-未来 IDE（或 AI 编程助手）可能这样工作：</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>query: "Find all functions tagged with 'ts_zscore' and 'alpha_transform'"
-→ semantic code graph lookup
-→ compose into new alpha factor
-</code></pre></div></div>
-
-<p>这已经在 GitHub Copilot、Cursor、Sourcegraph Cody、Gemini Code Assist 的实验版本中初现端倪。</p>
-
-<hr />
-
-<h2 id="-四从知识结构演化看从树到图">🌌 四、从知识结构演化看：从「树」到「图」</h2>
-
-<p>整个信息管理领域（文档、代码、数据库、笔记）都在经历同样的结构演变：</p>
+<p>初稿完全没对上素材库:agent 写了”突发奇想”“过程曲折”开头,全文 emoji,术语全翻译(Playwright 写成”浏览器自动化工具”,agy 写成”识别工具”)。对照反例清单,公众号式开头、emoji、术语翻译三条全踩,而且都踩在最基础的条目上。<strong>没有修补价值,直接重写</strong>。</p>
 
 <table>
   <thead>
     <tr>
-      <th>阶段</th>
-      <th>组织方式</th>
-      <th>代表</th>
+      <th>初稿问题</th>
+      <th>素材库规则</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>1️⃣ 树结构</td>
-      <td>文件夹、类继承</td>
-      <td>Python 包、C++ 头文件</td>
+      <td>“突发奇想”开头</td>
+      <td>开头一句话进主题</td>
     </tr>
     <tr>
-      <td>2️⃣ 网格结构</td>
-      <td>import 依赖图</td>
-      <td>JS bundler、Rust crates</td>
+      <td>全文 emoji</td>
+      <td>emoji 少用,一篇一两个</td>
     </tr>
     <tr>
-      <td>3️⃣ 图结构</td>
-      <td>tag + 语义链接</td>
-      <td>Obsidian、Notion AI、LlamaIndex</td>
+      <td>Playwright → 浏览器自动化工具</td>
+      <td>术语保留英文</td>
     </tr>
     <tr>
-      <td>4️⃣ 知识层</td>
-      <td>意图索引、语义模块</td>
-      <td>未来 IDE / CodeGraph</td>
+      <td>agy → 识别工具</td>
+      <td>术语保留英文</td>
     </tr>
   </tbody>
 </table>
 
-<p>代码组织迟早会跟随这一趋势。
-换句话说：<strong>tag-based 代码组织不是“异想天开”，而是文件系统式编程的下一步进化。</strong></p>
+<h3 id="32-mermaid-timeline-解析失败改用-callout">3.2 Mermaid timeline 解析失败,改用 callout</h3>
 
-<hr />
+<p>时间线本来想用 Mermaid timeline 画,Obsidian 解析失败:时间点 <code class="language-plaintext highlighter-rouge">10:00</code> 的冒号与 <code class="language-plaintext highlighter-rouge">时间 : 事件</code> 语法冲突,去掉冒号后仍有版本兼容问题。<strong>改用 callout + 列表,<code class="language-plaintext highlighter-rouge">&gt; [!timeline]</code> 下一行一条 <code class="language-plaintext highlighter-rouge">**10:00** · 事件</code></strong>。这次失败直接固化成素材库 1.5 的格式取舍规则:特殊格式优先零依赖方案。</p>
 
-<h2 id="-未来可能的形态">🚀 未来可能的形态</h2>
+<h3 id="33-视角替换agent-把我写成用户">3.3 视角替换:agent 把我写成”用户”</h3>
 
-<p>未来 IDE 或语言生态可能这样工作：</p>
+<p>视角上 agent 把我写成”用户”,把猫写成”自家猫”,全文手动替换成”我”“我家猫”才收敛。<strong>视角错误不是措辞问题,是身份问题</strong>——”我”是作者本人,agent 是工具,第三人称一出现整篇就变味。这类替换没有规则可写,只能逐句排查。</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@tag</span><span class="p">(</span><span class="sh">"</span><span class="s">data</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">io</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">ml</span><span class="sh">"</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">load_dataset</span><span class="p">(...):</span> <span class="bp">...</span>
+<h3 id="34-三轮迭代才收敛">3.4 三轮迭代才收敛</h3>
 
-<span class="c1"># 直接用语义查询或导入
-</span><span class="kn">from</span> <span class="n">semantic</span> <span class="kn">import</span> <span class="n">tag</span> <span class="k">as</span> <span class="n">T</span>
-<span class="n">data_utils</span> <span class="o">=</span> <span class="nc">T</span><span class="p">(</span><span class="sh">"</span><span class="s">data</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">io</span><span class="sh">"</span><span class="p">)</span>
+<p>整篇博客走了三轮:初稿重写一轮,时间线格式一轮,视角替换一轮。<strong>如果一开始把样本、特征清单、视角规则、格式要求一次给全,一轮能到位,不用像这次三轮收敛</strong>。</p>
 
-<span class="n">data_utils</span><span class="p">.</span><span class="nf">load_dataset</span><span class="p">()</span>
-</code></pre></div></div>
+<h2 id="4-subagent-迭代实践">4. subagent 迭代实践</h2>
 
-<p>或者：</p>
+<p>素材库本身也经历了三次 subagent 验证,每次输出暴露一个问题,就把规则固化进素材库,直到收敛。这个循环是素材库质量的关键:不验证,素材库只是我的自说自话。</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>import @data, @ml
-</code></pre></div></div>
+<h3 id="41-第一次验证输出是散文信息密度低">4.1 第一次验证:输出是散文,信息密度低</h3>
 
-<p>这种“tag 作为导入单元”的语法在一些研究语言（如 Eve、DarkLang、Unison）中已经开始出现。</p>
+<p>初版素材库开 subagent,输出是讲解味散文:每节一段话描述特征,但没有具体技术细节支撑,结构也松散。对照表情包那篇博客(sticker),差距明显——sticker 是数字分节、每节一个技术点、硬核记录,subagent 输出全都没有。<strong>问题在素材库:只描述了”语气”,没约束”结构”和”信息密度”</strong>。</p>
 
-<hr />
+<p>这一轮还暴露一个坑:初版素材库引用了 sticker 作为”最佳样例”,subagent 读它会直接把表情包的具体内容抄进新博客——<strong>素材库一旦绑定具体样例,内容就被污染,而且以后写别的主题也复用不了</strong>。修正:素材库与内容解耦,样例只学写法,内容隔离声明写进任务。</p>
 
-<h2 id="-总结判断">🔮 总结判断</h2>
+<h3 id="42-第二次验证小节太碎一句话一个小节">4.2 第二次验证:小节太碎,一句话一个小节</h3>
 
-<table>
-  <thead>
-    <tr>
-      <th>维度</th>
-      <th>趋势</th>
-      <th>现状</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>编程语言</td>
-      <td>向语义模块演化</td>
-      <td>需要 import hook 支持</td>
-    </tr>
-    <tr>
-      <td>工程实践</td>
-      <td>向多维组织演化</td>
-      <td>tag 体系在 CI/CD 已普遍存在</td>
-    </tr>
-    <tr>
-      <td>AI 辅助</td>
-      <td>强烈依赖 tag 化代码</td>
-      <td>正在快速推进</td>
-    </tr>
-    <tr>
-      <td>IDE 支持</td>
-      <td>未来版本将内建语义索引</td>
-      <td>初步阶段（VSCode Semantic Index）</td>
-    </tr>
-  </tbody>
-</table>
+<p>补上”数字分节、每节一个技术点、硬核记录、表格、加粗”后重开 subagent,结构和密度都对了,新问题出现:<strong>一个小节只有一句话</strong>——12 个 x.x,每个标题下孤零零一句,像提纲不像正文。根因是素材库要求”每节一个技术点”时没强调展开量,agent 就按最省的方式写。</p>
+
+<p><strong>修改素材库:加”每个小节至少一个完整段落(3-5 句),禁止一句话小节,小节之间内容量均衡”</strong>,并把相近特征合并成组,保证每节有料可写。</p>
+
+<h3 id="43-第三次验证收敛">4.3 第三次验证:收敛</h3>
+
+<p>第二次修改后重开 subagent,小节合并成组、每节完整展开,结构、密度、表格、加粗、中英混排、视角全部到位,这次收敛了。<strong>整个验证流程:subagent 输出 → 对照 sticker 找差距 → 差距固化成素材库规则 → 重开 subagent</strong>。每次只暴露最明显的问题,一轮修一个,三轮收敛。</p>
+
+<h3 id="44-结论">4.4 结论</h3>
+
+<ul>
+  <li><strong>素材库必须可迭代</strong>:不经过 subagent 验证的素材库,只是自我感觉;每次输出暴露的问题,都是素材库缺的规则。</li>
+  <li><strong>素材库与内容解耦</strong>:不能引用具体博客当样例(会被 hack),样例只学写法,内容隔离声明写进任务。</li>
+  <li><strong>约束要写”量”</strong>:”每节一个技术点”不够,还要”至少一个完整段落、禁止一句话小节、内容量均衡”——agent 会按最省的方式执行,量必须显式。</li>
+  <li><strong>对照标杆审稿</strong>:每次验证都拿 sticker 当标杆对比,差距就是下一轮要加的规则。</li>
+</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="daily" /><category term="content" /><summary type="html"><![CDATA[让 agent 代写博客,卡住我的不是内容,是风格。反复改了几版都不对味,最后把博客库全量统计了一遍,整理出可复用的风格特征,并用 subagent 迭代验证到收敛。这篇分四部分:风格素材库(可直接喂给 AI)、采样过程与迭代、写《AI 做微信表情包》的实战、subagent 迭代实践。]]></summary></entry><entry><title type="html">用AI做了一套微信表情包:从微信头像缓存到提交上架</title><link href="https://roshameow.github.io//personal_homepage/daily/sticker/" rel="alternate" type="text/html" title="用AI做了一套微信表情包:从微信头像缓存到提交上架" /><published>2026-08-09T00:00:00+00:00</published><updated>2026-08-09T12:00:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/daily/sticker</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/daily/sticker/"><![CDATA[<p>目标:把历史微信头像(都是我家猫的照片)做成一套微信表情包,并在微信表情开放平台提交上架。</p>
+
+<p>整体流程分四步:素材挖掘(微信本地缓存 + agy 识图)→ 文案创作(Gemini 生成 + 人工把关)→ 表情制作(PIL 生成 240×240 透明圆角图)→ 平台提交(Playwright 自动化)。最终「玳瑁烟大王」17 张静态表情提交成功,进入审核。</p>
 
 <blockquote>
-  <p>✅ <strong>结论</strong>
-是的——“tag 化代码组织”非常可能是未来方向，
-但不是取代目录结构，而是<strong>覆盖在其之上的一层语义索引层</strong>。
-文件树仍然存在，但它只是物理实现，<strong>tag 层才是语义组织的核心。</strong></p>
-</blockquote>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="code" /><category term="content" /><summary type="html"><![CDATA[记录讨论代码模块多维索引的发展]]></summary></entry><entry><title type="html">服务器发送消息通知</title><link href="https://roshameow.github.io//personal_homepage/tool/message/" rel="alternate" type="text/html" title="服务器发送消息通知" /><published>2025-10-23T00:00:00+00:00</published><updated>2025-11-04T08:24:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/tool/message</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/tool/message/"><![CDATA[<p>发送文字/表格/图片的混合消息</p>
+  <p>[!timeline] 整体流程</p>
+  <ul>
+    <li><strong>10:00</strong> · 定位微信头像缓存,140+7839 张待筛选</li>
+    <li><strong>10:20</strong> · 发现 agy 可识图,prompt 写图片路径即可</li>
+    <li><strong>10:40</strong> · 蒙太奇批量识别,140 张 → 70 张猫</li>
+    <li><strong>11:00</strong> · 正样本匹配过滤,确认 63 张是我的猫</li>
+    <li><strong>11:10</strong> · 感知哈希去重,仅 27 张不同照片</li>
+    <li><strong>11:30</strong> · 文案 v1 直译,无网感</li>
+    <li><strong>12:00</strong> · 文案 v2 网红梗,太油</li>
+    <li><strong>12:30</strong> · 文案 v3 简短口语,定稿 17 个</li>
+    <li><strong>13:30</strong> · 文字样式迭代 6 版,透明圆角定稿</li>
+    <li><strong>15:00</strong> · 横幅重做(高清原图裁剪)</li>
+    <li><strong>15:30</strong> · Playwright 登录,创建专辑</li>
+    <li><strong>16:00</strong> · 名称被占用 → 玳瑁烟大王</li>
+    <li><strong>17:00</strong> · 素材/含义词/弹窗全部处理</li>
+    <li><strong>17:30</strong> · 提交成功,等待审核</li>
+  </ul>
+</blockquote>
 
-<ul>
-  <li>飞书: 支持富文本和卡片
-    <ul>
-      <li>普通消息</li>
-      <li>消息卡片
-        <ul>
-          <li>打开 <a href="https://open.feishu.cn/">飞书开放平台</a>。</li>
-          <li>在企业自建应用, 创建机器人
-            <ul>
-              <li>获得机器人的App ID, App Secret</li>
-              <li>在权限管理, 给机器人添加上传图片的权限: <code class="language-plaintext highlighter-rouge">im:message</code>
-                <ul>
-                  <li>图片需要先上传到平台, 在消息里用链接</li>
-                  <li>每次token只能保存两个小时.</li>
-                </ul>
-              </li>
-            </ul>
-          </li>
-          <li>在开放平台的开发文档里搜发送卡片的各种示例
-            <ul>
-              <li>llm没法知道专用格式. 可能需要可以上网的agent</li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li>邮件: 支持html渲染
-    <ul>
-      <li>在gmail开启两步验证, 然后开启 https://myaccount.google.com/apppasswords 就可以</li>
-    </ul>
-  </li>
-</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="tool" /><category term="content" /><summary type="html"><![CDATA[发送文字/表格/图片的混合消息]]></summary></entry><entry><title type="html">hash映射</title><link href="https://roshameow.github.io//personal_homepage/algorithm/alpha12/" rel="alternate" type="text/html" title="hash映射" /><published>2025-09-25T00:00:00+00:00</published><updated>2025-10-05T19:42:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/algorithm/alpha12</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/algorithm/alpha12/"><![CDATA[<p>估算alpha id 和什么有关</p>
+<h2 id="1-素材挖掘">1. 素材挖掘</h2>
 
-<p>有些hash会非常相似. 目的, 得到alpha id的全部编码信息: 秒级的timestamp+machine id</p>
+<h3 id="11-微信头像缓存在哪">1.1 微信头像缓存在哪</h3>
 
-<p>44/s. 2640/min. 1w consultant. 每人回测100/ 5min.</p>
+<p>微信 Mac 版把所有出现过的头像缓存在本地。消息数据库是 SQLCipher 加密的,头像缓存是明文 jpg:</p>
 
-<p>44x3600x24/10000 = 380 次/天. 这和实际结果很不符合.</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>~/Library/Containers/com.tencent.xinWeChat/.../2.0b4.0.9/
+├── Avatar/              <span class="c"># 应用级:140 张,时间跨度 2021-2026</span>
+└── cc7e82cd.../Avatar/  <span class="c"># 账户级:7839 张 + 572 张 HD</span>
+</code></pre></div></div>
 
-<p>1天5w.</p>
-<h3 id="假设1">假设1:</h3>
+<h3 id="12-批量识图蒙太奇--agy">1.2 批量识图:蒙太奇 + agy</h3>
+
+<p>逐张识别太慢。把 25 张缩略图拼成 5×5 蒙太奇,让 Gemini 一次识别哪些格子是猫。140 张只用了 6 次调用,识别出 70 张猫图。</p>
+
+<p>识图工具是 Antigravity CLI(<code class="language-plaintext highlighter-rouge">agy</code>)。关键用法:图片绝对路径必须写在 prompt 文本里,agy 才会把它作为多模态输入附加:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>agy <span class="nt">-p</span> <span class="s2">"识别这张图: /path/to/img.jpg"</span> <span class="nt">--dangerously-skip-permissions</span>
+</code></pre></div></div>
+
+<h3 id="13-从猫到我的猫">1.3 从”猫”到”我的猫”</h3>
+
+<p>70 张猫图里混着好友的猫头像。做法:</p>
+<ol>
+  <li>人工确认 15 张正样本</li>
+  <li>颜色直方图 + 感知哈希粗筛(区分度不足,背景色干扰大)</li>
+  <li>让 Gemini 看”样本拼图 + 待确认拼图”,按毛色/花纹判断是否同一只个体</li>
+</ol>
+
+<p>最终确认 63 张。</p>
+
+<h3 id="14-去重63-张其实只有-27-张不同">1.4 去重:63 张其实只有 27 张不同</h3>
+
+<p>感知哈希去重后发现:<strong>微信把同一张图以不同文件名缓存了多次</strong>。63 张去重后只剩 27 张不同的照片。这正是”历史头像”的本质——每次换头像,同一张图可能被存成多个 hash 文件名。</p>
+
+<p>27 张选 24 张做一套,够用。后因我对其中 7 张不满意且无更多素材,改为 17 张(微信最少 16 张)。</p>
+
+<h2 id="2-文案创作">2. 文案创作</h2>
+
+<h3 id="21-网感的迭代">2.1 “网感”的迭代</h3>
 
 <table>
   <thead>
     <tr>
-      <th>可能的方案</th>
+      <th>版本</th>
       <th>做法</th>
-      <th>特点</th>
-      <th>输入</th>
-      <th>输出</th>
+      <th>结果</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td><strong>密码</strong>学hash函数<br />(SHA-256 / SHA-1 / MD5)</td>
-      <td><strong>碎纸机</strong>:<br />→ 生成和输出相同的初始值<br />加入输入的内容进行各种非线性混合<br />重复多次</td>
-      <td>1. 相近的输入会输出完全不同的结果<br />2. 可以人为制造hash冲突</td>
-      <td>任意长度二进制文本</td>
-      <td>md5: 128bit/32hex<br />SHA-256: 256bit</td>
+      <td>v1</td>
+      <td>按姿态直译(“震惊!”“求摸摸”)</td>
+      <td>太平,无网感</td>
     </tr>
     <tr>
-      <td>多项式除法的<strong>校验</strong>码<br />(CRC32)</td>
-      <td>把输入的任意长度看成(mod2)多项式$M(x)$<br />→ 指定生成多项式$G(x)$ <br />得到输出为 residue $R(x)$<br /><br />实际中通过移位+XOR实现</td>
-      <td>1. 常见的变化, 输出可预测<br />(单比特错、双比特错、突发错)</td>
-      <td>任意长度二进制文本</td>
-      <td>CRC32: 32bit/8hex<br /></td>
+      <td>v2</td>
+      <td>网红梗堆砌(“泰裤辣”“栓Q”“我真的会谢”)</td>
+      <td>更差,太油</td>
     </tr>
     <tr>
-      <td>文本<strong>去重</strong>, 片段<strong>匹配</strong><br />Rolling Hash</td>
-      <td>把字符串看成B进制整数, 对M取residue</td>
-      <td>1. 计算方便<br />2. 根据hash能快速找到相同字串<br />3. 不是强校验, 冲突常见<br />4. 相似字串hash差别大</td>
-      <td>任意长度字符串</td>
-      <td>整数</td>
-    </tr>
-    <tr>
-      <td>相似度<strong>聚类</strong>(LSH)<br />(MinHash, SimHash)</td>
-      <td>MinHash:<br />提取文本特征, 映射成整数集合<br />→ 用n组随机hash函数<br />$h(x)=ax+b(\mod P)$ 对集合每个元素hash<br />每个hash值取hash最小值<br /><br /><br /><br /></td>
-      <td>1. 比较hash值有多少位重复, <br />就能知道文本中有多少重复特征<br />2. 可以把整数分成band, <br />用于LSH bucketing</td>
-      <td>任意大小整数集合</td>
-      <td>取决于算法的超参数<br />n 位 int vector<br /></td>
-    </tr>
-    <tr>
-      <td> </td>
-      <td>SimHash(PCAHash, Spectral Hash):<br />输入向量<br />→用n个投影向量<br />计算投影, 二进制化</td>
-      <td>1. 相似的向量会使hash值相同位数多,<br />从而可以被LSH bucketing召回<br />2. 过程和逻辑回归一样都是线性+激活. <br />用逻辑回归训练+预测, <br />准确率应该高于0.5</td>
-      <td>固定长度向量</td>
-      <td>n bit</td>
-    </tr>
-    <tr>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
+      <td>v3</td>
+      <td>简短口语有画面感,参考”仰望大佬”“彻底摆烂”</td>
+      <td>通过</td>
     </tr>
   </tbody>
 </table>
 
-<ul>
-  <li>假设1: 由pnl(长2496位的float vector)编码
-    <ul>
-      <li>pnl 是</li>
-    </ul>
-  </li>
-</ul>
+<p>结论:网感 ≠ 网红梗。简短(2-6 字)、日常口语、有画面感、略带幽默,不要梗堆砌。</p>
 
-<p>相同pnl不同user -&gt; hash不同
-排除这个假设的原因: 生成一系列pnl完全相同的alpha, hash有些是相似但不同, 但有些完全不同.</p>
+<p>我附加的约束:禁脏话、禁”喵”字、”仰望大佬”必须保留。</p>
 
-<h3 id="假设2">假设2</h3>
+<h3 id="22-选择交互">2.2 选择交互</h3>
 
-<p>user id和hash同为7位. 是否用xor加密. 验证.</p>
+<p>光给文案我对不上图。生成<strong>带图选择卡</strong>:每张猫图 + 编号 + 3~5 个备选文案,我报”编号+数字”即可。</p>
 
-<p><code class="language-plaintext highlighter-rouge">hash_a ^ id_a == hash_b ^ id_b</code> 也 <strong>不成立</strong></p>
-<h3 id="假设2-1">假设2</h3>
-
-<p>expression</p>
-<ul>
-  <li>ast clean</li>
-</ul>
-
-<p>排除这个假设的原因: 两个表达式完全不相关的alpha, hash相似</p>
-<ul>
-  <li>猜测是不是settings, 表达式, user id的联合编码.</li>
-</ul>
-
-<p>统计重复的hash前缀个数</p>
-<h3 id="假设3">假设3</h3>
-
-<p>时间</p>
-
-<p>统计「前缀 → 时间」的关系
-把 dateCreated 转成秒或分钟级的 时间戳。
-按 hash 前缀分组，算时间戳的 均值 / 分布范围。
-如果「相同前缀的时间非常接近」，说明前缀和时间相关</p>
-
-<p>前缀与创建时间的相关性
-出现次数多的前缀通常集中在较短时间区间内（span_sec 不大），说明相同前缀的 ID 可能是同时生成的。
-反过来, 固定时间段, 前缀也固定同样的44种. 跨相邻时间段, 就变成88种.</p>
-
-<p>这验证了你之前的猜测：hash 前缀和 dateCreated 时间有关，ID 的前缀不是完全随机，生成算法可能会受时间影响或按批次生成</p>
-
-<p>可视化验证
-可以画出 时间 vs hash 前缀 的散点图</p>
-
-<p>这样你就能看到：
-前缀长度为 1 → 有多少种不同前缀
-前缀长度为 2 → 有多少种不同前缀
-…
-直到 max_len。
-📈 如果前缀确实和时间强相关，你会看到 前缀长度增加时，唯一前缀数量接近样本数（说明前缀逐渐唯一化）。</p>
-
-<p>时间主导，但横向有并发带 这就是我现在看到的情况</p>
-
-<p>同样时间平行带大概有44个左右</p>
-
-<p>歪路:
-猜测prefix之间的关系. 👍 从你的结果可以看出明显的规律：
-mod 16
-大部分前缀落在 [0,5,10,15,6,9,…]，集中在少数几个余数上。
-说明前缀低位每 16 有一个间隔的规律，但还有一些偏移（可能是并发带/随机部分）。
-mod 32
-余数集中在 16,0,10 等位置，说明低位有更大的分段，仍然有少量分散。
-mod 64
-集中在 16 和几个其他余数上，每个余数对应大概一组“平行带”。
-这非常吻合你观察到的 “同一时间平行带大概 44 个左右” 的现象。
-低位取模 64 时，可以把并发带分离出来。
-mod 128
-更大模数开始显得稀疏，主要几个值有重复。
-说明前缀的低位并没有均匀分布，而是有特定分片/并发槽的规律。</p>
-
-<p><strong>按 count 或 span_sec 排序</strong>，那就用 <code class="language-plaintext highlighter-rouge">sort_values</code></p>
-
-<p>只用到44个字符</p>
-
-<p>为什么选择44字符? 可能是URL-safe / visually unambiguous alphabet 防止混淆 -&gt; I/L, O/0 没有这种规律</p>
-
-<p>有 <strong>纯数字 + 大写</strong>：<code class="language-plaintext highlighter-rouge">0G, 1G, … 9G</code>. 猜测不同平行带可能等距 -&gt; 图上就能看出是个错误猜测</p>
-
-<p>猜测同一种混淆方式? 没法验证</p>
-
-<p>猜测通过出现频率计算混淆顺序 -&gt; 这种想法没有道理</p>
-
-<p>把平行带分开计算</p>
-
-<ul>
-  <li>发现hash变化有明显的周期,</li>
-  <li>
-    <p>画图</p>
-  </li>
-  <li>推测BASE44的顺序
-    <ul>
-      <li>是统一的?
-        <ul>
-          <li>如果是统一的, 应该是真正的进位. 但是同时出现了 0N-&gt; 0x, PY -&gt; Px, pM-&gt;px 所以我的猜测应该不对</li>
-        </ul>
-      </li>
-      <li>还是不同bucket 不同</li>
-    </ul>
-  </li>
-  <li>指数假设: <code class="language-plaintext highlighter-rouge">log(decoded-intercept) = log(A) + B * timestamp</code>
-    <ul>
-      <li>固定intercept的情况</li>
-      <li>exp优化的自由度太高了. 数值算法无法收敛</li>
-    </ul>
-  </li>
-</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="algorithm" /><category term="content" /><summary type="html"><![CDATA[估算alpha id 和什么有关]]></summary></entry><entry><title type="html">pv 衍生数据</title><link href="https://roshameow.github.io//personal_homepage/data/alpha11/" rel="alternate" type="text/html" title="pv 衍生数据" /><published>2025-09-19T00:00:00+00:00</published><updated>2026-01-06T04:31:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/data/alpha11</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/data/alpha11/"><![CDATA[<h2 id="pv数据">pv数据</h2>
+<p>最终 17 个文案:</p>
 
 <table>
   <thead>
     <tr>
-      <th><strong>0阶数据 (原始)</strong></th>
-      <th><strong>一阶数据 (派生)</strong></th>
-      <th><strong>二阶数据 (高阶特征 &amp; 技术指标)</strong></th>
-      <th><strong>三阶数据 (组合/因子)</strong></th>
+      <th>编号</th>
+      <th>文案</th>
+      <th>编号</th>
+      <th>文案</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td><strong>open</strong></td>
+      <td>01</td>
+      <td>什么情况?</td>
+      <td>09</td>
+      <td>彻底摆烂</td>
+    </tr>
+    <tr>
+      <td>02</td>
+      <td>被拿捏了</td>
+      <td>10</td>
+      <td>拒绝打工</td>
+    </tr>
+    <tr>
+      <td>03</td>
+      <td>你在教我做事?</td>
+      <td>11</td>
+      <td>有事?</td>
+    </tr>
+    <tr>
+      <td>04</td>
+      <td>吃瓜中</td>
+      <td>12</td>
+      <td>思考复杂的人生</td>
+    </tr>
+    <tr>
+      <td>05</td>
+      <td>听不懂你说啥</td>
+      <td>13</td>
+      <td>别问我</td>
+    </tr>
+    <tr>
+      <td>06</td>
+      <td>让我来拉扯一下</td>
+      <td>14</td>
+      <td>优雅</td>
+    </tr>
+    <tr>
+      <td>07</td>
+      <td>审判你的罪行</td>
+      <td>15</td>
+      <td>仰望大佬</td>
+    </tr>
+    <tr>
+      <td>08</td>
+      <td>悄悄探头</td>
+      <td>16</td>
+      <td>电量仅剩1%</td>
+    </tr>
+    <tr>
       <td> </td>
-      <td><strong>cumret</strong>:<code class="language-plaintext highlighter-rouge">prod(1+returns)-1</code><br /><strong>excess_ret</strong>:<code class="language-plaintext highlighter-rouge">returns - rf</code><br /><strong>fear</strong>:<code class="language-plaintext highlighter-rouge">ts_mean(abs(returns - market_return)/(abs(returns)+abs(market_return)), 20)</code></td>
-      <td><strong>liquidity-adjusted return</strong>:<code class="language-plaintext highlighter-rouge">returns / (1+Illiquidity)</code></td>
-    </tr>
-    <tr>
-      <td><strong>close</strong></td>
-      <td><strong>returns</strong>:<code class="language-plaintext highlighter-rouge">(close - close[-1]) / close[-1]</code><br />—<br /><strong>vwap</strong>:<code class="language-plaintext highlighter-rouge">sum(close*volume)/sum(volume)</code><br /></td>
-      <td><strong>volatility</strong>:<code class="language-plaintext highlighter-rouge">ts_std(returns, 20)</code><br /><strong>RSI</strong> (relative strength index)<br /><strong>MACD</strong> (EMA_diff(close))<br /><strong>ROC</strong>:<code class="language-plaintext highlighter-rouge">(close_t/close_{t-n} - 1)</code></td>
-      <td><strong>risk-adjusted momentum</strong>:<code class="language-plaintext highlighter-rouge">momentum / volatility</code></td>
-    </tr>
-    <tr>
-      <td><strong>high</strong></td>
       <td> </td>
-      <td><strong>maxdrawdown</strong>:<code class="language-plaintext highlighter-rouge">(peak(close) - trough(close)) / peak(close)</code><br /><strong>Williams %R</strong>:<code class="language-plaintext highlighter-rouge">(HH_n - close)/(HH_n-LL_n)</code></td>
-      <td><strong>volume-adjusted maxdrawdown</strong>:<code class="language-plaintext highlighter-rouge">maxdrawdown / adv20</code></td>
-    </tr>
-    <tr>
-      <td><strong>low</strong></td>
-      <td><br /><br /></td>
-      <td><strong>downside_vol</strong>:<code class="language-plaintext highlighter-rouge">ts_std(min(returns,0),20)</code><br /><strong>Stochastic %K/%D</strong>:<code class="language-plaintext highlighter-rouge">(close - LL_n)/(HH_n-LL_n)</code></td>
-      <td><strong>reversal-risk</strong>:<code class="language-plaintext highlighter-rouge">(-returns(1m)) / downside_vol</code></td>
-    </tr>
-    <tr>
-      <td><strong>volume</strong></td>
-      <td><strong>adv20</strong>:<code class="language-plaintext highlighter-rouge">ts_mean(volume, 20)</code><br /><strong>log_volume</strong>:<code class="language-plaintext highlighter-rouge">log(volume)</code><br /><strong>volume_z</strong>:<code class="language-plaintext highlighter-rouge">(volume - mean(volume,20))/std</code></td>
-      <td><strong>Illiquidity</strong>:<code class="language-plaintext highlighter-rouge">abs(returns) / volume</code><br /><strong>OBV</strong> (on-balance volume)<br /><strong>CMF</strong> (Chaikin money flow)</td>
-      <td><strong>liquidity_momentum</strong>:<code class="language-plaintext highlighter-rouge">momentum * (-Illiquidity)</code></td>
-    </tr>
-    <tr>
-      <td><strong>sharesout</strong></td>
-      <td><strong>mkt_cap</strong>:<code class="language-plaintext highlighter-rouge">close * sharesout</code><br /><strong>turnover</strong>:<code class="language-plaintext highlighter-rouge">volume / sharesout</code><br /><strong>turn20</strong>:<code class="language-plaintext highlighter-rouge">ts_mean(turnover, 20)</code></td>
-      <td><strong>size_effect</strong>:<code class="language-plaintext highlighter-rouge">log(mkt_cap)</code></td>
-      <td><strong>scaled_turnover</strong>:<code class="language-plaintext highlighter-rouge">turnover / size_effect</code></td>
-    </tr>
-    <tr>
-      <td><strong>vwap</strong></td>
-      <td> </td>
-      <td><strong>spread</strong>:<code class="language-plaintext highlighter-rouge">(high - low)/vwap</code><br /><strong>Amihud illiq</strong>:<code class="language-plaintext highlighter-rouge">ts_mean(abs(returns)/dollar_volume,20)</code></td>
-      <td><strong>liquidity_volatility</strong>:<code class="language-plaintext highlighter-rouge">volatility * Amihud_illiq</code></td>
-    </tr>
-    <tr>
-      <td><strong>dollar_vol</strong></td>
-      <td><strong>dollar_volume</strong>:<code class="language-plaintext highlighter-rouge">close * volume</code></td>
-      <td><strong>turnover_vol</strong>:<code class="language-plaintext highlighter-rouge">ts_std(turnover,20)</code></td>
-      <td><strong>volume_volatility_ratio</strong>:<code class="language-plaintext highlighter-rouge">volatility / turnover_vol</code></td>
-    </tr>
-    <tr>
-      <td><strong>ohlc</strong></td>
-      <td><strong>hl_range</strong>:<code class="language-plaintext highlighter-rouge">(high - low)/close</code><br /><strong>oc_gap/overnight return</strong>:<code class="language-plaintext highlighter-rouge">(open - close[-1])/close[-1]</code></td>
-      <td><strong>realized_vol</strong>:<code class="language-plaintext highlighter-rouge">sqrt(sum(log(high/low)^2 + log(close/open)^2 ... over window))</code></td>
-      <td><strong>gap_volatility</strong>:<code class="language-plaintext highlighter-rouge">oc_gap / realized_vol</code></td>
-    </tr>
-    <tr>
-      <td><strong>returns</strong></td>
-      <td> </td>
-      <td><strong>momentum</strong>:<code class="language-plaintext highlighter-rouge">ts_mean(returns, 12m)</code><br /><strong>reversal</strong>:<code class="language-plaintext highlighter-rouge">-returns(1m)</code></td>
-      <td><strong>momentum_reversal</strong>:<code class="language-plaintext highlighter-rouge">momentum * reversal</code><strong>vol_mom</strong>:<code class="language-plaintext highlighter-rouge">momentum * (1/volatility)</code></td>
+      <td>17</td>
+      <td>原地隐身</td>
     </tr>
   </tbody>
 </table>
 
+<h2 id="3-表情制作">3. 表情制作</h2>
+
+<h3 id="31-文字样式迭代-6-版">3.1 文字样式迭代 6 版</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>版本</th>
+      <th>样式</th>
+      <th>问题</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>v1</td>
+      <td>白底 + 下方文字条</td>
+      <td>整体不满意</td>
+    </tr>
+    <tr>
+      <td>v2</td>
+      <td>文字叠图上 + 黑描边</td>
+      <td>字太大、融合差</td>
+    </tr>
+    <tr>
+      <td>v3</td>
+      <td>白字柔和阴影,固定底部</td>
+      <td>位置太固定</td>
+    </tr>
+    <tr>
+      <td>v4</td>
+      <td>智能找空白区放文字</td>
+      <td>长文案被圆角截掉</td>
+    </tr>
+    <tr>
+      <td>v5</td>
+      <td>动态字号 + 边界约束</td>
+      <td>圆角变黑色</td>
+    </tr>
+    <tr>
+      <td>v6</td>
+      <td>RGBA 透明圆角</td>
+      <td>定稿</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>智能定位:分 4×4 网格找局部方差最小的块(最平坦区域)放文字,避开猫脸,每张位置自然不同。</p>
+
+<p>黑角 bug 的根源:<code class="language-plaintext highlighter-rouge">canvas.convert('RGB')</code> 会把透明像素变成纯黑(0,0,0),圆角区域因此变黑角。修复:直接保存 RGBA PNG(微信支持透明背景)。</p>
+
+<h3 id="32-横幅三次被否">3.2 横幅:三次被否</h3>
+
+<p>微信要求横幅 750×400、<strong>图片中避免出现任何文字</strong>。前 3 版:带文字(违规)→ 贴纸拼图(“几个图片拼的”)→ 渐变装饰(“太丑”)。</p>
+
+<p>问题本质:把 240×240 的贴纸拉大到 320px,又糊又变形。正确做法是用<strong>高清原图按比例裁剪</strong>(1080×1080 → 750:400),清晰自然。</p>
+
+<h2 id="4-平台提交">4. 平台提交</h2>
+
+<h3 id="41-登录">4.1 登录</h3>
+
+<p>Playwright 无法复用 Safari 登录态,启动自动化浏览器重新扫码,再用 <code class="language-plaintext highlighter-rouge">storage_state</code> 保存登录态供 headless 复用。<code class="language-plaintext highlighter-rouge">playwright install</code> 版本与本地 Chromium 不匹配,直接指定已有浏览器可执行路径解决。</p>
+
+<h3 id="42-表单卡点">4.2 表单卡点</h3>
+
+<p>按踩坑顺序记录:</p>
+
+<p><strong>名称被占用</strong>。”猫猫日常”提交时提示已存在。通用名都易重名,改用猫的毛色特征起名——我家猫是”玳瑁烟色”,定名「玳瑁烟大王」,一次通过。</p>
+
+<p><strong>fill() 不触发 Vue 事件</strong>。Playwright <code class="language-plaintext highlighter-rouge">fill()</code> 填入的值保存后丢失——表单用 Vue 双向绑定,需要模拟真实键盘输入并 dispatch 事件:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">await</span> <span class="n">el</span><span class="p">.</span><span class="nf">click</span><span class="p">()</span>
+<span class="k">await</span> <span class="n">el</span><span class="p">.</span><span class="nf">fill</span><span class="p">(</span><span class="sh">''</span><span class="p">)</span>
+<span class="k">await</span> <span class="n">page</span><span class="p">.</span><span class="n">keyboard</span><span class="p">.</span><span class="nf">type</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">delay</span><span class="o">=</span><span class="mi">60</span><span class="p">)</span>
+<span class="k">await</span> <span class="n">el</span><span class="p">.</span><span class="nf">dispatch_event</span><span class="p">(</span><span class="sh">'</span><span class="s">input</span><span class="sh">'</span><span class="p">)</span>
+<span class="k">await</span> <span class="n">el</span><span class="p">.</span><span class="nf">dispatch_event</span><span class="p">(</span><span class="sh">'</span><span class="s">change</span><span class="sh">'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><strong>级联下拉选角色</strong>。”角色/内容”是两级级联:先选”宠物/动物角色”,再出现二级菜单选”猫”。第一级选项被覆盖层拦截 pointer events,需 <code class="language-plaintext highlighter-rouge">force=True</code> 或 JS <code class="language-plaintext highlighter-rouge">click()</code>。</p>
+
+<p><strong>含义词必填 + 4 字静默截断</strong>。每个表情必须填”含义词”(聊天页显示名),输入框是点击表情卡片后才出现的(<code class="language-plaintext highlighter-rouge">placeholder="输入含义词"</code>),需先激活全部 17 个再填。6 字的”你在教我做事”被静默截成 4 字”你在教我”——填完必须回头核对。</p>
+
+<p><strong>裁剪弹窗</strong>。上传横幅/封面/图标后有”裁剪 XXX”对话框,不点”确定”素材等于没传(提交时报”横幅不能为空”)。</p>
+
+<p><strong>类型与主题</strong>。默认”动态表情”,选”静态”后有确认弹窗,漏点会变回动态;主题 radio 必选(选了”怼人/斗图”)。</p>
+
+<p><strong>agy 免费额度</strong>。批量识别 HD 头像时连续超时,根因是 <code class="language-plaintext highlighter-rouge">Individual quota reached</code>(免费额度用完,3.5 小时重置)。文本 prompt 还能过,图片请求(耗 token 高)直接卡死。</p>
+
+<h3 id="43-提交">4.3 提交</h3>
+
+<p>全部字段验证通过后提交,页面返回”表情提交成功,请耐心等待审核”。作品 ID <code class="language-plaintext highlighter-rouge">stiker_178619483496f62efcde2da135</code>,审核通常 1-5 个工作日。</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>项目</th>
+      <th>内容</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>名称</td>
+      <td>玳瑁烟大王</td>
+    </tr>
+    <tr>
+      <td>类型</td>
+      <td>静态表情专辑(17 张)</td>
+    </tr>
+    <tr>
+      <td>角色</td>
+      <td>宠物/动物角色 → 猫</td>
+    </tr>
+    <tr>
+      <td>风格</td>
+      <td>日常、软萌可爱、搞笑</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="5-顺带产出">5. 顺带产出</h2>
+
+<p>把 agy 的识图/搜索能力封装成了可复用工具:</p>
+
 <ul>
-  <li>rsv(未成熟随机值) = (close - ts_min(low, n)) / (ts_max(high, n) - ts_min(low, n)) n=9</li>
+  <li><code class="language-plaintext highlighter-rouge">agy_bridge.py</code>:MCP server,暴露 <code class="language-plaintext highlighter-rouge">agy_vision</code>(批量识图)/ <code class="language-plaintext highlighter-rouge">agy_websearch</code> / <code class="language-plaintext highlighter-rouge">agy_ask</code></li>
+  <li><code class="language-plaintext highlighter-rouge">agy-vision-websearch</code> 插件:<code class="language-plaintext highlighter-rouge">agy plugin validate</code> 通过,已安装</li>
+  <li>能力研究报告:<code class="language-plaintext highlighter-rouge">docs/agy_capability_report.md</code></li>
 </ul>
 
-<p>对应关系</p>
+<h2 id="总结">总结</h2>
+
 <ul>
-  <li>cap = close x sharesout</li>
-</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="data" /><category term="content" /><summary type="html"><![CDATA[pv数据]]></summary></entry><entry><title type="html">nano-banana 效果: 常用的作图功能</title><link href="https://roshameow.github.io//personal_homepage/photo/stable-diffusion10/" rel="alternate" type="text/html" title="nano-banana 效果: 常用的作图功能" /><published>2025-09-02T00:00:00+00:00</published><updated>2025-09-17T12:56:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/photo/stable-diffusion10</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/photo/stable-diffusion10/"><![CDATA[<p>换背景(inpaint)</p>
+  <li><strong>微信不保留自己的头像历史</strong>。本地缓存是”出现过的人”的头像,自己的旧头像只能靠好友端缓存间接找回,且同图多缓存导致大量重复,去重后素材远少于预期。</li>
+  <li><strong>AI 配文案不等于网感</strong>。网红梗堆砌反而最不讨喜;简短口语、有画面感的文案才耐看。审美仍需人工把关。</li>
+  <li><strong>自动化提交的坑集中在”表单事件”</strong>。Vue 双向绑定、级联下拉、裁剪弹窗、静默截断,每个都是”看起来成功实际失败”的陷阱,必须保存后重新打开页面验证。</li>
+</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="daily" /><category term="微信" /><category term="表情包" /><category term="AI" /><category term="Gemini" /><category term="Playwright" /><summary type="html"><![CDATA[目标:把历史微信头像(都是我家猫的照片)做成一套微信表情包,并在微信表情开放平台提交上架。]]></summary></entry><entry><title type="html">听课app开发调研</title><link href="https://roshameow.github.io//personal_homepage/tool/lesson/" rel="alternate" type="text/html" title="听课app开发调研" /><published>2026-06-20T00:00:00+00:00</published><updated>2026-06-20T16:43:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/tool/lesson</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/tool/lesson/"><![CDATA[<p>本报告致力于提供全球视频提取课件、自动识别、场景检测领域的<strong>全量级深度分析</strong>。涵盖了从顶层商业平台到基层开源算法的每一个技术细节，旨在为 LessonCap 的长远发展提供无可辩驳的决策依据。</p>
 
-<p>修改局部</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="photo" /><category term="content" /><summary type="html"><![CDATA[换背景(inpaint)]]></summary></entry><entry><title type="html">mac系统字典</title><link href="https://roshameow.github.io//personal_homepage/tool/mac/dictionary/" rel="alternate" type="text/html" title="mac系统字典" /><published>2025-08-16T00:00:00+00:00</published><updated>2025-08-19T18:47:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/tool/mac/dictionary</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/tool/mac/dictionary/"><![CDATA[<p>目标是把 MongoDB 里存放的术语和定义，打包成可以在 <strong>macOS 自带“字典”应用</strong>中查询的本地词典。</p>
+<hr />
 
-<h2 id="成功步骤">成功步骤</h2>
+<h2 id="1-全球主流视频转课件工具深度对比矩阵-无损版">1. 全球主流“视频转课件”工具深度对比矩阵 (无损版)</h2>
 
-<p>用脚本实现1-2-3步骤即可. 代码:  <a href="https://gist.github.com/roshameow/15d29ace410e296cdbd0da4c4531ba14#file-mongo_2_dictionary-py"><strong>mongo_2_dictionary.py</strong></a></p>
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">产品名称</th>
+      <th style="text-align: left">定位与目标群体</th>
+      <th style="text-align: left">翻页检测逻辑 / 核心算法</th>
+      <th style="text-align: left">OCR 与 搜索精度</th>
+      <th style="text-align: left">核心优势 (Pro)</th>
+      <th style="text-align: left">核心劣势 (Con)</th>
+      <th style="text-align: left">2025 AI 进化趋势</th>
+      <th style="text-align: left">价格 / 链接</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><strong>Panopto</strong></td>
+      <td style="text-align: left">顶级学术机构、企业知识库<br /><br />商业封闭视频软件</td>
+      <td style="text-align: left"><strong>元数据流同步</strong>：通过客户端插件直接监控 Office 进程的翻页中断信号。</td>
+      <td style="text-align: left"><strong>全文本倒排索引</strong>：不仅扫描 OCR，还结合 PPT 原始文本轨道。搜索词可精确到 0.1 秒。</td>
+      <td style="text-align: left">1. <strong>学术搜索之王</strong>：支持跨数万视频全局搜索。 2. <strong>Access AI</strong>：自动生成带层级的逻辑章节。</td>
+      <td style="text-align: left">1. <strong>围墙花园</strong>：必须使用配套录制器，不支持第三方视频。 2. <strong>私有云部署</strong>：门槛极高。</td>
+      <td style="text-align: left"><strong>Generative Summaries</strong>：自动将 1 小时视频生成 500 字精简摘要。</td>
+      <td style="text-align: left">企业订阅 / <a href="https://www.panopto.com/">官网</a></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>Kaltura</strong></td>
+      <td style="text-align: left">跨国企业内训、在线教育<br /><br /></td>
+      <td style="text-align: left"><strong>Thumb Cue Points</strong>：利用服务端算力，对上传视频进行非线性视觉特征提取。</td>
+      <td style="text-align: left"><strong>REACH 高级 OCR</strong>：支持 150+ 语言，甚至包括手写数学公式识别。</td>
+      <td style="text-align: left">1. <strong>学练闭环</strong>：2025 Genie AI 能基于识别课件自动生成课后题。 2. <strong>多视角播放</strong>：支持画中画自由切换。</td>
+      <td style="text-align: left">1. <strong>非实时监测</strong>：仅限后期处理。 2. <strong>合规性门槛</strong>：主要针对 B 端大客户。</td>
+      <td style="text-align: left"><strong>Interactive Genie</strong>：AI 助手能根据课件内容回答学生提问。</td>
+      <td style="text-align: left">企业授权 / <a href="https://corp.kaltura.com/">官网</a></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>Microsoft Stream</strong></td>
+      <td style="text-align: left">M365 生态企业用户</td>
+      <td style="text-align: left"><strong>Vision AI 模型</strong>：基于 Azure Computer Vision 实时识别画面中的视觉锚点切换。</td>
+      <td style="text-align: left"><strong>SharePoint 全局索引</strong>：视频文字无需打开视频即可在 Win11 文件管理器搜到。</td>
+      <td style="text-align: left">1. <strong>Copilot 全力驱动</strong>：直接问 AI “这页 PPT 的重点是什么？”。 2. <strong>零安装</strong>：集成在 M365 套件中。</td>
+      <td style="text-align: left">1. <strong>通用性极差</strong>：离开 Teams 录像和 Office 视频，识别率大幅下降。 2. <strong>流量费用</strong>：OCR 扫描按量计费。</td>
+      <td style="text-align: left"><strong>Vision-to-Text Copilot</strong>：AI 实时解释视频中的复杂图表和代码。</td>
+      <td style="text-align: left">M365 包含 / <a href="https://www.microsoft.com/stream">官网</a></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>飞书妙记 / 钉钉闪记</strong></td>
+      <td style="text-align: left">国内职场及网课人群</td>
+      <td style="text-align: left"><strong>多模态语义识别</strong>：结合 NLP（语义理解）与 CV（视觉变动）的双重校验。</td>
+      <td style="text-align: left"><strong>中文深度优化 OCR</strong>：针对中文手写、复杂排版 PPT 进行了模型预训练。</td>
+      <td style="text-align: left">1. <strong>中文语境体验最佳</strong>：会议总结与重点提炼极快。 2. <strong>点击跳转</strong>：课件截图作为锚点，点击即看原片。</td>
+      <td style="text-align: left">1. <strong>仅限自家会议</strong>：无法处理 B 站、Zoom 等外部直播源。 2. <strong>隐私依赖</strong>：强制云端处理。</td>
+      <td style="text-align: left"><strong>AI 全量纪要</strong>：不仅提取课件，还自动生成思维导图笔记。</td>
+      <td style="text-align: left">基础版免费 / <a href="https://www.feishu.cn/">官网</a></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>Video2PPT (Comm)</strong></td>
+      <td style="text-align: left">独立生产力用户</td>
+      <td style="text-align: left"><strong>云端 AI 降噪识别</strong>：专门针对“脏”视频。能识别并强行移除画面中挡住 PPT 的讲师人脸。</td>
+      <td style="text-align: left">基础 OCR 提取，支持导出可编辑的 .pptx 格式。</td>
+      <td style="text-align: left">1. <strong>人脸移除</strong>：唯一能把挡住的 PPT 画面“算”出来的工具。 2. <strong>直接产出 PPT</strong>：适合二次修改。</td>
+      <td style="text-align: left">1. <strong>隐私泄露风险</strong>：资料必须经过第三方服务器。 2. <strong>价格敏感</strong>：按月订阅，单价较高。</td>
+      <td style="text-align: left"><strong>Dynamic Denoising</strong>：自动过滤掉视频播放过程中的低画质伪影。</td>
+      <td style="text-align: left">订阅制 / <a href="https://www.video2ppt.com/">官网</a></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>Slide Catcher Pro</strong></td>
+      <td style="text-align: left">macOS 资深极客</td>
+      <td style="text-align: left"><strong>Vision Framework</strong>：调用 macOS 原生图像接口。利用苹果芯片的 NPU 进行硬件加速。</td>
+      <td style="text-align: left"><strong>Apple 原生 OCR</strong>：不依赖网络，隐私保护性极强。精度达到系统级。</td>
+      <td style="text-align: left">1. <strong>极速与省电</strong>：充分压榨 M1/M2/M3 芯片。 2. <strong>本地化</strong>：无需上传，数据不出本地。</td>
+      <td style="text-align: left">1. <strong>不支持实时监测</strong>：仅限处理录像文件。 2. <strong>平台限制</strong>：无 Windows 版本。</td>
+      <td style="text-align: left"><strong>Vision OS 联动</strong>：开始支持 Vision Pro 空间的课件投放。</td>
+      <td style="text-align: left">买断制 / <a href="https://slidecatcherpro.com/">官网</a></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>vid2slides (OSS)</strong></td>
+      <td style="text-align: left">开发者、研究人员</td>
+      <td style="text-align: left"><strong>HMM (隐马尔可夫模型)</strong>：利用概率统计模型区分“临时干扰”与“真实翻页”。</td>
+      <td style="text-align: left">集成 Tesseract OCR，支持生成 PDF。</td>
+      <td style="text-align: left">1. <strong>技术天花板</strong>：算法理论最强，能处理最复杂的教学环境。</td>
+      <td style="text-align: left">1. <strong>无界面</strong>：仅限命令行操作。 2. <strong>配置极难</strong>：需要 Python 深度环境。</td>
+      <td style="text-align: left">无。</td>
+      <td style="text-align: left">开源 / <a href="https://github.com/patrickmineault/vid2slides">GitHub</a></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>mp4-to-pdf (OSS)</strong></td>
+      <td style="text-align: left">CLI 极客</td>
+      <td style="text-align: left"><strong>PySceneDetect</strong>：基于场景检测工业标准库，识别视频镜头的切变。</td>
+      <td style="text-align: left">内置 Tesseract + OpenAI Whisper (语音转文字)。</td>
+      <td style="text-align: left">1. <strong>功能大而全</strong>：全本地运行，集成程度极高。</td>
+      <td style="text-align: left">1. <strong>臃肿不堪</strong>：体积通常 &gt;500MB。 2. <strong>处理极慢</strong>：单线程分析效率低。</td>
+      <td style="text-align: left">无。</td>
+      <td style="text-align: left">开源 / <a href="https://github.com/lucianosarno/mp4-to-pdf">GitHub</a></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>LessonCap</strong></td>
+      <td style="text-align: left"><strong>大众学生 / 职场个人</strong></td>
+      <td style="text-align: left"><strong>dHash + 数学级像素锁定</strong>：自研 V36 像素匹配算法，实现实时屏幕监测。</td>
+      <td style="text-align: left"><strong>原生 API 实现 (规划中)</strong>：体积零增加，全文搜索。</td>
+      <td style="text-align: left">1. <strong>通吃万物</strong>：支持任何播放器、任何直播。 2. <strong>极致轻量</strong>：仅 15MB 绿色免安装。 3. <strong>实时生成</strong>：课程结束，笔记即出。</td>
+      <td style="text-align: left">1. <strong>去重算法待精进</strong>：对滚动弹幕的过滤尚有提升空间。</td>
+      <td style="text-align: left"><strong>SSIM 结构相似性升级</strong>：实现 100% 弹幕免疫。</td>
+      <td style="text-align: left">开源 / <a href="https://github.com/roshameow/LessonCap">GitHub</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="2-核心翻页检测算法技术细节深度拆解-the-science">2. 核心翻页检测算法技术细节深度拆解 (The Science)</h2>
+
+<p>在 LessonCap 的下一步迭代中，我们将从 dHash 升级到 SSIM。以下是各算法的<strong>无损技术对比</strong>：</p>
+
+<h3 id="21-dhash-difference-hash---lessoncap-目前采用">2.1 dHash (Difference Hash) - 【LessonCap 目前采用】</h3>
+<ul>
+  <li><strong>原理</strong>：将图像缩放至 9x8 灰度图，计算相邻像素的梯度（左像素是否比右像素亮），生成 64 位二进制指纹。</li>
+  <li><strong>数学本质</strong>：基于<strong>一阶导数</strong>的结构特征提取。</li>
+  <li><strong>评价</strong>：计算开销极低（每秒可处理数百帧），对亮度、对比度变化不敏感。<strong>局限性</strong>是对于滚动弹幕这种改变了局部像素梯度的干扰，容错率有限。</li>
+</ul>
+
+<h3 id="22-phash-perceptual-hash">2.2 pHash (Perceptual Hash)</h3>
+<ul>
+  <li><strong>原理</strong>：采用 <strong>DCT (离散余弦变换)</strong> 将图像转为频率域，保留低频分量。</li>
+  <li><strong>数学本质</strong>：基于<strong>频率分布</strong>的特征提取。</li>
+  <li><strong>评价</strong>：比 dHash 更稳健，能过滤掉一些高频噪点。但计算成本翻倍，对实时直播监测有微小延迟。</li>
+</ul>
+
+<h3 id="23-ssim-structural-similarity---lessoncap-升级目标">2.3 SSIM (Structural Similarity) - 【LessonCap 升级目标】</h3>
+<ul>
+  <li><strong>原理</strong>：通过对比两张图像的<strong>亮度 (Luminance)、对比度 (Contrast) 和结构 (Structure)</strong> 三个维度。</li>
+  <li><strong>数学模型</strong>：SSIM(x,y) = [l(x,y)^alpha] * [c(x,y)^beta] * [s(x,y)^gamma]。</li>
+  <li><strong>评价</strong>：这是目前最接近人类肉眼判断的指标。它能识别出“文字内容没变，只是上面飘过了一行弹幕”这种场景。它是解决“弹幕干扰”的终极武器。</li>
+</ul>
+
+<h3 id="24-hmm-hidden-markov-model---天花板算法">2.4 HMM (Hidden Markov Model) - 【天花板算法】</h3>
+<ul>
+  <li><strong>原理</strong>：将视频建模为一系列隐藏状态（如：幻灯片A、转场中、幻灯片B）。通过 <strong>Viterbi 算法</strong> 计算观察序列（当前帧）背后最可能的隐藏状态路径。</li>
+  <li><strong>评价</strong>：能自动“抹平”讲师在镜头前走动产生的假翻页。但它需要对每一类视频进行“概率训练”，不符合 LessonCap “即开即用”的工具属性。</li>
+</ul>
+
+<hr />
+
+<h2 id="3-lessoncap-的竞争壁垒与护城河-product-moat">3. LessonCap 的竞争壁垒与护城河 (Product Moat)</h2>
 
 <ol>
-  <li>把数据转成 <strong>Apple Dictionary 支持的 TSV 格式</strong>。
-    <ul>
-      <li>⚠️ 避坑：不要用 <code class="language-plaintext highlighter-rouge">\t\n</code> , 用 <strong>HTML 标签</strong>来控制排版，用 <code class="language-plaintext highlighter-rouge">&lt;div&gt;</code> 表示新行，用 <code class="language-plaintext highlighter-rouge">&lt;br&gt;</code> 来做分隔。这样避免了特殊字符被误解析。</li>
-    </ul>
-  </li>
-  <li>用  <a href="https://github.com/ilius/pyglossary">PyGlossary</a> 把 <code class="language-plaintext highlighter-rouge">.tsv</code> 转成 AppleDict 的源文件。<code class="language-plaintext highlighter-rouge">pyglossary dictionary_dump.tsv output.dictionary --read-format=Tabfile --write-format=AppleDict</code>
-    <ul>
-      <li>⚠️ 避坑：不要用 CSV,  一开始我试过 CSV，但 AppleDict 的编译脚本会直接解析失败。</li>
-    </ul>
-  </li>
-  <li>编译 Apple Dictionary
-    <ul>
-      <li>PyGlossary 会生成一个字典目录，里面包含：<code class="language-plaintext highlighter-rouge">.xml</code> 源文件,  <code class="language-plaintext highlighter-rouge">.css</code> 样式文件, <code class="language-plaintext highlighter-rouge">.plist</code> 配置文件, <code class="language-plaintext highlighter-rouge">Makefile</code></li>
-      <li>正常情况下，进入目录直接运行：<code class="language-plaintext highlighter-rouge">make ; make install</code></li>
-    </ul>
-  </li>
-  <li>安装完成后，打开 macOS 自带的“字典”应用，在settting里勾选新字典。</li>
+  <li><strong>场景通杀性 (Unrestricted Sources)</strong>：不受软件的“私有协议”限制。用户可以在任何播放器、任何网页、任何会议软件上使用。</li>
+  <li><strong>极致轻量化 (Go + Wails)</strong>：相比 Python 实现的项目（体积几百MB，需要安装各种环境），LessonCap 编译后仅 15MB 左右，内存占用不到 50MB。</li>
+  <li><strong>100% 隐私零风险 (Total Local)</strong>：所有识别（包括未来的 OCR）全部调用操作系统本地接口，不与任何互联网服务通信。</li>
 </ol>
 
-<h2 id="工具和坑点总结">工具和坑点总结</h2>
+<hr />
 
-<ul>
-  <li><strong>需要安装 Dictionary Development Kit (DDK)</strong>
+<h2 id="4-未来-12-个月详细开发路线图-2026-roadmap">4. 未来 12 个月详细开发路线图 (2026 Roadmap)</h2>
+
+<h3 id="phase-2-智能化飞跃-智能去重与文字化">Phase 2: 智能化飞跃 (智能去重与文字化)</h3>
+<ul class="task-list">
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" /><strong>SSIM 智能去重内核</strong>：引入结构相似性比对，将翻页识别精度提升至 99.9%，并实现弹幕完全过滤。</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" /><strong>原生系统 OCR 集成</strong>：
     <ul>
-      <li>据说macOS 有自带的 <code class="language-plaintext highlighter-rouge">dictutil</code> 我没有找到。</li>
-      <li>DDK 要单独安装（Xcode 附带）。</li>
-    </ul>
-  </li>
-  <li><strong>不要用 DDK 官方的 <code class="language-plaintext highlighter-rouge">build_dict.sh</code></strong>, 用  <a href="https://github.com/ilius/pyglossary">PyGlossary</a> 生成
-    <ul>
-      <li>这个脚本里调用的 <code class="language-plaintext highlighter-rouge">make_line.pl</code> ，perl 脚本里有 bug。无法解决. xml 格式也非常讨厌</li>
-    </ul>
-  </li>
-  <li><strong>样式限制</strong>
-    <ul>
-      <li>Apple Dictionary 对标题样式是写死的，没法自定义。</li>
-    </ul>
-  </li>
-  <li><strong>调试</strong>
-    <ul>
-      <li>我在自己本地的dev版app上调试, 发现字典不是实时更新的, <strong>需要重启之后才会加载新的</strong> (可能是<code class="language-plaintext highlighter-rouge">DictionaryServices.framework</code> 的行为特性, 每个app单独一个缓存, 字典也在里面, 不会热更新)</li>
+      <li><strong>macOS</strong>: 接入 <code class="language-plaintext highlighter-rouge">Apple Vision Framework</code>。</li>
+      <li><strong>Windows</strong>: 接入 <code class="language-plaintext highlighter-rouge">Windows.Media.Ocr</code>。</li>
+      <li><strong>结果</strong>：PDF 课件将带有隐藏的文字层，支持直接 Ctrl+F 搜索。</li>
     </ul>
   </li>
 </ul>
 
-<h2 id="结果">结果</h2>
+<h3 id="phase-3-生产力生态-联动与外设">Phase 3: 生产力生态 (联动与外设)</h3>
+<ul class="task-list">
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" /><strong>多显示器支持</strong>：自动探测副屏 DPI，解决 4K 扩展屏下的坐标错位。</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" /><strong>笔记软件一键导入</strong>：支持自动将截图发送至 Obsidian, Logseq 或 Notion。</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" /><strong>Markdown 联动</strong>：自动生成一个包含所有课件截图、时间戳和备注的 <code class="language-plaintext highlighter-rouge">.md</code> 索引文件。</li>
+</ul>
 
-<p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020250819114921.png" alt="Pasted image 20250819114921.png" width="300" /></p>
+<hr />
+<p><em>报告生成日期：2026年6月14日</em>
+<em>结论：LessonCap 的核心使命是成为“每个学生桌面上的必备笔记伴侣”。</em></p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="tool" /><category term="content" /><summary type="html"><![CDATA[本报告致力于提供全球视频提取课件、自动识别、场景检测领域的全量级深度分析。涵盖了从顶层商业平台到基层开源算法的每一个技术细节，旨在为 LessonCap 的长远发展提供无可辩驳的决策依据。]]></summary></entry><entry><title type="html">mac电脑的奇怪问题</title><link href="https://roshameow.github.io//personal_homepage/daily/mac/" rel="alternate" type="text/html" title="mac电脑的奇怪问题" /><published>2026-06-11T00:00:00+00:00</published><updated>2026-06-14T09:00:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/daily/mac</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/daily/mac/"><![CDATA[<h2 id="交换内存">交换内存</h2>
 
+<p>遇到系统卡顿, 电脑发热, 很大可能是系统疯狂读写swap内存</p>
+
+<h3 id="检查-swap-与物理内存状态">检查 Swap 与物理内存状态</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 查看 Swap 使用量 和 内存压缩/物理内存情况</span>
+sysctl vm.swapusage <span class="o">&amp;&amp;</span> top <span class="nt">-l</span> 1 | <span class="nb">grep</span> <span class="nt">-E</span> <span class="s2">"^PhysMem|^VM"</span>
+</code></pre></div></div>
+
+<p><strong>输出示例解析：</strong> 重点关注<strong>swap和compressor</strong></p>
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>vm.swapusage: total = 18432.00M  used = 16904.25M  free = 1527.75M  (encrypted)
+PhysMem: 31G used (3493M wired, 14G compressor), 76M unused.
+VM: 329T vsize, 5684M framework vsize, 33786912(0) swapins, 39293032(0) swapouts.
+</code></pre></div></div>
 <ul>
-  <li>效果和官方字典差不多</li>
-  <li>但是在一些网页的在线代码编辑器(可能用的是自绘控件, 而不是macos的Cocoa文本系统)和微信(lookup被软件禁用)不能用</li>
-</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="tool" /><category term="mac" /><category term="content" /><summary type="html"><![CDATA[目标是把 MongoDB 里存放的术语和定义，打包成可以在 macOS 自带“字典”应用中查询的本地词典。]]></summary></entry><entry><title type="html">代码语法解析</title><link href="https://roshameow.github.io//personal_homepage/code/algorithm/string/" rel="alternate" type="text/html" title="代码语法解析" /><published>2025-08-10T00:00:00+00:00</published><updated>2025-09-12T17:50:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/code/algorithm/string</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/code/algorithm/string/"><![CDATA[<h2 id="三元运算符ternary解析">三元运算符(ternary)解析</h2>
+  <li><strong><code class="language-plaintext highlighter-rouge">used = 16904.25M</code> (Swap)</strong>: 极度危险！说明物理内存已经彻底打满，有 16.9G 的数据被迫写到了硬盘上。</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">76M unused</code></strong>: 物理内存几乎完全枯竭（32G 内存仅剩 76M）。</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">14G compressor</code></strong>: macOS 的特色机制。在动用 Swap 前，系统会拼命压缩内存数据。当压缩占用高达 14G 时，说明系统已经在超负荷运算来维持不崩溃了。</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">swapins / swapouts</code> (几千万次)</strong>: 系统在内存和硬盘间疯狂搬运数据（Thrashing），这是导致卡顿的直接元凶。</li>
+</ul>
 
-<p>把 <code class="language-plaintext highlighter-rouge">...?...:...</code> 处理成<code class="language-plaintext highlighter-rouge">if_else(...,...,...)</code> 的形式.</p>
+<hr />
 
-<p>初衷是用正则替换把对应DSL的operator转换成python语言, 然后用python的ast 直接解析. 但是三元运算符的处理比较复杂, Python 中并没有直接对应的语法结构, 导致没法简单的替换.</p>
+<p>确认了系统处于高压状态后，需要找出是谁吃掉了内存。</p>
 
-<p>可以把字符串token解析成<strong>AST 的构建过程</strong>理解成“对运算符按优先级排序”的过程.</p>
+<h3 id="按-rss-常驻物理内存-排序抓取前十">按 RSS (常驻物理内存) 排序抓取前十</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ps <span class="nt">-amcwwwxo</span> <span class="s2">"user,pid,rss,vsz,command"</span> <span class="nt">-r</span> | <span class="nb">head</span> <span class="nt">-n</span> 15
+</code></pre></div></div>
+<p><em>参数解释：<code class="language-plaintext highlighter-rouge">-r</code> 按 CPU 占用排序（在某些 macOS 版本中需结合 RSS 字段观察），但更直观的是提取出前十名直接看 <code class="language-plaintext highlighter-rouge">RSS</code> 列。</em></p>
 
-<table>
-  <thead>
-    <tr>
-      <th>方法</th>
-      <th>优缺点</th>
-      <th>类比排序思路</th>
-      <th>平均复杂度</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>用正则表达式替换三元运算符</td>
-      <td>思路naive, 但是可读性差，难以维护</td>
-      <td> </td>
-      <td>O(n logn)+kO(n)<br />全字符串扫描+递归</td>
-    </tr>
-    <tr>
-      <td>设计语法树解析器（Parser）</td>
-      <td>灵活性高, 但实现较复杂</td>
-      <td>选择排序</td>
-      <td>O(n logn)<br />近似二分递归</td>
-    </tr>
-    <tr>
-      <td>结合 <a href="https://www.google.com/search?client=safari&amp;rls=en&amp;q=pratt+parser&amp;ie=UTF-8&amp;oe=UTF-8">Pratt Parser</a> 优化解析</td>
-      <td>代码简洁, 可读性高, 扩展性好</td>
-      <td>插入排序/堆排序</td>
-      <td>O(n)<br />线性扫描</td>
-    </tr>
-  </tbody>
-</table>
-
-<h3 id="直接用字符串替换">直接用字符串替换</h3>
-
+<p><strong>输出示例解析：</strong></p>
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>USER               PID    RSS      VSZ COMMAND
+wenliu            3689 4681920 417675024 mongod
+wenliu           47121 3013056 1867840992 Google Chrome Helper (Renderer)
+wenliu             649 235536 414167584 Terminal
+wenliu           94155 216688 446452352 node
+</code></pre></div></div>
 <ul>
-  <li>用字符串正则查找tenary并替换</li>
-  <li>递归处理?: 和括号, =, 逗号的关系
+  <li><strong><code class="language-plaintext highlighter-rouge">RSS</code> (Resident Set Size)</strong>: 进程实际占用的物理内存（单位：KB）。
     <ul>
-      <li>处理 括号, 逗号 都依赖栈来正确处理嵌套结构</li>
+      <li>例如 <code class="language-plaintext highlighter-rouge">mongod</code> 的 RSS 是 <code class="language-plaintext highlighter-rouge">4681920</code> KB（约 4.6 GB），它就是当前最大的刺客。</li>
+      <li><code class="language-plaintext highlighter-rouge">Google Chrome Helper</code> 占用约 3 GB，通常是某个臃肿的网页或插件。</li>
+    </ul>
+  </li>
+  <li><strong><code class="language-plaintext highlighter-rouge">VSZ</code> (Virtual Memory Size)</strong>: 虚拟内存。通常很大（有些进程申请 1.8G+），不需要过度恐慌，重点看 RSS。</li>
+</ul>
+
+<hr />
+
+<h3 id="典型嫌疑人与处理方案">典型嫌疑人与处理方案</h3>
+
+<p>在实际排查中的三种典型的压力源转移：</p>
+
+<h4 id="嫌疑人-agoogle-chrome-及各种-electron-应用">嫌疑人 A：Google Chrome (及各种 Electron 应用)</h4>
+<ul>
+  <li><strong>特征</strong>：产生大量 <code class="language-plaintext highlighter-rouge">Helper (Renderer)</code> 进程。</li>
+  <li><strong>处理</strong>：使用 Chrome 自带的任务管理器 (<code class="language-plaintext highlighter-rouge">Shift + Esc</code>) 揪出具体标签页并关闭，或者直接彻底重启浏览器。</li>
+</ul>
+
+<h4 id="嫌疑人-b数据库服务-如-mongodb">嫌疑人 B：数据库服务 (如 MongoDB)</h4>
+<ul>
+  <li><strong>特征</strong>：当你运行了重度查询（如量化历史回测）后，<code class="language-plaintext highlighter-rouge">mongod</code> 会将大量数据加载到内存中作为缓存，且不会轻易释放。</li>
+  <li><strong>处理</strong>：如果是本地开发环境，最快的方法是直接重启服务释放内存：
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>brew services restart mongodb-community
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h4 id="嫌疑人-cnodejs-本地-agent构建工具">嫌疑人 C：Node.js (本地 Agent/构建工具)</h4>
+<ul>
+  <li><strong>特征</strong>：<code class="language-plaintext highlighter-rouge">node</code> 进程带着 <code class="language-plaintext highlighter-rouge">--max-old-space-size=16384</code> 这样的参数。</li>
+  <li><strong>处理</strong>：确认该进程（如 <code class="language-plaintext highlighter-rouge">gemini</code> 助手或 Webpack 构建）是否正在工作。如果是正常工作，几百兆的占用是合理的；如果是僵尸进程，直接 <code class="language-plaintext highlighter-rouge">kill -9 &lt;PID&gt;</code>。</li>
+</ul>
+
+<hr />
+
+<h2 id="4-关键认知swap-的滞后性">4. 关键认知：Swap 的滞后性</h2>
+
+<p>系统被迫使用大量swap后, 即使解决了关键问题, 系统也未必能恢复:</p>
+<ul>
+  <li>即使杀掉大进程, 物理内存（RAM）被释放, 但 swap 会维持原状，直到需要访问里面的数据, 仍然会感到“冷启动”的卡顿</li>
+  <li>压缩本身会给CPU 的内存管理单元（MMU）造成很大压力, 系统会不停压缩解压缩, 影响响应</li>
+  <li>物理内存很难优化排布, 变得碎片化, 频繁触发整理</li>
+</ul>
+
+<p>到这个时候就不得不重启电脑让内存重新恢复了
+  如何判断“不用重启”？
+  你可以通过一个指标来反驳“高 Swap 就重启”的说法：swapins / swapouts 的变化率。</p>
+
+<p>运行 vm_stat 1（每秒刷新一次）：</p>
+<ul>
+  <li>如果 Swap Used = 10GB，但 swapins 和 swapouts 都是 0，说明这些 Swap 是“静止的冷数据”，你不动它，它就不占性能。这时不需要重启。</li>
+  <li>如果 Swap Used = 10GB，且当你切换程序时，swapins 开始狂跳，说明系统正在疯狂从硬盘搬运数据，这时候重启才是解药。</li>
+</ul>
+
+<hr />
+
+<h2 id="声音">声音</h2>
+
+<p>coreaudio</p>
+
+<h2 id="网络">网络</h2>
+
+<h3 id="诊断与连通性检查">诊断与连通性检查</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ping <span class="nt">-c</span> 2 114.114.114.114 <span class="c">#物理联网</span>
+nslookup baidu.com 114.114.114.114  <span class="c">#DNS 穿透状态</span>
+nslookup baidu.com <span class="c">#本地代理劫持情况</span>
+</code></pre></div></div>
+
+<p><strong>输出示例解析：</strong></p>
+<ul>
+  <li><strong><code class="language-plaintext highlighter-rouge">Address: 110.242.xx.xx</code></strong>: 正常真实 IP。说明基础链路和 DNS 53 端口没问题。</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">Address: 198.18.x.x</code> (Fake IP)</strong>: 说明流量正被代理软件（Clash/Surge）接管。</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">connection timed out</code></strong>: 严重故障。说明运营商解析服务掉线或 53 端口被拦截。</li>
+</ul>
+
+<hr />
+
+<h3 id="典型故障与处理方案">典型故障与处理方案</h3>
+
+<h4 id="故障-adns-链路失效-典型微信通网页不通">故障 A：DNS 链路失效 (典型“微信通网页不通”)</h4>
+<ul>
+  <li><strong>特征</strong>：<code class="language-plaintext highlighter-rouge">ping</code> 通，但 <code class="language-plaintext highlighter-rouge">nslookup</code> (不带服务器) 失败；或者解析出的 IP 无法访问。</li>
+  <li><strong>处理</strong>：
+    <ul>
+      <li>多个软件抢dns导致混乱(tailscale, clash等): <code class="language-plaintext highlighter-rouge">scutil --dns</code> (查看解析器顺序)
+        <ul>
+          <li><strong>tailscale设置</strong> <code class="language-plaintext highlighter-rouge"> tailscale up --accept-dns=false --accept-routes=false --exit-node=</code>
+            <ul>
+              <li>不去抢系统或代理软件的dns解析</li>
+              <li>不默认添加来自 Tailscale 网络中其他机器分享的“局域网段”: 如果你当前所在的酒店/咖啡厅 Wi-Fi 恰好也是 192.168.1.x 段，就会发生 “路由冲突”。你会发现连不上酒店打印机，甚至连不上网，因为Mac以为那是你家的网络，把包发到了隧道里</li>
+              <li>清空出口节点: 防止网络流量被tailscale截胡</li>
+            </ul>
+          </li>
+          <li><strong>clash设置</strong>: 在 DNS 字段添加 <code class="language-plaintext highlighter-rouge">nameserver-policy: {"*.ts.net": 100.100.100.100}</code>
+            <ul>
+              <li>修改clash的配置文件</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
     </ul>
   </li>
 </ul>
 
-<h3 id="写parser处理">写parser处理</h3>
+<h4 id="故障-c系统配置损坏-wi-fi-开关异常搜不到信号">故障 C：系统配置损坏 (Wi-Fi 开关异常/搜不到信号)</h4>
+<ul>
+  <li><strong>特征</strong>：UI 层面 Wi-Fi 无法开启，或者即便连接也无法获取 IP。</li>
+  <li><strong>处理</strong>：由浅入深进行重置。
+    <ul>
+      <li><strong>重置接口</strong>：在网络设置中删除 Wi-Fi 接口 -&gt; <strong>应用</strong> -&gt; 重新添加 -&gt; <strong>应用</strong>。</li>
+      <li><strong>清理文件</strong>：删除 <code class="language-plaintext highlighter-rouge">/Library/Preferences/SystemConfiguration/</code> 下的 <code class="language-plaintext highlighter-rouge">NetworkInterfaces.plist</code> 和 <code class="language-plaintext highlighter-rouge">preferences.plist</code> 后 <strong>重启</strong>。</li>
+      <li><strong>底层重置 (NVRAM)</strong>：关机后长按 <code class="language-plaintext highlighter-rouge">Option+Command+P+R</code> 开机，听到 3 声响后松开。</li>
+    </ul>
+  </li>
+</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="daily" /><category term="content" /><summary type="html"><![CDATA[交换内存]]></summary></entry><entry><title type="html">本地模型尝试</title><link href="https://roshameow.github.io//personal_homepage/tool/llama/" rel="alternate" type="text/html" title="本地模型尝试" /><published>2026-06-02T00:00:00+00:00</published><updated>2026-06-10T15:23:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/tool/llama</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/tool/llama/"><![CDATA[<p>记录一下在 Windows 环境下配置 <code class="language-plaintext highlighter-rouge">llama.cpp</code> 的全过程，包括编译、启动参数调优、网络排查以及接入开发工具链的细节。</p>
 
-<p>可以通过编写自定义的解析器来处理三元运算符。下面是一些处理流程：</p>
+<h2 id="1-编译与环境">1. 编译与环境</h2>
+
+<h3 id="编译踩坑记录">编译踩坑记录</h3>
+<ul>
+  <li><strong>OpenSSL 找不到</strong>: 产生的 Warning 可以忽略。本地和局域网连接不需要 HTTPS。</li>
+  <li><strong>WebUI 找不到</strong>: 产生的 Error 可以通过禁用 WebUI 解决。</li>
+</ul>
+
+<h3 id="编译步骤">编译步骤</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> ~/Code/External/llama.cpp
+<span class="nb">rm</span> <span class="nt">-rf</span> build
+cmake <span class="nt">-B</span> build <span class="nt">-DGGML_CUDA</span><span class="o">=</span>ON <span class="nt">-DLLAMA_BUILD_WEBUI</span><span class="o">=</span>OFF
+cmake <span class="nt">--build</span> build <span class="nt">-j</span>
+</code></pre></div></div>
+
+<h3 id="开启服务">开启服务</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./build/bin/llama-server <span class="nt">-m</span> xxx.gguf <span class="nt">--host</span> 0.0.0.0 <span class="nt">--port</span> 8080
+</code></pre></div></div>
+<hr />
+
+<h2 id="2-模型选择与下载">2. 模型选择与下载</h2>
+
+<p>我的windows环境是 <strong>RTX 4080 (16GB 显存)</strong>。</p>
+<h3 id="实测模型对比">实测模型对比</h3>
+<ul>
+  <li><strong>Qwen3.6-27B (IQ4_XS)</strong>:  可以用, 逻辑遵循和工具调用上都正常。</li>
+  <li><strong>Qwen3-Coder-30B-A3B (IQ4_XS)</strong>:  实测效果不好，很笨。</li>
+</ul>
+
+<h3 id="下载方法">下载方法</h3>
+
+<p>从 Hugging Face 下载 GGUF 格式的模型, 用的unsloth版本.</p>
+<ul>
+  <li>支持 <code class="language-plaintext highlighter-rouge">wget</code> 直接下载。</li>
+  <li>使用 <code class="language-plaintext highlighter-rouge">huggingface-cli</code>，支持 <strong>文件校验</strong> 和 <strong>断点续传</strong>。</li>
+</ul>
+
+<p><strong>使用 <code class="language-plaintext highlighter-rouge">wget</code> 下载示例：</strong></p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wget https://huggingface.co/unsloth/Qwen3-Coder-30B-A3B-Instruct-GGUF/resolve/main/Qwen3-Coder-30B-A3B-Instruct-IQ4_XS.gguf
+</code></pre></div></div>
+
+<p><strong>使用 <code class="language-plaintext highlighter-rouge">huggingface-cli</code> 下载示例：</strong></p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 下载指定模型 (示例：Qwen 27B 的 IQ4_XS 版本)</span>
+huggingface-cli download Qwen/Qwen2.5-Coder-32B-Instruct-GGUF <span class="se">\</span>
+    Qwen2.5-Coder-32B-Instruct-IQ4_XS.gguf <span class="se">\</span>
+    <span class="nt">--local-dir</span> models <span class="nt">--local-dir-use-symlinks</span> False
+</code></pre></div></div>
+
+<hr />
+<h2 id="3-服务启动与参数">3. 服务启动与参数</h2>
+
+<p>启动 llama-server, 我使用的启动命令如下，针对 Qwen-27B 级别的模型进行了优化：</p>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">.</span><span class="n">/build/bin/llama-server</span><span class="w"> </span><span class="nx">\</span><span class="w">
+  </span><span class="nt">-m</span><span class="w"> </span><span class="n">/models/qwen.gguf</span><span class="w"> </span><span class="nx">\</span><span class="w">
+  </span><span class="nt">--host</span><span class="w"> </span><span class="mf">0.0</span><span class="o">.</span><span class="nf">0</span><span class="o">.</span><span class="nf">0</span><span class="w"> </span><span class="n">\</span><span class="w"> </span><span class="c">#允许监听局域网内所有接口，以便我的 Mac 访问</span><span class="w">
+  </span><span class="nt">--port</span><span class="w"> </span><span class="mi">8080</span><span class="w"> </span><span class="n">\</span><span class="w"> </span><span class="c"># 端口号, 记得要设置防火墙放行</span><span class="w">
+  </span><span class="nt">-ngl</span><span class="w"> </span><span class="mi">999</span><span class="w"> </span><span class="n">\</span><span class="w"> </span><span class="c">#指定卸载到 GPU 的层数, 999意思就是强制将所有模型层卸载至显存, 纯gpu推理</span><span class="w">
+  </span><span class="nt">-c</span><span class="w"> </span><span class="mi">65536</span><span class="w"> </span><span class="n">\</span><span class="w"> </span><span class="c">#设置上下文窗口, 64K context或者32k</span><span class="w">
+  </span><span class="nt">-np</span><span class="w"> </span><span class="mi">1</span><span class="n">\</span><span class="w"> </span><span class="c">#并行处理的序列数（Number of Parallel Sequences), 我用Qwen-27B基本把显存占满了, 只能设置1</span><span class="w">
+  </span><span class="nt">-b</span><span class="w"> </span><span class="mi">2048</span><span class="w"> </span><span class="n">\</span><span class="w"> </span><span class="c">#Batch Size, gpu最大接收token数</span><span class="w">
+  </span><span class="nt">-ub</span><span class="w"> </span><span class="mi">512</span><span class="w"> </span><span class="n">\</span><span class="w"> </span><span class="c">#UBatch Size, 切分size, 每次送到gpu的size, 控制显存占用峰值</span><span class="w">
+  </span><span class="nt">--flash-attn</span><span class="w"> </span><span class="n">on</span><span class="w"> </span><span class="nx">\</span><span class="w"> </span><span class="c">#降低显存占用并提升注意力机制计算速度</span><span class="w">
+  </span><span class="nt">--metriccs</span><span class="w"> </span><span class="n">\</span><span class="w">  </span><span class="c"># 启用 Prometheus 格式的监控指标, 可以看http://localhost:8080/metrics 监控请求延迟、token 生成速度、缓存命中率、显存占用等</span><span class="w">
+  </span><span class="nt">--cache-type-k</span><span class="err"> </span><span class="n">q4_0</span><span class="w"> </span><span class="nx">\</span><span class="w">  </span><span class="c">#KV Cache 的量化类型</span><span class="w">
+  </span><span class="nt">--cache-type-v</span><span class="err"> </span><span class="n">q4_0</span><span class="w"> </span><span class="nx">\</span><span class="w">
+  </span><span class="c">#-- jinja \ # jinja模版解析prompt, 让toolcall 更稳定. 开不开好像区别不大</span><span class="w">
+  </span><span class="nt">--resoning-fomat</span><span class="w"> </span><span class="n">none</span><span class="w"> </span><span class="c">#并不关闭推理，只影响 API 输出</span><span class="w">
+  </span><span class="nt">-reasoning</span><span class="w"> </span><span class="n">off</span><span class="w"> </span><span class="nx">\</span><span class="w">      </span><span class="c"># 禁用 reasoning 功能</span><span class="w">
+  </span><span class="nt">--reasoning-budget</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="n">\</span><span class="w"> </span><span class="c"># 将推理预算设为 0</span><span class="w">
+</span></code></pre></div></div>
+
 <ol>
-  <li>定义:
-    <ol>
-      <li><strong>定义 AST 节点</strong>：设计不同类型的节点来表示表达式，如常量、变量、运算符等。</li>
-      <li><strong>Tokenize</strong>：将源代码字符串分割成 tokens（例如：数字、运算符、字符串等）。
-        <ol>
-          <li>例如: ``a&lt;0.2?<code class="language-plaintext highlighter-rouge"> → </code>[(“NAME”,”a”) (“OP”,”&lt;”) (“NUMBER”,”0.2”) (“QMARK”,”?”)]`</li>
-        </ol>
-      </li>
-      <li><strong>定义优先级</strong>: <strong>找表达式中最低的优先级处理</strong>.</li>
-    </ol>
-  </li>
-  <li>具体流程:
-    <ol>
-      <li><strong>预处理（字符串替换/注释/关键字替换）</strong>
+  <li><strong>模板残留</strong>：输出中仍有空 <code class="language-plaintext highlighter-rouge">&lt;think&gt;&lt;/think&gt;</code> 标签是由于 <code class="language-plaintext highlighter-rouge">--jinja</code> 强制套用了 GGUF 内嵌模板（Qwen 模板写死了该占位符）。我最后也没通过参数解决这个空<code class="language-plaintext highlighter-rouge">&lt;think&gt;&lt;/think&gt;</code> 的问题.</li>
+</ol>
+
+<h2 id="4-远程访问与网络配置">4. 远程访问与网络配置</h2>
+
+<h3 id="局域网连通性排查">局域网连通性排查</h3>
+
+<p>在 Mac 访问 Windows 端口失败时，按以下步骤排查：</p>
+<ol>
+  <li><strong>Ping 测试</strong>: <code class="language-plaintext highlighter-rouge">ping 192.168.1.2</code> 成功，确认基础链路正常。</li>
+  <li><strong>端口探测</strong>: 运行 <code class="language-plaintext highlighter-rouge">nc -zv 192.168.1.2 8080</code>
+    <ul>
+      <li>返回 <code class="language-plaintext highlighter-rouge">Operation timed out</code>。ICMP通但TCP不通，是典型的防火墙丢弃包（Drop）特征。
         <ul>
-          <li>把wq expr 中的<code class="language-plaintext highlighter-rouge">'...'</code> / <code class="language-plaintext highlighter-rouge">"..."</code> 用占位符替换
-            <ul>
-              <li><code class="language-plaintext highlighter-rouge">ts_sum(group_zscore(a&lt;0.2? (a+0.7):(a&gt;0.9? a:0.9),bucket(rank(cap),range='0.1, 1, 0.1')),5) -&gt; ts_sum(group_zscore(a&lt;0.2? (a+0.7):(a&gt;0.9? a:0.9),bucket(rank(cap),range=__STR_CONST_0__)),5)</code></li>
-            </ul>
-          </li>
-          <li>做若干文本替换（or/and/not → logical_or/logical_and/…、–→+、NaN→nan 等）。</li>
-          <li>删除注释（/* … */ 与行注释 // 或 #）。</li>
-          <li>按分号 ; 切分成多条<strong>语句</strong>，逐条 tokenize() → parse_expr() → to_python()。</li>
-          <li>token 化</li>
-          <li>自顶向下递归解析（赋值 → 三元→ 二元<strong>按最低 precedence 为根</strong> → 原子/函数/一元）</li>
+          <li><strong>解决</strong>: 在powershell里以管理员权限设置放行端口: <code class="language-plaintext highlighter-rouge">New-NetFirewallRule -DisplayName "llama-server" -Direction Inbound -LocalPort 8080 -Protocol TCP -Action Allow</code></li>
         </ul>
       </li>
-      <li><strong>解析每句代码:</strong>
+      <li>返回 <code class="language-plaintext highlighter-rouge">Connection refused</code>. 说明防火墙已放行，ssh没启动, 去wsl2拉起ssh服务.
         <ul>
-          <li>顶层赋值检测
-            <ul>
-              <li>去掉最外层的分号</li>
-              <li>检查最外层(用括号记录层数)的赋值 <code class="language-plaintext highlighter-rouge">=</code>, 把赋值语句的左右两侧分开.</li>
-            </ul>
-          </li>
-          <li>三元检测
-            <ul>
-              <li>检查最外层 ? 的第一个位置作为三元入口, 再从 <code class="language-plaintext highlighter-rouge">?</code> 后扫描并找到对应的最外层 <code class="language-plaintext highlighter-rouge">:</code>（depth=0）的位置</li>
-              <li>每当遇到括号要剥去括号重新检测三元</li>
-            </ul>
-          </li>
-          <li>二元检测(binop)
-            <ul>
-              <li>检查最外层优先级最低的op. 优先级相同, 取最右边的op拆分(左结合)</li>
-            </ul>
-          </li>
-          <li>一元检测(atom):
-            <ul>
-              <li>检查 一元运算符(!, -) -&gt; 单token原子(number, string, name) -&gt; function call -&gt; 检查每个参数</li>
-            </ul>
-          </li>
+          <li><strong>解决</strong>: <code class="language-plaintext highlighter-rouge">sudo service ssh start</code></li>
         </ul>
       </li>
-      <li><strong>构建 AST</strong>
-        <ul>
-          <li>递归生成 Python 代码: 对不同节点分别处理</li>
-          <li>还原字符串并输出</li>
-          <li>每条语句生成的 Python 片段再还原字符串常量占位符.</li>
-        </ul>
-      </li>
-      <li><strong>收集所有处理过的</strong>语句<strong>并最终用 \n 拼接返回</strong></li>
-    </ol>
+    </ul>
   </li>
 </ol>
 
-<ul>
-  <li>⚠️ 注意点: ast解析<strong>一定要注意代码的覆盖率. 保证不会出现不认识的token, operator, 分支情况</strong>.</li>
-</ul>
+<h3 id="模型调用测试">模型调用测试</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 测试模型列表</span>
+curl http://localhost:8080/v1/models
 
-<h3 id="parse优化">parse优化</h3>
+<span class="c"># 测试对话接口</span>
+curl http://localhost:8080/v1/chat/completions <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+  <span class="nt">-d</span> <span class="s1">'{
+    "messages": [
+      {
+        "role": "user",
+        "content": "write a python quicksort"
+      }
+    ]
+  }'</span>
+</code></pre></div></div>
 
-<h4 id="token优化">token优化</h4>
+<hr />
 
-<p>把预处理步骤内化到token中统一处理.</p>
-<h4 id="pratt优化">pratt优化</h4>
+<h2 id="5-cli-工具链集成">5. CLI 工具链集成</h2>
 
-<p>Pratt parser 其实是 <strong>自顶向下递归下降解析器</strong>的一种优化方式: 不是从最低优先级的字符开始, 而是随着解析从左往右动态的构建ast.</p>
+<p>将本地算力接入了 <code class="language-plaintext highlighter-rouge">pi</code> 和 <code class="language-plaintext highlighter-rouge">claude</code> 等开发工具。</p>
 
-<ul>
-  <li>每个token除了优先级外, 定义两个方法: (nud和led)
-    <ul>
-      <li>nud(null denotation, 前序) 当token出现在表达式开头时</li>
-      <li>led(left denotation, 中序) 当 token 出现在 <strong>表达式中间</strong>（左边有东西）时调用</li>
-    </ul>
-  </li>
-</ul>
+<h3 id="claude-code-精简启动">Claude Code 精简启动</h3>
 
-<p>下面是一个DSL对应的token行为表格.</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">ANTHROPIC_BASE_URL</span><span class="o">=</span>http://localhost:8080
+<span class="nb">export </span><span class="nv">ANTHROPIC_AUTH_TOKEN</span><span class="o">=</span>dummy
+<span class="nb">export </span><span class="nv">ANTHROPIC_API_KEY</span><span class="o">=</span>dummy
+<span class="nb">export </span><span class="nv">CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC</span><span class="o">=</span>1
+<span class="nb">export </span><span class="nv">CLAUDE_CODE_ATTRIBUTION_HEADER</span><span class="o">=</span>0
+<span class="nb">export </span><span class="nv">CLAUDE_CODE_DISABLE_1M_CONTEXT</span><span class="o">=</span>1
+</code></pre></div></div>
+
+<p>Claude Code 默认启动会携带约 <strong>28k tokens</strong> 的负载，我采用极简模式启动以确保本地模型不会因为上下文过载而“变笨”：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 精简模式：跳过 28k tokens 的冗余加载，仅保留核心工具</span>
+claude <span class="nt">--model</span> local-coder <span class="se">\</span>
+    <span class="nt">--bare</span> <span class="se">\</span>
+    <span class="nt">--tools</span> <span class="s1">'Read,Edit,Write,Bash,Grep,Glob,LS'</span> <span class="se">\</span>
+    <span class="nt">--disable-slash-commands</span>
+</code></pre></div></div>
+
+<p>但是这样用不了skills了, 我尝试用extension的方式加载, 没成功</p>
+
+<h3 id="pi-ai-coding-assistant">Pi (AI Coding Assistant)</h3>
+
+<p>在 <code class="language-plaintext highlighter-rouge">~/.pi/agent/models.json</code> 中将 API 类型设为 <code class="language-plaintext highlighter-rouge">openai-completions</code>。这种模式会通过 System Prompt 注入工具定义，就不用更复杂的协议了。</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="tool" /><category term="content" /><category term="llm" /><category term="qwen" /><category term="hugging_face" /><category term="llama" /><category term="claude_code" /><category term="pi" /><summary type="html"><![CDATA[记录一下在 Windows 环境下配置 llama.cpp 的全过程，包括编译、启动参数调优、网络排查以及接入开发工具链的细节。]]></summary></entry><entry><title type="html">LLM接口协议梳理</title><link href="https://roshameow.github.io//personal_homepage/tool/llm-protocal/" rel="alternate" type="text/html" title="LLM接口协议梳理" /><published>2026-05-16T00:00:00+00:00</published><updated>2026-05-28T18:26:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/tool/llm-protocal</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/tool/llm-protocal/"><![CDATA[<p>梳理一下主流 LLM 接口的请求/响应结构、调用模式，以及各协议的差异，方便选型和对接时快速对照。</p>
+
+<pre><code class="language-mermaid">
+flowchart LR
+
+subgraph req["请求侧 — 客户端发什么"]
+
+direction TB
+
+R1["输入 prompt / input / messages"]
+
+R2["历史 messages[] 或 state ID"]
+
+R3["system / instructions"]
+
+R4["工具声明 tools[]"]
+
+R5["stream / 其他配置"]
+
+R1 --- R2 --- R3 --- R4 --- R5
+
+end
+
+  
+
+subgraph model["模型执行"]
+
+direction TB
+
+M1["组装上下文"]
+
+M2["推理"]
+
+M3["决定输出"]
+
+M1 --- M2 --- M3
+
+end
+
+  
+
+subgraph resp["响应侧 — 模型返回什么"]
+
+direction TB
+
+S1["文本输出"]
+
+S2["工具调用 tool call"]
+
+S3["停止原因 stop / finish reason"]
+
+S4["usage token 统计"]
+
+S5["状态 ID response / interaction id"]
+
+S6["流式事件 stream events"]
+
+S1 --- S2 --- S3 --- S4 --- S5 --- S6
+
+end
+
+  
+
+req ~~~ model ~~~ resp
+
+</code></pre>
+
+<h2 id="不同-api-对照表--云端-llm-厂商原生接口">不同 API 对照表 — 云端 LLM 厂商原生接口</h2>
 
 <table>
   <thead>
     <tr>
-      <th>Token/操作符</th>
-      <th>进入 nud / led</th>
-      <th>触发条件</th>
-      <th>动作描述</th>
+      <th>功能</th>
+      <th>请求侧结构</th>
+      <th>响应侧结构</th>
+      <th>OpenAI Completions<br />(更早的遗留接口)</th>
+      <th>OpenAI Chat Completions<br />(OpenAI 经典聊天)</th>
+      <th>OpenAI Responses<br />(OpenAI 新一代)</th>
+      <th>Anthropic Messages<br />(Anthropic / Claude 系)</th>
+      <th>Gemini GenerateContent<br />(Gemini 原生稳定)</th>
+      <th>Gemini Interactions<br />(Gemini 状态化 Agentic)</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td><strong>NUMBER</strong></td>
-      <td>nud</td>
-      <td>token 类型是 <code class="language-plaintext highlighter-rouge">"NUMBER"</code></td>
-      <td>- 若全是数字 → <code class="language-plaintext highlighter-rouge">Const(int)</code><br />- 否则 → <code class="language-plaintext highlighter-rouge">Const(float)</code></td>
+      <td>Endpoint / 方法</td>
+      <td>URL path 或 SDK method</td>
+      <td>URL path 或 stream method</td>
+      <td><code class="language-plaintext highlighter-rouge">/v1/completions</code></td>
+      <td><code class="language-plaintext highlighter-rouge">/v1/chat/completions</code></td>
+      <td><code class="language-plaintext highlighter-rouge">/v1/responses</code></td>
+      <td><code class="language-plaintext highlighter-rouge">/v1/messages</code></td>
+      <td><code class="language-plaintext highlighter-rouge">:generateContent</code> / <code class="language-plaintext highlighter-rouge">models.generate_content</code></td>
+      <td><code class="language-plaintext highlighter-rouge">/v1beta/interactions</code> / <code class="language-plaintext highlighter-rouge">interactions.create</code></td>
     </tr>
     <tr>
-      <td><strong>STRING</strong></td>
-      <td>nud</td>
-      <td>token 类型是 <code class="language-plaintext highlighter-rouge">"STRING"</code></td>
-      <td>构造 <code class="language-plaintext highlighter-rouge">Const(str)</code>，去掉引号</td>
+      <td>单轮生成</td>
+      <td><code class="language-plaintext highlighter-rouge">prompt</code> / <code class="language-plaintext highlighter-rouge">input</code> / <code class="language-plaintext highlighter-rouge">contents</code></td>
+      <td>text / message</td>
+      <td><code class="language-plaintext highlighter-rouge">prompt</code></td>
+      <td><code class="language-plaintext highlighter-rouge">messages</code></td>
+      <td><code class="language-plaintext highlighter-rouge">input</code></td>
+      <td><code class="language-plaintext highlighter-rouge">messages</code></td>
+      <td><code class="language-plaintext highlighter-rouge">contents</code></td>
+      <td><code class="language-plaintext highlighter-rouge">input</code></td>
     </tr>
     <tr>
-      <td><strong>NAME(变量)</strong></td>
-      <td>nud</td>
-      <td>token 类型是 <code class="language-plaintext highlighter-rouge">"NAME"</code><br />且 peek不是<code class="language-plaintext highlighter-rouge">(</code></td>
-      <td>返回 <code class="language-plaintext highlighter-rouge">Name</code></td>
+      <td>多轮对话</td>
+      <td>历史数组或状态 ID</td>
+      <td>下一轮 assistant/model 输出</td>
+      <td>✗<br /><strong>手动拼 prompt</strong></td>
+      <td><code class="language-plaintext highlighter-rouge">messages[]</code><br />客户端自己维护</td>
+      <td><code class="language-plaintext highlighter-rouge">input[]</code> 或 state</td>
+      <td><code class="language-plaintext highlighter-rouge">messages[]</code></td>
+      <td><code class="language-plaintext highlighter-rouge">contents[]</code></td>
+      <td><code class="language-plaintext highlighter-rouge">previous_interaction_id</code></td>
     </tr>
     <tr>
-      <td><strong>NAME (调用)</strong></td>
-      <td>nud</td>
-      <td>token 类型是 <code class="language-plaintext highlighter-rouge">"NAME"</code> 且 peek=<code class="language-plaintext highlighter-rouge">(</code><br /><br /> <strong>函数调用</strong></td>
-      <td>- 消费 <code class="language-plaintext highlighter-rouge">(</code> → 解析参数列表<br />- 参数支持关键字：<code class="language-plaintext highlighter-rouge">key = value</code><br />- 遇到 <code class="language-plaintext highlighter-rouge">,</code> 继续，否则结束<br />- 消费 <code class="language-plaintext highlighter-rouge">)</code> <br />→ 返回 <code class="language-plaintext highlighter-rouge">Call(Name, args)</code></td>
+      <td>system prompt</td>
+      <td>system / instructions 字段</td>
+      <td>通常不单独返回</td>
+      <td>✗<br />手动拼 prompt</td>
+      <td><code class="language-plaintext highlighter-rouge">role=system/developer</code></td>
+      <td><code class="language-plaintext highlighter-rouge">instructions</code></td>
+      <td>顶层 <code class="language-plaintext highlighter-rouge">system</code></td>
+      <td><code class="language-plaintext highlighter-rouge">system_instruction</code></td>
+      <td>instruction/config 类字段</td>
     </tr>
     <tr>
-      <td><strong>LPAREN</strong></td>
-      <td>nud</td>
-      <td>当前 token = <code class="language-plaintext highlighter-rouge">(</code><br /><br /><a href="#ref">3</a></td>
-      <td>- 进入子表达式解析（<code class="language-plaintext highlighter-rouge">rbp=-1000</code>）<br />- 必须遇到 <code class="language-plaintext highlighter-rouge">)</code> 结束<br />- 返回子树</td>
+      <td>角色区分</td>
+      <td>message/content role</td>
+      <td>assistant/model role</td>
+      <td>✗</td>
+      <td><code class="language-plaintext highlighter-rouge">system/user/assistant/tool</code></td>
+      <td>item role</td>
+      <td><code class="language-plaintext highlighter-rouge">user/assistant</code></td>
+      <td><code class="language-plaintext highlighter-rouge">user/model</code></td>
+      <td>interaction role/items</td>
     </tr>
     <tr>
-      <td><strong>+ / - (unary)</strong></td>
-      <td>nud</td>
-      <td>token=OP 且值为 <code class="language-plaintext highlighter-rouge">+/-</code>，在前缀位置</td>
-      <td>以 <code class="language-plaintext highlighter-rouge">get_prec("U+/-")</code> 为 rbp 递归解析右操作数 <br />→ <code class="language-plaintext highlighter-rouge">UnaryOp</code></td>
+      <td>多模态输入</td>
+      <td>block / part / item</td>
+      <td>text 或结构化输出</td>
+      <td>✗</td>
+      <td>部分支持</td>
+      <td>content items</td>
+      <td>content blocks</td>
+      <td><code class="language-plaintext highlighter-rouge">parts[]</code></td>
+      <td>支持多模态 input</td>
     </tr>
     <tr>
-      <td><strong>! (unary not)</strong></td>
-      <td>nud</td>
-      <td>token=OP 且值为 <code class="language-plaintext highlighter-rouge">!</code></td>
-      <td>以 <code class="language-plaintext highlighter-rouge">get_prec("!")</code> 为 rbp 递归解析右操作数 <br />→ <code class="language-plaintext highlighter-rouge">UnaryOp("!", expr)</code></td>
+      <td>结构化输出</td>
+      <td>schema / response format</td>
+      <td>JSON text / parsed object</td>
+      <td>弱<br />靠 prompt</td>
+      <td><code class="language-plaintext highlighter-rouge">response_format</code></td>
+      <td>structured output</td>
+      <td>JSON/tool 方式</td>
+      <td><code class="language-plaintext highlighter-rouge">response_schema</code></td>
+      <td>支持结构化输出能力</td>
     </tr>
     <tr>
-      <td><strong>QMARK (?)</strong></td>
-      <td>led</td>
-      <td>peek = <code class="language-plaintext highlighter-rouge">QMARK</code> <br />且 <code class="language-plaintext highlighter-rouge">TERNARY_PREC &gt; rbp</code></td>
-      <td>- 消费 <code class="language-plaintext highlighter-rouge">?</code><br />- 解析 true_part (<code class="language-plaintext highlighter-rouge">rbp=TERNARY_PREC</code>)<br />- 期望 <code class="language-plaintext highlighter-rouge">:</code><br />- 解析 false_part (<code class="language-plaintext highlighter-rouge">rbp=TERNARY_PREC</code>)<br />- 构造 <code class="language-plaintext highlighter-rouge">Ternary(left, true, false)</code></td>
+      <td>流式生成</td>
+      <td><code class="language-plaintext highlighter-rouge">stream</code> 或 stream endpoint</td>
+      <td>SSE / chunk / events</td>
+      <td><code class="language-plaintext highlighter-rouge">stream</code> + SSE</td>
+      <td><code class="language-plaintext highlighter-rouge">stream</code> + SSE <code class="language-plaintext highlighter-rouge">delta</code></td>
+      <td>response stream events</td>
+      <td><code class="language-plaintext highlighter-rouge">stream</code> + content events</td>
+      <td><code class="language-plaintext highlighter-rouge">streamGenerateContent</code></td>
+      <td>interaction streaming</td>
     </tr>
     <tr>
-      <td><strong>二元运算符</strong> <br />(如 <code class="language-plaintext highlighter-rouge">+ - * / ^ &lt; &gt; == != &amp;&amp;</code>)</td>
-      <td>led</td>
-      <td><code class="language-plaintext highlighter-rouge">peek</code> 发现下一个 token 是操作符 (<code class="language-plaintext highlighter-rouge">OP</code>)，<br />并且该操作符的优先级<br /><code class="language-plaintext highlighter-rouge">lbp &gt; rbp</code> <a href="#ref">1</a> <a href="#ref">2</a> <br /></td>
-      <td>- 消费当前操作符（op）<br />- 结合性处理：<br />   如果操作符是左结合（默认情况），则 next_rbp = lbp；<br />   如果操作符是右结合（如 =、^），则 next_rbp = lbp - 0.0001（轻微调整优先级, 为了遇到相同的运算符时继续解析）<br />- 递归调用 parse_expression(next_rbp) 来解析右操作数（right）<br />- 生成 BinOp(left, op, right) 节点</td>
+      <td>工具声明</td>
+      <td><code class="language-plaintext highlighter-rouge">tools[]</code> / declarations</td>
+      <td>模型可见工具 schema</td>
+      <td>✗</td>
+      <td><code class="language-plaintext highlighter-rouge">tools</code></td>
+      <td><code class="language-plaintext highlighter-rouge">tools</code></td>
+      <td><code class="language-plaintext highlighter-rouge">tools</code></td>
+      <td>function declarations</td>
+      <td>tools / MCP</td>
     </tr>
     <tr>
-      <td><strong>LPAREN (函数调用)</strong><br /><br /></td>
-      <td>led</td>
-      <td>peek = <code class="language-plaintext highlighter-rouge">(</code><br /><a href="#ref">3</a><br />支持<strong>更一般化的函数调用</strong>. <br />比如, <br />(a+b)(x)、foo()(x) 这种高阶调用</td>
-      <td>- 消费 <code class="language-plaintext highlighter-rouge">(</code> → 解析参数列表<br />- 参数使用 <code class="language-plaintext highlighter-rouge">parse_expression(rbp=-1000)</code><br />- <code class="language-plaintext highlighter-rouge">,</code> 分隔，直到遇到 <code class="language-plaintext highlighter-rouge">)</code><br />- 构造 <code class="language-plaintext highlighter-rouge">Call(left, args)</code></td>
+      <td>工具调用</td>
+      <td>响应返回 tool call</td>
+      <td>tool call item/block</td>
+      <td>✗</td>
+      <td><code class="language-plaintext highlighter-rouge">tool_calls</code></td>
+      <td>output tool call items</td>
+      <td><code class="language-plaintext highlighter-rouge">tool_use</code> block</td>
+      <td><code class="language-plaintext highlighter-rouge">functionCall</code> part</td>
+      <td>tool/function events</td>
+    </tr>
+    <tr>
+      <td>工具结果回填</td>
+      <td>下一轮带 tool result</td>
+      <td>模型继续回答</td>
+      <td>✗</td>
+      <td><code class="language-plaintext highlighter-rouge">role=tool</code></td>
+      <td>tool result item</td>
+      <td><code class="language-plaintext highlighter-rouge">tool_result</code></td>
+      <td><code class="language-plaintext highlighter-rouge">functionResponse</code></td>
+      <td>tool result/input item</td>
+    </tr>
+    <tr>
+      <td>服务端状态</td>
+      <td>state/thread/response id</td>
+      <td>返回新 state id</td>
+      <td>✗</td>
+      <td>✗<br />客户端维护</td>
+      <td><code class="language-plaintext highlighter-rouge">previous_response_id</code> / conversation</td>
+      <td>✗，通常客户端维护</td>
+      <td>✗，SDK chat 多为客户端/SDK history</td>
+      <td><code class="language-plaintext highlighter-rouge">Interaction</code> + <code class="language-plaintext highlighter-rouge">previous_interaction_id</code></td>
+    </tr>
+    <tr>
+      <td>长任务 / 后台任务</td>
+      <td>background / async</td>
+      <td>task/run/interaction id</td>
+      <td>✗</td>
+      <td>✗</td>
+      <td>background / async 能力</td>
+      <td>✗</td>
+      <td>✗</td>
+      <td>支持后台/长任务方向</td>
+    </tr>
+    <tr>
+      <td>实时语音/视频</td>
+      <td>WebSocket / WebRTC session</td>
+      <td>audio/text/tool events</td>
+      <td>✗</td>
+      <td>✗</td>
+      <td>另用 Realtime</td>
+      <td>✗</td>
+      <td>另用 Live API</td>
+      <td>另用 Live / interaction 能力</td>
     </tr>
   </tbody>
 </table>
 
-<p>表格解释 $\downarrow$ :</p>
+<h2 id="五种基本调用模式">五种基本调用模式</h2>
 
-<p><span id="ref"></span></p>
+<h3 id="单轮文本生成">单轮文本生成</h3>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Client ──request──&gt; LLM Server ──response──&gt; Client 显示
+</code></pre></div></div>
+
+<h3 id="多轮对话客户端维护历史">多轮对话（客户端维护历史）</h3>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Client 本地保存 history
+  │  messages: [user, assistant, user]
+  ▼
+LLM Server
+  │  {role: assistant, content: "..."}
+  ▼
+Client append 到本地 history
+</code></pre></div></div>
+
+<h3 id="多轮对话服务端维护状态">多轮对话（服务端维护状态）</h3>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>第一次:
+  Client ──{input: "我叫 Alice"}─────────────────────&gt; Server
+  Server ──{response: "好的，记住了", response_id: "resp_123"}─&gt; Client
+
+第二次（带上 response_id，服务端自动找回上下文）:
+  Client ──{input: "我叫什么？", previous_response_id: "resp_123"}──&gt; Server
+  Server ──{response: "你叫 Alice"}───────────────────────────────&gt; Client
+</code></pre></div></div>
+
+<h3 id="工具调用闭环">工具调用闭环</h3>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Client
+  │  {input: "查 AAPL 价格", tools: [get_stock_price]}
+  ▼
+LLM Server
+  │  {tool_call: get_stock_price("AAPL"), id: "call_1"}
+  ▼
+Client 执行工具
+  │  {tool_result: call_1, "AAPL = 189.32"}
+  ▼
+LLM Server
+  │  {output_text: "AAPL 最新价格是 189.32"}
+  ▼
+Client 显示结果
+</code></pre></div></div>
+
+<h3 id="流式生成">流式生成</h3>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Client
+  │  {stream: true}
+  ▼
+LLM Server
+  │  event "这" ──&gt; event "是" ──&gt; event "一段" ──&gt; event done
+  ▼
+Client 边收边显示
+</code></pre></div></div>
+
+<h2 id="本地托管协议支持">本地/托管协议支持</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>框架</th>
+      <th>支持的 API 类型</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Bedrock Converse</td>
+      <td>AWS 统一 Converse 协议（兼容 messages / tool use 模式）</td>
+    </tr>
+    <tr>
+      <td>Ollama native</td>
+      <td>自有 <code class="language-plaintext highlighter-rouge">/api/generate</code>（单轮）+ <code class="language-plaintext highlighter-rouge">/api/chat</code>（多轮）</td>
+    </tr>
+    <tr>
+      <td>llama.cpp</td>
+      <td>OpenAI-compatible <code class="language-plaintext highlighter-rouge">/v1/chat/completions</code> / <code class="language-plaintext highlighter-rouge">/v1/completions</code>（通过中间层如 Litellm 可兼容 Anthropic 等格式）</td>
+    </tr>
+  </tbody>
+</table>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="tool" /><category term="content" /><category term="llm" /><summary type="html"><![CDATA[梳理一下主流 LLM 接口的请求/响应结构、调用模式，以及各协议的差异，方便选型和对接时快速对照。]]></summary></entry><entry><title type="html">时序上的参数优化和神经网络</title><link href="https://roshameow.github.io//personal_homepage/algorithm/alpha17/" rel="alternate" type="text/html" title="时序上的参数优化和神经网络" /><published>2026-05-13T00:00:00+00:00</published><updated>2026-07-13T16:00:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/algorithm/alpha17</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/algorithm/alpha17/"><![CDATA[<p>问题: 对给出的固定字段和feature, 怎么连续的调参</p>
 <ul>
-  <li><code class="language-plaintext highlighter-rouge">lbp</code>（left binding precedence, 左操作数绑定优先级, 当前op的优先级）, <code class="language-plaintext highlighter-rouge">rbp</code> (右操作符绑定优先级, 上一个op的优先级)
+  <li>特征:
     <ul>
-      <li>当下一个op优先级更高时, ast会不断加深. 当下一个op优先级不足时, ast会从底向上直到找到合适的位置添加</li>
-      <li>比如 a = b = c, 在第二个等号处, 把第一个等号的优先级稍稍降低, 保证右侧的优先级更高. 解析为 a = (b = c)</li>
-      <li>括号总是最优先的, 直接把rdp降到最低</li>
+      <li>pv原始数据</li>
+      <li>已知有信号的现成特征</li>
     </ul>
   </li>
-</ul>
+  <li>loss:
+    <ul>
+      <li>-sharpe
+        <ul>
+          <li>可以用的样本数很少. 66为周期的话, 5年的样本数只有 5x512/66=17 个
+            <ul>
+              <li>样本少其实就是约束少, 容易过拟合的意思</li>
+              <li>模型容量</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>把mu和sigma拆开成线性的</li>
+    </ul>
+  </li>
+  <li>activation
+    <ul>
+      <li>demean, L1</li>
+    </ul>
+  </li>
+  <li>优化
+    <ul>
+      <li>SGD普通</li>
+      <li>Adam: 解决各个特征大小不均衡的问题</li>
+    </ul>
 
-<p>a + b x c -d: 
-<img src="/personal_homepage/docs/attachment/Pasted%20image%2020250912052333.png" alt="Pasted image 20250912052333.png" width="800" /></p>
+    <h3 id="方案一横截面分组算-losscross-sectional-sub-portfolio-sharpe">方案一：横截面分组算 Loss（Cross-Sectional Sub-Portfolio Sharpe）</h3>
 
-<p>a = b = c:</p>
+    <p>这是量化因子投资中解决 Sharpe 样本数不足最经典的办法。</p>
 
-<p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020250912052438.png" alt="Pasted image 20250912052438.png" width="300" /></p>
+    <p>• 具体做法：
+不要把 3000 只股票聚合成一个全市场组合去算 Sharpe。而是将这 3000 只股票在横截面上切分成 K 个互不重叠的子组合（例如：按行业分成 11 个板块组合，或者随机均匀分成 10
+个子组合，每个组合约 300 只股票）。
+• Loss 函数改写：
+对每一个 66 天的 Batch，分别计算这 K 个子组合的 Sharpe，然后取均值作为 Loss：</p>
 
-<h3 id="代码">代码</h3>
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>        1  K   Loss = - ─── ∑   Sharpe (Sub-Portfolioₖ)
+        K k=1
+</code></pre></div>    </div>
+
+    <p>• 为什么可行且解决了样本问题？
+    1. 样本数成倍增加：原来 1 个 Batch 只有 1 个 Sharpe 约束，现在 1 个 Batch 拥有 K 个 Sharpe 约束。如果分 10 组，序列级别的 Loss 约束数量直接从 17 个增加到了
+    170 个。
+    2. 不破坏时序：每个子组合内部依然保持着完整的、真实的 66 天时间序列，没有打乱日期。
+    3. 更强的泛化约束：模型被迫去寻找一个“在科技股组合、医药股组合、周期股组合里都能跑出高
+    Sharpe”的通用规律，防止了模型为了讨好全市场组合中某几只权重股而产生局部过拟合。</p>
+  </li>
+</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="algorithm" /><category term="content" /><summary type="html"><![CDATA[问题: 对给出的固定字段和feature, 怎么连续的调参 特征: pv原始数据 已知有信号的现成特征 loss: -sharpe 可以用的样本数很少. 66为周期的话, 5年的样本数只有 5x512/66=17 个 样本少其实就是约束少, 容易过拟合的意思 模型容量 把mu和sigma拆开成线性的 activation demean, L1 优化 SGD普通 Adam: 解决各个特征大小不均衡的问题]]></summary></entry><entry><title type="html">动态调整搜索优先级：从 PROSAC 到 Alpha 实战演进</title><link href="https://roshameow.github.io//personal_homepage/algorithm/alpha16/" rel="alternate" type="text/html" title="动态调整搜索优先级：从 PROSAC 到 Alpha 实战演进" /><published>2026-04-20T00:00:00+00:00</published><updated>2026-08-05T22:48:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/algorithm/alpha16</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/algorithm/alpha16/"><![CDATA[<p>在量化回测中，Alpha 搜索不仅仅是一个算力问题，更是一个<strong>资源分配</strong>问题。传统的 RANSAC（随机采样一致性）在面对海量 Datafields 时效率极低，而 PROSAC 提供了一种渐进式（Progressive）的思考框架。</p>
+
+<h3 id="1-alpha-搜索的三个核心难点">1. Alpha 搜索的三个核心难点</h3>
+
+<p>在尝试自动化挖掘 Alpha 时，我们面临的挑战远比几何模型拟合复杂：</p>
 
 <ul>
-  <li><a href="https://gist.github.com/roshameow/01c0191fae3c534050fa6ab076640549#file-replace_ternary-py"><strong>replace_ternary.py</strong></a></li>
-  <li><a href="https://gist.github.com/roshameow/01c0191fae3c534050fa6ab076640549#file-parser-py"><strong>parser.py</strong></a></li>
-  <li><a href="https://gist.github.com/roshameow/01c0191fae3c534050fa6ab076640549#file-pratt_parser-py"><strong>pratt_parser.py</strong></a></li>
-</ul>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="code" /><category term="algorithm" /><category term="content" /><category term="ast" /><category term="string" /><category term="regularization" /><category term="parser" /><category term="pratt" /><category term="ternary" /><category term="python" /><category term="dsl" /><summary type="html"><![CDATA[三元运算符(ternary)解析]]></summary></entry></feed>
+  <li><strong>搜索范围极广 (Dimensionality Curse)</strong>：Datafields 数量庞大，加上算子组合、参数空间，理论搜索空间呈指数级爆炸。</li>
+  <li><strong>有效 Alpha 极稀疏 (Sparse Signals)</strong>：在数亿种组合中，真正能通过过拟合测试、具有预测能力的信号寥寥无几。(<strong>尾部识别</strong>)</li>
+  <li><strong>协同效应与相关性 (Synergy &amp; Correlation)</strong>：单一字段的优劣并不代表全部。Alpha 的最终效果往往取决于字段间的组合正交性，而单纯的线性排序无法捕捉这种“1+1&gt;2”的化学反应。</li>
+</ul>
+
+<h3 id="2-prosac-的策略关键t_n-的本质">2. PROSAC 的策略关键：$T_n$ 的本质</h3>
+
+<p>PROSAC 引入 $T_n$（增长函数）的核心目的不是为了“等待”，而是为了在<strong>有限预算</strong>内建立<strong>先验知识与随机探索的桥梁</strong>。</p>
+
+\[T_n = T_{max} \frac{\binom{n}{m}}{\binom{N}{m}}\]
+
+<p>其关键点在于：</p>
+<ul>
+  <li><strong>模拟进度</strong>：$T_n$ 模拟了如果使用完全随机搜索，此时你应该触达的“高质量子集”深度。</li>
+  <li><strong>确定性覆盖</strong>：它保证了即使先验排序完全错误，算法在 $T_{max}$ 结束时也能退化为全空间扫描，不留盲区。</li>
+  <li><strong>非线性偏置</strong>：对于组合搜索 ($m&gt;1$)，$T_n$ 强制算法在早期极度聚焦于高潜力字段的深度挖掘。</li>
+</ul>
+
+<h3 id="3-progressive-策略在-alpha-领域真的有意义吗">3. Progressive 策略在 Alpha 领域真的有意义吗？</h3>
+
+<p>直白地说，死板的“线性披露”在 Alpha 搜索中可能有害。因为 <strong>Alpha 空间的非凸性</strong>意味着最好的信号可能隐藏在排名第 1 和第 5000 字段的正交组合中。</p>
+
+<p>如果只是简单地按顺序“解锁”字段，我们会陷入“集体偏见”：优先浪费算力在那些已经被众人压榨干净的高频字段（High <code class="language-plaintext highlighter-rouge">use_count</code>）上。</p>
+
+<h3 id="4-进化版多样性与信息引导下的采样">4. 进化版：多样性与信息引导下的采样</h3>
+
+<p>为了克服这些局限，我们需要对传统的 PROSAC 进行“量化适配”：</p>
+
+<h4 id="a-正交化动态排序-orthogonal-ranking">A. 正交化动态排序 (Orthogonal Ranking)</h4>
+<p>不再使用静态分值。每当发现一个有效 Alpha，立即对剩余 Datafield 进行相关性惩罚。</p>
+<ul>
+  <li><strong>逻辑</strong>：如果字段 A 已入选，则大幅调低所有与 A 相关（相似）字段的采样优先级。</li>
+  <li><strong>目的</strong>：迫使 Progressive 过程向“正交、多样”的方向偏移。</li>
+</ul>
+
+<h4 id="b-分层集群采样-stratified-cluster-sampling">B. 分层集群采样 (Stratified Cluster Sampling)</h4>
+<p>将 Datafields 按逻辑归类（如价量、基本面、情感分）。</p>
+<ul>
+  <li><strong>逻辑</strong>：不是按 1, 2, 3 解锁，而是每个类别内部维护一个 PROSAC 进度。</li>
+  <li><strong>目的</strong>：保证无论搜索处于什么阶段，采样集永远是全集的一个“多样化缩影”，避免在单一类别里钻牛角尖。</li>
+</ul>
+
+<h4 id="c-成功触发的局部爆发-success-triggered-local-burst">C. 成功触发的局部爆发 (Success-triggered Local Burst)</h4>
+<ul>
+  <li><strong>逻辑</strong>：平时维持全局的渐进式探索。一旦某个 Datafield 产生了高 Sharpe 信号，立即挂起全局 $T_n$ 增长，转而以该字段为中心，开启高强度的“邻域搜索”（利用相关字段或互补算子进行局部压榨）。</li>
+</ul>
+
+<h3 id="5-总结">5. 总结</h3>
+
+<p>在 Alpha 搜索中，<strong>Progressive 的真谛不应是“延迟披露”，而应是“采样分布的动态演化”</strong>。</p>
+
+<p>我们利用 PROSAC 的 $T_n$ 逻辑来保证底层的<strong>搜索覆盖率</strong>，同时通过<strong>动态正交化</strong>和<strong>集群采样</strong>来解决相关性和空间过大的问题。最终的目标是：在搜索的第一分钟，我们能测到最公认的因子；而在搜索的第十小时，我们已经根据已有的反馈，进化出了一套避开冗余、直击正交信号的精准导航图。</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="algorithm" /><category term="Alpha" /><category term="Search" /><category term="PROSAC" /><category term="Optimization" /><summary type="html"><![CDATA[在量化回测中，Alpha 搜索不仅仅是一个算力问题，更是一个资源分配问题。传统的 RANSAC（随机采样一致性）在面对海量 Datafields 时效率极低，而 PROSAC 提供了一种渐进式（Progressive）的思考框架。]]></summary></entry></feed>
