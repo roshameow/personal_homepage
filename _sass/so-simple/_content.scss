@@ -1,0 +1,89 @@
+/* Compact article code blocks and keep wide tables inside the content column. */
+
+.page-content {
+  min-width: 0;
+
+  .e-content {
+    p {
+      margin-bottom: 0.85rem;
+    }
+
+    blockquote p:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  div.highlighter-rouge,
+  figure.highlight {
+    margin: 0 0 1rem;
+    font-size: 0.75rem;
+    line-height: 1.45;
+  }
+
+  pre,
+  div.highlighter-rouge pre,
+  figure.highlight pre {
+    max-width: 100%;
+    margin: 0 0 1rem;
+    padding: 0.65rem 0.85rem;
+    font-size: 0.75rem;
+    line-height: 1.45;
+    overflow-x: auto;
+  }
+
+  div.highlighter-rouge pre,
+  figure.highlight pre {
+    margin-bottom: 0;
+  }
+
+  pre code {
+    padding: 0;
+    font-size: inherit;
+    line-height: inherit;
+    background: transparent;
+  }
+
+  /* Rouge line-number tables are code, not article tables. */
+  .highlight table {
+    font-size: inherit;
+  }
+
+  .table-scroll {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 0 1rem;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+
+    &:focus-visible {
+      outline: 2px solid currentColor;
+      outline-offset: 2px;
+    }
+
+    > table {
+      width: max-content;
+      min-width: 100%;
+      margin: 0;
+      font-size: 0.8125rem;
+      line-height: 1.4;
+      word-break: normal;
+
+      th,
+      td {
+        max-width: 24rem;
+        padding: 0.35rem 0.55rem;
+        vertical-align: top;
+      }
+
+      p,
+      ul,
+      ol {
+        margin-bottom: 0.4em;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+}

@@ -33,6 +33,9 @@ mathjax:
   enable: true # MathJax equations, e.g. true, false (default)
   combo: "tex-mml-chtml"  # "tex-svg" (default), "tex-mml-chtml", etc.: docs.mathjax.org/en/latest/web/components/combined.html
   tags:  "ams" # "none", "ams" (default), "all"
+mermaid:
+  enable: true # Mermaid diagrams, e.g. true, false (default)
+  theme: "default" # "default", "dark", "forest", "neutral"
 google_fonts:
   - name: "Source Sans Pro"
     weights: "400,400i,700,700i"

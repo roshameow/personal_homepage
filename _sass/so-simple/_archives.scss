@@ -1,0 +1,116 @@
+/* Shared compact typography for article lists and archive pages. */
+
+.entries-list,
+.entries-grid {
+  .entry-title {
+    margin-bottom: 0.3rem;
+    font-size: 1.2rem;
+    line-height: 1.3;
+    letter-spacing: normal;
+  }
+
+  .entry-meta {
+    margin-bottom: 0.45rem;
+  }
+
+  .entry-excerpt {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+
+    > * {
+      font-size: inherit;
+    }
+
+    p,
+    ul,
+    ol,
+    blockquote {
+      margin-bottom: 0.5rem;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      margin-bottom: 0.4rem;
+      font-size: 1em;
+      line-height: 1.4;
+    }
+
+    > *:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.entries-list .entry {
+  margin-bottom: 1.15rem;
+}
+
+.entries-grid {
+  grid-gap: 1.25rem;
+
+  .entry {
+    padding-bottom: 0;
+  }
+}
+
+.layout--home,
+.layout--posts,
+.layout--categories,
+.layout--tags,
+.layout--category,
+.layout--tag,
+.layout--collection,
+.layout--search {
+  .page-title {
+    margin-bottom: 0.85rem;
+    font-size: 1.35rem;
+    line-height: 1.3;
+    letter-spacing: normal;
+  }
+
+  .masthead {
+    margin-bottom: 1.5rem;
+  }
+
+  .taxonomy-title {
+    margin-bottom: 0.75rem;
+    font-size: 1.1rem;
+    line-height: 1.3;
+  }
+
+  .taxonomy-index {
+    grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
+    gap: 0.35rem 1.25rem;
+
+    a {
+      gap: 0.5rem;
+    }
+
+    strong {
+      min-width: 0;
+      overflow-wrap: anywhere;
+    }
+
+    .taxonomy-count {
+      flex-shrink: 0;
+    }
+  }
+
+  .taxonomy-index + .taxonomy-section {
+    margin-top: 1.25rem;
+  }
+
+  .taxonomy-section {
+    margin-bottom: 1.25rem;
+    padding-bottom: 1.25rem;
+
+    + .taxonomy-section {
+      margin-top: 1.25rem;
+    }
+  }
+}

@@ -8,7 +8,7 @@ tags:
   - typescript
   - vscode
   - dsl
-last_modified_at: 2025-10-19T09:51
+last_modified_at: 2026-06-04T07:50
 created: 2025-07-05T15:59
 ---
 ![Pasted image 20250706064758.png]({{ '/docs/attachment/Pasted image 20250706064758.png' | relative_url }}){:width="600"}
@@ -104,8 +104,14 @@ code --install-extension your-plugin.vsix
 很多软件的插件发布麻烦, 但是vscode发布开源插件非常省事👍
 
 1. 使用 GitHub 账号登录 [Visual Studio Code Marketplace](https://marketplace.visualstudio.com/vscode)。
-2. 上传 `.vsix` 文件或通过命令行发布。
+2. 网页上传 `.vsix` 文件或通过命令行发布。
+	1. 获取 **Personal Access Token (PAT)**：在 Azure DevOps 中创建一个拥有 `Marketplace -> Manage` 权限的 Token (这个token没法设置永久权限, 最多只能一年)
+	2. 本地登录：`npx vsce login your-publisher-name` 输入PAT
+	3. 执行发布：`npx vsce publish`
 3. 提供插件描述、图标和 README 内容。
+
+> 因为本地assets不想提交到git, 就无法用github action, 只能写一个本地的一键发布脚本 **`publish.sh`**
+
 
 完成后，即可通过 VSCode 扩展市场直接搜索并安装插件。
 
