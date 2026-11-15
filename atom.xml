@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://roshameow.github.io//personal_homepage/atom.xml" rel="self" type="application/atom+xml" /><link href="https://roshameow.github.io//personal_homepage/" rel="alternate" type="text/html" /><updated>2026-10-06T03:07:19+00:00</updated><id>https://roshameow.github.io//personal_homepage/atom.xml</id><title type="html">Liu, Wen’s Home Page</title><subtitle>Work, Experiments and Ideas.</subtitle><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><entry><title type="html">Pi Desktop的开发难点: “会话的状态”</title><link href="https://roshameow.github.io//personal_homepage/tool/pi-runtime-attribution/" rel="alternate" type="text/html" title="Pi Desktop的开发难点: “会话的状态”" /><published>2026-08-12T00:00:00+00:00</published><updated>2026-10-06T10:48:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/tool/pi-runtime-attribution</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/tool/pi-runtime-attribution/"><![CDATA[<p>Pi Desktop 里最难修的功能，是侧边栏那枚很小的状态 chip：<strong>这个会话现在的运行状态</strong>？</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://roshameow.github.io//personal_homepage/atom.xml" rel="self" type="application/atom+xml" /><link href="https://roshameow.github.io//personal_homepage/" rel="alternate" type="text/html" /><updated>2026-11-15T03:51:30+00:00</updated><id>https://roshameow.github.io//personal_homepage/atom.xml</id><title type="html">Liu, Wen’s Home Page</title><subtitle>Work, Experiments and Ideas.</subtitle><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><entry><title type="html">Pi Desktop的开发难点: “会话的状态”</title><link href="https://roshameow.github.io//personal_homepage/tool/pi-runtime-attribution/" rel="alternate" type="text/html" title="Pi Desktop的开发难点: “会话的状态”" /><published>2026-08-12T00:00:00+00:00</published><updated>2026-10-06T10:48:00+00:00</updated><id>https://roshameow.github.io//personal_homepage/tool/pi-runtime-attribution</id><content type="html" xml:base="https://roshameow.github.io//personal_homepage/tool/pi-runtime-attribution/"><![CDATA[<p>Pi Desktop 里最难修的功能，是侧边栏那枚很小的状态 chip：<strong>这个会话现在的运行状态</strong>？</p>
 
 <p>它可能在普通终端、RMUX pane、远程主机，也可能进程已经退出，只剩 remain-on-exit 保存的死画面。更麻烦的是，显示错位置不会立即报错；界面仍然完整，只是把操作发给了错误的会话。这类“看起来合理”的错误最危险。</p>
 
@@ -1913,17 +1913,17 @@ Client 边收边显示
   <li><strong>协同效应与相关性 (Synergy &amp; Correlation)</strong>：单一字段的优劣并不代表全部。Alpha 的最终效果往往取决于字段间的组合正交性，而单纯的线性排序无法捕捉这种“1+1&gt;2”的化学反应。</li>
 </ul>
 
-<h3 id="2-prosac-的策略关键t_n-的本质">2. PROSAC 的策略关键：$T_n$ 的本质</h3>
+<h3 id="2-prosac-的策略关键t_n-的本质">2. PROSAC 的策略关键：\(T_n\) 的本质</h3>
 
-<p>PROSAC 引入 $T_n$（增长函数）的核心目的不是为了“等待”，而是为了在<strong>有限预算</strong>内建立<strong>先验知识与随机探索的桥梁</strong>。</p>
+<p>PROSAC 引入 \(T_n\)（增长函数）的核心目的不是为了“等待”，而是为了在<strong>有限预算</strong>内建立<strong>先验知识与随机探索的桥梁</strong>。</p>
 
 \[T_n = T_{max} \frac{\binom{n}{m}}{\binom{N}{m}}\]
 
 <p>其关键点在于：</p>
 <ul>
-  <li><strong>模拟进度</strong>：$T_n$ 模拟了如果使用完全随机搜索，此时你应该触达的“高质量子集”深度。</li>
-  <li><strong>确定性覆盖</strong>：它保证了即使先验排序完全错误，算法在 $T_{max}$ 结束时也能退化为全空间扫描，不留盲区。</li>
-  <li><strong>非线性偏置</strong>：对于组合搜索 ($m&gt;1$)，$T_n$ 强制算法在早期极度聚焦于高潜力字段的深度挖掘。</li>
+  <li><strong>模拟进度</strong>：\(T_n\) 模拟了如果使用完全随机搜索，此时你应该触达的“高质量子集”深度。</li>
+  <li><strong>确定性覆盖</strong>：它保证了即使先验排序完全错误，算法在 \(T_{max}\) 结束时也能退化为全空间扫描，不留盲区。</li>
+  <li><strong>非线性偏置</strong>：对于组合搜索 (\(m&gt;1\))，\(T_n\) 强制算法在早期极度聚焦于高潜力字段的深度挖掘。</li>
 </ul>
 
 <h3 id="3-progressive-策略在-alpha-领域真的有意义吗">3. Progressive 策略在 Alpha 领域真的有意义吗？</h3>
@@ -1952,11 +1952,11 @@ Client 边收边显示
 
 <h4 id="c-成功触发的局部爆发-success-triggered-local-burst">C. 成功触发的局部爆发 (Success-triggered Local Burst)</h4>
 <ul>
-  <li><strong>逻辑</strong>：平时维持全局的渐进式探索。一旦某个 Datafield 产生了高 Sharpe 信号，立即挂起全局 $T_n$ 增长，转而以该字段为中心，开启高强度的“邻域搜索”（利用相关字段或互补算子进行局部压榨）。</li>
+  <li><strong>逻辑</strong>：平时维持全局的渐进式探索。一旦某个 Datafield 产生了高 Sharpe 信号，立即挂起全局 \(T_n\) 增长，转而以该字段为中心，开启高强度的“邻域搜索”（利用相关字段或互补算子进行局部压榨）。</li>
 </ul>
 
 <h3 id="5-总结">5. 总结</h3>
 
 <p>在 Alpha 搜索中，<strong>Progressive 的真谛不应是“延迟披露”，而应是“采样分布的动态演化”</strong>。</p>
 
-<p>我们利用 PROSAC 的 $T_n$ 逻辑来保证底层的<strong>搜索覆盖率</strong>，同时通过<strong>动态正交化</strong>和<strong>集群采样</strong>来解决相关性和空间过大的问题。最终的目标是：在搜索的第一分钟，我们能测到最公认的因子；而在搜索的第十小时，我们已经根据已有的反馈，进化出了一套避开冗余、直击正交信号的精准导航图。</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="algorithm" /><category term="Alpha" /><category term="Search" /><category term="PROSAC" /><category term="Optimization" /><summary type="html"><![CDATA[在量化回测中，Alpha 搜索不仅仅是一个算力问题，更是一个资源分配问题。传统的 RANSAC（随机采样一致性）在面对海量 Datafields 时效率极低，而 PROSAC 提供了一种渐进式（Progressive）的思考框架。]]></summary></entry></feed>
+<p>我们利用 PROSAC 的 \(T_n\) 逻辑来保证底层的<strong>搜索覆盖率</strong>，同时通过<strong>动态正交化</strong>和<strong>集群采样</strong>来解决相关性和空间过大的问题。最终的目标是：在搜索的第一分钟，我们能测到最公认的因子；而在搜索的第十小时，我们已经根据已有的反馈，进化出了一套避开冗余、直击正交信号的精准导航图。</p>]]></content><author><name>{&quot;name&quot;=&gt;nil, &quot;picture&quot;=&gt;&quot;/docs/images/logo.svg&quot;, &quot;email&quot;=&gt;&quot;w.liuatnk@gmail.com&quot;, &quot;twitter&quot;=&gt;nil}</name><email>w.liuatnk@gmail.com</email></author><category term="algorithm" /><category term="Alpha" /><category term="Search" /><category term="PROSAC" /><category term="Optimization" /><summary type="html"><![CDATA[在量化回测中，Alpha 搜索不仅仅是一个算力问题，更是一个资源分配问题。传统的 RANSAC（随机采样一致性）在面对海量 Datafields 时效率极低，而 PROSAC 提供了一种渐进式（Progressive）的思考框架。]]></summary></entry></feed>
