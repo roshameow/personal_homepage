@@ -4,6 +4,14 @@ layout: page
 
 {{ content }}
 
+{%- if page.theme_tree -%}
+  {%- capture theme_tree_html -%}{% include theme-tree.html title=page.theme_title %}{%- endcapture -%}
+  {{- theme_tree_html -}}
+  {%- if theme_tree_html contains "theme-tree" -%}
+    <h2 class="taxonomy-title">{{ page.categories_title | default: "Categories" }}</h2>
+  {%- endif -%}
+{%- endif -%}
+
 {% assign categories_max = 0 %}
 {% for category in site.categories %}
   {% if category[1].size > categories_max %}

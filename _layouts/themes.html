@@ -1,0 +1,83 @@
+---
+layout: page
+---
+
+{{ content }}
+
+{%- comment -%}
+  Theme archive: every themed post grouped by first-level theme, then by
+  second-level theme. Anchor IDs match the theme-tree links (slug of
+  "Parent" and "Parent/Child"). Posts without a theme never show here.
+{%- endcomment -%}
+{%- assign themed_posts = "" | split: "" -%}
+{%- assign theme_keys = "" | split: "" -%}
+{%- for post in site.posts -%}
+  {%- if post.theme -%}
+    {%- if post.theme.first -%}
+      {%- assign post_themes = post.theme -%}
+    {%- else -%}
+      {%- assign post_themes = "" | split: "" | push: post.theme -%}
+    {%- endif -%}
+    {%- for raw in post_themes -%}
+      {%- assign normalized = "" -%}
+      {%- assign parts = raw | append: "" | split: "/" -%}
+      {%- for part in parts limit: 2 -%}
+        {%- assign trimmed = part | strip -%}
+        {%- if trimmed != "" -%}
+          {%- if normalized == "" -%}
+            {%- assign normalized = trimmed -%}
+          {%- else -%}
+            {%- assign normalized = normalized | append: "/" | append: trimmed -%}
+          {%- endif -%}
+        {%- endif -%}
+      {%- endfor -%}
+      {%- if normalized != "" -%}
+        {%- assign themed_posts = themed_posts | push: post -%}
+        {%- assign theme_keys = theme_keys | push: normalized -%}
+      {%- endif -%}
+    {%- endfor -%}
+  {%- endif -%}
+{%- endfor -%}
+
+{%- assign top_level = "" | split: "" -%}
+{%- for key in theme_keys -%}
+  {%- assign top = key | split: "/" | first -%}
+  {%- assign top_level = top_level | push: top -%}
+{%- endfor -%}
+{%- assign top_level = top_level | uniq | sort -%}
+
+{%- for parent in top_level -%}
+<section class="theme-section taxonomy-section" id="{{ parent | slugify }}">
+  <h2 class="taxonomy-title">{{ parent }}</h2>
+  <div class="entries-{{ page.entries_layout | default: 'list' }}">
+    {%- for entry in themed_posts -%}
+      {%- assign key = theme_keys[forloop.index0] -%}
+      {%- if key == parent -%}
+        {% include entry.html show_theme_subtitle=true %}
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
+  {%- assign children = "" | split: "" -%}
+  {%- for key in theme_keys -%}
+    {%- assign key_parts = key | split: "/" -%}
+    {%- if key_parts.first == parent and key_parts.size > 1 -%}
+      {%- assign children = children | push: key_parts[1] -%}
+    {%- endif -%}
+  {%- endfor -%}
+  {%- assign children = children | uniq | sort -%}
+  {%- for child in children -%}
+  {%- assign full = parent | append: "/" | append: child -%}
+  <section class="theme-subsection" id="{{ full | slugify }}">
+    <h3 class="theme-subsection-title">{{ child }}</h3>
+    <div class="entries-{{ page.entries_layout | default: 'list' }}">
+      {%- for entry in themed_posts -%}
+        {%- assign key = theme_keys[forloop.index0] -%}
+        {%- if key == full -%}
+          {% include entry.html show_theme_subtitle=true %}
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </section>
+  {%- endfor -%}
+</section>
+{%- endfor -%}

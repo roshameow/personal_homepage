@@ -1,0 +1,156 @@
+{%- comment -%}
+  Optional two-level theme tree with expandable notes.
+  Posts declare front matter `theme` as either a single value or a list;
+  each value is "Parent" or "Parent/Child".
+  Obsidian properties sync through unchanged. "Parent / Child" spacing is
+  normalized, so hand-written notes land in the same node.
+  On the home page, each theme/sub-theme can be directly expanded to display
+  the note subtitles (or title if no subtitle), linking directly to each note.
+  Posts without a theme stay out, and the whole section disappears when no post uses themes.
+{%- endcomment -%}
+
+{%- assign themed_posts = "" | split: "" -%}
+{%- assign theme_keys = "" | split: "" -%}
+{%- for post in site.posts -%}
+  {%- if post.theme -%}
+    {%- if post.theme.first -%}
+      {%- assign post_themes = post.theme -%}
+    {%- else -%}
+      {%- assign post_themes = "" | split: "" | push: post.theme -%}
+    {%- endif -%}
+    {%- for raw in post_themes -%}
+      {%- assign normalized = "" -%}
+      {%- assign parts = raw | append: "" | split: "/" -%}
+      {%- for part in parts limit: 2 -%}
+        {%- assign trimmed = part | strip -%}
+        {%- if trimmed != "" -%}
+          {%- if normalized == "" -%}
+            {%- assign normalized = trimmed -%}
+          {%- else -%}
+            {%- assign normalized = normalized | append: "/" | append: trimmed -%}
+          {%- endif -%}
+        {%- endif -%}
+      {%- endfor -%}
+      {%- if normalized != "" -%}
+        {%- assign themed_posts = themed_posts | push: post -%}
+        {%- assign theme_keys = theme_keys | push: normalized -%}
+      {%- endif -%}
+    {%- endfor -%}
+  {%- endif -%}
+{%- endfor -%}
+
+{%- if theme_keys.size > 0 -%}
+{%- assign theme_parents = "" | split: "" -%}
+{%- for key in theme_keys -%}
+  {%- assign parent = key | split: "/" | first -%}
+  {%- assign theme_parents = theme_parents | push: parent -%}
+{%- endfor -%}
+{%- assign theme_parents = theme_parents | uniq | sort -%}
+
+<section class="theme-tree">
+  <h2 class="taxonomy-title">{{ include.title | default: "Themes" }}</h2>
+  <ul class="theme-tree-list">
+    {%- for parent in theme_parents -%}
+      {%- assign parent_posts = "" | split: "" -%}
+      {%- assign children = "" | split: "" -%}
+      {%- assign direct_posts = "" | split: "" -%}
+      {%- for p in themed_posts -%}
+        {%- assign key = theme_keys[forloop.index0] -%}
+        {%- assign entry_parts = key | split: "/" -%}
+        {%- if entry_parts.first == parent -%}
+          {%- assign parent_posts = parent_posts | push: p -%}
+          {%- if entry_parts.size > 1 -%}
+            {%- assign children = children | push: entry_parts[1] -%}
+          {%- else -%}
+            {%- assign direct_posts = direct_posts | push: p -%}
+          {%- endif -%}
+        {%- endif -%}
+      {%- endfor -%}
+      {%- assign parent_posts = parent_posts | uniq -%}
+      {%- assign direct_posts = direct_posts | uniq -%}
+      {%- assign children = children | uniq | sort -%}
+
+      <li class="theme-tree-parent">
+        <div class="theme-tree-parent-header">
+          <a href="{{ '/themes/' | relative_url }}#{{ parent | slugify }}" class="theme-tree-parent-link">
+            <strong>{{ parent }}</strong> <span class="taxonomy-count">{{ parent_posts.size }}</span>
+          </a>
+        </div>
+
+        {%- if children.size > 0 -%}
+        <ul class="theme-tree-children">
+          {%- if direct_posts.size > 0 -%}
+          <li class="theme-tree-child theme-tree-direct">
+            <details class="theme-tree-collapse">
+              <summary class="theme-tree-child-header">
+                <span class="theme-tree-arrow" aria-hidden="true">&#9656;</span>
+                <span class="theme-tree-child-title">直属笔记</span>
+                <span class="taxonomy-count">{{ direct_posts.size }}</span>
+                <a href="{{ '/themes/' | relative_url }}#{{ parent | slugify }}" class="theme-tree-archive-link" title="在主题页查看归档" onclick="event.stopPropagation();">↗</a>
+              </summary>
+              <ul class="theme-tree-posts">
+                {%- for p in direct_posts -%}
+                <li class="theme-tree-post">
+                  <a href="{{ p.url | relative_url }}" class="theme-tree-post-link" title="{{ p.title | escape }}"><span class="theme-tree-post-title">{{ p.theme_subtitle | default: p.title | strip }}</span></a>
+                </li>
+                {%- endfor -%}
+              </ul>
+            </details>
+          </li>
+          {%- endif -%}
+
+          {%- for child in children -%}
+            {%- assign child_posts = "" | split: "" -%}
+            {%- assign full = parent | append: "/" | append: child -%}
+            {%- for p in themed_posts -%}
+              {%- assign key = theme_keys[forloop.index0] -%}
+              {%- if key == full -%}
+                {%- assign child_posts = child_posts | push: p -%}
+              {%- endif -%}
+            {%- endfor -%}
+            {%- assign child_posts = child_posts | uniq -%}
+            <li class="theme-tree-child">
+              <details class="theme-tree-collapse">
+                <summary class="theme-tree-child-header">
+                  <span class="theme-tree-arrow" aria-hidden="true">&#9656;</span>
+                  <span class="theme-tree-child-title">{{ child }}</span>
+                  <span class="taxonomy-count">{{ child_posts.size }}</span>
+                  <a href="{{ '/themes/' | relative_url }}#{{ full | slugify }}" class="theme-tree-archive-link" title="在主题页查看归档" onclick="event.stopPropagation();">↗</a>
+                </summary>
+                <ul class="theme-tree-posts">
+                  {%- for p in child_posts -%}
+                  <li class="theme-tree-post">
+                    <a href="{{ p.url | relative_url }}" class="theme-tree-post-link" title="{{ p.title | escape }}"><span class="theme-tree-post-title">{{ p.theme_subtitle | default: p.title | strip }}</span></a>
+                  </li>
+                  {%- endfor -%}
+                </ul>
+              </details>
+            </li>
+          {%- endfor -%}
+        </ul>
+        {%- elsif direct_posts.size > 0 -%}
+        <ul class="theme-tree-children">
+          <li class="theme-tree-child">
+            <details class="theme-tree-collapse">
+              <summary class="theme-tree-child-header">
+                <span class="theme-tree-arrow" aria-hidden="true">&#9656;</span>
+                <span class="theme-tree-child-title">展开笔记</span>
+                <span class="taxonomy-count">{{ direct_posts.size }}</span>
+                <a href="{{ '/themes/' | relative_url }}#{{ parent | slugify }}" class="theme-tree-archive-link" title="在主题页查看归档" onclick="event.stopPropagation();">↗</a>
+              </summary>
+              <ul class="theme-tree-posts">
+                {%- for p in direct_posts -%}
+                <li class="theme-tree-post">
+                  <a href="{{ p.url | relative_url }}" class="theme-tree-post-link" title="{{ p.title | escape }}"><span class="theme-tree-post-title">{{ p.theme_subtitle | default: p.title | strip }}</span></a>
+                </li>
+                {%- endfor -%}
+              </ul>
+            </details>
+          </li>
+        </ul>
+        {%- endif -%}
+      </li>
+    {%- endfor -%}
+  </ul>
+</section>
+{%- endif -%}

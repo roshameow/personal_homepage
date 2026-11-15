@@ -4,6 +4,11 @@
   {% assign title = entry.title %}
 {% endif %}
 
+{% if include.show_theme_subtitle and entry.theme_subtitle %}
+  {% assign theme_secondary = title %}
+  {% assign title = entry.theme_subtitle %}
+{% endif %}
+
 <article class="entry h-entry">
   <header class="entry-header">
     <h3 class="entry-title p-name">
@@ -13,6 +18,10 @@
         <a href="{{ entry.url | relative_url }}" rel="bookmark">{{ title }}</a>
       {% endif %}
     </h3>
+    {% if theme_secondary %}
+      <p class="entry-theme-subtitle">{{ theme_secondary }}</p>
+      {% assign theme_secondary = nil %}
+    {% endif %}
     {% if entry.image.thumbnail %}
       {% assign entry_image = entry.image.thumbnail %}
       {% unless entry_image contains '://' %}

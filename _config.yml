@@ -52,6 +52,10 @@ liquid:
   error_mode: strict
 
 # Build settings
+# Poll for local edits: missed macOS file events can leave a long-running
+# `jekyll serve` stale even when Obsidian synchronization succeeded.
+# This only affects watch/serve; regular production builds are unchanged.
+force_polling: true
 permalink: /:categories/:title/
 markdown: kramdown
 kramdown:

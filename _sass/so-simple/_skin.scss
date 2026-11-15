@@ -2,6 +2,31 @@
    Base elements
    ========================================================================== */
 
+/* Quiet Mermaid accents: blend each hue into the active skin, not pure white.
+   Nodes have a little more color than their surrounding groups. */
+$mermaid-tones: (
+  mix($accent-color, $info-color, 55%),
+  mix($accent-color, $success-color, 25%),
+  mix($accent-color, $warning-color, 45%),
+  mix($accent-color, $base0e, 25%),
+  mix($accent-color, $base0c, 25%)
+);
+:root {
+  @for $i from 1 through length($mermaid-tones) {
+    $tone: nth($mermaid-tones, $i);
+    --mermaid-palette-#{$i - 1}-node: #{mix($background-color, $tone, 85%)};
+    --mermaid-palette-#{$i - 1}-cluster: #{mix($background-color, $tone, 90%)};
+    --mermaid-palette-#{$i - 1}-border: #{mix($background-color, $tone, 55%)};
+  }
+  --mermaid-background: #{$background-color};
+  --mermaid-text: #{$text-color};
+  --mermaid-title: #{$accent-color};
+  --mermaid-border: #{$border-color};
+  --mermaid-node-border: #{mix($background-color, $accent-color, 65%)};
+  --mermaid-cluster-background: #{mix($background-color, $accent-color, 97%)};
+  --mermaid-line: #{mix($background-color, $accent-color, 40%)};
+}
+
 body {
   color: $text-color;
   background: $background-color;
@@ -54,6 +79,37 @@ blockquote {
       color: $accent-color;
     }
   }
+}
+
+.theme-tree {
+  .theme-tree-parent {
+    border-color: $border-color;
+
+    &:hover {
+      border-color: $accent-color;
+    }
+  }
+
+  .theme-tree-children {
+    border-top-color: $border-color;
+  }
+
+  .theme-tree-post-link:hover,
+  .theme-tree-archive-link:hover {
+    color: $accent-color;
+  }
+
+  a:hover {
+    color: $accent-color;
+  }
+}
+
+.theme-subsection-title {
+  color: lighten($text-color, 40%);
+}
+
+.entry-theme-subtitle {
+  color: lighten($text-color, 35%);
 }
 
 .taxonomy-index-grid {

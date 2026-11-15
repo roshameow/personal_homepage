@@ -1,18 +1,19 @@
 {% if site.related_posts.size >= 1 %}
-
-<div id="entry-table-of-contents" class="toc-wrapper">
-    <h2 id="toc-toggle" class="no_toc">
-        {{ 'Related Posts' }} <i class="toc-toggle-icon fas fa-chevron-down"></i>
+<details id="entry-related-posts" class="toc-wrapper" open>
+  <summary>
+    <h2 class="no_toc">
+      Related Posts
+      <svg class="toc-toggle-icon" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true" focusable="false">
+        <path d="m4 6 4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+      </svg>
     </h2>
-    <!-- <div id="markdown-toc"> -->
+  </summary>
+  <div class="toc-content">
     <ul>
-        {% for related_post in site.related_posts limit: 5 %}
-        <li><a href="{{ site.baseurl }}{{related_post.url}}">{{ related_post.title }}</a></li>
-        {% endfor %}
+      {% for related_post in site.related_posts limit: 5 %}
+      <li><a href="{{ related_post.url | relative_url }}">{{ related_post.title }}</a></li>
+      {% endfor %}
     </ul>
-    <!-- </div> -->
-
-</div>
-
+  </div>
+</details>
 {% endif %}
-

@@ -15,6 +15,7 @@
 {%- endif -%}
 
 <script src="{{ '/assets/js/content-tables.js' | relative_url }}" defer></script>
+{% include callouts.html %}
 
 {%- if jekyll.environment == 'production' and site.google_analytics -%}
 {% include google-analytics.html %}
