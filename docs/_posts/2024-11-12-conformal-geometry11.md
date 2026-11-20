@@ -51,7 +51,7 @@ created: 2024-11-12T17:58
 <a href="https://commons.wikimedia.org/wiki/File:Delaunay_Voronoi.svg#/media/File:Delaunay_Voronoi.svg"><img src="https://upload.wikimedia.org/wikipedia/commons/5/56/Delaunay_Voronoi.svg" alt="Connecting the triangulation's circumcenters gives the Voronoi diagram." width="150"></a>  黑色为Delaunay triangulation $T$, 红色为Voronoi diagram  $T^*$ , 红边是黑边的中垂线
 
 
-![Pasted image 20241205221028.png]({{ '/docs/attachment/Pasted image 20241205221028.png' | relative_url }}){:width="300"} 在$T$ 的edge(1-chain) 上定义1-form
+![Pasted image 20241205221028.png]({{ '/docs/attachment/Pasted%20image%2020241205221028.png' | relative_url }}){:width="300"} 在$T$ 的edge(1-chain) 上定义1-form
 
 - Hodge star operator $^\ast\omega(\bar e)=\frac{vol(\bar e)}{vol (e)}\omega(e)=\frac{\vert \bar e\vert}{\vert e\vert}\omega(e)=\frac{1}{2}(\text{cot } \alpha +\text{cot } \beta)\omega(e)$ 
 	- $e$ (黑边)的dual edge $\bar e$ (红边), $\vert e\vert$ 和$\vert \bar e \vert$ 相当于在度量$\mathbf g$ 下的体积
@@ -63,7 +63,7 @@ created: 2024-11-12T17:58
 
 ### 场论 . 静电场 . 双点电荷系统
 
-![Pasted image 20241122073441.png]({{ '/docs/attachment/Pasted image 20241122073441.png' | relative_url }}){:width="400"}  红色电力线, 为沿电场强度的轨迹; 蓝色等势线
+![Pasted image 20241122073441.png]({{ '/docs/attachment/Pasted%20image%2020241122073441.png' | relative_url }}){:width="400"}  红色电力线, 为沿电场强度的轨迹; 蓝色等势线
 
 - 0-form [电势场](https://en.wikipedia.org/wiki/Electric_potential) $\phi$  : 左侧正电荷处边界电势为+1, 负电荷处电势为-1, 外边界电势为0
 - 1-form 电场强度为电势的梯度: $E=-\nabla \phi=E_xdx+E_ydy$    (高电势流向低电势)
@@ -131,7 +131,7 @@ Riemann metric $\mathbf g=e^{2\lambda(u,v)}(du^2+dv^2)$
 
 - f 是调和映射 <-> f在每个分量上都是调和函数 <-> $df$ 在曲面内部是调和一形式
 
-![Pasted image 20241216162354.png]({{ '/docs/attachment/Pasted image 20241216162354.png' | relative_url }}){:width="300"} 
+![Pasted image 20241216162354.png]({{ '/docs/attachment/Pasted%20image%2020241216162354.png' | relative_url }}){:width="300"} 
 
 - disk harmonic map: 带边单连通曲面( topological disk) $M$  到单位圆盘的映射  $f: M\rightarrow \mathbb D$ (0-form)
 - 计算:
@@ -139,7 +139,7 @@ Riemann metric $\mathbf g=e^{2\lambda(u,v)}(du^2+dv^2)$
 	2. 计算每个边的 cotangent edge weight
 	3. 解 $df$ 的coclosed方程(f 的Laplacian方程 ) 
 
-![Pasted image 20241216085519.png]({{ '/docs/attachment/Pasted image 20241216085519.png' | relative_url }}){:width="300"}
+![Pasted image 20241216085519.png]({{ '/docs/attachment/Pasted%20image%2020241216085519.png' | relative_url }}){:width="300"}
 
 - spherical harmonic map: genus 0 的closed 曲面mesh $M$ , 到单位球的映射 $\phi: M\rightarrow \mathbb S^2$ 
 - 计算: spherical的情况, 有1. Laplacian ($\Delta \phi(v_i)=\sum_{v_i\sim v_j} w_{ij}(\phi(v_j)-\phi(v_i))=0$) 和2. 球面($\phi(v_i)\in \mathbb S^2$) 两个约束, 用proximal(近端算子)的方法轮流迭代
@@ -148,7 +148,7 @@ Riemann metric $\mathbf g=e^{2\lambda(u,v)}(du^2+dv^2)$
 	3. 迭代:
 		1. 计算每个顶点的 Laplacian 值
 		2. 减少Laplacian部分: 从$\phi(v_i)$ 减去$\Delta\phi(v_i)$ 在切平面的投影, 即 $\phi(v_i)$ -= $\lambda D\phi(v_i)$ 
-			- ![Pasted image 20241219224615.png]({{ '/docs/attachment/Pasted image 20241219224615.png' | relative_url }}){:width="150"} 
+			- ![Pasted image 20241219224615.png]({{ '/docs/attachment/Pasted%20image%2020241219224615.png' | relative_url }}){:width="150"} 
 			- $\lambda$ 为step_size (保证迭代稳定, 不诱发自旋转? )
 		1. 重新映射回 $\mathbb S^2$ : 计算重心, 以重心为原点normalize
 

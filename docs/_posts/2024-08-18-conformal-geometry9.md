@@ -47,7 +47,7 @@ created: 2024-08-18T09:39
 ## [closed surface映射的degree](https://en.wikipedia.org/wiki/Degree_of_a_continuous_mapping)
 
 
-![Pasted image 20240731003422.png]({{ '/docs/attachment/Pasted image 20240731003422.png' | relative_url }}){:width="400"}  $p_1,p_2,p_3$ 都映射到$q$.  $p_3$ 是往右凸起
+![Pasted image 20240731003422.png]({{ '/docs/attachment/Pasted%20image%2020240731003422.png' | relative_url }}){:width="400"}  $p_1,p_2,p_3$ 都映射到$q$.  $p_3$ 是往右凸起
 - **[Gauss-Bonnet](https://en.wikipedia.org/wiki/Gauss–Bonnet_theorem)**: Gauss映射$G:S\rightarrow \mathbb S^2$ , 把点映射到normal vector($p\mapsto n(p)$ ).
 	- $deg(G)=1-g$. 即覆盖球面1-g次(每个点原像的个数). 
 	- 计 Gauss映射的image的面积: $4\pi\cdot deg(G)=\int_S K dA=2\pi\cdot \chi(S)$ ?
@@ -71,7 +71,7 @@ created: 2024-08-18T09:39
 				- $C_k=C_k/Z_k \oplus Z_k$ (分解出closed部分)
 				- $Z_k=B_k \oplus H_k$ (homology定义, 分解出boundary部分)
 				- $\partial_k: C_k/Z_k\rightarrow B_{k-1}$ 是isomorphic的 (由closed和boundary的定义)
-					- 由交换图![Pasted image 20241010202933.png]({{ '/docs/attachment/Pasted image 20241010202933.png' | relative_url }}){:width="250"} , 得到相似变换, $\partial_k \circ f_k \circ \partial_k^{-1}=f_{k-1}$   
+					- 由交换图![Pasted image 20241010202933.png]({{ '/docs/attachment/Pasted%20image%2020241010202933.png' | relative_url }}){:width="250"} , 得到相似变换, $\partial_k \circ f_k \circ \partial_k^{-1}=f_{k-1}$   
 			- $tr(f_k\vert C_k)=tr(f_k\vert C_k/Z_k)+tr(f_k\vert B_k)+tr(f_k\vert H_k)=tr(f_{k-1}\vert B_k)+tr(f_k\vert B_k)+tr(f_k\vert H_k)$ 
 			- 按照k把$(-1)^k$ 的两边相加得到等式
 		- 把在$C_k$ 上的定义(依赖三角剖分, 更加几何), 和在$H_k$ 上的定义(不依赖三角剖分, 更加代数) 相联系
@@ -113,9 +113,9 @@ created: 2024-08-18T09:39
 					- 第一个等号根据[Stokes Theorem](https://en.wikipedia.org/wiki/Stokes%27_theorem) , 第二个等号根据条件$\mathbf v_1, \mathbf v_2$ 在$S$ 边界方向相同(指向exterior normal方向)
 		- **存在一个vector field对应的对应的zero index sum = euler characteristic**
 			- 在三角剖分T上, 构造如图切向量场 $\mathbf v$ 
-				- ![Pasted image 20241002111153.png]({{ '/docs/attachment/Pasted image 20241002111153.png' | relative_url }}){:width="300"}
+				- ![Pasted image 20241002111153.png]({{ '/docs/attachment/Pasted%20image%2020241002111153.png' | relative_url }}){:width="300"}
 				- source和sink处的index是1, saddle处的index是-1
-					- ![Pasted image 20241006122750.png]({{ '/docs/attachment/Pasted image 20241006122750.png' | relative_url }}){:width="400"}  
+					- ![Pasted image 20241006122750.png]({{ '/docs/attachment/Pasted%20image%2020241006122750.png' | relative_url }}){:width="400"}  
 					- 如图, source和sink周围的切向量逆时针转一圈, saddle周围的切向量沿顺时针转一圈
 					- 图中曲线是点沿切向量方向运动的轨迹
 				- $$\sum_{p\in Z(\mathbf v)} \text{Index}_p(\mathbf v)=\sum_{\text{source}}+\sum_{\text{sink}}-\sum_{\text{saddle}}=\vert V\vert+\vert F\vert -\vert E\vert=\chi(S)$$    
@@ -160,14 +160,14 @@ created: 2024-08-18T09:39
 	- fiber是$\mathbb S^1$ , $F(\Delta)$ 是个solid torus, $\pi_1(F(\Delta))=\mathbb Z$ 
 - **每个section可以定义一个2-form $\Omega$**: $\Omega(\Delta)=[\phi(\partial \Delta)]$ 
 	- section $[\phi(\partial \Delta)]$ 是在$F(\Delta)$ 上的一个loop, 即$\pi_1(F(\Delta))=\mathbb Z$ 中的元素, 是一个整数
-	- ![Pasted image 20241024143641.png]({{ '/docs/attachment/Pasted image 20241024143641.png' | relative_url }}){:width="200"}  ![Pasted image 20241024133352.png]({{ '/docs/attachment/Pasted image 20241024133352.png' | relative_url }}){:width="150"}  如图, 红绿蓝为顶点处的fiber, 黑色section $\phi(\partial \Delta)\sim e$  对应tangent vector指向同一方向
-	- ![Pasted image 20241024143941.png]({{ '/docs/attachment/Pasted image 20241024143941.png' | relative_url }}){:width="200"}  ![Pasted image 20241024143512.png]({{ '/docs/attachment/Pasted image 20241024143512.png' | relative_url }}){:width="180"}  如图, 黑色section在$F(\Delta)$ 不能缩成一个点, 中间存在tangent vector的零点(即拓扑障碍)
+	- ![Pasted image 20241024143641.png]({{ '/docs/attachment/Pasted%20image%2020241024143641.png' | relative_url }}){:width="200"}  ![Pasted image 20241024133352.png]({{ '/docs/attachment/Pasted%20image%2020241024133352.png' | relative_url }}){:width="150"}  如图, 红绿蓝为顶点处的fiber, 黑色section $\phi(\partial \Delta)\sim e$  对应tangent vector指向同一方向
+	- ![Pasted image 20241024143941.png]({{ '/docs/attachment/Pasted%20image%2020241024143941.png' | relative_url }}){:width="200"}  ![Pasted image 20241024143512.png]({{ '/docs/attachment/Pasted%20image%2020241024143512.png' | relative_url }}){:width="180"}  如图, 黑色section在$F(\Delta)$ 不能缩成一个点, 中间存在tangent vector的零点(即拓扑障碍)
 		- 2-form $\Omega$ 的值为$\Delta$ 中一点$p$ 的zero index. 
 		- 也可以说黑色section不是exact的, 为$H_1(\Delta)$ 的非零元素
 - **不同的section对应同一个上同调类** $[\Omega]\in H^2(M,\mathbb R)$ : (lemma)
 	- 对于其他的section $\bar\phi$ , 和定义的2-form $\bar\Omega$, **有1-form h, 使得$\Omega-\bar \Omega=\delta h$**    
 	- 定义h: 
-		- ![Pasted image 20241018223827.png]({{ '/docs/attachment/Pasted image 20241018223827.png' | relative_url }}){:width="400"} 如图所示 h 链接前后两个三角形$\partial \Omega$ 和$\partial \bar \Omega$ 
+		- ![Pasted image 20241018223827.png]({{ '/docs/attachment/Pasted%20image%2020241018223827.png' | relative_url }}){:width="400"} 如图所示 h 链接前后两个三角形$\partial \Omega$ 和$\partial \bar \Omega$ 
 		- 在$\Delta$  的边 a 上, 定义$h=[l_a]=[p_i\phi(a)p_j^{-1}\bar \phi(a)^{-1}]$ 
 			- 其中a 的顶点是 $\sigma_i^0$ 和$\sigma_j^0$ 
 			- 其中$p_i$ 是$\sigma_i^0$ 的fiber上$\bar\phi$ 的像到$\phi$ 的像的path, $p_j$ 是$\sigma_j^0$ 的fiber上$\phi$ 的像到$\bar\phi$ 的像的path

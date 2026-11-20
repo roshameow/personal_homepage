@@ -23,7 +23,7 @@ last_modified_at: 2024-04-09T11:52:23-08:00
 	- 添加一个描边材质(Slot 2): 用Emission, 选择我们描边的颜色
 		- 对这个材质开启Backface Culling(背面剔除)
 -  在Modifier添加[solidify](https://docs.blender.org/manual/en/latest/modeling/modifiers/generate/solidify.html): 给mesh表面增加厚度
-	- ![Pasted image 20240307120524.png]({{ '/docs/attachment/Pasted image 20240307120524.png' | relative_url }}){:width="100"} ![Pasted image 20240307120542.png]({{ '/docs/attachment/Pasted image 20240307120542.png' | relative_url }}){:width="110"} 
+	- ![Pasted image 20240307120524.png]({{ '/docs/attachment/Pasted%20image%2020240307120524.png' | relative_url }}){:width="100"} ![Pasted image 20240307120542.png]({{ '/docs/attachment/Pasted%20image%2020240307120542.png' | relative_url }}){:width="110"} 
 	- 调整thickness=-0.02m
 		- offset默认是-1, 要让thickness和offset同方向(让增加的厚度mesh朝外凸)
 	- Materials->Material Offset=1 :让solidify的厚度mesh采用我们的描边材质, 即下一个slot的material

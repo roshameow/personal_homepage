@@ -17,9 +17,20 @@ module SiteMathDelimiters
 
   def initialize(source, options)
     super
-    # Preserve Kramdown's native $$ inline/block behavior. Only add the missing
-    # delimiters; at a backslash this parser must precede escaped_chars_gfm.
+    # Add the missing delimiters; at a backslash this parser must precede
+    # escaped_chars_gfm. Double dollars remain owned by the native parser.
     @span_parsers.insert(@span_parsers.index(:inline_math) + 1, :site_math)
+  end
+
+  # Obsidian and MathJax treat $$...$$ as display math even when the whole
+  # expression fits on one source line, follows prose without a blank line,
+  # or sits in a list/table. Kramdown calls those cases "inline_math" and
+  # otherwise emits \(...\), losing the author's explicit display delimiter.
+  def parse_inline_math
+    result = super
+    math = @tree.children.last
+    math.options[:category] = :block if math && math.type == :math
+    result
   end
 
   def parse_site_math

@@ -62,9 +62,9 @@ created: 2024-02-24T13:11
 
 用sdxl的refiner$\downarrow$ : [**refine_sdxl_refiner.json**](https://gist.github.com/roshameow/7a46bcdb4d7bdc5b2c0e758e4aa85a9f#file-refine_sdxl_refiner-json) 
 
-![屏幕截图 2024-02-27 231030.png]({{ '/docs/attachment/屏幕截图 2024-02-27 231030.png' | relative_url }}){:width="800"}
+![屏幕截图 2024-02-27 231030.png]({{ '/docs/attachment/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-02-27%20231030.png' | relative_url }}){:width="800"}
 
 用detailer节点和 [UltimateSDUpscale](https://github.com/ssitu/ComfyUI_UltimateSDUpscale) 节点$\downarrow$ : [**refine_impact_pack_detailer_SAG_UltimateSD.json**](https://gist.github.com/roshameow/7a46bcdb4d7bdc5b2c0e758e4aa85a9f#file-refine_impact_pack_detailer_sag_ultimatesd-json) 
 - 参考[这个comfyworkflows上分享的workflow](https://comfyworkflows.com/workflows/f9ed8191-b2e1-4417-ac26-2ecc7ff2a484) 
 
-![屏幕截图 2024-02-27 221824.png]({{ '/docs/attachment/屏幕截图 2024-02-27 221824.png' | relative_url }}){:width="800"}
+![屏幕截图 2024-02-27 221824.png]({{ '/docs/attachment/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-02-27%20221824.png' | relative_url }}){:width="800"}

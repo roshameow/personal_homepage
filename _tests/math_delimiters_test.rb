@@ -4,7 +4,7 @@ require 'kramdown'
 require 'kramdown-parser-gfm'
 
 # Capture native behavior before loading the site extension. In particular, code
-# and native $$ math must produce identical HTML with and without the plugin.
+# and native display math blocks retain their HTML with and without the plugin.
 UNCHANGED_MATH_FIXTURES = [
   '`$x_i$` and ``$x_`i$`` and `\\(x_i\\)`',
   "```python\nvalue = '$x_i$ and \\\\(y_j\\\\)'\n```\n",
@@ -16,7 +16,6 @@ UNCHANGED_MATH_FIXTURES = [
   "- list hard break  \n  next line\n",
   'Price \\$5 vs \\$10; plain $5 and $10.',
   'Unmatched $x_i and a later `$literal_i$` code span.',
-  'before $$x_i + y_j$$ after',
   "$$\nx_i + y_j\n$$\n",
   '[price](https://example.org/$path_i$) and <https://example.org/$path_i$>'
 ].freeze
@@ -55,10 +54,37 @@ class MathDelimitersTest < Minitest::Test
     refute_includes doc.to_html, '<em>'
   end
 
-  def test_native_code_markdown_currency_and_double_dollars_are_unchanged
+  def test_native_code_markdown_currency_and_display_blocks_are_unchanged
     UNCHANGED_MATH_FIXTURES.zip(NATIVE_MATH_HTML).each do |source, expected|
       assert_equal expected, document(source).to_html, source
     end
+  end
+
+  def test_single_line_double_dollars_always_mean_display_math
+    [
+      '$$x_i + y_j$$',
+      'before $$x_i + y_j$$ after',
+      "正文：\n$$x_i + y_j$$\n后续说明。",
+      "- 说明：\n  $$x_i + y_j$$\n  后续说明。",
+      "| Equation |\n| --- |\n| $$x_i + y_j$$ |\n"
+    ].each do |source|
+      doc = document(source)
+      nodes = math_nodes(doc.root)
+      assert_equal ['x_i + y_j'], nodes.map(&:value), source
+      assert_equal [:block], nodes.map { |node| node.options[:category] }, source
+      assert_includes doc.to_html, '\\[x_i + y_j\\]', source
+      refute_includes doc.to_html, '\\(x_i + y_j\\)', source
+    end
+  end
+
+  def test_consecutive_equations_do_not_merge_or_become_inline
+    source = "说明：\n$$a_i = b_i + 1$$\n$$c_j = d_j + 2$$\n结尾 $x_i$。"
+    doc = document(source)
+    assert_equal ['a_i = b_i + 1', 'c_j = d_j + 2', 'x_i'], math_nodes(doc.root).map(&:value)
+    assert_equal [:block, :block, :span], math_nodes(doc.root).map { |node| node.options[:category] }
+    assert_includes doc.to_html, '\\[a_i = b_i + 1\\]'
+    assert_includes doc.to_html, '\\[c_j = d_j + 2\\]'
+    assert_includes doc.to_html, '\\(x_i\\)'
   end
 
   def test_all_mathjax_delimiters_are_protected_from_markdown

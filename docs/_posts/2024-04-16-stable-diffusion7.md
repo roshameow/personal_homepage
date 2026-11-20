@@ -46,7 +46,7 @@ $$p(c\vert a,b) = p(a\vert c)\frac{p(c\vert b)}{p(a\vert b)}\propto p(a\vert c)p
 
 $q(x_t\vert x_0)=N(x_t;\alpha_t x_0,\sigma^2 I)$ diffusion收敛到SDE, SDE离散化得到diffusion. Denoising diffusion probabilistic modeling (DDPM) 和Score matching with Langevin dynamics (SMLD) 可以看作两种不同的实例化.
 
-![Pasted image 20240623150259.png]({{ '/docs/attachment/Pasted image 20240623150259.png' | relative_url }}){:width="800"} 
+![Pasted image 20240623150259.png]({{ '/docs/attachment/Pasted%20image%2020240623150259.png' | relative_url }}){:width="800"} 
 
 1. DDPM(see [[3] Appendix B.](#ref)) to Variance Preserving(VP) SDE
 	-  $x_i=\sqrt{1-\beta_i}x_{i-1}+\sqrt{\beta_i}z_i$  $\implies$   $x_i-x_{i-1}=(\sqrt{1-\beta_i}-1)x_{i-1}+\sqrt{\beta_i}z_i$ 

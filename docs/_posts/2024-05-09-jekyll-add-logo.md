@@ -16,7 +16,7 @@ last_modified_at: 2024-05-10T12:36:50-08:00
 
 这次只描了轮廓
 
-![Pasted image 20240510121915.png]({{ '/docs/attachment/Pasted image 20240510121915.png' | relative_url }}){:width="200"} 
+![Pasted image 20240510121915.png]({{ '/docs/attachment/Pasted%20image%2020240510121915.png' | relative_url }}){:width="200"} 
 
 - 用钢笔工具和选择工具画路径:
 	-  在最凸，最凹的地方加锚点

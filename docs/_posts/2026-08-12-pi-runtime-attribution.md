@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 'Pi Desktop的开发难点: “会话的状态”'
+title: "Pi Desktop的开发难点: “会话的状态”"
 categories:
   - tool
 tags:
@@ -9,9 +9,11 @@ tags:
   - rmux
   - macOS
   - debugging
-last_modified_at: 2026-10-06T10:48
+last_modified_at: 2026-11-10T07:47
 created: 2026-08-12T10:30
 date: 2026-08-12
+theme: agent/pi
+theme_subtitle: gui (2)
 ---
 
 Pi Desktop 里最难修的功能，是侧边栏那枚很小的状态 chip：**这个会话现在的运行状态**？

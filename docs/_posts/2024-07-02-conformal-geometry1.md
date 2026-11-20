@@ -45,14 +45,14 @@ fundamental group分类曲面是足够精细的
 
 ### torus $T_2$ 
 
-![Pasted image 20240710101618.png]({{ '/docs/attachment/Pasted image 20240710101618.png' | relative_url }}){:width="400"}
+![Pasted image 20240710101618.png]({{ '/docs/attachment/Pasted%20image%2020240710101618.png' | relative_url }}){:width="400"}
 
 - torus可以沿a,b cut, 变形成如右图disk, 即 $aba^{-1}b^{-1}\sim e$ 
 - 经过$p$点的任意$\gamma$ 分解成不和$a,b$ 相交的$\gamma_i$ 的积, $\gamma\in <a,b>$ 
 
 ### projective plane $\mathbb{R}P^2$ 
 
-![Pasted image 20240707162754.png]({{ '/docs/attachment/Pasted image 20240707162754.png' | relative_url }}){:width="400"} ![Pasted image 20240710162803.png]({{ '/docs/attachment/Pasted image 20240710162803.png' | relative_url }}){:width="150"} 
+![Pasted image 20240707162754.png]({{ '/docs/attachment/Pasted%20image%2020240707162754.png' | relative_url }}){:width="400"} ![Pasted image 20240710162803.png]({{ '/docs/attachment/Pasted%20image%2020240710162803.png' | relative_url }}){:width="150"} 
 
 - 把$\mathbb{RP}^2$ 看成上半球面$\mathbb H^2$ , 沿红线切割, 下面变成一个disk(D), 上面变成Möbius band(M, crosscap)
 - $\pi_1(M)=<\gamma>$ , $\pi_1(D)=\lbrace e\rbrace=\emptyset$ , $\pi_1(\partial M)=<\gamma^2>$ 
@@ -70,7 +70,7 @@ fundamental group分类曲面是足够精细的
 		2. $S=T\texttt{\#} \cdots \texttt{\#}T$  (S是oriented)
 			- $\pi_1(S,p)=<a_1,\cdots,a_g,b_1,\cdots, b_g\vert \prod_{i=1}^g a_ib_ia_i^{-1} b_i^{-1}>$ 
 				- 用[Seifert-Van Kampen Theorem](https://en.wikipedia.org/wiki/Seifert–Van_Kampen_theorem) 和归纳法证明
-				- ![Pasted image 20240710120840.png]({{ '/docs/attachment/Pasted image 20240710120840.png' | relative_url }}){:width="100"} circle $\gamma\sim aba^{-1}b^{-1}$ 
+				- ![Pasted image 20240710120840.png]({{ '/docs/attachment/Pasted%20image%2020240710120840.png' | relative_url }}){:width="100"} circle $\gamma\sim aba^{-1}b^{-1}$ 
 		3.  $S = \mathbb{RP}^2 \texttt{\#} \cdots \texttt{\#}\mathbb{RP}^2$ (S是non-oriented)
 
 ###  closed oriented 曲面分解(Canonical Representation)

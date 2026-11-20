@@ -10,9 +10,11 @@ tags:
   - tauri
   - rmux
   - macOS
-last_modified_at: 2026-09-26T17:39
+last_modified_at: 2026-11-10T07:47
 created: 2026-08-11T09:30
 date: 2026-08-11
+theme: agent/pi
+theme_subtitle: gui (1)
 ---
 
 我最初只是想给 [pi coding agent](https://github.com/badlogic/pi-mono) 补一个桌面会话浏览器：按项目查看 JSONL、展开工具调用，需要时从原会话继续聊。

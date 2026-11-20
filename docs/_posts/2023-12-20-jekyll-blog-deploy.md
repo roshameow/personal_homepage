@@ -92,7 +92,7 @@ created: 2023-12-20T12:28
    - 在 `docs/_posts` 中更新内容。因为我平时笔记都是在 Obsidian 中编辑的，决定在 Obsidian 中设置一个文件夹，然后将每篇笔记同步到 `docs/_posts` 文件夹中。
    - 用obsidian的优点：
 	    - Markdown 格式, 包括Front Matter在 Obsidian 中显示非常舒适。
-     - ![Pasted image 20231221194128.png]({{ '/docs/attachment/Pasted image 20231221194128.png' | relative_url }}){:width="600"} 
+     - ![Pasted image 20231221194128.png]({{ '/docs/attachment/Pasted%20image%2020231221194128.png' | relative_url }}){:width="600"} 
 
      - 利用 Obsidian 的[`update-time-on-edit`](https://github.com/beaussan/update-time-on-edit-obsidian) 插件，可以自动更新 `last_modified_date`。
      - 利用 Obsidian 的 `unique note` 插件，可以通过点击生成符合格式的笔记模板。
@@ -104,7 +104,7 @@ created: 2023-12-20T12:28
 6. **和raycast联动:**
 	- 然后给脚本设置raycast的标记。这样每次在obsidian里面编辑完，直接用raycast快捷键同步。
 	- 脚本太多输出会导致raycast卡死
- ![Pasted image 20231221195227.png]({{ '/docs/attachment/Pasted image 20231221195227.png' | relative_url }}){:width="600"} 
+ ![Pasted image 20231221195227.png]({{ '/docs/attachment/Pasted%20image%2020231221195227.png' | relative_url }}){:width="600"} 
 
 `sync_homepage.sh` 示范：
 

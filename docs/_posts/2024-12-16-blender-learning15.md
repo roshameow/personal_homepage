@@ -55,7 +55,7 @@ created: 2024-12-16T16:02
 	
 ## UV贴图
 
-![Pasted image 20230615131056.png]({{ '/docs/attachment/Pasted image 20230615131056.png' | relative_url }}){:width="300"}
+![Pasted image 20230615131056.png]({{ '/docs/attachment/Pasted%20image%2020230615131056.png' | relative_url }}){:width="300"}
 
 - [Smart UV Project](https://docs.blender.org/manual/en/latest/modeling/meshes/editing/uv.html) : 从mesh一个顶点相邻面扩散展开, 检查顶点处的角度
 

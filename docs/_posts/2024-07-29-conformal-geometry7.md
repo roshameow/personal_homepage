@@ -46,7 +46,7 @@ created: 2024-07-29T21:12
 
 - [Poincaré Duality](https://en.wikipedia.org/wiki/Poincaré_duality): n-dim的manifold $M$, 三角剖分$T$, 和cell decomposition $T^*$ 对偶.
 	- **把每个k-simplex $\sigma$ 映射成(n-k)-cell $\sigma^\ast$**: 对于包含$\sigma$ 的n-simplex $\Delta$,  $\Delta\cap\sigma^*$ 是取$\sigma\subset ...\subset \Delta$ 之间的simplex的barycentres(重心点) 的convex hull
-		- ![Pasted image 20240727223859.png]({{ '/docs/attachment/Pasted image 20240727223859.png' | relative_url }}){:width="100"} 顶点(1-simplex) $\sigma$, 面(2-simplex) $\Delta$ , 灰色部分 $\Delta\cap\sigma^*$ 是顶点$\sigma$,两条边, 面$\Delta$ 的重心点的convex hull
+		- ![Pasted image 20240727223859.png]({{ '/docs/attachment/Pasted%20image%2020240727223859.png' | relative_url }}){:width="100"} 顶点(1-simplex) $\sigma$, 面(2-simplex) $\Delta$ , 灰色部分 $\Delta\cap\sigma^*$ 是顶点$\sigma$,两条边, 面$\Delta$ 的重心点的convex hull
 		- $\sigma^*$ 只和$\sigma$ 相交, 这个intersection给出了对偶关系
 	- **把k-chain $C_k(T)$映射到(n-k)-chain $C_{n-k}(T^*)$** : 
 		- $C_{n-k}(T^\ast)$ 是定义在$T^\ast$ 的多边形cell上的? 这样也可以吗? 
@@ -92,7 +92,7 @@ created: 2024-07-29T21:12
 
 ## $M$ 是oriented compact 3-manifold的情况
 
-![Pasted image 20240805071909.png]({{ '/docs/attachment/Pasted image 20240805071909.png' | relative_url }}){:width="150"} $M$(3-manifold) : 中间部分, $\alpha$(2-chain): 中间圆盘, $\beta$(1-chain): 沿边界的curve
+![Pasted image 20240805071909.png]({{ '/docs/attachment/Pasted%20image%2020240805071909.png' | relative_url }}){:width="150"} $M$(3-manifold) : 中间部分, $\alpha$(2-chain): 中间圆盘, $\beta$(1-chain): 沿边界的curve
 
 1. 有(relative homology) long exact sequence: $\cdots\rightarrow  H_2(M,\partial M)\overset{\partial}\rightarrow H_{1}(\partial M)\overset{i_\ast}\rightarrow H_1(M)\cdots$  
 2. 有Lefschetz duality:  $\eta: H_2(M,\partial M,\mathbb Z)\times H_1(M,\mathbb Z) \rightarrow \mathbb Z$ 

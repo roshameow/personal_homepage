@@ -47,7 +47,7 @@ last_modified_at: 2024-02-15T12:13:12-08:00
 
 ###  Fraunhofer diffraction([夫琅禾费衍射](https://en.wikipedia.org/wiki/Fraunhofer_diffraction))
 
--  ![Pasted image 20240110160604.png]({{ '/docs/attachment/Pasted image 20240110160604.png' | relative_url }}){:width="500"} 
+-  ![Pasted image 20240110160604.png]({{ '/docs/attachment/Pasted%20image%2020240110160604.png' | relative_url }}){:width="500"} 
 - **假设1**：$r\approx r_1-b\cdot\cos(\phi-\Phi)\cdot\sin\theta$  (有如图几何直观，对于圆形aperture有个简便的表达方法)
 	- 近似条件：图中红线 $\approx$ 图中绿线部分
 		- $r_1$ 是aperture中心到观测点$(x,y)$ 的距离

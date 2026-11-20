@@ -11,7 +11,7 @@ created: 2025-01-04T17:47
 ---
 参考[这个教学](https://www.youtube.com/watch?v=LheRoTgym8g)
 
-1:  ![Pasted image 20250105115526.png]({{ '/docs/attachment/Pasted image 20250105115526.png' | relative_url }}){:width="150"}  -> 2:  ![Pasted image 20250105121905.png]({{ '/docs/attachment/Pasted image 20250105121905.png' | relative_url }}){:width="150"}  -> 3: ![Pasted image 20250106164220.png]({{ '/docs/attachment/Pasted image 20250106164220.png' | relative_url }}){:width="150"} -> 4: ![Pasted image 20250106164521.png]({{ '/docs/attachment/Pasted image 20250106164521.png' | relative_url }}){:width="150"} -> 5: ![Pasted image 20250106164825.png]({{ '/docs/attachment/Pasted image 20250106164825.png' | relative_url }}){:width="150"} 
+1:  ![Pasted image 20250105115526.png]({{ '/docs/attachment/Pasted%20image%2020250105115526.png' | relative_url }}){:width="150"}  -> 2:  ![Pasted image 20250105121905.png]({{ '/docs/attachment/Pasted%20image%2020250105121905.png' | relative_url }}){:width="150"}  -> 3: ![Pasted image 20250106164220.png]({{ '/docs/attachment/Pasted%20image%2020250106164220.png' | relative_url }}){:width="150"} -> 4: ![Pasted image 20250106164521.png]({{ '/docs/attachment/Pasted%20image%2020250106164521.png' | relative_url }}){:width="150"} -> 5: ![Pasted image 20250106164825.png]({{ '/docs/attachment/Pasted%20image%2020250106164825.png' | relative_url }}){:width="150"} 
 
 - 制作道路: 
 	1. 制作随机网格: 随机2, 3层细分
@@ -33,7 +33,7 @@ created: 2025-01-04T17:47
 	4. 增加厚度: [Extrude Mesh Node](https://docs.blender.org/manual/en/latest/modeling/geometry_nodes/mesh/operations/extrude_mesh.html) 沿面的法相挤出
 	5. 关闭自动的Smooth Shading: [Set Shade Smooth Node](https://docs.blender.org/manual/en/latest/modeling/geometry_nodes/mesh/write/set_shade_smooth.html) 
 
-1: ![Pasted image 20250106204640.png]({{ '/docs/attachment/Pasted image 20250106204640.png' | relative_url }}){:width="150"}  -> 2: ![Pasted image 20250106205132.png]({{ '/docs/attachment/Pasted image 20250106205132.png' | relative_url }}){:width="150"}  -> 3: ![Pasted image 20250106214511.png]({{ '/docs/attachment/Pasted image 20250106214511.png' | relative_url }}){:width="150"} -> 4: ![Pasted image 20250106214738.png]({{ '/docs/attachment/Pasted image 20250106214738.png' | relative_url }}){:width="150"} 
+1: ![Pasted image 20250106204640.png]({{ '/docs/attachment/Pasted%20image%2020250106204640.png' | relative_url }}){:width="150"}  -> 2: ![Pasted image 20250106205132.png]({{ '/docs/attachment/Pasted%20image%2020250106205132.png' | relative_url }}){:width="150"}  -> 3: ![Pasted image 20250106214511.png]({{ '/docs/attachment/Pasted%20image%2020250106214511.png' | relative_url }}){:width="150"} -> 4: ![Pasted image 20250106214738.png]({{ '/docs/attachment/Pasted%20image%2020250106214738.png' | relative_url }}){:width="150"} 
 
 - 制作建筑物: 安插在道路网格的间隙
 	1. 制作底座: 把折线道路(道路步骤2的结果)向内挤出
@@ -49,7 +49,7 @@ created: 2025-01-04T17:47
 		- 把楼体顶部向下向内挤出(和上一步制作楼体的方法一样)
 	4. 把街区内部进一步切分, 和道路放在一起
 
-![Pasted image 20250107055846.png]({{ '/docs/attachment/Pasted image 20250107055846.png' | relative_url }}){:width="150"}
+![Pasted image 20250107055846.png]({{ '/docs/attachment/Pasted%20image%2020250107055846.png' | relative_url }}){:width="150"}
 
 - shading: 在cycles渲染模式下
 	- world: 添加一个Sky Texture, 适当调整参数

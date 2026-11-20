@@ -15,7 +15,7 @@ last_modified_at: 2024-03-27T12:30:05-08:00
 ---
 ## stable-diffusion结构和controlnet插件
 
-![Pasted image 20240306124200.png]({{ '/docs/attachment/Pasted image 20240306124200.png' | relative_url }}){:width="500"} 
+![Pasted image 20240306124200.png]({{ '/docs/attachment/Pasted%20image%2020240306124200.png' | relative_url }}){:width="500"} 
 
 - controlnet保持和stable-diffusion u-net上半部分相同的结构
 - controlnet输入是和原图一样的hint图像
@@ -24,7 +24,7 @@ last_modified_at: 2024-03-27T12:30:05-08:00
 
 ## Resnetblock, SpatialTransfomer 结构和插件
 
-![Pasted image 20240306123108.png]({{ '/docs/attachment/Pasted image 20240306123108.png' | relative_url }}){:width="300"} ![Pasted image 20240306123128.png]({{ '/docs/attachment/Pasted image 20240306123128.png' | relative_url }}){:width="500"}
+![Pasted image 20240306123108.png]({{ '/docs/attachment/Pasted%20image%2020240306123108.png' | relative_url }}){:width="300"} ![Pasted image 20240306123128.png]({{ '/docs/attachment/Pasted%20image%2020240306123128.png' | relative_url }}){:width="500"}
 
 - lora可以应用在网络的任何线性结构上, 比如:
 	- attention里面的q,k,v,out层

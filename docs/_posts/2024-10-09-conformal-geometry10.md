@@ -30,7 +30,7 @@ created: 2024-10-09T09:51
 
 ### 球面的atlas表示
 
-![Pasted image 20241024160430.png]({{ '/docs/attachment/Pasted image 20241024160430.png' | relative_url }}){:width="300"}   ![Pasted image 20241024160403.png]({{ '/docs/attachment/Pasted image 20241024160403.png' | relative_url }}){:width="250"} 
+![Pasted image 20241024160430.png]({{ '/docs/attachment/Pasted%20image%2020241024160430.png' | relative_url }}){:width="300"}   ![Pasted image 20241024160403.png]({{ '/docs/attachment/Pasted%20image%2020241024160403.png' | relative_url }}){:width="250"} 
 
 - 球面的atlas表示: 把sphere $\mathbb S^2$ 分为上下两片, 用[球极投影(Stereo-graphic projection)](https://en.wikipedia.org/wiki/Stereographic_projection)的方式映射到$\mathbb R^2\cong \mathbb C$ , 在$\mathbb R^3$ 中嵌入的坐标为$(x_1,x_2,x_3)$ , 其$x_1^2+x_2^2+x_3^2=1$  
 	- 去掉North-pole的一片, $(x_1,x_2,x_3)$ 对应坐标为$z=x+iy=\frac{x_1+ix_2}{1-x_3}$ ,或表示为 $(x,y)=(\frac{x_1}{1-x_3},\frac{x_2}{1-x_3})$ 
@@ -60,7 +60,7 @@ created: 2024-10-09T09:51
 	- unit tangent vector: $e^{i\tau}\mapsto e^{i(\pi-2\theta+\tau)}$ 
 	- 粘合的行为给出了torus的一个automophism $\phi$: $(\theta,\tau)\mapsto (-\theta, \pi-2\theta+\tau)$ 
 		- 在universal covering上表示如图: 
-			- ![Pasted image 20241022080313.png]({{ '/docs/attachment/Pasted image 20241022080313.png' | relative_url }}){:width="400"} 
+			- ![Pasted image 20241022080313.png]({{ '/docs/attachment/Pasted%20image%2020241022080313.png' | relative_url }}){:width="400"} 
 
 ### UTM沿fiber粘在一起
 
@@ -71,7 +71,7 @@ created: 2024-10-09T09:51
 		- 即 a 为$\theta=0$ 的fiber, b为$\tau=0$ 的section
 	- a 有, $(0,s)\mapsto (0, \pi+s)$ 映射为 a 
 	- b 有, $(t,0)\mapsto (-t,\pi-2t)$ 映射为$a^{-2}b^{-1}$  
-	- 如图: ![Pasted image 20241021193648.png]({{ '/docs/attachment/Pasted image 20241021193648.png' | relative_url }}){:width="400"} 左图solid torus是去掉North-pole的一块的UTM, 右图是去掉South-pole的一块的UTM
+	- 如图: ![Pasted image 20241021193648.png]({{ '/docs/attachment/Pasted%20image%2020241021193648.png' | relative_url }}){:width="400"} 左图solid torus是去掉North-pole的一块的UTM, 右图是去掉South-pole的一块的UTM
 
 ### unit tangent bundle($UTM(\mathbb S^2)$)的fundamental group
 

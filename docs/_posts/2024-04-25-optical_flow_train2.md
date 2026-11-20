@@ -15,7 +15,7 @@ last_modified_at: 2024-04-28T15:30:43-08:00
 
 ## 数据
 
-&#9312; &#9313; :  ![Pasted image 20240426065333.png]({{ '/docs/attachment/Pasted image 20240426065333.png' | relative_url }}){:width="150"}    &#9314; : ![Pasted image 20240426065926.png]({{ '/docs/attachment/Pasted image 20240426065926.png' | relative_url }}){:width="330"}   
+&#9312; &#9313; :  ![Pasted image 20240426065333.png]({{ '/docs/attachment/Pasted%20image%2020240426065333.png' | relative_url }}){:width="150"}    &#9314; : ![Pasted image 20240426065926.png]({{ '/docs/attachment/Pasted%20image%2020240426065926.png' | relative_url }}){:width="330"}   
 
 
 |         | 采样方式                         | 具体说明                                                                                             | 特点                                 |
@@ -41,7 +41,7 @@ last_modified_at: 2024-04-28T15:30:43-08:00
 ### torch grid sample
 
 torch grid 的采样方式有align_corners=True和align_cornes=False两种
-- ![Pasted image 20240415160510.png]({{ '/docs/attachment/Pasted image 20240415160510.png' | relative_url }}){:width="250"} 
+- ![Pasted image 20240415160510.png]({{ '/docs/attachment/Pasted%20image%2020240415160510.png' | relative_url }}){:width="250"} 
 - 转换关系: 一般需要对齐的时候选align_corner=True
 	- pixel -> grid(align_corner=True): `x=x/(n-1)*2-1`
 	- x和y的dim可能和crop也不一致, 需要注意
@@ -87,7 +87,7 @@ torch grid 的采样方式有align_corners=True和align_cornes=False两种
 	- 给当前weak-learner的结果**排序** 
 	- 先确定当前weak-learner所对应的可能的boundaries $\{T_j\}$ 
 		- $T_{j-1}$ 到 $T_j$ error的改变有以下几种可能: 假设$(v_1,v_2)$ 是当前weak-learner sample pair的结果
-			- ![Pasted image 20240426173943.png]({{ '/docs/attachment/Pasted image 20240426173943.png' | relative_url }}){:width="150"} 
+			- ![Pasted image 20240426173943.png]({{ '/docs/attachment/Pasted%20image%2020240426173943.png' | relative_url }}){:width="150"} 
 			- $v_1< T_{j-1}<v_2< T_{j}$ , $v_1, v_2$ 从$T_{j-1}$ 的异侧变为了$T_j$ 的同侧 (1)
 				- 如果$(v_1, v_2)$ label为1, match, error -1
 				- 如果$(v_1, v_2)$ label为-1, miss, error +1

@@ -36,7 +36,7 @@ created: 2024-07-26T12:34
 
 ### 一阶 cohomology basis 计算
 
-![Pasted image 20240731000546.png]({{ '/docs/attachment/Pasted image 20240731000546.png' | relative_url }}){:width="150"} 
+![Pasted image 20240731000546.png]({{ '/docs/attachment/Pasted%20image%2020240731000546.png' | relative_url }}){:width="150"} 
 
 - $H^1$ 是在边(1-simplex)上的函数, 使得沿每个三角形(2-chain)路径和为0 ( $\omega\in\text{ker}\delta^1$ )
 - $H^1\cong H_1$  可以找到一组dual basis.
@@ -56,7 +56,7 @@ created: 2024-07-26T12:34
 
 ### 带边界的例子
 
-1. ![Pasted image 20240907093602.png]({{ '/docs/attachment/Pasted image 20240907093602.png' | relative_url }}){:width="150"} 中间红色为$\gamma^+$, 蓝色为$\gamma^-$ 
+1. ![Pasted image 20240907093602.png]({{ '/docs/attachment/Pasted%20image%2020240907093602.png' | relative_url }}){:width="150"} 中间红色为$\gamma^+$, 蓝色为$\gamma^-$ 
 	- annulus $M$
 	- $H_1(M,\mathbb Z)$ 有一个generator $\gamma$ , 如图中间loop
 	- 定义$\omega$ 如图:

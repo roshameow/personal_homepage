@@ -36,8 +36,8 @@ $K_1$ 的diagram由$K_2$ 的diagram经由四种基本移动变换得来 <-> $K_1
 $K_1$  的补空间(3-manifold)和$K_2$ 的补空间同胚, 即 $(\mathbb R^3- K_1)\sim (\mathbb R^3-K_2)$  <-> $K_1\cong_{isotopic} K_2$
 
 -  用Wirtinger表示 计算 $\pi_1(\mathbb R^3-K)$ ( 同胚<-> 基本群相同): 
-	- 每个segment提供 ![Pasted image 20240721040411.png]({{ '/docs/attachment/Pasted image 20240721040411.png' | relative_url }}){:width="200"} generators: $\lbrace x_1,x_2,\cdots,x_n\rbrace$ 
-	- 每个crossing提供 ![Pasted image 20240721040312.png]({{ '/docs/attachment/Pasted image 20240721040312.png' | relative_url }}){:width="200"} relation: $x_i\cdot x_k=x_k\cdot x_{i+1}$ (按照generator方向)
+	- 每个segment提供 ![Pasted image 20240721040411.png]({{ '/docs/attachment/Pasted%20image%2020240721040411.png' | relative_url }}){:width="200"} generators: $\lbrace x_1,x_2,\cdots,x_n\rbrace$ 
+	- 每个crossing提供 ![Pasted image 20240721040312.png]({{ '/docs/attachment/Pasted%20image%2020240721040312.png' | relative_url }}){:width="200"} relation: $x_i\cdot x_k=x_k\cdot x_{i+1}$ (按照generator方向)
 		- relation会因为相互关联而化简
 
 
@@ -66,12 +66,12 @@ $K_1$  的补空间(3-manifold)和$K_2$ 的补空间同胚, 即 $(\mathbb R^3- K
 - **[Satellite Knot](https://en.wikipedia.org/wiki/Satellite_knot)**: knot $K$ embed在一个torus knot $J$ **里面**(大肠套小肠), 记作$Sat_J(K)$ 
 	- 分类:
 		- cable knot: 里面的knot $K$ 也是一个torus knot
-			- ![Pasted image 20240720115608.png]({{ '/docs/attachment/Pasted image 20240720115608.png' | relative_url }}){:width="100"} 
+			- ![Pasted image 20240720115608.png]({{ '/docs/attachment/Pasted%20image%2020240720115608.png' | relative_url }}){:width="100"} 
 		- connected sum(composite knots): $K_1 \texttt{\#} K_2$ 
 			- swallow-follow: $K_1$(Figure 8) 看起来像是被$K_2$ (trefoil) swallow
-				- ![Pasted image 20240720120425.png]({{ '/docs/attachment/Pasted image 20240720120425.png' | relative_url }}){:width="150"} 
+				- ![Pasted image 20240720120425.png]({{ '/docs/attachment/Pasted%20image%2020240720120425.png' | relative_url }}){:width="150"} 
 		- Whitehead doubles: 里面的knot $K$ 是 $S_1$ 经过一些twist首尾相连
-			- ![Pasted image 20240720120404.png]({{ '/docs/attachment/Pasted image 20240720120404.png' | relative_url }}){:width="100"} 或, <a href="https://www.researchgate.net/figure/A-Whitehead-double-of-a-trefoil-knot-is-a-satellite-knot-whose-companion-knot-is-a_fig10_339015556"><img src="https://www.researchgate.net/profile/Makoto-Sakuma/publication/339015556/figure/fig10/AS:897362012680193@1590959184100/A-Whitehead-double-of-a-trefoil-knot-is-a-satellite-knot-whose-companion-knot-is-a.png" alt="Seiferthomologypushoff.png" width="100"></a> 
+			- ![Pasted image 20240720120404.png]({{ '/docs/attachment/Pasted%20image%2020240720120404.png' | relative_url }}){:width="100"} 或, <a href="https://www.researchgate.net/figure/A-Whitehead-double-of-a-trefoil-knot-is-a-satellite-knot-whose-companion-knot-is-a_fig10_339015556"><img src="https://www.researchgate.net/profile/Makoto-Sakuma/publication/339015556/figure/fig10/AS:897362012680193@1590959184100/A-Whitehead-double-of-a-trefoil-knot-is-a-satellite-knot-whose-companion-knot-is-a.png" alt="Seiferthomologypushoff.png" width="100"></a> 
 - **[hyperbolic Knot](https://mathworld.wolfram.com/HyperbolicKnot.html)**: knot的补空间有一个complete, finite volume的双曲度量, 即补空间是hyperbolic 3-manifold(双曲三流型)
 	- 例如Figure 8 knot
 
@@ -81,14 +81,14 @@ $K_1$  的补空间(3-manifold)和$K_2$ 的补空间同胚, 即 $(\mathbb R^3- K
 
 **Seifert surface和genus**
 
-Planar Diagram: <a href="https://mathworld.wolfram.com/FigureEightKnot.html"><img src="https://mathworld.wolfram.com/images/eps-svg/FigureEightKnot_700.svg"  width="100" style="transform: rotate(180deg);"></a>  -> Orientation: ![Pasted image 20240720153513.png]({{ '/docs/attachment/Pasted image 20240720153513.png' | relative_url }}){:width="100"} -> Seifert Cycles: ![Pasted image 20240720153554.png]({{ '/docs/attachment/Pasted image 20240720153554.png' | relative_url }}){:width="100"} -> Fill Cycles: ![Pasted image 20240720153643.png]({{ '/docs/attachment/Pasted image 20240720153643.png' | relative_url }}){:width="100"} -> Add twists: ![Pasted image 20240720153817.png]({{ '/docs/attachment/Pasted image 20240720153817.png' | relative_url }}){:width="100"} -> Seifert surface:  <a href="https://en.wikipedia.org/wiki/File:Seiferthomologypushoff.png#/media/File:Seiferthomologypushoff.png"><img src="https://upload.wikimedia.org/wikipedia/en/9/91/Seiferthomologypushoff.png" alt="Seiferthomologypushoff.png" width="150" style="transform: rotate(135deg);"></a>
+Planar Diagram: <a href="https://mathworld.wolfram.com/FigureEightKnot.html"><img src="https://mathworld.wolfram.com/images/eps-svg/FigureEightKnot_700.svg"  width="100" style="transform: rotate(180deg);"></a>  -> Orientation: ![Pasted image 20240720153513.png]({{ '/docs/attachment/Pasted%20image%2020240720153513.png' | relative_url }}){:width="100"} -> Seifert Cycles: ![Pasted image 20240720153554.png]({{ '/docs/attachment/Pasted%20image%2020240720153554.png' | relative_url }}){:width="100"} -> Fill Cycles: ![Pasted image 20240720153643.png]({{ '/docs/attachment/Pasted%20image%2020240720153643.png' | relative_url }}){:width="100"} -> Add twists: ![Pasted image 20240720153817.png]({{ '/docs/attachment/Pasted%20image%2020240720153817.png' | relative_url }}){:width="100"} -> Seifert surface:  <a href="https://en.wikipedia.org/wiki/File:Seiferthomologypushoff.png#/media/File:Seiferthomologypushoff.png"><img src="https://upload.wikimedia.org/wikipedia/en/9/91/Seiferthomologypushoff.png" alt="Seiferthomologypushoff.png" width="150" style="transform: rotate(135deg);"></a>
 
 - 见图示, 有3个Seifert Cycles和4个crossing
 - $g(\Sigma_D)=\frac{1-3+4}{2}=1$ 
 
 **Wirtinger表示**
 
-![Pasted image 20240720163841.png]({{ '/docs/attachment/Pasted image 20240720163841.png' | relative_url }}){:width="150"} 
+![Pasted image 20240720163841.png]({{ '/docs/attachment/Pasted%20image%2020240720163841.png' | relative_url }}){:width="150"} 
 
 - 见图示, 4个segment对应生成元$x_1,x_2,x_3,x_4$ , 4个crossing对应relation $c_1: x_4x_3=x_3x_1$, $c_2:x_2x_1=x_1x_3$, $c_3:x_2x_4=x_4x_1$, $c_4: x_4x_2=x_2x_3$  
 - 化简得, 补空间的基本群 : $\pi_1(S^3-K)=<a,b\vert\ yay^{-1}=b>$ 

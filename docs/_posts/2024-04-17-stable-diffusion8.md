@@ -64,7 +64,7 @@ $x_{i-1}=\frac{\sigma_{i-1}}{\sigma_i}x_i-(e^{-h}-1)((1+\frac{1}{2r})\cdot D(x_i
 
 ### 添加 noise 的不同方法
 
-![Pasted image 20240702162954.png]({{ '/docs/attachment/Pasted image 20240702162954.png' | relative_url }}){:width="400"} 
+![Pasted image 20240702162954.png]({{ '/docs/attachment/Pasted%20image%2020240702162954.png' | relative_url }}){:width="400"} 
 - **noise injection**(没有后缀的情况): 先添加随机项
 	- increase noise:  $\hat \sigma$  : $\hat \sigma\leftarrow \sigma_i + \gamma\sigma_i$ 
 	- forward step $\sigma_{i}\rightarrow \hat \sigma$ 

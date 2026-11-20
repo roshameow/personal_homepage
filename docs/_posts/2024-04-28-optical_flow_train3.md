@@ -30,7 +30,7 @@ last_modified_at: 2024-05-05T07:17:18-08:00
 ### SSM(state space model)
 
 - [状态空间(state space)](https://en.wikipedia.org/wiki/State-space_representation) : 用state vector记录历史的input, 而不是记录所有的历史token
-	- ![Pasted image 20240317183044.png]({{ '/docs/attachment/Pasted image 20240317183044.png' | relative_url }}){:width="200"} 
+	- ![Pasted image 20240317183044.png]({{ '/docs/attachment/Pasted%20image%2020240317183044.png' | relative_url }}){:width="200"} 
 - 连续表示:
 	- linear state space model的一般形式:
 		- $\dot x(t)=A(t)x(t)+B(t)u(t)$ (用input u更新状态 x)

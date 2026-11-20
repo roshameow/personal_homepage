@@ -30,7 +30,7 @@ created: 2024-08-07T09:10
 
 ### 点云 -> Čech Complex filtration
 
-![Persistent homology classification algorithm.jpg]({{ '/docs/attachment/Persistent homology classification algorithm.jpg' | relative_url }}){:width="500"}
+![Persistent homology classification algorithm.jpg]({{ '/docs/attachment/Persistent%20homology%20classification%20algorithm.jpg' | relative_url }}){:width="500"}
 - [Čech complex](https://en.wikipedia.org/wiki/Čech_complex)  $\mathcal C_\epsilon$ : 把点云中 $\epsilon/2$ 球相交的点相连得到的simplicial complex
 	- [Vietoris-Rips Complex](https://en.wikipedia.org/wiki/Vietoris–Rips_complex) $\mathcal R_\epsilon$ : 把点云中距离< $\epsilon$ 的点相连得到的simplicial complex($\mathbb R^n$ 中两种定义等价)
 

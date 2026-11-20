@@ -23,7 +23,7 @@ pyside是qt的python封装, API的调用方法基本差不多. 用pyside从零�
 
 用QTimer和opencv实现
 
-![Screen Recording 2024-04-07 at 09.30.20.mp4]({{ '/docs/attachment/Screen Recording 2024-04-07 at 09.30.20.mp4' | relative_url }}){:width="200"} 
+![Screen Recording 2024-04-07 at 09.30.20.mp4]({{ '/docs/attachment/Screen%20Recording%202024-04-07%20at%2009.30.20.mp4' | relative_url }}){:width="200"} 
 
 1. 把label提升到自定义可以drop file的LabelImage
 2. 用timer设置play, pause功能, 进度条拖动功能
@@ -34,7 +34,7 @@ pyside是qt的python封装, API的调用方法基本差不多. 用pyside从零�
 
 用QtCharts实现
 
-![Screen Recording 2024-04-07 at 09.46.44.mp4]({{ '/docs/attachment/Screen Recording 2024-04-07 at 09.46.44.mp4' | relative_url }}){:width="800"}
+![Screen Recording 2024-04-07 at 09.46.44.mp4]({{ '/docs/attachment/Screen%20Recording%202024-04-07%20at%2009.46.44.mp4' | relative_url }}){:width="800"}
 
 1. 界面画出QWidget并提升到自定义的LineChart, 继承QChartView
 2. 定义chart和series

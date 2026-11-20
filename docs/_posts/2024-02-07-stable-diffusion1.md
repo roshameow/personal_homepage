@@ -35,10 +35,10 @@ last_modified_at: 2024-02-24T11:16:16-08:00
 ## 结果
 
 原图: 
-![屏幕截图 2024-02-07 224110.png]({{ '/docs/attachment/屏幕截图 2024-02-07 224110.png' | relative_url }}){:width="600"} + ![2e2b76d160ca4317bb8e095ffd8ff878.jpg.png]({{ '/docs/attachment/2e2b76d160ca4317bb8e095ffd8ff878.jpg.png' | relative_url }}){:width="150"} 
+![屏幕截图 2024-02-07 224110.png]({{ '/docs/attachment/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-02-07%20224110.png' | relative_url }}){:width="600"} + ![2e2b76d160ca4317bb8e095ffd8ff878.jpg.png]({{ '/docs/attachment/2e2b76d160ca4317bb8e095ffd8ff878.jpg.png' | relative_url }}){:width="150"} 
 
 合成图: 
-![屏幕截图 2024-02-07 224141.png]({{ '/docs/attachment/屏幕截图 2024-02-07 224141.png' | relative_url }}){:width="600"} 
+![屏幕截图 2024-02-07 224141.png]({{ '/docs/attachment/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-02-07%20224141.png' | relative_url }}){:width="600"} 
 
 - 竟然可以识别龙的眼睛啊...有好几幅图都把猫眼替换到了龙眼上
 	- 如果两种图有同样的元素(眼睛之类的), 可能可以比较好的替换
@@ -48,10 +48,10 @@ last_modified_at: 2024-02-24T11:16:16-08:00
 	- 有几张图还替换了原图的色块分布, 这是我们不想要的
 - 另外, controlnet-canny和ipadapter的龙都不能省略
 	- 如果ipadapter只用风格图: 
-		- ![Pasted image 20240208003655.png]({{ '/docs/attachment/Pasted image 20240208003655.png' | relative_url }}){:width="100"} ![Pasted image 20240208003712.png]({{ '/docs/attachment/Pasted image 20240208003712.png' | relative_url }}){:width="100"} 
+		- ![Pasted image 20240208003655.png]({{ '/docs/attachment/Pasted%20image%2020240208003655.png' | relative_url }}){:width="100"} ![Pasted image 20240208003712.png]({{ '/docs/attachment/Pasted%20image%2020240208003712.png' | relative_url }}){:width="100"} 
 		- 增加control-net的权重也是没用的, weight=0.8时出现了噪声图案
 	- 如果不加controlnet:
-		- ![Pasted image 20240208003804.png]({{ '/docs/attachment/Pasted image 20240208003804.png' | relative_url }}){:width="100"} ![Pasted image 20240208003819.png]({{ '/docs/attachment/Pasted image 20240208003819.png' | relative_url }}){:width="100"} 
+		- ![Pasted image 20240208003804.png]({{ '/docs/attachment/Pasted%20image%2020240208003804.png' | relative_url }}){:width="100"} ![Pasted image 20240208003819.png]({{ '/docs/attachment/Pasted%20image%2020240208003819.png' | relative_url }}){:width="100"} 
 	- 看起来controlnet保持了龙的外形结构, ipadpter加龙提高了龙的权重, 不过ipadapter从龙图中究竟学到了什么? 是扁平的画风吗? 只用风格图的情况下, 确实画风更接近风格图, 但是内容也更接近了
 		- 可以通过text prompt控制吗? 但是clip又无法理解简笔画的龙.
 
@@ -60,7 +60,7 @@ last_modified_at: 2024-02-24T11:16:16-08:00
 
 [**ipadapter_controlnet-canny_loong_style_change.json**](https://gist.github.com/roshameow/d952bf0157a25ab3e9e724df1449b160#file-ipadapter_controlnet-canny_loong_style_change-json)
 
-![屏幕截图 2024-02-07 224530.png]({{ '/docs/attachment/屏幕截图 2024-02-07 224530.png' | relative_url }}){:width="800"}
+![屏幕截图 2024-02-07 224530.png]({{ '/docs/attachment/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-02-07%20224530.png' | relative_url }}){:width="800"}
 
 
 ## ComfyUI难用的地方

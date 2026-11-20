@@ -32,8 +32,8 @@ created: 2025-02-12T18:56
 
 1. **原始L2 norm**:  用**最小二乘法** 
 2. **restrict awb条件** : 因为是线性条件, 可以直接求解.
-	- 把awb条件写成: ![Pasted image 20250220192803.png]({{ '/docs/attachment/Pasted image 20250220192803.png' | relative_url }}){:width="300"} 的形式
-	- 直接代入原方程: ![Pasted image 20250220192840.png]({{ '/docs/attachment/Pasted image 20250220192840.png' | relative_url }}){:width="1000"} 
+	- 把awb条件写成: ![Pasted image 20250220192803.png]({{ '/docs/attachment/Pasted%20image%2020250220192803.png' | relative_url }}){:width="300"} 的形式
+	- 直接代入原方程: ![Pasted image 20250220192840.png]({{ '/docs/attachment/Pasted%20image%2020250220192840.png' | relative_url }}){:width="1000"} 
 		- 把 Y 和 CCM 分块展开并化简. 用**最小二乘法**求解化简后的方程即可.
 3. **L2 Regularization** : 因为正则项也是L2的, 可以直接计算. 
 	- 在求导时, CCM的系数由 $2Y^T Y$ 变为 $2Y^TY+2\begin{bmatrix}\lambda&& \\\ &\lambda& \\\ &&\lambda\end{bmatrix}$ 即可

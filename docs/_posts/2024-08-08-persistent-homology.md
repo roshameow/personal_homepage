@@ -21,19 +21,19 @@ created: 2024-09-01T11:38
 - 下标表示在filtration中的前后关系.
 - 蓝色表示killer, 红色表示generator, 弧线表示kill关系. 
 
-![Pasted image 20240821180208.png]({{ '/docs/attachment/Pasted image 20240821180208.png' | relative_url }}){:width="138"}  ![Pasted image 20240822181442.png]({{ '/docs/attachment/Pasted image 20240822181442.png' | relative_url }}){:width="150"}  ![Pasted image 20240821175655.png]({{ '/docs/attachment/Pasted image 20240821175655.png' | relative_url }}){:width="300"} 
+![Pasted image 20240821180208.png]({{ '/docs/attachment/Pasted%20image%2020240821180208.png' | relative_url }}){:width="138"}  ![Pasted image 20240822181442.png]({{ '/docs/attachment/Pasted%20image%2020240822181442.png' | relative_url }}){:width="150"}  ![Pasted image 20240821175655.png]({{ '/docs/attachment/Pasted%20image%2020240821175655.png' | relative_url }}){:width="300"} 
 - topological annulus(环带, cylinder)
 - $H_0$ 的生成元是$v_0$ 
 - $H_1$ 的生成元是$e_2$ (对应cycle $e_0+e_1+e_2$ )
 
 
-![Pasted image 20240821175958.png]({{ '/docs/attachment/Pasted image 20240821175958.png' | relative_url }}){:width="100"}  ![Pasted image 20240822181535.png]({{ '/docs/attachment/Pasted image 20240822181535.png' | relative_url }}){:width="150"}  ![Pasted image 20240821175901.png]({{ '/docs/attachment/Pasted image 20240821175901.png' | relative_url }}){:width="300"} 
+![Pasted image 20240821175958.png]({{ '/docs/attachment/Pasted%20image%2020240821175958.png' | relative_url }}){:width="100"}  ![Pasted image 20240822181535.png]({{ '/docs/attachment/Pasted%20image%2020240822181535.png' | relative_url }}){:width="150"}  ![Pasted image 20240821175901.png]({{ '/docs/attachment/Pasted%20image%2020240821175901.png' | relative_url }}){:width="300"} 
 
 - topological torus
 - $H_0$ 的生成元为 $v_0$ 
 - $H_1$ 的生成元为$e_3$( 对应cycle $e_0+e_1+e_2+e_3$) , $e_{20}$ (对应cycle $e_{12}+e_{16}+e_{20}$) 
 
-![Pasted image 20240822194920.png]({{ '/docs/attachment/Pasted image 20240822194920.png' | relative_url }}){:width="150"}  ![Pasted image 20240822194939.png]({{ '/docs/attachment/Pasted image 20240822194939.png' | relative_url }}){:width="200"} 
+![Pasted image 20240822194920.png]({{ '/docs/attachment/Pasted%20image%2020240822194920.png' | relative_url }}){:width="150"}  ![Pasted image 20240822194939.png]({{ '/docs/attachment/Pasted%20image%2020240822194939.png' | relative_url }}){:width="200"} 
 
 - topological quadrilateral(四边形)
 - $H_0$ 的生成元为$v_0$ , $H_1$ 的生成元为$e_{11}$ 

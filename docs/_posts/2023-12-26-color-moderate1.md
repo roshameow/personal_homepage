@@ -25,7 +25,7 @@ created: 2023-12-26T21:59
 ### CASSI
 
 coded_apeture+dispenser
--  ![Pasted image 20240114142241.png]({{ '/docs/attachment/Pasted image 20240114142241.png' | relative_url }}){:width="180"} [1](#ref) 设备: ![Pasted image 20240219163704.png]({{ '/docs/attachment/Pasted image 20240219163704.png' | relative_url }}){:width="250"}
+-  ![Pasted image 20240114142241.png]({{ '/docs/attachment/Pasted%20image%2020240114142241.png' | relative_url }}){:width="180"} [1](#ref) 设备: ![Pasted image 20240219163704.png]({{ '/docs/attachment/Pasted%20image%2020240219163704.png' | relative_url }}){:width="250"}
 - 代码仿真过程: 3d multichannel image( C x H x W ) -> 2d perception image( H x (W+2\*C-2) )
 	1.  把coded_apeture mask应用于所有通道
 	2.  dispenser依次给mask的通道图像y-axis 2pixel的shift
@@ -35,10 +35,10 @@ coded_apeture+dispenser
 		- B是binomial 分布
 		- 这段其实没懂为什么要用binomial分布，而不是poisson分布$P(Y)$ , 大概Y/QE是平均光子数，所以sample这么多次，每次都有qe的概率转换为电子；但是仍然不理解为什么要在光电转换的部分随机
 - 仿真图例:
-	- input: ![Pasted image 20240117165405.png]({{ '/docs/attachment/Pasted image 20240117165405.png' | relative_url }}){:width="150"}   sim: ![Pasted image 20240117165253.png]({{ '/docs/attachment/Pasted image 20240117165253.png' | relative_url }}){:width="170"}
+	- input: ![Pasted image 20240117165405.png]({{ '/docs/attachment/Pasted%20image%2020240117165405.png' | relative_url }}){:width="150"}   sim: ![Pasted image 20240117165253.png]({{ '/docs/attachment/Pasted%20image%2020240117165253.png' | relative_url }}){:width="170"}
 	- simulation图片的size是Hx(W+54)
 - 实际拍摄的测试图例:
-	- label:  ![Pasted image 20240117165603.png]({{ '/docs/attachment/Pasted image 20240117165603.png' | relative_url }}){:width="150"}  image:  ![Pasted image 20231226120247.png]({{ '/docs/attachment/Pasted image 20231226120247.png' | relative_url }}){:width="170"}  recon: ![Pasted image 20240122114048.png]({{ '/docs/attachment/Pasted image 20240122114048.png' | relative_url }}){:width="150"} 
+	- label:  ![Pasted image 20240117165603.png]({{ '/docs/attachment/Pasted%20image%2020240117165603.png' | relative_url }}){:width="150"}  image:  ![Pasted image 20231226120247.png]({{ '/docs/attachment/Pasted%20image%2020231226120247.png' | relative_url }}){:width="170"}  recon: ![Pasted image 20240122114048.png]({{ '/docs/attachment/Pasted%20image%2020240122114048.png' | relative_url }}){:width="150"} 
 	- mask: ![mask.png]({{ '/docs/attachment/mask.png' | relative_url }}){:width="150"} 
 - 讨论: 
 	- 看起来仿真和实际拍摄的情况并不太一样啊?仿真的y方向offset距离更大
@@ -48,7 +48,7 @@ coded_apeture+dispenser
 
 grid aperture + color filter
 
-- ![Pasted image 20240219161325.png]({{ '/docs/attachment/Pasted image 20240219161325.png' | relative_url }}){:width="190"}  设备: ![Pasted image 20240219161024.png]({{ '/docs/attachment/Pasted image 20240219161024.png' | relative_url }}){:width="150"} 
+- ![Pasted image 20240219161325.png]({{ '/docs/attachment/Pasted%20image%2020240219161325.png' | relative_url }}){:width="190"}  设备: ![Pasted image 20240219161024.png]({{ '/docs/attachment/Pasted%20image%2020240219161024.png' | relative_url }}){:width="150"} 
 - 代码仿真过程: 3d multichannel image( C x (H+max_offset\*2) x (W+max_offset\*2) ) -> 2d perception image( H x W )
 	1.  对应每个channel, 提取3d multichannel image中, 对应位置的patch相加
 		1. 每个channel的offset递增: patch的位置不同
@@ -59,7 +59,7 @@ grid aperture + color filter
 		- 是为了补充相邻通道offset一样的调制吗?
 	5.  把所有通道叠加
  - 仿真图例:
-	 - data: ![Pasted image 20240219160739.png]({{ '/docs/attachment/Pasted image 20240219160739.png' | relative_url }}){:width="200"} label: ![Pasted image 20240219162430.png]({{ '/docs/attachment/Pasted image 20240219162430.png' | relative_url }}){:width="100"}  sim: ![Pasted image 20240219160842.png]({{ '/docs/attachment/Pasted image 20240219160842.png' | relative_url }}){:width="100"}  
+	 - data: ![Pasted image 20240219160739.png]({{ '/docs/attachment/Pasted%20image%2020240219160739.png' | relative_url }}){:width="200"} label: ![Pasted image 20240219162430.png]({{ '/docs/attachment/Pasted%20image%2020240219162430.png' | relative_url }}){:width="100"}  sim: ![Pasted image 20240219160842.png]({{ '/docs/attachment/Pasted%20image%2020240219160842.png' | relative_url }}){:width="100"}  
  - 讨论: 
 	 - 文章中的说法是把aperture看成一组7x7的方形aperture, 根据Fraunhofer diffraction, 不同位置的aperture因为波长不同, 会产生offset
 		- 相机系统可以这么解释吗?
@@ -68,7 +68,7 @@ grid aperture + color filter
 ### THETA  [3](#ref)
 
 也是color_filter但是不按像素排布, 光滑切换, 不规则排布. 用加在sensor上的一个彩色胶片实现.
-- 拍摄图例: ![Pasted image 20240219172254.png]({{ '/docs/attachment/Pasted image 20240219172254.png' | relative_url }}){:width="150"}  
+- 拍摄图例: ![Pasted image 20240219172254.png]({{ '/docs/attachment/Pasted%20image%2020240219172254.png' | relative_url }}){:width="150"}  
 - 讨论:
 	- color_filter的pattern比pixel 要大
 	- 保留了图像的高频信息, 恢复出的图像很细节. 但是颜色的分辨率不高

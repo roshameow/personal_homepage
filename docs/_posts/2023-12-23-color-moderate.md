@@ -22,19 +22,19 @@ created: 2023-12-23T14:47
 ### 几种排布像素的方法
 
 1. **把像素不断二分[1](#ref)** 
-	- ![Pasted image 20231227093202.png]({{ '/docs/attachment/Pasted image 20231227093202.png' | relative_url }}){:width="400"}  
+	- ![Pasted image 20231227093202.png]({{ '/docs/attachment/Pasted%20image%2020231227093202.png' | relative_url }}){:width="400"}  
 	- 如果不是$2^n$ 个通道，没法保证所有通道的像素密度一样。比如图上5个通道的情况。1，2通道的密度就比3，4，5的密度低。
 	- 但是这样做可以让每个相同通道的间距相等。
 2. **间隔相等斜向排布[2](#ref)**  
-	- ![Pasted image 20231227093439.png]({{ '/docs/attachment/Pasted image 20231227093439.png' | relative_url }}){:width="200"} 
+	- ![Pasted image 20231227093439.png]({{ '/docs/attachment/Pasted%20image%2020231227093439.png' | relative_url }}){:width="200"} 
 	- 能保证每个channel的像素相邻的channel一直是一样的
 	- 但是这样在各个方向上像素密度极度不均匀：比如图上5个通道情况，横竖方向相隔4个像素，斜向却相隔0个，3个像素
 3. **分成primary channel和secondary channel两组 [3](#ref)**
 	- 把secondary channel穿插在primay channel中
-	-  ![Pasted image 20231227100416.png]({{ '/docs/attachment/Pasted image 20231227100416.png' | relative_url }}){:width="200"}
+	-  ![Pasted image 20231227100416.png]({{ '/docs/attachment/Pasted%20image%2020231227100416.png' | relative_url }}){:width="200"}
 	- 图中a,b,c是primary channel，像素密度高； d,e,f,g 是secondary channel，像素密度低
 4.  **一个实拍的样例**
-	- ![Pasted image 20231227114816.png]({{ '/docs/attachment/Pasted image 20231227114816.png' | relative_url }}){:width="300"} 
+	- ![Pasted image 20231227114816.png]({{ '/docs/attachment/Pasted%20image%2020231227114816.png' | relative_url }}){:width="300"} 
 	- 图中是8个通道的sensor实拍图做了伪彩变换之后的样例
 	- filter不同channel之间贴了黑胶阻挡(除了阻挡更多光线进入sensor以外，没什么积极意义)
 

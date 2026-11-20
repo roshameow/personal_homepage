@@ -86,7 +86,7 @@ created: 2024-07-21T22:35
 
 - homology(同调) group trival -/-> 曲面trival: [同调球](https://en.wikipedia.org/wiki/Homology_sphere) 
 - loop $\gamma$ 在homology(同调) group trival -/-> 在fundamental group trival: 
-	- ![Pasted image 20240726111536.png]({{ '/docs/attachment/Pasted image 20240726111536.png' | relative_url }}){:width="250"} $\gamma=a_1b_1a_1^{-1}b_1^{-1}$ 在$H_1(\Sigma,\mathbb Z)$ trival, 但是在$\pi_1(\Sigma)$ 不trival
+	- ![Pasted image 20240726111536.png]({{ '/docs/attachment/Pasted%20image%2020240726111536.png' | relative_url }}){:width="250"} $\gamma=a_1b_1a_1^{-1}b_1^{-1}$ 在$H_1(\Sigma,\mathbb Z)$ trival, 但是在$\pi_1(\Sigma)$ 不trival
 
 ### topological space分解
 
@@ -97,7 +97,7 @@ created: 2024-07-21T22:35
 
 #### 例子
 
-![Pasted image 20240731133300.png]({{ '/docs/attachment/Pasted image 20240731133300.png' | relative_url }}){:width="100"} tunnel loop ![Pasted image 20240731133422.png]({{ '/docs/attachment/Pasted image 20240731133422.png' | relative_url }}){:width="100"} handle loop
+![Pasted image 20240731133300.png]({{ '/docs/attachment/Pasted%20image%2020240731133300.png' | relative_url }}){:width="100"} tunnel loop ![Pasted image 20240731133422.png]({{ '/docs/attachment/Pasted%20image%2020240731133422.png' | relative_url }}){:width="100"} handle loop
 
 - closed, orientable 曲面$S$ , 内部三流型为$I$, 外部为$O$ , 有
 	- $$\cdots\rightarrow H_2(\mathbb R^3)\overset{\partial_\ast}\rightarrow H_1(S)\overset{i_\ast,j_\ast}\rightarrow H_1(I)\oplus H_1(O)\overset{k_\ast-l_\ast}\rightarrow H_1(\mathbb R^3)\rightarrow \cdots$$
@@ -131,7 +131,7 @@ created: 2024-07-21T22:35
 	- -> $f_\ast(z)=cz, c\in \mathbb Z$ 
 	- -> $deg(f)=c$ 
 
-![Pasted image 20240731003422.png]({{ '/docs/attachment/Pasted image 20240731003422.png' | relative_url }}){:width="400"}  $p_1,p_2,p_3$ 都映射到$q$.  $p_3$ 是往右凸起, $K(p_3)$ 应该>0?
+![Pasted image 20240731003422.png]({{ '/docs/attachment/Pasted%20image%2020240731003422.png' | relative_url }}){:width="400"}  $p_1,p_2,p_3$ 都映射到$q$.  $p_3$ 是往右凸起, $K(p_3)$ 应该>0?
 - 例子1([Gauss-Bonnet](https://en.wikipedia.org/wiki/Gauss–Bonnet_theorem)): Gauss映射$G:S\rightarrow \mathbb S^2$ , 把点映射到normal vector($p\mapsto n(p)$ ).
 	- $deg(G)=1-g$. 覆盖球面1-g次
 

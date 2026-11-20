@@ -29,12 +29,12 @@ last_modified_at: 2024-07-09T12:14:29-08:00
 			- 相机焦距$f=z$, 光圈直径$D=2a$ 
 		- [numerical aperture](https://en.wikipedia.org/wiki/Numerical_aperture) $NA=\frac{a}{\sqrt{f^2+a^2}}=\frac{1}{\sqrt{4N^2+1}}\approx \frac{1}{2N}$ 
 	- 第一圈黑环处距中心距离，认为是相机的optical resolution:
-		- ![Pasted image 20240112160824.png]({{ '/docs/attachment/Pasted image 20240112160824.png' | relative_url }}){:width="300"}  
+		- ![Pasted image 20240112160824.png]({{ '/docs/attachment/Pasted%20image%2020240112160824.png' | relative_url }}){:width="300"}  
 		- 此时是$J_1(x)$ 的第一个0点， $J_1(ka\sin\theta)=0$，$ka\sin\theta\approx 3.83$ ，即$\sin\theta\approx \frac{3.83}{ka}=\frac{3.83\lambda}{2\pi a}=1.22\frac{\lambda}{D}$ 
 		- 得到optical resolution $q=r_1\sin\theta\approx \sqrt{f^2+a^2}\sin\theta=\frac{a}{NA}\sin\theta\approx \frac{a}{NA}\frac{1.22\lambda}{2a}=\frac{0.61\lambda}{NA}$  
 		- 理论上，numberical aperture越大，optical resolution越小，分辨率越高(也就是衍射更不明显)
 	- 相机的成像清晰度指标：MTF
-		- ![Pasted image 20240112154649.png]({{ '/docs/attachment/Pasted image 20240112154649.png' | relative_url }}){:width="400"} 
+		- ![Pasted image 20240112154649.png]({{ '/docs/attachment/Pasted%20image%2020240112154649.png' | relative_url }}){:width="400"} 
 		- [PSF](https://en.wikipedia.org/wiki/Point_spread_function)(intensity function): $PSF=\|G(p,q)\|^2=\|F(g(x^\prime,y^\prime))\|^2$ 
 			- PSF的单位是 (distance(mm),intesity)
 			- 对于圆形aperture：$PSF=\frac{J_1^2(ka\sin\theta)}{(ka\sin\theta)^2}$ , PSF的零点也就是$J_1$ 的零点  

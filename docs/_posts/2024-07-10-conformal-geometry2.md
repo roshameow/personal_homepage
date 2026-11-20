@@ -36,7 +36,7 @@ created: 2024-07-10T16:34
  covering space单连通, 即 $\pi_1(\tilde S)=\lbrace e\rbrace$ , $\pi_1(S,q)\cong Deck(\tilde S)$  
 
 
-$S$ : <a href="https://commons.wikimedia.org/wiki/File:Torus_cycles.svg#/media/File:Torus_cycles.svg"><img src="https://upload.wikimedia.org/wikipedia/commons/8/81/Torus_cycles.svg" alt="Torus cycles.svg" width="150"  ></a>                         $\rightarrow$ $\tilde S$: ![Pasted image 20240714095557.png]({{ '/docs/attachment/Pasted image 20240714095557.png' | relative_url }}){:width="200"} 上面点集对应$\pi_1(S,q)$ 
+$S$ : <a href="https://commons.wikimedia.org/wiki/File:Torus_cycles.svg#/media/File:Torus_cycles.svg"><img src="https://upload.wikimedia.org/wikipedia/commons/8/81/Torus_cycles.svg" alt="Torus cycles.svg" width="150"  ></a>                         $\rightarrow$ $\tilde S$: ![Pasted image 20240714095557.png]({{ '/docs/attachment/Pasted%20image%2020240714095557.png' | relative_url }}){:width="200"} 上面点集对应$\pi_1(S,q)$ 
 
 ### 构造
 

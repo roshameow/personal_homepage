@@ -33,7 +33,7 @@ last_modified_at: 2024-05-13T16:21:54-08:00
 
 ## 梦幻发光
 
-![Pasted image 20240428143139.png]({{ '/docs/attachment/Pasted image 20240428143139.png' | relative_url }}){:width="200"} ![Pasted image 20240428143157.png]({{ '/docs/attachment/Pasted image 20240428143157.png' | relative_url }}){:width="200"} ![Pasted image 20240428143227.png]({{ '/docs/attachment/Pasted image 20240428143227.png' | relative_url }}){:width="200"} 
+![Pasted image 20240428143139.png]({{ '/docs/attachment/Pasted%20image%2020240428143139.png' | relative_url }}){:width="200"} ![Pasted image 20240428143157.png]({{ '/docs/attachment/Pasted%20image%2020240428143157.png' | relative_url }}){:width="200"} ![Pasted image 20240428143227.png]({{ '/docs/attachment/Pasted%20image%2020240428143227.png' | relative_url }}){:width="200"} 
 
 [教程](https://www.xiaohongshu.com/explore/660fbca9000000001a014c53) 
 
@@ -62,7 +62,7 @@ last_modified_at: 2024-05-13T16:21:54-08:00
 
 
 
-![Pasted image 20240513161940.png]({{ '/docs/attachment/Pasted image 20240513161940.png' | relative_url }}){:width="300"} ![Pasted image 20240513161959.png]({{ '/docs/attachment/Pasted image 20240513161959.png' | relative_url }}){:width="300"} 
+![Pasted image 20240513161940.png]({{ '/docs/attachment/Pasted%20image%2020240513161940.png' | relative_url }}){:width="300"} ![Pasted image 20240513161959.png]({{ '/docs/attachment/Pasted%20image%2020240513161959.png' | relative_url }}){:width="300"} 
 
 
 [教程](https://www.bilibili.com/video/BV1Xj411r7P5/)

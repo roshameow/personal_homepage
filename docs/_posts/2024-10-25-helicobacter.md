@@ -15,7 +15,7 @@ created: 2024-10-25T08:53
 
 实验用58只猫的检测结果, 实验是09年的
 
-![Pasted image 20241027113712.png]({{ '/docs/attachment/Pasted image 20241027113712.png' | relative_url }}){:width="400"}
+![Pasted image 20241027113712.png]({{ '/docs/attachment/Pasted%20image%2020241027113712.png' | relative_url }}){:width="400"}
 
 - 革兰氏染色(GS), Warthin-Starry染色(WSS), 快速脲酶测试(RUT) 这几个基于活检的结果差不多
 	- 革兰氏染色(GS), Warthin-Starry染色(WSS)是光学显微镜形态学方法, 区分不出H. heilmannii和H. felis

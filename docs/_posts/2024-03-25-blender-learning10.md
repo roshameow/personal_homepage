@@ -36,7 +36,7 @@ last_modified_at: 2024-05-09T17:38:33-08:00
 		- roughness= 0.86
 		- Radial Roughness=0.95
 - 结果: 没法复刻例图的效果, 比起毛毡更像搓澡巾😣
-	- ![Pasted image 20240326101412.png]({{ '/docs/attachment/Pasted image 20240326101412.png' | relative_url }}){:width="300"}  局部: ![Pasted image 20240326101810.png]({{ '/docs/attachment/Pasted image 20240326101810.png' | relative_url }}){:width="200"} 
+	- ![Pasted image 20240326101412.png]({{ '/docs/attachment/Pasted%20image%2020240326101412.png' | relative_url }}){:width="300"}  局部: ![Pasted image 20240326101810.png]({{ '/docs/attachment/Pasted%20image%2020240326101810.png' | relative_url }}){:width="200"} 
 	- 是不是还需要设置其他参数?
 
 

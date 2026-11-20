@@ -44,13 +44,13 @@ last_modified_at: 2024-05-08T22:26:59-08:00
 
 一些结果$\downarrow$
 
-![result_compare_2000_test.png]({{ '/docs/attachment/result_compare_2000_test.png' | relative_url }}){:width="400"}  ![Pasted image 20240425142720.png]({{ '/docs/attachment/Pasted image 20240425142720.png' | relative_url }}){:width="400"} 
+![result_compare_2000_test.png]({{ '/docs/attachment/result_compare_2000_test.png' | relative_url }}){:width="400"}  ![Pasted image 20240425142720.png]({{ '/docs/attachment/Pasted%20image%2020240425142720.png' | relative_url }}){:width="400"} 
 
 - 对于测试场景来说, 所有subpixel的方法似乎都没有必要
 - phase correlation > 训练得到的几种特征平移匹配 $\approx$ sad(-mean(diff)) $\approx$ ssd > sad binary >> sad spiral $\approx$ LK
 	- **对图像做detail的提取(如image-blur(image,(6x6)))** 之后, sad的结果得到提高, 和训练得到的特征类似
 	- 几个特征平移方法出现错误的地方可能因为超出了搜索范围导致的
-	-  平移后diff的例子: ![Pasted image 20240425151045.png]({{ '/docs/attachment/Pasted image 20240425151045.png' | relative_url }}){:width="100"} 
+	-  平移后diff的例子: ![Pasted image 20240425151045.png]({{ '/docs/attachment/Pasted%20image%2020240425151045.png' | relative_url }}){:width="100"} 
 - 响应的测试: 除了lk会反应慢一些, 其他都在可以接受范围内
 - 这真是个特别枯燥的工作😑, 很多方法觉得, 啊, 应该不会有效果的, 但还是想着, 坚持着写出来测一下究竟差在哪里吧
 

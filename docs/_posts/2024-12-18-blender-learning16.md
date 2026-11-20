@@ -19,7 +19,7 @@ created: 2024-12-18T21:59
 - 上下层merge变为一点
 - 倒角(bevel), 细分(subdivide)
 
-![Pasted image 20241218224819.png]({{ '/docs/attachment/Pasted image 20241218224819.png' | relative_url }}){:width="150"}
+![Pasted image 20241218224819.png]({{ '/docs/attachment/Pasted%20image%2020241218224819.png' | relative_url }}){:width="150"}
 
 
 ## 用到的blender的一些快捷键功能

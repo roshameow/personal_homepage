@@ -62,11 +62,11 @@ created: 2024-10-21T11:25
 		- [二轮转向vs四轮转向](https://www.pcauto.com.cn/teach/qczs/0212/4785.html)
 	- 转向时, 汽车后部的位移小, 用倒库的方式能更好的进库
 	- [怎么正确转弯](https://www.chemm.com/newsDetail?article_id=36887) 
-- 简化后:  ![Pasted image 20241103201833.png]({{ '/docs/attachment/Pasted image 20241103201833.png' | relative_url }}){:width="120"}   方向盘向左, 往左绕圈 ![Pasted image 20241103201851.png]({{ '/docs/attachment/Pasted image 20241103201851.png' | relative_url }}){:width="120"}  方向盘向右, 往右绕圈
+- 简化后:  ![Pasted image 20241103201833.png]({{ '/docs/attachment/Pasted%20image%2020241103201833.png' | relative_url }}){:width="120"}   方向盘向左, 往左绕圈 ![Pasted image 20241103201851.png]({{ '/docs/attachment/Pasted%20image%2020241103201851.png' | relative_url }}){:width="120"}  方向盘向右, 往右绕圈
 
 ### 行驶路线
 
-![Pasted image 20241107171616.png]({{ '/docs/attachment/Pasted image 20241107171616.png' | relative_url }}){:width="800"} 
+![Pasted image 20241107171616.png]({{ '/docs/attachment/Pasted%20image%2020241107171616.png' | relative_url }}){:width="800"} 
 
 - 注意点:
 	- 驾校教的点位风险很大: 是种作弊+运气的方式, 给我带来的不是安心, 而是极度地焦虑😐, 还好驾照考试并不是为难人, 只要正确学习技术无视这些点位, 就能极大的提高成功率.
@@ -83,7 +83,7 @@ created: 2024-10-21T11:25
 			- 越早靠近库, 越要先多回正方向盘, 待门把手进库之后再调整
 		- [金牌驾校孙教练的教学](https://www.youtube.com/channel/UCYEajAHNuIkvry97Q9zI5lQ/videos) 
 
-![Pasted image 20241107171548.png]({{ '/docs/attachment/Pasted image 20241107171548.png' | relative_url }}){:width="800"} 
+![Pasted image 20241107171548.png]({{ '/docs/attachment/Pasted%20image%2020241107171548.png' | relative_url }}){:width="800"} 
 
 - 注意点:
 	- 转向灯要在库里还没出发时打够3s, 不然会扣10分
@@ -91,7 +91,7 @@ created: 2024-10-21T11:25
 	- 入库最后不用一下打死, 看库的虚线位置调整左右距离
 
 
-![Pasted image 20241107171649.png]({{ '/docs/attachment/Pasted image 20241107171649.png' | relative_url }}){:width="800"} 
+![Pasted image 20241107171649.png]({{ '/docs/attachment/Pasted%20image%2020241107171649.png' | relative_url }}){:width="800"} 
 
 - 注意点:
 	- 曲线路程中看后视镜和边缘线的距离调整一下方向盘的角度
@@ -109,7 +109,7 @@ created: 2024-10-21T11:25
 	- 百度地图可以, 全景
 		- 但是地图上看不到考试用的伪装路牌
 
-![Pasted image 20241202131823.png]({{ '/docs/attachment/Pasted image 20241202131823.png' | relative_url }}){:width="600"}
+![Pasted image 20241202131823.png]({{ '/docs/attachment/Pasted%20image%2020241202131823.png' | relative_url }}){:width="600"}
 
 - 地图制作: 提取线稿+合成
 	- 提取线稿: binary(image-gaussianblur(image))

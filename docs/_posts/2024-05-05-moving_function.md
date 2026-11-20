@@ -54,7 +54,7 @@ leetcode 239
 		- 或保存一份window, 如果window移除data = deque的第一个data, 把data从deque里移除
 			- deque里不会有重复data
 	- deque里的第一个data就是local max
-	- 例子: ![Pasted image 20240515165236.png]({{ '/docs/attachment/Pasted image 20240515165236.png' | relative_url }}){:width="300"} 
+	- 例子: ![Pasted image 20240515165236.png]({{ '/docs/attachment/Pasted%20image%2020240515165236.png' | relative_url }}){:width="300"} 
 		- data6进入window后, 4,5就不可能成为local max了
 		- data7进入window后, 6也不可能成为local max了
 

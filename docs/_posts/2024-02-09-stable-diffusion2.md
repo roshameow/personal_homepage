@@ -38,8 +38,8 @@ last_modified_at: 2024-04-14T20:09:49-08:00
 
 ## 结果
 
-![Pasted image 20240209124721.png]({{ '/docs/attachment/Pasted image 20240209124721.png' | relative_url }}){:width="150"} -> ![Pasted image 20240209124343.png]({{ '/docs/attachment/Pasted image 20240209124343.png' | relative_url }}){:width="600"} -> 
-![Pasted image 20240414194413.png]({{ '/docs/attachment/Pasted image 20240414194413.png' | relative_url }}){:width="600"} (ipadapter控制风格)
+![Pasted image 20240209124721.png]({{ '/docs/attachment/Pasted%20image%2020240209124721.png' | relative_url }}){:width="150"} -> ![Pasted image 20240209124343.png]({{ '/docs/attachment/Pasted%20image%2020240209124343.png' | relative_url }}){:width="600"} -> 
+![Pasted image 20240414194413.png]({{ '/docs/attachment/Pasted%20image%2020240414194413.png' | relative_url }}){:width="600"} (ipadapter控制风格)
 - **风格:** 3种方法都可以
 	1. text prompt里输入
 	2. 风格LoRA
@@ -63,10 +63,10 @@ last_modified_at: 2024-04-14T20:09:49-08:00
 		- 是大模型本身导致的吗?
 	- 用ipadpter的失败经验:
 		- 如果用一张猫的图片和一张风格图
-			- ![Pasted image 20240209133511.png]({{ '/docs/attachment/Pasted image 20240209133511.png' | relative_url }}){:width="100"} 
+			- ![Pasted image 20240209133511.png]({{ '/docs/attachment/Pasted%20image%2020240209133511.png' | relative_url }}){:width="100"} 
 			- 无法控制输入元素
 		- 比较成功的样子是这样: 设置了style_transfer的weight_type, 风格图本身没有正脸
-			- ![Pasted image 20240414195850.png]({{ '/docs/attachment/Pasted image 20240414195850.png' | relative_url }}){:width="100"} 
+			- ![Pasted image 20240414195850.png]({{ '/docs/attachment/Pasted%20image%2020240414195850.png' | relative_url }}){:width="100"} 
 			- 眼睛变化不大
 
 	
@@ -74,15 +74,15 @@ last_modified_at: 2024-04-14T20:09:49-08:00
 
 用Lora调整风格$\downarrow$ : [**rosha_lora_controlnet_canny_depth_style_change.json**](https://gist.github.com/roshameow/d952bf0157a25ab3e9e724df1449b160#file-rosha_lora_controlnet_canny_depth_style_change-json) 
 
-![屏幕截图 2024-02-08 230728.png]({{ '/docs/attachment/屏幕截图 2024-02-08 230728.png' | relative_url }}){:width="800"} 
+![屏幕截图 2024-02-08 230728.png]({{ '/docs/attachment/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-02-08%20230728.png' | relative_url }}){:width="800"} 
 
 用ipadator调整风格$\downarrow$ : [**rosha_lora_ipadapter_style_tranformation.json**](https://gist.github.com/roshameow/d952bf0157a25ab3e9e724df1449b160#file-rosha_lora_ipadapter_style_tranformation-json) 
 
-![Pasted image 20240209135354.png]({{ '/docs/attachment/Pasted image 20240209135354.png' | relative_url }}){:width="800"}
+![Pasted image 20240209135354.png]({{ '/docs/attachment/Pasted%20image%2020240209135354.png' | relative_url }}){:width="800"}
 
 用ipadapter v2调整风格$\downarrow$: [**rosha_lora_depthcontrol_ipadapterv2.json**](https://gist.github.com/roshameow/d952bf0157a25ab3e9e724df1449b160#file-rosha_lora_depthcontrol_ipadapterv2-json)  
 
-![Pasted image 20240414194215.png]({{ '/docs/attachment/Pasted image 20240414194215.png' | relative_url }}){:width="800"}
+![Pasted image 20240414194215.png]({{ '/docs/attachment/Pasted%20image%2020240414194215.png' | relative_url }}){:width="800"}
 
 ## 资源
 

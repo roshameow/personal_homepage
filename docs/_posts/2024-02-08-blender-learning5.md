@@ -44,7 +44,7 @@ last_modified_at: 2024-03-25T17:49:30-08:00
 
 ### shader流程
 
-![Pasted image 20240208164250.png]({{ '/docs/attachment/Pasted image 20240208164250.png' | relative_url }}){:width="600"} 
+![Pasted image 20240208164250.png]({{ '/docs/attachment/Pasted%20image%2020240208164250.png' | relative_url }}){:width="600"} 
 
 ## 用displacement+粒子系统 -> 卡通火焰
 ### 步骤: 

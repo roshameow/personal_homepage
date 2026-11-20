@@ -19,7 +19,7 @@ created: 2024-12-05T17:16
 		- 调整梭形的长短, 粗细
 	- 复制多个做为动效: 固定在XZ平面, 绕中心小圈复制4个, 大圈复制8个
 		- 先复制到(-2,2), (4,0) 位置, 倍增得到小圈, 复制小圈得到大圈, 复制大圈倍增
-			- ![Pasted image 20241210113337.png]({{ '/docs/attachment/Pasted image 20241210113337.png' | relative_url }}){:width="150"} 在XZ平面上有格子可以定位, 刚复制时ctrl也可以看到坐标
+			- ![Pasted image 20241210113337.png]({{ '/docs/attachment/Pasted%20image%2020241210113337.png' | relative_url }}){:width="150"} 在XZ平面上有格子可以定位, 刚复制时ctrl也可以看到坐标
 	- 多选分组调整梭形的长短, 粗细比例: 比如大圈和小圈分开调整
 		- 批量调整形态时, 需要把[pivot point(轴心点)](https://docs.blender.org/manual/en/2.80/scene_layout/object/editing/transform/control/pivot_point/index.html) 切换成individual origins 
 		- 可能需要右键 -> separate selected 分开成单独的object, 用来之后设置不同的扭曲和运动.
@@ -82,7 +82,7 @@ created: 2024-12-05T17:16
 ### edit mode
 
 - [pivot point(轴心点)](https://docs.blender.org/manual/en/2.80/scene_layout/object/editing/transform/control/pivot_point/index.html) 的不同选项影响transform对link里mesh是怎么作用的
-	- ![Pasted image 20241210124924.png]({{ '/docs/attachment/Pasted image 20241210124924.png' | relative_url }}){:width="150"} individual orgin:  ![Pasted image 20241210124951.png]({{ '/docs/attachment/Pasted image 20241210124951.png' | relative_url }}){:width="150"}  median point: ![Pasted image 20241210125026.png]({{ '/docs/attachment/Pasted image 20241210125026.png' | relative_url }}){:width="150"} 
+	- ![Pasted image 20241210124924.png]({{ '/docs/attachment/Pasted%20image%2020241210124924.png' | relative_url }}){:width="150"} individual orgin:  ![Pasted image 20241210124951.png]({{ '/docs/attachment/Pasted%20image%2020241210124951.png' | relative_url }}){:width="150"}  median point: ![Pasted image 20241210125026.png]({{ '/docs/attachment/Pasted%20image%2020241210125026.png' | relative_url }}){:width="150"} 
 	- 默认median point是以所有组的中心apply transform的.
 	- individual origins是组里每个connect component单独作用
 	- ! 在Object Mode表现不同
@@ -90,10 +90,10 @@ created: 2024-12-05T17:16
 ### modifier
 
 - [Simple Deform](https://docs.blender.org/manual/en/latest/modeling/modifiers/deform/simple_deform.html) 的Twist效果
-	- ![Pasted image 20241213115547.png]({{ '/docs/attachment/Pasted image 20241213115547.png' | relative_url }}){:width="150"} 
+	- ![Pasted image 20241213115547.png]({{ '/docs/attachment/Pasted%20image%2020241213115547.png' | relative_url }}){:width="150"} 
 	- 沿Axis扭曲, 扭曲角度由mesh上每个点到Origin的距离(指把点变化到object的局部坐标系下)决定
 	- 想控制的话, Origin还是单独用一个空物体调整比较方便
 - [Curve modifier](https://docs.blender.org/manual/en/latest/modeling/modifiers/deform/curve.html) : 
 	- 物体坐标由xyz-chart , 转为(curve, 垂直平面) 构成的local chart. 
 	- 超出curve的范围由两端顶点的梯度做外插得到.
-	- ![Pasted image 20241211155218.png]({{ '/docs/attachment/Pasted image 20241211155218.png' | relative_url }}){:width="300"} 如图Z轴替换为curve, 变换前 -> 变换后(橙色)
+	- ![Pasted image 20241211155218.png]({{ '/docs/attachment/Pasted%20image%2020241211155218.png' | relative_url }}){:width="300"} 如图Z轴替换为curve, 变换前 -> 变换后(橙色)

@@ -74,18 +74,18 @@ last_modified_at: 2024-03-01T14:58:08-08:00
 
 工作流: [**inpainting_background_SAM_fooocus.json**](https://gist.github.com/roshameow/041450c340e56d39f12c93bd7d2d8606#file-inpainting_background_sam_fooocus-json) $\downarrow$ 
 
-![屏幕截图 2024-02-23 232215.png]({{ '/docs/attachment/屏幕截图 2024-02-23 232215.png' | relative_url }}){:width="800"}
+![屏幕截图 2024-02-23 232215.png]({{ '/docs/attachment/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-02-23%20232215.png' | relative_url }}){:width="800"}
 ### 去掉不想要的人物
 
 [**inpaint_delete_person_SAM_Lama_fooocus.json**](https://gist.github.com/roshameow/041450c340e56d39f12c93bd7d2d8606#file-inpaint_delete_person_sam_lama_fooocus-json) $\downarrow$
 
-![屏幕截图 2024-02-23 231325.png]({{ '/docs/attachment/屏幕截图 2024-02-23 231325.png' | relative_url }}){:width="800"}
+![屏幕截图 2024-02-23 231325.png]({{ '/docs/attachment/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-02-23%20231325.png' | relative_url }}){:width="800"}
 
 ### 修改局部
 
 [**inpaint_edit_fooocus_ipadapter.json**](https://gist.github.com/roshameow/041450c340e56d39f12c93bd7d2d8606#file-inpaint_edit_fooocus_ipadapter-json) $\downarrow$ 
 
-![屏幕截图 2024-02-23 235229.png]({{ '/docs/attachment/屏幕截图 2024-02-23 235229.png' | relative_url }}){:width="800"}
+![屏幕截图 2024-02-23 235229.png]({{ '/docs/attachment/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-02-23%20235229.png' | relative_url }}){:width="800"}
 
 和inpaint类似, 用Pad for Outpainting生成mask和灰色填补的图像
 
@@ -94,7 +94,7 @@ last_modified_at: 2024-03-01T14:58:08-08:00
 [**outpainting_lama_fooocus_ipadapter.json**](https://gist.github.com/roshameow/041450c340e56d39f12c93bd7d2d8606#file-outpainting_lama_fooocus_ipadapter-json) $\downarrow$ 
 
 
-![屏幕截图 2024-02-23 230951.png]({{ '/docs/attachment/屏幕截图 2024-02-23 230951.png' | relative_url }}){:width="800"}
+![屏幕截图 2024-02-23 230951.png]({{ '/docs/attachment/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-02-23%20230951.png' | relative_url }}){:width="800"}
 
 - 想生成简单纯色的背景似乎不可能, 网络总会自己加些东西: 是不是网络认为纯色背景是一种未完成的状态?
 
@@ -104,7 +104,7 @@ last_modified_at: 2024-03-01T14:58:08-08:00
 - [参考网络上这个做法](https://www.bilibili.com/video/BV1tU421o7hu/) : 生成一组边框和圆形logo
 - 用到了inpaint, 图片引导, ipadapter的attmask功能
 
-![屏幕截图 2024-02-28 224350.png]({{ '/docs/attachment/屏幕截图 2024-02-28 224350.png' | relative_url }}){:width="800"} 
+![屏幕截图 2024-02-28 224350.png]({{ '/docs/attachment/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-02-28%20224350.png' | relative_url }}){:width="800"} 
 
 - 用引导图控制颜色的例子: 
 	- <iframe src="//player.bilibili.com/player.html?aid=623547089&bvid=BV1Jt4y1o7TY&cid=1402072759&p=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>

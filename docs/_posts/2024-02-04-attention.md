@@ -13,7 +13,7 @@ last_modified_at: 2024-03-27T15:26:32-08:00
 在网络中, block是把input信息转换成output信息的过程: 一般, output(position, vector)是input(token, embedding vector)的线性组合, 组合的weight (position, token) 由input和output两方关系确定. 把着重强调这种信息交互的模块叫attention. 
 ## convolution
 
-![Pasted image 20240207151034.png]({{ '/docs/attachment/Pasted image 20240207151034.png' | relative_url }}){:width="400"} 
+![Pasted image 20240207151034.png]({{ '/docs/attachment/Pasted%20image%2020240207151034.png' | relative_url }}){:width="400"} 
 
 convolution在神经网络流行之前就已经在图像任务里广泛使用了
 - **目的:**
@@ -26,7 +26,7 @@ convolution在神经网络流行之前就已经在图像任务里广泛使用了
 
 ## gate attention
 
-![Pasted image 20240207151122.png]({{ '/docs/attachment/Pasted image 20240207151122.png' | relative_url }}){:width="400"} ![Pasted image 20240207151136.png]({{ '/docs/attachment/Pasted image 20240207151136.png' | relative_url }}){:width="400"} 
+![Pasted image 20240207151122.png]({{ '/docs/attachment/Pasted%20image%2020240207151122.png' | relative_url }}){:width="400"} ![Pasted image 20240207151136.png]({{ '/docs/attachment/Pasted%20image%2020240207151136.png' | relative_url }}){:width="400"} 
 
 - **目的:**
 	- 提取channel[1](#ref)或spatial的权重, 让网络关注更重要的信息
@@ -35,7 +35,7 @@ convolution在神经网络流行之前就已经在图像任务里广泛使用了
 
 ## self-attention & cross-attention
 
-![Pasted image 20240207151214.png]({{ '/docs/attachment/Pasted image 20240207151214.png' | relative_url }}){:width="400"} 
+![Pasted image 20240207151214.png]({{ '/docs/attachment/Pasted%20image%2020240207151214.png' | relative_url }}){:width="400"} 
 
 - **目的:**
 	- 信息的交互: 在我的图示中, 是把文字信息加入视觉信息

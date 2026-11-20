@@ -52,7 +52,7 @@ last_modified_at: 2024-04-10T15:13:14-08:00
 
 ### geometry nodes
 
-![Pasted image 20240410145231.png]({{ '/docs/attachment/Pasted image 20240410145231.png' | relative_url }}){:width="800"} 
+![Pasted image 20240410145231.png]({{ '/docs/attachment/Pasted%20image%2020240410145231.png' | relative_url }}){:width="800"} 
 ### 用到的blender的一些快捷键
 
 - Option+G/S/R ([清除](https://docs.blender.org/manual/en/latest/scene_layout/object/editing/clear.html#) )

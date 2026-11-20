@@ -21,14 +21,14 @@ last_modified_at: 2024-05-28T12:46:36-08:00
 1. 用Cycles渲染器, 打开Render->[Film->Transparent-> Transparent Glass](https://docs.blender.org/manual/en/latest/render/cycles/render_settings/film.html)
 	- 但是没有用到composition所以开不开无所谓吧?
 2. **表面增加凹凸**: 用Bump节点
-	-  ![Pasted image 20240527221548.png]({{ '/docs/attachment/Pasted image 20240527221548.png' | relative_url }}){:width="100"} 
+	-  ![Pasted image 20240527221548.png]({{ '/docs/attachment/Pasted%20image%2020240527221548.png' | relative_url }}){:width="100"} 
 	- 用[Bump](https://docs.blender.org/manual/en/4.1/render/shader_nodes/vector/bump.html) 更改normal的方向: 根据输入的局部高度差
 		-  用noise texture生成纹理, 应用到bump的高度
 	- 用相同的noise texture生成纹理, 应用到roughness
 		- 目的是让凸出的地方更粗糙? 感觉和实际不太相符
 3. **在内部添加crack**: 用[Voronoi Texture](https://docs.blender.org/manual/en/latest/render/shader_nodes/textures/voronoi.html) 复合Noise Texture的扭曲
 	- 
-	- texture color: ![Pasted image 20240528093833.png]({{ '/docs/attachment/Pasted image 20240528093833.png' | relative_url }}){:width="100"}  添加到volume后: ![Pasted image 20240528102634.png]({{ '/docs/attachment/Pasted image 20240528102634.png' | relative_url }}){:width="100"} 
+	- texture color: ![Pasted image 20240528093833.png]({{ '/docs/attachment/Pasted%20image%2020240528093833.png' | relative_url }}){:width="100"}  添加到volume后: ![Pasted image 20240528102634.png]({{ '/docs/attachment/Pasted%20image%2020240528102634.png' | relative_url }}){:width="100"} 
 	- Voronoi Texture由[Worley noise](https://en.wikipedia.org/wiki/Worley_noise) 生成
 		- 选择Distance to Edge: 生成distance map
 	- 用[Linear Light(线性光)](https://docs.krita.org/en/reference_manual/blending_modes/lighten.html#bm-linear-light) 的方式混合: 和add差不多, 但是会对可能saturated的值特殊处理
@@ -46,7 +46,7 @@ last_modified_at: 2024-05-28T12:46:36-08:00
 
 <iframe src="//player.bilibili.com/player.html?isOutside=true&aid=422168352&bvid=BV1a3411477N&cid=458238306&p=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
 
-- ![Pasted image 20240527221116.png]({{ '/docs/attachment/Pasted image 20240527221116.png' | relative_url }}){:width="480"}  ![Pasted image 20240527221224.png]({{ '/docs/attachment/Pasted image 20240527221224.png' | relative_url }}){:width="320"} 
+- ![Pasted image 20240527221116.png]({{ '/docs/attachment/Pasted%20image%2020240527221116.png' | relative_url }}){:width="480"}  ![Pasted image 20240527221224.png]({{ '/docs/attachment/Pasted%20image%2020240527221224.png' | relative_url }}){:width="320"} 
 - 冻的漂亮的冰里面本来就不应该有那些crack和气泡嘛
 
 

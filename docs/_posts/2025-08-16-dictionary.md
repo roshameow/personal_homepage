@@ -38,7 +38,7 @@ created: 2025-08-16T22:52
 
 ## 结果
 
-![Pasted image 20250819114921.png]({{ '/docs/attachment/Pasted image 20250819114921.png' | relative_url }}){:width="300"}
+![Pasted image 20250819114921.png]({{ '/docs/attachment/Pasted%20image%2020250819114921.png' | relative_url }}){:width="300"}
 
 - 效果和官方字典差不多
 - 但是在一些网页的在线代码编辑器(可能用的是自绘控件, 而不是macos的Cocoa文本系统)和微信(lookup被软件禁用)不能用

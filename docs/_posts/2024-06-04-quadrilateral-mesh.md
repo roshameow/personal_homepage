@@ -10,7 +10,7 @@ tags:
 last_modified_at: 2024-09-04T20:53
 created: 2024-06-03T21:01
 ---
-![Pasted image 20240610075408.png]({{ '/docs/attachment/Pasted image 20240610075408.png' | relative_url }}){:width="150"} -> ![Pasted image 20240610075425.png]({{ '/docs/attachment/Pasted image 20240610075425.png' | relative_url }}){:width="130"} 
+![Pasted image 20240610075408.png]({{ '/docs/attachment/Pasted%20image%2020240610075408.png' | relative_url }}){:width="150"} -> ![Pasted image 20240610075425.png]({{ '/docs/attachment/Pasted%20image%2020240610075425.png' | relative_url }}){:width="130"} 
 
 从通用的triangle mesh生成quad mesh. quad mesh容易插值和细分(样条曲面和 Catmull-Clark细分曲面常⻅ 的定义域就是四边形)
 
@@ -28,7 +28,7 @@ created: 2024-06-03T21:01
 		- chart: 每个face 的 interior定义$U_f$ , edge邻域定义$U_e$ , vertex邻域定义$U_v$ 
 		- transition: 每两个chart之间的transition(face->edge, edge->vertex, face->vertex)都是$\pi/2$ 的旋转+平移, 是holomorphic的
 
-![Pasted image 20240612152840.png]({{ '/docs/attachment/Pasted image 20240612152840.png' | relative_url }}){:width="400"}
+![Pasted image 20240612152840.png]({{ '/docs/attachment/Pasted%20image%2020240612152840.png' | relative_url }}){:width="400"}
 
 
 ## 等价条件
@@ -90,7 +90,7 @@ created: 2024-06-03T21:01
 
 ### 生成T-mesh $T=(V,E,F)$ 
 
-![Pasted image 20240612151157.png]({{ '/docs/attachment/Pasted image 20240612151157.png' | relative_url }}){:width="200"}
+![Pasted image 20240612151157.png]({{ '/docs/attachment/Pasted%20image%2020240612151157.png' | relative_url }}){:width="200"}
 
 - 从triangle mesh计算homology group(同调群) $H_1(\Sigma,\mathbb Z)$ 的basis $\{a_1,\dots,a_g,b_1,\dots,b_g\}$ , 
 	- 通过reset height function构造Reeb graph抽卡保证$a_i$ 只和$b_i$ 相交(canonical basis, see [4](#ref))
@@ -119,7 +119,7 @@ created: 2024-06-03T21:01
 	- complex domain上的$dz^4$, 用$\psi$ pull back, 得到 $\omega=\psi^* dz^4$ 为$\Sigma$ 上的一个meromorphic quartic differential
 - 从 $\omega$ 上$S$的横竖方向trace得到T-mesh(see [7](#ref))
 
-T-mesh 形成过程: ![Pasted image 20240612170414.png]({{ '/docs/attachment/Pasted image 20240612170414.png' | relative_url }}){:width="400"} 
+T-mesh 形成过程: ![Pasted image 20240612170414.png]({{ '/docs/attachment/Pasted%20image%2020240612170414.png' | relative_url }}){:width="400"} 
 ### 生成quad-mesh: 把每个rectangle划分成grid方格
 
 - 解$\downarrow$ 构成的线性系统方程

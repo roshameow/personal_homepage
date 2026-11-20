@@ -10,7 +10,7 @@ tags:
   - opencv
 last_modified_at: 2024-04-10T19:16:48-08:00
 ---
-![Pasted image 20240410165502.png]({{ '/docs/attachment/Pasted image 20240410165502.png' | relative_url }}){:width="200"}
+![Pasted image 20240410165502.png]({{ '/docs/attachment/Pasted%20image%2020240410165502.png' | relative_url }}){:width="200"}
 
 - 公司需要画一个这样的图像, 本来想法是先画一个方形渐变, 复制需要的份数, 极坐标变换. 
 - 想全部在photoshop里面完成的, 但是发现不知道怎么复制

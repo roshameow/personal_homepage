@@ -21,29 +21,29 @@ last_modified_at: 2024-03-06T17:15:02-08:00
 	2. 删除上下两个底: 在Edit Mode, 开启透视, 按3选中面删除
 	3. 把下底缩小一点: 按1选中顶点
 	4. 填充底面: 用Ctrl+F填充, 选择[Grid Fill](https://docs.blender.org/manual/en/latest/modeling/meshes/editing/face/grid_fill.html), 调节Offset
-		-  ![Pasted image 20240212082748.png]({{ '/docs/attachment/Pasted image 20240212082748.png' | relative_url }}){:width="100"} 
+		-  ![Pasted image 20240212082748.png]({{ '/docs/attachment/Pasted%20image%2020240212082748.png' | relative_url }}){:width="100"} 
 	5. 做出玻璃杯的厚度: 选中上面的顶点, 用E+S向内
-		-  ![Pasted image 20240212082705.png]({{ '/docs/attachment/Pasted image 20240212082705.png' | relative_url }}){:width="100"} 
+		-  ![Pasted image 20240212082705.png]({{ '/docs/attachment/Pasted%20image%2020240212082705.png' | relative_url }}){:width="100"} 
 	6. 做出玻璃杯的内层: 继续E+Y向下, S向内
 	7. 做出玻璃杯的内底: Ctrl+F填充, 选择[Grid Fill](https://docs.blender.org/manual/en/latest/modeling/meshes/editing/face/grid_fill.html) , 调节Offset
 	8. 把杯子变光滑:
 		1. 在边缘处添加loop cut(卡线): Ctrl+R 增加loop cut, Ctrl+B向上下拉伸
-			-  ![Pasted image 20240212133706.png]({{ '/docs/attachment/Pasted image 20240212133706.png' | relative_url }}){:width="100"} 
+			-  ![Pasted image 20240212133706.png]({{ '/docs/attachment/Pasted%20image%2020240212133706.png' | relative_url }}){:width="100"} 
 			- 添加loop cut是为了之后把杯子边缘变成弧形, 而不影响杯壁和杯底平的部分
 		1. Shift+option 长按出现选项, 选中loop, 按G移动loop进行微调
-			1. ![Pasted image 20240212141056.png]({{ '/docs/attachment/Pasted image 20240212141056.png' | relative_url }}){:width="100"} 
+			1. ![Pasted image 20240212141056.png]({{ '/docs/attachment/Pasted%20image%2020240212141056.png' | relative_url }}){:width="100"} 
 	9. 改成shade smooth
 	10. 加一个subdivision modifier
 - 制作拍摄场景:
 	1. 添加一个plane mesh
 	2. 在Edit Mode选中一个边, E+Z复制一份, 向上拉
-		1. ![Pasted image 20240212141942.png]({{ '/docs/attachment/Pasted image 20240212141942.png' | relative_url }}){:width="100"} 
+		1. ![Pasted image 20240212141942.png]({{ '/docs/attachment/Pasted%20image%2020240212141942.png' | relative_url }}){:width="100"} 
 	3. 选中中间的edge, 拉成弧线: Shift+Option选中, Ctrl+B拉伸, 按S改变段数
-		1. ![Pasted image 20240212142443.png]({{ '/docs/attachment/Pasted image 20240212142443.png' | relative_url }}){:width="150"} 
+		1. ![Pasted image 20240212142443.png]({{ '/docs/attachment/Pasted%20image%2020240212142443.png' | relative_url }}){:width="150"} 
 	4. 选择shade smooth
 - 打光
 	- 一个area light做主光, 另一个area light做辅光: 形状调节成disk
-		- ![Pasted image 20240212143950.png]({{ '/docs/attachment/Pasted image 20240212143950.png' | relative_url }}){:width="150"} ![Pasted image 20240212152018.png]({{ '/docs/attachment/Pasted image 20240212152018.png' | relative_url }}){:width="130"}  
+		- ![Pasted image 20240212143950.png]({{ '/docs/attachment/Pasted%20image%2020240212143950.png' | relative_url }}){:width="150"} ![Pasted image 20240212152018.png]({{ '/docs/attachment/Pasted%20image%2020240212152018.png' | relative_url }}){:width="130"}  
 - shader: 
 	- cycles的做法:
 		- 用Refraction和Glossy混合
@@ -63,7 +63,7 @@ last_modified_at: 2024-03-06T17:15:02-08:00
 		- 打开玻璃杯的material->Screen Space Refraction选项
 		- 把material的Blend Mode和Shadow Mode都改成Alpha Hashed
 - 结果: 
-	- cycles: ![Pasted image 20240212152142.png]({{ '/docs/attachment/Pasted image 20240212152142.png' | relative_url }}){:width="400"}  eevee: ![Pasted image 20240306170629.png]({{ '/docs/attachment/Pasted image 20240306170629.png' | relative_url }}){:width="360"} 
+	- cycles: ![Pasted image 20240212152142.png]({{ '/docs/attachment/Pasted%20image%2020240212152142.png' | relative_url }}){:width="400"}  eevee: ![Pasted image 20240306170629.png]({{ '/docs/attachment/Pasted%20image%2020240306170629.png' | relative_url }}){:width="360"} 
  
  
 ## 用到的blender的一些快捷键功能

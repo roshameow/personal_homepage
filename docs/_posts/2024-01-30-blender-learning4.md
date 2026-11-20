@@ -20,7 +20,7 @@ last_modified_at: 2024-02-01T22:14:22-08:00
 - shader: 目的是把车流改成带纹理, 自发光, 透明的效果
 	- color:
 		- 下载一个灯火通明的城市俯瞰图
-			- ![Pasted image 20240201173155.png]({{ '/docs/attachment/Pasted image 20240201173155.png' | relative_url }}){:width="100"} 
+			- ![Pasted image 20240201173155.png]({{ '/docs/attachment/Pasted%20image%2020240201173155.png' | relative_url }}){:width="100"} 
 		- 我们只想要图中亮的地方
 	- emission: 把贴图纹理连到bsdf的[emission](https://docs.blender.org/manual/en/latest/render/shader_nodes/shader/emission.html)
 		- 需要调整strength: 把strength调大之后好像发的都是白光?
@@ -49,4 +49,4 @@ last_modified_at: 2024-02-01T22:14:22-08:00
 
 ## shader流程
 
-![Pasted image 20240201172349.png]({{ '/docs/attachment/Pasted image 20240201172349.png' | relative_url }}){:width="800"} 
+![Pasted image 20240201172349.png]({{ '/docs/attachment/Pasted%20image%2020240201172349.png' | relative_url }}){:width="800"} 
