@@ -20,19 +20,19 @@
 <meta name="generator" content="Jekyll v4.4.1" />
 <meta property="og:title" content="hash映射" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="估算alpha id 和什么有关" />
-<meta name="twitter:description" property="og:description" content="估算alpha id 和什么有关" />
+<meta name="description" content="常用哈希与编码方案比对" />
+<meta name="twitter:description" property="og:description" content="常用哈希与编码方案比对" />
 <link rel="canonical" href="https://roshameow.github.io//personal_homepage/algorithm/alpha12/" />
 <meta property="og:url" content="https://roshameow.github.io//personal_homepage/algorithm/alpha12/" />
 <meta property="og:site_name" content="Liu, Wen’s Home Page" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2025-09-25T00:00:00+00:00" />
-<meta property="article:modified_time" content="2025-10-05T19:42:00+00:00" />
+<meta property="article:modified_time" content="2026-11-10T08:55:00+00:00" />
 <meta name="twitter:card" content="summary" />
 <meta name="twitter:title" content="hash映射" />
 <meta name="twitter:site" content="@" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2025-10-05T19:42:00+00:00","datePublished":"2025-09-25T00:00:00+00:00","description":"估算alpha id 和什么有关","headline":"hash映射","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/algorithm/alpha12/"},"url":"https://roshameow.github.io//personal_homepage/algorithm/alpha12/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2026-11-10T08:55:00+00:00","datePublished":"2025-09-25T00:00:00+00:00","description":"常用哈希与编码方案比对","headline":"hash映射","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/algorithm/alpha12/"},"url":"https://roshameow.github.io//personal_homepage/algorithm/alpha12/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -108,7 +108,7 @@
       <div class="page-sidebar">
         <div class="page-author h-card p-author"><img src="/personal_homepage/docs/images/logo.svg" class="author-avatar u-photo" alt=""><div class="author-info">
 
-<span class="read-time">1 min read</span>
+<span class="read-time">5 min read</span>
 
     <time class="page-date dt-published" datetime="2025-09-25T00:00:00+00:00"><a class="u-url" href="">September 25, 2025</a>
 </time>
@@ -140,7 +140,7 @@
     </h2>
   </summary>
   <div class="toc-content">
-    <ul class="inline_toc" id="my_toc"><li><a href="#假设1">假设1:</a></li><li><a href="#假设2">假设2</a></li><li><a href="#假设2-1">假设2</a></li><li><a href="#假设3">假设3</a></li></ul>
+    <ul class="inline_toc" id="my_toc"><li><a href="#常用哈希与编码方案比对">常用哈希与编码方案比对</a></li><li><a href="#研究背景与核心假说证伪链">研究背景与核心假说证伪链</a><ul><li><a href="#31-假设专属映射表详细实现与数学反演">3.1 假设：专属映射表（详细实现与数学反演）</a></li></ul></li><li><a href="#平台物理架构反推与-8-位扩容之谜">平台物理架构反推与 8 位扩容之谜</a><ul><li><a href="#一44-并发槽与-380-次天心算悖论的物理本质">一、44 并发槽与 380 次/天心算悖论的物理本质</a></li><li><a href="#二7-位升级-8-位容量饱和与进位实证">二、7 位升级 8 位：容量饱和与进位实证</a></li></ul></li></ul>
   </div>
 </details>
 
@@ -157,15 +157,15 @@
   <div class="toc-content">
     <ul>
       
-      <li><a href="/personal_homepage/tool/pi-runtime-attribution/">Pi Desktop的开发难点: “会话的状态”</a></li>
+      <li><a href="/personal_homepage/data/alpha29/">News & Social Media 新闻流、社交媒体情绪与文本事件数据体系</a></li>
       
-      <li><a href="/personal_homepage/tool/pi-desktop/">Pi Desktop：从会话浏览器到跨机器工作台</a></li>
+      <li><a href="/personal_homepage/data/alpha28/">日内 PV 统计量与市场微结构衍生指标体系</a></li>
       
-      <li><a href="/personal_homepage/daily/sticker/">用AI做了一套微信表情包:从微信头像缓存到提交上架</a></li>
+      <li><a href="/personal_homepage/tool/alpha27/">从过度防御的歪路纠偏：GUI/CLI 6 态极简控制面、数据面板统一与工程收口</a></li>
       
-      <li><a href="/personal_homepage/daily/agent-blog-writing/">用AI agent复现我的博客风格</a></li>
+      <li><a href="/personal_homepage/thought/agent-infrastructure-pitfalls-2/">用 AI 维护复杂控制面基础设施：为什么越修越死？从补丁膨胀到 6 态收敛的六大工程陷阱</a></li>
       
-      <li><a href="/personal_homepage/tool/lesson/">听课app开发调研</a></li>
+      <li><a href="/personal_homepage/tool/pi-subagent-durable/">pi-subagent-durable：后台子代理的持久化、生命周期与故障自愈</a></li>
       
     </ul>
   </div>
@@ -177,16 +177,7 @@
 
       <div class="page-content">
         <div class="e-content">
-          <p>估算alpha id 和什么有关</p>
-
-<p>有些hash会非常相似. 目的, 得到alpha id的全部编码信息: 秒级的timestamp+machine id</p>
-
-<p>44/s. 2640/min. 1w consultant. 每人回测100/ 5min.</p>
-
-<p>44x3600x24/10000 = 380 次/天. 这和实际结果很不符合.</p>
-
-<p>1天5w.</p>
-<h3 id="假设1">假设1:</h3>
+          <h2 id="常用哈希与编码方案比对">常用哈希与编码方案比对</h2>
 
 <table>
   <thead>
@@ -200,159 +191,324 @@
   </thead>
   <tbody>
     <tr>
-      <td><strong>密码</strong>学hash函数<br />(SHA-256 / SHA-1 / MD5)</td>
-      <td><strong>碎纸机</strong>:<br />→ 生成和输出相同的初始值<br />加入输入的内容进行各种非线性混合<br />重复多次</td>
-      <td>1. 相近的输入会输出完全不同的结果<br />2. 可以人为制造hash冲突</td>
+      <td><strong>密码</strong>学 hash 函数<br />(SHA-256 / SHA-1 / MD5)</td>
+      <td><strong>碎纸机</strong>：<br />→ 生成和输出相同的初始值<br />加入输入的内容进行各种非线性混合<br />重复多次</td>
+      <td>1. 相近的输入会输出完全不同的结果<br />2. 可以人为制造 hash 冲突</td>
       <td>任意长度二进制文本</td>
-      <td>md5: 128bit/32hex<br />SHA-256: 256bit</td>
+      <td>md5: 128bit / 32hex<br />SHA-256: 256bit</td>
     </tr>
     <tr>
       <td>多项式除法的<strong>校验</strong>码<br />(CRC32)</td>
-      <td>把输入的任意长度看成(mod2)多项式\(M(x)\)<br />→ 指定生成多项式\(G(x)\) <br />得到输出为 residue \(R(x)\)<br /><br />实际中通过移位+XOR实现</td>
-      <td>1. 常见的变化, 输出可预测<br />(单比特错、双比特错、突发错)</td>
+      <td>把输入的任意长度看成 (mod 2) 多项式 \(M(x)\)<br />→ 指定生成多项式 \(G(x)\)<br />得到输出为 residue \(R(x)\)<br /><br />实际中通过移位 + XOR 实现</td>
+      <td>1. 常见的变化，输出可预测<br />(单比特错、双比特错、突发错)</td>
       <td>任意长度二进制文本</td>
-      <td>CRC32: 32bit/8hex<br /></td>
+      <td>CRC32: 32bit / 8hex</td>
     </tr>
     <tr>
-      <td>文本<strong>去重</strong>, 片段<strong>匹配</strong><br />Rolling Hash</td>
-      <td>把字符串看成B进制整数, 对M取residue</td>
-      <td>1. 计算方便<br />2. 根据hash能快速找到相同字串<br />3. 不是强校验, 冲突常见<br />4. 相似字串hash差别大</td>
+      <td>文本<strong>去重</strong>，片段<strong>匹配</strong><br />Rolling Hash</td>
+      <td>把字符串看成 B 进制整数，对 M 取 residue</td>
+      <td>1. 计算方便<br />2. 根据 hash 能快速找到相同字串<br />3. 不是强校验，冲突常见<br />4. 相似字串 hash 差别大</td>
       <td>任意长度字符串</td>
       <td>整数</td>
     </tr>
     <tr>
-      <td>相似度<strong>聚类</strong>(LSH)<br />(MinHash, SimHash)</td>
-      <td>MinHash:<br />提取文本特征, 映射成整数集合<br />→ 用n组随机hash函数<br />\(h(x)=ax+b(\mod P)\) 对集合每个元素hash<br />每个hash值取hash最小值<br /><br /><br /><br /></td>
-      <td>1. 比较hash值有多少位重复, <br />就能知道文本中有多少重复特征<br />2. 可以把整数分成band, <br />用于LSH bucketing</td>
+      <td>相似度<strong>聚类</strong> (LSH)<br />(MinHash, SimHash)</td>
+      <td><strong>MinHash</strong>：<br />提取文本特征，映射成整数集合<br />→ 用 n 组随机 hash 函数<br />\(h(x) = ax + b \pmod P\) 对集合每个元素 hash<br />每个 hash 值取 hash 最小值</td>
+      <td>1. 比较 hash 值有多少位重复，就能知道文本中有多少重复特征<br />2. 可以把整数分成 band，用于 LSH bucketing</td>
       <td>任意大小整数集合</td>
-      <td>取决于算法的超参数<br />n 位 int vector<br /></td>
+      <td>取决于算法的超参数<br />n 位 int vector</td>
     </tr>
     <tr>
       <td> </td>
-      <td>SimHash(PCAHash, Spectral Hash):<br />输入向量<br />→用n个投影向量<br />计算投影, 二进制化</td>
-      <td>1. 相似的向量会使hash值相同位数多,<br />从而可以被LSH bucketing召回<br />2. 过程和逻辑回归一样都是线性+激活. <br />用逻辑回归训练+预测, <br />准确率应该高于0.5</td>
+      <td><strong>SimHash</strong> (PCAHash, Spectral Hash)：<br />输入向量<br />→ 用 n 个投影向量计算投影，二进制化</td>
+      <td>1. 相似的向量会使 hash 值相同位数多，从而可以被 LSH bucketing 召回<br />2. 过程和逻辑回归一样都是线性 + 激活。用逻辑回归训练 + 预测，准确率应该高于 0.5</td>
       <td>固定长度向量</td>
       <td>n bit</td>
-    </tr>
-    <tr>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
     </tr>
   </tbody>
 </table>
 
-<ul>
-  <li>假设1: 由pnl(长2496位的float vector)编码
-    <ul>
-      <li>pnl 是</li>
-    </ul>
+<hr />
+
+<h2 id="研究背景与核心假说证伪链">研究背景与核心假说证伪链</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>假设阶段</th>
+      <th>猜想 / 机制</th>
+      <th>证伪实验 / 观测现象</th>
+      <th>判定结论</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>1.1 假设：PnL 向量特征哈希</strong></td>
+      <td>平台是否像感知哈希一样，将 2496 天的每日 PnL 收益率浮点向量经由局部敏感哈希（LSH / MinHash / SimHash）压缩成 7 位短码，用于底层快速去重和相似度聚类？</td>
+      <td>人工构造并提交多组 PnL 序列完全相同的变体（同一公式在不同账户或不同参数下跑出相同收益），结果发现生成的 Hash 毫无规律，有些前缀相似但有些完全风马牛不相及；反之，收益曲线截然相反的两个 Alpha 却可能共享前缀。</td>
+      <td><strong>排除</strong></td>
+    </tr>
+    <tr>
+      <td><strong>1.2 假设：用户 ID 异或加密</strong></td>
+      <td>由于用户 ID 与 Alpha ID 同为 7 位字符串，是否采用了简单的可逆加密（如 <code class="language-plaintext highlighter-rouge">hash_a ^ id_a == hash_b ^ id_b</code>）？</td>
+      <td>位运算异或关系在统计上完全为 0；</td>
+      <td><strong>排除</strong></td>
+    </tr>
+    <tr>
+      <td><strong>1.3 假设：AST 编码</strong></td>
+      <td>是否由清洗后的表达式 AST 与参数联合编码？</td>
+      <td>清洗后的 AST 指纹与生成的 Hash 之间不存在一一映射，相同 AST 多次提交仍会获得不同 Hash。</td>
+      <td><strong>排除</strong></td>
+    </tr>
+    <tr>
+      <td><strong>1.4 假设：settings, 表达式, user id 的联合编码</strong></td>
+      <td>是否由多个特征联合编码？</td>
+      <td>特征完全不同的 alpha 却共享前缀</td>
+      <td><strong>排除</strong></td>
+    </tr>
+    <tr>
+      <td><strong>1.5 假设：时间戳主导与并发带</strong></td>
+      <td>是否主要是由提交时间戳确定?</td>
+      <td>实验: 将回测数据库中海量 Alpha 的 <code class="language-plaintext highlighter-rouge">dateCreated</code> 转换为 Unix 秒级时间戳，按 Hash 前缀进行聚合分析（计算每个前缀覆盖的时间跨度 <code class="language-plaintext highlighter-rouge">span_sec = max_time - min_time</code>）：<br /><br />• <strong>现象 A（时间极度集中）</strong>：样本数极多的前缀，其覆盖的 <code class="language-plaintext highlighter-rouge">span_sec</code> 却极小（通常集中在数秒到几分钟内），说明相同前缀的 ID 必然是在同一短暂时间窗口内生成的。<br /><br />• <strong>现象 B（平行并发槽）</strong>：在任意一个极小的时间片段内，前缀并不唯一，而是固定平行出现约 44 种不同的前缀；跨到下一个相邻时间段，前缀集合平移并变为另一组 44 种（两段叠加显示为 88 种）。</td>
+      <td><strong>证实</strong><br />ID 是时间强主导的，但横向存在约 44 个并行的并发槽（分片/机器带）。</td>
+    </tr>
+    <tr>
+      <td><strong>2.1 假设：独特的 Base44 字符集</strong></td>
+      <td>平台生成的 7 位字符串<strong>仅使用了 44 个固定字符</strong></td>
+      <td>对全库千万级 Alpha ID 字符频数统计验证这一结论：<br /><code class="language-plaintext highlighter-rouge">BASE44 = "012356789AEGJKLMNOPQRVWXYZabdegjklmnopqrvwxz"</code></td>
+      <td><strong>证实</strong><br />排除了常见的 Base64/Base58 编码</td>
+    </tr>
+    <tr>
+      <td><strong>2.2 假设：等距排列</strong></td>
+      <td>不同的平行带是否只是按固定的整数步长均匀等距排列？</td>
+      <td>当直接将各带在散点图的纵轴投影进行对比时，<strong>视觉上各带之间的垂直间距截然不等、离散分布</strong></td>
+      <td><strong>排除</strong></td>
+    </tr>
+    <tr>
+      <td><strong>2.3 假设：全局统一的字符顺序（固定字典）</strong></td>
+      <td>BASE44 的顺序是否固定的？</td>
+      <td>同时出现了 0N -&gt; 0x, PY -&gt; Px, pM -&gt; px</td>
+      <td><strong>排除</strong></td>
+    </tr>
+    <tr>
+      <td><strong>2.4 假设：确定“1 位字符”即可锁定分片</strong></td>
+      <td>是否并行槽由首字母唯一确定？</td>
+      <td>固定首字母，并行槽坍缩成一条。<br /><br /><strong>这里是我直觉滞后了，其实从 hash/timestamp 图中分片本身就能确定，因为 hash 基本是由首字母 dominant 的</strong>（这里是 1.5 的补充）</td>
+      <td><strong>证实</strong><br />首字母是并行工号<br />后 6 位才和时间有关</td>
+    </tr>
+    <tr>
+      <td><strong>3.1 假设：专属映射表</strong></td>
+      <td>44 组分片经过专属映射表之后，是 timestamp 的单调光滑函数</td>
+      <td>算法拟合</td>
+      <td><strong>证实</strong><br />变换后，44 组分片坍缩融合为一条极紧密、平滑的单调曲线</td>
+    </tr>
+    <tr>
+      <td><strong>3.2 假设：指数函数</strong></td>
+      <td>光滑函数是否是指数函数</td>
+      <td>观察得知函数有 \(y' = Cy\) 的特征，高度疑似指数函数。<br />• 指数假设：<code class="language-plaintext highlighter-rouge">log(decoded - intercept) = log(A) + B * timestamp</code><br />• 固定 intercept 的情况<br />• exp 优化的自由度太高了，数值算法无法收敛</td>
+      <td><strong>尚未证实</strong></td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h3 id="31-假设专属映射表详细实现与数学反演">3.1 假设：专属映射表（详细实现与数学反演）</h3>
+
+<h4 id="一两阶段交替近端求解算法求解-44-组专属映射表">一、两阶段交替近端求解算法（求解 44 组专属映射表）</h4>
+
+<pre><code class="language-mermaid">flowchart TD
+    In["输入：海量样本对 (Alpha ID 字符串, 真实时间戳 y)"] --&gt; Pre["【数据准备】按首字符 prefix[0] 分桶&lt;br/&gt;固定各并发槽的最高位分片基准"]
+    Pre --&gt; Step1["Step 1: 构造 44 进制位权矩阵 X (N × 44)&lt;br/&gt;每列代表一个字符在各个位置的进位位权 (44^6 到 44^0) 累加"]
+    Step1 --&gt; Step2["★ Step 2: 线性简化粗解 (Ridge Regression)&lt;br/&gt;解方程 X @ w ≈ y，解出连续浮点权重向量 w&lt;br/&gt;乘以 scale 恢复至 [0, 43] 连续数值区间"]
+    Step2 --&gt; Step3["Step 3: 初始匈牙利匹配 (离散化到整数坑位)&lt;br/&gt;cost[j, d] = (w[j] - d)^2&lt;br/&gt;二分图最优指派得到初级字典 mapping_v0"]
+
+    subgraph LoopBlock ["阶段二：非线性交替迭代循环 (max_iter = 10)"]
+        direction TB
+        Step4["Step 4: 拟合三次曲线基准 (E 步)&lt;br/&gt;用当前字典解码样本，拟合平滑基准 decoded_fit = Poly(y)"]
+        StepFreeze["剥离并冻结高位 (Trust Region)&lt;br/&gt;1. 高位位权巨大 (44^6, 44^5)，晃动会导致数十亿数值震荡&lt;br/&gt;2. 计算已定高位数值 decoded_high 并彻底锁死为常量&lt;br/&gt;3. 只暴露低位字符 low_cols 参与后续重排"]
+        Step5["Step 5: 低位匈牙利重排 (M 步 / 近端投影)&lt;br/&gt;保持 decoded_high 冻结，测试低位字符赋为 0~43 的 MSE&lt;br/&gt;在低位残差矩阵上运行匈牙利算法，最优重配低位字符"]
+        Step4 --&gt; StepFreeze --&gt; Step5
+    end
+
+    Step3 --&gt; LoopBlock
+    LoopBlock --&gt; Check{"收敛或达 10 轮？"}
+    Check --&gt;|否| Step4
+    Check --&gt;|是| Done["输出最终精确字符重排表 (如 BASE44_0)"]
+</code></pre>
+
+<h5 id="step-1构造-44-进制位权矩阵-x">Step 1：构造 44 进制位权矩阵 \(X\)</h5>
+<p>在 44 进制中，从左至右 7 个位置对应的进位位权分别为：
+\[[44^6, 44^5, 44^4, 44^3, 44^2, 44^1, 44^0]\]
+
+对于样本集中的 \(N\) 个 ID，构造设计矩阵 \(X \in \mathbb{R}^{N \times 44}\)。对于第 \(i\) 个 ID，若字符 \(c\) 出现在位置 \(pos\)（从 0 开始），则在第 \(char\_index[c]\) 列累加进位权重 \(44^{6 - pos}\)。</p>
+
+<h5 id="step-2线性简化初估与尺度拉伸">Step 2：线性简化初估与尺度拉伸</h5>
+<p>在物理上，ID 的解码数值与时间戳 \(y\) 之间满足单调正相关（\(\text{Decoded} \approx \text{slope} \cdot y + \text{intercept}\)）。为了打破离散全排列的死锁，第一步<strong>主动做线性简化</strong>：将时间戳 \(y\) 作为因变量，解多元线性回归方程 \(X \cdot w \approx y\)：
+\[w = (X^T X + \lambda I)^{-1} X^T y\]
+
+由于单调性保序原理，时间戳越大的样本，其对应高位字符的权重必然越大。解出的连续向量 \(w \in \mathbb{R}^{44}\) 已经严格锁定了 44 个字符的<strong>相对大小顺序与比例距离</strong>。
+接着，利用设定的平台发号斜率 <code class="language-plaintext highlighter-rouge">init_slope</code>，对权重做线性缩放：
+\[w = w \times \left(\frac{\text{init\_slope}}{\text{cur\_slope}}\right)\]
+
+将缩小的连续解完整拉伸映射回 \([0, 43]\) 的连续区间。</p>
+
+<h5 id="step-3初始匈牙利匹配离散化到整数坑位代码第-103-106-行">Step 3：初始匈牙利匹配（离散化到整数坑位，代码第 103-106 行）</h5>
+<p>为了将 44 个带小数的浮点估计值 \(w\) 分配到 \(0 \sim 43\) 的互不重复整数坑位上，构建 \(44 \times 44\) 的欧氏距离代价矩阵：
+\[\text{cost}[j, d] = (w_j - d)^2 \quad (j \in 0\dots43 \text{ 为字符}, \; d \in 0\dots43 \text{ 为整数坑位})\]
+
+调用 <code class="language-plaintext highlighter-rouge">linear_sum_assignment(cost)</code>（匈牙利算法），在毫秒级内完成全局二分图最优指派，产出第一版初级字典 <code class="language-plaintext highlighter-rouge">mapping_v0</code>。</p>
+
+<h5 id="step-4锁定三次曲线基准e-步">Step 4：锁定三次曲线基准（E 步）</h5>
+<p>初级字典由于线性简化的误差，个别相邻字符可能出现微小倒错。进入 <code class="language-plaintext highlighter-rouge">iterate_mapping_step</code> 循环：</p>
+<ol>
+  <li>用当前字典将全量样本解码为大整数：\(\text{decoded} = X \cdot \text{mapped\_vals}\)；</li>
+  <li>以时间戳 \(y\) 为自变量，对解码值拟合平滑的 3 阶多项式：
+\[\text{poly} = \text{Polynomial.fit}(y, \text{decoded}, \text{deg}=3)\]
   </li>
+  <li>冻结计算出的理想平滑值：\(\text{decoded\_fit} = \text{poly}(y)\)。<strong>在接下来的字符微调评估期间，三次曲线基准靶心保持固定不变</strong>。</li>
+</ol>
+
+<h5 id="关键机制剥离并冻结高位贡献decoded_high-与-trust-region">关键机制：剥离并冻结高位贡献（<code class="language-plaintext highlighter-rouge">decoded_high</code> 与 Trust Region）</h5>
+<p>在 7 位 ID 中，不同位置的进位权重悬殊极大：</p>
+<ul>
+  <li>最高位权重为 \(44^6 \approx 72.5\) 亿，次高位为 \(44^5 \approx 1.64\) 亿；</li>
+  <li>而最低位仅为 \(44^0 = 1\)。</li>
 </ul>
 
-<p>相同pnl不同user -&gt; hash不同
-排除这个假设的原因: 生成一系列pnl完全相同的alpha, hash有些是相似但不同, 但有些完全不同.</p>
+<p>如果在微调字符映射时让所有 44 个字符同时自由震荡，高位字符即便发生 \(\pm 1\) 的极微小抖动，解码出的数值就会产生数亿至数十亿的垂直巨震，直接把刚拟合好的平滑曲线炸飞，导致整个迭代算法发散。为此，高低位解耦与高位冻结机制将已确立的高位数值贡献 <code class="language-plaintext highlighter-rouge">decoded_high</code> 彻底锁死为常量，为算法构建了一层坚实的<strong>信任域（Trust Region）</strong>，只将剩余低位字符暴露给后续的重排优化。</p>
 
-<h3 id="假设2">假设2</h3>
+<h5 id="step-5低位匈牙利重排求解m-步">Step 5：低位匈牙利重排求解（M 步）</h5>
+<p>在保持 <code class="language-plaintext highlighter-rouge">decoded_high</code> 冻结不变的前提下，对低位待优化字符 \(j\) 进行对照实验：如果把字符 \(j\) 尝试赋值为整数 \(d \in 0\dots43\)，全库样本的新数值会偏离平滑基准曲线多远？
+\[\text{new\_decoded} = \mathbf{decoded\_high} + col_i \times d + \text{other}\]
 
-<p>user id和hash同为7位. 是否用xor加密. 验证.</p>
+计算全库样本偏离曲线的<strong>均方误差（Mean Squared Error, MSE）</strong>：
+\[\text{cost}[j, d] = \frac{1}{N} \sum_{i=1}^{N} \left( \text{new\_decoded}_i(j \to d) - \text{decoded\_fit}_i \right)^2\]
 
-<p><code class="language-plaintext highlighter-rouge">hash_a ^ id_a == hash_b ^ id_b</code> 也 <strong>不成立</strong></p>
-<h3 id="假设2-1">假设2</h3>
-
-<p>expression</p>
+由此构建出低位字符对候选数字的 <strong>MSE 残差矩阵</strong>：</p>
 <ul>
-  <li>ast clean</li>
+  <li>若字符 \(j\) 取到真正正确的整数，全库样本在图上极度贴合平滑曲线，MSE 逼近于 0；</li>
+  <li>若字符 \(j\) 取错，全库样本在图上剧烈震荡，MSE 飙升。</li>
 </ul>
 
-<p>排除这个假设的原因: 两个表达式完全不相关的alpha, hash相似</p>
-<ul>
-  <li>猜测是不是settings, 表达式, user id的联合编码.</li>
-</ul>
+<p>匈牙利算法在此处充当了<strong>从连续误差空间向离散置换矩阵空间投影的“近端投影算子（Proximal Operator）”</strong>，在低位残差矩阵中一瞬间找到让全局总 MSE 最小的唯一无冲突字符重配！</p>
 
-<p>统计重复的hash前缀个数</p>
-<h3 id="假设3">假设3</h3>
+<p>上述 E-M 两步交替迭代 10 轮，三次多项式基准靶心与字符字典双向平滑收敛，最终沉淀出 44 组专属映射表（从 <code class="language-plaintext highlighter-rouge">BASE44_0</code> 到 <code class="language-plaintext highlighter-rouge">BASE44_z</code>）。</p>
 
-<p>时间</p>
+<hr />
 
-<p>统计「前缀 → 时间」的关系
-把 dateCreated 转成秒或分钟级的 时间戳。
-按 hash 前缀分组，算时间戳的 均值 / 分布范围。
-如果「相同前缀的时间非常接近」，说明前缀和时间相关</p>
+<h4 id="二截距校准与三次多项式联合拟合44-条并发带归一坍缩">二、截距校准与三次多项式联合拟合（44 条并发带归一坍缩）</h4>
 
-<p>前缀与创建时间的相关性
-出现次数多的前缀通常集中在较短时间区间内（span_sec 不大），说明相同前缀的 ID 可能是同时生成的。
-反过来, 固定时间段, 前缀也固定同样的44种. 跨相邻时间段, 就变成88种.</p>
+<p>当 44 组字符集全部求出后，每一条轨道内部均已变得极其平滑，但 44 条轨道之间仍悬挂在不同的绝对高度上（并发槽常数截距），且整体发号速度受全平台提交活跃度影响，呈现平滑的三次曲线走势。</p>
 
-<p>这验证了你之前的猜测：hash 前缀和 dateCreated 时间有关，ID 的前缀不是完全随机，生成算法可能会受时间影响或按批次生成</p>
+<p>构造<strong>带分片虚拟变量（Dummy Variables）的联合最小二乘模型</strong>：</p>
 
-<p>可视化验证
-可以画出 时间 vs hash 前缀 的散点图</p>
+\[\text{Decoded}_i = \underbrace{c_3 \hat{t}_i^3 + c_2 \hat{t}_i^2 + c_1 \hat{t}_i + c_0}_{\text{全局共享的三次时间曲线}} + \underbrace{\sum_{p=1}^{43} \beta_p \cdot \mathbb{I}(\text{prefix}_i == p)}_{\text{43 个槽相对于基准槽的截距差}}\]
 
-<p>这样你就能看到：
-前缀长度为 1 → 有多少种不同前缀
-前缀长度为 2 → 有多少种不同前缀
-…
-直到 max_len。
-📈 如果前缀确实和时间强相关，你会看到 前缀长度增加时，唯一前缀数量接近样本数（说明前缀逐渐唯一化）。</p>
+<ol>
+  <li><strong>时间归一化</strong>：\(\hat{t} = \frac{t - T_{\min}}{T_{\max} - T_{\min}} \in [0, 1]\)，消除 \(1.7 \times 10^9\) 高次幂引发的浮点溢出与矩阵病态；</li>
+  <li><strong>一步最小二乘求解</strong>：设计矩阵 \(X \in \mathbb{R}^{N \times (4 + 43)}\)，调用 <code class="language-plaintext highlighter-rouge">np.linalg.lstsq(X, y)</code> 一次性解出全局多项式系数 \([c_0, c_1, c_2, c_3]\) 与 44 个槽的绝对截距 <code class="language-plaintext highlighter-rouge">BASE44_INTERCEPTS</code>；</li>
+  <li><strong>归一坍缩</strong>：对于任意样本，只需执行 \(\text{Aligned\_Decoded} = \text{Decoded} - \text{Intercept}(prefix)\)，44 条原本错落平行的散点带便瞬间严丝合缝地完全坍缩在同一条纯净的三次曲线上！</li>
+</ol>
 
-<p>时间主导，但横向有并发带 这就是我现在看到的情况</p>
+<hr />
 
-<p>同样时间平行带大概有44个左右</p>
+<h4 id="三反向求解实数根生产还原与验证">三、反向求解实数根（生产还原与验证）</h4>
 
-<p>歪路:
-猜测prefix之间的关系. 👍 从你的结果可以看出明显的规律：
-mod 16
-大部分前缀落在 [0,5,10,15,6,9,…]，集中在少数几个余数上。
-说明前缀低位每 16 有一个间隔的规律，但还有一些偏移（可能是并发带/随机部分）。
-mod 32
-余数集中在 16,0,10 等位置，说明低位有更大的分段，仍然有少量分散。
-mod 64
-集中在 16 和几个其他余数上，每个余数对应大概一组“平行带”。
-这非常吻合你观察到的 “同一时间平行带大概 44 个左右” 的现象。
-低位取模 64 时，可以把并发带分离出来。
-mod 128
-更大模数开始显得稀疏，主要几个值有重复。
-说明前缀的低位并没有均匀分布，而是有特定分片/并发槽的规律。</p>
+<p>在生产工具 <a href="file:///Users/wenliu/Code/python/world_quant_brain/alpha_id_2_time.py"><code class="language-plaintext highlighter-rouge">alpha_id_2_time.py</code></a> 中，给定任意 7 位 Alpha ID，反查时间的完整流程为：</p>
 
-<p><strong>按 count 或 span_sec 排序</strong>，那就用 <code class="language-plaintext highlighter-rouge">sort_values</code></p>
-
-<p>只用到44个字符</p>
-
-<p>为什么选择44字符? 可能是URL-safe / visually unambiguous alphabet 防止混淆 -&gt; I/L, O/0 没有这种规律</p>
-
-<p>有 <strong>纯数字 + 大写</strong>：<code class="language-plaintext highlighter-rouge">0G, 1G, … 9G</code>. 猜测不同平行带可能等距 -&gt; 图上就能看出是个错误猜测</p>
-
-<p>猜测同一种混淆方式? 没法验证</p>
-
-<p>猜测通过出现频率计算混淆顺序 -&gt; 这种想法没有道理</p>
-
-<p>把平行带分开计算</p>
-
-<ul>
-  <li>发现hash变化有明显的周期,</li>
-  <li>
-    <p>画图</p>
+<ol>
+  <li><strong>提取首字母</strong>：取 \(p = \text{ID}[0]\)，查表获取该槽专属的 <code class="language-plaintext highlighter-rouge">BASE44_p</code> 字典与截距 \(\text{Intercept}_p\)；</li>
+  <li><strong>解码与去截距</strong>：按 <code class="language-plaintext highlighter-rouge">BASE44_p</code> 将 7 位字符串转为大整数，减去截距得到 \(d\)；</li>
+  <li><strong>构造一元三次方程</strong>：
+\[c_3 \hat{t}^3 + c_2 \hat{t}^2 + c_1 \hat{t} + (c_0 - d) = 0\]
   </li>
-  <li>推测BASE44的顺序
+  <li><strong>解析实数根</strong>：调用 <code class="language-plaintext highlighter-rouge">np.roots([c3, c2, c1, c0 - d])</code>。由于三次曲线在有效区间内严格单调递增，方程必然有且仅有 <strong>1 个实数根</strong>落在 \([0, 1]\) 之间；</li>
+  <li><strong>反归一化还原秒级时间戳</strong>：
+\[t = \hat{t} \times (T_{\max} - T_{\min}) + T_{\min}\]
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="平台物理架构反推与-8-位扩容之谜">平台物理架构反推与 8 位扩容之谜</h2>
+
+<h3 id="一44-并发槽与-380-次天心算悖论的物理本质">一、44 并发槽与 380 次/天心算悖论的物理本质</h3>
+
+<p>根据逆向结论，平台首字符映射了 44 个平行的并发槽（分片/Worker）。基于并发槽结构，可以建立一个基础的容量与并发测算模型：</p>
+
+<ol>
+  <li><strong>理论并发带宽与全网日吞吐上限</strong>：
     <ul>
-      <li>是统一的?
-        <ul>
-          <li>如果是统一的, 应该是真正的进位. 但是同时出现了 0N-&gt; 0x, PY -&gt; Px, pM-&gt;px 所以我的猜测应该不对</li>
-        </ul>
+      <li><strong>44 个平行发号分片</strong>：首字母确定分片，全网并发槽总数为 44；</li>
+      <li><strong>发号槽理论并发基准</strong>：若以每个分片 1 次/秒估算全平台瞬时吞吐基准：
+\[R_{\text{platform}} = 44 \text{ 分片} \times 1 \text{ 次/秒/分片} = \mathbf{44 \text{ 次/秒}}\]
       </li>
-      <li>还是不同bucket 不同</li>
+      <li><strong>每分钟满载上限</strong>：
+\[44 \times 60 = \mathbf{2,640 \text{ 次/分钟}}\]
+      </li>
+      <li><strong>每 5 分钟满载上限</strong>：
+\[2,640 \times 5 = \mathbf{13,200 \text{ 次/5分钟}}\]
+      </li>
+      <li><strong>每小时满载上限</strong>：
+\[2,640 \times 60 = \mathbf{158,400 \text{ 次/小时}} \quad (\approx \mathbf{15.84 \text{ 万次/小时}})\]
+      </li>
+      <li><strong>全天 24 小时满载上限</strong>：
+\[158,400 \times 24 = \mathbf{3,801,600 \text{ 次/天}} \quad (\approx \mathbf{380 \text{ 万次/天}})\]
+      </li>
+      <li><strong>全网 10,000 顾问平摊悖论</strong>：
+若简单由全网约 10,000 名量化顾问均匀平分：
+\[3,801,600 \div 10,000 \approx \mathbf{380 \text{ 次/人/天}}\]
+      </li>
     </ul>
   </li>
-  <li>指数假设: <code class="language-plaintext highlighter-rouge">log(decoded-intercept) = log(A) + B * timestamp</code>
-    <ul>
-      <li>固定intercept的情况</li>
-      <li>exp优化的自由度太高了. 数值算法无法收敛</li>
-    </ul>
-  </li>
+</ol>
+
+<h4 id="为什么-380-次天与实际高频量化感受严重不符">为什么 380 次/天与实际高频量化感受严重不符？</h4>
+<p>在实际量化研究中，活跃的量化顾问经常使用自动化脚本进行大批量回测，单人单日提交量就可达到 <strong>3.5 万 ~ 5 万次回测</strong>，远远超越了“380 次/人/天”的心算平摊值。</p>
+
+<p>核心在于<strong>顾问活跃度的极端二八偏态（长尾分布）</strong>：</p>
+<ul>
+  <li>10,000 名注册顾问中，95% 以上属于沉睡或低频用户；</li>
+  <li>真正消耗平台算力的是运行多线程自动化流水线的极少数活跃顾问，单人单日回测量即可达到 3.5 万 ~ 5 万次；</li>
+  <li>全网同时活跃的自动化高频顾问通常仅数十人，全网日总回测量完全处于全网约 380 万次/天的物理承载能力范围内。</li>
 </ul>
+
+<hr />
+
+<h3 id="二7-位升级-8-位容量饱和与进位实证">二、7 位升级 8 位：容量饱和与进位实证</h3>
+
+<p>根据本地 MongoDB 全量回测数据挖掘，7 位升级 8 位的本质是<strong>时间戳数值突破 Base44 容量上限后的自然进制进位</strong>：</p>
+
+<ol>
+  <li><strong>容量极限与切换时间</strong>：
+    <ul>
+      <li>7 位 ID 结构为“1 位分片 + 6 位编码”，容量上限为 \(44^6 = \mathbf{7,256,313,856}\)（约 72.56 亿）。</li>
+      <li>切换精确发生在 <strong>2025 年 9 月 30 日 10:25 ~ 11:12（UTC-4）</strong>。</li>
+    </ul>
+  </li>
+  <li><strong>7 位饱和铁证（99.9984%）</strong>：
+对 7 位末期样本的后 6 位进行解码验证：
+    <ul>
+      <li>7 位末期的样本，其高位字符已全部达到 Base44 的最高索引 <strong>43</strong>；</li>
+      <li>最后一批 7 位样本的后 6 位有效编码数值已达 <strong>7,256,197,594</strong>；</li>
+      <li>计算其占 6 位容量极限的比例：\(\frac{7,256,197,594}{7,256,313,856} = \mathbf{99.9984\%}\)，剩余空间不足 11.6 万（0.0016%），濒临溢出。</li>
+    </ul>
+  </li>
+  <li><strong>8 位自然进位机制</strong>：
+    <ul>
+      <li>数值突破 \(44^6\) 后自然向高位进位，长度扩展至 8 位。</li>
+      <li>全库 8 位样本的前两位前缀固定坍缩为 44 种，且第 2 位字符在对应分片字典中<strong>索引严格为 1</strong>，确证为溢出向高位进位的“进位 1”（\(1 \times 44^6\)）。</li>
+    </ul>
+  </li>
+  <li><strong>8 位 ID 饱和时间推算</strong>：
+    <ul>
+      <li>8 位 ID 单分片容量扩容至 \(44^7 = \mathbf{319,277,809,664}\)（约 3,192.78 亿，扩大 44 倍）。</li>
+      <li>实测物理时钟推进速率约为 \(141.14 \text{ 步进/秒}\)（约 44.5 亿/自然年），当前仅消耗约 3.82%（122 亿）。</li>
+      <li>剩余空间约 3,070 亿，还可支撑 <strong>约 69 年</strong> 的物理时间，预计到 <strong>2095 年左右</strong> 才会面临下一次进位。</li>
+    </ul>
+  </li>
+</ol>
 
         </div>
 
@@ -386,7 +542,7 @@ mod 128
     <a class="page-previous" href="/personal_homepage/data/alpha11/">
       <h4 class="page-pagination-label">Previous</h4>
       <span class="page-pagination-title">
-        <i class="fas fa-arrow-left"></i> pv 衍生数据
+        <i class="fas fa-arrow-left"></i> PV 量价衍生数据体系、复权数学原理与在 analyze-dataset 中的应用
 
       </span>
     </a>
@@ -396,7 +552,7 @@ mod 128
     <a class="page-next" href="/personal_homepage/tool/message/">
       <h4 class="page-pagination-label">Next</h4>
       <span class="page-pagination-title">
-        服务器发送消息通知
+        服务端通知与自动化错误台账系统：发消息（飞书/Log/邮件）与整合消息（三路同级台账）
  <i class="fas fa-arrow-right"></i>
       </span>
     </a>

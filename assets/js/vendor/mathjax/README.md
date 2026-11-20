@@ -28,9 +28,14 @@ alone cannot repair that DOM split. The source TeX was not malformed.
 nodes for `$...$`, `\(...\)` and `\[...\]` before emphasis/escape handling. The
 native math converter emits HTML-escaped `\(...\)` / `\[...\]` for MathJax.
 Kramdown's own block/codespan parsers continue to protect fenced, indented and
-inline code; native `$$...$$` behavior remains unchanged. No script/math render
-action is needed with this installed Kramdown version (2.4.0): it emits MathJax
-delimiters, not `script[type="math/tex"]` elements.
+inline code. Double-dollar `$$...$$` is always display math, including an equation
+on a single source line, adjacent equations without blank lines, and equations
+inside lists/tables. Kramdown normally treats some of these as inline math; the
+site parser promotes those native math nodes to display nodes so the converter
+emits `\[...\]` rather than losing the author's display intent. Single-dollar
+`$...$` and `\(...\)` stay inline. No script/math render action is needed with
+this installed Kramdown version (2.4.0): it emits MathJax delimiters, not
+`script[type="math/tex"]` elements.
 
 A temporary per-formula `<span markdown="0">` workaround was tested, then removed
 in favor of the systemic parser fix so future Obsidian syncs need no changes.
@@ -59,10 +64,11 @@ node _tests/math_rendering_test.cjs
 (cd assets/js/vendor/mathjax && shasum -a 256 -c SHA256SUMS)
 ```
 
-The Ruby regression has 7 cases / 40 assertions, comparing code/native-math HTML
-against unmodified GFM behavior and checking the untouched alpha18 formula,
-other delimiters, math in lists/links/emphasis, multiline math, HTML escaping,
-and escaped delimiters. The independent browser regression blocks all third-party
+The Ruby regression has 9 cases / 77 assertions, comparing code/native display
+blocks against unmodified GFM behavior and checking the untouched alpha18 formula
+(or its standalone fixture), other delimiters, single-line/adjacent double-dollar
+display math, lists/tables/links/emphasis, multiline math, HTML escaping, and
+escaped delimiters. The independent browser regression blocks all third-party
 requests and checks 1440px/390px viewports, all 17 existing alpha18 equations,
 exact saturation TeX, real subscript/summation-bound MathML, clean identifiers,
 both inline and display delimiter pairs, unchanged code and intentional Markdown

@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<!--
+    So Simple Jekyll Theme 3.2.0
+    Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+    Free for personal and commercial use under the MIT license
+    https://github.com/mmistakes/so-simple-theme/blob/master/LICENSE
+-->
+<html lang="en-US" class="no-js">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  
+
+  
+  
+  <!-- Begin Jekyll SEO tag v2.9.1 -->
+<title>日内 PV 统计量与市场微结构衍生指标体系 | Liu, Wen’s Home Page</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="日内 PV 统计量与市场微结构衍生指标体系" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="本文为量价特征谱系的日内扩展篇（日频 OHLCV 衍生体系与复权数学原理见前篇 《PV 量价衍生数据体系、复权数学原理与在 analyze-dataset 中的应用》（alpha11））。相较于仅刻画“日终结果”的开高低收，日内统计量与市场微结构数据直接刻画盘中交易路径、流动性供需与买卖盘口博弈；下方算子均严格对齐 WorldQuant FASTEXPR 语法（如矢量聚合 vec_avg / vec_sum / vec_max / vec_powersum / vec_stddev / vec_range / vec_choose 与时序算子 ts_entropy / ts_kurtosis / ts_decay_linear 等）。" />
+<meta name="twitter:description" property="og:description" content="本文为量价特征谱系的日内扩展篇（日频 OHLCV 衍生体系与复权数学原理见前篇 《PV 量价衍生数据体系、复权数学原理与在 analyze-dataset 中的应用》（alpha11））。相较于仅刻画“日终结果”的开高低收，日内统计量与市场微结构数据直接刻画盘中交易路径、流动性供需与买卖盘口博弈；下方算子均严格对齐 WorldQuant FASTEXPR 语法（如矢量聚合 vec_avg / vec_sum / vec_max / vec_powersum / vec_stddev / vec_range / vec_choose 与时序算子 ts_entropy / ts_kurtosis / ts_decay_linear 等）。" />
+<link rel="canonical" href="https://roshameow.github.io//personal_homepage/data/alpha28/" />
+<meta property="og:url" content="https://roshameow.github.io//personal_homepage/data/alpha28/" />
+<meta property="og:site_name" content="Liu, Wen’s Home Page" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2026-11-20T00:00:00+00:00" />
+<meta property="article:modified_time" content="2026-11-20T05:18:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="日内 PV 统计量与市场微结构衍生指标体系" />
+<meta name="twitter:site" content="@" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2026-11-20T05:18:00+00:00","datePublished":"2026-11-20T00:00:00+00:00","description":"本文为量价特征谱系的日内扩展篇（日频 OHLCV 衍生体系与复权数学原理见前篇 《PV 量价衍生数据体系、复权数学原理与在 analyze-dataset 中的应用》（alpha11））。相较于仅刻画“日终结果”的开高低收，日内统计量与市场微结构数据直接刻画盘中交易路径、流动性供需与买卖盘口博弈；下方算子均严格对齐 WorldQuant FASTEXPR 语法（如矢量聚合 vec_avg / vec_sum / vec_max / vec_powersum / vec_stddev / vec_range / vec_choose 与时序算子 ts_entropy / ts_kurtosis / ts_decay_linear 等）。","headline":"日内 PV 统计量与市场微结构衍生指标体系","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/data/alpha28/"},"url":"https://roshameow.github.io//personal_homepage/data/alpha28/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  
+
+  <script>
+    /* Cut the mustard */
+    if ('querySelector' in document && 'addEventListener' in window) {
+      document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + 'js';
+    }
+  </script>
+
+  <link rel="stylesheet" href="/personal_homepage/assets/css/main.css">
+  <link rel="stylesheet" href="/personal_homepage/assets/css/skins/default.css">
+  
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,700,700i|Lora:400,400i,700,700i">
+  <link rel="alternate" type="application/atom+xml" title="Liu, Wen&#39;s Home Page" href="/personal_homepage/atom.xml">
+<!-- start custom head snippets -->
+
+<!-- insert favicons. use http://realfavicongenerator.net/ -->
+<link rel="shortcut icon" type="image/x-icon" href="/personal_homepage/docs/images/logo.ico">
+<!-- end custom head snippets -->
+
+</head>
+
+  <body class="layout--post  日内-pv-统计量与市场微结构衍生指标体系">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#primary-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+  <div class="navigation-wrapper">
+    <a href="#menu-toggle" id="menu-toggle">Menu</a>
+    <nav id="primary-nav" class="site-nav animated drop">
+      <ul><li><a href="/personal_homepage/">Home</a></li><li><a href="/personal_homepage/posts/">Posts</a></li><li><a href="/personal_homepage/categories/">Categories</a></li><li><a href="/personal_homepage/tags/">Tags</a></li><li><a href="/personal_homepage/family/">Family</a></li><li><a href="/personal_homepage/search/">Search</a></li></ul>
+    </nav>
+  </div><!-- /.navigation-wrapper -->
+
+
+    <header class="masthead">
+  <div class="wrap">
+    
+    
+    
+      
+        <div class="site-title animated fadeIn"><a href="/personal_homepage/">Liu, Wen's Home Page</a></div>
+      
+      <p class="site-description animated fadeIn" itemprop="description">Work, Experiments and Ideas.</p>
+    
+  </div>
+</header><!-- /.masthead -->
+
+
+    <main id="main" class="main-content" aria-label="Content">
+  <article class="h-entry">
+    
+
+    <div class="page-wrapper">
+      <header class="page-header">
+        
+        
+        <h1 id="page-title" class="page-title p-name">日内 PV 统计量与市场微结构衍生指标体系
+</h1>
+        
+      </header>
+
+      <div class="page-sidebar">
+        <div class="page-author h-card p-author"><img src="/personal_homepage/docs/images/logo.svg" class="author-avatar u-photo" alt=""><div class="author-info">
+
+<span class="read-time">2 min read</span>
+
+    <time class="page-date dt-published" datetime="2026-11-20T00:00:00+00:00"><a class="u-url" href="">November 20, 2026</a>
+</time>
+
+  </div>
+</div>
+
+        
+  <h3 class="page-taxonomies-title">Categories</h3>
+  
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a class="p-category" href="/personal_homepage/categories/#data" title="Pages filed under data">data</a></li>
+  </ul>
+
+
+        
+  <h3 class="page-taxonomies-title">Tags</h3>
+  
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a href="/personal_homepage/tags/#content" title="Pages tagged content" rel="tag">content</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#feature-engineering" title="Pages tagged feature_engineering" rel="tag">feature_engineering</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#intraday" title="Pages tagged intraday" rel="tag">intraday</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#microstructure" title="Pages tagged microstructure" rel="tag">microstructure</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#pv" title="Pages tagged pv" rel="tag">pv</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#quant" title="Pages tagged quant" rel="tag">quant</a></li>
+  </ul>
+
+
+        <details id="entry-table-of-contents" class="toc-wrapper" open>
+  <summary>
+    <h2 class="no_toc">
+      Table of Contents
+      <svg class="toc-toggle-icon" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true" focusable="false">
+        <path d="m4 6 4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+      </svg>
+    </h2>
+  </summary>
+  <div class="toc-content">
+    <ul class="inline_toc" id="my_toc"><li><a href="#一日内-pv-与市场微结构四阶谱系0123-阶">一、日内 PV 与市场微结构四阶谱系（0→1→2→3 阶）</a></li><li><a href="#二五类核心微结构指标的金融实质">二、五类核心微结构指标的金融实质</a></li><li><a href="#三在-analyze-dataset-与策略研究中的实践要点">三、在 analyze-dataset 与策略研究中的实践要点</a></li></ul>
+  </div>
+</details>
+
+        
+<details id="entry-related-posts" class="toc-wrapper" open>
+  <summary>
+    <h2 class="no_toc">
+      Related Posts
+      <svg class="toc-toggle-icon" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true" focusable="false">
+        <path d="m4 6 4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+      </svg>
+    </h2>
+  </summary>
+  <div class="toc-content">
+    <ul>
+      
+      <li><a href="/personal_homepage/data/alpha29/">News & Social Media 新闻流、社交媒体情绪与文本事件数据体系</a></li>
+      
+      <li><a href="/personal_homepage/tool/alpha27/">从过度防御的歪路纠偏：GUI/CLI 6 态极简控制面、数据面板统一与工程收口</a></li>
+      
+      <li><a href="/personal_homepage/thought/agent-infrastructure-pitfalls-2/">用 AI 维护复杂控制面基础设施：为什么越修越死？从补丁膨胀到 6 态收敛的六大工程陷阱</a></li>
+      
+      <li><a href="/personal_homepage/tool/pi-subagent-durable/">pi-subagent-durable：后台子代理的持久化、生命周期与故障自愈</a></li>
+      
+      <li><a href="/personal_homepage/tool/pi-agent-notify/">pi-agent-notify：Coding Agent 的事件总线、非阻塞等待与可靠投递</a></li>
+      
+    </ul>
+  </div>
+</details>
+
+
+
+      </div>
+
+      <div class="page-content">
+        <div class="e-content">
+          <blockquote>
+  <p>本文为量价特征谱系的日内扩展篇（日频 OHLCV 衍生体系与复权数学原理见前篇 <a href="2025-09-19-alpha11.md">《PV 量价衍生数据体系、复权数学原理与在 analyze-dataset 中的应用》（alpha11）</a>）。相较于仅刻画“日终结果”的开高低收，日内统计量与市场微结构数据直接刻画<strong>盘中交易路径、流动性供需与买卖盘口博弈</strong>；下方算子均严格对齐 WorldQuant FASTEXPR 语法（如矢量聚合 <code class="language-plaintext highlighter-rouge">vec_avg</code> / <code class="language-plaintext highlighter-rouge">vec_sum</code> / <code class="language-plaintext highlighter-rouge">vec_max</code> / <code class="language-plaintext highlighter-rouge">vec_powersum</code> / <code class="language-plaintext highlighter-rouge">vec_stddev</code> / <code class="language-plaintext highlighter-rouge">vec_range</code> / <code class="language-plaintext highlighter-rouge">vec_choose</code> 与时序算子 <code class="language-plaintext highlighter-rouge">ts_entropy</code> / <code class="language-plaintext highlighter-rouge">ts_kurtosis</code> / <code class="language-plaintext highlighter-rouge">ts_decay_linear</code> 等）。</p>
+</blockquote>
+
+<hr />
+
+<h2 id="一日内-pv-与市场微结构四阶谱系0123-阶">一、日内 PV 与市场微结构四阶谱系（0→1→2→3 阶）</h2>
+
+<p>沿用与日频 PV 完全一致的演化层级划分：<strong>0 阶</strong>为盘中切片矢量、逐笔快照及<strong>平台原生直接提供的日内预汇总字段</strong>（未经用户表达式加工）；<strong>1 阶</strong>为直接作用于 0 阶字段的 <code class="language-plaintext highlighter-rouge">vec_*</code> 矢量归约、单步跨字段算术或单层 <code class="language-plaintext highlighter-rouge">ts_*</code> 时序变换；<strong>2 阶</strong>为在 1 阶衍生量之上再做跨日滚动聚合、截面归一化或方差拆分的嵌套特征；<strong>3 阶</strong>为日内微结构指标与基本面/事件/换手限制的跨特征组合。</p>
+
+<blockquote>
+  <p>图例说明：在零至三阶条目中（不含纯矢量占位符），<span style="color: #059669; font-weight: 600;">绿色加粗条目</span>表示已在本地平台实测记录中检索到达标信号（非 SUPER，<code class="language-plaintext highlighter-rouge">fitness &gt;= 1.0</code> 且 <code class="language-plaintext highlighter-rouge">sharpe &gt;= 1.2</code>；除 CHN 地区外，<code class="language-plaintext highlighter-rouge">fitness &lt;= -1.0</code> 且 <code class="language-plaintext highlighter-rouge">sharpe &lt;= -1.2</code> 的反向可取负信号亦计为达标）；<span style="color: #dc2626; font-weight: 600;">红色加粗条目</span>表示库中已有实测记录但未达上述门槛；默认颜色为尚未在库中检索到测试记录的理论或扩展方向。</p>
+</blockquote>
+
+<table>
+  <thead>
+    <tr>
+      <th>0 阶数据（盘中矢量与平台原生预汇总字段）</th>
+      <th>一阶数据（直接作用于 0 阶的 <code class="language-plaintext highlighter-rouge">vec_*</code> 归约、单步算术与单层 <code class="language-plaintext highlighter-rouge">ts_*</code>）</th>
+      <th>二阶数据（在 1 阶之上的嵌套聚合、截面缩放与方差拆分）</th>
+      <th>三阶数据（跨维度复合与微结构结构角色）</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>盘中切片与盘口矢量（<code class="language-plaintext highlighter-rouge">VECTOR</code>）</strong><br />• 区间行情矢量：同一交易日内按 1 分钟/5 分钟切分得到的各区间收盘/均价 <code class="language-plaintext highlighter-rouge">p_vec</code>、区间收益率 <code class="language-plaintext highlighter-rouge">r_vec</code>（相邻区间价差比）与区间成交量 <code class="language-plaintext highlighter-rouge">v_vec</code><br />• 买卖报价与深度矢量：盘中各时刻最优买一价 <code class="language-plaintext highlighter-rouge">bid_vec</code>、卖一价 <code class="language-plaintext highlighter-rouge">ask_vec</code>、盘口中点 <code class="language-plaintext highlighter-rouge">mid_vec = (bid_vec + ask_vec) / 2</code>，以及买一/卖一挂单量 <code class="language-plaintext highlighter-rouge">bid_size_vec</code> / <code class="language-plaintext highlighter-rouge">ask_size_vec</code>、报价不变时买一挂单变化量 <code class="language-plaintext highlighter-rouge">d_bid_size_vec</code><br />• 逐笔与委托流矢量：每笔成交价 <code class="language-plaintext highlighter-rouge">trade_price_vec</code>、每笔成交股数 <code class="language-plaintext highlighter-rouge">trade_size_vec</code>、成交方向 <code class="language-plaintext highlighter-rouge">side_vec</code>（主动买取 <code class="language-plaintext highlighter-rouge">+1</code>、主动卖取 <code class="language-plaintext highlighter-rouge">-1</code>）、成交后滞后时刻中点价 <code class="language-plaintext highlighter-rouge">mid_fwd_vec</code>、委托订单规模分档矢量 <code class="language-plaintext highlighter-rouge">order_size_vec</code>，以及等成交量分桶内的买卖量 <code class="language-plaintext highlighter-rouge">buy_vol_vec</code> / <code class="language-plaintext highlighter-rouge">sell_vol_vec</code><br /><br /><strong>平台原生预汇总日内字段（<code class="language-plaintext highlighter-rouge">MATRIX</code>）</strong><br />• <span style="color: #059669; font-weight: 600;">分时量价相关性 (<code class="language-plaintext highlighter-rouge">intraday_pv_corr</code>)</span>：平台对单日盘中区间价格（最高价 / VWAP / 买一 / 卖一）与区间成交量预先计算的皮尔逊相关系数，刻画日内“放量上攻/放量下杀”同向度<br />• <span style="color: #059669; font-weight: 600;">流动性价差基点 (<code class="language-plaintext highlighter-rouge">spread_bp</code>)</span>：全天或尾盘 30 分钟按流动性加权的相对买卖价差（以基点 bps 计），直接度量即时盘口冲击成本<br />• <span style="color: #dc2626; font-weight: 600;">分时段价格/收益与区间 VWAP</span>：<code class="language-plaintext highlighter-rouge">session_close</code>（特定截止窗口末价，如 14:30 时点价）、<code class="language-plaintext highlighter-rouge">pre_close_30m_ret / 60m_ret</code>（收盘前 30/60 分钟平均收益）、<code class="language-plaintext highlighter-rouge">ask_first_half</code>（按成交量时钟前半程的卖一价均值）、<code class="language-plaintext highlighter-rouge">interval_vwap</code>（盘中固定时段成交量加权均价）、<code class="language-plaintext highlighter-rouge">mid_ret</code>（按区间权重加权的盘口中点收益）、<code class="language-plaintext highlighter-rouge">ext_open / high / low / close / volume</code>（盘前与盘后延伸交易时段 OHLCV）<br />• <span style="color: #dc2626; font-weight: 600;">盘口流、主被动成交与竞价做空</span>：盘口买单净流比率（报价不变时买单增量占比）、盘口中点上方主动买量 <code class="language-plaintext highlighter-rouge">active_buy_vol</code>、主动吃单买卖量 <code class="language-plaintext highlighter-rouge">aggr_buy / aggr_sell</code>、最优卖档新增挂单次数与撤单股数 <code class="language-plaintext highlighter-rouge">ask_put / ask_withdraw</code>、开盘/收盘集合竞价（MOO/MOC）撮合价与撮合量 <code class="language-plaintext highlighter-rouge">auction_px / auction_vol</code>、含与不含收盘竞价的全天 Tick VWAP（<code class="language-plaintext highlighter-rouge">vwap_w_close / vwap_wo_close</code>）、做空成交股数 <code class="language-plaintext highlighter-rouge">short_vol</code>、平台预汇总的有效/实现价差 <code class="language-plaintext highlighter-rouge">effective_spread / realized_spread</code>，以及 NBBO 最优报价内成交股数 <code class="language-plaintext highlighter-rouge">atquote_shares</code> 与 10–29 秒延迟成交股数 <code class="language-plaintext highlighter-rouge">shares_10_29s</code></td>
+      <td><strong><code class="language-plaintext highlighter-rouge">vec_*</code> 矢量单日归约</strong><br />• <strong>分时量价相关（矢量自算）</strong>：<code class="language-plaintext highlighter-rouge">(vec_avg(p_vec * v_vec) - vec_avg(p_vec) * vec_avg(v_vec)) / (vec_stddev(p_vec) * vec_stddev(v_vec) + 1e-6)</code>（由盘中价格与成交量矢量直接算出的单日皮尔逊相关性，衡量价量盘中同步性）<br />• <strong>日内振幅与高阶矩</strong>：<code class="language-plaintext highlighter-rouge">vec_range(p_vec)</code>（日内最高最低价之差）、<code class="language-plaintext highlighter-rouge">sqrt(vec_powersum(r_vec, constant=2))</code>（基于分时收益平方和开方的日内实现波动率 RV）、<code class="language-plaintext highlighter-rouge">vec_skewness(r_vec)</code> / <code class="language-plaintext highlighter-rouge">vec_kurtosis(r_vec)</code>（日内收益分布偏度与峰度，刻画盘中暴涨暴跌尾部风险）<br />• <span style="color: #059669; font-weight: 600;">委托单规模矢量聚合</span>：<code class="language-plaintext highlighter-rouge">vec_avg(order_size_vec)</code>（对交易所分档委托规模编码矢量求均值，捕捉机构大单拆分与散户小单占比结构）<br />• <strong>成交粒度与盘中中枢</strong>：<code class="language-plaintext highlighter-rouge">vec_avg(trade_size_vec)</code>、<code class="language-plaintext highlighter-rouge">vec_max(trade_size_vec)</code>（平均与最大单笔成交股数，衡量机构扫盘单笔冲击）；<code class="language-plaintext highlighter-rouge">vec_avg(mid_ret_vec)</code>、<code class="language-plaintext highlighter-rouge">vec_choose(vwap_vec, nth=k)</code>（计算区间中点均收益或提取第 <code class="language-plaintext highlighter-rouge">k</code> 个盘中固定时段的均价中枢）<br />• <strong>盘口深度与三类价差归约</strong>：<code class="language-plaintext highlighter-rouge">vec_avg(log(bid_size_vec / ask_size_vec))</code>（时间加权盘口挂单厚度对数比，衡量静态买压 vs 卖压）；<code class="language-plaintext highlighter-rouge">(vec_avg(ask_vec) - vec_avg(bid_vec)) / vec_avg(mid_vec)</code>（日均报价相对价差）；<code class="language-plaintext highlighter-rouge">vec_avg(2 * side_vec * (trade_price_vec - mid_vec) / mid_vec)</code>（有效价差，衡量真实成交相对盘口中点的即时滑点）；<code class="language-plaintext highlighter-rouge">vec_avg(2 * side_vec * (trade_price_vec - mid_fwd_vec) / mid_vec)</code>（实现价差，扣除成交后价格继续滑移后的做市净收益）<br />• <span style="color: #dc2626; font-weight: 600;">盘口买盘净流 / 主动买量</span>：<code class="language-plaintext highlighter-rouge">vec_sum(d_bid_size_vec) / vec_sum(abs(d_bid_size_vec))</code>（买价不变时买单挂单净增比例）、<code class="language-plaintext highlighter-rouge">vec_sum(active_buy_vec)</code>（盘口中点上方主动吃单成交量汇总，衡量买方迫切度与真实需求压力）<br /><br /><strong>单步跨字段算术比值 / 差值</strong><br />• <span style="color: #059669; font-weight: 600;">特定交易时段收盘偏离</span>：<code class="language-plaintext highlighter-rouge">session_close / close</code>（特定截止窗口终价相对日终官方收盘价之比，捕捉跨时段或尾盘定价落差）<br />• <span style="color: #dc2626; font-weight: 600;">盘初半程卖价-VWAP 偏离</span>：<code class="language-plaintext highlighter-rouge">ask_first_half / vwap</code>（成交量时钟前半程卖一价相对全天成交均价之比，衡量盘初卖方溢价与多空情绪强弱）<br />• <strong>Tick 连续交易 VWAP 偏离</strong>：<code class="language-plaintext highlighter-rouge">(vwap_w_close - vwap_wo_close) / vwap_wo_close</code>（含收盘竞价与不含收盘竞价的全天 Tick VWAP 差异，剥离尾盘集合竞价的集中撮合冲击）<br />• <strong>盘前 / 盘后延伸时段量价</strong>：<code class="language-plaintext highlighter-rouge">(ext_high - ext_low) / ext_close</code>、<code class="language-plaintext highlighter-rouge">ext_volume / volume</code>（盘前/盘后波幅与成交占比，刻画隔夜信息在非连续时段的提前消化度）<br />• <strong>主动吃单 vs 被动撤单失衡</strong>：<code class="language-plaintext highlighter-rouge">(aggr_buy - aggr_sell) / (aggr_buy + aggr_sell)</code>、<code class="language-plaintext highlighter-rouge">ask_withdraw / (ask_put + 1e-6)</code>（主动吃单净买压与最优卖档撤单压力）<br />• <span style="color: #dc2626; font-weight: 600;">开盘 / 收盘集合竞价撮合（MOO / MOC）</span>：<code class="language-plaintext highlighter-rouge">auction_vol / volume</code>、<code class="language-plaintext highlighter-rouge">(auction_px - close) / close</code>（开盘/收盘交叉盘撮合量占全天比及竞价溢价，度量机构调仓集中冲击）<br />• <strong>做空与 NBBO 执行占比</strong>：<code class="language-plaintext highlighter-rouge">short_vol / volume</code>（衡量盘中空头抛压或做市商库存对冲比例）；<code class="language-plaintext highlighter-rouge">atquote_shares / total_shares</code>、<code class="language-plaintext highlighter-rouge">shares_10_29s / total_shares</code>（衡量全市场最优报价内即时撮合率与 10–29s 延迟成交占比）<br />• <strong>逆向选择价差成分</strong>：<code class="language-plaintext highlighter-rouge">effective_spread - realized_spread</code>（等价于 <code class="language-plaintext highlighter-rouge">vec_avg(2 * side_vec * (mid_fwd_vec - mid_vec) / mid_vec)</code>，提取成交后盘口中点向成交方向滑移的价格冲击，即订单流中的知情交易含量）<br /><br /><strong>直接作用于 0 阶的单层 <code class="language-plaintext highlighter-rouge">ts_*</code> 变换</strong><br />• <span style="color: #059669; font-weight: 600;">盘口价差信息熵</span>：<code class="language-plaintext highlighter-rouge">ts_entropy(spread_bp, 115)</code>（用中期时间序列熵度量买卖价差的波动无序度：价差稳定有序 vs 流动性骤紧骤松）<br />• <span style="color: #dc2626; font-weight: 600;">区间 VWAP 高阶峰度</span>：<code class="language-plaintext highlighter-rouge">ts_kurtosis(interval_vwap, 240)</code>（刻画长期区间均价分布的尖峰厚尾与极端定价脉冲）<br />• <span style="color: #dc2626; font-weight: 600;">尾盘收益边际变化</span>：<code class="language-plaintext highlighter-rouge">ts_delta(pre_close_30m_ret, 5)</code>（刻画尾盘 30 分钟多空力量相对上周的边际增强或衰减）</td>
+      <td><strong>对 1 阶衍生量的跨日衰减与累积</strong><br />• <span style="color: #059669; font-weight: 600;">分时偏离衰减平滑</span>：<code class="language-plaintext highlighter-rouge">ts_decay_linear(session_close / close, 5)</code>（对 1 阶特定时段收盘偏离做 5 日线性衰减平滑，捕捉持续性尾盘资金流并降低单日噪声）<br />• <span style="color: #059669; font-weight: 600;">委托规模多日累积</span>：<code class="language-plaintext highlighter-rouge">ts_sum(vec_avg(order_size_vec), 45)</code>（对 1 阶委托单规模均值做近两个月累积，追踪机构 vs 散户订单结构的持续迁移）<br />• <span style="color: #dc2626; font-weight: 600;">尾盘动量季度平滑</span>：<code class="language-plaintext highlighter-rouge">ts_mean(ts_delta(pre_close_30m_ret, 5), 60)</code>（对 1 阶尾盘周度边际变化再做 60 日均值平滑，观察季度级别尾盘强弱趋势）<br />• <span style="color: #dc2626; font-weight: 600;">截面缩放长期累积</span>：<code class="language-plaintext highlighter-rouge">ts_sum(group_scale(auction_px / close, bucket(rank(cap), range='0,1,0.1')), 66)</code>（将 1 阶竞价溢价在同市值分桶内缩放到 <code class="language-plaintext highlighter-rouge">[0, 1]</code> 后做 66 日累积，捕捉持续性的集中竞价抢筹/抛售）<br /><br /><strong>日内方差分解</strong><br />• <strong>连续波动与跳跃成分分离</strong>：<code class="language-plaintext highlighter-rouge">max(vec_powersum(r_vec, constant=2) - 1.57 * vec_sum(abs(r_vec) * abs(r_prev_vec)), 0)</code>（用日内总实现方差减去由相邻区间收益乘积和 <code class="language-plaintext highlighter-rouge">bpv</code> 估计的连续扩散方差，分离盘中突发新闻或大单引起的跳跃风险）</td>
+      <td><strong>跨维度交互与风险调整</strong><br />• <span style="color: #059669; font-weight: 600;">微结构熵 × 事件周期交互</span>：<code class="language-plaintext highlighter-rouge">ts_decay_linear(group_rank(ts_entropy(spread_bp, 115) / signed_power(ts_rank(event_interval, 66), p), industry), 18)</code>（<code class="language-plaintext highlighter-rouge">event_interval</code> 为距财报/事件日历间隔天数，<code class="language-plaintext highlighter-rouge">p</code> 为调节时间衰减斜率的指数如 <code class="language-plaintext highlighter-rouge">0.68</code>；基本面事件窗口前后盘口混乱度的行业内排序分化更显著）<br />• <span style="color: #059669; font-weight: 600;">分时量价相关与分桶中性化</span>：<code class="language-plaintext highlighter-rouge">group_neutralize(intraday_pv_corr, bucket(rank(cap), range='0,1,0.1'))</code>（对 0 阶原生分时量价相关按市值十分位分桶中性化，剥离风格后提取纯粹日内量价配合度）<br />• <span style="color: #dc2626; font-weight: 600;">日内资金流限速组合</span>：<code class="language-plaintext highlighter-rouge">ts_target_tvr_delta_limit(signal, active_intraday_flow, lambda_min=0, lambda_max=1, target_tvr=0.1)</code>（用日内盘口活跃成交量 <code class="language-plaintext highlighter-rouge">active_intraday_flow</code> 替代日频 <code class="language-plaintext highlighter-rouge">adv20</code> 作为换手限速尺，在高冲击时段压降调仓幅度）<br />• <strong>微结构毒性（VPIN）与滑点门控</strong>：<code class="language-plaintext highlighter-rouge">vpin = vec_sum(abs(buy_vol_vec - sell_vol_vec)) / vec_sum(buy_vol_vec + sell_vol_vec)</code>（等成交量分桶下的买卖失衡度，预警流动性枯竭与逆向选择风险）；<code class="language-plaintext highlighter-rouge">trade_when(spread_bp &lt; ts_mean(spread_bp, 60), signal / (spread_bp + 1e-4), -1)</code>（仅在盘口价差低于 60 日均值时交易并按交易成本折价信号）</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="二五类核心微结构指标的金融实质">二、五类核心微结构指标的金融实质</h2>
+
+<p>相比日频表格里的技术指标，日内与盘口微结构统计量的核心价值在于<strong>直接观测“价格是怎么形成的”</strong>：</p>
+
+<ol>
+  <li><strong>分时量价相关性</strong>：
+    <ul>
+      <li>日频的 <code class="language-plaintext highlighter-rouge">ts_corr(close, volume, 20)</code> 看的是跨天趋势配合；而日内分时相关看的是<strong>单日内部</strong>区间价位与区间成交量的同步性（例如价格冲高时是否伴随分时放量，还是无量诱多、低位放量换手）。因为利用了盘中路径信息，它通常与日频反转因子相关性很低。</li>
+    </ul>
+  </li>
+  <li><strong>价差的三重分解（Quoted / Effective / Realized Spread）</strong>：
+    <ul>
+      <li><strong>报价价差（Quoted Spread）</strong>：<code class="language-plaintext highlighter-rouge">Ask - Bid</code>，代表名义流动性宽度；</li>
+      <li><strong>有效价差（Effective Spread）</strong>：<code class="language-plaintext highlighter-rouge">2 * side * (TradePrice - Mid_t)</code>，代表实际成交相对盘口中点的真实滑点；</li>
+      <li><strong>实现价差（Realized Spread）</strong>：<code class="language-plaintext highlighter-rouge">2 * side * (TradePrice - Mid_{t+\Delta})</code>，扣除成交后价格继续沿成交方向滑移的<strong>价格冲击（Price Impact）</strong>。两者之差正是衡量“订单流里有多少知情交易（Informed Trading）”的直接标尺。</li>
+    </ul>
+  </li>
+  <li><strong>盘口深度失衡与主动流</strong>：
+    <ul>
+      <li>仅看静态 <code class="language-plaintext highlighter-rouge">vec_avg(log(bid_size_vec / ask_size_vec))</code> 容易被高频幌骗撤单干扰；结合报价不变前提下的买盘净增量、以及主动吃单（Lifting Ask / Hitting Bid）与最优档撤单比例，能更干净地分离真实买压与假挂单。</li>
+    </ul>
+  </li>
+  <li><strong>分时段动量与集合竞价（MOO / MOC）</strong>：
+    <ul>
+      <li>成熟市场大量指数调仓、机构再平衡集中在收盘集合竞价（MOC）完成，导致<strong>盘中连续交易 VWAP</strong>与<strong>含收盘竞价的终值 VWAP</strong>、<strong>收盘前 30 分钟收益率</strong>之间出现结构性定价扭曲，往往在次日或周度呈现均值回归。</li>
+    </ul>
+  </li>
+  <li><strong>盘口时序熵（<code class="language-plaintext highlighter-rouge">ts_entropy(spread_bp, d)</code>）</strong>：
+    <ul>
+      <li>比起单纯看价差大小（小盘股天生价差大），对相对价差计算时间序列熵反映的是<strong>流动性状态的确定性与混乱度</strong>，再与事件日历周期做比值，能有效刻画事件窗口前后的市场微观分歧。</li>
+    </ul>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="三在-analyze-dataset-与策略研究中的实践要点">三、在 <code class="language-plaintext highlighter-rouge">analyze-dataset</code> 与策略研究中的实践要点</h2>
+
+<ol>
+  <li><strong>与日频行情的角色分工</strong>：
+    <ul>
+      <li>在 <code class="language-plaintext highlighter-rouge">analyze-dataset</code> 的多通道协同中，日内微结构字段既可以作为<strong>独立低相关 Alpha 源</strong>（尤其是分时相关性、盘口价差熵、集合竞价偏离），也可以替代日频 <code class="language-plaintext highlighter-rouge">adv20</code> 充当<strong>更精细的流动性分桶基准、换手限速尺（<code class="language-plaintext highlighter-rouge">ts_target_tvr_delta_limit</code>）或滑点门控条件（<code class="language-plaintext highlighter-rouge">trade_when</code>）</strong>。</li>
+    </ul>
+  </li>
+  <li><strong>数据清洗与降频平滑</strong>：
+    <ul>
+      <li>盘口与延伸时段（盘前/盘后）字段容易在停牌、极端小盘股上出现 <code class="language-plaintext highlighter-rouge">NaN</code> 或尖刺：实操中通常需要先做 <code class="language-plaintext highlighter-rouge">ts_backfill</code> 补齐、对 <code class="language-plaintext highlighter-rouge">VECTOR</code> 类型（如分档委托/分时数组）用 <code class="language-plaintext highlighter-rouge">vec_avg</code> / <code class="language-plaintext highlighter-rouge">vec_sum</code> / <code class="language-plaintext highlighter-rouge">vec_powersum</code> 归约为标量，再配合 <code class="language-plaintext highlighter-rouge">ts_decay_linear</code> 或 <code class="language-plaintext highlighter-rouge">ts_sum</code> 做跨日平滑，避免因单日微观噪声引发过高的换手率（Turnover）。</li>
+    </ul>
+  </li>
+</ol>
+
+        </div>
+
+        
+
+        
+        
+  <div class="page-comments">
+    <div id="disqus_thread"></div>
+    <script>
+      var disqus_config = function () {
+        this.page.url = 'https://roshameow.github.io//personal_homepage/data/alpha28/';
+        this.page.identifier = 'https://roshameow.github.io//personal_homepage/data/alpha28/';
+      };
+
+      (function() {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://https-roshameow-github-io-personal-homepage.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+  </div>
+
+
+        
+
+        <nav class="page-pagination" role="navigation">
+  
+    <a class="page-previous" href="/personal_homepage/tool/alpha27/">
+      <h4 class="page-pagination-label">Previous</h4>
+      <span class="page-pagination-title">
+        <i class="fas fa-arrow-left"></i> 从过度防御的歪路纠偏：GUI/CLI 6 态极简控制面、数据面板统一与工程收口
+
+      </span>
+    </a>
+  
+
+  
+    <a class="page-next" href="/personal_homepage/data/alpha29/">
+      <h4 class="page-pagination-label">Next</h4>
+      <span class="page-pagination-title">
+        News &amp; Social Media 新闻流、社交媒体情绪与文本事件数据体系
+ <i class="fas fa-arrow-right"></i>
+      </span>
+    </a>
+  
+</nav>
+
+      </div>
+
+    </div>
+  </article>
+</main>
+
+    <footer id="footer" class="site-footer">
+  <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+<div class="social-icons"><a class="social-icon" href="/personal_homepage/atom.xml"><i class="fas fa-rss-square fa-2x" title="Feed"></i></a><a class="social-icon" href="https://github.com/roshameow"><i class="fab fa-github-square fa-2x" title="GitHub"></i></a><a class="social-icon" href="https://www.linkedin.com/in/wen-liu-06503a7b/"><i class="fab fa-linkedin fa-2x" title="LinkedIn"></i></a><a class="social-icon" href="mailto:w.liuatnk@gmail.com"><i class="fas fa-envelope-square fa-2x" title="e-mail"></i></a></div><div class="copyright">
+    
+      <p>&copy; 2026 Liu, Wen's Home Page. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://github.com/mmistakes/so-simple-theme" rel="nofollow">So Simple</a>.</p>
+    
+  </div>
+</footer>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="/personal_homepage/assets/js/main.min.js"></script>
+<script src="https://use.fontawesome.com/releases/v5.0.12/js/all.js"></script><script src="/personal_homepage/assets/js/content-tables.js" defer></script>
+
+<script>
+(function () {
+  'use strict';
+
+  var types = {
+    NOTE: 'note', INFO: 'note', ABSTRACT: 'note', SUMMARY: 'note', TLDR: 'note',
+    EXAMPLE: 'note', QUOTE: 'note', CITE: 'note',
+    TIP: 'tip', HINT: 'tip', IMPORTANT: 'tip', SUCCESS: 'tip', CHECK: 'tip', DONE: 'tip',
+    QUESTION: 'warning', HELP: 'warning', FAQ: 'warning',
+    WARNING: 'warning', CAUTION: 'warning', ATTENTION: 'warning',
+    DANGER: 'danger', ERROR: 'danger', BUG: 'danger',
+    FAILURE: 'danger', FAIL: 'danger', MISSING: 'danger'
+  };
+  var icons = {
+    note: 'M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z M12 11v6 M12 7h.01',
+    tip: 'M9 18h6 M10 21h4 M9 15a6 6 0 1 1 6 0v3H9z',
+    warning: 'M12 3L2 21h20z M12 9v5 M12 17h.01',
+    danger: 'M7 3h10l4 4v10l-4 4H7l-4-4V7z M9 9l6 6 M15 9l-6 6'
+  };
+
+  function makeIcon(type) {
+    var namespace = 'http://www.w3.org/2000/svg';
+    var svg = document.createElementNS(namespace, 'svg');
+    svg.setAttribute('class', 'callout-icon');
+    svg.setAttribute('viewBox', '0 0 24 24');
+    svg.setAttribute('width', '20');
+    svg.setAttribute('height', '20');
+    svg.setAttribute('fill', 'none');
+    svg.setAttribute('stroke', 'currentColor');
+    svg.setAttribute('stroke-width', '2');
+    svg.setAttribute('stroke-linecap', 'round');
+    svg.setAttribute('stroke-linejoin', 'round');
+    svg.setAttribute('aria-hidden', 'true');
+    svg.setAttribute('focusable', 'false');
+    var path = document.createElementNS(namespace, 'path');
+    path.setAttribute('d', icons[type]);
+    svg.appendChild(path);
+    return svg;
+  }
+
+  // A soft break is a text newline; a Markdown hard break is a <br>.
+  // Do not split newlines inside inline code or other literal content.
+  function firstBreak(parent) {
+    for (var node = parent.firstChild; node; node = node.nextSibling) {
+      if (node.nodeType === 3) {
+        var offset = node.data.search(/[\r\n]/);
+        if (offset !== -1) return { node: node, offset: offset };
+      } else if (node.nodeType === 1) {
+        if (node.tagName === 'BR') return { node: node };
+        if (/^(CODE|PRE|SCRIPT|STYLE|TEXTAREA)$/.test(node.tagName)) continue;
+        var result = firstBreak(node);
+        if (result) return result;
+      }
+    }
+    return null;
+  }
+
+  function transformCallouts() {
+    document.querySelectorAll('.page-content blockquote').forEach(function (quote) {
+      if (quote.closest('pre, code, .highlight, .highlighter-rouge')) return;
+      var paragraph = quote.firstElementChild;
+      if (!paragraph || paragraph.tagName !== 'P') return;
+
+      // Require the marker in a direct text node: <code>[!WARNING]</code>
+      // (and markers merely mentioned later in a quote) must remain literal.
+      var markerNode = paragraph.firstChild;
+      if (!markerNode || markerNode.nodeType !== 3) return;
+      var marker = markerNode.data.match(/^[\t \r\n]*\[!([a-z][a-z0-9-]*)\]([+-])?(?=[\t \r\n]|$)[\t ]*/i);
+      if (!marker) return;
+      var name = marker[1].toUpperCase();
+      if (!Object.prototype.hasOwnProperty.call(types, name)) return;
+      var type = types[name];
+      var label = name === 'TLDR' ? 'TL;DR' : name.charAt(0) + name.slice(1).toLowerCase();
+      markerNode.deleteData(0, marker[0].length);
+
+      var boundary = firstBreak(paragraph);
+      var range = document.createRange();
+      range.selectNodeContents(paragraph);
+      if (boundary) {
+        if (boundary.node.nodeType === 3) range.setEnd(boundary.node, boundary.offset);
+        else range.setEndBefore(boundary.node);
+      }
+      var titleContent = range.extractContents();
+      if (boundary) {
+        if (boundary.node.nodeType === 3) {
+          var breakLength = boundary.node.data.slice(0, 2) === '\r\n' ? 2 : 1;
+          boundary.node.deleteData(0, breakLength);
+        } else {
+          boundary.node.parentNode.removeChild(boundary.node);
+        }
+      }
+      if (!paragraph.textContent.trim() && !paragraph.children.length) {
+        quote.removeChild(paragraph);
+      }
+
+      var folding = !!marker[2];
+      var callout = document.createElement(folding ? 'details' : 'div');
+      // Keep author-provided IDs, language, direction, and classes.
+      Array.prototype.forEach.call(quote.attributes, function (attribute) {
+        callout.setAttribute(attribute.name, attribute.value);
+      });
+      callout.classList.add('callout', 'callout--' + type);
+      callout.setAttribute('data-callout', name.toLowerCase());
+      callout.setAttribute('aria-label', label);
+      if (folding) {
+        callout.removeAttribute('role');
+        if (marker[2] === '+') callout.setAttribute('open', '');
+        else callout.removeAttribute('open');
+      } else {
+        callout.setAttribute('role', 'note');
+      }
+
+      var title = document.createElement(folding ? 'summary' : 'div');
+      title.className = 'callout-title';
+      title.appendChild(makeIcon(type));
+      var titleText = document.createElement('span');
+      titleText.className = 'callout-title-text';
+      if (titleContent.textContent.trim() || titleContent.childElementCount) {
+        titleText.appendChild(titleContent);
+      } else {
+        titleText.textContent = label;
+      }
+      title.appendChild(titleText);
+      callout.appendChild(title);
+
+      var body = document.createElement('div');
+      body.className = 'callout-body';
+      while (quote.firstChild) body.appendChild(quote.firstChild);
+      callout.appendChild(body);
+      quote.parentNode.replaceChild(callout, quote);
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', transformCallouts);
+  } else {
+    transformCallouts();
+  }
+})();
+</script>
+<!-- <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'G-9TMSCDTBGN', 'auto');
+  ga('send', 'pageview');
+</script> -->
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9TMSCDTBGN"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-9TMSCDTBGN');
+</script>
+
+
+
+<!-- MathJax -->
+<style>
+    /* Only oversized equations get this wrapper; ordinary inline math stays inline. */
+    .math-scroll {
+        display: block;
+        max-width: 100%;
+        overflow-x: auto;
+        overflow-y: hidden;
+        padding-block: 0.5em;
+        scrollbar-width: thin;
+    }
+    .math-scroll > mjx-container[jax] {
+        display: inline-block;
+        margin: 0;
+    }
+    .math-scroll:focus-visible {
+        outline: 2px solid currentColor;
+        outline-offset: 2px;
+    }
+</style>
+<script>
+    function fitMathToColumn() {
+        document.querySelectorAll('mjx-container').forEach(function (container) {
+            var wrapper = container.parentElement.classList.contains('math-scroll') ? container.parentElement : null;
+            var column = wrapper ? wrapper.parentElement : container.parentElement;
+            while (column && ['inline', 'contents'].includes(getComputedStyle(column).display)) {
+                column = column.parentElement;
+            }
+            if (!column) return;
+            var style = getComputedStyle(column);
+            var available = column.clientWidth - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight);
+            var ink = container.querySelector('mjx-math, svg');
+            var width = (ink || container).getBoundingClientRect().width;
+            if (width > available + 1) {
+                if (!wrapper) {
+                    wrapper = document.createElement('span');
+                    wrapper.className = 'math-scroll';
+                    wrapper.tabIndex = 0;
+                    wrapper.setAttribute('role', 'region');
+                    wrapper.setAttribute('aria-label', 'Mathematical formula; scroll horizontally to read all');
+                    wrapper.title = 'Scroll horizontally to read the full formula';
+                    container.before(wrapper);
+                    wrapper.appendChild(container);
+                }
+            } else if (wrapper) {
+                wrapper.replaceWith(container);
+            }
+        });
+    }
+    // Pin the engine, autoloaded TeX extensions, menu and fonts to local assets.
+    window.MathJax = {
+        loader: {
+            paths: { mathjax: "/personal_homepage/assets/js/vendor/mathjax/es5" },
+            load: ['[tex]/textmacros']
+        },
+        tex: {
+            tags: "ams",
+            packages: { '[+]': ['textmacros'] },
+            inlineMath: [['$', '$'], ['\\(', '\\)']],
+            displayMath: [['$$', '$$'], ['\\[', '\\]']]
+        },
+        chtml: {
+            fontURL: "/personal_homepage/assets/js/vendor/mathjax/es5/output/chtml/fonts/woff-v2"
+        },
+        startup: {
+            pageReady: function () {
+                return MathJax.startup.defaultPageReady().then(function () {
+                    return document.fonts ? document.fonts.ready : undefined;
+                }).then(function () {
+                    fitMathToColumn();
+                    var scheduled = false;
+                    window.addEventListener('resize', function () {
+                        if (scheduled) return;
+                        scheduled = true;
+                        requestAnimationFrame(function () {
+                            scheduled = false;
+                            fitMathToColumn();
+                        });
+                    });
+                });
+            }
+        },
+        options: {
+            // Keep examples (including literal dollar signs) out of the typesetter.
+            skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code', 'annotation', 'annotation-xml']
+        }
+    };
+</script>
+<script id="MathJax-script" async src="/personal_homepage/assets/js/vendor/mathjax/es5/tex-mml-chtml.js"></script>
+
+
+
+
+<!-- Mermaid -->
+<style>
+  .mermaid-diagram {
+    max-width: 100%;
+    margin: 0.85rem 0;
+    overflow-x: auto;
+  }
+  .mermaid-diagram:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+  }
+  .page-content pre.mermaid {
+    margin: 0;
+    padding: 0.25rem 0;
+    text-align: center;
+    background: transparent;
+    overflow: visible;
+    font-family: inherit;
+  }
+  .page-content pre.mermaid[data-processed] {
+    white-space: normal;
+  }
+  pre.mermaid svg {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    height: auto;
+  }
+  .mermaid-diagram .cluster-label {
+    font-weight: 700;
+  }
+  .mermaid-error {
+    font-size: 0.85em;
+    color: #9a3412;
+  }
+</style>
+<script src="/personal_homepage/assets/js/vendor/mermaid-11.17.2.min.js"></script>
+<script>
+(function () {
+  'use strict';
+
+  function normalizeMermaidSource(source) {
+    // Mermaid 11 accepts A <-- "label" --- B but creates an INVALID edge.
+    // Render the equivalent B -->|"label"| A, without editing the Markdown.
+    var body = source.trimStart()
+      .replace(/^---\r?\n[\s\S]*?\r?\n---(?:\r?\n|$)/, '')
+      .replace(/%%\{[\s\S]*?\}%%/g, '')
+      .replace(/^[\t ]*%%.*$/gm, '').trimStart();
+    if (!/^(?:flowchart|graph)\b/.test(body)) return source;
+
+    var started = false;
+    var quoted = false;
+    return source.replace(/[^\r\n]+/g, function (line) {
+      if (!started && !/^\s*(?:flowchart|graph)\b/.test(line)) return line;
+      started = true;
+      var normalized = quoted ? line : line.replace(
+        /^([\t ]*)([A-Za-z_][\w-]*)[\t ]*<--[\t ]*("[^"\r\n]*")[\t ]*---[\t ]*([A-Za-z_][\w-]*)([\t ]*;?[\t ]*(?:%%.*)?)$/,
+        function (_, indent, left, label, right, suffix) {
+          return indent + right + ' -->|' + label + '| ' + left + suffix;
+        }
+      );
+      // Never rewrite an example inside a multiline quoted node label, and
+      // never let quotes inside a %% comment affect the following lines.
+      for (var i = 0; i < line.length; i++) {
+        if (!quoted && line[i] === '%' && line[i + 1] === '%') break;
+        if (line[i] === '"') quoted = !quoted;
+      }
+      return normalized;
+    });
+  }
+
+  async function renderDiagrams() {
+    var blocks = document.querySelectorAll('code.language-mermaid');
+    if (!blocks.length) return;
+    if (typeof mermaid === 'undefined') {
+      blocks.forEach(function (code) {
+        var original = code.closest('.highlighter-rouge') || code.closest('pre');
+        if (!original) return;
+        var message = document.createElement('p');
+        message.className = 'mermaid-error';
+        message.setAttribute('role', 'status');
+        message.textContent = '图表组件加载失败，请刷新页面重试。Mermaid 源码已保留。';
+        original.after(message);
+      });
+      return;
+    }
+
+    // Render every diagram as Mermaid, including diagrams with multiple subgraphs.
+    // Disable the automatic pass so it cannot race with our explicit rendering.
+    var skin = getComputedStyle(document.documentElement);
+    function color(name, fallback) {
+      return skin.getPropertyValue('--mermaid-' + name).trim() || fallback;
+    }
+    var background = color('background', '#ffffff');
+    var text = color('text', '#000000');
+    var border = color('border', '#cccccc');
+    var nodeBorder = color('node-border', '#b8b9c0');
+    var cluster = color('cluster-background', '#f9f9fa');
+    var line = color('line', '#858795');
+    var palettes = [
+      ['#e4eaf0', '#f4f6f9', '#a5b3c2'], // slate blue
+      ['#e8f0ea', '#f5f8f5', '#a8bcae'], // sage
+      ['#f3ede3', '#faf7f2', '#c6b69c'], // sand
+      ['#ebe8f1', '#f7f5fa', '#b5adc5'], // lavender
+      ['#e4eeee', '#f3f8f8', '#a0baba']  // muted teal
+    ].map(function (fallbacks, index) {
+      return {
+        node: color('palette-' + index + '-node', fallbacks[0]),
+        cluster: color('palette-' + index + '-cluster', index === 0 ? cluster : fallbacks[1]),
+        border: color('palette-' + index + '-border', fallbacks[2])
+      };
+    });
+    var fontFamily = getComputedStyle(document.body).fontFamily ||
+      '"Source Sans Pro", sans-serif';
+    // Mermaid fixes label dimensions during layout. Wait for web fonts so a
+    // later font swap cannot make the measured label box too small.
+    if (document.fonts) await document.fonts.ready;
+
+    var theme = "default";
+    // The site's default follows its active skin. Explicit forest/dark/etc.
+    // choices remain available for sites that deliberately select them.
+    if (theme === 'default') theme = 'base';
+
+    var config = {
+      startOnLoad: false,
+      securityLevel: 'strict',
+      fontFamily: fontFamily,
+      // Native SVG text avoids foreignObject clipping and article paragraph CSS.
+      htmlLabels: false,
+      flowchart: {
+        inheritDir: true,
+        curve: 'linear',
+        nodeSpacing: 24,
+        rankSpacing: 28,
+        padding: 8,
+        diagramPadding: 8,
+        wrappingWidth: 180,
+        // Nested cluster borders must start below the parent's full title line.
+        subGraphTitleMargin: { top: 4, bottom: 12 }
+      },
+      theme: theme,
+      themeVariables: theme === 'base' ? {
+        fontFamily: fontFamily,
+        fontSize: '14px',
+        background: background,
+        primaryColor: palettes[0].node,
+        primaryTextColor: text,
+        primaryBorderColor: nodeBorder,
+        secondaryColor: palettes[1].node,
+        secondaryTextColor: text,
+        secondaryBorderColor: border,
+        tertiaryColor: palettes[2].node,
+        tertiaryTextColor: text,
+        tertiaryBorderColor: border,
+        lineColor: line,
+        textColor: text,
+        mainBkg: palettes[0].node,
+        nodeBorder: nodeBorder,
+        nodeTextColor: text,
+        clusterBkg: palettes[0].cluster,
+        clusterBorder: border,
+        titleColor: text,
+        defaultLinkColor: line,
+        edgeLabelBackground: background,
+        noteBkgColor: palettes[2].node,
+        noteTextColor: text,
+        noteBorderColor: border,
+        actorBkg: palettes[0].node,
+        actorBorder: nodeBorder,
+        actorTextColor: text,
+        actorLineColor: border,
+        signalColor: line,
+        signalTextColor: text
+      } : { fontFamily: fontFamily }
+    };
+
+    function applyFlowchartPalette(svg) {
+      if (theme !== 'base' || !/^flowchart/.test(svg.getAttribute('aria-roledescription') || '')) return;
+
+      function tint(group, shapes, index, kind) {
+        // Author-supplied classDef/style colors take precedence over auto accents.
+        var customClass = Array.from(group.classList).some(function (name) {
+          return !['node', 'default', 'cluster', 'clickable'].includes(name);
+        });
+        if (customClass || !shapes.length || shapes.some(function (shape) {
+          return shape.style.getPropertyValue('fill') || shape.style.getPropertyValue('stroke');
+        })) return;
+        group.setAttribute('data-mermaid-palette', index);
+        shapes.forEach(function (shape) {
+          // Keep fallbacks in the SVG so exported diagrams retain their colors.
+          if (shape.getAttribute('fill') !== 'none') {
+            shape.style.fill = 'var(--mermaid-palette-' + index + '-' + kind + ', ' + palettes[index][kind] + ')';
+          }
+          shape.style.stroke = 'var(--mermaid-palette-' + index + '-border, ' + palettes[index].border + ')';
+        });
+      }
+
+      var groups = Array.from(svg.querySelectorAll('g.cluster')).map(function (group, index) {
+        var rect = group.querySelector('rect');
+        return { group: group, rect: rect, bounds: rect && rect.getBoundingClientRect(), index: index % palettes.length };
+      }).filter(function (entry) { return entry.rect; });
+      // Mermaid's SVG stores clusters flat. Match by the actual layout so nodes
+      // inherit their smallest enclosing group, including nested schedulers.
+      var nodes = Array.from(svg.querySelectorAll('g.node')).map(function (node) {
+        return { node: node, bounds: node.getBoundingClientRect() };
+      });
+      groups.forEach(function (entry) { tint(entry.group, [entry.rect], entry.index, 'cluster'); });
+      groups.sort(function (a, b) { return a.bounds.width * a.bounds.height - b.bounds.width * b.bounds.height; });
+      nodes.forEach(function (entry) {
+        var box = entry.bounds;
+        var parent = groups.find(function (group) {
+          var bounds = group.bounds;
+          return box.left >= bounds.left - 1 && box.right <= bounds.right + 1 &&
+            box.top >= bounds.top - 1 && box.bottom <= bounds.bottom + 1;
+        });
+        var shapes = [];
+        entry.node.querySelectorAll(':scope > .label-container').forEach(function (container) {
+          // Rounded/hand-drawn shapes wrap paths in a group. Include the
+          // container in the author-style check, then tint the actual paths.
+          shapes.push(container);
+          shapes.push.apply(shapes, container.querySelectorAll('path, rect, circle, ellipse, polygon, polyline'));
+        });
+        tint(entry.node, shapes, parent ? parent.index : 0, 'node');
+      });
+    }
+
+    function hasNestedSubgraphs(source) {
+      var depth = 0;
+      return source.split(/\r?\n/).some(function (line) {
+        if (/^\s*subgraph\b/.test(line)) return ++depth > 1;
+        if (/^\s*end\s*(?:;|%%.*)?$/.test(line)) depth = Math.max(0, depth - 1);
+        return false;
+      });
+    }
+
+    for (var code of blocks) {
+      var original = code.closest('.highlighter-rouge') || code.closest('pre');
+      if (!original) continue;
+
+      var wrapper = document.createElement('div');
+      wrapper.className = 'mermaid-diagram';
+      wrapper.tabIndex = 0;
+      wrapper.setAttribute('role', 'region');
+      wrapper.setAttribute('aria-label', 'Mermaid diagram (scroll horizontally)');
+
+      var pre = document.createElement('pre');
+      pre.className = 'mermaid';
+      pre.textContent = normalizeMermaidSource(code.textContent);
+      wrapper.appendChild(pre);
+      original.replaceWith(wrapper);
+
+      try {
+        // Dagre reserves only half rankSpacing above a nested cluster. Keep
+        // that space taller than its parent's title, without spreading out
+        // the ordinary (non-nested) compact flowcharts.
+        mermaid.initialize(Object.assign({}, config, {
+          flowchart: Object.assign({}, config.flowchart, {
+            rankSpacing: hasNestedSubgraphs(code.textContent) ? 56 : config.flowchart.rankSpacing
+          })
+        }));
+        await mermaid.run({ nodes: [pre] });
+        var svg = pre.querySelector('svg');
+        if (svg && svg.viewBox.baseVal.width) {
+          // Do not shrink labels to illegible text on narrow screens;
+          // keep at least 90% of the natural size and scroll the diagram instead.
+          svg.style.minWidth = (svg.viewBox.baseVal.width * 0.9) + 'px';
+        }
+        if (svg) applyFlowchartPalette(svg);
+      } catch (error) {
+        // A malformed diagram must not prevent other diagrams from rendering
+        // or make the original source disappear.
+        wrapper.replaceChildren(original);
+        var message = document.createElement('p');
+        message.className = 'mermaid-error';
+        message.setAttribute('role', 'status');
+        message.textContent = '图表渲染失败，已保留 Mermaid 源码。';
+        wrapper.appendChild(message);
+        console.warn('Mermaid diagram could not be rendered:', error);
+      }
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', renderDiagrams);
+  } else {
+    renderDiagrams();
+  }
+})();
+</script>
+
+
+  </body>
+
+</html>

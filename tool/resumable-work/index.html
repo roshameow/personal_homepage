@@ -1,0 +1,1468 @@
+<!DOCTYPE html>
+<!--
+    So Simple Jekyll Theme 3.2.0
+    Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+    Free for personal and commercial use under the MIT license
+    https://github.com/mmistakes/so-simple-theme/blob/master/LICENSE
+-->
+<html lang="en-US" class="no-js">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  
+
+  
+  
+  <!-- Begin Jekyll SEO tag v2.9.1 -->
+<title>pi agent无人值守工作总体架构与事件闭环 | Liu, Wen’s Home Page</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="pi agent无人值守工作总体架构与事件闭环" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="从长期 Agent 运维经验中抽象通用方法，面向任意长耗时、多阶段、依赖外部系统的任务，例如构建部署、模型训练、数据管线、文档交付、仿真和异步审批。" />
+<meta name="twitter:description" property="og:description" content="从长期 Agent 运维经验中抽象通用方法，面向任意长耗时、多阶段、依赖外部系统的任务，例如构建部署、模型训练、数据管线、文档交付、仿真和异步审批。" />
+<link rel="canonical" href="https://roshameow.github.io//personal_homepage/tool/resumable-work/" />
+<meta property="og:url" content="https://roshameow.github.io//personal_homepage/tool/resumable-work/" />
+<meta property="og:site_name" content="Liu, Wen’s Home Page" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2026-10-10T00:00:00+00:00" />
+<meta property="article:modified_time" content="2026-10-12T09:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="pi agent无人值守工作总体架构与事件闭环" />
+<meta name="twitter:site" content="@" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2026-10-12T09:00:00+00:00","datePublished":"2026-10-10T00:00:00+00:00","description":"从长期 Agent 运维经验中抽象通用方法，面向任意长耗时、多阶段、依赖外部系统的任务，例如构建部署、模型训练、数据管线、文档交付、仿真和异步审批。","headline":"pi agent无人值守工作总体架构与事件闭环","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/tool/resumable-work/"},"url":"https://roshameow.github.io//personal_homepage/tool/resumable-work/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  
+
+  <script>
+    /* Cut the mustard */
+    if ('querySelector' in document && 'addEventListener' in window) {
+      document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + 'js';
+    }
+  </script>
+
+  <link rel="stylesheet" href="/personal_homepage/assets/css/main.css">
+  <link rel="stylesheet" href="/personal_homepage/assets/css/skins/default.css">
+  
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,700,700i|Lora:400,400i,700,700i">
+  <link rel="alternate" type="application/atom+xml" title="Liu, Wen&#39;s Home Page" href="/personal_homepage/atom.xml">
+<!-- start custom head snippets -->
+
+<!-- insert favicons. use http://realfavicongenerator.net/ -->
+<link rel="shortcut icon" type="image/x-icon" href="/personal_homepage/docs/images/logo.ico">
+<!-- end custom head snippets -->
+
+</head>
+
+  <body class="layout--post  pi-agent无人值守工作总体架构与事件闭环">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#primary-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+  <div class="navigation-wrapper">
+    <a href="#menu-toggle" id="menu-toggle">Menu</a>
+    <nav id="primary-nav" class="site-nav animated drop">
+      <ul><li><a href="/personal_homepage/">Home</a></li><li><a href="/personal_homepage/posts/">Posts</a></li><li><a href="/personal_homepage/categories/">Categories</a></li><li><a href="/personal_homepage/tags/">Tags</a></li><li><a href="/personal_homepage/family/">Family</a></li><li><a href="/personal_homepage/search/">Search</a></li></ul>
+    </nav>
+  </div><!-- /.navigation-wrapper -->
+
+
+    <header class="masthead">
+  <div class="wrap">
+    
+    
+    
+      
+        <div class="site-title animated fadeIn"><a href="/personal_homepage/">Liu, Wen's Home Page</a></div>
+      
+      <p class="site-description animated fadeIn" itemprop="description">Work, Experiments and Ideas.</p>
+    
+  </div>
+</header><!-- /.masthead -->
+
+
+    <main id="main" class="main-content" aria-label="Content">
+  <article class="h-entry">
+    
+
+    <div class="page-wrapper">
+      <header class="page-header">
+        
+        
+        <h1 id="page-title" class="page-title p-name">pi agent无人值守工作总体架构与事件闭环
+</h1>
+        
+      </header>
+
+      <div class="page-sidebar">
+        <div class="page-author h-card p-author"><img src="/personal_homepage/docs/images/logo.svg" class="author-avatar u-photo" alt=""><div class="author-info">
+
+<span class="read-time">5 min read</span>
+
+    <time class="page-date dt-published" datetime="2026-10-10T00:00:00+00:00"><a class="u-url" href="">October 10, 2026</a>
+</time>
+
+  </div>
+</div>
+
+        
+  <h3 class="page-taxonomies-title">Categories</h3>
+  
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a class="p-category" href="/personal_homepage/categories/#tool" title="Pages filed under tool">tool</a></li>
+  </ul>
+
+
+        
+  <h3 class="page-taxonomies-title">Tags</h3>
+  
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a href="/personal_homepage/tags/#content" title="Pages tagged content" rel="tag">content</a></li>
+  </ul>
+
+
+        <details id="entry-table-of-contents" class="toc-wrapper" open>
+  <summary>
+    <h2 class="no_toc">
+      Table of Contents
+      <svg class="toc-toggle-icon" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true" focusable="false">
+        <path d="m4 6 4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+      </svg>
+    </h2>
+  </summary>
+  <div class="toc-content">
+    <ul class="inline_toc" id="my_toc"><li><a href="#1-agent项目成熟度判断">1. agent项目成熟度判断</a></li><li><a href="#2-核心架构与八项原则">2. 核心架构与八项原则</a><ul><li><a href="#21-四个平面">2.1 四个平面</a></li><li><a href="#22-八项核心原则">2.2 八项核心原则</a></li></ul></li><li><a href="#3-任务身份入口与-worker-lifecycle">3. 任务身份、入口与 worker lifecycle</a><ul><li><a href="#31-标识与任务契约">3.1 标识与任务契约</a></li><li><a href="#32-标准生命周期">3.2 标准生命周期</a></li><li><a href="#33-等待交接与退出不能混淆">3.3 等待、交接与退出不能混淆</a></li></ul></li><li><a href="#4-watcher-职责通知路由与分级">4. Watcher 职责、通知路由与分级</a><ul><li><a href="#41-按职责拆分-watcher">4.1 按职责拆分 watcher</a></li><li><a href="#42-三层路由">4.2 三层路由</a></li><li><a href="#43-事件分级与降噪">4.3 事件分级与降噪</a></li></ul></li><li><a href="#5-durable-wait-lease完整七步协议">5. Durable wait lease：完整七步协议</a></li><li><a href="#6-资源隔离与健康管理">6. 资源隔离与健康管理</a><ul><li><a href="#61-资源绑定">6.1 资源绑定</a></li><li><a href="#62-通用资源健康管理">6.2 通用资源健康管理</a></li></ul></li><li><a href="#7-通用执行闭环本地外部与版本证据">7. 通用执行闭环：本地、外部与版本证据</a><ul><li><a href="#71-用公开契约驱动制作与验证">7.1 用公开契约驱动制作与验证</a></li><li><a href="#72-外部同步不是上传成功就结束">7.2 外部同步不是上传成功就结束</a></li><li><a href="#73-按任务选择工具">7.3 按任务选择工具</a></li></ul></li><li><a href="#8-状态持久化checkpoint-与-iteration">8. 状态持久化、checkpoint 与 iteration</a><ul><li><a href="#81-当前状态和原始事实分开">8.1 当前状态和原始事实分开</a></li><li><a href="#82-三层持久化与日志分工">8.2 三层持久化与日志分工</a></li><li><a href="#83-每轮-iteration-必须记录">8.3 每轮 iteration 必须记录</a></li><li><a href="#84-建议目录">8.4 建议目录</a></li></ul></li><li><a href="#9-通用技术栈与替换边界">9. 通用技术栈与替换边界</a></li><li><a href="#10-调教过程通用故障与演进路径">10. 调教过程：通用故障与演进路径</a><ul><li><a href="#101-从环境迁移到单任务可运行">10.1 从环境迁移到单任务可运行</a></li><li><a href="#102-从单任务到隔离并行">10.2 从单任务到隔离并行</a></li><li><a href="#103-从共享资源脚本到资源编排">10.3 从共享资源脚本到资源编排</a></li><li><a href="#104-从通知人到通知-agent">10.4 从“通知人”到“通知 Agent”</a></li><li><a href="#105-从watcher-活着到等待中的-owner-活着">10.5 从“watcher 活着”到“等待中的 owner 活着”</a></li><li><a href="#106-从分散通知到统一路由与收尾">10.6 从分散通知到统一路由与收尾</a></li><li><a href="#107-从能执行到少迭代且可信">10.7 从“能执行”到“少迭代且可信”</a></li></ul></li><li><a href="#11-可靠性安全幂等版本证据与隐私">11. 可靠性、安全幂等、版本证据与隐私</a><ul><li><a href="#111-防重复与幂等">11.1 防重复与幂等</a></li><li><a href="#112-防错身份与旧版本">11.2 防错身份与旧版本</a></li><li><a href="#113-防危险捷径">11.3 防危险捷径</a></li><li><a href="#114-凭证与隐私">11.4 凭证与隐私</a></li></ul></li><li><a href="#12-自治边界与冷启动能力">12. 自治边界与冷启动能力</a><ul><li><a href="#121-可自动化范围必须逐项验收">12.1 可自动化范围必须逐项验收</a></li><li><a href="#122-必须人工或明确授权的情况">12.2 必须人工或明确授权的情况</a></li><li><a href="#123-运行中自治不等于重启后零人工恢复">12.3 运行中自治不等于重启后零人工恢复</a></li></ul></li><li><a href="#13-后续三项可以改进的地方">13. 后续三项可以改进的地方</a><ul><li><a href="#131-统一-reconciler">13.1 统一 reconciler</a></li><li><a href="#132-将关键事实移出临时目录">13.2 将关键事实移出临时目录</a></li><li><a href="#133-端到端健康检查">13.3 端到端健康检查</a></li></ul></li></ul>
+  </div>
+</details>
+
+        
+<details id="entry-related-posts" class="toc-wrapper" open>
+  <summary>
+    <h2 class="no_toc">
+      Related Posts
+      <svg class="toc-toggle-icon" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true" focusable="false">
+        <path d="m4 6 4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+      </svg>
+    </h2>
+  </summary>
+  <div class="toc-content">
+    <ul>
+      
+      <li><a href="/personal_homepage/data/alpha29/">News & Social Media 新闻流、社交媒体情绪与文本事件数据体系</a></li>
+      
+      <li><a href="/personal_homepage/data/alpha28/">日内 PV 统计量与市场微结构衍生指标体系</a></li>
+      
+      <li><a href="/personal_homepage/tool/alpha27/">从过度防御的歪路纠偏：GUI/CLI 6 态极简控制面、数据面板统一与工程收口</a></li>
+      
+      <li><a href="/personal_homepage/thought/agent-infrastructure-pitfalls-2/">用 AI 维护复杂控制面基础设施：为什么越修越死？从补丁膨胀到 6 态收敛的六大工程陷阱</a></li>
+      
+      <li><a href="/personal_homepage/tool/pi-subagent-durable/">pi-subagent-durable：后台子代理的持久化、生命周期与故障自愈</a></li>
+      
+    </ul>
+  </div>
+</details>
+
+
+
+      </div>
+
+      <div class="page-content">
+        <div class="e-content">
+          <p>从长期 Agent 运维经验中抽象通用方法，面向任意长耗时、多阶段、依赖外部系统的任务，例如构建部署、模型训练、数据管线、文档交付、仿真和异步审批。</p>
+
+<h2 id="1-agent项目成熟度判断">1. agent项目成熟度判断</h2>
+
+<p>可以把项目成熟度分为四级：</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>级别</th>
+      <th>能力</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>L1 脚本化</td>
+      <td>能自动填表、调 API、上传文件</td>
+    </tr>
+    <tr>
+      <td>L2 可观察</td>
+      <td>有 watcher、日志、通知和状态台账</td>
+    </tr>
+    <tr>
+      <td>L3 事件闭环</td>
+      <td>watcher 能唤醒正确 Agent，Agent 自动继续</td>
+    </tr>
+    <tr>
+      <td>L4 自愈自治</td>
+      <td>多账号隔离、幂等、安全门禁、重启恢复、异常才找人</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>L4的目标是建立一套 <strong>事件驱动、所有权明确、状态可恢复、动作可审计的 Agent 工作流系统</strong>：</p>
+
+<ul>
+  <li>主 session 负责全局调度、事件路由和异常决策；</li>
+  <li>durable worker 负责一个明确任务及其资源的执行与续作；</li>
+  <li>外部 watcher 负责低成本观察长流程，不让模型在前台反复轮询；</li>
+  <li>通知总线把变化送回正确的主 session 或 worker；</li>
+  <li>浏览器、CLI、API、版本库、存储和验证工具构成执行面；</li>
+  <li>ledger、checkpoint、iteration ledger 和版本证据构成状态与审计面；</li>
+  <li>人只处理必须授权、无法自动判断或涉及重大不可逆取舍的异常。</li>
+</ul>
+
+<p>因此，准确目标是：<strong>正常路径自动闭环，异常路径按处理能力分级升级，人处于 on-call 状态，而不是完全取消人工。</strong></p>
+
+<p>这套方法适合任意长任务类型，但迁移至少需要：<strong>可查询的权威状态、稳定资源身份、可定义的阶段和交付契约、明确授权范围，以及可回读的动作结果</strong>。</p>
+
+<h2 id="2-核心架构与八项原则">2. 核心架构与八项原则</h2>
+
+<h3 id="21-四个平面">2.1 四个平面</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>平面</th>
+      <th>回答的问题</th>
+      <th>典型组成</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>控制面</td>
+      <td>谁处理、何时继续、何时退出或升级</td>
+      <td>主 session、任务路由、durable worker、所有权注册表</td>
+    </tr>
+    <tr>
+      <td>观察面</td>
+      <td>外部世界发生了什么变化</td>
+      <td>API/DOM probe、watcher、资源 supervisor、健康检查</td>
+    </tr>
+    <tr>
+      <td>状态面</td>
+      <td>当前事实、过程历史、恢复现场是什么</td>
+      <td>ledger、iteration ledger、checkpoint、日志、证据索引</td>
+    </tr>
+    <tr>
+      <td>执行面</td>
+      <td>怎样完成有副作用的动作并验证结果</td>
+      <td>本地脚本、CLI、Playwright/CDP、受支持 API、Git、对象存储、测试工具</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>外部系统：任务状态 / 异步运行 / 通知评论 / 产物 / 资源健康
+                         │
+                         ▼
+外部 watcher：只读观察、有界等待、变化检测、证据落盘
+                         │ JSON 事件
+                         ▼
+通知总线：路由、批量、去重、过期过滤、busy-safe follow-up
+            ├─ 主 session 专属 inbox
+            ├─ 项目 cwd 级 pending inbox
+            └─ worker taskId 定向 inbox + durable wait lease
+                         │
+                         ▼
+主 session：核验权威状态与 ledger，唤醒已有 owner，必要时新建
+                         │
+                         ▼
+durable worker：独立 session、资源所有权、可停止/恢复/续作
+                         │
+                         ▼
+安全预检 → 可信动作脚本 → 本地/外部验证 → 交付或下一阶段
+                         │
+                         ▼
+ledger + checkpoint + iteration ledger + 可复用经验
+</code></pre></div></div>
+
+<h3 id="22-八项核心原则">2.2 八项核心原则</h3>
+
+<ol>
+  <li><strong>状态驱动</strong>：以外部权威 API、完整页面内容、最新报告和本地证据为事实，不凭 toast、按钮文案或旧记忆行动。</li>
+  <li><strong>事件驱动</strong>：长耗时等待交给 watcher；Agent 不在模型回合中前台 <code class="language-plaintext highlighter-rouge">sleep</code> 或反复查询 API。</li>
+  <li><strong>单一所有权</strong>：同一任务资源同时只有一个正式写入 owner；同一异步阶段只有一个有效 watcher。</li>
+  <li><strong>精确身份</strong>：<code class="language-plaintext highlighter-rouge">taskId</code>、<code class="language-plaintext highlighter-rouge">resourceId</code>、账号、租户/项目、浏览器 profile、CDP 端口、exact URL 等适用字段必须匹配。</li>
+  <li><strong>本地稿先行</strong>：本地工作稿或版本库是内容权威源，外部表单与附件由其同步；不能只改页面不落盘。</li>
+  <li><strong>证据闭环</strong>：动作由 request/transaction、commit、SHA、manifest、报告和外部状态迁移等证据交叉确认。</li>
+  <li><strong>失败关闭</strong>：身份不符、资源冲突、重复 watcher、版本不一致、必需授权缺失或状态不明时禁止危险写操作。</li>
+  <li><strong>有界自治</strong>：真实、可归因、属于公开契约且已授权的问题由 worker 自动修复；真实性、合规与重大取舍不清时交给人。</li>
+</ol>
+
+<h2 id="3-任务身份入口与-worker-lifecycle">3. 任务身份、入口与 worker lifecycle</h2>
+
+<h3 id="31-标识与任务契约">3.1 标识与任务契约</h3>
+
+<p>本文统一使用以下概念，不把业务对象绑定到某一平台：</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">resourceId</code>：被处理资源的稳定标识，例如一个训练任务、部署环境、数据集或交付记录；必要时使用租户/项目命名空间，避免跨系统重号。</li>
+  <li><code class="language-plaintext highlighter-rouge">taskId</code>：当前编排任务/worker 的定向路由身份。进程替换或新建 worker 后可能变化，不能把历史 <code class="language-plaintext highlighter-rouge">taskId</code> 当永久收件地址。</li>
+  <li><code class="language-plaintext highlighter-rouge">runId</code> 或 request/transaction ID：一次外部执行的身份，与资源、版本和 iteration 绑定。</li>
+  <li><code class="language-plaintext highlighter-rouge">iterationId</code>：本地全生命周期的迭代编号，不等同于外部 attempt。</li>
+</ul>
+
+<p>入口应先读取项目规则、资源配置、授权、容量/预算和外部可执行状态，再创建任务。为每个任务明确：目标、输入、可修改范围、验收条件、最长等待时间、迭代/成本上限、终止条件和人工升级边界。</p>
+
+<p>推荐持久配置包括 <code class="language-plaintext highlighter-rouge">config/accounts.json</code>、<code class="language-plaintext highlighter-rouge">config/resources.json</code>、<code class="language-plaintext highlighter-rouge">docs/current_tasks.json</code>，以及资源专属 <code class="language-plaintext highlighter-rouge">runs/&lt;resourceId&gt;/</code>。是否能够执行某动作应由外部权威状态与预检共同确认，不能仅凭本地“可执行”缓存。</p>
+
+<h3 id="32-标准生命周期">3.2 标准生命周期</h3>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>确认确有未完成动作，查找现有 owner
+  → 创建唯一 durable worker，分配独占资源
+  → 读取 worker 规则、方法文档、项目 notes、ledger/checkpoint
+  → 读取完整通知/评论，核验身份、授权、外部权威状态
+  → 开始 iteration，记录 baseline、假设与计划
+  → 本地制作或修复，完成可复现验证
+  → 安全预检，同步并回读外部版本
+  → 执行唯一事务，保存 request/run 证据
+  → 若仍有依赖外部变化的未解决动作：启动唯一 watcher
+  → arm_notification_wait，释放模型回合但保留等待中的 worker
+  → watcher 定向通知，同一 session 被唤醒
+  → 重读 checkpoint 与权威状态，继续验证、修复或交付
+  → 交付被接受且无活跃修复/未解决动作，或任务达到明确终止条件
+  → 写 checkpoint、ledger、经验与 changed files，释放资源并退出
+</code></pre></div></div>
+
+<p>关键是 <strong>外部观察者 + 有界等待租约 + 原 session 唤醒</strong>，不是让 worker 无限占用前台推理。</p>
+
+<h3 id="33-等待交接与退出不能混淆">3.3 等待、交接与退出不能混淆</h3>
+
+<ul>
+  <li>每次提交或收到平台状态通知后，必须重新查询权威状态，再判断等待还是退出。</li>
+  <li>若交付已被外部系统接收、进入其处理流程，且当前 worker 没有活跃修复或明确未完成动作，应持久化交接状态后退出。外部尚未最终完成，不等于原 worker 必须留驻。</li>
+  <li>后续审批、回退或评论可以由独立 watcher 继续观察。原 owner 已退出时，应路由到主 session，由其核验待办再创建或恢复合适 worker，不能持续投向旧 <code class="language-plaintext highlighter-rouge">taskId</code>。</li>
+  <li>只有确有未解决动作依赖外部变化时才建立 durable wait。明确人工阻塞应记录原因、证据和下一责任人；不要伪装成持续工作或成功。</li>
+</ul>
+
+<p>“退出执行 worker”“外部接受交付”“业务最终完成”是三件不同的事，必须分别记录。</p>
+
+<h2 id="4-watcher-职责通知路由与分级">4. Watcher 职责、通知路由与分级</h2>
+
+<h3 id="41-按职责拆分-watcher">4.1 按职责拆分 watcher</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>通用类型</th>
+      <th>职责</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>notification watcher</td>
+      <td>保存完整通知、评论、提及及其唯一 ID，分类路由</td>
+    </tr>
+    <tr>
+      <td>status/review watcher</td>
+      <td>观察固定资源的外部状态、交接结果或修复请求</td>
+    </tr>
+    <tr>
+      <td>ledger watcher</td>
+      <td>观察当前台账的业务状态差异</td>
+    </tr>
+    <tr>
+      <td>capacity/opportunity watcher</td>
+      <td>观察任务队列、可用容量、配额或执行窗口</td>
+    </tr>
+    <tr>
+      <td>run watcher</td>
+      <td>绑定某一次构建、训练、仿真、导出或报告生成</td>
+    </tr>
+    <tr>
+      <td>resource supervisor</td>
+      <td>检查浏览器、连接、容器或其他专属资源健康，执行已授权的有界自愈</td>
+    </tr>
+    <tr>
+      <td>recording watcher（可选）</td>
+      <td>仅在确需录屏的工作流中观察录制健康，不决定内容交付是否合格</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>watcher 默认只读：获取权威状态、比较快照、落证据并通知，在终态、超时或不可恢复错误时退出。资源修复由职责明确的 supervisor 或动作脚本承担，不让普通观察器暗中执行高风险业务写操作。</p>
+
+<p>实现至少需要 baseline、有限 interval/timeout、唯一实例检查、PID 和 launch marker、原子写入、通知失败重试。首轮不能仅记 baseline 后忽略已经到达的目标状态：启动时就满足唤醒条件的，也应进入结果处理。失败投递不得更新 seen/fingerprint 为“已消费”。</p>
+
+<h3 id="42-三层路由">4.2 三层路由</h3>
+
+<ol>
+  <li><strong>主 session 专属 inbox</strong>：按项目 cwd、session 身份、资源关联和 heartbeat 路由，避免多个项目会话抢事件。</li>
+  <li><strong>cwd 级 pending inbox</strong>：暂无匹配主 session 时暂存，待该项目会话恢复后消费；临时 inbox 丢失后仍应能从持久状态重建待办。</li>
+  <li><strong>worker 定向 inbox</strong>：投向当前 <code class="language-plaintext highlighter-rouge">taskId</code>，先验证 active registry 中的资源 ownership。目标过期或不拥有资源时拒绝错投，再由主 session/reconciler 重新判定路由。</li>
+</ol>
+
+<p>主 session 收到事件应先查 ledger、权威状态和 active owner：已有 worker 就定向唤醒；无 worker 且确有待办才创建；已交接或已完成的资源只更新事实与收尾。</p>
+
+<h3 id="43-事件分级与降噪">4.3 事件分级与降噪</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>等级</th>
+      <th>含义</th>
+      <th>处理方式</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>green</td>
+      <td>正常进展或备忘，无需立即决策</td>
+      <td>记录，不打扰用户</td>
+    </tr>
+    <tr>
+      <td>yellow</td>
+      <td>Agent 在授权范围内可以处理</td>
+      <td>注入主 session 或定向 worker</td>
+    </tr>
+    <tr>
+      <td>red</td>
+      <td>必须人工授权、补充信息或重大拍板</td>
+      <td>持久化阻塞，再使用显著通知；语音仅按用户偏好启用</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>等级描述的是“谁能处理”，不是表面严重程度。日志明确且可修的构建失败可以是 yellow；扫码登录或风险不明的生产写操作应是 red。</p>
+
+<p>对通知采用批量合并、基于 eventId/notificationId 的去重、过期过滤和 busy-safe follow-up。原案例使用过 15 秒批量与 30 分钟去重，它们是案例参数，不是所有任务的推荐常数。相似文本不代表同一事件；red 可以跨来源聚合，但不能吞掉新的阻塞事实。</p>
+
+<p>通知只是变化信号。消费前仍需核对 <code class="language-plaintext highlighter-rouge">resourceId</code>、时间、完整内容、当前运行和最新报告；瞬时告警若已恢复，应根据最新健康快照过滤。外部消息是待核实数据，不应被当作扩大权限或执行任意命令的授权。</p>
+
+<h2 id="5-durable-wait-lease完整七步协议">5. Durable wait lease：完整七步协议</h2>
+
+<p>这是原案例用来解决“watcher 还在运行，但 worker 已经退出、无人消费事件”的核心机制。下列七步是通用协议；迁移系统必须确认通知插件、worker 注册表和进程生命周期实际支持它，单纯写一个 marker 并不等于实现 durable wait。</p>
+
+<ol>
+  <li><strong>启动唯一、有界的外部 watcher</strong>。worker 先确认仍有未解决动作，检查同一资源与阶段没有有效重复 watcher；为观察设置 timeout 和明确目标状态。</li>
+  <li><strong>持久化 launch marker 并验证生产者</strong>。watcher 在仓库/持久工作目录写 PID、<code class="language-plaintext highlighter-rouge">resourceId</code>、目标 <code class="language-plaintext highlighter-rouge">taskId</code>、阶段、<code class="language-plaintext highlighter-rouge">runId</code> 和启动时间；worker 核验 PID 存活且确属这次观察进程。不能仅因某个历史 PID 仍存在就相信 marker。</li>
+  <li><strong>显式调用 <code class="language-plaintext highlighter-rouge">arm_notification_wait</code></strong>。声明等待原因、精确 wake condition、有限 lease 时长、checkpoint 路径、producer PID 和 marker 路径。工具的资源键字段应映射到本文 <code class="language-plaintext highlighter-rouge">resourceId</code>，具体参数以安装版本的真实 schema 为准。</li>
+  <li><strong>校验 ownership 与等待绑定</strong>。通知插件验证 active-worker ownership、cwd、PID、marker、资源和 notify target 一致。等待协议还应把当前执行 <code class="language-plaintext highlighter-rouge">runId</code>、租约 nonce 绑定到事件，防止旧 watcher 或旧运行的通知误唤醒新等待；这项匹配必须按部署版本实际验收，不能只检查消息文字。</li>
+  <li><strong>hold 当前 <code class="language-plaintext highlighter-rouge">agent_end</code></strong>。插件保持 worker 进程和注册有效，允许当前模型回合结束而不让 worker 被判定为完成。此时应有可读 checkpoint，不靠模型记忆维持等待事实。</li>
+  <li><strong>定向事件消费租约并续作</strong>。watcher 发送匹配当前任务、资源、运行和租约身份的事件，插件排入 follow-up、消费对应租约，恢复同一 session。worker 重读 checkpoint、marker 和外部权威状态后继续；事件到达本身不证明外部任务成功。</li>
+  <li><strong>到期触发自检，不静默成功</strong>。租约到期应唤醒自检，核对外部任务、生产者和身份，决定继续观察、修复、升级或退出；若续租，应使用有效的当前绑定，不能无限延长而无判断。</li>
+</ol>
+
+<p>启动 watcher 与 arm 之间存在状态变化窗口，实现应保证事件不会因尚未 arm 而丢失，也应测试 busy 时、重复事件、过期事件和 watcher 异常退出的行为。原文记载的定向唤醒与 wait lease 测试是原案例证据，不替代目标系统的端到端验收。</p>
+
+<h2 id="6-资源隔离与健康管理">6. 资源隔离与健康管理</h2>
+
+<h3 id="61-资源绑定">6.1 资源绑定</h3>
+
+<p>有浏览器需求时，推荐绑定：</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>账号/租户 + resourceId
+  ↔ 专属凭证文件或凭证引用
+  ↔ 独占 Chrome profile
+  ↔ 独占 CDP 端口
+  ↔ exact URL / target
+  ↔ 当前唯一 worker taskId
+</code></pre></div></div>
+
+<p>非浏览器任务则把相同原则用于工作目录、容器、云任务、存储前缀、锁和部署环境。任务拆分不应制造对同一资源的多个并发写入 owner；确需共享时必须明确锁、串行化或所有权交接协议。</p>
+
+<p>隔离主要防止错账号、错页面、资源被其他 worker 关闭、凭证串用以及旧事件投向替代 worker。浏览器操作必须定位 exact URL/target，不能默认使用 <code class="language-plaintext highlighter-rouge">pages[0]</code>。清理只针对当前 worker 拥有的资源，禁止关闭共享浏览器、其他任务页面或无关容器。</p>
+
+<h3 id="62-通用资源健康管理">6.2 通用资源健康管理</h3>
+
+<p>资源管理可分为三层：</p>
+
+<ol>
+  <li><strong>观察</strong>：检查进程、连接、容器、磁盘和其他执行依赖，保存新鲜的健康快照。</li>
+  <li><strong>有界恢复</strong>：按注册表和所有权重连连接、恢复专属进程或重建可安全重建的资源；冲突或后果不明时失败关闭。</li>
+  <li><strong>升级</strong>：恢复失败、缺少权限或需要重大不可逆操作时，记录证据并交给主 session 或用户决策。</li>
+</ol>
+
+<p>资源健康只证明执行依赖可用，不代表产物通过验收或允许交付。健康检查与业务验收必须分别判断。</p>
+
+<h2 id="7-通用执行闭环本地外部与版本证据">7. 通用执行闭环：本地、外部与版本证据</h2>
+
+<h3 id="71-用公开契约驱动制作与验证">7.1 用公开契约驱动制作与验证</h3>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>公开需求/输入契约
+  ↔ 真实资源与运行环境
+  ↔ 实现或交付产物
+  ↔ 独立可复现验证
+</code></pre></div></div>
+
+<p>验证标准应能回溯到公开要求，不能靠隐藏限制或伪造材料获得“通过”。代码与数据任务按需覆盖边界输入、非法值、失败传播、幂等、旧输出清理、合法输入变形；依赖、超时、精度和 schema 应明确。文档任务则核实原始来源、事实、公式与适用范围，并验证文件结构和内容。</p>
+
+<p>原案例使用容器与专用验证工具保证环境接近外部执行环境。可迁移的是“可复现、独立验证”的方法，不是要求所有任务安装同一专用工具或使用案例的业务评分规则。</p>
+
+<h3 id="72-外部同步不是上传成功就结束">7.2 外部同步不是上传成功就结束</h3>
+
+<p>本地权威稿 → 外部同步 → 回读版本 → 唯一事务 → 请求绑定 watcher → 最新结果 → 契约验证 → 有界修复或交付。</p>
+
+<p>需要版本证据时，可组合使用：</p>
+
+<ul>
+  <li>本地内容 hash、输入/配置指纹与逐文件 SHA-256；</li>
+  <li>Git commit、远端引用，以及适用时 <code class="language-plaintext highlighter-rouge">HEAD == origin/main</code>；</li>
+  <li>上传产物的大小、文件名、对象版本、根 commit 和 manifest；</li>
+  <li>实际执行绑定的 request/transaction/run ID；</li>
+  <li>运行开始时间晚于最终有效保存时间，并核对输入指纹；</li>
+  <li>报告与本次运行、attempt、版本的对应关系。</li>
+</ul>
+
+<p>时间顺序只能辅助证明新鲜度，不能替代版本指纹。外部系统是否自动重新打包、表单保存是否更新运行输入、API 是否覆盖完整事务，都必须独立验证；原案例发现过“保存了但仍执行旧版本”的问题，不能据此推断所有系统的 API 都不可靠，也不能未经测试假定 UI 路径必然正确。</p>
+
+<h3 id="73-按任务选择工具">7.3 按任务选择工具</h3>
+
+<ul>
+  <li>浏览器任务优先 DOM/Playwright，图像理解用于真实图片或图表，不替代可查询 DOM。</li>
+  <li>受限 Web IDE 可用编码传输并逐文件核验，避免终端输入丢字符；Git 推送与外部可执行包仍要分别确认。</li>
+  <li>文档可用 <code class="language-plaintext highlighter-rouge">python-docx</code>、OOXML/ZIP 检查及 LibreOffice 打开验证；页数、结构、可编辑性、附件和最终需求要一致。</li>
+  <li>研究型任务应保存 URL、访问日期、采用事实及适用范围，不凭记忆编造来源，也不把重制材料伪装成原始材料。</li>
+  <li>外部反馈应读完整评论和锚点，按目标系统规定回复并回读结果；避免重复回复及泄露内部日志、凭证或无关技术细节，必要的自动化披露不得隐瞒。</li>
+</ul>
+
+<p>有权威、受支持且完整的 API 时可以用 API；需要真实 UI 才能完成已验证事务时才用 UI。选择依据是授权、契约和证据，不是固定偏好。</p>
+
+<h2 id="8-状态持久化checkpoint-与-iteration">8. 状态持久化、checkpoint 与 iteration</h2>
+
+<h3 id="81-当前状态和原始事实分开">8.1 当前状态和原始事实分开</h3>
+
+<p>通用归一状态可采用：</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>queued / active / waiting_external / done / cancelled
+</code></pre></div></div>
+
+<p>名称可按项目调整，但须同时保存外部 raw facts、当前动作、责任人和阻塞原因。外部 accepted、运行 completed、交付 done 可能处于不同层次，不能直接混为一个“成功”。已交接并退出 worker 的资源仍可处于 <code class="language-plaintext highlighter-rouge">waiting_external</code>。</p>
+
+<h3 id="82-三层持久化与日志分工">8.2 三层持久化与日志分工</h3>
+
+<ol>
+  <li><strong>全局 ledger</strong>：<code class="language-plaintext highlighter-rouge">docs/current_tasks.json</code> 保存每个资源的当前状态、账号/项目、当前 <code class="language-plaintext highlighter-rouge">taskId</code>、watcher、动作、阻塞和证据索引。用单写者、文件锁或事务避免并发覆盖，以原子写更新。</li>
+  <li><strong>资源 checkpoint</strong>：保存最新权威状态及观测时间、身份绑定、已完成动作、当前请求、版本、watcher/lease、下一动作和“不得重复做什么”。另一个 worker 不依赖旧模型记忆就能接管。</li>
+  <li><strong>长期经验</strong>：按项目约定沉淀已验证方法、可复现故障、领域规则和工具索引。可复用脚本与临时脚本分开；收尾时对临时产物执行 <code class="language-plaintext highlighter-rouge">promote / defer / discard</code>，分别表示正式化、待验证保留或丢弃。</li>
+</ol>
+
+<p>日志回答“发生过什么”，ledger 回答“现在是什么”，iteration ledger 回答“各轮尝试是否有效”，checkpoint 回答“从哪里继续”，四者不能互相替代。完整通知、报告与大产物另存，ledger 留索引，不存凭证和无关个人信息。</p>
+
+<p>session 保存上下文，checkpoint 保存最小恢复事实。即使可以原 session resume，也应先读 checkpoint 并回查权威状态；重启后历史 PID、lease 和 registry 不能直接当作活跃事实。</p>
+
+<h3 id="83-每轮-iteration-必须记录">8.3 每轮 iteration 必须记录</h3>
+
+<p>iteration ledger 建议用追加式 JSONL，至少记录：</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">resourceId</code>、<code class="language-plaintext highlighter-rouge">taskId</code>、<code class="language-plaintext highlighter-rouge">iterationId</code> 与触发事件；</li>
+  <li>权威 baseline、问题归因、本轮 hypothesis 和修改方向；</li>
+  <li>计划改什么、不改什么、授权与预算消耗；</li>
+  <li>本地/外部版本指纹及实质 diff；</li>
+  <li>request/transaction/run ID、外部 attempt 与正式修复轮次；</li>
+  <li>完整结果/报告索引、是否有效、是否引入回归；</li>
+  <li>下一步继续修、回滚、交付、人工复核或停止。</li>
+</ul>
+
+<p>本地迭代编号应全生命周期单调递增；外部 attempt 可能重置、对应多个报告或不计某些失败，因此只能作为外部字段，不能替代 iteration 身份。</p>
+
+<p>开始新一轮前检查：是否重复已证伪假设、是否有实质变化、失败究竟来自内容/版本/环境/平台、外部是否实际使用新版本、剩余额度和停止线是什么。不要把版本同步失败当内容问题反复改，也不要用无界补丁掩盖真正根因。</p>
+
+<h3 id="84-建议目录">8.4 建议目录</h3>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>project/
+├── .pi/agents/_worker.md       # 项目 worker 规则与终止条件
+├── config/                    # 账号引用、资源和授权配置
+├── docs/current_tasks.json    # 当前事实与路由
+├── docs/task-routing.md       # 事件 → 权威读取 → 责任人的规则
+├── docs/automation-methods.md # 已验证方法与可复现坑
+├── runs/&lt;resourceId&gt;/
+│   ├── checkpoint.json
+│   ├── iterations.jsonl
+│   ├── evidence/
+│   └── watchers/              # launch/state marker
+└── scripts/
+    ├── watchers/              # 只读观察
+    ├── actions/               # 有副作用动作
+    ├── preflight/             # 执行前检查
+    └── _debug/                # 未验证实验
+</code></pre></div></div>
+
+<p>目录是迁移建议，不表示当前仓库或任意部署已经存在这些组件。敏感运行记录即使放在持久工作目录，也不应误提交到公开版本库。</p>
+
+<h2 id="9-通用技术栈与替换边界">9. 通用技术栈与替换边界</h2>
+
+<p>以下是原案例使用/探索过的技术及其可迁移角色，不是所有任务的必装清单，也不是当前版本兼容性保证。安装和参数细节见配套工具指南，并以部署时文档与测试为准。</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>层</th>
+      <th>案例技术/可选工具</th>
+      <th>通用作用及边界</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Agent 控制面</td>
+      <td>Pi coding agent</td>
+      <td>推理、工具调用、会话管理；也可替换为满足协议的其他编排器</td>
+    </tr>
+    <tr>
+      <td>Durable worker</td>
+      <td><code class="language-plaintext highlighter-rouge">pi-subagent-durable</code>、TypeScript、Node.js</td>
+      <td>独立 session、注册、停止/恢复、模型与上下文继承</td>
+    </tr>
+    <tr>
+      <td>终端复用</td>
+      <td>RMUX</td>
+      <td>独立 pane、后台进程、attach；不替代业务状态记录</td>
+    </tr>
+    <tr>
+      <td>通知总线</td>
+      <td><code class="language-plaintext highlighter-rouge">pi-agent-notify</code>、<code class="language-plaintext highlighter-rouge">fs.watch</code>、JSON spool</td>
+      <td>定向路由、批量去重、follow-up、wait lease</td>
+    </tr>
+    <tr>
+      <td>watcher 与脚本</td>
+      <td>Python 3、<code class="language-plaintext highlighter-rouge">asyncio</code></td>
+      <td>状态探测、证据落盘、动作封装与验证</td>
+    </tr>
+    <tr>
+      <td>浏览器执行</td>
+      <td>Playwright、CDP/WebSocket</td>
+      <td>DOM、表单、下载、网络监听、已有浏览器连接</td>
+    </tr>
+    <tr>
+      <td>浏览器隔离</td>
+      <td>Chrome profile、独占 CDP 端口</td>
+      <td>隔离登录态与页面</td>
+    </tr>
+    <tr>
+      <td>外部访问</td>
+      <td>REST API、Cookie session、<code class="language-plaintext highlighter-rouge">urllib</code>/fetch</td>
+      <td>权威状态与受支持事务；写操作必须验证授权与完整语义</td>
+    </tr>
+    <tr>
+      <td>人工升级</td>
+      <td><code class="language-plaintext highlighter-rouge">osascript</code>、<code class="language-plaintext highlighter-rouge">say</code></td>
+      <td>桌面提示及按偏好启用的 red 语音</td>
+    </tr>
+    <tr>
+      <td>进程守护</td>
+      <td><code class="language-plaintext highlighter-rouge">nohup</code>、PID、marker、信号、LaunchAgent/服务管理器</td>
+      <td>后台观察、实例识别；开机恢复必须另行验收</td>
+    </tr>
+    <tr>
+      <td>电源管理</td>
+      <td>macOS 防休眠配置</td>
+      <td>长运行稳定性；重启后是否持久有效不能假定</td>
+    </tr>
+    <tr>
+      <td>可复现验证</td>
+      <td>Docker、Colima、Compose、<code class="language-plaintext highlighter-rouge">uv</code></td>
+      <td>环境隔离与依赖复现；专用验证框架按任务选择</td>
+    </tr>
+    <tr>
+      <td>受限 IDE 传输</td>
+      <td>code-server/OpenVSCode、xterm.js、base64/gzip/tar</td>
+      <td>适用时可靠传输和终端操作，上传后仍需核验</td>
+    </tr>
+    <tr>
+      <td>版本和存储</td>
+      <td>Git、SHA-256、manifest、对象存储</td>
+      <td>内容、远端引用、实际运行包与结果的绑定</td>
+    </tr>
+    <tr>
+      <td>研究与文件理解</td>
+      <td>web search、agy MCP websearch/vision</td>
+      <td>真实来源核查与图片/表格理解，须记录证据</td>
+    </tr>
+    <tr>
+      <td>Office 交付</td>
+      <td><code class="language-plaintext highlighter-rouge">python-docx</code>、OOXML ZIP、LibreOffice</td>
+      <td>按需构建、元数据和可打开性验证</td>
+    </tr>
+    <tr>
+      <td>状态存储</td>
+      <td>JSON/JSONL、Markdown、checkpoint、日志</td>
+      <td>当前事实、历史迭代与恢复；规模扩大时可用事务数据库</td>
+    </tr>
+    <tr>
+      <td>安全策略</td>
+      <td>项目级 safety extension/策略执行器</td>
+      <td>工具前阻断错身份、重复运行、危险路径</td>
+    </tr>
+    <tr>
+      <td>界面降噪</td>
+      <td><code class="language-plaintext highlighter-rouge">pi-minimal-mode</code></td>
+      <td>运维可读性优化，不参与业务正确性判断</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="10-调教过程通用故障与演进路径">10. 调教过程：通用故障与演进路径</h2>
+
+<p>以下阶段来自原案例的演进概括，可用来规划迁移路线；并非每个目标系统都会按同一顺序实现。</p>
+
+<h3 id="101-从环境迁移到单任务可运行">10.1 从环境迁移到单任务可运行</h3>
+
+<p>先解决依赖、容器、路径、浏览器登录态和只读状态探测。原案例暴露过路径探测失败被误判为没有浏览器、猜测写接口，以及已有授权范围内反复询问的问题。</p>
+
+<p>通用方法：先核验实际环境和授权清单，抓取/阅读真实接口契约，以可见流程处理必须的人机步骤；不硬猜写请求，也不把过去授权无限扩大。</p>
+
+<h3 id="102-从单任务到隔离并行">10.2 从单任务到隔离并行</h3>
+
+<p>静默退出、provider/额度错误未上报、模型继承错误、注册表与真实进程不一致、reload 后工具或身份错位，以及主 session 包揽所有任务，都会破坏自治。</p>
+
+<p>演进方向是独立 durable session、完成/错误通知、模型与上下文继承、active registry 和资源所有权检查。注册表必须与进程及外部状态交叉核验，不能只凭列表断言系统健康。</p>
+
+<h3 id="103-从共享资源脚本到资源编排">10.3 从共享资源脚本到资源编排</h3>
+
+<p>共享资源容易造成争用、误关闭、告警刷屏、恢复后旧告警仍注入；健康探测频率也不该决定通知频率。</p>
+
+<p>演进方向是独占资源、supervisor/常规恢复/观察分层、冲突检查、状态变化通知和新鲜健康快照过滤。资源就绪不能被误解为业务可交付。</p>
+
+<h3 id="104-从通知人到通知-agent">10.4 从“通知人”到“通知 Agent”</h3>
+
+<p>只写日志或播声音仍依赖人转述。原文记载过外部脚本 → 指定 worker → worker 继续响应的闭环测试。</p>
+
+<p>迁移应补齐 cwd 隔离、定向 inbox、busy-safe follow-up、可靠消费和重试、唯一事件去重、完整通知存档及过期过滤。原案例的测试结论仅证明当时被测试的路径，不证明任意部署或所有故障场景。</p>
+
+<h3 id="105-从watcher-活着到等待中的-owner-活着">10.5 从“watcher 活着”到“等待中的 owner 活着”</h3>
+
+<p>watcher 目录里有事件，不代表 settled/退出的 worker 能消费。演进方向是显式 arm、验证 producer PID/marker、绑定 ownership、有界 lease、hold <code class="language-plaintext highlighter-rouge">agent_end</code> 和到期自检，而不是一遇事件就人工 reload。</p>
+
+<h3 id="106-从分散通知到统一路由与收尾">10.6 从分散通知到统一路由与收尾</h3>
+
+<p>通知进错 session、重复创建 owner、外部已经接收却不退出等故障，推动形成完整事件分类、当前台账、已有 worker 优先唤醒和终止规则。交付后先核验状态、持久化再退出；后续 watcher 与执行 worker 生命周期分离。</p>
+
+<h3 id="107-从能执行到少迭代且可信">10.7 从“能执行”到“少迭代且可信”</h3>
+
+<p>后期优化应把反复出现的真实反馈前移为公开契约、真实性、环境验证和版本一致性检查。每轮记录有效性、根因和回归；对临时脚本做 <code class="language-plaintext highlighter-rouge">promote / defer / discard</code>，只把已验证方法提升为正式流程。</p>
+
+<p>安全控制也可能误拦正常路径。拒绝应给 reason code、缺失事实和安全替代路线；可修复的前置问题进入修复流程，而不是原地空等。只有超出授权或判断能力时才升级给人。</p>
+
+<h2 id="11-可靠性安全幂等版本证据与隐私">11. 可靠性、安全幂等、版本证据与隐私</h2>
+
+<h3 id="111-防重复与幂等">11.1 防重复与幂等</h3>
+
+<ul>
+  <li>同资源单一正式 owner，同阶段单有效 watcher；创建前先查所有权和实际进程。</li>
+  <li>已有 running request 时禁止重复触发；提交只认权威状态迁移，不因按钮消失或响应超时重复提交。</li>
+  <li>通知按唯一事件身份去重，已处理评论不重复回复；等待绑定与消费需要幂等。</li>
+  <li>动作响应不明时先 reconcile：查实际请求、外部状态及证据，再判断是否重试。不能把“没收到响应”当成“动作没有执行”。</li>
+</ul>
+
+<h3 id="112-防错身份与旧版本">11.2 防错身份与旧版本</h3>
+
+<p>执行前核验账号、租户/项目、<code class="language-plaintext highlighter-rouge">resourceId</code>、当前 owner 和适用资源绑定。浏览器核验 profile、CDP 和 exact URL；非浏览器任务核验工作目录、容器、环境和存储目标。</p>
+
+<p>版本检查沿完整交付链进行：本地内容 → 远端引用 → 实际执行输入 → request/run → 最新报告。任一环节不一致，先修复同步或绑定，不得使用旧报告证明新版本通过。</p>
+
+<h3 id="113-防危险捷径">11.3 防危险捷径</h3>
+
+<p>安全门禁应在有副作用的工具调用前检查，而不是只写在提示词里：</p>
+
+<ul>
+  <li>禁止绕过已验证完整事务、使用未确认写端点或跳过必要授权。</li>
+  <li>禁止关闭共享浏览器、杀无关进程、覆盖其他任务资源。</li>
+  <li>身份不符、状态不明、重复 owner/watcher、版本冲突时失败关闭。</li>
+  <li>对删除、生产变更、签署、发布等不可逆动作单独定义授权和确认条件。</li>
+</ul>
+
+<p>原案例的 raw execution、UI acquire 等具体拦截规则见案例篇；通用迁移应根据目标系统的实际危险路径重新制定，不能照搬端点黑名单。</p>
+
+<h3 id="114-凭证与隐私">11.4 凭证与隐私</h3>
+
+<p>Cookie、token 和其他凭证按账号/环境隔离并视同密码；本地敏感凭证文件可采用权限 600，不打印内容，不写入公开仓库、通知和 checkpoint。认证失效时停止相关写操作并请求重新登录，不猜测或绕过认证。</p>
+
+<p>材料、运行日志与外部回复遵守真实性、授权、版权和脱敏边界。checkpoint 应保存凭证引用而不是凭证值；事件、报告及恢复目录也要配置访问权限和保留期。</p>
+
+<h2 id="12-自治边界与冷启动能力">12. 自治边界与冷启动能力</h2>
+
+<h3 id="121-可自动化范围必须逐项验收">12.1 可自动化范围必须逐项验收</h3>
+
+<p>在授权、契约和工具链都已验证的前提下，目标系统可规划自动完成：任务发现与分派、本地制作与验证、外部同步、长运行等待、事件处理、有界修复、交付回读和经验沉淀。资源自愈也仅限已授权且可判断后果的操作。</p>
+
+<p>这是一份可实现范围清单，不是任意新项目已经具备这些能力的承诺。业务流程中的考试、签约、提交等动作是否可自动执行，还取决于本人授权与目标平台规则。</p>
+
+<h3 id="122-必须人工或明确授权的情况">12.2 必须人工或明确授权的情况</h3>
+
+<ol>
+  <li>超出既有权限范围的操作，以及必须由本人完成的授权或确认。</li>
+  <li>登录失效、扫码、验证码或平台风控。</li>
+  <li>必须由本人提供或确认的身份、真实材料和操作授权。</li>
+  <li>真实性、隐私、版权或合规边界不清。</li>
+  <li>重大不可逆决策、放弃任务、重大方向变化或申诉立场。</li>
+  <li>平台故障、provider 限额、网络异常且无法判断动作后果。</li>
+</ol>
+
+<p>升级应带上当前事实、证据、已尝试动作、可选方案和需要人确认的具体问题，不把可自动修复的普通失败一律交给人。</p>
+
+<h3 id="123-运行中自治不等于重启后零人工恢复">12.3 运行中自治不等于重启后零人工恢复</h3>
+
+<p><strong>运行期间自动闭环、checkpoint 可恢复、断电重启后零人工恢复</strong>是不同能力，必须分别验收。不能因为运行中的流程成功，就认定机器或进程重启后也会自动恢复。</p>
+
+<p>目标系统的冷启动验收至少需要：</p>
+
+<ul>
+  <li>电源/防休眠配置持久化，watcher/supervisor 的服务或 LaunchAgent 开机拉起。</li>
+  <li>浏览器/CDP/profile 或其他资源注册表恢复，并重新验证实际占用。</li>
+  <li>主 session 自动启动、cwd 级 pending 事件消费和正确 worker 路由。</li>
+  <li>临时 inbox、worker registry、wait lease 丢失后的持久 checkpoint 重建。</li>
+  <li>逐资源回查外部权威状态，避免重复评测、提交、发布或创建任务。</li>
+</ul>
+
+<p>登录、权限变更和机器故障仍可能构成人工边界。恢复历史记录不是复活历史 PID 或直接相信旧租约。</p>
+
+<h2 id="13-后续三项可以改进的地方">13. 后续三项可以改进的地方</h2>
+
+<h3 id="131-统一-reconciler">13.1 统一 reconciler</h3>
+
+<p>启动或重启后，合并读取账号/资源配置、当前 ledger、checkpoint、active-worker registry、资源健康、watcher PID/marker 和外部状态/通知。先输出唯一动作计划：恢复、唤醒、新建、退役、继续观察或 red，再按授权与门禁执行。</p>
+
+<p>reconcile 必须以最新权威事实消除冲突，不能把历史台账当作实际运行，也不能为同一资源创建两个 owner。</p>
+
+<h3 id="132-将关键事实移出临时目录">13.2 将关键事实移出临时目录</h3>
+
+<p><code class="language-plaintext highlighter-rouge">/tmp</code> 只保存可重建的 inbox 副本、短期缓存和运行锁，不作为唯一事实源。launch marker、checkpoint、iteration 和动作证据写到持久工作目录；启动时由持久状态和外部回读重建路由、registry 与必要等待。</p>
+
+<p>持久状态本身也应原子写入、备份并控制权限，不能只把目录从 <code class="language-plaintext highlighter-rouge">/tmp</code> 换个名字。</p>
+
+<h3 id="133-端到端健康检查">13.3 端到端健康检查</h3>
+
+<p>定期验证一条无业务副作用的受控链路：</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>外部只读探测/测试事件
+  → watcher 发现
+  → 通知总线路由
+  → 主 session/worker 收到
+  → ledger 更新
+  → 回执 marker
+</code></pre></div></div>
+
+<p>同时检查资源连接、进程、session、服务管理器、电源设置和磁盘空间。健康检查要验证真实消费及回执，而不只是“进程还活着”；测试事件不得触发生产提交。</p>
+
+
+        </div>
+
+        
+
+        
+        
+  <div class="page-comments">
+    <div id="disqus_thread"></div>
+    <script>
+      var disqus_config = function () {
+        this.page.url = 'https://roshameow.github.io//personal_homepage/tool/resumable-work/';
+        this.page.identifier = 'https://roshameow.github.io//personal_homepage/tool/resumable-work/';
+      };
+
+      (function() {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://https-roshameow-github-io-personal-homepage.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+  </div>
+
+
+        
+
+        <nav class="page-pagination" role="navigation">
+  
+    <a class="page-previous" href="/personal_homepage/daily/%E7%BD%91%E7%BB%9C%E9%97%AE%E9%A2%98/">
+      <h4 class="page-pagination-label">Previous</h4>
+      <span class="page-pagination-title">
+        <i class="fas fa-arrow-left"></i> 深入理解 TUN 模式：网卡识别命令与直连/代理判定全景对照
+
+      </span>
+    </a>
+  
+
+  
+    <a class="page-next" href="/personal_homepage/tool/agent-example1/">
+      <h4 class="page-pagination-label">Next</h4>
+      <span class="page-pagination-title">
+        pi agent无人值守工作案例一(talentsai)
+ <i class="fas fa-arrow-right"></i>
+      </span>
+    </a>
+  
+</nav>
+
+      </div>
+
+    </div>
+  </article>
+</main>
+
+    <footer id="footer" class="site-footer">
+  <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+<div class="social-icons"><a class="social-icon" href="/personal_homepage/atom.xml"><i class="fas fa-rss-square fa-2x" title="Feed"></i></a><a class="social-icon" href="https://github.com/roshameow"><i class="fab fa-github-square fa-2x" title="GitHub"></i></a><a class="social-icon" href="https://www.linkedin.com/in/wen-liu-06503a7b/"><i class="fab fa-linkedin fa-2x" title="LinkedIn"></i></a><a class="social-icon" href="mailto:w.liuatnk@gmail.com"><i class="fas fa-envelope-square fa-2x" title="e-mail"></i></a></div><div class="copyright">
+    
+      <p>&copy; 2026 Liu, Wen's Home Page. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://github.com/mmistakes/so-simple-theme" rel="nofollow">So Simple</a>.</p>
+    
+  </div>
+</footer>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="/personal_homepage/assets/js/main.min.js"></script>
+<script src="https://use.fontawesome.com/releases/v5.0.12/js/all.js"></script><script src="/personal_homepage/assets/js/content-tables.js" defer></script>
+
+<script>
+(function () {
+  'use strict';
+
+  var types = {
+    NOTE: 'note', INFO: 'note', ABSTRACT: 'note', SUMMARY: 'note', TLDR: 'note',
+    EXAMPLE: 'note', QUOTE: 'note', CITE: 'note',
+    TIP: 'tip', HINT: 'tip', IMPORTANT: 'tip', SUCCESS: 'tip', CHECK: 'tip', DONE: 'tip',
+    QUESTION: 'warning', HELP: 'warning', FAQ: 'warning',
+    WARNING: 'warning', CAUTION: 'warning', ATTENTION: 'warning',
+    DANGER: 'danger', ERROR: 'danger', BUG: 'danger',
+    FAILURE: 'danger', FAIL: 'danger', MISSING: 'danger'
+  };
+  var icons = {
+    note: 'M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z M12 11v6 M12 7h.01',
+    tip: 'M9 18h6 M10 21h4 M9 15a6 6 0 1 1 6 0v3H9z',
+    warning: 'M12 3L2 21h20z M12 9v5 M12 17h.01',
+    danger: 'M7 3h10l4 4v10l-4 4H7l-4-4V7z M9 9l6 6 M15 9l-6 6'
+  };
+
+  function makeIcon(type) {
+    var namespace = 'http://www.w3.org/2000/svg';
+    var svg = document.createElementNS(namespace, 'svg');
+    svg.setAttribute('class', 'callout-icon');
+    svg.setAttribute('viewBox', '0 0 24 24');
+    svg.setAttribute('width', '20');
+    svg.setAttribute('height', '20');
+    svg.setAttribute('fill', 'none');
+    svg.setAttribute('stroke', 'currentColor');
+    svg.setAttribute('stroke-width', '2');
+    svg.setAttribute('stroke-linecap', 'round');
+    svg.setAttribute('stroke-linejoin', 'round');
+    svg.setAttribute('aria-hidden', 'true');
+    svg.setAttribute('focusable', 'false');
+    var path = document.createElementNS(namespace, 'path');
+    path.setAttribute('d', icons[type]);
+    svg.appendChild(path);
+    return svg;
+  }
+
+  // A soft break is a text newline; a Markdown hard break is a <br>.
+  // Do not split newlines inside inline code or other literal content.
+  function firstBreak(parent) {
+    for (var node = parent.firstChild; node; node = node.nextSibling) {
+      if (node.nodeType === 3) {
+        var offset = node.data.search(/[\r\n]/);
+        if (offset !== -1) return { node: node, offset: offset };
+      } else if (node.nodeType === 1) {
+        if (node.tagName === 'BR') return { node: node };
+        if (/^(CODE|PRE|SCRIPT|STYLE|TEXTAREA)$/.test(node.tagName)) continue;
+        var result = firstBreak(node);
+        if (result) return result;
+      }
+    }
+    return null;
+  }
+
+  function transformCallouts() {
+    document.querySelectorAll('.page-content blockquote').forEach(function (quote) {
+      if (quote.closest('pre, code, .highlight, .highlighter-rouge')) return;
+      var paragraph = quote.firstElementChild;
+      if (!paragraph || paragraph.tagName !== 'P') return;
+
+      // Require the marker in a direct text node: <code>[!WARNING]</code>
+      // (and markers merely mentioned later in a quote) must remain literal.
+      var markerNode = paragraph.firstChild;
+      if (!markerNode || markerNode.nodeType !== 3) return;
+      var marker = markerNode.data.match(/^[\t \r\n]*\[!([a-z][a-z0-9-]*)\]([+-])?(?=[\t \r\n]|$)[\t ]*/i);
+      if (!marker) return;
+      var name = marker[1].toUpperCase();
+      if (!Object.prototype.hasOwnProperty.call(types, name)) return;
+      var type = types[name];
+      var label = name === 'TLDR' ? 'TL;DR' : name.charAt(0) + name.slice(1).toLowerCase();
+      markerNode.deleteData(0, marker[0].length);
+
+      var boundary = firstBreak(paragraph);
+      var range = document.createRange();
+      range.selectNodeContents(paragraph);
+      if (boundary) {
+        if (boundary.node.nodeType === 3) range.setEnd(boundary.node, boundary.offset);
+        else range.setEndBefore(boundary.node);
+      }
+      var titleContent = range.extractContents();
+      if (boundary) {
+        if (boundary.node.nodeType === 3) {
+          var breakLength = boundary.node.data.slice(0, 2) === '\r\n' ? 2 : 1;
+          boundary.node.deleteData(0, breakLength);
+        } else {
+          boundary.node.parentNode.removeChild(boundary.node);
+        }
+      }
+      if (!paragraph.textContent.trim() && !paragraph.children.length) {
+        quote.removeChild(paragraph);
+      }
+
+      var folding = !!marker[2];
+      var callout = document.createElement(folding ? 'details' : 'div');
+      // Keep author-provided IDs, language, direction, and classes.
+      Array.prototype.forEach.call(quote.attributes, function (attribute) {
+        callout.setAttribute(attribute.name, attribute.value);
+      });
+      callout.classList.add('callout', 'callout--' + type);
+      callout.setAttribute('data-callout', name.toLowerCase());
+      callout.setAttribute('aria-label', label);
+      if (folding) {
+        callout.removeAttribute('role');
+        if (marker[2] === '+') callout.setAttribute('open', '');
+        else callout.removeAttribute('open');
+      } else {
+        callout.setAttribute('role', 'note');
+      }
+
+      var title = document.createElement(folding ? 'summary' : 'div');
+      title.className = 'callout-title';
+      title.appendChild(makeIcon(type));
+      var titleText = document.createElement('span');
+      titleText.className = 'callout-title-text';
+      if (titleContent.textContent.trim() || titleContent.childElementCount) {
+        titleText.appendChild(titleContent);
+      } else {
+        titleText.textContent = label;
+      }
+      title.appendChild(titleText);
+      callout.appendChild(title);
+
+      var body = document.createElement('div');
+      body.className = 'callout-body';
+      while (quote.firstChild) body.appendChild(quote.firstChild);
+      callout.appendChild(body);
+      quote.parentNode.replaceChild(callout, quote);
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', transformCallouts);
+  } else {
+    transformCallouts();
+  }
+})();
+</script>
+<!-- <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'G-9TMSCDTBGN', 'auto');
+  ga('send', 'pageview');
+</script> -->
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9TMSCDTBGN"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-9TMSCDTBGN');
+</script>
+
+
+
+<!-- MathJax -->
+<style>
+    /* Only oversized equations get this wrapper; ordinary inline math stays inline. */
+    .math-scroll {
+        display: block;
+        max-width: 100%;
+        overflow-x: auto;
+        overflow-y: hidden;
+        padding-block: 0.5em;
+        scrollbar-width: thin;
+    }
+    .math-scroll > mjx-container[jax] {
+        display: inline-block;
+        margin: 0;
+    }
+    .math-scroll:focus-visible {
+        outline: 2px solid currentColor;
+        outline-offset: 2px;
+    }
+</style>
+<script>
+    function fitMathToColumn() {
+        document.querySelectorAll('mjx-container').forEach(function (container) {
+            var wrapper = container.parentElement.classList.contains('math-scroll') ? container.parentElement : null;
+            var column = wrapper ? wrapper.parentElement : container.parentElement;
+            while (column && ['inline', 'contents'].includes(getComputedStyle(column).display)) {
+                column = column.parentElement;
+            }
+            if (!column) return;
+            var style = getComputedStyle(column);
+            var available = column.clientWidth - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight);
+            var ink = container.querySelector('mjx-math, svg');
+            var width = (ink || container).getBoundingClientRect().width;
+            if (width > available + 1) {
+                if (!wrapper) {
+                    wrapper = document.createElement('span');
+                    wrapper.className = 'math-scroll';
+                    wrapper.tabIndex = 0;
+                    wrapper.setAttribute('role', 'region');
+                    wrapper.setAttribute('aria-label', 'Mathematical formula; scroll horizontally to read all');
+                    wrapper.title = 'Scroll horizontally to read the full formula';
+                    container.before(wrapper);
+                    wrapper.appendChild(container);
+                }
+            } else if (wrapper) {
+                wrapper.replaceWith(container);
+            }
+        });
+    }
+    // Pin the engine, autoloaded TeX extensions, menu and fonts to local assets.
+    window.MathJax = {
+        loader: {
+            paths: { mathjax: "/personal_homepage/assets/js/vendor/mathjax/es5" },
+            load: ['[tex]/textmacros']
+        },
+        tex: {
+            tags: "ams",
+            packages: { '[+]': ['textmacros'] },
+            inlineMath: [['$', '$'], ['\\(', '\\)']],
+            displayMath: [['$$', '$$'], ['\\[', '\\]']]
+        },
+        chtml: {
+            fontURL: "/personal_homepage/assets/js/vendor/mathjax/es5/output/chtml/fonts/woff-v2"
+        },
+        startup: {
+            pageReady: function () {
+                return MathJax.startup.defaultPageReady().then(function () {
+                    return document.fonts ? document.fonts.ready : undefined;
+                }).then(function () {
+                    fitMathToColumn();
+                    var scheduled = false;
+                    window.addEventListener('resize', function () {
+                        if (scheduled) return;
+                        scheduled = true;
+                        requestAnimationFrame(function () {
+                            scheduled = false;
+                            fitMathToColumn();
+                        });
+                    });
+                });
+            }
+        },
+        options: {
+            // Keep examples (including literal dollar signs) out of the typesetter.
+            skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code', 'annotation', 'annotation-xml']
+        }
+    };
+</script>
+<script id="MathJax-script" async src="/personal_homepage/assets/js/vendor/mathjax/es5/tex-mml-chtml.js"></script>
+
+
+
+
+<!-- Mermaid -->
+<style>
+  .mermaid-diagram {
+    max-width: 100%;
+    margin: 0.85rem 0;
+    overflow-x: auto;
+  }
+  .mermaid-diagram:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+  }
+  .page-content pre.mermaid {
+    margin: 0;
+    padding: 0.25rem 0;
+    text-align: center;
+    background: transparent;
+    overflow: visible;
+    font-family: inherit;
+  }
+  .page-content pre.mermaid[data-processed] {
+    white-space: normal;
+  }
+  pre.mermaid svg {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    height: auto;
+  }
+  .mermaid-diagram .cluster-label {
+    font-weight: 700;
+  }
+  .mermaid-error {
+    font-size: 0.85em;
+    color: #9a3412;
+  }
+</style>
+<script src="/personal_homepage/assets/js/vendor/mermaid-11.17.2.min.js"></script>
+<script>
+(function () {
+  'use strict';
+
+  function normalizeMermaidSource(source) {
+    // Mermaid 11 accepts A <-- "label" --- B but creates an INVALID edge.
+    // Render the equivalent B -->|"label"| A, without editing the Markdown.
+    var body = source.trimStart()
+      .replace(/^---\r?\n[\s\S]*?\r?\n---(?:\r?\n|$)/, '')
+      .replace(/%%\{[\s\S]*?\}%%/g, '')
+      .replace(/^[\t ]*%%.*$/gm, '').trimStart();
+    if (!/^(?:flowchart|graph)\b/.test(body)) return source;
+
+    var started = false;
+    var quoted = false;
+    return source.replace(/[^\r\n]+/g, function (line) {
+      if (!started && !/^\s*(?:flowchart|graph)\b/.test(line)) return line;
+      started = true;
+      var normalized = quoted ? line : line.replace(
+        /^([\t ]*)([A-Za-z_][\w-]*)[\t ]*<--[\t ]*("[^"\r\n]*")[\t ]*---[\t ]*([A-Za-z_][\w-]*)([\t ]*;?[\t ]*(?:%%.*)?)$/,
+        function (_, indent, left, label, right, suffix) {
+          return indent + right + ' -->|' + label + '| ' + left + suffix;
+        }
+      );
+      // Never rewrite an example inside a multiline quoted node label, and
+      // never let quotes inside a %% comment affect the following lines.
+      for (var i = 0; i < line.length; i++) {
+        if (!quoted && line[i] === '%' && line[i + 1] === '%') break;
+        if (line[i] === '"') quoted = !quoted;
+      }
+      return normalized;
+    });
+  }
+
+  async function renderDiagrams() {
+    var blocks = document.querySelectorAll('code.language-mermaid');
+    if (!blocks.length) return;
+    if (typeof mermaid === 'undefined') {
+      blocks.forEach(function (code) {
+        var original = code.closest('.highlighter-rouge') || code.closest('pre');
+        if (!original) return;
+        var message = document.createElement('p');
+        message.className = 'mermaid-error';
+        message.setAttribute('role', 'status');
+        message.textContent = '图表组件加载失败，请刷新页面重试。Mermaid 源码已保留。';
+        original.after(message);
+      });
+      return;
+    }
+
+    // Render every diagram as Mermaid, including diagrams with multiple subgraphs.
+    // Disable the automatic pass so it cannot race with our explicit rendering.
+    var skin = getComputedStyle(document.documentElement);
+    function color(name, fallback) {
+      return skin.getPropertyValue('--mermaid-' + name).trim() || fallback;
+    }
+    var background = color('background', '#ffffff');
+    var text = color('text', '#000000');
+    var border = color('border', '#cccccc');
+    var nodeBorder = color('node-border', '#b8b9c0');
+    var cluster = color('cluster-background', '#f9f9fa');
+    var line = color('line', '#858795');
+    var palettes = [
+      ['#e4eaf0', '#f4f6f9', '#a5b3c2'], // slate blue
+      ['#e8f0ea', '#f5f8f5', '#a8bcae'], // sage
+      ['#f3ede3', '#faf7f2', '#c6b69c'], // sand
+      ['#ebe8f1', '#f7f5fa', '#b5adc5'], // lavender
+      ['#e4eeee', '#f3f8f8', '#a0baba']  // muted teal
+    ].map(function (fallbacks, index) {
+      return {
+        node: color('palette-' + index + '-node', fallbacks[0]),
+        cluster: color('palette-' + index + '-cluster', index === 0 ? cluster : fallbacks[1]),
+        border: color('palette-' + index + '-border', fallbacks[2])
+      };
+    });
+    var fontFamily = getComputedStyle(document.body).fontFamily ||
+      '"Source Sans Pro", sans-serif';
+    // Mermaid fixes label dimensions during layout. Wait for web fonts so a
+    // later font swap cannot make the measured label box too small.
+    if (document.fonts) await document.fonts.ready;
+
+    var theme = "default";
+    // The site's default follows its active skin. Explicit forest/dark/etc.
+    // choices remain available for sites that deliberately select them.
+    if (theme === 'default') theme = 'base';
+
+    var config = {
+      startOnLoad: false,
+      securityLevel: 'strict',
+      fontFamily: fontFamily,
+      // Native SVG text avoids foreignObject clipping and article paragraph CSS.
+      htmlLabels: false,
+      flowchart: {
+        inheritDir: true,
+        curve: 'linear',
+        nodeSpacing: 24,
+        rankSpacing: 28,
+        padding: 8,
+        diagramPadding: 8,
+        wrappingWidth: 180,
+        // Nested cluster borders must start below the parent's full title line.
+        subGraphTitleMargin: { top: 4, bottom: 12 }
+      },
+      theme: theme,
+      themeVariables: theme === 'base' ? {
+        fontFamily: fontFamily,
+        fontSize: '14px',
+        background: background,
+        primaryColor: palettes[0].node,
+        primaryTextColor: text,
+        primaryBorderColor: nodeBorder,
+        secondaryColor: palettes[1].node,
+        secondaryTextColor: text,
+        secondaryBorderColor: border,
+        tertiaryColor: palettes[2].node,
+        tertiaryTextColor: text,
+        tertiaryBorderColor: border,
+        lineColor: line,
+        textColor: text,
+        mainBkg: palettes[0].node,
+        nodeBorder: nodeBorder,
+        nodeTextColor: text,
+        clusterBkg: palettes[0].cluster,
+        clusterBorder: border,
+        titleColor: text,
+        defaultLinkColor: line,
+        edgeLabelBackground: background,
+        noteBkgColor: palettes[2].node,
+        noteTextColor: text,
+        noteBorderColor: border,
+        actorBkg: palettes[0].node,
+        actorBorder: nodeBorder,
+        actorTextColor: text,
+        actorLineColor: border,
+        signalColor: line,
+        signalTextColor: text
+      } : { fontFamily: fontFamily }
+    };
+
+    function applyFlowchartPalette(svg) {
+      if (theme !== 'base' || !/^flowchart/.test(svg.getAttribute('aria-roledescription') || '')) return;
+
+      function tint(group, shapes, index, kind) {
+        // Author-supplied classDef/style colors take precedence over auto accents.
+        var customClass = Array.from(group.classList).some(function (name) {
+          return !['node', 'default', 'cluster', 'clickable'].includes(name);
+        });
+        if (customClass || !shapes.length || shapes.some(function (shape) {
+          return shape.style.getPropertyValue('fill') || shape.style.getPropertyValue('stroke');
+        })) return;
+        group.setAttribute('data-mermaid-palette', index);
+        shapes.forEach(function (shape) {
+          // Keep fallbacks in the SVG so exported diagrams retain their colors.
+          if (shape.getAttribute('fill') !== 'none') {
+            shape.style.fill = 'var(--mermaid-palette-' + index + '-' + kind + ', ' + palettes[index][kind] + ')';
+          }
+          shape.style.stroke = 'var(--mermaid-palette-' + index + '-border, ' + palettes[index].border + ')';
+        });
+      }
+
+      var groups = Array.from(svg.querySelectorAll('g.cluster')).map(function (group, index) {
+        var rect = group.querySelector('rect');
+        return { group: group, rect: rect, bounds: rect && rect.getBoundingClientRect(), index: index % palettes.length };
+      }).filter(function (entry) { return entry.rect; });
+      // Mermaid's SVG stores clusters flat. Match by the actual layout so nodes
+      // inherit their smallest enclosing group, including nested schedulers.
+      var nodes = Array.from(svg.querySelectorAll('g.node')).map(function (node) {
+        return { node: node, bounds: node.getBoundingClientRect() };
+      });
+      groups.forEach(function (entry) { tint(entry.group, [entry.rect], entry.index, 'cluster'); });
+      groups.sort(function (a, b) { return a.bounds.width * a.bounds.height - b.bounds.width * b.bounds.height; });
+      nodes.forEach(function (entry) {
+        var box = entry.bounds;
+        var parent = groups.find(function (group) {
+          var bounds = group.bounds;
+          return box.left >= bounds.left - 1 && box.right <= bounds.right + 1 &&
+            box.top >= bounds.top - 1 && box.bottom <= bounds.bottom + 1;
+        });
+        var shapes = [];
+        entry.node.querySelectorAll(':scope > .label-container').forEach(function (container) {
+          // Rounded/hand-drawn shapes wrap paths in a group. Include the
+          // container in the author-style check, then tint the actual paths.
+          shapes.push(container);
+          shapes.push.apply(shapes, container.querySelectorAll('path, rect, circle, ellipse, polygon, polyline'));
+        });
+        tint(entry.node, shapes, parent ? parent.index : 0, 'node');
+      });
+    }
+
+    function hasNestedSubgraphs(source) {
+      var depth = 0;
+      return source.split(/\r?\n/).some(function (line) {
+        if (/^\s*subgraph\b/.test(line)) return ++depth > 1;
+        if (/^\s*end\s*(?:;|%%.*)?$/.test(line)) depth = Math.max(0, depth - 1);
+        return false;
+      });
+    }
+
+    for (var code of blocks) {
+      var original = code.closest('.highlighter-rouge') || code.closest('pre');
+      if (!original) continue;
+
+      var wrapper = document.createElement('div');
+      wrapper.className = 'mermaid-diagram';
+      wrapper.tabIndex = 0;
+      wrapper.setAttribute('role', 'region');
+      wrapper.setAttribute('aria-label', 'Mermaid diagram (scroll horizontally)');
+
+      var pre = document.createElement('pre');
+      pre.className = 'mermaid';
+      pre.textContent = normalizeMermaidSource(code.textContent);
+      wrapper.appendChild(pre);
+      original.replaceWith(wrapper);
+
+      try {
+        // Dagre reserves only half rankSpacing above a nested cluster. Keep
+        // that space taller than its parent's title, without spreading out
+        // the ordinary (non-nested) compact flowcharts.
+        mermaid.initialize(Object.assign({}, config, {
+          flowchart: Object.assign({}, config.flowchart, {
+            rankSpacing: hasNestedSubgraphs(code.textContent) ? 56 : config.flowchart.rankSpacing
+          })
+        }));
+        await mermaid.run({ nodes: [pre] });
+        var svg = pre.querySelector('svg');
+        if (svg && svg.viewBox.baseVal.width) {
+          // Do not shrink labels to illegible text on narrow screens;
+          // keep at least 90% of the natural size and scroll the diagram instead.
+          svg.style.minWidth = (svg.viewBox.baseVal.width * 0.9) + 'px';
+        }
+        if (svg) applyFlowchartPalette(svg);
+      } catch (error) {
+        // A malformed diagram must not prevent other diagrams from rendering
+        // or make the original source disappear.
+        wrapper.replaceChildren(original);
+        var message = document.createElement('p');
+        message.className = 'mermaid-error';
+        message.setAttribute('role', 'status');
+        message.textContent = '图表渲染失败，已保留 Mermaid 源码。';
+        wrapper.appendChild(message);
+        console.warn('Mermaid diagram could not be rendered:', error);
+      }
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', renderDiagrams);
+  } else {
+    renderDiagrams();
+  }
+})();
+</script>
+
+
+  </body>
+
+</html>

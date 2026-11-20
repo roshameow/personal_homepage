@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+<!--
+    So Simple Jekyll Theme 3.2.0
+    Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+    Free for personal and commercial use under the MIT license
+    https://github.com/mmistakes/so-simple-theme/blob/master/LICENSE
+-->
+<html lang="en-US" class="no-js">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  
+
+  
+  
+  <!-- Begin Jekyll SEO tag v2.9.1 -->
+<title>深入理解 macOS 动态链接：dyld、@rpath 陷阱与 Conda/系统库冲突全景对照 | Liu, Wen’s Home Page</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="深入理解 macOS 动态链接：dyld、@rpath 陷阱与 Conda/系统库冲突全景对照" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="背景：关于 libiconv 与本次依赖引入 核心功能：libiconv 是 POSIX 标准的跨字符集转码库（负责 GBK / Latin-1 ↔ UTF-8 等互转，避免乱码与解析崩溃）。 为什么被链接：taskctl 虽为纯 Rust 编写，但其依赖的 MongoDB 驱动（mongodb / bson）在执行 SCRAM 认证与国际化文本处理（stringprep 协议）时需要该转码符号；编译期链接器捕获了 Miniforge 环境的 -liconv，从而动态挂载了该库。" />
+<meta name="twitter:description" property="og:description" content="背景：关于 libiconv 与本次依赖引入 核心功能：libiconv 是 POSIX 标准的跨字符集转码库（负责 GBK / Latin-1 ↔ UTF-8 等互转，避免乱码与解析崩溃）。 为什么被链接：taskctl 虽为纯 Rust 编写，但其依赖的 MongoDB 驱动（mongodb / bson）在执行 SCRAM 认证与国际化文本处理（stringprep 协议）时需要该转码符号；编译期链接器捕获了 Miniforge 环境的 -liconv，从而动态挂载了该库。" />
+<link rel="canonical" href="https://roshameow.github.io//personal_homepage/daily/macos-rpath-dyld/" />
+<meta property="og:url" content="https://roshameow.github.io//personal_homepage/daily/macos-rpath-dyld/" />
+<meta property="og:site_name" content="Liu, Wen’s Home Page" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2026-11-07T00:00:00+00:00" />
+<meta property="article:modified_time" content="2026-11-08T12:49:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="深入理解 macOS 动态链接：dyld、@rpath 陷阱与 Conda/系统库冲突全景对照" />
+<meta name="twitter:site" content="@" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2026-11-08T12:49:00+00:00","datePublished":"2026-11-07T00:00:00+00:00","description":"背景：关于 libiconv 与本次依赖引入 核心功能：libiconv 是 POSIX 标准的跨字符集转码库（负责 GBK / Latin-1 ↔ UTF-8 等互转，避免乱码与解析崩溃）。 为什么被链接：taskctl 虽为纯 Rust 编写，但其依赖的 MongoDB 驱动（mongodb / bson）在执行 SCRAM 认证与国际化文本处理（stringprep 协议）时需要该转码符号；编译期链接器捕获了 Miniforge 环境的 -liconv，从而动态挂载了该库。","headline":"深入理解 macOS 动态链接：dyld、@rpath 陷阱与 Conda/系统库冲突全景对照","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/daily/macos-rpath-dyld/"},"url":"https://roshameow.github.io//personal_homepage/daily/macos-rpath-dyld/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  
+
+  <script>
+    /* Cut the mustard */
+    if ('querySelector' in document && 'addEventListener' in window) {
+      document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + 'js';
+    }
+  </script>
+
+  <link rel="stylesheet" href="/personal_homepage/assets/css/main.css">
+  <link rel="stylesheet" href="/personal_homepage/assets/css/skins/default.css">
+  
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,700,700i|Lora:400,400i,700,700i">
+  <link rel="alternate" type="application/atom+xml" title="Liu, Wen&#39;s Home Page" href="/personal_homepage/atom.xml">
+<!-- start custom head snippets -->
+
+<!-- insert favicons. use http://realfavicongenerator.net/ -->
+<link rel="shortcut icon" type="image/x-icon" href="/personal_homepage/docs/images/logo.ico">
+<!-- end custom head snippets -->
+
+</head>
+
+  <body class="layout--post  深入理解-macos-动态链接-dyld-rpath-陷阱与-conda-系统库冲突全景对照">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#primary-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+  <div class="navigation-wrapper">
+    <a href="#menu-toggle" id="menu-toggle">Menu</a>
+    <nav id="primary-nav" class="site-nav animated drop">
+      <ul><li><a href="/personal_homepage/">Home</a></li><li><a href="/personal_homepage/posts/">Posts</a></li><li><a href="/personal_homepage/categories/">Categories</a></li><li><a href="/personal_homepage/tags/">Tags</a></li><li><a href="/personal_homepage/family/">Family</a></li><li><a href="/personal_homepage/search/">Search</a></li></ul>
+    </nav>
+  </div><!-- /.navigation-wrapper -->
+
+
+    <header class="masthead">
+  <div class="wrap">
+    
+    
+    
+      
+        <div class="site-title animated fadeIn"><a href="/personal_homepage/">Liu, Wen's Home Page</a></div>
+      
+      <p class="site-description animated fadeIn" itemprop="description">Work, Experiments and Ideas.</p>
+    
+  </div>
+</header><!-- /.masthead -->
+
+
+    <main id="main" class="main-content" aria-label="Content">
+  <article class="h-entry">
+    
+
+    <div class="page-wrapper">
+      <header class="page-header">
+        
+        
+        <h1 id="page-title" class="page-title p-name">深入理解 macOS 动态链接：dyld、@rpath 陷阱与 Conda/系统库冲突全景对照
+</h1>
+        
+      </header>
+
+      <div class="page-sidebar">
+        <div class="page-author h-card p-author"><img src="/personal_homepage/docs/images/logo.svg" class="author-avatar u-photo" alt=""><div class="author-info">
+
+<span class="read-time">2 min read</span>
+
+    <time class="page-date dt-published" datetime="2026-11-07T00:00:00+00:00"><a class="u-url" href="">November 7, 2026</a>
+</time>
+
+  </div>
+</div>
+
+        
+  <h3 class="page-taxonomies-title">Categories</h3>
+  
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a class="p-category" href="/personal_homepage/categories/#daily" title="Pages filed under daily">daily</a></li>
+  </ul>
+
+
+        
+  <h3 class="page-taxonomies-title">Tags</h3>
+  
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a href="/personal_homepage/tags/#dev" title="Pages tagged dev" rel="tag">dev</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#macos" title="Pages tagged macos" rel="tag">macos</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#rust" title="Pages tagged rust" rel="tag">rust</a></li>
+  </ul>
+
+
+        <details id="entry-table-of-contents" class="toc-wrapper" open>
+  <summary>
+    <h2 class="no_toc">
+      Table of Contents
+      <svg class="toc-toggle-icon" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true" focusable="false">
+        <path d="m4 6 4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+      </svg>
+    </h2>
+  </summary>
+  <div class="toc-content">
+    <ul class="inline_toc" id="my_toc"><li><a href="#一macos-动态链接路径前缀本质区别">一、macOS 动态链接路径前缀本质区别</a></li><li><a href="#二全景对照表按运行调用方式划分的配置需求与底层原因">二、全景对照表：按运行调用方式划分的配置需求与底层原因</a></li><li><a href="#三典型故障与治理方案">三、典型故障与治理方案</a></li><li><a href="#四编译与运行时动态解析全景流转拓扑">四、编译与运行时动态解析全景流转拓扑</a></li><li><a href="#五关键认知与避坑准则">五、关键认知与避坑准则</a></li></ul>
+  </div>
+</details>
+
+        
+<details id="entry-related-posts" class="toc-wrapper" open>
+  <summary>
+    <h2 class="no_toc">
+      Related Posts
+      <svg class="toc-toggle-icon" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true" focusable="false">
+        <path d="m4 6 4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+      </svg>
+    </h2>
+  </summary>
+  <div class="toc-content">
+    <ul>
+      
+      <li><a href="/personal_homepage/data/alpha29/">News & Social Media 新闻流、社交媒体情绪与文本事件数据体系</a></li>
+      
+      <li><a href="/personal_homepage/data/alpha28/">日内 PV 统计量与市场微结构衍生指标体系</a></li>
+      
+      <li><a href="/personal_homepage/tool/alpha27/">从过度防御的歪路纠偏：GUI/CLI 6 态极简控制面、数据面板统一与工程收口</a></li>
+      
+      <li><a href="/personal_homepage/thought/agent-infrastructure-pitfalls-2/">用 AI 维护复杂控制面基础设施：为什么越修越死？从补丁膨胀到 6 态收敛的六大工程陷阱</a></li>
+      
+      <li><a href="/personal_homepage/tool/pi-subagent-durable/">pi-subagent-durable：后台子代理的持久化、生命周期与故障自愈</a></li>
+      
+    </ul>
+  </div>
+</details>
+
+
+
+      </div>
+
+      <div class="page-content">
+        <div class="e-content">
+          <blockquote>
+  <p><strong>背景：关于 <code class="language-plaintext highlighter-rouge">libiconv</code> 与本次依赖引入</strong></p>
+  <ul>
+    <li><strong>核心功能</strong>：<code class="language-plaintext highlighter-rouge">libiconv</code> 是 POSIX 标准的跨字符集转码库（负责 GBK / Latin-1 ↔ UTF-8 等互转，避免乱码与解析崩溃）。</li>
+    <li><strong>为什么被链接</strong>：<code class="language-plaintext highlighter-rouge">taskctl</code> 虽为纯 Rust 编写，但其依赖的 MongoDB 驱动（<code class="language-plaintext highlighter-rouge">mongodb</code> / <code class="language-plaintext highlighter-rouge">bson</code>）在执行 SCRAM 认证与国际化文本处理（<code class="language-plaintext highlighter-rouge">stringprep</code> 协议）时需要该转码符号；编译期链接器捕获了 Miniforge 环境的 <code class="language-plaintext highlighter-rouge">-liconv</code>，从而动态挂载了该库。</li>
+  </ul>
+</blockquote>
+
+<hr />
+
+<h2 id="一macos-动态链接路径前缀本质区别">一、macOS 动态链接路径前缀本质区别</h2>
+
+<p>在 Mach-O 体系中，有三种特殊的动态加载宏路径：</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">动态路径宏</th>
+      <th style="text-align: left">展开基准点 (Anchor Point)</th>
+      <th style="text-align: left">设计初衷</th>
+      <th style="text-align: left">典型应用场景与优劣</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><strong><code class="language-plaintext highlighter-rouge">@executable_path</code></strong></td>
+      <td style="text-align: left">当前<strong>主进程可执行文件</strong>所在的物理绝对目录</td>
+      <td style="text-align: left">保证独立可分发应用程序自身内部组件的相对稳定</td>
+      <td style="text-align: left"><strong>macOS App Bundle 黄金标准</strong>。<br />例如指向 <code class="language-plaintext highlighter-rouge">.app/Contents/MacOS/../Frameworks</code>。即便 App 被移动到任何文件夹，内部相对寻址始终有效。</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong><code class="language-plaintext highlighter-rouge">@loader_path</code></strong></td>
+      <td style="text-align: left">当前<strong>正在发起加载的 Mach-O 文件</strong>所在的物理目录</td>
+      <td style="text-align: left">解决插件、动态依赖库嵌套加载次级依赖时的相对寻址</td>
+      <td style="text-align: left"><strong>插件/依赖级联寻址</strong>。<br />当 A 库由主程序加载，A 又需要加载同目录下的 B 库时使用。若放在可执行文件上，行为与 <code class="language-plaintext highlighter-rouge">@executable_path</code> 相同。</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong><code class="language-plaintext highlighter-rouge">@rpath</code></strong></td>
+      <td style="text-align: left">动态回退机制，依次遍历调用者头部声明的所有 <strong><code class="language-plaintext highlighter-rouge">LC_RPATH</code></strong></td>
+      <td style="text-align: left">解耦库文件与调用者的物理路径硬绑定，实现多路径搜索</td>
+      <td style="text-align: left"><strong>复杂工程/Conda/通用分发利器</strong>。<br />调用者必须显式声明至少一个 <code class="language-plaintext highlighter-rouge">LC_RPATH</code> 记录；若未声明，<code class="language-plaintext highlighter-rouge">dyld</code> 拒绝查找并立即抛错退出。</td>
+    </tr>
+  </tbody>
+</table>
+
+<pre><code class="language-mermaid">flowchart TD
+    subgraph MachO["Mach-O 二进制运行时加载决议"]
+        A["启动可执行文件 (如 taskctl)"] --&gt; B{"检查依赖项 LC_LOAD_DYLIB"}
+        B --&gt;|绝对路径 /usr/lib/...| C["系统安全加载 (命中 dyld 共享缓存)"]
+        B --&gt;|相对宏 @rpath/libxxx.dylib| D{"检查自身头部是否存在 LC_RPATH"}
+        D --&gt;|❌ 未配置任何 LC_RPATH| E["💥 崩溃终止: Reason: no LC_RPATH's found"]
+        D --&gt;|✔️ 存在一个或多个 LC_RPATH| F["逐一拼接目录: rpath + libxxx.dylib"]
+        F --&gt; G{"目标路径文件是否存在且架构匹配?"}
+        G --&gt;|找到有效 dylib| H["✅ 动态加载成功，执行 main()"]
+        G --&gt;|遍历结束均未找到| I["💥 崩溃终止: Library not loaded (image not found)"]
+    end
+</code></pre>
+
+<hr />
+
+<h2 id="二全景对照表按运行调用方式划分的配置需求与底层原因">二、全景对照表：按运行调用方式划分的配置需求与底层原因</h2>
+
+<p>下表按<strong>实际运行调用方式</strong>划分，详细拆解每种方式所需的配置组合及底层成因：</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">序号</th>
+      <th style="text-align: left">运行调用方式</th>
+      <th style="text-align: left">所需配置：动态库引用、LC_RPATH 与本机软链接</th>
+      <th style="text-align: left">决议表现与为什么需要（底层原因）</th>
+      <th style="text-align: left">判定结论与典型场景</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><strong>1</strong></td>
+      <td style="text-align: left"><strong>终端原生直接调用</strong><br />(<code class="language-plaintext highlighter-rouge">qn status</code> / <code class="language-plaintext highlighter-rouge">./taskctl</code>)</td>
+      <td style="text-align: left">• <strong>动态库引用</strong>：<code class="language-plaintext highlighter-rouge">@rpath/libiconv.2.dylib</code><br />• <strong>必需 LC_RPATH</strong>：<code class="language-plaintext highlighter-rouge">/usr/local/lib</code><br />• <strong>必需软链接</strong>：<br />  <code class="language-plaintext highlighter-rouge">/usr/local/lib/libiconv.2.dylib</code><br />  <code class="language-plaintext highlighter-rouge">-&gt; /Users/wenliu/miniforge3/lib/libiconv.2.dylib</code></td>
+      <td style="text-align: left"><strong>【底层原因】</strong>：原生执行时无任何外部环境变量兜底，<code class="language-plaintext highlighter-rouge">dyld</code> 纯靠 Mach-O 自身头部的 <code class="language-plaintext highlighter-rouge">LC_RPATH</code> 寻址并跳转软链。<br /><br /><strong>【分支表现对照】</strong>：<br />• 🟢 <strong>配置齐全</strong>：命中内嵌 RPATH 并通过软链跳转至 Miniforge，正常输出 JSON。<br />• 🔴 <strong>缺少 LC_RPATH</strong>：当场报错 <code class="language-plaintext highlighter-rouge">Reason: no LC_RPATH's found</code> 闪退（最初事故现场）。<br />• 🔴 <strong>缺少软链接</strong>：虽有 RPATH 但目标丢失，报错 <code class="language-plaintext highlighter-rouge">Reason: image not found</code> 闪退（说明软链接目前不可删）。</td>
+      <td style="text-align: left"><strong>【日常开发标准 / 最终修复方案】</strong><br />通过 <code class="language-plaintext highlighter-rouge">crates/taskctl/build.rs</code> 注入 <code class="language-plaintext highlighter-rouge">-Wl,-rpath,/usr/local/lib</code>，确保脱离 Cargo 在终端独立运行时也能稳定加载。</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><strong>2</strong></td>
+      <td style="text-align: left"><strong>Cargo 内部环境</strong><br />(<code class="language-plaintext highlighter-rouge">cargo test</code> / <code class="language-plaintext highlighter-rouge">cargo run</code>)</td>
+      <td style="text-align: left">• <strong>动态库引用</strong>：<code class="language-plaintext highlighter-rouge">@rpath/libiconv.2.dylib</code><br />• <strong>LC_RPATH</strong>：非必需（即使二进制为空也能运行）<br />• <strong>必需软链接</strong>：存在于 <code class="language-plaintext highlighter-rouge">/usr/local/lib</code></td>
+      <td style="text-align: left"><strong>【底层原因】</strong>：Cargo 拉起子进程时会自动注入 <code class="language-plaintext highlighter-rouge">DYLD_FALLBACK_LIBRARY_PATH=/usr/local/lib:...</code> 环境变量作为兜底回退。<br /><br /><strong>【实际表现】</strong>：只要 <code class="language-plaintext highlighter-rouge">/usr/local/lib</code> 存在软链接，即使二进制完全未内嵌 RPATH，测试也能全部通过 (PASS)。</td>
+      <td style="text-align: left"><strong>【测试陷阱 / 易误判】</strong><br />Cargo 内部垫付了环境变量，掩盖了二进制独立运行时缺失 <code class="language-plaintext highlighter-rouge">LC_RPATH</code> 的致命缺陷。</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><strong>3</strong></td>
+      <td style="text-align: left"><strong>Shell 环境变量临时垫付</strong><br />(<code class="language-plaintext highlighter-rouge">export DYLD_LIBRARY_PATH</code>)</td>
+      <td style="text-align: left">• <strong>动态库引用</strong>：<code class="language-plaintext highlighter-rouge">@rpath/libiconv.2.dylib</code><br />• <strong>LC_RPATH</strong>：非必需（被环境变量覆盖）<br />• <strong>软链接 / 库</strong>：需在环境变量指定的路径中</td>
+      <td style="text-align: left"><strong>【底层原因】</strong>：强行由当前 Shell 环境变量接管动态库搜寻目录。<br /><br /><strong>【实际表现】</strong>：当前终端可运行；但受 macOS SIP 保护机制影响，派生子进程或后台守护进程（launchd）时环境变量会被静默剥离导致失效。</td>
+      <td style="text-align: left"><strong>【临时止血 / 易污染】</strong><br />仅限当前终端临时验证，不能作为工程交付或守护进程的长期方案。</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><strong>4</strong></td>
+      <td style="text-align: left"><strong>macOS GUI 打包发布</strong><br />(<code class="language-plaintext highlighter-rouge">QuantNight.app</code> 双击启动)</td>
+      <td style="text-align: left">• <strong>动态库引用</strong>：<code class="language-plaintext highlighter-rouge">@rpath/libiconv.2.dylib</code><br />• <strong>必需 LC_RPATH</strong>：<code class="language-plaintext highlighter-rouge">@executable_path/../Frameworks</code><br />• <strong>本机软链接</strong>：<strong>完全无需</strong>（物理库打包进 App 沙盒）</td>
+      <td style="text-align: left"><strong>【底层原因】</strong>：生产级独立分发规范。打包脚本（<code class="language-plaintext highlighter-rouge">scripts/build-macos.sh</code>）将 Homebrew 物理库拷贝至 <code class="language-plaintext highlighter-rouge">.app/Contents/Frameworks/</code>，并用 <code class="language-plaintext highlighter-rouge">install_name_tool</code> 重写依赖为相对自身路径。<br /><br /><strong>【实际表现】</strong>：App 内部自闭环，完全免疫宿主机器的环境差异。</td>
+      <td style="text-align: left"><strong>【生产打包隔离标准】</strong><br />不依赖开发者的 Conda 环境或系统的 <code class="language-plaintext highlighter-rouge">/usr/local/lib</code> 软链接，可分发给任意 Mac 运行。</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><strong>5</strong></td>
+      <td style="text-align: left"><strong>系统原生命令调用</strong><br />(标准系统绝对路径程序)</td>
+      <td style="text-align: left">• <strong>动态库引用</strong>：绝对路径（如 <code class="language-plaintext highlighter-rouge">/usr/lib/libSystem.B.dylib</code>）<br />• <strong>LC_RPATH</strong>：无需配置<br />• <strong>本机软链接</strong>：无需软链接</td>
+      <td style="text-align: left"><strong>【底层原因】</strong>：系统动态库由 macOS dyld 共享缓存（dyld shared cache）全局托管。<br /><br /><strong>【实际表现】</strong>：直接根据绝对路径匹配加载，完全不介入 RPATH 搜索逻辑。</td>
+      <td style="text-align: left"><strong>【系统原生纯净链接】</strong><br />系统原生动态库的标准加载方式，零动态搜寻负担。</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="三典型故障与治理方案">三、典型故障与治理方案</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">序号</th>
+      <th style="text-align: left">故障场景 / 问题</th>
+      <th style="text-align: left">典型特征</th>
+      <th style="text-align: left">深层根源</th>
+      <th style="text-align: left">排查命令与治理方案</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><strong>1</strong></td>
+      <td style="text-align: left"><strong>Miniforge/Conda 污染系统编译链</strong><br />(<code class="language-plaintext highlighter-rouge">libiconv</code> 相对引用)</td>
+      <td style="text-align: left">终端提示 <code class="language-plaintext highlighter-rouge">(base)</code>；在编译含有 C 依赖的 Rust/C++ 项目时，自动链接 Conda 库，且动态库 ID 为 <code class="language-plaintext highlighter-rouge">@rpath/libxxx.dylib</code>。</td>
+      <td style="text-align: left">1. <code class="language-plaintext highlighter-rouge">/usr/local/lib/libiconv.2.dylib</code> 软链接指向 Miniforge。<br />2. Conda 库的 Install Name 默认设为 <code class="language-plaintext highlighter-rouge">@rpath/</code> 以支持跨目录迁移。<br />3. <code class="language-plaintext highlighter-rouge">pkg-config</code> 输出了 <code class="language-plaintext highlighter-rouge">-L/Users/wenliu/miniforge3/lib</code>。</td>
+      <td style="text-align: left"><strong>排查命令</strong>：<br /><code class="language-plaintext highlighter-rouge">ls -l /usr/local/lib/libiconv*</code><br /><code class="language-plaintext highlighter-rouge">otool -D ~/miniforge3/lib/libiconv.2.dylib</code><br /><br /><strong>构建期根治</strong>：<br />在项目的构建声明（如 <code class="language-plaintext highlighter-rouge">build.rs</code>）中主动声明 <code class="language-plaintext highlighter-rouge">-Wl,-rpath,/usr/local/lib</code>，确保生成的产物自带寻路指令。</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><strong>2</strong></td>
+      <td style="text-align: left"><strong>多 Crate 拆分时 CLI 模块遗漏构建参数</strong></td>
+      <td style="text-align: left">GUI 宿主（Tauri）能跑，但独立编译的 CLI（<code class="language-plaintext highlighter-rouge">taskctl</code>）原生调用即崩溃；但 <code class="language-plaintext highlighter-rouge">cargo test</code> 却能通过。</td>
+      <td style="text-align: left">抽离 CLI 时仅在 <code class="language-plaintext highlighter-rouge">src-tauri</code> 配置了 RPATH，未给 <code class="language-plaintext highlighter-rouge">crates/taskctl/build.rs</code> 注入链接参数；测试时 Cargo 自动补全了 fallback 变量掩盖了问题。</td>
+      <td style="text-align: left"><strong>治理方案</strong>：<br />在 <code class="language-plaintext highlighter-rouge">crates/taskctl/build.rs</code> 中补齐链接注入：<br /><code class="language-plaintext highlighter-rouge">println!("cargo:rustc-link-arg=-Wl,-rpath,/usr/local/lib");</code><br /><br /><strong>验收标准</strong>：<br /><code class="language-plaintext highlighter-rouge">otool -l &lt;bin&gt; \| grep -A 2 LC_RPATH</code> 必须包含 <code class="language-plaintext highlighter-rouge">/usr/local/lib</code>。</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><strong>3</strong></td>
+      <td style="text-align: left"><strong>macOS App 打包分发后动态库丢失</strong></td>
+      <td style="text-align: left">在开发机编译通过，但移动到其他 Mac 或作为 App Bundle 运行时提示找不到依赖。</td>
+      <td style="text-align: left">依赖库未内嵌进 App Bundle，且可执行文件未配置指向 App 内部 Frameworks 的相对 RPATH。</td>
+      <td style="text-align: left"><strong>生产打包规范（脚本流水线）</strong>：<br />1. 将外部 dylib 拷贝进 <code class="language-plaintext highlighter-rouge">YourApp.app/Contents/Frameworks/</code><br />2. <code class="language-plaintext highlighter-rouge">install_name_tool -id @rpath/libiconv.2.dylib "$FRAMEWORKS_DIR/libiconv.2.dylib"</code><br />3. <code class="language-plaintext highlighter-rouge">install_name_tool -change "$SRC" "@rpath/libiconv.2.dylib" "$EXEC_PATH"</code><br />4. <code class="language-plaintext highlighter-rouge">install_name_tool -add_rpath "@executable_path/../Frameworks" "$EXEC_PATH"</code><br />5. 重新对 dylib 与可执行文件进行 <code class="language-plaintext highlighter-rouge">codesign</code> 签名。</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><strong>4</strong></td>
+      <td style="text-align: left"><strong>本地软链接失效 / 误删引发次生故障</strong></td>
+      <td style="text-align: left">虽已内嵌 <code class="language-plaintext highlighter-rouge">LC_RPATH /usr/local/lib</code>，但手工删除软链接后 <code class="language-plaintext highlighter-rouge">qn</code> 再次报错。</td>
+      <td style="text-align: left">当前 RPATH 指向 <code class="language-plaintext highlighter-rouge">/usr/local/lib</code>，若移除该软链接，<code class="language-plaintext highlighter-rouge">dyld</code> 在该目录下找不到目标库文件。</td>
+      <td style="text-align: left"><strong>报错现象</strong>：<br /><code class="language-plaintext highlighter-rouge">Reason: image not found</code><br /><br /><strong>应对策略</strong>：<br />1. <strong>现状</strong>：保留 <code class="language-plaintext highlighter-rouge">/usr/local/lib/libiconv.2.dylib</code> 软链接。<br />2. <strong>彻底解耦</strong>：在 <code class="language-plaintext highlighter-rouge">build.rs</code> 中直接加入 Homebrew 物理路径（<code class="language-plaintext highlighter-rouge">/opt/homebrew/opt/libiconv/lib</code>）或 Conda 环境变量路径（<code class="language-plaintext highlighter-rouge">$CONDA_PREFIX/lib</code>），不再经 <code class="language-plaintext highlighter-rouge">/usr/local/lib</code> 中转，即可安全删除软链接。</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="四编译与运行时动态解析全景流转拓扑">四、编译与运行时动态解析全景流转拓扑</h2>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>════════════════════════════════════════════════════════════════════════════════════════════════════════════════
+【第一阶段：编译链接期 (Build &amp; Link Time)】
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+  Cargo / rustc 编译 C 依赖源码
+          │
+          ▼
+  系统链接器 (ld64) 介入
+          ├── 扫描 /usr/local/lib 或 Conda lib
+          ├── 发现 libiconv.2.dylib 的 install name 为: @rpath/libiconv.2.dylib
+          │
+          ▼
+  检查构建脚本 (build.rs) 是否声明 link-arg:
+          ├── ❌ 未声明 ─────────────► 生成的 Mach-O 头部: 无 LC_RPATH
+          └── ✔️ 声明 -Wl,-rpath,... ─► 生成的 Mach-O 头部: 包含 LC_RPATH /usr/local/lib
+════════════════════════════════════════════════════════════════════════════════════════════════════════════════
+【第二阶段：二进制存储态 (Mach-O Binary Structure)】
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+  taskctl 可执行文件头部结构:
+  ┌────────────────────────────────────────────────────────────────────────┐
+  │ Load Command: LC_LOAD_DYLIB -&gt; @rpath/libiconv.2.dylib                 │
+  ├────────────────────────────────────────────────────────────────────────┤
+  │ Load Command: LC_RPATH      -&gt; /usr/local/lib (由 build.rs 固化植入)   │
+  └────────────────────────────────────────────────────────────────────────┘
+════════════════════════════════════════════════════════════════════════════════════════════════════════════════
+【第三阶段：运行时动态加载 (Runtime Execution by dyld)】
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+  用户在终端直接执行: qn status / ./taskctl
+          │
+          ▼
+  dyld 读取可执行文件 Mach-O 头部
+          │
+          ├── 遇到 @rpath/libiconv.2.dylib
+          │
+          ▼
+  dyld 展开 LC_RPATH 候选清单:
+          │
+          ▼
+  尝试路径: /usr/local/lib/libiconv.2.dylib
+          ├── 软链接指向: /Users/wenliu/miniforge3/lib/libiconv.2.dylib
+          ├── 架构校验通过 (arm64)
+          │
+          ▼
+  ✅ 动态符号解析完成，顺利进入 main()，输出业务结果！
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="五关键认知与避坑准则">五、关键认知与避坑准则</h2>
+
+<ol>
+  <li><strong>不要相信 <code class="language-plaintext highlighter-rouge">cargo test</code> 跑通就等于二进制能独立运行</strong>：
+    <ul>
+      <li>Cargo 为了方便开发测试，在拉起测试子进程时会自动注入一系列隐式的加载环境变量（包括向 <code class="language-plaintext highlighter-rouge">DYLD_FALLBACK_LIBRARY_PATH</code> 追加常用开发目录）。</li>
+      <li><strong>验证真实二进制健康度的唯一标准</strong>：直接在无任何包裹参数的裸 Shell 下执行 target 目录下的二进制文件，或者用 <code class="language-plaintext highlighter-rouge">otool -l</code> 审查 Mach-O 头。</li>
+    </ul>
+  </li>
+  <li><strong><code class="language-plaintext highlighter-rouge">install_name_tool</code> 是打补丁，<code class="language-plaintext highlighter-rouge">build.rs</code> 才是源码真源</strong>：
+    <ul>
+      <li>任何用命令行对编译产物手动执行的 <code class="language-plaintext highlighter-rouge">install_name_tool -add_rpath</code>，都会在下一次 <code class="language-plaintext highlighter-rouge">cargo build</code> 或代码改动触发重编时被覆写抹除。</li>
+      <li>凡是本地开发依赖非系统目录动态库的，必须沉淀在 <code class="language-plaintext highlighter-rouge">build.rs</code> 中，做到“拉下代码即编译，编译完即可用”。</li>
+    </ul>
+  </li>
+  <li><strong>慎用全局环境变量，保持子进程纯净</strong>：
+    <ul>
+      <li>全局设置 <code class="language-plaintext highlighter-rouge">DYLD_LIBRARY_PATH</code> 会毒化整个终端派生出的所有子进程（Python、Node、Git、Go），极易引发跨架构（如 Rosetta x86 混跑）或版本符号冲突的诡异暗病。</li>
+      <li>始终坚持将寻路权留给二进制自身的 <code class="language-plaintext highlighter-rouge">LC_RPATH</code>。</li>
+    </ul>
+  </li>
+</ol>
+
+        </div>
+
+        
+
+        
+        
+  <div class="page-comments">
+    <div id="disqus_thread"></div>
+    <script>
+      var disqus_config = function () {
+        this.page.url = 'https://roshameow.github.io//personal_homepage/daily/macos-rpath-dyld/';
+        this.page.identifier = 'https://roshameow.github.io//personal_homepage/daily/macos-rpath-dyld/';
+      };
+
+      (function() {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://https-roshameow-github-io-personal-homepage.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+  </div>
+
+
+        
+
+        <nav class="page-pagination" role="navigation">
+  
+    <a class="page-previous" href="/personal_homepage/tool/alpha21/">
+      <h4 class="page-pagination-label">Previous</h4>
+      <span class="page-pagination-title">
+        <i class="fas fa-arrow-left"></i> 复杂长期任务的多Session分权与Goal治理
+
+      </span>
+    </a>
+  
+
+  
+    <a class="page-next" href="/personal_homepage/tool/alpha22/">
+      <h4 class="page-pagination-label">Next</h4>
+      <span class="page-pagination-title">
+        从免责复读到二元决断：长期自治Session的Goal失灵病理与重构实战
+ <i class="fas fa-arrow-right"></i>
+      </span>
+    </a>
+  
+</nav>
+
+      </div>
+
+    </div>
+  </article>
+</main>
+
+    <footer id="footer" class="site-footer">
+  <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+<div class="social-icons"><a class="social-icon" href="/personal_homepage/atom.xml"><i class="fas fa-rss-square fa-2x" title="Feed"></i></a><a class="social-icon" href="https://github.com/roshameow"><i class="fab fa-github-square fa-2x" title="GitHub"></i></a><a class="social-icon" href="https://www.linkedin.com/in/wen-liu-06503a7b/"><i class="fab fa-linkedin fa-2x" title="LinkedIn"></i></a><a class="social-icon" href="mailto:w.liuatnk@gmail.com"><i class="fas fa-envelope-square fa-2x" title="e-mail"></i></a></div><div class="copyright">
+    
+      <p>&copy; 2026 Liu, Wen's Home Page. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://github.com/mmistakes/so-simple-theme" rel="nofollow">So Simple</a>.</p>
+    
+  </div>
+</footer>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="/personal_homepage/assets/js/main.min.js"></script>
+<script src="https://use.fontawesome.com/releases/v5.0.12/js/all.js"></script><script src="/personal_homepage/assets/js/content-tables.js" defer></script>
+
+<script>
+(function () {
+  'use strict';
+
+  var types = {
+    NOTE: 'note', INFO: 'note', ABSTRACT: 'note', SUMMARY: 'note', TLDR: 'note',
+    EXAMPLE: 'note', QUOTE: 'note', CITE: 'note',
+    TIP: 'tip', HINT: 'tip', IMPORTANT: 'tip', SUCCESS: 'tip', CHECK: 'tip', DONE: 'tip',
+    QUESTION: 'warning', HELP: 'warning', FAQ: 'warning',
+    WARNING: 'warning', CAUTION: 'warning', ATTENTION: 'warning',
+    DANGER: 'danger', ERROR: 'danger', BUG: 'danger',
+    FAILURE: 'danger', FAIL: 'danger', MISSING: 'danger'
+  };
+  var icons = {
+    note: 'M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z M12 11v6 M12 7h.01',
+    tip: 'M9 18h6 M10 21h4 M9 15a6 6 0 1 1 6 0v3H9z',
+    warning: 'M12 3L2 21h20z M12 9v5 M12 17h.01',
+    danger: 'M7 3h10l4 4v10l-4 4H7l-4-4V7z M9 9l6 6 M15 9l-6 6'
+  };
+
+  function makeIcon(type) {
+    var namespace = 'http://www.w3.org/2000/svg';
+    var svg = document.createElementNS(namespace, 'svg');
+    svg.setAttribute('class', 'callout-icon');
+    svg.setAttribute('viewBox', '0 0 24 24');
+    svg.setAttribute('width', '20');
+    svg.setAttribute('height', '20');
+    svg.setAttribute('fill', 'none');
+    svg.setAttribute('stroke', 'currentColor');
+    svg.setAttribute('stroke-width', '2');
+    svg.setAttribute('stroke-linecap', 'round');
+    svg.setAttribute('stroke-linejoin', 'round');
+    svg.setAttribute('aria-hidden', 'true');
+    svg.setAttribute('focusable', 'false');
+    var path = document.createElementNS(namespace, 'path');
+    path.setAttribute('d', icons[type]);
+    svg.appendChild(path);
+    return svg;
+  }
+
+  // A soft break is a text newline; a Markdown hard break is a <br>.
+  // Do not split newlines inside inline code or other literal content.
+  function firstBreak(parent) {
+    for (var node = parent.firstChild; node; node = node.nextSibling) {
+      if (node.nodeType === 3) {
+        var offset = node.data.search(/[\r\n]/);
+        if (offset !== -1) return { node: node, offset: offset };
+      } else if (node.nodeType === 1) {
+        if (node.tagName === 'BR') return { node: node };
+        if (/^(CODE|PRE|SCRIPT|STYLE|TEXTAREA)$/.test(node.tagName)) continue;
+        var result = firstBreak(node);
+        if (result) return result;
+      }
+    }
+    return null;
+  }
+
+  function transformCallouts() {
+    document.querySelectorAll('.page-content blockquote').forEach(function (quote) {
+      if (quote.closest('pre, code, .highlight, .highlighter-rouge')) return;
+      var paragraph = quote.firstElementChild;
+      if (!paragraph || paragraph.tagName !== 'P') return;
+
+      // Require the marker in a direct text node: <code>[!WARNING]</code>
+      // (and markers merely mentioned later in a quote) must remain literal.
+      var markerNode = paragraph.firstChild;
+      if (!markerNode || markerNode.nodeType !== 3) return;
+      var marker = markerNode.data.match(/^[\t \r\n]*\[!([a-z][a-z0-9-]*)\]([+-])?(?=[\t \r\n]|$)[\t ]*/i);
+      if (!marker) return;
+      var name = marker[1].toUpperCase();
+      if (!Object.prototype.hasOwnProperty.call(types, name)) return;
+      var type = types[name];
+      var label = name === 'TLDR' ? 'TL;DR' : name.charAt(0) + name.slice(1).toLowerCase();
+      markerNode.deleteData(0, marker[0].length);
+
+      var boundary = firstBreak(paragraph);
+      var range = document.createRange();
+      range.selectNodeContents(paragraph);
+      if (boundary) {
+        if (boundary.node.nodeType === 3) range.setEnd(boundary.node, boundary.offset);
+        else range.setEndBefore(boundary.node);
+      }
+      var titleContent = range.extractContents();
+      if (boundary) {
+        if (boundary.node.nodeType === 3) {
+          var breakLength = boundary.node.data.slice(0, 2) === '\r\n' ? 2 : 1;
+          boundary.node.deleteData(0, breakLength);
+        } else {
+          boundary.node.parentNode.removeChild(boundary.node);
+        }
+      }
+      if (!paragraph.textContent.trim() && !paragraph.children.length) {
+        quote.removeChild(paragraph);
+      }
+
+      var folding = !!marker[2];
+      var callout = document.createElement(folding ? 'details' : 'div');
+      // Keep author-provided IDs, language, direction, and classes.
+      Array.prototype.forEach.call(quote.attributes, function (attribute) {
+        callout.setAttribute(attribute.name, attribute.value);
+      });
+      callout.classList.add('callout', 'callout--' + type);
+      callout.setAttribute('data-callout', name.toLowerCase());
+      callout.setAttribute('aria-label', label);
+      if (folding) {
+        callout.removeAttribute('role');
+        if (marker[2] === '+') callout.setAttribute('open', '');
+        else callout.removeAttribute('open');
+      } else {
+        callout.setAttribute('role', 'note');
+      }
+
+      var title = document.createElement(folding ? 'summary' : 'div');
+      title.className = 'callout-title';
+      title.appendChild(makeIcon(type));
+      var titleText = document.createElement('span');
+      titleText.className = 'callout-title-text';
+      if (titleContent.textContent.trim() || titleContent.childElementCount) {
+        titleText.appendChild(titleContent);
+      } else {
+        titleText.textContent = label;
+      }
+      title.appendChild(titleText);
+      callout.appendChild(title);
+
+      var body = document.createElement('div');
+      body.className = 'callout-body';
+      while (quote.firstChild) body.appendChild(quote.firstChild);
+      callout.appendChild(body);
+      quote.parentNode.replaceChild(callout, quote);
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', transformCallouts);
+  } else {
+    transformCallouts();
+  }
+})();
+</script>
+<!-- <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'G-9TMSCDTBGN', 'auto');
+  ga('send', 'pageview');
+</script> -->
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9TMSCDTBGN"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-9TMSCDTBGN');
+</script>
+
+
+
+<!-- MathJax -->
+<style>
+    /* Only oversized equations get this wrapper; ordinary inline math stays inline. */
+    .math-scroll {
+        display: block;
+        max-width: 100%;
+        overflow-x: auto;
+        overflow-y: hidden;
+        padding-block: 0.5em;
+        scrollbar-width: thin;
+    }
+    .math-scroll > mjx-container[jax] {
+        display: inline-block;
+        margin: 0;
+    }
+    .math-scroll:focus-visible {
+        outline: 2px solid currentColor;
+        outline-offset: 2px;
+    }
+</style>
+<script>
+    function fitMathToColumn() {
+        document.querySelectorAll('mjx-container').forEach(function (container) {
+            var wrapper = container.parentElement.classList.contains('math-scroll') ? container.parentElement : null;
+            var column = wrapper ? wrapper.parentElement : container.parentElement;
+            while (column && ['inline', 'contents'].includes(getComputedStyle(column).display)) {
+                column = column.parentElement;
+            }
+            if (!column) return;
+            var style = getComputedStyle(column);
+            var available = column.clientWidth - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight);
+            var ink = container.querySelector('mjx-math, svg');
+            var width = (ink || container).getBoundingClientRect().width;
+            if (width > available + 1) {
+                if (!wrapper) {
+                    wrapper = document.createElement('span');
+                    wrapper.className = 'math-scroll';
+                    wrapper.tabIndex = 0;
+                    wrapper.setAttribute('role', 'region');
+                    wrapper.setAttribute('aria-label', 'Mathematical formula; scroll horizontally to read all');
+                    wrapper.title = 'Scroll horizontally to read the full formula';
+                    container.before(wrapper);
+                    wrapper.appendChild(container);
+                }
+            } else if (wrapper) {
+                wrapper.replaceWith(container);
+            }
+        });
+    }
+    // Pin the engine, autoloaded TeX extensions, menu and fonts to local assets.
+    window.MathJax = {
+        loader: {
+            paths: { mathjax: "/personal_homepage/assets/js/vendor/mathjax/es5" },
+            load: ['[tex]/textmacros']
+        },
+        tex: {
+            tags: "ams",
+            packages: { '[+]': ['textmacros'] },
+            inlineMath: [['$', '$'], ['\\(', '\\)']],
+            displayMath: [['$$', '$$'], ['\\[', '\\]']]
+        },
+        chtml: {
+            fontURL: "/personal_homepage/assets/js/vendor/mathjax/es5/output/chtml/fonts/woff-v2"
+        },
+        startup: {
+            pageReady: function () {
+                return MathJax.startup.defaultPageReady().then(function () {
+                    return document.fonts ? document.fonts.ready : undefined;
+                }).then(function () {
+                    fitMathToColumn();
+                    var scheduled = false;
+                    window.addEventListener('resize', function () {
+                        if (scheduled) return;
+                        scheduled = true;
+                        requestAnimationFrame(function () {
+                            scheduled = false;
+                            fitMathToColumn();
+                        });
+                    });
+                });
+            }
+        },
+        options: {
+            // Keep examples (including literal dollar signs) out of the typesetter.
+            skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code', 'annotation', 'annotation-xml']
+        }
+    };
+</script>
+<script id="MathJax-script" async src="/personal_homepage/assets/js/vendor/mathjax/es5/tex-mml-chtml.js"></script>
+
+
+
+
+<!-- Mermaid -->
+<style>
+  .mermaid-diagram {
+    max-width: 100%;
+    margin: 0.85rem 0;
+    overflow-x: auto;
+  }
+  .mermaid-diagram:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+  }
+  .page-content pre.mermaid {
+    margin: 0;
+    padding: 0.25rem 0;
+    text-align: center;
+    background: transparent;
+    overflow: visible;
+    font-family: inherit;
+  }
+  .page-content pre.mermaid[data-processed] {
+    white-space: normal;
+  }
+  pre.mermaid svg {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    height: auto;
+  }
+  .mermaid-diagram .cluster-label {
+    font-weight: 700;
+  }
+  .mermaid-error {
+    font-size: 0.85em;
+    color: #9a3412;
+  }
+</style>
+<script src="/personal_homepage/assets/js/vendor/mermaid-11.17.2.min.js"></script>
+<script>
+(function () {
+  'use strict';
+
+  function normalizeMermaidSource(source) {
+    // Mermaid 11 accepts A <-- "label" --- B but creates an INVALID edge.
+    // Render the equivalent B -->|"label"| A, without editing the Markdown.
+    var body = source.trimStart()
+      .replace(/^---\r?\n[\s\S]*?\r?\n---(?:\r?\n|$)/, '')
+      .replace(/%%\{[\s\S]*?\}%%/g, '')
+      .replace(/^[\t ]*%%.*$/gm, '').trimStart();
+    if (!/^(?:flowchart|graph)\b/.test(body)) return source;
+
+    var started = false;
+    var quoted = false;
+    return source.replace(/[^\r\n]+/g, function (line) {
+      if (!started && !/^\s*(?:flowchart|graph)\b/.test(line)) return line;
+      started = true;
+      var normalized = quoted ? line : line.replace(
+        /^([\t ]*)([A-Za-z_][\w-]*)[\t ]*<--[\t ]*("[^"\r\n]*")[\t ]*---[\t ]*([A-Za-z_][\w-]*)([\t ]*;?[\t ]*(?:%%.*)?)$/,
+        function (_, indent, left, label, right, suffix) {
+          return indent + right + ' -->|' + label + '| ' + left + suffix;
+        }
+      );
+      // Never rewrite an example inside a multiline quoted node label, and
+      // never let quotes inside a %% comment affect the following lines.
+      for (var i = 0; i < line.length; i++) {
+        if (!quoted && line[i] === '%' && line[i + 1] === '%') break;
+        if (line[i] === '"') quoted = !quoted;
+      }
+      return normalized;
+    });
+  }
+
+  async function renderDiagrams() {
+    var blocks = document.querySelectorAll('code.language-mermaid');
+    if (!blocks.length) return;
+    if (typeof mermaid === 'undefined') {
+      blocks.forEach(function (code) {
+        var original = code.closest('.highlighter-rouge') || code.closest('pre');
+        if (!original) return;
+        var message = document.createElement('p');
+        message.className = 'mermaid-error';
+        message.setAttribute('role', 'status');
+        message.textContent = '图表组件加载失败，请刷新页面重试。Mermaid 源码已保留。';
+        original.after(message);
+      });
+      return;
+    }
+
+    // Render every diagram as Mermaid, including diagrams with multiple subgraphs.
+    // Disable the automatic pass so it cannot race with our explicit rendering.
+    var skin = getComputedStyle(document.documentElement);
+    function color(name, fallback) {
+      return skin.getPropertyValue('--mermaid-' + name).trim() || fallback;
+    }
+    var background = color('background', '#ffffff');
+    var text = color('text', '#000000');
+    var border = color('border', '#cccccc');
+    var nodeBorder = color('node-border', '#b8b9c0');
+    var cluster = color('cluster-background', '#f9f9fa');
+    var line = color('line', '#858795');
+    var palettes = [
+      ['#e4eaf0', '#f4f6f9', '#a5b3c2'], // slate blue
+      ['#e8f0ea', '#f5f8f5', '#a8bcae'], // sage
+      ['#f3ede3', '#faf7f2', '#c6b69c'], // sand
+      ['#ebe8f1', '#f7f5fa', '#b5adc5'], // lavender
+      ['#e4eeee', '#f3f8f8', '#a0baba']  // muted teal
+    ].map(function (fallbacks, index) {
+      return {
+        node: color('palette-' + index + '-node', fallbacks[0]),
+        cluster: color('palette-' + index + '-cluster', index === 0 ? cluster : fallbacks[1]),
+        border: color('palette-' + index + '-border', fallbacks[2])
+      };
+    });
+    var fontFamily = getComputedStyle(document.body).fontFamily ||
+      '"Source Sans Pro", sans-serif';
+    // Mermaid fixes label dimensions during layout. Wait for web fonts so a
+    // later font swap cannot make the measured label box too small.
+    if (document.fonts) await document.fonts.ready;
+
+    var theme = "default";
+    // The site's default follows its active skin. Explicit forest/dark/etc.
+    // choices remain available for sites that deliberately select them.
+    if (theme === 'default') theme = 'base';
+
+    var config = {
+      startOnLoad: false,
+      securityLevel: 'strict',
+      fontFamily: fontFamily,
+      // Native SVG text avoids foreignObject clipping and article paragraph CSS.
+      htmlLabels: false,
+      flowchart: {
+        inheritDir: true,
+        curve: 'linear',
+        nodeSpacing: 24,
+        rankSpacing: 28,
+        padding: 8,
+        diagramPadding: 8,
+        wrappingWidth: 180,
+        // Nested cluster borders must start below the parent's full title line.
+        subGraphTitleMargin: { top: 4, bottom: 12 }
+      },
+      theme: theme,
+      themeVariables: theme === 'base' ? {
+        fontFamily: fontFamily,
+        fontSize: '14px',
+        background: background,
+        primaryColor: palettes[0].node,
+        primaryTextColor: text,
+        primaryBorderColor: nodeBorder,
+        secondaryColor: palettes[1].node,
+        secondaryTextColor: text,
+        secondaryBorderColor: border,
+        tertiaryColor: palettes[2].node,
+        tertiaryTextColor: text,
+        tertiaryBorderColor: border,
+        lineColor: line,
+        textColor: text,
+        mainBkg: palettes[0].node,
+        nodeBorder: nodeBorder,
+        nodeTextColor: text,
+        clusterBkg: palettes[0].cluster,
+        clusterBorder: border,
+        titleColor: text,
+        defaultLinkColor: line,
+        edgeLabelBackground: background,
+        noteBkgColor: palettes[2].node,
+        noteTextColor: text,
+        noteBorderColor: border,
+        actorBkg: palettes[0].node,
+        actorBorder: nodeBorder,
+        actorTextColor: text,
+        actorLineColor: border,
+        signalColor: line,
+        signalTextColor: text
+      } : { fontFamily: fontFamily }
+    };
+
+    function applyFlowchartPalette(svg) {
+      if (theme !== 'base' || !/^flowchart/.test(svg.getAttribute('aria-roledescription') || '')) return;
+
+      function tint(group, shapes, index, kind) {
+        // Author-supplied classDef/style colors take precedence over auto accents.
+        var customClass = Array.from(group.classList).some(function (name) {
+          return !['node', 'default', 'cluster', 'clickable'].includes(name);
+        });
+        if (customClass || !shapes.length || shapes.some(function (shape) {
+          return shape.style.getPropertyValue('fill') || shape.style.getPropertyValue('stroke');
+        })) return;
+        group.setAttribute('data-mermaid-palette', index);
+        shapes.forEach(function (shape) {
+          // Keep fallbacks in the SVG so exported diagrams retain their colors.
+          if (shape.getAttribute('fill') !== 'none') {
+            shape.style.fill = 'var(--mermaid-palette-' + index + '-' + kind + ', ' + palettes[index][kind] + ')';
+          }
+          shape.style.stroke = 'var(--mermaid-palette-' + index + '-border, ' + palettes[index].border + ')';
+        });
+      }
+
+      var groups = Array.from(svg.querySelectorAll('g.cluster')).map(function (group, index) {
+        var rect = group.querySelector('rect');
+        return { group: group, rect: rect, bounds: rect && rect.getBoundingClientRect(), index: index % palettes.length };
+      }).filter(function (entry) { return entry.rect; });
+      // Mermaid's SVG stores clusters flat. Match by the actual layout so nodes
+      // inherit their smallest enclosing group, including nested schedulers.
+      var nodes = Array.from(svg.querySelectorAll('g.node')).map(function (node) {
+        return { node: node, bounds: node.getBoundingClientRect() };
+      });
+      groups.forEach(function (entry) { tint(entry.group, [entry.rect], entry.index, 'cluster'); });
+      groups.sort(function (a, b) { return a.bounds.width * a.bounds.height - b.bounds.width * b.bounds.height; });
+      nodes.forEach(function (entry) {
+        var box = entry.bounds;
+        var parent = groups.find(function (group) {
+          var bounds = group.bounds;
+          return box.left >= bounds.left - 1 && box.right <= bounds.right + 1 &&
+            box.top >= bounds.top - 1 && box.bottom <= bounds.bottom + 1;
+        });
+        var shapes = [];
+        entry.node.querySelectorAll(':scope > .label-container').forEach(function (container) {
+          // Rounded/hand-drawn shapes wrap paths in a group. Include the
+          // container in the author-style check, then tint the actual paths.
+          shapes.push(container);
+          shapes.push.apply(shapes, container.querySelectorAll('path, rect, circle, ellipse, polygon, polyline'));
+        });
+        tint(entry.node, shapes, parent ? parent.index : 0, 'node');
+      });
+    }
+
+    function hasNestedSubgraphs(source) {
+      var depth = 0;
+      return source.split(/\r?\n/).some(function (line) {
+        if (/^\s*subgraph\b/.test(line)) return ++depth > 1;
+        if (/^\s*end\s*(?:;|%%.*)?$/.test(line)) depth = Math.max(0, depth - 1);
+        return false;
+      });
+    }
+
+    for (var code of blocks) {
+      var original = code.closest('.highlighter-rouge') || code.closest('pre');
+      if (!original) continue;
+
+      var wrapper = document.createElement('div');
+      wrapper.className = 'mermaid-diagram';
+      wrapper.tabIndex = 0;
+      wrapper.setAttribute('role', 'region');
+      wrapper.setAttribute('aria-label', 'Mermaid diagram (scroll horizontally)');
+
+      var pre = document.createElement('pre');
+      pre.className = 'mermaid';
+      pre.textContent = normalizeMermaidSource(code.textContent);
+      wrapper.appendChild(pre);
+      original.replaceWith(wrapper);
+
+      try {
+        // Dagre reserves only half rankSpacing above a nested cluster. Keep
+        // that space taller than its parent's title, without spreading out
+        // the ordinary (non-nested) compact flowcharts.
+        mermaid.initialize(Object.assign({}, config, {
+          flowchart: Object.assign({}, config.flowchart, {
+            rankSpacing: hasNestedSubgraphs(code.textContent) ? 56 : config.flowchart.rankSpacing
+          })
+        }));
+        await mermaid.run({ nodes: [pre] });
+        var svg = pre.querySelector('svg');
+        if (svg && svg.viewBox.baseVal.width) {
+          // Do not shrink labels to illegible text on narrow screens;
+          // keep at least 90% of the natural size and scroll the diagram instead.
+          svg.style.minWidth = (svg.viewBox.baseVal.width * 0.9) + 'px';
+        }
+        if (svg) applyFlowchartPalette(svg);
+      } catch (error) {
+        // A malformed diagram must not prevent other diagrams from rendering
+        // or make the original source disappear.
+        wrapper.replaceChildren(original);
+        var message = document.createElement('p');
+        message.className = 'mermaid-error';
+        message.setAttribute('role', 'status');
+        message.textContent = '图表渲染失败，已保留 Mermaid 源码。';
+        wrapper.appendChild(message);
+        console.warn('Mermaid diagram could not be rendered:', error);
+      }
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', renderDiagrams);
+  } else {
+    renderDiagrams();
+  }
+})();
+</script>
+
+
+  </body>
+
+</html>

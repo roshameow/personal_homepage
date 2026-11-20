@@ -16,23 +16,23 @@
   
   
   <!-- Begin Jekyll SEO tag v2.9.1 -->
-<title>pv 衍生数据 | Liu, Wen’s Home Page</title>
+<title>PV 量价衍生数据体系、复权数学原理与在 analyze-dataset 中的应用 | Liu, Wen’s Home Page</title>
 <meta name="generator" content="Jekyll v4.4.1" />
-<meta property="og:title" content="pv 衍生数据" />
+<meta property="og:title" content="PV 量价衍生数据体系、复权数学原理与在 analyze-dataset 中的应用" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="pv数据" />
-<meta name="twitter:description" property="og:description" content="pv数据" />
+<meta name="description" content="一、PV 量价衍生数据四阶谱系（严格 0→1→2→3 阶 + WorldQuant FASTEXPR 对齐）" />
+<meta name="twitter:description" property="og:description" content="一、PV 量价衍生数据四阶谱系（严格 0→1→2→3 阶 + WorldQuant FASTEXPR 对齐）" />
 <link rel="canonical" href="https://roshameow.github.io//personal_homepage/data/alpha11/" />
 <meta property="og:url" content="https://roshameow.github.io//personal_homepage/data/alpha11/" />
 <meta property="og:site_name" content="Liu, Wen’s Home Page" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2025-09-19T00:00:00+00:00" />
-<meta property="article:modified_time" content="2026-06-30T18:48:00+00:00" />
+<meta property="article:modified_time" content="2026-11-20T00:24:00+00:00" />
 <meta name="twitter:card" content="summary" />
-<meta name="twitter:title" content="pv 衍生数据" />
+<meta name="twitter:title" content="PV 量价衍生数据体系、复权数学原理与在 analyze-dataset 中的应用" />
 <meta name="twitter:site" content="@" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2026-06-30T18:48:00+00:00","datePublished":"2025-09-19T00:00:00+00:00","description":"pv数据","headline":"pv 衍生数据","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/data/alpha11/"},"url":"https://roshameow.github.io//personal_homepage/data/alpha11/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2026-11-20T00:24:00+00:00","datePublished":"2025-09-19T00:00:00+00:00","description":"一、PV 量价衍生数据四阶谱系（严格 0→1→2→3 阶 + WorldQuant FASTEXPR 对齐）","headline":"PV 量价衍生数据体系、复权数学原理与在 analyze-dataset 中的应用","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/data/alpha11/"},"url":"https://roshameow.github.io//personal_homepage/data/alpha11/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -59,7 +59,7 @@
 
 </head>
 
-  <body class="layout--post  pv-衍生数据">
+  <body class="layout--post  pv-量价衍生数据体系-复权数学原理与在-analyze-dataset-中的应用">
     <nav class="skip-links">
   <h2 class="screen-reader-text">Skip links</h2>
   <ul>
@@ -100,7 +100,7 @@
       <header class="page-header">
         
         
-        <h1 id="page-title" class="page-title p-name">pv 衍生数据
+        <h1 id="page-title" class="page-title p-name">PV 量价衍生数据体系、复权数学原理与在 analyze-dataset 中的应用
 </h1>
         
       </header>
@@ -108,7 +108,7 @@
       <div class="page-sidebar">
         <div class="page-author h-card p-author"><img src="/personal_homepage/docs/images/logo.svg" class="author-avatar u-photo" alt=""><div class="author-info">
 
-<span class="read-time">~1 min read</span>
+<span class="read-time">6 min read</span>
 
     <time class="page-date dt-published" datetime="2025-09-19T00:00:00+00:00"><a class="u-url" href="">September 19, 2025</a>
 </time>
@@ -126,7 +126,7 @@
         
   <h3 class="page-taxonomies-title">Tags</h3>
   
-  <ul class="page-taxonomies"><li class="page-taxonomy"><a href="/personal_homepage/tags/#content" title="Pages tagged content" rel="tag">content</a></li>
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a href="/personal_homepage/tags/#analyze-dataset" title="Pages tagged analyze_dataset" rel="tag">analyze_dataset</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#content" title="Pages tagged content" rel="tag">content</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#feature-engineering" title="Pages tagged feature_engineering" rel="tag">feature_engineering</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#pv" title="Pages tagged pv" rel="tag">pv</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#quant" title="Pages tagged quant" rel="tag">quant</a></li>
   </ul>
 
 
@@ -140,7 +140,7 @@
     </h2>
   </summary>
   <div class="toc-content">
-    <ul class="inline_toc" id="my_toc"><li><a href="#pv数据">pv数据</a></li></ul>
+    <ul class="inline_toc" id="my_toc"><li><a href="#一pv-量价衍生数据四阶谱系严格-0123-阶--worldquant-fastexpr-对齐">一、PV 量价衍生数据四阶谱系（严格 0→1→2→3 阶 + WorldQuant FASTEXPR 对齐）</a></li><li><a href="#二市值对应关系与复权adjusted-close数学原理">二、市值对应关系与复权（Adjusted Close）数学原理</a></li><li><a href="#三在-quantnight-analyze-dataset-skill-中的实战应用">三、在 QuantNight analyze-dataset Skill 中的实战应用</a><ul><li><a href="#1-定位跨数据集边界中的参照系原子">1. 定位：跨数据集边界中的“参照系原子”</a></li><li><a href="#2-通道-单字段信号signalspy量价自身与二阶衍生加工">2. 通道① 单字段信号（signals.py）：量价自身与二阶衍生加工</a></li><li><a href="#3-通道-中间字段构造compositespy流存量归一与估值构造">3. 通道② 中间字段构造（composites.py）：流÷存量归一与估值构造</a></li><li><a href="#4-通道-双字段配对relationshipspy价格锚定相关性与-capm-模型">4. 通道③ 双字段配对（relationships.py）：价格锚定、相关性与 CAPM 模型</a></li></ul></li></ul>
   </div>
 </details>
 
@@ -157,15 +157,15 @@
   <div class="toc-content">
     <ul>
       
-      <li><a href="/personal_homepage/tool/pi-runtime-attribution/">Pi Desktop的开发难点: “会话的状态”</a></li>
+      <li><a href="/personal_homepage/data/alpha29/">News & Social Media 新闻流、社交媒体情绪与文本事件数据体系</a></li>
       
-      <li><a href="/personal_homepage/tool/pi-desktop/">Pi Desktop：从会话浏览器到跨机器工作台</a></li>
+      <li><a href="/personal_homepage/data/alpha28/">日内 PV 统计量与市场微结构衍生指标体系</a></li>
       
-      <li><a href="/personal_homepage/daily/sticker/">用AI做了一套微信表情包:从微信头像缓存到提交上架</a></li>
+      <li><a href="/personal_homepage/tool/alpha27/">从过度防御的歪路纠偏：GUI/CLI 6 态极简控制面、数据面板统一与工程收口</a></li>
       
-      <li><a href="/personal_homepage/daily/agent-blog-writing/">用AI agent复现我的博客风格</a></li>
+      <li><a href="/personal_homepage/thought/agent-infrastructure-pitfalls-2/">用 AI 维护复杂控制面基础设施：为什么越修越死？从补丁膨胀到 6 态收敛的六大工程陷阱</a></li>
       
-      <li><a href="/personal_homepage/tool/lesson/">听课app开发调研</a></li>
+      <li><a href="/personal_homepage/tool/pi-subagent-durable/">pi-subagent-durable：后台子代理的持久化、生命周期与故障自愈</a></li>
       
     </ul>
   </div>
@@ -177,115 +177,135 @@
 
       <div class="page-content">
         <div class="e-content">
-          <h2 id="pv数据">pv数据</h2>
+          <h2 id="一pv-量价衍生数据四阶谱系严格-0123-阶--worldquant-fastexpr-对齐">一、PV 量价衍生数据四阶谱系（严格 0→1→2→3 阶 + WorldQuant FASTEXPR 对齐）</h2>
+
+<p>量价（Price-Volume，简称 PV）严格按<strong>算子演化层级（对 0 阶直接运算 vs 在 1 阶之上嵌套/复合）</strong>分为四阶：<strong>0 阶</strong>为平台原生字段；<strong>1 阶</strong>为直接作用于 0 阶原生字段的单步跨字段算术或单层时序变换/标准化（含 <code class="language-plaintext highlighter-rouge">ts_zscore</code>、<code class="language-plaintext highlighter-rouge">ts_std_dev</code>、<code class="language-plaintext highlighter-rouge">ts_mean</code>、<code class="language-plaintext highlighter-rouge">ts_max_diff</code> 等直出单层算子）；<strong>2 阶</strong>为在 1 阶衍生量之上再做窗口统计/高阶矩（波动率的波动、偏度信息比、换手高阶能量）、跨字段复合技术指标、截面基准或双变量相关性/回归；<strong>3 阶</strong>为多个 1/2 阶特征的交叉组合及实战中性化/分桶/门控结构角色。</p>
+
+<blockquote>
+  <p>图例说明：在一至三阶衍生指标中，<span style="color: #059669; font-weight: 600;">绿色加粗条目</span>表示已在本地平台实测记录中检索到达标信号（非 SUPER，<code class="language-plaintext highlighter-rouge">fitness &gt;= 1.0</code> 且 <code class="language-plaintext highlighter-rouge">sharpe &gt;= 1.2</code>；除 CHN 地区外，<code class="language-plaintext highlighter-rouge">fitness &lt;= -1.0</code> 且 <code class="language-plaintext highlighter-rouge">sharpe &lt;= -1.2</code> 的反向可取负信号亦计为达标）；<span style="color: #dc2626; font-weight: 600;">红色加粗条目</span>表示库中已有实测记录但未达上述门槛；默认颜色为尚未在库中检索到测试记录的理论或扩展方向。</p>
+</blockquote>
 
 <table>
   <thead>
     <tr>
-      <th><strong>0阶数据 (原始)</strong></th>
-      <th><strong>一阶数据 (派生)</strong></th>
-      <th><strong>二阶数据 (高阶特征 &amp; 技术指标)</strong></th>
-      <th><strong>三阶数据 (组合/因子)</strong></th>
+      <th>0 阶数据（平台原生字段）</th>
+      <th>一阶数据（直接作用于 0 阶的单步算术与单层变换）</th>
+      <th>二阶数据（嵌套衍生、复合技术指标、高阶矩与回归）</th>
+      <th>三阶数据（跨特征复合与实战结构角色）</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td><strong>open</strong></td>
-      <td> </td>
-      <td><strong>cumret</strong>:<code class="language-plaintext highlighter-rouge">prod(1+returns)-1</code><br /><strong>excess_ret</strong>:<code class="language-plaintext highlighter-rouge">returns - rf</code><br /><strong>fear</strong>:<code class="language-plaintext highlighter-rouge">ts_mean(abs(returns - market_return)/(abs(returns)+abs(market_return)), 20)</code></td>
-      <td><strong>liquidity-adjusted return</strong>:<code class="language-plaintext highlighter-rouge">returns / (1+Illiquidity)</code></td>
-    </tr>
-    <tr>
-      <td><strong>close</strong></td>
-      <td><strong>returns</strong>:<code class="language-plaintext highlighter-rouge">(close - close[-1]) / close[-1]</code><br />—<br /><strong>vwap</strong>:<code class="language-plaintext highlighter-rouge">sum(close*volume)/sum(volume)</code><br /></td>
-      <td><strong>volatility</strong>:<code class="language-plaintext highlighter-rouge">ts_std(returns, 20)</code><br /><strong>RSI</strong> (relative strength index)<br /><strong>MACD</strong> (EMA_diff(close))<br /><strong>ROC</strong>:<code class="language-plaintext highlighter-rouge">(close_t/close_{t-n} - 1)</code></td>
-      <td><strong>risk-adjusted momentum</strong>:<code class="language-plaintext highlighter-rouge">momentum / volatility</code></td>
-    </tr>
-    <tr>
-      <td><strong>high</strong></td>
-      <td> </td>
-      <td><strong>maxdrawdown</strong>:<code class="language-plaintext highlighter-rouge">(peak(close) - trough(close)) / peak(close)</code><br /><strong>Williams %R</strong>:<code class="language-plaintext highlighter-rouge">(HH_n - close)/(HH_n-LL_n)</code></td>
-      <td><strong>volume-adjusted maxdrawdown</strong>:<code class="language-plaintext highlighter-rouge">maxdrawdown / adv20</code></td>
-    </tr>
-    <tr>
-      <td><strong>low</strong></td>
-      <td><br /><br /></td>
-      <td><strong>downside_vol</strong>:<code class="language-plaintext highlighter-rouge">ts_std(min(returns,0),20)</code><br /><strong>Stochastic %K/%D</strong>:<code class="language-plaintext highlighter-rouge">(close - LL_n)/(HH_n-LL_n)</code></td>
-      <td><strong>reversal-risk</strong>:<code class="language-plaintext highlighter-rouge">(-returns(1m)) / downside_vol</code></td>
-    </tr>
-    <tr>
-      <td><strong>volume</strong></td>
-      <td><strong>adv20</strong>:<code class="language-plaintext highlighter-rouge">ts_mean(volume, 20)</code><br /><strong>log_volume</strong>:<code class="language-plaintext highlighter-rouge">log(volume)</code><br /><strong>volume_z</strong>:<code class="language-plaintext highlighter-rouge">(volume - mean(volume,20))/std</code></td>
-      <td><strong>Illiquidity</strong>:<code class="language-plaintext highlighter-rouge">abs(returns) / volume</code><br /><strong>OBV</strong> (on-balance volume)<br /><strong>CMF</strong> (Chaikin money flow)</td>
-      <td><strong>liquidity_momentum</strong>:<code class="language-plaintext highlighter-rouge">momentum * (-Illiquidity)</code></td>
-    </tr>
-    <tr>
-      <td><strong>sharesout</strong></td>
-      <td><strong>mkt_cap</strong>:<code class="language-plaintext highlighter-rouge">close * sharesout</code><br /><strong>turnover</strong>:<code class="language-plaintext highlighter-rouge">volume / sharesout</code><br /><strong>turn20</strong>:<code class="language-plaintext highlighter-rouge">ts_mean(turnover, 20)</code></td>
-      <td><strong>size_effect</strong>:<code class="language-plaintext highlighter-rouge">log(mkt_cap)</code></td>
-      <td><strong>scaled_turnover</strong>:<code class="language-plaintext highlighter-rouge">turnover / size_effect</code></td>
-    </tr>
-    <tr>
-      <td><strong>vwap</strong></td>
-      <td> </td>
-      <td><strong>spread</strong>:<code class="language-plaintext highlighter-rouge">(high - low)/vwap</code><br /><strong>Amihud illiq</strong>:<code class="language-plaintext highlighter-rouge">ts_mean(abs(returns)/dollar_volume,20)</code></td>
-      <td><strong>liquidity_volatility</strong>:<code class="language-plaintext highlighter-rouge">volatility * Amihud_illiq</code></td>
-    </tr>
-    <tr>
-      <td><strong>dollar_vol</strong></td>
-      <td><strong>dollar_volume</strong>:<code class="language-plaintext highlighter-rouge">close * volume</code></td>
-      <td><strong>turnover_vol</strong>:<code class="language-plaintext highlighter-rouge">ts_std(turnover,20)</code></td>
-      <td><strong>volume_volatility_ratio</strong>:<code class="language-plaintext highlighter-rouge">volatility / turnover_vol</code></td>
-    </tr>
-    <tr>
-      <td><strong>ohlc</strong></td>
-      <td><strong>hl_range</strong>:<code class="language-plaintext highlighter-rouge">(high - low)/close</code><br /><strong>oc_gap/overnight return</strong>:<code class="language-plaintext highlighter-rouge">(open - close[-1])/close[-1]</code></td>
-      <td><strong>realized_vol</strong>:<code class="language-plaintext highlighter-rouge">sqrt(sum(log(high/low)^2 + log(close/open)^2 ... over window))</code></td>
-      <td><strong>gap_volatility</strong>:<code class="language-plaintext highlighter-rouge">oc_gap / realized_vol</code></td>
-    </tr>
-    <tr>
-      <td><strong>returns</strong></td>
-      <td> </td>
-      <td><strong>momentum</strong>:<code class="language-plaintext highlighter-rouge">ts_mean(returns, 12m)</code><br /><strong>reversal</strong>:<code class="language-plaintext highlighter-rouge">-returns(1m)</code></td>
-      <td><strong>momentum_reversal</strong>:<code class="language-plaintext highlighter-rouge">momentum * reversal</code><strong>vol_mom</strong>:<code class="language-plaintext highlighter-rouge">momentum * (1/volatility)</code></td>
-    </tr>
-    <tr>
-      <td>dividend<br />分红<br />split<br />拆股</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
+      <td><strong>基础行情 (<code class="language-plaintext highlighter-rouge">pv1</code>)</strong><br />• <code class="language-plaintext highlighter-rouge">open</code> / <code class="language-plaintext highlighter-rouge">high</code> / <code class="language-plaintext highlighter-rouge">low</code> / <code class="language-plaintext highlighter-rouge">close</code>：开/高/低/收价格<br />• <code class="language-plaintext highlighter-rouge">vwap</code>：当日成交量加权均价<br />• <code class="language-plaintext highlighter-rouge">returns</code>：当日收益率<br />• <code class="language-plaintext highlighter-rouge">volume</code>：当日成交股数<br />• <code class="language-plaintext highlighter-rouge">adv20</code>：过去 20 日均量<br />• <code class="language-plaintext highlighter-rouge">sharesout</code>：总股本（百万股）<br />• <code class="language-plaintext highlighter-rouge">cap</code>：当日总市值（百万）<br /><br /><strong>公司行为与复权</strong><br />• <code class="language-plaintext highlighter-rouge">dividend</code>：每股分红<br />• <code class="language-plaintext highlighter-rouge">split</code>：拆股比例<br />• <code class="language-plaintext highlighter-rouge">adjfactor</code>：原生复权因子<br /><br /><strong>7 个原生分组</strong><br />• <code class="language-plaintext highlighter-rouge">country</code> / <code class="language-plaintext highlighter-rouge">market</code><br />• <code class="language-plaintext highlighter-rouge">sector</code> / <code class="language-plaintext highlighter-rouge">industry</code> / <code class="language-plaintext highlighter-rouge">subindustry</code><br />• <code class="language-plaintext highlighter-rouge">currency</code> / <code class="language-plaintext highlighter-rouge">exchange</code></td>
+      <td><strong>收益、跳空与极值回落</strong><br />• <span style="color: #059669; font-weight: 600;">日收益 / 价格变化率 (ret_calc / ROC)</span>：<code class="language-plaintext highlighter-rouge">(close - ts_delay(close, 1)) / ts_delay(close, 1)</code>、<code class="language-plaintext highlighter-rouge">ts_returns(close, d)</code>、<code class="language-plaintext highlighter-rouge">ts_delta(close, d)</code>（邻日或 <code class="language-plaintext highlighter-rouge">d</code> 日价格涨跌）<br />• <span style="color: #059669; font-weight: 600;">累计收益 (cumret)</span>：<code class="language-plaintext highlighter-rouge">ts_product(1 + returns, 20) - 1</code>（20 日复利累计收益率）<br />• <span style="color: #059669; font-weight: 600;">中长期动量 / 短期反转 (momentum / reversal)</span>：<code class="language-plaintext highlighter-rouge">ts_mean(returns, 252)</code>、<code class="language-plaintext highlighter-rouge">-ts_mean(returns, 20)</code> 或 <code class="language-plaintext highlighter-rouge">-returns</code>（对 <code class="language-plaintext highlighter-rouge">returns</code> 做单层均值/取反）<br />• <strong>最大回撤 (<code class="language-plaintext highlighter-rouge">maxdrawdown</code>)</strong> / <span style="color: #059669; font-weight: 600;">高点回落 (max_diff)</span>：<code class="language-plaintext highlighter-rouge">(ts_max(close, 60) - ts_min(close, 60)) / ts_max(close, 60)</code>（60 日区间最大回撤幅）；<code class="language-plaintext highlighter-rouge">ts_max_diff(close, 10)</code>（当前价相对 10 日高点差值）；<code class="language-plaintext highlighter-rouge">close - last_diff_value(close, 10)</code>（相对最近变动值差）<br />• <span style="color: #059669; font-weight: 600;">日内实体 (intraday_ret)</span>：<code class="language-plaintext highlighter-rouge">open - close</code> 或 <code class="language-plaintext highlighter-rouge">close / open - 1</code>（开盘至收盘的日内多空净强弱）<br />• <span style="color: #059669; font-weight: 600;">隔夜跳空 (oc_gap)</span>：<code class="language-plaintext highlighter-rouge">open / ts_delay(close, 1) - 1</code>（昨收至今日开盘的隔夜跳空收益）<br />• <span style="color: #059669; font-weight: 600;">跳空极值比 (gap_high / gap_low)</span>：<code class="language-plaintext highlighter-rouge">high / ts_delay(open, 1)</code>、<code class="language-plaintext highlighter-rouge">low / ts_delay(open, 1)</code>（最高/最低价相对前日开盘的偏离倍数）<br /><br /><strong>价差与 K 线位置</strong><br />• <span style="color: #059669; font-weight: 600;">收盘-VWAP 偏离 (close_vwap_dev)</span>：<code class="language-plaintext highlighter-rouge">close - vwap</code> 或 <code class="language-plaintext highlighter-rouge">close / vwap - 1</code>（尾盘收盘相对全天均价的拉升/回落偏离）<br />• <span style="color: #059669; font-weight: 600;">日内振幅 (hl_range)</span>：<code class="language-plaintext highlighter-rouge">(high - low) / close</code>（日内极值波幅占收盘价比例）<br />• <span style="color: #059669; font-weight: 600;">中点偏离 (hl_midpoint_dev)</span>：<code class="language-plaintext highlighter-rouge">(high + low) / 2 - close</code>（收盘价相对日内高低中点的偏离）<br />• <span style="color: #059669; font-weight: 600;">K 线分位、CLV 与影线 (candle_pos / CLV)</span>：<code class="language-plaintext highlighter-rouge">(close - low) / (high - low)</code>（收盘所处日内位置）；<code class="language-plaintext highlighter-rouge">((close - low) - (high - close)) / (high - low + 1e-6)</code>（值域 <code class="language-plaintext highlighter-rouge">[-1, 1]</code> 的对称收盘位置值 CLV）；<code class="language-plaintext highlighter-rouge">(close - high) / (close - low)</code>、<code class="language-plaintext highlighter-rouge">(low - open) / (close - low)</code>（上下影线与实体比）<br />• <strong>微观价差近似 (<code class="language-plaintext highlighter-rouge">spread_1d</code>)</strong>：<code class="language-plaintext highlighter-rouge">(high - low) / vwap</code>（以振幅相对均价近似日内买卖价差）<br /><br /><strong>成交量、波动率与尺度</strong><br />• <span style="color: #059669; font-weight: 600;">成交额 (dollar_volume)</span>：<code class="language-plaintext highlighter-rouge">close * volume</code>（当日名义成交金额）<br />• <span style="color: #059669; font-weight: 600;">计算市值 (mkt_cap)</span>：<code class="language-plaintext highlighter-rouge">close * sharesout</code>（价格×股本近似总市值）<br />• <span style="color: #059669; font-weight: 600;">换手率 (turnover)</span>：<code class="language-plaintext highlighter-rouge">volume / sharesout</code>（成交量占总股本比例；部分区域需 <code class="language-plaintext highlighter-rouge">sharesout * 1000000</code> 对齐单位）<br />• <span style="color: #059669; font-weight: 600;">量比 / 异常成交量 / 长周期均量 (volume_ratio / abn_volm / adv12m)</span>：<code class="language-plaintext highlighter-rouge">volume / adv20</code>、<code class="language-plaintext highlighter-rouge">volume / ts_mean(volume, 252)</code>、<code class="language-plaintext highlighter-rouge">ts_mean(volume, 252)</code>（当日量相对 20 日/年均量的放缩倍数与长周期均量基准）<br />• <span style="color: #059669; font-weight: 600;">量能标准化 (volume_z)</span>：<code class="language-plaintext highlighter-rouge">ts_zscore(volume, 20)</code>（直接对 0 阶成交量做滚动 Z 分数标准化）<br />• <span style="color: #059669; font-weight: 600;">总波动 (volatility)</span> / <strong>下行波动 (<code class="language-plaintext highlighter-rouge">downside_vol</code>)</strong>：<code class="language-plaintext highlighter-rouge">ts_std_dev(returns, 20)</code>、<code class="language-plaintext highlighter-rouge">ts_std_dev(min(returns, 0), 20)</code>（直接对 0 阶收益率求标准差与下行风险）<br />• <strong>对数压缩</strong>（<code class="language-plaintext highlighter-rouge">log_volume</code> / <span style="color: #059669; font-weight: 600;">size_effect</span>）：<code class="language-plaintext highlighter-rouge">log(volume)</code>、<code class="language-plaintext highlighter-rouge">log(cap)</code>（压缩成交量与市值的右偏长尾）<br />• <span style="color: #059669; font-weight: 600;">单日非流动性 (illiq_1d)</span>：<code class="language-plaintext highlighter-rouge">abs(returns) / volume</code> 或 <code class="language-plaintext highlighter-rouge">abs(returns) / (close * volume)</code>（单位成交量/成交额推动的涨跌幅）</td>
+      <td><strong>嵌套均值与截面基准</strong><br />• <span style="color: #059669; font-weight: 600;">市场超额收益 (excess_ret)</span>：<code class="language-plaintext highlighter-rouge">returns - group_mean(returns, cap, market)</code>（个股收益减去市值加权市场平均收益）<br />• <span style="color: #059669; font-weight: 600;">均换手 (turn20)</span> / <strong>滚动 VWAP</strong>：<code class="language-plaintext highlighter-rouge">ts_mean(volume / sharesout, 20)</code>、<code class="language-plaintext highlighter-rouge">ts_sum(close * volume, 20) / ts_sum(volume, 20)</code>（对 1 阶换手率与成交额再做窗口聚合）<br />• <strong>市场背离度 (<code class="language-plaintext highlighter-rouge">fear</code>)</strong>：<code class="language-plaintext highlighter-rouge">ts_mean(abs(returns - group_mean(returns, 1, market)) / (abs(returns) + abs(group_mean(returns, 1, market))), 20)</code>（个股偏离大盘均值的相对强度）<br /><br /><strong>经典复合技术指标（WQ 算子对齐）</strong><br />• <span style="color: #059669; font-weight: 600;">RSI（相对强弱指标）</span>：<code class="language-plaintext highlighter-rouge">ts_mean(max(ts_delta(close, 1), 0), 14) / (ts_mean(abs(ts_delta(close, 1)), 14) + 1e-6)</code>（14 日上涨幅度均值占总波动均值比，衡量超买超卖）<br />• <strong>MACD（快慢指数均线差）</strong>：<code class="language-plaintext highlighter-rouge">ts_decay_exp_window(close, 12, factor=0.85) - ts_decay_exp_window(close, 26, factor=0.93)</code>（12 日与 26 日指数衰减均线之差，捕捉趋势加速）<br />• <span style="color: #dc2626; font-weight: 600;">RSV / Stochastic %K / %D</span>：<code class="language-plaintext highlighter-rouge">RSV = (close - ts_min(low, 9)) / (ts_max(high, 9) - ts_min(low, 9))</code>（收盘价在 9 日高低区间所处百分比）；<code class="language-plaintext highlighter-rouge">%D = ts_mean(RSV, 3)</code>（平滑随机震荡线）<br />• <span style="color: #059669; font-weight: 600;">Williams %R（威廉超买超卖）</span>：<code class="language-plaintext highlighter-rouge">(ts_max(high, 14) - close) / (ts_max(high, 14) - ts_min(low, 14))</code>（收盘价距 14 日最高点的回落占波幅比）<br />• <strong>OBV（能量潮）</strong>：<code class="language-plaintext highlighter-rouge">ts_sum(sign(ts_delta(close, 1)) * volume, 20)</code>（按价格涨跌方向累积的 20 日净成交量）<br />• <span style="color: #dc2626; font-weight: 600;">CMF（蔡金资金流）</span>：<code class="language-plaintext highlighter-rouge">ts_sum(((2 * close - high - low) / (high - low + 1e-6)) * volume, 20) / ts_sum(volume, 20)</code>（以 K 线收盘位置加权的 20 日资金净流入占比）<br />• <span style="color: #059669; font-weight: 600;">CCI（商品通道指数）</span>：<code class="language-plaintext highlighter-rouge">tp = (high + low + close) / 3; (tp - ts_mean(tp, 20)) / (0.015 * ts_mean(abs(tp - ts_mean(tp, 20)), 20) + 1e-6)</code>（典型价相对移动均值的统计偏离度，识别超买超卖与趋势启动）<br />• <span style="color: #059669; font-weight: 600;">Force Index（强力指数）</span>：<code class="language-plaintext highlighter-rouge">ts_mean(ts_delta(close, 1) * volume, 13)</code>（成交量加权的邻日价格位移均值，衡量推动涨跌背后的量能冲击力）<br />• <span style="color: #059669; font-weight: 600;">EMV（简易波动指标）</span>：<code class="language-plaintext highlighter-rouge">ts_mean(((high + low) / 2 - ts_delay((high + low) / 2, 1)) * (high - low) / (volume + 1e-6), 14)</code>（单位成交量推动价格中点位移的难易程度，捕捉缩量易动与放量滞涨）<br />• <span style="color: #059669; font-weight: 600;">Bollinger Bands（布林带带宽 / 通道分位 %B）</span>：<code class="language-plaintext highlighter-rouge">4 * ts_std_dev(close, 20) / ts_mean(close, 20)</code> 或 <code class="language-plaintext highlighter-rouge">(close - (ts_mean(close, 20) - 2 * ts_std_dev(close, 20))) / (4 * ts_std_dev(close, 20) + 1e-6)</code>（均线 ± k 倍标准差通道相对宽度或价格在通道内位置）<br />• <span style="color: #dc2626; font-weight: 600;">Stochastic RSI（随机相对强弱指数）</span>：<code class="language-plaintext highlighter-rouge">(RSI - ts_min(RSI, 14)) / (ts_max(RSI, 14) - ts_min(RSI, 14) + 1e-6)</code>（对 RSI 序列再做滚动极值归一化，放大超买超卖灵敏度）<br />• <span style="color: #dc2626; font-weight: 600;">NVI（负量指标）</span>：<code class="language-plaintext highlighter-rouge">ts_sum(if_else(volume &lt; ts_delay(volume, 1), returns, 0), 60)</code>（仅在缩量日累积收益率，追踪低换手阶段资金动向）<br />• <strong>ADX（平均趋向指数）</strong>：基于真实波幅 <code class="language-plaintext highlighter-rouge">TR = max(high - low, max(abs(high - ts_delay(close, 1)), abs(low - ts_delay(close, 1))))</code> 与正负方向移动 <code class="language-plaintext highlighter-rouge">+DI / -DI</code> 的归一化差值 <code class="language-plaintext highlighter-rouge">abs(+DI - -DI) / (+DI + -DI)</code> 做滚动平滑（衡量无方向单边趋势强度）<br /><br /><strong>复合波动率与高阶矩</strong><br />• <strong>OHLC 波动率 (<code class="language-plaintext highlighter-rouge">realized_vol</code>)</strong> / <span style="color: #059669; font-weight: 600;">Parkinson 波动率 (parkinson_vol)</span>：<code class="language-plaintext highlighter-rouge">sqrt(ts_sum(0.5 * power(log(high / low), 2) - (2 * log(2) - 1) * power(log(close / open), 2), 20) / 20)</code>（Garman-Klass OHLC 估计量）；<code class="language-plaintext highlighter-rouge">sqrt(ts_sum(power(log(high / low), 2), 20) / (4 * 20 * log(2)))</code>（Parkinson 高低价估计量）<br />• <span style="color: #059669; font-weight: 600;">非对称跳空波动率 (asymmetric_gap_vol)</span>：<code class="language-plaintext highlighter-rouge">-ts_std_dev(high / ts_delay(open, 1), 60) + ts_std_dev(low / ts_delay(open, 1), 60)</code>（1 阶上下行跳空比的 60 日标准差不对称差）<br />• <span style="color: #059669; font-weight: 600;">偏度稳定性 (ir_of_skewness)</span>：<code class="language-plaintext highlighter-rouge">-ts_ir(ts_skewness(high, 60), 60)</code> 或 <code class="language-plaintext highlighter-rouge">-ts_ir(ts_skewness(close, 60), 60)</code>（价格偏度的滚动信息比）<br />• <span style="color: #059669; font-weight: 600;">极值收益乘积 (extreme_ret_prod)</span>：<code class="language-plaintext highlighter-rouge">ts_max(returns, 5) * ts_min(returns, 5)</code> 或 <code class="language-plaintext highlighter-rouge">ts_mean(max(returns, 0), 5) * ts_mean(min(returns, 0), 5)</code>（正负极端日收益乘积，刻画双向剧烈震荡）<br />• <span style="color: #059669; font-weight: 600;">换手波动与高阶能量 (turnover_vol / turnover_energy)</span>：<code class="language-plaintext highlighter-rouge">ts_std_dev(volume / sharesout, 20)</code>、<code class="language-plaintext highlighter-rouge">ts_sum(power(volume / (sharesout * 1000000), 2), 500)</code>（长期累积换手二/三阶能量）<br />• <span style="color: #059669; font-weight: 600;">隔夜与日内反转冲突 (co_oc_conflict)</span>：<code class="language-plaintext highlighter-rouge">ts_sum(if_else(oc_gap &gt; 0 &amp;&amp; intraday_ret &lt; 0, 1, 0) - if_else(oc_gap &lt; 0 &amp;&amp; intraday_ret &gt; 0, 1, 0), 20)</code>（统计高开低走与低开高走的 20 日频次差，刻画隔夜与日内定价分歧）<br /><br /><strong>流动性、价量协同与回归残差</strong><br />• <span style="color: #059669; font-weight: 600;">Amihud 非流动性 (amihud_illiq)</span>：<code class="language-plaintext highlighter-rouge">ts_mean(abs(returns) / (close * volume), 20)</code>（对 1 阶 <code class="language-plaintext highlighter-rouge">illiq_1d</code> 取 20 日均值）<br />• <span style="color: #059669; font-weight: 600;">价量相关性 (pv_corr)</span>：<code class="language-plaintext highlighter-rouge">ts_corr(vwap, volume, 5)</code>、<code class="language-plaintext highlighter-rouge">ts_corr(close, volume, 20)</code>（量价齐升/背离的滚动相关系数）<br />• <span style="color: #059669; font-weight: 600;">价量回归与 Amihud 剥离 (pv_reg / amihud_neut)</span>：<code class="language-plaintext highlighter-rouge">ts_regression(-returns, volume, 120)</code>、<code class="language-plaintext highlighter-rouge">regression_neut(-returns, -returns / volume)</code>（剥离成交量冲击后的纯反转残差）<br />• <span style="color: #059669; font-weight: 600;">相对市值扩张 (cap_rel_mom)</span>：<code class="language-plaintext highlighter-rouge">ts_zscore(cap, 63) - ts_zscore(group_neutralize(cap, sector), 63)</code>（个股市值相对行业 3 个月的扩张 Z 分数）<br />• <span style="color: #059669; font-weight: 600;">价格-市值协整残差 (price_cap_coint)</span>：<code class="language-plaintext highlighter-rouge">ts_regression(ts_zscore(ts_mean(close, 22), 252), ts_zscore(cap, 252), 500, rettype=0)</code>（剥离股本变化后的价格长周期残差）<br />• <span style="color: #059669; font-weight: 600;">市场 Beta 残差 (capm_resid)</span>：<code class="language-plaintext highlighter-rouge">ts_regression(vector_neut(returns, cap), group_mean(returns, cap, country), 20, rettype=6)</code>（剥离市值与市场因子后的特异残差）</td>
+      <td><strong>风险 / 流动性调整组合</strong><br />• <strong>流动性调整收益 (<code class="language-plaintext highlighter-rouge">liq_adj_ret</code>)</strong>：<code class="language-plaintext highlighter-rouge">returns / (1 + abs(returns) / volume)</code>（用单日非流动性对收益折价）<br />• <strong>风险调整动量 (<code class="language-plaintext highlighter-rouge">risk_adj_mom</code>)</strong>：<code class="language-plaintext highlighter-rouge">ts_mean(returns, 252) / ts_std_dev(returns, 20)</code>（动量除以波动率的信息比）<br />• <strong>下行风险反转 (<code class="language-plaintext highlighter-rouge">reversal_risk</code>)</strong>：<code class="language-plaintext highlighter-rouge">(-ts_mean(returns, 20)) / ts_std_dev(min(returns, 0), 20)</code>（月度反转除以下行波动率）<br />• <strong>动量-反转耦合 (<code class="language-plaintext highlighter-rouge">mom_reversal</code>)</strong>：<code class="language-plaintext highlighter-rouge">ts_mean(returns, 252) * (-ts_mean(returns, 20))</code>（长期趋势与短期回撤共振）<br />• <span style="color: #059669; font-weight: 600;">量比-反转共振 (vol_ratio_rev)</span>：<code class="language-plaintext highlighter-rouge">rank(-returns) * rank(volume / adv20)</code>（放量下跌后的超跌反转强化）<br />• <strong>缺口波动率比 (<code class="language-plaintext highlighter-rouge">gap_volatility</code>)</strong>：<code class="language-plaintext highlighter-rouge">(open / ts_delay(close, 1) - 1) / realized_vol</code>（用 OHLC 波动率标准化隔夜跳空）<br />• <strong>流动性动量 / 流动性波动 (<code class="language-plaintext highlighter-rouge">liq_mom</code> / <code class="language-plaintext highlighter-rouge">liq_vol</code>)</strong>：<code class="language-plaintext highlighter-rouge">momentum * (-amihud_illiq)</code>、<code class="language-plaintext highlighter-rouge">volatility * amihud_illiq</code><br />• <strong>流动性调整回撤 (<code class="language-plaintext highlighter-rouge">vol_adj_mdd</code>)</strong>：<code class="language-plaintext highlighter-rouge">maxdrawdown / adv20</code><br />• <strong>尺度化换手 / 波动换手比 (<code class="language-plaintext highlighter-rouge">scaled_tvr</code> / <code class="language-plaintext highlighter-rouge">vol_tvr_ratio</code>)</strong>：<code class="language-plaintext highlighter-rouge">(volume / sharesout) / log(cap)</code>、<code class="language-plaintext highlighter-rouge">volatility / turnover_vol</code><br />• <span style="color: #059669; font-weight: 600;">换手波动交互 (vol_of_tvr_interact)</span>：<code class="language-plaintext highlighter-rouge">zstr = zscore(turnover_vol); zturn = zscore(turn20); -(zstr + (zstr / (1 + abs(zstr))) * zturn)</code>（高换手水平放大高换手波动惩罚）<br /><br /><strong>实战结构化角色（分桶 / 基准 / 门控）</strong><br />• <span style="color: #059669; font-weight: 600;">动态分桶中性化</span>：<code class="language-plaintext highlighter-rouge">group_neutralize(signal, bucket(rank(cap), range='0,1,0.1'))</code>（同理可用 <code class="language-plaintext highlighter-rouge">close * volume</code>、<code class="language-plaintext highlighter-rouge">adv20</code>、<code class="language-plaintext highlighter-rouge">ts_std_dev(returns, 20)</code> 构造市值/成交额/流动性/波动率分桶）<br />• <span style="color: #059669; font-weight: 600;">量加权行业基准</span>：<code class="language-plaintext highlighter-rouge">vector_neut(signal, group_mean(signal, volume, sector))</code>（用成交量作权重构造行业平均基准并正交）<br />• <span style="color: #059669; font-weight: 600;">多阶风险剥离</span>：<code class="language-plaintext highlighter-rouge">regression_neut</code> 连续正交剥离 <code class="language-plaintext highlighter-rouge">cap</code>、<code class="language-plaintext highlighter-rouge">ts_std_dev(returns, 66)</code>、<code class="language-plaintext highlighter-rouge">ts_delta(close, 200)</code>、<code class="language-plaintext highlighter-rouge">ts_delta(close, 5)</code>、<code class="language-plaintext highlighter-rouge">volume / cap</code><br />• <span style="color: #059669; font-weight: 600;">流动性换手限速</span>：<code class="language-plaintext highlighter-rouge">ts_target_tvr_delta_limit(signal, adv20, lambda_min=0, lambda_max=1, target_tvr=0.1)</code><br />• <span style="color: #059669; font-weight: 600;">状态门控 (trade_when)</span>：<code class="language-plaintext highlighter-rouge">trade_when(ts_corr(close, volume, 20) &gt; 0, signal, -1)</code>、<code class="language-plaintext highlighter-rouge">volume &gt; adv20</code>、<code class="language-plaintext highlighter-rouge">ts_std_dev(returns, 60) &lt; 0.5</code></td>
     </tr>
   </tbody>
 </table>
 
+<hr />
+
+<h2 id="二市值对应关系与复权adjusted-close数学原理">二、市值对应关系与复权（Adjusted Close）数学原理</h2>
+
+<p>在跨期比较历史价格与计算真实收益率时，必须处理拆股（split）与分红除权（dividend）带来的价格跳空：</p>
+
 <ul>
-  <li>rsv(未成熟随机值) = (close - ts_min(low, n)) / (ts_max(high, n) - ts_min(low, n)) n=9</li>
+  <li><strong>总市值</strong>：\(\text{cap} = \text{close} \times \text{sharesout}\)</li>
+  <li><strong>复权因子定义（<code class="language-plaintext highlighter-rouge">adj_factor</code>）</strong>：
+    <ul>
+      <li>无公司行为事件日：\(\text{adj\_factor} = 1\)</li>
+      <li>拆股日（split）：\(\text{adj\_factor} = \frac{1}{\text{split}}\)（事件日通常 \(&lt; 1\)）</li>
+      <li>除权日（dividend）：\(\text{adj\_factor} = 1 - \frac{\text{dividend}}{\text{close}_{\text{pre}}}\)（事件日通常 \(&lt; 1\)）</li>
+    </ul>
+  </li>
+  <li><strong>复权收盘价（<code class="language-plaintext highlighter-rouge">adj_close</code>）与一阶近似</strong>：
+\[\text{adj\_close} = \frac{\text{close}}{\prod \text{adj\_factor}} \approx \frac{\text{close}}{\sum(\text{adj\_factor} - 1) + 1}\]
+
+    <ul>
+      <li><strong>为什么做一阶近似</strong>：因为 \(\prod \text{adj\_factor} = \prod (1 + (\text{adj\_factor} - 1))\)，当拆股/除权事件较稀疏且单次调整幅度不大时，保留一阶项即得到加法形式。</li>
+      <li><strong><code class="language-plaintext highlighter-rouge">adj_close</code> 的意义</strong>：消除离散价格跳跃，保留收盘价的长期连续趋势，使不同历史时期的价格具有可比性。</li>
+    </ul>
+  </li>
+  <li><strong>相邻两日比值与真实收益率</strong>：
+    <ul>
+      <li>局部相邻两天：\(\frac{\text{adj\_close}}{\text{adj\_close}[-1]} = \frac{\text{close}}{\text{close}[-1]} \cdot \frac{1}{\text{adj\_factor}}\)</li>
+      <li>真实收益率：\(\text{returns} = \frac{\text{close} / \text{adj\_factor} - \text{close}_{\text{raw}}[-1]}{\text{close}_{\text{raw}}[-1]}\)（因为拆股和除权在时间序列上属于稀疏事件，仅在事件日修正分母/分子即可消除虚假暴跌）。</li>
+    </ul>
+  </li>
+  <li><strong>后向复权特征（Yahoo / Tiingo 等数据源）</strong>：以最新交易日为锚点向历史反推，因此越接近当前的 <code class="language-plaintext highlighter-rouge">adj_close</code> 越接近真实成交 <code class="language-plaintext highlighter-rouge">close</code>，而越久远的历史 <code class="language-plaintext highlighter-rouge">adj_close</code> 数值会越小。</li>
 </ul>
 
-<p>对应关系</p>
+<hr />
+
+<h2 id="三在-quantnight-analyze-dataset-skill-中的实战应用">三、在 QuantNight <code class="language-plaintext highlighter-rouge">analyze-dataset</code> Skill 中的实战应用</h2>
+
+<p>在 QuantNight 的 <code class="language-plaintext highlighter-rouge">analyze-dataset</code> 研究流程中，PV 数据（如 <code class="language-plaintext highlighter-rouge">pv1</code>）很少单独用来硬挖信号，而是作为全市场共用的<strong>“基础元素字段池（Base Field Pool）”</strong>，贯穿在<strong>通道①②③</strong>的经济学配对与特征工程中（真源见 <code class="language-plaintext highlighter-rouge">.agents/skills/analyze-dataset/prompts/economics_pairing_principles.md</code> 与 <code class="language-plaintext highlighter-rouge">expression/base_fields.py</code>）：</p>
+
+<pre><code class="language-mermaid">flowchart LR
+    Base["expression/base_fields.py&lt;br/&gt;PV 基础元素字段池&lt;br/&gt;price(close) · cap · returns · volume(adv20) · high/low/open"]
+    Base --&gt;|"通道① 量价基础信号"| C1["signals.py (unary)&lt;br/&gt;volume/adv20 · -returns"]
+    Base --&gt;|"通道② 跨量纲分母/估值锚"| C2["composites.py (composite)&lt;br/&gt;事件÷cap · 持股÷volume · PE/PS/FCF_yield"]
+    Base --&gt;|"通道③ 价格锚定/相关性/模型"| C3["relationships.py (pairing)&lt;br/&gt;projection(data↔returns) · correlation · CAPM"]
+</code></pre>
+
+<h3 id="1-定位跨数据集边界中的参照系原子">1. 定位：跨数据集边界中的“参照系原子”</h3>
+<p><code class="language-plaintext highlighter-rouge">expression/base_fields.py</code> 明确定义了 <code class="language-plaintext highlighter-rouge">analyze-dataset</code> 的跨数据集引用边界：<strong>“不跨内容数据集（如基本面跨新闻），但允许引入基础元素字段池”</strong>。</p>
 <ul>
-  <li>cap = close x sharesout</li>
-  <li>\(\text{adj close}  = \frac{close}{\prod\text{adj factor}}\approx \frac{close}{\sum(\text{adj factor}-1)+1}\)
+  <li><code class="language-plaintext highlighter-rouge">load_base_field_pool(region, universe, delay)</code> 会从本地 <code class="language-plaintext highlighter-rouge">data_db</code> 快照按白名单按角色加载 PV 原子字段：
     <ul>
-      <li><code class="language-plaintext highlighter-rouge">adj_close</code> 是为了表示的是close的一个长期的趋势, 连续的用<code class="language-plaintext highlighter-rouge">adj_factor</code> 进行调整</li>
-      <li>在相邻两天局部看, \(\frac{\text{adj close}}{\text{adj close[-1]}}=\frac{close}{close[-1]}\cdot \frac{1}{\text{adj factor}}\)</li>
-      <li>\(\prod\text{adj factor}=\prod(1+(\text{adj factor}-1))\)  只要一阶项就是后面那个加法的形式</li>
+      <li><code class="language-plaintext highlighter-rouge">price</code>: <code class="language-plaintext highlighter-rouge">["close", "last", "px_last"]</code></li>
+      <li><code class="language-plaintext highlighter-rouge">cap</code>: <code class="language-plaintext highlighter-rouge">["cap", "mktcap"]</code></li>
+      <li><code class="language-plaintext highlighter-rouge">returns</code>: <code class="language-plaintext highlighter-rouge">["returns", "ret_1d"]</code></li>
+      <li><code class="language-plaintext highlighter-rouge">volume</code>: <code class="language-plaintext highlighter-rouge">["volume", "adv20"]</code></li>
+      <li><code class="language-plaintext highlighter-rouge">high</code> / <code class="language-plaintext highlighter-rouge">low</code> / <code class="language-plaintext highlighter-rouge">open</code>（外加 <code class="language-plaintext highlighter-rouge">risk_factor</code>）</li>
     </ul>
   </li>
-  <li>adj_factor = 1/split(拆股日) , adj_factor = 1 - dividend/close_pre(除权日)
+  <li><strong>核心原因</strong>：纯 PV 衍生指标人尽皆知、独立 Alpha 拥挤度高；但在分析基本面、分析师预测、新闻情绪、机构持股或期权等内容数据集时，往往缺少股价、市值和成交量作为度量标尺。此时优先用本数据集自身字段，缺失时即从基础元素池取 PV 角色作参照系。</li>
+</ul>
+
+<h3 id="2-通道-单字段信号signalspy量价自身与二阶衍生加工">2. 通道① 单字段信号（<code class="language-plaintext highlighter-rouge">signals.py</code>）：量价自身与二阶衍生加工</h3>
+<p>在 <code class="language-plaintext highlighter-rouge">prompts/economics_pairing_principles.md</code> 的数据集类型路由与 <code class="language-plaintext highlighter-rouge">prompts/classic_alpha_strategies.md</code> 中：</p>
+<ul>
+  <li><strong>默认方向</strong>：<code class="language-plaintext highlighter-rouge">price/volume</code> 类数据集在通道①优先检视<strong>成交量激增（<code class="language-plaintext highlighter-rouge">volume / adv20</code>）</strong>、<strong>短期反转（<code class="language-plaintext highlighter-rouge">-returns</code>）</strong>，以及上表二阶衍生中的波动率压缩/扩张（<code class="language-plaintext highlighter-rouge">ts_std(returns, 20)</code>）、非流动性溢价（<code class="language-plaintext highlighter-rouge">Illiquidity</code> / <code class="language-plaintext highlighter-rouge">Amihud</code>）与换手率冲击（<code class="language-plaintext highlighter-rouge">turnover</code>）。</li>
+  <li><strong>算子加工</strong>：这些 0 阶或一阶字段会进入 <code class="language-plaintext highlighter-rouge">signals.py</code> 的 7 个信号键（<code class="language-plaintext highlighter-rouge">smooth</code> / <code class="language-plaintext highlighter-rouge">momentum</code> / <code class="language-plaintext highlighter-rouge">anomaly</code> / <code class="language-plaintext highlighter-rouge">structural</code> / <code class="language-plaintext highlighter-rouge">accumulate</code> / <code class="language-plaintext highlighter-rouge">relative</code> / <code class="language-plaintext highlighter-rouge">transform</code>）展开组合，例如用 <code class="language-plaintext highlighter-rouge">ts_rank</code>、<code class="language-plaintext highlighter-rouge">group_zscore</code> 或 <code class="language-plaintext highlighter-rouge">ts_arg_max</code> 去捕捉拐点与异常尾部。</li>
+</ul>
+
+<h3 id="3-通道-中间字段构造compositespy流存量归一与估值构造">3. 通道② 中间字段构造（<code class="language-plaintext highlighter-rouge">composites.py</code>）：流÷存量归一与估值构造</h3>
+<p>这是 PV 衍生数据在 <code class="language-plaintext highlighter-rouge">analyze-dataset</code> 中<strong>最高频的用法</strong>——当内容数据集只给出原始计数、股数、金额或每股数据时，用 PV 的 <code class="language-plaintext highlighter-rouge">close</code>、<code class="language-plaintext highlighter-rouge">cap</code>、<code class="language-plaintext highlighter-rouge">volume</code>、<code class="language-plaintext highlighter-rouge">sharesout</code> 做分母或估值锚，先构造成有经济意义的“中间字段”，再送入通道①（<code class="language-plaintext highlighter-rouge">unary</code>）或通道④（<code class="language-plaintext highlighter-rouge">composite_op</code>）加工：</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>构造模式</th>
+      <th>PV 承担角色</th>
+      <th><code class="language-plaintext highlighter-rouge">expression/composites.py</code> 已注册模板实例</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>流 / 事件量 ÷ 规模存量</strong><br />（消除大盘股/高成交偏差）</td>
+      <td><code class="language-plaintext highlighter-rouge">cap</code> / <code class="language-plaintext highlighter-rouge">volume</code> / <code class="language-plaintext highlighter-rouge">sharesout</code></td>
+      <td>• <code class="language-plaintext highlighter-rouge">coverage_density</code>：<code class="language-plaintext highlighter-rouge">{count} / {marketcap}</code>（新闻/事件计数 ÷ <code class="language-plaintext highlighter-rouge">cap</code>）<br />• <code class="language-plaintext highlighter-rouge">short_pressure</code>：<code class="language-plaintext highlighter-rouge">{notional} / {cap}</code>（空头名义金额 ÷ <code class="language-plaintext highlighter-rouge">cap</code>）<br />• <code class="language-plaintext highlighter-rouge">institutional_liquidity_days</code>：<code class="language-plaintext highlighter-rouge">{shares_held} / ({daily_volume} + 0.001)</code>（机构持股 ÷ <code class="language-plaintext highlighter-rouge">volume</code>）<br />• <code class="language-plaintext highlighter-rouge">ownership_coverage</code>：<code class="language-plaintext highlighter-rouge">{shares_held} / {shares_out}</code>（机构持股 ÷ <code class="language-plaintext highlighter-rouge">sharesout</code>）<br />• <code class="language-plaintext highlighter-rouge">share_turnover_intensity</code>：<code class="language-plaintext highlighter-rouge">{trading_volume} / ({shares_outstanding} + 0.001)</code>（对应表中 <code class="language-plaintext highlighter-rouge">turnover</code>）<br />• <code class="language-plaintext highlighter-rouge">intraday_volume_range_share</code>：<code class="language-plaintext highlighter-rouge">(max_vol - min_vol) / (daily_volume + 0.001)</code></td>
+    </tr>
+    <tr>
+      <td><strong>估值 / 收益率重构</strong><br />（基本面与分析师相对估值）</td>
+      <td><code class="language-plaintext highlighter-rouge">close</code> / <code class="language-plaintext highlighter-rouge">cap</code> / <code class="language-plaintext highlighter-rouge">sharesout</code></td>
+      <td>• <code class="language-plaintext highlighter-rouge">pe</code>：<code class="language-plaintext highlighter-rouge">{price} / {eps}</code><br />• <code class="language-plaintext highlighter-rouge">ps</code>：<code class="language-plaintext highlighter-rouge">{price} * {sharesout} / {revenue}</code>（即 <code class="language-plaintext highlighter-rouge">mkt_cap / revenue</code>）<br />• <code class="language-plaintext highlighter-rouge">cf_price</code> / <code class="language-plaintext highlighter-rouge">fcf_yield</code>：<code class="language-plaintext highlighter-rouge">({cashflow_op} - {capex}) / {cap}</code><br />• <code class="language-plaintext highlighter-rouge">ev_ebitda</code>：<code class="language-plaintext highlighter-rouge">({cap} + {debt} - {cash}) / ({ebitda} + 0.001)</code><br />• <code class="language-plaintext highlighter-rouge">dividend_yield_reconstructed</code>：<code class="language-plaintext highlighter-rouge">{dividends_per_share} / ({price} + 0.001)</code><br />• <code class="language-plaintext highlighter-rouge">price_target_premium</code>：<code class="language-plaintext highlighter-rouge">{price_target} / ({price} + 0.001) - 1</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="4-通道-双字段配对relationshipspy价格锚定相关性与-capm-模型">4. 通道③ 双字段配对（<code class="language-plaintext highlighter-rouge">relationships.py</code>）：价格锚定、相关性与 CAPM 模型</h3>
+<p>在通道③配对与范式路由（<code class="language-plaintext highlighter-rouge">economics_pairing_principles.md</code> §二–§三）中，PV 数据直接作为<strong>比较对象或预期模型基准</strong>：</p>
+<ul>
+  <li><strong>价格锚定（<code class="language-plaintext highlighter-rouge">projection</code> / <code class="language-plaintext highlighter-rouge">exceed</code>）</strong>：<code class="language-plaintext highlighter-rouge">returns / close ↔ data</code>，对内容字段与股价或日收益率做回归残差（<code class="language-plaintext highlighter-rouge">ts_regression</code> / <code class="language-plaintext highlighter-rouge">regression_neut</code>）或比率，剥离纯价格趋势影响，提取超额信息。</li>
+  <li><strong>双序列相关性（<code class="language-plaintext highlighter-rouge">correlation</code>）</strong>：<code class="language-plaintext highlighter-rouge">pv ↔ news</code>（价格/成交量变化与新闻情绪的领先滞后相关）、<code class="language-plaintext highlighter-rouge">pv ↔ pv</code>（不同滞后窗口的量价相关结构）。</li>
+  <li><strong>模型类配对（Model-Based Pairings）</strong>：
     <ul>
-      <li>adj_factor没有事件的时候是1, 有事的时候&lt;1</li>
-      <li>因为我们想让不同时间的adj_close可比较</li>
-    </ul>
-  </li>
-  <li><code class="language-plaintext highlighter-rouge">returns = (close/adj_factor-close_raw[-1])/close_raw[-1]</code>
-    <ul>
-      <li>因为拆股和除权都是比较稀疏的事件,</li>
-    </ul>
-  </li>
-  <li>Yahoo/Tiingo的adj close用的是后向复权(以最新日为锚点): 最新的adj close和实际的close更接近, 很久之前的adj close会很小
-    <ul>
-      <li></li>
+      <li><strong>CAPM 市场代理</strong>：用 <code class="language-plaintext highlighter-rouge">returns</code> 与 <code class="language-plaintext highlighter-rouge">ts_mean(cap, 21)</code> 构造 <code class="language-plaintext highlighter-rouge">group_mean(returns, ts_mean(cap, 21))</code> 作为预期基准，与真实 <code class="language-plaintext highlighter-rouge">returns</code> 做偏离比较；</li>
+      <li><strong>戈登增长模型</strong>：用 <code class="language-plaintext highlighter-rouge">ts_mean(close, 21)</code> 作为股价均线 actual data，与股息贴现模型 <code class="language-plaintext highlighter-rouge">D / (r - g)</code> 做估值偏离比较；</li>
+      <li><strong>PEG 比率</strong>：以 <code class="language-plaintext highlighter-rouge">PE = close / eps</code> 锚定预期盈利增长率。</li>
     </ul>
   </li>
 </ul>
@@ -322,7 +342,7 @@
     <a class="page-previous" href="/personal_homepage/photo/stable-diffusion10/">
       <h4 class="page-pagination-label">Previous</h4>
       <span class="page-pagination-title">
-        <i class="fas fa-arrow-left"></i> nano-banana 效果: 常用的作图功能
+        <i class="fas fa-arrow-left"></i> AI作图效果: 常用的作图功能
 
       </span>
     </a>

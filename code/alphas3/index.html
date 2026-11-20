@@ -16,23 +16,23 @@
   
   
   <!-- Begin Jekyll SEO tag v2.9.1 -->
-<title>worldquant BRAIN 股票因子 (三) – API使用和代码 | Liu, Wen’s Home Page</title>
+<title>普通异步回测流水线架构与调度实现 | Liu, Wen’s Home Page</title>
 <meta name="generator" content="Jekyll v4.4.1" />
-<meta property="og:title" content="worldquant BRAIN 股票因子 (三) – API使用和代码" />
+<meta property="og:title" content="普通异步回测流水线架构与调度实现" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="仿真流程" />
-<meta name="twitter:description" property="og:description" content="仿真流程" />
+<meta name="description" content="本文档系统性剖析 QuantNight 的普通异步回测流水线（Regular Asynchronous Simulation Pipeline）核心调度与执行架构。该流水线是整个仓库吞吐量最大、并发度最高的基础生产底座，负责将模板展开的数十万级候选表达式高可靠地推送到 WorldQuant Brain 平台完成回测，并为上层智能调度（Adaptive 采样与 Priority 进化精炼）提供不可动摇的并发管理、配额控制、回执安全与断点自愈能力。" />
+<meta name="twitter:description" property="og:description" content="本文档系统性剖析 QuantNight 的普通异步回测流水线（Regular Asynchronous Simulation Pipeline）核心调度与执行架构。该流水线是整个仓库吞吐量最大、并发度最高的基础生产底座，负责将模板展开的数十万级候选表达式高可靠地推送到 WorldQuant Brain 平台完成回测，并为上层智能调度（Adaptive 采样与 Priority 进化精炼）提供不可动摇的并发管理、配额控制、回执安全与断点自愈能力。" />
 <link rel="canonical" href="https://roshameow.github.io//personal_homepage/code/alphas3/" />
 <meta property="og:url" content="https://roshameow.github.io//personal_homepage/code/alphas3/" />
 <meta property="og:site_name" content="Liu, Wen’s Home Page" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2025-01-18T00:00:00+00:00" />
-<meta property="article:modified_time" content="2025-10-12T16:45:00+00:00" />
+<meta property="article:modified_time" content="2026-11-08T20:13:00+00:00" />
 <meta name="twitter:card" content="summary" />
-<meta name="twitter:title" content="worldquant BRAIN 股票因子 (三) – API使用和代码" />
+<meta name="twitter:title" content="普通异步回测流水线架构与调度实现" />
 <meta name="twitter:site" content="@" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2025-10-12T16:45:00+00:00","datePublished":"2025-01-18T00:00:00+00:00","description":"仿真流程","headline":"worldquant BRAIN 股票因子 (三) – API使用和代码","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/code/alphas3/"},"url":"https://roshameow.github.io//personal_homepage/code/alphas3/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2026-11-08T20:13:00+00:00","datePublished":"2025-01-18T00:00:00+00:00","description":"本文档系统性剖析 QuantNight 的普通异步回测流水线（Regular Asynchronous Simulation Pipeline）核心调度与执行架构。该流水线是整个仓库吞吐量最大、并发度最高的基础生产底座，负责将模板展开的数十万级候选表达式高可靠地推送到 WorldQuant Brain 平台完成回测，并为上层智能调度（Adaptive 采样与 Priority 进化精炼）提供不可动摇的并发管理、配额控制、回执安全与断点自愈能力。","headline":"普通异步回测流水线架构与调度实现","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/code/alphas3/"},"url":"https://roshameow.github.io//personal_homepage/code/alphas3/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -59,7 +59,7 @@
 
 </head>
 
-  <body class="layout--post  worldquant-brain-股票因子-三-api使用和代码">
+  <body class="layout--post  普通异步回测流水线架构与调度实现">
     <nav class="skip-links">
   <h2 class="screen-reader-text">Skip links</h2>
   <ul>
@@ -100,7 +100,7 @@
       <header class="page-header">
         
         
-        <h1 id="page-title" class="page-title p-name">worldquant BRAIN 股票因子 (三) – API使用和代码
+        <h1 id="page-title" class="page-title p-name">普通异步回测流水线架构与调度实现
 </h1>
         
       </header>
@@ -108,7 +108,7 @@
       <div class="page-sidebar">
         <div class="page-author h-card p-author"><img src="/personal_homepage/docs/images/logo.svg" class="author-avatar u-photo" alt=""><div class="author-info">
 
-<span class="read-time">~1 min read</span>
+<span class="read-time">7 min read</span>
 
     <time class="page-date dt-published" datetime="2025-01-18T00:00:00+00:00"><a class="u-url" href="">January 18, 2025</a>
 </time>
@@ -140,7 +140,7 @@
     </h2>
   </summary>
   <div class="toc-content">
-    <ul class="inline_toc" id="my_toc"><li><a href="#仿真流程">仿真流程</a><ul><li><a href="#api功能">API功能</a></li><li><a href="#批量仿真流程">批量仿真流程</a></li><li><a href="#几种网络问题处理">几种网络问题处理</a></li><li><a href="#问题">问题</a></li></ul></li><li><a href="#数据测试">数据测试</a><ul><li><a href="#测试数据分布">测试数据分布</a></li><li><a href="#测试数据覆盖率">测试数据覆盖率</a></li><li><a href="#测试数据更新频率">测试数据更新频率</a></li></ul></li><li><a href="#代码">代码</a></li><li><a href="#参考资料">参考资料</a></li></ul>
+    <ul class="inline_toc" id="my_toc"><li><a href="#0-核心定位与设计哲学">0. 核心定位与设计哲学</a></li><li><a href="#1-核心模块与关键原语一览">1. 核心模块与关键原语一览</a></li><li><a href="#2-端到端执行流水线与全景数据流">2. 端到端执行流水线与全景数据流</a><ul><li><a href="#21-全景架构与数据流图">2.1 全景架构与数据流图</a></li></ul></li><li><a href="#3-流水线调度核心机制深度剖析">3. 流水线调度核心机制深度剖析</a><ul><li><a href="#31-候选拉取全局打乱与反压队列id-paging--global-shuffle">3.1 候选拉取、全局打乱与反压队列（ID Paging &amp; Global Shuffle）</a></li><li><a href="#32-multi-simulation-同源聚合组批batching--grouping">3.2 Multi-Simulation 同源聚合组批（Batching &amp; Grouping）</a></li><li><a href="#33-并发槽控制simulationslots与账号级-429-冷却">3.3 并发槽控制（SimulationSlots）与账号级 429 冷却</a></li><li><a href="#34-服务端日配额门禁simulationquotaguard4500-额度线">3.4 服务端日配额门禁（SimulationQuotaGuard：4,500 额度线）</a></li><li><a href="#35-双阶段提交与-location-回执硬门禁two-phase-submission--receipt-safety">3.5 双阶段提交与 Location 回执硬门禁（Two-Phase Submission &amp; Receipt Safety）</a></li><li><a href="#36-异步进度轮询7200-秒本地超时熔断与单一取消机制">3.6 异步进度轮询、7200 秒本地超时熔断与单一取消机制</a></li><li><a href="#37-结果收集权威详情采集与-cas-幂等写回">3.7 结果收集、权威详情采集与 CAS 幂等写回</a></li><li><a href="#38-启动恢复机制与旧尝试归档mission-recovery--ledger-reconciliation">3.8 启动恢复机制与旧尝试归档（Mission Recovery &amp; Ledger Reconciliation）</a></li></ul></li><li><a href="#4-状态字典与生命周期流转矩阵">4. 状态字典与生命周期流转矩阵</a><ul><li><a href="#41-候选文档生命周期流转图">4.1 候选文档生命周期流转图</a></li><li><a href="#42-核心安全与回执字段速查字典">4.2 核心安全与回执字段速查字典</a></li></ul></li><li><a href="#5-开发者规范与工程实践原则checklist">5. 开发者规范与工程实践原则（Checklist）</a></li></ul>
   </div>
 </details>
 
@@ -157,15 +157,15 @@
   <div class="toc-content">
     <ul>
       
-      <li><a href="/personal_homepage/tool/pi-runtime-attribution/">Pi Desktop的开发难点: “会话的状态”</a></li>
+      <li><a href="/personal_homepage/data/alpha29/">News & Social Media 新闻流、社交媒体情绪与文本事件数据体系</a></li>
       
-      <li><a href="/personal_homepage/tool/pi-desktop/">Pi Desktop：从会话浏览器到跨机器工作台</a></li>
+      <li><a href="/personal_homepage/data/alpha28/">日内 PV 统计量与市场微结构衍生指标体系</a></li>
       
-      <li><a href="/personal_homepage/daily/sticker/">用AI做了一套微信表情包:从微信头像缓存到提交上架</a></li>
+      <li><a href="/personal_homepage/tool/alpha27/">从过度防御的歪路纠偏：GUI/CLI 6 态极简控制面、数据面板统一与工程收口</a></li>
       
-      <li><a href="/personal_homepage/daily/agent-blog-writing/">用AI agent复现我的博客风格</a></li>
+      <li><a href="/personal_homepage/thought/agent-infrastructure-pitfalls-2/">用 AI 维护复杂控制面基础设施：为什么越修越死？从补丁膨胀到 6 态收敛的六大工程陷阱</a></li>
       
-      <li><a href="/personal_homepage/tool/lesson/">听课app开发调研</a></li>
+      <li><a href="/personal_homepage/tool/pi-subagent-durable/">pi-subagent-durable：后台子代理的持久化、生命周期与故障自愈</a></li>
       
     </ul>
   </div>
@@ -177,127 +177,640 @@
 
       <div class="page-content">
         <div class="e-content">
-          <h2 id="仿真流程">仿真流程</h2>
+          <p>本文档系统性剖析 QuantNight 的<strong>普通异步回测流水线（Regular Asynchronous Simulation Pipeline）</strong>核心调度与执行架构。该流水线是整个仓库吞吐量最大、并发度最高的基础生产底座，负责将模板展开的数十万级候选表达式高可靠地推送到 WorldQuant Brain 平台完成回测，并为上层智能调度（Adaptive 采样与 Priority 进化精炼）提供不可动摇的并发管理、配额控制、回执安全与断点自愈能力。</p>
 
-<h3 id="api功能">API功能</h3>
+<hr />
 
-<ul>
-  <li>登陆: <code class="language-plaintext highlighter-rouge">https://api.worldquantbrain.com/authentication</code></li>
-  <li>获得数据字段: <code class="language-plaintext highlighter-rouge">https://api.worldquantbrain.com/data-fields?</code></li>
-  <li>发起仿真测试: <code class="language-plaintext highlighter-rouge">https://api.worldquantbrain.com/simulations</code></li>
-  <li>查询结果, 打标签: <code class="language-plaintext highlighter-rouge">https://api.worldquantbrain.com/alphas/{alpha_id}</code></li>
-</ul>
+<h2 id="0-核心定位与设计哲学">0. 核心定位与设计哲学</h2>
 
-<h3 id="批量仿真流程">批量仿真流程</h3>
+<p>普通异步回测流水线并非简单的“<code class="language-plaintext highlighter-rouge">for</code> 循环发请求”，而是基于生产级分布式环境设计的<strong>高并发、强反压、防重放、可恢复状态机</strong>。其核心设计哲学包含以下四条基本原则：</p>
 
 <ol>
-  <li>开启异步session</li>
-  <li>尝试登陆</li>
-  <li>生成仿真数据, 把仿真数据存入csv文件, 计算任务数量</li>
-  <li>批量开启仿真回测, 处理可能出现的任何异常(登陆超时,发送过快,回测被拒绝)
-    <ol>
-      <li>发起请求</li>
-      <li>发起回测成功(response中包含<code class="language-plaintext highlighter-rouge">Location</code>) -&gt; 获得回测状态(得到simulation id)</li>
-      <li>🔄 不断请求回测状态</li>
-      <li>回测状态变为结束(response中<code class="language-plaintext highlighter-rouge">Retry-After=0, status=[COMPLETE,WARNING]</code>) -&gt; 获得结果(得到alpha id)</li>
-    </ol>
-  </li>
-</ol>
-
-<h3 id="几种网络问题处理">几种网络问题处理</h3>
-
-<p>用工具函数统一的封装get, patch, post请求.</p>
-
-<ol>
-  <li>time-out: cancel 任务</li>
-  <li>退出登陆(401): 重新登陆 + 重试</li>
-  <li>超出发送限制(429): sleep + 重试</li>
-  <li>Gateway time-out(504): sleep + 重试</li>
-  <li>未知错误: 结束</li>
-</ol>
-
-<h3 id="问题">问题</h3>
-
-<ul>
-  <li>理论上可以不去监测每个请求的发送情况. <strong>simulation id在回测结束后不会改变不会销毁</strong>. 所以, 批量发送请求拿到simulation id后, 可以后续再查看simulation的运行结果.</li>
-  <li>本身<code class="language-plaintext highlighter-rouge">sess.get</code> 请求的过程等待只能由异步解决, 但是在这个项目里, 好像也没必要?</li>
-  <li>平台限制了回测请求的并发数, 但是获取数据好像并没有限制.</li>
-  <li>我经常对<code class="language-plaintext highlighter-rouge">template.py</code>元编程, python在用<code class="language-plaintext highlighter-rouge">importlib</code> 加载模块时, 会自动加载同名的缓存. 所以要记得手动reload. 否则会发现修改无效 😮‍💨</li>
-</ul>
-
-<h2 id="数据测试">数据测试</h2>
-
-<p>利用平台的统计平均正结果(longCount) 和平均负结果(shortCount) 的功能</p>
-
-<h3 id="测试数据分布">测试数据分布</h3>
-
-<ul>
-  <li>平台支持统计 <code class="language-plaintext highlighter-rouge">{datafield} &lt; {a}</code> 的平均股票数(longCount)</li>
-  <li>用<a href="https://en.wikipedia.org/wiki/Minifloat">Minifloat</a> 的想法, 先选择 <strong>指数</strong> 的切分点, 然后把中间部分用 <strong>有效数</strong> 等分</li>
-</ul>
-
-<p><img src="/personal_homepage/docs/attachment/Pasted%20image%2020250210190821.png" alt="Pasted image 20250210190821.png" width="400" /></p>
-
-<table class="wikitable" style="text-align: center; width: 50px">
-<tbody><tr>
-<th width="12.5%">sign(符号位)
-</th>
-<th width="50%" colspan="4">exponent(指数)
-</th>
-<th width="37.5%" colspan="3">significand(有效数)
-</th></tr>
-<tr>
-<td style="background: #d5ffff">0
-</td>
-<td style="background: #a4ffb4">0
-</td>
-<td style="background: #a4ffb4">1
-</td>
-<td style="background: #a4ffb4">1
-</td>
-<td style="background: #a4ffb4">0
-</td>
-<td style="background: #ffb2b4">1
-</td>
-<td style="background: #ffb2b4">1
-</td>
-<td style="background: #ffb2b4">0
-</td></tr></tbody></table>
-
-<ul>
-  <li>拿BF8举例,   先选择 指数 的切分点, 然后把中间部分用 有效数 等分
+  <li><strong>生产者与消费者解耦、单原任务消费者统一控盘</strong>：
     <ul>
-      <li>exponent部分(4位, 2^{-6}-2^7)为, \(0110b=6\)  -&gt; \(2^{6-7}=\frac{1}{2}\)</li>
-      <li>significand部分(3位, 0/8-7/8 )为, \(110b=6\) -&gt; \(1+\frac{6}{8}\)</li>
-      <li>最后事例的数字为 \((1+\frac{6}{8})*\frac{1}{2}\)</li>
+      <li>候选生成（模板展开）一次性写入 MongoDB 集合，标记 <code class="language-plaintext highlighter-rouge">status="pending"</code>。</li>
+      <li>每一个任务由单一的 <code class="language-plaintext highlighter-rouge">alpha_simulate_param.py</code> 原任务消费者（Source Consumer）独占运行，统一持有并发槽、账号级限流冷却与日配额状态，彻底杜绝多个进程竞争发包导致的 429 封禁与配额浪费。</li>
     </ul>
   </li>
-  <li>第一轮选用base10的指数点做切分, 统计每个区间内的股票数</li>
-  <li>第二轮选 5%-95% 的分位点区间, 再进行等分.</li>
+  <li><strong>全局分段打乱与有界队列反压（Backpressure）</strong>：
+    <ul>
+      <li>面对数十万候选，通过基于 <code class="language-plaintext highlighter-rouge">_id</code> 游标的分段分页与内存打乱，规避 MongoDB <code class="language-plaintext highlighter-rouge">skip</code> 的性能塌陷与 5 分钟游标超时。</li>
+      <li>生产者与消费者之间通过有界队列（<code class="language-plaintext highlighter-rouge">maxsize = max_concurrent * 4</code>）连接，形成天然反压：当网络波动或平台排队时，消费减速自然阻塞生产，杜绝内存无限暴涨。</li>
+    </ul>
+  </li>
+  <li><strong>Multi-Simulation 同源聚合组批（Batching）</strong>：
+    <ul>
+      <li>将相同模拟参数（Region, Delay, Universe, Neutralization 等）的至多 10 个候选聚合为一个父请求發往平台，显著分摊 HTTP 握手与平台调度延迟。</li>
+      <li>建立严格的数组索引与 ObjectId 映射契约（<code class="language-plaintext highlighter-rouge">batchBackendIds</code>），保证多子项回测结果精准还原至对应的数据库记录。</li>
+    </ul>
+  </li>
+  <li><strong>两阶段提交与无重放回执铁律（No-Replay Iron Rule）</strong>：
+    <ul>
+      <li><strong>发包前先写意图</strong>：在发出任何网络字节前，原子持久化 <code class="language-plaintext highlighter-rouge">campaign_post_attempted = True</code> 与批次 ID，绝不留出“已发 HTTP 但本地毫无痕迹”的空窗期。</li>
+      <li><strong>拿到 Location 立即刷盘</strong>：一旦响应头包含 <code class="language-plaintext highlighter-rouge">Location</code>，无条件认定请求已受理并剥夺任何重试，立即刷盘 <code class="language-plaintext highlighter-rouge">progressUrl</code> 与 <code class="language-plaintext highlighter-rouge">acceptance = "ACCEPTED"</code>。</li>
+      <li><strong>冷启动 GET-Only 恢复</strong>：任务崩溃重启时绝不盲目重发 POST，仅通过已保存的可信 <code class="language-plaintext highlighter-rouge">progressUrl</code> 执行只读查询对账；确信过期的旧请求安全归档后才允许重新派发。</li>
+    </ul>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="1-核心模块与关键原语一览">1. 核心模块与关键原语一览</h2>
+
+<p>普通回测流水线由四大核心模块协同驱动：执行总控 <a href="../../scripts/alpha_simulate_param.py"><code class="language-plaintext highlighter-rouge">scripts/alpha_simulate_param.py</code></a>、HTTP/回执引擎 <a href="../../api/simulation.py"><code class="language-plaintext highlighter-rouge">api/simulation.py</code></a>、并发槽控制器 <a href="../../util/simulation_slots.py"><code class="language-plaintext highlighter-rouge">util/simulation_slots.py</code></a> 和日配额门禁 <a href="../../util/simulation_quota.py"><code class="language-plaintext highlighter-rouge">util/simulation_quota.py</code></a>。</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>核心类 / 原语</th>
+      <th>代码位置</th>
+      <th>职责定位与核心逻辑</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">AlphaSimulator</code></td>
+      <td><a href="../../scripts/alpha_simulate_param.py#L448-L2700"><code class="language-plaintext highlighter-rouge">scripts/alpha_simulate_param.py</code></a></td>
+      <td>原任务消费者总指挥：协调生产者队列、并发工作池、运行时心跳汇报、账号冷却与优雅停机</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">_random_producer</code></td>
+      <td><a href="../../scripts/alpha_simulate_param.py#L2199-L2290"><code class="language-plaintext highlighter-rouge">scripts/alpha_simulate_param.py</code></a></td>
+      <td><strong>全局打乱生产者：通过 <code class="language-plaintext highlighter-rouge">_id &gt; last_id</code> 分段拉取全量 ID，内存完全打乱后批量取回文档，消除采样集中偏差</strong></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">_emit_rows</code></td>
+      <td><a href="../../scripts/alpha_simulate_param.py#L2096-L2133"><code class="language-plaintext highlighter-rouge">scripts/alpha_simulate_param.py</code></a></td>
+      <td>参数分组与入队器：按 <code class="language-plaintext highlighter-rouge">_candidate_group</code> 聚类，驱动 <code class="language-plaintext highlighter-rouge">_claim_child_batch</code> 并将批次载荷推入 <code class="language-plaintext highlighter-rouge">task_queue</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">_claim_child_batch</code></td>
+      <td><a href="../../scripts/alpha_simulate_param.py#L2054-L2070"><code class="language-plaintext highlighter-rouge">scripts/alpha_simulate_param.py</code></a></td>
+      <td>细粒度 CAS 认领：原子修改 <code class="language-plaintext highlighter-rouge">status="processing"</code>，在组内紧凑聚合至多 <code class="language-plaintext highlighter-rouge">max_multi_simulation_children</code>（默认 10）个候选</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">_child_batch_key</code></td>
+      <td><a href="../../scripts/alpha_simulate_param.py#L53-L70"><code class="language-plaintext highlighter-rouge">scripts/alpha_simulate_param.py</code></a></td>
+      <td>同源聚合校验核：对齐 Region/Delay/Universe/Neutralization/Decay/Language 等 12 个维度</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">task_consumer</code></td>
+      <td><a href="../../scripts/alpha_simulate_param.py#L2425-L2492"><code class="language-plaintext highlighter-rouge">scripts/alpha_simulate_param.py</code></a></td>
+      <td>消费者工作池协程：拉取批次任务，向 <code class="language-plaintext highlighter-rouge">SimulationSlots</code> 申请 <code class="language-plaintext highlighter-rouge">normal</code> 槽位并派发异步回测任务</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">SimulationSlots</code></td>
+      <td><a href="../../util/simulation_slots.py#L18-L120"><code class="language-plaintext highlighter-rouge">util/simulation_slots.py</code></a></td>
+      <td>双轨并发槽管理器：统一总并发 <code class="language-plaintext highlighter-rouge">total</code> 与优先上限 <code class="language-plaintext highlighter-rouge">priority_limit</code>，支持空闲槽全量借用与等待优先权</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">SimulationQuotaGuard</code></td>
+      <td><a href="../../util/simulation_quota.py#L38-L150"><code class="language-plaintext highlighter-rouge">util/simulation_quota.py</code></a></td>
+      <td><strong>服务端日配额门禁：基于平台 <code class="language-plaintext highlighter-rouge">X-RateLimit</code> 头维护当前周期已用量，执行 4,500 额度熔断硬保护</strong></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">_SimulationSubmissionGuard</code></td>
+      <td><a href="../../scripts/alpha_simulate_param.py#L156-L246"><code class="language-plaintext highlighter-rouge">scripts/alpha_simulate_param.py</code></a></td>
+      <td>提交前持久化门禁：核验账号冷却与发送权限，在发包前原子写入 <code class="language-plaintext highlighter-rouge">campaign_post_attempted=True</code> 及 <code class="language-plaintext highlighter-rouge">batchBackendIds</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">_SimulationReceipt</code></td>
+      <td><a href="../../scripts/alpha_simulate_param.py#L248-L370"><code class="language-plaintext highlighter-rouge">scripts/alpha_simulate_param.py</code></a></td>
+      <td>异步回执适配器：拦截并维护 <code class="language-plaintext highlighter-rouge">progress_url</code>、<code class="language-plaintext highlighter-rouge">acceptance</code>、<code class="language-plaintext highlighter-rouge">httpStatus</code> 等证据，提供异步 <code class="language-plaintext highlighter-rouge">flush()</code> 保证落盘</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">_submit_with_receipt_policy</code></td>
+      <td><a href="../../api/simulation.py#L328-L570"><code class="language-plaintext highlighter-rouge">api/simulation.py</code></a></td>
+      <td>双阶段提交策略引擎：装配 <code class="language-plaintext highlighter-rouge">before_attempt</code>、<code class="language-plaintext highlighter-rouge">on_response</code>、<code class="language-plaintext highlighter-rouge">on_error</code>，驱动底层 <code class="language-plaintext highlighter-rouge">network_util</code> 发包并拦截 <code class="language-plaintext highlighter-rouge">Location</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">check_simulation_progress</code></td>
+      <td><a href="../../api/simulation.py#L200-L288"><code class="language-plaintext highlighter-rouge">api/simulation.py</code></a></td>
+      <td>异步进度轮询器：遵循服务端 <code class="language-plaintext highlighter-rouge">Retry-After</code> 头进行非阻塞等待，探测终态与提取子项列表</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">_finish_monitor_timeout</code></td>
+      <td><a href="../../api/simulation.py#L620-L695"><code class="language-plaintext highlighter-rouge">api/simulation.py</code></a></td>
+      <td><strong>7200 秒累计超时守卫：监控同一回测的累计运行时间，超时发起预检 GET 与有界单一 <code class="language-plaintext highlighter-rouge">DELETE</code> 取消</strong></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">_ReceiptResultQueue</code></td>
+      <td><a href="../../scripts/alpha_simulate_param.py#L372-L446"><code class="language-plaintext highlighter-rouge">scripts/alpha_simulate_param.py</code></a></td>
+      <td>结果队列截获器：严格保证 <code class="language-plaintext highlighter-rouge">(alpha_id, backend_id)</code> 配对交付，拦截并发写回保证子项指标不串位</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">manipulate_for_alpha</code></td>
+      <td><a href="../../scripts/alpha_simulate_param.py#L979-L1040"><code class="language-plaintext highlighter-rouge">scripts/alpha_simulate_param.py</code></a></td>
+      <td>结果采集协程：拉取 <code class="language-plaintext highlighter-rouge">/alphas/{id}</code> 权威指标，调用 <code class="language-plaintext highlighter-rouge">_write_back_result</code> 原子写回 <code class="language-plaintext highlighter-rouge">status="success"</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">recover_on_start</code></td>
+      <td><a href="../../util/mission_recovery.py#L393-L483"><code class="language-plaintext highlighter-rouge">util/mission_recovery.py</code></a></td>
+      <td>启动断点对账器：以只读 GET 轮询未决回执，安全将 404 过期记录归档到 <code class="language-plaintext highlighter-rouge">recoveryHistory</code> 并释放未解项回 <code class="language-plaintext highlighter-rouge">pending</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="2-端到端执行流水线与全景数据流">2. 端到端执行流水线与全景数据流</h2>
+
+<p>普通回测流水线在单原任务消费者内部推进。以下数据流图展示了一个候选批次从数据库提取、组批、争夺并发槽与配额、发送 HTTP POST、轮询进度直至结果写回的完整生命周期。</p>
+
+<h3 id="21-全景架构与数据流图">2.1 全景架构与数据流图</h3>
+
+<pre><code class="language-mermaid">flowchart TB
+    subgraph Storage ["MongoDB 存储层 (simulation_db &amp; simulation_mission)"]
+        PendingPool[("simulation_db.&amp;lt;task&amp;gt;&lt;br/&gt;pending 候选池 (priority=1 或 0)")]
+        SuccessPool[("simulation_db.&amp;lt;task&amp;gt;&lt;br/&gt;已完成候选 (status='success', 含 is 指标)")]
+        MissionMeta[("simulation_mission.tasks&lt;br/&gt;心跳汇报与控制状态 (control_status)")]
+    end
+
+    subgraph Producer ["生产者流水线 (scripts/alpha_simulate_param.py)"]
+        PageFetch["1. 分段游标拉取全量 _id&lt;br/&gt;_id &gt; last_id (每页 50,000 条)&lt;br/&gt;规避 MongoDB 5min 超时"]
+        Shuffle["2. 内存全局随机打乱&lt;br/&gt;random.shuffle(all_ids)"]
+        BatchDoc["3. 批量拉取完整文档&lt;br/&gt;$in (每批 1,000 条)"]
+        Group["4. 参数分组 _candidate_group()&lt;br/&gt;按 12 维 settings 聚类"]
+        CompactClaim["5. 紧凑 CAS 认领 _claim_child_batch()&lt;br/&gt;update status='processing'&lt;br/&gt;至多 max_multi_simulation_children (10) 条"]
+        QueuePush["6. 反压推入 task_queue&lt;br/&gt;maxsize = max_concurrent * 4"]
+
+        PageFetch --&gt; Shuffle --&gt; BatchDoc --&gt; Group --&gt; CompactClaim --&gt; QueuePush
+    end
+
+    subgraph ConsumerPool ["消费者调度池 (task_consumer)"]
+        QueuePop["1. 从 task_queue 弹出批次 item&lt;br/&gt;(single 或 batch 载荷)"]
+        SlotAcquire["2. 申请并发槽 SimulationSlots.normal&lt;br/&gt;借用空闲槽；礼让等待中的 Priority"]
+        CooldownCheck["3. 账号 429 冷却检查&lt;br/&gt;_account_is_cooling() 等待"]
+        
+        QueuePop --&gt; SlotAcquire --&gt; CooldownCheck
+    end
+
+    subgraph PrePostGate ["提交前安全门禁 (_SimulationSubmissionGuard)"]
+        QuotaWait["1. SimulationQuotaGuard.before_submit()&lt;br/&gt;检查 4,500 日预算线与周期重置"]
+        PersistIntent["2. 持久化发送意图 (HTTP 前绝对铁律)&lt;br/&gt;写入 campaign_post_attempted=True&lt;br/&gt;写入 batchBackendIds 顺序数组"]
+        
+        CooldownCheck --&gt; QuotaWait --&gt; PersistIntent
+    end
+
+    subgraph TransportLayer ["HTTP 发包与回执安全 (api/simulation.py)"]
+        SubmitHTTP["1. _submit_with_receipt_policy()&lt;br/&gt;POST /simulations (底层 network_util)"]
+        CaptureLoc{"2. 响应包含非空 Location？"}
+        FlushReceipt["3. _SimulationReceipt.flush()&lt;br/&gt;写入 progressUrl 与 acceptance='ACCEPTED'&lt;br/&gt;硬门禁：剥夺任何 429/401 重试！"]
+        PostFail["4. 异常分类：&lt;br/&gt;request_not_sent=True → 标记 NOT_POSTED 回 pending&lt;br/&gt;发包后超时 → 保持 acceptance=None 待启动恢复"]
+        
+        PersistIntent --&gt; SubmitHTTP --&gt; CaptureLoc
+        CaptureLoc -- "是 (成功受理)" --&gt; FlushReceipt
+        CaptureLoc -- "否 (网络错误/显式拒绝)" --&gt; PostFail
+    end
+
+    subgraph PollingMonitor ["异步进度轮询与熔断 (check_simulation_progress)"]
+        PollGET["1. GET progressUrl (带 return_headers=True)"]
+        CheckStatus{"2. 解析 response.status"}
+        WaitRetry["3. 非阻塞 sleep(Retry-After)&lt;br/&gt;遵守平台建议，不占线程"]
+        CheckTimeout{"4. 累计运行时间 ≥ 7200s？"}
+        CancelSim["5. 触发单一取消流程&lt;br/&gt;预检 GET → 一次 DELETE /simulations/{id}"]
+        
+        FlushReceipt --&gt; PollGET --&gt; CheckStatus
+        CheckStatus -- "RUNNING" --&gt; CheckTimeout
+        CheckTimeout -- "未超限" --&gt; WaitRetry --&gt; PollGET
+        CheckTimeout -- "已超限" --&gt; CancelSim
+        CheckStatus -- "COMPLETE / WARNING" --&gt; ResultDispatch
+    end
+
+    subgraph Ingestion ["结果解包与幂等写回 (manipulate_for_alpha)"]
+        ResultDispatch["1. 按下标映射 batchBackendIds&lt;br/&gt;提取各 child 实际状态与 alphaId"]
+        QueuePut["2. _ReceiptResultQueue.put((alpha_id, backend_id))&lt;br/&gt;先原子持久化 alphaId 锁定身份"]
+        FetchDetail["3. get_result(session, alpha_id)&lt;br/&gt;拉取平台权威 IS 指标详情"]
+        CASWrite["4. _write_back_result()&lt;br/&gt;原子快照 CAS 写入 result/is/grade/good&lt;br/&gt;更新 status='success'"]
+        
+        ResultDispatch --&gt; QueuePut --&gt; FetchDetail --&gt; CASWrite
+    end
+
+    PendingPool --&gt; PageFetch
+    CompactClaim --&gt;|"CAS 占用"| PendingPool
+    PostFail -.-&gt;|"未发送项释放"| PendingPool
+    CASWrite --&gt; SuccessPool
+    ConsumerPool -.-&gt;|"每 15s 汇报运行时指标"| MissionMeta
+</code></pre>
+
+<hr />
+
+<h2 id="3-流水线调度核心机制深度剖析">3. 流水线调度核心机制深度剖析</h2>
+
+<h3 id="31-候选拉取全局打乱与反压队列id-paging--global-shuffle">3.1 候选拉取、全局打乱与反压队列（ID Paging &amp; Global Shuffle）</h3>
+
+<p>位于 <a href="../../scripts/alpha_simulate_param.py#L2199-L2290"><code class="language-plaintext highlighter-rouge">scripts/alpha_simulate_param.py</code></a>：
+当任务集合包含数万甚至数十万条待测项时，传统 <code class="language-plaintext highlighter-rouge">skip(i).limit(n)</code> 会导致 MongoDB 扫描深度过大引发单请求耗时暴增，且长时间游标遍历极易触发驱动层的 <code class="language-plaintext highlighter-rouge">NetworkTimeout (5-minute socket timeout)</code>。</p>
+
+<p>普通流水线采用<strong>“三步分段游标采样”</strong>算法彻底解决该问题：</p>
+<ol>
+  <li><strong>轻量只读拉取全量 <code class="language-plaintext highlighter-rouge">_id</code> 游标</strong>：
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 使用 _id 排序配合 $gt 是 MongoDB 最稳定的拉取方式
+</span><span class="n">current_query</span> <span class="o">=</span> <span class="n">task_query</span><span class="p">.</span><span class="nf">copy</span><span class="p">()</span>
+<span class="k">if</span> <span class="n">last_id</span><span class="p">:</span>
+    <span class="n">current_query</span><span class="p">[</span><span class="sh">"</span><span class="s">_id</span><span class="sh">"</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="sh">"</span><span class="s">$gt</span><span class="sh">"</span><span class="p">:</span> <span class="n">last_id</span><span class="p">}</span>
+<span class="n">cursor</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">collection</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="n">current_query</span><span class="p">,</span> <span class="p">{</span><span class="sh">"</span><span class="s">_id</span><span class="sh">"</span><span class="p">:</span> <span class="mi">1</span><span class="p">}).</span><span class="nf">sort</span><span class="p">(</span><span class="sh">"</span><span class="s">_id</span><span class="sh">"</span><span class="p">,</span> <span class="mi">1</span><span class="p">).</span><span class="nf">limit</span><span class="p">(</span><span class="n">id_batch_size</span><span class="p">)</span>
+<span class="n">batch</span> <span class="o">=</span> <span class="k">await</span> <span class="n">self</span><span class="p">.</span><span class="nf">_read_candidates</span><span class="p">(</span><span class="n">_fetch_batch</span><span class="p">,</span> <span class="sh">'</span><span class="s">candidate_page</span><span class="sh">'</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>单页 <code class="language-plaintext highlighter-rouge">id_batch_size = 50000</code>，只投射 <code class="language-plaintext highlighter-rouge">_id</code> 字段，秒级拉取几十万条 ID 并累加至内存数组 <code class="language-plaintext highlighter-rouge">all_ids</code>。</p>
+  </li>
+  <li><strong>内存绝对全局打乱</strong>：
+拉取完成后调用 <code class="language-plaintext highlighter-rouge">random.shuffle(all_ids)</code>。由于所有 ID 在内存中全局打散，彻底消除了由于模板生成顺序导致的前后结构集中偏差（例如前 10,000 条全在测某一个数据集）。</li>
+  <li><strong>分批次取回完整文档</strong>：
+按 <code class="language-plaintext highlighter-rouge">batch_size = 1000</code> 每次切片 <code class="language-plaintext highlighter-rouge">target_ids</code>，通过 <code class="language-plaintext highlighter-rouge">{"_id": {"$in": target_ids}}</code> 批量查回完整候选文档交给 <code class="language-plaintext highlighter-rouge">_emit_rows</code> 处理。</li>
+  <li><strong>生产者-消费者有界反压</strong>：
+<code class="language-plaintext highlighter-rouge">task_queue = asyncio.Queue(maxsize=self.max_concurrent * 4)</code>。当平台出现排队或网络延迟使消费者执行变慢时，<code class="language-plaintext highlighter-rouge">queue.put()</code> 会自然 <code class="language-plaintext highlighter-rouge">await</code> 挂起生产者，绝不让内存驻留未认领的文档。</li>
+</ol>
+
+<hr />
+
+<h3 id="32-multi-simulation-同源聚合组批batching--grouping">3.2 Multi-Simulation 同源聚合组批（Batching &amp; Grouping）</h3>
+
+<p>位于 <a href="../../scripts/alpha_simulate_param.py#L53-L70, L2054-L2090"><code class="language-plaintext highlighter-rouge">scripts/alpha_simulate_param.py</code></a>：
+WorldQuant Brain 允许在单个 POST 请求中提交包含多个表达式的 Multi-Simulation（父模拟分配一个 Simulation ID，内部包含多个 Child 项）。组批能将 HTTP 吞吐能力提升近一个数量级。</p>
+
+<h4 id="112-维同源聚合键-_child_batch_key">（1）12 维同源聚合键 <code class="language-plaintext highlighter-rouge">_child_batch_key</code></h4>
+<p>并非任意两个候选都可以组入同一个批次。平台要求同一个 Multi-Simulation 请求下的所有表达式必须具备完全一致的环境配置：</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">_child_batch_key</span><span class="p">(</span><span class="n">row</span><span class="p">):</span>
+    <span class="nf">return </span><span class="p">(</span>
+        <span class="n">row</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">type</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">REGULAR</span><span class="sh">'</span><span class="p">),</span>
+        <span class="n">row</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">settings</span><span class="sh">'</span><span class="p">,</span> <span class="p">{}).</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">region</span><span class="sh">'</span><span class="p">),</span>
+        <span class="n">row</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">settings</span><span class="sh">'</span><span class="p">,</span> <span class="p">{}).</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">delay</span><span class="sh">'</span><span class="p">),</span>
+        <span class="n">row</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">settings</span><span class="sh">'</span><span class="p">,</span> <span class="p">{}).</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">universe</span><span class="sh">'</span><span class="p">),</span>
+        <span class="n">row</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">settings</span><span class="sh">'</span><span class="p">,</span> <span class="p">{}).</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">neutralization</span><span class="sh">'</span><span class="p">),</span>
+        <span class="n">row</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">settings</span><span class="sh">'</span><span class="p">,</span> <span class="p">{}).</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">decay</span><span class="sh">'</span><span class="p">),</span>
+        <span class="n">row</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">settings</span><span class="sh">'</span><span class="p">,</span> <span class="p">{}).</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">truncation</span><span class="sh">'</span><span class="p">),</span>
+        <span class="n">row</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">settings</span><span class="sh">'</span><span class="p">,</span> <span class="p">{}).</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">pasteurization</span><span class="sh">'</span><span class="p">),</span>
+        <span class="n">row</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">settings</span><span class="sh">'</span><span class="p">,</span> <span class="p">{}).</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">unitHandling</span><span class="sh">'</span><span class="p">),</span>
+        <span class="n">row</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">settings</span><span class="sh">'</span><span class="p">,</span> <span class="p">{}).</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">nanHandling</span><span class="sh">'</span><span class="p">),</span>
+        <span class="n">row</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">settings</span><span class="sh">'</span><span class="p">,</span> <span class="p">{}).</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">language</span><span class="sh">'</span><span class="p">),</span>
+        <span class="n">row</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">settings</span><span class="sh">'</span><span class="p">,</span> <span class="p">{}).</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">instrumentType</span><span class="sh">'</span><span class="p">),</span>
+    <span class="p">)</span>
+</code></pre></div></div>
+<p><code class="language-plaintext highlighter-rouge">_emit_rows</code> 首先将 1,000 条文档按此键分发到各个 group 列表。</p>
+
+<h4 id="2组内紧凑-cas-认领与顺序锁定">（2）组内紧凑 CAS 认领与顺序锁定</h4>
+<p><code class="language-plaintext highlighter-rouge">_claim_child_batch(group_rows, offset)</code> 在同组内推进：</p>
+<ul>
+  <li>单遍扫描：逐条调用 <code class="language-plaintext highlighter-rouge">_claim_priority_row(row)</code>，通过 CAS 原子更新将 MongoDB 中的 <code class="language-plaintext highlighter-rouge">status</code> 从 <code class="language-plaintext highlighter-rouge">pending</code> 修改为 <code class="language-plaintext highlighter-rouge">processing</code>，并记录 <code class="language-plaintext highlighter-rouge">claimedAt</code>。</li>
+  <li>满载截断：一旦认领满 <code class="language-plaintext highlighter-rouge">max_multi_simulation_children</code>（默认为 10 条），立即打包返回，绝不跨越不同 group 进行拼接填充。</li>
+  <li>契约保存：打包生成的 payload 格式为 <code class="language-plaintext highlighter-rouge">('batch', [sim_data, ...], [row['_id'], ...])</code>，将这批文档的 <code class="language-plaintext highlighter-rouge">ObjectId</code> 列表严格按顺序固化为 <code class="language-plaintext highlighter-rouge">batchBackendIds</code>。</li>
 </ul>
 
-<h3 id="测试数据覆盖率">测试数据覆盖率</h3>
+<hr />
+
+<h3 id="33-并发槽控制simulationslots与账号级-429-冷却">3.3 并发槽控制（<code class="language-plaintext highlighter-rouge">SimulationSlots</code>）与账号级 429 冷却</h3>
+
+<p>位于 <a href="../../util/simulation_slots.py"><code class="language-plaintext highlighter-rouge">util/simulation_slots.py</code></a> 与 <a href="../../scripts/alpha_simulate_param.py#L1314-L1322"><code class="language-plaintext highlighter-rouge">scripts/alpha_simulate_param.py</code></a>：</p>
+
+<h4 id="1simulationslots-的公平共享与双向借用">（1）<code class="language-plaintext highlighter-rouge">SimulationSlots</code> 的公平共享与双向借用</h4>
+<p>每个 <code class="language-plaintext highlighter-rouge">AlphaSimulator</code> 消费者进程实例化唯一一个 <code class="language-plaintext highlighter-rouge">SimulationSlots(total=max_concurrent, priority_limit=priority_max_concurrent)</code>。</p>
+<ul>
+  <li><strong>普通任务借满全槽</strong>：当任务没有 Priority 候选或 Priority 活跃数未用满时，普通任务协程通过 <code class="language-plaintext highlighter-rouge">await self.slots.normal.acquire()</code> 可以借用全部空闲并发槽（最高跑满 <code class="language-plaintext highlighter-rouge">max_concurrent</code>，如 4 槽）。</li>
+  <li><strong>Priority 等待礼让防饥饿</strong>：
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">_priority_ready</span><span class="p">(</span><span class="n">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">self</span><span class="p">.</span><span class="n">_priority_waiting</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">self</span><span class="p">.</span><span class="n">_priority_active</span> <span class="o">&lt;</span> <span class="n">self</span><span class="p">.</span><span class="n">priority_limit</span>
+
+<span class="c1"># 普通协程申请槽位时的判断条件
+</span><span class="k">async</span> <span class="k">with</span> <span class="n">self</span><span class="p">.</span><span class="n">_condition</span><span class="p">:</span>
+    <span class="k">while</span> <span class="ow">not</span> <span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="nf">_has_space</span><span class="p">()</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">self</span><span class="p">.</span><span class="nf">_priority_ready</span><span class="p">()):</span>
+        <span class="k">await</span> <span class="n">self</span><span class="p">.</span><span class="n">_condition</span><span class="p">.</span><span class="nf">wait</span><span class="p">()</span>
+    <span class="n">self</span><span class="p">.</span><span class="n">_normal_active</span> <span class="o">+=</span> <span class="mi">1</span>
+</code></pre></div>    </div>
+    <p>当有 Priority 协程正在等待且 Priority 尚未达到其配额上限时，普通协程在条件变量中礼让，下一个释放的槽位优先给 Priority，但<strong>绝不强行抢占或打断已在执行中的普通回测</strong>。</p>
+  </li>
+</ul>
+
+<h4 id="2账号级-429-冷却状态机">（2）账号级 429 冷却状态机</h4>
+<pre><code class="language-mermaid">stateDiagram-v2
+    [*] --&gt; NormalRunning: 正常运行
+    NormalRunning --&gt; CooldownTriggered: 任一协程收到 HTTP 429
+    CooldownTriggered --&gt; Sleeping: 写入全局 _account_cooldowns&lt;br/&gt;冷却时长: max(60s, min(Retry-After, 3600s))
+    Sleeping --&gt; Sleeping: 普通消费者 _before_simulation 异步等待&lt;br/&gt;【不跳过候选、不拆散批次】
+    Sleeping --&gt; NormalRunning: 冷却时间到期，恢复正常发包
+</code></pre>
+<ul>
+  <li>当任一协程收到平台 429 响应时，提取响应头中的 <code class="language-plaintext highlighter-rouge">Retry-After</code>，将冷却截止时间戳记录到同账号共享的 <code class="language-plaintext highlighter-rouge">_account_cooldowns[auth_profile]</code>。</li>
+  <li><strong>消费端等待而非丢弃</strong>：与 Priority 任务不同（Priority 在冷却期暂停认领以避免消耗重试次数），普通任务的 <code class="language-plaintext highlighter-rouge">_claim_child_batch</code> 在冷却期<strong>不拒绝认领</strong>，而是允许完整批次正常推入队列，由 Worker 在 <code class="language-plaintext highlighter-rouge">_before_simulation</code> 处统一 <code class="language-plaintext highlighter-rouge">asyncio.sleep</code> 等待冷却结束。这确保了父子批次始终完整聚合，绝不会因为瞬态 429 将 10 项批次截断为残缺单条。</li>
+</ul>
+
+<hr />
+
+<h3 id="34-服务端日配额门禁simulationquotaguard4500-额度线">3.4 服务端日配额门禁（<code class="language-plaintext highlighter-rouge">SimulationQuotaGuard</code>：4,500 额度线）</h3>
+
+<p>位于 <a href="../../util/simulation_quota.py"><code class="language-plaintext highlighter-rouge">util/simulation_quota.py</code></a>：
+WorldQuant Brain 平台对每个账号设置了每日回测额度上限（通常为 5,000 次/天）。为了留出安全冗余，QuantNight 设定了 <code class="language-plaintext highlighter-rouge">STOP_AFTER_USED = 4500</code> 的硬熔断线。</p>
 
 <ul>
-  <li>用 <code class="language-plaintext highlighter-rouge">({datafield} != {a})? 1: -1</code> 的正负统计平均 zeros(shortCount), non-zeros(longCount), nan(剩下的) 值</li>
+  <li><strong>以服务端真实响应头为唯一真源</strong>：
+<code class="language-plaintext highlighter-rouge">SimulationQuotaGuard</code> 绝不使用本地计数器去猜测或扣减配额。它仅在每次收到实际回测响应时，从 HTTP Headers 中解析权威字段：
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 从响应头中提取平台真实配额状态
+</span><span class="n">limit</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="n">headers</span><span class="p">[</span><span class="sh">'</span><span class="s">X-RateLimit-Limit</span><span class="sh">'</span><span class="p">])</span>
+<span class="n">remaining</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="n">headers</span><span class="p">[</span><span class="sh">'</span><span class="s">X-RateLimit-Remaining</span><span class="sh">'</span><span class="p">])</span>
+<span class="n">reset_val</span> <span class="o">=</span> <span class="n">headers</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">X-RateLimit-Reset</span><span class="sh">'</span><span class="p">)</span>
+<span class="n">used</span> <span class="o">=</span> <span class="n">limit</span> <span class="o">-</span> <span class="n">remaining</span>
+</code></pre></div>    </div>
+  </li>
+  <li><strong>发包前原子准入锁</strong>：
+在协程尝试发包前调用 <code class="language-plaintext highlighter-rouge">await quota_guard.before_submit(count)</code>：
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">async</span> <span class="k">with</span> <span class="n">self</span><span class="p">.</span><span class="n">_submission_lock</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">self</span><span class="p">.</span><span class="n">stopped</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="nc">SimulationQuotaReached</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">stop_reason</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">self</span><span class="p">.</span><span class="n">remaining</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span> <span class="ow">and</span> <span class="n">self</span><span class="p">.</span><span class="n">limit</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="n">used</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">limit</span> <span class="o">-</span> <span class="n">self</span><span class="p">.</span><span class="n">remaining</span>
+        <span class="k">if</span> <span class="n">used</span> <span class="o">+</span> <span class="n">count</span> <span class="o">&gt;</span> <span class="n">self</span><span class="p">.</span><span class="n">STOP_AFTER_USED</span><span class="p">:</span>
+            <span class="n">self</span><span class="p">.</span><span class="n">stopped</span> <span class="o">=</span> <span class="bp">True</span>
+            <span class="n">self</span><span class="p">.</span><span class="n">stop_reason</span> <span class="o">=</span> <span class="sa">f</span><span class="sh">"</span><span class="s">Quota floor reached: used=</span><span class="si">{</span><span class="n">used</span><span class="si">}</span><span class="s"> + count=</span><span class="si">{</span><span class="n">count</span><span class="si">}</span><span class="s"> &gt; </span><span class="si">{</span><span class="n">self</span><span class="p">.</span><span class="n">STOP_AFTER_USED</span><span class="si">}</span><span class="sh">"</span>
+            <span class="k">raise</span> <span class="nc">SimulationQuotaReached</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">stop_reason</span><span class="p">)</span>
+</code></pre></div>    </div>
+  </li>
+  <li><strong>平台周期可信重置</strong>：
+当检测到 <code class="language-plaintext highlighter-rouge">X-RateLimit-Reset</code> 时间戳已跨过 UTC 零点或平台重置周期时，自动重置 <code class="language-plaintext highlighter-rouge">stopped = False</code>，平滑恢复回测流水线，无需人工重启进程。</li>
 </ul>
 
-<h3 id="测试数据更新频率">测试数据更新频率</h3>
+<hr />
+
+<h3 id="35-双阶段提交与-location-回执硬门禁two-phase-submission--receipt-safety">3.5 双阶段提交与 Location 回执硬门禁（Two-Phase Submission &amp; Receipt Safety）</h3>
+
+<p>位于 <a href="../../scripts/alpha_simulate_param.py#L156-L246"><code class="language-plaintext highlighter-rouge">scripts/alpha_simulate_param.py</code></a> 与 <a href="../../api/simulation.py#L328-L570"><code class="language-plaintext highlighter-rouge">api/simulation.py</code></a>：
+在分布式网络中，HTTP 请求最危险的状态是“发送后超时”：客户端以为失败，但服务端其实已经成功受理并在运行。如果客户端盲目重发，会迅速成倍消耗每日配额。</p>
+
+<p>普通回测流水线通过<strong>两阶段提交</strong>与<strong>底层 Location 硬门禁</strong>彻底杜绝重放风险：</p>
+
+<pre><code class="language-mermaid">sequenceDiagram
+    autonumber
+    participant Consumer as AlphaSimulator (Worker)
+    participant Guard as _SimulationSubmissionGuard
+    participant Mongo as MongoDB (Task Collection)
+    participant Net as network_util (_request_with_retry)
+    participant Brain as WorldQuant Brain Platform
+
+    Note over Consumer,Mongo: 阶段 1：发包前意图持久化 (Pre-POST Intent)
+    Consumer-&gt;&gt;Guard: before_submit(child_count)
+    Guard-&gt;&gt;Mongo: 原子写入: campaign_post_attempted=True, batchBackendIds=[id1, id2, ...]
+    Guard-&gt;&gt;Consumer: 意图落盘成功，放行发包
+
+    Note over Consumer,Brain: 阶段 2：HTTP 传输与回执捕获 (Submission)
+    Consumer-&gt;&gt;Net: POST /simulations (带 payload)
+    Net-&gt;&gt;Brain: 发送 HTTP POST 字节流
+    Brain--&gt;&gt;Net: HTTP 201 Created (Headers 含 Location: /simulations/sim-12345)
+    
+    Note over Net,Mongo: 阶段 3：Location 硬门禁与异步刷盘 (Receipt Flush)
+    Net-&gt;&gt;Net: 检查 Location: 只要非空，强制抹除 retry429/retry401 标志！
+    Net-&gt;&gt;Consumer: on_response 回调
+    Consumer-&gt;&gt;Mongo: _SimulationReceipt.flush(): 原子写入 progressUrl="/simulations/sim-12345", acceptance="ACCEPTED"
+    Consumer-&gt;&gt;Consumer: 等待 flush() 完成，确信落库后才进入进度查询！
+</code></pre>
+
+<h4 id="关键容错分类">关键容错分类</h4>
+<ul>
+  <li><strong><code class="language-plaintext highlighter-rouge">request_not_sent == True</code></strong>：若在并发槽锁、配额拦截或发包前校验抛出异常，此时 HTTP 字节<strong>百分之百未发出</strong>。系统安全打标 <code class="language-plaintext highlighter-rouge">acceptance="NOT_POSTED"</code>，将候选退回 <code class="language-plaintext highlighter-rouge">pending</code>，允许下次正常调度。</li>
+  <li><strong>发包后超时且无 Location</strong>：若进入传输阶段后断网或读超时，系统<strong>严禁重发 POST</strong>。此时保留 <code class="language-plaintext highlighter-rouge">campaign_post_attempted=True</code>、实际错误栈与 <code class="language-plaintext highlighter-rouge">acceptance=None</code>，保持未决状态，等待启动恢复模块介入对账。</li>
+</ul>
+
+<hr />
+
+<h3 id="36-异步进度轮询7200-秒本地超时熔断与单一取消机制">3.6 异步进度轮询、7200 秒本地超时熔断与单一取消机制</h3>
+
+<p>位于 <a href="../../api/simulation.py#L200-L288, L620-L695"><code class="language-plaintext highlighter-rouge">api/simulation.py</code></a>：</p>
+
+<h4 id="1自适应非阻塞轮询">（1）自适应非阻塞轮询</h4>
+<p>拿到 <code class="language-plaintext highlighter-rouge">progressUrl</code> 后，协程进入 <code class="language-plaintext highlighter-rouge">while not is_complete</code> 循环调用 <code class="language-plaintext highlighter-rouge">check_simulation_progress</code>：</p>
+<ul>
+  <li>解析响应头中的 <code class="language-plaintext highlighter-rouge">Retry-After</code>（通常平台给 2s、5s 或 10s）。</li>
+  <li>使用 <code class="language-plaintext highlighter-rouge">await asyncio.sleep(retry_after)</code> 挂起当前协程，绝不占用底层线程，由事件循环自由调度其它任务。</li>
+</ul>
+
+<h4 id="27200-秒累计本地监控超时与单一取消协议">（2）7200 秒累计本地监控超时与单一取消协议</h4>
+<p>WorldQuant Brain 平台由于集群排队或算子死循环，偶尔会出现某个回测卡在 <code class="language-plaintext highlighter-rouge">RUNNING</code> 数小时的情况。</p>
+<ul>
+  <li><strong>累计计时而非单次超时</strong>：记录回测首次发起的起点时间戳 <code class="language-plaintext highlighter-rouge">monitor_started_at</code>，即使进程重启也能跨会话准确累计已经监控的秒数。</li>
+  <li><strong>超时触发熔断取消</strong>：
+当累计时间达到 <code class="language-plaintext highlighter-rouge">SIMULATION_MONITOR_SECONDS = 7200</code>（2 小时）时，触发取消闭环：
+    <ol>
+      <li><strong>预检 GET</strong>：在发起取消前先发一次 GET 检查，若平台恰在此时已完成（<code class="language-plaintext highlighter-rouge">COMPLETE</code>/<code class="language-plaintext highlighter-rouge">WARNING</code>），则保留成功结果，放弃取消。</li>
+      <li><strong>最多一次 DELETE</strong>：若仍处于 <code class="language-plaintext highlighter-rouge">RUNNING</code>，调用 <code class="language-plaintext highlighter-rouge">api/cancel_simulation.py</code> 发送一次 <code class="language-plaintext highlighter-rouge">DELETE /simulations/{id}</code>。</li>
+      <li><strong>有界核验 GET</strong>：DELETE 返回后紧接着进行一次确认查询。若平台状态变为 <code class="language-plaintext highlighter-rouge">CANCELLED</code>，则确认为平台取消，记录 <code class="language-plaintext highlighter-rouge">timeout_error</code>。</li>
+    </ol>
+  </li>
+  <li><strong>严禁虚假报错</strong>：超时与平台取消是明确的调度终态，系统绝不把它们伪造成“表达式语法错误”，也不会因此释放本地候选重复发包。</li>
+</ul>
+
+<hr />
+
+<h3 id="37-结果收集权威详情采集与-cas-幂等写回">3.7 结果收集、权威详情采集与 CAS 幂等写回</h3>
+
+<p>位于 <a href="../../scripts/alpha_simulate_param.py#L372-L446, L979-L1040"><code class="language-plaintext highlighter-rouge">scripts/alpha_simulate_param.py</code></a>：</p>
+
+<p>当进度轮询检测到平台返回 <code class="language-plaintext highlighter-rouge">COMPLETE</code> 或 <code class="language-plaintext highlighter-rouge">WARNING</code> 时，回测进入结果收割流水线：</p>
+
+<pre><code class="language-mermaid">flowchart LR
+    ParentResp["平台终态响应 (含 children 数组)"] --&gt; Unpack["按下标解包 children&lt;br/&gt;对齐 batchBackendIds 顺序"]
+    Unpack --&gt; PairQueue["_ReceiptResultQueue.put((alpha_id, backend_id))"]
+    PairQueue --&gt; LockId["1. 先将 alphaId 写盘&lt;br/&gt;锁定真实 Alpha 身份"]
+    LockId --&gt; TagAlpha["2. 异步打标签 add_tags()&lt;br/&gt;(更新平台上的分类 tag)"]
+    TagAlpha --&gt; FetchAuthoritative["3. get_result(session, alpha_id)&lt;br/&gt;从 /alphas/{id} 拉取完整性能指标"]
+    FetchAuthoritative --&gt; CASWrite["4. _write_back_result()&lt;br/&gt;原子快照 CAS 写回 MongoDB&lt;br/&gt;写入 result, is, grade, good, status='success'"]
+</code></pre>
+
+<ol>
+  <li><strong>多子项精准下标配对</strong>：
+在 Multi-Simulation 模式下，平台返回的 JSON 包含 <code class="language-plaintext highlighter-rouge">children</code> 数组：
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">child</span> <span class="ow">in</span> <span class="nf">enumerate</span><span class="p">(</span><span class="n">sim_progress_json</span><span class="p">[</span><span class="sh">"</span><span class="s">children</span><span class="sh">"</span><span class="p">]):</span>
+    <span class="n">backend_id</span> <span class="o">=</span> <span class="n">backend_ids</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>   <span class="c1"># 严格通过 batchBackendIds 数组下标还原！
+</span>    <span class="n">alpha_id</span> <span class="o">=</span> <span class="n">child</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">"</span><span class="s">alpha</span><span class="sh">"</span><span class="p">)</span>
+</code></pre></div>    </div>
+  </li>
+  <li><strong><code class="language-plaintext highlighter-rouge">_ReceiptResultQueue</code> 拦截契约</strong>：
+将 <code class="language-plaintext highlighter-rouge">(alpha_id, backend_id)</code> 元组推入专用结果队列。队列的 <code class="language-plaintext highlighter-rouge">put</code> 方法首先执行 <code class="language-plaintext highlighter-rouge">_persist_simulation_receipt(backend_id, {"alphaId": alpha_id, "acceptance": "ACCEPTED"})</code>，确保证书和 Alpha 身份即便在后续拉取详细指标失败时也不会丢失。</li>
+  <li><strong>权威指标采集与 CAS 幂等落库</strong>：
+    <ul>
+      <li>独立协程 <code class="language-plaintext highlighter-rouge">manipulate_for_alpha</code> 消费结果队列，调用 <code class="language-plaintext highlighter-rouge">api/manipulate_alpha.py::get_result</code> 拉取包含 Sharpe、Fitness、Turnover、Margin、Returns、Drawdown 的权威指标字典。</li>
+      <li><code class="language-plaintext highlighter-rouge">_write_back_result</code> 使用文档的快照比对更新，将提取出的 <code class="language-plaintext highlighter-rouge">is</code> 指标、计算出的 <code class="language-plaintext highlighter-rouge">grade</code>（0..3 档评级）与 <code class="language-plaintext highlighter-rouge">good</code>（布尔优胜标）原子写入，并将候选终态置为 <code class="language-plaintext highlighter-rouge">status="success"</code>。</li>
+    </ul>
+  </li>
+</ol>
+
+<hr />
+
+<h3 id="38-启动恢复机制与旧尝试归档mission-recovery--ledger-reconciliation">3.8 启动恢复机制与旧尝试归档（Mission Recovery &amp; Ledger Reconciliation）</h3>
+
+<p>位于 <a href="../../util/mission_recovery.py"><code class="language-plaintext highlighter-rouge">util/mission_recovery.py</code></a>：
+当消费者进程因服务器重启、断网或手动中断而意外退出后，重新启动时首先调用 <code class="language-plaintext highlighter-rouge">recover_on_start(self)</code> 进行断点扫描。</p>
+
+<h4 id="1get-only-绝对铁律">（1）GET-Only 绝对铁律</h4>
+<p>启动恢复过程<strong>绝不调用任何 POST 请求</strong>。它仅扫描集合中状态为 <code class="language-plaintext highlighter-rouge">processing</code> 或带有未完结回执（包含 <code class="language-plaintext highlighter-rouge">progressUrl</code>）的候选。</p>
+
+<h4 id="2四大对账处理矩阵">（2）四大对账处理矩阵</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>扫描发现的旧记录状态</th>
+      <th>恢复器判定行为</th>
+      <th>执行动作与候选归宿</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>携带可信 <code class="language-plaintext highlighter-rouge">progressUrl</code>，GET 轮询已变成 <code class="language-plaintext highlighter-rouge">COMPLETE</code></td>
+      <td>平台回测已成功终态</td>
+      <td>提取 <code class="language-plaintext highlighter-rouge">alphaId</code>，补拉详细指标，写回 <code class="language-plaintext highlighter-rouge">status="success"</code>，正常结案</td>
+    </tr>
+    <tr>
+      <td>携带可信 <code class="language-plaintext highlighter-rouge">progressUrl</code>，GET 轮询仍为 <code class="language-plaintext highlighter-rouge">RUNNING</code></td>
+      <td>平台仍在正常计算</td>
+      <td>接入当前轮询循环，等待其自然运行完成直至终态</td>
+    </tr>
+    <tr>
+      <td>携带可信 <code class="language-plaintext highlighter-rouge">progressUrl</code>，GET 实际收到 <strong>HTTP 404</strong></td>
+      <td>平台历史回测记录正常过期（通常存活约 1–2 小时）</td>
+      <td><strong>安全归档</strong>：在同一次原子更新中，将旧 URL、错误信息写入 <code class="language-plaintext highlighter-rouge">recoveryHistory</code>，清退旧回执字段，并将候选状态安全退回 <code class="language-plaintext highlighter-rouge">status="pending"</code>，交由后续流水线重新调度</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">request_not_sent=True</code>（发包前门禁阻断记录）</td>
+      <td>确认 HTTP 字节从未发出</td>
+      <td>确认无平台回执后，直接释放回 <code class="language-plaintext highlighter-rouge">status="pending"</code></td>
+    </tr>
+    <tr>
+      <td>缺少可信回执但标记 <code class="language-plaintext highlighter-rouge">campaign_post_attempted</code> 且无结果</td>
+      <td>未知未决状态（可能网络中断）</td>
+      <td>保留错误现场，满足快照保护时归档旧尝试后退回 <code class="language-plaintext highlighter-rouge">pending</code>；有冲突时保持锁定等待人工排查</td>
+    </tr>
+  </tbody>
+</table>
 
 <ul>
-  <li>用 <code class="language-plaintext highlighter-rouge">ts_std_dev({data_fields},{d}) != 0 ? 1 : 0</code> 统计数据在周期d天内是否更新.</li>
-  <li>d 选择一些常用的更新频率: 天, 星期, 月, 季度, 年等</li>
+  <li><strong>多子项结果保护</strong>：如果一个批次中部分 Child 已经取得了 <code class="language-plaintext highlighter-rouge">alphaId</code> 并落盘，而另一部分处于 404 过期状态，恢复逻辑会精确保留已成功的 Child 结果，仅将未解的 Child 重置为 <code class="language-plaintext highlighter-rouge">pending</code>，绝不重复派发已成功的子项。</li>
 </ul>
 
-<h2 id="代码">代码</h2>
+<hr />
 
-<ul>
-  <li><a href="https://github.com/roshameow/quantnight">https://github.com/roshameow/quantnight</a></li>
-</ul>
+<h2 id="4-状态字典与生命周期流转矩阵">4. 状态字典与生命周期流转矩阵</h2>
 
-<h2 id="参考资料">参考资料</h2>
+<h3 id="41-候选文档生命周期流转图">4.1 候选文档生命周期流转图</h3>
 
-<p>[1]  https://support.worldquantbrain.com/hc/en-us/community/posts/11807866133911–BRAIN-TIPS-6-ways-to-quickly-evaluate-a-new-dataset</p>
+<pre><code class="language-mermaid">stateDiagram-v2
+    [*] --&gt; pending: 模板展开入库 (priority=1 或 0)
+    
+    pending --&gt; processing: _claim_child_batch CAS 认领
+    
+    state processing {
+        [*] --&gt; InQueue: 推入 task_queue
+        InQueue --&gt; SlotWaiting: 消费者出队，申请 SimulationSlots
+        SlotWaiting --&gt; PrePost: 获得槽位，写库 campaign_post_attempted=True
+        PrePost --&gt; PostDispatched: 发送 HTTP POST /simulations
+        PostDispatched --&gt; Accepted: 捕获 Location 头，刷盘 progressUrl 与 acceptance='ACCEPTED'
+        Accepted --&gt; Polling: 异步非阻塞 GET progressUrl 轮询
+        Polling --&gt; Polling: 收到 RUNNING，非阻塞 sleep(Retry-After)
+    }
+
+    PrePost --&gt; pending: 门禁/锁阶段抛出异常 (request_not_sent=True)
+    PostDispatched --&gt; UnknownHang: 断网/超时且无 Location (保持 acceptance=None)
+    UnknownHang --&gt; recoveryHistory: 启动恢复发现过期/未决，归档后退回
+    recoveryHistory --&gt; pending
+
+    Polling --&gt; cancelled: 累计 ≥ 7200s，成功执行预检与 DELETE 取消
+    Polling --&gt; platform_error: 平台明确返回 ERROR / FAIL 终态
+    Polling --&gt; success: 平台返回 COMPLETE / WARNING，指标回写成功
+    
+    success --&gt; [*]
+    cancelled --&gt; [*]
+    platform_error --&gt; [*]
+</code></pre>
+
+<h3 id="42-核心安全与回执字段速查字典">4.2 核心安全与回执字段速查字典</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>数据库字段</th>
+      <th>存在位置</th>
+      <th>业务含义与安全语义</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">status</code></td>
+      <td>根文档</td>
+      <td>候选执行大状态：<code class="language-plaintext highlighter-rouge">pending</code>（待测）、<code class="language-plaintext highlighter-rouge">processing</code>（认领处理中）、<code class="language-plaintext highlighter-rouge">success</code>（回测成功结案）、<code class="language-plaintext highlighter-rouge">error</code>（终态错误）、<code class="language-plaintext highlighter-rouge">cancelled</code>（平台取消）</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">campaign_post_attempted</code></td>
+      <td>根文档</td>
+      <td><strong>通用发包意图标记</strong>（普通/Adaptive/Priority 共用历史字段）：<code class="language-plaintext highlighter-rouge">True</code> 代表本地已尝试向平台发出过 POST，启动恢复必须核验该事实，严禁盲目直接重发</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">batchBackendIds</code></td>
+      <td>根文档</td>
+      <td><strong>批次子项映射数组</strong>：按请求构建顺序保存同一批 Multi-Simulation 中所有子项的 <code class="language-plaintext highlighter-rouge">ObjectId</code>，保证子模拟结果与文档 100% 精准对应</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">progressUrl</code></td>
+      <td>根文档</td>
+      <td>平台返回的进度查询端点（如 <code class="language-plaintext highlighter-rouge">/simulations/sim-xxxx</code>）：只要该字段存在，即证明平台已受理任务，后续一律只允许 GET</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">acceptance</code></td>
+      <td>根文档</td>
+      <td>请求受理状态：<code class="language-plaintext highlighter-rouge">ACCEPTED</code>（已分配 Location）、<code class="language-plaintext highlighter-rouge">NOT_ACCEPTED</code>（显式 429/401 拒绝）、<code class="language-plaintext highlighter-rouge">NOT_POSTED</code>（发包前门禁阻断，安全可退 pending）</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">recoveryHistory</code></td>
+      <td>根文档</td>
+      <td>历史异常对账账本：记录因 404 过期或未解网络超时归档的旧 URL、错误摘要与时间戳，保留完整审计追踪</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">result</code> / <code class="language-plaintext highlighter-rouge">is</code></td>
+      <td>根文档</td>
+      <td>实测权威指标字典：包含 <code class="language-plaintext highlighter-rouge">sharpe</code>、<code class="language-plaintext highlighter-rouge">fitness</code>、<code class="language-plaintext highlighter-rouge">turnover</code>、<code class="language-plaintext highlighter-rouge">returns</code>、<code class="language-plaintext highlighter-rouge">drawdown</code>、<code class="language-plaintext highlighter-rouge">margin</code> 等核心量化指标</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="5-开发者规范与工程实践原则checklist">5. 开发者规范与工程实践原则（Checklist）</h2>
+
+<p>在开发、维护或排查 QuantNight 普通回测流水线时，必须严格遵守以下工程规范：</p>
+
+<ol>
+  <li><strong>单一消费者原则</strong>：
+    <ul>
+      <li>绝不允许对同一个任务启动两个 <code class="language-plaintext highlighter-rouge">alpha_simulate_param.py</code> 进程，否则会导致并发槽失控与 429 封禁风暴。</li>
+    </ul>
+  </li>
+  <li><strong>禁止裸调 HTTP 发起回测</strong>：
+    <ul>
+      <li>提交回测必须经过 <code class="language-plaintext highlighter-rouge">api.simulation.submit_simulation_async</code> 或 <code class="language-plaintext highlighter-rouge">_submit_with_receipt_policy</code>，绝不能绕过它们直接使用 <code class="language-plaintext highlighter-rouge">session.post</code>。</li>
+    </ul>
+  </li>
+  <li><strong>严格遵守 Location 硬门禁</strong>：
+    <ul>
+      <li>只要拿到非空 <code class="language-plaintext highlighter-rouge">Location</code>，无论后续发生何种网络异常，必须无条件将其视为已受理回测，严禁重新发送 POST。</li>
+    </ul>
+  </li>
+  <li><strong>禁止在主循环中手写同步阻塞 Sleep</strong>：
+    <ul>
+      <li>所有的等待（无论是 Retry-After 还是账号冷却）必须使用 <code class="language-plaintext highlighter-rouge">await asyncio.sleep()</code>，严禁调用 <code class="language-plaintext highlighter-rouge">time.sleep()</code> 阻塞整个 asyncio 事件循环。</li>
+    </ul>
+  </li>
+  <li><strong>保持 Multi-Simulation 映射契约</strong>：
+    <ul>
+      <li>组装批次时必须同步固化 <code class="language-plaintext highlighter-rouge">batchBackendIds</code>；解析 <code class="language-plaintext highlighter-rouge">children</code> 时严格按数组下标解包，严禁跨批次拼凑结果。</li>
+    </ul>
+  </li>
+  <li><strong>启动恢复秉持 GET-Only 铁律</strong>：
+    <ul>
+      <li>恢复器只允许通过既有 <code class="language-plaintext highlighter-rouge">progressUrl</code> 执行只读查询对账。遇到 404 时记录 <code class="language-plaintext highlighter-rouge">recoveryHistory</code> 并安全将未解项退回 <code class="language-plaintext highlighter-rouge">pending</code>，绝不能直接原地发起 POST。</li>
+    </ul>
+  </li>
+  <li><strong>尊重平台日配额安全线</strong>：
+    <ul>
+      <li>始终依赖 <code class="language-plaintext highlighter-rouge">SimulationQuotaGuard</code> 读取平台真实响应头。当达到 4,500 警戒线时平滑挂起发包，等待服务端重置周期，切勿手写逻辑绕过或强行重置本地额度。</li>
+    </ul>
+  </li>
+</ol>
 
         </div>
 
@@ -338,10 +851,10 @@
   
 
   
-    <a class="page-next" href="/personal_homepage/finance/alphas4/">
+    <a class="page-next" href="/personal_homepage/data/alphas4/">
       <h4 class="page-pagination-label">Next</h4>
       <span class="page-pagination-title">
-        worldquant BRAIN 股票因子 (四) – 因子思路
+        Analyst 分析师预期、修订动量与业绩超预期（PEAD）数据体系
  <i class="fas fa-arrow-right"></i>
       </span>
     </a>

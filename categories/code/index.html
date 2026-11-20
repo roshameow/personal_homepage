@@ -115,6 +115,43 @@
   <header class="entry-header">
     <h3 class="entry-title p-name">
       
+        <a href="/personal_homepage/code/alpha19/" rel="bookmark">回测系统核心网络层架构与全模块调用
+</a>
+      
+    </h3>
+    
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <p>本文档深入剖析 QuantNight 的统一 HTTP 传输与容错底座 <a href="../../util/network_util.py"><code class="language-plaintext highlighter-rouge">util/network_util.py</code></a>，涵盖其内部 9 阶段请求流水线、回调契约（<code class="language-plaintext highlighter-rouge">ResponseDecision</code>）、<strong>Location 回执硬门禁</strong>、<strong>同账号 401 世代去重自愈</strong>、限流与分页原语，以及全仓各业务模块（回测引擎、Native MCP、数据同步、恢复器）如何组装并调用该模块。</p>
+
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">6 min read</span>
+
+      <time class="entry-date dt-published" datetime="2026-05-15T00:00:00+00:00">May 15, 2026
+  </time>
+    </footer>
+  
+</article>
+
+    
+      
+
+
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
         <a href="/personal_homepage/code/tag-code/" rel="bookmark">代码模块的多维索引
 </a>
       
@@ -187,7 +224,7 @@
   <header class="entry-header">
     <h3 class="entry-title p-name">
       
-        <a href="/personal_homepage/code/alphas3/" rel="bookmark">worldquant BRAIN 股票因子 (三) – API使用和代码
+        <a href="/personal_homepage/code/alphas3/" rel="bookmark">普通异步回测流水线架构与调度实现
 </a>
       
     </h3>
@@ -197,7 +234,7 @@
   
     <div class="entry-excerpt p-summary">
       
-        <h2 id="仿真流程">仿真流程</h2>
+        <p>本文档系统性剖析 QuantNight 的<strong>普通异步回测流水线（Regular Asynchronous Simulation Pipeline）</strong>核心调度与执行架构。该流水线是整个仓库吞吐量最大、并发度最高的基础生产底座，负责将模板展开的数十万级候选表达式高可靠地推送到 WorldQuant Brain 平台完成回测，并为上层智能调度（Adaptive 采样与 Priority 进化精炼）提供不可动摇的并发管理、配额控制、回执安全与断点自愈能力。</p>
 
       
     </div>
@@ -206,7 +243,7 @@
     <footer class="entry-meta">
       
 
-<span class="read-time">~1 min read</span>
+<span class="read-time">7 min read</span>
 
       <time class="entry-date dt-published" datetime="2025-01-18T00:00:00+00:00">January 18, 2025
   </time>

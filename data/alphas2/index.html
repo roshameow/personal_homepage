@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<!--
+    So Simple Jekyll Theme 3.2.0
+    Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+    Free for personal and commercial use under the MIT license
+    https://github.com/mmistakes/so-simple-theme/blob/master/LICENSE
+-->
+<html lang="en-US" class="no-js">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  
+
+  
+  
+  <!-- Begin Jekyll SEO tag v2.9.1 -->
+<title>Fundamental 基本面衍生数据体系、PIT 时钟原理与在 analyze-dataset 中的应用 | Liu, Wen’s Home Page</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Fundamental 基本面衍生数据体系、PIT 时钟原理与在 analyze-dataset 中的应用" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="本文为基本面（Fundamental）财务与企业经营因子谱系篇（日频量价 OHLCV 衍生体系见 《PV 量价衍生数据体系、复权数学原理与在 analyze-dataset 中的应用》（alpha11），日内与盘口微结构统计量见 《日内 PV 统计量与市场微结构衍生指标体系》（alpha28））。本文所有表达式均对齐 WorldQuant FASTEXPR 算子规范，表格仅使用通用会计科目与基础市场参照字段，确保脱离特定数据库编号即可自解释。" />
+<meta name="twitter:description" property="og:description" content="本文为基本面（Fundamental）财务与企业经营因子谱系篇（日频量价 OHLCV 衍生体系见 《PV 量价衍生数据体系、复权数学原理与在 analyze-dataset 中的应用》（alpha11），日内与盘口微结构统计量见 《日内 PV 统计量与市场微结构衍生指标体系》（alpha28））。本文所有表达式均对齐 WorldQuant FASTEXPR 算子规范，表格仅使用通用会计科目与基础市场参照字段，确保脱离特定数据库编号即可自解释。" />
+<link rel="canonical" href="https://roshameow.github.io//personal_homepage/data/alphas2/" />
+<meta property="og:url" content="https://roshameow.github.io//personal_homepage/data/alphas2/" />
+<meta property="og:site_name" content="Liu, Wen’s Home Page" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2025-01-15T00:00:00+00:00" />
+<meta property="article:modified_time" content="2026-11-20T05:46:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="Fundamental 基本面衍生数据体系、PIT 时钟原理与在 analyze-dataset 中的应用" />
+<meta name="twitter:site" content="@" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2026-11-20T05:46:00+00:00","datePublished":"2025-01-15T00:00:00+00:00","description":"本文为基本面（Fundamental）财务与企业经营因子谱系篇（日频量价 OHLCV 衍生体系见 《PV 量价衍生数据体系、复权数学原理与在 analyze-dataset 中的应用》（alpha11），日内与盘口微结构统计量见 《日内 PV 统计量与市场微结构衍生指标体系》（alpha28））。本文所有表达式均对齐 WorldQuant FASTEXPR 算子规范，表格仅使用通用会计科目与基础市场参照字段，确保脱离特定数据库编号即可自解释。","headline":"Fundamental 基本面衍生数据体系、PIT 时钟原理与在 analyze-dataset 中的应用","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/data/alphas2/"},"url":"https://roshameow.github.io//personal_homepage/data/alphas2/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  
+
+  <script>
+    /* Cut the mustard */
+    if ('querySelector' in document && 'addEventListener' in window) {
+      document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + 'js';
+    }
+  </script>
+
+  <link rel="stylesheet" href="/personal_homepage/assets/css/main.css">
+  <link rel="stylesheet" href="/personal_homepage/assets/css/skins/default.css">
+  
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,700,700i|Lora:400,400i,700,700i">
+  <link rel="alternate" type="application/atom+xml" title="Liu, Wen&#39;s Home Page" href="/personal_homepage/atom.xml">
+<!-- start custom head snippets -->
+
+<!-- insert favicons. use http://realfavicongenerator.net/ -->
+<link rel="shortcut icon" type="image/x-icon" href="/personal_homepage/docs/images/logo.ico">
+<!-- end custom head snippets -->
+
+</head>
+
+  <body class="layout--post  fundamental-基本面衍生数据体系-pit-时钟原理与在-analyze-dataset-中的应用">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#primary-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+  <div class="navigation-wrapper">
+    <a href="#menu-toggle" id="menu-toggle">Menu</a>
+    <nav id="primary-nav" class="site-nav animated drop">
+      <ul><li><a href="/personal_homepage/">Home</a></li><li><a href="/personal_homepage/posts/">Posts</a></li><li><a href="/personal_homepage/categories/">Categories</a></li><li><a href="/personal_homepage/tags/">Tags</a></li><li><a href="/personal_homepage/family/">Family</a></li><li><a href="/personal_homepage/search/">Search</a></li></ul>
+    </nav>
+  </div><!-- /.navigation-wrapper -->
+
+
+    <header class="masthead">
+  <div class="wrap">
+    
+    
+    
+      
+        <div class="site-title animated fadeIn"><a href="/personal_homepage/">Liu, Wen's Home Page</a></div>
+      
+      <p class="site-description animated fadeIn" itemprop="description">Work, Experiments and Ideas.</p>
+    
+  </div>
+</header><!-- /.masthead -->
+
+
+    <main id="main" class="main-content" aria-label="Content">
+  <article class="h-entry">
+    
+
+    <div class="page-wrapper">
+      <header class="page-header">
+        
+        
+        <h1 id="page-title" class="page-title p-name">Fundamental 基本面衍生数据体系、PIT 时钟原理与在 analyze-dataset 中的应用
+</h1>
+        
+      </header>
+
+      <div class="page-sidebar">
+        <div class="page-author h-card p-author"><img src="/personal_homepage/docs/images/logo.svg" class="author-avatar u-photo" alt=""><div class="author-info">
+
+<span class="read-time">3 min read</span>
+
+    <time class="page-date dt-published" datetime="2025-01-15T00:00:00+00:00"><a class="u-url" href="">January 15, 2025</a>
+</time>
+
+  </div>
+</div>
+
+        
+  <h3 class="page-taxonomies-title">Categories</h3>
+  
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a class="p-category" href="/personal_homepage/categories/#data" title="Pages filed under data">data</a></li>
+  </ul>
+
+
+        
+  <h3 class="page-taxonomies-title">Tags</h3>
+  
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a href="/personal_homepage/tags/#analyze-dataset" title="Pages tagged analyze_dataset" rel="tag">analyze_dataset</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#content" title="Pages tagged content" rel="tag">content</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#feature-engineering" title="Pages tagged feature_engineering" rel="tag">feature_engineering</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#fundamental" title="Pages tagged fundamental" rel="tag">fundamental</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#quant" title="Pages tagged quant" rel="tag">quant</a></li>
+  </ul>
+
+
+        <details id="entry-table-of-contents" class="toc-wrapper" open>
+  <summary>
+    <h2 class="no_toc">
+      Table of Contents
+      <svg class="toc-toggle-icon" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true" focusable="false">
+        <path d="m4 6 4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+      </svg>
+    </h2>
+  </summary>
+  <div class="toc-content">
+    <ul class="inline_toc" id="my_toc"><li><a href="#一fundamental-基本面衍生数据三阶谱系012-阶--worldquant-fastexpr-对齐">一、Fundamental 基本面衍生数据三阶谱系（0→1→2 阶 + WorldQuant FASTEXPR 对齐）</a></li><li><a href="#二财务报表数据的四大工程特性与避坑指南">二、财务报表数据的四大工程特性与避坑指南</a></li><li><a href="#三在-analyze-dataset-中的实战应用四通道协同">三、在 analyze-dataset 中的实战应用（四通道协同）</a></li><li><a href="#四参考资料">四、参考资料</a></li></ul>
+  </div>
+</details>
+
+        
+<details id="entry-related-posts" class="toc-wrapper" open>
+  <summary>
+    <h2 class="no_toc">
+      Related Posts
+      <svg class="toc-toggle-icon" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true" focusable="false">
+        <path d="m4 6 4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+      </svg>
+    </h2>
+  </summary>
+  <div class="toc-content">
+    <ul>
+      
+      <li><a href="/personal_homepage/data/alpha29/">News & Social Media 新闻流、社交媒体情绪与文本事件数据体系</a></li>
+      
+      <li><a href="/personal_homepage/data/alpha28/">日内 PV 统计量与市场微结构衍生指标体系</a></li>
+      
+      <li><a href="/personal_homepage/tool/alpha27/">从过度防御的歪路纠偏：GUI/CLI 6 态极简控制面、数据面板统一与工程收口</a></li>
+      
+      <li><a href="/personal_homepage/thought/agent-infrastructure-pitfalls-2/">用 AI 维护复杂控制面基础设施：为什么越修越死？从补丁膨胀到 6 态收敛的六大工程陷阱</a></li>
+      
+      <li><a href="/personal_homepage/tool/pi-subagent-durable/">pi-subagent-durable：后台子代理的持久化、生命周期与故障自愈</a></li>
+      
+    </ul>
+  </div>
+</details>
+
+
+
+      </div>
+
+      <div class="page-content">
+        <div class="e-content">
+          <blockquote>
+  <p>本文为基本面（Fundamental）财务与企业经营因子谱系篇（日频量价 OHLCV 衍生体系见 <a href="2025-09-19-alpha11.md">《PV 量价衍生数据体系、复权数学原理与在 analyze-dataset 中的应用》（alpha11）</a>，日内与盘口微结构统计量见 <a href="2026-11-20-alpha28.md">《日内 PV 统计量与市场微结构衍生指标体系》（alpha28）</a>）。本文所有表达式均对齐 WorldQuant FASTEXPR 算子规范，表格仅使用通用会计科目与基础市场参照字段，确保脱离特定数据库编号即可自解释。</p>
+</blockquote>
+
+<hr />
+
+<h2 id="一fundamental-基本面衍生数据三阶谱系012-阶--worldquant-fastexpr-对齐">一、Fundamental 基本面衍生数据三阶谱系（0→1→2 阶 + WorldQuant FASTEXPR 对齐）</h2>
+
+<p>相较于日频量价存在明显的多层滚动统计嵌套，基本面数据多由 0 阶原生财务科目经单步比率或直接时序重标演化而来，因此合并为<strong>三阶谱系</strong>边界最清晰：<strong>0 阶</strong>为三张财务报表及附注的原生会计科目（加基础股价/市值参照）；<strong>1 阶</strong>为直接围绕 0 阶科目展开的财务比率、市场估值锚、应计/回款质量检验与历史自我重标（含 <code class="language-plaintext highlighter-rouge">ts_backfill</code> 填充）；<strong>2 阶</strong>为多因子质量共振、风险残差剥离、经典经济学定价模型（杜邦、戈登、PEG）及基本面状态门控角色。</p>
+
+<blockquote>
+  <p>图例说明：在一至二阶衍生指标中，<span style="color: #059669; font-weight: 600;">绿色加粗条目</span>表示已在本地平台实测记录中检索到达标信号（非 SUPER，<code class="language-plaintext highlighter-rouge">fitness &gt;= 1.0</code> 且 <code class="language-plaintext highlighter-rouge">sharpe &gt;= 1.2</code>；除 CHN 地区外，<code class="language-plaintext highlighter-rouge">fitness &lt;= -1.0</code> 且 <code class="language-plaintext highlighter-rouge">sharpe &lt;= -1.2</code> 的反向可取负信号亦计为达标）；<span style="color: #dc2626; font-weight: 600;">红色加粗条目</span>表示库中已有实测记录但未达上述门槛；默认颜色为尚未在库中检索到独立测试记录的理论或扩展方向。</p>
+</blockquote>
+
+<table>
+  <thead>
+    <tr>
+      <th>0 阶数据（原生财务科目与市场参照）</th>
+      <th>一阶数据（财务比率、估值锚、质量检验与历史重标）</th>
+      <th>二阶数据（多维复合、经济学模型与门控角色）</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>利润表（Income Statement）</strong><br />• <code class="language-plaintext highlighter-rouge">sales</code>：营业收入<br />• <code class="language-plaintext highlighter-rouge">cogs</code>：营业成本<br />• <code class="language-plaintext highlighter-rouge">gross_profit</code>：毛利润（<code class="language-plaintext highlighter-rouge">sales - cogs</code>）<br />• <code class="language-plaintext highlighter-rouge">sga</code>：销售及管理费用<br />• <code class="language-plaintext highlighter-rouge">rd_expense</code>：研发费用<br />• <code class="language-plaintext highlighter-rouge">ebit</code> / <code class="language-plaintext highlighter-rouge">operating_income</code>：息税前/营业利润<br />• <code class="language-plaintext highlighter-rouge">interest_expense</code>：利息/资本化利息费用<br />• <code class="language-plaintext highlighter-rouge">pretax_income</code>：税前利润<br />• <code class="language-plaintext highlighter-rouge">income_tax</code>：所得税费用<br />• <code class="language-plaintext highlighter-rouge">income</code>：经常性净利润<br />• <code class="language-plaintext highlighter-rouge">eps</code>：每股收益<br /><br /><strong>资产负债表（Balance Sheet）</strong><br />• <code class="language-plaintext highlighter-rouge">assets</code>：总资产<br />• <code class="language-plaintext highlighter-rouge">current_assets</code> / <code class="language-plaintext highlighter-rouge">cash_st</code>：流动资产 / 现金及短期投资<br />• <code class="language-plaintext highlighter-rouge">receivables</code> / <code class="language-plaintext highlighter-rouge">inventory</code>：应收账款 / 存货<br />• <code class="language-plaintext highlighter-rouge">goodwill</code> / <code class="language-plaintext highlighter-rouge">intangible_assets</code>：商誉 / 无形资产<br />• <code class="language-plaintext highlighter-rouge">liabilities</code> / <code class="language-plaintext highlighter-rouge">current_liabilities</code>：总负债 / 流动负债<br />• <code class="language-plaintext highlighter-rouge">debt_st</code> / <code class="language-plaintext highlighter-rouge">debt_lt</code> / <code class="language-plaintext highlighter-rouge">debt</code>：短期债务 / 长期债务 / 总债务<br />• <code class="language-plaintext highlighter-rouge">deferred_revenue</code>：递延收入（预收/订阅合约待确认收入）<br />• <code class="language-plaintext highlighter-rouge">retained_earnings</code>：留存收益（累计未分配利润）<br />• <code class="language-plaintext highlighter-rouge">equity</code> / <code class="language-plaintext highlighter-rouge">bookvalue</code>：股东权益 / 账面净资产<br /><br /><strong>现金流量表与分红</strong><br />• <code class="language-plaintext highlighter-rouge">cashflow_op</code>：经营活动现金流量净额<br />• <code class="language-plaintext highlighter-rouge">capex</code>：资本开支<br />• <code class="language-plaintext highlighter-rouge">free_cashflow</code>：自由现金流（<code class="language-plaintext highlighter-rouge">cashflow_op - capex</code>）<br />• <code class="language-plaintext highlighter-rouge">dividend_paid</code>：现金股利支出<br /><br /><strong>附注、人效与市场参照</strong><br />• <code class="language-plaintext highlighter-rouge">employees</code>：员工人数<br />• <code class="language-plaintext highlighter-rouge">fair_value_assets</code> / <code class="language-plaintext highlighter-rouge">fair_value_liab</code>：资产/负债公允价值附注<br />• <code class="language-plaintext highlighter-rouge">fx_adj</code>：汇兑损益调整<br />• <code class="language-plaintext highlighter-rouge">monthly_sales_growth_vec</code>：月度销售增长历史矢量（<code class="language-plaintext highlighter-rouge">VECTOR</code>）<br />• 基础行情锚：<code class="language-plaintext highlighter-rouge">close</code>、<code class="language-plaintext highlighter-rouge">cap</code>、<code class="language-plaintext highlighter-rouge">sharesout</code>、<code class="language-plaintext highlighter-rouge">enterprise_value</code>（<code class="language-plaintext highlighter-rouge">cap + debt - cash_st</code>）及 <code class="language-plaintext highlighter-rouge">sector</code> / <code class="language-plaintext highlighter-rouge">industry</code> / <code class="language-plaintext highlighter-rouge">subindustry</code></td>
+      <td><strong>盈利能力与经营效率比</strong><br />• <span style="color: #059669; font-weight: 600;">毛利资产比 (<code class="language-plaintext highlighter-rouge">GPA</code> / <code class="language-plaintext highlighter-rouge">gross_margin</code>)</span>：<code class="language-plaintext highlighter-rouge">gross_profit / assets</code>、<code class="language-plaintext highlighter-rouge">gross_profit / sales</code>（每单位总资产创造的毛利与产品毛利率，衡量核心产品定价力且抗折旧操纵）<br />• <span style="color: #059669; font-weight: 600;">营业资本回报 (<code class="language-plaintext highlighter-rouge">ROA</code> / <code class="language-plaintext highlighter-rouge">ROIC</code> / <code class="language-plaintext highlighter-rouge">ROCE</code>)</span>：<code class="language-plaintext highlighter-rouge">ebit / assets</code>、<code class="language-plaintext highlighter-rouge">operating_income / equity</code>、<code class="language-plaintext highlighter-rouge">income / (debt + equity - cash_st)</code>（衡量全部资产或投入资本的实际盈利回报率）<br />• <span style="color: #059669; font-weight: 600;">净利率与回款效率 (<code class="language-plaintext highlighter-rouge">net_margin</code> / <code class="language-plaintext highlighter-rouge">ebit_rec</code>)</span>：<code class="language-plaintext highlighter-rouge">income / sales</code>（营收转化净利润效率）；<code class="language-plaintext highlighter-rouge">ebit / (receivables + 1e-6)</code>（营业利润相对应收账款的周转支撑度）<br />• <span style="color: #059669; font-weight: 600;">现金流含金量 (<code class="language-plaintext highlighter-rouge">ocf_sales</code> / <code class="language-plaintext highlighter-rouge">fcf_assets</code>)</span>：<code class="language-plaintext highlighter-rouge">cashflow_op / sales</code>、<code class="language-plaintext highlighter-rouge">free_cashflow / assets</code>、<code class="language-plaintext highlighter-rouge">cashflow_op / fair_value_assets</code>（检验账面利润是否有真实经营现金回款与公允资产支撑）<br />• <strong>盈利 / 资本开支比 (<code class="language-plaintext highlighter-rouge">ebit_capex</code>)</strong>：<code class="language-plaintext highlighter-rouge">ebit / (capex + 1e-6)</code>（衡量每单位资本开支换取的营业利润，过低往往预示重资产低效扩张）<br />• <span style="color: #059669; font-weight: 600;">费用效率与人效 (<code class="language-plaintext highlighter-rouge">op_sga</code> / <code class="language-plaintext highlighter-rouge">rev_per_emp</code>)</span>：<code class="language-plaintext highlighter-rouge">income / (sga + 1e-6)</code>（净利润相对销管费用的转化效率）；<code class="language-plaintext highlighter-rouge">sales / (employees + 1)</code>（人均创收能力）<br />• <span style="color: #dc2626; font-weight: 600;">研发投入强度 (<code class="language-plaintext highlighter-rouge">rd_intensity</code>)</span>：<code class="language-plaintext highlighter-rouge">rd_expense / (sales + 1e-6)</code>（研发费用占营收比，衡量长期技术壁垒投入强度）<br />• <span style="color: #059669; font-weight: 600;">汇兑盈利稳健性 (<code class="language-plaintext highlighter-rouge">fx_profit_ratio</code>)</span>：<code class="language-plaintext highlighter-rouge">ebit / (abs(fx_adj) + 1e-6)</code>（衡量核心经营利润相对汇率折算损益扰动的纯净度）<br /><br /><strong>估值倍数与市场价格锚定</strong><br />• <span style="color: #059669; font-weight: 600;">盈利收益率 (<code class="language-plaintext highlighter-rouge">EP</code> / <code class="language-plaintext highlighter-rouge">PE_inv</code>)</span>：<code class="language-plaintext highlighter-rouge">eps / close</code>、<code class="language-plaintext highlighter-rouge">income / cap</code>（市盈率倒数，单位市值对应的盈利回报）<br />• <span style="color: #059669; font-weight: 600;">市销率倒数 / EV 营收比 (<code class="language-plaintext highlighter-rouge">SP</code> / <code class="language-plaintext highlighter-rouge">EV_Sales</code>)</span>：<code class="language-plaintext highlighter-rouge">sales / cap</code>、<code class="language-plaintext highlighter-rouge">enterprise_value / (sales + 1e-6)</code>（按公司总营收规模对市值或企业价值锚定）<br />• <span style="color: #059669; font-weight: 600;">自由现金流估值 (<code class="language-plaintext highlighter-rouge">FCF_EV</code> / <code class="language-plaintext highlighter-rouge">CF_Price</code>)</span>：<code class="language-plaintext highlighter-rouge">free_cashflow / enterprise_value</code>、<code class="language-plaintext highlighter-rouge">cashflow_op / cap</code>（真实自由现金流对企业总价值或市值的贴现率）<br />• <span style="color: #059669; font-weight: 600;">账面市值比 (<code class="language-plaintext highlighter-rouge">BM</code> / <code class="language-plaintext highlighter-rouge">BVPS_P</code>)</span>：<code class="language-plaintext highlighter-rouge">bookvalue / cap</code>、<code class="language-plaintext highlighter-rouge">equity / cap</code>（净资产账面价值相对总市值的安全边际）<br />• <span style="color: #059669; font-weight: 600;">股息率与分红 (<code class="language-plaintext highlighter-rouge">dividend_yield</code>)</span>：<code class="language-plaintext highlighter-rouge">dividend_paid / cap</code>（现金分红占总市值比例）<br /><br /><strong>资产负债结构与偿债安全垫</strong><br />• <span style="color: #059669; font-weight: 600;">财务杠杆与偿债安全垫 (<code class="language-plaintext highlighter-rouge">leverage</code> / <code class="language-plaintext highlighter-rouge">cash_to_debt</code>)</span>：<code class="language-plaintext highlighter-rouge">liabilities / assets</code>、<code class="language-plaintext highlighter-rouge">debt / assets</code>（资产负债暴露）；<code class="language-plaintext highlighter-rouge">-debt_lt / (cash_st + 1e-6)</code>、<code class="language-plaintext highlighter-rouge">income - debt_st</code>（长短债现金覆盖与经常利润扣减短期债务后的盈余）<br />• <span style="color: #059669; font-weight: 600;">流动结构与去库存效率 (<code class="language-plaintext highlighter-rouge">curr_surplus</code> / <code class="language-plaintext highlighter-rouge">inv_inv</code>)</span>：<code class="language-plaintext highlighter-rouge">(income - current_assets) / (current_assets + 1e-6)</code>、<code class="language-plaintext highlighter-rouge">income / (current_liabilities + 1e-6)</code>（短期资产占用与流动负债覆盖）；<code class="language-plaintext highlighter-rouge">1 / (inventory + 1e-6)</code>（低存货积压偏好）<br />• <span style="color: #059669; font-weight: 600;">商誉风险与资本开支率 (<code class="language-plaintext highlighter-rouge">goodwill_sales</code> / <code class="language-plaintext highlighter-rouge">capex_sales</code>)</span>：<code class="language-plaintext highlighter-rouge">-goodwill / (sales + 1e-6)</code>、<code class="language-plaintext highlighter-rouge">capex / (sales + 1e-6)</code>（预警并购高商誉减值风险与观测资本支出周期）<br />• <span style="color: #059669; font-weight: 600;">融资成本变化 (<code class="language-plaintext highlighter-rouge">interest_diff</code>)</span>：<code class="language-plaintext highlighter-rouge">ts_max_diff(winsorize(ts_backfill(interest_expense, 120)), 252)</code>（当前利息支出相对过去一年峰值的回落幅，反映融资压力边际缓解）<br />• <strong>净营运资本比 (<code class="language-plaintext highlighter-rouge">wc_ratio</code>)</strong>：<code class="language-plaintext highlighter-rouge">(current_assets - current_liabilities) / assets</code>（短期流动资产净缓冲占总资产比）<br /><br /><strong>盈利质量背离与时序自我基线</strong><br />• <span style="color: #dc2626; font-weight: 600;">Sloan 应计质量 (<code class="language-plaintext highlighter-rouge">accruals</code>)</span>：<code class="language-plaintext highlighter-rouge">(income - cashflow_op) / (assets + 1e-6)</code>（账面净利润减经营现金流占总资产比：应计过高往往预示靠应收/存货虚增利润，未来易均值回归）<br />• <strong>应收/CapEx 质量检验 (<code class="language-plaintext highlighter-rouge">rec_sales_gap</code> / <code class="language-plaintext highlighter-rouge">capex_rev_conv</code>)</strong>：<code class="language-plaintext highlighter-rouge">ts_delta(receivables / (sales + 1e-6), 252)</code>（应收增速长期跑赢营收则提示回款恶化）；<code class="language-plaintext highlighter-rouge">ts_delta(sales, 252) / (ts_mean(capex, 252) + 1e-6)</code>（检验新增资本开支是否转化为营收增量）<br />• <span style="color: #059669; font-weight: 600;">每股留存收益增长与消耗</span>：<code class="language-plaintext highlighter-rouge">ts_delta(retained_earnings / sharesout, 60)</code>（剔除股本稀释/回购影响后的每股内生资本沉淀变化）；<code class="language-plaintext highlighter-rouge">-ts_rank(ts_backfill(retained_earnings, 120), 250)</code>（留存收益显著下降，需结合分红率判断是否派息）<br />• <span style="color: #059669; font-weight: 600;">历史自我重标与 5 年估值偏离</span>：<code class="language-plaintext highlighter-rouge">ts_zscore(ts_backfill(ebit, 120), 120)</code>、<code class="language-plaintext highlighter-rouge">ts_zscore(ts_backfill(operating_income / receivables, 120), 120)</code>、<code class="language-plaintext highlighter-rouge">ts_backfill(ep_ratio, 120) - ts_mean(ts_backfill(ep_ratio, 120), 1260)</code>（“和公司自身过去比”，削弱跨行业会计口径差异）<br />• <span style="color: #059669; font-weight: 600;">销售动量信息比与同比滞后</span>：<code class="language-plaintext highlighter-rouge">ts_ir(vec_sum(monthly_sales_growth_vec), 252)</code>（持续稳定放量）；<code class="language-plaintext highlighter-rouge">ts_delay(winsorize(ts_backfill(-1 / sales, 120)), 240)</code>（取去年基线避开当期财报公布冲击）<br />• <span style="color: #dc2626; font-weight: 600;">递延收入趋势斜率 (<code class="language-plaintext highlighter-rouge">dr_slope</code>)</span>：<code class="language-plaintext highlighter-rouge">ts_regression(ts_backfill(deferred_revenue, 120), ts_step(1), 252, rettype=2)</code>（用时间回归斜率刻画订阅/预收类业务未确认收入的储备增速）</td>
+      <td><strong>双重估值交叉与多维质量共振</strong><br />• <span style="color: #059669; font-weight: 600;">双重估值比率交叉 (<code class="language-plaintext highlighter-rouge">FCF_EV_Sales</code> / <code class="language-plaintext highlighter-rouge">PCFR_EV_Sales</code>)</span>：<code class="language-plaintext highlighter-rouge">ts_zscore(ts_backfill((free_cashflow / sales) * (sales / enterprise_value) / (enterprise_value / sales), 120), 120)</code>、<code class="language-plaintext highlighter-rouge">ts_quantile(winsorize(ts_backfill(-(cap / cashflow_op) / (enterprise_value / sales), 120), std=2), 66)</code>（现金流估值与营收估值交叉，等价于用自由现金流利润率校正 PS 错配）<br />• <span style="color: #059669; font-weight: 600;">资产质量 × 低库存 × 低商誉共振</span>：<code class="language-plaintext highlighter-rouge">rank(income / assets) + ts_rank(1 / (inventory + 1e-6), 252)</code>；<code class="language-plaintext highlighter-rouge">-zscore(ts_backfill(goodwill / sales, 65)) + rank(capex / sales) + rank(debt / assets)</code>（同时把关资产回报、周转效率与资产负债防线）<br />• <span style="color: #059669; font-weight: 600;">综合财务健康度 (<code class="language-plaintext highlighter-rouge">F-Score</code>)</span>：将盈利为正、经营现金流为正、ROA 提升、应计为负、杠杆下降、流动比率上升、未增发摊薄、毛利率及周转率提升这 9 项打分聚合（筛选高安全边际质量股）<br /><br /><strong>风险残差剥离与跨风格耦合</strong><br />• <span style="color: #059669; font-weight: 600;">基本面因子对风险暴露正交 (<code class="language-plaintext highlighter-rouge">fnd_resid</code>)</span>：<code class="language-plaintext highlighter-rouge">ts_regression(ts_zscore(ts_backfill(roce, 120), 252), risk_exposure, 252, rettype=0)</code>、<code class="language-plaintext highlighter-rouge">ts_regression(ts_quantile(ts_backfill(pretax_income, 120), 252), risk_exposure, 252, rettype=0)</code>（用回归剥离市场风格与风险模型暴露，保留特异基本面 Alpha）<br />• <strong>估值与动量长期耦合</strong>：<code class="language-plaintext highlighter-rouge">-ts_corr(ts_backfill(value_score, 66), ts_backfill(mom_score, 66), 756)</code>（长周期内基本面估值与价格动量的共振或背离程度）<br /><br /><strong>基本面状态门控（<code class="language-plaintext highlighter-rouge">trade_when</code>）与行业分级</strong><br />• <span style="color: #059669; font-weight: 600;">基本面门控风险因子</span>：<code class="language-plaintext highlighter-rouge">trade_when(ts_backfill(rd_expense, 120) &gt; 0, group_neutralize(signal, industry), -1)</code>（仅对存在实质研发投入或正现金流的公司开启信号暴露，过滤空壳与低质噪声）<br />• <strong>分规模运营效率分组</strong>：<code class="language-plaintext highlighter-rouge">group_rank(ebit / assets, subindustry) - group_neutralize(ts_mean(ebit, 210) / ts_mean(capex, 210), subindustry)</code>（配合市值分桶 <code class="language-plaintext highlighter-rouge">bucket(rank(cap), range='0,1,0.1')</code> 区分大盘稳健运营与小盘高扩张）<br /><br /><strong>经典经济学模型配对（<code class="language-plaintext highlighter-rouge">actual</code> vs <code class="language-plaintext highlighter-rouge">model</code>）</strong><br />• <strong>杜邦拆解与偿债联动</strong>：<code class="language-plaintext highlighter-rouge">ROE = (income / sales) * (sales / assets) * (assets / equity)</code>（先看高 ROE 来源是净利率、周转率还是高杠杆，再搭配 <code class="language-plaintext highlighter-rouge">ebit / interest_expense</code> 过滤高利息风险企业）<br />• <strong>戈登增长定价偏离 (<code class="language-plaintext highlighter-rouge">Gordon</code>)</strong>：<code class="language-plaintext highlighter-rouge">r = rf + beta * (rm - rf)</code>，<code class="language-plaintext highlighter-rouge">g = (1 - dividend_paid / income) * (income / equity)</code>，<code class="language-plaintext highlighter-rouge">P_model = dividend_paid / (r - g + 1e-4)</code>（对比 <code class="language-plaintext highlighter-rouge">ts_mean(close, 21)</code> 与 <code class="language-plaintext highlighter-rouge">P_model</code> 衡量成熟派息股估值偏差）<br />• <strong>PEG 增长调整估值</strong>：<code class="language-plaintext highlighter-rouge">(close / eps) / (100 * ts_delta(eps, 252) / (abs(ts_delay(eps, 252)) + 1e-4))</code>（用盈利增速校正静态市盈率）</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="二财务报表数据的四大工程特性与避坑指南">二、财务报表数据的四大工程特性与避坑指南</h2>
+
+<p>不同于日频量价每天连续更新，基本面数据受限于<strong>披露频率低、行业会计口径差异大、分母极值多</strong>三大结构特征，直接套用 PV 算子极易踩坑：</p>
+
+<ol>
+  <li><strong>PIT（Point-in-Time）发布时滞与 <code class="language-plaintext highlighter-rouge">ts_backfill</code> 刚性需求</strong>
+    <ul>
+      <li>季报/年报在绝大多数交易日上是缺失值（<code class="language-plaintext highlighter-rouge">NaN</code>），若不先调用 <code class="language-plaintext highlighter-rouge">ts_backfill(x, 120~252)</code> 将最近一次已发布财报向前填满，截面 <code class="language-plaintext highlighter-rouge">rank</code> 会丢失大量股票，并在财报公布当天引起换手率骤增。</li>
+      <li>若字段包含财报期结束日与实际披露日两种时间戳，回测务必严格使用 <strong>Point-in-Time（实际披露日生效）</strong> 口径，防止用尚未公告的财务数据产生未来函数。</li>
+    </ul>
+  </li>
+  <li><strong>季报 vs 年报口径与同比对齐（避免季节性假信号）</strong>
+    <ul>
+      <li>零售、旅游、建筑等行业存在显著四季强周期；对未做 TTM 年化的单季字段做短期 <code class="language-plaintext highlighter-rouge">ts_delta(x, 60)</code> 会把季节性旺季误判为增长拐点。比较财务增速应优先使用 <strong>TTM 字段</strong> 或 <strong>一年期同比步长</strong>（<code class="language-plaintext highlighter-rouge">ts_delta(..., 252)</code> / <code class="language-plaintext highlighter-rouge">ts_delay(..., 240)</code>）。</li>
+    </ul>
+  </li>
+  <li><strong>跨行业量纲不可比：优先“行业中性 + 自身历史比”</strong>
+    <ul>
+      <li>金融/地产与软件/医药的 <code class="language-plaintext highlighter-rouge">liabilities / assets</code>、<code class="language-plaintext highlighter-rouge">inventory</code>、<code class="language-plaintext highlighter-rouge">capex</code> 天生不在同一坐标系。直接全市场 <code class="language-plaintext highlighter-rouge">rank</code> 往往等价于重仓或做空整个行业，实操中通常需要先做 <code class="language-plaintext highlighter-rouge">group_neutralize(..., industry / subindustry)</code>，或者先用 <code class="language-plaintext highlighter-rouge">ts_zscore(..., 120~252)</code> 让公司与自己过去几年的基线相比。</li>
+    </ul>
+  </li>
+  <li><strong>分母归零、负值符号翻转与 <code class="language-plaintext highlighter-rouge">winsorize</code> 去极值</strong>
+    <ul>
+      <li>像 <code class="language-plaintext highlighter-rouge">ebit / capex</code>、<code class="language-plaintext highlighter-rouge">income / debt_st</code>、<code class="language-plaintext highlighter-rouge">cash_st / debt_lt</code> 这类比率，当分母趋近 <code class="language-plaintext highlighter-rouge">0</code> 或分子分母同时为负时（例如亏损企业除以负净资产得正 PE），排序逻辑会彻底反转。稳健写法是先用 <code class="language-plaintext highlighter-rouge">winsorize(..., std=3/4)</code> 去极值，并用 <code class="language-plaintext highlighter-rouge">if_else(denom &gt; 0, ...)</code> 或对分母加保护与方向约束。</li>
+    </ul>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="三在-analyze-dataset-中的实战应用四通道协同">三、在 <code class="language-plaintext highlighter-rouge">analyze-dataset</code> 中的实战应用（四通道协同）</h2>
+
+<p>结合 <code class="language-plaintext highlighter-rouge">.agents/skills/analyze-dataset</code> 的研究框架与经济学配对原则（<code class="language-plaintext highlighter-rouge">economics_pairing_principles.md</code>），基本面数据集在四通道中的路由策略如下：</p>
+
+<ol>
+  <li><strong>先判数据集“合成度”，决定是否走通道②（Composite 中间字段）</strong>
+    <ul>
+      <li>若目标数据集本身已提供复合估值/利润率字段（如自带 <code class="language-plaintext highlighter-rouge">PE</code>、<code class="language-plaintext highlighter-rouge">NetMargin</code>、<code class="language-plaintext highlighter-rouge">CashFlow/Sales</code>），可直接进入通道①单算子加工与通道③配对；</li>
+      <li>若数据集以<strong>原始三大表分列科目</strong>为主（只有孤立的 <code class="language-plaintext highlighter-rouge">income</code>、<code class="language-plaintext highlighter-rouge">assets</code>、<code class="language-plaintext highlighter-rouge">debt</code>、<code class="language-plaintext highlighter-rouge">capex</code>、<code class="language-plaintext highlighter-rouge">sales</code>），绝对规模直接排序受市值主导极强，必须先进入 <strong>通道②（Composite）</strong>：构造盈利质量比（<code class="language-plaintext highlighter-rouge">ebit/assets</code>、<code class="language-plaintext highlighter-rouge">cashflow_op/sales</code>）、估值倒数（<code class="language-plaintext highlighter-rouge">eps/close</code>、<code class="language-plaintext highlighter-rouge">sales/cap</code>）、偿债比率（<code class="language-plaintext highlighter-rouge">cash_st/debt_lt</code>、<code class="language-plaintext highlighter-rouge">liabilities/assets</code>）或每股化特征（<code class="language-plaintext highlighter-rouge">retained_earnings/sharesout</code>），再将构造产物送入通道①（<code class="language-plaintext highlighter-rouge">ts_backfill</code> → <code class="language-plaintext highlighter-rouge">ts_zscore</code> / <code class="language-plaintext highlighter-rouge">group_rank</code>）完成标准化。</li>
+    </ul>
+  </li>
+  <li><strong>通道③五大经济学配对范式</strong>
+    <ul>
+      <li><strong>自身历史偏离（<code class="language-plaintext highlighter-rouge">exceed</code>）</strong>：当前估值或盈利指标 vs 自身 5 年均值基线（<code class="language-plaintext highlighter-rouge">ts_mean(..., 1260)</code>），消除长期行业估值折溢价；</li>
+      <li><strong>质量交叉检验（<code class="language-plaintext highlighter-rouge">spread</code> / 错配比）</strong>：净利润 vs 经营现金流（应计质量）、营收增速 vs 应收增速（回款质量）、自由现金流 vs 资本开支（扩张收获拐点）、自由现金流估值 vs 营收估值；</li>
+      <li><strong>模型类配对（Model-Based）</strong>：按杜邦分析（利润率/周转/杠杆）、戈登增长（<code class="language-plaintext highlighter-rouge">D / (r - g)</code>）与 PEG 构造理论内在价值 <code class="language-plaintext highlighter-rouge">model data</code>，再与市场实际价格 <code class="language-plaintext highlighter-rouge">actual data</code> 比较偏离；</li>
+      <li><strong>风险残差投影（<code class="language-plaintext highlighter-rouge">projection</code>）</strong>：用 <code class="language-plaintext highlighter-rouge">ts_regression</code> 将基本面指标投影到风险因子暴露（Beta/行业/波动率）上取残差，剔除隐含风格倾斜；</li>
+      <li><strong>基础元素参照池（<code class="language-plaintext highlighter-rouge">base_fields.py</code>）</strong>：当基本面数据集缺少 <code class="language-plaintext highlighter-rouge">close</code> / <code class="language-plaintext highlighter-rouge">cap</code> / <code class="language-plaintext highlighter-rouge">sharesout</code> 时，可按角色从基础行情池引入以构造 <code class="language-plaintext highlighter-rouge">EP</code>、<code class="language-plaintext highlighter-rouge">SP</code>、<code class="language-plaintext highlighter-rouge">BM</code>（注：若该批次旨在冲击单数据集独立分类，则优先使用目标数据集内部自带的市值/企业价值/股价字段）。</li>
+    </ul>
+  </li>
+  <li><strong>通道④组合与跨频门控定位</strong>
+    <ul>
+      <li>基本面因子天然换手极低（常 <code class="language-plaintext highlighter-rouge">&lt; 0.10</code>），在通道④中既适合通过 <code class="language-plaintext highlighter-rouge">ts_backfill(..., 120~252)</code> + <code class="language-plaintext highlighter-rouge">ts_zscore</code> / <code class="language-plaintext highlighter-rouge">ts_decay_linear</code> 作为稳健多因子底座，也极适合通过 <code class="language-plaintext highlighter-rouge">trade_when(rd_expense &gt; 0, ...)</code>、<code class="language-plaintext highlighter-rouge">trade_when(cashflow_op &gt; 0, ...)</code> 充当高频量价/舆情信号的基本面质量门控，过滤财务脆弱或无真实经营支撑的标的。</li>
+    </ul>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="四参考资料">四、参考资料</h2>
+
+<ol>
+  <li>WorldQuant BRAIN Documentation — Fundamental Datasets &amp; FASTEXPR Reference</li>
+  <li>Sloan, R. G. (1996). <em>Do Stock Prices Fully Reflect Information in Accruals and Cash Flows About Future Earnings?</em> The Accounting Review.</li>
+  <li>Novy-Marx, R. (2013). <em>The Other Side of Value: The Gross Profitability Premium.</em> Journal of Financial Economics (<code class="language-plaintext highlighter-rouge">GPA</code>).</li>
+  <li>Piotroski, J. D. (2000). <em>Value Investing: The Use of Historical Financial Statement Information to Separate Winners from Losers</em> (<code class="language-plaintext highlighter-rouge">F-Score</code>).</li>
+</ol>
+
+        </div>
+
+        
+
+        
+        
+  <div class="page-comments">
+    <div id="disqus_thread"></div>
+    <script>
+      var disqus_config = function () {
+        this.page.url = 'https://roshameow.github.io//personal_homepage/data/alphas2/';
+        this.page.identifier = 'https://roshameow.github.io//personal_homepage/data/alphas2/';
+      };
+
+      (function() {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://https-roshameow-github-io-personal-homepage.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+  </div>
+
+
+        
+
+        <nav class="page-pagination" role="navigation">
+  
+    <a class="page-previous" href="/personal_homepage/finance/alphas/">
+      <h4 class="page-pagination-label">Previous</h4>
+      <span class="page-pagination-title">
+        <i class="fas fa-arrow-left"></i> worldquant BRAIN 股票因子 (一) – 仿真测试
+
+      </span>
+    </a>
+  
+
+  
+    <a class="page-next" href="/personal_homepage/tool/asyncio/">
+      <h4 class="page-pagination-label">Next</h4>
+      <span class="page-pagination-title">
+        协程的用法
+ <i class="fas fa-arrow-right"></i>
+      </span>
+    </a>
+  
+</nav>
+
+      </div>
+
+    </div>
+  </article>
+</main>
+
+    <footer id="footer" class="site-footer">
+  <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+<div class="social-icons"><a class="social-icon" href="/personal_homepage/atom.xml"><i class="fas fa-rss-square fa-2x" title="Feed"></i></a><a class="social-icon" href="https://github.com/roshameow"><i class="fab fa-github-square fa-2x" title="GitHub"></i></a><a class="social-icon" href="https://www.linkedin.com/in/wen-liu-06503a7b/"><i class="fab fa-linkedin fa-2x" title="LinkedIn"></i></a><a class="social-icon" href="mailto:w.liuatnk@gmail.com"><i class="fas fa-envelope-square fa-2x" title="e-mail"></i></a></div><div class="copyright">
+    
+      <p>&copy; 2026 Liu, Wen's Home Page. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://github.com/mmistakes/so-simple-theme" rel="nofollow">So Simple</a>.</p>
+    
+  </div>
+</footer>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="/personal_homepage/assets/js/main.min.js"></script>
+<script src="https://use.fontawesome.com/releases/v5.0.12/js/all.js"></script><script src="/personal_homepage/assets/js/content-tables.js" defer></script>
+
+<script>
+(function () {
+  'use strict';
+
+  var types = {
+    NOTE: 'note', INFO: 'note', ABSTRACT: 'note', SUMMARY: 'note', TLDR: 'note',
+    EXAMPLE: 'note', QUOTE: 'note', CITE: 'note',
+    TIP: 'tip', HINT: 'tip', IMPORTANT: 'tip', SUCCESS: 'tip', CHECK: 'tip', DONE: 'tip',
+    QUESTION: 'warning', HELP: 'warning', FAQ: 'warning',
+    WARNING: 'warning', CAUTION: 'warning', ATTENTION: 'warning',
+    DANGER: 'danger', ERROR: 'danger', BUG: 'danger',
+    FAILURE: 'danger', FAIL: 'danger', MISSING: 'danger'
+  };
+  var icons = {
+    note: 'M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z M12 11v6 M12 7h.01',
+    tip: 'M9 18h6 M10 21h4 M9 15a6 6 0 1 1 6 0v3H9z',
+    warning: 'M12 3L2 21h20z M12 9v5 M12 17h.01',
+    danger: 'M7 3h10l4 4v10l-4 4H7l-4-4V7z M9 9l6 6 M15 9l-6 6'
+  };
+
+  function makeIcon(type) {
+    var namespace = 'http://www.w3.org/2000/svg';
+    var svg = document.createElementNS(namespace, 'svg');
+    svg.setAttribute('class', 'callout-icon');
+    svg.setAttribute('viewBox', '0 0 24 24');
+    svg.setAttribute('width', '20');
+    svg.setAttribute('height', '20');
+    svg.setAttribute('fill', 'none');
+    svg.setAttribute('stroke', 'currentColor');
+    svg.setAttribute('stroke-width', '2');
+    svg.setAttribute('stroke-linecap', 'round');
+    svg.setAttribute('stroke-linejoin', 'round');
+    svg.setAttribute('aria-hidden', 'true');
+    svg.setAttribute('focusable', 'false');
+    var path = document.createElementNS(namespace, 'path');
+    path.setAttribute('d', icons[type]);
+    svg.appendChild(path);
+    return svg;
+  }
+
+  // A soft break is a text newline; a Markdown hard break is a <br>.
+  // Do not split newlines inside inline code or other literal content.
+  function firstBreak(parent) {
+    for (var node = parent.firstChild; node; node = node.nextSibling) {
+      if (node.nodeType === 3) {
+        var offset = node.data.search(/[\r\n]/);
+        if (offset !== -1) return { node: node, offset: offset };
+      } else if (node.nodeType === 1) {
+        if (node.tagName === 'BR') return { node: node };
+        if (/^(CODE|PRE|SCRIPT|STYLE|TEXTAREA)$/.test(node.tagName)) continue;
+        var result = firstBreak(node);
+        if (result) return result;
+      }
+    }
+    return null;
+  }
+
+  function transformCallouts() {
+    document.querySelectorAll('.page-content blockquote').forEach(function (quote) {
+      if (quote.closest('pre, code, .highlight, .highlighter-rouge')) return;
+      var paragraph = quote.firstElementChild;
+      if (!paragraph || paragraph.tagName !== 'P') return;
+
+      // Require the marker in a direct text node: <code>[!WARNING]</code>
+      // (and markers merely mentioned later in a quote) must remain literal.
+      var markerNode = paragraph.firstChild;
+      if (!markerNode || markerNode.nodeType !== 3) return;
+      var marker = markerNode.data.match(/^[\t \r\n]*\[!([a-z][a-z0-9-]*)\]([+-])?(?=[\t \r\n]|$)[\t ]*/i);
+      if (!marker) return;
+      var name = marker[1].toUpperCase();
+      if (!Object.prototype.hasOwnProperty.call(types, name)) return;
+      var type = types[name];
+      var label = name === 'TLDR' ? 'TL;DR' : name.charAt(0) + name.slice(1).toLowerCase();
+      markerNode.deleteData(0, marker[0].length);
+
+      var boundary = firstBreak(paragraph);
+      var range = document.createRange();
+      range.selectNodeContents(paragraph);
+      if (boundary) {
+        if (boundary.node.nodeType === 3) range.setEnd(boundary.node, boundary.offset);
+        else range.setEndBefore(boundary.node);
+      }
+      var titleContent = range.extractContents();
+      if (boundary) {
+        if (boundary.node.nodeType === 3) {
+          var breakLength = boundary.node.data.slice(0, 2) === '\r\n' ? 2 : 1;
+          boundary.node.deleteData(0, breakLength);
+        } else {
+          boundary.node.parentNode.removeChild(boundary.node);
+        }
+      }
+      if (!paragraph.textContent.trim() && !paragraph.children.length) {
+        quote.removeChild(paragraph);
+      }
+
+      var folding = !!marker[2];
+      var callout = document.createElement(folding ? 'details' : 'div');
+      // Keep author-provided IDs, language, direction, and classes.
+      Array.prototype.forEach.call(quote.attributes, function (attribute) {
+        callout.setAttribute(attribute.name, attribute.value);
+      });
+      callout.classList.add('callout', 'callout--' + type);
+      callout.setAttribute('data-callout', name.toLowerCase());
+      callout.setAttribute('aria-label', label);
+      if (folding) {
+        callout.removeAttribute('role');
+        if (marker[2] === '+') callout.setAttribute('open', '');
+        else callout.removeAttribute('open');
+      } else {
+        callout.setAttribute('role', 'note');
+      }
+
+      var title = document.createElement(folding ? 'summary' : 'div');
+      title.className = 'callout-title';
+      title.appendChild(makeIcon(type));
+      var titleText = document.createElement('span');
+      titleText.className = 'callout-title-text';
+      if (titleContent.textContent.trim() || titleContent.childElementCount) {
+        titleText.appendChild(titleContent);
+      } else {
+        titleText.textContent = label;
+      }
+      title.appendChild(titleText);
+      callout.appendChild(title);
+
+      var body = document.createElement('div');
+      body.className = 'callout-body';
+      while (quote.firstChild) body.appendChild(quote.firstChild);
+      callout.appendChild(body);
+      quote.parentNode.replaceChild(callout, quote);
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', transformCallouts);
+  } else {
+    transformCallouts();
+  }
+})();
+</script>
+<!-- <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'G-9TMSCDTBGN', 'auto');
+  ga('send', 'pageview');
+</script> -->
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9TMSCDTBGN"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-9TMSCDTBGN');
+</script>
+
+
+
+<!-- MathJax -->
+<style>
+    /* Only oversized equations get this wrapper; ordinary inline math stays inline. */
+    .math-scroll {
+        display: block;
+        max-width: 100%;
+        overflow-x: auto;
+        overflow-y: hidden;
+        padding-block: 0.5em;
+        scrollbar-width: thin;
+    }
+    .math-scroll > mjx-container[jax] {
+        display: inline-block;
+        margin: 0;
+    }
+    .math-scroll:focus-visible {
+        outline: 2px solid currentColor;
+        outline-offset: 2px;
+    }
+</style>
+<script>
+    function fitMathToColumn() {
+        document.querySelectorAll('mjx-container').forEach(function (container) {
+            var wrapper = container.parentElement.classList.contains('math-scroll') ? container.parentElement : null;
+            var column = wrapper ? wrapper.parentElement : container.parentElement;
+            while (column && ['inline', 'contents'].includes(getComputedStyle(column).display)) {
+                column = column.parentElement;
+            }
+            if (!column) return;
+            var style = getComputedStyle(column);
+            var available = column.clientWidth - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight);
+            var ink = container.querySelector('mjx-math, svg');
+            var width = (ink || container).getBoundingClientRect().width;
+            if (width > available + 1) {
+                if (!wrapper) {
+                    wrapper = document.createElement('span');
+                    wrapper.className = 'math-scroll';
+                    wrapper.tabIndex = 0;
+                    wrapper.setAttribute('role', 'region');
+                    wrapper.setAttribute('aria-label', 'Mathematical formula; scroll horizontally to read all');
+                    wrapper.title = 'Scroll horizontally to read the full formula';
+                    container.before(wrapper);
+                    wrapper.appendChild(container);
+                }
+            } else if (wrapper) {
+                wrapper.replaceWith(container);
+            }
+        });
+    }
+    // Pin the engine, autoloaded TeX extensions, menu and fonts to local assets.
+    window.MathJax = {
+        loader: {
+            paths: { mathjax: "/personal_homepage/assets/js/vendor/mathjax/es5" },
+            load: ['[tex]/textmacros']
+        },
+        tex: {
+            tags: "ams",
+            packages: { '[+]': ['textmacros'] },
+            inlineMath: [['$', '$'], ['\\(', '\\)']],
+            displayMath: [['$$', '$$'], ['\\[', '\\]']]
+        },
+        chtml: {
+            fontURL: "/personal_homepage/assets/js/vendor/mathjax/es5/output/chtml/fonts/woff-v2"
+        },
+        startup: {
+            pageReady: function () {
+                return MathJax.startup.defaultPageReady().then(function () {
+                    return document.fonts ? document.fonts.ready : undefined;
+                }).then(function () {
+                    fitMathToColumn();
+                    var scheduled = false;
+                    window.addEventListener('resize', function () {
+                        if (scheduled) return;
+                        scheduled = true;
+                        requestAnimationFrame(function () {
+                            scheduled = false;
+                            fitMathToColumn();
+                        });
+                    });
+                });
+            }
+        },
+        options: {
+            // Keep examples (including literal dollar signs) out of the typesetter.
+            skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code', 'annotation', 'annotation-xml']
+        }
+    };
+</script>
+<script id="MathJax-script" async src="/personal_homepage/assets/js/vendor/mathjax/es5/tex-mml-chtml.js"></script>
+
+
+
+
+<!-- Mermaid -->
+<style>
+  .mermaid-diagram {
+    max-width: 100%;
+    margin: 0.85rem 0;
+    overflow-x: auto;
+  }
+  .mermaid-diagram:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+  }
+  .page-content pre.mermaid {
+    margin: 0;
+    padding: 0.25rem 0;
+    text-align: center;
+    background: transparent;
+    overflow: visible;
+    font-family: inherit;
+  }
+  .page-content pre.mermaid[data-processed] {
+    white-space: normal;
+  }
+  pre.mermaid svg {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    height: auto;
+  }
+  .mermaid-diagram .cluster-label {
+    font-weight: 700;
+  }
+  .mermaid-error {
+    font-size: 0.85em;
+    color: #9a3412;
+  }
+</style>
+<script src="/personal_homepage/assets/js/vendor/mermaid-11.17.2.min.js"></script>
+<script>
+(function () {
+  'use strict';
+
+  function normalizeMermaidSource(source) {
+    // Mermaid 11 accepts A <-- "label" --- B but creates an INVALID edge.
+    // Render the equivalent B -->|"label"| A, without editing the Markdown.
+    var body = source.trimStart()
+      .replace(/^---\r?\n[\s\S]*?\r?\n---(?:\r?\n|$)/, '')
+      .replace(/%%\{[\s\S]*?\}%%/g, '')
+      .replace(/^[\t ]*%%.*$/gm, '').trimStart();
+    if (!/^(?:flowchart|graph)\b/.test(body)) return source;
+
+    var started = false;
+    var quoted = false;
+    return source.replace(/[^\r\n]+/g, function (line) {
+      if (!started && !/^\s*(?:flowchart|graph)\b/.test(line)) return line;
+      started = true;
+      var normalized = quoted ? line : line.replace(
+        /^([\t ]*)([A-Za-z_][\w-]*)[\t ]*<--[\t ]*("[^"\r\n]*")[\t ]*---[\t ]*([A-Za-z_][\w-]*)([\t ]*;?[\t ]*(?:%%.*)?)$/,
+        function (_, indent, left, label, right, suffix) {
+          return indent + right + ' -->|' + label + '| ' + left + suffix;
+        }
+      );
+      // Never rewrite an example inside a multiline quoted node label, and
+      // never let quotes inside a %% comment affect the following lines.
+      for (var i = 0; i < line.length; i++) {
+        if (!quoted && line[i] === '%' && line[i + 1] === '%') break;
+        if (line[i] === '"') quoted = !quoted;
+      }
+      return normalized;
+    });
+  }
+
+  async function renderDiagrams() {
+    var blocks = document.querySelectorAll('code.language-mermaid');
+    if (!blocks.length) return;
+    if (typeof mermaid === 'undefined') {
+      blocks.forEach(function (code) {
+        var original = code.closest('.highlighter-rouge') || code.closest('pre');
+        if (!original) return;
+        var message = document.createElement('p');
+        message.className = 'mermaid-error';
+        message.setAttribute('role', 'status');
+        message.textContent = '图表组件加载失败，请刷新页面重试。Mermaid 源码已保留。';
+        original.after(message);
+      });
+      return;
+    }
+
+    // Render every diagram as Mermaid, including diagrams with multiple subgraphs.
+    // Disable the automatic pass so it cannot race with our explicit rendering.
+    var skin = getComputedStyle(document.documentElement);
+    function color(name, fallback) {
+      return skin.getPropertyValue('--mermaid-' + name).trim() || fallback;
+    }
+    var background = color('background', '#ffffff');
+    var text = color('text', '#000000');
+    var border = color('border', '#cccccc');
+    var nodeBorder = color('node-border', '#b8b9c0');
+    var cluster = color('cluster-background', '#f9f9fa');
+    var line = color('line', '#858795');
+    var palettes = [
+      ['#e4eaf0', '#f4f6f9', '#a5b3c2'], // slate blue
+      ['#e8f0ea', '#f5f8f5', '#a8bcae'], // sage
+      ['#f3ede3', '#faf7f2', '#c6b69c'], // sand
+      ['#ebe8f1', '#f7f5fa', '#b5adc5'], // lavender
+      ['#e4eeee', '#f3f8f8', '#a0baba']  // muted teal
+    ].map(function (fallbacks, index) {
+      return {
+        node: color('palette-' + index + '-node', fallbacks[0]),
+        cluster: color('palette-' + index + '-cluster', index === 0 ? cluster : fallbacks[1]),
+        border: color('palette-' + index + '-border', fallbacks[2])
+      };
+    });
+    var fontFamily = getComputedStyle(document.body).fontFamily ||
+      '"Source Sans Pro", sans-serif';
+    // Mermaid fixes label dimensions during layout. Wait for web fonts so a
+    // later font swap cannot make the measured label box too small.
+    if (document.fonts) await document.fonts.ready;
+
+    var theme = "default";
+    // The site's default follows its active skin. Explicit forest/dark/etc.
+    // choices remain available for sites that deliberately select them.
+    if (theme === 'default') theme = 'base';
+
+    var config = {
+      startOnLoad: false,
+      securityLevel: 'strict',
+      fontFamily: fontFamily,
+      // Native SVG text avoids foreignObject clipping and article paragraph CSS.
+      htmlLabels: false,
+      flowchart: {
+        inheritDir: true,
+        curve: 'linear',
+        nodeSpacing: 24,
+        rankSpacing: 28,
+        padding: 8,
+        diagramPadding: 8,
+        wrappingWidth: 180,
+        // Nested cluster borders must start below the parent's full title line.
+        subGraphTitleMargin: { top: 4, bottom: 12 }
+      },
+      theme: theme,
+      themeVariables: theme === 'base' ? {
+        fontFamily: fontFamily,
+        fontSize: '14px',
+        background: background,
+        primaryColor: palettes[0].node,
+        primaryTextColor: text,
+        primaryBorderColor: nodeBorder,
+        secondaryColor: palettes[1].node,
+        secondaryTextColor: text,
+        secondaryBorderColor: border,
+        tertiaryColor: palettes[2].node,
+        tertiaryTextColor: text,
+        tertiaryBorderColor: border,
+        lineColor: line,
+        textColor: text,
+        mainBkg: palettes[0].node,
+        nodeBorder: nodeBorder,
+        nodeTextColor: text,
+        clusterBkg: palettes[0].cluster,
+        clusterBorder: border,
+        titleColor: text,
+        defaultLinkColor: line,
+        edgeLabelBackground: background,
+        noteBkgColor: palettes[2].node,
+        noteTextColor: text,
+        noteBorderColor: border,
+        actorBkg: palettes[0].node,
+        actorBorder: nodeBorder,
+        actorTextColor: text,
+        actorLineColor: border,
+        signalColor: line,
+        signalTextColor: text
+      } : { fontFamily: fontFamily }
+    };
+
+    function applyFlowchartPalette(svg) {
+      if (theme !== 'base' || !/^flowchart/.test(svg.getAttribute('aria-roledescription') || '')) return;
+
+      function tint(group, shapes, index, kind) {
+        // Author-supplied classDef/style colors take precedence over auto accents.
+        var customClass = Array.from(group.classList).some(function (name) {
+          return !['node', 'default', 'cluster', 'clickable'].includes(name);
+        });
+        if (customClass || !shapes.length || shapes.some(function (shape) {
+          return shape.style.getPropertyValue('fill') || shape.style.getPropertyValue('stroke');
+        })) return;
+        group.setAttribute('data-mermaid-palette', index);
+        shapes.forEach(function (shape) {
+          // Keep fallbacks in the SVG so exported diagrams retain their colors.
+          if (shape.getAttribute('fill') !== 'none') {
+            shape.style.fill = 'var(--mermaid-palette-' + index + '-' + kind + ', ' + palettes[index][kind] + ')';
+          }
+          shape.style.stroke = 'var(--mermaid-palette-' + index + '-border, ' + palettes[index].border + ')';
+        });
+      }
+
+      var groups = Array.from(svg.querySelectorAll('g.cluster')).map(function (group, index) {
+        var rect = group.querySelector('rect');
+        return { group: group, rect: rect, bounds: rect && rect.getBoundingClientRect(), index: index % palettes.length };
+      }).filter(function (entry) { return entry.rect; });
+      // Mermaid's SVG stores clusters flat. Match by the actual layout so nodes
+      // inherit their smallest enclosing group, including nested schedulers.
+      var nodes = Array.from(svg.querySelectorAll('g.node')).map(function (node) {
+        return { node: node, bounds: node.getBoundingClientRect() };
+      });
+      groups.forEach(function (entry) { tint(entry.group, [entry.rect], entry.index, 'cluster'); });
+      groups.sort(function (a, b) { return a.bounds.width * a.bounds.height - b.bounds.width * b.bounds.height; });
+      nodes.forEach(function (entry) {
+        var box = entry.bounds;
+        var parent = groups.find(function (group) {
+          var bounds = group.bounds;
+          return box.left >= bounds.left - 1 && box.right <= bounds.right + 1 &&
+            box.top >= bounds.top - 1 && box.bottom <= bounds.bottom + 1;
+        });
+        var shapes = [];
+        entry.node.querySelectorAll(':scope > .label-container').forEach(function (container) {
+          // Rounded/hand-drawn shapes wrap paths in a group. Include the
+          // container in the author-style check, then tint the actual paths.
+          shapes.push(container);
+          shapes.push.apply(shapes, container.querySelectorAll('path, rect, circle, ellipse, polygon, polyline'));
+        });
+        tint(entry.node, shapes, parent ? parent.index : 0, 'node');
+      });
+    }
+
+    function hasNestedSubgraphs(source) {
+      var depth = 0;
+      return source.split(/\r?\n/).some(function (line) {
+        if (/^\s*subgraph\b/.test(line)) return ++depth > 1;
+        if (/^\s*end\s*(?:;|%%.*)?$/.test(line)) depth = Math.max(0, depth - 1);
+        return false;
+      });
+    }
+
+    for (var code of blocks) {
+      var original = code.closest('.highlighter-rouge') || code.closest('pre');
+      if (!original) continue;
+
+      var wrapper = document.createElement('div');
+      wrapper.className = 'mermaid-diagram';
+      wrapper.tabIndex = 0;
+      wrapper.setAttribute('role', 'region');
+      wrapper.setAttribute('aria-label', 'Mermaid diagram (scroll horizontally)');
+
+      var pre = document.createElement('pre');
+      pre.className = 'mermaid';
+      pre.textContent = normalizeMermaidSource(code.textContent);
+      wrapper.appendChild(pre);
+      original.replaceWith(wrapper);
+
+      try {
+        // Dagre reserves only half rankSpacing above a nested cluster. Keep
+        // that space taller than its parent's title, without spreading out
+        // the ordinary (non-nested) compact flowcharts.
+        mermaid.initialize(Object.assign({}, config, {
+          flowchart: Object.assign({}, config.flowchart, {
+            rankSpacing: hasNestedSubgraphs(code.textContent) ? 56 : config.flowchart.rankSpacing
+          })
+        }));
+        await mermaid.run({ nodes: [pre] });
+        var svg = pre.querySelector('svg');
+        if (svg && svg.viewBox.baseVal.width) {
+          // Do not shrink labels to illegible text on narrow screens;
+          // keep at least 90% of the natural size and scroll the diagram instead.
+          svg.style.minWidth = (svg.viewBox.baseVal.width * 0.9) + 'px';
+        }
+        if (svg) applyFlowchartPalette(svg);
+      } catch (error) {
+        // A malformed diagram must not prevent other diagrams from rendering
+        // or make the original source disappear.
+        wrapper.replaceChildren(original);
+        var message = document.createElement('p');
+        message.className = 'mermaid-error';
+        message.setAttribute('role', 'status');
+        message.textContent = '图表渲染失败，已保留 Mermaid 源码。';
+        wrapper.appendChild(message);
+        console.warn('Mermaid diagram could not be rendered:', error);
+      }
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', renderDiagrams);
+  } else {
+    renderDiagrams();
+  }
+})();
+</script>
+
+
+  </body>
+
+</html>

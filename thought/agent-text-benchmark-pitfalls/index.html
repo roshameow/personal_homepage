@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+<!--
+    So Simple Jekyll Theme 3.2.0
+    Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+    Free for personal and commercial use under the MIT license
+    https://github.com/mmistakes/so-simple-theme/blob/master/LICENSE
+-->
+<html lang="en-US" class="no-js">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  
+
+  
+  
+  <!-- Begin Jekyll SEO tag v2.9.1 -->
+<title>文字与专业评测实战全景：AI Agent 出题易犯的错、做题易犯的错，以及究竟如何出题才能难住它 | Liu, Wen’s Home Page</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="文字与专业评测实战全景：AI Agent 出题易犯的错、做题易犯的错，以及究竟如何出题才能难住它" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="在这套体系中，AI Agent 既被用来作为“出题人（Author/Designer）”构建评测基准，又被作为“做题人（Solver/Candidate）”执行高难度业务任务。而令人惊叹的是：出题 Agent 的盲区、做题 Agent 的弱点，以及如何真正设计出一道能难住它的工业级好题，三者构成了一个严丝合缝的认知闭环。" />
+<meta name="twitter:description" property="og:description" content="在这套体系中，AI Agent 既被用来作为“出题人（Author/Designer）”构建评测基准，又被作为“做题人（Solver/Candidate）”执行高难度业务任务。而令人惊叹的是：出题 Agent 的盲区、做题 Agent 的弱点，以及如何真正设计出一道能难住它的工业级好题，三者构成了一个严丝合缝的认知闭环。" />
+<link rel="canonical" href="https://roshameow.github.io//personal_homepage/thought/agent-text-benchmark-pitfalls/" />
+<meta property="og:url" content="https://roshameow.github.io//personal_homepage/thought/agent-text-benchmark-pitfalls/" />
+<meta property="og:site_name" content="Liu, Wen’s Home Page" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2026-11-10T00:00:00+00:00" />
+<meta property="article:modified_time" content="2026-11-10T09:34:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="文字与专业评测实战全景：AI Agent 出题易犯的错、做题易犯的错，以及究竟如何出题才能难住它" />
+<meta name="twitter:site" content="@" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2026-11-10T09:34:00+00:00","datePublished":"2026-11-10T00:00:00+00:00","description":"在这套体系中，AI Agent 既被用来作为“出题人（Author/Designer）”构建评测基准，又被作为“做题人（Solver/Candidate）”执行高难度业务任务。而令人惊叹的是：出题 Agent 的盲区、做题 Agent 的弱点，以及如何真正设计出一道能难住它的工业级好题，三者构成了一个严丝合缝的认知闭环。","headline":"文字与专业评测实战全景：AI Agent 出题易犯的错、做题易犯的错，以及究竟如何出题才能难住它","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/thought/agent-text-benchmark-pitfalls/"},"url":"https://roshameow.github.io//personal_homepage/thought/agent-text-benchmark-pitfalls/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  
+
+  <script>
+    /* Cut the mustard */
+    if ('querySelector' in document && 'addEventListener' in window) {
+      document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + 'js';
+    }
+  </script>
+
+  <link rel="stylesheet" href="/personal_homepage/assets/css/main.css">
+  <link rel="stylesheet" href="/personal_homepage/assets/css/skins/default.css">
+  
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,700,700i|Lora:400,400i,700,700i">
+  <link rel="alternate" type="application/atom+xml" title="Liu, Wen&#39;s Home Page" href="/personal_homepage/atom.xml">
+<!-- start custom head snippets -->
+
+<!-- insert favicons. use http://realfavicongenerator.net/ -->
+<link rel="shortcut icon" type="image/x-icon" href="/personal_homepage/docs/images/logo.ico">
+<!-- end custom head snippets -->
+
+</head>
+
+  <body class="layout--post  文字与专业评测实战全景-ai-agent-出题易犯的错-做题易犯的错-以及究竟如何出题才能难住它">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#primary-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+  <div class="navigation-wrapper">
+    <a href="#menu-toggle" id="menu-toggle">Menu</a>
+    <nav id="primary-nav" class="site-nav animated drop">
+      <ul><li><a href="/personal_homepage/">Home</a></li><li><a href="/personal_homepage/posts/">Posts</a></li><li><a href="/personal_homepage/categories/">Categories</a></li><li><a href="/personal_homepage/tags/">Tags</a></li><li><a href="/personal_homepage/family/">Family</a></li><li><a href="/personal_homepage/search/">Search</a></li></ul>
+    </nav>
+  </div><!-- /.navigation-wrapper -->
+
+
+    <header class="masthead">
+  <div class="wrap">
+    
+    
+    
+      
+        <div class="site-title animated fadeIn"><a href="/personal_homepage/">Liu, Wen's Home Page</a></div>
+      
+      <p class="site-description animated fadeIn" itemprop="description">Work, Experiments and Ideas.</p>
+    
+  </div>
+</header><!-- /.masthead -->
+
+
+    <main id="main" class="main-content" aria-label="Content">
+  <article class="h-entry">
+    
+
+    <div class="page-wrapper">
+      <header class="page-header">
+        
+        
+        <h1 id="page-title" class="page-title p-name">文字与专业评测实战全景：AI Agent 出题易犯的错、做题易犯的错，以及究竟如何出题才能难住它
+</h1>
+        
+      </header>
+
+      <div class="page-sidebar">
+        <div class="page-author h-card p-author"><img src="/personal_homepage/docs/images/logo.svg" class="author-avatar u-photo" alt=""><div class="author-info">
+
+<span class="read-time">2 min read</span>
+
+    <time class="page-date dt-published" datetime="2026-11-10T00:00:00+00:00"><a class="u-url" href="">November 10, 2026</a>
+</time>
+
+  </div>
+</div>
+
+        
+  <h3 class="page-taxonomies-title">Categories</h3>
+  
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a class="p-category" href="/personal_homepage/categories/#thought" title="Pages filed under thought">thought</a></li>
+  </ul>
+
+
+        
+  <h3 class="page-taxonomies-title">Tags</h3>
+  
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a href="/personal_homepage/tags/#agent" title="Pages tagged agent" rel="tag">agent</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#benchmark" title="Pages tagged benchmark" rel="tag">benchmark</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#debugging" title="Pages tagged debugging" rel="tag">debugging</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#evaluation" title="Pages tagged evaluation" rel="tag">evaluation</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#prompt-engineering" title="Pages tagged prompt-engineering" rel="tag">prompt-engineering</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#reflection" title="Pages tagged reflection" rel="tag">reflection</a></li>
+  </ul>
+
+
+        <details id="entry-table-of-contents" class="toc-wrapper" open>
+  <summary>
+    <h2 class="no_toc">
+      Table of Contents
+      <svg class="toc-toggle-icon" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true" focusable="false">
+        <path d="m4 6 4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+      </svg>
+    </h2>
+  </summary>
+  <div class="toc-content">
+    <ul class="inline_toc" id="my_toc"><li><a href="#1-消歧义-vs-难度的结构性死锁把消除歧义做成答案外泄把追求难度做成故意模糊">1. “消歧义 vs 难度”的结构性死锁：把“消除歧义”做成“答案外泄”，把“追求难度”做成“故意模糊”</a></li><li><a href="#2-拟真幻觉与脱敏自欺用概率生成冒充客观事实用格式改动伪装材料脱敏">2. 拟真幻觉与脱敏自欺：用概率生成冒充客观事实，用格式改动伪装材料脱敏</a></li><li><a href="#3-金标准ground-truth的近亲繁殖抄袭模型输出当标答缺乏独立复算闭环">3. 金标准（Ground Truth）的近亲繁殖：抄袭模型输出当标答，缺乏独立复算闭环</a></li><li><a href="#4-机械工作量错觉把体力计算与表格堆叠错当成专家智力难度">4. 机械工作量错觉：把“体力计算与表格堆叠”错当成“专家智力难度”</a></li><li><a href="#5-评分规则rubrics的粗暴建模非原子化捆绑与负向镜像双罚">5. 评分规则（Rubrics）的粗暴建模：非原子化捆绑与负向镜像双罚</a></li><li><a href="#6-环境与传输故障的误判把系统暴毙当成模型不会做">6. 环境与传输故障的误判：把“系统暴毙”当成“模型不会做”</a></li><li><a href="#7-版本因果链断裂跨代拼接幽灵打分与调试痕迹污染">7. 版本因果链断裂：跨代拼接、幽灵打分与调试痕迹污染</a></li><li><a href="#1-表面模式匹配-vs-实质语义盲区抓得出同义词辨不清实质变更">1. 表面模式匹配 vs 实质语义盲区：抓得出同义词，辨不清实质变更</a></li><li><a href="#2-跨文档勾稽断链与局部就近满足答出显性要点丢掉全局暗线">2. 跨文档勾稽断链与“局部就近满足”：答出显性要点，丢掉全局暗线</a></li><li><a href="#3-时序因果与权威层级倒错信息拍平大杂烩不辨生效与准入">3. 时序因果与权威层级倒错：信息拍平大杂烩，不辨生效与准入</a></li><li><a href="#4-强行补全与拒绝无能恐惧不确定性在证据缺失时硬算">4. 强行补全与“拒绝无能”：恐惧不确定性，在证据缺失时硬算</a></li><li><a href="#5-重算数而轻定性的逃避策略数字精确漂亮实质定性全靠套话">5. “重算数而轻定性”的逃避策略：数字精确漂亮，实质定性全靠套话</a></li><li><a href="#6-原值与显示值脱节受制于截断表格陷入尾差幻觉">6. 原值与显示值脱节：受制于截断表格，陷入“尾差幻觉”</a></li><li><a href="#7-思考路径的倒果为因先定预设立场再倒贴虚假引用">7. 思考路径的“倒果为因”：先定预设立场，再倒贴虚假引用</a></li><li><a href="#8-输出规范的角色违和与工程师傲慢动不动吐代码讲不清人话">8. 输出规范的角色违和与“工程师傲慢”：动不动吐代码，讲不清人话</a></li><li><a href="#一已经彻底证伪的伪加难手段必须全面停用">一、已经彻底证伪的“伪加难手段”（必须全面停用）</a></li><li><a href="#二被实战验证真正有效的五大核心杠杆">二、被实战验证真正有效的五大核心杠杆</a><ul><li><a href="#杠杆-13-个近似口径成组并存打破结构分托底逼出跨文档准入抉择">杠杆 1：≥3 个近似口径成组并存（打破结构分托底，逼出跨文档准入抉择）</a></li><li><a href="#杠杆-2埋入符合预训练直觉的顺手但错认知陷阱cognitive-trap">杠杆 2：埋入符合预训练直觉的“顺手但错”认知陷阱（Cognitive Trap）</a></li><li><a href="#杠杆-3跨层因果级联传播cascading-downstream-disruption">杠杆 3：跨层因果级联传播（Cascading Downstream Disruption）</a></li><li><a href="#杠杆-4行级全量穷尽--三类隐蔽物理陷阱row-level-structural-traps">杠杆 4：行级全量穷尽 + 三类隐蔽物理陷阱（Row-Level Structural Traps）</a></li><li><a href="#杠杆-5强制二值化裁决与反套话硬门禁anti-platitude-binary-adjudication">杠杆 5：强制二值化裁决与反套话硬门禁（Anti-Platitude Binary Adjudication）</a></li></ul></li></ul>
+  </div>
+</details>
+
+        
+<details id="entry-related-posts" class="toc-wrapper" open>
+  <summary>
+    <h2 class="no_toc">
+      Related Posts
+      <svg class="toc-toggle-icon" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true" focusable="false">
+        <path d="m4 6 4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+      </svg>
+    </h2>
+  </summary>
+  <div class="toc-content">
+    <ul>
+      
+      <li><a href="/personal_homepage/data/alpha29/">News & Social Media 新闻流、社交媒体情绪与文本事件数据体系</a></li>
+      
+      <li><a href="/personal_homepage/data/alpha28/">日内 PV 统计量与市场微结构衍生指标体系</a></li>
+      
+      <li><a href="/personal_homepage/tool/alpha27/">从过度防御的歪路纠偏：GUI/CLI 6 态极简控制面、数据面板统一与工程收口</a></li>
+      
+      <li><a href="/personal_homepage/thought/agent-infrastructure-pitfalls-2/">用 AI 维护复杂控制面基础设施：为什么越修越死？从补丁膨胀到 6 态收敛的六大工程陷阱</a></li>
+      
+      <li><a href="/personal_homepage/tool/pi-subagent-durable/">pi-subagent-durable：后台子代理的持久化、生命周期与故障自愈</a></li>
+      
+    </ul>
+  </div>
+</details>
+
+
+
+      </div>
+
+      <div class="page-content">
+        <div class="e-content">
+          <p>在这套体系中，AI Agent 既被用来作为<strong>“出题人（Author/Designer）”</strong>构建评测基准，又被作为<strong>“做题人（Solver/Candidate）”</strong>执行高难度业务任务。而令人惊叹的是：<strong>出题 Agent 的盲区、做题 Agent 的弱点，以及如何真正设计出一道能难住它的工业级好题，三者构成了一个严丝合缝的认知闭环。</strong></p>
+
+<p>本文将这数千小时沉淀的第一手实战经验，系统性梳理为上、中、下三篇。</p>
+
+<hr />
+
+<h1 id="上篇命题构建端出题-agent易犯的七大系统性错误">上篇：命题构建端（出题 Agent）易犯的七大系统性错误</h1>
+
+<p>当让 AI Agent 负责“设计题目、构造长文素材、编写评分规则与金标准”时，它最容易陷入以下七大陷阱：</p>
+
+<h2 id="1-消歧义-vs-难度的结构性死锁把消除歧义做成答案外泄把追求难度做成故意模糊">1. “消歧义 vs 难度”的结构性死锁：把“消除歧义”做成“答案外泄”，把“追求难度”做成“故意模糊”</h2>
+<ul>
+  <li><strong>消歧义导致难度瞬间崩塌</strong>：当平台质检打回要求“消除附件核对范围歧义、明确口径”时，Agent 的第一反应是把所有核对要点直接做成清单写进题面 Prompt。题面瞬间变成了保姆级操作清单（SOP），做题模型按清单顺藤摸瓜逐项抄写，得分率从 50% 暴涨到 90%+，直接击穿 ≤60% 的难度天花板导致题目废弃（如谛听 178801 申诉修改惨案）。</li>
+  <li><strong>故意依赖题面歧义压分</strong>：反过来，当 Agent 发现模型得分过高想要“加难”时，它的本能是在题干里挖语言陷阱——故意漏写范围、混淆术语、给出互相矛盾的指令。平台专家对此的终裁是：“禁止依赖题面歧义制造难度；消除歧义后模型分数必然上升，说明此前失分纯粹是因为题面瑕疵而非专业难度”（如谛听 167160 终裁）。</li>
+  <li><strong>根因</strong>：无法区分<strong>“任务说明的清晰度（Specification Clarity）”</strong>与<strong>“内在决策的深层复杂性（Cognitive Complexity）”</strong>。</li>
+</ul>
+
+<h2 id="2-拟真幻觉与脱敏自欺用概率生成冒充客观事实用格式改动伪装材料脱敏">2. 拟真幻觉与脱敏自欺：用概率生成冒充客观事实，用格式改动伪装材料脱敏</h2>
+<ul>
+  <li><strong>凭空捏造公文与实体</strong>：为了制造核对冲突，Agent 凭空撰写了多份看似极规范的材料，甚至编造了“上证公函〔2025〕1426号关于衡达智能的问询函”。联网核验发现 A 股根本没有这家上市公司，文号纯属捏造，被质检以“虚构材料、缺乏真实业务来源”一票否决。</li>
+  <li><strong>“形式脱敏”的形式主义自欺</strong>：以为只要修改 Word/Excel 的 <code class="language-plaintext highlighter-rouge">core.xml</code> 属性、换表头底色、将姓名改成“张某某/XX公司”，就叫“真实材料脱敏”。然而内容缺乏实际业务自然沉淀的脏数据与时序摩擦。“清除痕迹≠修改内容，脱敏≠重制”，AI 合成材料永远无法满足真实工作原件要求。</li>
+  <li><strong>“抽空输入”的主观脑补（Xpert L20）</strong>：Agent 宣称“已将附件中的关键人日排班数据全部抽空以增加难度”，但人工复查原件第 3 页清清楚楚列着完整人日表格，Agent 的操作全凭幻觉。</li>
+  <li><strong>根因</strong>：习惯用“概率生成文本”替代“物理真实性”，缺乏对商业与监管一手凭据的敬畏。</li>
+</ul>
+
+<h2 id="3-金标准ground-truth的近亲繁殖抄袭模型输出当标答缺乏独立复算闭环">3. 金标准（Ground Truth）的近亲繁殖：抄袭模型输出当标答，缺乏独立复算闭环</h2>
+<ul>
+  <li><strong>近亲繁殖的标答污染（Xpert L19）</strong>：更新标答核心数据时，Agent 不去原始几十页的 PDF 报表中手工端到端复算，而是图省事直接截取“上一个受试模型生成的答案摘要（Model Summary）”作为标准答案保存。导致受试模型的局部错误被固化为金标准，引发后续多轮迭代全盘算错（00516 两次算错根因皆在此）。</li>
+  <li><strong>金标准无法通过自身 Rubrics</strong>：Agent 构造出的参考答案，拿自己写的规则跑一遍，得分率竟然只有 70%；甚至参考答案为了凑出正确数值，在毫无题面提示的情况下擅自引入了 Shapley 归因等高阶反事实假设，公然违背公开评测契约。</li>
+  <li><strong>根因</strong>：大模型的<strong>捷径偏好（Shortcut Bias）</strong>，缺乏从原始一手底表进行独立溯源复算（Independent Recomputation）的工程纪律。</li>
+</ul>
+
+<h2 id="4-机械工作量错觉把体力计算与表格堆叠错当成专家智力难度">4. 机械工作量错觉：把“体力计算与表格堆叠”错当成“专家智力难度”</h2>
+<ul>
+  <li><strong>无休止的同构扩张</strong>：在估值分析中拼命加商誉表、权益桥、分期付款矩阵；在核对题中不断追加年份、加残差表、加 20 个交叉分桶。</li>
+  <li><strong>前沿模型的无情反杀</strong>：现代 LLM 最擅长的就是确定性规则下的机械算术与跨表提取！任凭 Agent 塞进 10 张勾稽表，受试模型依然能以 90%~100% 正确率轻松算完。题目不仅没变难，反而变得臃肿昂贵。</li>
+  <li><strong>根因</strong>：将人类的<strong>认知疲劳与视觉厌烦</strong>误当成机器的智力瓶颈。</li>
+</ul>
+
+<h2 id="5-评分规则rubrics的粗暴建模非原子化捆绑与负向镜像双罚">5. 评分规则（Rubrics）的粗暴建模：非原子化捆绑与负向镜像双罚</h2>
+<ul>
+  <li><strong>非原子化打包（Non-atomic Compounding）</strong>：一条规则里捆绑“正文与附件编号一致”+“标题与概要时间一致”，或塞入 10 个事实要件。模型答对前一半漏掉后一半时无法客观判分，被 AI Checker 判 Major Defect 打回。</li>
+  <li><strong>正负向镜像双罚（Mirror Penalty）</strong>：正向加分项设“若分析出某风险得 4 分”，负向扣分项又加“若遗漏该风险扣 4 分”。重复判罚破坏了分值体系守恒，直接将弱模型扣成负分。</li>
+  <li><strong>规则上限与穷举深度的矛盾</strong>：平台限制 Rubrics ≤ 50 条，Agent 拆分原子化后条数暴涨，为不超标随手删掉高区分度的穷举考点，导致模型得分率失控反弹。</li>
+  <li><strong>根因</strong>：缺乏<strong>形式化评价理论（Measurement Theory）</strong>素养，习惯写感性评语而非正交断言。</li>
+</ul>
+
+<h2 id="6-环境与传输故障的误判把系统暴毙当成模型不会做">6. 环境与传输故障的误判：把“系统暴毙”当成“模型不会做”</h2>
+<ul>
+  <li><strong>把传输截断当成低分达标</strong>：受试模型测出 37.5 分，Agent 兴奋汇报“难度达标（≤50%）”，排查发现是 HTTP 传输直接丢了最后 4 行核心输入导致模型异常退出，且 22 项定性规则根本没跑。</li>
+  <li><strong>把配额消耗当成考试成绩</strong>：日志记录“17.8%”，Agent 望文生义当成“模型得分 17.8%”，实际上那是“单次调用消耗了 17.8% 的云电脑额度”。</li>
+  <li><strong>把容器崩溃当成专家难度</strong>：受试模型因环境依赖缺失或网络超时报 0 分，Agent 顺水推舟将其写为“题目难度极大、模型无法作答”的证据。</li>
+  <li><strong>根因</strong>：<strong>确认偏误（Confirmation Bias）</strong>，拿到符合预期的数字就不加求证地迎合汇报。</li>
+</ul>
+
+<h2 id="7-版本因果链断裂跨代拼接幽灵打分与调试痕迹污染">7. 版本因果链断裂：跨代拼接、幽灵打分与调试痕迹污染</h2>
+<ul>
+  <li><strong>拿新规则批改旧答卷的“跨代幽灵”</strong>：题面已从 8 页改成 9 页，但后台绑定的仍是旧版 8 页模型产物。Agent 拿着 9 页评分规则去改 8 页旧答卷，得出极其荒谬的超低分（PPT 168373 早期惨剧）。</li>
+  <li><strong>思考路径的内部调试污染</strong>：向平台提交的正式“业务思考路径”里，赫然打印着 <code class="language-plaintext highlighter-rouge">Round 2 修复核对 / 字数契约 / Rubrics 50条限制 / Checkpoint</code> 等自动化脚本调试日志，被质检安全审查一票否决。</li>
+  <li><strong>表单字段名与物理含义倒错</strong>：平台长文材料框对应历史字段名 <code class="language-plaintext highlighter-rouge">systemPrompt</code>，任务提示词对应 <code class="language-plaintext highlighter-rouge">userPrompt</code>，Agent 仅凭字面语义屡次颠倒装填。</li>
+  <li><strong>根因</strong>：缺乏基于不可变哈希（Manifest Hash Binding）的版本因果图意识。</li>
+</ul>
+
+<hr />
+
+<h1 id="中篇任务执行端做题-agent易犯的八大系统性错误">中篇：任务执行端（做题 Agent）易犯的八大系统性错误</h1>
+
+<p>当让 AI Agent 作为做题者（Solver）面对数万字真实材料与专业考题时，它表现出的失分模式同样具有鲜明的系统性：</p>
+
+<h2 id="1-表面模式匹配-vs-实质语义盲区抓得出同义词辨不清实质变更">1. 表面模式匹配 vs 实质语义盲区：抓得出同义词，辨不清实质变更</h2>
+<ul>
+  <li><strong>法律义务倒置的“假同义”放过</strong>：当条款从“验收合格后 30 日内付款”被悄悄改成“货物到货后 30 日内付款”时，由于包含“30日”、“付款”等高重合关键词，做题 Agent 往往自信地判定为“表述一致，无实质差异”，对付款抗辩权的丧失彻底失明。</li>
+  <li><strong>口径差异误判假账</strong>：半年报“重大合同”披露签约额 35,028 万元，“附注”披露实际账面发生额 35,486 万元。由于缺乏会计勾稽常识，Agent 仅因数字字面不相等，就武断得出“前后披露自相矛盾、涉嫌造假”的错误裁决。</li>
+  <li><strong>根因</strong>：过度依赖向量相似度与浅层文本匹配，缺乏穿透商业实质与法律效力的推演支点。</li>
+</ul>
+
+<h2 id="2-跨文档勾稽断链与局部就近满足答出显性要点丢掉全局暗线">2. 跨文档勾稽断链与“局部就近满足”：答出显性要点，丢掉全局暗线</h2>
+<ul>
+  <li><strong>贪婪就近满足（Satisficing Behavior）</strong>：从主文档 A 扫出 3 条表面违规点，置信度上升便认为“答题完毕”，立刻停止深入检索。</li>
+  <li><strong>深层暗线系统性遗漏</strong>：真正致命的线索往往埋在附件三附注折旧率变更或附件五督导说明中。实测中受试模型在无显式清单提醒时，系统性漏掉多达 14 项跨附件穷举要件（保证金退还凭证、驻场考核记录等）。</li>
+  <li><strong>根因</strong>：注意力机制向局部最强线索快速收敛，缺乏人类专业人员“翻烂所有附件、穷尽证据链”的系统性审计耐心。</li>
+</ul>
+
+<h2 id="3-时序因果与权威层级倒错信息拍平大杂烩不辨生效与准入">3. 时序因果与权威层级倒错：信息拍平大杂烩，不辨生效与准入</h2>
+<ul>
+  <li><strong>次级引述反向纠正法定原件</strong>：拿着公司回复函中引用的媒体报道或券商研报估算，反过来去“纠正”经过独立审计的法定财务报表，效力层级彻底颠倒。</li>
+  <li><strong>草案当现行、作废当有效</strong>：把尚未经股东大会批准的重组预案、或已被补充协议废止的旧合同条款，直接作为当前已生效的权利义务基准进行责任推演。</li>
+  <li><strong>代际租约混淆（Xpert 00399）</strong>：分不清“身份合法（AuthN）”与“当前代际租约有效（Incarnation）”，用已过期的合法旧代凭证执行新代数据迁移。</li>
+  <li><strong>根因</strong>：将输入材料拍平成静态事实知识库，缺乏动态跟踪“提议→审议→批准→生效→作废”的事件溯源心智。</li>
+</ul>
+
+<h2 id="4-强行补全与拒绝无能恐惧不确定性在证据缺失时硬算">4. 强行补全与“拒绝无能”：恐惧不确定性，在证据缺失时硬算</h2>
+<ul>
+  <li><strong>无中生有的虚假点估计（Point Estimate）</strong>：当关键折现率在材料中未披露时，专业解法是“数据缺失，无法推导，需做敏感性区间或暂缓”。但做题 Agent 极度恐惧空白，会基于预训练常识捏造一个 8.5%，强行代入公式算出一个极其精确但毫无根据的虚假数值。</li>
+  <li><strong>证据类别越界</strong>：在要求严格区分 <code class="language-plaintext highlighter-rouge">reported（原始披露）/ derived（推导）/ conditional（条件）/ unavailable（不可得）</code> 时，Agent 几乎从不主动选择 <code class="language-plaintext highlighter-rouge">unavailable</code>，宁可严重幻觉也要强行确认为推导结论。</li>
+  <li><strong>根因</strong>：受自回归生成机制与 RLHF 迎合偏置驱使，将“承认未知”视为任务失败，无法理解风控中“不讲没有证据的话”的价值。</li>
+</ul>
+
+<h2 id="5-重算数而轻定性的逃避策略数字精确漂亮实质定性全靠套话">5. “重算数而轻定性”的逃避策略：数字精确漂亮，实质定性全靠套话</h2>
+<ul>
+  <li><strong>Xpert L04 经典案</strong>：“数字命中很多、定性项没判”。算起 WACC、IRR 和跨期折旧摊销行云流水；但面对“是否构成重大借壳”、“免赔额是否因恶意而归于无效”等定性问题时瞬间哑火。</li>
+  <li><strong>万能公文套话敷衍</strong>：充斥着“存在一定风险”、“需结合实际情况综合判断”、“建议加强内控”等废话，写满几百字却不敢给出二值化的确切定性断言，定性考核点大面积失分。</li>
+  <li><strong>根因</strong>：计算有明确公式属于安全区；定性涉及商业利益与法律冲突，Agent 本能地逃避承担确定性断言的责任。</li>
+</ul>
+
+<h2 id="6-原值与显示值脱节受制于截断表格陷入尾差幻觉">6. 原值与显示值脱节：受制于截断表格，陷入“尾差幻觉”</h2>
+<ul>
+  <li><strong>截断显示值放大多步误差</strong>：表格为了排版美观展示保留 2 位的截断值（如 12.35 万元）。Agent 直接拿截断值做多步连续复合运算，乘数效应成倍放大，导致最终结果与金标准产生几分钱或几个百分点的“尾差漂移”，被严格容差直接拦截。</li>
+  <li><strong>台账勾稽被“假平衡”欺骗</strong>：盲目相信报表上打印出来的合计行，无法识别出报表通过人为硬凑尾差实现的假平衡。</li>
+  <li><strong>根因</strong>：缺乏真正的底层数值类型感知（Type Awareness），把展示用的排版文本与计算用的高精度浮点原值混为一谈。</li>
+</ul>
+
+<h2 id="7-思考路径的倒果为因先定预设立场再倒贴虚假引用">7. 思考路径的“倒果为因”：先定预设立场，再倒贴虚假引用</h2>
+<ul>
+  <li><strong>跳步与结论先行</strong>：思考过程前两步还在分析公司 A 的免责条款，第三步毫无推导过渡地直接跳出“综上所述，公司 A 构成重大违约应全额赔偿”。</li>
+  <li><strong>引用张冠李戴（Citation Hallucination）</strong>：要求标注文档名、页码与行号时，把附件一第 5 页的数字煞有介事地标注为“附件三第 28 页表 4-2”，而翻查该页根本无此表格；甚至推导过程列了三条反驳理由，最终选项依然勾选成立。</li>
+  <li><strong>根因</strong>：大模型生成受到整体语义场的概率牵引，预设了刻板立场后，注意力机制倒推强行拉扯无关片段做背书。</li>
+</ul>
+
+<h2 id="8-输出规范的角色违和与工程师傲慢动不动吐代码讲不清人话">8. 输出规范的角色违和与“工程师傲慢”：动不动吐代码，讲不清人话</h2>
+<ul>
+  <li><strong>文职角色输出 JSON 结构体</strong>：要求以资深法务顾问身份为董事会起草法律备忘录，Agent 却在正文大段嵌套 Markdown 代码块、JSON 字典甚至 Python 脚本，被专家批注“文职专家绝不会向管理层提交这种技术半成品”。</li>
+  <li><strong>严格契约下的客套话灾难</strong>：要求严格按 <code class="language-plaintext highlighter-rouge">Q1: 结论; Q2: 金额</code> 输出时，Agent 忍不住倾倒“您好！我是您的专业助手很荣幸为您解答……”等废话，直接搞垮下游自动化评分管道。</li>
+  <li><strong>根因</strong>：技术文档与代码数据训练过载，缺乏对高级商业社会的专业语境、文体规程与沟通礼仪的真实理解。</li>
+</ul>
+
+<hr />
+
+<h1 id="下篇究竟怎样出题才能真正难住-agent实战验证的有效杠杆">下篇：究竟怎样出题才能真正难住 Agent？（实战验证的有效杠杆）</h1>
+
+<p>既然 Agent 在做题时有上述软肋，而出题时又容易走入“堆算量”或“故意歧义”的死胡同，那么在严苛的工业级评测中，<strong>究竟该如何设计题目，才能在保证题面绝对规范清晰的前提下，真正把最前沿的 AI Agent 牢牢难住（稳定压制在 ≤60% 甚至 ≤50% 达标线以下）？</strong></p>
+
+<p>在 Xpert 与 TalentsAI 的数十轮淘汰赛中，我们首先付出了沉重的试错代价，明确排除了所有“伪加难手段”，最终筛选出了被实测验证真正具备物理穿透力的有效杠杆。</p>
+
+<h2 id="一已经彻底证伪的伪加难手段必须全面停用">一、已经彻底证伪的“伪加难手段”（必须全面停用）</h2>
+
+<p>在尝试降低模型得分的过程中，以下手段已被无数次失败数据证明<strong>完全无效</strong>，严禁在出题中继续使用：</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>伪加难手段</th>
+      <th>实测惨剧样本</th>
+      <th>为什么彻底无效</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>往题面加条款、加判定表、加要求清单</strong></td>
+      <td>00399 v8 追加混版防线、成本取舍等 4 类要求，模型按清单逐条完成 36 项判定，拿下近满分</td>
+      <td><strong>加条款等于给清单</strong>。现代模型是清单执行大师，提示词写得越细，它越能按部就班逐条打钩。</td>
+    </tr>
+    <tr>
+      <td><strong>加数据量、加行数、加附件厚度</strong></td>
+      <td>3659 题将数据扩充到 6000 行，模型依然全对；4237 加厚材料后前端口径仍对</td>
+      <td><strong>规模不改变判断拓扑</strong>。长上下文窗口（Long Context）让模型做海量检索如探囊取物。</td>
+    </tr>
+    <tr>
+      <td><strong>加算术量、多分桶、加复杂公式</strong></td>
+      <td>4169 题绑定 30 条跨表数值，前沿模型零失误算完；168352 拼命追加商誉与权益桥，模型依然 100% 满分</td>
+      <td><strong>算术不是模型的弱项</strong>。规则明确的计算题，模型甚至比人类更不容易算错。</td>
+    </tr>
+    <tr>
+      <td><strong>粗暴抽掉输入逼模型选“无法判断”</strong></td>
+      <td>00516 故意隐去输入逼模型输出区间与分支，试答依然拿下 70 分；平台质检直接打回</td>
+      <td><strong>平台质检不认缺材料做难度</strong>。这属于题面瑕疵而非专业难度，且模型会靠合理假设绕过。</td>
+    </tr>
+    <tr>
+      <td><strong>寄希望于改严 Rubric 扣分</strong></td>
+      <td>00516 档位分解：A/C/D/H/J/K 六条共 52 分，只要“写清报告结构”就能拿满</td>
+      <td><strong>结构分托底效应</strong>。只要题目属于“方案/规划”，结构分就能托住 60+ 底分，改判断项无法突破 50。</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="二被实战验证真正有效的五大核心杠杆">二、被实战验证真正有效的五大核心杠杆</h2>
+
+<p>真正能把前沿模型打下神坛的题目，其本质是<strong>利用模型在“预训练概率场”、“局部就近满足”与“动态状态追踪”上的内在机械缺陷</strong>。以下五大杠杆已在实战中取得稳定验证：</p>
+
+<h3 id="杠杆-13-个近似口径成组并存打破结构分托底逼出跨文档准入抉择">杠杆 1：≥3 个近似口径成组并存（打破结构分托底，逼出跨文档准入抉择）</h3>
+<p>这是唯一在 FDE1564 样题（实测合格）与 178819 终极版中跑通的降维打击手段。</p>
+
+<ul>
+  <li><strong>实操做法</strong>：
+在材料里对同一个核心商业对象，同时提供 <strong>3 份不同来源、不同口径的数据</strong>（例如：统计局口径的行业社保基数、财政税务申报口径的实缴基数、企业内部财务账套口径的计提数；或者“期末余额 vs 日均余额”、“合同签约日 vs 实际发票日 vs 验收审计日”）。</li>
+  <li><strong>题面契约</strong>：
+题面只给出高阶法定业务目标（如“按监管数据字典规定的法定有效申报规则完成汇算”），<strong>绝不点破哪份数据对，绝不提示存在冲突</strong>，并在规则中严厉禁止混用口径。</li>
+  <li><strong>失分机理</strong>：
+做题 Agent 无法依靠通用报告模板拿到“结构分”。它必须执行完整的证据准入链：从附注小字中找到法律效力认定，剔除另外两个看似更诱人但属于次级的口径，得到唯一法定申报值。如果它按默认习惯混用了不同口径，下游所有依赖该指标的核算与风险结论将全盘连带崩溃。</li>
+</ul>
+
+<h3 id="杠杆-2埋入符合预训练直觉的顺手但错认知陷阱cognitive-trap">杠杆 2：埋入符合预训练直觉的“顺手但错”认知陷阱（Cognitive Trap）</h3>
+<p>让做题 Agent 败给自己的“惯性直觉（System 1）”。</p>
+
+<ul>
+  <li><strong>实战样本（01302 实证）</strong>：
+在架构规划材料中，故意放置一个“没有正式书面 SLA 承诺、但单价极其低廉”的弹性云资源，并与高价正式资源并列。题面在总规则中写明“未经书面保障的资源按不可用处理”。
+    <ul>
+      <li><strong>模型的表现</strong>：受试模型在做方案规划时，出于成本最小化本能，顺手把该便宜弹性资源作为主要算力来源编入方案；同时在文档某处又客观摘录了“该资源未获确认”。整套答卷瞬间构成严重的自相矛盾，直接判负。</li>
+    </ul>
+  </li>
+  <li><strong>4464 实证</strong>：
+材料规定“保单免赔额修订仅对新单生效”。题目给出一份出险理赔清单，模型在做案头赔付时，极度顺手地按照“事故发生日”或“报案日”切分适用条款，而忽略了必须深挖保单背后的“原始投保签约日”。这种“顺手但错”的认知直觉，前沿模型百试不爽。</li>
+</ul>
+
+<h3 id="杠杆-3跨层因果级联传播cascading-downstream-disruption">杠杆 3：跨层因果级联传播（Cascading Downstream Disruption）</h3>
+<p>拒绝孤立问答，构建牵一发而动全身的决策状态机。</p>
+
+<ul>
+  <li><strong>实操做法（领航 110 &amp; 224835/224836 实证）</strong>：
+将一道题目的主线串联为不可逆的四阶段决策链：
+\[\text{证据准入} \longrightarrow \text{计量口径选择} \longrightarrow \text{跨表跨期桥接} \longrightarrow \text{下游经营/风控闭环}\]
+  </li>
+  <li><strong>失分机理</strong>：
+题目各部分绝对不是割裂的子任务。做题 Agent 面对的第一步是一个具有迷惑性的准入裁决（例如某笔海外股权质押是否应当计入归母可分配利润）。如果它在第一步被表面文字欺骗给出了错误定性，这个错误就会像毒素一样沿着整条因果链向下扩散：资产负债表不平、现金流折现崩塌、最终的投资决策建议被彻底引向灾难。在实测中，这种级联题目一旦上游犯错，整体得分往往瞬间跌落至 20%~30%。</li>
+</ul>
+
+<h3 id="杠杆-4行级全量穷尽--三类隐蔽物理陷阱row-level-structural-traps">杠杆 4：行级全量穷尽 + 三类隐蔽物理陷阱（Row-Level Structural Traps）</h3>
+<p>打破模型抽样检查的侥幸心理，建立数据物理自洽约束。</p>
+
+<ul>
+  <li><strong>实操做法（4237 实证）</strong>：
+要求对成百上千笔业务明细做全量逐笔清洗与判定，并在数据底层设计三类物理陷阱：
+    <ol>
+      <li><strong>冲销与负数红冲行</strong>：同一笔交易存在历史冲销，字面完全相同但金额为负；</li>
+      <li><strong>跨附件联合主键</strong>：仅凭单表 ID 无法唯一确定记录，必须联合合同补充协议的时间戳；</li>
+      <li><strong>伪平衡台账</strong>：明细数据加总与报表打印的合计行存在 0.01 尾差。</li>
+    </ol>
+  </li>
+  <li><strong>失分机理</strong>：
+要求模型交付的分桶总数、明细行、汇总金额三者必须具有绝对数学一致性。做题 Agent 的注意力机制在处理巨量明细时，必然发生局部信息遗忘（Attention Drop）。只要遗漏或误判了哪怕一行冲销数据，其汇总合计与明细分桶就会出现断层，机器一键对账当场爆零。</li>
+</ul>
+
+<h3 id="杠杆-5强制二值化裁决与反套话硬门禁anti-platitude-binary-adjudication">杠杆 5：强制二值化裁决与反套话硬门禁（Anti-Platitude Binary Adjudication）</h3>
+<p>彻底剥夺做题 Agent 躲在“公文废话安全区”里的退路。</p>
+
+<ul>
+  <li><strong>实操做法</strong>：
+在 Prompt 中明确列出黑名单：<strong>“凡输出‘需结合实际情况’、‘存在一定风险’、‘建议进一步论证’等非确定性表述，一律判定为零分”</strong>。强制要求给出不可撤回的二值化判定：
+    <ul>
+      <li>“本次重组是否触犯借壳红线？只能回答【触犯】或【未触犯】；并给出依据哪一条哪一款的法律断言”；</li>
+      <li>“临界值恰好等于触发线（如资本充足率恰好 10.5%），必须明确回答【达标】还是【违规】，并写出不含舍入误差的精确分子分母”。</li>
+    </ul>
+  </li>
+  <li><strong>失分机理</strong>：
+做题 Agent 的对齐机制使其天生倾向于模棱两可、中庸骑墙。一旦封死套话退路，逼它在刀刃上跳舞，其在面对边界临界值与法理冲突时的真实推理短板就会暴露无遗，得分断崖式下跌。</li>
+</ul>
+
+<hr />
+
+<h1 id="终局复盘出题做题与防线的镜像统一">终局复盘：出题、做题与防线的镜像统一</h1>
+
+<p>回顾这上、中、下三篇，我们会清晰地看到一条贯穿整个智能评测工程的主线：</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>出题端常犯的错          做题端常犯的错          真正能难住它的题目
+──────────────        ──────────────        ────────────────
+迷信堆算量与分桶  &lt;==&gt;  极度擅长机械算量  &lt;==&gt;  换用多口径竞争与准入决策
+靠题面故意歧义压分 &lt;==&gt;  依赖表面模式匹配  &lt;==&gt;  埋入顺手但错的认知陷阱
+标答抄模型产生近亲 &lt;==&gt;  倒果为因捏造引用  &lt;==&gt;  跨层因果级联与二值化断言
+</code></pre></div></div>
+
+<p>在 AI Agent 时代，构建一套高质量的文字与认知评测，其难度绝不亚于设计一枚精密的航空发动机。<strong>我们不能指望一个存在认知缺陷的出题 Agent 能自动造出好题；唯有人类架构师深入理解做题 Agent 的心智边界，用不可妥协的真实业务摩擦与状态机因果去筑起堤坝，才能建立起真正具备技术辨识力的工业级基准。</strong></p>
+
+<blockquote>
+  <p>[!SUMMARY] 全文核心避坑与命题法则</p>
+  <ul>
+    <li><strong>出题避坑</strong>：坚决摒弃伪脱敏与堆算量，绝不靠题面歧义压分，标答必须脱离模型独立闭环复算；</li>
+    <li><strong>做题纠偏</strong>：警惕表面同义词陷阱，防止就近满足遗漏暗线，直面定性裁决，严惩强行硬算与伪造引用；</li>
+    <li><strong>加难法门</strong>：禁用无效清单与规模堆砌；主打<strong>多口径并存竞争</strong>、<strong>顺手但错的直觉诱饵</strong>、<strong>跨层因果级联</strong>与<strong>强制二值化反套话</strong>。</li>
+  </ul>
+</blockquote>
+
+        </div>
+
+        
+
+        
+        
+  <div class="page-comments">
+    <div id="disqus_thread"></div>
+    <script>
+      var disqus_config = function () {
+        this.page.url = 'https://roshameow.github.io//personal_homepage/thought/agent-text-benchmark-pitfalls/';
+        this.page.identifier = 'https://roshameow.github.io//personal_homepage/thought/agent-text-benchmark-pitfalls/';
+      };
+
+      (function() {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://https-roshameow-github-io-personal-homepage.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+  </div>
+
+
+        
+
+        <nav class="page-pagination" role="navigation">
+  
+    <a class="page-previous" href="/personal_homepage/thought/agent-infrastructure-pitfalls/">
+      <h4 class="page-pagination-label">Previous</h4>
+      <span class="page-pagination-title">
+        <i class="fas fa-arrow-left"></i> 用 AI 开发 Agent 基础设施：真实生产环境中 AI 最易犯的六类系统性错误
+
+      </span>
+    </a>
+  
+
+  
+    <a class="page-next" href="/personal_homepage/algorithm/alpha25/">
+      <h4 class="page-pagination-label">Next</h4>
+      <span class="page-pagination-title">
+        WorldQuant Brain Base Payment 算法逆向与假说证伪链
+ <i class="fas fa-arrow-right"></i>
+      </span>
+    </a>
+  
+</nav>
+
+      </div>
+
+    </div>
+  </article>
+</main>
+
+    <footer id="footer" class="site-footer">
+  <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+<div class="social-icons"><a class="social-icon" href="/personal_homepage/atom.xml"><i class="fas fa-rss-square fa-2x" title="Feed"></i></a><a class="social-icon" href="https://github.com/roshameow"><i class="fab fa-github-square fa-2x" title="GitHub"></i></a><a class="social-icon" href="https://www.linkedin.com/in/wen-liu-06503a7b/"><i class="fab fa-linkedin fa-2x" title="LinkedIn"></i></a><a class="social-icon" href="mailto:w.liuatnk@gmail.com"><i class="fas fa-envelope-square fa-2x" title="e-mail"></i></a></div><div class="copyright">
+    
+      <p>&copy; 2026 Liu, Wen's Home Page. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://github.com/mmistakes/so-simple-theme" rel="nofollow">So Simple</a>.</p>
+    
+  </div>
+</footer>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="/personal_homepage/assets/js/main.min.js"></script>
+<script src="https://use.fontawesome.com/releases/v5.0.12/js/all.js"></script><script src="/personal_homepage/assets/js/content-tables.js" defer></script>
+
+<script>
+(function () {
+  'use strict';
+
+  var types = {
+    NOTE: 'note', INFO: 'note', ABSTRACT: 'note', SUMMARY: 'note', TLDR: 'note',
+    EXAMPLE: 'note', QUOTE: 'note', CITE: 'note',
+    TIP: 'tip', HINT: 'tip', IMPORTANT: 'tip', SUCCESS: 'tip', CHECK: 'tip', DONE: 'tip',
+    QUESTION: 'warning', HELP: 'warning', FAQ: 'warning',
+    WARNING: 'warning', CAUTION: 'warning', ATTENTION: 'warning',
+    DANGER: 'danger', ERROR: 'danger', BUG: 'danger',
+    FAILURE: 'danger', FAIL: 'danger', MISSING: 'danger'
+  };
+  var icons = {
+    note: 'M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z M12 11v6 M12 7h.01',
+    tip: 'M9 18h6 M10 21h4 M9 15a6 6 0 1 1 6 0v3H9z',
+    warning: 'M12 3L2 21h20z M12 9v5 M12 17h.01',
+    danger: 'M7 3h10l4 4v10l-4 4H7l-4-4V7z M9 9l6 6 M15 9l-6 6'
+  };
+
+  function makeIcon(type) {
+    var namespace = 'http://www.w3.org/2000/svg';
+    var svg = document.createElementNS(namespace, 'svg');
+    svg.setAttribute('class', 'callout-icon');
+    svg.setAttribute('viewBox', '0 0 24 24');
+    svg.setAttribute('width', '20');
+    svg.setAttribute('height', '20');
+    svg.setAttribute('fill', 'none');
+    svg.setAttribute('stroke', 'currentColor');
+    svg.setAttribute('stroke-width', '2');
+    svg.setAttribute('stroke-linecap', 'round');
+    svg.setAttribute('stroke-linejoin', 'round');
+    svg.setAttribute('aria-hidden', 'true');
+    svg.setAttribute('focusable', 'false');
+    var path = document.createElementNS(namespace, 'path');
+    path.setAttribute('d', icons[type]);
+    svg.appendChild(path);
+    return svg;
+  }
+
+  // A soft break is a text newline; a Markdown hard break is a <br>.
+  // Do not split newlines inside inline code or other literal content.
+  function firstBreak(parent) {
+    for (var node = parent.firstChild; node; node = node.nextSibling) {
+      if (node.nodeType === 3) {
+        var offset = node.data.search(/[\r\n]/);
+        if (offset !== -1) return { node: node, offset: offset };
+      } else if (node.nodeType === 1) {
+        if (node.tagName === 'BR') return { node: node };
+        if (/^(CODE|PRE|SCRIPT|STYLE|TEXTAREA)$/.test(node.tagName)) continue;
+        var result = firstBreak(node);
+        if (result) return result;
+      }
+    }
+    return null;
+  }
+
+  function transformCallouts() {
+    document.querySelectorAll('.page-content blockquote').forEach(function (quote) {
+      if (quote.closest('pre, code, .highlight, .highlighter-rouge')) return;
+      var paragraph = quote.firstElementChild;
+      if (!paragraph || paragraph.tagName !== 'P') return;
+
+      // Require the marker in a direct text node: <code>[!WARNING]</code>
+      // (and markers merely mentioned later in a quote) must remain literal.
+      var markerNode = paragraph.firstChild;
+      if (!markerNode || markerNode.nodeType !== 3) return;
+      var marker = markerNode.data.match(/^[\t \r\n]*\[!([a-z][a-z0-9-]*)\]([+-])?(?=[\t \r\n]|$)[\t ]*/i);
+      if (!marker) return;
+      var name = marker[1].toUpperCase();
+      if (!Object.prototype.hasOwnProperty.call(types, name)) return;
+      var type = types[name];
+      var label = name === 'TLDR' ? 'TL;DR' : name.charAt(0) + name.slice(1).toLowerCase();
+      markerNode.deleteData(0, marker[0].length);
+
+      var boundary = firstBreak(paragraph);
+      var range = document.createRange();
+      range.selectNodeContents(paragraph);
+      if (boundary) {
+        if (boundary.node.nodeType === 3) range.setEnd(boundary.node, boundary.offset);
+        else range.setEndBefore(boundary.node);
+      }
+      var titleContent = range.extractContents();
+      if (boundary) {
+        if (boundary.node.nodeType === 3) {
+          var breakLength = boundary.node.data.slice(0, 2) === '\r\n' ? 2 : 1;
+          boundary.node.deleteData(0, breakLength);
+        } else {
+          boundary.node.parentNode.removeChild(boundary.node);
+        }
+      }
+      if (!paragraph.textContent.trim() && !paragraph.children.length) {
+        quote.removeChild(paragraph);
+      }
+
+      var folding = !!marker[2];
+      var callout = document.createElement(folding ? 'details' : 'div');
+      // Keep author-provided IDs, language, direction, and classes.
+      Array.prototype.forEach.call(quote.attributes, function (attribute) {
+        callout.setAttribute(attribute.name, attribute.value);
+      });
+      callout.classList.add('callout', 'callout--' + type);
+      callout.setAttribute('data-callout', name.toLowerCase());
+      callout.setAttribute('aria-label', label);
+      if (folding) {
+        callout.removeAttribute('role');
+        if (marker[2] === '+') callout.setAttribute('open', '');
+        else callout.removeAttribute('open');
+      } else {
+        callout.setAttribute('role', 'note');
+      }
+
+      var title = document.createElement(folding ? 'summary' : 'div');
+      title.className = 'callout-title';
+      title.appendChild(makeIcon(type));
+      var titleText = document.createElement('span');
+      titleText.className = 'callout-title-text';
+      if (titleContent.textContent.trim() || titleContent.childElementCount) {
+        titleText.appendChild(titleContent);
+      } else {
+        titleText.textContent = label;
+      }
+      title.appendChild(titleText);
+      callout.appendChild(title);
+
+      var body = document.createElement('div');
+      body.className = 'callout-body';
+      while (quote.firstChild) body.appendChild(quote.firstChild);
+      callout.appendChild(body);
+      quote.parentNode.replaceChild(callout, quote);
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', transformCallouts);
+  } else {
+    transformCallouts();
+  }
+})();
+</script>
+<!-- <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'G-9TMSCDTBGN', 'auto');
+  ga('send', 'pageview');
+</script> -->
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9TMSCDTBGN"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-9TMSCDTBGN');
+</script>
+
+
+
+<!-- MathJax -->
+<style>
+    /* Only oversized equations get this wrapper; ordinary inline math stays inline. */
+    .math-scroll {
+        display: block;
+        max-width: 100%;
+        overflow-x: auto;
+        overflow-y: hidden;
+        padding-block: 0.5em;
+        scrollbar-width: thin;
+    }
+    .math-scroll > mjx-container[jax] {
+        display: inline-block;
+        margin: 0;
+    }
+    .math-scroll:focus-visible {
+        outline: 2px solid currentColor;
+        outline-offset: 2px;
+    }
+</style>
+<script>
+    function fitMathToColumn() {
+        document.querySelectorAll('mjx-container').forEach(function (container) {
+            var wrapper = container.parentElement.classList.contains('math-scroll') ? container.parentElement : null;
+            var column = wrapper ? wrapper.parentElement : container.parentElement;
+            while (column && ['inline', 'contents'].includes(getComputedStyle(column).display)) {
+                column = column.parentElement;
+            }
+            if (!column) return;
+            var style = getComputedStyle(column);
+            var available = column.clientWidth - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight);
+            var ink = container.querySelector('mjx-math, svg');
+            var width = (ink || container).getBoundingClientRect().width;
+            if (width > available + 1) {
+                if (!wrapper) {
+                    wrapper = document.createElement('span');
+                    wrapper.className = 'math-scroll';
+                    wrapper.tabIndex = 0;
+                    wrapper.setAttribute('role', 'region');
+                    wrapper.setAttribute('aria-label', 'Mathematical formula; scroll horizontally to read all');
+                    wrapper.title = 'Scroll horizontally to read the full formula';
+                    container.before(wrapper);
+                    wrapper.appendChild(container);
+                }
+            } else if (wrapper) {
+                wrapper.replaceWith(container);
+            }
+        });
+    }
+    // Pin the engine, autoloaded TeX extensions, menu and fonts to local assets.
+    window.MathJax = {
+        loader: {
+            paths: { mathjax: "/personal_homepage/assets/js/vendor/mathjax/es5" },
+            load: ['[tex]/textmacros']
+        },
+        tex: {
+            tags: "ams",
+            packages: { '[+]': ['textmacros'] },
+            inlineMath: [['$', '$'], ['\\(', '\\)']],
+            displayMath: [['$$', '$$'], ['\\[', '\\]']]
+        },
+        chtml: {
+            fontURL: "/personal_homepage/assets/js/vendor/mathjax/es5/output/chtml/fonts/woff-v2"
+        },
+        startup: {
+            pageReady: function () {
+                return MathJax.startup.defaultPageReady().then(function () {
+                    return document.fonts ? document.fonts.ready : undefined;
+                }).then(function () {
+                    fitMathToColumn();
+                    var scheduled = false;
+                    window.addEventListener('resize', function () {
+                        if (scheduled) return;
+                        scheduled = true;
+                        requestAnimationFrame(function () {
+                            scheduled = false;
+                            fitMathToColumn();
+                        });
+                    });
+                });
+            }
+        },
+        options: {
+            // Keep examples (including literal dollar signs) out of the typesetter.
+            skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code', 'annotation', 'annotation-xml']
+        }
+    };
+</script>
+<script id="MathJax-script" async src="/personal_homepage/assets/js/vendor/mathjax/es5/tex-mml-chtml.js"></script>
+
+
+
+
+<!-- Mermaid -->
+<style>
+  .mermaid-diagram {
+    max-width: 100%;
+    margin: 0.85rem 0;
+    overflow-x: auto;
+  }
+  .mermaid-diagram:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+  }
+  .page-content pre.mermaid {
+    margin: 0;
+    padding: 0.25rem 0;
+    text-align: center;
+    background: transparent;
+    overflow: visible;
+    font-family: inherit;
+  }
+  .page-content pre.mermaid[data-processed] {
+    white-space: normal;
+  }
+  pre.mermaid svg {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    height: auto;
+  }
+  .mermaid-diagram .cluster-label {
+    font-weight: 700;
+  }
+  .mermaid-error {
+    font-size: 0.85em;
+    color: #9a3412;
+  }
+</style>
+<script src="/personal_homepage/assets/js/vendor/mermaid-11.17.2.min.js"></script>
+<script>
+(function () {
+  'use strict';
+
+  function normalizeMermaidSource(source) {
+    // Mermaid 11 accepts A <-- "label" --- B but creates an INVALID edge.
+    // Render the equivalent B -->|"label"| A, without editing the Markdown.
+    var body = source.trimStart()
+      .replace(/^---\r?\n[\s\S]*?\r?\n---(?:\r?\n|$)/, '')
+      .replace(/%%\{[\s\S]*?\}%%/g, '')
+      .replace(/^[\t ]*%%.*$/gm, '').trimStart();
+    if (!/^(?:flowchart|graph)\b/.test(body)) return source;
+
+    var started = false;
+    var quoted = false;
+    return source.replace(/[^\r\n]+/g, function (line) {
+      if (!started && !/^\s*(?:flowchart|graph)\b/.test(line)) return line;
+      started = true;
+      var normalized = quoted ? line : line.replace(
+        /^([\t ]*)([A-Za-z_][\w-]*)[\t ]*<--[\t ]*("[^"\r\n]*")[\t ]*---[\t ]*([A-Za-z_][\w-]*)([\t ]*;?[\t ]*(?:%%.*)?)$/,
+        function (_, indent, left, label, right, suffix) {
+          return indent + right + ' -->|' + label + '| ' + left + suffix;
+        }
+      );
+      // Never rewrite an example inside a multiline quoted node label, and
+      // never let quotes inside a %% comment affect the following lines.
+      for (var i = 0; i < line.length; i++) {
+        if (!quoted && line[i] === '%' && line[i + 1] === '%') break;
+        if (line[i] === '"') quoted = !quoted;
+      }
+      return normalized;
+    });
+  }
+
+  async function renderDiagrams() {
+    var blocks = document.querySelectorAll('code.language-mermaid');
+    if (!blocks.length) return;
+    if (typeof mermaid === 'undefined') {
+      blocks.forEach(function (code) {
+        var original = code.closest('.highlighter-rouge') || code.closest('pre');
+        if (!original) return;
+        var message = document.createElement('p');
+        message.className = 'mermaid-error';
+        message.setAttribute('role', 'status');
+        message.textContent = '图表组件加载失败，请刷新页面重试。Mermaid 源码已保留。';
+        original.after(message);
+      });
+      return;
+    }
+
+    // Render every diagram as Mermaid, including diagrams with multiple subgraphs.
+    // Disable the automatic pass so it cannot race with our explicit rendering.
+    var skin = getComputedStyle(document.documentElement);
+    function color(name, fallback) {
+      return skin.getPropertyValue('--mermaid-' + name).trim() || fallback;
+    }
+    var background = color('background', '#ffffff');
+    var text = color('text', '#000000');
+    var border = color('border', '#cccccc');
+    var nodeBorder = color('node-border', '#b8b9c0');
+    var cluster = color('cluster-background', '#f9f9fa');
+    var line = color('line', '#858795');
+    var palettes = [
+      ['#e4eaf0', '#f4f6f9', '#a5b3c2'], // slate blue
+      ['#e8f0ea', '#f5f8f5', '#a8bcae'], // sage
+      ['#f3ede3', '#faf7f2', '#c6b69c'], // sand
+      ['#ebe8f1', '#f7f5fa', '#b5adc5'], // lavender
+      ['#e4eeee', '#f3f8f8', '#a0baba']  // muted teal
+    ].map(function (fallbacks, index) {
+      return {
+        node: color('palette-' + index + '-node', fallbacks[0]),
+        cluster: color('palette-' + index + '-cluster', index === 0 ? cluster : fallbacks[1]),
+        border: color('palette-' + index + '-border', fallbacks[2])
+      };
+    });
+    var fontFamily = getComputedStyle(document.body).fontFamily ||
+      '"Source Sans Pro", sans-serif';
+    // Mermaid fixes label dimensions during layout. Wait for web fonts so a
+    // later font swap cannot make the measured label box too small.
+    if (document.fonts) await document.fonts.ready;
+
+    var theme = "default";
+    // The site's default follows its active skin. Explicit forest/dark/etc.
+    // choices remain available for sites that deliberately select them.
+    if (theme === 'default') theme = 'base';
+
+    var config = {
+      startOnLoad: false,
+      securityLevel: 'strict',
+      fontFamily: fontFamily,
+      // Native SVG text avoids foreignObject clipping and article paragraph CSS.
+      htmlLabels: false,
+      flowchart: {
+        inheritDir: true,
+        curve: 'linear',
+        nodeSpacing: 24,
+        rankSpacing: 28,
+        padding: 8,
+        diagramPadding: 8,
+        wrappingWidth: 180,
+        // Nested cluster borders must start below the parent's full title line.
+        subGraphTitleMargin: { top: 4, bottom: 12 }
+      },
+      theme: theme,
+      themeVariables: theme === 'base' ? {
+        fontFamily: fontFamily,
+        fontSize: '14px',
+        background: background,
+        primaryColor: palettes[0].node,
+        primaryTextColor: text,
+        primaryBorderColor: nodeBorder,
+        secondaryColor: palettes[1].node,
+        secondaryTextColor: text,
+        secondaryBorderColor: border,
+        tertiaryColor: palettes[2].node,
+        tertiaryTextColor: text,
+        tertiaryBorderColor: border,
+        lineColor: line,
+        textColor: text,
+        mainBkg: palettes[0].node,
+        nodeBorder: nodeBorder,
+        nodeTextColor: text,
+        clusterBkg: palettes[0].cluster,
+        clusterBorder: border,
+        titleColor: text,
+        defaultLinkColor: line,
+        edgeLabelBackground: background,
+        noteBkgColor: palettes[2].node,
+        noteTextColor: text,
+        noteBorderColor: border,
+        actorBkg: palettes[0].node,
+        actorBorder: nodeBorder,
+        actorTextColor: text,
+        actorLineColor: border,
+        signalColor: line,
+        signalTextColor: text
+      } : { fontFamily: fontFamily }
+    };
+
+    function applyFlowchartPalette(svg) {
+      if (theme !== 'base' || !/^flowchart/.test(svg.getAttribute('aria-roledescription') || '')) return;
+
+      function tint(group, shapes, index, kind) {
+        // Author-supplied classDef/style colors take precedence over auto accents.
+        var customClass = Array.from(group.classList).some(function (name) {
+          return !['node', 'default', 'cluster', 'clickable'].includes(name);
+        });
+        if (customClass || !shapes.length || shapes.some(function (shape) {
+          return shape.style.getPropertyValue('fill') || shape.style.getPropertyValue('stroke');
+        })) return;
+        group.setAttribute('data-mermaid-palette', index);
+        shapes.forEach(function (shape) {
+          // Keep fallbacks in the SVG so exported diagrams retain their colors.
+          if (shape.getAttribute('fill') !== 'none') {
+            shape.style.fill = 'var(--mermaid-palette-' + index + '-' + kind + ', ' + palettes[index][kind] + ')';
+          }
+          shape.style.stroke = 'var(--mermaid-palette-' + index + '-border, ' + palettes[index].border + ')';
+        });
+      }
+
+      var groups = Array.from(svg.querySelectorAll('g.cluster')).map(function (group, index) {
+        var rect = group.querySelector('rect');
+        return { group: group, rect: rect, bounds: rect && rect.getBoundingClientRect(), index: index % palettes.length };
+      }).filter(function (entry) { return entry.rect; });
+      // Mermaid's SVG stores clusters flat. Match by the actual layout so nodes
+      // inherit their smallest enclosing group, including nested schedulers.
+      var nodes = Array.from(svg.querySelectorAll('g.node')).map(function (node) {
+        return { node: node, bounds: node.getBoundingClientRect() };
+      });
+      groups.forEach(function (entry) { tint(entry.group, [entry.rect], entry.index, 'cluster'); });
+      groups.sort(function (a, b) { return a.bounds.width * a.bounds.height - b.bounds.width * b.bounds.height; });
+      nodes.forEach(function (entry) {
+        var box = entry.bounds;
+        var parent = groups.find(function (group) {
+          var bounds = group.bounds;
+          return box.left >= bounds.left - 1 && box.right <= bounds.right + 1 &&
+            box.top >= bounds.top - 1 && box.bottom <= bounds.bottom + 1;
+        });
+        var shapes = [];
+        entry.node.querySelectorAll(':scope > .label-container').forEach(function (container) {
+          // Rounded/hand-drawn shapes wrap paths in a group. Include the
+          // container in the author-style check, then tint the actual paths.
+          shapes.push(container);
+          shapes.push.apply(shapes, container.querySelectorAll('path, rect, circle, ellipse, polygon, polyline'));
+        });
+        tint(entry.node, shapes, parent ? parent.index : 0, 'node');
+      });
+    }
+
+    function hasNestedSubgraphs(source) {
+      var depth = 0;
+      return source.split(/\r?\n/).some(function (line) {
+        if (/^\s*subgraph\b/.test(line)) return ++depth > 1;
+        if (/^\s*end\s*(?:;|%%.*)?$/.test(line)) depth = Math.max(0, depth - 1);
+        return false;
+      });
+    }
+
+    for (var code of blocks) {
+      var original = code.closest('.highlighter-rouge') || code.closest('pre');
+      if (!original) continue;
+
+      var wrapper = document.createElement('div');
+      wrapper.className = 'mermaid-diagram';
+      wrapper.tabIndex = 0;
+      wrapper.setAttribute('role', 'region');
+      wrapper.setAttribute('aria-label', 'Mermaid diagram (scroll horizontally)');
+
+      var pre = document.createElement('pre');
+      pre.className = 'mermaid';
+      pre.textContent = normalizeMermaidSource(code.textContent);
+      wrapper.appendChild(pre);
+      original.replaceWith(wrapper);
+
+      try {
+        // Dagre reserves only half rankSpacing above a nested cluster. Keep
+        // that space taller than its parent's title, without spreading out
+        // the ordinary (non-nested) compact flowcharts.
+        mermaid.initialize(Object.assign({}, config, {
+          flowchart: Object.assign({}, config.flowchart, {
+            rankSpacing: hasNestedSubgraphs(code.textContent) ? 56 : config.flowchart.rankSpacing
+          })
+        }));
+        await mermaid.run({ nodes: [pre] });
+        var svg = pre.querySelector('svg');
+        if (svg && svg.viewBox.baseVal.width) {
+          // Do not shrink labels to illegible text on narrow screens;
+          // keep at least 90% of the natural size and scroll the diagram instead.
+          svg.style.minWidth = (svg.viewBox.baseVal.width * 0.9) + 'px';
+        }
+        if (svg) applyFlowchartPalette(svg);
+      } catch (error) {
+        // A malformed diagram must not prevent other diagrams from rendering
+        // or make the original source disappear.
+        wrapper.replaceChildren(original);
+        var message = document.createElement('p');
+        message.className = 'mermaid-error';
+        message.setAttribute('role', 'status');
+        message.textContent = '图表渲染失败，已保留 Mermaid 源码。';
+        wrapper.appendChild(message);
+        console.warn('Mermaid diagram could not be rendered:', error);
+      }
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', renderDiagrams);
+  } else {
+    renderDiagrams();
+  }
+})();
+</script>
+
+
+  </body>
+
+</html>

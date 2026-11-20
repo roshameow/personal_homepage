@@ -27,12 +27,12 @@
 <meta property="og:site_name" content="Liu, Wen’s Home Page" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2025-12-24T00:00:00+00:00" />
-<meta property="article:modified_time" content="2026-01-23T19:30:00+00:00" />
+<meta property="article:modified_time" content="2026-11-09T06:40:00+00:00" />
 <meta name="twitter:card" content="summary" />
 <meta name="twitter:title" content="组合交易 (二)" />
 <meta name="twitter:site" content="@" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2026-01-23T19:30:00+00:00","datePublished":"2025-12-24T00:00:00+00:00","description":"单个alpha的性能","headline":"组合交易 (二)","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/finance/alpha13/"},"url":"https://roshameow.github.io//personal_homepage/finance/alpha13/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2026-11-09T06:40:00+00:00","datePublished":"2025-12-24T00:00:00+00:00","description":"单个alpha的性能","headline":"组合交易 (二)","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/finance/alpha13/"},"url":"https://roshameow.github.io//personal_homepage/finance/alpha13/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -157,15 +157,15 @@
   <div class="toc-content">
     <ul>
       
-      <li><a href="/personal_homepage/tool/pi-runtime-attribution/">Pi Desktop的开发难点: “会话的状态”</a></li>
+      <li><a href="/personal_homepage/data/alpha29/">News & Social Media 新闻流、社交媒体情绪与文本事件数据体系</a></li>
       
-      <li><a href="/personal_homepage/tool/pi-desktop/">Pi Desktop：从会话浏览器到跨机器工作台</a></li>
+      <li><a href="/personal_homepage/data/alpha28/">日内 PV 统计量与市场微结构衍生指标体系</a></li>
       
-      <li><a href="/personal_homepage/daily/sticker/">用AI做了一套微信表情包:从微信头像缓存到提交上架</a></li>
+      <li><a href="/personal_homepage/tool/alpha27/">从过度防御的歪路纠偏：GUI/CLI 6 态极简控制面、数据面板统一与工程收口</a></li>
       
-      <li><a href="/personal_homepage/daily/agent-blog-writing/">用AI agent复现我的博客风格</a></li>
+      <li><a href="/personal_homepage/thought/agent-infrastructure-pitfalls-2/">用 AI 维护复杂控制面基础设施：为什么越修越死？从补丁膨胀到 6 态收敛的六大工程陷阱</a></li>
       
-      <li><a href="/personal_homepage/tool/lesson/">听课app开发调研</a></li>
+      <li><a href="/personal_homepage/tool/pi-subagent-durable/">pi-subagent-durable：后台子代理的持久化、生命周期与故障自愈</a></li>
       
     </ul>
   </div>
@@ -208,14 +208,16 @@
       <td style="text-align: left"> </td>
       <td style="text-align: left">Information Coefficient(IC)</td>
       <td style="text-align: left">计算alpha值和未来一天returns的Pearson相关性</td>
-      <td style="text-align: left">\(IC_t = \rho(S_t,R_{t+1}) = \frac{\sum_{i=1}^N (S_{i,t} - \bar{S}_t)(R_{i,t+1} - \bar{R}_{t+1})}{\sqrt{\sum_{i=1}^N (S_{i,t} - \bar{S}_t)^2 \sum_{i=1}^N (R_{i,t+1} - \bar{R}_{t+1})^2}}\)</td>
+      <td style="text-align: left">\[IC_t = \rho(S_t,R_{t+1}) = \frac{\sum_{i=1}^N (S_{i,t} - \bar{S}_t)(R_{i,t+1} - \bar{R}_{t+1})}{\sqrt{\sum_{i=1}^N (S_{i,t} - \bar{S}_t)^2 \sum_{i=1}^N (R_{i,t+1} - \bar{R}_{t+1})^2}}\]
+</td>
       <td>容易受到极端值影响</td>
     </tr>
     <tr>
       <td style="text-align: left"> </td>
       <td style="text-align: left">Fama-MacBeth Regression</td>
       <td style="text-align: left">计算alpha值对未来returns的beta系数</td>
-      <td style="text-align: left">Linear Regression Model:<br />\(R_{i,t+1} = \lambda_{0,t} + \lambda_{1,t} S_{i,t} + \epsilon_{i,t+1}\)<br /><br />\(\lambda_{1,t} = \frac{\sum_{i=1}^N (S_{i,t} - \bar{S}_t)(R_{i,t+1} - \bar{R}_{t+1})}{\sum_{i=1}^N (S_{i,t} - \bar{S}_t)^2}\)</td>
+      <td style="text-align: left">Linear Regression Model:<br />\(R_{i,t+1} = \lambda_{0,t} + \lambda_{1,t} S_{i,t} + \epsilon_{i,t+1}\)<br /><br />\[\lambda_{1,t} = \frac{\sum_{i=1}^N (S_{i,t} - \bar{S}_t)(R_{i,t+1} - \bar{R}_{t+1})}{\sum_{i=1}^N (S_{i,t} - \bar{S}_t)^2}\]
+</td>
       <td>还可以得出alpha和现有alpha的冗余度</td>
     </tr>
     <tr>
@@ -236,7 +238,8 @@
       <td style="text-align: left"><strong>费率</strong><br />自身时序上的关系</td>
       <td style="text-align: left">turnover</td>
       <td style="text-align: left">衡量 alpha 信号在前后两个交易日的持仓变化程度</td>
-      <td style="text-align: left">\(\text{Turnover}_t = \frac{\sum_i \vert S_{t,i} - S_{t-1,i} \vert}{2}\)</td>
+      <td style="text-align: left">\[\text{Turnover}_t = \frac{\sum_i \vert S_{t,i} - S_{t-1,i} \vert}{2}\]
+</td>
       <td> </td>
     </tr>
     <tr>
@@ -282,18 +285,21 @@
 </ol>
 
 <p>定义秩差 \(d_i = x_i - y_i\)，则:
-\(\sum d_i^2 = \sum (x_i - y_i)^2 = \sum x_i^2 + \sum y_i^2 - 2\sum x_i y_i\)
+\[\sum d_i^2 = \sum (x_i - y_i)^2 = \sum x_i^2 + \sum y_i^2 - 2\sum x_i y_i\]
+
 由于 \(\sum x_i^2 = \sum y_i^2\) (都是 \(1^2 + ... + N^2\))，代入得:
-\(\sum x_i y_i = \sum x_i^2 - \frac{1}{2} \sum d_i^2\)</p>
+\[\sum x_i y_i = \sum x_i^2 - \frac{1}{2} \sum d_i^2\]
+</p>
 
 <p>代入 Pearson 相关系数公式:
-\(\begin{aligned}
+\[\begin{aligned}
 \rho &amp;= \frac{\sum (x_i - \bar{x})(y_i - \bar{y})}{\sqrt{\sum (x_i - \bar{x})^2 \sum (y_i - \bar{y})^2}} \\
 &amp;= \frac{\sum x_i y_i - N\bar{x}\bar{y}}{\sum (x_i - \bar{x})^2} \quad (\text{分母两项相等}) \\
 &amp;= \frac{(\sum x_i^2 - \frac{1}{2}\sum d_i^2) - N\bar{x}^2}{\sum x_i^2 - N\bar{x}^2} \\
 &amp;= 1 - \frac{\frac{1}{2}\sum d_i^2}{\frac{N(N^2-1)}{12}} \\
 &amp;= 1 - \frac{6 \sum d_i^2}{N(N^2 - 1)}
-\end{aligned}\)</p>
+\end{aligned}\]
+</p>
 
 <h2 id="组合alpha的性能">组合alpha的性能</h2>
 
@@ -332,14 +338,15 @@
 \[\frac{\partial \sigma}{\partial w_i}=\frac{\partial}{\partial w_i}( \sqrt{w^T\Sigma w}) \overset{\text{幂函数求导}}{=} \frac{1}{2\sqrt{w^T\Sigma w}} \cdot \frac{\partial (w^T\Sigma w)}{\partial w_i} = \frac{1}{2\sigma} \cdot 2(\Sigma w)_i = \frac{(\Sigma w)_i}{\sigma}\]
 
 <p>其中关于 \(w^T\Sigma w\) 的求导细节展开如下:
-\(\begin{aligned}
+\[\begin{aligned}
 \frac{\partial (w^T\Sigma w)}{\partial w_i} &amp;= \frac{\partial}{\partial w_i} \left(\sum_j \sum_k w_j \Sigma_{jk} w_k\right) \\
 &amp;= \frac{\partial}{\partial w_i} \left( w_i \Sigma_{ii} w_i + \sum_{k \neq i} w_i \Sigma_{ik} w_k + \sum_{j \neq i} w_j \Sigma_{ji} w_i + \sum_{j \neq i, k \neq i} w_j \Sigma_{jk} w_k \right) \\
 &amp;= 2w_i \Sigma_{ii} + \sum_{k \neq i} \Sigma_{ik} w_k + \sum_{j \neq i} w_j \Sigma_{ji} \\
 &amp;= \sum_{k} \Sigma_{ik} w_k + \sum_{j} w_j \Sigma_{ji} \\
 &amp;= (\Sigma w)_i + (\Sigma^T w)_i \\
 &amp;= 2(\Sigma w)_i \quad (\text{因协方差矩阵对称 } \Sigma = \Sigma^T)
-\end{aligned}\)</p>
+\end{aligned}\]
+</p>
 
 
         </div>

@@ -1,0 +1,1055 @@
+<!DOCTYPE html>
+<!--
+    So Simple Jekyll Theme 3.2.0
+    Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+    Free for personal and commercial use under the MIT license
+    https://github.com/mmistakes/so-simple-theme/blob/master/LICENSE
+-->
+<html lang="en-US" class="no-js">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  
+
+  
+  
+  <!-- Begin Jekyll SEO tag v2.9.1 -->
+<title>从U-Net到DiT: 现代多模态大模型与Stable Diffusion的架构演进 | Liu, Wen’s Home Page</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="从U-Net到DiT: 现代多模态大模型与Stable Diffusion的架构演进" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="在三年前的两篇笔记中（参见 [[2024-02-04-attention]] 与 [[2024-02-29-stable-diffusion6]]），我们曾对注意力机制的底层映射、SD（Stable Diffusion）经典 U-Net 结构以及 ControlNet / IP-Adapter / GLIGEN 等微调补丁进行过系统的梳理。" />
+<meta name="twitter:description" property="og:description" content="在三年前的两篇笔记中（参见 [[2024-02-04-attention]] 与 [[2024-02-29-stable-diffusion6]]），我们曾对注意力机制的底层映射、SD（Stable Diffusion）经典 U-Net 结构以及 ControlNet / IP-Adapter / GLIGEN 等微调补丁进行过系统的梳理。" />
+<link rel="canonical" href="https://roshameow.github.io//personal_homepage/deeplearning/stable-diffusion11/" />
+<meta property="og:url" content="https://roshameow.github.io//personal_homepage/deeplearning/stable-diffusion11/" />
+<meta property="og:site_name" content="Liu, Wen’s Home Page" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2026-11-01T00:00:00+00:00" />
+<meta property="article:modified_time" content="2026-11-01T09:10:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="从U-Net到DiT: 现代多模态大模型与Stable Diffusion的架构演进" />
+<meta name="twitter:site" content="@" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2026-11-01T09:10:00+00:00","datePublished":"2026-11-01T00:00:00+00:00","description":"在三年前的两篇笔记中（参见 [[2024-02-04-attention]] 与 [[2024-02-29-stable-diffusion6]]），我们曾对注意力机制的底层映射、SD（Stable Diffusion）经典 U-Net 结构以及 ControlNet / IP-Adapter / GLIGEN 等微调补丁进行过系统的梳理。","headline":"从U-Net到DiT: 现代多模态大模型与Stable Diffusion的架构演进","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/deeplearning/stable-diffusion11/"},"url":"https://roshameow.github.io//personal_homepage/deeplearning/stable-diffusion11/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  
+
+  <script>
+    /* Cut the mustard */
+    if ('querySelector' in document && 'addEventListener' in window) {
+      document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + 'js';
+    }
+  </script>
+
+  <link rel="stylesheet" href="/personal_homepage/assets/css/main.css">
+  <link rel="stylesheet" href="/personal_homepage/assets/css/skins/default.css">
+  
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,700,700i|Lora:400,400i,700,700i">
+  <link rel="alternate" type="application/atom+xml" title="Liu, Wen&#39;s Home Page" href="/personal_homepage/atom.xml">
+<!-- start custom head snippets -->
+
+<!-- insert favicons. use http://realfavicongenerator.net/ -->
+<link rel="shortcut icon" type="image/x-icon" href="/personal_homepage/docs/images/logo.ico">
+<!-- end custom head snippets -->
+
+</head>
+
+  <body class="layout--post  从u-net到dit-现代多模态大模型与stable-diffusion的架构演进">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#primary-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+  <div class="navigation-wrapper">
+    <a href="#menu-toggle" id="menu-toggle">Menu</a>
+    <nav id="primary-nav" class="site-nav animated drop">
+      <ul><li><a href="/personal_homepage/">Home</a></li><li><a href="/personal_homepage/posts/">Posts</a></li><li><a href="/personal_homepage/categories/">Categories</a></li><li><a href="/personal_homepage/tags/">Tags</a></li><li><a href="/personal_homepage/family/">Family</a></li><li><a href="/personal_homepage/search/">Search</a></li></ul>
+    </nav>
+  </div><!-- /.navigation-wrapper -->
+
+
+    <header class="masthead">
+  <div class="wrap">
+    
+    
+    
+      
+        <div class="site-title animated fadeIn"><a href="/personal_homepage/">Liu, Wen's Home Page</a></div>
+      
+      <p class="site-description animated fadeIn" itemprop="description">Work, Experiments and Ideas.</p>
+    
+  </div>
+</header><!-- /.masthead -->
+
+
+    <main id="main" class="main-content" aria-label="Content">
+  <article class="h-entry">
+    
+
+    <div class="page-wrapper">
+      <header class="page-header">
+        
+        
+        <h1 id="page-title" class="page-title p-name">从U-Net到DiT: 现代多模态大模型与Stable Diffusion的架构演进
+</h1>
+        
+      </header>
+
+      <div class="page-sidebar">
+        <div class="page-author h-card p-author"><img src="/personal_homepage/docs/images/logo.svg" class="author-avatar u-photo" alt=""><div class="author-info">
+
+<span class="read-time">3 min read</span>
+
+    <time class="page-date dt-published" datetime="2026-11-01T00:00:00+00:00"><a class="u-url" href="">November 1, 2026</a>
+</time>
+
+  </div>
+</div>
+
+        
+  <h3 class="page-taxonomies-title">Categories</h3>
+  
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a class="p-category" href="/personal_homepage/categories/#deeplearning" title="Pages filed under deeplearning">deeplearning</a></li>
+  </ul>
+
+
+        
+  <h3 class="page-taxonomies-title">Tags</h3>
+  
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a href="/personal_homepage/tags/#dit" title="Pages tagged DiT" rel="tag">DiT</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#flowmatching" title="Pages tagged FlowMatching" rel="tag">FlowMatching</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#attention" title="Pages tagged attention" rel="tag">attention</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#content" title="Pages tagged content" rel="tag">content</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#multimodal" title="Pages tagged multimodal" rel="tag">multimodal</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#stable-diffusion" title="Pages tagged stable-diffusion" rel="tag">stable-diffusion</a></li>
+  </ul>
+
+
+        <details id="entry-table-of-contents" class="toc-wrapper" open>
+  <summary>
+    <h2 class="no_toc">
+      Table of Contents
+      <svg class="toc-toggle-icon" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true" focusable="false">
+        <path d="m4 6 4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+      </svg>
+    </h2>
+  </summary>
+  <div class="toc-content">
+    <ul class="inline_toc" id="my_toc"><li><a href="#1-架构底座的更迭从-u-net-到-dit--mmdit">1. 架构底座的更迭：从 U-Net 到 DiT / MMDiT</a><ul><li><a href="#为什么-u-net-会被全面淘汰">为什么 U-Net 会被全面淘汰？</a></li><li><a href="#dit-与-mmdit-的核心设计">DiT 与 MMDiT 的核心设计</a></li></ul></li><li><a href="#2-图像编码与多模态表征的演进">2. 图像编码与多模态表征的演进</a><ul><li><a href="#-生成大模型的潜在空间编码从-4-通道到-1632-通道">① 生成大模型的潜在空间编码：从 4 通道到 16/32 通道</a></li><li><a href="#-理解大模型的连续-patch-编码anyres-与语义几何双流">② 理解大模型的连续 Patch 编码：AnyRes 与语义/几何双流</a></li><li><a href="#-理解与生成的合流统一离散化-tokenizerfsq--titok">③ 理解与生成的合流：统一离散化 Tokenizer（FSQ / TiTok）</a></li></ul></li><li><a href="#3-对照三年前两篇笔记的技术认知跃迁">3. 对照三年前两篇笔记的技术认知跃迁</a><ul><li><a href="#对照一2024-02-29-stable-diffusion6微调与外挂结构">对照一：[[2024-02-29-stable-diffusion6]]（微调与外挂结构）</a></li><li><a href="#对照二2024-02-04-attention注意力机制与-qkv-的物理本质">对照二：[[2024-02-04-attention]]（注意力机制与 QKV 的物理本质）</a></li></ul></li><li><a href="#4-数学范式的平滑化从扩散-sde-到-flow-matching流匹配">4. 数学范式的平滑化：从扩散 SDE 到 Flow Matching（流匹配）</a></li><li><a href="#5-总结三年技术演进全景映射">5. 总结：三年技术演进全景映射</a></li><li><a href="#参考与关联笔记">参考与关联笔记</a></li></ul>
+  </div>
+</details>
+
+        
+<details id="entry-related-posts" class="toc-wrapper" open>
+  <summary>
+    <h2 class="no_toc">
+      Related Posts
+      <svg class="toc-toggle-icon" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true" focusable="false">
+        <path d="m4 6 4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+      </svg>
+    </h2>
+  </summary>
+  <div class="toc-content">
+    <ul>
+      
+      <li><a href="/personal_homepage/data/alpha29/">News & Social Media 新闻流、社交媒体情绪与文本事件数据体系</a></li>
+      
+      <li><a href="/personal_homepage/data/alpha28/">日内 PV 统计量与市场微结构衍生指标体系</a></li>
+      
+      <li><a href="/personal_homepage/tool/alpha27/">从过度防御的歪路纠偏：GUI/CLI 6 态极简控制面、数据面板统一与工程收口</a></li>
+      
+      <li><a href="/personal_homepage/thought/agent-infrastructure-pitfalls-2/">用 AI 维护复杂控制面基础设施：为什么越修越死？从补丁膨胀到 6 态收敛的六大工程陷阱</a></li>
+      
+      <li><a href="/personal_homepage/tool/pi-subagent-durable/">pi-subagent-durable：后台子代理的持久化、生命周期与故障自愈</a></li>
+      
+    </ul>
+  </div>
+</details>
+
+
+
+      </div>
+
+      <div class="page-content">
+        <div class="e-content">
+          <p>在三年前的两篇笔记中（参见 [[2024-02-04-attention]] 与 [[2024-02-29-stable-diffusion6]]），我们曾对注意力机制的底层映射、SD（Stable Diffusion）经典 U-Net 结构以及 ControlNet / IP-Adapter / GLIGEN 等微调补丁进行过系统的梳理。</p>
+
+<p>时隔三年，生成式与多模态 AI 经历了一场彻底的“地壳运动”：<strong>骨干网络从卷积 U-Net 全面转向 DiT（Diffusion Transformer），交互机制从外挂式单向交叉注意力走向文本与图像平权的联合注意力，扩散数学范式从复杂的曲折 SDE 采样走向直连的流匹配（Flow Matching），而图像编码与多模态表征更是从割裂走向理解与生成的终极合流</strong>。</p>
+
+<p>本文以三年前的认知为基准，深入剖析这三年间架构层面的本质跃迁。</p>
+
+<hr />
+
+<h2 id="1-架构底座的更迭从-u-net-到-dit--mmdit">1. 架构底座的更迭：从 U-Net 到 DiT / MMDiT</h2>
+
+<p>三年前的经典 SD（SD 1.5 / SDXL）架构，本质上是一个以卷积为主体的宏大工程架构：
+<code class="language-plaintext highlighter-rouge">VAE + 带跳跃连接的 2D U-Net + 嵌在 ResNetBlock 之间的 SpatialTransformer（Cross-Attention）</code>。</p>
+
+<p>而今天以 <strong>Flux.1</strong>、<strong>Stable Diffusion 3</strong>、<strong>Midjourney v6/v7</strong> 为代表的现代生图模型，已经彻底清除了卷积 U-Net 的痕迹。</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>【传统 SD / SDXL (2024) 架构】
+Text Prompt ──&gt; CLIP ────────┐ (单向 Cross-Attention 注入)
+                             ▼
+Noisy Latent ──&gt; [ Downsample Conv ] ──&gt; [ Bottleneck Transformer ] ──&gt; [ Upsample Conv ] ──&gt; Output
+                         │                                                    ▲
+                         └────────────── Skip Connection ─────────────────────┘
+
+【现代 DiT / MMDiT (2026) 架构】
+Text Tokens  ──&gt; [ Text Embed ]  ──┐
+                                   ├──&gt; [ MMDiT / Joint Transformer Blocks ] (双流全向自注意力)
+Image Patches ─&gt; [ Patch Linear ] ─┘        │ (图文双向平权交互，深层单流统一)
+                                            ▼
+                                   [ AdaLN-Zero 注入 Timestep / Guidance ]
+                                            ▼
+                                    Denoised / Flow Vector Output
+</code></pre></div></div>
+
+<h3 id="为什么-u-net-会被全面淘汰">为什么 U-Net 会被全面淘汰？</h3>
+<ol>
+  <li><strong>参数规模的 Scaling 瓶颈</strong>：卷积固有的归纳偏置（平移不变性与局部感受野）对小数据训练友好，但随着模型参数迈向 3B~12B+，U-Net 的层级卷积与降采样结构表现出明显的性能饱和，难以像纯 Transformer 那样享受大算力与海量多模态数据带来的 Scaling Law 收益。</li>
+  <li><strong>长距离空间与全局语义的脱节</strong>：U-Net 依赖逐级下采样（Downsampling）来扩大感受野，但高频细节在深层丢失严重，全靠粗糙的跳跃连接（Skip Connections）缝合，导致大尺度构图与复杂空间关系的连贯性不足。</li>
+</ol>
+
+<h3 id="dit-与-mmdit-的核心设计">DiT 与 MMDiT 的核心设计</h3>
+<ul>
+  <li><strong>Patchify（潜变量切块）</strong>：现代 DiT 借鉴 ViT 的思路，将高维潜空间特征切成 \(2\times 2\) 的 Patch，展平为线性 Token 序列，使得图像和文本在数据结构上完全等价。</li>
+  <li><strong>双流到单流的 MMDiT（Multimodal DiT）</strong>：
+    <ul>
+      <li><strong>传统痛点</strong>：过去文本仅仅作为 Key / Value 单向“注入”图像 Query，文本 Token 彼此在生成过程中是固化的，极易引发提示词漏词（Catastrophic Neglect）、长修饰语歧义和属性错位。</li>
+      <li><strong>现代解决</strong>：图像流与文本流保持各自独立的参数与模态位置编码，但在深层进入共享的自注意力矩阵：
+\[\text{Attention}([Q_{\text{img}}, Q_{\text{txt}}], [K_{\text{img}}, K_{\text{txt}}], [V_{\text{img}}, V_{\text{txt}}])\]
+      </li>
+      <li><strong>双向平权交互</strong>：文本引导图像去噪的同时，图像的生成状态也在反向影响文本权重的分配，从根源上解决了复杂指令的遵循问题。</li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<h2 id="2-图像编码与多模态表征的演进">2. 图像编码与多模态表征的演进</h2>
+
+<p>在 2024 年的认知中，图像编码主要分为三块：低维 VAE、用于文本对齐的 CLIP-ViT 以及用于控制的 ControlNet 下采样分支。当前图像编码已分化并跃迁为三条成熟路径：</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>                    ┌── ① 连续潜变量编码 (Continuous Latents) ──&gt; 用于 DiT 生成 (Flux, SD3, Sora)
+                    │     (高维 16~32ch VAE / 3D 时空因果 VAE)
+多模态图像编码体系 ─┼── ② 连续 Patch 特征编码 (Continuous Vision Tokens) ──&gt; 用于 MLLM 理解 (GPT-4o, Qwen-VL)
+                    │     (AnyRes 动态长宽比切块 + SigLIP/DINOv2 双流特征)
+                    └── ③ 离散语义 Token 编码 (Discrete Quantized Tokens) ──&gt; 用于统一自回归 (Chameleon, Janus)
+                          (FSQ 有限标量量化 / TiTok 极度压缩)
+</code></pre></div></div>
+
+<h3 id="-生成大模型的潜在空间编码从-4-通道到-1632-通道">① 生成大模型的潜在空间编码：从 4 通道到 16/32 通道</h3>
+<ul>
+  <li><strong>破除瓶颈</strong>：SD 1.5 / SDXL 的 VAE 压缩比为 8，但潜空间只有 4 个通道（\(H/8 \times W/8 \times 4\)）。这种极端的信息压缩造成严重的重建损失，导致小字体、人眼虹膜、细碎纹理在潜空间编解码阶段就已经模糊不清。</li>
+  <li><strong>高维与时空扩展</strong>：
+    <ul>
+      <li>Flux 与 SD3 将 VAE 潜空间通道直接拓宽至 <strong>16 通道甚至 32 通道</strong>，潜空间的信息承载能力呈几何级数增加；</li>
+      <li>在视频与动态生成领域（如 Sora、CogVideoX），引入了 <strong>3D Causal VAE（时空因果 VAE）</strong>，在空间 \(8\times 8\) 压缩的基础上对时间帧进行因果卷积压缩（如 4 帧压成 1 帧），统一了静态图像与动态视频的潜空间表达。</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="-理解大模型的连续-patch-编码anyres-与语义几何双流">② 理解大模型的连续 Patch 编码：AnyRes 与语义/几何双流</h3>
+<ul>
+  <li><strong>告别粗暴缩放，拥抱 AnyRes 动态切块</strong>：早期 CLIP-ViT 强制将不同比例的图片裁切缩放为固定尺寸（如 \(224\times 224\) 或 \(336\times 336\)），破坏了原始几何比例并丢失了细微文字。现代理解模型（如 NaViT、LLaVA-NeXT、Qwen2.5-VL）采用原生分辨率切块（AnyRes / Patch-n-Pack），根据原始长宽比切成若干个自适应大小的标准 Local Patches 与一张全局缩略图，密集细节全量保留。</li>
+  <li><strong>双编码器融合（SigLIP + DINOv2）</strong>：单纯的视觉-文本对齐编码器（如 CLIP/SigLIP）擅长抽象语义，但在空间几何、深度边界和像素级定位上表现脆弱。现代模型普遍混合引入自监督特征提取器 <strong>DINOv2</strong>，“一个负责理解概念，一个负责看准空间像素”。</li>
+</ul>
+
+<h3 id="-理解与生成的合流统一离散化-tokenizerfsq--titok">③ 理解与生成的合流：统一离散化 Tokenizer（FSQ / TiTok）</h3>
+<ul>
+  <li>传统的 VQ-VAE 存在代码本崩塌（Codebook Collapse）与训练不稳定的顽疾。</li>
+  <li>现代架构采用 <strong>FSQ（Finite Scalar Quantization，有限标量量化）</strong> 或 <strong>TiTok</strong>，通过简单的标量舍入将连续向量映射为离散整数序号（Visual Token IDs）。</li>
+  <li><strong>意义</strong>：图像与文本完全统一为离散序列。底座语言模型可以使用标准的 Next-Token Prediction 统一训练文生图与图生文，彻底打破了“理解归语言模型，生成归扩散模型”的割裂壁垒。</li>
+</ul>
+
+<hr />
+
+<h2 id="3-对照三年前两篇笔记的技术认知跃迁">3. 对照三年前两篇笔记的技术认知跃迁</h2>
+
+<h3 id="对照一2024-02-29-stable-diffusion6微调与外挂结构">对照一：[[2024-02-29-stable-diffusion6]]（微调与外挂结构）</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">2024 年的理解与记录</th>
+      <th style="text-align: left">当时的工程技术方案</th>
+      <th style="text-align: left">当前的技术演进与演变方向</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><strong>ControlNet 架构</strong></td>
+      <td style="text-align: left">复制半个 U-Net 结构，通过零卷积向原网络注入 hint 图像</td>
+      <td style="text-align: left"><strong>外挂网络被原生多模态输入收编</strong>。在 DiT 体系中，Canny/Depth 等控制图直接转化为 Tokens 拼接在序列中，或仅需极少量的可学习 Cross-Attention 注入，不再需要复制半个主干网的沉重开销。</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>微调粒度层级</strong></td>
+      <td style="text-align: left"><em>“LoRA &lt; GLIGEN = IP-Adapter &lt; ControlNet”</em></td>
+      <td style="text-align: left"><strong>结构归一化</strong>。IP-Adapter 的分路 cross-attention 被 <strong>In-Context Reference Attention</strong> 取代——将参考图作为序列前缀（Prefix）送入 Transformer，利用自注意力机制原生完成风格与主体特征锁定。</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>时间与空间编码</strong></td>
+      <td style="text-align: left">时间用 Sinusoidal 一维三角编码，空间坐标用 Fourier Tile</td>
+      <td style="text-align: left"><strong>2D/3D RoPE（旋转位置编码）全面普及</strong>。时间与引导系数通过 <strong>AdaLN-Zero</strong> 自适应调制每一层的缩放和平移参数；空间几何则全面采用 2D-RoPE，天然支持任意长宽比与外推。</td>
+    </tr>
+  </tbody>
+</table>
+
+<blockquote>
+  <p><strong>核心跃迁</strong>：2024 年是<strong>“打补丁时代”</strong>——基础模型能力有限，需要依靠外挂结构（ControlNet 补线条、IP-Adapter 补主体、GLIGEN 补边界框）；2026 年是<strong>“原生统一时代”</strong>——基础模型的上下文窗口足够大、参数足够丰富，所有的条件控制都化为了自然的多模态上下文序列输入。</p>
+</blockquote>
+
+<hr />
+
+<h3 id="对照二2024-02-04-attention注意力机制与-qkv-的物理本质">对照二：[[2024-02-04-attention]]（注意力机制与 QKV 的物理本质）</h3>
+
+<h4 id="1-关于-qkv-的角色对称性">1. 关于 QKV 的角色对称性</h4>
+<ul>
+  <li><strong>2024 年的思考</strong>：<em>“其实从计算过程可以看出，不管它们的原义，Q, K 交换一下也没差… 相对的，每个 input token 对应 vector mapping 相同”</em>。</li>
+  <li><strong>当前的印证</strong>：三年前关于“Q 与 K 对称性”的直觉在 MMDiT 中得到了完美的工程兑现。传统的单向 Cross-Attention 刻意将图像设为 Q、文本设为 K/V，人为打破了模态间的对等性；而在现代的双流联合注意力中，图文两端各自计算投影并平权拼接，文本与图像在注意力矩阵中恢复了完全的对称交互。</li>
+</ul>
+
+<h4 id="2-关于相对位置编码">2. 关于相对位置编码</h4>
+<ul>
+  <li><strong>2024 年的思考</strong>：<em>“在文本模型里，其实 token 的相对位置也很重要… 相对位置编码就把相对位置加到 relation 里”</em>。</li>
+  <li><strong>当前的印证</strong>：绝对位置编码在现代生成与多模态模型中已近乎绝迹。<strong>2D RoPE（Rotary Position Embedding）</strong> 成为绝对主力。它直接通过旋转矩阵将相对空间位移 \((m-n)\) 注入到注意力内积中：
+\[\langle R_m Q_m, R_n K_n \rangle = g(Q_m, K_n, m-n)\]
+
+这种相对位置机制赋予了模型强大的空间延展性，使得我们在进行 <strong>Outpainting（扩图）</strong> 时，即便画幅比例剧烈变化，也不会产生传统绝对编码带来的位置混淆与边缘断层。</li>
+</ul>
+
+<h4 id="3-关于多源数据注意力合成ip-adapter">3. 关于多源数据注意力合成（IP-Adapter）</h4>
+<ul>
+  <li><strong>2024 年的思考</strong>：<em>“在 ipadapter 里面讨论了多种不同来源的数据在 cross-attention 里合成的问题，结论是分别与原数据做 attention 最后再合成比较好”</em>。</li>
+  <li><strong>当前的演进</strong>：分路独立 Cross-Attention 容易在深层产生注意力的稀释与互相覆盖（这也是 2024 年局部重绘时必须费力微调 IP-Adapter 权重的根源）。现代模型通过长序列多模态拼接（In-context conditioning），让自注意力矩阵在同一归一化分母（Softmax）下统一竞逐权重，主体的稳定性与融合自然度显著超越了传统分路相加。</li>
+</ul>
+
+<hr />
+
+<h2 id="4-数学范式的平滑化从扩散-sde-到-flow-matching流匹配">4. 数学范式的平滑化：从扩散 SDE 到 Flow Matching（流匹配）</h2>
+
+<p>在 2024 年学习 Stable Diffusion 时，最大的工程负担之一是复杂的扩散加噪去噪数学公式以及五花八门的采样器调度算法（DDIM, Euler, DPM-Solver++, UniPC 等，见 [[2024-04-18-stable-diffusion9]]）。</p>
+
+<p>现代大模型在数学机制上完成了一次彻底的“减负与提速”：<strong>全面拥抱 Rectified Flow（整流流匹配）</strong>。</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">维度</th>
+      <th style="text-align: left">传统扩散模型 (DDPM / EDM)</th>
+      <th style="text-align: left">现代流匹配 (Flow Matching / Rectified Flow)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><strong>轨迹形态</strong></td>
+      <td style="text-align: left">随机、布朗运动式曲折轨迹（SDE / 弯曲 ODE）</td>
+      <td style="text-align: left"><strong>两点之间直线运动</strong>（直线 ODE 速度场：\(v_t = x_1 - x_0\)）</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>数学复杂度</strong></td>
+      <td style="text-align: left">复杂的漂移项、扩散项与噪声方差调度计划（\(\sigma\)-schedule）</td>
+      <td style="text-align: left">线性插值路径：\(x_t = (1-t)x_0 + t x_1\)，目标为拟合恒定速度场</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>采样步数</strong></td>
+      <td style="text-align: left">通常需要 20 ~ 50 步积分迭代</td>
+      <td style="text-align: left">结合微调蒸馏，仅需 <strong>4 ~ 8 步</strong> 即可达到极高保真度</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>轨迹稳定性</strong></td>
+      <td style="text-align: left">容易陷入局部极值，对初始随机 seed 极度敏感（“抽卡”看运气）</td>
+      <td style="text-align: left">轨迹笔直且确定性极高，大幅缓解抽卡成本</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="5-总结三年技术演进全景映射">5. 总结：三年技术演进全景映射</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">对比维度</th>
+      <th style="text-align: left">2024 年典型代表 (SD 1.5 / SDXL)</th>
+      <th style="text-align: left">2026 年现代大模型 (Flux / SD3 / MLLM)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><strong>骨干模型</strong></td>
+      <td style="text-align: left">2D U-Net（ResNetBlock + SpatialTransformer）</td>
+      <td style="text-align: left"><strong>DiT / MMDiT</strong>（纯 Transformer，原生支持海量参数扩展）</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>模态交互</strong></td>
+      <td style="text-align: left">单向 Cross-Attention（图像看文本，文本固定）</td>
+      <td style="text-align: left"><strong>Joint Self-Attention</strong>（图文双流全向平权注意力）</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>空间控制</strong></td>
+      <td style="text-align: left">独立复制的 ControlNet 庞大旁路</td>
+      <td style="text-align: left"><strong>原生序列化 Token 输入</strong> 或上下文参考自注意力</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>潜空间 VAE</strong></td>
+      <td style="text-align: left">4 通道低维 VAE（高频文字与边缘易糊化）</td>
+      <td style="text-align: left"><strong>16 / 32 通道高维 VAE</strong>，支持视频的 <strong>3D Causal VAE</strong></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>位置编码</strong></td>
+      <td style="text-align: left">一维 Sinusoidal 三角编码 / 绝对 Pos Embedding</td>
+      <td style="text-align: left"><strong>2D / 3D RoPE</strong>（旋转位置编码，天然适配任意长宽比扩图）</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>采样机制</strong></td>
+      <td style="text-align: left">复杂方差调度的扩散 SDE/ODE（20~50 步）</td>
+      <td style="text-align: left"><strong>Rectified Flow 流匹配</strong>（确定性直线路径，4~8 步高质量直出）</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>多模态合流</strong></td>
+      <td style="text-align: left">理解（LLM/CLIP）与生成（SD/UNet）严格分工</td>
+      <td style="text-align: left"><strong>Any-to-Any 统一架构</strong>（自回归 Token 或统一流匹配底座）</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>回顾这三年的演化脉络，AI 作图不再是孤立的图形算法工程，而是彻底并轨进了现代大语言模型与多模态 Transformer 的同一技术主干。三年前我们在复杂连线中摸索的工程巧思与数学直觉，在今天被统一、优雅的序列架构逐一实现并超越。</p>
+
+<hr />
+
+<h2 id="参考与关联笔记">参考与关联笔记</h2>
+
+<ul>
+  <li>[[2024-02-04-attention]]：神经网络 attention 结构理解</li>
+  <li>[[2024-02-29-stable-diffusion6]]：stable-diffusion 的结构和微调模型</li>
+  <li>[[2024-04-18-stable-diffusion9]]：stable-diffusion 中 k-sampling 的不同版本</li>
+  <li>[[2025-09-02-stable-diffusion10]]：AI 作图效果: 常用的作图功能</li>
+</ul>
+
+        </div>
+
+        
+
+        
+        
+  <div class="page-comments">
+    <div id="disqus_thread"></div>
+    <script>
+      var disqus_config = function () {
+        this.page.url = 'https://roshameow.github.io//personal_homepage/deeplearning/stable-diffusion11/';
+        this.page.identifier = 'https://roshameow.github.io//personal_homepage/deeplearning/stable-diffusion11/';
+      };
+
+      (function() {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://https-roshameow-github-io-personal-homepage.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+  </div>
+
+
+        
+
+        <nav class="page-pagination" role="navigation">
+  
+    <a class="page-previous" href="/personal_homepage/tool/alpha20/">
+      <h4 class="page-pagination-label">Previous</h4>
+      <span class="page-pagination-title">
+        <i class="fas fa-arrow-left"></i> 回测系统任务控制生命周期：入口、证据、故障分支与行为验收
+
+      </span>
+    </a>
+  
+
+  
+    <a class="page-next" href="/personal_homepage/tool/alpha21/">
+      <h4 class="page-pagination-label">Next</h4>
+      <span class="page-pagination-title">
+        复杂长期任务的多Session分权与Goal治理
+ <i class="fas fa-arrow-right"></i>
+      </span>
+    </a>
+  
+</nav>
+
+      </div>
+
+    </div>
+  </article>
+</main>
+
+    <footer id="footer" class="site-footer">
+  <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+<div class="social-icons"><a class="social-icon" href="/personal_homepage/atom.xml"><i class="fas fa-rss-square fa-2x" title="Feed"></i></a><a class="social-icon" href="https://github.com/roshameow"><i class="fab fa-github-square fa-2x" title="GitHub"></i></a><a class="social-icon" href="https://www.linkedin.com/in/wen-liu-06503a7b/"><i class="fab fa-linkedin fa-2x" title="LinkedIn"></i></a><a class="social-icon" href="mailto:w.liuatnk@gmail.com"><i class="fas fa-envelope-square fa-2x" title="e-mail"></i></a></div><div class="copyright">
+    
+      <p>&copy; 2026 Liu, Wen's Home Page. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://github.com/mmistakes/so-simple-theme" rel="nofollow">So Simple</a>.</p>
+    
+  </div>
+</footer>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="/personal_homepage/assets/js/main.min.js"></script>
+<script src="https://use.fontawesome.com/releases/v5.0.12/js/all.js"></script><script src="/personal_homepage/assets/js/content-tables.js" defer></script>
+
+<script>
+(function () {
+  'use strict';
+
+  var types = {
+    NOTE: 'note', INFO: 'note', ABSTRACT: 'note', SUMMARY: 'note', TLDR: 'note',
+    EXAMPLE: 'note', QUOTE: 'note', CITE: 'note',
+    TIP: 'tip', HINT: 'tip', IMPORTANT: 'tip', SUCCESS: 'tip', CHECK: 'tip', DONE: 'tip',
+    QUESTION: 'warning', HELP: 'warning', FAQ: 'warning',
+    WARNING: 'warning', CAUTION: 'warning', ATTENTION: 'warning',
+    DANGER: 'danger', ERROR: 'danger', BUG: 'danger',
+    FAILURE: 'danger', FAIL: 'danger', MISSING: 'danger'
+  };
+  var icons = {
+    note: 'M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z M12 11v6 M12 7h.01',
+    tip: 'M9 18h6 M10 21h4 M9 15a6 6 0 1 1 6 0v3H9z',
+    warning: 'M12 3L2 21h20z M12 9v5 M12 17h.01',
+    danger: 'M7 3h10l4 4v10l-4 4H7l-4-4V7z M9 9l6 6 M15 9l-6 6'
+  };
+
+  function makeIcon(type) {
+    var namespace = 'http://www.w3.org/2000/svg';
+    var svg = document.createElementNS(namespace, 'svg');
+    svg.setAttribute('class', 'callout-icon');
+    svg.setAttribute('viewBox', '0 0 24 24');
+    svg.setAttribute('width', '20');
+    svg.setAttribute('height', '20');
+    svg.setAttribute('fill', 'none');
+    svg.setAttribute('stroke', 'currentColor');
+    svg.setAttribute('stroke-width', '2');
+    svg.setAttribute('stroke-linecap', 'round');
+    svg.setAttribute('stroke-linejoin', 'round');
+    svg.setAttribute('aria-hidden', 'true');
+    svg.setAttribute('focusable', 'false');
+    var path = document.createElementNS(namespace, 'path');
+    path.setAttribute('d', icons[type]);
+    svg.appendChild(path);
+    return svg;
+  }
+
+  // A soft break is a text newline; a Markdown hard break is a <br>.
+  // Do not split newlines inside inline code or other literal content.
+  function firstBreak(parent) {
+    for (var node = parent.firstChild; node; node = node.nextSibling) {
+      if (node.nodeType === 3) {
+        var offset = node.data.search(/[\r\n]/);
+        if (offset !== -1) return { node: node, offset: offset };
+      } else if (node.nodeType === 1) {
+        if (node.tagName === 'BR') return { node: node };
+        if (/^(CODE|PRE|SCRIPT|STYLE|TEXTAREA)$/.test(node.tagName)) continue;
+        var result = firstBreak(node);
+        if (result) return result;
+      }
+    }
+    return null;
+  }
+
+  function transformCallouts() {
+    document.querySelectorAll('.page-content blockquote').forEach(function (quote) {
+      if (quote.closest('pre, code, .highlight, .highlighter-rouge')) return;
+      var paragraph = quote.firstElementChild;
+      if (!paragraph || paragraph.tagName !== 'P') return;
+
+      // Require the marker in a direct text node: <code>[!WARNING]</code>
+      // (and markers merely mentioned later in a quote) must remain literal.
+      var markerNode = paragraph.firstChild;
+      if (!markerNode || markerNode.nodeType !== 3) return;
+      var marker = markerNode.data.match(/^[\t \r\n]*\[!([a-z][a-z0-9-]*)\]([+-])?(?=[\t \r\n]|$)[\t ]*/i);
+      if (!marker) return;
+      var name = marker[1].toUpperCase();
+      if (!Object.prototype.hasOwnProperty.call(types, name)) return;
+      var type = types[name];
+      var label = name === 'TLDR' ? 'TL;DR' : name.charAt(0) + name.slice(1).toLowerCase();
+      markerNode.deleteData(0, marker[0].length);
+
+      var boundary = firstBreak(paragraph);
+      var range = document.createRange();
+      range.selectNodeContents(paragraph);
+      if (boundary) {
+        if (boundary.node.nodeType === 3) range.setEnd(boundary.node, boundary.offset);
+        else range.setEndBefore(boundary.node);
+      }
+      var titleContent = range.extractContents();
+      if (boundary) {
+        if (boundary.node.nodeType === 3) {
+          var breakLength = boundary.node.data.slice(0, 2) === '\r\n' ? 2 : 1;
+          boundary.node.deleteData(0, breakLength);
+        } else {
+          boundary.node.parentNode.removeChild(boundary.node);
+        }
+      }
+      if (!paragraph.textContent.trim() && !paragraph.children.length) {
+        quote.removeChild(paragraph);
+      }
+
+      var folding = !!marker[2];
+      var callout = document.createElement(folding ? 'details' : 'div');
+      // Keep author-provided IDs, language, direction, and classes.
+      Array.prototype.forEach.call(quote.attributes, function (attribute) {
+        callout.setAttribute(attribute.name, attribute.value);
+      });
+      callout.classList.add('callout', 'callout--' + type);
+      callout.setAttribute('data-callout', name.toLowerCase());
+      callout.setAttribute('aria-label', label);
+      if (folding) {
+        callout.removeAttribute('role');
+        if (marker[2] === '+') callout.setAttribute('open', '');
+        else callout.removeAttribute('open');
+      } else {
+        callout.setAttribute('role', 'note');
+      }
+
+      var title = document.createElement(folding ? 'summary' : 'div');
+      title.className = 'callout-title';
+      title.appendChild(makeIcon(type));
+      var titleText = document.createElement('span');
+      titleText.className = 'callout-title-text';
+      if (titleContent.textContent.trim() || titleContent.childElementCount) {
+        titleText.appendChild(titleContent);
+      } else {
+        titleText.textContent = label;
+      }
+      title.appendChild(titleText);
+      callout.appendChild(title);
+
+      var body = document.createElement('div');
+      body.className = 'callout-body';
+      while (quote.firstChild) body.appendChild(quote.firstChild);
+      callout.appendChild(body);
+      quote.parentNode.replaceChild(callout, quote);
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', transformCallouts);
+  } else {
+    transformCallouts();
+  }
+})();
+</script>
+<!-- <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'G-9TMSCDTBGN', 'auto');
+  ga('send', 'pageview');
+</script> -->
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9TMSCDTBGN"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-9TMSCDTBGN');
+</script>
+
+
+
+<!-- MathJax -->
+<style>
+    /* Only oversized equations get this wrapper; ordinary inline math stays inline. */
+    .math-scroll {
+        display: block;
+        max-width: 100%;
+        overflow-x: auto;
+        overflow-y: hidden;
+        padding-block: 0.5em;
+        scrollbar-width: thin;
+    }
+    .math-scroll > mjx-container[jax] {
+        display: inline-block;
+        margin: 0;
+    }
+    .math-scroll:focus-visible {
+        outline: 2px solid currentColor;
+        outline-offset: 2px;
+    }
+</style>
+<script>
+    function fitMathToColumn() {
+        document.querySelectorAll('mjx-container').forEach(function (container) {
+            var wrapper = container.parentElement.classList.contains('math-scroll') ? container.parentElement : null;
+            var column = wrapper ? wrapper.parentElement : container.parentElement;
+            while (column && ['inline', 'contents'].includes(getComputedStyle(column).display)) {
+                column = column.parentElement;
+            }
+            if (!column) return;
+            var style = getComputedStyle(column);
+            var available = column.clientWidth - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight);
+            var ink = container.querySelector('mjx-math, svg');
+            var width = (ink || container).getBoundingClientRect().width;
+            if (width > available + 1) {
+                if (!wrapper) {
+                    wrapper = document.createElement('span');
+                    wrapper.className = 'math-scroll';
+                    wrapper.tabIndex = 0;
+                    wrapper.setAttribute('role', 'region');
+                    wrapper.setAttribute('aria-label', 'Mathematical formula; scroll horizontally to read all');
+                    wrapper.title = 'Scroll horizontally to read the full formula';
+                    container.before(wrapper);
+                    wrapper.appendChild(container);
+                }
+            } else if (wrapper) {
+                wrapper.replaceWith(container);
+            }
+        });
+    }
+    // Pin the engine, autoloaded TeX extensions, menu and fonts to local assets.
+    window.MathJax = {
+        loader: {
+            paths: { mathjax: "/personal_homepage/assets/js/vendor/mathjax/es5" },
+            load: ['[tex]/textmacros']
+        },
+        tex: {
+            tags: "ams",
+            packages: { '[+]': ['textmacros'] },
+            inlineMath: [['$', '$'], ['\\(', '\\)']],
+            displayMath: [['$$', '$$'], ['\\[', '\\]']]
+        },
+        chtml: {
+            fontURL: "/personal_homepage/assets/js/vendor/mathjax/es5/output/chtml/fonts/woff-v2"
+        },
+        startup: {
+            pageReady: function () {
+                return MathJax.startup.defaultPageReady().then(function () {
+                    return document.fonts ? document.fonts.ready : undefined;
+                }).then(function () {
+                    fitMathToColumn();
+                    var scheduled = false;
+                    window.addEventListener('resize', function () {
+                        if (scheduled) return;
+                        scheduled = true;
+                        requestAnimationFrame(function () {
+                            scheduled = false;
+                            fitMathToColumn();
+                        });
+                    });
+                });
+            }
+        },
+        options: {
+            // Keep examples (including literal dollar signs) out of the typesetter.
+            skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code', 'annotation', 'annotation-xml']
+        }
+    };
+</script>
+<script id="MathJax-script" async src="/personal_homepage/assets/js/vendor/mathjax/es5/tex-mml-chtml.js"></script>
+
+
+
+
+<!-- Mermaid -->
+<style>
+  .mermaid-diagram {
+    max-width: 100%;
+    margin: 0.85rem 0;
+    overflow-x: auto;
+  }
+  .mermaid-diagram:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+  }
+  .page-content pre.mermaid {
+    margin: 0;
+    padding: 0.25rem 0;
+    text-align: center;
+    background: transparent;
+    overflow: visible;
+    font-family: inherit;
+  }
+  .page-content pre.mermaid[data-processed] {
+    white-space: normal;
+  }
+  pre.mermaid svg {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    height: auto;
+  }
+  .mermaid-diagram .cluster-label {
+    font-weight: 700;
+  }
+  .mermaid-error {
+    font-size: 0.85em;
+    color: #9a3412;
+  }
+</style>
+<script src="/personal_homepage/assets/js/vendor/mermaid-11.17.2.min.js"></script>
+<script>
+(function () {
+  'use strict';
+
+  function normalizeMermaidSource(source) {
+    // Mermaid 11 accepts A <-- "label" --- B but creates an INVALID edge.
+    // Render the equivalent B -->|"label"| A, without editing the Markdown.
+    var body = source.trimStart()
+      .replace(/^---\r?\n[\s\S]*?\r?\n---(?:\r?\n|$)/, '')
+      .replace(/%%\{[\s\S]*?\}%%/g, '')
+      .replace(/^[\t ]*%%.*$/gm, '').trimStart();
+    if (!/^(?:flowchart|graph)\b/.test(body)) return source;
+
+    var started = false;
+    var quoted = false;
+    return source.replace(/[^\r\n]+/g, function (line) {
+      if (!started && !/^\s*(?:flowchart|graph)\b/.test(line)) return line;
+      started = true;
+      var normalized = quoted ? line : line.replace(
+        /^([\t ]*)([A-Za-z_][\w-]*)[\t ]*<--[\t ]*("[^"\r\n]*")[\t ]*---[\t ]*([A-Za-z_][\w-]*)([\t ]*;?[\t ]*(?:%%.*)?)$/,
+        function (_, indent, left, label, right, suffix) {
+          return indent + right + ' -->|' + label + '| ' + left + suffix;
+        }
+      );
+      // Never rewrite an example inside a multiline quoted node label, and
+      // never let quotes inside a %% comment affect the following lines.
+      for (var i = 0; i < line.length; i++) {
+        if (!quoted && line[i] === '%' && line[i + 1] === '%') break;
+        if (line[i] === '"') quoted = !quoted;
+      }
+      return normalized;
+    });
+  }
+
+  async function renderDiagrams() {
+    var blocks = document.querySelectorAll('code.language-mermaid');
+    if (!blocks.length) return;
+    if (typeof mermaid === 'undefined') {
+      blocks.forEach(function (code) {
+        var original = code.closest('.highlighter-rouge') || code.closest('pre');
+        if (!original) return;
+        var message = document.createElement('p');
+        message.className = 'mermaid-error';
+        message.setAttribute('role', 'status');
+        message.textContent = '图表组件加载失败，请刷新页面重试。Mermaid 源码已保留。';
+        original.after(message);
+      });
+      return;
+    }
+
+    // Render every diagram as Mermaid, including diagrams with multiple subgraphs.
+    // Disable the automatic pass so it cannot race with our explicit rendering.
+    var skin = getComputedStyle(document.documentElement);
+    function color(name, fallback) {
+      return skin.getPropertyValue('--mermaid-' + name).trim() || fallback;
+    }
+    var background = color('background', '#ffffff');
+    var text = color('text', '#000000');
+    var border = color('border', '#cccccc');
+    var nodeBorder = color('node-border', '#b8b9c0');
+    var cluster = color('cluster-background', '#f9f9fa');
+    var line = color('line', '#858795');
+    var palettes = [
+      ['#e4eaf0', '#f4f6f9', '#a5b3c2'], // slate blue
+      ['#e8f0ea', '#f5f8f5', '#a8bcae'], // sage
+      ['#f3ede3', '#faf7f2', '#c6b69c'], // sand
+      ['#ebe8f1', '#f7f5fa', '#b5adc5'], // lavender
+      ['#e4eeee', '#f3f8f8', '#a0baba']  // muted teal
+    ].map(function (fallbacks, index) {
+      return {
+        node: color('palette-' + index + '-node', fallbacks[0]),
+        cluster: color('palette-' + index + '-cluster', index === 0 ? cluster : fallbacks[1]),
+        border: color('palette-' + index + '-border', fallbacks[2])
+      };
+    });
+    var fontFamily = getComputedStyle(document.body).fontFamily ||
+      '"Source Sans Pro", sans-serif';
+    // Mermaid fixes label dimensions during layout. Wait for web fonts so a
+    // later font swap cannot make the measured label box too small.
+    if (document.fonts) await document.fonts.ready;
+
+    var theme = "default";
+    // The site's default follows its active skin. Explicit forest/dark/etc.
+    // choices remain available for sites that deliberately select them.
+    if (theme === 'default') theme = 'base';
+
+    var config = {
+      startOnLoad: false,
+      securityLevel: 'strict',
+      fontFamily: fontFamily,
+      // Native SVG text avoids foreignObject clipping and article paragraph CSS.
+      htmlLabels: false,
+      flowchart: {
+        inheritDir: true,
+        curve: 'linear',
+        nodeSpacing: 24,
+        rankSpacing: 28,
+        padding: 8,
+        diagramPadding: 8,
+        wrappingWidth: 180,
+        // Nested cluster borders must start below the parent's full title line.
+        subGraphTitleMargin: { top: 4, bottom: 12 }
+      },
+      theme: theme,
+      themeVariables: theme === 'base' ? {
+        fontFamily: fontFamily,
+        fontSize: '14px',
+        background: background,
+        primaryColor: palettes[0].node,
+        primaryTextColor: text,
+        primaryBorderColor: nodeBorder,
+        secondaryColor: palettes[1].node,
+        secondaryTextColor: text,
+        secondaryBorderColor: border,
+        tertiaryColor: palettes[2].node,
+        tertiaryTextColor: text,
+        tertiaryBorderColor: border,
+        lineColor: line,
+        textColor: text,
+        mainBkg: palettes[0].node,
+        nodeBorder: nodeBorder,
+        nodeTextColor: text,
+        clusterBkg: palettes[0].cluster,
+        clusterBorder: border,
+        titleColor: text,
+        defaultLinkColor: line,
+        edgeLabelBackground: background,
+        noteBkgColor: palettes[2].node,
+        noteTextColor: text,
+        noteBorderColor: border,
+        actorBkg: palettes[0].node,
+        actorBorder: nodeBorder,
+        actorTextColor: text,
+        actorLineColor: border,
+        signalColor: line,
+        signalTextColor: text
+      } : { fontFamily: fontFamily }
+    };
+
+    function applyFlowchartPalette(svg) {
+      if (theme !== 'base' || !/^flowchart/.test(svg.getAttribute('aria-roledescription') || '')) return;
+
+      function tint(group, shapes, index, kind) {
+        // Author-supplied classDef/style colors take precedence over auto accents.
+        var customClass = Array.from(group.classList).some(function (name) {
+          return !['node', 'default', 'cluster', 'clickable'].includes(name);
+        });
+        if (customClass || !shapes.length || shapes.some(function (shape) {
+          return shape.style.getPropertyValue('fill') || shape.style.getPropertyValue('stroke');
+        })) return;
+        group.setAttribute('data-mermaid-palette', index);
+        shapes.forEach(function (shape) {
+          // Keep fallbacks in the SVG so exported diagrams retain their colors.
+          if (shape.getAttribute('fill') !== 'none') {
+            shape.style.fill = 'var(--mermaid-palette-' + index + '-' + kind + ', ' + palettes[index][kind] + ')';
+          }
+          shape.style.stroke = 'var(--mermaid-palette-' + index + '-border, ' + palettes[index].border + ')';
+        });
+      }
+
+      var groups = Array.from(svg.querySelectorAll('g.cluster')).map(function (group, index) {
+        var rect = group.querySelector('rect');
+        return { group: group, rect: rect, bounds: rect && rect.getBoundingClientRect(), index: index % palettes.length };
+      }).filter(function (entry) { return entry.rect; });
+      // Mermaid's SVG stores clusters flat. Match by the actual layout so nodes
+      // inherit their smallest enclosing group, including nested schedulers.
+      var nodes = Array.from(svg.querySelectorAll('g.node')).map(function (node) {
+        return { node: node, bounds: node.getBoundingClientRect() };
+      });
+      groups.forEach(function (entry) { tint(entry.group, [entry.rect], entry.index, 'cluster'); });
+      groups.sort(function (a, b) { return a.bounds.width * a.bounds.height - b.bounds.width * b.bounds.height; });
+      nodes.forEach(function (entry) {
+        var box = entry.bounds;
+        var parent = groups.find(function (group) {
+          var bounds = group.bounds;
+          return box.left >= bounds.left - 1 && box.right <= bounds.right + 1 &&
+            box.top >= bounds.top - 1 && box.bottom <= bounds.bottom + 1;
+        });
+        var shapes = [];
+        entry.node.querySelectorAll(':scope > .label-container').forEach(function (container) {
+          // Rounded/hand-drawn shapes wrap paths in a group. Include the
+          // container in the author-style check, then tint the actual paths.
+          shapes.push(container);
+          shapes.push.apply(shapes, container.querySelectorAll('path, rect, circle, ellipse, polygon, polyline'));
+        });
+        tint(entry.node, shapes, parent ? parent.index : 0, 'node');
+      });
+    }
+
+    function hasNestedSubgraphs(source) {
+      var depth = 0;
+      return source.split(/\r?\n/).some(function (line) {
+        if (/^\s*subgraph\b/.test(line)) return ++depth > 1;
+        if (/^\s*end\s*(?:;|%%.*)?$/.test(line)) depth = Math.max(0, depth - 1);
+        return false;
+      });
+    }
+
+    for (var code of blocks) {
+      var original = code.closest('.highlighter-rouge') || code.closest('pre');
+      if (!original) continue;
+
+      var wrapper = document.createElement('div');
+      wrapper.className = 'mermaid-diagram';
+      wrapper.tabIndex = 0;
+      wrapper.setAttribute('role', 'region');
+      wrapper.setAttribute('aria-label', 'Mermaid diagram (scroll horizontally)');
+
+      var pre = document.createElement('pre');
+      pre.className = 'mermaid';
+      pre.textContent = normalizeMermaidSource(code.textContent);
+      wrapper.appendChild(pre);
+      original.replaceWith(wrapper);
+
+      try {
+        // Dagre reserves only half rankSpacing above a nested cluster. Keep
+        // that space taller than its parent's title, without spreading out
+        // the ordinary (non-nested) compact flowcharts.
+        mermaid.initialize(Object.assign({}, config, {
+          flowchart: Object.assign({}, config.flowchart, {
+            rankSpacing: hasNestedSubgraphs(code.textContent) ? 56 : config.flowchart.rankSpacing
+          })
+        }));
+        await mermaid.run({ nodes: [pre] });
+        var svg = pre.querySelector('svg');
+        if (svg && svg.viewBox.baseVal.width) {
+          // Do not shrink labels to illegible text on narrow screens;
+          // keep at least 90% of the natural size and scroll the diagram instead.
+          svg.style.minWidth = (svg.viewBox.baseVal.width * 0.9) + 'px';
+        }
+        if (svg) applyFlowchartPalette(svg);
+      } catch (error) {
+        // A malformed diagram must not prevent other diagrams from rendering
+        // or make the original source disappear.
+        wrapper.replaceChildren(original);
+        var message = document.createElement('p');
+        message.className = 'mermaid-error';
+        message.setAttribute('role', 'status');
+        message.textContent = '图表渲染失败，已保留 Mermaid 源码。';
+        wrapper.appendChild(message);
+        console.warn('Mermaid diagram could not be rendered:', error);
+      }
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', renderDiagrams);
+  } else {
+    renderDiagrams();
+  }
+})();
+</script>
+
+
+  </body>
+
+</html>

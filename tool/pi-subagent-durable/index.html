@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<!--
+    So Simple Jekyll Theme 3.2.0
+    Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+    Free for personal and commercial use under the MIT license
+    https://github.com/mmistakes/so-simple-theme/blob/master/LICENSE
+-->
+<html lang="en-US" class="no-js">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  
+
+  
+  
+  <!-- Begin Jekyll SEO tag v2.9.1 -->
+<title>pi-subagent-durable：后台子代理的持久化、生命周期与故障自愈 | Liu, Wen’s Home Page</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="pi-subagent-durable：后台子代理的持久化、生命周期与故障自愈" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="面对真实的复杂长任务时，子代理可能需要执行几十分钟乃至数小时的连续命令、多步排错、或者等待外部异步系统的结果。一次性子进程模型在长任务面前瞬间溃不成军：" />
+<meta name="twitter:description" property="og:description" content="面对真实的复杂长任务时，子代理可能需要执行几十分钟乃至数小时的连续命令、多步排错、或者等待外部异步系统的结果。一次性子进程模型在长任务面前瞬间溃不成军：" />
+<link rel="canonical" href="https://roshameow.github.io//personal_homepage/tool/pi-subagent-durable/" />
+<meta property="og:url" content="https://roshameow.github.io//personal_homepage/tool/pi-subagent-durable/" />
+<meta property="og:site_name" content="Liu, Wen’s Home Page" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2026-11-10T00:00:00+00:00" />
+<meta property="article:modified_time" content="2026-11-10T07:46:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="pi-subagent-durable：后台子代理的持久化、生命周期与故障自愈" />
+<meta name="twitter:site" content="@" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2026-11-10T07:46:00+00:00","datePublished":"2026-11-10T00:00:00+00:00","description":"面对真实的复杂长任务时，子代理可能需要执行几十分钟乃至数小时的连续命令、多步排错、或者等待外部异步系统的结果。一次性子进程模型在长任务面前瞬间溃不成军：","headline":"pi-subagent-durable：后台子代理的持久化、生命周期与故障自愈","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/tool/pi-subagent-durable/"},"url":"https://roshameow.github.io//personal_homepage/tool/pi-subagent-durable/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  
+
+  <script>
+    /* Cut the mustard */
+    if ('querySelector' in document && 'addEventListener' in window) {
+      document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + 'js';
+    }
+  </script>
+
+  <link rel="stylesheet" href="/personal_homepage/assets/css/main.css">
+  <link rel="stylesheet" href="/personal_homepage/assets/css/skins/default.css">
+  
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,700,700i|Lora:400,400i,700,700i">
+  <link rel="alternate" type="application/atom+xml" title="Liu, Wen&#39;s Home Page" href="/personal_homepage/atom.xml">
+<!-- start custom head snippets -->
+
+<!-- insert favicons. use http://realfavicongenerator.net/ -->
+<link rel="shortcut icon" type="image/x-icon" href="/personal_homepage/docs/images/logo.ico">
+<!-- end custom head snippets -->
+
+</head>
+
+  <body class="layout--post  pi-subagent-durable-后台子代理的持久化-生命周期与故障自愈">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#primary-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+  <div class="navigation-wrapper">
+    <a href="#menu-toggle" id="menu-toggle">Menu</a>
+    <nav id="primary-nav" class="site-nav animated drop">
+      <ul><li><a href="/personal_homepage/">Home</a></li><li><a href="/personal_homepage/posts/">Posts</a></li><li><a href="/personal_homepage/categories/">Categories</a></li><li><a href="/personal_homepage/tags/">Tags</a></li><li><a href="/personal_homepage/family/">Family</a></li><li><a href="/personal_homepage/search/">Search</a></li></ul>
+    </nav>
+  </div><!-- /.navigation-wrapper -->
+
+
+    <header class="masthead">
+  <div class="wrap">
+    
+    
+    
+      
+        <div class="site-title animated fadeIn"><a href="/personal_homepage/">Liu, Wen's Home Page</a></div>
+      
+      <p class="site-description animated fadeIn" itemprop="description">Work, Experiments and Ideas.</p>
+    
+  </div>
+</header><!-- /.masthead -->
+
+
+    <main id="main" class="main-content" aria-label="Content">
+  <article class="h-entry">
+    
+
+    <div class="page-wrapper">
+      <header class="page-header">
+        
+        
+        <h1 id="page-title" class="page-title p-name">pi-subagent-durable：后台子代理的持久化、生命周期与故障自愈
+</h1>
+        
+      </header>
+
+      <div class="page-sidebar">
+        <div class="page-author h-card p-author"><img src="/personal_homepage/docs/images/logo.svg" class="author-avatar u-photo" alt=""><div class="author-info">
+
+<span class="read-time">4 min read</span>
+
+    <time class="page-date dt-published" datetime="2026-11-10T00:00:00+00:00"><a class="u-url" href="">November 10, 2026</a>
+</time>
+
+  </div>
+</div>
+
+        
+  <h3 class="page-taxonomies-title">Categories</h3>
+  
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a class="p-category" href="/personal_homepage/categories/#tool" title="Pages filed under tool">tool</a></li>
+  </ul>
+
+
+        
+  <h3 class="page-taxonomies-title">Tags</h3>
+  
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a href="/personal_homepage/tags/#architecture" title="Pages tagged architecture" rel="tag">architecture</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#debugging" title="Pages tagged debugging" rel="tag">debugging</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#macos" title="Pages tagged macOS" rel="tag">macOS</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#pi" title="Pages tagged pi" rel="tag">pi</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#rmux" title="Pages tagged rmux" rel="tag">rmux</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#subagent" title="Pages tagged subagent" rel="tag">subagent</a></li>
+  </ul>
+
+
+        <details id="entry-table-of-contents" class="toc-wrapper" open>
+  <summary>
+    <h2 class="no_toc">
+      Table of Contents
+      <svg class="toc-toggle-icon" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true" focusable="false">
+        <path d="m4 6 4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+      </svg>
+    </h2>
+  </summary>
+  <div class="toc-content">
+    <ul class="inline_toc" id="my_toc"><li><a href="#1-架构总览从派发即忘到有界自治">1. 架构总览：从“派发即忘”到“有界自治”</a></li><li><a href="#2-迭代踩坑全景按时间顺序的系统演进">2. 迭代踩坑全景：按时间顺序的系统演进</a></li><li><a href="#3-终极考验主代理升级worker-决不停机">3. 终极考验：主代理升级，Worker 决不停机</a></li><li><a href="#4-核心经验与架构哲学">4. 核心经验与架构哲学</a></li></ul>
+  </div>
+</details>
+
+        
+<details id="entry-related-posts" class="toc-wrapper" open>
+  <summary>
+    <h2 class="no_toc">
+      Related Posts
+      <svg class="toc-toggle-icon" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true" focusable="false">
+        <path d="m4 6 4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+      </svg>
+    </h2>
+  </summary>
+  <div class="toc-content">
+    <ul>
+      
+      <li><a href="/personal_homepage/data/alpha29/">News & Social Media 新闻流、社交媒体情绪与文本事件数据体系</a></li>
+      
+      <li><a href="/personal_homepage/data/alpha28/">日内 PV 统计量与市场微结构衍生指标体系</a></li>
+      
+      <li><a href="/personal_homepage/tool/alpha27/">从过度防御的歪路纠偏：GUI/CLI 6 态极简控制面、数据面板统一与工程收口</a></li>
+      
+      <li><a href="/personal_homepage/thought/agent-infrastructure-pitfalls-2/">用 AI 维护复杂控制面基础设施：为什么越修越死？从补丁膨胀到 6 态收敛的六大工程陷阱</a></li>
+      
+      <li><a href="/personal_homepage/tool/pi-agent-notify/">pi-agent-notify：Coding Agent 的事件总线、非阻塞等待与可靠投递</a></li>
+      
+    </ul>
+  </div>
+</details>
+
+
+
+      </div>
+
+      <div class="page-content">
+        <div class="e-content">
+          <p>面对真实的复杂长任务时，子代理可能需要执行几十分钟乃至数小时的连续命令、多步排错、或者等待外部异步系统的结果。<strong>一次性子进程模型在长任务面前瞬间溃不成军</strong>：</p>
+
+<ol>
+  <li><strong>会话易逝</strong>：没有真实 session JSONL，进程崩溃或终端中断后，几十轮探索的思考链和执行记录全丢；</li>
+  <li><strong>黑盒运行</strong>：无法像 tmux 那样直接 <code class="language-plaintext highlighter-rouge">attach</code> 进去看它卡在哪一步、当前正在执行什么命令；</li>
+  <li><strong>父死子亡（SIGKILL 级联惨剧）</strong>：主会话一旦超时或被用户打断，子进程连同正在跑的编译、训练或长跑任务被直接 <code class="language-plaintext highlighter-rouge">exit 137</code> 抹杀；</li>
+  <li><strong>无法热维护</strong>：修改了 MCP 工具、更新了技能或扩展，运行中的长任务无法在保留上下文的前提下重载代码。</li>
+</ol>
+
+<p>为了让子代理成为能在后台独立生存、可观察、可恢复、抗意外击杀的“长效数字员工”，我把它做成了基于 RMUX 的通用持久化后台子代理架构。中间踩遍了日志爆炸、自杀误杀、热重载幽灵、跨机器租约竞争和 Node ESM 缓存等各种系统级暗坑。</p>
+
+<p>这篇文章把这套架构的设计演进、真实生产事故与故障自愈机制完整复盘一遍。</p>
+
+<hr />
+
+<h2 id="1-架构总览从派发即忘到有界自治">1. 架构总览：从“派发即忘”到“有界自治”</h2>
+
+<p><code class="language-plaintext highlighter-rouge">pi-subagent-durable</code> 的核心设计哲学只有一条：<strong>Worker 不是临时子进程，而是一个拥有独立生命周期、独立存储、且与终端复用器强绑定的完整 Session。</strong></p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>主会话 (Parent Pi Session)
+  │
+  ├─ subagent({ tasks, async: true }) ──────────────────────────────────┐
+  │                                                                     │
+  ▼ [RMUX 终端复用器]                                                   ▼ [持久化存储 &amp; 注册表]
+┌────────────────────────────────────────────────────────┐  ┌──────────────────────────────────────────┐
+│ rmux window: pi-agents:_worker-&lt;taskId&gt;.0              │  │ ~/.pi/agent/sessions/--cwd--/            │
+│   ├─ 独立进程: pi --session subagent-&lt;taskId&gt;.jsonl    │  │    └─ 真实会话文件 (支持 --session 恢复) │
+│   ├─ stdout/stderr 管道                                │  │                                          │
+│   │    └─ jsonl-filter (瘦身 -82%~99%)                 │  │ ~/.pi/agent/agent-logs/&lt;taskId&gt;.jsonl    │
+│   └─ 终端交互: rmux attach -t pi-agents                │  │    └─ 实时事件流 (给 Live TUI / 桌面端)  │
+└────────────────────────────────────────────────────────┘  │                                          │
+  ▲                                                         │ /tmp/pi-agent-notify/.active-workers.json│
+  │ 控制工具 (LLM 可调用)                                   │    └─ 跨进程加锁注册表 (带 unguessable token)│
+  ├─ subagent_list   (本会话树隔离查看)                     │                                          │
+  ├─ subagent_stop   (递归清理任务与后代)                   │ ~/.pi/agent/durable-tasks/               │
+  ├─ subagent_reload (kill + --session 原地恢复)            │    ├─ task-&lt;id&gt;.json (Outbox 结果落盘)   │
+  └─ subagent_gc     (安全清理 dead pane)                   │    └─ .controllers.json (带 Generation 租约) │
+                                                            └──────────────────────────────────────────┘
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="2-迭代踩坑全景按时间顺序的系统演进">2. 迭代踩坑全景：按时间顺序的系统演进</h2>
+
+<p>从最初跑通 <code class="language-plaintext highlighter-rouge">rmux new-window</code> 到最终实现抗单点崩溃、跨机器自治的持久化子代理，中间经历了一系列真实的系统级故障。以下按时间顺序完整复盘所有关键踩坑记录、技术深层根因与底层演进方案：</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">时期 / 提交</th>
+      <th style="text-align: left">阶段与故障现象 (Symptom)</th>
+      <th style="text-align: left">技术深层根因 (Root Cause)</th>
+      <th style="text-align: left">修复方案与底层演进 (Resolution &amp; Mechanism)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><strong>08-04</strong><br /><code class="language-plaintext highlighter-rouge">9601a36</code></td>
+      <td style="text-align: left"><strong>日志体积爆炸（单任务 331MB）</strong><br />运行一个几分钟的分析任务，<code class="language-plaintext highlighter-rouge">agent-logs</code> 迅速膨胀至 331MB，导致磁盘空间告急、Live TUI 严重卡顿。</td>
+      <td style="text-align: left"><strong>全量累积快照二次方膨胀</strong>：<br /><code class="language-plaintext highlighter-rouge">pi --mode json</code> 的 <code class="language-plaintext highlighter-rouge">message_update</code> 事件每一帧都携带全量累积的 thinking / toolCall 快照（<code class="language-plaintext highlighter-rouge">message.content</code> 与 <code class="language-plaintext highlighter-rouge">partial</code>），长推理中呈 \(O(n^2)\) 膨胀，占体积 ~96% 却无人消费。</td>
+      <td style="text-align: left"><strong>流式增量过滤（<code class="language-plaintext highlighter-rouge">jsonl-filter.cjs</code>）</strong>：<br />• 只透传 <code class="language-plaintext highlighter-rouge">text_delta</code> 增量与骨架；<br />• 丢弃全量 <code class="language-plaintext highlighter-rouge">messages</code> 数组，<code class="language-plaintext highlighter-rouge">turn_end</code> 瘦身为纯 <code class="language-plaintext highlighter-rouge">{type}</code>；<br />• 实测 11.5MB 压到 1.9MB（<strong>-82%</strong>），实时流式逐行落盘不等进程退出。</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>08-05</strong></td>
+      <td style="text-align: left"><strong>300 秒“定时杀手”无条件误杀</strong><br />运行耗时较长的后台任务（大型编译、长跑评测或仿真）到第 5 分钟突然凭空蒸发，任务被清空，无任何报错。</td>
+      <td style="text-align: left"><strong>武断的硬编码超时兜底</strong>：<br />代码内置了 <code class="language-plaintext highlighter-rouge">setTimeout(300000)</code> 定时清理，开发者武断假设超过 5 分钟的任务必定挂死，定时器触发后无条件从 <code class="language-plaintext highlighter-rouge">asyncTasks</code> 抹除并丢弃结果。</td>
+      <td style="text-align: left"><strong>废除硬编码超时</strong>：<br />• 彻底移除任何时间上限兜底；<br />• 任务生命周期完全交由 RMUX 底层状态机驱动，只要进程与 Pane 仍在执行，多长任务都不干预。</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>08-06</strong></td>
+      <td style="text-align: left"><strong>TUI 界面永久卡在 “1 running” 假死</strong><br />任务在后台明明已经退出，终端内 <code class="language-plaintext highlighter-rouge">/agent-live</code> 或侧边栏依然显示正在运行，状态永不刷新。</td>
+      <td style="text-align: left"><strong>退出状态检测盲区</strong>：<br />早期完成检测依赖 <code class="language-plaintext highlighter-rouge">stdout.includes("(dead)")</code>。当 RMUX 窗口正常关闭后，<code class="language-plaintext highlighter-rouge">list-panes</code> 直接返回非 0 退出码且 stdout 为空，字符串匹配落空，完成回调无法触发。</td>
+      <td style="text-align: left"><strong>底层状态机双重判定</strong>：<br />• 采用 <code class="language-plaintext highlighter-rouge">returnCode !== 0</code>（窗口已销毁）或显式输出 <code class="language-plaintext highlighter-rouge">(dead)</code> 标记为双重可靠判定；<br />• 轮询即时捕获终态，消除残留挂起。</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>08-08</strong><br /><code class="language-plaintext highlighter-rouge">77bb3ff</code></td>
+      <td style="text-align: left"><strong>空 Assistant 文本致完成通知静默丢失</strong><br />典型异步长任务：子代理在 RMUX 内正常跑完全部流程，主会话却毫无通知，主代理永久挂起等待。</td>
+      <td style="text-align: left"><strong>结尾消息结构盲区</strong>：<br />子代理轮询异步任务时以 <code class="language-plaintext highlighter-rouge">toolCall -&gt; toolResult("done") -&gt; 空 assistant 文本</code> 结束。旧逻辑只提取最后一条 <code class="language-plaintext highlighter-rouge">message_end</code>，且外层加了 <code class="language-plaintext highlighter-rouge">if (finalText)</code>，空文本导致整个通知被吞掉。</td>
+      <td style="text-align: left"><strong>倒序提取与强制兜底（<code class="language-plaintext highlighter-rouge">extractAssistantFinalText</code>）</strong>：<br />• 倒序扫描所有 <code class="language-plaintext highlighter-rouge">message_end</code> 提取最后一条<strong>非空有效总结</strong>（≤4000 字符）；<br />• 若通篇确实无文本，强制发送兜底通知：<code class="language-plaintext highlighter-rouge">已完成任务，但无文本输出...</code>，确保状态决不失联。</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>08-09</strong><br /><code class="language-plaintext highlighter-rouge">ba35889</code></td>
+      <td style="text-align: left"><strong>主会话 Streaming 时投递抛异常</strong><br />子代理完成回调触发通知时，控制台报错：<code class="language-plaintext highlighter-rouge">Extension error: Agent is already processing...</code>，结果通知丢失。</td>
+      <td style="text-align: left"><strong>主进程并发写入状态冲突</strong>：<br />完成回调调用 <code class="language-plaintext highlighter-rouge">pi.sendUserMessage(text)</code> 时未指定投递模式。若主代理恰好处于流式推理生成中，直接调用会触发运行时冲突并被抛弃。</td>
+      <td style="text-align: left"><strong>排队平滑注入（<code class="language-plaintext highlighter-rouge">deliverAs: "steer"</code>）</strong>：<br />• 所有完成通知路径（RMUX/spawn 回调及命令入口）全部强制加上 <code class="language-plaintext highlighter-rouge">{ deliverAs: "steer" }</code>；<br />• 消息平滑排队到主代理当前轮工具执行完毕后投递。</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>08-10</strong><br /><code class="language-plaintext highlighter-rouge">1c7a5bc</code></td>
+      <td style="text-align: left"><strong>模块 <code class="language-plaintext highlighter-rouge">/reload</code> 后状态分裂闪烁</strong><br />主会话输入 <code class="language-plaintext highlighter-rouge">/reload</code> 重新加载扩展后，TUI 任务栏交替显示 0 running 和 1 running。</td>
+      <td style="text-align: left"><strong>模块级闭包持有不同 Map 实例</strong>：<br /><code class="language-plaintext highlighter-rouge">/reload</code> 清理模块缓存重新 import，旧任务的轮询闭包持有旧模块的局部 <code class="language-plaintext highlighter-rouge">asyncTasks</code> Map，新代码持有新 Map，导致状态分裂。</td>
+      <td style="text-align: left"><strong>持久引用挂载</strong>：<br />• 将任务账本存放在 <code class="language-plaintext highlighter-rouge">globalThis.__pi_subagent_async_tasks__</code> 持久引用上；<br />• 跨 reload 模块重载时新旧闭包共享唯一样本。</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>08-10</strong><br /><code class="language-plaintext highlighter-rouge">c13a518</code><br /><code class="language-plaintext highlighter-rouge">23dcf02</code></td>
+      <td style="text-align: left"><strong>会话双写损坏（Double-Write Corruption）</strong><br />执行 <code class="language-plaintext highlighter-rouge">subagent_reload</code> 重载 worker 后，主会话 JSONL 被大量子任务工具日志疯狂写入，直接导致主会话损坏解析失败。</td>
+      <td style="text-align: left"><strong>会话路径参数倒灌</strong>：<br />重连参数构造时错误地从当前进程环境读取 session 路径，把<strong>主会话的 JSONL 文件</strong>传给了子 agent 的 <code class="language-plaintext highlighter-rouge">--session</code> 参数，两个独立的 Pi 实例同时向同一文件追加写。</td>
+      <td style="text-align: left"><strong>父子会话路径严格隔离</strong>：<br />• 子任务启动时在 header 固化 <code class="language-plaintext highlighter-rouge">parentSession</code> 标记；<br />• 重载时严格从 <code class="language-plaintext highlighter-rouge">agent-logs/&lt;taskId&gt;.jsonl</code> 头部解析 worker 专属的 canonical session 文件路径，严禁任何依赖环境变量的推测。</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>08-12</strong><br /><code class="language-plaintext highlighter-rouge">af2afba</code><br /><code class="language-plaintext highlighter-rouge">917a10f</code></td>
+      <td style="text-align: left"><strong>未指定模型子代理瞬时 429 崩溃</strong><br />Markdown 中未显式指定 <code class="language-plaintext highlighter-rouge">model</code> 的 agent 启动瞬间即报 <code class="language-plaintext highlighter-rouge">stopReason=error</code> 退出。</td>
+      <td style="text-align: left"><strong>模型继承缺失</strong>：<br />子进程未继承父会话的模型配置，回退到全局默认模型通道（如已耗尽额度的第三方 API），直接抛出 <code class="language-plaintext highlighter-rouge">429 GoUsageLimitError</code>。</td>
+      <td style="text-align: left"><strong>继承 DispatchDefaults</strong>：<br />• 未显式 pin model 的 agent 强制继承主会话当前的 active provider、model 和 thinking level；<br />• 同步继承有效的 <code class="language-plaintext highlighter-rouge">contextWindow</code> 与 usage 统计规则。</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>09-13</strong><br /><code class="language-plaintext highlighter-rouge">c866055</code><br /><code class="language-plaintext highlighter-rouge">552bf5d</code></td>
+      <td style="text-align: left"><strong>子代理递归派生数百进程（递归风暴）</strong><br />子代理在执行任务时自主调用 <code class="language-plaintext highlighter-rouge">subagent</code> 工具分解子任务，短时间内在宿主机派生数百个 RMUX 窗口和 node 进程，系统直接瘫痪。</td>
+      <td style="text-align: left"><strong>权限无边界与缺乏配额</strong>：<br />子进程环境默认暴露了 <code class="language-plaintext highlighter-rouge">subagent</code> 工具；无调用深度限制；无全局活跃数配额；逐任务 kill 无法触达孙辈。</td>
+      <td style="text-align: left"><strong>硬性安全边界与树形权限</strong>：<br />• 默认深度上限 <code class="language-plaintext highlighter-rouge">MAX_DEPTH=2</code>（main 为 0，worker 为 1，child worker 为 2，depth=2 时彻底移除 <code class="language-plaintext highlighter-rouge">subagent</code> 工具）；<br />• 机器级并发上限 <code class="language-plaintext highlighter-rouge">MAX_ACTIVE=15</code>，跨进程文件锁原子检查；<br />• 权限围栏：Worker 只能管理自身后代，禁止管理自身、祖先或平级兄弟（<code class="language-plaintext highlighter-rouge">552bf5d</code>）；<br />• <code class="language-plaintext highlighter-rouge">subagent_stop</code> 默认递归清理整棵任务树。</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>09-23</strong><br /><code class="language-plaintext highlighter-rouge">ae34ffa</code></td>
+      <td style="text-align: left"><strong>同步批次派遣致级联 SIGKILL（exit 137 事故）</strong><br />07:22 主会话同步批量派发 3 个长任务（缺少 <code class="language-plaintext highlighter-rouge">async: true</code>），父进程挂起 20 分钟；两个 worker 在 bash 内等待长操作，用户打断主会话，所有 worker 瞬间被抹杀（<code class="language-plaintext highlighter-rouge">exit 137</code>），未落盘报告尽失。</td>
+      <td style="text-align: left"><strong>同步阻塞与超时级联</strong>：<br />同步调用将子进程生命周期绑在父级单一工具调用上。父级一旦因打断或超时 abort，信号透传至 <code class="language-plaintext highlighter-rouge">exec.js</code>，发送 <code class="language-plaintext highlighter-rouge">SIGTERM</code> 后 5 秒升级为 <code class="language-plaintext highlighter-rouge">SIGKILL</code>，正在前台等待的进程被直接斩首。</td>
+      <td style="text-align: left"><strong>确立 D1–D3 铁律并默认后台化</strong>：<br />• <strong>D1</strong>：派遣必 <code class="language-plaintext highlighter-rouge">async: true</code>，主代理永不阻塞；<br />• <strong>D2</strong>：严禁前台 <code class="language-plaintext highlighter-rouge">sleep</code>，改用进程外 watcher + <code class="language-plaintext highlighter-rouge">arm_notification_wait</code> 静息等待；<br />• <strong>D3</strong>：关键结果必须实时落盘检查点；<br />• 代码修改（<code class="language-plaintext highlighter-rouge">ae34ffa</code>）：并行任务缺省 <code class="language-plaintext highlighter-rouge">async</code> 时<strong>默认后台执行</strong>。</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>09-28</strong><br /><code class="language-plaintext highlighter-rouge">2aab3ce</code><br /><code class="language-plaintext highlighter-rouge">4545ffa</code></td>
+      <td style="text-align: left"><strong>任务提示词放进 <code class="language-plaintext highlighter-rouge">argv</code> 导致进程误自杀</strong><br />负责清理系统僵尸进程或运行自动化测试的 worker，刚启动就莫名其妙退出了。</td>
+      <td style="text-align: left"><strong>命令行正则模式命中自己</strong>：<br />早期为了 <code class="language-plaintext highlighter-rouge">ps</code> 方便排查，把任务指令文本放进了命令行参数：<code class="language-plaintext highlighter-rouge">pi --task "pkill -f old_script ..."</code>。当 worker 内部执行 <code class="language-plaintext highlighter-rouge">pgrep</code> 或 <code class="language-plaintext highlighter-rouge">pkill</code> 扫描进程时，命令行的模式匹配命中了它自己的 <code class="language-plaintext highlighter-rouge">argv</code>！</td>
+      <td style="text-align: left"><strong>参数彻底剥离</strong>：<br />• 从 CLI <code class="language-plaintext highlighter-rouge">argv</code> 中彻底移除任务提示词与上下文长文本；<br />• 统一通过标准输入（stdin）或受控临时 IPC 文件送入，避免成为系统命令的匹配靶子。</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>10-02</strong><br /><code class="language-plaintext highlighter-rouge">5d887d6</code><br /><code class="language-plaintext highlighter-rouge">899fa18</code></td>
+      <td style="text-align: left"><strong>主会话冷升级重启时权力真空与脑裂争抢</strong><br />Pi 自身需要升级或主终端重启时，必须把 10 多个后台长任务全部杀死重来；或者重启后两个主终端同时争夺同一个 worker 的所有权。</td>
+      <td style="text-align: left"><strong>缺乏控制器租约机制</strong>：<br />子任务的生命周期绑定在单一父进程 PID 上，无法经历主进程断开、重装、重连的生命周期。</td>
+      <td style="text-align: left"><strong>Controller Lease 与 Fencing Generation</strong>：<br />• 持久化租约表 <code class="language-plaintext highlighter-rouge">.controllers.json</code> 绑定 canonical parent session；<br />• 每次接管原子自增 <code class="language-plaintext highlighter-rouge">generation</code>（代数）；<br />• 过期或异地 controller 的所有写操作在底层被严格拒绝（Fail-closed），杜绝双主脑裂。</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>10-02</strong><br /><code class="language-plaintext highlighter-rouge">receiver-keeper.mjs</code></td>
+      <td style="text-align: left"><strong>主会话升级离线期间外部通知丢失</strong><br />主会话退出安装新版本期间，外部通知总线探测不到主进程存活，将后续发给主会话的结果视为死亡并转入隔离区。</td>
+      <td style="text-align: left"><strong>接收端探活与主进程强耦合</strong>：<br />主会话退出导致其通知注册失效，外部 watcher 无法向离线的主会话发送完成事件。</td>
+      <td style="text-align: left"><strong>24 小时 Detached Keeper</strong>：<br />• 主会话退出前派生微型独立守护进程 <code class="language-plaintext highlighter-rouge">receiver-keeper.mjs</code>；<br />• 脱离父会话有界运行（上限 24 小时），为已验证的 Worker 镜像心跳；<br />• 新主会话上线接管后握手并优雅自毁。</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>10-05</strong><br /><code class="language-plaintext highlighter-rouge">47202a9</code></td>
+      <td style="text-align: left"><strong>离线完成结果丢失与未确认重复投递</strong><br />Worker 在主代理离线时执行完毕，新主代理上线后漏掉结果；或通知在瞬断重连中反复刷屏。</td>
+      <td style="text-align: left"><strong>无盘内投递屏障</strong>：<br />完成判定直接触发内存回调，若宿主不可用则结果丢失；缺少投递确认（ACK）闭环。</td>
+      <td style="text-align: left"><strong>Outbox 模式与 Transcript ACK 投递屏障</strong>：<br />• Worker 完成时强制将结果 JSON 写入磁盘并执行 <strong><code class="language-plaintext highlighter-rouge">fsync</code></strong>；<br />• 结果投递后，必须核验主会话 JSONL 转录中出现了带标签的 user message，才标记 <code class="language-plaintext highlighter-rouge">deliveredAt</code>；<br />• 未确认结果每 30 秒重试，基于稳定 <code class="language-plaintext highlighter-rouge">resultId</code> 实现幂等至少一次（At-least-once）交付。</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>10-07</strong><br /><code class="language-plaintext highlighter-rouge">a9c6b3c</code><br /><code class="language-plaintext highlighter-rouge">ghost-reconcile-v1</code></td>
+      <td style="text-align: left"><strong>mac-mini 幽灵案：主进程心跳无限续期死任务</strong><br />某已停止任务的 Pane 早已销毁，但注册表每 15 秒刷新心跳；持有者 PID 竟然是运行三天的主 Pi 会话！暴力 <code class="language-plaintext highlighter-rouge">kill -9</code> 会导致主会话直接崩溃。</td>
+      <td style="text-align: left"><strong>异常分支漏清内存映射</strong>：<br />代码 <code class="language-plaintext highlighter-rouge">899fa18</code> 中 <code class="language-plaintext highlighter-rouge">stopTask()</code> 在 kill RMUX 后因提前 return，<strong>漏清内存 <code class="language-plaintext highlighter-rouge">asyncTasks</code> 与全局注册表</strong>。主进程自带的维护定时器认为自己依然持有该任务，忠实地拿自身 PID 帮死任务续期。</td>
+      <td style="text-align: left"><strong>版本化终态对账器（<code class="language-plaintext highlighter-rouge">ghost-reconcile-v1.mjs</code>）</strong>：<br />• 决不允许盲目根据 PID 杀进程；<br />• 跨进程排他锁内，必须满足四重门禁：精准 Token 匹配 + RMUX 全量快照确认 Pane 消失 + <code class="language-plaintext highlighter-rouge">ps</code> 确认 Worker 实际 PID 销毁 + 无活跃 wait 租约，才允许注销本地跟踪并注销注册表。</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>10-07</strong><br /><code class="language-plaintext highlighter-rouge">1f55393</code></td>
+      <td style="text-align: left"><strong>Node 原生 ESM 不可变缓存导致 <code class="language-plaintext highlighter-rouge">/reload</code> 无效</strong><br />在磁盘上更新了 <code class="language-plaintext highlighter-rouge">recovery.mjs</code>，在终端输入 <code class="language-plaintext highlighter-rouge">/reload</code>，新加的导出函数在主会话中依然报错 <code class="language-plaintext highlighter-rouge">undefined</code>。</td>
+      <td style="text-align: left"><strong>Node.js 运行时 ESM 命名空间缓存</strong>：<br />Pi 的 <code class="language-plaintext highlighter-rouge">/reload</code> 仅重置扩展 factory，而 Node.js 底层对原生 <code class="language-plaintext highlighter-rouge">.mjs</code> 模块实行生命周期内不可变缓存，已加载的 module namespace 无法被垃圾回收或热更新。</td>
+      <td style="text-align: left"><strong>显式版本化模块入口架构</strong>：<br />• 采用物理版本化文件命名（<code class="language-plaintext highlighter-rouge">recovery-v2/v3/v4</code>, <code class="language-plaintext highlighter-rouge">dead-window-v3/v4/v5</code>, <code class="language-plaintext highlighter-rouge">ownership-registry-v2/v3</code>）；<br />• 新代码直接 import 最新物理版本文件，老入口仅作兼容重导出，彻底穿透 Node 僵尸缓存。</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>10-10</strong><br /><code class="language-plaintext highlighter-rouge">e336880</code></td>
+      <td style="text-align: left"><strong>RMUX 0.9.1 选择器混淆导致清理失败</strong><br />调用 <code class="language-plaintext highlighter-rouge">subagent_gc</code> 清理已死窗口时部分 Pane 报错无效选择器，无法被销毁。</td>
+      <td style="text-align: left"><strong>协议选择器前缀混淆</strong>：<br />RMUX 0.9.1 严格定义：窗口是 <code class="language-plaintext highlighter-rouge">@数字</code>，Pane 是 <code class="language-plaintext highlighter-rouge">%数字</code>，Session 是 <code class="language-plaintext highlighter-rouge">$数字</code>。历史清理模块误将 <code class="language-plaintext highlighter-rouge">$session</code> 形式的选择器作为窗口参数传给了 RMUX API。</td>
+      <td style="text-align: left"><strong>选择器强门禁校验</strong>：<br />• 重写清理与绑定模块（<code class="language-plaintext highlighter-rouge">dead-window-v5.mjs</code>, <code class="language-plaintext highlighter-rouge">window-binding-v4.mjs</code>）；<br />• 启动捕获、绑定与 kill 门禁只接受 <code class="language-plaintext highlighter-rouge">@</code> 开头的 window ID，其余一律拒绝，杜绝格式歧义。</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>10-10</strong><br /><code class="language-plaintext highlighter-rouge">52fbd50</code></td>
+      <td style="text-align: left"><strong>历史缺失 Launch ID 的死窗引发维护死锁</strong><br />遇到早期崩溃留下的无 launch ID 遗留窗口时，控制器清理维护陷入无限重试死循环，拖死自动化检查。</td>
+      <td style="text-align: left"><strong>不可推断身份的死局</strong>：<br />对缺少 launch identity 的死窗，系统反复尝试通过启发式推测领用身份，导致冲突和租约争用。</td>
+      <td style="text-align: left"><strong>持久化人工停放（<code class="language-plaintext highlighter-rouge">blocked_manual</code>）</strong>：<br />• 在权威全 dead 快照确认且结果已落盘后，将状态持久化标记为 <code class="language-plaintext highlighter-rouge">cleanupState: blocked_manual</code>；<br />• 优雅释放 maintenance lease，保留现场证据供显式 <code class="language-plaintext highlighter-rouge">/agent:gc</code> 处理，阻断自动重试死锁。</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="3-终极考验主代理升级worker-决不停机">3. 终极考验：主代理升级，Worker 决不停机</h2>
+
+<p>这套架构演进到最成熟的阶段，解决了一个近乎苛刻的工程挑战：<strong>当 Pi 自身需要升级版本或冷重启时，运行中的后台长任务 Worker 绝对不能停机，主会话重新上线后必须自动重新接管。</strong></p>
+
+<p>要做到这一点，核心是跨越主进程退出带来的“权力真空期”：</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1. 准备交接 (/agent:prepare-upgrade)
+   主会话持久化任务树 ──&gt; 生成 agent-upgrades/&lt;parentSessionId&gt;.json ──&gt; 启动 Detached Keeper (24h)
+
+2. 退出主会话
+   主会话 PID 退出 ── [Worker 进程在 RMUX 内正常运转，Keeper 维持外部通知心跳]
+
+3. 侧装新版 Pi (pi-safe-upgrade.sh)
+   在独立目录安装新版本，验证 Manifest 一致性，拒绝重复/竞争实例
+
+4. 恢复接管 (pi --session &lt;canonical-parent.jsonl&gt;)
+   获取带有单调递增 Generation 的 Controller Lease ──&gt; 对账任务 ──&gt; Outbox 离线结果重放
+</code></pre></div></div>
+
+<p>整个交接过程中，Worker 进程和 RMUX Pane 始终在后台独立运转。上表梳理的四大机制（带 Fencing 代数的 Controller Lease、24h 镜像 Keeper、Outbox 落盘与 Transcript ACK 屏障、以及 <code class="language-plaintext highlighter-rouge">@</code> 窗口选择器强校验）共同构成了这套无损交接的防线，确保主进程断开、重装、重连的全程中，既不丢任务状态，也不丢离线结果。</p>
+
+<hr />
+
+<h2 id="4-核心经验与架构哲学">4. 核心经验与架构哲学</h2>
+
+<p>经历了几十轮生产级淬炼，<code class="language-plaintext highlighter-rouge">pi-subagent-durable</code> 沉淀下来的不是“又一套脚本工具”，而是面向自治 Agent 的工程方法论：</p>
+
+<ol>
+  <li><strong>会话不是一个进程，而是一组持久化证据链</strong>：
+进程（PID）每分每秒都在诞生和毁灭，只有落盘的 canonical JSONL、Outbox 文件和跨进程锁才是业务真相。永远不要把短暂的操作系统资源当作业务实体的身份证。</li>
+  <li><strong>永远保证主代理的非阻塞性（Non-blocking Main Agent）</strong>：
+任何可能超过几秒钟的操作，从工具调用本身到等待外部状态，都必须走异步化与事件驱动。主代理的核心价值是维持对全局上下文的掌控，绝不能被任何子任务挂起。</li>
+  <li><strong>退役与清理必须严格对称</strong>：
+系统设计者往往只关注“怎么启动任务”，却轻视“怎么收尾任务”。一个健壮的后台子系统，其停止、清理、GC 与异常注销的代码量，往往是启动逻辑的三倍以上。如果停止没有清理注册表，那就是下一次幽灵故障的温床。</li>
+  <li><strong>向最坏的运行环境做防御性编程</strong>：
+Node 会缓存 ESM、macOS 会回收复用 PID、RMUX 命令会偶尔超时、网络代理会突发 200 空体、LLM 会吐出空消息……如果你的代码假设“外部世界总是守规矩的”，那么在并发和长任务的压力测试下，崩溃只是时间问题。</li>
+</ol>
+
+<blockquote>
+  <p>[!SUMMARY] 演进里程碑</p>
+  <ul>
+    <li><strong>08-04</strong>：初版上线，实现 RMUX 持久化窗口与基本事件过滤，解决 331MB 日志暴增；</li>
+    <li><strong>08-10</strong>：强化完成检测，加入 <code class="language-plaintext highlighter-rouge">extractAssistantFinalText</code> 与 <code class="language-plaintext highlighter-rouge">{ deliverAs: "steer" }</code> 兜底；</li>
+    <li><strong>09-13</strong>：加入递归深度限制（depth ≤ 2）与全局并发配额（max active ≤ 15），遏制进程风暴；</li>
+    <li><strong>09-23</strong>：同步批次 SIGKILL 事故，确立 D1–D3 纪律，并行任务默认后台化；</li>
+    <li><strong>09-28</strong>：Book 与 Mini 跨机器合并，剥离 argv 任务文本，根除 <code class="language-plaintext highlighter-rouge">pgrep</code> 自杀隐患；</li>
+    <li><strong>10-02</strong>：引入 Controller Lease 与 Fencing Generation，支持主代理离线升级与 24h Keeper；</li>
+    <li><strong>10-07</strong>：mac-mini 幽灵任务排查，建立版本化终态对账器与 Node ESM 缓存穿透架构；</li>
+    <li><strong>10-10</strong>：实现 Outbox fsync + Transcript ACK 投递屏障，交付双语完整规范。</li>
+  </ul>
+</blockquote>
+
+        </div>
+
+        
+
+        
+        
+  <div class="page-comments">
+    <div id="disqus_thread"></div>
+    <script>
+      var disqus_config = function () {
+        this.page.url = 'https://roshameow.github.io//personal_homepage/tool/pi-subagent-durable/';
+        this.page.identifier = 'https://roshameow.github.io//personal_homepage/tool/pi-subagent-durable/';
+      };
+
+      (function() {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://https-roshameow-github-io-personal-homepage.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+  </div>
+
+
+        
+
+        <nav class="page-pagination" role="navigation">
+  
+    <a class="page-previous" href="/personal_homepage/tool/pi-agent-notify/">
+      <h4 class="page-pagination-label">Previous</h4>
+      <span class="page-pagination-title">
+        <i class="fas fa-arrow-left"></i> pi-agent-notify：Coding Agent 的事件总线、非阻塞等待与可靠投递
+
+      </span>
+    </a>
+  
+
+  
+    <a class="page-next" href="/personal_homepage/thought/agent-infrastructure-pitfalls-2/">
+      <h4 class="page-pagination-label">Next</h4>
+      <span class="page-pagination-title">
+        用 AI 维护复杂控制面基础设施：为什么越修越死？从补丁膨胀到 6 态收敛的六大工程陷阱
+ <i class="fas fa-arrow-right"></i>
+      </span>
+    </a>
+  
+</nav>
+
+      </div>
+
+    </div>
+  </article>
+</main>
+
+    <footer id="footer" class="site-footer">
+  <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+<div class="social-icons"><a class="social-icon" href="/personal_homepage/atom.xml"><i class="fas fa-rss-square fa-2x" title="Feed"></i></a><a class="social-icon" href="https://github.com/roshameow"><i class="fab fa-github-square fa-2x" title="GitHub"></i></a><a class="social-icon" href="https://www.linkedin.com/in/wen-liu-06503a7b/"><i class="fab fa-linkedin fa-2x" title="LinkedIn"></i></a><a class="social-icon" href="mailto:w.liuatnk@gmail.com"><i class="fas fa-envelope-square fa-2x" title="e-mail"></i></a></div><div class="copyright">
+    
+      <p>&copy; 2026 Liu, Wen's Home Page. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://github.com/mmistakes/so-simple-theme" rel="nofollow">So Simple</a>.</p>
+    
+  </div>
+</footer>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="/personal_homepage/assets/js/main.min.js"></script>
+<script src="https://use.fontawesome.com/releases/v5.0.12/js/all.js"></script><script src="/personal_homepage/assets/js/content-tables.js" defer></script>
+
+<script>
+(function () {
+  'use strict';
+
+  var types = {
+    NOTE: 'note', INFO: 'note', ABSTRACT: 'note', SUMMARY: 'note', TLDR: 'note',
+    EXAMPLE: 'note', QUOTE: 'note', CITE: 'note',
+    TIP: 'tip', HINT: 'tip', IMPORTANT: 'tip', SUCCESS: 'tip', CHECK: 'tip', DONE: 'tip',
+    QUESTION: 'warning', HELP: 'warning', FAQ: 'warning',
+    WARNING: 'warning', CAUTION: 'warning', ATTENTION: 'warning',
+    DANGER: 'danger', ERROR: 'danger', BUG: 'danger',
+    FAILURE: 'danger', FAIL: 'danger', MISSING: 'danger'
+  };
+  var icons = {
+    note: 'M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z M12 11v6 M12 7h.01',
+    tip: 'M9 18h6 M10 21h4 M9 15a6 6 0 1 1 6 0v3H9z',
+    warning: 'M12 3L2 21h20z M12 9v5 M12 17h.01',
+    danger: 'M7 3h10l4 4v10l-4 4H7l-4-4V7z M9 9l6 6 M15 9l-6 6'
+  };
+
+  function makeIcon(type) {
+    var namespace = 'http://www.w3.org/2000/svg';
+    var svg = document.createElementNS(namespace, 'svg');
+    svg.setAttribute('class', 'callout-icon');
+    svg.setAttribute('viewBox', '0 0 24 24');
+    svg.setAttribute('width', '20');
+    svg.setAttribute('height', '20');
+    svg.setAttribute('fill', 'none');
+    svg.setAttribute('stroke', 'currentColor');
+    svg.setAttribute('stroke-width', '2');
+    svg.setAttribute('stroke-linecap', 'round');
+    svg.setAttribute('stroke-linejoin', 'round');
+    svg.setAttribute('aria-hidden', 'true');
+    svg.setAttribute('focusable', 'false');
+    var path = document.createElementNS(namespace, 'path');
+    path.setAttribute('d', icons[type]);
+    svg.appendChild(path);
+    return svg;
+  }
+
+  // A soft break is a text newline; a Markdown hard break is a <br>.
+  // Do not split newlines inside inline code or other literal content.
+  function firstBreak(parent) {
+    for (var node = parent.firstChild; node; node = node.nextSibling) {
+      if (node.nodeType === 3) {
+        var offset = node.data.search(/[\r\n]/);
+        if (offset !== -1) return { node: node, offset: offset };
+      } else if (node.nodeType === 1) {
+        if (node.tagName === 'BR') return { node: node };
+        if (/^(CODE|PRE|SCRIPT|STYLE|TEXTAREA)$/.test(node.tagName)) continue;
+        var result = firstBreak(node);
+        if (result) return result;
+      }
+    }
+    return null;
+  }
+
+  function transformCallouts() {
+    document.querySelectorAll('.page-content blockquote').forEach(function (quote) {
+      if (quote.closest('pre, code, .highlight, .highlighter-rouge')) return;
+      var paragraph = quote.firstElementChild;
+      if (!paragraph || paragraph.tagName !== 'P') return;
+
+      // Require the marker in a direct text node: <code>[!WARNING]</code>
+      // (and markers merely mentioned later in a quote) must remain literal.
+      var markerNode = paragraph.firstChild;
+      if (!markerNode || markerNode.nodeType !== 3) return;
+      var marker = markerNode.data.match(/^[\t \r\n]*\[!([a-z][a-z0-9-]*)\]([+-])?(?=[\t \r\n]|$)[\t ]*/i);
+      if (!marker) return;
+      var name = marker[1].toUpperCase();
+      if (!Object.prototype.hasOwnProperty.call(types, name)) return;
+      var type = types[name];
+      var label = name === 'TLDR' ? 'TL;DR' : name.charAt(0) + name.slice(1).toLowerCase();
+      markerNode.deleteData(0, marker[0].length);
+
+      var boundary = firstBreak(paragraph);
+      var range = document.createRange();
+      range.selectNodeContents(paragraph);
+      if (boundary) {
+        if (boundary.node.nodeType === 3) range.setEnd(boundary.node, boundary.offset);
+        else range.setEndBefore(boundary.node);
+      }
+      var titleContent = range.extractContents();
+      if (boundary) {
+        if (boundary.node.nodeType === 3) {
+          var breakLength = boundary.node.data.slice(0, 2) === '\r\n' ? 2 : 1;
+          boundary.node.deleteData(0, breakLength);
+        } else {
+          boundary.node.parentNode.removeChild(boundary.node);
+        }
+      }
+      if (!paragraph.textContent.trim() && !paragraph.children.length) {
+        quote.removeChild(paragraph);
+      }
+
+      var folding = !!marker[2];
+      var callout = document.createElement(folding ? 'details' : 'div');
+      // Keep author-provided IDs, language, direction, and classes.
+      Array.prototype.forEach.call(quote.attributes, function (attribute) {
+        callout.setAttribute(attribute.name, attribute.value);
+      });
+      callout.classList.add('callout', 'callout--' + type);
+      callout.setAttribute('data-callout', name.toLowerCase());
+      callout.setAttribute('aria-label', label);
+      if (folding) {
+        callout.removeAttribute('role');
+        if (marker[2] === '+') callout.setAttribute('open', '');
+        else callout.removeAttribute('open');
+      } else {
+        callout.setAttribute('role', 'note');
+      }
+
+      var title = document.createElement(folding ? 'summary' : 'div');
+      title.className = 'callout-title';
+      title.appendChild(makeIcon(type));
+      var titleText = document.createElement('span');
+      titleText.className = 'callout-title-text';
+      if (titleContent.textContent.trim() || titleContent.childElementCount) {
+        titleText.appendChild(titleContent);
+      } else {
+        titleText.textContent = label;
+      }
+      title.appendChild(titleText);
+      callout.appendChild(title);
+
+      var body = document.createElement('div');
+      body.className = 'callout-body';
+      while (quote.firstChild) body.appendChild(quote.firstChild);
+      callout.appendChild(body);
+      quote.parentNode.replaceChild(callout, quote);
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', transformCallouts);
+  } else {
+    transformCallouts();
+  }
+})();
+</script>
+<!-- <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'G-9TMSCDTBGN', 'auto');
+  ga('send', 'pageview');
+</script> -->
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9TMSCDTBGN"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-9TMSCDTBGN');
+</script>
+
+
+
+<!-- MathJax -->
+<style>
+    /* Only oversized equations get this wrapper; ordinary inline math stays inline. */
+    .math-scroll {
+        display: block;
+        max-width: 100%;
+        overflow-x: auto;
+        overflow-y: hidden;
+        padding-block: 0.5em;
+        scrollbar-width: thin;
+    }
+    .math-scroll > mjx-container[jax] {
+        display: inline-block;
+        margin: 0;
+    }
+    .math-scroll:focus-visible {
+        outline: 2px solid currentColor;
+        outline-offset: 2px;
+    }
+</style>
+<script>
+    function fitMathToColumn() {
+        document.querySelectorAll('mjx-container').forEach(function (container) {
+            var wrapper = container.parentElement.classList.contains('math-scroll') ? container.parentElement : null;
+            var column = wrapper ? wrapper.parentElement : container.parentElement;
+            while (column && ['inline', 'contents'].includes(getComputedStyle(column).display)) {
+                column = column.parentElement;
+            }
+            if (!column) return;
+            var style = getComputedStyle(column);
+            var available = column.clientWidth - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight);
+            var ink = container.querySelector('mjx-math, svg');
+            var width = (ink || container).getBoundingClientRect().width;
+            if (width > available + 1) {
+                if (!wrapper) {
+                    wrapper = document.createElement('span');
+                    wrapper.className = 'math-scroll';
+                    wrapper.tabIndex = 0;
+                    wrapper.setAttribute('role', 'region');
+                    wrapper.setAttribute('aria-label', 'Mathematical formula; scroll horizontally to read all');
+                    wrapper.title = 'Scroll horizontally to read the full formula';
+                    container.before(wrapper);
+                    wrapper.appendChild(container);
+                }
+            } else if (wrapper) {
+                wrapper.replaceWith(container);
+            }
+        });
+    }
+    // Pin the engine, autoloaded TeX extensions, menu and fonts to local assets.
+    window.MathJax = {
+        loader: {
+            paths: { mathjax: "/personal_homepage/assets/js/vendor/mathjax/es5" },
+            load: ['[tex]/textmacros']
+        },
+        tex: {
+            tags: "ams",
+            packages: { '[+]': ['textmacros'] },
+            inlineMath: [['$', '$'], ['\\(', '\\)']],
+            displayMath: [['$$', '$$'], ['\\[', '\\]']]
+        },
+        chtml: {
+            fontURL: "/personal_homepage/assets/js/vendor/mathjax/es5/output/chtml/fonts/woff-v2"
+        },
+        startup: {
+            pageReady: function () {
+                return MathJax.startup.defaultPageReady().then(function () {
+                    return document.fonts ? document.fonts.ready : undefined;
+                }).then(function () {
+                    fitMathToColumn();
+                    var scheduled = false;
+                    window.addEventListener('resize', function () {
+                        if (scheduled) return;
+                        scheduled = true;
+                        requestAnimationFrame(function () {
+                            scheduled = false;
+                            fitMathToColumn();
+                        });
+                    });
+                });
+            }
+        },
+        options: {
+            // Keep examples (including literal dollar signs) out of the typesetter.
+            skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code', 'annotation', 'annotation-xml']
+        }
+    };
+</script>
+<script id="MathJax-script" async src="/personal_homepage/assets/js/vendor/mathjax/es5/tex-mml-chtml.js"></script>
+
+
+
+
+<!-- Mermaid -->
+<style>
+  .mermaid-diagram {
+    max-width: 100%;
+    margin: 0.85rem 0;
+    overflow-x: auto;
+  }
+  .mermaid-diagram:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+  }
+  .page-content pre.mermaid {
+    margin: 0;
+    padding: 0.25rem 0;
+    text-align: center;
+    background: transparent;
+    overflow: visible;
+    font-family: inherit;
+  }
+  .page-content pre.mermaid[data-processed] {
+    white-space: normal;
+  }
+  pre.mermaid svg {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    height: auto;
+  }
+  .mermaid-diagram .cluster-label {
+    font-weight: 700;
+  }
+  .mermaid-error {
+    font-size: 0.85em;
+    color: #9a3412;
+  }
+</style>
+<script src="/personal_homepage/assets/js/vendor/mermaid-11.17.2.min.js"></script>
+<script>
+(function () {
+  'use strict';
+
+  function normalizeMermaidSource(source) {
+    // Mermaid 11 accepts A <-- "label" --- B but creates an INVALID edge.
+    // Render the equivalent B -->|"label"| A, without editing the Markdown.
+    var body = source.trimStart()
+      .replace(/^---\r?\n[\s\S]*?\r?\n---(?:\r?\n|$)/, '')
+      .replace(/%%\{[\s\S]*?\}%%/g, '')
+      .replace(/^[\t ]*%%.*$/gm, '').trimStart();
+    if (!/^(?:flowchart|graph)\b/.test(body)) return source;
+
+    var started = false;
+    var quoted = false;
+    return source.replace(/[^\r\n]+/g, function (line) {
+      if (!started && !/^\s*(?:flowchart|graph)\b/.test(line)) return line;
+      started = true;
+      var normalized = quoted ? line : line.replace(
+        /^([\t ]*)([A-Za-z_][\w-]*)[\t ]*<--[\t ]*("[^"\r\n]*")[\t ]*---[\t ]*([A-Za-z_][\w-]*)([\t ]*;?[\t ]*(?:%%.*)?)$/,
+        function (_, indent, left, label, right, suffix) {
+          return indent + right + ' -->|' + label + '| ' + left + suffix;
+        }
+      );
+      // Never rewrite an example inside a multiline quoted node label, and
+      // never let quotes inside a %% comment affect the following lines.
+      for (var i = 0; i < line.length; i++) {
+        if (!quoted && line[i] === '%' && line[i + 1] === '%') break;
+        if (line[i] === '"') quoted = !quoted;
+      }
+      return normalized;
+    });
+  }
+
+  async function renderDiagrams() {
+    var blocks = document.querySelectorAll('code.language-mermaid');
+    if (!blocks.length) return;
+    if (typeof mermaid === 'undefined') {
+      blocks.forEach(function (code) {
+        var original = code.closest('.highlighter-rouge') || code.closest('pre');
+        if (!original) return;
+        var message = document.createElement('p');
+        message.className = 'mermaid-error';
+        message.setAttribute('role', 'status');
+        message.textContent = '图表组件加载失败，请刷新页面重试。Mermaid 源码已保留。';
+        original.after(message);
+      });
+      return;
+    }
+
+    // Render every diagram as Mermaid, including diagrams with multiple subgraphs.
+    // Disable the automatic pass so it cannot race with our explicit rendering.
+    var skin = getComputedStyle(document.documentElement);
+    function color(name, fallback) {
+      return skin.getPropertyValue('--mermaid-' + name).trim() || fallback;
+    }
+    var background = color('background', '#ffffff');
+    var text = color('text', '#000000');
+    var border = color('border', '#cccccc');
+    var nodeBorder = color('node-border', '#b8b9c0');
+    var cluster = color('cluster-background', '#f9f9fa');
+    var line = color('line', '#858795');
+    var palettes = [
+      ['#e4eaf0', '#f4f6f9', '#a5b3c2'], // slate blue
+      ['#e8f0ea', '#f5f8f5', '#a8bcae'], // sage
+      ['#f3ede3', '#faf7f2', '#c6b69c'], // sand
+      ['#ebe8f1', '#f7f5fa', '#b5adc5'], // lavender
+      ['#e4eeee', '#f3f8f8', '#a0baba']  // muted teal
+    ].map(function (fallbacks, index) {
+      return {
+        node: color('palette-' + index + '-node', fallbacks[0]),
+        cluster: color('palette-' + index + '-cluster', index === 0 ? cluster : fallbacks[1]),
+        border: color('palette-' + index + '-border', fallbacks[2])
+      };
+    });
+    var fontFamily = getComputedStyle(document.body).fontFamily ||
+      '"Source Sans Pro", sans-serif';
+    // Mermaid fixes label dimensions during layout. Wait for web fonts so a
+    // later font swap cannot make the measured label box too small.
+    if (document.fonts) await document.fonts.ready;
+
+    var theme = "default";
+    // The site's default follows its active skin. Explicit forest/dark/etc.
+    // choices remain available for sites that deliberately select them.
+    if (theme === 'default') theme = 'base';
+
+    var config = {
+      startOnLoad: false,
+      securityLevel: 'strict',
+      fontFamily: fontFamily,
+      // Native SVG text avoids foreignObject clipping and article paragraph CSS.
+      htmlLabels: false,
+      flowchart: {
+        inheritDir: true,
+        curve: 'linear',
+        nodeSpacing: 24,
+        rankSpacing: 28,
+        padding: 8,
+        diagramPadding: 8,
+        wrappingWidth: 180,
+        // Nested cluster borders must start below the parent's full title line.
+        subGraphTitleMargin: { top: 4, bottom: 12 }
+      },
+      theme: theme,
+      themeVariables: theme === 'base' ? {
+        fontFamily: fontFamily,
+        fontSize: '14px',
+        background: background,
+        primaryColor: palettes[0].node,
+        primaryTextColor: text,
+        primaryBorderColor: nodeBorder,
+        secondaryColor: palettes[1].node,
+        secondaryTextColor: text,
+        secondaryBorderColor: border,
+        tertiaryColor: palettes[2].node,
+        tertiaryTextColor: text,
+        tertiaryBorderColor: border,
+        lineColor: line,
+        textColor: text,
+        mainBkg: palettes[0].node,
+        nodeBorder: nodeBorder,
+        nodeTextColor: text,
+        clusterBkg: palettes[0].cluster,
+        clusterBorder: border,
+        titleColor: text,
+        defaultLinkColor: line,
+        edgeLabelBackground: background,
+        noteBkgColor: palettes[2].node,
+        noteTextColor: text,
+        noteBorderColor: border,
+        actorBkg: palettes[0].node,
+        actorBorder: nodeBorder,
+        actorTextColor: text,
+        actorLineColor: border,
+        signalColor: line,
+        signalTextColor: text
+      } : { fontFamily: fontFamily }
+    };
+
+    function applyFlowchartPalette(svg) {
+      if (theme !== 'base' || !/^flowchart/.test(svg.getAttribute('aria-roledescription') || '')) return;
+
+      function tint(group, shapes, index, kind) {
+        // Author-supplied classDef/style colors take precedence over auto accents.
+        var customClass = Array.from(group.classList).some(function (name) {
+          return !['node', 'default', 'cluster', 'clickable'].includes(name);
+        });
+        if (customClass || !shapes.length || shapes.some(function (shape) {
+          return shape.style.getPropertyValue('fill') || shape.style.getPropertyValue('stroke');
+        })) return;
+        group.setAttribute('data-mermaid-palette', index);
+        shapes.forEach(function (shape) {
+          // Keep fallbacks in the SVG so exported diagrams retain their colors.
+          if (shape.getAttribute('fill') !== 'none') {
+            shape.style.fill = 'var(--mermaid-palette-' + index + '-' + kind + ', ' + palettes[index][kind] + ')';
+          }
+          shape.style.stroke = 'var(--mermaid-palette-' + index + '-border, ' + palettes[index].border + ')';
+        });
+      }
+
+      var groups = Array.from(svg.querySelectorAll('g.cluster')).map(function (group, index) {
+        var rect = group.querySelector('rect');
+        return { group: group, rect: rect, bounds: rect && rect.getBoundingClientRect(), index: index % palettes.length };
+      }).filter(function (entry) { return entry.rect; });
+      // Mermaid's SVG stores clusters flat. Match by the actual layout so nodes
+      // inherit their smallest enclosing group, including nested schedulers.
+      var nodes = Array.from(svg.querySelectorAll('g.node')).map(function (node) {
+        return { node: node, bounds: node.getBoundingClientRect() };
+      });
+      groups.forEach(function (entry) { tint(entry.group, [entry.rect], entry.index, 'cluster'); });
+      groups.sort(function (a, b) { return a.bounds.width * a.bounds.height - b.bounds.width * b.bounds.height; });
+      nodes.forEach(function (entry) {
+        var box = entry.bounds;
+        var parent = groups.find(function (group) {
+          var bounds = group.bounds;
+          return box.left >= bounds.left - 1 && box.right <= bounds.right + 1 &&
+            box.top >= bounds.top - 1 && box.bottom <= bounds.bottom + 1;
+        });
+        var shapes = [];
+        entry.node.querySelectorAll(':scope > .label-container').forEach(function (container) {
+          // Rounded/hand-drawn shapes wrap paths in a group. Include the
+          // container in the author-style check, then tint the actual paths.
+          shapes.push(container);
+          shapes.push.apply(shapes, container.querySelectorAll('path, rect, circle, ellipse, polygon, polyline'));
+        });
+        tint(entry.node, shapes, parent ? parent.index : 0, 'node');
+      });
+    }
+
+    function hasNestedSubgraphs(source) {
+      var depth = 0;
+      return source.split(/\r?\n/).some(function (line) {
+        if (/^\s*subgraph\b/.test(line)) return ++depth > 1;
+        if (/^\s*end\s*(?:;|%%.*)?$/.test(line)) depth = Math.max(0, depth - 1);
+        return false;
+      });
+    }
+
+    for (var code of blocks) {
+      var original = code.closest('.highlighter-rouge') || code.closest('pre');
+      if (!original) continue;
+
+      var wrapper = document.createElement('div');
+      wrapper.className = 'mermaid-diagram';
+      wrapper.tabIndex = 0;
+      wrapper.setAttribute('role', 'region');
+      wrapper.setAttribute('aria-label', 'Mermaid diagram (scroll horizontally)');
+
+      var pre = document.createElement('pre');
+      pre.className = 'mermaid';
+      pre.textContent = normalizeMermaidSource(code.textContent);
+      wrapper.appendChild(pre);
+      original.replaceWith(wrapper);
+
+      try {
+        // Dagre reserves only half rankSpacing above a nested cluster. Keep
+        // that space taller than its parent's title, without spreading out
+        // the ordinary (non-nested) compact flowcharts.
+        mermaid.initialize(Object.assign({}, config, {
+          flowchart: Object.assign({}, config.flowchart, {
+            rankSpacing: hasNestedSubgraphs(code.textContent) ? 56 : config.flowchart.rankSpacing
+          })
+        }));
+        await mermaid.run({ nodes: [pre] });
+        var svg = pre.querySelector('svg');
+        if (svg && svg.viewBox.baseVal.width) {
+          // Do not shrink labels to illegible text on narrow screens;
+          // keep at least 90% of the natural size and scroll the diagram instead.
+          svg.style.minWidth = (svg.viewBox.baseVal.width * 0.9) + 'px';
+        }
+        if (svg) applyFlowchartPalette(svg);
+      } catch (error) {
+        // A malformed diagram must not prevent other diagrams from rendering
+        // or make the original source disappear.
+        wrapper.replaceChildren(original);
+        var message = document.createElement('p');
+        message.className = 'mermaid-error';
+        message.setAttribute('role', 'status');
+        message.textContent = '图表渲染失败，已保留 Mermaid 源码。';
+        wrapper.appendChild(message);
+        console.warn('Mermaid diagram could not be rendered:', error);
+      }
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', renderDiagrams);
+  } else {
+    renderDiagrams();
+  }
+})();
+</script>
+
+
+  </body>
+
+</html>

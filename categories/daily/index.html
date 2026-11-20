@@ -115,6 +115,84 @@
   <header class="entry-header">
     <h3 class="entry-title p-name">
       
+        <a href="/personal_homepage/daily/macos-rpath-dyld/" rel="bookmark">深入理解 macOS 动态链接：dyld、@rpath 陷阱与 Conda/系统库冲突全景对照
+</a>
+      
+    </h3>
+    
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <blockquote>
+  <p><strong>背景：关于 <code class="language-plaintext highlighter-rouge">libiconv</code> 与本次依赖引入</strong></p>
+  <ul>
+    <li><strong>核心功能</strong>：<code class="language-plaintext highlighter-rouge">libiconv</code> 是 POSIX 标准的跨字符集转码库（负责 GBK / Latin-1 ↔ UTF-8 等互转，避免乱码与解析崩溃）。</li>
+    <li><strong>为什么被链接</strong>：<code class="language-plaintext highlighter-rouge">taskctl</code> 虽为纯 Rust 编写，但其依赖的 MongoDB 驱动（<code class="language-plaintext highlighter-rouge">mongodb</code> / <code class="language-plaintext highlighter-rouge">bson</code>）在执行 SCRAM 认证与国际化文本处理（<code class="language-plaintext highlighter-rouge">stringprep</code> 协议）时需要该转码符号；编译期链接器捕获了 Miniforge 环境的 <code class="language-plaintext highlighter-rouge">-liconv</code>，从而动态挂载了该库。</li>
+  </ul>
+</blockquote>
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">2 min read</span>
+
+      <time class="entry-date dt-published" datetime="2026-11-07T00:00:00+00:00">November 7, 2026
+  </time>
+    </footer>
+  
+</article>
+
+    
+      
+
+
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
+        <a href="/personal_homepage/daily/%E7%BD%91%E7%BB%9C%E9%97%AE%E9%A2%98/" rel="bookmark">深入理解 TUN 模式：网卡识别命令与直连/代理判定全景对照
+</a>
+      
+    </h3>
+    
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <h2 id="一查看物理网卡en0与虚拟网卡utun的常用命令">一、查看物理网卡（en0）与虚拟网卡（utun）的常用命令</h2>
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">5 min read</span>
+
+      <time class="entry-date dt-published" datetime="2026-10-07T00:00:00+00:00">October 7, 2026
+  </time>
+    </footer>
+  
+</article>
+
+    
+      
+
+
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
         <a href="/personal_homepage/daily/sticker/" rel="bookmark">用AI做了一套微信表情包:从微信头像缓存到提交上架
 </a>
       

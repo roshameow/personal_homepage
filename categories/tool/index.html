@@ -115,6 +115,495 @@
   <header class="entry-header">
     <h3 class="entry-title p-name">
       
+        <a href="/personal_homepage/tool/alpha27/" rel="bookmark">从过度防御的歪路纠偏：GUI/CLI 6 态极简控制面、数据面板统一与工程收口
+</a>
+      
+    </h3>
+    
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <blockquote>
+  <p>本文是 QuantNight GUI/CLI 统一架构系列的第二篇（接前篇 <a href="2026-10-31-alpha20.md">《回测系统任务控制生命周期：入口、证据、故障分支与行为验收》（alpha20）</a>）。<br />
+前篇确立了“GUI 与 CLI 共用 <code class="language-plaintext highlighter-rouge">quantnight-task-core</code> + 常驻 headless host + Unix IPC”的基础拓扑，方向本身是对的；但在随后由 GPT 主导的多轮维护中，系统逐步走偏——堆出了 9+ 状态、20+ 历史证明字段、27 字段快照比对和满篇防御性八股的 <code class="language-plaintext highlighter-rouge">SKILL.md</code>，反而造成任务频繁卡死。<br />
+与其说这是一次“架构进化”，不如说是一次<strong>把控制面从 GPT 过度防御的歪路上拉回正轨的纠偏与大扫除</strong>（2026-11-17–19：初轮 AGY 诊断 → Pi 失败的重构尝试 → AGY 推倒收口），同时顺带将只读数据面板统一进 <code class="language-plaintext highlighter-rouge">task-core::data_panel</code>。关于开发与 AI 维护过程中暴露出的工程陷阱，详见配套复盘 <a href="2026-11-19-agent-infrastructure-pitfalls-2.md">《用 AI 维护复杂控制面基础设施：六大工程陷阱》</a>。</p>
+</blockquote>
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">3 min read</span>
+
+      <time class="entry-date dt-published" datetime="2026-11-19T00:00:00+00:00">November 19, 2026
+  </time>
+    </footer>
+  
+</article>
+
+    
+      
+
+
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
+        <a href="/personal_homepage/tool/pi-subagent-durable/" rel="bookmark">pi-subagent-durable：后台子代理的持久化、生命周期与故障自愈
+</a>
+      
+    </h3>
+    
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <p>面对真实的复杂长任务时，子代理可能需要执行几十分钟乃至数小时的连续命令、多步排错、或者等待外部异步系统的结果。<strong>一次性子进程模型在长任务面前瞬间溃不成军</strong>：</p>
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">4 min read</span>
+
+      <time class="entry-date dt-published" datetime="2026-11-10T00:00:00+00:00">November 10, 2026
+  </time>
+    </footer>
+  
+</article>
+
+    
+      
+
+
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
+        <a href="/personal_homepage/tool/pi-agent-notify/" rel="bookmark">pi-agent-notify：Coding Agent 的事件总线、非阻塞等待与可靠投递
+</a>
+      
+    </h3>
+    
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <p>在上一篇聊 <a href="/personal_homepage/tool/pi-subagent-durable/">pi-subagent-durable</a> 的笔记中，我们确立了一条生死攸关的铁律（D2）：<strong>严禁让 Agent 在前台执行 <code class="language-plaintext highlighter-rouge">sleep</code> 或死循环轮询等待外部任务。必须采用“一次权威确认 + 启动进程外有界 Watcher + 结束当前 Turn 静息等待”的模式。</strong></p>
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">3 min read</span>
+
+      <time class="entry-date dt-published" datetime="2026-11-10T00:00:00+00:00">November 10, 2026
+  </time>
+    </footer>
+  
+</article>
+
+    
+      
+
+
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
+        <a href="/personal_homepage/tool/alpha26/" rel="bookmark">量化工程交付与架构防护：修改前行为披露、三级本地门禁、运行态生效与 SPC 安全守卫
+</a>
+      
+    </h3>
+    
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <p>本文档系统性剖析 QuantNight 量化系统中<strong>如何具体约束 AI Agent 进行安全可靠的代码工程交付</strong>。深入拆解由<strong>“修改前行为披露（Before-Change Disclosure）双真源契约、单真源 AST 架构机器门禁（<code class="language-plaintext highlighter-rouge">architecture_contract.json</code>）、三级分层测试时间预算（Quick / Domain / Full）、Headless Host 跨代优雅排空与采用核对（Drain-and-Reload）、以及独立 SPC Git 约束（<code class="language-plaintext highlighter-rouge">SPC_NO_GIT</code>）与精确暂存守卫”</strong>构成的全链路防线。</p>
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">5 min read</span>
+
+      <time class="entry-date dt-published" datetime="2026-11-10T00:00:00+00:00">November 10, 2026
+  </time>
+    </footer>
+  
+</article>
+
+    
+      
+
+
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
+        <a href="/personal_homepage/tool/alpha24/" rel="bookmark">WorldQuant Brain 平台通信与认证架构：Cookie-First、204/401 恢复时序与单真源安全门禁
+</a>
+      
+    </h3>
+    
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <p>本文系统性剖析 QuantNight 量化系统的<strong>底层平台通信与认证安全架构</strong>，深入拆解 <strong>Cookie-First 优先认证、204/401 两阶段有效性探测与恢复流程、代际防惊群会话锁治理、同账号身份强绑定机制、网络重试与回测回执保护解耦，以及 AST 机器门禁单真源约束</strong>。</p>
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">4 min read</span>
+
+      <time class="entry-date dt-published" datetime="2026-11-09T00:00:00+00:00">November 9, 2026
+  </time>
+    </footer>
+  
+</article>
+
+    
+      
+
+
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
+        <a href="/personal_homepage/tool/alpha23/" rel="bookmark">QuantNight MongoDB 存储拓扑、数据流架构与生产运维基线
+</a>
+      
+    </h3>
+    
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <p>本文档系统性剖析 QuantNight 量化系统的 <strong>MongoDB 存储拓扑、逻辑库/集合职责划分、数据流平面、<code class="language-plaintext highlighter-rouge">quantnight-task-core</code> 对 Alpha 仓储与数据面板的权威读取体系、PnL 双覆盖索引优化、定时采集调度体系与只读分层运维基线</strong>。</p>
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">6 min read</span>
+
+      <time class="entry-date dt-published" datetime="2026-11-08T00:00:00+00:00">November 8, 2026
+  </time>
+    </footer>
+  
+</article>
+
+    
+      
+
+
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
+        <a href="/personal_homepage/tool/alpha22/" rel="bookmark">从免责复读到二元决断：长期自治Session的Goal失灵病理与重构实战
+</a>
+      
+    </h3>
+    
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <blockquote>
+  <p>本文是 QuantNight 智能体架构系列的续篇（接前篇 <a href="2026-11-06-alpha21.md">《复杂长期任务的多Session分权与Goal治理》（alpha21）</a>）。<br />
+在前篇中，我们建立了“三权分立、提交独占、名册收敛与 Goal 动态加载”的基础治理骨架。然而，当统筹 Session（Coordinator）真正投入无人值守的长周期运行后，系统却陷入了一种极其荒诞的瘫痪状态：<strong>Agent 拥有最高裁量权与唯一的提交工具，却在几千轮交互中化身“免责律师”，疯狂复读法律声明拒绝提交，而 <code class="language-plaintext highlighter-rouge">/goal</code> 监督器却因它“没有违规动作”持续为其判定正确</strong>。<br />
+本文基于数千轮真实运行的审计数据，深度剖析统筹 Session 典型的三大失灵现场与四大底层病灶，并给出彻底重构 Goal 契约的工程解法。</p>
+</blockquote>
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">2 min read</span>
+
+      <time class="entry-date dt-published" datetime="2026-11-08T00:00:00+00:00">November 8, 2026
+  </time>
+    </footer>
+  
+</article>
+
+    
+      
+
+
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
+        <a href="/personal_homepage/tool/alpha21/" rel="bookmark">复杂长期任务的多Session分权与Goal治理
+</a>
+      
+    </h3>
+    
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <blockquote>
+  <p>本文是 QuantNight 项目的智能体治理与多 Session 协同架构案例，重点剖析在量化回测底座跑通后，如何建立严密的 Agent 分权约束、集中式 Goal 目标管理、热加载插件（<code class="language-plaintext highlighter-rouge">pi-goal-feedback</code>）以及端到端自治研究闭环。<br />
+很多自动化项目在跑通底层执行后，往往陷入“放手就失控、收紧就瘫痪”的治理困境。本文结合真实调教历程，详细阐述为什么必须设计这套多 Session 权责硬隔离体系与 Goal 热加载机制，为复杂工程场景下的多 Agent 协作提供可落地的治理范式。</p>
+</blockquote>
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">3 min read</span>
+
+      <time class="entry-date dt-published" datetime="2026-11-06T00:00:00+00:00">November 6, 2026
+  </time>
+    </footer>
+  
+</article>
+
+    
+      
+
+
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
+        <a href="/personal_homepage/tool/alpha20/" rel="bookmark">回测系统任务控制生命周期：入口、证据、故障分支与行为验收
+</a>
+      
+    </h3>
+    
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <h2 id="为什么必须设计成guicli统一架构为什么不能直接操作底层脚本">为什么必须设计成gui/cli统一架构？为什么不能直接操作底层脚本?</h2>
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">3 min read</span>
+
+      <time class="entry-date dt-published" datetime="2026-10-31T00:00:00+00:00">October 31, 2026
+  </time>
+    </footer>
+  
+</article>
+
+    
+      
+
+
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
+        <a href="/personal_homepage/tool/agent-example3/" rel="bookmark">pi agent无人值守工作案例三(quantnight)
+</a>
+      
+    </h3>
+    
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <blockquote>
+  <p>本文是 QuantNight 项目的量化回测自动化搭建与工程调教案例，重点记录如何将复杂的 WorldQuant Brain 量化平台交互、Tauri 桌面端、Rust/taskctl 底层进程守护、长耗时回测状态机与并发防崩体系跑通。<br />
+相比纯 Web/API 任务，量化回测系统面临平台回测延迟大、并发配额限制、系统级进程监控、数据库与文件锁竞争等多重挑战。<strong>本项目当前处于 L1~L2 阶段（强工具化与高可观察性）</strong>：底层任务控制内核与鲁棒性门禁已搭建完毕，而 Session 级 Goal 驱动与 Agent 事件通知闭环尚未正式接通。本文结合实际会话中的排障历程，沉淀系统工程底座的建设经验。</p>
+</blockquote>
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">5 min read</span>
+
+      <time class="entry-date dt-published" datetime="2026-10-13T00:00:00+00:00">October 13, 2026
+  </time>
+    </footer>
+  
+</article>
+
+    
+      
+
+
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
+        <a href="/personal_homepage/tool/agent-example2/" rel="bookmark">pi agent无人值守工作案例二(xpert)
+</a>
+      
+    </h3>
+    
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <blockquote>
+  <p>本文是  eXpert 无人值守案例, 重点说明如何把网页操作、文件处理、模型运行和飞书通知封装成工具。</p>
+
+  <p>eXpert项目相对接口来源更丰富, 状态更复杂. 但是流程更简单. 用于测试我们工作流的移植难度.</p>
+</blockquote>
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">1 min read</span>
+
+      <time class="entry-date dt-published" datetime="2026-10-12T00:00:00+00:00">October 12, 2026
+  </time>
+    </footer>
+  
+</article>
+
+    
+      
+
+
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
+        <a href="/personal_homepage/tool/agent-example1/" rel="bookmark">pi agent无人值守工作案例一(talentsai)
+</a>
+      
+    </h3>
+    
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <blockquote>
+  <p>本文是 TalentsAI 项目的业务案例，重点说明领题、Coding/长文/Office 制作、录屏、评测、质检、返修、提交和审核如何接入无人值守系统。<br />
+网页上有足够的状态接口和事件通知接口. 且流程简单, 适合测试工作流.</p>
+</blockquote>
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">8 min read</span>
+
+      <time class="entry-date dt-published" datetime="2026-10-11T00:00:00+00:00">October 11, 2026
+  </time>
+    </footer>
+  
+</article>
+
+    
+      
+
+
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
+        <a href="/personal_homepage/tool/resumable-work/" rel="bookmark">pi agent无人值守工作总体架构与事件闭环
+</a>
+      
+    </h3>
+    
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <p>从长期 Agent 运维经验中抽象通用方法，面向任意长耗时、多阶段、依赖外部系统的任务，例如构建部署、模型训练、数据管线、文档交付、仿真和异步审批。</p>
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">5 min read</span>
+
+      <time class="entry-date dt-published" datetime="2026-10-10T00:00:00+00:00">October 10, 2026
+  </time>
+    </footer>
+  
+</article>
+
+    
+      
+
+
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
         <a href="/personal_homepage/tool/pi-runtime-attribution/" rel="bookmark">Pi Desktop的开发难点: “会话的状态”
 </a>
       
@@ -368,7 +857,7 @@
   <header class="entry-header">
     <h3 class="entry-title p-name">
       
-        <a href="/personal_homepage/tool/message/" rel="bookmark">服务器发送消息通知
+        <a href="/personal_homepage/tool/message/" rel="bookmark">服务端通知与自动化错误台账系统：发消息（飞书/Log/邮件）与整合消息（三路同级台账）
 </a>
       
     </h3>
@@ -378,7 +867,11 @@
   
     <div class="entry-excerpt p-summary">
       
-        <p>发送文字/表格/图片的混合消息</p>
+        <p>现代后台与量化回测服务必须严格解耦并协同两套平级体系：</p>
+<ol>
+  <li><strong>实时消息发送体系（发消息）</strong>：负责对外的主动触达与状态广播。涵盖飞书自建应用凭证与群机器人搭建、系统 Logging 日志分流、自定义 <code class="language-plaintext highlighter-rouge">PROGRESS</code> 级别、<code class="language-plaintext highlighter-rouge">ContextVar</code> 死循环切断机制、定时日志轮转维护，以及通过 <code class="language-plaintext highlighter-rouge">blocks</code> 块协议驱动飞书交互卡片 2.0 与 Gmail SMTP 图文邮件。</li>
+  <li><strong>消息整合与错误台账系统（整合消息）</strong>：负责对内的故障留痕与质量治理。将来自 Agent 事实报告、Runtime 运行时捕获与 Log 文件增量摄入三路同级通道的错误与诊断信息，统一整合并持久化到 <code class="language-plaintext highlighter-rouge">artifacts/bugs/</code>，通过 AST 指纹聚合去重与绝对安全脱敏，交由独立维护 Session 闭环修复。</li>
+</ol>
 
       
     </div>
@@ -387,7 +880,7 @@
     <footer class="entry-meta">
       
 
-<span class="read-time">~1 min read</span>
+<span class="read-time">5 min read</span>
 
       <time class="entry-date dt-published" datetime="2025-10-23T00:00:00+00:00">October 23, 2025
   </time>

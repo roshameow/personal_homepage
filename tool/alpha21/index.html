@@ -1,0 +1,1163 @@
+<!DOCTYPE html>
+<!--
+    So Simple Jekyll Theme 3.2.0
+    Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+    Free for personal and commercial use under the MIT license
+    https://github.com/mmistakes/so-simple-theme/blob/master/LICENSE
+-->
+<html lang="en-US" class="no-js">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  
+
+  
+  
+  <!-- Begin Jekyll SEO tag v2.9.1 -->
+<title>复杂长期任务的多Session分权与Goal治理 | Liu, Wen’s Home Page</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="复杂长期任务的多Session分权与Goal治理" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="本文是 QuantNight 项目的智能体治理与多 Session 协同架构案例，重点剖析在量化回测底座跑通后，如何建立严密的 Agent 分权约束、集中式 Goal 目标管理、热加载插件（pi-goal-feedback）以及端到端自治研究闭环。 很多自动化项目在跑通底层执行后，往往陷入“放手就失控、收紧就瘫痪”的治理困境。本文结合真实调教历程，详细阐述为什么必须设计这套多 Session 权责硬隔离体系与 Goal 热加载机制，为复杂工程场景下的多 Agent 协作提供可落地的治理范式。" />
+<meta name="twitter:description" property="og:description" content="本文是 QuantNight 项目的智能体治理与多 Session 协同架构案例，重点剖析在量化回测底座跑通后，如何建立严密的 Agent 分权约束、集中式 Goal 目标管理、热加载插件（pi-goal-feedback）以及端到端自治研究闭环。 很多自动化项目在跑通底层执行后，往往陷入“放手就失控、收紧就瘫痪”的治理困境。本文结合真实调教历程，详细阐述为什么必须设计这套多 Session 权责硬隔离体系与 Goal 热加载机制，为复杂工程场景下的多 Agent 协作提供可落地的治理范式。" />
+<link rel="canonical" href="https://roshameow.github.io//personal_homepage/tool/alpha21/" />
+<meta property="og:url" content="https://roshameow.github.io//personal_homepage/tool/alpha21/" />
+<meta property="og:site_name" content="Liu, Wen’s Home Page" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2026-11-06T00:00:00+00:00" />
+<meta property="article:modified_time" content="2026-11-08T12:04:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="复杂长期任务的多Session分权与Goal治理" />
+<meta name="twitter:site" content="@" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2026-11-08T12:04:00+00:00","datePublished":"2026-11-06T00:00:00+00:00","description":"本文是 QuantNight 项目的智能体治理与多 Session 协同架构案例，重点剖析在量化回测底座跑通后，如何建立严密的 Agent 分权约束、集中式 Goal 目标管理、热加载插件（pi-goal-feedback）以及端到端自治研究闭环。 很多自动化项目在跑通底层执行后，往往陷入“放手就失控、收紧就瘫痪”的治理困境。本文结合真实调教历程，详细阐述为什么必须设计这套多 Session 权责硬隔离体系与 Goal 热加载机制，为复杂工程场景下的多 Agent 协作提供可落地的治理范式。","headline":"复杂长期任务的多Session分权与Goal治理","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/tool/alpha21/"},"url":"https://roshameow.github.io//personal_homepage/tool/alpha21/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  
+
+  <script>
+    /* Cut the mustard */
+    if ('querySelector' in document && 'addEventListener' in window) {
+      document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + 'js';
+    }
+  </script>
+
+  <link rel="stylesheet" href="/personal_homepage/assets/css/main.css">
+  <link rel="stylesheet" href="/personal_homepage/assets/css/skins/default.css">
+  
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,700,700i|Lora:400,400i,700,700i">
+  <link rel="alternate" type="application/atom+xml" title="Liu, Wen&#39;s Home Page" href="/personal_homepage/atom.xml">
+<!-- start custom head snippets -->
+
+<!-- insert favicons. use http://realfavicongenerator.net/ -->
+<link rel="shortcut icon" type="image/x-icon" href="/personal_homepage/docs/images/logo.ico">
+<!-- end custom head snippets -->
+
+</head>
+
+  <body class="layout--post  复杂长期任务的多session分权与goal治理">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#primary-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+  <div class="navigation-wrapper">
+    <a href="#menu-toggle" id="menu-toggle">Menu</a>
+    <nav id="primary-nav" class="site-nav animated drop">
+      <ul><li><a href="/personal_homepage/">Home</a></li><li><a href="/personal_homepage/posts/">Posts</a></li><li><a href="/personal_homepage/categories/">Categories</a></li><li><a href="/personal_homepage/tags/">Tags</a></li><li><a href="/personal_homepage/family/">Family</a></li><li><a href="/personal_homepage/search/">Search</a></li></ul>
+    </nav>
+  </div><!-- /.navigation-wrapper -->
+
+
+    <header class="masthead">
+  <div class="wrap">
+    
+    
+    
+      
+        <div class="site-title animated fadeIn"><a href="/personal_homepage/">Liu, Wen's Home Page</a></div>
+      
+      <p class="site-description animated fadeIn" itemprop="description">Work, Experiments and Ideas.</p>
+    
+  </div>
+</header><!-- /.masthead -->
+
+
+    <main id="main" class="main-content" aria-label="Content">
+  <article class="h-entry">
+    
+
+    <div class="page-wrapper">
+      <header class="page-header">
+        
+        
+        <h1 id="page-title" class="page-title p-name">复杂长期任务的多Session分权与Goal治理
+</h1>
+        
+      </header>
+
+      <div class="page-sidebar">
+        <div class="page-author h-card p-author"><img src="/personal_homepage/docs/images/logo.svg" class="author-avatar u-photo" alt=""><div class="author-info">
+
+<span class="read-time">3 min read</span>
+
+    <time class="page-date dt-published" datetime="2026-11-06T00:00:00+00:00"><a class="u-url" href="">November 6, 2026</a>
+</time>
+
+  </div>
+</div>
+
+        
+  <h3 class="page-taxonomies-title">Categories</h3>
+  
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a class="p-category" href="/personal_homepage/categories/#tool" title="Pages filed under tool">tool</a></li>
+  </ul>
+
+
+        
+  <h3 class="page-taxonomies-title">Tags</h3>
+  
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a href="/personal_homepage/tags/#agent" title="Pages tagged agent" rel="tag">agent</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#auto" title="Pages tagged auto" rel="tag">auto</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#content" title="Pages tagged content" rel="tag">content</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#pi" title="Pages tagged pi" rel="tag">pi</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#quant" title="Pages tagged quant" rel="tag">quant</a></li>
+  </ul>
+
+
+        <details id="entry-table-of-contents" class="toc-wrapper" open>
+  <summary>
+    <h2 class="no_toc">
+      Table of Contents
+      <svg class="toc-toggle-icon" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true" focusable="false">
+        <path d="m4 6 4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+      </svg>
+    </h2>
+  </summary>
+  <div class="toc-content">
+    <ul class="inline_toc" id="my_toc"><li><a href="#1-案例概览与治理挑战">1. 案例概览与治理挑战</a><ul><li><a href="#11-通用机制在本案例中的映射">1.1 通用机制在本案例中的映射</a></li></ul></li><li><a href="#2-多-session-架构拓扑与三权分立">2. 多 Session 架构拓扑与三权分立</a><ul><li><a href="#21-严格的角色权限矩阵">2.1 严格的角色权限矩阵</a></li></ul></li><li><a href="#3-为什么需要这样设计架构核心深层动因">3. 为什么需要这样设计架构？（核心深层动因）</a><ul><li><a href="#31-提交权为什么必须由统筹-session-严格独占">3.1 提交权为什么必须由统筹 Session 严格独占？</a></li><li><a href="#32-为什么必须将提交标准与提交动作从概念上彻底解耦">3.2 为什么必须将“提交标准”与“提交动作”从概念上彻底解耦？</a></li><li><a href="#33-为什么执行端绝对禁止写代码与修改-skill">3.3 为什么执行端绝对禁止写代码与修改 Skill？</a></li><li><a href="#34-为什么统筹-session-绝对不能下场跑回测">3.4 为什么统筹 Session 绝对不能下场跑回测？</a></li></ul></li><li><a href="#4-目标goal热加载与动态治理体系">4. 目标（Goal）热加载与动态治理体系</a><ul><li><a href="#41-为什么人类必须垄断短期--中期--长期-goal的定义权">4.1 为什么人类必须垄断“短期 / 中期 / 长期 Goal”的定义权？</a></li><li><a href="#42-消除文档碎片化集中收敛至-agent_roles">4.2 消除文档碎片化：集中收敛至 agent_roles/</a></li><li><a href="#43-为什么必须支持热加载hot-reloading">4.3 为什么必须支持“热加载（Hot-reloading）”？</a></li><li><a href="#44-真实故障治理杜绝-goal-全文灌入导致的上下文雪崩">4.4 真实故障治理：杜绝 Goal 全文灌入导致的上下文雪崩</a></li></ul></li><li><a href="#5-业务闭环哲学为什么坚决反对把分析与回测切成两个-session">5. 业务闭环哲学：为什么坚决反对把“分析”与“回测”切成两个 Session？</a><ul><li><a href="#为什么过度微服务化在量化-agent-中是灾难">为什么“过度微服务化”在量化 Agent 中是灾难？</a></li></ul></li><li><a href="#6-状态证据与知识落盘">6. 状态、证据与知识落盘</a></li><li><a href="#7-案例结论与治理启示">7. 案例结论与治理启示</a><ul><li><a href="#核心治理启示">核心治理启示</a></li></ul></li></ul>
+  </div>
+</details>
+
+        
+<details id="entry-related-posts" class="toc-wrapper" open>
+  <summary>
+    <h2 class="no_toc">
+      Related Posts
+      <svg class="toc-toggle-icon" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true" focusable="false">
+        <path d="m4 6 4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+      </svg>
+    </h2>
+  </summary>
+  <div class="toc-content">
+    <ul>
+      
+      <li><a href="/personal_homepage/data/alpha29/">News & Social Media 新闻流、社交媒体情绪与文本事件数据体系</a></li>
+      
+      <li><a href="/personal_homepage/data/alpha28/">日内 PV 统计量与市场微结构衍生指标体系</a></li>
+      
+      <li><a href="/personal_homepage/tool/alpha27/">从过度防御的歪路纠偏：GUI/CLI 6 态极简控制面、数据面板统一与工程收口</a></li>
+      
+      <li><a href="/personal_homepage/thought/agent-infrastructure-pitfalls-2/">用 AI 维护复杂控制面基础设施：为什么越修越死？从补丁膨胀到 6 态收敛的六大工程陷阱</a></li>
+      
+      <li><a href="/personal_homepage/tool/pi-subagent-durable/">pi-subagent-durable：后台子代理的持久化、生命周期与故障自愈</a></li>
+      
+    </ul>
+  </div>
+</details>
+
+
+
+      </div>
+
+      <div class="page-content">
+        <div class="e-content">
+          <blockquote>
+  <p>本文是 QuantNight 项目的智能体治理与多 Session 协同架构案例，重点剖析在量化回测底座跑通后，如何建立严密的 Agent 分权约束、集中式 Goal 目标管理、热加载插件（<code class="language-plaintext highlighter-rouge">pi-goal-feedback</code>）以及端到端自治研究闭环。<br />
+很多自动化项目在跑通底层执行后，往往陷入“放手就失控、收紧就瘫痪”的治理困境。本文结合真实调教历程，详细阐述为什么必须设计这套多 Session 权责硬隔离体系与 Goal 热加载机制，为复杂工程场景下的多 Agent 协作提供可落地的治理范式。</p>
+</blockquote>
+
+<hr />
+
+<h2 id="1-案例概览与治理挑战">1. 案例概览与治理挑战</h2>
+
+<p>在完成底层 Runtime 合并（Rust <code class="language-plaintext highlighter-rouge">task-core</code>、Headless Host、Unix IPC、系统 tmux 守护与 CAS 防覆）之后，QuantNight 的单机执行底座已坚如磐石，回测不会掉线、不会锁死、更不会因为前台断开而异常终止。</p>
+
+<p>然而，当系统从“单任务脚本化”迈向“多 Agent 自主协作”时，立刻撞上了<strong>智能体层面的组织混乱</strong>：</p>
+
+<ol>
+  <li><strong>高危动作越权失控</strong>：平台每日提交配额极其稀缺且不可逆。执行端 Agent 容易产生盲目拟合的幻觉，一旦持有提交权，极易擅自消耗宝贵配额提交次品；</li>
+  <li><strong>私自篡改系统底座</strong>：执行端 Agent 在回测受阻或门禁报错时，倾向于“走捷径”去魔改底层 Python 脚本、放宽测试断言或修改长期 Skill；</li>
+  <li><strong>目标（Goal）漂移与管理僵化</strong>：没有明确、可执行的 Goal 约束，Agent 容易在会话中越跑越偏；而传统的 <code class="language-plaintext highlighter-rouge">/goal</code> 命令必须停机重启，无法适应盘面与战术策略的动态微调；</li>
+  <li><strong>角色过度碎片化（流水线空转）</strong>：试图把“数据分析”与“回测实验”拆成两个独立 Session，导致 Agent 之间整天在“发消息、等消息、解释消息”，真正干活的时间全被高昂的“跨会话等待税”吞噬。</li>
+</ol>
+
+<p>为了终结这些乱象，系统确立了<strong>“三权分立、目标集中、热加载驱动、闭环内自治”</strong>的多 Session 协同架构。</p>
+
+<h3 id="11-通用机制在本案例中的映射">1.1 通用机制在本案例中的映射</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>通用治理机制</th>
+      <th>QuantNight 的具体对象与实现</th>
+      <th>核心目的与硬性红线</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>名册与角色发现</strong></td>
+      <td>根目录集中维护 <code class="language-plaintext highlighter-rouge">agent_roles/project.yaml</code> 与 <code class="language-plaintext highlighter-rouge">agent_roles/sessions/</code></td>
+      <td>集中登记已知 Session，不猜归属，消灭散落各处的启动碎片</td>
+    </tr>
+    <tr>
+      <td><strong>高危权限硬隔离</strong></td>
+      <td>原生 MCP <code class="language-plaintext highlighter-rouge">submit_alpha</code> 工具仅对已登记的 <code class="language-plaintext highlighter-rouge">coordinator</code> Session 放行</td>
+      <td>杜绝执行端 Agent 误操作或幻觉导致配额报废，提交权物理收拢</td>
+    </tr>
+    <tr>
+      <td><strong>系统代码防篡改</strong></td>
+      <td>仅 <code class="language-plaintext highlighter-rouge">debug-maintenance</code> Session 拥有写代码权限，执行 Session 默认只读</td>
+      <td>严禁执行端为“刷绿指标”而私自修改底层代码与测试门禁</td>
+    </tr>
+    <tr>
+      <td><strong>目标动态注入</strong></td>
+      <td>统一采用 <code class="language-plaintext highlighter-rouge">goal.md</code>，通过 <code class="language-plaintext highlighter-rouge">pi-goal-feedback</code> 插件在对话回合中<strong>热加载</strong></td>
+      <td>人类可随时修改目标，Agent 自动对齐，无需频繁杀进程重启会话</td>
+    </tr>
+    <tr>
+      <td><strong>单链路端到端闭环</strong></td>
+      <td>研究 Session 负责“分析→实现→回测→优化→验证”全流程，不拆分流水线</td>
+      <td>消除跨 Agent 异步等待与解释税，保持量化研究内循环的高效吞吐</td>
+    </tr>
+    <tr>
+      <td><strong>人工最终仲裁</strong></td>
+      <td>短期/中期/长期 Goal 仅由人类定义；重大策略调整与异常由人类拍板</td>
+      <td>拒绝 Agent 自作主张解释战略时间跨度，主权始终在人</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="2-多-session-架构拓扑与三权分立">2. 多 Session 架构拓扑与三权分立</h2>
+
+<p>为了防止 Agent 既当裁判又当运动员，QuantNight 建立了清晰的<strong>三权分立</strong>拓扑：</p>
+
+<pre><code class="language-mermaid">flowchart TD
+    Human["人类战略主控 (定义短期/中期/长期 Goal)"] --&gt;|编辑目标| Roles["统一名册: agent_roles/sessions/"]
+
+    subgraph CoordinatorPlane["1. 统筹与交付平面 (Coordinator)"]
+        Coord["Coordinator Session&lt;br/&gt;(上帝视角 · 宏观统筹)"]
+        Coord --&gt;|分析缺口| Target["Genius Pyramid / 配额监控"]
+        Coord --&gt;|下达大方向| Dispatch["粗粒度范围: Region / Delay / Type"]
+        Coord --&gt;|唯一拥有| SubTool["平台提交动作 (MCP submit_alpha)"]
+    end
+
+    subgraph ResearchPlane["2. 研究与执行平面 (Research &amp; Execution)"]
+        Research["Research Session (端到端闭环)"]
+        Research --&gt; Step1["分析: 数据集 / 论坛 / 论文"]
+        Step1 --&gt; Step2["实现: 算子与表达式组合"]
+        Step2 --&gt; Step3["执行: taskctl 批量回测"]
+        Step3 --&gt; Step4["优化: 变体筛选与 criteria 验证"]
+        Step4 -.-&gt;|达标候选回执| Coord
+        Research --&gt;|并发计算需求| Worker["Subagents (临时并行 Worker)"]
+    end
+
+    subgraph DebugPlane["3. 维护与修复平面 (Debug &amp; Maintenance)"]
+        Debug["Debug Maintenance Session"]
+        Debug --&gt; BugFix["根据 artifacts/bugs/ 专职修代码与脚本"]
+        Debug --&gt; GateTest["本地架构门禁: check_architecture.sh"]
+    end
+
+    Roles --&gt;|热加载 goal.md| Coord
+    Roles --&gt;|热加载 goal.md| Research
+    Roles --&gt;|热加载 goal.md| Debug
+
+    Dispatch --&gt;|低频交接| Research
+    Research -.-&gt;|遇底层 Bug 登记台账| BugFix
+</code></pre>
+
+<h3 id="21-严格的角色权限矩阵">2.1 严格的角色权限矩阵</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Session 角色</th>
+      <th>核心职责</th>
+      <th>平台提交 (Submit Alpha)</th>
+      <th>源码修改 (Git/Python/Rust)</th>
+      <th>回测任务控制 (Taskctl)</th>
+      <th>长期 Skill 维护</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong><code class="language-plaintext highlighter-rouge">coordinator</code>（统筹者）</strong></td>
+      <td>分析平台缺口、配额核算、派发大方向目标、核验证据并执行最终提交</td>
+      <td>🟢 <strong>唯一独占授权</strong></td>
+      <td>🔴 严禁修改</td>
+      <td>⚪ 仅查状态，不派回测</td>
+      <td>🔴 严禁修改</td>
+    </tr>
+    <tr>
+      <td><strong><code class="language-plaintext highlighter-rouge">debug-maintenance</code>（维护者）</strong></td>
+      <td>专职排查修复 Bug、重构底座架构、运行架构门禁测试</td>
+      <td>🔴 严禁调用</td>
+      <td>🟢 <strong>唯一放行</strong></td>
+      <td>⚪ 仅限回归测试调用</td>
+      <td>🟢 经授权可维护</td>
+    </tr>
+    <tr>
+      <td><strong><code class="language-plaintext highlighter-rouge">regular-alpha-exploration</code>（研究者）</strong></td>
+      <td>探索数据集、实现表达式、批量回测、迭代优化与对照标准验收</td>
+      <td>🔴 严禁调用（无权限）</td>
+      <td>🔴 严禁修改（只读）</td>
+      <td>🟢 <strong>核心业务权限</strong></td>
+      <td>🔴 严禁修改（只读）</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="3-为什么需要这样设计架构核心深层动因">3. 为什么需要这样设计架构？（核心深层动因）</h2>
+
+<h3 id="31-提交权为什么必须由统筹-session-严格独占">3.1 提交权为什么必须由统筹 Session 严格独占？</h3>
+
+<blockquote>
+  <p><strong>用户现场指令</strong>：<br />
+<em>“不同 session 的权限不同，比如我就不允许执行 session 提交 alpha… 解锁 submit-alpha，让 coordinate session 可以提交 alpha；coordinate session 不许自行优化 alpha、执行回测、改代码，只许分析目标、执行统计功能、接收平台和其他 agent 的通知、更改其他 session 的 goal。”</em></p>
+</blockquote>
+
+<ul>
+  <li><strong>配额稀缺性与不可逆性</strong>：WorldQuant Brain 每天的提交次数极少（普通用户仅个位数，高阶顾问亦受每日限额约束），提交结果永久记入考核。一旦浪费，当日无法挽回；</li>
+  <li><strong>防范执行端乐观幻觉</strong>：执行端 Agent 长期浸泡在局部参数优化中，容易将“过拟合的假象”当成达标成果。如果开放提交接口，Agent 在跑出一个看似漂亮的夏普比率后便会盲目提交，极易触犯平台的低质处罚；</li>
+  <li><strong>统一把控全局节奏</strong>：统筹 Session 站在全局视角，掌握当前季度的整体 Pyramid 结构缺口（例如：今天最缺的是 GLB 还是 USA？是 Delay 1 还是 Delay 0？）。只有统筹者能决定哪个候选最具提交价值。</li>
+</ul>
+
+<h3 id="32-为什么必须将提交标准与提交动作从概念上彻底解耦">3.2 为什么必须将“提交标准”与“提交动作”从概念上彻底解耦？</h3>
+
+<blockquote>
+  <p><strong>用户现场发现</strong>：<br />
+<em>“毕竟现在叫 submit-alpha 的 skill 写的是提交优化条件不是提交动作… 改下技能名字。”</em></p>
+</blockquote>
+
+<ul>
+  <li><strong>命名混淆引发误解</strong>：原先的技能名为 <code class="language-plaintext highlighter-rouge">submit-alpha</code>，但里面 90% 的正文都在讲“如何检查相关性、如何算 Fitness、如何算 Margin”。这导致 Agent 在阅读该技能后，误以为自己拥有提交任务的授权，或者试图在代码中寻找提交按钮；</li>
+  <li><strong>解耦方案</strong>：
+    <ol>
+      <li>将技能重命名为 <a href="file:///Users/wenliu/Code/python/quantnight/.agents/skills/alpha-submission-criteria/SKILL.md"><code class="language-plaintext highlighter-rouge">alpha-submission-criteria</code></a>（提交标准判定），开篇明确红线：<strong>“本技能只负责提交资格判定，不执行提交动作，也不授予提交权限”</strong>；</li>
+      <li>真正的提交动作收敛为底层的原生 MCP 工具 <code class="language-plaintext highlighter-rouge">submit_alpha</code>，并在 MCP 鉴权层按 Session ID 进行硬拦截。从语义和工具上斩断混乱。</li>
+    </ol>
+  </li>
+</ul>
+
+<h3 id="33-为什么执行端绝对禁止写代码与修改-skill">3.3 为什么执行端绝对禁止写代码与修改 Skill？</h3>
+
+<blockquote>
+  <p><strong>用户现场指令</strong>：<br />
+<em>“允许 debug session 改代码，但是不允许执行 session 改代码和 skill。”</em></p>
+</blockquote>
+
+<ul>
+  <li><strong>防范“作弊式解法”</strong>：在回测实验中，如果执行 Agent 拥有修改系统代码的权限，当它遇到回测崩溃或门禁报错时，它最容易采取的行为不是“反思策略”，而是去把测试断言改掉、把超时放大，甚至私自绕过校验逻辑；</li>
+  <li><strong>隔离故障扩散</strong>：让执行端保持纯粹的业务探索者身份。遇到系统级故障，统一沉淀事实到 <code class="language-plaintext highlighter-rouge">artifacts/bugs/</code>，由独立的 Debug Session 集中修复，避免每个人都在底座上随意打补丁导致代码腐化。</li>
+</ul>
+
+<h3 id="34-为什么统筹-session-绝对不能下场跑回测">3.4 为什么统筹 Session 绝对不能下场跑回测？</h3>
+
+<ul>
+  <li><strong>防止上下文爆炸（Context Saturation）</strong>：量化回测的日志、参数网格和报错极其冗长。如果统筹者亲自去调回测，其会话上下文会在一小时内被海量技术细节淹没，迅速耗尽窗口并产生严重的记忆遗忘；</li>
+  <li><strong>防止调度机制瘫痪</strong>：统筹者一旦陷入局部任务的纠缠，整个多 Session 体系就会群龙无首，无法及时接收外部事件与分配新战场。</li>
+</ul>
+
+<hr />
+
+<h2 id="4-目标goal热加载与动态治理体系">4. 目标（Goal）热加载与动态治理体系</h2>
+
+<h3 id="41-为什么人类必须垄断短期--中期--长期-goal的定义权">4.1 为什么人类必须垄断“短期 / 中期 / 长期 Goal”的定义权？</h3>
+
+<blockquote>
+  <p><strong>用户现场纠偏</strong>：<br />
+<em>“不是。短期/中期/长期 是我定义，不是你定义的。”</em></p>
+</blockquote>
+
+<ul>
+  <li><strong>拒绝 Agent 篡夺战略规划</strong>：很多系统试图让 Agent 自己规划“下半年方向”或“本月目标”，这在现实中往往演化为天马行空的胡思乱想。量化的战略目标（例如“本周重点突围 EUR 区域”、“本月完成 Pyramid 第四层”）必须 100% 由人类根据外部现实定义；</li>
+  <li><strong>架构职责归位</strong>：架构的作用是<strong>忠实承载与对齐人类目标</strong>，提供版本追踪与热加载机制，绝不替人类预设战略。</li>
+</ul>
+
+<h3 id="42-消除文档碎片化集中收敛至-agent_roles">4.2 消除文档碎片化：集中收敛至 <code class="language-plaintext highlighter-rouge">agent_roles/</code></h3>
+
+<blockquote>
+  <p><strong>用户现场指令</strong>：<br />
+<em>“统一都用 goal.md，不要 docs/agents_roles，应该放在项目直属 quantnight/agent_roles 下面维护… 为什么要分出一个 start.md 我就不明白。”</em></p>
+</blockquote>
+
+<p>在早期演进中，启动与目标文档散落在 <code class="language-plaintext highlighter-rouge">artifacts/sessions/</code>、<code class="language-plaintext highlighter-rouge">artifacts/bug_maintenance/START.md</code> 等各个角落，导致“新会话开工找不到真源，老会话读错历史目标”。最终架构彻底收敛：</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>quantnight/agent_roles/
+  ├── README.md               # 角色与治理索引
+  ├── project.yaml            # 全局 Session 名册与权威绑定
+  └── sessions/
+      ├── coordinator/
+      │   ├── session.yaml    # 统筹身份、权限声明与输入输出合同
+      │   └── goal.md         # 统一目标正文（短期/中期/长期）
+      ├── debug-maintenance/
+      │   ├── session.yaml    # 维护身份与代码修改权限
+      │   └── goal.md         # 维护目标正文
+      └── regular-alpha-exploration/
+          ├── session.yaml    # 研究身份与无提交/只读代码约束
+          └── goal.md         # 探索目标正文
+</code></pre></div></div>
+
+<p>彻底废弃多余的 <code class="language-plaintext highlighter-rouge">start.md</code>，每个 Session 只认自己目录下的 <code class="language-plaintext highlighter-rouge">goal.md</code>，一目了然。</p>
+
+<h3 id="43-为什么必须支持热加载hot-reloading">4.3 为什么必须支持“热加载（Hot-reloading）”？</h3>
+
+<blockquote>
+  <p><strong>用户现场决策</strong>：<br />
+<em>“不。我不想再执行 /goal。我的意思是 goal 应该运行中可以中途修改，应该是热加载，应该写成通用插件，不是绑定这个项目。”</em></p>
+</blockquote>
+
+<ul>
+  <li><strong>解决会话重启的高昂代价</strong>：如果每次人类调整策略（例如：把目标相关性从 0.7 调紧到 0.65，或者切换重点数据集），都需要把正在运行的 Agent 杀掉、重新建会话、重新读取庞大上下文，无人值守将名存实亡；</li>
+  <li><strong>落地 <code class="language-plaintext highlighter-rouge">pi-goal-feedback</code> 扩展</strong>：
+    <ul>
+      <li>插件在 Agent 每轮对话开始前，轻量检查对应 <code class="language-plaintext highlighter-rouge">goal.md</code> 的修改时间；</li>
+      <li>一旦检测到文件变化，在<strong>不重启会话、不重置上下文</strong>的前提下动态注入最新目标增量；</li>
+      <li>人类只需在 Obsidian 或编辑器中随手保存 <code class="language-plaintext highlighter-rouge">goal.md</code>，后方的 Agent 会话立刻自动对齐最新指令。</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="44-真实故障治理杜绝-goal-全文灌入导致的上下文雪崩">4.4 真实故障治理：杜绝 Goal 全文灌入导致的上下文雪崩</h3>
+
+<p>在插件上线初期，系统曾遇到严重的运行时故障：</p>
+
+<blockquote>
+  <p><strong>现场故障</strong>：<code class="language-plaintext highlighter-rouge">pi-goal-feedback</code> 频繁报 HTTP 400 错误，会话中出现大面积文字复读。<br />
+<strong>根因定位</strong>：插件在每个交互回合中，把上万字的 <code class="language-plaintext highlighter-rouge">goal.md</code> 全文不加过滤地反复重复塞进 System Prompt，导致上下文迅速突破模型限制，触发 API 拒绝并引发死循环复读。<br />
+<strong>用户现场督促</strong>：<em>“两方面都需要修改：1. 插件行为需要修改；2. goal 的正文也需要保持精简。”</em></p>
+</blockquote>
+
+<ul>
+  <li><strong>优化治理</strong>：
+    <ol>
+      <li>插件改造为仅提取核心约束与增量反馈，杜绝全文机械倾倒；</li>
+      <li>规范 <code class="language-plaintext highlighter-rouge">goal.md</code> 书写范式：去除冗余寒暄与废话，严格保留“硬边界、验收阈值、当前批次”，将单文件体积控制在健康范围内。</li>
+    </ol>
+  </li>
+</ul>
+
+<hr />
+
+<h2 id="5-业务闭环哲学为什么坚决反对把分析与回测切成两个-session">5. 业务闭环哲学：为什么坚决反对把“分析”与“回测”切成两个 Session？</h2>
+
+<p>在会话的第 917～927 行，曾有一场极其深刻的架构设计辩论：</p>
+
+<blockquote>
+  <p><strong>现场思辨</strong>：</p>
+  <ul>
+    <li>Agent 曾建议：按照标准软件工程流水线，拆分为“研究分析角色（看论文、读帖子、剖析数据字典）”与“实验探索角色（写表达式、调回测、跑优化）”，两者互相交接。</li>
+    <li><strong>用户的坚定拍板</strong>：<br />
+<em>“但是我决定还是不分开。分析和回测验证基本是一条通路，如果把主 session 分开可能不方便。具体探索的 region/delay/alpha 类型由 coordinate session 提供，确定类型之后就独立探索，不需要频繁和 coordinate 交互。”</em></li>
+  </ul>
+</blockquote>
+
+<h3 id="为什么过度微服务化在量化-agent-中是灾难">为什么“过度微服务化”在量化 Agent 中是灾难？</h3>
+
+<ol>
+  <li><strong>消灭致命的“跨会话等待税”与流水线空转</strong>：
+    <ul>
+      <li>如果硬性拆分，分析 Agent 提出一个假设后，必须把思路打包成消息发出去，然后陷入漫长等待；实验 Agent 拿到后调环境跑回测，跑完再发回分析 Agent……</li>
+      <li>这种模式下，<strong>Agent 会花费大量计算资源与 Token 在互相解释对方的意图上</strong>。一旦某个环节理解偏差，整条流水线瞬间卡死。</li>
+    </ul>
+  </li>
+  <li><strong>量化研究天然需要“紧耦合内循环”</strong>：
+    <ul>
+      <li>优秀的量化研究从来不是单向流水线，而是<strong>高频紧凑的实验闭环</strong>：看了一眼字段特征 → 写出一个初步表达式 → 回测 20 秒看相关性 → 发现夏普不好立刻调算子 → 再测一次；</li>
+      <li>这种高频尝试在<strong>同一个 Session 的连贯上下文内完成是最快、成本最低的</strong>。</li>
+    </ul>
+  </li>
+  <li><strong>宏观解耦：粗粒度派发，低频交互</strong>：
+    <ul>
+      <li>统筹 Session 只做<strong>宏观战略约束</strong>（输入：<code class="language-plaintext highlighter-rouge">Region: USA</code>, <code class="language-plaintext highlighter-rouge">Delay: 1</code>, <code class="language-plaintext highlighter-rouge">Target: Momentum</code>, <code class="language-plaintext highlighter-rouge">Theme: Sentiment</code>）；</li>
+      <li>执行 Session 拿到大方向后，在内部完全自治进行完整闭环，不需要每换一个字段都向主控请示。只有当产出达标候选，或者彻底卡死需要调整战略时，才与统筹 Session 进行低频交接。</li>
+    </ul>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="6-状态证据与知识落盘">6. 状态、证据与知识落盘</h2>
+
+<p>所有的治理逻辑不搞口头约定，全部物理固化在仓库结构中：</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>quantnight/
+  ├── agent_roles/                        # 智能体治理总指挥部
+  │   ├── README.md                       # 职责说明与发现规范
+  │   ├── project.yaml                    # 权威名册与 Session ID 映射
+  │   └── sessions/                       # 核心会话专属工作空间
+  │       ├── coordinator/goal.md         # 统筹总目标与每日提交计划
+  │       ├── debug-maintenance/goal.md   # 基础设施与架构维护目标
+  │       └── regular-alpha-exploration/  # 研究执行目标（闭环探索）
+  ├── artifacts/
+  │   ├── bugs/                           # 共享缺陷台账（执行端登记，Debug 端处理）
+  │   └── alpha_optimization/&lt;task&gt;/      # 每轮实验的交付物与可审计证据
+  └── .agents/skills/
+      └── alpha-submission-criteria/      # 仅做资格判定，不含提交动作
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="7-案例结论与治理启示">7. 案例结论与治理启示</h2>
+
+<p>QuantNight 的演进清晰地展示了一个复杂 AI 自动化系统的两阶段跃迁：</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>阶段一：底座稳定性建设 (L1～L2) ──► 阶段二：智能体组织治理 (L3～L4)
+  · 统一 Rust task-core 内核         · 统筹 / 维护 / 研究 三权分立
+  · Headless Host 与 Unix IPC        · 提交权与改码权物理硬拦截
+  · tmux 进程守护与 CAS 防旧覆新       · pi-goal-feedback 目标热加载
+  · 切断自杀式全局 Shutdown            · 业务端到端内循环（坚决不乱拆）
+</code></pre></div></div>
+
+<h3 id="核心治理启示">核心治理启示</h3>
+
+<ol>
+  <li><strong>权限靠系统硬拦截，不靠 Prompt 口头叮嘱</strong>：<br />
+永远不要寄希望于在 Prompt 里写“请不要提交”或“请不要改底层代码”。只有通过独立的 Session 隔离与 MCP 工具级调用鉴权，才能确保高危动作万无一失；</li>
+  <li><strong>目标靠动态热加载，不靠重启会话</strong>：<br />
+人类的战略随着市场与配额随时变化。建立基于通用插件的 Goal 热加载通道，才能实现真正的随需应变与人机敏捷协同；</li>
+  <li><strong>闭环靠内循环高吞吐，不搞形式主义流水线</strong>：<br />
+紧密相关的业务环节坚决不拆分。粗粒度下达方向，放手让执行 Agent 内部闭环自治，才能最大化量化研究的产出效率。</li>
+</ol>
+
+<hr />
+
+        </div>
+
+        
+
+        
+        
+  <div class="page-comments">
+    <div id="disqus_thread"></div>
+    <script>
+      var disqus_config = function () {
+        this.page.url = 'https://roshameow.github.io//personal_homepage/tool/alpha21/';
+        this.page.identifier = 'https://roshameow.github.io//personal_homepage/tool/alpha21/';
+      };
+
+      (function() {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://https-roshameow-github-io-personal-homepage.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+  </div>
+
+
+        
+
+        <nav class="page-pagination" role="navigation">
+  
+    <a class="page-previous" href="/personal_homepage/deeplearning/stable-diffusion11/">
+      <h4 class="page-pagination-label">Previous</h4>
+      <span class="page-pagination-title">
+        <i class="fas fa-arrow-left"></i> 从U-Net到DiT: 现代多模态大模型与Stable Diffusion的架构演进
+
+      </span>
+    </a>
+  
+
+  
+    <a class="page-next" href="/personal_homepage/daily/macos-rpath-dyld/">
+      <h4 class="page-pagination-label">Next</h4>
+      <span class="page-pagination-title">
+        深入理解 macOS 动态链接：dyld、@rpath 陷阱与 Conda/系统库冲突全景对照
+ <i class="fas fa-arrow-right"></i>
+      </span>
+    </a>
+  
+</nav>
+
+      </div>
+
+    </div>
+  </article>
+</main>
+
+    <footer id="footer" class="site-footer">
+  <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+<div class="social-icons"><a class="social-icon" href="/personal_homepage/atom.xml"><i class="fas fa-rss-square fa-2x" title="Feed"></i></a><a class="social-icon" href="https://github.com/roshameow"><i class="fab fa-github-square fa-2x" title="GitHub"></i></a><a class="social-icon" href="https://www.linkedin.com/in/wen-liu-06503a7b/"><i class="fab fa-linkedin fa-2x" title="LinkedIn"></i></a><a class="social-icon" href="mailto:w.liuatnk@gmail.com"><i class="fas fa-envelope-square fa-2x" title="e-mail"></i></a></div><div class="copyright">
+    
+      <p>&copy; 2026 Liu, Wen's Home Page. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://github.com/mmistakes/so-simple-theme" rel="nofollow">So Simple</a>.</p>
+    
+  </div>
+</footer>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="/personal_homepage/assets/js/main.min.js"></script>
+<script src="https://use.fontawesome.com/releases/v5.0.12/js/all.js"></script><script src="/personal_homepage/assets/js/content-tables.js" defer></script>
+
+<script>
+(function () {
+  'use strict';
+
+  var types = {
+    NOTE: 'note', INFO: 'note', ABSTRACT: 'note', SUMMARY: 'note', TLDR: 'note',
+    EXAMPLE: 'note', QUOTE: 'note', CITE: 'note',
+    TIP: 'tip', HINT: 'tip', IMPORTANT: 'tip', SUCCESS: 'tip', CHECK: 'tip', DONE: 'tip',
+    QUESTION: 'warning', HELP: 'warning', FAQ: 'warning',
+    WARNING: 'warning', CAUTION: 'warning', ATTENTION: 'warning',
+    DANGER: 'danger', ERROR: 'danger', BUG: 'danger',
+    FAILURE: 'danger', FAIL: 'danger', MISSING: 'danger'
+  };
+  var icons = {
+    note: 'M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z M12 11v6 M12 7h.01',
+    tip: 'M9 18h6 M10 21h4 M9 15a6 6 0 1 1 6 0v3H9z',
+    warning: 'M12 3L2 21h20z M12 9v5 M12 17h.01',
+    danger: 'M7 3h10l4 4v10l-4 4H7l-4-4V7z M9 9l6 6 M15 9l-6 6'
+  };
+
+  function makeIcon(type) {
+    var namespace = 'http://www.w3.org/2000/svg';
+    var svg = document.createElementNS(namespace, 'svg');
+    svg.setAttribute('class', 'callout-icon');
+    svg.setAttribute('viewBox', '0 0 24 24');
+    svg.setAttribute('width', '20');
+    svg.setAttribute('height', '20');
+    svg.setAttribute('fill', 'none');
+    svg.setAttribute('stroke', 'currentColor');
+    svg.setAttribute('stroke-width', '2');
+    svg.setAttribute('stroke-linecap', 'round');
+    svg.setAttribute('stroke-linejoin', 'round');
+    svg.setAttribute('aria-hidden', 'true');
+    svg.setAttribute('focusable', 'false');
+    var path = document.createElementNS(namespace, 'path');
+    path.setAttribute('d', icons[type]);
+    svg.appendChild(path);
+    return svg;
+  }
+
+  // A soft break is a text newline; a Markdown hard break is a <br>.
+  // Do not split newlines inside inline code or other literal content.
+  function firstBreak(parent) {
+    for (var node = parent.firstChild; node; node = node.nextSibling) {
+      if (node.nodeType === 3) {
+        var offset = node.data.search(/[\r\n]/);
+        if (offset !== -1) return { node: node, offset: offset };
+      } else if (node.nodeType === 1) {
+        if (node.tagName === 'BR') return { node: node };
+        if (/^(CODE|PRE|SCRIPT|STYLE|TEXTAREA)$/.test(node.tagName)) continue;
+        var result = firstBreak(node);
+        if (result) return result;
+      }
+    }
+    return null;
+  }
+
+  function transformCallouts() {
+    document.querySelectorAll('.page-content blockquote').forEach(function (quote) {
+      if (quote.closest('pre, code, .highlight, .highlighter-rouge')) return;
+      var paragraph = quote.firstElementChild;
+      if (!paragraph || paragraph.tagName !== 'P') return;
+
+      // Require the marker in a direct text node: <code>[!WARNING]</code>
+      // (and markers merely mentioned later in a quote) must remain literal.
+      var markerNode = paragraph.firstChild;
+      if (!markerNode || markerNode.nodeType !== 3) return;
+      var marker = markerNode.data.match(/^[\t \r\n]*\[!([a-z][a-z0-9-]*)\]([+-])?(?=[\t \r\n]|$)[\t ]*/i);
+      if (!marker) return;
+      var name = marker[1].toUpperCase();
+      if (!Object.prototype.hasOwnProperty.call(types, name)) return;
+      var type = types[name];
+      var label = name === 'TLDR' ? 'TL;DR' : name.charAt(0) + name.slice(1).toLowerCase();
+      markerNode.deleteData(0, marker[0].length);
+
+      var boundary = firstBreak(paragraph);
+      var range = document.createRange();
+      range.selectNodeContents(paragraph);
+      if (boundary) {
+        if (boundary.node.nodeType === 3) range.setEnd(boundary.node, boundary.offset);
+        else range.setEndBefore(boundary.node);
+      }
+      var titleContent = range.extractContents();
+      if (boundary) {
+        if (boundary.node.nodeType === 3) {
+          var breakLength = boundary.node.data.slice(0, 2) === '\r\n' ? 2 : 1;
+          boundary.node.deleteData(0, breakLength);
+        } else {
+          boundary.node.parentNode.removeChild(boundary.node);
+        }
+      }
+      if (!paragraph.textContent.trim() && !paragraph.children.length) {
+        quote.removeChild(paragraph);
+      }
+
+      var folding = !!marker[2];
+      var callout = document.createElement(folding ? 'details' : 'div');
+      // Keep author-provided IDs, language, direction, and classes.
+      Array.prototype.forEach.call(quote.attributes, function (attribute) {
+        callout.setAttribute(attribute.name, attribute.value);
+      });
+      callout.classList.add('callout', 'callout--' + type);
+      callout.setAttribute('data-callout', name.toLowerCase());
+      callout.setAttribute('aria-label', label);
+      if (folding) {
+        callout.removeAttribute('role');
+        if (marker[2] === '+') callout.setAttribute('open', '');
+        else callout.removeAttribute('open');
+      } else {
+        callout.setAttribute('role', 'note');
+      }
+
+      var title = document.createElement(folding ? 'summary' : 'div');
+      title.className = 'callout-title';
+      title.appendChild(makeIcon(type));
+      var titleText = document.createElement('span');
+      titleText.className = 'callout-title-text';
+      if (titleContent.textContent.trim() || titleContent.childElementCount) {
+        titleText.appendChild(titleContent);
+      } else {
+        titleText.textContent = label;
+      }
+      title.appendChild(titleText);
+      callout.appendChild(title);
+
+      var body = document.createElement('div');
+      body.className = 'callout-body';
+      while (quote.firstChild) body.appendChild(quote.firstChild);
+      callout.appendChild(body);
+      quote.parentNode.replaceChild(callout, quote);
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', transformCallouts);
+  } else {
+    transformCallouts();
+  }
+})();
+</script>
+<!-- <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'G-9TMSCDTBGN', 'auto');
+  ga('send', 'pageview');
+</script> -->
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9TMSCDTBGN"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-9TMSCDTBGN');
+</script>
+
+
+
+<!-- MathJax -->
+<style>
+    /* Only oversized equations get this wrapper; ordinary inline math stays inline. */
+    .math-scroll {
+        display: block;
+        max-width: 100%;
+        overflow-x: auto;
+        overflow-y: hidden;
+        padding-block: 0.5em;
+        scrollbar-width: thin;
+    }
+    .math-scroll > mjx-container[jax] {
+        display: inline-block;
+        margin: 0;
+    }
+    .math-scroll:focus-visible {
+        outline: 2px solid currentColor;
+        outline-offset: 2px;
+    }
+</style>
+<script>
+    function fitMathToColumn() {
+        document.querySelectorAll('mjx-container').forEach(function (container) {
+            var wrapper = container.parentElement.classList.contains('math-scroll') ? container.parentElement : null;
+            var column = wrapper ? wrapper.parentElement : container.parentElement;
+            while (column && ['inline', 'contents'].includes(getComputedStyle(column).display)) {
+                column = column.parentElement;
+            }
+            if (!column) return;
+            var style = getComputedStyle(column);
+            var available = column.clientWidth - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight);
+            var ink = container.querySelector('mjx-math, svg');
+            var width = (ink || container).getBoundingClientRect().width;
+            if (width > available + 1) {
+                if (!wrapper) {
+                    wrapper = document.createElement('span');
+                    wrapper.className = 'math-scroll';
+                    wrapper.tabIndex = 0;
+                    wrapper.setAttribute('role', 'region');
+                    wrapper.setAttribute('aria-label', 'Mathematical formula; scroll horizontally to read all');
+                    wrapper.title = 'Scroll horizontally to read the full formula';
+                    container.before(wrapper);
+                    wrapper.appendChild(container);
+                }
+            } else if (wrapper) {
+                wrapper.replaceWith(container);
+            }
+        });
+    }
+    // Pin the engine, autoloaded TeX extensions, menu and fonts to local assets.
+    window.MathJax = {
+        loader: {
+            paths: { mathjax: "/personal_homepage/assets/js/vendor/mathjax/es5" },
+            load: ['[tex]/textmacros']
+        },
+        tex: {
+            tags: "ams",
+            packages: { '[+]': ['textmacros'] },
+            inlineMath: [['$', '$'], ['\\(', '\\)']],
+            displayMath: [['$$', '$$'], ['\\[', '\\]']]
+        },
+        chtml: {
+            fontURL: "/personal_homepage/assets/js/vendor/mathjax/es5/output/chtml/fonts/woff-v2"
+        },
+        startup: {
+            pageReady: function () {
+                return MathJax.startup.defaultPageReady().then(function () {
+                    return document.fonts ? document.fonts.ready : undefined;
+                }).then(function () {
+                    fitMathToColumn();
+                    var scheduled = false;
+                    window.addEventListener('resize', function () {
+                        if (scheduled) return;
+                        scheduled = true;
+                        requestAnimationFrame(function () {
+                            scheduled = false;
+                            fitMathToColumn();
+                        });
+                    });
+                });
+            }
+        },
+        options: {
+            // Keep examples (including literal dollar signs) out of the typesetter.
+            skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code', 'annotation', 'annotation-xml']
+        }
+    };
+</script>
+<script id="MathJax-script" async src="/personal_homepage/assets/js/vendor/mathjax/es5/tex-mml-chtml.js"></script>
+
+
+
+
+<!-- Mermaid -->
+<style>
+  .mermaid-diagram {
+    max-width: 100%;
+    margin: 0.85rem 0;
+    overflow-x: auto;
+  }
+  .mermaid-diagram:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+  }
+  .page-content pre.mermaid {
+    margin: 0;
+    padding: 0.25rem 0;
+    text-align: center;
+    background: transparent;
+    overflow: visible;
+    font-family: inherit;
+  }
+  .page-content pre.mermaid[data-processed] {
+    white-space: normal;
+  }
+  pre.mermaid svg {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    height: auto;
+  }
+  .mermaid-diagram .cluster-label {
+    font-weight: 700;
+  }
+  .mermaid-error {
+    font-size: 0.85em;
+    color: #9a3412;
+  }
+</style>
+<script src="/personal_homepage/assets/js/vendor/mermaid-11.17.2.min.js"></script>
+<script>
+(function () {
+  'use strict';
+
+  function normalizeMermaidSource(source) {
+    // Mermaid 11 accepts A <-- "label" --- B but creates an INVALID edge.
+    // Render the equivalent B -->|"label"| A, without editing the Markdown.
+    var body = source.trimStart()
+      .replace(/^---\r?\n[\s\S]*?\r?\n---(?:\r?\n|$)/, '')
+      .replace(/%%\{[\s\S]*?\}%%/g, '')
+      .replace(/^[\t ]*%%.*$/gm, '').trimStart();
+    if (!/^(?:flowchart|graph)\b/.test(body)) return source;
+
+    var started = false;
+    var quoted = false;
+    return source.replace(/[^\r\n]+/g, function (line) {
+      if (!started && !/^\s*(?:flowchart|graph)\b/.test(line)) return line;
+      started = true;
+      var normalized = quoted ? line : line.replace(
+        /^([\t ]*)([A-Za-z_][\w-]*)[\t ]*<--[\t ]*("[^"\r\n]*")[\t ]*---[\t ]*([A-Za-z_][\w-]*)([\t ]*;?[\t ]*(?:%%.*)?)$/,
+        function (_, indent, left, label, right, suffix) {
+          return indent + right + ' -->|' + label + '| ' + left + suffix;
+        }
+      );
+      // Never rewrite an example inside a multiline quoted node label, and
+      // never let quotes inside a %% comment affect the following lines.
+      for (var i = 0; i < line.length; i++) {
+        if (!quoted && line[i] === '%' && line[i + 1] === '%') break;
+        if (line[i] === '"') quoted = !quoted;
+      }
+      return normalized;
+    });
+  }
+
+  async function renderDiagrams() {
+    var blocks = document.querySelectorAll('code.language-mermaid');
+    if (!blocks.length) return;
+    if (typeof mermaid === 'undefined') {
+      blocks.forEach(function (code) {
+        var original = code.closest('.highlighter-rouge') || code.closest('pre');
+        if (!original) return;
+        var message = document.createElement('p');
+        message.className = 'mermaid-error';
+        message.setAttribute('role', 'status');
+        message.textContent = '图表组件加载失败，请刷新页面重试。Mermaid 源码已保留。';
+        original.after(message);
+      });
+      return;
+    }
+
+    // Render every diagram as Mermaid, including diagrams with multiple subgraphs.
+    // Disable the automatic pass so it cannot race with our explicit rendering.
+    var skin = getComputedStyle(document.documentElement);
+    function color(name, fallback) {
+      return skin.getPropertyValue('--mermaid-' + name).trim() || fallback;
+    }
+    var background = color('background', '#ffffff');
+    var text = color('text', '#000000');
+    var border = color('border', '#cccccc');
+    var nodeBorder = color('node-border', '#b8b9c0');
+    var cluster = color('cluster-background', '#f9f9fa');
+    var line = color('line', '#858795');
+    var palettes = [
+      ['#e4eaf0', '#f4f6f9', '#a5b3c2'], // slate blue
+      ['#e8f0ea', '#f5f8f5', '#a8bcae'], // sage
+      ['#f3ede3', '#faf7f2', '#c6b69c'], // sand
+      ['#ebe8f1', '#f7f5fa', '#b5adc5'], // lavender
+      ['#e4eeee', '#f3f8f8', '#a0baba']  // muted teal
+    ].map(function (fallbacks, index) {
+      return {
+        node: color('palette-' + index + '-node', fallbacks[0]),
+        cluster: color('palette-' + index + '-cluster', index === 0 ? cluster : fallbacks[1]),
+        border: color('palette-' + index + '-border', fallbacks[2])
+      };
+    });
+    var fontFamily = getComputedStyle(document.body).fontFamily ||
+      '"Source Sans Pro", sans-serif';
+    // Mermaid fixes label dimensions during layout. Wait for web fonts so a
+    // later font swap cannot make the measured label box too small.
+    if (document.fonts) await document.fonts.ready;
+
+    var theme = "default";
+    // The site's default follows its active skin. Explicit forest/dark/etc.
+    // choices remain available for sites that deliberately select them.
+    if (theme === 'default') theme = 'base';
+
+    var config = {
+      startOnLoad: false,
+      securityLevel: 'strict',
+      fontFamily: fontFamily,
+      // Native SVG text avoids foreignObject clipping and article paragraph CSS.
+      htmlLabels: false,
+      flowchart: {
+        inheritDir: true,
+        curve: 'linear',
+        nodeSpacing: 24,
+        rankSpacing: 28,
+        padding: 8,
+        diagramPadding: 8,
+        wrappingWidth: 180,
+        // Nested cluster borders must start below the parent's full title line.
+        subGraphTitleMargin: { top: 4, bottom: 12 }
+      },
+      theme: theme,
+      themeVariables: theme === 'base' ? {
+        fontFamily: fontFamily,
+        fontSize: '14px',
+        background: background,
+        primaryColor: palettes[0].node,
+        primaryTextColor: text,
+        primaryBorderColor: nodeBorder,
+        secondaryColor: palettes[1].node,
+        secondaryTextColor: text,
+        secondaryBorderColor: border,
+        tertiaryColor: palettes[2].node,
+        tertiaryTextColor: text,
+        tertiaryBorderColor: border,
+        lineColor: line,
+        textColor: text,
+        mainBkg: palettes[0].node,
+        nodeBorder: nodeBorder,
+        nodeTextColor: text,
+        clusterBkg: palettes[0].cluster,
+        clusterBorder: border,
+        titleColor: text,
+        defaultLinkColor: line,
+        edgeLabelBackground: background,
+        noteBkgColor: palettes[2].node,
+        noteTextColor: text,
+        noteBorderColor: border,
+        actorBkg: palettes[0].node,
+        actorBorder: nodeBorder,
+        actorTextColor: text,
+        actorLineColor: border,
+        signalColor: line,
+        signalTextColor: text
+      } : { fontFamily: fontFamily }
+    };
+
+    function applyFlowchartPalette(svg) {
+      if (theme !== 'base' || !/^flowchart/.test(svg.getAttribute('aria-roledescription') || '')) return;
+
+      function tint(group, shapes, index, kind) {
+        // Author-supplied classDef/style colors take precedence over auto accents.
+        var customClass = Array.from(group.classList).some(function (name) {
+          return !['node', 'default', 'cluster', 'clickable'].includes(name);
+        });
+        if (customClass || !shapes.length || shapes.some(function (shape) {
+          return shape.style.getPropertyValue('fill') || shape.style.getPropertyValue('stroke');
+        })) return;
+        group.setAttribute('data-mermaid-palette', index);
+        shapes.forEach(function (shape) {
+          // Keep fallbacks in the SVG so exported diagrams retain their colors.
+          if (shape.getAttribute('fill') !== 'none') {
+            shape.style.fill = 'var(--mermaid-palette-' + index + '-' + kind + ', ' + palettes[index][kind] + ')';
+          }
+          shape.style.stroke = 'var(--mermaid-palette-' + index + '-border, ' + palettes[index].border + ')';
+        });
+      }
+
+      var groups = Array.from(svg.querySelectorAll('g.cluster')).map(function (group, index) {
+        var rect = group.querySelector('rect');
+        return { group: group, rect: rect, bounds: rect && rect.getBoundingClientRect(), index: index % palettes.length };
+      }).filter(function (entry) { return entry.rect; });
+      // Mermaid's SVG stores clusters flat. Match by the actual layout so nodes
+      // inherit their smallest enclosing group, including nested schedulers.
+      var nodes = Array.from(svg.querySelectorAll('g.node')).map(function (node) {
+        return { node: node, bounds: node.getBoundingClientRect() };
+      });
+      groups.forEach(function (entry) { tint(entry.group, [entry.rect], entry.index, 'cluster'); });
+      groups.sort(function (a, b) { return a.bounds.width * a.bounds.height - b.bounds.width * b.bounds.height; });
+      nodes.forEach(function (entry) {
+        var box = entry.bounds;
+        var parent = groups.find(function (group) {
+          var bounds = group.bounds;
+          return box.left >= bounds.left - 1 && box.right <= bounds.right + 1 &&
+            box.top >= bounds.top - 1 && box.bottom <= bounds.bottom + 1;
+        });
+        var shapes = [];
+        entry.node.querySelectorAll(':scope > .label-container').forEach(function (container) {
+          // Rounded/hand-drawn shapes wrap paths in a group. Include the
+          // container in the author-style check, then tint the actual paths.
+          shapes.push(container);
+          shapes.push.apply(shapes, container.querySelectorAll('path, rect, circle, ellipse, polygon, polyline'));
+        });
+        tint(entry.node, shapes, parent ? parent.index : 0, 'node');
+      });
+    }
+
+    function hasNestedSubgraphs(source) {
+      var depth = 0;
+      return source.split(/\r?\n/).some(function (line) {
+        if (/^\s*subgraph\b/.test(line)) return ++depth > 1;
+        if (/^\s*end\s*(?:;|%%.*)?$/.test(line)) depth = Math.max(0, depth - 1);
+        return false;
+      });
+    }
+
+    for (var code of blocks) {
+      var original = code.closest('.highlighter-rouge') || code.closest('pre');
+      if (!original) continue;
+
+      var wrapper = document.createElement('div');
+      wrapper.className = 'mermaid-diagram';
+      wrapper.tabIndex = 0;
+      wrapper.setAttribute('role', 'region');
+      wrapper.setAttribute('aria-label', 'Mermaid diagram (scroll horizontally)');
+
+      var pre = document.createElement('pre');
+      pre.className = 'mermaid';
+      pre.textContent = normalizeMermaidSource(code.textContent);
+      wrapper.appendChild(pre);
+      original.replaceWith(wrapper);
+
+      try {
+        // Dagre reserves only half rankSpacing above a nested cluster. Keep
+        // that space taller than its parent's title, without spreading out
+        // the ordinary (non-nested) compact flowcharts.
+        mermaid.initialize(Object.assign({}, config, {
+          flowchart: Object.assign({}, config.flowchart, {
+            rankSpacing: hasNestedSubgraphs(code.textContent) ? 56 : config.flowchart.rankSpacing
+          })
+        }));
+        await mermaid.run({ nodes: [pre] });
+        var svg = pre.querySelector('svg');
+        if (svg && svg.viewBox.baseVal.width) {
+          // Do not shrink labels to illegible text on narrow screens;
+          // keep at least 90% of the natural size and scroll the diagram instead.
+          svg.style.minWidth = (svg.viewBox.baseVal.width * 0.9) + 'px';
+        }
+        if (svg) applyFlowchartPalette(svg);
+      } catch (error) {
+        // A malformed diagram must not prevent other diagrams from rendering
+        // or make the original source disappear.
+        wrapper.replaceChildren(original);
+        var message = document.createElement('p');
+        message.className = 'mermaid-error';
+        message.setAttribute('role', 'status');
+        message.textContent = '图表渲染失败，已保留 Mermaid 源码。';
+        wrapper.appendChild(message);
+        console.warn('Mermaid diagram could not be rendered:', error);
+      }
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', renderDiagrams);
+  } else {
+    renderDiagrams();
+  }
+})();
+</script>
+
+
+  </body>
+
+</html>

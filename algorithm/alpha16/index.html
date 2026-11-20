@@ -16,23 +16,23 @@
   
   
   <!-- Begin Jekyll SEO tag v2.9.1 -->
-<title>动态调整搜索优先级：从 PROSAC 到 Alpha 实战演进 | Liu, Wen’s Home Page</title>
+<title>从问题特点出发：Alpha 搜索算法体系的诚实复盘与演进 | Liu, Wen’s Home Page</title>
 <meta name="generator" content="Jekyll v4.4.1" />
-<meta property="og:title" content="动态调整搜索优先级：从 PROSAC 到 Alpha 实战演进" />
+<meta property="og:title" content="从问题特点出发：Alpha 搜索算法体系的诚实复盘与演进" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="在量化回测中，Alpha 搜索不仅仅是一个算力问题，更是一个资源分配问题。传统的 RANSAC（随机采样一致性）在面对海量 Datafields 时效率极低，而 PROSAC 提供了一种渐进式（Progressive）的思考框架。" />
-<meta name="twitter:description" property="og:description" content="在量化回测中，Alpha 搜索不仅仅是一个算力问题，更是一个资源分配问题。传统的 RANSAC（随机采样一致性）在面对海量 Datafields 时效率极低，而 PROSAC 提供了一种渐进式（Progressive）的思考框架。" />
+<meta name="description" content="在量化回测中，Alpha 搜索本质上是一个受限配额下的黑箱资源分配问题。" />
+<meta name="twitter:description" property="og:description" content="在量化回测中，Alpha 搜索本质上是一个受限配额下的黑箱资源分配问题。" />
 <link rel="canonical" href="https://roshameow.github.io//personal_homepage/algorithm/alpha16/" />
 <meta property="og:url" content="https://roshameow.github.io//personal_homepage/algorithm/alpha16/" />
 <meta property="og:site_name" content="Liu, Wen’s Home Page" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2026-04-20T00:00:00+00:00" />
-<meta property="article:modified_time" content="2026-08-05T22:48:00+00:00" />
+<meta property="article:modified_time" content="2026-11-09T06:40:00+00:00" />
 <meta name="twitter:card" content="summary" />
-<meta name="twitter:title" content="动态调整搜索优先级：从 PROSAC 到 Alpha 实战演进" />
+<meta name="twitter:title" content="从问题特点出发：Alpha 搜索算法体系的诚实复盘与演进" />
 <meta name="twitter:site" content="@" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2026-08-05T22:48:00+00:00","datePublished":"2026-04-20T00:00:00+00:00","description":"在量化回测中，Alpha 搜索不仅仅是一个算力问题，更是一个资源分配问题。传统的 RANSAC（随机采样一致性）在面对海量 Datafields 时效率极低，而 PROSAC 提供了一种渐进式（Progressive）的思考框架。","headline":"动态调整搜索优先级：从 PROSAC 到 Alpha 实战演进","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/algorithm/alpha16/"},"url":"https://roshameow.github.io//personal_homepage/algorithm/alpha16/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2026-11-09T06:40:00+00:00","datePublished":"2026-04-20T00:00:00+00:00","description":"在量化回测中，Alpha 搜索本质上是一个受限配额下的黑箱资源分配问题。","headline":"从问题特点出发：Alpha 搜索算法体系的诚实复盘与演进","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/algorithm/alpha16/"},"url":"https://roshameow.github.io//personal_homepage/algorithm/alpha16/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -59,7 +59,7 @@
 
 </head>
 
-  <body class="layout--post  动态调整搜索优先级-从-prosac-到-alpha-实战演进">
+  <body class="layout--post  从问题特点出发-alpha-搜索算法体系的诚实复盘与演进">
     <nav class="skip-links">
   <h2 class="screen-reader-text">Skip links</h2>
   <ul>
@@ -100,7 +100,7 @@
       <header class="page-header">
         
         
-        <h1 id="page-title" class="page-title p-name">动态调整搜索优先级：从 PROSAC 到 Alpha 实战演进
+        <h1 id="page-title" class="page-title p-name">从问题特点出发：Alpha 搜索算法体系的诚实复盘与演进
 </h1>
         
       </header>
@@ -126,7 +126,7 @@
         
   <h3 class="page-taxonomies-title">Tags</h3>
   
-  <ul class="page-taxonomies"><li class="page-taxonomy"><a href="/personal_homepage/tags/#alpha" title="Pages tagged Alpha" rel="tag">Alpha</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#optimization" title="Pages tagged Optimization" rel="tag">Optimization</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#prosac" title="Pages tagged PROSAC" rel="tag">PROSAC</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#search" title="Pages tagged Search" rel="tag">Search</a></li>
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a href="/personal_homepage/tags/#adaptive" title="Pages tagged Adaptive" rel="tag">Adaptive</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#alpha" title="Pages tagged Alpha" rel="tag">Alpha</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#lightgbm" title="Pages tagged LightGBM" rel="tag">LightGBM</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#optimization" title="Pages tagged Optimization" rel="tag">Optimization</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#priority" title="Pages tagged Priority" rel="tag">Priority</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#search" title="Pages tagged Search" rel="tag">Search</a></li>
   </ul>
 
 
@@ -140,7 +140,7 @@
     </h2>
   </summary>
   <div class="toc-content">
-    <ul class="inline_toc" id="my_toc"><li><a href="#1-alpha-搜索的三个核心难点">1. Alpha 搜索的三个核心难点</a></li><li><a href="#2-prosac-的策略关键t_n-的本质">2. PROSAC 的策略关键：\(T_n\) 的本质</a></li><li><a href="#3-progressive-策略在-alpha-领域真的有意义吗">3. Progressive 策略在 Alpha 领域真的有意义吗？</a></li><li><a href="#4-进化版多样性与信息引导下的采样">4. 进化版：多样性与信息引导下的采样</a></li><li><a href="#5-总结">5. 总结</a></li></ul>
+    <ul class="inline_toc" id="my_toc"><li><a href="#1-alpha-搜索的三个核心难点与局部特点">1. Alpha 搜索的三个核心难点与局部特点</a></li><li><a href="#2-算法选型">2. 算法选型</a></li><li><a href="#3-现有双轨系统">3. 现有双轨系统</a></li></ul>
   </div>
 </details>
 
@@ -157,15 +157,15 @@
   <div class="toc-content">
     <ul>
       
-      <li><a href="/personal_homepage/tool/pi-runtime-attribution/">Pi Desktop的开发难点: “会话的状态”</a></li>
+      <li><a href="/personal_homepage/data/alpha29/">News & Social Media 新闻流、社交媒体情绪与文本事件数据体系</a></li>
       
-      <li><a href="/personal_homepage/tool/pi-desktop/">Pi Desktop：从会话浏览器到跨机器工作台</a></li>
+      <li><a href="/personal_homepage/data/alpha28/">日内 PV 统计量与市场微结构衍生指标体系</a></li>
       
-      <li><a href="/personal_homepage/daily/sticker/">用AI做了一套微信表情包:从微信头像缓存到提交上架</a></li>
+      <li><a href="/personal_homepage/tool/alpha27/">从过度防御的歪路纠偏：GUI/CLI 6 态极简控制面、数据面板统一与工程收口</a></li>
       
-      <li><a href="/personal_homepage/daily/agent-blog-writing/">用AI agent复现我的博客风格</a></li>
+      <li><a href="/personal_homepage/thought/agent-infrastructure-pitfalls-2/">用 AI 维护复杂控制面基础设施：为什么越修越死？从补丁膨胀到 6 态收敛的六大工程陷阱</a></li>
       
-      <li><a href="/personal_homepage/tool/lesson/">听课app开发调研</a></li>
+      <li><a href="/personal_homepage/tool/pi-subagent-durable/">pi-subagent-durable：后台子代理的持久化、生命周期与故障自愈</a></li>
       
     </ul>
   </div>
@@ -177,65 +177,93 @@
 
       <div class="page-content">
         <div class="e-content">
-          <p>在量化回测中，Alpha 搜索不仅仅是一个算力问题，更是一个<strong>资源分配</strong>问题。传统的 RANSAC（随机采样一致性）在面对海量 Datafields 时效率极低，而 PROSAC 提供了一种渐进式（Progressive）的思考框架。</p>
+          <p>在量化回测中，Alpha 搜索本质上是一个<strong>受限配额下的黑箱资源分配问题</strong>。</p>
 
-<h3 id="1-alpha-搜索的三个核心难点">1. Alpha 搜索的三个核心难点</h3>
+<h3 id="1-alpha-搜索的三个核心难点与局部特点">1. Alpha 搜索的三个核心难点与局部特点</h3>
 
-<p>在尝试自动化挖掘 Alpha 时，我们面临的挑战远比几何模型拟合复杂：</p>
+<p>在尝试自动化挖掘 Alpha 时，我们面临的挑战远比普通模型拟合复杂：</p>
 
 <ul>
   <li><strong>搜索范围极广 (Dimensionality Curse)</strong>：Datafields 数量庞大，加上算子组合、参数空间，理论搜索空间呈指数级爆炸。</li>
-  <li><strong>有效 Alpha 极稀疏 (Sparse Signals)</strong>：在数亿种组合中，真正能通过过拟合测试、具有预测能力的信号寥寥无几。(<strong>尾部识别</strong>)</li>
+  <li><strong>有效 Alpha 极稀疏 (Sparse Signals)</strong>：在数亿种组合中，真正能通过过拟合测试、具有预测能力的信号寥寥无几（<strong>尾部识别</strong>）。</li>
   <li><strong>协同效应与相关性 (Synergy &amp; Correlation)</strong>：单一字段的优劣并不代表全部。Alpha 的最终效果往往取决于字段间的组合正交性，而单纯的线性排序无法捕捉这种“1+1&gt;2”的化学反应。</li>
 </ul>
 
-<h3 id="2-prosac-的策略关键t_n-的本质">2. PROSAC 的策略关键：\(T_n\) 的本质</h3>
+<h4 id="alpha-搜索的局部特点">Alpha 搜索的局部特点</h4>
 
-<p>PROSAC 引入 \(T_n\)（增长函数）的核心目的不是为了“等待”，而是为了在<strong>有限预算</strong>内建立<strong>先验知识与随机探索的桥梁</strong>。</p>
-
-\[T_n = T_{max} \frac{\binom{n}{m}}{\binom{N}{m}}\]
-
-<p>其关键点在于：</p>
 <ul>
-  <li><strong>模拟进度</strong>：\(T_n\) 模拟了如果使用完全随机搜索，此时你应该触达的“高质量子集”深度。</li>
-  <li><strong>确定性覆盖</strong>：它保证了即使先验排序完全错误，算法在 \(T_{max}\) 结束时也能退化为全空间扫描，不留盲区。</li>
-  <li><strong>非线性偏置</strong>：对于组合搜索 (\(m&gt;1\))，\(T_n\) 强制算法在早期极度聚焦于高潜力字段的深度挖掘。</li>
+  <li><strong>难以直接求解</strong>：缺少可用梯度、解析解或可靠的精确优化器，需要依靠黑箱反馈推进。</li>
+  <li><strong>存在共享规律</strong>：某些数据类型适合某类处理，某些算子结构容易产生高换手或集中持仓。</li>
+  <li><strong>存在局部改进</strong>：平滑、中性化、异常值处理等，有时能改善已有信号。</li>
 </ul>
 
-<h3 id="3-progressive-策略在-alpha-领域真的有意义吗">3. Progressive 策略在 Alpha 领域真的有意义吗？</h3>
+<hr />
 
-<p>直白地说，死板的“线性披露”在 Alpha 搜索中可能有害。因为 <strong>Alpha 空间的非凸性</strong>意味着最好的信号可能隐藏在排名第 1 和第 5000 字段的正交组合中。</p>
+<h3 id="2-算法选型">2. 算法选型</h3>
 
-<p>如果只是简单地按顺序“解锁”字段，我们会陷入“集体偏见”：优先浪费算力在那些已经被众人压榨干净的高频字段（High <code class="language-plaintext highlighter-rouge">use_count</code>）上。</p>
-
-<h3 id="4-进化版多样性与信息引导下的采样">4. 进化版：多样性与信息引导下的采样</h3>
-
-<p>为了克服这些局限，我们需要对传统的 PROSAC 进行“量化适配”：</p>
-
-<h4 id="a-正交化动态排序-orthogonal-ranking">A. 正交化动态排序 (Orthogonal Ranking)</h4>
-<p>不再使用静态分值。每当发现一个有效 Alpha，立即对剩余 Datafield 进行相关性惩罚。</p>
 <ul>
-  <li><strong>逻辑</strong>：如果字段 A 已入选，则大幅调低所有与 A 相关（相似）字段的采样优先级。</li>
-  <li><strong>目的</strong>：迫使 Progressive 过程向“正交、多样”的方向偏移。</li>
+  <li>先验特征引导
+    <ul>
+      <li>从历史回测结果提出的特征冷启动</li>
+      <li>引入外部世界先验：论文 / AI 数据集分析 / 经济 Idea</li>
+    </ul>
+  </li>
+  <li>为长尾深处的稀疏信号保留无偏探索通道</li>
+  <li>闭环在线反思</li>
+  <li>局部探索优化</li>
 </ul>
 
-<h4 id="b-分层集群采样-stratified-cluster-sampling">B. 分层集群采样 (Stratified Cluster Sampling)</h4>
-<p>将 Datafields 按逻辑归类（如价量、基本面、情感分）。</p>
-<ul>
-  <li><strong>逻辑</strong>：不是按 1, 2, 3 解锁，而是每个类别内部维护一个 PROSAC 进度。</li>
-  <li><strong>目的</strong>：保证无论搜索处于什么阶段，采样集永远是全集的一个“多样化缩影”，避免在单一类别里钻牛角尖。</li>
-</ul>
+<h4 id="为什么不用渐进披露">为什么不用渐进披露</h4>
 
-<h4 id="c-成功触发的局部爆发-success-triggered-local-burst">C. 成功触发的局部爆发 (Success-triggered Local Burst)</h4>
-<ul>
-  <li><strong>逻辑</strong>：平时维持全局的渐进式探索。一旦某个 Datafield 产生了高 Sharpe 信号，立即挂起全局 \(T_n\) 增长，转而以该字段为中心，开启高强度的“邻域搜索”（利用相关字段或互补算子进行局部压榨）。</li>
-</ul>
+<ol>
+  <li><strong>怎么移植</strong>：<strong>alpha之间的组合关系并不是同一公式的投影</strong>. 考虑 PROSAC 算法，只选取一个特征 <strong>字段</strong>, 假设总回测预算 5000 次、总字段数 1000 个，均匀随机下每个字段被选中的期望次数为 \(5000 \times \frac{1}{1000} = 5\) 次。按先验排名（Rank）把这 5 次期望“提前兑现”，就变成了按照排名顺序对每个字段依次回测 5 次。</li>
+  <li><strong>没有“唯一真相”</strong>：渐进披露是极度贪婪地从最可能的地方找起，一旦找到最优解便立刻终止（Early Stop），目的是<strong>以最快速度收敛到单一结果</strong>；</li>
+  <li><strong>“不弱于随机”是伪命题</strong>：在单特征抽样下，扩池步长退化为常数（\(T_{n+1} - T_n = \text{const}\)），PROSAC 的组合探索彻底退化为极其机械的“单向纯顺序遍历”。所谓的不弱于随机, 只是每个字段的回测次数完全相同。因为字段并不是唯一特征, 而我们的目标是在有限预算内尽可能挖掘出更多有效 Alpha，本来就会有意向高潜力字段倾斜更多回测额度。
+    <ol>
+      <li>之前搞混是, 我们想让我们的算法, 比随机更能</li>
+    </ol>
+  </li>
+  <li><strong>开环调度无法应对不可信排序</strong>：渐进披露属于静态开环调度，测试顺序事先排死、中途不会动态更换；而在现实中，字段的初始排序充满噪声、并不可信。</li>
+</ol>
 
-<h3 id="5-总结">5. 总结</h3>
+<p>总结: 渐进披露是适用于组合最速找到唯一结果的算法, 和我们的问题不匹配.</p>
 
-<p>在 Alpha 搜索中，<strong>Progressive 的真谛不应是“延迟披露”，而应是“采样分布的动态演化”</strong>。</p>
+<hr />
 
-<p>我们利用 PROSAC 的 \(T_n\) 逻辑来保证底层的<strong>搜索覆盖率</strong>，同时通过<strong>动态正交化</strong>和<strong>集群采样</strong>来解决相关性和空间过大的问题。最终的目标是：在搜索的第一分钟，我们能测到最公认的因子；而在搜索的第十小时，我们已经根据已有的反馈，进化出了一套避开冗余、直击正交信号的精准导航图。</p>
+<h3 id="3-现有双轨系统">3. 现有双轨系统</h3>
+
+<h4 id="31-全局架构adaptive广度与-priority深度协同图">3.1 全局架构：Adaptive（广度）与 Priority（深度）协同图</h4>
+
+<pre><code class="language-mermaid">flowchart TB
+    subgraph Producers ["1. 候选生产层"]
+        TmplGen["静态模板生成 (templates/)&lt;br/&gt;写入时调 extract_feat() 存静态 feat"]
+        PrioCtrl["Priority 控制器 (refine_simulate_param.py)&lt;br/&gt;RootPool + RoundPlanner + RefinePipeline&lt;br/&gt;监控成功 Root → 动态生成 R1/R2/R3 变体"]
+    end
+
+    subgraph Storage ["2. MongoDB 存储与账本"]
+        TaskColl[("simulation_db.&amp;lt;task&amp;gt;&lt;br/&gt;普通待测 (priority=1, 含 feat)&lt;br/&gt;精炼待测 (priority=2, refine_root_stage)")]
+        RootLedgers[("simulation_mission&lt;br/&gt;priority_root_limits / stages / pools")]
+    end
+
+    subgraph Consumer ["3. 原任务异步消费者 (scripts/alpha_simulate_param.py)"]
+        NormalFetch["Adaptive 采样协程&lt;br/&gt;$sample(10000) → 内存 LightGBM 打分&lt;br/&gt;饱和惩罚 + 20% 保底 + max_same_df(5)"]
+        Learner["Learner 后台协程&lt;br/&gt;每满 500 条新结果重训 4 分类 LightGBM"]
+        PrioFetch["Priority 确定性调度队列&lt;br/&gt;按 (-weight, -stage, is_started, order) 排序&lt;br/&gt;同 Root+Stage 安全组批"]
+        SlotGate["SimulationSlots&lt;br/&gt;Priority 上限 ≤ 50% 槽位&lt;br/&gt;空闲双向借用 + 等待优先礼让"]
+    end
+
+    TmplGen --&gt; TaskColl
+    PrioCtrl &lt;--&gt; RootLedgers
+    PrioCtrl --&gt;|"注入 priority=2 变体"| TaskColl
+    TaskColl --&gt; NormalFetch
+    TaskColl --&gt; PrioFetch
+    TaskColl -.-&gt;|"拉取 ≤50000 条已测 (feat, grade)"| Learner
+    Learner -.-&gt;|"原子替换内存模型"| NormalFetch
+    NormalFetch --&gt; SlotGate
+    PrioFetch --&gt; SlotGate
+</code></pre>
+
+<hr />
 
 
         </div>

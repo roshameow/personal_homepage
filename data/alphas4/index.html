@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<!--
+    So Simple Jekyll Theme 3.2.0
+    Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+    Free for personal and commercial use under the MIT license
+    https://github.com/mmistakes/so-simple-theme/blob/master/LICENSE
+-->
+<html lang="en-US" class="no-js">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  
+
+  
+  
+  <!-- Begin Jekyll SEO tag v2.9.1 -->
+<title>Analyst 分析师预期、修订动量与业绩超预期（PEAD）数据体系 | Liu, Wen’s Home Page</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Analyst 分析师预期、修订动量与业绩超预期（PEAD）数据体系" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="本文为分析师预期与业绩发布（Analyst &amp; Earnings）专题篇（日频量价见 alpha11，日内微结构见 alpha28，基本面三表见 alphas2，新闻与社媒情绪见 alpha29）。全表算子严格对齐 WorldQuant FASTEXPR 规范，仅使用通用卖方预期与财报字段概念，脱离具体数据库编号即可自解释。" />
+<meta name="twitter:description" property="og:description" content="本文为分析师预期与业绩发布（Analyst &amp; Earnings）专题篇（日频量价见 alpha11，日内微结构见 alpha28，基本面三表见 alphas2，新闻与社媒情绪见 alpha29）。全表算子严格对齐 WorldQuant FASTEXPR 规范，仅使用通用卖方预期与财报字段概念，脱离具体数据库编号即可自解释。" />
+<link rel="canonical" href="https://roshameow.github.io//personal_homepage/data/alphas4/" />
+<meta property="og:url" content="https://roshameow.github.io//personal_homepage/data/alphas4/" />
+<meta property="og:site_name" content="Liu, Wen’s Home Page" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2025-01-22T00:00:00+00:00" />
+<meta property="article:modified_time" content="2026-11-20T06:03:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="Analyst 分析师预期、修订动量与业绩超预期（PEAD）数据体系" />
+<meta name="twitter:site" content="@" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2026-11-20T06:03:00+00:00","datePublished":"2025-01-22T00:00:00+00:00","description":"本文为分析师预期与业绩发布（Analyst \u0026amp; Earnings）专题篇（日频量价见 alpha11，日内微结构见 alpha28，基本面三表见 alphas2，新闻与社媒情绪见 alpha29）。全表算子严格对齐 WorldQuant FASTEXPR 规范，仅使用通用卖方预期与财报字段概念，脱离具体数据库编号即可自解释。","headline":"Analyst 分析师预期、修订动量与业绩超预期（PEAD）数据体系","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/data/alphas4/"},"url":"https://roshameow.github.io//personal_homepage/data/alphas4/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  
+
+  <script>
+    /* Cut the mustard */
+    if ('querySelector' in document && 'addEventListener' in window) {
+      document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + 'js';
+    }
+  </script>
+
+  <link rel="stylesheet" href="/personal_homepage/assets/css/main.css">
+  <link rel="stylesheet" href="/personal_homepage/assets/css/skins/default.css">
+  
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,700,700i|Lora:400,400i,700,700i">
+  <link rel="alternate" type="application/atom+xml" title="Liu, Wen&#39;s Home Page" href="/personal_homepage/atom.xml">
+<!-- start custom head snippets -->
+
+<!-- insert favicons. use http://realfavicongenerator.net/ -->
+<link rel="shortcut icon" type="image/x-icon" href="/personal_homepage/docs/images/logo.ico">
+<!-- end custom head snippets -->
+
+</head>
+
+  <body class="layout--post  analyst-分析师预期-修订动量与业绩超预期-pead-数据体系">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#primary-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+  <div class="navigation-wrapper">
+    <a href="#menu-toggle" id="menu-toggle">Menu</a>
+    <nav id="primary-nav" class="site-nav animated drop">
+      <ul><li><a href="/personal_homepage/">Home</a></li><li><a href="/personal_homepage/posts/">Posts</a></li><li><a href="/personal_homepage/categories/">Categories</a></li><li><a href="/personal_homepage/tags/">Tags</a></li><li><a href="/personal_homepage/family/">Family</a></li><li><a href="/personal_homepage/search/">Search</a></li></ul>
+    </nav>
+  </div><!-- /.navigation-wrapper -->
+
+
+    <header class="masthead">
+  <div class="wrap">
+    
+    
+    
+      
+        <div class="site-title animated fadeIn"><a href="/personal_homepage/">Liu, Wen's Home Page</a></div>
+      
+      <p class="site-description animated fadeIn" itemprop="description">Work, Experiments and Ideas.</p>
+    
+  </div>
+</header><!-- /.masthead -->
+
+
+    <main id="main" class="main-content" aria-label="Content">
+  <article class="h-entry">
+    
+
+    <div class="page-wrapper">
+      <header class="page-header">
+        
+        
+        <h1 id="page-title" class="page-title p-name">Analyst 分析师预期、修订动量与业绩超预期（PEAD）数据体系
+</h1>
+        
+      </header>
+
+      <div class="page-sidebar">
+        <div class="page-author h-card p-author"><img src="/personal_homepage/docs/images/logo.svg" class="author-avatar u-photo" alt=""><div class="author-info">
+
+<span class="read-time">1 min read</span>
+
+    <time class="page-date dt-published" datetime="2025-01-22T00:00:00+00:00"><a class="u-url" href="">January 22, 2025</a>
+</time>
+
+  </div>
+</div>
+
+        
+  <h3 class="page-taxonomies-title">Categories</h3>
+  
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a class="p-category" href="/personal_homepage/categories/#data" title="Pages filed under data">data</a></li>
+  </ul>
+
+
+        
+  <h3 class="page-taxonomies-title">Tags</h3>
+  
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a href="/personal_homepage/tags/#analyst" title="Pages tagged analyst" rel="tag">analyst</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#analyze-dataset" title="Pages tagged analyze_dataset" rel="tag">analyze_dataset</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#content" title="Pages tagged content" rel="tag">content</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#earnings" title="Pages tagged earnings" rel="tag">earnings</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#feature-engineering" title="Pages tagged feature_engineering" rel="tag">feature_engineering</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#quant" title="Pages tagged quant" rel="tag">quant</a></li>
+  </ul>
+
+
+        <details id="entry-table-of-contents" class="toc-wrapper" open>
+  <summary>
+    <h2 class="no_toc">
+      Table of Contents
+      <svg class="toc-toggle-icon" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true" focusable="false">
+        <path d="m4 6 4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+      </svg>
+    </h2>
+  </summary>
+  <div class="toc-content">
+    <ul class="inline_toc" id="my_toc"><li><a href="#一analyst--earnings-衍生数据三阶谱系012-阶--worldquant-fastexpr-对齐">一、Analyst &amp; Earnings 衍生数据三阶谱系（0→1→2 阶 + WorldQuant FASTEXPR 对齐）</a></li><li><a href="#二分析师与业绩数据的四大机制与工程要点">二、分析师与业绩数据的四大机制与工程要点</a></li><li><a href="#三在-analyze-dataset-中的实战应用通道与配对规则">三、在 analyze-dataset 中的实战应用（通道与配对规则）</a></li><li><a href="#四brain-通用事件控制与防过拟合技巧实战经验沉淀">四、BRAIN 通用事件控制与防过拟合技巧（实战经验沉淀）</a></li></ul>
+  </div>
+</details>
+
+        
+<details id="entry-related-posts" class="toc-wrapper" open>
+  <summary>
+    <h2 class="no_toc">
+      Related Posts
+      <svg class="toc-toggle-icon" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true" focusable="false">
+        <path d="m4 6 4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+      </svg>
+    </h2>
+  </summary>
+  <div class="toc-content">
+    <ul>
+      
+      <li><a href="/personal_homepage/data/alpha29/">News & Social Media 新闻流、社交媒体情绪与文本事件数据体系</a></li>
+      
+      <li><a href="/personal_homepage/data/alpha28/">日内 PV 统计量与市场微结构衍生指标体系</a></li>
+      
+      <li><a href="/personal_homepage/tool/alpha27/">从过度防御的歪路纠偏：GUI/CLI 6 态极简控制面、数据面板统一与工程收口</a></li>
+      
+      <li><a href="/personal_homepage/thought/agent-infrastructure-pitfalls-2/">用 AI 维护复杂控制面基础设施：为什么越修越死？从补丁膨胀到 6 态收敛的六大工程陷阱</a></li>
+      
+      <li><a href="/personal_homepage/tool/pi-subagent-durable/">pi-subagent-durable：后台子代理的持久化、生命周期与故障自愈</a></li>
+      
+    </ul>
+  </div>
+</details>
+
+
+
+      </div>
+
+      <div class="page-content">
+        <div class="e-content">
+          <blockquote>
+  <p>本文为分析师预期与业绩发布（Analyst &amp; Earnings）专题篇（日频量价见 <a href="2025-09-19-alpha11.md">alpha11</a>，日内微结构见 <a href="2026-11-20-alpha28.md">alpha28</a>，基本面三表见 <a href="2025-01-15-alphas2.md">alphas2</a>，新闻与社媒情绪见 <a href="2026-11-20-alpha29.md">alpha29</a>）。全表算子严格对齐 WorldQuant FASTEXPR 规范，仅使用通用卖方预期与财报字段概念，脱离具体数据库编号即可自解释。</p>
+</blockquote>
+
+<hr />
+
+<h2 id="一analyst--earnings-衍生数据三阶谱系012-阶--worldquant-fastexpr-对齐">一、Analyst &amp; Earnings 衍生数据三阶谱系（0→1→2 阶 + WorldQuant FASTEXPR 对齐）</h2>
+
+<p>与基本面类似，分析师数据核心围绕“<strong>一致预期中枢、分析师分歧、上调/下调修订节奏、业绩实际超预期差（PEAD）</strong>”展开，按结构分为三阶：<strong>0 阶</strong>为原生卖方预测、评级、实际业绩与财报日历字段；<strong>1 阶</strong>为单步标准化、前瞻估值、修订广度比、实际 vs 预期差与单层 <code class="language-plaintext highlighter-rouge">ts_*</code> / <code class="language-plaintext highlighter-rouge">vec_*</code> 脉冲；<strong>2 阶</strong>为跨维度复合（如财报倒计时加权、风险回归残差、行业逆风突围与基本面联合门控）。</p>
+
+<blockquote>
+  <p>图例说明：在一至二阶衍生指标中，<span style="color: #059669; font-weight: 600;">绿色加粗条目</span>表示已在本地平台实测记录中检索到达标信号（非 SUPER，<code class="language-plaintext highlighter-rouge">fitness &gt;= 1.0</code> 且 <code class="language-plaintext highlighter-rouge">sharpe &gt;= 1.2</code>；除 CHN 地区外，<code class="language-plaintext highlighter-rouge">fitness &lt;= -1.0</code> 且 <code class="language-plaintext highlighter-rouge">sharpe &lt;= -1.2</code> 的反向可取负信号亦计为达标）；<span style="color: #dc2626; font-weight: 600;">红色加粗条目</span>表示库中已有实测记录但未达上述门槛；默认颜色为尚未在库中检索到独立测试记录的理论或扩展方向。</p>
+</blockquote>
+
+<table>
+  <thead>
+    <tr>
+      <th>0 阶数据（原生预期、修订计数、业绩与日历）</th>
+      <th>一阶数据（<code class="language-plaintext highlighter-rouge">vec_*</code> 归约、预期估值、修订比与单层 <code class="language-plaintext highlighter-rouge">ts_*</code>）</th>
+      <th>二阶数据（财报窗加权、行业背离、残差与多因子协同）</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>一致预期水平与分布</strong><br />• 盈利/营收预期均值与中位数：<code class="language-plaintext highlighter-rouge">eps_est_mean</code>、<code class="language-plaintext highlighter-rouge">eps_est_median</code>、<code class="language-plaintext highlighter-rouge">sales_est_mean</code>、<code class="language-plaintext highlighter-rouge">roa_est</code>、<code class="language-plaintext highlighter-rouge">ev_ebitda_est</code>、<code class="language-plaintext highlighter-rouge">div_yield_est_12m</code>（未来 12 个月或财年一致预测）<br />• 预测分歧与覆盖度：<code class="language-plaintext highlighter-rouge">eps_est_std</code>（各券商预测标准差）、<code class="language-plaintext highlighter-rouge">target_price_std</code>（目标价分歧度）、<code class="language-plaintext highlighter-rouge">num_est</code>（覆盖分析师家数）<br /><br /><strong>修正计数与评级目标价</strong><br />• 修正家数：<code class="language-plaintext highlighter-rouge">est_up_4wk</code>、<code class="language-plaintext highlighter-rouge">est_dn_4wk</code>（近 4 周上调/下调盈利预测的券商家数）；<code class="language-plaintext highlighter-rouge">cluster_est_up</code>、<code class="language-plaintext highlighter-rouge">total_est_up</code>（密集爆发窗口与常规对比窗口的上调家数）<br />• 评级与目标价：<code class="language-plaintext highlighter-rouge">rec_score</code>（一致买入/卖出评级打分）、<code class="language-plaintext highlighter-rouge">target_price</code>（一致目标价）<br /><br /><strong>实际业绩与财报日历</strong><br />• 实际 vs 预测对比：<code class="language-plaintext highlighter-rouge">actual_eps</code>（实际公布每股收益）、<code class="language-plaintext highlighter-rouge">prior_est_eps</code>（公布前一致预期 EPS）<br />• 财报事件冲击与倒计时：<code class="language-plaintext highlighter-rouge">ern_move_1d</code>（最近一次财报公布日股价涨跌幅矢量）、<code class="language-plaintext highlighter-rouge">ern_next_days</code>（距下一次财报公告的交易日天数）、<code class="language-plaintext highlighter-rouge">ern_pre_days</code>（距上一次财报公告已过去天数）<br />• 行情参照：<code class="language-plaintext highlighter-rouge">close</code>、<code class="language-plaintext highlighter-rouge">cap</code>、<code class="language-plaintext highlighter-rouge">industry</code> / <code class="language-plaintext highlighter-rouge">subindustry</code></td>
+      <td><strong>前瞻估值与预期中枢</strong><br />• <span style="color: #059669; font-weight: 600;">前瞻盈利 / ROA / 股息预期</span>：<code class="language-plaintext highlighter-rouge">eps_est_mean / close</code>（前瞻盈利收益率）、<code class="language-plaintext highlighter-rouge">ts_scale(roa_est / cap, 66)</code>、<code class="language-plaintext highlighter-rouge">div_yield_est_12m</code>（衡量市场隐含前瞻回报与高股息预期）<br />• <span style="color: #059669; font-weight: 600;">分析师覆盖度特征 (<code class="language-plaintext highlighter-rouge">num_est</code>)</span>：<code class="language-plaintext highlighter-rouge">group_rank(ts_mean(ts_backfill(vec_max(num_est), 22), 5), country)</code>（识别机构聚光灯效应与低覆盖冷门股价值重估区间）<br /><br /><strong>修正广度与聚集爆发脉冲</strong><br />• <span style="color: #059669; font-weight: 600;">净修正广度比 (<code class="language-plaintext highlighter-rouge">rev_breadth</code>)</span>：<code class="language-plaintext highlighter-rouge">up = vec_avg(est_up_4wk); dn = vec_avg(est_dn_4wk); (up - dn) / max(up + dn, 1)</code>（上调净占比，在 \([-1, 1]\) 间直接刻画卖方一致情绪转向，抗单家极端预测干扰）<br />• <span style="color: #059669; font-weight: 600;">密集上调聚集脉冲 (<code class="language-plaintext highlighter-rouge">cluster_rev</code>)</span>：<code class="language-plaintext highlighter-rouge">ts_backfill(vec_avg(cluster_est_up) - vec_avg(total_est_up), 22)</code>（捕捉短窗口内多家券商集体扎堆上调的密集建仓前兆）<br />• <span style="color: #059669; font-weight: 600;">推荐评级偏离脉冲 (<code class="language-plaintext highlighter-rouge">rec_pulse</code>)</span>：<code class="language-plaintext highlighter-rouge">-ts_av_diff(ts_backfill(vec_avg(rec_score), 63), 44)</code>（评级一致分数相对过去两月均值的边际偏离与均值回归）<br /><br /><strong>分歧度、分布偏度与目标价空间</strong><br />• <strong>目标价隐含涨幅 (<code class="language-plaintext highlighter-rouge">pt_upside</code>)</strong>：<code class="language-plaintext highlighter-rouge">target_price / close - 1</code> 或 <code class="language-plaintext highlighter-rouge">ts_delta(target_price / close, 22)</code>（因分析师普遍乐观偏见，绝对上行空间意义较弱，应取自身变化趋势）<br />• <span style="color: #dc2626; font-weight: 600;">目标价分歧度 (<code class="language-plaintext highlighter-rouge">pt_dispersion</code>)</span>：<code class="language-plaintext highlighter-rouge">ts_zscore(ts_backfill(target_price_std, 120), 120)</code>（机构对未来定价的分歧程度变化）<br />• <span style="color: #dc2626; font-weight: 600;">预期偏度 (<code class="language-plaintext highlighter-rouge">mean_median_skew</code>)</span>：<code class="language-plaintext highlighter-rouge">ts_backfill(eps_est_mean, 120) - ts_backfill(eps_est_median, 120)</code>（均值相对中位数的偏离，探测少数极端乐观/悲观大行预测）<br /><br /><strong>实际业绩增长与财报跳空（PEAD）</strong><br />• <span style="color: #059669; font-weight: 600;">实际业绩同比增速与波动标准化</span>：<code class="language-plaintext highlighter-rouge">ts_delta(max(ts_backfill(vec_max(actual_eps), 120), 0), 240)</code>；<code class="language-plaintext highlighter-rouge">ts_delta(actual_eps, 240) / ts_std_dev(actual_eps, 240)</code>（将实际 EPS 同比增量除以历史盈利波动率，即业绩增长信息比）<br />• <span style="color: #059669; font-weight: 600;">财报日跳跃与跨日平滑 (<code class="language-plaintext highlighter-rouge">ern_move</code>)</span>：<code class="language-plaintext highlighter-rouge">ts_rank(ts_backfill(vec_min(ern_move_1d), 22), 5)</code>、<code class="language-plaintext highlighter-rouge">ts_decay_linear(group_zscore(ts_delta(vec_avg(ern_move_1d), 5), subindustry), 10)</code>（刻画财报公布当日跳空超预期后的漂移效应 PEAD）<br />• <span style="color: #059669; font-weight: 600;">财报超预期残差 (<code class="language-plaintext highlighter-rouge">surprise</code>)</span>：<code class="language-plaintext highlighter-rouge">-regression_neut(ts_min_max_cps(ts_backfill(vec_min(actual_eps), 120), 5), ts_min_max_cps(ts_backfill(vec_avg(prior_est_eps), 120), 5))</code>（实际 EPS 对公告前一致预期做横截面正交回归残差，剥离基准预期后提取纯粹惊喜）</td>
+      <td><strong>财报日历事件窗加权与门控</strong><br />• <span style="color: #059669; font-weight: 600;">临近财报放大权重 (<code class="language-plaintext highlighter-rouge">ern_window_boost</code>)</span>：<code class="language-plaintext highlighter-rouge">weight = if_else(ern_next_days &lt; 20, 2, 1); signal * weight</code>（财报季前 20 个交易日内放大分析师评级/修订信号的仓位权重，抓住业绩前信息泄露与预期重定价窗口）<br />• <span style="color: #059669; font-weight: 600;">事件窗内量价协同门控</span>：<code class="language-plaintext highlighter-rouge">if_else((ern_next_days &gt; 5) &amp;&amp; (ern_next_days &lt; 20), -ts_mean(returns, 5) * ts_rank(volume / adv20, 20), 0)</code>（避开临近财报前 5 日赌博区，仅在财报前 5–20 日启用量价反转因子）<br />• <strong>财报日后漂移过滤 (<code class="language-plaintext highlighter-rouge">post_ern_gate</code>)</strong>：<code class="language-plaintext highlighter-rouge">trade_when(ern_pre_days &lt; 30, surprise_signal, -1)</code>（仅在财报公布后一个月内的 PEAD 黄金漂移期持仓，避免陈旧预期失真）<br /><br /><strong>行业逆风突围与交叉配对</strong><br />• <strong>个股 vs 行业景气背离 (<code class="language-plaintext highlighter-rouge">ind_divergence</code>)</strong>：<code class="language-plaintext highlighter-rouge">rev_breadth - group_mean(rev_breadth, cap, industry)</code>（当全行业预测普遍下调时，逆势被分析师集聚上调的个股往往具备独立基本面 Alpha）<br />• <strong>前瞻估值 × 量价/风险正交</strong>：<code class="language-plaintext highlighter-rouge">ts_regression(ts_zscore(forward_pe, 252), risk_exposure, 252, rettype=0)</code>（剥离市值与系统风险暴露后的纯估值预期因子）<br />• <strong>覆盖度突变与冷门重估</strong>：<code class="language-plaintext highlighter-rouge">ts_delta(vec_max(num_est), 120)</code> 与反转/基本面质量复合（捕捉券商覆盖数“从 1–2 家突增至 5–6 家”的聚焦重估期）</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="二分析师与业绩数据的四大机制与工程要点">二、分析师与业绩数据的四大机制与工程要点</h2>
+
+<ol>
+  <li><strong>核心 Alpha 来源不是“预测绝对准”，而是“黏性与预期差”</strong>
+    <ul>
+      <li>卖方分析师出于维护上市公司关系和职业声誉考量，存在明显的<strong>从众心理与预测黏性（Herding &amp; Conservatism）</strong>：当公司经营发生拐点时，很少一步调到位，而是分多次“小步慢走”逐次修正，这就造就了修订广度 <code class="language-plaintext highlighter-rouge">(up - dn)/(up + dn)</code> 极强的中短期动量延续性。</li>
+      <li>同理，财报公布当天的实际收益与公告前一致预期之差（Earnings Surprise / 财报日股价跳跃），往往引发机构长达 1–2 个月的缓慢调仓（<strong>PEAD 财报后漂移</strong>）。</li>
+    </ul>
+  </li>
+  <li><strong>目标价普遍高估（乐观偏见）</strong>
+    <ul>
+      <li>券商研报倾向于多发“买入”评级并给出显著高于市价的目标价。直接对 <code class="language-plaintext highlighter-rouge">target_price / close</code> 做截面排序意义有限，实战更看重<strong>目标价或评级的自身变化斜率（<code class="language-plaintext highlighter-rouge">ts_av_diff</code>、<code class="language-plaintext highlighter-rouge">ts_delta</code>）</strong>以及在行业内的相对位置变动。</li>
+    </ul>
+  </li>
+  <li><strong>稀疏矢量与事件日历清洗</strong>
+    <ul>
+      <li>分析师修订、实际 EPS 与财报跳跃字段大量以 <code class="language-plaintext highlighter-rouge">VECTOR</code> 或仅在发布日非空的稀疏格式存在：必须先通过 <code class="language-plaintext highlighter-rouge">vec_avg</code> / <code class="language-plaintext highlighter-rouge">vec_max</code> / <code class="language-plaintext highlighter-rouge">vec_min</code> 归约为标量，再用 <code class="language-plaintext highlighter-rouge">ts_backfill(..., 22~120)</code> 延续有效窗口。</li>
+    </ul>
+  </li>
+  <li><strong>“从冷清到关注”的覆盖度效应</strong>
+    <ul>
+      <li>被几十家机构重度覆盖的大白马往往定价极充分；相反，覆盖家数从零星几家开始快速增加的腰部标的，容易在聚光灯效应下产生显著的价值重估。</li>
+    </ul>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="三在-analyze-dataset-中的实战应用通道与配对规则">三、在 <code class="language-plaintext highlighter-rouge">analyze-dataset</code> 中的实战应用（通道与配对规则）</h2>
+
+<ol>
+  <li><strong>通道③ 核心配对范式（<code class="language-plaintext highlighter-rouge">economics_pairing_principles.md</code>）</strong>
+    <ul>
+      <li><strong>预期 vs 实际（<code class="language-plaintext highlighter-rouge">estimate ↔ actual</code> → <code class="language-plaintext highlighter-rouge">projection / exceed</code>）</strong>：用实际公布业绩对公告前一致预期做回归残差（<code class="language-plaintext highlighter-rouge">regression_neut</code> / <code class="language-plaintext highlighter-rouge">ts_regression</code>），提取剥离市场先验预期后的纯粹惊喜（PEAD 逻辑）；</li>
+      <li><strong>时间修正差（<code class="language-plaintext highlighter-rouge">current ↔ prior</code> → <code class="language-plaintext highlighter-rouge">spread</code>）</strong>：比较近期窗口上调家数 vs 远期基准上调家数（<code class="language-plaintext highlighter-rouge">cluster_up - total_up</code>），或近 4 周上调 vs 下调净占比 <code class="language-plaintext highlighter-rouge">(up - dn) / (up + dn)</code>；</li>
+      <li><strong>行业聚合对照</strong>：计算个股修正广度相对所属 <code class="language-plaintext highlighter-rouge">industry</code> / <code class="language-plaintext highlighter-rouge">subindustry</code> 的超额修正，发掘“行业下行周期中的逆风上调标的”。</li>
+    </ul>
+  </li>
+  <li><strong>与基本面/事件日历协同（通道④）</strong>
+    <ul>
+      <li>利用财报倒计时 <code class="language-plaintext highlighter-rouge">ern_next_days</code> 对传统低频或反转因子做动态分段加权或安全区隔离（避开财报发布前最后 5 天的无序波动，强化财报前 5–20 天与财报后 30 天内的 PEAD 信号）。</li>
+    </ul>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="四brain-通用事件控制与防过拟合技巧实战经验沉淀">四、BRAIN 通用事件控制与防过拟合技巧（实战经验沉淀）</h2>
+
+<ol>
+  <li><strong>多维度联合中性化（笛卡尔分组 <code class="language-plaintext highlighter-rouge">group_cartesian_product</code>）</strong>
+    <ul>
+      <li>同时消除行业与国家（或市值分桶）影响时，优先使用原生算子 <code class="language-plaintext highlighter-rouge">group_cartesian_product(country, subindustry)</code>（等价于编码 <code class="language-plaintext highlighter-rouge">densify((group_B + 1) * 1000 + group_A)</code>）再做 <code class="language-plaintext highlighter-rouge">group_neutralize</code>。</li>
+    </ul>
+  </li>
+  <li><strong>基于事件发生价的止盈止损保护</strong>
+    <ul>
+      <li>记录某条件触发瞬间的锚定价格：<code class="language-plaintext highlighter-rouge">close_at_event = trade_when(not(event), close, -1)</code>；当后续股价偏离该锚定价超过阈值（如 <code class="language-plaintext highlighter-rouge">10%</code>）时强制截断平仓：<code class="language-plaintext highlighter-rouge">if_else(abs(close - close_at_event) / close &gt; 0.1, nan, signal)</code>，避免在趋势反转后死扛到底。</li>
+    </ul>
+  </li>
+  <li><strong>调仓节奏与市场极端暴跌冷却（<code class="language-plaintext highlighter-rouge">days_from_last_change</code>）</strong>
+    <ul>
+      <li>控制信号有效寿命：<code class="language-plaintext highlighter-rouge">d = days_from_last_change(event); trade_when(d &lt; period, signal, d &gt; period)</code>，在信号长期无变化时自动退场；</li>
+      <li>极端危机熔断：计算同行业日内大跌股占比 <code class="language-plaintext highlighter-rouge">ratio = group_sum(if_else(returns &lt; -0.09, 1, 0), subindustry) / group_count(1, subindustry)</code>，若板块系统性踩踏（<code class="language-plaintext highlighter-rouge">ratio &gt; 0.6</code>），则通过 <code class="language-plaintext highlighter-rouge">if_else(days_from_last_change(ratio &lt; 0.6) &lt; N, nan, signal)</code> 暂停交易并强制冷却 <code class="language-plaintext highlighter-rouge">N</code> 日。</li>
+    </ul>
+  </li>
+</ol>
+
+        </div>
+
+        
+
+        
+        
+  <div class="page-comments">
+    <div id="disqus_thread"></div>
+    <script>
+      var disqus_config = function () {
+        this.page.url = 'https://roshameow.github.io//personal_homepage/data/alphas4/';
+        this.page.identifier = 'https://roshameow.github.io//personal_homepage/data/alphas4/';
+      };
+
+      (function() {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://https-roshameow-github-io-personal-homepage.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+  </div>
+
+
+        
+
+        <nav class="page-pagination" role="navigation">
+  
+    <a class="page-previous" href="/personal_homepage/code/alphas3/">
+      <h4 class="page-pagination-label">Previous</h4>
+      <span class="page-pagination-title">
+        <i class="fas fa-arrow-left"></i> 普通异步回测流水线架构与调度实现
+
+      </span>
+    </a>
+  
+
+  
+    <a class="page-next" href="/personal_homepage/daily/cutting-board/">
+      <h4 class="page-pagination-label">Next</h4>
+      <span class="page-pagination-title">
+        切菜板成分
+ <i class="fas fa-arrow-right"></i>
+      </span>
+    </a>
+  
+</nav>
+
+      </div>
+
+    </div>
+  </article>
+</main>
+
+    <footer id="footer" class="site-footer">
+  <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+<div class="social-icons"><a class="social-icon" href="/personal_homepage/atom.xml"><i class="fas fa-rss-square fa-2x" title="Feed"></i></a><a class="social-icon" href="https://github.com/roshameow"><i class="fab fa-github-square fa-2x" title="GitHub"></i></a><a class="social-icon" href="https://www.linkedin.com/in/wen-liu-06503a7b/"><i class="fab fa-linkedin fa-2x" title="LinkedIn"></i></a><a class="social-icon" href="mailto:w.liuatnk@gmail.com"><i class="fas fa-envelope-square fa-2x" title="e-mail"></i></a></div><div class="copyright">
+    
+      <p>&copy; 2026 Liu, Wen's Home Page. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://github.com/mmistakes/so-simple-theme" rel="nofollow">So Simple</a>.</p>
+    
+  </div>
+</footer>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="/personal_homepage/assets/js/main.min.js"></script>
+<script src="https://use.fontawesome.com/releases/v5.0.12/js/all.js"></script><script src="/personal_homepage/assets/js/content-tables.js" defer></script>
+
+<script>
+(function () {
+  'use strict';
+
+  var types = {
+    NOTE: 'note', INFO: 'note', ABSTRACT: 'note', SUMMARY: 'note', TLDR: 'note',
+    EXAMPLE: 'note', QUOTE: 'note', CITE: 'note',
+    TIP: 'tip', HINT: 'tip', IMPORTANT: 'tip', SUCCESS: 'tip', CHECK: 'tip', DONE: 'tip',
+    QUESTION: 'warning', HELP: 'warning', FAQ: 'warning',
+    WARNING: 'warning', CAUTION: 'warning', ATTENTION: 'warning',
+    DANGER: 'danger', ERROR: 'danger', BUG: 'danger',
+    FAILURE: 'danger', FAIL: 'danger', MISSING: 'danger'
+  };
+  var icons = {
+    note: 'M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z M12 11v6 M12 7h.01',
+    tip: 'M9 18h6 M10 21h4 M9 15a6 6 0 1 1 6 0v3H9z',
+    warning: 'M12 3L2 21h20z M12 9v5 M12 17h.01',
+    danger: 'M7 3h10l4 4v10l-4 4H7l-4-4V7z M9 9l6 6 M15 9l-6 6'
+  };
+
+  function makeIcon(type) {
+    var namespace = 'http://www.w3.org/2000/svg';
+    var svg = document.createElementNS(namespace, 'svg');
+    svg.setAttribute('class', 'callout-icon');
+    svg.setAttribute('viewBox', '0 0 24 24');
+    svg.setAttribute('width', '20');
+    svg.setAttribute('height', '20');
+    svg.setAttribute('fill', 'none');
+    svg.setAttribute('stroke', 'currentColor');
+    svg.setAttribute('stroke-width', '2');
+    svg.setAttribute('stroke-linecap', 'round');
+    svg.setAttribute('stroke-linejoin', 'round');
+    svg.setAttribute('aria-hidden', 'true');
+    svg.setAttribute('focusable', 'false');
+    var path = document.createElementNS(namespace, 'path');
+    path.setAttribute('d', icons[type]);
+    svg.appendChild(path);
+    return svg;
+  }
+
+  // A soft break is a text newline; a Markdown hard break is a <br>.
+  // Do not split newlines inside inline code or other literal content.
+  function firstBreak(parent) {
+    for (var node = parent.firstChild; node; node = node.nextSibling) {
+      if (node.nodeType === 3) {
+        var offset = node.data.search(/[\r\n]/);
+        if (offset !== -1) return { node: node, offset: offset };
+      } else if (node.nodeType === 1) {
+        if (node.tagName === 'BR') return { node: node };
+        if (/^(CODE|PRE|SCRIPT|STYLE|TEXTAREA)$/.test(node.tagName)) continue;
+        var result = firstBreak(node);
+        if (result) return result;
+      }
+    }
+    return null;
+  }
+
+  function transformCallouts() {
+    document.querySelectorAll('.page-content blockquote').forEach(function (quote) {
+      if (quote.closest('pre, code, .highlight, .highlighter-rouge')) return;
+      var paragraph = quote.firstElementChild;
+      if (!paragraph || paragraph.tagName !== 'P') return;
+
+      // Require the marker in a direct text node: <code>[!WARNING]</code>
+      // (and markers merely mentioned later in a quote) must remain literal.
+      var markerNode = paragraph.firstChild;
+      if (!markerNode || markerNode.nodeType !== 3) return;
+      var marker = markerNode.data.match(/^[\t \r\n]*\[!([a-z][a-z0-9-]*)\]([+-])?(?=[\t \r\n]|$)[\t ]*/i);
+      if (!marker) return;
+      var name = marker[1].toUpperCase();
+      if (!Object.prototype.hasOwnProperty.call(types, name)) return;
+      var type = types[name];
+      var label = name === 'TLDR' ? 'TL;DR' : name.charAt(0) + name.slice(1).toLowerCase();
+      markerNode.deleteData(0, marker[0].length);
+
+      var boundary = firstBreak(paragraph);
+      var range = document.createRange();
+      range.selectNodeContents(paragraph);
+      if (boundary) {
+        if (boundary.node.nodeType === 3) range.setEnd(boundary.node, boundary.offset);
+        else range.setEndBefore(boundary.node);
+      }
+      var titleContent = range.extractContents();
+      if (boundary) {
+        if (boundary.node.nodeType === 3) {
+          var breakLength = boundary.node.data.slice(0, 2) === '\r\n' ? 2 : 1;
+          boundary.node.deleteData(0, breakLength);
+        } else {
+          boundary.node.parentNode.removeChild(boundary.node);
+        }
+      }
+      if (!paragraph.textContent.trim() && !paragraph.children.length) {
+        quote.removeChild(paragraph);
+      }
+
+      var folding = !!marker[2];
+      var callout = document.createElement(folding ? 'details' : 'div');
+      // Keep author-provided IDs, language, direction, and classes.
+      Array.prototype.forEach.call(quote.attributes, function (attribute) {
+        callout.setAttribute(attribute.name, attribute.value);
+      });
+      callout.classList.add('callout', 'callout--' + type);
+      callout.setAttribute('data-callout', name.toLowerCase());
+      callout.setAttribute('aria-label', label);
+      if (folding) {
+        callout.removeAttribute('role');
+        if (marker[2] === '+') callout.setAttribute('open', '');
+        else callout.removeAttribute('open');
+      } else {
+        callout.setAttribute('role', 'note');
+      }
+
+      var title = document.createElement(folding ? 'summary' : 'div');
+      title.className = 'callout-title';
+      title.appendChild(makeIcon(type));
+      var titleText = document.createElement('span');
+      titleText.className = 'callout-title-text';
+      if (titleContent.textContent.trim() || titleContent.childElementCount) {
+        titleText.appendChild(titleContent);
+      } else {
+        titleText.textContent = label;
+      }
+      title.appendChild(titleText);
+      callout.appendChild(title);
+
+      var body = document.createElement('div');
+      body.className = 'callout-body';
+      while (quote.firstChild) body.appendChild(quote.firstChild);
+      callout.appendChild(body);
+      quote.parentNode.replaceChild(callout, quote);
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', transformCallouts);
+  } else {
+    transformCallouts();
+  }
+})();
+</script>
+<!-- <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'G-9TMSCDTBGN', 'auto');
+  ga('send', 'pageview');
+</script> -->
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9TMSCDTBGN"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-9TMSCDTBGN');
+</script>
+
+
+
+<!-- MathJax -->
+<style>
+    /* Only oversized equations get this wrapper; ordinary inline math stays inline. */
+    .math-scroll {
+        display: block;
+        max-width: 100%;
+        overflow-x: auto;
+        overflow-y: hidden;
+        padding-block: 0.5em;
+        scrollbar-width: thin;
+    }
+    .math-scroll > mjx-container[jax] {
+        display: inline-block;
+        margin: 0;
+    }
+    .math-scroll:focus-visible {
+        outline: 2px solid currentColor;
+        outline-offset: 2px;
+    }
+</style>
+<script>
+    function fitMathToColumn() {
+        document.querySelectorAll('mjx-container').forEach(function (container) {
+            var wrapper = container.parentElement.classList.contains('math-scroll') ? container.parentElement : null;
+            var column = wrapper ? wrapper.parentElement : container.parentElement;
+            while (column && ['inline', 'contents'].includes(getComputedStyle(column).display)) {
+                column = column.parentElement;
+            }
+            if (!column) return;
+            var style = getComputedStyle(column);
+            var available = column.clientWidth - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight);
+            var ink = container.querySelector('mjx-math, svg');
+            var width = (ink || container).getBoundingClientRect().width;
+            if (width > available + 1) {
+                if (!wrapper) {
+                    wrapper = document.createElement('span');
+                    wrapper.className = 'math-scroll';
+                    wrapper.tabIndex = 0;
+                    wrapper.setAttribute('role', 'region');
+                    wrapper.setAttribute('aria-label', 'Mathematical formula; scroll horizontally to read all');
+                    wrapper.title = 'Scroll horizontally to read the full formula';
+                    container.before(wrapper);
+                    wrapper.appendChild(container);
+                }
+            } else if (wrapper) {
+                wrapper.replaceWith(container);
+            }
+        });
+    }
+    // Pin the engine, autoloaded TeX extensions, menu and fonts to local assets.
+    window.MathJax = {
+        loader: {
+            paths: { mathjax: "/personal_homepage/assets/js/vendor/mathjax/es5" },
+            load: ['[tex]/textmacros']
+        },
+        tex: {
+            tags: "ams",
+            packages: { '[+]': ['textmacros'] },
+            inlineMath: [['$', '$'], ['\\(', '\\)']],
+            displayMath: [['$$', '$$'], ['\\[', '\\]']]
+        },
+        chtml: {
+            fontURL: "/personal_homepage/assets/js/vendor/mathjax/es5/output/chtml/fonts/woff-v2"
+        },
+        startup: {
+            pageReady: function () {
+                return MathJax.startup.defaultPageReady().then(function () {
+                    return document.fonts ? document.fonts.ready : undefined;
+                }).then(function () {
+                    fitMathToColumn();
+                    var scheduled = false;
+                    window.addEventListener('resize', function () {
+                        if (scheduled) return;
+                        scheduled = true;
+                        requestAnimationFrame(function () {
+                            scheduled = false;
+                            fitMathToColumn();
+                        });
+                    });
+                });
+            }
+        },
+        options: {
+            // Keep examples (including literal dollar signs) out of the typesetter.
+            skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code', 'annotation', 'annotation-xml']
+        }
+    };
+</script>
+<script id="MathJax-script" async src="/personal_homepage/assets/js/vendor/mathjax/es5/tex-mml-chtml.js"></script>
+
+
+
+
+<!-- Mermaid -->
+<style>
+  .mermaid-diagram {
+    max-width: 100%;
+    margin: 0.85rem 0;
+    overflow-x: auto;
+  }
+  .mermaid-diagram:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+  }
+  .page-content pre.mermaid {
+    margin: 0;
+    padding: 0.25rem 0;
+    text-align: center;
+    background: transparent;
+    overflow: visible;
+    font-family: inherit;
+  }
+  .page-content pre.mermaid[data-processed] {
+    white-space: normal;
+  }
+  pre.mermaid svg {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    height: auto;
+  }
+  .mermaid-diagram .cluster-label {
+    font-weight: 700;
+  }
+  .mermaid-error {
+    font-size: 0.85em;
+    color: #9a3412;
+  }
+</style>
+<script src="/personal_homepage/assets/js/vendor/mermaid-11.17.2.min.js"></script>
+<script>
+(function () {
+  'use strict';
+
+  function normalizeMermaidSource(source) {
+    // Mermaid 11 accepts A <-- "label" --- B but creates an INVALID edge.
+    // Render the equivalent B -->|"label"| A, without editing the Markdown.
+    var body = source.trimStart()
+      .replace(/^---\r?\n[\s\S]*?\r?\n---(?:\r?\n|$)/, '')
+      .replace(/%%\{[\s\S]*?\}%%/g, '')
+      .replace(/^[\t ]*%%.*$/gm, '').trimStart();
+    if (!/^(?:flowchart|graph)\b/.test(body)) return source;
+
+    var started = false;
+    var quoted = false;
+    return source.replace(/[^\r\n]+/g, function (line) {
+      if (!started && !/^\s*(?:flowchart|graph)\b/.test(line)) return line;
+      started = true;
+      var normalized = quoted ? line : line.replace(
+        /^([\t ]*)([A-Za-z_][\w-]*)[\t ]*<--[\t ]*("[^"\r\n]*")[\t ]*---[\t ]*([A-Za-z_][\w-]*)([\t ]*;?[\t ]*(?:%%.*)?)$/,
+        function (_, indent, left, label, right, suffix) {
+          return indent + right + ' -->|' + label + '| ' + left + suffix;
+        }
+      );
+      // Never rewrite an example inside a multiline quoted node label, and
+      // never let quotes inside a %% comment affect the following lines.
+      for (var i = 0; i < line.length; i++) {
+        if (!quoted && line[i] === '%' && line[i + 1] === '%') break;
+        if (line[i] === '"') quoted = !quoted;
+      }
+      return normalized;
+    });
+  }
+
+  async function renderDiagrams() {
+    var blocks = document.querySelectorAll('code.language-mermaid');
+    if (!blocks.length) return;
+    if (typeof mermaid === 'undefined') {
+      blocks.forEach(function (code) {
+        var original = code.closest('.highlighter-rouge') || code.closest('pre');
+        if (!original) return;
+        var message = document.createElement('p');
+        message.className = 'mermaid-error';
+        message.setAttribute('role', 'status');
+        message.textContent = '图表组件加载失败，请刷新页面重试。Mermaid 源码已保留。';
+        original.after(message);
+      });
+      return;
+    }
+
+    // Render every diagram as Mermaid, including diagrams with multiple subgraphs.
+    // Disable the automatic pass so it cannot race with our explicit rendering.
+    var skin = getComputedStyle(document.documentElement);
+    function color(name, fallback) {
+      return skin.getPropertyValue('--mermaid-' + name).trim() || fallback;
+    }
+    var background = color('background', '#ffffff');
+    var text = color('text', '#000000');
+    var border = color('border', '#cccccc');
+    var nodeBorder = color('node-border', '#b8b9c0');
+    var cluster = color('cluster-background', '#f9f9fa');
+    var line = color('line', '#858795');
+    var palettes = [
+      ['#e4eaf0', '#f4f6f9', '#a5b3c2'], // slate blue
+      ['#e8f0ea', '#f5f8f5', '#a8bcae'], // sage
+      ['#f3ede3', '#faf7f2', '#c6b69c'], // sand
+      ['#ebe8f1', '#f7f5fa', '#b5adc5'], // lavender
+      ['#e4eeee', '#f3f8f8', '#a0baba']  // muted teal
+    ].map(function (fallbacks, index) {
+      return {
+        node: color('palette-' + index + '-node', fallbacks[0]),
+        cluster: color('palette-' + index + '-cluster', index === 0 ? cluster : fallbacks[1]),
+        border: color('palette-' + index + '-border', fallbacks[2])
+      };
+    });
+    var fontFamily = getComputedStyle(document.body).fontFamily ||
+      '"Source Sans Pro", sans-serif';
+    // Mermaid fixes label dimensions during layout. Wait for web fonts so a
+    // later font swap cannot make the measured label box too small.
+    if (document.fonts) await document.fonts.ready;
+
+    var theme = "default";
+    // The site's default follows its active skin. Explicit forest/dark/etc.
+    // choices remain available for sites that deliberately select them.
+    if (theme === 'default') theme = 'base';
+
+    var config = {
+      startOnLoad: false,
+      securityLevel: 'strict',
+      fontFamily: fontFamily,
+      // Native SVG text avoids foreignObject clipping and article paragraph CSS.
+      htmlLabels: false,
+      flowchart: {
+        inheritDir: true,
+        curve: 'linear',
+        nodeSpacing: 24,
+        rankSpacing: 28,
+        padding: 8,
+        diagramPadding: 8,
+        wrappingWidth: 180,
+        // Nested cluster borders must start below the parent's full title line.
+        subGraphTitleMargin: { top: 4, bottom: 12 }
+      },
+      theme: theme,
+      themeVariables: theme === 'base' ? {
+        fontFamily: fontFamily,
+        fontSize: '14px',
+        background: background,
+        primaryColor: palettes[0].node,
+        primaryTextColor: text,
+        primaryBorderColor: nodeBorder,
+        secondaryColor: palettes[1].node,
+        secondaryTextColor: text,
+        secondaryBorderColor: border,
+        tertiaryColor: palettes[2].node,
+        tertiaryTextColor: text,
+        tertiaryBorderColor: border,
+        lineColor: line,
+        textColor: text,
+        mainBkg: palettes[0].node,
+        nodeBorder: nodeBorder,
+        nodeTextColor: text,
+        clusterBkg: palettes[0].cluster,
+        clusterBorder: border,
+        titleColor: text,
+        defaultLinkColor: line,
+        edgeLabelBackground: background,
+        noteBkgColor: palettes[2].node,
+        noteTextColor: text,
+        noteBorderColor: border,
+        actorBkg: palettes[0].node,
+        actorBorder: nodeBorder,
+        actorTextColor: text,
+        actorLineColor: border,
+        signalColor: line,
+        signalTextColor: text
+      } : { fontFamily: fontFamily }
+    };
+
+    function applyFlowchartPalette(svg) {
+      if (theme !== 'base' || !/^flowchart/.test(svg.getAttribute('aria-roledescription') || '')) return;
+
+      function tint(group, shapes, index, kind) {
+        // Author-supplied classDef/style colors take precedence over auto accents.
+        var customClass = Array.from(group.classList).some(function (name) {
+          return !['node', 'default', 'cluster', 'clickable'].includes(name);
+        });
+        if (customClass || !shapes.length || shapes.some(function (shape) {
+          return shape.style.getPropertyValue('fill') || shape.style.getPropertyValue('stroke');
+        })) return;
+        group.setAttribute('data-mermaid-palette', index);
+        shapes.forEach(function (shape) {
+          // Keep fallbacks in the SVG so exported diagrams retain their colors.
+          if (shape.getAttribute('fill') !== 'none') {
+            shape.style.fill = 'var(--mermaid-palette-' + index + '-' + kind + ', ' + palettes[index][kind] + ')';
+          }
+          shape.style.stroke = 'var(--mermaid-palette-' + index + '-border, ' + palettes[index].border + ')';
+        });
+      }
+
+      var groups = Array.from(svg.querySelectorAll('g.cluster')).map(function (group, index) {
+        var rect = group.querySelector('rect');
+        return { group: group, rect: rect, bounds: rect && rect.getBoundingClientRect(), index: index % palettes.length };
+      }).filter(function (entry) { return entry.rect; });
+      // Mermaid's SVG stores clusters flat. Match by the actual layout so nodes
+      // inherit their smallest enclosing group, including nested schedulers.
+      var nodes = Array.from(svg.querySelectorAll('g.node')).map(function (node) {
+        return { node: node, bounds: node.getBoundingClientRect() };
+      });
+      groups.forEach(function (entry) { tint(entry.group, [entry.rect], entry.index, 'cluster'); });
+      groups.sort(function (a, b) { return a.bounds.width * a.bounds.height - b.bounds.width * b.bounds.height; });
+      nodes.forEach(function (entry) {
+        var box = entry.bounds;
+        var parent = groups.find(function (group) {
+          var bounds = group.bounds;
+          return box.left >= bounds.left - 1 && box.right <= bounds.right + 1 &&
+            box.top >= bounds.top - 1 && box.bottom <= bounds.bottom + 1;
+        });
+        var shapes = [];
+        entry.node.querySelectorAll(':scope > .label-container').forEach(function (container) {
+          // Rounded/hand-drawn shapes wrap paths in a group. Include the
+          // container in the author-style check, then tint the actual paths.
+          shapes.push(container);
+          shapes.push.apply(shapes, container.querySelectorAll('path, rect, circle, ellipse, polygon, polyline'));
+        });
+        tint(entry.node, shapes, parent ? parent.index : 0, 'node');
+      });
+    }
+
+    function hasNestedSubgraphs(source) {
+      var depth = 0;
+      return source.split(/\r?\n/).some(function (line) {
+        if (/^\s*subgraph\b/.test(line)) return ++depth > 1;
+        if (/^\s*end\s*(?:;|%%.*)?$/.test(line)) depth = Math.max(0, depth - 1);
+        return false;
+      });
+    }
+
+    for (var code of blocks) {
+      var original = code.closest('.highlighter-rouge') || code.closest('pre');
+      if (!original) continue;
+
+      var wrapper = document.createElement('div');
+      wrapper.className = 'mermaid-diagram';
+      wrapper.tabIndex = 0;
+      wrapper.setAttribute('role', 'region');
+      wrapper.setAttribute('aria-label', 'Mermaid diagram (scroll horizontally)');
+
+      var pre = document.createElement('pre');
+      pre.className = 'mermaid';
+      pre.textContent = normalizeMermaidSource(code.textContent);
+      wrapper.appendChild(pre);
+      original.replaceWith(wrapper);
+
+      try {
+        // Dagre reserves only half rankSpacing above a nested cluster. Keep
+        // that space taller than its parent's title, without spreading out
+        // the ordinary (non-nested) compact flowcharts.
+        mermaid.initialize(Object.assign({}, config, {
+          flowchart: Object.assign({}, config.flowchart, {
+            rankSpacing: hasNestedSubgraphs(code.textContent) ? 56 : config.flowchart.rankSpacing
+          })
+        }));
+        await mermaid.run({ nodes: [pre] });
+        var svg = pre.querySelector('svg');
+        if (svg && svg.viewBox.baseVal.width) {
+          // Do not shrink labels to illegible text on narrow screens;
+          // keep at least 90% of the natural size and scroll the diagram instead.
+          svg.style.minWidth = (svg.viewBox.baseVal.width * 0.9) + 'px';
+        }
+        if (svg) applyFlowchartPalette(svg);
+      } catch (error) {
+        // A malformed diagram must not prevent other diagrams from rendering
+        // or make the original source disappear.
+        wrapper.replaceChildren(original);
+        var message = document.createElement('p');
+        message.className = 'mermaid-error';
+        message.setAttribute('role', 'status');
+        message.textContent = '图表渲染失败，已保留 Mermaid 源码。';
+        wrapper.appendChild(message);
+        console.warn('Mermaid diagram could not be rendered:', error);
+      }
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', renderDiagrams);
+  } else {
+    renderDiagrams();
+  }
+})();
+</script>
+
+
+  </body>
+
+</html>

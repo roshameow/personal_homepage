@@ -1,0 +1,1287 @@
+<!DOCTYPE html>
+<!--
+    So Simple Jekyll Theme 3.2.0
+    Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+    Free for personal and commercial use under the MIT license
+    https://github.com/mmistakes/so-simple-theme/blob/master/LICENSE
+-->
+<html lang="en-US" class="no-js">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  
+
+  
+  
+  <!-- Begin Jekyll SEO tag v2.9.1 -->
+<title>回测系统核心网络层架构与全模块调用 | Liu, Wen’s Home Page</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="回测系统核心网络层架构与全模块调用" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="本文档深入剖析 QuantNight 的统一 HTTP 传输与容错底座 util/network_util.py，涵盖其内部 9 阶段请求流水线、回调契约（ResponseDecision）、Location 回执硬门禁、同账号 401 世代去重自愈、限流与分页原语，以及全仓各业务模块（回测引擎、Native MCP、数据同步、恢复器）如何组装并调用该模块。" />
+<meta name="twitter:description" property="og:description" content="本文档深入剖析 QuantNight 的统一 HTTP 传输与容错底座 util/network_util.py，涵盖其内部 9 阶段请求流水线、回调契约（ResponseDecision）、Location 回执硬门禁、同账号 401 世代去重自愈、限流与分页原语，以及全仓各业务模块（回测引擎、Native MCP、数据同步、恢复器）如何组装并调用该模块。" />
+<link rel="canonical" href="https://roshameow.github.io//personal_homepage/code/alpha19/" />
+<meta property="og:url" content="https://roshameow.github.io//personal_homepage/code/alpha19/" />
+<meta property="og:site_name" content="Liu, Wen’s Home Page" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2026-05-15T00:00:00+00:00" />
+<meta property="article:modified_time" content="2026-11-08T12:57:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="回测系统核心网络层架构与全模块调用" />
+<meta name="twitter:site" content="@" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2026-11-08T12:57:00+00:00","datePublished":"2026-05-15T00:00:00+00:00","description":"本文档深入剖析 QuantNight 的统一 HTTP 传输与容错底座 util/network_util.py，涵盖其内部 9 阶段请求流水线、回调契约（ResponseDecision）、Location 回执硬门禁、同账号 401 世代去重自愈、限流与分页原语，以及全仓各业务模块（回测引擎、Native MCP、数据同步、恢复器）如何组装并调用该模块。","headline":"回测系统核心网络层架构与全模块调用","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/code/alpha19/"},"url":"https://roshameow.github.io//personal_homepage/code/alpha19/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  
+
+  <script>
+    /* Cut the mustard */
+    if ('querySelector' in document && 'addEventListener' in window) {
+      document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + 'js';
+    }
+  </script>
+
+  <link rel="stylesheet" href="/personal_homepage/assets/css/main.css">
+  <link rel="stylesheet" href="/personal_homepage/assets/css/skins/default.css">
+  
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,700,700i|Lora:400,400i,700,700i">
+  <link rel="alternate" type="application/atom+xml" title="Liu, Wen&#39;s Home Page" href="/personal_homepage/atom.xml">
+<!-- start custom head snippets -->
+
+<!-- insert favicons. use http://realfavicongenerator.net/ -->
+<link rel="shortcut icon" type="image/x-icon" href="/personal_homepage/docs/images/logo.ico">
+<!-- end custom head snippets -->
+
+</head>
+
+  <body class="layout--post  回测系统核心网络层架构与全模块调用">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#primary-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+  <div class="navigation-wrapper">
+    <a href="#menu-toggle" id="menu-toggle">Menu</a>
+    <nav id="primary-nav" class="site-nav animated drop">
+      <ul><li><a href="/personal_homepage/">Home</a></li><li><a href="/personal_homepage/posts/">Posts</a></li><li><a href="/personal_homepage/categories/">Categories</a></li><li><a href="/personal_homepage/tags/">Tags</a></li><li><a href="/personal_homepage/family/">Family</a></li><li><a href="/personal_homepage/search/">Search</a></li></ul>
+    </nav>
+  </div><!-- /.navigation-wrapper -->
+
+
+    <header class="masthead">
+  <div class="wrap">
+    
+    
+    
+      
+        <div class="site-title animated fadeIn"><a href="/personal_homepage/">Liu, Wen's Home Page</a></div>
+      
+      <p class="site-description animated fadeIn" itemprop="description">Work, Experiments and Ideas.</p>
+    
+  </div>
+</header><!-- /.masthead -->
+
+
+    <main id="main" class="main-content" aria-label="Content">
+  <article class="h-entry">
+    
+
+    <div class="page-wrapper">
+      <header class="page-header">
+        
+        
+        <h1 id="page-title" class="page-title p-name">回测系统核心网络层架构与全模块调用
+</h1>
+        
+      </header>
+
+      <div class="page-sidebar">
+        <div class="page-author h-card p-author"><img src="/personal_homepage/docs/images/logo.svg" class="author-avatar u-photo" alt=""><div class="author-info">
+
+<span class="read-time">6 min read</span>
+
+    <time class="page-date dt-published" datetime="2026-05-15T00:00:00+00:00"><a class="u-url" href="">May 15, 2026</a>
+</time>
+
+  </div>
+</div>
+
+        
+  <h3 class="page-taxonomies-title">Categories</h3>
+  
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a class="p-category" href="/personal_homepage/categories/#code" title="Pages filed under code">code</a></li>
+  </ul>
+
+
+        
+  <h3 class="page-taxonomies-title">Tags</h3>
+  
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a href="/personal_homepage/tags/#content" title="Pages tagged content" rel="tag">content</a></li>
+  </ul>
+
+
+        <details id="entry-table-of-contents" class="toc-wrapper" open>
+  <summary>
+    <h2 class="no_toc">
+      Table of Contents
+      <svg class="toc-toggle-icon" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true" focusable="false">
+        <path d="m4 6 4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+      </svg>
+    </h2>
+  </summary>
+  <div class="toc-content">
+    <ul class="inline_toc" id="my_toc"><li><a href="#1-模块定位与核心原语一览">1. 模块定位与核心原语一览</a></li><li><a href="#2-_request_with_retry-内部-9-阶段执行流水线">2. _request_with_retry 内部 9 阶段执行流水线</a><ul><li><a href="#21-单次-attempt-内部状态流转图">2.1 单次 Attempt 内部状态流转图</a></li><li><a href="#22-关键设计机制详解">2.2 关键设计机制详解</a></li></ul></li><li><a href="#3-限流分页与分层采样原语">3. 限流、分页与分层采样原语</a><ul><li><a href="#31-ratelimiter多维自适应限流器">3.1 RateLimiter（多维自适应限流器）</a></li><li><a href="#32-fetch_total_count-与-fetch_paginated高并发完整分页">3.2 fetch_total_count 与 fetch_paginated（高并发完整分页）</a></li><li><a href="#33-stratified_fetch动态二分分层拉取器">3.3 stratified_fetch（动态二分分层拉取器）</a></li></ul></li><li><a href="#4-全仓模块如何调用-utilnetwork_utilpy">4. 全仓模块如何调用 util/network_util.py</a><ul><li><a href="#41-全局调用拓扑图">4.1 全局调用拓扑图</a></li><li><a href="#42-调用方详细模式与钩子装配表">4.2 调用方详细模式与钩子装配表</a></li></ul></li><li><a href="#5-开发者调用规范小结checklist">5. 开发者调用规范小结（Checklist）</a></li></ul>
+  </div>
+</details>
+
+        
+<details id="entry-related-posts" class="toc-wrapper" open>
+  <summary>
+    <h2 class="no_toc">
+      Related Posts
+      <svg class="toc-toggle-icon" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true" focusable="false">
+        <path d="m4 6 4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+      </svg>
+    </h2>
+  </summary>
+  <div class="toc-content">
+    <ul>
+      
+      <li><a href="/personal_homepage/data/alpha29/">News & Social Media 新闻流、社交媒体情绪与文本事件数据体系</a></li>
+      
+      <li><a href="/personal_homepage/data/alpha28/">日内 PV 统计量与市场微结构衍生指标体系</a></li>
+      
+      <li><a href="/personal_homepage/tool/alpha27/">从过度防御的歪路纠偏：GUI/CLI 6 态极简控制面、数据面板统一与工程收口</a></li>
+      
+      <li><a href="/personal_homepage/thought/agent-infrastructure-pitfalls-2/">用 AI 维护复杂控制面基础设施：为什么越修越死？从补丁膨胀到 6 态收敛的六大工程陷阱</a></li>
+      
+      <li><a href="/personal_homepage/tool/pi-subagent-durable/">pi-subagent-durable：后台子代理的持久化、生命周期与故障自愈</a></li>
+      
+    </ul>
+  </div>
+</details>
+
+
+
+      </div>
+
+      <div class="page-content">
+        <div class="e-content">
+          <p>本文档深入剖析 QuantNight 的统一 HTTP 传输与容错底座 <a href="../../util/network_util.py"><code class="language-plaintext highlighter-rouge">util/network_util.py</code></a>，涵盖其内部 9 阶段请求流水线、回调契约（<code class="language-plaintext highlighter-rouge">ResponseDecision</code>）、<strong>Location 回执硬门禁</strong>、<strong>同账号 401 世代去重自愈</strong>、限流与分页原语，以及全仓各业务模块（回测引擎、Native MCP、数据同步、恢复器）如何组装并调用该模块。</p>
+
+<hr />
+
+<h2 id="1-模块定位与核心原语一览">1. 模块定位与核心原语一览</h2>
+
+<p><a href="../../util/network_util.py"><code class="language-plaintext highlighter-rouge">util/network_util.py</code></a> 是整个仓库访问 WorldQuant Brain 平台 API 的<strong>唯一底层 HTTP 执行与重试底座</strong>。任何上层模块均不得绕过它直接裸调 <code class="language-plaintext highlighter-rouge">session.get/post</code> 自行拼装重试或私自重连。</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>核心原语 / 类</th>
+      <th>代码位置</th>
+      <th>职责定位</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">_request_with_retry(...)</code></td>
+      <td><a href="../../util/network_util.py#L317-L607"><code class="language-plaintext highlighter-rouge">util/network_util.py</code></a></td>
+      <td>核心单请求状态机：信号量、滑动窗口限流、前置门禁、HTTP 传输、自定义响应策略、Location 防重放硬门禁、同账号 401 世代自愈、指数退避重试与异常打标</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">request_with_response_policy(...)</code></td>
+      <td><a href="../../util/network_util.py#L610-L639"><code class="language-plaintext highlighter-rouge">util/network_util.py</code></a></td>
+      <td><code class="language-plaintext highlighter-rouge">_request_with_retry</code> 的泛型策略包装器，强制使用 <code class="language-plaintext highlighter-rouge">ResponseDecision[T]</code> 回调接口</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">ResponseDecision[T]</code></td>
+      <td><a href="../../util/network_util.py#L28-L35"><code class="language-plaintext highlighter-rouge">util/network_util.py</code></a></td>
+      <td>响应分类决策数据类：<code class="language-plaintext highlighter-rouge">value</code>（返回值）、<code class="language-plaintext highlighter-rouge">retry429</code>（是否按限流退避重试）、<code class="language-plaintext highlighter-rouge">retry401</code>（是否触发同账号重登后重试）、<code class="language-plaintext highlighter-rouge">wait_seconds</code>（指定等待秒数）</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">RateLimiter</code></td>
+      <td><a href="../../util/network_util.py#L96-L202"><code class="language-plaintext highlighter-rouge">util/network_util.py</code></a></td>
+      <td>多维自适应限流器：最小发包间隔（<code class="language-plaintext highlighter-rouge">1/rate</code>）+ 60 秒滑窗（<code class="language-plaintext highlighter-rouge">minutely_limit</code>）+ 3600 秒滑窗（<code class="language-plaintext highlighter-rouge">hourly_limit</code>），支持 429 自动降速 <code class="language-plaintext highlighter-rouge">slow_down()</code> 与平滑恢复 <code class="language-plaintext highlighter-rouge">recover_rate()</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">fetch_total_count(...)</code></td>
+      <td><a href="../../util/network_util.py#L642-L702"><code class="language-plaintext highlighter-rouge">util/network_util.py</code></a></td>
+      <td>探测分页接口总条数 <code class="language-plaintext highlighter-rouge">count</code>（支持 <code class="language-plaintext highlighter-rouge">strict_count=True</code> 严苛模式，区分空集与请求失败）</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">fetch_paginated(...)</code></td>
+      <td><a href="../../util/network_util.py#L705-L905"><code class="language-plaintext highlighter-rouge">util/network_util.py</code></a></td>
+      <td>高并发分页拉取器：先探测 <code class="language-plaintext highlighter-rouge">count</code> 再并发拉取所有 offset 页，支持多轮失败页补拉（<code class="language-plaintext highlighter-rouge">page_retry</code>）与完整性强校验（<code class="language-plaintext highlighter-rouge">require_complete=True</code>）</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">stratified_fetch(...)</code></td>
+      <td><a href="../../util/network_util.py#L909-L1069"><code class="language-plaintext highlighter-rouge">util/network_util.py</code></a></td>
+      <td>动态区间二分拉取器：针对平台单次查询上限（如 <code class="language-plaintext highlighter-rouge">count &gt;= 1000</code> 截断），按数值维度（如 <code class="language-plaintext highlighter-rouge">sharpe</code>）动态二分拆分子区间直至全部落入安全阈值</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">FetchFailedError</code></td>
+      <td><a href="../../util/network_util.py#L38-L82"><code class="language-plaintext highlighter-rouge">util/network_util.py</code></a></td>
+      <td>结构化请求失败异常：携带 <code class="language-plaintext highlighter-rouge">status</code>、<code class="language-plaintext highlighter-rouge">retry_after</code>、<code class="language-plaintext highlighter-rouge">response_text</code>、<code class="language-plaintext highlighter-rouge">response_json</code>、<code class="language-plaintext highlighter-rouge">response_headers</code> 以及阶段诊断属性</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">_request_log_target(url)</code> / <code class="language-plaintext highlighter-rouge">exception_stack(exc)</code></td>
+      <td><a href="../../util/network_util.py#L221-L263"><code class="language-plaintext highlighter-rouge">util/network_util.py</code></a></td>
+      <td>安全诊断脱敏工具：日志隐去 URL 路径与查询参数（仅保留 <code class="language-plaintext highlighter-rouge">scheme://host:port/[path omitted]</code>），异常栈仅输出类型与行号，绝不泄露凭据或响应原文</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="2-_request_with_retry-内部-9-阶段执行流水线">2. <code class="language-plaintext highlighter-rouge">_request_with_retry</code> 内部 9 阶段执行流水线</h2>
+
+<p>每一次调用 <code class="language-plaintext highlighter-rouge">_request_with_retry</code> 在单个 <code class="language-plaintext highlighter-rouge">attempt</code>（<code class="language-plaintext highlighter-rouge">1..retries</code>）内部严格推进 <code class="language-plaintext highlighter-rouge">phase</code> 状态变量。一旦在任何阶段抛出异常，外层捕获器都会把当前所处的 <code class="language-plaintext highlighter-rouge">phase</code>、<code class="language-plaintext highlighter-rouge">request_not_sent</code>（是否尚未发出 HTTP 字节）、耗时 <code class="language-plaintext highlighter-rouge">request_elapsed</code> 挂载到异常对象上，供上层回执状态机精准判定。</p>
+
+<h3 id="21-单次-attempt-内部状态流转图">2.1 单次 Attempt 内部状态流转图</h3>
+
+<pre><code class="language-mermaid">flowchart TD
+    Start(["进入 Attempt (1..retries)"]) --&gt; P1["Phase 1: semaphore&lt;br/&gt;获取并发槽位 (AsyncExitStack)"]
+    P1 --&gt; P2["Phase 2: rate_limit &amp; pacing&lt;br/&gt;RateLimiter.wait() 或 AsyncLimiter&lt;br/&gt;+ 随机抖动 sleep(0.1..1.5s)"]
+    P2 --&gt; P3["Phase 3: before_attempt(attempt)&lt;br/&gt;【关键】配额准入 &amp; 落库写 POST 意图&lt;br/&gt;(在拿 login_lock 之前执行)"]
+    P3 --&gt; P4["Phase 4: login_lock&lt;br/&gt;等待 session._brain_login_lock&lt;br/&gt;捕获当前 auth generation"]
+    P4 --&gt; P5["Phase 5: before_request()&lt;br/&gt;同步身份与 Owner 围栏校验&lt;br/&gt;1. 校验 _brain_identity_verified / expected_identity&lt;br/&gt;2. 执行调用方传入的 before_request()"]
+    P5 --&gt; P6["Phase 6: request_headers&lt;br/&gt;执行 session.request(..., allow_redirects=False)&lt;br/&gt;至此 request_not_sent 变为 False"]
+    P6 --&gt; HasOnResp{"传入了 on_response?"}
+
+    HasOnResp -- "是 (自定义响应策略)" --&gt; P7A["Phase 7A: response_callback&lt;br/&gt;decision = await on_response(response, attempt)"]
+    P7A --&gt; LocFence{"响应头含非空 Location?"}
+    LocFence -- "是 (Location 硬门禁)" --&gt; ForceNoRetry["强制抹除 retry429/retry401!&lt;br/&gt;decision = ResponseDecision(decision.value)&lt;br/&gt;【严禁对已受理回执重发 POST】"]
+    LocFence -- "否" --&gt; CheckDec{"检查 decision 标志"}
+    ForceNoRetry --&gt; ReturnVal(["释放锁与槽位，返回 decision.value"])
+    CheckDec -- "retry401 == True" --&gt; RaiseAuth["抛出 _AuthRequired"]
+    CheckDec -- "retry429 == True" --&gt; CalcWait["计算 wait_time (Retry-After / 指数退避)&lt;br/&gt;抛出 _RetryRequest(wait_time)"]
+    CheckDec -- "均为 False" --&gt; ReturnVal
+
+    HasOnResp -- "否 (默认状态码矩阵)" --&gt; P7B["Phase 7B: 默认 HTTP 状态码分发"]
+    P7B --&gt; StatusSwitch{"response.status"}
+    StatusSwitch -- "200 但 text/html 或 Content-Length=0" --&gt; SoftLimit["平台软限流警告&lt;br/&gt;抛出 _RetryRequest"]
+    StatusSwitch -- "200 / 201 / 303" --&gt; P8["Phase 8: response_body&lt;br/&gt;解析 JSON (201/303 允许空体)&lt;br/&gt;POST 默认注入 data['location']"]
+    P8 --&gt; RateRec["rate_limiter.recover_rate()&lt;br/&gt;更新进度条"] --&gt; ReturnData(["返回 (data, headers) 或 data"])
+    StatusSwitch -- "401 Unauthorized" --&gt; RaiseAuth
+    StatusSwitch -- "400 / 403 / 404 / 409 / 410" --&gt; RaiseFatal["立即抛出 FetchFailedError&lt;br/&gt;(终态客户端错误，不重试)"]
+    StatusSwitch -- "429 / 500 / 502 / 503 / 504" --&gt; ServerErr["429 时调 rate_limiter.slow_down()&lt;br/&gt;计算 retry_delay 抛出 _RetryRequest"]
+
+    RaiseAuth --&gt; ExitCtx["退出 login_lock 与 semaphore 上下文"]
+    ExitCtx --&gt; P9["Phase 9: recover_auth(generation)&lt;br/&gt;等待 _brain_auth_recovery_lock (90s)&lt;br/&gt;同账号重登 + verified_session_identity 核验"]
+    P9 --&gt; NextAttempt(["进入下一次 Attempt"])
+
+    CalcWait --&gt; ExitCtx2["退出 login_lock 与 semaphore 上下文"]
+    SoftLimit --&gt; ExitCtx2
+    ServerErr --&gt; ExitCtx2
+    ExitCtx2 --&gt; SleepWait["await asyncio.sleep(wait_time)"] --&gt; NextAttempt
+</code></pre>
+
+<h3 id="22-关键设计机制详解">2.2 关键设计机制详解</h3>
+
+<h4 id="1request_not_sent-与-phase-精确边界lines-350433-567594">（1）<code class="language-plaintext highlighter-rouge">request_not_sent</code> 与 <code class="language-plaintext highlighter-rouge">phase</code> 精确边界（Lines 350–433, 567–594）</h4>
+<ul>
+  <li>在进入 <code class="language-plaintext highlighter-rouge">session.request(...)</code>（即 <code class="language-plaintext highlighter-rouge">phase = "request_headers"</code>）<strong>之前</strong>，<code class="language-plaintext highlighter-rouge">request_not_sent</code> 始终为 <code class="language-plaintext highlighter-rouge">True</code>。</li>
+  <li>如果在 <code class="language-plaintext highlighter-rouge">semaphore</code>、<code class="language-plaintext highlighter-rouge">rate_limit</code>、<code class="language-plaintext highlighter-rouge">pacing</code>、<code class="language-plaintext highlighter-rouge">before_attempt</code>（例如配额拦截或前置写库失败）、<code class="language-plaintext highlighter-rouge">login_lock</code> 或 <code class="language-plaintext highlighter-rouge">before_request</code>（如身份围栏不匹配）阶段抛出任何异常，<code class="language-plaintext highlighter-rouge">_tag_exception</code> 会将 <code class="language-plaintext highlighter-rouge">exc.request_not_sent = True</code> 标记在异常上。</li>
+  <li><strong>业务价值</strong>：上层 <a href="../../api/simulation.py"><code class="language-plaintext highlighter-rouge">api/simulation.py</code></a> 看到 <code class="language-plaintext highlighter-rouge">getattr(exc, "request_not_sent", False) is True</code> 时，可以 <strong>100% 确信没有任何字节发往平台</strong>，从而安全地将回执标为 <code class="language-plaintext highlighter-rouge">acceptance = "NOT_POSTED"</code>（允许后续恢复重排），而绝不会误判为 <code class="language-plaintext highlighter-rouge">UNKNOWN</code>。一旦进入 <code class="language-plaintext highlighter-rouge">request_headers</code> 阶段，<code class="language-plaintext highlighter-rouge">request_not_sent</code> 立即翻转为 <code class="language-plaintext highlighter-rouge">False</code>，此后发生超时或断连一律按 <code class="language-plaintext highlighter-rouge">UNKNOWN</code> 保护。</li>
+</ul>
+
+<h4 id="2location-回执硬门禁lines-440443">（2）<code class="language-plaintext highlighter-rouge">Location</code> 回执硬门禁（Lines 440–443）</h4>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">location</span> <span class="o">=</span> <span class="n">response</span><span class="p">.</span><span class="n">headers</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">"</span><span class="s">Location</span><span class="sh">"</span><span class="p">)</span> <span class="ow">or</span> <span class="n">response</span><span class="p">.</span><span class="n">headers</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">"</span><span class="s">location</span><span class="sh">"</span><span class="p">)</span>
+<span class="k">if</span> <span class="nf">isinstance</span><span class="p">(</span><span class="n">location</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="ow">and</span> <span class="n">location</span><span class="p">.</span><span class="nf">strip</span><span class="p">():</span>
+    <span class="n">decision</span> <span class="o">=</span> <span class="nc">ResponseDecision</span><span class="p">(</span><span class="n">decision</span><span class="p">.</span><span class="n">value</span><span class="p">)</span>
+</code></pre></div></div>
+<ul>
+  <li><strong>为什么需要</strong>：在极端情况下，自定义 <code class="language-plaintext highlighter-rouge">on_response</code> 回调可能因为某些头部或状态码误设了 <code class="language-plaintext highlighter-rouge">retry429=True</code> 或 <code class="language-plaintext highlighter-rouge">retry401=True</code>。</li>
+  <li><strong>硬门禁语义</strong>：只要平台响应头带回了非空的 <code class="language-plaintext highlighter-rouge">Location</code>（代表平台已受理该回测并分配了进度 URL），<code class="language-plaintext highlighter-rouge">_request_with_retry</code> <strong>无条件剥夺重试标志</strong>，直接返回 <code class="language-plaintext highlighter-rouge">decision.value</code>，从根源上杜绝已受理回测被二次 POST。</li>
+</ul>
+
+<h4 id="3同账号-401-世代去重自愈-recover_authgenerationlines-272314-355423-535554">（3）同账号 401 世代去重自愈 <code class="language-plaintext highlighter-rouge">recover_auth(generation)</code>（Lines 272–314, 355–423, 535–554）</h4>
+<p>当 40 个并发协程同时因 Cookie 过期收到 <code class="language-plaintext highlighter-rouge">HTTP 401</code> 时，如果每个协程都独立发起登录，会瞬间触发平台 <code class="language-plaintext highlighter-rouge">POST /authentication</code> 的 429 封禁（登录风暴）。<code class="language-plaintext highlighter-rouge">_request_with_retry</code> 通过<strong>双锁 + 世代号（Generation）</strong>彻底解决了该问题：</p>
+<ol>
+  <li><strong>请求前快照世代号</strong>：协程在 Phase 4 获取 <code class="language-plaintext highlighter-rouge">session._brain_login_lock</code> 时，记录请求发出前的世代号 <code class="language-plaintext highlighter-rouge">generation = getattr(session, "_brain_auth_generation", 0)</code>。</li>
+  <li><strong>释放请求槽位后再恢复</strong>：收到 <code class="language-plaintext highlighter-rouge">401</code> 抛出 <code class="language-plaintext highlighter-rouge">_AuthRequired</code> 后，先退出 <code class="language-plaintext highlighter-rouge">login_lock</code> 和 <code class="language-plaintext highlighter-rouge">semaphore</code> 上下文（避免占着并发槽阻塞其它请求），再调用 <code class="language-plaintext highlighter-rouge">await recover_auth(generation)</code>。</li>
+  <li><strong>恢复锁与世代去重</strong>：
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">recover_auth</code> 获取 <code class="language-plaintext highlighter-rouge">session._brain_auth_recovery_lock</code>（最多等待 90s）。</li>
+      <li>拿到锁后首先检查：<code class="language-plaintext highlighter-rouge">if getattr(session, "_brain_auth_generation", 0) != generation:</code>。如果世代号已经变了（说明排在前面的兄弟协程刚刚完成了重登），则直接读取 <code class="language-plaintext highlighter-rouge">session._brain_auth_succeeded</code> 返回，<strong>0 次多余网络请求</strong>！</li>
+      <li>若世代号未变，则在 <code class="language-plaintext highlighter-rouge">_brain_login_lock</code> 内执行 <code class="language-plaintext highlighter-rouge">on_auth(session)</code>（默认调用 <code class="language-plaintext highlighter-rouge">api.login.async_login_to_brain(session, auth_profile=...)</code>），随后强制核验 <code class="language-plaintext highlighter-rouge">verified_session_identity(session) == expected_identity</code>，防止跨账号串号，最后将 <code class="language-plaintext highlighter-rouge">_brain_auth_generation += 1</code>。</li>
+    </ul>
+  </li>
+</ol>
+
+<h4 id="4默认-http-状态码分类矩阵">（4）默认 HTTP 状态码分类矩阵</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>状态码 / 响应特征</th>
+      <th>分类行为</th>
+      <th>是否重试</th>
+      <th>附加动作</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">200 OK</code> 但 <code class="language-plaintext highlighter-rouge">Content-Type: text/html</code> 或 <code class="language-plaintext highlighter-rouge">Content-Length: 0</code></td>
+      <td>平台网关软限流（Soft Limit）</td>
+      <td>是（<code class="language-plaintext highlighter-rouge">_RetryRequest</code>）</td>
+      <td>指数退避 <code class="language-plaintext highlighter-rouge">retry_delay(attempt, base_delay, Retry-After)</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">200</code>, <code class="language-plaintext highlighter-rouge">201</code>, <code class="language-plaintext highlighter-rouge">303</code></td>
+      <td>正常成功响应</td>
+      <td>否（直接返回）</td>
+      <td>解析 JSON（<code class="language-plaintext highlighter-rouge">201</code>/<code class="language-plaintext highlighter-rouge">303</code> 允许空 body）；<code class="language-plaintext highlighter-rouge">POST</code> 且 <code class="language-plaintext highlighter-rouge">return_headers=False</code> 时把 <code class="language-plaintext highlighter-rouge">Location</code> 注入 <code class="language-plaintext highlighter-rouge">data["location"]</code>；调用 <code class="language-plaintext highlighter-rouge">rate_limiter.recover_rate()</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">401 Unauthorized</code></td>
+      <td>认证失效</td>
+      <td>是（<code class="language-plaintext highlighter-rouge">_AuthRequired</code>）</td>
+      <td>触发同账号 <code class="language-plaintext highlighter-rouge">recover_auth(generation)</code>，成功后进入下一 attempt</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">409 Conflict</code></td>
+      <td>资源状态冲突</td>
+      <td><strong>否（立即抛出 <code class="language-plaintext highlighter-rouge">FetchFailedError</code>）</strong></td>
+      <td>保留完整响应文本与 headers</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">403 Forbidden</code></td>
+      <td>权限拒绝 / 禁用特性</td>
+      <td><strong>否（立即抛出 <code class="language-plaintext highlighter-rouge">FetchFailedError</code>）</strong></td>
+      <td>解析并附加 <code class="language-plaintext highlighter-rouge">response_json</code>（供上层识别细节）</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">400</code>, <code class="language-plaintext highlighter-rouge">404</code>, <code class="language-plaintext highlighter-rouge">410</code></td>
+      <td>客户端语法/路径/资源不存在</td>
+      <td><strong>否（立即抛出 <code class="language-plaintext highlighter-rouge">FetchFailedError</code>）</strong></td>
+      <td>不消耗重试次数</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">429 Too Many Requests</code></td>
+      <td>平台限流</td>
+      <td>是（<code class="language-plaintext highlighter-rouge">_RetryRequest</code>）</td>
+      <td>若配置了 <code class="language-plaintext highlighter-rouge">RateLimiter</code> 则调 <code class="language-plaintext highlighter-rouge">slow_down()</code>（速率减半）；优先遵守 <code class="language-plaintext highlighter-rouge">Retry-After</code> 头（秒数或 HTTP-date，上限 600s）</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">500</code>, <code class="language-plaintext highlighter-rouge">502</code>, <code class="language-plaintext highlighter-rouge">503</code>, <code class="language-plaintext highlighter-rouge">504</code></td>
+      <td>服务端瞬态故障</td>
+      <td>是（<code class="language-plaintext highlighter-rouge">_RetryRequest</code>）</td>
+      <td>按 <code class="language-plaintext highlighter-rouge">base_delay * 2^(attempt-1) + jitter</code> 指数退避</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">asyncio.TimeoutError</code> / <code class="language-plaintext highlighter-rouge">aiohttp.ClientError</code></td>
+      <td>网络/传输层异常</td>
+      <td>默认 GET 重试；上层可通过 <code class="language-plaintext highlighter-rouge">on_error</code> 拦截</td>
+      <td>若 <code class="language-plaintext highlighter-rouge">on_error(exc, attempt)</code> 返回 <code class="language-plaintext highlighter-rouge">False</code>（如回测 POST），则立即终止重试并原样抛出</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="3-限流分页与分层采样原语">3. 限流、分页与分层采样原语</h2>
+
+<h3 id="31-ratelimiter多维自适应限流器">3.1 <code class="language-plaintext highlighter-rouge">RateLimiter</code>（多维自适应限流器）</h3>
+<p>位于 <a href="../../util/network_util.py#L96-L202"><code class="language-plaintext highlighter-rouge">util/network_util.py</code></a>：</p>
+<ul>
+  <li><strong>三层约束</strong>：
+    <ol>
+      <li><strong>瞬时发包间隔</strong>：<code class="language-plaintext highlighter-rouge">min_interval = 1.0 / current_rate</code>（默认 <code class="language-plaintext highlighter-rouge">rate_per_sec=2.0</code>，上限 <code class="language-plaintext highlighter-rouge">max_rate=10.0</code>）。</li>
+      <li><strong>分钟级滑窗</strong>：<code class="language-plaintext highlighter-rouge">minutely_limit</code>（60s 双端队列 <code class="language-plaintext highlighter-rouge">minutely_timestamps</code>）。</li>
+      <li><strong>小时级滑窗</strong>：<code class="language-plaintext highlighter-rouge">hourly_limit</code>（3600s 双端队列 <code class="language-plaintext highlighter-rouge">hourly_timestamps</code>）。</li>
+    </ol>
+  </li>
+  <li><strong>自适应调节</strong>：
+    <ul>
+      <li>遇到 HTTP 429 时调用 <code class="language-plaintext highlighter-rouge">slow_down(factor=0.5)</code>：将 <code class="language-plaintext highlighter-rouge">current_rate</code> 乘以 <code class="language-plaintext highlighter-rouge">0.5</code>（最低 <code class="language-plaintext highlighter-rouge">0.1 req/s</code>），并标记 <code class="language-plaintext highlighter-rouge">is_Recovering = True</code>。</li>
+      <li>随后每次成功请求调用 <code class="language-plaintext highlighter-rouge">recover_rate()</code>：按 <code class="language-plaintext highlighter-rouge">+0.05 req/s</code> 线性爬升，直至恢复到 <code class="language-plaintext highlighter-rouge">base_rate</code>。</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="32-fetch_total_count-与-fetch_paginated高并发完整分页">3.2 <code class="language-plaintext highlighter-rouge">fetch_total_count</code> 与 <code class="language-plaintext highlighter-rouge">fetch_paginated</code>（高并发完整分页）</h3>
+<p>位于 <a href="../../util/network_util.py#L642-L905"><code class="language-plaintext highlighter-rouge">util/network_util.py</code></a>：</p>
+<ul>
+  <li><strong>两阶段拉取</strong>：
+    <ol>
+      <li>先请求 <code class="language-plaintext highlighter-rouge">limit=1&amp;offset=0</code> 获取 <code class="language-plaintext highlighter-rouge">count</code>（当 <code class="language-plaintext highlighter-rouge">strict_count=True</code> 或 <code class="language-plaintext highlighter-rouge">require_complete=True</code> 时，若探测失败或缺少整数字段 <code class="language-plaintext highlighter-rouge">count</code>，直接抛 <code class="language-plaintext highlighter-rouge">RuntimeError</code>，绝不把网络错误伪装成 <code class="language-plaintext highlighter-rouge">0</code> 条记录）。</li>
+      <li>生成所有 <code class="language-plaintext highlighter-rouge">offsets = range(0, total_count, page_limit)</code>，通过 <code class="language-plaintext highlighter-rouge">asyncio.gather</code> + <code class="language-plaintext highlighter-rouge">Semaphore(max_concurrent)</code> + <code class="language-plaintext highlighter-rouge">RateLimiter</code> 并发拉取。</li>
+    </ol>
+  </li>
+  <li><strong>失败页多轮补拉（<code class="language-plaintext highlighter-rouge">page_retry</code>）</strong>：
+    <ul>
+      <li>第一轮并发拉取中若部分 offset 页失败，记录到 <code class="language-plaintext highlighter-rouge">failed_offsets</code>，在最多 <code class="language-plaintext highlighter-rouge">page_retry</code>（默认 3）轮内专门针对失败页降速重试（轮间等待 <code class="language-plaintext highlighter-rouge">5 * retry_round</code> 秒）。</li>
+      <li>若 <code class="language-plaintext highlighter-rouge">require_complete=True</code> 且最终仍有失败页，或拉取到的 <code class="language-plaintext highlighter-rouge">len(results) != total_count</code>，立即抛出 <code class="language-plaintext highlighter-rouge">RuntimeError</code>，防止下游用残缺数据覆盖本地字典库。</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="33-stratified_fetch动态二分分层拉取器">3.3 <code class="language-plaintext highlighter-rouge">stratified_fetch</code>（动态二分分层拉取器）</h3>
+<p>位于 <a href="../../util/network_util.py#L909-L1069"><code class="language-plaintext highlighter-rouge">util/network_util.py</code></a>：</p>
+<ul>
+  <li><strong>解决痛点</strong>：WorldQuant Brain 部分列表接口对单次过滤条件存在结果集硬上限（例如 <code class="language-plaintext highlighter-rouge">max_items_per_query = 1000</code>），超出时深层分页会报错或截断。</li>
+  <li><strong>算法流程</strong>：
+    <pre><code class="language-mermaid">flowchart LR
+    Init["初始区间队列&lt;br/&gt;[min_val, max_val] step"] --&gt; Pop["弹出区间 [low, high]"]
+    Pop --&gt; Probe["fetch_total_count()&lt;br/&gt;探测区间内 count"]
+    Probe --&gt; Check{"count 大小?"}
+    Check -- "count == 0" --&gt; Skip["跳过空区间"]
+    Check -- "0 &lt; count &lt; 1000&lt;br/&gt;或区间宽度 &lt;= min_interval_size" --&gt; Fetch["调用 fetch_paginated()&lt;br/&gt;并发拉取区间全部结果"]
+    Check -- "count &gt;= 1000&lt;br/&gt;且可继续二分" --&gt; Split["取中点 mid = (low + high) / 2&lt;br/&gt;拆分为 [low, mid] 与 [mid, high]&lt;br/&gt;放回队列头部"]
+    Fetch --&gt; Dedup["按 item['id'] 去重汇总"]
+</code></pre>
+  </li>
+</ul>
+
+<hr />
+
+<h2 id="4-全仓模块如何调用-utilnetwork_utilpy">4. 全仓模块如何调用 <code class="language-plaintext highlighter-rouge">util/network_util.py</code></h2>
+
+<h3 id="41-全局调用拓扑图">4.1 全局调用拓扑图</h3>
+
+<pre><code class="language-mermaid">flowchart TB
+    subgraph NetLayer ["底层网络与容错核心 (util/network_util.py)"]
+        RWR["_request_with_retry()&lt;br/&gt;request_with_response_policy()"]
+        FP["fetch_paginated()&lt;br/&gt;fetch_total_count()"]
+        SF["stratified_fetch()"]
+        RL["RateLimiter"]
+    end
+
+    subgraph SimAPI ["回测提交与进度引擎 (api/simulation.py)"]
+        SubPolicy["_submit_with_receipt_policy()&lt;br/&gt;before_attempt + on_response + on_error"]
+        CheckProg["check_simulation_progress()&lt;br/&gt;before_request + return_headers=True"]
+        SimAsync["simulation_async()&lt;br/&gt;simulation_async_batch()&lt;br/&gt;super_simulation_async()"]
+        SimAsync --&gt; SubPolicy
+        SimAsync --&gt; CheckProg
+    end
+
+    subgraph Runners ["任务消费与恢复器 (scripts/ &amp; util/)"]
+        RegRunner["scripts/alpha_simulate_param.py&lt;br/&gt;Regular / Priority / Adaptive Consumer"]
+        SuperRunner["scripts/super_alpha_simulate_param.py&lt;br/&gt;SUPER Consumer"]
+        RefineRunner["scripts/refine_simulate_param.py&lt;br/&gt;Priority Controller"]
+        Recovery["util/mission_recovery.py&lt;br/&gt;util/super_recovery.py&lt;br/&gt;util/super_capacity.py"]
+        RegRunner --&gt; SimAsync
+        SuperRunner --&gt; SimAsync
+        Recovery --&gt; CheckProg
+    end
+
+    subgraph MCPServer ["Native MCP 服务 (quant_night_mcp/)"]
+        MCPApi["tools/api_tools.py&lt;br/&gt;validate_alpha / simulate_*_batch&lt;br/&gt;cancel_simulation / get_alpha_by_id"]
+        MCPPnl["tools/pnl_tools.py&lt;br/&gt;get_alpha_correlation"]
+        MCPUtil["tools/util_tools.py&lt;br/&gt;find_history_alphas"]
+        MCPApi --&gt; SimAsync
+    end
+
+    subgraph DataAPIs ["平台数据与 Alpha 管理 API (api/)"]
+        ManipAlpha["api/manipulate_alpha.py&lt;br/&gt;get_result / add_tags / get_alpha_pnl"]
+        FilterAlpha["api/filter_alphas.py&lt;br/&gt;get_alphas / get_submitted_alphas"]
+        ExtractDF["api/extract_datafields.py&lt;br/&gt;extract_datafields / datasets"]
+        PlatData["api/platform_data/*&lt;br/&gt;operators / tutorials / forum / competitions"]
+        PlatNotice["api/platform_notice/*&lt;br/&gt;pyramid / messages / check_submission"]
+    end
+
+    SubPolicy --&gt; RWR
+    CheckProg --&gt; RWR
+    MCPApi --&gt; RWR
+    MCPPnl --&gt; RWR
+    ManipAlpha --&gt; RWR
+    FilterAlpha --&gt; FP
+    FilterAlpha --&gt; SF
+    ExtractDF --&gt; FP
+    ExtractDF --&gt; RWR
+    PlatData --&gt; FP
+    PlatData --&gt; RWR
+    PlatNotice --&gt; RWR
+</code></pre>
+
+<hr />
+
+<h3 id="42-调用方详细模式与钩子装配表">4.2 调用方详细模式与钩子装配表</h3>
+
+<h4 id="模式-a普通回测提交与回执安全apisimulationpy">模式 A：普通回测提交与回执安全（<a href="../../api/simulation.py"><code class="language-plaintext highlighter-rouge">api/simulation.py</code></a>）</h4>
+<p>这是普通回测的公共能力，不是 Priority 专属协议。普通/Adaptive/Priority 任务共用原 REGULAR runner 的 <code class="language-plaintext highlighter-rouge">_SimulationSubmissionGuard</code> / <code class="language-plaintext highlighter-rouge">_SimulationReceipt</code> 适配；SUPER/MCP 保留自己的持久化适配，复用同一模拟API与共享HTTP。配额guard只管理额度，不接收请求接受状态。</p>
+
+<p>该模块通过 <code class="language-plaintext highlighter-rouge">_request_with_retry</code> 的原生命周期钩子完成请求：</p>
+
+<ol>
+  <li><strong>回测提交 <code class="language-plaintext highlighter-rouge">_submit_with_receipt_policy(...)</code></strong>（<a href="../../api/simulation.py"><code class="language-plaintext highlighter-rouge">api/simulation.py</code></a>）：
+    <ul>
+      <li><strong><code class="language-plaintext highlighter-rouge">before_attempt(attempt)</code></strong>：
+        <ul>
+          <li>在尝试 HTTP POST 前调用传入的 <code class="language-plaintext highlighter-rouge">quota_guard.before_submit(request_count)</code>。REGULAR runner 传入 <code class="language-plaintext highlighter-rouge">_SimulationSubmissionGuard</code>，它先执行原额度准入，再核查账号冷却、原请求身份并<strong>持久化发送意图与批次ID</strong>。<code class="language-plaintext highlighter-rouge">campaign_post_attempted</code> 是保留兼容的通用历史字段，普通任务也使用，不能把它当成Priority身份。</li>
+          <li>若配额不足或前置校验未过，在 <code class="language-plaintext highlighter-rouge">before_attempt</code> 内直接抛异常，此时 <code class="language-plaintext highlighter-rouge">request_not_sent=True</code>，安全记为 <code class="language-plaintext highlighter-rouge">NOT_POSTED</code>。</li>
+        </ul>
+      </li>
+      <li><strong><code class="language-plaintext highlighter-rouge">before_request()</code></strong>：
+        <ul>
+          <li>在拿到 <code class="language-plaintext highlighter-rouge">_brain_login_lock</code> 且通过同账号身份核验后，最后一次同步检查 <code class="language-plaintext highlighter-rouge">receipt_owner_guard</code>（确认当前 consumer 仍持有该任务的租约/回执所有权）。</li>
+        </ul>
+      </li>
+      <li><strong><code class="language-plaintext highlighter-rouge">on_response(response, attempt)</code></strong>：
+        <ul>
+          <li>先在API中判断 <code class="language-plaintext highlighter-rouge">Location</code> / 明确拒绝等请求证据，再观察额度。传给额度层的只有 <code class="language-plaintext highlighter-rouge">after_response(response.headers)</code>；无回执的401/429走 <code class="language-plaintext highlighter-rouge">submit_failed()</code>，不把认证/并发响应的额度头作为日配额观察。</li>
+          <li><strong>若有 <code class="language-plaintext highlighter-rouge">Location</code> 头</strong>：保存 <code class="language-plaintext highlighter-rouge">progress_url</code>、<code class="language-plaintext highlighter-rouge">acceptance = "ACCEPTED"</code>；REGULAR 的 <code class="language-plaintext highlighter-rouge">_SimulationReceipt</code> 安排持久化并在进入轮询前等待flush，随后返回 <code class="language-plaintext highlighter-rouge">ResponseDecision(location)</code>（不重复POST）。</li>
+          <li><strong>若无 <code class="language-plaintext highlighter-rouge">Location</code> 头</strong>：
+            <ul>
+              <li><code class="language-plaintext highlighter-rouge">429</code>：记录 <code class="language-plaintext highlighter-rouge">acceptance = "NOT_ACCEPTED"</code>、<code class="language-plaintext highlighter-rouge">rejection_evidence_received = True</code>，返回 <code class="language-plaintext highlighter-rouge">ResponseDecision(None, retry429=True, retry_after=...)</code>，是否重试及次数仍由原共享请求策略和本次调用配置决定。</li>
+              <li><code class="language-plaintext highlighter-rouge">401</code>：记录认证拒绝，返回 <code class="language-plaintext highlighter-rouge">ResponseDecision(None, retry401=True)</code> 交由 <code class="language-plaintext highlighter-rouge">_request_with_retry</code> 执行同账号重登。</li>
+              <li><code class="language-plaintext highlighter-rouge">400 / 403</code>：记录明确拒绝证据，返回 <code class="language-plaintext highlighter-rouge">ResponseDecision(None)</code> 停止重试。</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li><strong><code class="language-plaintext highlighter-rouge">on_error(exc, attempt)</code></strong>：
+        <ul>
+          <li>检查 <code class="language-plaintext highlighter-rouge">getattr(exc, "request_not_sent", False)</code>：有明确未发送证明才标 <code class="language-plaintext highlighter-rouge">NOT_POSTED</code>。否则保留发送意图、具体error/errorClass及已有接受证据；缺少接受证据时保持 <code class="language-plaintext highlighter-rouge">acceptance=None</code>，不凭超时推断平台成功或拒绝。</li>
+          <li>原回执不因错误丢失，返回不带重试指令的 <code class="language-plaintext highlighter-rouge">ResponseDecision(state.get('progress_url'))</code>；未决请求不能盲重投，但不因此全局暂停其他独立候选。</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><strong>进度轮询 <code class="language-plaintext highlighter-rouge">check_simulation_progress(...)</code></strong>（<a href="../../api/simulation.py"><code class="language-plaintext highlighter-rouge">api/simulation.py</code></a>）：
+    <ul>
+      <li>使用原 <code class="language-plaintext highlighter-rouge">_request_with_retry</code> 的GET入口，<code class="language-plaintext highlighter-rouge">return_headers=True</code>、<code class="language-plaintext highlighter-rouge">retries=6</code>、<code class="language-plaintext highlighter-rouge">base_delay=20</code>；调用方提供的 <code class="language-plaintext highlighter-rouge">before_request</code> 所有权检查与普通恢复身份guard组合执行，不互相覆盖，不私建查询循环或网络客户端。</li>
+      <li>成功响应按实际 <code class="language-plaintext highlighter-rouge">status</code> 判定是否终态，并用原 <code class="language-plaintext highlighter-rouge">retry_delay</code> 解析 <code class="language-plaintext highlighter-rouge">Retry-After</code>；未终态时至少间隔1秒，不因缺少 <code class="language-plaintext highlighter-rouge">Retry-After</code> 就假定已完成。终态后按原映射收集 <code class="language-plaintext highlighter-rouge">alpha</code> / <code class="language-plaintext highlighter-rouge">children</code>。</li>
+      <li><strong>普通旧回执GET404是正常过期观察</strong>：在原共享请求hook中识别可信simulation URL的实际404，不先打通用ERROR再吞掉。API只提供该次观察，不因404自动POST；普通恢复owner核验原请求/当前快照后，保存旧attempt到 <code class="language-plaintext highlighter-rouge">recoveryHistory</code> 并让无结果候选回待测。此分支不是平台失败，也不是旧请求从未发生的证明。</li>
+      <li>超时、429、5xx及其它端点404仍走各自原策略；原回执已存在结果时不清空。不能从本地“一小时”计时推断回收，也不因此释放SUPER槽位或授权MCP重投。</li>
+    </ul>
+  </li>
+  <li><strong>普通启动恢复的可选观察deadline</strong>：
+    <ul>
+      <li>原恢复层给 <code class="language-plaintext highlighter-rouge">observation_budget</code> 一个120秒绝对期限，父/child共享；原共享HTTP仅接受可选通用 <code class="language-plaintext highlighter-rouge">deadline=RequestDeadline(...)</code>，只用于GET/HEAD，默认不启用，不接收simulation业务身份字段。</li>
+      <li>原重试循环在完整等待前保存等待证据。服务器建议超过剩余预算时结束本次观察，不裁短Retry-After后提前发下一次请求。原恢复owner将原URL/账号/请求绑定与 <code class="language-plaintext highlighter-rouge">notBefore</code> 持久化，重建也不绕过。</li>
+      <li><code class="language-plaintext highlighter-rouge">RequestWindowEnded</code>只由本地窗口确认到期产生，API转换为 <code class="language-plaintext highlighter-rouge">observation_deferred</code>，不是平台终态或重投许可。既有HTTP失败事实保留；外部取消不转换为窗口结束。</li>
+      <li>身份/认证未决、checkpoint或result writer超时不能走正常窗口分支；按实际操作阶段失败并阻断派发。300秒整个恢复phase期限独立保留。延后只等待下一次原生命周期观察，不自动建立第二个watcher/collector。</li>
+    </ul>
+  </li>
+</ol>
+
+<h4 id="模式-bnative-mcp-工具集quant_night_mcptools">模式 B：Native MCP 工具集（<a href="../../quant_night_mcp/tools/"><code class="language-plaintext highlighter-rouge">quant_night_mcp/tools/</code></a>）</h4>
+<p>MCP 进程复用同一个持久化的 <code class="language-plaintext highlighter-rouge">session</code>（由 <code class="language-plaintext highlighter-rouge">session_manager</code> 维护），通过两类方式调用 <code class="language-plaintext highlighter-rouge">network_util</code>：</p>
+<ul>
+  <li><strong>直接调用 <code class="language-plaintext highlighter-rouge">_request_with_retry</code></strong>：
+    <ul>
+      <li><a href="../../quant_night_mcp/tools/api_tools.py"><code class="language-plaintext highlighter-rouge">quant_night_mcp/tools/api_tools.py</code></a>：
+        <ul>
+          <li><code class="language-plaintext highlighter-rouge">cancel_simulation</code>：<code class="language-plaintext highlighter-rouge">DELETE /simulations/{id}</code>，使用 <code class="language-plaintext highlighter-rouge">_request_with_retry</code>。</li>
+          <li><code class="language-plaintext highlighter-rouge">get_alpha_by_id</code>：<code class="language-plaintext highlighter-rouge">GET /alphas/{id}</code>，读取单个 Alpha 详情。</li>
+          <li><code class="language-plaintext highlighter-rouge">get_Available_settings</code>：<code class="language-plaintext highlighter-rouge">OPTIONS /simulations</code>，探测可用 Region/Universe/Neutralization。</li>
+        </ul>
+      </li>
+      <li><a href="../../quant_night_mcp/tools/pnl_tools.py"><code class="language-plaintext highlighter-rouge">quant_night_mcp/tools/pnl_tools.py</code></a>：
+        <ul>
+          <li><code class="language-plaintext highlighter-rouge">get_alpha_correlation</code>：拉取平台 <code class="language-plaintext highlighter-rouge">prod</code> 相关性或触发相关性计算，配合 <code class="language-plaintext highlighter-rouge">return_headers=True</code> 检查 <code class="language-plaintext highlighter-rouge">Retry-After</code>。</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><strong>通过 <code class="language-plaintext highlighter-rouge">api/simulation.py</code> 间接调用</strong>：
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">validate_alpha</code>、<code class="language-plaintext highlighter-rouge">simulate_alpha_batch</code>、<code class="language-plaintext highlighter-rouge">simulate_super_batch</code> 传入 <code class="language-plaintext highlighter-rouge">before_request=receipt_owner_guard</code>，在每次底层 HTTP 请求前验证 MCP 任务未被取消或接管。</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="模式-c平台元数据alpha-筛选与论坛公告同步api-与-agentsskills">模式 C：平台元数据、Alpha 筛选与论坛/公告同步（<code class="language-plaintext highlighter-rouge">api/</code> 与 <code class="language-plaintext highlighter-rouge">.agents/skills/</code>）</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>模块文件</th>
+      <th>调用的 <code class="language-plaintext highlighter-rouge">network_util</code> 函数</th>
+      <th>关键参数与业务用途</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><a href="../../api/manipulate_alpha.py"><code class="language-plaintext highlighter-rouge">api/manipulate_alpha.py</code></a></td>
+      <td><code class="language-plaintext highlighter-rouge">_request_with_retry</code></td>
+      <td><code class="language-plaintext highlighter-rouge">get_result</code>（<code class="language-plaintext highlighter-rouge">GET /alphas/{id}</code>）、<code class="language-plaintext highlighter-rouge">add_tags</code>（<code class="language-plaintext highlighter-rouge">PATCH /alphas/{id}</code> 写 name/tags/description）、<code class="language-plaintext highlighter-rouge">get_alpha_pnl</code>（<code class="language-plaintext highlighter-rouge">GET /alphas/{id}/recordsets/pnl</code>）、<code class="language-plaintext highlighter-rouge">get_alpha_yearly_stats</code></td>
+    </tr>
+    <tr>
+      <td><a href="../../api/filter_alphas.py"><code class="language-plaintext highlighter-rouge">api/filter_alphas.py</code></a></td>
+      <td><code class="language-plaintext highlighter-rouge">fetch_paginated</code>, <code class="language-plaintext highlighter-rouge">stratified_fetch</code>, <code class="language-plaintext highlighter-rouge">RateLimiter</code></td>
+      <td><code class="language-plaintext highlighter-rouge">get_alphas</code> / <code class="language-plaintext highlighter-rouge">get_submitted_alphas</code>：当查询范围大时用 <code class="language-plaintext highlighter-rouge">stratified_fetch</code> 按 <code class="language-plaintext highlighter-rouge">is.sharpe</code> 区间自动二分，避免触发平台 1000 条上限</td>
+    </tr>
+    <tr>
+      <td><a href="../../api/extract_datafields.py"><code class="language-plaintext highlighter-rouge">api/extract_datafields.py</code></a></td>
+      <td><code class="language-plaintext highlighter-rouge">fetch_paginated</code>, <code class="language-plaintext highlighter-rouge">_request_with_retry</code>, <code class="language-plaintext highlighter-rouge">RateLimiter</code></td>
+      <td>同步 <code class="language-plaintext highlighter-rouge">datafields</code> 与 <code class="language-plaintext highlighter-rouge">datasets</code> 目录，开启 <code class="language-plaintext highlighter-rouge">require_complete=True</code> 确保字典表无缺页</td>
+    </tr>
+    <tr>
+      <td><a href="../../api/platform_data/save_operators.py"><code class="language-plaintext highlighter-rouge">api/platform_data/save_operators.py</code></a></td>
+      <td><code class="language-plaintext highlighter-rouge">_request_with_retry</code></td>
+      <td>拉取 <code class="language-plaintext highlighter-rouge">/operators</code> 算子全集及文档详情，再经原 writer 写库</td>
+    </tr>
+    <tr>
+      <td><a href="../../api/forum/fetch_tutorial.py"><code class="language-plaintext highlighter-rouge">api/forum/fetch_tutorial.py</code></a>, <a href="../../api/fetch_competition_results.py"><code class="language-plaintext highlighter-rouge">api/fetch_competition_results.py</code></a></td>
+      <td><code class="language-plaintext highlighter-rouge">_request_with_retry</code></td>
+      <td>获取教程页面或竞赛 Alpha 表现；不使用不存在的 platform_data/tutorials/documentation/competitions/forum 模块</td>
+    </tr>
+    <tr>
+      <td><a href="../../api/platform_notice/pyramid_status.py"><code class="language-plaintext highlighter-rouge">api/platform_notice/pyramid_status.py</code></a>, <a href="../../api/platform_notice/event_paper_recommend.py"><code class="language-plaintext highlighter-rouge">event_paper_recommend.py</code></a></td>
+      <td><code class="language-plaintext highlighter-rouge">_request_with_retry</code> / 原分页入口</td>
+      <td>查询 Genius Pyramid 缺口状态、平台消息及活动信息</td>
+    </tr>
+    <tr>
+      <td><a href="../../api/forum/README.md"><code class="language-plaintext highlighter-rouge">api/forum/README.md</code></a></td>
+      <td>独立论坛客户端，按原 owner 文档核对</td>
+      <td>发帖、编辑和评论由原论坛客户端管理 CSRF/Cookie；不能仅由本表断言它直接调用 Brain 的 <code class="language-plaintext highlighter-rouge">_request_with_retry</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="模式-d启动恢复与未知回执对账utilmission_recoverypy--utilsuper_recoverypy">模式 D：启动恢复与未知回执对账（<a href="../../util/mission_recovery.py"><code class="language-plaintext highlighter-rouge">util/mission_recovery.py</code></a> &amp; <a href="../../util/super_recovery.py"><code class="language-plaintext highlighter-rouge">util/super_recovery.py</code></a>）</h4>
+<ul>
+  <li>当任务重启或处于 <code class="language-plaintext highlighter-rouge">UNKNOWN</code> / <code class="language-plaintext highlighter-rouge">ACCEPTED</code>（但缺 <code class="language-plaintext highlighter-rouge">alphaId</code>）状态时，恢复器<strong>绝不调用 POST</strong>，而是调用 <code class="language-plaintext highlighter-rouge">check_simulation_progress</code> / <code class="language-plaintext highlighter-rouge">get_result</code>（底层走 <code class="language-plaintext highlighter-rouge">_request_with_retry(..., method='GET')</code>）只读查询已保存的 <code class="language-plaintext highlighter-rouge">progressUrl</code> 或 <code class="language-plaintext highlighter-rouge">alphaId</code>。</li>
+  <li>同时使用 <a href="../../util/network_util.py#L244-L263"><code class="language-plaintext highlighter-rouge">util/network_util.py</code></a> 的 <code class="language-plaintext highlighter-rouge">exception_stack(exc)</code> 记录紧凑无敏感信息的异常栈，用于区分瞬态网络超时（保留 <code class="language-plaintext highlighter-rouge">UNKNOWN</code> 待下次对账）与平台明确终态错误（<code class="language-plaintext highlighter-rouge">ERROR</code>/<code class="language-plaintext highlighter-rouge">FAIL</code>）。</li>
+</ul>
+
+<hr />
+
+<h2 id="5-开发者调用规范小结checklist">5. 开发者调用规范小结（Checklist）</h2>
+
+<ol>
+  <li><strong>只读查询单条资源</strong>：直接调用 <code class="language-plaintext highlighter-rouge">await _request_with_retry(session, url, method='GET', semaphore=..., rate_limiter=...)</code>。</li>
+  <li><strong>拉取分页列表（特别是写本地字典库）</strong>：使用 <code class="language-plaintext highlighter-rouge">await fetch_paginated(session, base_url, ..., require_complete=True)</code>，切勿手写 <code class="language-plaintext highlighter-rouge">while offset &lt; count</code> 循环。</li>
+  <li><strong>拉取可能超过 1,000 条的 Alpha 列表</strong>：使用 <code class="language-plaintext highlighter-rouge">await stratified_fetch(...)</code> 自动按指标区间二分。</li>
+  <li><strong>具有外部副作用的 <code class="language-plaintext highlighter-rouge">POST</code>（如发起回测）</strong>：
+    <ul>
+      <li>必须通过 <code class="language-plaintext highlighter-rouge">request_with_response_policy</code> 或 <code class="language-plaintext highlighter-rouge">_request_with_retry</code> 挂载 <code class="language-plaintext highlighter-rouge">before_attempt</code>（持久化意图）+ <code class="language-plaintext highlighter-rouge">on_response</code>（捕获 <code class="language-plaintext highlighter-rouge">Location</code>）+ <code class="language-plaintext highlighter-rouge">on_error</code>（当 <code class="language-plaintext highlighter-rouge">not exc.request_not_sent</code> 时返回 <code class="language-plaintext highlighter-rouge">False</code> 禁止盲目重发 POST）。</li>
+      <li>永远依赖 <code class="language-plaintext highlighter-rouge">_request_with_retry</code> 内置的 <strong>Location 硬门禁</strong> 与 <strong>同账号 401 世代自愈</strong>，不要在业务层编写 <code class="language-plaintext highlighter-rouge">while 401: login()</code> 循环。</li>
+    </ul>
+  </li>
+</ol>
+
+        </div>
+
+        
+
+        
+        
+  <div class="page-comments">
+    <div id="disqus_thread"></div>
+    <script>
+      var disqus_config = function () {
+        this.page.url = 'https://roshameow.github.io//personal_homepage/code/alpha19/';
+        this.page.identifier = 'https://roshameow.github.io//personal_homepage/code/alpha19/';
+      };
+
+      (function() {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://https-roshameow-github-io-personal-homepage.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+  </div>
+
+
+        
+
+        <nav class="page-pagination" role="navigation">
+  
+    <a class="page-previous" href="/personal_homepage/algorithm/alpha18/">
+      <h4 class="page-pagination-label">Previous</h4>
+      <span class="page-pagination-title">
+        <i class="fas fa-arrow-left"></i> 大量探索优化异步任务调度–代码实现
+
+      </span>
+    </a>
+  
+
+  
+    <a class="page-next" href="/personal_homepage/tool/llm-protocal/">
+      <h4 class="page-pagination-label">Next</h4>
+      <span class="page-pagination-title">
+        LLM接口协议梳理
+ <i class="fas fa-arrow-right"></i>
+      </span>
+    </a>
+  
+</nav>
+
+      </div>
+
+    </div>
+  </article>
+</main>
+
+    <footer id="footer" class="site-footer">
+  <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+<div class="social-icons"><a class="social-icon" href="/personal_homepage/atom.xml"><i class="fas fa-rss-square fa-2x" title="Feed"></i></a><a class="social-icon" href="https://github.com/roshameow"><i class="fab fa-github-square fa-2x" title="GitHub"></i></a><a class="social-icon" href="https://www.linkedin.com/in/wen-liu-06503a7b/"><i class="fab fa-linkedin fa-2x" title="LinkedIn"></i></a><a class="social-icon" href="mailto:w.liuatnk@gmail.com"><i class="fas fa-envelope-square fa-2x" title="e-mail"></i></a></div><div class="copyright">
+    
+      <p>&copy; 2026 Liu, Wen's Home Page. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://github.com/mmistakes/so-simple-theme" rel="nofollow">So Simple</a>.</p>
+    
+  </div>
+</footer>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="/personal_homepage/assets/js/main.min.js"></script>
+<script src="https://use.fontawesome.com/releases/v5.0.12/js/all.js"></script><script src="/personal_homepage/assets/js/content-tables.js" defer></script>
+
+<script>
+(function () {
+  'use strict';
+
+  var types = {
+    NOTE: 'note', INFO: 'note', ABSTRACT: 'note', SUMMARY: 'note', TLDR: 'note',
+    EXAMPLE: 'note', QUOTE: 'note', CITE: 'note',
+    TIP: 'tip', HINT: 'tip', IMPORTANT: 'tip', SUCCESS: 'tip', CHECK: 'tip', DONE: 'tip',
+    QUESTION: 'warning', HELP: 'warning', FAQ: 'warning',
+    WARNING: 'warning', CAUTION: 'warning', ATTENTION: 'warning',
+    DANGER: 'danger', ERROR: 'danger', BUG: 'danger',
+    FAILURE: 'danger', FAIL: 'danger', MISSING: 'danger'
+  };
+  var icons = {
+    note: 'M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z M12 11v6 M12 7h.01',
+    tip: 'M9 18h6 M10 21h4 M9 15a6 6 0 1 1 6 0v3H9z',
+    warning: 'M12 3L2 21h20z M12 9v5 M12 17h.01',
+    danger: 'M7 3h10l4 4v10l-4 4H7l-4-4V7z M9 9l6 6 M15 9l-6 6'
+  };
+
+  function makeIcon(type) {
+    var namespace = 'http://www.w3.org/2000/svg';
+    var svg = document.createElementNS(namespace, 'svg');
+    svg.setAttribute('class', 'callout-icon');
+    svg.setAttribute('viewBox', '0 0 24 24');
+    svg.setAttribute('width', '20');
+    svg.setAttribute('height', '20');
+    svg.setAttribute('fill', 'none');
+    svg.setAttribute('stroke', 'currentColor');
+    svg.setAttribute('stroke-width', '2');
+    svg.setAttribute('stroke-linecap', 'round');
+    svg.setAttribute('stroke-linejoin', 'round');
+    svg.setAttribute('aria-hidden', 'true');
+    svg.setAttribute('focusable', 'false');
+    var path = document.createElementNS(namespace, 'path');
+    path.setAttribute('d', icons[type]);
+    svg.appendChild(path);
+    return svg;
+  }
+
+  // A soft break is a text newline; a Markdown hard break is a <br>.
+  // Do not split newlines inside inline code or other literal content.
+  function firstBreak(parent) {
+    for (var node = parent.firstChild; node; node = node.nextSibling) {
+      if (node.nodeType === 3) {
+        var offset = node.data.search(/[\r\n]/);
+        if (offset !== -1) return { node: node, offset: offset };
+      } else if (node.nodeType === 1) {
+        if (node.tagName === 'BR') return { node: node };
+        if (/^(CODE|PRE|SCRIPT|STYLE|TEXTAREA)$/.test(node.tagName)) continue;
+        var result = firstBreak(node);
+        if (result) return result;
+      }
+    }
+    return null;
+  }
+
+  function transformCallouts() {
+    document.querySelectorAll('.page-content blockquote').forEach(function (quote) {
+      if (quote.closest('pre, code, .highlight, .highlighter-rouge')) return;
+      var paragraph = quote.firstElementChild;
+      if (!paragraph || paragraph.tagName !== 'P') return;
+
+      // Require the marker in a direct text node: <code>[!WARNING]</code>
+      // (and markers merely mentioned later in a quote) must remain literal.
+      var markerNode = paragraph.firstChild;
+      if (!markerNode || markerNode.nodeType !== 3) return;
+      var marker = markerNode.data.match(/^[\t \r\n]*\[!([a-z][a-z0-9-]*)\]([+-])?(?=[\t \r\n]|$)[\t ]*/i);
+      if (!marker) return;
+      var name = marker[1].toUpperCase();
+      if (!Object.prototype.hasOwnProperty.call(types, name)) return;
+      var type = types[name];
+      var label = name === 'TLDR' ? 'TL;DR' : name.charAt(0) + name.slice(1).toLowerCase();
+      markerNode.deleteData(0, marker[0].length);
+
+      var boundary = firstBreak(paragraph);
+      var range = document.createRange();
+      range.selectNodeContents(paragraph);
+      if (boundary) {
+        if (boundary.node.nodeType === 3) range.setEnd(boundary.node, boundary.offset);
+        else range.setEndBefore(boundary.node);
+      }
+      var titleContent = range.extractContents();
+      if (boundary) {
+        if (boundary.node.nodeType === 3) {
+          var breakLength = boundary.node.data.slice(0, 2) === '\r\n' ? 2 : 1;
+          boundary.node.deleteData(0, breakLength);
+        } else {
+          boundary.node.parentNode.removeChild(boundary.node);
+        }
+      }
+      if (!paragraph.textContent.trim() && !paragraph.children.length) {
+        quote.removeChild(paragraph);
+      }
+
+      var folding = !!marker[2];
+      var callout = document.createElement(folding ? 'details' : 'div');
+      // Keep author-provided IDs, language, direction, and classes.
+      Array.prototype.forEach.call(quote.attributes, function (attribute) {
+        callout.setAttribute(attribute.name, attribute.value);
+      });
+      callout.classList.add('callout', 'callout--' + type);
+      callout.setAttribute('data-callout', name.toLowerCase());
+      callout.setAttribute('aria-label', label);
+      if (folding) {
+        callout.removeAttribute('role');
+        if (marker[2] === '+') callout.setAttribute('open', '');
+        else callout.removeAttribute('open');
+      } else {
+        callout.setAttribute('role', 'note');
+      }
+
+      var title = document.createElement(folding ? 'summary' : 'div');
+      title.className = 'callout-title';
+      title.appendChild(makeIcon(type));
+      var titleText = document.createElement('span');
+      titleText.className = 'callout-title-text';
+      if (titleContent.textContent.trim() || titleContent.childElementCount) {
+        titleText.appendChild(titleContent);
+      } else {
+        titleText.textContent = label;
+      }
+      title.appendChild(titleText);
+      callout.appendChild(title);
+
+      var body = document.createElement('div');
+      body.className = 'callout-body';
+      while (quote.firstChild) body.appendChild(quote.firstChild);
+      callout.appendChild(body);
+      quote.parentNode.replaceChild(callout, quote);
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', transformCallouts);
+  } else {
+    transformCallouts();
+  }
+})();
+</script>
+<!-- <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'G-9TMSCDTBGN', 'auto');
+  ga('send', 'pageview');
+</script> -->
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9TMSCDTBGN"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-9TMSCDTBGN');
+</script>
+
+
+
+<!-- MathJax -->
+<style>
+    /* Only oversized equations get this wrapper; ordinary inline math stays inline. */
+    .math-scroll {
+        display: block;
+        max-width: 100%;
+        overflow-x: auto;
+        overflow-y: hidden;
+        padding-block: 0.5em;
+        scrollbar-width: thin;
+    }
+    .math-scroll > mjx-container[jax] {
+        display: inline-block;
+        margin: 0;
+    }
+    .math-scroll:focus-visible {
+        outline: 2px solid currentColor;
+        outline-offset: 2px;
+    }
+</style>
+<script>
+    function fitMathToColumn() {
+        document.querySelectorAll('mjx-container').forEach(function (container) {
+            var wrapper = container.parentElement.classList.contains('math-scroll') ? container.parentElement : null;
+            var column = wrapper ? wrapper.parentElement : container.parentElement;
+            while (column && ['inline', 'contents'].includes(getComputedStyle(column).display)) {
+                column = column.parentElement;
+            }
+            if (!column) return;
+            var style = getComputedStyle(column);
+            var available = column.clientWidth - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight);
+            var ink = container.querySelector('mjx-math, svg');
+            var width = (ink || container).getBoundingClientRect().width;
+            if (width > available + 1) {
+                if (!wrapper) {
+                    wrapper = document.createElement('span');
+                    wrapper.className = 'math-scroll';
+                    wrapper.tabIndex = 0;
+                    wrapper.setAttribute('role', 'region');
+                    wrapper.setAttribute('aria-label', 'Mathematical formula; scroll horizontally to read all');
+                    wrapper.title = 'Scroll horizontally to read the full formula';
+                    container.before(wrapper);
+                    wrapper.appendChild(container);
+                }
+            } else if (wrapper) {
+                wrapper.replaceWith(container);
+            }
+        });
+    }
+    // Pin the engine, autoloaded TeX extensions, menu and fonts to local assets.
+    window.MathJax = {
+        loader: {
+            paths: { mathjax: "/personal_homepage/assets/js/vendor/mathjax/es5" },
+            load: ['[tex]/textmacros']
+        },
+        tex: {
+            tags: "ams",
+            packages: { '[+]': ['textmacros'] },
+            inlineMath: [['$', '$'], ['\\(', '\\)']],
+            displayMath: [['$$', '$$'], ['\\[', '\\]']]
+        },
+        chtml: {
+            fontURL: "/personal_homepage/assets/js/vendor/mathjax/es5/output/chtml/fonts/woff-v2"
+        },
+        startup: {
+            pageReady: function () {
+                return MathJax.startup.defaultPageReady().then(function () {
+                    return document.fonts ? document.fonts.ready : undefined;
+                }).then(function () {
+                    fitMathToColumn();
+                    var scheduled = false;
+                    window.addEventListener('resize', function () {
+                        if (scheduled) return;
+                        scheduled = true;
+                        requestAnimationFrame(function () {
+                            scheduled = false;
+                            fitMathToColumn();
+                        });
+                    });
+                });
+            }
+        },
+        options: {
+            // Keep examples (including literal dollar signs) out of the typesetter.
+            skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code', 'annotation', 'annotation-xml']
+        }
+    };
+</script>
+<script id="MathJax-script" async src="/personal_homepage/assets/js/vendor/mathjax/es5/tex-mml-chtml.js"></script>
+
+
+
+
+<!-- Mermaid -->
+<style>
+  .mermaid-diagram {
+    max-width: 100%;
+    margin: 0.85rem 0;
+    overflow-x: auto;
+  }
+  .mermaid-diagram:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+  }
+  .page-content pre.mermaid {
+    margin: 0;
+    padding: 0.25rem 0;
+    text-align: center;
+    background: transparent;
+    overflow: visible;
+    font-family: inherit;
+  }
+  .page-content pre.mermaid[data-processed] {
+    white-space: normal;
+  }
+  pre.mermaid svg {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    height: auto;
+  }
+  .mermaid-diagram .cluster-label {
+    font-weight: 700;
+  }
+  .mermaid-error {
+    font-size: 0.85em;
+    color: #9a3412;
+  }
+</style>
+<script src="/personal_homepage/assets/js/vendor/mermaid-11.17.2.min.js"></script>
+<script>
+(function () {
+  'use strict';
+
+  function normalizeMermaidSource(source) {
+    // Mermaid 11 accepts A <-- "label" --- B but creates an INVALID edge.
+    // Render the equivalent B -->|"label"| A, without editing the Markdown.
+    var body = source.trimStart()
+      .replace(/^---\r?\n[\s\S]*?\r?\n---(?:\r?\n|$)/, '')
+      .replace(/%%\{[\s\S]*?\}%%/g, '')
+      .replace(/^[\t ]*%%.*$/gm, '').trimStart();
+    if (!/^(?:flowchart|graph)\b/.test(body)) return source;
+
+    var started = false;
+    var quoted = false;
+    return source.replace(/[^\r\n]+/g, function (line) {
+      if (!started && !/^\s*(?:flowchart|graph)\b/.test(line)) return line;
+      started = true;
+      var normalized = quoted ? line : line.replace(
+        /^([\t ]*)([A-Za-z_][\w-]*)[\t ]*<--[\t ]*("[^"\r\n]*")[\t ]*---[\t ]*([A-Za-z_][\w-]*)([\t ]*;?[\t ]*(?:%%.*)?)$/,
+        function (_, indent, left, label, right, suffix) {
+          return indent + right + ' -->|' + label + '| ' + left + suffix;
+        }
+      );
+      // Never rewrite an example inside a multiline quoted node label, and
+      // never let quotes inside a %% comment affect the following lines.
+      for (var i = 0; i < line.length; i++) {
+        if (!quoted && line[i] === '%' && line[i + 1] === '%') break;
+        if (line[i] === '"') quoted = !quoted;
+      }
+      return normalized;
+    });
+  }
+
+  async function renderDiagrams() {
+    var blocks = document.querySelectorAll('code.language-mermaid');
+    if (!blocks.length) return;
+    if (typeof mermaid === 'undefined') {
+      blocks.forEach(function (code) {
+        var original = code.closest('.highlighter-rouge') || code.closest('pre');
+        if (!original) return;
+        var message = document.createElement('p');
+        message.className = 'mermaid-error';
+        message.setAttribute('role', 'status');
+        message.textContent = '图表组件加载失败，请刷新页面重试。Mermaid 源码已保留。';
+        original.after(message);
+      });
+      return;
+    }
+
+    // Render every diagram as Mermaid, including diagrams with multiple subgraphs.
+    // Disable the automatic pass so it cannot race with our explicit rendering.
+    var skin = getComputedStyle(document.documentElement);
+    function color(name, fallback) {
+      return skin.getPropertyValue('--mermaid-' + name).trim() || fallback;
+    }
+    var background = color('background', '#ffffff');
+    var text = color('text', '#000000');
+    var border = color('border', '#cccccc');
+    var nodeBorder = color('node-border', '#b8b9c0');
+    var cluster = color('cluster-background', '#f9f9fa');
+    var line = color('line', '#858795');
+    var palettes = [
+      ['#e4eaf0', '#f4f6f9', '#a5b3c2'], // slate blue
+      ['#e8f0ea', '#f5f8f5', '#a8bcae'], // sage
+      ['#f3ede3', '#faf7f2', '#c6b69c'], // sand
+      ['#ebe8f1', '#f7f5fa', '#b5adc5'], // lavender
+      ['#e4eeee', '#f3f8f8', '#a0baba']  // muted teal
+    ].map(function (fallbacks, index) {
+      return {
+        node: color('palette-' + index + '-node', fallbacks[0]),
+        cluster: color('palette-' + index + '-cluster', index === 0 ? cluster : fallbacks[1]),
+        border: color('palette-' + index + '-border', fallbacks[2])
+      };
+    });
+    var fontFamily = getComputedStyle(document.body).fontFamily ||
+      '"Source Sans Pro", sans-serif';
+    // Mermaid fixes label dimensions during layout. Wait for web fonts so a
+    // later font swap cannot make the measured label box too small.
+    if (document.fonts) await document.fonts.ready;
+
+    var theme = "default";
+    // The site's default follows its active skin. Explicit forest/dark/etc.
+    // choices remain available for sites that deliberately select them.
+    if (theme === 'default') theme = 'base';
+
+    var config = {
+      startOnLoad: false,
+      securityLevel: 'strict',
+      fontFamily: fontFamily,
+      // Native SVG text avoids foreignObject clipping and article paragraph CSS.
+      htmlLabels: false,
+      flowchart: {
+        inheritDir: true,
+        curve: 'linear',
+        nodeSpacing: 24,
+        rankSpacing: 28,
+        padding: 8,
+        diagramPadding: 8,
+        wrappingWidth: 180,
+        // Nested cluster borders must start below the parent's full title line.
+        subGraphTitleMargin: { top: 4, bottom: 12 }
+      },
+      theme: theme,
+      themeVariables: theme === 'base' ? {
+        fontFamily: fontFamily,
+        fontSize: '14px',
+        background: background,
+        primaryColor: palettes[0].node,
+        primaryTextColor: text,
+        primaryBorderColor: nodeBorder,
+        secondaryColor: palettes[1].node,
+        secondaryTextColor: text,
+        secondaryBorderColor: border,
+        tertiaryColor: palettes[2].node,
+        tertiaryTextColor: text,
+        tertiaryBorderColor: border,
+        lineColor: line,
+        textColor: text,
+        mainBkg: palettes[0].node,
+        nodeBorder: nodeBorder,
+        nodeTextColor: text,
+        clusterBkg: palettes[0].cluster,
+        clusterBorder: border,
+        titleColor: text,
+        defaultLinkColor: line,
+        edgeLabelBackground: background,
+        noteBkgColor: palettes[2].node,
+        noteTextColor: text,
+        noteBorderColor: border,
+        actorBkg: palettes[0].node,
+        actorBorder: nodeBorder,
+        actorTextColor: text,
+        actorLineColor: border,
+        signalColor: line,
+        signalTextColor: text
+      } : { fontFamily: fontFamily }
+    };
+
+    function applyFlowchartPalette(svg) {
+      if (theme !== 'base' || !/^flowchart/.test(svg.getAttribute('aria-roledescription') || '')) return;
+
+      function tint(group, shapes, index, kind) {
+        // Author-supplied classDef/style colors take precedence over auto accents.
+        var customClass = Array.from(group.classList).some(function (name) {
+          return !['node', 'default', 'cluster', 'clickable'].includes(name);
+        });
+        if (customClass || !shapes.length || shapes.some(function (shape) {
+          return shape.style.getPropertyValue('fill') || shape.style.getPropertyValue('stroke');
+        })) return;
+        group.setAttribute('data-mermaid-palette', index);
+        shapes.forEach(function (shape) {
+          // Keep fallbacks in the SVG so exported diagrams retain their colors.
+          if (shape.getAttribute('fill') !== 'none') {
+            shape.style.fill = 'var(--mermaid-palette-' + index + '-' + kind + ', ' + palettes[index][kind] + ')';
+          }
+          shape.style.stroke = 'var(--mermaid-palette-' + index + '-border, ' + palettes[index].border + ')';
+        });
+      }
+
+      var groups = Array.from(svg.querySelectorAll('g.cluster')).map(function (group, index) {
+        var rect = group.querySelector('rect');
+        return { group: group, rect: rect, bounds: rect && rect.getBoundingClientRect(), index: index % palettes.length };
+      }).filter(function (entry) { return entry.rect; });
+      // Mermaid's SVG stores clusters flat. Match by the actual layout so nodes
+      // inherit their smallest enclosing group, including nested schedulers.
+      var nodes = Array.from(svg.querySelectorAll('g.node')).map(function (node) {
+        return { node: node, bounds: node.getBoundingClientRect() };
+      });
+      groups.forEach(function (entry) { tint(entry.group, [entry.rect], entry.index, 'cluster'); });
+      groups.sort(function (a, b) { return a.bounds.width * a.bounds.height - b.bounds.width * b.bounds.height; });
+      nodes.forEach(function (entry) {
+        var box = entry.bounds;
+        var parent = groups.find(function (group) {
+          var bounds = group.bounds;
+          return box.left >= bounds.left - 1 && box.right <= bounds.right + 1 &&
+            box.top >= bounds.top - 1 && box.bottom <= bounds.bottom + 1;
+        });
+        var shapes = [];
+        entry.node.querySelectorAll(':scope > .label-container').forEach(function (container) {
+          // Rounded/hand-drawn shapes wrap paths in a group. Include the
+          // container in the author-style check, then tint the actual paths.
+          shapes.push(container);
+          shapes.push.apply(shapes, container.querySelectorAll('path, rect, circle, ellipse, polygon, polyline'));
+        });
+        tint(entry.node, shapes, parent ? parent.index : 0, 'node');
+      });
+    }
+
+    function hasNestedSubgraphs(source) {
+      var depth = 0;
+      return source.split(/\r?\n/).some(function (line) {
+        if (/^\s*subgraph\b/.test(line)) return ++depth > 1;
+        if (/^\s*end\s*(?:;|%%.*)?$/.test(line)) depth = Math.max(0, depth - 1);
+        return false;
+      });
+    }
+
+    for (var code of blocks) {
+      var original = code.closest('.highlighter-rouge') || code.closest('pre');
+      if (!original) continue;
+
+      var wrapper = document.createElement('div');
+      wrapper.className = 'mermaid-diagram';
+      wrapper.tabIndex = 0;
+      wrapper.setAttribute('role', 'region');
+      wrapper.setAttribute('aria-label', 'Mermaid diagram (scroll horizontally)');
+
+      var pre = document.createElement('pre');
+      pre.className = 'mermaid';
+      pre.textContent = normalizeMermaidSource(code.textContent);
+      wrapper.appendChild(pre);
+      original.replaceWith(wrapper);
+
+      try {
+        // Dagre reserves only half rankSpacing above a nested cluster. Keep
+        // that space taller than its parent's title, without spreading out
+        // the ordinary (non-nested) compact flowcharts.
+        mermaid.initialize(Object.assign({}, config, {
+          flowchart: Object.assign({}, config.flowchart, {
+            rankSpacing: hasNestedSubgraphs(code.textContent) ? 56 : config.flowchart.rankSpacing
+          })
+        }));
+        await mermaid.run({ nodes: [pre] });
+        var svg = pre.querySelector('svg');
+        if (svg && svg.viewBox.baseVal.width) {
+          // Do not shrink labels to illegible text on narrow screens;
+          // keep at least 90% of the natural size and scroll the diagram instead.
+          svg.style.minWidth = (svg.viewBox.baseVal.width * 0.9) + 'px';
+        }
+        if (svg) applyFlowchartPalette(svg);
+      } catch (error) {
+        // A malformed diagram must not prevent other diagrams from rendering
+        // or make the original source disappear.
+        wrapper.replaceChildren(original);
+        var message = document.createElement('p');
+        message.className = 'mermaid-error';
+        message.setAttribute('role', 'status');
+        message.textContent = '图表渲染失败，已保留 Mermaid 源码。';
+        wrapper.appendChild(message);
+        console.warn('Mermaid diagram could not be rendered:', error);
+      }
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', renderDiagrams);
+  } else {
+    renderDiagrams();
+  }
+})();
+</script>
+
+
+  </body>
+
+</html>

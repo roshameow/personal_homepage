@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+<!--
+    So Simple Jekyll Theme 3.2.0
+    Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+    Free for personal and commercial use under the MIT license
+    https://github.com/mmistakes/so-simple-theme/blob/master/LICENSE
+-->
+<html lang="en-US" class="no-js">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  
+
+  
+  
+  <!-- Begin Jekyll SEO tag v2.9.1 -->
+<title>从过度防御的歪路纠偏：GUI/CLI 6 态极简控制面、数据面板统一与工程收口 | Liu, Wen’s Home Page</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="从过度防御的歪路纠偏：GUI/CLI 6 态极简控制面、数据面板统一与工程收口" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="本文是 QuantNight GUI/CLI 统一架构系列的第二篇（接前篇 《回测系统任务控制生命周期：入口、证据、故障分支与行为验收》（alpha20））。 前篇确立了“GUI 与 CLI 共用 quantnight-task-core + 常驻 headless host + Unix IPC”的基础拓扑，方向本身是对的；但在随后由 GPT 主导的多轮维护中，系统逐步走偏——堆出了 9+ 状态、20+ 历史证明字段、27 字段快照比对和满篇防御性八股的 SKILL.md，反而造成任务频繁卡死。 与其说这是一次“架构进化”，不如说是一次把控制面从 GPT 过度防御的歪路上拉回正轨的纠偏与大扫除（2026-11-17–19：初轮 AGY 诊断 → Pi 失败的重构尝试 → AGY 推倒收口），同时顺带将只读数据面板统一进 task-core::data_panel。关于开发与 AI 维护过程中暴露出的工程陷阱，详见配套复盘 《用 AI 维护复杂控制面基础设施：六大工程陷阱》。" />
+<meta name="twitter:description" property="og:description" content="本文是 QuantNight GUI/CLI 统一架构系列的第二篇（接前篇 《回测系统任务控制生命周期：入口、证据、故障分支与行为验收》（alpha20））。 前篇确立了“GUI 与 CLI 共用 quantnight-task-core + 常驻 headless host + Unix IPC”的基础拓扑，方向本身是对的；但在随后由 GPT 主导的多轮维护中，系统逐步走偏——堆出了 9+ 状态、20+ 历史证明字段、27 字段快照比对和满篇防御性八股的 SKILL.md，反而造成任务频繁卡死。 与其说这是一次“架构进化”，不如说是一次把控制面从 GPT 过度防御的歪路上拉回正轨的纠偏与大扫除（2026-11-17–19：初轮 AGY 诊断 → Pi 失败的重构尝试 → AGY 推倒收口），同时顺带将只读数据面板统一进 task-core::data_panel。关于开发与 AI 维护过程中暴露出的工程陷阱，详见配套复盘 《用 AI 维护复杂控制面基础设施：六大工程陷阱》。" />
+<link rel="canonical" href="https://roshameow.github.io//personal_homepage/tool/alpha27/" />
+<meta property="og:url" content="https://roshameow.github.io//personal_homepage/tool/alpha27/" />
+<meta property="og:site_name" content="Liu, Wen’s Home Page" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2026-11-19T00:00:00+00:00" />
+<meta property="article:modified_time" content="2026-11-19T22:50:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="从过度防御的歪路纠偏：GUI/CLI 6 态极简控制面、数据面板统一与工程收口" />
+<meta name="twitter:site" content="@" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2026-11-19T22:50:00+00:00","datePublished":"2026-11-19T00:00:00+00:00","description":"本文是 QuantNight GUI/CLI 统一架构系列的第二篇（接前篇 《回测系统任务控制生命周期：入口、证据、故障分支与行为验收》（alpha20））。 前篇确立了“GUI 与 CLI 共用 quantnight-task-core + 常驻 headless host + Unix IPC”的基础拓扑，方向本身是对的；但在随后由 GPT 主导的多轮维护中，系统逐步走偏——堆出了 9+ 状态、20+ 历史证明字段、27 字段快照比对和满篇防御性八股的 SKILL.md，反而造成任务频繁卡死。 与其说这是一次“架构进化”，不如说是一次把控制面从 GPT 过度防御的歪路上拉回正轨的纠偏与大扫除（2026-11-17–19：初轮 AGY 诊断 → Pi 失败的重构尝试 → AGY 推倒收口），同时顺带将只读数据面板统一进 task-core::data_panel。关于开发与 AI 维护过程中暴露出的工程陷阱，详见配套复盘 《用 AI 维护复杂控制面基础设施：六大工程陷阱》。","headline":"从过度防御的歪路纠偏：GUI/CLI 6 态极简控制面、数据面板统一与工程收口","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/tool/alpha27/"},"url":"https://roshameow.github.io//personal_homepage/tool/alpha27/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  
+
+  <script>
+    /* Cut the mustard */
+    if ('querySelector' in document && 'addEventListener' in window) {
+      document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + 'js';
+    }
+  </script>
+
+  <link rel="stylesheet" href="/personal_homepage/assets/css/main.css">
+  <link rel="stylesheet" href="/personal_homepage/assets/css/skins/default.css">
+  
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,700,700i|Lora:400,400i,700,700i">
+  <link rel="alternate" type="application/atom+xml" title="Liu, Wen&#39;s Home Page" href="/personal_homepage/atom.xml">
+<!-- start custom head snippets -->
+
+<!-- insert favicons. use http://realfavicongenerator.net/ -->
+<link rel="shortcut icon" type="image/x-icon" href="/personal_homepage/docs/images/logo.ico">
+<!-- end custom head snippets -->
+
+</head>
+
+  <body class="layout--post  从过度防御的歪路纠偏-gui-cli-6-态极简控制面-数据面板统一与工程收口">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#primary-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+  <div class="navigation-wrapper">
+    <a href="#menu-toggle" id="menu-toggle">Menu</a>
+    <nav id="primary-nav" class="site-nav animated drop">
+      <ul><li><a href="/personal_homepage/">Home</a></li><li><a href="/personal_homepage/posts/">Posts</a></li><li><a href="/personal_homepage/categories/">Categories</a></li><li><a href="/personal_homepage/tags/">Tags</a></li><li><a href="/personal_homepage/family/">Family</a></li><li><a href="/personal_homepage/search/">Search</a></li></ul>
+    </nav>
+  </div><!-- /.navigation-wrapper -->
+
+
+    <header class="masthead">
+  <div class="wrap">
+    
+    
+    
+      
+        <div class="site-title animated fadeIn"><a href="/personal_homepage/">Liu, Wen's Home Page</a></div>
+      
+      <p class="site-description animated fadeIn" itemprop="description">Work, Experiments and Ideas.</p>
+    
+  </div>
+</header><!-- /.masthead -->
+
+
+    <main id="main" class="main-content" aria-label="Content">
+  <article class="h-entry">
+    
+
+    <div class="page-wrapper">
+      <header class="page-header">
+        
+        
+        <h1 id="page-title" class="page-title p-name">从过度防御的歪路纠偏：GUI/CLI 6 态极简控制面、数据面板统一与工程收口
+</h1>
+        
+      </header>
+
+      <div class="page-sidebar">
+        <div class="page-author h-card p-author"><img src="/personal_homepage/docs/images/logo.svg" class="author-avatar u-photo" alt=""><div class="author-info">
+
+<span class="read-time">3 min read</span>
+
+    <time class="page-date dt-published" datetime="2026-11-19T00:00:00+00:00"><a class="u-url" href="">November 19, 2026</a>
+</time>
+
+  </div>
+</div>
+
+        
+  <h3 class="page-taxonomies-title">Categories</h3>
+  
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a class="p-category" href="/personal_homepage/categories/#tool" title="Pages filed under tool">tool</a></li>
+  </ul>
+
+
+        
+  <h3 class="page-taxonomies-title">Tags</h3>
+  
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a href="/personal_homepage/tags/#architecture" title="Pages tagged architecture" rel="tag">architecture</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#cli" title="Pages tagged cli" rel="tag">cli</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#content" title="Pages tagged content" rel="tag">content</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#gui" title="Pages tagged gui" rel="tag">gui</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#quant" title="Pages tagged quant" rel="tag">quant</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#rust" title="Pages tagged rust" rel="tag">rust</a></li>
+  </ul>
+
+
+        <details id="entry-table-of-contents" class="toc-wrapper" open>
+  <summary>
+    <h2 class="no_toc">
+      Table of Contents
+      <svg class="toc-toggle-icon" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true" focusable="false">
+        <path d="m4 6 4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+      </svg>
+    </h2>
+  </summary>
+  <div class="toc-content">
+    <ul class="inline_toc" id="my_toc"><li><a href="#1-纠偏动因从走偏的防御体系拉回正轨">1. 纠偏动因：从“走偏的防御体系”拉回正轨</a></li><li><a href="#2-纠偏原则三条核心铁律">2. 纠偏原则：三条核心铁律</a></li><li><a href="#3-纠偏后的架构变化6-态控制面与数据面板收拢">3. 纠偏后的架构变化：6 态控制面与数据面板收拢</a><ul><li><a href="#31-能力收敛增量数据面板并入-task-core">3.1 能力收敛增量：数据面板并入 task-core</a></li><li><a href="#32-极简-6-态生命周期流转图">3.2 极简 6 态生命周期流转图</a></li></ul></li><li><a href="#4-纠偏前后对照与后续隔离方向">4. 纠偏前后对照与后续隔离方向</a><ul><li><a href="#后续演进点研发期与研究期运行态隔离">后续演进点：研发期与研究期运行态隔离</a></li></ul></li></ul>
+  </div>
+</details>
+
+        
+<details id="entry-related-posts" class="toc-wrapper" open>
+  <summary>
+    <h2 class="no_toc">
+      Related Posts
+      <svg class="toc-toggle-icon" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true" focusable="false">
+        <path d="m4 6 4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+      </svg>
+    </h2>
+  </summary>
+  <div class="toc-content">
+    <ul>
+      
+      <li><a href="/personal_homepage/data/alpha29/">News & Social Media 新闻流、社交媒体情绪与文本事件数据体系</a></li>
+      
+      <li><a href="/personal_homepage/data/alpha28/">日内 PV 统计量与市场微结构衍生指标体系</a></li>
+      
+      <li><a href="/personal_homepage/thought/agent-infrastructure-pitfalls-2/">用 AI 维护复杂控制面基础设施：为什么越修越死？从补丁膨胀到 6 态收敛的六大工程陷阱</a></li>
+      
+      <li><a href="/personal_homepage/tool/pi-subagent-durable/">pi-subagent-durable：后台子代理的持久化、生命周期与故障自愈</a></li>
+      
+      <li><a href="/personal_homepage/tool/pi-agent-notify/">pi-agent-notify：Coding Agent 的事件总线、非阻塞等待与可靠投递</a></li>
+      
+    </ul>
+  </div>
+</details>
+
+
+
+      </div>
+
+      <div class="page-content">
+        <div class="e-content">
+          <blockquote>
+  <p>本文是 QuantNight GUI/CLI 统一架构系列的第二篇（接前篇 <a href="2026-10-31-alpha20.md">《回测系统任务控制生命周期：入口、证据、故障分支与行为验收》（alpha20）</a>）。<br />
+前篇确立了“GUI 与 CLI 共用 <code class="language-plaintext highlighter-rouge">quantnight-task-core</code> + 常驻 headless host + Unix IPC”的基础拓扑，方向本身是对的；但在随后由 GPT 主导的多轮维护中，系统逐步走偏——堆出了 9+ 状态、20+ 历史证明字段、27 字段快照比对和满篇防御性八股的 <code class="language-plaintext highlighter-rouge">SKILL.md</code>，反而造成任务频繁卡死。<br />
+与其说这是一次“架构进化”，不如说是一次<strong>把控制面从 GPT 过度防御的歪路上拉回正轨的纠偏与大扫除</strong>（2026-11-17–19：初轮 AGY 诊断 → Pi 失败的重构尝试 → AGY 推倒收口），同时顺带将只读数据面板统一进 <code class="language-plaintext highlighter-rouge">task-core::data_panel</code>。关于开发与 AI 维护过程中暴露出的工程陷阱，详见配套复盘 <a href="2026-11-19-agent-infrastructure-pitfalls-2.md">《用 AI 维护复杂控制面基础设施：六大工程陷阱》</a>。</p>
+</blockquote>
+
+<hr />
+
+<h2 id="1-纠偏动因从走偏的防御体系拉回正轨">1. 纠偏动因：从“走偏的防御体系”拉回正轨</h2>
+
+<p>在 <code class="language-plaintext highlighter-rouge">alpha20</code> 之后，GUI 与 CLI 虽然已经接到了同一个 Rust 核心，但长期由 GPT 增量修补出来的控制面反而越走越偏，积累了三类结构包袱：</p>
+
+<ol>
+  <li><strong>控制面状态与证明字段过度膨胀</strong>：<code class="language-plaintext highlighter-rouge">launching</code>、<code class="language-plaintext highlighter-rouge">generation_unknown</code>、<code class="language-plaintext highlighter-rouge">syncing</code>、<code class="language-plaintext highlighter-rouge">deleting</code> 等中间态叠加 <code class="language-plaintext highlighter-rouge">stopConfirmedAt</code>、<code class="language-plaintext highlighter-rouge">launchSettledAttemptId</code>、V1/V2 暂停回执与 27 字段 CAS 快照，导致 <code class="language-plaintext highlighter-rouge">delete</code> / <code class="language-plaintext highlighter-rouge">pause</code> / <code class="language-plaintext highlighter-rouge">generate</code> 动辄因某项历史凭证缺失或超时读统计而卡死。</li>
+  <li><strong>只读数据面板与历史查询双端分裂</strong>：任务控制虽然收拢进了 <code class="language-plaintext highlighter-rouge">task-core</code>，但 Alpha 查询、PnL、数据集面板仍分散在 GUI 独立数据池与 MCP Python 重写实现（<code class="language-plaintext highlighter-rouge">find_history_alphas</code>）中，同一查询长期维护两套逻辑。</li>
+  <li><strong>双仓构建与常驻宿主生命周期不透明</strong>：macOS 下双 Cargo 工作区编译产物膨胀至 <strong>56 GB</strong>，<code class="language-plaintext highlighter-rouge">cargo test</code> 会覆盖磁盘 <code class="language-plaintext highlighter-rouge">taskctl</code> 二进制引发 <code class="language-plaintext highlighter-rouge">image_stale</code>，且旧报错提示与文档存在滞后误导。</li>
+</ol>
+
+<hr />
+
+<h2 id="2-纠偏原则三条核心铁律">2. 纠偏原则：三条核心铁律</h2>
+
+<p>本次重构将整个 <code class="language-plaintext highlighter-rouge">gui/cli/core</code> 的控制逻辑强行收敛为人类 1 分钟即可核对验收的 <strong>三条铁律</strong>（真源见 <code class="language-plaintext highlighter-rouge">docs/task_control_lifecycle.md</code>）：</p>
+
+<ol>
+  <li><strong>只认“当前真实进程 + 数据集合”，不认历史证明字段</strong>
+    <ul>
+      <li><strong><code class="language-plaintext highlighter-rouge">start</code> / <code class="language-plaintext highlighter-rouge">generate</code></strong>：只核验当前执行端是否存在存活 <code class="language-plaintext highlighter-rouge">consumer</code> / <code class="language-plaintext highlighter-rouge">writer</code> 进程（存在则拒绝或幂等返回 <code class="language-plaintext highlighter-rouge">already_running</code>；不存在且候选数据就绪即直接启动）。彻底移除 <code class="language-plaintext highlighter-rouge">stopConfirmedAt</code>、<code class="language-plaintext highlighter-rouge">launchSettledAttemptId</code>、<code class="language-plaintext highlighter-rouge">acceptedObservation</code> 等历史门禁；派发前失败自动还原进入前状态。</li>
+      <li><strong><code class="language-plaintext highlighter-rouge">pause</code> / <code class="language-plaintext highlighter-rouge">delete</code></strong>：<strong>任意状态下均可直接调用</strong>。持本地 <code class="language-plaintext highlighter-rouge">MissionLocks</code> 文件锁 → 停掉该任务实际执行进程并确认退出 → <code class="language-plaintext highlighter-rouge">pause</code> 落为 <code class="language-plaintext highlighter-rouge">paused</code>（生成中断收敛为 <code class="language-plaintext highlighter-rouge">pending</code>）；<code class="language-plaintext highlighter-rouge">delete</code> 直接将远程（若有，含半途中断的 <code class="language-plaintext highlighter-rouge">syncing</code>）与本地候选集合重命名为 <code class="language-plaintext highlighter-rouge">&lt;task&gt;__archive_&lt;taskId&gt;</code> 并落为 <code class="language-plaintext highlighter-rouge">deactive</code>，不再因统计计数超时或缺少历史停止证明而卡死。</li>
+    </ul>
+  </li>
+  <li><strong>顶层状态压缩回 6 个直观状态</strong>
+    <ul>
+      <li>正常生命周期只保留 6 态：<code class="language-plaintext highlighter-rouge">pending</code> → <code class="language-plaintext highlighter-rouge">generating</code> → <code class="language-plaintext highlighter-rouge">ready</code> → <code class="language-plaintext highlighter-rouge">running</code> → <code class="language-plaintext highlighter-rouge">paused</code> / <code class="language-plaintext highlighter-rouge">completed</code>（含 <code class="language-plaintext highlighter-rouge">completed_with_errors</code>）→ <code class="language-plaintext highlighter-rouge">deactive</code>。</li>
+      <li>对数据库中可能残留的旧版状态（<code class="language-plaintext highlighter-rouge">launching</code>、<code class="language-plaintext highlighter-rouge">generation_unknown</code>、<code class="language-plaintext highlighter-rouge">syncing</code>、<code class="language-plaintext highlighter-rouge">deleting</code>、<code class="language-plaintext highlighter-rouge">generation_failed</code>），在读取（<code class="language-plaintext highlighter-rouge">list</code> / <code class="language-plaintext highlighter-rouge">status</code>）与操作流转中<strong>按当前存活进程与集合实况自动归一</strong>，绝不作为拒单门禁。</li>
+    </ul>
+  </li>
+  <li><strong>并发安全只靠“本地文件锁 + 极简身份 CAS”</strong>
+    <ul>
+      <li>所有修改操作先获取 <code class="language-plaintext highlighter-rouge">.quantnight/mutators/&lt;task&gt;.lock</code>（同 inode <code class="language-plaintext highlighter-rouge">flock</code>）。</li>
+      <li>MongoDB CAS 彻底废除 27 字段全快照比对（<code class="language-plaintext highlighter-rouge">task_binding_query</code>）与 400 行历史事件重放器（<code class="language-plaintext highlighter-rouge">never_started_history</code>/<code class="language-plaintext highlighter-rouge">never_started_inventory</code>），只核对核心身份与版本五要素：<strong><code class="language-plaintext highlighter-rouge">(_id, name, status, isRemote, updatedAt)</code></strong>（启动收尾额外核对 <code class="language-plaintext highlighter-rouge">launchAttemptId</code>，生成过程额外核对 <code class="language-plaintext highlighter-rouge">generation.id</code>），防止改错同名新任务或并发踩踏。</li>
+    </ul>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="3-纠偏后的架构变化6-态控制面与数据面板收拢">3. 纠偏后的架构变化：6 态控制面与数据面板收拢</h2>
+
+<p>四层控制拓扑本身（<code class="language-plaintext highlighter-rouge">GUI / CLI / Watcher → RuntimeClient → launchd socket → taskctl headless host → Shell / tmux</code>）已在前篇 <a href="2026-10-31-alpha20.md#1-四层控制拓扑与职责边界">alpha20 §1</a> 详述，此处不再重复。本次纠偏与收拢集中在<strong>两处实质改动</strong>：</p>
+
+<h3 id="31-能力收敛增量数据面板并入-task-core">3.1 能力收敛增量：数据面板并入 <code class="language-plaintext highlighter-rouge">task-core</code></h3>
+
+<p>在 <code class="language-plaintext highlighter-rouge">alpha20</code> 中，非任务类 Alpha/PnL/Dataset 查询还保留在“GUI 独立数据池”，而 CLI 与 MCP 各自零散实现；本次通过 <code class="language-plaintext highlighter-rouge">quantnight-task-core::data_panel</code> 完成了<strong>只读数据面的双端平权统一</strong>：</p>
+
+<pre><code class="language-mermaid">flowchart LR
+    GUI["GUI: datas.rs 适配器&lt;br/&gt;(Alpha / PnL / Dataset / Field 面板)"] --&gt; DataCore["quantnight-task-core::data_panel&lt;br/&gt;(统一查询 · RA 聚合 · prod 相关性 · PnL 评分)"]
+    CLI["CLI: taskctl / qn&lt;br/&gt;5 项只读命令 (alphas / alpha-pnl /&lt;br/&gt;datasets / datafields / submission-stats)"] --&gt; DataCore
+    DataCore --&gt; DB[("alpha_db &amp; data_db")]
+    OldMCP["旧 MCP Python: find_history_alphas"] -.-&gt;|"CLI 补齐 5 个过滤参数后正式退役"| DataCore
+</code></pre>
+
+<h3 id="32-极简-6-态生命周期流转图">3.2 极简 6 态生命周期流转图</h3>
+
+<pre><code class="language-mermaid">stateDiagram-v2
+    [*] --&gt; pending : create
+    pending --&gt; generating : generate (持锁核对无活 writer)
+    generating --&gt; ready : 生成成功 (generation.phase=complete)
+    generating --&gt; pending : 生成确认失败或中断 (generation_failed)
+
+    ready --&gt; ready : sync (同步远程候选，失败仍可重 sync 或直接 delete)
+    ready --&gt; running : start (无活 consumer 且候选就绪，5s 确认存活)
+    ready --&gt; ready : start 派发前失败自动还原进入前状态
+    paused --&gt; running : start (无活 consumer 直接重拉)
+
+    running --&gt; paused : pause (停机确认退出，任意状态可调)
+    running --&gt; completed : status (全部项终态 / 含失败记 completed_with_errors)
+    paused --&gt; completed : status (满足终态自动闭合)
+
+    pending --&gt; deactive : delete (任意状态一键停机 + 本地/远端集合重命名 __archive_)
+    generating --&gt; deactive : delete
+    ready --&gt; deactive : delete
+    running --&gt; deactive : delete
+    paused --&gt; deactive : delete
+    completed --&gt; deactive : delete
+</code></pre>
+
+<ul>
+  <li><strong>自动归一机制</strong>：<code class="language-plaintext highlighter-rouge">list</code> 与 <code class="language-plaintext highlighter-rouge">status</code> 刷新时若发现处于 <code class="language-plaintext highlighter-rouge">generating</code> / <code class="language-plaintext highlighter-rouge">generation_unknown</code> 且无存活 <code class="language-plaintext highlighter-rouge">mongo_datum</code> writer（并校验 <code class="language-plaintext highlighter-rouge">generation_owner</code> active scope 缺席），通过 <code class="language-plaintext highlighter-rouge">MissionLocks</code> + 5 字段身份 CAS 自动收敛为 <code class="language-plaintext highlighter-rouge">pending</code>（<code class="language-plaintext highlighter-rouge">generation.phase = "generation_failed"</code>）；旧状态 <code class="language-plaintext highlighter-rouge">launching</code> 在无存活消费者时呈现并归一为 <code class="language-plaintext highlighter-rouge">paused</code>。</li>
+  <li><strong>关键字段精简</strong>：控制面核心字段收拢为 <strong>5 要素 CAS</strong>（<code class="language-plaintext highlighter-rouge">_id, name, status, isRemote, updatedAt</code>）、<code class="language-plaintext highlighter-rouge">generation</code>（将生成进度与顶层状态解耦）、<code class="language-plaintext highlighter-rouge">launchAttemptId</code>（启动批次关联 <code class="language-plaintext highlighter-rouge">tmuxContext</code>）、<code class="language-plaintext highlighter-rouge">tmuxContext</code>（固定系统 <code class="language-plaintext highlighter-rouge">tmux -L default</code> 会话身份）与 <code class="language-plaintext highlighter-rouge">cleanup</code>（归档集合名 <code class="language-plaintext highlighter-rouge">&lt;task&gt;__archive_&lt;taskId&gt;</code>）。</li>
+</ul>
+
+<hr />
+
+<h2 id="4-纠偏前后对照与后续隔离方向">4. 纠偏前后对照与后续隔离方向</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>维度</th>
+      <th>笔记（1）<code class="language-plaintext highlighter-rouge">alpha20</code>（10-31 → 11-08）</th>
+      <th>笔记（2）<code class="language-plaintext highlighter-rouge">alpha27</code>（11-19 收口）</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>核心主题</strong></td>
+      <td>终结 GUI vs Python <code class="language-plaintext highlighter-rouge">taskctl.py</code> 双脑分叉与冷启动延迟</td>
+      <td>终结控制面历史证明链过载，实现状态简化与数据面统一</td>
+    </tr>
+    <tr>
+      <td><strong>任务状态机</strong></td>
+      <td>9+ 状态 + <code class="language-plaintext highlighter-rouge">launchSettledAttemptId</code> + <code class="language-plaintext highlighter-rouge">stopConfirmedAt</code> + 27 字段 CAS</td>
+      <td><strong>6 态极简模型</strong> + 真实进程/集合唯一真源 + <strong>5 字段极简身份 CAS</strong></td>
+    </tr>
+    <tr>
+      <td><strong>数据面板与查询</strong></td>
+      <td>GUI 非任务数据池保留；外部独立维护 <code class="language-plaintext highlighter-rouge">find_history_alphas</code></td>
+      <td><strong><code class="language-plaintext highlighter-rouge">task-core::data_panel</code> 统一 GUI/CLI 五大数据面板</strong>；下线重复的 <code class="language-plaintext highlighter-rouge">find_history_alphas</code></td>
+    </tr>
+    <tr>
+      <td><strong>Skill 与文档</strong></td>
+      <td>长篇防御性 <code class="language-plaintext highlighter-rouge">SKILL.md</code>（399 行）解释内部约束</td>
+      <td><code class="language-plaintext highlighter-rouge">SKILL.md</code> 瘦身至 <strong>68 行</strong>，参数交由 CLI <code class="language-plaintext highlighter-rouge">--help</code> 自解释</td>
+    </tr>
+    <tr>
+      <td><strong>工程构建体积</strong></td>
+      <td>macOS 默认 debug 碎片累计至 56 GB</td>
+      <td><code class="language-plaintext highlighter-rouge">line-tables-only</code> + <code class="language-plaintext highlighter-rouge">split-debuginfo="off"</code> 压至 <strong>~4.0 GB</strong></td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="后续演进点研发期与研究期运行态隔离">后续演进点：研发期与研究期运行态隔离</h3>
+
+<p>在收尾阶段的 <code class="language-plaintext highlighter-rouge">own_jpn_grid144_auto_20261118</code> 实例中，虽然底层回测 consumer 独立健康跑完了 <code class="language-plaintext highlighter-rouge">144/144</code>，但在修改 <code class="language-plaintext highlighter-rouge">crates/task-core/</code> 源码至完成 reload 的 ~5 分钟窗口内，<code class="language-plaintext highlighter-rouge">server.rs::business_fresh</code> 的 <code class="language-plaintext highlighter-rouge">source_stale</code> 拦截导致并发研究会话的 <code class="language-plaintext highlighter-rouge">watch_quant_task.py</code> 立即 <code class="language-plaintext highlighter-rouge">OSError</code> 退出。后续有两条清晰的解耦路线：</p>
+<ol>
+  <li><strong>运行态隔离</strong>：生产研究使用固定版本的 standalone <code class="language-plaintext highlighter-rouge">taskctl</code> 二进制，不再与工作区开发态 <code class="language-plaintext highlighter-rouge">taskctl-dev-binding.json</code> 共享同一源码指纹校验；</li>
+  <li><strong>Watcher 暂态容错</strong>：让 <code class="language-plaintext highlighter-rouge">watch_quant_task.py</code> 识别 <code class="language-plaintext highlighter-rouge">source_stale</code> / <code class="language-plaintext highlighter-rouge">image_stale</code> / <code class="language-plaintext highlighter-rouge">host_draining</code> 时做有限退避重试，避免宿主重载窗口误杀在途监控。</li>
+</ol>
+
+<hr />
+
+<blockquote>
+  <p>[!SUMMARY] 开发与收敛时间轴</p>
+  <ul>
+    <li><strong>11-17 上午（AGY 诊断）</strong>：<strong>锁定“历史证明链”总病灶</strong>；审计近 200 份清理回执定位 3 类真故障（远端 SUPER 缺 <code class="language-plaintext highlighter-rouge">status</code>、22,129 条候选读超时、<code class="language-plaintext highlighter-rouge">9f3fb8b</code> 已修项），确立“以真实进程存活为唯一真源”的简化方向；</li>
+    <li><strong>11-17 午后 – 11-18 上午（Pi 失败重构）</strong>：<strong>审计出 8 大跨层阻塞反例，但编码重构失败</strong>；虽然找全了跨层反例并局部打通 <code class="language-plaintext highlighter-rouge">delete</code> 自动停进程与 <code class="language-plaintext highlighter-rouge">start</code> 三段结果拆解（隔离复验 55/55），但代码实际<strong>净增 1,600+ 行</strong>、不仅没删中间态和 27 字段 CAS 反而新增 <code class="language-plaintext highlighter-rouge">syncing</code> 禁删/禁落 <code class="language-plaintext highlighter-rouge">paused</code> 阻塞，又制造脚本拼接导致测试 220s 超时，最终未更新文档也未重载宿主便半途停工；</li>
+    <li><strong>11-18 下午 – 晚上（AGY 控制面瘦身与工程收口）</strong>：<strong>彻底落地 6 态模型与三条铁律</strong>（前端 <code class="language-plaintext highlighter-rouge">bb70d9f</code> / 后端 <code class="language-plaintext highlighter-rouge">6e37e72</code>）；删掉 27 字段快照与 <code class="language-plaintext highlighter-rouge">never_started_*</code> 重放器，<code class="language-plaintext highlighter-rouge">delete</code> 任意状态停机归档、显式拆分 <code class="language-plaintext highlighter-rouge">archive-research</code>，抽取 <code class="language-plaintext highlighter-rouge">scripts/task_process_inventory.py</code> 解决 220s 测试超时；配置 <code class="language-plaintext highlighter-rouge">line-tables-only</code> + <code class="language-plaintext highlighter-rouge">split-debuginfo="off"</code> 将双端编译目录从 <strong>56 GB 压至 ~4.0 GB</strong>；同步精简 <code class="language-plaintext highlighter-rouge">SKILL.md</code>（399 → 68 行）及 4 个下游技能、重写 <code class="language-plaintext highlighter-rouge">docs/task_control_lifecycle.md</code>；</li>
+    <li><strong>11-19 上午 – 中午（数据面板大统一与工具链修复）</strong>：<strong>完成只读数据面统一并修正 <code class="language-plaintext highlighter-rouge">image_stale</code> 规范</strong>；由 <code class="language-plaintext highlighter-rouge">task-core::data_panel</code>（2,862 行）统一 GUI/CLI 五大数据面板，CLI <code class="language-plaintext highlighter-rouge">alphas</code> 补齐 5 项过滤参数后正式下线 426 行冗余的 Python <code class="language-plaintext highlighter-rouge">find_history_alphas</code>（前端 <code class="language-plaintext highlighter-rouge">c6cdb41</code> / 后端 <code class="language-plaintext highlighter-rouge">b9f6854</code>）；修正 <code class="language-plaintext highlighter-rouge">cargo test</code> 覆盖二进制引发的 <code class="language-plaintext highlighter-rouge">image_stale</code> 报错与 <code class="language-plaintext highlighter-rouge">engineering_delivery.md</code> 虚构的 <code class="language-plaintext highlighter-rouge">qn reload</code> 描述（前端 <code class="language-plaintext highlighter-rouge">2a24135</code> / 后端 <code class="language-plaintext highlighter-rouge">832a0fc</code>），重启常驻宿主并跑通 <code class="language-plaintext highlighter-rouge">task_control</code>（2,213 项）、Node（741 项）与 live smoke 验收。</li>
+  </ul>
+</blockquote>
+
+        </div>
+
+        
+
+        
+        
+  <div class="page-comments">
+    <div id="disqus_thread"></div>
+    <script>
+      var disqus_config = function () {
+        this.page.url = 'https://roshameow.github.io//personal_homepage/tool/alpha27/';
+        this.page.identifier = 'https://roshameow.github.io//personal_homepage/tool/alpha27/';
+      };
+
+      (function() {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://https-roshameow-github-io-personal-homepage.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+  </div>
+
+
+        
+
+        <nav class="page-pagination" role="navigation">
+  
+    <a class="page-previous" href="/personal_homepage/thought/agent-infrastructure-pitfalls-2/">
+      <h4 class="page-pagination-label">Previous</h4>
+      <span class="page-pagination-title">
+        <i class="fas fa-arrow-left"></i> 用 AI 维护复杂控制面基础设施：为什么越修越死？从补丁膨胀到 6 态收敛的六大工程陷阱
+
+      </span>
+    </a>
+  
+
+  
+    <a class="page-next" href="/personal_homepage/data/alpha28/">
+      <h4 class="page-pagination-label">Next</h4>
+      <span class="page-pagination-title">
+        日内 PV 统计量与市场微结构衍生指标体系
+ <i class="fas fa-arrow-right"></i>
+      </span>
+    </a>
+  
+</nav>
+
+      </div>
+
+    </div>
+  </article>
+</main>
+
+    <footer id="footer" class="site-footer">
+  <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+<div class="social-icons"><a class="social-icon" href="/personal_homepage/atom.xml"><i class="fas fa-rss-square fa-2x" title="Feed"></i></a><a class="social-icon" href="https://github.com/roshameow"><i class="fab fa-github-square fa-2x" title="GitHub"></i></a><a class="social-icon" href="https://www.linkedin.com/in/wen-liu-06503a7b/"><i class="fab fa-linkedin fa-2x" title="LinkedIn"></i></a><a class="social-icon" href="mailto:w.liuatnk@gmail.com"><i class="fas fa-envelope-square fa-2x" title="e-mail"></i></a></div><div class="copyright">
+    
+      <p>&copy; 2026 Liu, Wen's Home Page. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://github.com/mmistakes/so-simple-theme" rel="nofollow">So Simple</a>.</p>
+    
+  </div>
+</footer>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="/personal_homepage/assets/js/main.min.js"></script>
+<script src="https://use.fontawesome.com/releases/v5.0.12/js/all.js"></script><script src="/personal_homepage/assets/js/content-tables.js" defer></script>
+
+<script>
+(function () {
+  'use strict';
+
+  var types = {
+    NOTE: 'note', INFO: 'note', ABSTRACT: 'note', SUMMARY: 'note', TLDR: 'note',
+    EXAMPLE: 'note', QUOTE: 'note', CITE: 'note',
+    TIP: 'tip', HINT: 'tip', IMPORTANT: 'tip', SUCCESS: 'tip', CHECK: 'tip', DONE: 'tip',
+    QUESTION: 'warning', HELP: 'warning', FAQ: 'warning',
+    WARNING: 'warning', CAUTION: 'warning', ATTENTION: 'warning',
+    DANGER: 'danger', ERROR: 'danger', BUG: 'danger',
+    FAILURE: 'danger', FAIL: 'danger', MISSING: 'danger'
+  };
+  var icons = {
+    note: 'M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z M12 11v6 M12 7h.01',
+    tip: 'M9 18h6 M10 21h4 M9 15a6 6 0 1 1 6 0v3H9z',
+    warning: 'M12 3L2 21h20z M12 9v5 M12 17h.01',
+    danger: 'M7 3h10l4 4v10l-4 4H7l-4-4V7z M9 9l6 6 M15 9l-6 6'
+  };
+
+  function makeIcon(type) {
+    var namespace = 'http://www.w3.org/2000/svg';
+    var svg = document.createElementNS(namespace, 'svg');
+    svg.setAttribute('class', 'callout-icon');
+    svg.setAttribute('viewBox', '0 0 24 24');
+    svg.setAttribute('width', '20');
+    svg.setAttribute('height', '20');
+    svg.setAttribute('fill', 'none');
+    svg.setAttribute('stroke', 'currentColor');
+    svg.setAttribute('stroke-width', '2');
+    svg.setAttribute('stroke-linecap', 'round');
+    svg.setAttribute('stroke-linejoin', 'round');
+    svg.setAttribute('aria-hidden', 'true');
+    svg.setAttribute('focusable', 'false');
+    var path = document.createElementNS(namespace, 'path');
+    path.setAttribute('d', icons[type]);
+    svg.appendChild(path);
+    return svg;
+  }
+
+  // A soft break is a text newline; a Markdown hard break is a <br>.
+  // Do not split newlines inside inline code or other literal content.
+  function firstBreak(parent) {
+    for (var node = parent.firstChild; node; node = node.nextSibling) {
+      if (node.nodeType === 3) {
+        var offset = node.data.search(/[\r\n]/);
+        if (offset !== -1) return { node: node, offset: offset };
+      } else if (node.nodeType === 1) {
+        if (node.tagName === 'BR') return { node: node };
+        if (/^(CODE|PRE|SCRIPT|STYLE|TEXTAREA)$/.test(node.tagName)) continue;
+        var result = firstBreak(node);
+        if (result) return result;
+      }
+    }
+    return null;
+  }
+
+  function transformCallouts() {
+    document.querySelectorAll('.page-content blockquote').forEach(function (quote) {
+      if (quote.closest('pre, code, .highlight, .highlighter-rouge')) return;
+      var paragraph = quote.firstElementChild;
+      if (!paragraph || paragraph.tagName !== 'P') return;
+
+      // Require the marker in a direct text node: <code>[!WARNING]</code>
+      // (and markers merely mentioned later in a quote) must remain literal.
+      var markerNode = paragraph.firstChild;
+      if (!markerNode || markerNode.nodeType !== 3) return;
+      var marker = markerNode.data.match(/^[\t \r\n]*\[!([a-z][a-z0-9-]*)\]([+-])?(?=[\t \r\n]|$)[\t ]*/i);
+      if (!marker) return;
+      var name = marker[1].toUpperCase();
+      if (!Object.prototype.hasOwnProperty.call(types, name)) return;
+      var type = types[name];
+      var label = name === 'TLDR' ? 'TL;DR' : name.charAt(0) + name.slice(1).toLowerCase();
+      markerNode.deleteData(0, marker[0].length);
+
+      var boundary = firstBreak(paragraph);
+      var range = document.createRange();
+      range.selectNodeContents(paragraph);
+      if (boundary) {
+        if (boundary.node.nodeType === 3) range.setEnd(boundary.node, boundary.offset);
+        else range.setEndBefore(boundary.node);
+      }
+      var titleContent = range.extractContents();
+      if (boundary) {
+        if (boundary.node.nodeType === 3) {
+          var breakLength = boundary.node.data.slice(0, 2) === '\r\n' ? 2 : 1;
+          boundary.node.deleteData(0, breakLength);
+        } else {
+          boundary.node.parentNode.removeChild(boundary.node);
+        }
+      }
+      if (!paragraph.textContent.trim() && !paragraph.children.length) {
+        quote.removeChild(paragraph);
+      }
+
+      var folding = !!marker[2];
+      var callout = document.createElement(folding ? 'details' : 'div');
+      // Keep author-provided IDs, language, direction, and classes.
+      Array.prototype.forEach.call(quote.attributes, function (attribute) {
+        callout.setAttribute(attribute.name, attribute.value);
+      });
+      callout.classList.add('callout', 'callout--' + type);
+      callout.setAttribute('data-callout', name.toLowerCase());
+      callout.setAttribute('aria-label', label);
+      if (folding) {
+        callout.removeAttribute('role');
+        if (marker[2] === '+') callout.setAttribute('open', '');
+        else callout.removeAttribute('open');
+      } else {
+        callout.setAttribute('role', 'note');
+      }
+
+      var title = document.createElement(folding ? 'summary' : 'div');
+      title.className = 'callout-title';
+      title.appendChild(makeIcon(type));
+      var titleText = document.createElement('span');
+      titleText.className = 'callout-title-text';
+      if (titleContent.textContent.trim() || titleContent.childElementCount) {
+        titleText.appendChild(titleContent);
+      } else {
+        titleText.textContent = label;
+      }
+      title.appendChild(titleText);
+      callout.appendChild(title);
+
+      var body = document.createElement('div');
+      body.className = 'callout-body';
+      while (quote.firstChild) body.appendChild(quote.firstChild);
+      callout.appendChild(body);
+      quote.parentNode.replaceChild(callout, quote);
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', transformCallouts);
+  } else {
+    transformCallouts();
+  }
+})();
+</script>
+<!-- <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'G-9TMSCDTBGN', 'auto');
+  ga('send', 'pageview');
+</script> -->
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9TMSCDTBGN"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-9TMSCDTBGN');
+</script>
+
+
+
+<!-- MathJax -->
+<style>
+    /* Only oversized equations get this wrapper; ordinary inline math stays inline. */
+    .math-scroll {
+        display: block;
+        max-width: 100%;
+        overflow-x: auto;
+        overflow-y: hidden;
+        padding-block: 0.5em;
+        scrollbar-width: thin;
+    }
+    .math-scroll > mjx-container[jax] {
+        display: inline-block;
+        margin: 0;
+    }
+    .math-scroll:focus-visible {
+        outline: 2px solid currentColor;
+        outline-offset: 2px;
+    }
+</style>
+<script>
+    function fitMathToColumn() {
+        document.querySelectorAll('mjx-container').forEach(function (container) {
+            var wrapper = container.parentElement.classList.contains('math-scroll') ? container.parentElement : null;
+            var column = wrapper ? wrapper.parentElement : container.parentElement;
+            while (column && ['inline', 'contents'].includes(getComputedStyle(column).display)) {
+                column = column.parentElement;
+            }
+            if (!column) return;
+            var style = getComputedStyle(column);
+            var available = column.clientWidth - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight);
+            var ink = container.querySelector('mjx-math, svg');
+            var width = (ink || container).getBoundingClientRect().width;
+            if (width > available + 1) {
+                if (!wrapper) {
+                    wrapper = document.createElement('span');
+                    wrapper.className = 'math-scroll';
+                    wrapper.tabIndex = 0;
+                    wrapper.setAttribute('role', 'region');
+                    wrapper.setAttribute('aria-label', 'Mathematical formula; scroll horizontally to read all');
+                    wrapper.title = 'Scroll horizontally to read the full formula';
+                    container.before(wrapper);
+                    wrapper.appendChild(container);
+                }
+            } else if (wrapper) {
+                wrapper.replaceWith(container);
+            }
+        });
+    }
+    // Pin the engine, autoloaded TeX extensions, menu and fonts to local assets.
+    window.MathJax = {
+        loader: {
+            paths: { mathjax: "/personal_homepage/assets/js/vendor/mathjax/es5" },
+            load: ['[tex]/textmacros']
+        },
+        tex: {
+            tags: "ams",
+            packages: { '[+]': ['textmacros'] },
+            inlineMath: [['$', '$'], ['\\(', '\\)']],
+            displayMath: [['$$', '$$'], ['\\[', '\\]']]
+        },
+        chtml: {
+            fontURL: "/personal_homepage/assets/js/vendor/mathjax/es5/output/chtml/fonts/woff-v2"
+        },
+        startup: {
+            pageReady: function () {
+                return MathJax.startup.defaultPageReady().then(function () {
+                    return document.fonts ? document.fonts.ready : undefined;
+                }).then(function () {
+                    fitMathToColumn();
+                    var scheduled = false;
+                    window.addEventListener('resize', function () {
+                        if (scheduled) return;
+                        scheduled = true;
+                        requestAnimationFrame(function () {
+                            scheduled = false;
+                            fitMathToColumn();
+                        });
+                    });
+                });
+            }
+        },
+        options: {
+            // Keep examples (including literal dollar signs) out of the typesetter.
+            skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code', 'annotation', 'annotation-xml']
+        }
+    };
+</script>
+<script id="MathJax-script" async src="/personal_homepage/assets/js/vendor/mathjax/es5/tex-mml-chtml.js"></script>
+
+
+
+
+<!-- Mermaid -->
+<style>
+  .mermaid-diagram {
+    max-width: 100%;
+    margin: 0.85rem 0;
+    overflow-x: auto;
+  }
+  .mermaid-diagram:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+  }
+  .page-content pre.mermaid {
+    margin: 0;
+    padding: 0.25rem 0;
+    text-align: center;
+    background: transparent;
+    overflow: visible;
+    font-family: inherit;
+  }
+  .page-content pre.mermaid[data-processed] {
+    white-space: normal;
+  }
+  pre.mermaid svg {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    height: auto;
+  }
+  .mermaid-diagram .cluster-label {
+    font-weight: 700;
+  }
+  .mermaid-error {
+    font-size: 0.85em;
+    color: #9a3412;
+  }
+</style>
+<script src="/personal_homepage/assets/js/vendor/mermaid-11.17.2.min.js"></script>
+<script>
+(function () {
+  'use strict';
+
+  function normalizeMermaidSource(source) {
+    // Mermaid 11 accepts A <-- "label" --- B but creates an INVALID edge.
+    // Render the equivalent B -->|"label"| A, without editing the Markdown.
+    var body = source.trimStart()
+      .replace(/^---\r?\n[\s\S]*?\r?\n---(?:\r?\n|$)/, '')
+      .replace(/%%\{[\s\S]*?\}%%/g, '')
+      .replace(/^[\t ]*%%.*$/gm, '').trimStart();
+    if (!/^(?:flowchart|graph)\b/.test(body)) return source;
+
+    var started = false;
+    var quoted = false;
+    return source.replace(/[^\r\n]+/g, function (line) {
+      if (!started && !/^\s*(?:flowchart|graph)\b/.test(line)) return line;
+      started = true;
+      var normalized = quoted ? line : line.replace(
+        /^([\t ]*)([A-Za-z_][\w-]*)[\t ]*<--[\t ]*("[^"\r\n]*")[\t ]*---[\t ]*([A-Za-z_][\w-]*)([\t ]*;?[\t ]*(?:%%.*)?)$/,
+        function (_, indent, left, label, right, suffix) {
+          return indent + right + ' -->|' + label + '| ' + left + suffix;
+        }
+      );
+      // Never rewrite an example inside a multiline quoted node label, and
+      // never let quotes inside a %% comment affect the following lines.
+      for (var i = 0; i < line.length; i++) {
+        if (!quoted && line[i] === '%' && line[i + 1] === '%') break;
+        if (line[i] === '"') quoted = !quoted;
+      }
+      return normalized;
+    });
+  }
+
+  async function renderDiagrams() {
+    var blocks = document.querySelectorAll('code.language-mermaid');
+    if (!blocks.length) return;
+    if (typeof mermaid === 'undefined') {
+      blocks.forEach(function (code) {
+        var original = code.closest('.highlighter-rouge') || code.closest('pre');
+        if (!original) return;
+        var message = document.createElement('p');
+        message.className = 'mermaid-error';
+        message.setAttribute('role', 'status');
+        message.textContent = '图表组件加载失败，请刷新页面重试。Mermaid 源码已保留。';
+        original.after(message);
+      });
+      return;
+    }
+
+    // Render every diagram as Mermaid, including diagrams with multiple subgraphs.
+    // Disable the automatic pass so it cannot race with our explicit rendering.
+    var skin = getComputedStyle(document.documentElement);
+    function color(name, fallback) {
+      return skin.getPropertyValue('--mermaid-' + name).trim() || fallback;
+    }
+    var background = color('background', '#ffffff');
+    var text = color('text', '#000000');
+    var border = color('border', '#cccccc');
+    var nodeBorder = color('node-border', '#b8b9c0');
+    var cluster = color('cluster-background', '#f9f9fa');
+    var line = color('line', '#858795');
+    var palettes = [
+      ['#e4eaf0', '#f4f6f9', '#a5b3c2'], // slate blue
+      ['#e8f0ea', '#f5f8f5', '#a8bcae'], // sage
+      ['#f3ede3', '#faf7f2', '#c6b69c'], // sand
+      ['#ebe8f1', '#f7f5fa', '#b5adc5'], // lavender
+      ['#e4eeee', '#f3f8f8', '#a0baba']  // muted teal
+    ].map(function (fallbacks, index) {
+      return {
+        node: color('palette-' + index + '-node', fallbacks[0]),
+        cluster: color('palette-' + index + '-cluster', index === 0 ? cluster : fallbacks[1]),
+        border: color('palette-' + index + '-border', fallbacks[2])
+      };
+    });
+    var fontFamily = getComputedStyle(document.body).fontFamily ||
+      '"Source Sans Pro", sans-serif';
+    // Mermaid fixes label dimensions during layout. Wait for web fonts so a
+    // later font swap cannot make the measured label box too small.
+    if (document.fonts) await document.fonts.ready;
+
+    var theme = "default";
+    // The site's default follows its active skin. Explicit forest/dark/etc.
+    // choices remain available for sites that deliberately select them.
+    if (theme === 'default') theme = 'base';
+
+    var config = {
+      startOnLoad: false,
+      securityLevel: 'strict',
+      fontFamily: fontFamily,
+      // Native SVG text avoids foreignObject clipping and article paragraph CSS.
+      htmlLabels: false,
+      flowchart: {
+        inheritDir: true,
+        curve: 'linear',
+        nodeSpacing: 24,
+        rankSpacing: 28,
+        padding: 8,
+        diagramPadding: 8,
+        wrappingWidth: 180,
+        // Nested cluster borders must start below the parent's full title line.
+        subGraphTitleMargin: { top: 4, bottom: 12 }
+      },
+      theme: theme,
+      themeVariables: theme === 'base' ? {
+        fontFamily: fontFamily,
+        fontSize: '14px',
+        background: background,
+        primaryColor: palettes[0].node,
+        primaryTextColor: text,
+        primaryBorderColor: nodeBorder,
+        secondaryColor: palettes[1].node,
+        secondaryTextColor: text,
+        secondaryBorderColor: border,
+        tertiaryColor: palettes[2].node,
+        tertiaryTextColor: text,
+        tertiaryBorderColor: border,
+        lineColor: line,
+        textColor: text,
+        mainBkg: palettes[0].node,
+        nodeBorder: nodeBorder,
+        nodeTextColor: text,
+        clusterBkg: palettes[0].cluster,
+        clusterBorder: border,
+        titleColor: text,
+        defaultLinkColor: line,
+        edgeLabelBackground: background,
+        noteBkgColor: palettes[2].node,
+        noteTextColor: text,
+        noteBorderColor: border,
+        actorBkg: palettes[0].node,
+        actorBorder: nodeBorder,
+        actorTextColor: text,
+        actorLineColor: border,
+        signalColor: line,
+        signalTextColor: text
+      } : { fontFamily: fontFamily }
+    };
+
+    function applyFlowchartPalette(svg) {
+      if (theme !== 'base' || !/^flowchart/.test(svg.getAttribute('aria-roledescription') || '')) return;
+
+      function tint(group, shapes, index, kind) {
+        // Author-supplied classDef/style colors take precedence over auto accents.
+        var customClass = Array.from(group.classList).some(function (name) {
+          return !['node', 'default', 'cluster', 'clickable'].includes(name);
+        });
+        if (customClass || !shapes.length || shapes.some(function (shape) {
+          return shape.style.getPropertyValue('fill') || shape.style.getPropertyValue('stroke');
+        })) return;
+        group.setAttribute('data-mermaid-palette', index);
+        shapes.forEach(function (shape) {
+          // Keep fallbacks in the SVG so exported diagrams retain their colors.
+          if (shape.getAttribute('fill') !== 'none') {
+            shape.style.fill = 'var(--mermaid-palette-' + index + '-' + kind + ', ' + palettes[index][kind] + ')';
+          }
+          shape.style.stroke = 'var(--mermaid-palette-' + index + '-border, ' + palettes[index].border + ')';
+        });
+      }
+
+      var groups = Array.from(svg.querySelectorAll('g.cluster')).map(function (group, index) {
+        var rect = group.querySelector('rect');
+        return { group: group, rect: rect, bounds: rect && rect.getBoundingClientRect(), index: index % palettes.length };
+      }).filter(function (entry) { return entry.rect; });
+      // Mermaid's SVG stores clusters flat. Match by the actual layout so nodes
+      // inherit their smallest enclosing group, including nested schedulers.
+      var nodes = Array.from(svg.querySelectorAll('g.node')).map(function (node) {
+        return { node: node, bounds: node.getBoundingClientRect() };
+      });
+      groups.forEach(function (entry) { tint(entry.group, [entry.rect], entry.index, 'cluster'); });
+      groups.sort(function (a, b) { return a.bounds.width * a.bounds.height - b.bounds.width * b.bounds.height; });
+      nodes.forEach(function (entry) {
+        var box = entry.bounds;
+        var parent = groups.find(function (group) {
+          var bounds = group.bounds;
+          return box.left >= bounds.left - 1 && box.right <= bounds.right + 1 &&
+            box.top >= bounds.top - 1 && box.bottom <= bounds.bottom + 1;
+        });
+        var shapes = [];
+        entry.node.querySelectorAll(':scope > .label-container').forEach(function (container) {
+          // Rounded/hand-drawn shapes wrap paths in a group. Include the
+          // container in the author-style check, then tint the actual paths.
+          shapes.push(container);
+          shapes.push.apply(shapes, container.querySelectorAll('path, rect, circle, ellipse, polygon, polyline'));
+        });
+        tint(entry.node, shapes, parent ? parent.index : 0, 'node');
+      });
+    }
+
+    function hasNestedSubgraphs(source) {
+      var depth = 0;
+      return source.split(/\r?\n/).some(function (line) {
+        if (/^\s*subgraph\b/.test(line)) return ++depth > 1;
+        if (/^\s*end\s*(?:;|%%.*)?$/.test(line)) depth = Math.max(0, depth - 1);
+        return false;
+      });
+    }
+
+    for (var code of blocks) {
+      var original = code.closest('.highlighter-rouge') || code.closest('pre');
+      if (!original) continue;
+
+      var wrapper = document.createElement('div');
+      wrapper.className = 'mermaid-diagram';
+      wrapper.tabIndex = 0;
+      wrapper.setAttribute('role', 'region');
+      wrapper.setAttribute('aria-label', 'Mermaid diagram (scroll horizontally)');
+
+      var pre = document.createElement('pre');
+      pre.className = 'mermaid';
+      pre.textContent = normalizeMermaidSource(code.textContent);
+      wrapper.appendChild(pre);
+      original.replaceWith(wrapper);
+
+      try {
+        // Dagre reserves only half rankSpacing above a nested cluster. Keep
+        // that space taller than its parent's title, without spreading out
+        // the ordinary (non-nested) compact flowcharts.
+        mermaid.initialize(Object.assign({}, config, {
+          flowchart: Object.assign({}, config.flowchart, {
+            rankSpacing: hasNestedSubgraphs(code.textContent) ? 56 : config.flowchart.rankSpacing
+          })
+        }));
+        await mermaid.run({ nodes: [pre] });
+        var svg = pre.querySelector('svg');
+        if (svg && svg.viewBox.baseVal.width) {
+          // Do not shrink labels to illegible text on narrow screens;
+          // keep at least 90% of the natural size and scroll the diagram instead.
+          svg.style.minWidth = (svg.viewBox.baseVal.width * 0.9) + 'px';
+        }
+        if (svg) applyFlowchartPalette(svg);
+      } catch (error) {
+        // A malformed diagram must not prevent other diagrams from rendering
+        // or make the original source disappear.
+        wrapper.replaceChildren(original);
+        var message = document.createElement('p');
+        message.className = 'mermaid-error';
+        message.setAttribute('role', 'status');
+        message.textContent = '图表渲染失败，已保留 Mermaid 源码。';
+        wrapper.appendChild(message);
+        console.warn('Mermaid diagram could not be rendered:', error);
+      }
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', renderDiagrams);
+  } else {
+    renderDiagrams();
+  }
+})();
+</script>
+
+
+  </body>
+
+</html>

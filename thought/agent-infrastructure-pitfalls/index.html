@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<!--
+    So Simple Jekyll Theme 3.2.0
+    Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+    Free for personal and commercial use under the MIT license
+    https://github.com/mmistakes/so-simple-theme/blob/master/LICENSE
+-->
+<html lang="en-US" class="no-js">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  
+
+  
+  
+  <!-- Begin Jekyll SEO tag v2.9.1 -->
+<title>用 AI 开发 Agent 基础设施：真实生产环境中 AI 最易犯的六类系统性错误 | Liu, Wen’s Home Page</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="用 AI 开发 Agent 基础设施：真实生产环境中 AI 最易犯的六类系统性错误" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="现在很多关于 AI 编程（Coding Agent）的讨论，往往集中在写算法题、写纯函数逻辑、或者快速搭建一个全栈 CRUD 玩具上。在这些场景里，LLM 确实表现得像一个无所不知的高级工程师。" />
+<meta name="twitter:description" property="og:description" content="现在很多关于 AI 编程（Coding Agent）的讨论，往往集中在写算法题、写纯函数逻辑、或者快速搭建一个全栈 CRUD 玩具上。在这些场景里，LLM 确实表现得像一个无所不知的高级工程师。" />
+<link rel="canonical" href="https://roshameow.github.io//personal_homepage/thought/agent-infrastructure-pitfalls/" />
+<meta property="og:url" content="https://roshameow.github.io//personal_homepage/thought/agent-infrastructure-pitfalls/" />
+<meta property="og:site_name" content="Liu, Wen’s Home Page" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2026-11-10T00:00:00+00:00" />
+<meta property="article:modified_time" content="2026-11-19T22:52:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="用 AI 开发 Agent 基础设施：真实生产环境中 AI 最易犯的六类系统性错误" />
+<meta name="twitter:site" content="@" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2026-11-19T22:52:00+00:00","datePublished":"2026-11-10T00:00:00+00:00","description":"现在很多关于 AI 编程（Coding Agent）的讨论，往往集中在写算法题、写纯函数逻辑、或者快速搭建一个全栈 CRUD 玩具上。在这些场景里，LLM 确实表现得像一个无所不知的高级工程师。","headline":"用 AI 开发 Agent 基础设施：真实生产环境中 AI 最易犯的六类系统性错误","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/thought/agent-infrastructure-pitfalls/"},"url":"https://roshameow.github.io//personal_homepage/thought/agent-infrastructure-pitfalls/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  
+
+  <script>
+    /* Cut the mustard */
+    if ('querySelector' in document && 'addEventListener' in window) {
+      document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + 'js';
+    }
+  </script>
+
+  <link rel="stylesheet" href="/personal_homepage/assets/css/main.css">
+  <link rel="stylesheet" href="/personal_homepage/assets/css/skins/default.css">
+  
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,700,700i|Lora:400,400i,700,700i">
+  <link rel="alternate" type="application/atom+xml" title="Liu, Wen&#39;s Home Page" href="/personal_homepage/atom.xml">
+<!-- start custom head snippets -->
+
+<!-- insert favicons. use http://realfavicongenerator.net/ -->
+<link rel="shortcut icon" type="image/x-icon" href="/personal_homepage/docs/images/logo.ico">
+<!-- end custom head snippets -->
+
+</head>
+
+  <body class="layout--post  用-ai-开发-agent-基础设施-真实生产环境中-ai-最易犯的六类系统性错误">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#primary-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+  <div class="navigation-wrapper">
+    <a href="#menu-toggle" id="menu-toggle">Menu</a>
+    <nav id="primary-nav" class="site-nav animated drop">
+      <ul><li><a href="/personal_homepage/">Home</a></li><li><a href="/personal_homepage/posts/">Posts</a></li><li><a href="/personal_homepage/categories/">Categories</a></li><li><a href="/personal_homepage/tags/">Tags</a></li><li><a href="/personal_homepage/family/">Family</a></li><li><a href="/personal_homepage/search/">Search</a></li></ul>
+    </nav>
+  </div><!-- /.navigation-wrapper -->
+
+
+    <header class="masthead">
+  <div class="wrap">
+    
+    
+    
+      
+        <div class="site-title animated fadeIn"><a href="/personal_homepage/">Liu, Wen's Home Page</a></div>
+      
+      <p class="site-description animated fadeIn" itemprop="description">Work, Experiments and Ideas.</p>
+    
+  </div>
+</header><!-- /.masthead -->
+
+
+    <main id="main" class="main-content" aria-label="Content">
+  <article class="h-entry">
+    
+
+    <div class="page-wrapper">
+      <header class="page-header">
+        
+        
+        <h1 id="page-title" class="page-title p-name">用 AI 开发 Agent 基础设施：真实生产环境中 AI 最易犯的六类系统性错误
+</h1>
+        
+      </header>
+
+      <div class="page-sidebar">
+        <div class="page-author h-card p-author"><img src="/personal_homepage/docs/images/logo.svg" class="author-avatar u-photo" alt=""><div class="author-info">
+
+<span class="read-time">1 min read</span>
+
+    <time class="page-date dt-published" datetime="2026-11-10T00:00:00+00:00"><a class="u-url" href="">November 10, 2026</a>
+</time>
+
+  </div>
+</div>
+
+        
+  <h3 class="page-taxonomies-title">Categories</h3>
+  
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a class="p-category" href="/personal_homepage/categories/#thought" title="Pages filed under thought">thought</a></li>
+  </ul>
+
+
+        
+  <h3 class="page-taxonomies-title">Tags</h3>
+  
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a href="/personal_homepage/tags/#agent" title="Pages tagged agent" rel="tag">agent</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#architecture" title="Pages tagged architecture" rel="tag">architecture</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#debugging" title="Pages tagged debugging" rel="tag">debugging</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#pi" title="Pages tagged pi" rel="tag">pi</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#reflection" title="Pages tagged reflection" rel="tag">reflection</a></li>
+  </ul>
+
+
+        <details id="entry-table-of-contents" class="toc-wrapper" open>
+  <summary>
+    <h2 class="no_toc">
+      Table of Contents
+      <svg class="toc-toggle-icon" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true" focusable="false">
+        <path d="m4 6 4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+      </svg>
+    </h2>
+  </summary>
+  <div class="toc-content">
+    <ul class="inline_toc" id="my_toc"><li><a href="#1-虚拟成功偏差把api-调用成功错当成物理落盘交付">1. 虚拟成功偏差：把“API 调用成功”错当成“物理落盘交付”</a><ul><li><a href="#典型现场">典型现场</a></li><li><a href="#根因剖析">根因剖析</a></li></ul></li><li><a href="#2-启发式滥用热衷于自作聪明的猜测抗拒确定性的-fail-closed">2. 启发式滥用：热衷于“自作聪明的猜测”，抗拒“确定性的 Fail-Closed”</a><ul><li><a href="#典型现场-1">典型现场</a></li><li><a href="#根因剖析-1">根因剖析</a></li></ul></li><li><a href="#3-魔法数字陷阱用破坏性的局部经验常数掩盖状态机设计的缺失">3. 魔法数字陷阱：用破坏性的“局部经验常数”掩盖状态机设计的缺失</a><ul><li><a href="#典型现场-2">典型现场</a></li><li><a href="#根因剖析-2">根因剖析</a></li></ul></li><li><a href="#4-管生不管死生命周期不对称与退役清理盲区">4. 管生不管死：生命周期不对称与退役清理盲区</a><ul><li><a href="#典型现场-3">典型现场</a></li><li><a href="#根因剖析-3">根因剖析</a></li></ul></li><li><a href="#5-宿主机制的黑盒无知在语言层面逻辑自洽在物理内核层面暴毙">5. 宿主机制的黑盒无知：在语言层面逻辑自洽，在物理内核层面暴毙</a><ul><li><a href="#典型现场-4">典型现场</a></li><li><a href="#根因剖析-4">根因剖析</a></li></ul></li><li><a href="#6-并发与防御性心智缺失默认世界是温和串行且没有中断的">6. 并发与防御性心智缺失：默认世界是温和、串行且没有中断的</a><ul><li><a href="#典型现场-5">典型现场</a></li><li><a href="#根因剖析-5">根因剖析</a></li></ul></li><li><a href="#总结人类在-ai-时代的核心价值物理定律把关人">总结：人类在 AI 时代的核心价值——“物理定律把关人”</a></li></ul>
+  </div>
+</details>
+
+        
+<details id="entry-related-posts" class="toc-wrapper" open>
+  <summary>
+    <h2 class="no_toc">
+      Related Posts
+      <svg class="toc-toggle-icon" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true" focusable="false">
+        <path d="m4 6 4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+      </svg>
+    </h2>
+  </summary>
+  <div class="toc-content">
+    <ul>
+      
+      <li><a href="/personal_homepage/data/alpha29/">News & Social Media 新闻流、社交媒体情绪与文本事件数据体系</a></li>
+      
+      <li><a href="/personal_homepage/data/alpha28/">日内 PV 统计量与市场微结构衍生指标体系</a></li>
+      
+      <li><a href="/personal_homepage/tool/alpha27/">从过度防御的歪路纠偏：GUI/CLI 6 态极简控制面、数据面板统一与工程收口</a></li>
+      
+      <li><a href="/personal_homepage/thought/agent-infrastructure-pitfalls-2/">用 AI 维护复杂控制面基础设施：为什么越修越死？从补丁膨胀到 6 态收敛的六大工程陷阱</a></li>
+      
+      <li><a href="/personal_homepage/tool/pi-subagent-durable/">pi-subagent-durable：后台子代理的持久化、生命周期与故障自愈</a></li>
+      
+    </ul>
+  </div>
+</details>
+
+
+
+      </div>
+
+      <div class="page-content">
+        <div class="e-content">
+          <p>现在很多关于 AI 编程（Coding Agent）的讨论，往往集中在写算法题、写纯函数逻辑、或者快速搭建一个全栈 CRUD 玩具上。在这些场景里，LLM 确实表现得像一个无所不知的高级工程师。</p>
+
+<p>但在写完 <a href="/personal_homepage/tool/pi-subagent-durable/">pi-subagent-durable</a> 和 <a href="/personal_homepage/tool/pi-agent-notify/">pi-agent-notify</a> 这两个扩展后，我的感受完全不同：<strong>这两个基础设施插件，全部是在真实的多会话并发、跨机器长任务运行环境中，直接让 AI Agent 迭代开发出来的。</strong></p>
+
+<p>当 Agent 的任务从“写一段无状态的逻辑”变成“为自己搭建底层并发、持久化恢复、进程挂起和外部事件总线”时，现实狠狠揭开了 LLM 的底牌：
+<strong>Agent 生成的代码语法极其工整、Mock 单元测试秒过、给出的逻辑自洽圆滑；但一旦扔进长时间断网、多终端并发、进程崩溃或操作系统底层机制的现实物理世界里，它埋下的地雷一个接一个被引爆。</strong></p>
+
+<p>从 331MB 日志爆炸、300s 误杀、会话双写损坏，到 18.6 万个文件的点文件自吞噬、<code class="language-plaintext highlighter-rouge">argv</code> 自杀开关、幽灵进程无限续期和 Node ESM 缓存失效，我们几乎踩遍了所有能踩的坑。</p>
+
+<p>这篇文章不谈玄学 Prompt，而是从系统级视角复盘：<strong>在真实的生产环境下让 AI Agent 编写底层系统软件，它究竟最容易犯哪些系统性错误？</strong></p>
+
+<hr />
+
+<h2 id="1-虚拟成功偏差把api-调用成功错当成物理落盘交付">1. 虚拟成功偏差：把“API 调用成功”错当成“物理落盘交付”</h2>
+
+<p>这是 AI Agent 最深层、最普遍的心智模型缺陷。在 LLM 的纯符号世界里，调用了一个 <code class="language-plaintext highlighter-rouge">api.send()</code> 没有抛出异常，它在认知上就认为“这件事已经完成了”。</p>
+
+<h3 id="典型现场">典型现场</h3>
+<ul>
+  <li><strong>Notify 内存假确认</strong>：在早期版本的通知投递中，只要调用宿主接口 <code class="language-plaintext highlighter-rouge">sendUserMessage(event)</code> 成功返回，Agent 就立刻执行 <code class="language-plaintext highlighter-rouge">deleteOutbox(eventId)</code> 将事件从持久化目录删除。然而，宿主进程只是把消息放进了内存待处理队列，根本还没有将其序列化并 <code class="language-plaintext highlighter-rouge">fsync</code> 到磁盘的 session JSONL 文件中。一旦进程在几毫秒后发生崩溃或重启，这条事件就永远蒸发了。</li>
+  <li><strong>Durable 假退役</strong>：在 <code class="language-plaintext highlighter-rouge">stopTask()</code> 中，Agent 调用了 RMUX 的 <code class="language-plaintext highlighter-rouge">kill-window</code> 接口，看到命令返回成功，就认为整个子任务生命周期已经彻底结束，直接退出了函数。它完全忘了去清理内存里的 <code class="language-plaintext highlighter-rouge">asyncTasks</code> 映射和磁盘注册表条目，留下了一个看似已死实则仍被系统心跳续期的幽灵。</li>
+</ul>
+
+<h3 id="根因剖析">根因剖析</h3>
+<p>Agent 缺乏对操作系统<strong>写缓冲（Write Buffer）、页面缓存（Page Cache）、文件描述符与崩溃一致性（Crash Consistency）</strong>的物理敬畏。它生活在一个“函数调用即真理”的高级抽象幻觉中。
+<strong>破局解法</strong>：必须在架构上强行剥夺它的轻信，引入 <strong>Transcript Disk Receipt ACK</strong> 模式——以消息字节真正写入磁盘会话文件并落盘完成为唯一交付依据，绝不把“内存入队”当成完成。</p>
+
+<hr />
+
+<h2 id="2-启发式滥用热衷于自作聪明的猜测抗拒确定性的-fail-closed">2. 启发式滥用：热衷于“自作聪明的猜测”，抗拒“确定性的 Fail-Closed”</h2>
+
+<p>当系统遇到歧义（例如同一目录下打开了两个终端、或者当前找不到对应的会话 ID）时，AI Agent 的第一反应永远不是<strong>坚决抛错并退出（Fail-Closed）</strong>，而是写出五花八门极其脆弱的启发式逻辑（Heuristics）去“猜”。</p>
+
+<h3 id="典型现场-1">典型现场</h3>
+<ul>
+  <li><strong>Runtime 归属猜了 20 版</strong>：最初在识别某个终端进程属于哪份会话时，Agent 先后尝试了 <code class="language-plaintext highlighter-rouge">ps -o args</code> 匹配参数、比对文件的最后修改时间（<code class="language-plaintext highlighter-rouge">mtime</code>）、截取窗口名前 8 位、甚至对比进程启动的先后顺序。每一种猜测都在多任务并发或长时间空闲后被现实打脸，反复改了 20 版才老老实实建立确定性的 PID 注册表。</li>
+  <li><strong>会话双写损坏（<code class="language-plaintext highlighter-rouge">c13a518</code>）</strong>：在实现 <code class="language-plaintext highlighter-rouge">subagent_reload</code> 重连子代理时，Agent 没有严格去校验子任务专属的会话文件，而是图省事直接从环境变量读取“当前最新会话”，结果把<strong>主会话的 JSONL 路径</strong>传给了子进程的 <code class="language-plaintext highlighter-rouge">--session</code> 参数。两个独立的 Pi 实例同时向同一份文件追加写入，瞬间将主会话打成残废。</li>
+</ul>
+
+<h3 id="根因剖析-1">根因剖析</h3>
+<p>这是大语言模型预训练对齐带来的<strong>迎合偏置（Helpfulness Bias）</strong>。LLM 被训练成要“尽量对用户有用”、“尽量给出一个结果”，因此它打心底里抗拒“什么都不做直接报错”。但在分布式与系统编程中，<strong>“不确定时立刻 Fail-Closed 退出”是保护状态不被污染的铁律，而“自作聪明猜一个最像的”则是万恶之源</strong>。</p>
+
+<hr />
+
+<h2 id="3-魔法数字陷阱用破坏性的局部经验常数掩盖状态机设计的缺失">3. 魔法数字陷阱：用破坏性的“局部经验常数”掩盖状态机设计的缺失</h2>
+
+<p>当 Agent 面对任务可能卡死、死锁或无法收敛的复杂边界时，它最喜欢的救急手段不是梳理状态流转，而是随手硬编码一个“魔法常数”或宽松的正则表达式。</p>
+
+<h3 id="典型现场-2">典型现场</h3>
+<ul>
+  <li><strong>300 秒“定时杀手”</strong>：为了防止后台任务死锁挂起，Agent 随手在轮询逻辑里加了一句 <code class="language-plaintext highlighter-rouge">setTimeout(300000)</code>，超时无条件从任务表里将任务抹除。它完全不考虑在真实的开发场景中，大型代码编译、全量测试套件或复杂仿真往往需要跑 30-40 分钟。这个自以为聪明的“兜底”直接变成了无情抹杀正常任务的元凶。</li>
+  <li><strong>贪婪正则抓取 ItemID</strong>：为了自动识别外部事项，Agent 写了一个 <code class="language-plaintext highlighter-rouge">^\d{6}$</code> 正则从提示词里抠 ID。结果用户任务中输入了普通参数 <code class="language-plaintext highlighter-rouge">margin 0.001649</code>，被它截出 <code class="language-plaintext highlighter-rouge">001649</code> 强行占为当前任务的排他键，导致同一批次的第二个 Worker 启动直接报错碰撞。</li>
+</ul>
+
+<h3 id="根因剖析-2">根因剖析</h3>
+<p>建立一套闭环的状态机（State Machine）需要全局推演所有合法的状态转移（Pending → Running → Settled → Terminal），需要处理各种边缘退出条件。Agent 往往缺乏这种推演耐心，倾向于用一个局部的时间切片（Timer）或一段拍脑袋的正则，粗暴地把未知状态直接“剪断”。</p>
+
+<hr />
+
+<h2 id="4-管生不管死生命周期不对称与退役清理盲区">4. 管生不管死：生命周期不对称与退役清理盲区</h2>
+
+<p>AI Agent 编写资源创建（<code class="language-plaintext highlighter-rouge">init</code>, <code class="language-plaintext highlighter-rouge">spawn</code>, <code class="language-plaintext highlighter-rouge">create</code>, <code class="language-plaintext highlighter-rouge">open</code>）的代码往往思路清晰、逻辑顺畅；但在编写销毁、回收、GC、异常回滚（<code class="language-plaintext highlighter-rouge">cleanup</code>, <code class="language-plaintext highlighter-rouge">reconcile</code>, <code class="language-plaintext highlighter-rouge">dispose</code>）的代码时，几乎必然漏掉关键分支。</p>
+
+<h3 id="典型现场-3">典型现场</h3>
+<ul>
+  <li><strong>mac-mini 幽灵案</strong>：已停止的任务在 RMUX 里早就销毁了，但注册表里每隔 15 秒刷新一次心跳。排查发现，持有者 PID 竟然是跑了三天的主会话进程！根因是 <code class="language-plaintext highlighter-rouge">stopTask()</code> 在成功执行 kill 后由于某一分支提前 return，<strong>漏掉了清理内存映射和注册表</strong>。而主进程内部有一个定期维护定时器，忠实地遍历内存里的遗留条目，拿着自己的 PID 替死人续期心跳！运维若是冲动执行 <code class="language-plaintext highlighter-rouge">kill -9</code>，主会话当场报废。</li>
+  <li><strong>残存的待办与孤立文件</strong>：无论是临时文件夹里的 <code class="language-plaintext highlighter-rouge">.processing</code> 文件，还是未 ACK 的 Outbox 队列，Agent 经常只在 Happy Path 上写删除逻辑，只要中间抛了异常或者遇到未识别状态，资源就永久泄漏在磁盘上。</li>
+</ul>
+
+<h3 id="根因剖析-3">根因剖析</h3>
+<p>在真实的系统软件中，<strong>负责异常处理、垃圾回收和安全退役的代码量，往往是正常启动逻辑的三倍以上</strong>。Agent 缺乏对系统“全生命周期对称性”的审美要求，只要把主干流程跑通，它就认为大功告成，留下一地无法自愈的半死状态。</p>
+
+<hr />
+
+<h2 id="5-宿主机制的黑盒无知在语言层面逻辑自洽在物理内核层面暴毙">5. 宿主机制的黑盒无知：在语言层面逻辑自洽，在物理内核层面暴毙</h2>
+
+<p>Agent 写的代码在 JavaScript/TypeScript 语法上无懈可击，但它常常将运行环境视为一个“理想的图灵机”，对底层 V8 引擎、Node.js 运行时、POSIX 内核、文件系统及进程信号的实际物理行为缺乏真实常识。</p>
+
+<h3 id="典型现场-4">典型现场</h3>
+<ul>
+  <li><strong>点文件自吞噬（18.6 万个文件 / 740MB 垃圾）</strong>：在 Notify 扩展扫描目录时，Agent 顺手写了 <code class="language-plaintext highlighter-rouge">file.endsWith(".json")</code>。它完全没意识到，扩展自己在该目录下生成的元数据 <code class="language-plaintext highlighter-rouge">.receiver-identity.json</code> 也是合法 json！结果系统每扫描一次，就把它改名为 <code class="language-plaintext highlighter-rouge">*.processing</code> 并当成非法信封丢进隔离区；而 Worker 每隔 15s 心跳又会重写该文件，导致系统陷入无限自吞噬循环，几周内刷出 18.6 万个隔离文件。</li>
+  <li><strong>Node.js 原生 ESM 不可变缓存</strong>：磁盘上的模块修好了，Agent 信心满满地在终端敲 <code class="language-plaintext highlighter-rouge">/reload</code>，发现报错依旧，就反复换写法重试几十次。它完全不知道 Node.js 底层对原生 <code class="language-plaintext highlighter-rouge">.mjs</code> 模块实行生命周期内不可变缓存，已加载的 Module Namespace 根本无法热重载。</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">argv</code> 自杀开关</strong>：Agent 为了排查方便，把任务提示词直接拼进命令行：<code class="language-plaintext highlighter-rouge">pi --task "pkill -f old_script ..."</code>。它不知道操作系统的 <code class="language-plaintext highlighter-rouge">pkill</code>/<code class="language-plaintext highlighter-rouge">pgrep</code> 是对整个命令行的 argv 做正则匹配，导致该 Worker 一启动就击毙了自己。</li>
+  <li><strong>脆弱的 PID 文本文件</strong>：早期想用写 <code class="language-plaintext highlighter-rouge">.pid</code> 文本文件的方式实现排他锁，完全忽视了进程崩溃无法清理、以及 macOS 极速复用 PID 导致的幽灵还魂。最终被迫通过引入 Python 守护进程，借助<strong>操作系统内核管道读端在写端关闭时必发 EOF</strong> 的物理特性，才实现了零泄漏的 POSIX <code class="language-plaintext highlighter-rouge">flock</code>。</li>
+</ul>
+
+<h3 id="根因剖析-4">根因剖析</h3>
+<p>这就是经典的<strong>抽象泄露（Leaky Abstractions）</strong>。Agent 在高层编程语言的抽象沙盒里受训，它所理解的“文件”只是一个路径字符串，所理解的“进程”只是一个数字 ID。它不知道操作系统的 Inode、文件描述符表、管道缓冲区和内核信号机制究竟是如何实际运转的。</p>
+
+<hr />
+
+<h2 id="6-并发与防御性心智缺失默认世界是温和串行且没有中断的">6. 并发与防御性心智缺失：默认世界是温和、串行且没有中断的</h2>
+
+<p>在单步开发时，Agent 的表现无可挑剔；但只要场景进入“多进程并发竞争”、“网络瞬断抖动”或“父进程下线升级的权力真空期”，它的架构设计往往会瞬间散架。</p>
+
+<h3 id="典型现场-5">典型现场</h3>
+<ul>
+  <li><strong>同步批次派遣与级联 SIGKILL（exit 137 事故）</strong>：一次派发 3 个后台任务，Agent 居然写成同步阻塞等待！结果父进程被整整挂起 20 分钟；当两个子 Worker 在前台执行长任务、用户按下 Ctrl+C 打断父进程时，abort 信号沿着执行树向下击穿，<code class="language-plaintext highlighter-rouge">exec.js</code> 自动发送 <code class="language-plaintext highlighter-rouge">SIGTERM</code> 并在 5 秒后升级为 <code class="language-plaintext highlighter-rouge">SIGKILL</code>，导致所有 Worker 连同未落盘的数据瞬间被系统抹杀。</li>
+  <li><strong>控制器双主脑裂</strong>：当主代理冷重启或升级时，如果用户在两个终端打开了同一个会话，Agent 没有任何防备，任由两个实例同时抢占同一套通道并发写入。直到引入带单调递增代数的租约表（<code class="language-plaintext highlighter-rouge">Fencing Generation</code>），才把过期控制器的写入在底层坚决拦截。</li>
+</ul>
+
+<h3 id="根因剖析-5">根因剖析</h3>
+<p>Agent 缺乏<strong>混沌工程（Chaos Engineering）和压力测试视角的防御性思维</strong>。在它的潜意识里，世界总是线性的：网络永远通畅、系统永远只有一个实例在跑、上游调用者绝不会突然中断、磁盘永远不会满。它极少主动去设想最坏场景。</p>
+
+<hr />
+
+<h2 id="总结人类在-ai-时代的核心价值物理定律把关人">总结：人类在 AI 时代的核心价值——“物理定律把关人”</h2>
+
+<p>回顾这两套插件的演进史，最初由 Agent 写出的第一版代码，几乎全部充斥着上述六类系统级漏洞。如果任由 Agent 自行其是，系统会在各种偶发死锁、进程泄漏和数据损坏中逐渐瘫痪。</p>
+
+<p>真正让系统收敛到工业级健壮的，不是我们写出了多精妙的 Prompt，而是<strong>人类开发者在真实事故发生时，拒绝接受 Agent 给出的“自作聪明式的临时创可贴”，逼着它直面底层物理真相：</strong></p>
+
+<ol>
+  <li><strong>剥夺它的猜测权</strong>：砍掉所有脆弱的 Heuristics Fallback，强制全面落实 <code class="language-plaintext highlighter-rouge">Fail-Closed</code>；</li>
+  <li><strong>追问状态的物理归宿</strong>：当它宣称“已交付/已完成”时，逼问它：“如果下一毫秒主进程被 <code class="language-plaintext highlighter-rouge">kill -9</code>，磁盘上的物理凭据是什么？”；</li>
+  <li><strong>审视资源退役的完整性</strong>：强迫它在写完 <code class="language-plaintext highlighter-rouge">create</code> 之后，用三倍的代码量去覆盖 <code class="language-plaintext highlighter-rouge">cleanup</code>、<code class="language-plaintext highlighter-rouge">reconcile</code> 和异常回滚；</li>
+  <li><strong>戳破运行时的抽象假象</strong>：当它在 Node.js ESM 缓存或 PID 竞争里原地打转时，指出内核真相，引导它通过物理版本化文件和 Pipe 级锁去打破死锁。</li>
+</ol>
+
+<p><strong>在 AI 能够秒级生成海量代码的今天，软件工程的核心竞争力不再是写语法的速度，而是人类架构师对物理世界、操作系统本质与故障边界的深刻敬畏。</strong></p>
+
+<blockquote>
+  <p>[!SUMMARY] 核心反思速查</p>
+  <ul>
+    <li><strong>虚拟成功</strong>：API 接收不等于物理落盘，交付闭环必须依赖磁盘 Receipt ACK；</li>
+    <li><strong>启发猜测</strong>：在多进程环境里，猜测即投毒，宁可 Fail-Closed 也绝不妥协；</li>
+    <li><strong>魔法常数</strong>：300s 超时和粗暴正则只能掩盖问题，必须由真实状态机驱动；</li>
+    <li><strong>管生不管死</strong>：资源的退役、回滚与 GC 比创建更关键，遗漏必成幽灵；</li>
+    <li><strong>黑盒无知</strong>：警惕抽象泄露，时刻看清 V8、Node 缓存、管道与 POSIX 内核本质；</li>
+    <li><strong>缺乏防御</strong>：默认假设世界会崩溃，为每一个异步任务构建断电重放与 Fencing 隔离。</li>
+  </ul>
+</blockquote>
+
+        </div>
+
+        
+
+        
+        
+  <div class="page-comments">
+    <div id="disqus_thread"></div>
+    <script>
+      var disqus_config = function () {
+        this.page.url = 'https://roshameow.github.io//personal_homepage/thought/agent-infrastructure-pitfalls/';
+        this.page.identifier = 'https://roshameow.github.io//personal_homepage/thought/agent-infrastructure-pitfalls/';
+      };
+
+      (function() {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://https-roshameow-github-io-personal-homepage.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+  </div>
+
+
+        
+
+        <nav class="page-pagination" role="navigation">
+  
+    <a class="page-previous" href="/personal_homepage/tool/alpha24/">
+      <h4 class="page-pagination-label">Previous</h4>
+      <span class="page-pagination-title">
+        <i class="fas fa-arrow-left"></i> WorldQuant Brain 平台通信与认证架构：Cookie-First、204/401 恢复时序与单真源安全门禁
+
+      </span>
+    </a>
+  
+
+  
+    <a class="page-next" href="/personal_homepage/thought/agent-text-benchmark-pitfalls/">
+      <h4 class="page-pagination-label">Next</h4>
+      <span class="page-pagination-title">
+        文字与专业评测实战全景：AI Agent 出题易犯的错、做题易犯的错，以及究竟如何出题才能难住它
+ <i class="fas fa-arrow-right"></i>
+      </span>
+    </a>
+  
+</nav>
+
+      </div>
+
+    </div>
+  </article>
+</main>
+
+    <footer id="footer" class="site-footer">
+  <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+<div class="social-icons"><a class="social-icon" href="/personal_homepage/atom.xml"><i class="fas fa-rss-square fa-2x" title="Feed"></i></a><a class="social-icon" href="https://github.com/roshameow"><i class="fab fa-github-square fa-2x" title="GitHub"></i></a><a class="social-icon" href="https://www.linkedin.com/in/wen-liu-06503a7b/"><i class="fab fa-linkedin fa-2x" title="LinkedIn"></i></a><a class="social-icon" href="mailto:w.liuatnk@gmail.com"><i class="fas fa-envelope-square fa-2x" title="e-mail"></i></a></div><div class="copyright">
+    
+      <p>&copy; 2026 Liu, Wen's Home Page. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://github.com/mmistakes/so-simple-theme" rel="nofollow">So Simple</a>.</p>
+    
+  </div>
+</footer>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="/personal_homepage/assets/js/main.min.js"></script>
+<script src="https://use.fontawesome.com/releases/v5.0.12/js/all.js"></script><script src="/personal_homepage/assets/js/content-tables.js" defer></script>
+
+<script>
+(function () {
+  'use strict';
+
+  var types = {
+    NOTE: 'note', INFO: 'note', ABSTRACT: 'note', SUMMARY: 'note', TLDR: 'note',
+    EXAMPLE: 'note', QUOTE: 'note', CITE: 'note',
+    TIP: 'tip', HINT: 'tip', IMPORTANT: 'tip', SUCCESS: 'tip', CHECK: 'tip', DONE: 'tip',
+    QUESTION: 'warning', HELP: 'warning', FAQ: 'warning',
+    WARNING: 'warning', CAUTION: 'warning', ATTENTION: 'warning',
+    DANGER: 'danger', ERROR: 'danger', BUG: 'danger',
+    FAILURE: 'danger', FAIL: 'danger', MISSING: 'danger'
+  };
+  var icons = {
+    note: 'M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z M12 11v6 M12 7h.01',
+    tip: 'M9 18h6 M10 21h4 M9 15a6 6 0 1 1 6 0v3H9z',
+    warning: 'M12 3L2 21h20z M12 9v5 M12 17h.01',
+    danger: 'M7 3h10l4 4v10l-4 4H7l-4-4V7z M9 9l6 6 M15 9l-6 6'
+  };
+
+  function makeIcon(type) {
+    var namespace = 'http://www.w3.org/2000/svg';
+    var svg = document.createElementNS(namespace, 'svg');
+    svg.setAttribute('class', 'callout-icon');
+    svg.setAttribute('viewBox', '0 0 24 24');
+    svg.setAttribute('width', '20');
+    svg.setAttribute('height', '20');
+    svg.setAttribute('fill', 'none');
+    svg.setAttribute('stroke', 'currentColor');
+    svg.setAttribute('stroke-width', '2');
+    svg.setAttribute('stroke-linecap', 'round');
+    svg.setAttribute('stroke-linejoin', 'round');
+    svg.setAttribute('aria-hidden', 'true');
+    svg.setAttribute('focusable', 'false');
+    var path = document.createElementNS(namespace, 'path');
+    path.setAttribute('d', icons[type]);
+    svg.appendChild(path);
+    return svg;
+  }
+
+  // A soft break is a text newline; a Markdown hard break is a <br>.
+  // Do not split newlines inside inline code or other literal content.
+  function firstBreak(parent) {
+    for (var node = parent.firstChild; node; node = node.nextSibling) {
+      if (node.nodeType === 3) {
+        var offset = node.data.search(/[\r\n]/);
+        if (offset !== -1) return { node: node, offset: offset };
+      } else if (node.nodeType === 1) {
+        if (node.tagName === 'BR') return { node: node };
+        if (/^(CODE|PRE|SCRIPT|STYLE|TEXTAREA)$/.test(node.tagName)) continue;
+        var result = firstBreak(node);
+        if (result) return result;
+      }
+    }
+    return null;
+  }
+
+  function transformCallouts() {
+    document.querySelectorAll('.page-content blockquote').forEach(function (quote) {
+      if (quote.closest('pre, code, .highlight, .highlighter-rouge')) return;
+      var paragraph = quote.firstElementChild;
+      if (!paragraph || paragraph.tagName !== 'P') return;
+
+      // Require the marker in a direct text node: <code>[!WARNING]</code>
+      // (and markers merely mentioned later in a quote) must remain literal.
+      var markerNode = paragraph.firstChild;
+      if (!markerNode || markerNode.nodeType !== 3) return;
+      var marker = markerNode.data.match(/^[\t \r\n]*\[!([a-z][a-z0-9-]*)\]([+-])?(?=[\t \r\n]|$)[\t ]*/i);
+      if (!marker) return;
+      var name = marker[1].toUpperCase();
+      if (!Object.prototype.hasOwnProperty.call(types, name)) return;
+      var type = types[name];
+      var label = name === 'TLDR' ? 'TL;DR' : name.charAt(0) + name.slice(1).toLowerCase();
+      markerNode.deleteData(0, marker[0].length);
+
+      var boundary = firstBreak(paragraph);
+      var range = document.createRange();
+      range.selectNodeContents(paragraph);
+      if (boundary) {
+        if (boundary.node.nodeType === 3) range.setEnd(boundary.node, boundary.offset);
+        else range.setEndBefore(boundary.node);
+      }
+      var titleContent = range.extractContents();
+      if (boundary) {
+        if (boundary.node.nodeType === 3) {
+          var breakLength = boundary.node.data.slice(0, 2) === '\r\n' ? 2 : 1;
+          boundary.node.deleteData(0, breakLength);
+        } else {
+          boundary.node.parentNode.removeChild(boundary.node);
+        }
+      }
+      if (!paragraph.textContent.trim() && !paragraph.children.length) {
+        quote.removeChild(paragraph);
+      }
+
+      var folding = !!marker[2];
+      var callout = document.createElement(folding ? 'details' : 'div');
+      // Keep author-provided IDs, language, direction, and classes.
+      Array.prototype.forEach.call(quote.attributes, function (attribute) {
+        callout.setAttribute(attribute.name, attribute.value);
+      });
+      callout.classList.add('callout', 'callout--' + type);
+      callout.setAttribute('data-callout', name.toLowerCase());
+      callout.setAttribute('aria-label', label);
+      if (folding) {
+        callout.removeAttribute('role');
+        if (marker[2] === '+') callout.setAttribute('open', '');
+        else callout.removeAttribute('open');
+      } else {
+        callout.setAttribute('role', 'note');
+      }
+
+      var title = document.createElement(folding ? 'summary' : 'div');
+      title.className = 'callout-title';
+      title.appendChild(makeIcon(type));
+      var titleText = document.createElement('span');
+      titleText.className = 'callout-title-text';
+      if (titleContent.textContent.trim() || titleContent.childElementCount) {
+        titleText.appendChild(titleContent);
+      } else {
+        titleText.textContent = label;
+      }
+      title.appendChild(titleText);
+      callout.appendChild(title);
+
+      var body = document.createElement('div');
+      body.className = 'callout-body';
+      while (quote.firstChild) body.appendChild(quote.firstChild);
+      callout.appendChild(body);
+      quote.parentNode.replaceChild(callout, quote);
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', transformCallouts);
+  } else {
+    transformCallouts();
+  }
+})();
+</script>
+<!-- <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'G-9TMSCDTBGN', 'auto');
+  ga('send', 'pageview');
+</script> -->
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9TMSCDTBGN"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-9TMSCDTBGN');
+</script>
+
+
+
+<!-- MathJax -->
+<style>
+    /* Only oversized equations get this wrapper; ordinary inline math stays inline. */
+    .math-scroll {
+        display: block;
+        max-width: 100%;
+        overflow-x: auto;
+        overflow-y: hidden;
+        padding-block: 0.5em;
+        scrollbar-width: thin;
+    }
+    .math-scroll > mjx-container[jax] {
+        display: inline-block;
+        margin: 0;
+    }
+    .math-scroll:focus-visible {
+        outline: 2px solid currentColor;
+        outline-offset: 2px;
+    }
+</style>
+<script>
+    function fitMathToColumn() {
+        document.querySelectorAll('mjx-container').forEach(function (container) {
+            var wrapper = container.parentElement.classList.contains('math-scroll') ? container.parentElement : null;
+            var column = wrapper ? wrapper.parentElement : container.parentElement;
+            while (column && ['inline', 'contents'].includes(getComputedStyle(column).display)) {
+                column = column.parentElement;
+            }
+            if (!column) return;
+            var style = getComputedStyle(column);
+            var available = column.clientWidth - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight);
+            var ink = container.querySelector('mjx-math, svg');
+            var width = (ink || container).getBoundingClientRect().width;
+            if (width > available + 1) {
+                if (!wrapper) {
+                    wrapper = document.createElement('span');
+                    wrapper.className = 'math-scroll';
+                    wrapper.tabIndex = 0;
+                    wrapper.setAttribute('role', 'region');
+                    wrapper.setAttribute('aria-label', 'Mathematical formula; scroll horizontally to read all');
+                    wrapper.title = 'Scroll horizontally to read the full formula';
+                    container.before(wrapper);
+                    wrapper.appendChild(container);
+                }
+            } else if (wrapper) {
+                wrapper.replaceWith(container);
+            }
+        });
+    }
+    // Pin the engine, autoloaded TeX extensions, menu and fonts to local assets.
+    window.MathJax = {
+        loader: {
+            paths: { mathjax: "/personal_homepage/assets/js/vendor/mathjax/es5" },
+            load: ['[tex]/textmacros']
+        },
+        tex: {
+            tags: "ams",
+            packages: { '[+]': ['textmacros'] },
+            inlineMath: [['$', '$'], ['\\(', '\\)']],
+            displayMath: [['$$', '$$'], ['\\[', '\\]']]
+        },
+        chtml: {
+            fontURL: "/personal_homepage/assets/js/vendor/mathjax/es5/output/chtml/fonts/woff-v2"
+        },
+        startup: {
+            pageReady: function () {
+                return MathJax.startup.defaultPageReady().then(function () {
+                    return document.fonts ? document.fonts.ready : undefined;
+                }).then(function () {
+                    fitMathToColumn();
+                    var scheduled = false;
+                    window.addEventListener('resize', function () {
+                        if (scheduled) return;
+                        scheduled = true;
+                        requestAnimationFrame(function () {
+                            scheduled = false;
+                            fitMathToColumn();
+                        });
+                    });
+                });
+            }
+        },
+        options: {
+            // Keep examples (including literal dollar signs) out of the typesetter.
+            skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code', 'annotation', 'annotation-xml']
+        }
+    };
+</script>
+<script id="MathJax-script" async src="/personal_homepage/assets/js/vendor/mathjax/es5/tex-mml-chtml.js"></script>
+
+
+
+
+<!-- Mermaid -->
+<style>
+  .mermaid-diagram {
+    max-width: 100%;
+    margin: 0.85rem 0;
+    overflow-x: auto;
+  }
+  .mermaid-diagram:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+  }
+  .page-content pre.mermaid {
+    margin: 0;
+    padding: 0.25rem 0;
+    text-align: center;
+    background: transparent;
+    overflow: visible;
+    font-family: inherit;
+  }
+  .page-content pre.mermaid[data-processed] {
+    white-space: normal;
+  }
+  pre.mermaid svg {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    height: auto;
+  }
+  .mermaid-diagram .cluster-label {
+    font-weight: 700;
+  }
+  .mermaid-error {
+    font-size: 0.85em;
+    color: #9a3412;
+  }
+</style>
+<script src="/personal_homepage/assets/js/vendor/mermaid-11.17.2.min.js"></script>
+<script>
+(function () {
+  'use strict';
+
+  function normalizeMermaidSource(source) {
+    // Mermaid 11 accepts A <-- "label" --- B but creates an INVALID edge.
+    // Render the equivalent B -->|"label"| A, without editing the Markdown.
+    var body = source.trimStart()
+      .replace(/^---\r?\n[\s\S]*?\r?\n---(?:\r?\n|$)/, '')
+      .replace(/%%\{[\s\S]*?\}%%/g, '')
+      .replace(/^[\t ]*%%.*$/gm, '').trimStart();
+    if (!/^(?:flowchart|graph)\b/.test(body)) return source;
+
+    var started = false;
+    var quoted = false;
+    return source.replace(/[^\r\n]+/g, function (line) {
+      if (!started && !/^\s*(?:flowchart|graph)\b/.test(line)) return line;
+      started = true;
+      var normalized = quoted ? line : line.replace(
+        /^([\t ]*)([A-Za-z_][\w-]*)[\t ]*<--[\t ]*("[^"\r\n]*")[\t ]*---[\t ]*([A-Za-z_][\w-]*)([\t ]*;?[\t ]*(?:%%.*)?)$/,
+        function (_, indent, left, label, right, suffix) {
+          return indent + right + ' -->|' + label + '| ' + left + suffix;
+        }
+      );
+      // Never rewrite an example inside a multiline quoted node label, and
+      // never let quotes inside a %% comment affect the following lines.
+      for (var i = 0; i < line.length; i++) {
+        if (!quoted && line[i] === '%' && line[i + 1] === '%') break;
+        if (line[i] === '"') quoted = !quoted;
+      }
+      return normalized;
+    });
+  }
+
+  async function renderDiagrams() {
+    var blocks = document.querySelectorAll('code.language-mermaid');
+    if (!blocks.length) return;
+    if (typeof mermaid === 'undefined') {
+      blocks.forEach(function (code) {
+        var original = code.closest('.highlighter-rouge') || code.closest('pre');
+        if (!original) return;
+        var message = document.createElement('p');
+        message.className = 'mermaid-error';
+        message.setAttribute('role', 'status');
+        message.textContent = '图表组件加载失败，请刷新页面重试。Mermaid 源码已保留。';
+        original.after(message);
+      });
+      return;
+    }
+
+    // Render every diagram as Mermaid, including diagrams with multiple subgraphs.
+    // Disable the automatic pass so it cannot race with our explicit rendering.
+    var skin = getComputedStyle(document.documentElement);
+    function color(name, fallback) {
+      return skin.getPropertyValue('--mermaid-' + name).trim() || fallback;
+    }
+    var background = color('background', '#ffffff');
+    var text = color('text', '#000000');
+    var border = color('border', '#cccccc');
+    var nodeBorder = color('node-border', '#b8b9c0');
+    var cluster = color('cluster-background', '#f9f9fa');
+    var line = color('line', '#858795');
+    var palettes = [
+      ['#e4eaf0', '#f4f6f9', '#a5b3c2'], // slate blue
+      ['#e8f0ea', '#f5f8f5', '#a8bcae'], // sage
+      ['#f3ede3', '#faf7f2', '#c6b69c'], // sand
+      ['#ebe8f1', '#f7f5fa', '#b5adc5'], // lavender
+      ['#e4eeee', '#f3f8f8', '#a0baba']  // muted teal
+    ].map(function (fallbacks, index) {
+      return {
+        node: color('palette-' + index + '-node', fallbacks[0]),
+        cluster: color('palette-' + index + '-cluster', index === 0 ? cluster : fallbacks[1]),
+        border: color('palette-' + index + '-border', fallbacks[2])
+      };
+    });
+    var fontFamily = getComputedStyle(document.body).fontFamily ||
+      '"Source Sans Pro", sans-serif';
+    // Mermaid fixes label dimensions during layout. Wait for web fonts so a
+    // later font swap cannot make the measured label box too small.
+    if (document.fonts) await document.fonts.ready;
+
+    var theme = "default";
+    // The site's default follows its active skin. Explicit forest/dark/etc.
+    // choices remain available for sites that deliberately select them.
+    if (theme === 'default') theme = 'base';
+
+    var config = {
+      startOnLoad: false,
+      securityLevel: 'strict',
+      fontFamily: fontFamily,
+      // Native SVG text avoids foreignObject clipping and article paragraph CSS.
+      htmlLabels: false,
+      flowchart: {
+        inheritDir: true,
+        curve: 'linear',
+        nodeSpacing: 24,
+        rankSpacing: 28,
+        padding: 8,
+        diagramPadding: 8,
+        wrappingWidth: 180,
+        // Nested cluster borders must start below the parent's full title line.
+        subGraphTitleMargin: { top: 4, bottom: 12 }
+      },
+      theme: theme,
+      themeVariables: theme === 'base' ? {
+        fontFamily: fontFamily,
+        fontSize: '14px',
+        background: background,
+        primaryColor: palettes[0].node,
+        primaryTextColor: text,
+        primaryBorderColor: nodeBorder,
+        secondaryColor: palettes[1].node,
+        secondaryTextColor: text,
+        secondaryBorderColor: border,
+        tertiaryColor: palettes[2].node,
+        tertiaryTextColor: text,
+        tertiaryBorderColor: border,
+        lineColor: line,
+        textColor: text,
+        mainBkg: palettes[0].node,
+        nodeBorder: nodeBorder,
+        nodeTextColor: text,
+        clusterBkg: palettes[0].cluster,
+        clusterBorder: border,
+        titleColor: text,
+        defaultLinkColor: line,
+        edgeLabelBackground: background,
+        noteBkgColor: palettes[2].node,
+        noteTextColor: text,
+        noteBorderColor: border,
+        actorBkg: palettes[0].node,
+        actorBorder: nodeBorder,
+        actorTextColor: text,
+        actorLineColor: border,
+        signalColor: line,
+        signalTextColor: text
+      } : { fontFamily: fontFamily }
+    };
+
+    function applyFlowchartPalette(svg) {
+      if (theme !== 'base' || !/^flowchart/.test(svg.getAttribute('aria-roledescription') || '')) return;
+
+      function tint(group, shapes, index, kind) {
+        // Author-supplied classDef/style colors take precedence over auto accents.
+        var customClass = Array.from(group.classList).some(function (name) {
+          return !['node', 'default', 'cluster', 'clickable'].includes(name);
+        });
+        if (customClass || !shapes.length || shapes.some(function (shape) {
+          return shape.style.getPropertyValue('fill') || shape.style.getPropertyValue('stroke');
+        })) return;
+        group.setAttribute('data-mermaid-palette', index);
+        shapes.forEach(function (shape) {
+          // Keep fallbacks in the SVG so exported diagrams retain their colors.
+          if (shape.getAttribute('fill') !== 'none') {
+            shape.style.fill = 'var(--mermaid-palette-' + index + '-' + kind + ', ' + palettes[index][kind] + ')';
+          }
+          shape.style.stroke = 'var(--mermaid-palette-' + index + '-border, ' + palettes[index].border + ')';
+        });
+      }
+
+      var groups = Array.from(svg.querySelectorAll('g.cluster')).map(function (group, index) {
+        var rect = group.querySelector('rect');
+        return { group: group, rect: rect, bounds: rect && rect.getBoundingClientRect(), index: index % palettes.length };
+      }).filter(function (entry) { return entry.rect; });
+      // Mermaid's SVG stores clusters flat. Match by the actual layout so nodes
+      // inherit their smallest enclosing group, including nested schedulers.
+      var nodes = Array.from(svg.querySelectorAll('g.node')).map(function (node) {
+        return { node: node, bounds: node.getBoundingClientRect() };
+      });
+      groups.forEach(function (entry) { tint(entry.group, [entry.rect], entry.index, 'cluster'); });
+      groups.sort(function (a, b) { return a.bounds.width * a.bounds.height - b.bounds.width * b.bounds.height; });
+      nodes.forEach(function (entry) {
+        var box = entry.bounds;
+        var parent = groups.find(function (group) {
+          var bounds = group.bounds;
+          return box.left >= bounds.left - 1 && box.right <= bounds.right + 1 &&
+            box.top >= bounds.top - 1 && box.bottom <= bounds.bottom + 1;
+        });
+        var shapes = [];
+        entry.node.querySelectorAll(':scope > .label-container').forEach(function (container) {
+          // Rounded/hand-drawn shapes wrap paths in a group. Include the
+          // container in the author-style check, then tint the actual paths.
+          shapes.push(container);
+          shapes.push.apply(shapes, container.querySelectorAll('path, rect, circle, ellipse, polygon, polyline'));
+        });
+        tint(entry.node, shapes, parent ? parent.index : 0, 'node');
+      });
+    }
+
+    function hasNestedSubgraphs(source) {
+      var depth = 0;
+      return source.split(/\r?\n/).some(function (line) {
+        if (/^\s*subgraph\b/.test(line)) return ++depth > 1;
+        if (/^\s*end\s*(?:;|%%.*)?$/.test(line)) depth = Math.max(0, depth - 1);
+        return false;
+      });
+    }
+
+    for (var code of blocks) {
+      var original = code.closest('.highlighter-rouge') || code.closest('pre');
+      if (!original) continue;
+
+      var wrapper = document.createElement('div');
+      wrapper.className = 'mermaid-diagram';
+      wrapper.tabIndex = 0;
+      wrapper.setAttribute('role', 'region');
+      wrapper.setAttribute('aria-label', 'Mermaid diagram (scroll horizontally)');
+
+      var pre = document.createElement('pre');
+      pre.className = 'mermaid';
+      pre.textContent = normalizeMermaidSource(code.textContent);
+      wrapper.appendChild(pre);
+      original.replaceWith(wrapper);
+
+      try {
+        // Dagre reserves only half rankSpacing above a nested cluster. Keep
+        // that space taller than its parent's title, without spreading out
+        // the ordinary (non-nested) compact flowcharts.
+        mermaid.initialize(Object.assign({}, config, {
+          flowchart: Object.assign({}, config.flowchart, {
+            rankSpacing: hasNestedSubgraphs(code.textContent) ? 56 : config.flowchart.rankSpacing
+          })
+        }));
+        await mermaid.run({ nodes: [pre] });
+        var svg = pre.querySelector('svg');
+        if (svg && svg.viewBox.baseVal.width) {
+          // Do not shrink labels to illegible text on narrow screens;
+          // keep at least 90% of the natural size and scroll the diagram instead.
+          svg.style.minWidth = (svg.viewBox.baseVal.width * 0.9) + 'px';
+        }
+        if (svg) applyFlowchartPalette(svg);
+      } catch (error) {
+        // A malformed diagram must not prevent other diagrams from rendering
+        // or make the original source disappear.
+        wrapper.replaceChildren(original);
+        var message = document.createElement('p');
+        message.className = 'mermaid-error';
+        message.setAttribute('role', 'status');
+        message.textContent = '图表渲染失败，已保留 Mermaid 源码。';
+        wrapper.appendChild(message);
+        console.warn('Mermaid diagram could not be rendered:', error);
+      }
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', renderDiagrams);
+  } else {
+    renderDiagrams();
+  }
+})();
+</script>
+
+
+  </body>
+
+</html>

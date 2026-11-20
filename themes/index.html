@@ -103,7 +103,1620 @@
       </header>
       <div class="page-content">
         
+<section class="theme-section taxonomy-section" id="agent">
+  <h2 class="taxonomy-title">agent</h2>
+  <div class="entries-list"></div><section class="theme-subsection" id="agent-pi">
+    <h3 class="theme-subsection-title">pi</h3>
+    <div class="entries-list">
 
+
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
+        <a href="/personal_homepage/tool/pi-subagent-durable/" rel="bookmark">subagent</a>
+      
+    </h3>
+    
+      <p class="entry-theme-subtitle">pi-subagent-durable：后台子代理的持久化、生命周期与故障自愈
+</p>
+      
+    
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <p>面对真实的复杂长任务时，子代理可能需要执行几十分钟乃至数小时的连续命令、多步排错、或者等待外部异步系统的结果。<strong>一次性子进程模型在长任务面前瞬间溃不成军</strong>：</p>
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">4 min read</span>
+
+      <time class="entry-date dt-published" datetime="2026-11-10T00:00:00+00:00">November 10, 2026
+  </time>
+    </footer>
+  
+</article>
+
+
+
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
+        <a href="/personal_homepage/tool/pi-agent-notify/" rel="bookmark">agent-notify</a>
+      
+    </h3>
+    
+      <p class="entry-theme-subtitle">pi-agent-notify：Coding Agent 的事件总线、非阻塞等待与可靠投递
+</p>
+      
+    
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <p>在上一篇聊 <a href="/personal_homepage/tool/pi-subagent-durable/">pi-subagent-durable</a> 的笔记中，我们确立了一条生死攸关的铁律（D2）：<strong>严禁让 Agent 在前台执行 <code class="language-plaintext highlighter-rouge">sleep</code> 或死循环轮询等待外部任务。必须采用“一次权威确认 + 启动进程外有界 Watcher + 结束当前 Turn 静息等待”的模式。</strong></p>
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">3 min read</span>
+
+      <time class="entry-date dt-published" datetime="2026-11-10T00:00:00+00:00">November 10, 2026
+  </time>
+    </footer>
+  
+</article>
+
+
+
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
+        <a href="/personal_homepage/tool/pi-runtime-attribution/" rel="bookmark">gui (2)</a>
+      
+    </h3>
+    
+      <p class="entry-theme-subtitle">Pi Desktop的开发难点: “会话的状态”
+</p>
+      
+    
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <p>Pi Desktop 里最难修的功能，是侧边栏那枚很小的状态 chip：<strong>这个会话现在的运行状态</strong>？</p>
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">4 min read</span>
+
+      <time class="entry-date dt-published" datetime="2026-08-12T00:00:00+00:00">August 12, 2026
+  </time>
+    </footer>
+  
+</article>
+
+
+
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
+        <a href="/personal_homepage/tool/pi-desktop/" rel="bookmark">gui (1)</a>
+      
+    </h3>
+    
+      <p class="entry-theme-subtitle">Pi Desktop：从会话浏览器到跨机器工作台
+</p>
+      
+    
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <p>我最初只是想给 <a href="https://github.com/badlogic/pi-mono">pi coding agent</a> 补一个桌面会话浏览器：按项目查看 JSONL、展开工具调用，需要时从原会话继续聊。</p>
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">2 min read</span>
+
+      <time class="entry-date dt-published" datetime="2026-08-11T00:00:00+00:00">August 11, 2026
+  </time>
+    </footer>
+  
+</article>
+</div>
+  </section><section class="theme-subsection" id="agent-problem">
+    <h3 class="theme-subsection-title">problem</h3>
+    <div class="entries-list">
+
+
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
+        <a href="/personal_homepage/thought/agent-infrastructure-pitfalls-2/" rel="bookmark">coding 1-2</a>
+      
+    </h3>
+    
+      <p class="entry-theme-subtitle">用 AI 维护复杂控制面基础设施：为什么越修越死？从补丁膨胀到 6 态收敛的六大工程陷阱
+</p>
+      
+    
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <blockquote>
+  <p>本文是 AI 开发基础设施复盘系列的第二篇（接前篇 <a href="2026-11-10-agent-infrastructure-pitfalls.md">《用 AI 开发 Agent 基础设施：真实生产环境中 AI 最易犯的六类系统性错误》</a>；对应的控制面纠偏总结见 <a href="2026-11-19-alpha27.md">《从过度防御的歪路纠偏：GUI/CLI 6 态极简控制面、数据面板统一与工程收口》（alpha27）</a>）。</p>
+</blockquote>
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">2 min read</span>
+
+      <time class="entry-date dt-published" datetime="2026-11-19T00:00:00+00:00">November 19, 2026
+  </time>
+    </footer>
+  
+</article>
+
+
+
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
+        <a href="/personal_homepage/thought/agent-text-benchmark-pitfalls/" rel="bookmark">words</a>
+      
+    </h3>
+    
+      <p class="entry-theme-subtitle">文字与专业评测实战全景：AI Agent 出题易犯的错、做题易犯的错，以及究竟如何出题才能难住它
+</p>
+      
+    
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <p>在这套体系中，AI Agent 既被用来作为<strong>“出题人（Author/Designer）”</strong>构建评测基准，又被作为<strong>“做题人（Solver/Candidate）”</strong>执行高难度业务任务。而令人惊叹的是：<strong>出题 Agent 的盲区、做题 Agent 的弱点，以及如何真正设计出一道能难住它的工业级好题，三者构成了一个严丝合缝的认知闭环。</strong></p>
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">2 min read</span>
+
+      <time class="entry-date dt-published" datetime="2026-11-10T00:00:00+00:00">November 10, 2026
+  </time>
+    </footer>
+  
+</article>
+
+
+
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
+        <a href="/personal_homepage/thought/agent-infrastructure-pitfalls/" rel="bookmark">coding 0-1</a>
+      
+    </h3>
+    
+      <p class="entry-theme-subtitle">用 AI 开发 Agent 基础设施：真实生产环境中 AI 最易犯的六类系统性错误
+</p>
+      
+    
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <p>现在很多关于 AI 编程（Coding Agent）的讨论，往往集中在写算法题、写纯函数逻辑、或者快速搭建一个全栈 CRUD 玩具上。在这些场景里，LLM 确实表现得像一个无所不知的高级工程师。</p>
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">1 min read</span>
+
+      <time class="entry-date dt-published" datetime="2026-11-10T00:00:00+00:00">November 10, 2026
+  </time>
+    </footer>
+  
+</article>
+</div>
+  </section></section><section class="theme-section taxonomy-section" id="worldquant">
+  <h2 class="taxonomy-title">worldquant</h2>
+  <div class="entries-list"></div><section class="theme-subsection" id="worldquant-algorithm">
+    <h3 class="theme-subsection-title">algorithm</h3>
+    <div class="entries-list">
+
+
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
+        <a href="/personal_homepage/algorithm/alpha17/" rel="bookmark">优化</a>
+      
+    </h3>
+    
+      <p class="entry-theme-subtitle">时序上的参数优化和神经网络
+</p>
+      
+    
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <p>问题: 对给出的固定字段和feature, 怎么连续的调参</p>
+<ul>
+  <li>特征:
+    <ul>
+      <li>pv原始数据</li>
+      <li>已知有信号的现成特征</li>
+    </ul>
+  </li>
+  <li>loss:
+    <ul>
+      <li>-sharpe
+        <ul>
+          <li>可以用的样本数很少. 66为周期的话, 5年的样本数只有 5x512/66=17 个
+            <ul>
+              <li>样本少其实就是约束少, 容易过拟合的意思</li>
+              <li>模型容量</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>把mu和sigma拆开成线性的</li>
+    </ul>
+  </li>
+  <li>activation
+    <ul>
+      <li>demean, L1</li>
+    </ul>
+  </li>
+  <li>优化
+    <ul>
+      <li>SGD普通</li>
+      <li>Adam: 解决各个特征大小不均衡的问题</li>
+    </ul>
+  </li>
+</ul>
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">~1 min read</span>
+
+      <time class="entry-date dt-published" datetime="2026-05-13T00:00:00+00:00">May 13, 2026
+  </time>
+    </footer>
+  
+</article>
+
+
+
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
+        <a href="/personal_homepage/algorithm/alpha16/" rel="bookmark">搜索</a>
+      
+    </h3>
+    
+      <p class="entry-theme-subtitle">从问题特点出发：Alpha 搜索算法体系的诚实复盘与演进
+</p>
+      
+    
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <p>在量化回测中，Alpha 搜索本质上是一个<strong>受限配额下的黑箱资源分配问题</strong>。</p>
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">~1 min read</span>
+
+      <time class="entry-date dt-published" datetime="2026-04-20T00:00:00+00:00">April 20, 2026
+  </time>
+    </footer>
+  
+</article>
+
+
+
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
+        <a href="/personal_homepage/finance/alpha13/" rel="bookmark">metric & 组合 combo example(3)</a>
+      
+    </h3>
+    
+      <p class="entry-theme-subtitle">组合交易 (二)
+</p>
+      
+    
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <h2 id="单个alpha的性能">单个alpha的性能</h2>
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">2 min read</span>
+
+      <time class="entry-date dt-published" datetime="2025-12-24T00:00:00+00:00">December 24, 2025
+  </time>
+    </footer>
+  
+</article>
+
+
+
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
+        <a href="/personal_homepage/code/algorithm/string/" rel="bookmark">ast grammar</a>
+      
+    </h3>
+    
+      <p class="entry-theme-subtitle">代码语法解析
+</p>
+      
+    
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <h2 id="三元运算符ternary解析">三元运算符(ternary)解析</h2>
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">2 min read</span>
+
+      <time class="entry-date dt-published" datetime="2025-08-10T00:00:00+00:00">August 10, 2025
+  </time>
+    </footer>
+  
+</article>
+
+
+
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
+        <a href="/personal_homepage/algorithm/alpha10/" rel="bookmark">ast generation rl</a>
+      
+    </h3>
+    
+      <p class="entry-theme-subtitle">选出最佳的表达式组合
+</p>
+      
+    
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <p>从给定的100个左右operator, 和10多个参数, 结合生成表达式</p>
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">~1 min read</span>
+
+      <time class="entry-date dt-published" datetime="2025-06-25T00:00:00+00:00">June 25, 2025
+  </time>
+    </footer>
+  
+</article>
+
+
+
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
+        <a href="/personal_homepage/algorithm/alpha9/" rel="bookmark">组合 combo example(2)</a>
+      
+    </h3>
+    
+      <p class="entry-theme-subtitle">拉格朗日乘子法应用 (一 )
+</p>
+      
+    
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <h2 id="拉格朗日乘子法lagrange-multiplier-一般问题">拉格朗日乘子法（<a href="https://en.wikipedia.org/wiki/Lagrange_multiplier">Lagrange multiplier</a> ）一般问题</h2>
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">2 min read</span>
+
+      <time class="entry-date dt-published" datetime="2025-06-22T00:00:00+00:00">June 22, 2025
+  </time>
+    </footer>
+  
+</article>
+
+
+
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
+        <a href="/personal_homepage/finance/alpha8/" rel="bookmark">组合 combo example(1)</a>
+      
+    </h3>
+    
+      <p class="entry-theme-subtitle">组合交易 (一)
+</p>
+      
+    
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <h2 id="单个alpha仿真交易流程">单个alpha仿真交易流程</h2>
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">~1 min read</span>
+
+      <time class="entry-date dt-published" datetime="2025-05-27T00:00:00+00:00">May 27, 2025
+  </time>
+    </footer>
+  
+</article>
+
+
+
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
+        <a href="/personal_homepage/algorithm/alpha7/" rel="bookmark">组合portfolio</a>
+      
+    </h3>
+    
+      <p class="entry-theme-subtitle">因子组合优化
+</p>
+      
+    
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <p>问题: 从 \(N\) 个候选集中挑选出 \(K\) 个，构建一个能够最大化综合得分的组合。得分计算复杂, 所以我们考虑启发式的算法.</p>
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">~1 min read</span>
+
+      <time class="entry-date dt-published" datetime="2025-05-26T00:00:00+00:00">May 26, 2025
+  </time>
+    </footer>
+  
+</article>
+</div>
+  </section><section class="theme-subsection" id="worldquant-architecture">
+    <h3 class="theme-subsection-title">architecture</h3>
+    <div class="entries-list">
+
+
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
+        <a href="/personal_homepage/tool/alpha27/" rel="bookmark">gui/cli统一(2)</a>
+      
+    </h3>
+    
+      <p class="entry-theme-subtitle">从过度防御的歪路纠偏：GUI/CLI 6 态极简控制面、数据面板统一与工程收口
+</p>
+      
+    
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <blockquote>
+  <p>本文是 QuantNight GUI/CLI 统一架构系列的第二篇（接前篇 <a href="2026-10-31-alpha20.md">《回测系统任务控制生命周期：入口、证据、故障分支与行为验收》（alpha20）</a>）。<br />
+前篇确立了“GUI 与 CLI 共用 <code class="language-plaintext highlighter-rouge">quantnight-task-core</code> + 常驻 headless host + Unix IPC”的基础拓扑，方向本身是对的；但在随后由 GPT 主导的多轮维护中，系统逐步走偏——堆出了 9+ 状态、20+ 历史证明字段、27 字段快照比对和满篇防御性八股的 <code class="language-plaintext highlighter-rouge">SKILL.md</code>，反而造成任务频繁卡死。<br />
+与其说这是一次“架构进化”，不如说是一次<strong>把控制面从 GPT 过度防御的歪路上拉回正轨的纠偏与大扫除</strong>（2026-11-17–19：初轮 AGY 诊断 → Pi 失败的重构尝试 → AGY 推倒收口），同时顺带将只读数据面板统一进 <code class="language-plaintext highlighter-rouge">task-core::data_panel</code>。关于开发与 AI 维护过程中暴露出的工程陷阱，详见配套复盘 <a href="2026-11-19-agent-infrastructure-pitfalls-2.md">《用 AI 维护复杂控制面基础设施：六大工程陷阱》</a>。</p>
+</blockquote>
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">3 min read</span>
+
+      <time class="entry-date dt-published" datetime="2026-11-19T00:00:00+00:00">November 19, 2026
+  </time>
+    </footer>
+  
+</article>
+
+
+
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
+        <a href="/personal_homepage/tool/alpha26/" rel="bookmark">delivery</a>
+      
+    </h3>
+    
+      <p class="entry-theme-subtitle">量化工程交付与架构防护：修改前行为披露、三级本地门禁、运行态生效与 SPC 安全守卫
+</p>
+      
+    
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <p>本文档系统性剖析 QuantNight 量化系统中<strong>如何具体约束 AI Agent 进行安全可靠的代码工程交付</strong>。深入拆解由<strong>“修改前行为披露（Before-Change Disclosure）双真源契约、单真源 AST 架构机器门禁（<code class="language-plaintext highlighter-rouge">architecture_contract.json</code>）、三级分层测试时间预算（Quick / Domain / Full）、Headless Host 跨代优雅排空与采用核对（Drain-and-Reload）、以及独立 SPC Git 约束（<code class="language-plaintext highlighter-rouge">SPC_NO_GIT</code>）与精确暂存守卫”</strong>构成的全链路防线。</p>
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">5 min read</span>
+
+      <time class="entry-date dt-published" datetime="2026-11-10T00:00:00+00:00">November 10, 2026
+  </time>
+    </footer>
+  
+</article>
+
+
+
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
+        <a href="/personal_homepage/tool/alpha24/" rel="bookmark">auth</a>
+      
+    </h3>
+    
+      <p class="entry-theme-subtitle">WorldQuant Brain 平台通信与认证架构：Cookie-First、204/401 恢复时序与单真源安全门禁
+</p>
+      
+    
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <p>本文系统性剖析 QuantNight 量化系统的<strong>底层平台通信与认证安全架构</strong>，深入拆解 <strong>Cookie-First 优先认证、204/401 两阶段有效性探测与恢复流程、代际防惊群会话锁治理、同账号身份强绑定机制、网络重试与回测回执保护解耦，以及 AST 机器门禁单真源约束</strong>。</p>
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">4 min read</span>
+
+      <time class="entry-date dt-published" datetime="2026-11-09T00:00:00+00:00">November 9, 2026
+  </time>
+    </footer>
+  
+</article>
+
+
+
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
+        <a href="/personal_homepage/tool/alpha23/" rel="bookmark">data</a>
+      
+    </h3>
+    
+      <p class="entry-theme-subtitle">QuantNight MongoDB 存储拓扑、数据流架构与生产运维基线
+</p>
+      
+    
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <p>本文档系统性剖析 QuantNight 量化系统的 <strong>MongoDB 存储拓扑、逻辑库/集合职责划分、数据流平面、<code class="language-plaintext highlighter-rouge">quantnight-task-core</code> 对 Alpha 仓储与数据面板的权威读取体系、PnL 双覆盖索引优化、定时采集调度体系与只读分层运维基线</strong>。</p>
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">6 min read</span>
+
+      <time class="entry-date dt-published" datetime="2026-11-08T00:00:00+00:00">November 8, 2026
+  </time>
+    </footer>
+  
+</article>
+
+
+
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
+        <a href="/personal_homepage/tool/alpha22/" rel="bookmark">自治session结构(2)</a>
+      
+    </h3>
+    
+      <p class="entry-theme-subtitle">从免责复读到二元决断：长期自治Session的Goal失灵病理与重构实战
+</p>
+      
+    
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <blockquote>
+  <p>本文是 QuantNight 智能体架构系列的续篇（接前篇 <a href="2026-11-06-alpha21.md">《复杂长期任务的多Session分权与Goal治理》（alpha21）</a>）。<br />
+在前篇中，我们建立了“三权分立、提交独占、名册收敛与 Goal 动态加载”的基础治理骨架。然而，当统筹 Session（Coordinator）真正投入无人值守的长周期运行后，系统却陷入了一种极其荒诞的瘫痪状态：<strong>Agent 拥有最高裁量权与唯一的提交工具，却在几千轮交互中化身“免责律师”，疯狂复读法律声明拒绝提交，而 <code class="language-plaintext highlighter-rouge">/goal</code> 监督器却因它“没有违规动作”持续为其判定正确</strong>。<br />
+本文基于数千轮真实运行的审计数据，深度剖析统筹 Session 典型的三大失灵现场与四大底层病灶，并给出彻底重构 Goal 契约的工程解法。</p>
+</blockquote>
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">2 min read</span>
+
+      <time class="entry-date dt-published" datetime="2026-11-08T00:00:00+00:00">November 8, 2026
+  </time>
+    </footer>
+  
+</article>
+
+
+
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
+        <a href="/personal_homepage/tool/alpha21/" rel="bookmark">自治session结构(1)</a>
+      
+    </h3>
+    
+      <p class="entry-theme-subtitle">复杂长期任务的多Session分权与Goal治理
+</p>
+      
+    
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <blockquote>
+  <p>本文是 QuantNight 项目的智能体治理与多 Session 协同架构案例，重点剖析在量化回测底座跑通后，如何建立严密的 Agent 分权约束、集中式 Goal 目标管理、热加载插件（<code class="language-plaintext highlighter-rouge">pi-goal-feedback</code>）以及端到端自治研究闭环。<br />
+很多自动化项目在跑通底层执行后，往往陷入“放手就失控、收紧就瘫痪”的治理困境。本文结合真实调教历程，详细阐述为什么必须设计这套多 Session 权责硬隔离体系与 Goal 热加载机制，为复杂工程场景下的多 Agent 协作提供可落地的治理范式。</p>
+</blockquote>
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">3 min read</span>
+
+      <time class="entry-date dt-published" datetime="2026-11-06T00:00:00+00:00">November 6, 2026
+  </time>
+    </footer>
+  
+</article>
+
+
+
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
+        <a href="/personal_homepage/tool/alpha20/" rel="bookmark">gui/cli统一(1)</a>
+      
+    </h3>
+    
+      <p class="entry-theme-subtitle">回测系统任务控制生命周期：入口、证据、故障分支与行为验收
+</p>
+      
+    
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <h2 id="为什么必须设计成guicli统一架构为什么不能直接操作底层脚本">为什么必须设计成gui/cli统一架构？为什么不能直接操作底层脚本?</h2>
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">3 min read</span>
+
+      <time class="entry-date dt-published" datetime="2026-10-31T00:00:00+00:00">October 31, 2026
+  </time>
+    </footer>
+  
+</article>
+
+
+
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
+        <a href="/personal_homepage/tool/agent-example3/" rel="bookmark">合集</a>
+      
+    </h3>
+    
+      <p class="entry-theme-subtitle">pi agent无人值守工作案例三(quantnight)
+</p>
+      
+    
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <blockquote>
+  <p>本文是 QuantNight 项目的量化回测自动化搭建与工程调教案例，重点记录如何将复杂的 WorldQuant Brain 量化平台交互、Tauri 桌面端、Rust/taskctl 底层进程守护、长耗时回测状态机与并发防崩体系跑通。<br />
+相比纯 Web/API 任务，量化回测系统面临平台回测延迟大、并发配额限制、系统级进程监控、数据库与文件锁竞争等多重挑战。<strong>本项目当前处于 L1~L2 阶段（强工具化与高可观察性）</strong>：底层任务控制内核与鲁棒性门禁已搭建完毕，而 Session 级 Goal 驱动与 Agent 事件通知闭环尚未正式接通。本文结合实际会话中的排障历程，沉淀系统工程底座的建设经验。</p>
+</blockquote>
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">5 min read</span>
+
+      <time class="entry-date dt-published" datetime="2026-10-13T00:00:00+00:00">October 13, 2026
+  </time>
+    </footer>
+  
+</article>
+
+
+
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
+        <a href="/personal_homepage/code/alpha19/" rel="bookmark">http</a>
+      
+    </h3>
+    
+      <p class="entry-theme-subtitle">回测系统核心网络层架构与全模块调用
+</p>
+      
+    
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <p>本文档深入剖析 QuantNight 的统一 HTTP 传输与容错底座 <a href="../../util/network_util.py"><code class="language-plaintext highlighter-rouge">util/network_util.py</code></a>，涵盖其内部 9 阶段请求流水线、回调契约（<code class="language-plaintext highlighter-rouge">ResponseDecision</code>）、<strong>Location 回执硬门禁</strong>、<strong>同账号 401 世代去重自愈</strong>、限流与分页原语，以及全仓各业务模块（回测引擎、Native MCP、数据同步、恢复器）如何组装并调用该模块。</p>
+
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">6 min read</span>
+
+      <time class="entry-date dt-published" datetime="2026-05-15T00:00:00+00:00">May 15, 2026
+  </time>
+    </footer>
+  
+</article>
+
+
+
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
+        <a href="/personal_homepage/algorithm/alpha18/" rel="bookmark">回测流水线(2)</a>
+      
+    </h3>
+    
+      <p class="entry-theme-subtitle">大量探索优化异步任务调度–代码实现
+</p>
+      
+    
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <p>本文档详细阐述 QuantNight 的<strong>整体异步回测流水线（Asynchronous Simulation Pipeline）</strong>，以及构建在该流水线之上的两大智能调度与进化子系统：<strong>Priority Task（基于实测反馈的多源 Per-Root 三阶段自动精炼编排）</strong> 与 <strong>Adaptive Task（基于结构特征与在线 LightGBM 的探索-利用自适应采样调度）</strong>。</p>
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">6 min read</span>
+
+      <time class="entry-date dt-published" datetime="2026-05-14T00:00:00+00:00">May 14, 2026
+  </time>
+    </footer>
+  
+</article>
+
+
+
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
+        <a href="/personal_homepage/tool/message/" rel="bookmark">error & log</a>
+      
+    </h3>
+    
+      <p class="entry-theme-subtitle">服务端通知与自动化错误台账系统：发消息（飞书/Log/邮件）与整合消息（三路同级台账）
+</p>
+      
+    
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <p>现代后台与量化回测服务必须严格解耦并协同两套平级体系：</p>
+<ol>
+  <li><strong>实时消息发送体系（发消息）</strong>：负责对外的主动触达与状态广播。涵盖飞书自建应用凭证与群机器人搭建、系统 Logging 日志分流、自定义 <code class="language-plaintext highlighter-rouge">PROGRESS</code> 级别、<code class="language-plaintext highlighter-rouge">ContextVar</code> 死循环切断机制、定时日志轮转维护，以及通过 <code class="language-plaintext highlighter-rouge">blocks</code> 块协议驱动飞书交互卡片 2.0 与 Gmail SMTP 图文邮件。</li>
+  <li><strong>消息整合与错误台账系统（整合消息）</strong>：负责对内的故障留痕与质量治理。将来自 Agent 事实报告、Runtime 运行时捕获与 Log 文件增量摄入三路同级通道的错误与诊断信息，统一整合并持久化到 <code class="language-plaintext highlighter-rouge">artifacts/bugs/</code>，通过 AST 指纹聚合去重与绝对安全脱敏，交由独立维护 Session 闭环修复。</li>
+</ol>
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">5 min read</span>
+
+      <time class="entry-date dt-published" datetime="2025-10-23T00:00:00+00:00">October 23, 2025
+  </time>
+    </footer>
+  
+</article>
+
+
+
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
+        <a href="/personal_homepage/tool/alpha6/" rel="bookmark">gui初版</a>
+      
+    </h3>
+    
+      <p class="entry-theme-subtitle">worldquant BRAIN 股票因子 (六 ) – 代码优化
+</p>
+      
+    
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <p>我最终选择了使用 <strong>Tauri</strong> 来构建我的桌面回测应用。本文记录了开发过程中需求梳理、初始化步骤、遇到的坑以及一些性能优化技巧。</p>
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">1 min read</span>
+
+      <time class="entry-date dt-published" datetime="2025-04-17T00:00:00+00:00">April 17, 2025
+  </time>
+    </footer>
+  
+</article>
+
+
+
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
+        <a href="/personal_homepage/code/alphas3/" rel="bookmark">回测流水线(1)</a>
+      
+    </h3>
+    
+      <p class="entry-theme-subtitle">普通异步回测流水线架构与调度实现
+</p>
+      
+    
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <p>本文档系统性剖析 QuantNight 的<strong>普通异步回测流水线（Regular Asynchronous Simulation Pipeline）</strong>核心调度与执行架构。该流水线是整个仓库吞吐量最大、并发度最高的基础生产底座，负责将模板展开的数十万级候选表达式高可靠地推送到 WorldQuant Brain 平台完成回测，并为上层智能调度（Adaptive 采样与 Priority 进化精炼）提供不可动摇的并发管理、配额控制、回执安全与断点自愈能力。</p>
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">7 min read</span>
+
+      <time class="entry-date dt-published" datetime="2025-01-18T00:00:00+00:00">January 18, 2025
+  </time>
+    </footer>
+  
+</article>
+</div>
+  </section><section class="theme-subsection" id="worldquant-competition">
+    <h3 class="theme-subsection-title">competition</h3>
+    <div class="entries-list">
+
+
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
+        <a href="/personal_homepage/data/finance/alpha15/" rel="bookmark">处理新闻数据
+</a>
+      
+    </h3>
+    
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <h2 id="新闻数据处理从非结构化文本到因子矩阵">新闻数据处理：从非结构化文本到因子矩阵</h2>
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">1 min read</span>
+
+      <time class="entry-date dt-published" datetime="2026-03-31T00:00:00+00:00">March 31, 2026
+  </time>
+    </footer>
+  
+</article>
+</div>
+  </section><section class="theme-subsection" id="worldquant-platform">
+    <h3 class="theme-subsection-title">platform</h3>
+    <div class="entries-list">
+
+
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
+        <a href="/personal_homepage/algorithm/alpha25/" rel="bookmark">base_payment</a>
+      
+    </h3>
+    
+      <p class="entry-theme-subtitle">WorldQuant Brain Base Payment 算法逆向与假说证伪链
+</p>
+      
+    
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <h2 id="一系统输入输出与固定基准公式">一、系统输入输出与固定基准公式</h2>
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">9 min read</span>
+
+      <time class="entry-date dt-published" datetime="2026-11-10T00:00:00+00:00">November 10, 2026
+  </time>
+    </footer>
+  
+</article>
+
+
+
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
+        <a href="/personal_homepage/general/alpha14/" rel="bookmark">用 Agent 对黑盒公式进行逆向工程
+</a>
+      
+    </h3>
+    
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <p>面对一组只有输入输出的多维黑盒数据，如果我们确信其背后存在一个由人类专家设计的简洁内部公式，应该如何将其精准还原？</p>
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">~1 min read</span>
+
+      <time class="entry-date dt-published" datetime="2026-03-23T00:00:00+00:00">March 23, 2026
+  </time>
+    </footer>
+  
+</article>
+
+
+
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
+        <a href="/personal_homepage/algorithm/alpha12/" rel="bookmark">alpha id</a>
+      
+    </h3>
+    
+      <p class="entry-theme-subtitle">hash映射
+</p>
+      
+    
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <h2 id="常用哈希与编码方案比对">常用哈希与编码方案比对</h2>
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">5 min read</span>
+
+      <time class="entry-date dt-published" datetime="2025-09-25T00:00:00+00:00">September 25, 2025
+  </time>
+    </footer>
+  
+</article>
+
+
+
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
+        <a href="/personal_homepage/algorithm/cluster/" rel="bookmark">聚类
+</a>
+      
+    </h3>
+    
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <h2 id="距离">距离</h2>
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">~1 min read</span>
+
+      <time class="entry-date dt-published" datetime="2025-03-18T00:00:00+00:00">March 18, 2025
+  </time>
+    </footer>
+  
+</article>
+</div>
+  </section><section class="theme-subsection" id="worldquant-theory">
+    <h3 class="theme-subsection-title">theory</h3>
+    <div class="entries-list">
+
+
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
+        <a href="/personal_homepage/data/alpha29/" rel="bookmark">news_social</a>
+      
+    </h3>
+    
+      <p class="entry-theme-subtitle">News &amp; Social Media 新闻流、社交媒体情绪与文本事件数据体系
+</p>
+      
+    
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <blockquote>
+  <p>本文为非结构化舆情、新闻流、社交媒体与财报电话会文本专题篇（与日频 PV <a href="2025-09-19-alpha11.md">alpha11</a>、日内微结构 <a href="2026-11-20-alpha28.md">alpha28</a>、基本面 <a href="2025-01-15-alphas2.md">alphas2</a> 及分析师预期 <a href="2025-01-22-alphas4.md">alphas4</a> 共同构成多源数据谱系）。表格仅采用通用舆情/文本语义概念与 WorldQuant FASTEXPR 算子，具体数据库字段名与实测指标见独立调查文档。</p>
+</blockquote>
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">1 min read</span>
+
+      <time class="entry-date dt-published" datetime="2026-11-20T00:00:00+00:00">November 20, 2026
+  </time>
+    </footer>
+  
+</article>
+
+
+
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
+        <a href="/personal_homepage/data/alpha28/" rel="bookmark">intraday_pv</a>
+      
+    </h3>
+    
+      <p class="entry-theme-subtitle">日内 PV 统计量与市场微结构衍生指标体系
+</p>
+      
+    
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <blockquote>
+  <p>本文为量价特征谱系的日内扩展篇（日频 OHLCV 衍生体系与复权数学原理见前篇 <a href="2025-09-19-alpha11.md">《PV 量价衍生数据体系、复权数学原理与在 analyze-dataset 中的应用》（alpha11）</a>）。相较于仅刻画“日终结果”的开高低收，日内统计量与市场微结构数据直接刻画<strong>盘中交易路径、流动性供需与买卖盘口博弈</strong>；下方算子均严格对齐 WorldQuant FASTEXPR 语法（如矢量聚合 <code class="language-plaintext highlighter-rouge">vec_avg</code> / <code class="language-plaintext highlighter-rouge">vec_sum</code> / <code class="language-plaintext highlighter-rouge">vec_max</code> / <code class="language-plaintext highlighter-rouge">vec_powersum</code> / <code class="language-plaintext highlighter-rouge">vec_stddev</code> / <code class="language-plaintext highlighter-rouge">vec_range</code> / <code class="language-plaintext highlighter-rouge">vec_choose</code> 与时序算子 <code class="language-plaintext highlighter-rouge">ts_entropy</code> / <code class="language-plaintext highlighter-rouge">ts_kurtosis</code> / <code class="language-plaintext highlighter-rouge">ts_decay_linear</code> 等）。</p>
+</blockquote>
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">2 min read</span>
+
+      <time class="entry-date dt-published" datetime="2026-11-20T00:00:00+00:00">November 20, 2026
+  </time>
+    </footer>
+  
+</article>
+
+
+
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
+        <a href="/personal_homepage/data/alpha11/" rel="bookmark">pv</a>
+      
+    </h3>
+    
+      <p class="entry-theme-subtitle">PV 量价衍生数据体系、复权数学原理与在 analyze-dataset 中的应用
+</p>
+      
+    
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <h2 id="一pv-量价衍生数据四阶谱系严格-0123-阶--worldquant-fastexpr-对齐">一、PV 量价衍生数据四阶谱系（严格 0→1→2→3 阶 + WorldQuant FASTEXPR 对齐）</h2>
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">6 min read</span>
+
+      <time class="entry-date dt-published" datetime="2025-09-19T00:00:00+00:00">September 19, 2025
+  </time>
+    </footer>
+  
+</article>
+
+
+
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
+        <a href="/personal_homepage/finance/alpha5/" rel="bookmark">worldquant BRAIN 股票因子 (五 ) – 数据集理解
+</a>
+      
+    </h3>
+    
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <table>
+  <thead>
+    <tr>
+      <th>数据集</th>
+      <th>特点</th>
+      <th>信号</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>模型数据集(model)</td>
+      <td>大多是分数形式</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>基本面数据</td>
+      <td> </td>
+      <td>1. <code class="language-plaintext highlighter-rouge">PE(市盈率) = eps/close</code><br />2. <code class="language-plaintext highlighter-rouge">PS(市销率) = close*sharesout/revenue</code><br />3. cashflow/price<br />4. cashflow/sales<br />5. margin, pretax margin, operating margin <br />6. enterprise value<br />7. long term debt/operating income</td>
+    </tr>
+    <tr>
+      <td>风险数据</td>
+      <td> </td>
+      <td>1. 用risk factor做neutralize<br />2. 用risk-return 代替returns<br />3.</td>
+    </tr>
+    <tr>
+      <td>量价数据</td>
+      <td>完整, 所有市场都有</td>
+      <td>1. 交易量激增(volume spike) <br />2. -returns</td>
+    </tr>
+    <tr>
+      <td>社交媒体数据</td>
+      <td>更新频率高<br />有时效性: 尽量不要超过1季度</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>期权数据集(Options)</td>
+      <td> </td>
+      <td>1. IV_call, IV_put配对</td>
+    </tr>
+    <tr>
+      <td>分析师数据<br /></td>
+      <td>很多是vector数据<br />更新频率低<br />有很多异常值</td>
+      <td>1. 预测和当前值的差异<br />2. 预测值随时间变化<br />3. 分析师修订模型数据</td>
+    </tr>
+    <tr>
+      <td>宏观数据(Macro)</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>other数据</td>
+      <td> </td>
+      <td>1. group分类数据<br />2. 用matrix 特征数据自己制作group</td>
+    </tr>
+    <tr>
+      <td>期权数据</td>
+      <td> </td>
+      <td>1. O/S volume ratio=期权未平仓量/volume</td>
+    </tr>
+  </tbody>
+</table>
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">1 min read</span>
+
+      <time class="entry-date dt-published" datetime="2025-02-26T00:00:00+00:00">February 26, 2025
+  </time>
+    </footer>
+  
+</article>
+
+
+
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
+        <a href="/personal_homepage/data/alphas4/" rel="bookmark">analyst</a>
+      
+    </h3>
+    
+      <p class="entry-theme-subtitle">Analyst 分析师预期、修订动量与业绩超预期（PEAD）数据体系
+</p>
+      
+    
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <blockquote>
+  <p>本文为分析师预期与业绩发布（Analyst &amp; Earnings）专题篇（日频量价见 <a href="2025-09-19-alpha11.md">alpha11</a>，日内微结构见 <a href="2026-11-20-alpha28.md">alpha28</a>，基本面三表见 <a href="2025-01-15-alphas2.md">alphas2</a>，新闻与社媒情绪见 <a href="2026-11-20-alpha29.md">alpha29</a>）。全表算子严格对齐 WorldQuant FASTEXPR 规范，仅使用通用卖方预期与财报字段概念，脱离具体数据库编号即可自解释。</p>
+</blockquote>
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">1 min read</span>
+
+      <time class="entry-date dt-published" datetime="2025-01-22T00:00:00+00:00">January 22, 2025
+  </time>
+    </footer>
+  
+</article>
+
+
+
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
+        <a href="/personal_homepage/data/alphas2/" rel="bookmark">fundamental</a>
+      
+    </h3>
+    
+      <p class="entry-theme-subtitle">Fundamental 基本面衍生数据体系、PIT 时钟原理与在 analyze-dataset 中的应用
+</p>
+      
+    
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <blockquote>
+  <p>本文为基本面（Fundamental）财务与企业经营因子谱系篇（日频量价 OHLCV 衍生体系见 <a href="2025-09-19-alpha11.md">《PV 量价衍生数据体系、复权数学原理与在 analyze-dataset 中的应用》（alpha11）</a>，日内与盘口微结构统计量见 <a href="2026-11-20-alpha28.md">《日内 PV 统计量与市场微结构衍生指标体系》（alpha28）</a>）。本文所有表达式均对齐 WorldQuant FASTEXPR 算子规范，表格仅使用通用会计科目与基础市场参照字段，确保脱离特定数据库编号即可自解释。</p>
+</blockquote>
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">3 min read</span>
+
+      <time class="entry-date dt-published" datetime="2025-01-15T00:00:00+00:00">January 15, 2025
+  </time>
+    </footer>
+  
+</article>
+
+
+
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
+        <a href="/personal_homepage/finance/alphas/" rel="bookmark">worldquant BRAIN 股票因子 (一) – 仿真测试
+</a>
+      
+    </h3>
+    
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <p>选择在模拟盘中表现好的因子投资</p>
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">2 min read</span>
+
+      <time class="entry-date dt-published" datetime="2025-01-07T00:00:00+00:00">January 7, 2025
+  </time>
+    </footer>
+  
+</article>
+</div>
+  </section></section>
 
         
       </div>

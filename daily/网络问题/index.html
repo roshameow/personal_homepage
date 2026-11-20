@@ -1,0 +1,1169 @@
+<!DOCTYPE html>
+<!--
+    So Simple Jekyll Theme 3.2.0
+    Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+    Free for personal and commercial use under the MIT license
+    https://github.com/mmistakes/so-simple-theme/blob/master/LICENSE
+-->
+<html lang="en-US" class="no-js">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  
+
+  
+  
+  <!-- Begin Jekyll SEO tag v2.9.1 -->
+<title>深入理解 TUN 模式：网卡识别命令与直连/代理判定全景对照 | Liu, Wen’s Home Page</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="深入理解 TUN 模式：网卡识别命令与直连/代理判定全景对照" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="一、查看物理网卡（en0）与虚拟网卡（utun）的常用命令" />
+<meta name="twitter:description" property="og:description" content="一、查看物理网卡（en0）与虚拟网卡（utun）的常用命令" />
+<link rel="canonical" href="https://roshameow.github.io//personal_homepage/daily/%E7%BD%91%E7%BB%9C%E9%97%AE%E9%A2%98/" />
+<meta property="og:url" content="https://roshameow.github.io//personal_homepage/daily/%E7%BD%91%E7%BB%9C%E9%97%AE%E9%A2%98/" />
+<meta property="og:site_name" content="Liu, Wen’s Home Page" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2026-10-07T00:00:00+00:00" />
+<meta property="article:modified_time" content="2026-10-31T08:14:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="深入理解 TUN 模式：网卡识别命令与直连/代理判定全景对照" />
+<meta name="twitter:site" content="@" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2026-10-31T08:14:00+00:00","datePublished":"2026-10-07T00:00:00+00:00","description":"一、查看物理网卡（en0）与虚拟网卡（utun）的常用命令","headline":"深入理解 TUN 模式：网卡识别命令与直连/代理判定全景对照","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/daily/%E7%BD%91%E7%BB%9C%E9%97%AE%E9%A2%98/"},"url":"https://roshameow.github.io//personal_homepage/daily/%E7%BD%91%E7%BB%9C%E9%97%AE%E9%A2%98/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  
+
+  <script>
+    /* Cut the mustard */
+    if ('querySelector' in document && 'addEventListener' in window) {
+      document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + 'js';
+    }
+  </script>
+
+  <link rel="stylesheet" href="/personal_homepage/assets/css/main.css">
+  <link rel="stylesheet" href="/personal_homepage/assets/css/skins/default.css">
+  
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,700,700i|Lora:400,400i,700,700i">
+  <link rel="alternate" type="application/atom+xml" title="Liu, Wen&#39;s Home Page" href="/personal_homepage/atom.xml">
+<!-- start custom head snippets -->
+
+<!-- insert favicons. use http://realfavicongenerator.net/ -->
+<link rel="shortcut icon" type="image/x-icon" href="/personal_homepage/docs/images/logo.ico">
+<!-- end custom head snippets -->
+
+</head>
+
+  <body class="layout--post  深入理解-tun-模式-网卡识别命令与直连-代理判定全景对照">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#primary-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+  <div class="navigation-wrapper">
+    <a href="#menu-toggle" id="menu-toggle">Menu</a>
+    <nav id="primary-nav" class="site-nav animated drop">
+      <ul><li><a href="/personal_homepage/">Home</a></li><li><a href="/personal_homepage/posts/">Posts</a></li><li><a href="/personal_homepage/categories/">Categories</a></li><li><a href="/personal_homepage/tags/">Tags</a></li><li><a href="/personal_homepage/family/">Family</a></li><li><a href="/personal_homepage/search/">Search</a></li></ul>
+    </nav>
+  </div><!-- /.navigation-wrapper -->
+
+
+    <header class="masthead">
+  <div class="wrap">
+    
+    
+    
+      
+        <div class="site-title animated fadeIn"><a href="/personal_homepage/">Liu, Wen's Home Page</a></div>
+      
+      <p class="site-description animated fadeIn" itemprop="description">Work, Experiments and Ideas.</p>
+    
+  </div>
+</header><!-- /.masthead -->
+
+
+    <main id="main" class="main-content" aria-label="Content">
+  <article class="h-entry">
+    
+
+    <div class="page-wrapper">
+      <header class="page-header">
+        
+        
+        <h1 id="page-title" class="page-title p-name">深入理解 TUN 模式：网卡识别命令与直连/代理判定全景对照
+</h1>
+        
+      </header>
+
+      <div class="page-sidebar">
+        <div class="page-author h-card p-author"><img src="/personal_homepage/docs/images/logo.svg" class="author-avatar u-photo" alt=""><div class="author-info">
+
+<span class="read-time">5 min read</span>
+
+    <time class="page-date dt-published" datetime="2026-10-07T00:00:00+00:00"><a class="u-url" href="">October 7, 2026</a>
+</time>
+
+  </div>
+</div>
+
+        
+  <h3 class="page-taxonomies-title">Categories</h3>
+  
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a class="p-category" href="/personal_homepage/categories/#daily" title="Pages filed under daily">daily</a></li>
+  </ul>
+
+
+        
+  <h3 class="page-taxonomies-title">Tags</h3>
+  
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a href="/personal_homepage/tags/#clash" title="Pages tagged clash" rel="tag">clash</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#macos" title="Pages tagged macos" rel="tag">macos</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#network" title="Pages tagged network" rel="tag">network</a></li>
+  </ul>
+
+
+        <details id="entry-table-of-contents" class="toc-wrapper" open>
+  <summary>
+    <h2 class="no_toc">
+      Table of Contents
+      <svg class="toc-toggle-icon" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true" focusable="false">
+        <path d="m4 6 4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+      </svg>
+    </h2>
+  </summary>
+  <div class="toc-content">
+    <ul class="inline_toc" id="my_toc"><li><a href="#一查看物理网卡en0与虚拟网卡utun的常用命令">一、查看物理网卡（en0）与虚拟网卡（utun）的常用命令</a><ul><li><a href="#1-快速列出本机所有网卡接口">1. 快速列出本机所有网卡接口</a></li><li><a href="#2-查看网卡与硬件设备的对应关系最直观">2. 查看网卡与硬件设备的对应关系（最直观）</a></li><li><a href="#3-查看特定网卡详细信息">3. 查看特定网卡详细信息</a></li><li><a href="#4-核心命令如何正确验证流量是否被-tun-接管">4. 核心命令：如何正确验证流量是否被 TUN 接管？</a></li></ul></li><li><a href="#二普通代理-vs-tun-模式的本质区别">二、普通代理 vs TUN 模式的本质区别</a></li><li><a href="#三全景对照表什么情况下是直连什么情况下走-proxy">三、全景对照表：什么情况下是直连？什么情况下走 Proxy？</a></li><li><a href="#四实际问题与处理方式">四、实际问题与处理方式</a></li><li><a href="#五全局流量分流与出海拓扑示意">五、全局流量分流与出海拓扑示意</a></li></ul>
+  </div>
+</details>
+
+        
+<details id="entry-related-posts" class="toc-wrapper" open>
+  <summary>
+    <h2 class="no_toc">
+      Related Posts
+      <svg class="toc-toggle-icon" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true" focusable="false">
+        <path d="m4 6 4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+      </svg>
+    </h2>
+  </summary>
+  <div class="toc-content">
+    <ul>
+      
+      <li><a href="/personal_homepage/data/alpha29/">News & Social Media 新闻流、社交媒体情绪与文本事件数据体系</a></li>
+      
+      <li><a href="/personal_homepage/data/alpha28/">日内 PV 统计量与市场微结构衍生指标体系</a></li>
+      
+      <li><a href="/personal_homepage/tool/alpha27/">从过度防御的歪路纠偏：GUI/CLI 6 态极简控制面、数据面板统一与工程收口</a></li>
+      
+      <li><a href="/personal_homepage/thought/agent-infrastructure-pitfalls-2/">用 AI 维护复杂控制面基础设施：为什么越修越死？从补丁膨胀到 6 态收敛的六大工程陷阱</a></li>
+      
+      <li><a href="/personal_homepage/tool/pi-subagent-durable/">pi-subagent-durable：后台子代理的持久化、生命周期与故障自愈</a></li>
+      
+    </ul>
+  </div>
+</details>
+
+
+
+      </div>
+
+      <div class="page-content">
+        <div class="e-content">
+          <h2 id="一查看物理网卡en0与虚拟网卡utun的常用命令">一、查看物理网卡（en0）与虚拟网卡（utun）的常用命令</h2>
+
+<p>在 macOS 终端中，可以通过以下命令快速识别当前生效的物理网卡、TUN 虚拟网卡以及系统默认路由。</p>
+
+<h3 id="1-快速列出本机所有网卡接口">1. 快速列出本机所有网卡接口</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ifconfig <span class="nt">-l</span>
+</code></pre></div></div>
+
+<ul>
+  <li><strong>输出示例</strong>：<code class="language-plaintext highlighter-rouge">lo0 en0 en1 bridge0 utun0 utun1 utun7 ...</code></li>
+  <li><strong>含义</strong>：
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">en0</code>（或 <code class="language-plaintext highlighter-rouge">en1</code>）：物理网卡（Wi-Fi 或有线网卡）。</li>
+      <li><code class="language-plaintext highlighter-rouge">utunX</code>（如 <code class="language-plaintext highlighter-rouge">utun7</code>）：虚拟隧道网卡（VPN 或 Clash Verge 开启 TUN 模式后创建）。</li>
+      <li><code class="language-plaintext highlighter-rouge">lo0</code>：本地环回接口（<code class="language-plaintext highlighter-rouge">127.0.0.1</code>）。</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="2-查看网卡与硬件设备的对应关系最直观">2. 查看网卡与硬件设备的对应关系（最直观）</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>networksetup <span class="nt">-listallhardwareports</span>
+</code></pre></div></div>
+
+<ul>
+  <li><strong>作用</strong>：会明确标注出 <code class="language-plaintext highlighter-rouge">Hardware Port: Wi-Fi -&gt; Device: en0</code>、<code class="language-plaintext highlighter-rouge">Ethernet -&gt; Device: en4</code> 等，方便确认哪块是真实物理网卡。</li>
+</ul>
+
+<h3 id="3-查看特定网卡详细信息">3. 查看特定网卡详细信息</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 查看物理网卡状态与 IP</span>
+ifconfig en0
+
+<span class="c"># 查看 TUN 虚拟网卡详情（若开启了 TUN 模式）</span>
+ifconfig utun7
+</code></pre></div></div>
+
+<h3 id="4-核心命令如何正确验证流量是否被-tun-接管">4. 核心命令：如何正确验证流量是否被 TUN 接管？</h3>
+
+<blockquote>
+  <p>[!WARNING] 注意：不要直接查 <code class="language-plaintext highlighter-rouge">route get default</code>！
+Clash/VPN 的 TUN 模式为了<strong>防止断网和死循环</strong>，特意<strong>保留了</strong>系统的兜底默认路由（<code class="language-plaintext highlighter-rouge">default -&gt; en0</code>）。
+它是通过<strong>“最长前缀匹配原则”</strong>，注入了覆盖整个公网的细分路由（如 <code class="language-plaintext highlighter-rouge">128.0/1</code>、<code class="language-plaintext highlighter-rouge">32/3</code> 指向 <code class="language-plaintext highlighter-rouge">utun7</code>）。</p>
+</blockquote>
+
+<p>因此，验证 TUN 是否接管，必须查询一个<strong>真实公网 IP</strong>（如 Google DNS 或 AWS IP）：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 验证公共外网 IP</span>
+route get 8.8.8.8 | <span class="nb">grep </span>interface
+<span class="c"># 输出：interface: utun7 （说明已被 TUN 成功接管！）</span>
+
+<span class="c"># 验证 DNS 是否被 TUN 接管。很多时候路由表走了 utun，但 DNS 泄露走运营商路由器，导致域名依然解析失败或被污染</span>
+scutil <span class="nt">--dns</span> | <span class="nb">head</span> <span class="nt">-n</span> 25
+<span class="c"># 输出：首个解析器是 Fake-IP 198.18.0.2 说明接管成功</span>
+
+<span class="c"># 快速区分 Clash 混合端口（7897） 与 SSH 动态隧道（1080） 的归属</span>
+lsof <span class="nt">-iTCP</span> <span class="nt">-sTCP</span>:LISTEN <span class="nt">-P</span> <span class="nt">-n</span> | <span class="nb">grep</span> <span class="nt">-E</span> <span class="s1">'clash|verge|ssh'</span>
+
+<span class="c"># 验证 WorldQuant 所在的 AWS 弗吉尼亚 IP</span>
+route get 54.146.208.3 | <span class="nb">grep </span>interface
+<span class="c"># 输出：interface: utun7 （说明 AWS 流量同样被 TUN 拦截并分流！）</span>
+</code></pre></div></div>
+
+<ul>
+  <li><strong>判定结论</strong>：
+    <ul>
+      <li>若查询具体公网 IP 返回 <code class="language-plaintext highlighter-rouge">interface: utun7</code>，证明 <strong>TUN 模式正完美生效</strong>！</li>
+      <li>若查询具体公网 IP 依然返回 <code class="language-plaintext highlighter-rouge">interface: en0</code>，说明 TUN 模式未开启或崩溃。</li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<h2 id="二普通代理-vs-tun-模式的本质区别">二、普通代理 vs TUN 模式的本质区别</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">工作模式</th>
+      <th style="text-align: left">工作层级</th>
+      <th style="text-align: left">运作机制</th>
+      <th style="text-align: left">对“不自觉应用”（如 Python aiohttp / Docker）的处理</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><strong>普通系统代理</strong></td>
+      <td style="text-align: left"><strong>L7 应用层</strong></td>
+      <td style="text-align: left">仅在本地监听端口（如 <code class="language-plaintext highlighter-rouge">127.0.0.1:7897</code>），属于“愿者上钩”。</td>
+      <td style="text-align: left"><strong>完全无视</strong>。应用若未显式读取环境变量，直接绕过代理走原生网卡裸连。</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>TUN 模式</strong></td>
+      <td style="text-align: left"><strong>L3 网络层</strong></td>
+      <td style="text-align: left">操作系统底层插入虚拟网卡（<code class="language-plaintext highlighter-rouge">utun</code>），系统默认网关强行指向它。</td>
+      <td style="text-align: left"><strong>强制接管</strong>。内核将所有发出的 IP 包捕获送入 TUN，无视应用是否配置了代理。</td>
+    </tr>
+  </tbody>
+</table>
+
+<pre><code class="language-mermaid">flowchart TD
+    subgraph Mode1["1. 普通系统代理 (未开 TUN - 应用层 L7)"]
+        A1["应用程序 (如 Chrome/curl)"] --&gt;|主动设置代理| B1["Clash 监听端口 127.0.0.1:7897"]
+        A2["Python aiohttp (默认忽略代理)"] --&gt;|强行走原生 Socket| C1["物理网卡 en0 (公网裸连, 易丢包卡死)"]
+        B1 --&gt; C1
+    end
+
+    subgraph Mode2["2. 开启 TUN 模式 (内核网络层 L3 强行接管)"]
+        D1["应用程序 (无论 Python / Git / Docker)"] --&gt;|发出的任何 IP 数据包| E1["虚拟网卡 utun (被内核全量拦截)"]
+        E1 --&gt; F1["Clash 内核接管 &amp; 匹配分流规则"]
+        F1 --&gt;|规则匹配为 PROXY| G1["走海外低延迟专线 (加密加速)"]
+        F1 --&gt;|规则匹配为 DIRECT| H1["交回物理网卡 en0 真实直连"]
+    end
+</code></pre>
+
+<blockquote>
+  <p>[!IMPORTANT] 
+macOS 系统的“系统代理 (System Proxy)”开关天然对 Terminal（zsh/bash）完全无效。终端发出的curl/python命令也属于<strong>“不自觉应用”</strong>。终端必须依赖环境变量或 TUN 强制接管。</p>
+</blockquote>
+
+<hr />
+
+<h2 id="三全景对照表什么情况下是直连什么情况下走-proxy">三、全景对照表：什么情况下是直连？什么情况下走 Proxy？</h2>
+
+<p>很多网络误判（如“<em>我明明没配代理，为什么也能访问？</em>”或“<em>明明能访问，为什么换台机器就超时？</em>”）都源于混淆了<strong>应用自身行为</strong>与<strong>系统 TUN 接管</strong>。</p>
+
+<p>下表涵盖了开发中的 8 种组合：</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">场景序号</th>
+      <th style="text-align: center">TUN 模式<br />(L3 网络层)</th>
+      <th style="text-align: center">应用主动配代理<br />(传输协议/端口/代理隧道)</th>
+      <th style="text-align: center">Clash 规则设置<br />(目标域名)</th>
+      <th style="text-align: center">本机流转机制</th>
+      <th style="text-align: center">最终物理出海路径</th>
+      <th style="text-align: left">判定结论与典型生产案例</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><strong>场景 1</strong></td>
+      <td style="text-align: center"><strong>已开启 (ON)</strong></td>
+      <td style="text-align: center">✔️ <strong>主动配置</strong></td>
+      <td style="text-align: center">命中 <strong><code class="language-plaintext highlighter-rouge">PROXY</code></strong></td>
+      <td style="text-align: center">绕过 TUN，直连 <code class="language-plaintext highlighter-rouge">127.0.0.1:7897</code></td>
+      <td style="text-align: center">🔀 <strong>出口 A (海外专线)</strong></td>
+      <td style="text-align: left"><strong>【双保险 / 黄金组合】</strong><br />应用跳过本地 DNS 查询，锁定 HTTP 隧道协议（免疫 socks5 bug），经专线高速出海。</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><strong>场景 2</strong></td>
+      <td style="text-align: center"><strong>已开启 (ON)</strong></td>
+      <td style="text-align: center">✔️ <strong>主动配置</strong></td>
+      <td style="text-align: center">命中 <strong><code class="language-plaintext highlighter-rouge">DIRECT</code></strong></td>
+      <td style="text-align: center">走 <code class="language-plaintext highlighter-rouge">127.0.0.1:7897</code> 入 Clash 后放行</td>
+      <td style="text-align: center">🌐 <strong>出口 B (中枢直连)</strong></td>
+      <td style="text-align: left"><strong>【经审计直连】</strong><br />虽然配置了代理环境变量，但目标为国内白名单，Clash 审计后放行至本地物理网卡。<br />👉 <strong>典型代表</strong>：配置全局代理时访问国内 <code class="language-plaintext highlighter-rouge">aliyuncs.com</code> / <code class="language-plaintext highlighter-rouge">ts.net</code>。</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><strong>场景 3</strong></td>
+      <td style="text-align: center"><strong>已开启 (ON)</strong></td>
+      <td style="text-align: center">❌ <strong>未配 / 忽略</strong></td>
+      <td style="text-align: center">命中 <strong><code class="language-plaintext highlighter-rouge">PROXY</code></strong></td>
+      <td style="text-align: center">被 <code class="language-plaintext highlighter-rouge">utun7</code> 虚拟网卡强行拦截抓取</td>
+      <td style="text-align: center">🔀 <strong>出口 A (海外专线)</strong></td>
+      <td style="text-align: left"><strong>【透明接管 / 伪直连】</strong><br />应用自以为直连，但内核将包塞入专线。毫秒级响应，却极易让人产生“直连真快”的错觉。</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><strong>场景 4</strong></td>
+      <td style="text-align: center"><strong>已开启 (ON)</strong></td>
+      <td style="text-align: center">❌ <strong>未配 / 忽略</strong></td>
+      <td style="text-align: center">命中 <strong><code class="language-plaintext highlighter-rouge">DIRECT</code></strong></td>
+      <td style="text-align: center">被 <code class="language-plaintext highlighter-rouge">utun7</code> 拦截后查验放行至 <code class="language-plaintext highlighter-rouge">en0</code></td>
+      <td style="text-align: center">🌐 <strong>出口 B (中枢直连)</strong></td>
+      <td style="text-align: left"><strong>【透明分流直连】</strong><br />普通未配代理的应用访问国内网站，TUN 拦截后查规则放行回真实宽带。<br />👉 <strong>典型代表</strong>：浏览器访问普通国内网页。</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><strong>场景 5</strong></td>
+      <td style="text-align: center"><strong>未开启 (OFF)</strong></td>
+      <td style="text-align: center">✔️ <strong>主动配置</strong></td>
+      <td style="text-align: center">命中 <strong><code class="language-plaintext highlighter-rouge">PROXY</code></strong></td>
+      <td style="text-align: center">直连 <code class="language-plaintext highlighter-rouge">127.0.0.1:7897</code> 进入 Clash</td>
+      <td style="text-align: center">🔀 <strong>出口 A (海外专线)</strong></td>
+      <td style="text-align: left"><strong>【传统应用层代理】</strong><br />无全局虚拟网卡，但应用主动向 Clash 端口建立 HTTP CONNECT 隧道，绕过公网阻断，稳定秒开。</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><strong>场景 6</strong></td>
+      <td style="text-align: center"><strong>未开启 (OFF)</strong></td>
+      <td style="text-align: center">✔️ <strong>主动配置</strong></td>
+      <td style="text-align: center">命中 <strong><code class="language-plaintext highlighter-rouge">DIRECT</code></strong></td>
+      <td style="text-align: center">走 <code class="language-plaintext highlighter-rouge">127.0.0.1:7897</code> 入 Clash 后放行</td>
+      <td style="text-align: center">🌐 <strong>出口 B (中枢直连)</strong></td>
+      <td style="text-align: left"><strong>【应用层直连放行】</strong><br />即使未开 TUN，通过端口转发也能正确识别直连规则并走本地网卡。<br />👉 <strong>典型代表</strong>：业务脚本访问局域网 MongoDB。</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><strong>场景 7</strong></td>
+      <td style="text-align: center"><strong>未开启 (OFF)</strong></td>
+      <td style="text-align: center">❌ <strong>未配 / 忽略</strong></td>
+      <td style="text-align: center">命中 <strong><code class="language-plaintext highlighter-rouge">PROXY</code></strong><br /><em>(但完全无用)</em></td>
+      <td style="text-align: center"><strong>完全绕过 Clash</strong>，直冲物理网卡</td>
+      <td style="text-align: center">⚡ <strong>出口 C (纯公网裸连)</strong></td>
+      <td style="text-align: left">⚠️ <strong>【最危险的陷阱 / 规则失效】</strong><br /><strong>Clash 规则哪怕写了 PROXY，但因为没开 TUN、应用也没配代理，数据包根本进不了 Clash 的门！</strong></td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><strong>场景 8</strong></td>
+      <td style="text-align: center"><strong>未开启 (OFF)</strong></td>
+      <td style="text-align: center">❌ <strong>未配 / 忽略</strong></td>
+      <td style="text-align: center">命中 <strong><code class="language-plaintext highlighter-rouge">DIRECT</code></strong></td>
+      <td style="text-align: center">完全绕过 Clash，直冲物理网卡</td>
+      <td style="text-align: center">⚡ <strong>出口 C (纯公网裸连)</strong></td>
+      <td style="text-align: left"><strong>【纯物理原生网络】</strong><br />无代理、无 TUN 介入，完全由本地 ISP 运营商公网路由决定成败。</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="四实际问题与处理方式">四、实际问题与处理方式</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">序号</th>
+      <th style="text-align: left">平台 / 问题</th>
+      <th style="text-align: left">故障原因</th>
+      <th style="text-align: left">应用程序配置</th>
+      <th style="text-align: left">Clash 配置</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">1</td>
+      <td style="text-align: left">WorldQuant Brain API <br />在 MacBook 上可以，在 Mac mini 上不通</td>
+      <td style="text-align: left">1. aiohttp 默认忽略代理环境变量<br />2. Mac mini 未开启 TUN<br />3. Runner 缺少代理环境变量</td>
+      <td style="text-align: left">1. 在 <code class="language-plaintext highlighter-rouge">api/__init__.py</code> 中统一设置 aiohttp <code class="language-plaintext highlighter-rouge">trust_env=True</code><br />2. 给 Shell / Runner 配置 HTTP 代理环境变量<br /><br />MacBook：<strong>场景 3 → 场景 1</strong><br />Mac mini：<strong>场景 7 → 场景 5</strong></td>
+      <td style="text-align: left">将请求分流至 <code class="language-plaintext highlighter-rouge">WorldQuant</code> 组，自动选择低延迟专线</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">2</td>
+      <td style="text-align: left">OpenAI / ChatGPT <br />模型连接断流与风控拦截</td>
+      <td style="text-align: left">1. 香港出口触发地区限制<br />2. 机场“公告类文本节点”污染<br />3. 普通节点抖动、丢包</td>
+      <td style="text-align: left"><strong>1. 在 Clash Verge 预处理脚本中实现全自动过滤清洗链</strong>：<br />① 过滤<strong>机场“公告类文本节点”污染</strong><br />② 过滤不支持的“香港”节点，专线优先<br />③ 加入探测接口（<code class="language-plaintext highlighter-rouge">https://api.openai.com/v1/models</code>）的健康检查组<br /><strong>2. 规则分流覆盖</strong>：将 <code class="language-plaintext highlighter-rouge">chatgpt.com</code>、<code class="language-plaintext highlighter-rouge">openai.com</code>、<code class="language-plaintext highlighter-rouge">oaistatic.com</code>、<code class="language-plaintext highlighter-rouge">oaiusercontent.com</code>、<code class="language-plaintext highlighter-rouge">arkoselabs.com</code> 等全部域名与关键字强绑定至 <code class="language-plaintext highlighter-rouge">OpenAI</code> 组</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: center">3</td>
+      <td style="text-align: left">OpenCode <br />平台连接断流与流式输出卡死</td>
+      <td style="text-align: left">1. 香港出口被 Cloudflare 拦截<br />2. SOCKS5 代理环境变量不兼容<br />3. 推理静默期间连接不稳<br />4. 模型配置缺失</td>
+      <td style="text-align: left">在 <code class="language-plaintext highlighter-rouge">oc-go.sh</code> 中主动配置 HTTP 代理，覆盖 SOCKS5 环境变量<br /><br />MacBook：<strong>场景 1</strong><br />Mac mini：<strong>场景 7 → 场景 5</strong></td>
+      <td style="text-align: left"><strong>在 Clash Verge 预处理脚本中实现全自动过滤清洗链</strong>：<br />① 过滤机场“公告类文本节点”<br />② 过滤“香港”节点，专线优先<br />③ 将探测接口改为 <code class="language-plaintext highlighter-rouge">https://opencode.ai/cdn-cgi/trace</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: center">4</td>
+      <td style="text-align: left">GitHub SSH <br />连接超时 (代码推送 / <code class="language-plaintext highlighter-rouge">git@...</code>)</td>
+      <td style="text-align: left">1. 22 端口被阻断或限速<br />2. SSH 协议天然不读取 HTTP 代理环境变量</td>
+      <td style="text-align: left"><strong>在 <code class="language-plaintext highlighter-rouge">~/.ssh/config</code> 中主动配置代理</strong>：<br />① 改用 <code class="language-plaintext highlighter-rouge">ssh.github.com:443</code><br />② 配置 <code class="language-plaintext highlighter-rouge">ProxyCommand nc -X 5 -x 127.0.0.1:7897 %h %p</code><br />③ 配置连接保活</td>
+      <td style="text-align: left">—</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">5</td>
+      <td style="text-align: left">GitHub HTTPS <br />连接报错 (<code class="language-plaintext highlighter-rouge">https://...</code>)<br />如 <code class="language-plaintext highlighter-rouge">pi update</code> / 包管理器插件更新</td>
+      <td style="text-align: left">1. 外部包管理器拉取公开插件默认走 HTTPS 协议（<strong>完全绕过 <code class="language-plaintext highlighter-rouge">~/.ssh/config</code></strong>）<br />2. 终端若残留继承了 <code class="language-plaintext highlighter-rouge">socks5://127.0.0.1:1080</code>，与 Clash Fake-IP 冲突<br />3. 本地解析出假 IP（<code class="language-plaintext highlighter-rouge">198.18.0.x</code>）发往 GCP 代理，远端拒收抛出 <code class="language-plaintext highlighter-rouge">LibreSSL SSL_ERROR_SYSCALL</code></td>
+      <td style="text-align: left">1. <strong>临时修复</strong>：运行前执行 <code class="language-plaintext highlighter-rouge">unset ALL_PROXY HTTPS_PROXY HTTP_PROXY</code><br />2. <strong>永久免疫</strong>：配置全局 Git 走 Clash HTTP 混合端口：<br /><code class="language-plaintext highlighter-rouge">git config --global http.https://github.com.proxy http://127.0.0.1:7897</code></td>
+      <td style="text-align: left">由 Clash Verge TUN 模式或 7897 混合端口自动走海外规则秒级出海</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">6</td>
+      <td style="text-align: left">Pi Agent <br />终端鉴权超时</td>
+      <td style="text-align: left">1. SOCKS5 代理环境变量不兼容<br />2. 未固定代理配置</td>
+      <td style="text-align: left">1. 在 <code class="language-plaintext highlighter-rouge">~/.pi/agent/settings.json</code> 中设置 <code class="language-plaintext highlighter-rouge">httpProxy</code> 为 <code class="language-plaintext highlighter-rouge">http://127.0.0.1:7897</code><br />2. 统一 Shell 代理环境变量为 HTTP 协议</td>
+      <td style="text-align: left">—</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">7</td>
+      <td style="text-align: left">pi update <br />终端版本更新超时</td>
+      <td style="text-align: left">1. Node.js 默认忽略系统代理，未配环境变量时仅走 TUN<br />2. 订阅混入“剩余流量”等公告节点，自动选优沦为黑洞<br />3. 请求在黑洞中静默丢包，触发内部 10s 硬超时</td>
+      <td style="text-align: left">显式配置 HTTP 代理环境变量：<br /><code class="language-plaintext highlighter-rouge">HTTP_PROXY="http://127.0.0.1:7897" HTTPS_PROXY="http://127.0.0.1:7897"</code><br /><br />普通终端：<strong>场景 3 → 场景 1</strong></td>
+      <td style="text-align: left"><strong>在 Clash Verge 预处理脚本中清洗假节点</strong>：<br />过滤“流量/到期/重置/剩余/公告”等文本节点，杜绝自动选优跌入黑洞，恢复 BGP 专线选优</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">8</td>
+      <td style="text-align: left">Web 浏览器 <br />网页加载卡顿 / 国内页面假死（如 talents-ai）</td>
+      <td style="text-align: left">1. 浏览器默认开启 QUIC (UDP 443)，代理节点丢弃 UDP 导致等待 2~3s 超时回退<br />2. 国内网页（如 talents-ai）<code class="language-plaintext highlighter-rouge">&lt;head&gt;</code> 同步外链 Google Fonts 跌入黑洞阻塞渲染</td>
+      <td style="text-align: left">—</td>
+      <td style="text-align: left"><strong>1. 规则首部强制阻断 QUIC (UDP 443)</strong>：<br />注入 <code class="language-plaintext highlighter-rouge">AND,((DST-PORT,443),(NETWORK,UDP)),REJECT</code>，使浏览器 0ms 瞬间降级稳定 TCP 链路<br /><strong>2. 清洗公告假节点</strong>：<br />确保 Google Fonts 等公共静态资源走正常代理专线秒级加载</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">9</td>
+      <td style="text-align: left">Gmail SMTP <br />每日邮件任务正常触发，却一直收不到报告</td>
+      <td style="text-align: left">1. Python <code class="language-plaintext highlighter-rouge">smtplib</code> 未主动配代理，但被 TUN 透明接管<br />2. <code class="language-plaintext highlighter-rouge">smtp.gmail.com</code> 命中宽泛的 gmail 代理规则<br />3. 当前代理通路关闭 SMTP 465/587 连接，465 报 <code class="language-plaintext highlighter-rouge">SSL: UNEXPECTED_EOF_WHILE_READING</code></td>
+      <td style="text-align: left">保留 <code class="language-plaintext highlighter-rouge">SMTP_SSL</code>、原有账号与定时配置，不关闭 TLS 证书校验，也不硬编码 Gmail IP<br /><br /><strong>场景 3 → 场景 4</strong>；先验证握手，再验证邮箱登录</td>
+      <td style="text-align: left"><strong>精确域名分流</strong>：在持久化预处理脚本 / prepend 规则中加入 <code class="language-plaintext highlighter-rouge">DOMAIN,smtp.gmail.com,DIRECT</code>，优先于 <code class="language-plaintext highlighter-rouge">DOMAIN-KEYWORD,gmail,...</code>；热加载后核验实际连接命中 <code class="language-plaintext highlighter-rouge">DIRECT</code>。只让 SMTP 直连，Gmail 网页、IMAP 与其它 Google 流量保持原有分流</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">10</td>
+      <td style="text-align: left">agy-bridge / Antigravity CLI <br />Google API 地区与出口校验</td>
+      <td style="text-align: left">1. Google API 对地区与出口有校验，普通代理出口不一定可用<br />2. 本地 MCP 连通不等于远端模型 API 可用<br />3. 包装脚本若全局 export SOCKS5，子进程继承会导致 Python 生态严重分歧：<br /> - <strong>aiohttp</strong> 不原生支持 SOCKS，发 HTTP CONNECT 报 <code class="language-plaintext highlighter-rouge">ServerDisconnectedError</code><br /> - <strong>requests / HuggingFace</strong> 本地解析 DNS 遇阻断，超时报 <code class="language-plaintext highlighter-rouge">SSLEOFError</code></td>
+      <td style="text-align: left"><strong>清空对终端全局环境变量的网络注入</strong>，恢复子进程干净环境：<br />① <code class="language-plaintext highlighter-rouge">/Users/wenliu/bin/agy</code> 去除全局 export，避免毒化子进程<br />② <code class="language-plaintext highlighter-rouge">~/.pi/agent/mcp.json</code> 保持进程私有注入（仅 agy-bridge 进程独享）<br />MCP 设置 <code class="language-plaintext highlighter-rouge">timeout: 420</code> 不用默认的 60s<br />重建文件描述符耗尽的 1080 隧道。<br />在AGY 启动脚本及 MCP 私有环境中设置 <code class="language-plaintext highlighter-rouge">GODEBUG=http2client=0</code>，防止和opencode配置冲突。</td>
+      <td style="text-align: left"><strong>在 Clash Verge 预处理脚本中实现链式接管</strong>：<br />将 <code class="language-plaintext highlighter-rouge">127.0.0.1:1080</code> 注册为本地上游代理节点 <code class="language-plaintext highlighter-rouge">GCP-1080</code>，通过 <code class="language-plaintext highlighter-rouge">Google-GCP</code> 策略组将 <code class="language-plaintext highlighter-rouge">*.googleapis.com</code>、<code class="language-plaintext highlighter-rouge">*.google.com</code>、<code class="language-plaintext highlighter-rouge">gemini</code> 等域名全自动引流至 GCP<br />预处理脚本将 <code class="language-plaintext highlighter-rouge">GCP-1080</code> 从其它业务候选池排除减少无关流量。<br /><strong>两台</strong>：在 Merge 的 <code class="language-plaintext highlighter-rouge">tun.route-exclude-address</code> 中排除 <code class="language-plaintext highlighter-rouge">&lt;GCP_SERVER_IP&gt;/32</code>，让 SSH 外层走 <code class="language-plaintext highlighter-rouge">en0</code>，并重建隧道；TUN 与 GCP 最终出口不变。</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="五全局流量分流与出海拓扑示意">五、全局流量分流与出海拓扑示意</h2>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>════════════════════════════════════════════════════════════════════════════════════════════════════════════════
+【第一层：客户端接入方式 (Ingress)】
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+  ┌───────────────────────────────┐                  ┌────────────────────────────────────────┐
+  │  主动配置代理的环境 / 客户端  │                  │       系统级透明接管应用 / 终端        │
+  │  (OpenCode / Python / 浏览器) │                  │  (agy / Antigravity / curl / smtplib)  │
+  └───────────────┬───────────────┘                  └───────────────────┬────────────────────┘
+                  │ HTTP CONNECT 握手                                    │ 未配置代理变量，直冲公网
+  ┌───────────────┴───────────────┐                                      │
+  │  Git 命令行 (通过 nc -X 5)    │                                      │
+  └───────────────┬───────────────┘                                      │
+                  │ SOCKS5 握手                                          │
+                  ▼                                                      ▼
+  ┌───────────────────────────────┐                  ┌────────────────────────────────────────┐
+  │    本机 127.0.0.1:7897        │                  │           TUN 虚拟网卡 (utun)          │
+  │ (Clash Verge 混合双模监听端口)│                  │          (三层 IP 包全局透明捕获)      │
+  └───────────────┬───────────────┘                  └───────────────────┬────────────────────┘
+                  │                                                      │
+                  └──────────────────────────┬───────────────────────────┘
+                                             │
+═════════════════════════════════════════════╪══════════════════════════════════════════════════════════════════
+【第二层：Clash 规则引擎裁决 (Routing)】     │
+─────────────────────────────────────────────┼──────────────────────────────────────────────────────────────────
+                                             ▼
+                               ┌───────────────────────────┐
+                               │   Clash 内核分流规则引擎  │
+                               └─┬───────────┬───────────┬─┘
+                                 │           │           │
+         命中 Google/Gemini 规则 │           │ 命中 GitHub/海外规则  │ 命中 Gmail SMTP/国内白名单
+                                 │           │           │
+═════════════════════════════════╪═══════════╪═══════════╪══════════════════════════════════════════════════════
+【第三层：出海节点通道与落地 (Egress)】── 此时三者才完全属于同级！
+─────────────────────────────────┼───────────┼───────────┼──────────────────────────────────────────────────────
+                                 ▼           ▼           ▼
+                      ┌────────────────────┐ ┌────────────────────┐ ┌────────────────────┐
+                      │ 策略组: Google-GCP │ │ 策略组: 海外专线   │ │  策略组: DIRECT    │
+                      │ (指向节点 GCP-1080)│ │ (指向机场专线节点) │ │  (本地直连放行)    │
+                      └─────────┬──────────┘ └─────────┬──────────┘ └─────────┬──────────┘
+                                │                      │                      │
+                                │ 投递给本地 SOCKS5    │ 建立加密代理连接     │ 绕过代理
+                                ▼                      ▼                      │
+                      ┌────────────────────┐ ┌────────────────────┐           │
+                      │   127.0.0.1:1080   │ │ 机场服务端中转节点 │           │
+                      │ (autossh 隧道映射) │ │ (Trojan/SS :443)   │           │
+                      └─────────┬──────────┘ └─────────┬──────────┘           │
+                                │                      │                      │
+                                │ 底层 SSH :22 隧道    │ 专线 BGP / 跨境隧道  │ 原生物理网卡 en0 直连
+                                ▼                      ▼                      ▼
+                      ┌────────────────────┐ ┌────────────────────┐ ┌────────────────────┐
+                      │    GCP 海外云主机  │ │   机场海外落地机   │ │   本地 ISP 宽带网关│
+                      │  &lt;GCP_SERVER_IP&gt;   │ │ (香港 / 日本 / 美区│ │  (国内公网 IP 出口)│
+                      └─────────┬──────────┘ └─────────┬──────────┘ └─────────┬──────────┘
+                                │                      │                      │
+                                ▼                      ▼                      ▼
+                      ┌────────────────────┐ ┌────────────────────┐ ┌────────────────────┐
+                      │ Google API 机房出口│ │ GitHub / 海外目标站│ │ 局域网/国内直连服务│
+                      │ (纯净原生美区出口) │ │ (高速访问海外公网) │ │ (Gmail SMTP 直连)  │
+                      └────────────────────┘ └────────────────────┘ └────────────────────┘
+</code></pre></div></div>
+
+        </div>
+
+        
+
+        
+        
+  <div class="page-comments">
+    <div id="disqus_thread"></div>
+    <script>
+      var disqus_config = function () {
+        this.page.url = 'https://roshameow.github.io//personal_homepage/daily/%E7%BD%91%E7%BB%9C%E9%97%AE%E9%A2%98/';
+        this.page.identifier = 'https://roshameow.github.io//personal_homepage/daily/%E7%BD%91%E7%BB%9C%E9%97%AE%E9%A2%98/';
+      };
+
+      (function() {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://https-roshameow-github-io-personal-homepage.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+  </div>
+
+
+        
+
+        <nav class="page-pagination" role="navigation">
+  
+    <a class="page-previous" href="/personal_homepage/tool/pi-runtime-attribution/">
+      <h4 class="page-pagination-label">Previous</h4>
+      <span class="page-pagination-title">
+        <i class="fas fa-arrow-left"></i> Pi Desktop的开发难点: “会话的状态”
+
+      </span>
+    </a>
+  
+
+  
+    <a class="page-next" href="/personal_homepage/tool/resumable-work/">
+      <h4 class="page-pagination-label">Next</h4>
+      <span class="page-pagination-title">
+        pi agent无人值守工作总体架构与事件闭环
+ <i class="fas fa-arrow-right"></i>
+      </span>
+    </a>
+  
+</nav>
+
+      </div>
+
+    </div>
+  </article>
+</main>
+
+    <footer id="footer" class="site-footer">
+  <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+<div class="social-icons"><a class="social-icon" href="/personal_homepage/atom.xml"><i class="fas fa-rss-square fa-2x" title="Feed"></i></a><a class="social-icon" href="https://github.com/roshameow"><i class="fab fa-github-square fa-2x" title="GitHub"></i></a><a class="social-icon" href="https://www.linkedin.com/in/wen-liu-06503a7b/"><i class="fab fa-linkedin fa-2x" title="LinkedIn"></i></a><a class="social-icon" href="mailto:w.liuatnk@gmail.com"><i class="fas fa-envelope-square fa-2x" title="e-mail"></i></a></div><div class="copyright">
+    
+      <p>&copy; 2026 Liu, Wen's Home Page. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://github.com/mmistakes/so-simple-theme" rel="nofollow">So Simple</a>.</p>
+    
+  </div>
+</footer>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="/personal_homepage/assets/js/main.min.js"></script>
+<script src="https://use.fontawesome.com/releases/v5.0.12/js/all.js"></script><script src="/personal_homepage/assets/js/content-tables.js" defer></script>
+
+<script>
+(function () {
+  'use strict';
+
+  var types = {
+    NOTE: 'note', INFO: 'note', ABSTRACT: 'note', SUMMARY: 'note', TLDR: 'note',
+    EXAMPLE: 'note', QUOTE: 'note', CITE: 'note',
+    TIP: 'tip', HINT: 'tip', IMPORTANT: 'tip', SUCCESS: 'tip', CHECK: 'tip', DONE: 'tip',
+    QUESTION: 'warning', HELP: 'warning', FAQ: 'warning',
+    WARNING: 'warning', CAUTION: 'warning', ATTENTION: 'warning',
+    DANGER: 'danger', ERROR: 'danger', BUG: 'danger',
+    FAILURE: 'danger', FAIL: 'danger', MISSING: 'danger'
+  };
+  var icons = {
+    note: 'M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z M12 11v6 M12 7h.01',
+    tip: 'M9 18h6 M10 21h4 M9 15a6 6 0 1 1 6 0v3H9z',
+    warning: 'M12 3L2 21h20z M12 9v5 M12 17h.01',
+    danger: 'M7 3h10l4 4v10l-4 4H7l-4-4V7z M9 9l6 6 M15 9l-6 6'
+  };
+
+  function makeIcon(type) {
+    var namespace = 'http://www.w3.org/2000/svg';
+    var svg = document.createElementNS(namespace, 'svg');
+    svg.setAttribute('class', 'callout-icon');
+    svg.setAttribute('viewBox', '0 0 24 24');
+    svg.setAttribute('width', '20');
+    svg.setAttribute('height', '20');
+    svg.setAttribute('fill', 'none');
+    svg.setAttribute('stroke', 'currentColor');
+    svg.setAttribute('stroke-width', '2');
+    svg.setAttribute('stroke-linecap', 'round');
+    svg.setAttribute('stroke-linejoin', 'round');
+    svg.setAttribute('aria-hidden', 'true');
+    svg.setAttribute('focusable', 'false');
+    var path = document.createElementNS(namespace, 'path');
+    path.setAttribute('d', icons[type]);
+    svg.appendChild(path);
+    return svg;
+  }
+
+  // A soft break is a text newline; a Markdown hard break is a <br>.
+  // Do not split newlines inside inline code or other literal content.
+  function firstBreak(parent) {
+    for (var node = parent.firstChild; node; node = node.nextSibling) {
+      if (node.nodeType === 3) {
+        var offset = node.data.search(/[\r\n]/);
+        if (offset !== -1) return { node: node, offset: offset };
+      } else if (node.nodeType === 1) {
+        if (node.tagName === 'BR') return { node: node };
+        if (/^(CODE|PRE|SCRIPT|STYLE|TEXTAREA)$/.test(node.tagName)) continue;
+        var result = firstBreak(node);
+        if (result) return result;
+      }
+    }
+    return null;
+  }
+
+  function transformCallouts() {
+    document.querySelectorAll('.page-content blockquote').forEach(function (quote) {
+      if (quote.closest('pre, code, .highlight, .highlighter-rouge')) return;
+      var paragraph = quote.firstElementChild;
+      if (!paragraph || paragraph.tagName !== 'P') return;
+
+      // Require the marker in a direct text node: <code>[!WARNING]</code>
+      // (and markers merely mentioned later in a quote) must remain literal.
+      var markerNode = paragraph.firstChild;
+      if (!markerNode || markerNode.nodeType !== 3) return;
+      var marker = markerNode.data.match(/^[\t \r\n]*\[!([a-z][a-z0-9-]*)\]([+-])?(?=[\t \r\n]|$)[\t ]*/i);
+      if (!marker) return;
+      var name = marker[1].toUpperCase();
+      if (!Object.prototype.hasOwnProperty.call(types, name)) return;
+      var type = types[name];
+      var label = name === 'TLDR' ? 'TL;DR' : name.charAt(0) + name.slice(1).toLowerCase();
+      markerNode.deleteData(0, marker[0].length);
+
+      var boundary = firstBreak(paragraph);
+      var range = document.createRange();
+      range.selectNodeContents(paragraph);
+      if (boundary) {
+        if (boundary.node.nodeType === 3) range.setEnd(boundary.node, boundary.offset);
+        else range.setEndBefore(boundary.node);
+      }
+      var titleContent = range.extractContents();
+      if (boundary) {
+        if (boundary.node.nodeType === 3) {
+          var breakLength = boundary.node.data.slice(0, 2) === '\r\n' ? 2 : 1;
+          boundary.node.deleteData(0, breakLength);
+        } else {
+          boundary.node.parentNode.removeChild(boundary.node);
+        }
+      }
+      if (!paragraph.textContent.trim() && !paragraph.children.length) {
+        quote.removeChild(paragraph);
+      }
+
+      var folding = !!marker[2];
+      var callout = document.createElement(folding ? 'details' : 'div');
+      // Keep author-provided IDs, language, direction, and classes.
+      Array.prototype.forEach.call(quote.attributes, function (attribute) {
+        callout.setAttribute(attribute.name, attribute.value);
+      });
+      callout.classList.add('callout', 'callout--' + type);
+      callout.setAttribute('data-callout', name.toLowerCase());
+      callout.setAttribute('aria-label', label);
+      if (folding) {
+        callout.removeAttribute('role');
+        if (marker[2] === '+') callout.setAttribute('open', '');
+        else callout.removeAttribute('open');
+      } else {
+        callout.setAttribute('role', 'note');
+      }
+
+      var title = document.createElement(folding ? 'summary' : 'div');
+      title.className = 'callout-title';
+      title.appendChild(makeIcon(type));
+      var titleText = document.createElement('span');
+      titleText.className = 'callout-title-text';
+      if (titleContent.textContent.trim() || titleContent.childElementCount) {
+        titleText.appendChild(titleContent);
+      } else {
+        titleText.textContent = label;
+      }
+      title.appendChild(titleText);
+      callout.appendChild(title);
+
+      var body = document.createElement('div');
+      body.className = 'callout-body';
+      while (quote.firstChild) body.appendChild(quote.firstChild);
+      callout.appendChild(body);
+      quote.parentNode.replaceChild(callout, quote);
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', transformCallouts);
+  } else {
+    transformCallouts();
+  }
+})();
+</script>
+<!-- <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'G-9TMSCDTBGN', 'auto');
+  ga('send', 'pageview');
+</script> -->
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9TMSCDTBGN"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-9TMSCDTBGN');
+</script>
+
+
+
+<!-- MathJax -->
+<style>
+    /* Only oversized equations get this wrapper; ordinary inline math stays inline. */
+    .math-scroll {
+        display: block;
+        max-width: 100%;
+        overflow-x: auto;
+        overflow-y: hidden;
+        padding-block: 0.5em;
+        scrollbar-width: thin;
+    }
+    .math-scroll > mjx-container[jax] {
+        display: inline-block;
+        margin: 0;
+    }
+    .math-scroll:focus-visible {
+        outline: 2px solid currentColor;
+        outline-offset: 2px;
+    }
+</style>
+<script>
+    function fitMathToColumn() {
+        document.querySelectorAll('mjx-container').forEach(function (container) {
+            var wrapper = container.parentElement.classList.contains('math-scroll') ? container.parentElement : null;
+            var column = wrapper ? wrapper.parentElement : container.parentElement;
+            while (column && ['inline', 'contents'].includes(getComputedStyle(column).display)) {
+                column = column.parentElement;
+            }
+            if (!column) return;
+            var style = getComputedStyle(column);
+            var available = column.clientWidth - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight);
+            var ink = container.querySelector('mjx-math, svg');
+            var width = (ink || container).getBoundingClientRect().width;
+            if (width > available + 1) {
+                if (!wrapper) {
+                    wrapper = document.createElement('span');
+                    wrapper.className = 'math-scroll';
+                    wrapper.tabIndex = 0;
+                    wrapper.setAttribute('role', 'region');
+                    wrapper.setAttribute('aria-label', 'Mathematical formula; scroll horizontally to read all');
+                    wrapper.title = 'Scroll horizontally to read the full formula';
+                    container.before(wrapper);
+                    wrapper.appendChild(container);
+                }
+            } else if (wrapper) {
+                wrapper.replaceWith(container);
+            }
+        });
+    }
+    // Pin the engine, autoloaded TeX extensions, menu and fonts to local assets.
+    window.MathJax = {
+        loader: {
+            paths: { mathjax: "/personal_homepage/assets/js/vendor/mathjax/es5" },
+            load: ['[tex]/textmacros']
+        },
+        tex: {
+            tags: "ams",
+            packages: { '[+]': ['textmacros'] },
+            inlineMath: [['$', '$'], ['\\(', '\\)']],
+            displayMath: [['$$', '$$'], ['\\[', '\\]']]
+        },
+        chtml: {
+            fontURL: "/personal_homepage/assets/js/vendor/mathjax/es5/output/chtml/fonts/woff-v2"
+        },
+        startup: {
+            pageReady: function () {
+                return MathJax.startup.defaultPageReady().then(function () {
+                    return document.fonts ? document.fonts.ready : undefined;
+                }).then(function () {
+                    fitMathToColumn();
+                    var scheduled = false;
+                    window.addEventListener('resize', function () {
+                        if (scheduled) return;
+                        scheduled = true;
+                        requestAnimationFrame(function () {
+                            scheduled = false;
+                            fitMathToColumn();
+                        });
+                    });
+                });
+            }
+        },
+        options: {
+            // Keep examples (including literal dollar signs) out of the typesetter.
+            skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code', 'annotation', 'annotation-xml']
+        }
+    };
+</script>
+<script id="MathJax-script" async src="/personal_homepage/assets/js/vendor/mathjax/es5/tex-mml-chtml.js"></script>
+
+
+
+
+<!-- Mermaid -->
+<style>
+  .mermaid-diagram {
+    max-width: 100%;
+    margin: 0.85rem 0;
+    overflow-x: auto;
+  }
+  .mermaid-diagram:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+  }
+  .page-content pre.mermaid {
+    margin: 0;
+    padding: 0.25rem 0;
+    text-align: center;
+    background: transparent;
+    overflow: visible;
+    font-family: inherit;
+  }
+  .page-content pre.mermaid[data-processed] {
+    white-space: normal;
+  }
+  pre.mermaid svg {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    height: auto;
+  }
+  .mermaid-diagram .cluster-label {
+    font-weight: 700;
+  }
+  .mermaid-error {
+    font-size: 0.85em;
+    color: #9a3412;
+  }
+</style>
+<script src="/personal_homepage/assets/js/vendor/mermaid-11.17.2.min.js"></script>
+<script>
+(function () {
+  'use strict';
+
+  function normalizeMermaidSource(source) {
+    // Mermaid 11 accepts A <-- "label" --- B but creates an INVALID edge.
+    // Render the equivalent B -->|"label"| A, without editing the Markdown.
+    var body = source.trimStart()
+      .replace(/^---\r?\n[\s\S]*?\r?\n---(?:\r?\n|$)/, '')
+      .replace(/%%\{[\s\S]*?\}%%/g, '')
+      .replace(/^[\t ]*%%.*$/gm, '').trimStart();
+    if (!/^(?:flowchart|graph)\b/.test(body)) return source;
+
+    var started = false;
+    var quoted = false;
+    return source.replace(/[^\r\n]+/g, function (line) {
+      if (!started && !/^\s*(?:flowchart|graph)\b/.test(line)) return line;
+      started = true;
+      var normalized = quoted ? line : line.replace(
+        /^([\t ]*)([A-Za-z_][\w-]*)[\t ]*<--[\t ]*("[^"\r\n]*")[\t ]*---[\t ]*([A-Za-z_][\w-]*)([\t ]*;?[\t ]*(?:%%.*)?)$/,
+        function (_, indent, left, label, right, suffix) {
+          return indent + right + ' -->|' + label + '| ' + left + suffix;
+        }
+      );
+      // Never rewrite an example inside a multiline quoted node label, and
+      // never let quotes inside a %% comment affect the following lines.
+      for (var i = 0; i < line.length; i++) {
+        if (!quoted && line[i] === '%' && line[i + 1] === '%') break;
+        if (line[i] === '"') quoted = !quoted;
+      }
+      return normalized;
+    });
+  }
+
+  async function renderDiagrams() {
+    var blocks = document.querySelectorAll('code.language-mermaid');
+    if (!blocks.length) return;
+    if (typeof mermaid === 'undefined') {
+      blocks.forEach(function (code) {
+        var original = code.closest('.highlighter-rouge') || code.closest('pre');
+        if (!original) return;
+        var message = document.createElement('p');
+        message.className = 'mermaid-error';
+        message.setAttribute('role', 'status');
+        message.textContent = '图表组件加载失败，请刷新页面重试。Mermaid 源码已保留。';
+        original.after(message);
+      });
+      return;
+    }
+
+    // Render every diagram as Mermaid, including diagrams with multiple subgraphs.
+    // Disable the automatic pass so it cannot race with our explicit rendering.
+    var skin = getComputedStyle(document.documentElement);
+    function color(name, fallback) {
+      return skin.getPropertyValue('--mermaid-' + name).trim() || fallback;
+    }
+    var background = color('background', '#ffffff');
+    var text = color('text', '#000000');
+    var border = color('border', '#cccccc');
+    var nodeBorder = color('node-border', '#b8b9c0');
+    var cluster = color('cluster-background', '#f9f9fa');
+    var line = color('line', '#858795');
+    var palettes = [
+      ['#e4eaf0', '#f4f6f9', '#a5b3c2'], // slate blue
+      ['#e8f0ea', '#f5f8f5', '#a8bcae'], // sage
+      ['#f3ede3', '#faf7f2', '#c6b69c'], // sand
+      ['#ebe8f1', '#f7f5fa', '#b5adc5'], // lavender
+      ['#e4eeee', '#f3f8f8', '#a0baba']  // muted teal
+    ].map(function (fallbacks, index) {
+      return {
+        node: color('palette-' + index + '-node', fallbacks[0]),
+        cluster: color('palette-' + index + '-cluster', index === 0 ? cluster : fallbacks[1]),
+        border: color('palette-' + index + '-border', fallbacks[2])
+      };
+    });
+    var fontFamily = getComputedStyle(document.body).fontFamily ||
+      '"Source Sans Pro", sans-serif';
+    // Mermaid fixes label dimensions during layout. Wait for web fonts so a
+    // later font swap cannot make the measured label box too small.
+    if (document.fonts) await document.fonts.ready;
+
+    var theme = "default";
+    // The site's default follows its active skin. Explicit forest/dark/etc.
+    // choices remain available for sites that deliberately select them.
+    if (theme === 'default') theme = 'base';
+
+    var config = {
+      startOnLoad: false,
+      securityLevel: 'strict',
+      fontFamily: fontFamily,
+      // Native SVG text avoids foreignObject clipping and article paragraph CSS.
+      htmlLabels: false,
+      flowchart: {
+        inheritDir: true,
+        curve: 'linear',
+        nodeSpacing: 24,
+        rankSpacing: 28,
+        padding: 8,
+        diagramPadding: 8,
+        wrappingWidth: 180,
+        // Nested cluster borders must start below the parent's full title line.
+        subGraphTitleMargin: { top: 4, bottom: 12 }
+      },
+      theme: theme,
+      themeVariables: theme === 'base' ? {
+        fontFamily: fontFamily,
+        fontSize: '14px',
+        background: background,
+        primaryColor: palettes[0].node,
+        primaryTextColor: text,
+        primaryBorderColor: nodeBorder,
+        secondaryColor: palettes[1].node,
+        secondaryTextColor: text,
+        secondaryBorderColor: border,
+        tertiaryColor: palettes[2].node,
+        tertiaryTextColor: text,
+        tertiaryBorderColor: border,
+        lineColor: line,
+        textColor: text,
+        mainBkg: palettes[0].node,
+        nodeBorder: nodeBorder,
+        nodeTextColor: text,
+        clusterBkg: palettes[0].cluster,
+        clusterBorder: border,
+        titleColor: text,
+        defaultLinkColor: line,
+        edgeLabelBackground: background,
+        noteBkgColor: palettes[2].node,
+        noteTextColor: text,
+        noteBorderColor: border,
+        actorBkg: palettes[0].node,
+        actorBorder: nodeBorder,
+        actorTextColor: text,
+        actorLineColor: border,
+        signalColor: line,
+        signalTextColor: text
+      } : { fontFamily: fontFamily }
+    };
+
+    function applyFlowchartPalette(svg) {
+      if (theme !== 'base' || !/^flowchart/.test(svg.getAttribute('aria-roledescription') || '')) return;
+
+      function tint(group, shapes, index, kind) {
+        // Author-supplied classDef/style colors take precedence over auto accents.
+        var customClass = Array.from(group.classList).some(function (name) {
+          return !['node', 'default', 'cluster', 'clickable'].includes(name);
+        });
+        if (customClass || !shapes.length || shapes.some(function (shape) {
+          return shape.style.getPropertyValue('fill') || shape.style.getPropertyValue('stroke');
+        })) return;
+        group.setAttribute('data-mermaid-palette', index);
+        shapes.forEach(function (shape) {
+          // Keep fallbacks in the SVG so exported diagrams retain their colors.
+          if (shape.getAttribute('fill') !== 'none') {
+            shape.style.fill = 'var(--mermaid-palette-' + index + '-' + kind + ', ' + palettes[index][kind] + ')';
+          }
+          shape.style.stroke = 'var(--mermaid-palette-' + index + '-border, ' + palettes[index].border + ')';
+        });
+      }
+
+      var groups = Array.from(svg.querySelectorAll('g.cluster')).map(function (group, index) {
+        var rect = group.querySelector('rect');
+        return { group: group, rect: rect, bounds: rect && rect.getBoundingClientRect(), index: index % palettes.length };
+      }).filter(function (entry) { return entry.rect; });
+      // Mermaid's SVG stores clusters flat. Match by the actual layout so nodes
+      // inherit their smallest enclosing group, including nested schedulers.
+      var nodes = Array.from(svg.querySelectorAll('g.node')).map(function (node) {
+        return { node: node, bounds: node.getBoundingClientRect() };
+      });
+      groups.forEach(function (entry) { tint(entry.group, [entry.rect], entry.index, 'cluster'); });
+      groups.sort(function (a, b) { return a.bounds.width * a.bounds.height - b.bounds.width * b.bounds.height; });
+      nodes.forEach(function (entry) {
+        var box = entry.bounds;
+        var parent = groups.find(function (group) {
+          var bounds = group.bounds;
+          return box.left >= bounds.left - 1 && box.right <= bounds.right + 1 &&
+            box.top >= bounds.top - 1 && box.bottom <= bounds.bottom + 1;
+        });
+        var shapes = [];
+        entry.node.querySelectorAll(':scope > .label-container').forEach(function (container) {
+          // Rounded/hand-drawn shapes wrap paths in a group. Include the
+          // container in the author-style check, then tint the actual paths.
+          shapes.push(container);
+          shapes.push.apply(shapes, container.querySelectorAll('path, rect, circle, ellipse, polygon, polyline'));
+        });
+        tint(entry.node, shapes, parent ? parent.index : 0, 'node');
+      });
+    }
+
+    function hasNestedSubgraphs(source) {
+      var depth = 0;
+      return source.split(/\r?\n/).some(function (line) {
+        if (/^\s*subgraph\b/.test(line)) return ++depth > 1;
+        if (/^\s*end\s*(?:;|%%.*)?$/.test(line)) depth = Math.max(0, depth - 1);
+        return false;
+      });
+    }
+
+    for (var code of blocks) {
+      var original = code.closest('.highlighter-rouge') || code.closest('pre');
+      if (!original) continue;
+
+      var wrapper = document.createElement('div');
+      wrapper.className = 'mermaid-diagram';
+      wrapper.tabIndex = 0;
+      wrapper.setAttribute('role', 'region');
+      wrapper.setAttribute('aria-label', 'Mermaid diagram (scroll horizontally)');
+
+      var pre = document.createElement('pre');
+      pre.className = 'mermaid';
+      pre.textContent = normalizeMermaidSource(code.textContent);
+      wrapper.appendChild(pre);
+      original.replaceWith(wrapper);
+
+      try {
+        // Dagre reserves only half rankSpacing above a nested cluster. Keep
+        // that space taller than its parent's title, without spreading out
+        // the ordinary (non-nested) compact flowcharts.
+        mermaid.initialize(Object.assign({}, config, {
+          flowchart: Object.assign({}, config.flowchart, {
+            rankSpacing: hasNestedSubgraphs(code.textContent) ? 56 : config.flowchart.rankSpacing
+          })
+        }));
+        await mermaid.run({ nodes: [pre] });
+        var svg = pre.querySelector('svg');
+        if (svg && svg.viewBox.baseVal.width) {
+          // Do not shrink labels to illegible text on narrow screens;
+          // keep at least 90% of the natural size and scroll the diagram instead.
+          svg.style.minWidth = (svg.viewBox.baseVal.width * 0.9) + 'px';
+        }
+        if (svg) applyFlowchartPalette(svg);
+      } catch (error) {
+        // A malformed diagram must not prevent other diagrams from rendering
+        // or make the original source disappear.
+        wrapper.replaceChildren(original);
+        var message = document.createElement('p');
+        message.className = 'mermaid-error';
+        message.setAttribute('role', 'status');
+        message.textContent = '图表渲染失败，已保留 Mermaid 源码。';
+        wrapper.appendChild(message);
+        console.warn('Mermaid diagram could not be rendered:', error);
+      }
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', renderDiagrams);
+  } else {
+    renderDiagrams();
+  }
+})();
+</script>
+
+
+  </body>
+
+</html>

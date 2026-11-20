@@ -1,0 +1,1387 @@
+<!DOCTYPE html>
+<!--
+    So Simple Jekyll Theme 3.2.0
+    Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+    Free for personal and commercial use under the MIT license
+    https://github.com/mmistakes/so-simple-theme/blob/master/LICENSE
+-->
+<html lang="en-US" class="no-js">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  
+
+  
+  
+  <!-- Begin Jekyll SEO tag v2.9.1 -->
+<title>pi agent无人值守工作案例三(quantnight) | Liu, Wen’s Home Page</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="pi agent无人值守工作案例三(quantnight)" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="本文是 QuantNight 项目的量化回测自动化搭建与工程调教案例，重点记录如何将复杂的 WorldQuant Brain 量化平台交互、Tauri 桌面端、Rust/taskctl 底层进程守护、长耗时回测状态机与并发防崩体系跑通。 相比纯 Web/API 任务，量化回测系统面临平台回测延迟大、并发配额限制、系统级进程监控、数据库与文件锁竞争等多重挑战。本项目当前处于 L1~L2 阶段（强工具化与高可观察性）：底层任务控制内核与鲁棒性门禁已搭建完毕，而 Session 级 Goal 驱动与 Agent 事件通知闭环尚未正式接通。本文结合实际会话中的排障历程，沉淀系统工程底座的建设经验。" />
+<meta name="twitter:description" property="og:description" content="本文是 QuantNight 项目的量化回测自动化搭建与工程调教案例，重点记录如何将复杂的 WorldQuant Brain 量化平台交互、Tauri 桌面端、Rust/taskctl 底层进程守护、长耗时回测状态机与并发防崩体系跑通。 相比纯 Web/API 任务，量化回测系统面临平台回测延迟大、并发配额限制、系统级进程监控、数据库与文件锁竞争等多重挑战。本项目当前处于 L1~L2 阶段（强工具化与高可观察性）：底层任务控制内核与鲁棒性门禁已搭建完毕，而 Session 级 Goal 驱动与 Agent 事件通知闭环尚未正式接通。本文结合实际会话中的排障历程，沉淀系统工程底座的建设经验。" />
+<link rel="canonical" href="https://roshameow.github.io//personal_homepage/tool/agent-example3/" />
+<meta property="og:url" content="https://roshameow.github.io//personal_homepage/tool/agent-example3/" />
+<meta property="og:site_name" content="Liu, Wen’s Home Page" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2026-10-13T00:00:00+00:00" />
+<meta property="article:modified_time" content="2026-11-05T11:07:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="pi agent无人值守工作案例三(quantnight)" />
+<meta name="twitter:site" content="@" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2026-11-05T11:07:00+00:00","datePublished":"2026-10-13T00:00:00+00:00","description":"本文是 QuantNight 项目的量化回测自动化搭建与工程调教案例，重点记录如何将复杂的 WorldQuant Brain 量化平台交互、Tauri 桌面端、Rust/taskctl 底层进程守护、长耗时回测状态机与并发防崩体系跑通。 相比纯 Web/API 任务，量化回测系统面临平台回测延迟大、并发配额限制、系统级进程监控、数据库与文件锁竞争等多重挑战。本项目当前处于 L1~L2 阶段（强工具化与高可观察性）：底层任务控制内核与鲁棒性门禁已搭建完毕，而 Session 级 Goal 驱动与 Agent 事件通知闭环尚未正式接通。本文结合实际会话中的排障历程，沉淀系统工程底座的建设经验。","headline":"pi agent无人值守工作案例三(quantnight)","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/tool/agent-example3/"},"url":"https://roshameow.github.io//personal_homepage/tool/agent-example3/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  
+
+  <script>
+    /* Cut the mustard */
+    if ('querySelector' in document && 'addEventListener' in window) {
+      document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + 'js';
+    }
+  </script>
+
+  <link rel="stylesheet" href="/personal_homepage/assets/css/main.css">
+  <link rel="stylesheet" href="/personal_homepage/assets/css/skins/default.css">
+  
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,700,700i|Lora:400,400i,700,700i">
+  <link rel="alternate" type="application/atom+xml" title="Liu, Wen&#39;s Home Page" href="/personal_homepage/atom.xml">
+<!-- start custom head snippets -->
+
+<!-- insert favicons. use http://realfavicongenerator.net/ -->
+<link rel="shortcut icon" type="image/x-icon" href="/personal_homepage/docs/images/logo.ico">
+<!-- end custom head snippets -->
+
+</head>
+
+  <body class="layout--post  pi-agent无人值守工作案例三-quantnight">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#primary-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+  <div class="navigation-wrapper">
+    <a href="#menu-toggle" id="menu-toggle">Menu</a>
+    <nav id="primary-nav" class="site-nav animated drop">
+      <ul><li><a href="/personal_homepage/">Home</a></li><li><a href="/personal_homepage/posts/">Posts</a></li><li><a href="/personal_homepage/categories/">Categories</a></li><li><a href="/personal_homepage/tags/">Tags</a></li><li><a href="/personal_homepage/family/">Family</a></li><li><a href="/personal_homepage/search/">Search</a></li></ul>
+    </nav>
+  </div><!-- /.navigation-wrapper -->
+
+
+    <header class="masthead">
+  <div class="wrap">
+    
+    
+    
+      
+        <div class="site-title animated fadeIn"><a href="/personal_homepage/">Liu, Wen's Home Page</a></div>
+      
+      <p class="site-description animated fadeIn" itemprop="description">Work, Experiments and Ideas.</p>
+    
+  </div>
+</header><!-- /.masthead -->
+
+
+    <main id="main" class="main-content" aria-label="Content">
+  <article class="h-entry">
+    
+
+    <div class="page-wrapper">
+      <header class="page-header">
+        
+        
+        <h1 id="page-title" class="page-title p-name">pi agent无人值守工作案例三(quantnight)
+</h1>
+        
+      </header>
+
+      <div class="page-sidebar">
+        <div class="page-author h-card p-author"><img src="/personal_homepage/docs/images/logo.svg" class="author-avatar u-photo" alt=""><div class="author-info">
+
+<span class="read-time">5 min read</span>
+
+    <time class="page-date dt-published" datetime="2026-10-13T00:00:00+00:00"><a class="u-url" href="">October 13, 2026</a>
+</time>
+
+  </div>
+</div>
+
+        
+  <h3 class="page-taxonomies-title">Categories</h3>
+  
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a class="p-category" href="/personal_homepage/categories/#tool" title="Pages filed under tool">tool</a></li>
+  </ul>
+
+
+        
+  <h3 class="page-taxonomies-title">Tags</h3>
+  
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a href="/personal_homepage/tags/#agent" title="Pages tagged agent" rel="tag">agent</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#auto" title="Pages tagged auto" rel="tag">auto</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#content" title="Pages tagged content" rel="tag">content</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#pi" title="Pages tagged pi" rel="tag">pi</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#quant" title="Pages tagged quant" rel="tag">quant</a></li>
+  </ul>
+
+
+        <details id="entry-table-of-contents" class="toc-wrapper" open>
+  <summary>
+    <h2 class="no_toc">
+      Table of Contents
+      <svg class="toc-toggle-icon" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true" focusable="false">
+        <path d="m4 6 4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+      </svg>
+    </h2>
+  </summary>
+  <div class="toc-content">
+    <ul class="inline_toc" id="my_toc"><li><a href="#1-案例概览">1. 案例概览</a><ul><li><a href="#11-通用机制在本案例中的映射与当前进展">1.1 通用机制在本案例中的映射与当前进展</a></li></ul></li><li><a href="#2-从任务生成到回测收割的业务闭环">2. 从任务生成到回测收割的业务闭环</a><ul><li><a href="#21-任务生命周期与双模状态机">2.1 任务生命周期与双模状态机</a></li><li><a href="#22-前端与底层-taskctl-的协同">2.2 前端与底层 taskctl 的协同</a></li><li><a href="#23-通知路由与事件驱动唤醒的设计待业务接通">2.3 通知路由与事件驱动唤醒的设计（待业务接通）</a></li></ul></li><li><a href="#3-架构陷阱与核心故障演进现场调教全景">3. 架构陷阱与核心故障演进（现场调教全景）</a><ul><li><a href="#阶段一宿主机资源雪崩与基础设施治理10-月-22-日">阶段一：宿主机资源雪崩与基础设施治理（10 月 22 日）</a></li><li><a href="#阶段二前端状态与进程检查的虚警与诊断透明度10-月-23-日">阶段二：前端状态与进程检查的虚警与诊断透明度（10 月 23 日）</a></li><li><a href="#阶段三从自杀式全局-shutdown到故障隔离与退避10-月-2324-日">阶段三：从“自杀式全局 Shutdown”到“故障隔离与退避”（10 月 23～24 日）</a></li><li><a href="#阶段四统一-rust-内核与环境割裂治理10-月-2425-日">阶段四：统一 Rust 内核与环境割裂治理（10 月 24～25 日）</a></li><li><a href="#阶段五回测凭证恢复与-slot-阻塞死锁10-月-2628-日">阶段五：回测凭证恢复与 Slot 阻塞死锁（10 月 26～28 日）</a></li><li><a href="#阶段六generating-假死与-20s-vs-900s-认知偏差10-月-30-日">阶段六：Generating 假死与 20s vs 900s 认知偏差（10 月 30 日）</a></li><li><a href="#阶段七系统级并发控制原理的落地10-月-31-日深度探讨">阶段七：系统级并发控制原理的落地（10 月 31 日深度探讨）</a></li><li><a href="#阶段八macos-底层-selectkqueue-崩溃与通知链修复10-月-31-日">阶段八：macOS 底层 select.kqueue 崩溃与通知链修复（10 月 31 日）</a></li></ul></li><li><a href="#4-关键架构设计与并发保护机制">4. 关键架构设计与并发保护机制</a><ul><li><a href="#41-进程与会话管理规范">4.1 进程与会话管理规范</a></li><li><a href="#42-乐观并发控制与非阻塞防崩">4.2 乐观并发控制与非阻塞防崩</a></li><li><a href="#43-诊断透明度三原则">4.3 诊断透明度三原则</a></li></ul></li><li><a href="#5-quantnight-业务执行技术栈">5. QuantNight 业务执行技术栈</a></li><li><a href="#6-状态证据与知识落盘">6. 状态、证据与知识落盘</a><ul><li><a href="#61-三层持久化架构">6.1 三层持久化架构</a></li><li><a href="#62-结构化生命周期文档">6.2 结构化生命周期文档</a></li></ul></li><li><a href="#7-关键经验教训与人机协作思辨">7. 关键经验教训与人机协作思辨</a><ul><li><a href="#71-不要为了防御而阻碍业务反过度工程">7.1 “不要为了防御而阻碍业务”（反过度工程）</a></li><li><a href="#72-统一上下文绝不留两套执行体系">7.2 统一上下文，绝不留两套执行体系</a></li><li><a href="#73-修改前行为披露建立可信的协作契约">7.3 修改前行为披露：建立可信的协作契约</a></li></ul></li><li><a href="#8-案例结论与成熟度评估">8. 案例结论与成熟度评估</a><ul><li><a href="#81-现阶段的核心价值打牢最硬的-l2-地基">8.1 现阶段的核心价值：打牢最硬的 L2 地基</a></li><li><a href="#82-迈向-l3l4-的最后两块拼图">8.2 迈向 L3/L4 的最后两块拼图</a></li></ul></li></ul>
+  </div>
+</details>
+
+        
+<details id="entry-related-posts" class="toc-wrapper" open>
+  <summary>
+    <h2 class="no_toc">
+      Related Posts
+      <svg class="toc-toggle-icon" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true" focusable="false">
+        <path d="m4 6 4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+      </svg>
+    </h2>
+  </summary>
+  <div class="toc-content">
+    <ul>
+      
+      <li><a href="/personal_homepage/data/alpha29/">News & Social Media 新闻流、社交媒体情绪与文本事件数据体系</a></li>
+      
+      <li><a href="/personal_homepage/data/alpha28/">日内 PV 统计量与市场微结构衍生指标体系</a></li>
+      
+      <li><a href="/personal_homepage/tool/alpha27/">从过度防御的歪路纠偏：GUI/CLI 6 态极简控制面、数据面板统一与工程收口</a></li>
+      
+      <li><a href="/personal_homepage/thought/agent-infrastructure-pitfalls-2/">用 AI 维护复杂控制面基础设施：为什么越修越死？从补丁膨胀到 6 态收敛的六大工程陷阱</a></li>
+      
+      <li><a href="/personal_homepage/tool/pi-subagent-durable/">pi-subagent-durable：后台子代理的持久化、生命周期与故障自愈</a></li>
+      
+    </ul>
+  </div>
+</details>
+
+
+
+      </div>
+
+      <div class="page-content">
+        <div class="e-content">
+          <blockquote>
+  <p>本文是 QuantNight 项目的量化回测自动化搭建与工程调教案例，重点记录如何将复杂的 WorldQuant Brain 量化平台交互、Tauri 桌面端、Rust/taskctl 底层进程守护、长耗时回测状态机与并发防崩体系跑通。<br />
+相比纯 Web/API 任务，量化回测系统面临平台回测延迟大、并发配额限制、系统级进程监控、数据库与文件锁竞争等多重挑战。<strong>本项目当前处于 L1~L2 阶段（强工具化与高可观察性）</strong>：底层任务控制内核与鲁棒性门禁已搭建完毕，而 Session 级 Goal 驱动与 Agent 事件通知闭环尚未正式接通。本文结合实际会话中的排障历程，沉淀系统工程底座的建设经验。</p>
+</blockquote>
+
+<hr />
+
+<h2 id="1-案例概览">1. 案例概览</h2>
+
+<p>QuantNight 不是简单的自动化脚本合集，而是一套运行在 Mac 环境上的 <strong>量化回测、Alpha 挖掘与桌面端交互协同的自动化流水线</strong>：</p>
+
+<ul>
+  <li><strong>Pi 会话与运维</strong>：主要用于全局架构重构、排障定位与阶段性维护（如维护 session <code class="language-plaintext highlighter-rouge">01a16328-d448-72d8-b75b-0552e1d06a4e</code>）；</li>
+  <li><strong>任务目标管理（Goal）</strong>：<strong>【演进中 / 尚未接入】</strong> 当前任务仍由人工或独立指令派发，长期自主 Goal 状态机尚未挂接到日常回测循环；</li>
+  <li><strong>底层 CLI（<code class="language-plaintext highlighter-rouge">taskctl</code> / <code class="language-plaintext highlighter-rouge">task-core</code>）</strong>：由 Rust 编写的原生任务控制核心，统领任务生命周期（创建、生成、启动、暂停、恢复、归档、删除）与并发排他；</li>
+  <li><strong>桌面端（<code class="language-plaintext highlighter-rouge">quantnight-frontend</code>）</strong>：基于 Tauri + 前端构建的桌面管理界面，为主控提供直观的状态卡片、折叠详情、诊断与手动控制；</li>
+  <li><strong>回测执行后端与 MCP（<code class="language-plaintext highlighter-rouge">quant_night_mcp</code>）</strong>：对接 WorldQuant Brain API，负责回测模拟派发、结果轮询收集、配额管理与进程隔离；</li>
+  <li><strong>状态监控与通知（<code class="language-plaintext highlighter-rouge">watch_quant_task</code> / <code class="language-plaintext highlighter-rouge">agent-notify</code>）</strong>：<strong>【基础设施已具备 / 待业务接通】</strong> 底层 kqueue 监听与通知投递链路已修复，但尚未作为主链路自动闭环唤醒 Agent 续作；</li>
+  <li><strong>持久化层</strong>：本地 MongoDB 存储海量 Alpha 回测表现（<code class="language-plaintext highlighter-rouge">alpha_results</code>）与任务定义，本地 <code class="language-plaintext highlighter-rouge">.quantnight/</code> 存储互斥锁与快照。</li>
+</ul>
+
+<h3 id="11-通用机制在本案例中的映射与当前进展">1.1 通用机制在本案例中的映射与当前进展</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>通用机制</th>
+      <th>QuantNight 的具体对象与实现</th>
+      <th>当前实现状态</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>目标编排（Goal）</strong></td>
+      <td>自主根据 Pyramid 缺口与数据集画像编排长期回测计划</td>
+      <td>⚠️ <strong>尚未接入</strong>：当前依赖人工在前端或命令行指定具体任务批次</td>
+    </tr>
+    <tr>
+      <td><strong>任务所有权</strong></td>
+      <td>每个回测任务（如 <code class="language-plaintext highlighter-rouge">glb_borrowed_fields_r4</code>、<code class="language-plaintext highlighter-rouge">chn_d1_notown_...</code>）对应独立任务 ID 与专属锁</td>
+      <td>✅ <strong>已落地</strong>：Rust task-core 强约束</td>
+    </tr>
+    <tr>
+      <td><strong>外部状态观察</strong></td>
+      <td><code class="language-plaintext highlighter-rouge">watch_quant_task</code> 监控平台模拟进度、日志产出、tmux 消费者活跃度与 MongoDB 写入</td>
+      <td>✅ <strong>已落地</strong>：kqueue / 日志探针正常工作</td>
+    </tr>
+    <tr>
+      <td><strong>事件路由</strong></td>
+      <td>watcher → <code class="language-plaintext highlighter-rouge">notify_agent.py</code> → JSON 事件 → <code class="language-plaintext highlighter-rouge">pi-agent-notify</code> 唤醒 Agent</td>
+      <td>⚠️ <strong>待接通</strong>：底层通路由本次排障打通，但未闭环接入日常调度</td>
+    </tr>
+    <tr>
+      <td><strong>长等待恢复</strong></td>
+      <td>平台长耗时回测释放前台进程，由通知事件定向唤醒同一 session 续作</td>
+      <td>⚠️ <strong>待接通</strong>：目前主要依赖前端/CLI 状态展示与人工再确认</td>
+    </tr>
+    <tr>
+      <td><strong>执行资源隔离</strong></td>
+      <td>统一基于系统原生 <code class="language-plaintext highlighter-rouge">tmux</code> 会话隔离 Python 回测消费者；任务级 <code class="language-plaintext highlighter-rouge">flock</code> 文件锁隔离并发操作</td>
+      <td>✅ <strong>已落地</strong>：剔除 rmux，彻底收敛到系统 tmux</td>
+    </tr>
+    <tr>
+      <td><strong>并发与原子性</strong></td>
+      <td>数据库写回采用 <strong>CAS（Compare-And-Swap）</strong>；进程控制采用 <strong>Mission 锁</strong>（非阻塞 flock）</td>
+      <td>✅ <strong>已落地</strong>：防止并发交错与旧结果覆盖新状态</td>
+    </tr>
+    <tr>
+      <td><strong>业务完成条件</strong></td>
+      <td>平台权威模拟完成且成功入库本地 Mongo；单批超时/回执过期进入降级容错，不阻碍主线</td>
+      <td>✅ <strong>已落地</strong>：Fail-open 容错与无阻塞继续</td>
+    </tr>
+    <tr>
+      <td><strong>人工升级</strong></td>
+      <td>平台凭证彻底失效、网络无法恢复的持久中断、涉及不可逆策略删除与架构修改</td>
+      <td>✅ <strong>已落地</strong>：明确的人机协作红线与行为披露门禁</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="2-从任务生成到回测收割的业务闭环">2. 从任务生成到回测收割的业务闭环</h2>
+
+<h3 id="21-任务生命周期与双模状态机">2.1 任务生命周期与双模状态机</h3>
+
+<p>QuantNight 的任务管理划分两大类别与严格的状态转移矩阵：</p>
+
+<ol>
+  <li><strong>普通任务（Regular）与 Super 任务</strong>：
+    <ul>
+      <li>经历 <code class="language-plaintext highlighter-rouge">pending</code>（待生成/待派发）→ <code class="language-plaintext highlighter-rouge">generating</code>（生成表达式）→ <code class="language-plaintext highlighter-rouge">ready</code>（准备就绪）→ <code class="language-plaintext highlighter-rouge">running</code>（回测运行中）→ <code class="language-plaintext highlighter-rouge">completed</code>（全部完成）/ <code class="language-plaintext highlighter-rouge">paused</code>（已暂停）/ <code class="language-plaintext highlighter-rouge">failed</code>（失败）；</li>
+      <li>在 <code class="language-plaintext highlighter-rouge">generating</code> 阶段，复杂策略表达式展开可能耗时数分钟，超时机制必须分层；</li>
+      <li>在 <code class="language-plaintext highlighter-rouge">running</code> 阶段，Python 消费者在后台 tmux 中异步调用 WorldQuant Brain 接口，支持批量模拟与增量收集。</li>
+    </ul>
+  </li>
+  <li><strong>Priority 任务（高优先级队列）</strong>：
+    <ul>
+      <li>具备专属执行通道与配额保障，状态管理与普通任务解耦，避免普通长批次回测饿死高优任务。</li>
+    </ul>
+  </li>
+</ol>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[创建任务] 
+   ↓
+pending 
+   ↓ (taskctl generate)
+generating (持锁生成表达式，最长可达数分钟)
+   ├─ 成功 → ready ──(taskctl start)──→ running (tmux 消费者异步模拟)
+   │                                      ├─ 暂停/系统重启 → paused
+   │                                      ├─ 回测完毕入库 → completed
+   │                                      └─ 异常超时 → 故障隔离/自动退避
+   └─ 失败/中断 → generation_failed ──(自动回退)──→ pending (记录阻断原因)
+</code></pre></div></div>
+
+<h3 id="22-前端与底层-taskctl-的协同">2.2 前端与底层 taskctl 的协同</h3>
+
+<p>早期系统尝试用 Python 脚本和前端分别操作 MongoDB 与进程，导致 GUI 与 CLI 逻辑分裂。最终方案实现了 <strong>内核下沉与接口统领</strong>：</p>
+
+<ul>
+  <li><strong>Rust <code class="language-plaintext highlighter-rouge">task-core</code></strong>：核心状态判断、进程启停、锁管理与数据库事务完全由 Rust 库实现；</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">taskctl</code> CLI</strong>：面向 Agent、后台服务与运维的命令行入口；</li>
+  <li><strong>Tauri 桌面端</strong>：前端不直接操控底层 pid 或拼接 shell，而是调用 Rust Tauri Command 复用 <code class="language-plaintext highlighter-rouge">task-core</code>；</li>
+  <li><strong>运行/停止详情折叠展示</strong>：桌面卡片默认保持精简清爽（展示成功/失败计数、阶段徽标），将底层复杂的回执细节、tmux pane 状态、历史诊断统一收纳在“运行 / 停止详情”折叠面板内。</li>
+</ul>
+
+<h3 id="23-通知路由与事件驱动唤醒的设计待业务接通">2.3 通知路由与事件驱动唤醒的设计（待业务接通）</h3>
+
+<p>为了防止未来全自动运行时代 Agent 前台 <code class="language-plaintext highlighter-rouge">sleep</code> 轮询消耗上下文并触发 CLI 安全熔断，QuantNight 设计了 <strong>外部观察者 + 有界等待租约</strong> 机制。这也是为什么在 10 月 31 日需要花费大量精力排查修复 <code class="language-plaintext highlighter-rouge">select.kqueue</code> 崩溃的原因：</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>平台回测异步运行 / 表达式生成
+  → 后台 watcher (watch_quant_task) 观察进度日志与平台事件
+  → 回测完成 / 发生错误
+  → notify_agent.py 组装 JSON 载荷
+  → pi-agent-notify 投递至对应 Session
+  → Agent 会话被定向唤醒，核验权威证据并自主进入下一轮收割（规划中）
+</code></pre></div></div>
+
+<ul>
+  <li><strong>当前真实运行现状</strong>：目前该链路的底层支撑（探针、JSON 载荷、kqueue 修复）已经完成，但<strong>尚未作为日常回测的自动驱动入口接通</strong>。当前的实际回测仍是由人工在前端或命令行手动触发与阶段性确认；</li>
+  <li><strong>为什么必须先修通</strong>：如果底层通知机制存在静默暴毙（如 kqueue TypeError），未来一旦接通事件闭环，Agent 就会陷入无界挂起。因此提前把观察者与通知管道夯实是向 L3 迈进的先决条件。</li>
+</ul>
+
+<hr />
+
+<h2 id="3-架构陷阱与核心故障演进现场调教全景">3. 架构陷阱与核心故障演进（现场调教全景）</h2>
+
+<p>在 2026 年 10 月下旬的密集演进中，系统经历了从“脆弱的单机脚本”到“工业级无人值守管道”的残酷蜕变。以下依照真实排障时间线还原关键战役：</p>
+
+<h3 id="阶段一宿主机资源雪崩与基础设施治理10-月-22-日">阶段一：宿主机资源雪崩与基础设施治理（10 月 22 日）</h3>
+
+<p><strong>【现场现象】</strong><br />
+MacBook / Mac mini 严重发热、风扇狂转、系统响应严重卡顿，Subagent 执行变得极其缓慢，会话频繁汇报“怎么卡了？”。</p>
+
+<p><strong>【排查与根因】</strong></p>
+<ol>
+  <li><strong>macOS <code class="language-plaintext highlighter-rouge">fseventsd</code> 失控</strong>：项目中存在大量历史数据、日志和临时测试目录，高频的文件读写导致 macOS 系统守护进程 <code class="language-plaintext highlighter-rouge">fseventsd</code> CPU 占用率达 100%+。尝试使用 <code class="language-plaintext highlighter-rouge">launchctl kickstart</code> 重启被系统 SIP（System Integrity Protection）拦截，最终通过 <code class="language-plaintext highlighter-rouge">sudo pkill -TERM -x fseventsd</code> 平息。</li>
+  <li><strong>MongoDB 内存狂吃</strong>：本地 MongoDB 默认未限制 WiredTiger 缓存大小，随着 <code class="language-plaintext highlighter-rouge">alpha_results</code> 超过 8 万条记录，数据库吃光物理内存，引发严重页面换页。</li>
+</ol>
+
+<p><strong>【治理方案】</strong></p>
+<ul>
+  <li>明确基础设施运维边界，不将内部运行开销与业务调试混淆（“agy你不要管，你管我项目的问题”）；</li>
+  <li>优化 MongoDB 配置，将 <code class="language-plaintext highlighter-rouge">wiredTigerEngineConfig.cacheSizeGB</code> 硬性限制在 <strong>2GB</strong>，并在架构文档中落盘；</li>
+  <li>缩减无意义的目录监听范围，建立有界观察点。</li>
+</ul>
+
+<hr />
+
+<h3 id="阶段二前端状态与进程检查的虚警与诊断透明度10-月-23-日">阶段二：前端状态与进程检查的虚警与诊断透明度（10 月 23 日）</h3>
+
+<p><strong>【现场现象】</strong><br />
+前端界面频繁显示“运行状态未确认，停止状态未确认”，部分任务暂停后被系统标红告警，提示“tmux 会话缺失，状态异常”。</p>
+
+<p><strong>【排查与根因】</strong></p>
+<ol>
+  <li><strong>诊断语义混淆</strong>：代码将“找不到进程”粗暴地当成“运行异常”。实际上，当任务处于 <code class="language-plaintext highlighter-rouge">paused</code> 状态时，底层没有对应的 tmux 会话是<strong>符合预期</strong>的正常状态，而不是系统故障；</li>
+  <li><strong>Unknown 兜底泛滥</strong>：前端状态机存在大量未定义 fallback，一旦底层探测输出稍有延迟，就展示为灰色的“unknown”。</li>
+</ol>
+
+<p><strong>【用户红线与修复】</strong></p>
+<blockquote>
+  <p><strong>用户指令：“不许 unknown 状态，必须明确显示哪一步卡住。暂停逻辑有问题，没有匹配的 tmux 会话就是和暂停状态一致，不是错误。”</strong></p>
+</blockquote>
+
+<ul>
+  <li>重构状态判定引擎：明确“权威业务状态”与“物理进程观测”的映射矩阵。暂停状态下无 tmux 会话判定为健康暂停；</li>
+  <li>彻底消灭 <code class="language-plaintext highlighter-rouge">unknown</code> 状态：任何状态必须精确归属为 <code class="language-plaintext highlighter-rouge">pending / generating / ready / running / paused / completed / failed</code>，并指出具体停滞在哪一步；</li>
+  <li>UI 交互优化：将详细的底层证据和错误堆栈折叠至“运行 / 停止详情”，主卡片保持准确的业务定性。</li>
+</ul>
+
+<hr />
+
+<h3 id="阶段三从自杀式全局-shutdown到故障隔离与退避10-月-2324-日">阶段三：从“自杀式全局 Shutdown”到“故障隔离与退避”（10 月 23～24 日）</h3>
+
+<p><strong>【现场现象】</strong><br />
+R27 任务（<code class="language-plaintext highlighter-rouge">r27_glb_pure_tm_trade_temporal_residual_20261022</code>）运行中显示“未检测到运行消费者”。随后，MCP 服务端和整个回测调度器发生连锁反应，所有正在进行的其他任务全线退出，触发了“全局 Shutdown”！</p>
+
+<p><strong>【排查与根因】</strong></p>
+<ol>
+  <li><strong>故障放大机制</strong>：R27 消费者因 MongoDB 偶发连接超时（<code class="language-plaintext highlighter-rouge">ServerSelectionTimeoutError</code>）异常退出，留下一个仅有 sleep 的 pane；</li>
+  <li><strong>自杀式容错逻辑</strong>：原代码在处理恢复超时或单任务失败时，错误地在核心调度层抛出了全局致命异常，触发了 <code class="language-plaintext highlighter-rouge">APITools</code> 与 MCP 服务器的主动全局停机，将一个单任务的局部网络抖动放大为整个回测集群的雪崩！</li>
+</ol>
+
+<p><strong>【用户红线与修复】</strong></p>
+<blockquote>
+  <p><strong>用户指令：“恢复超时直接放弃继续回测啊，不应该设置全局 shutdown 啊！检查我代码里还有什么会导致回测全局 shutdown，这些全都不合理… 必须全部修改 + 给出详细错误，不能只写未检测到运行消费者！”</strong></p>
+</blockquote>
+
+<ul>
+  <li><strong>切断自杀链路</strong>：修改 <code class="language-plaintext highlighter-rouge">APITools</code> 与 <code class="language-plaintext highlighter-rouge">server.py</code>，实现 Sibling Listener 隔离。一个任务的恢复超时或崩溃，只标记该任务失败或进入暂停，绝对禁止触发全局 shutdown；</li>
+  <li><strong>退避机制（Backoff）对齐</strong>：理顺重试机制，底层网络与平台接口由 <code class="language-plaintext highlighter-rouge">network_util</code> 负责有限退避，调度层不搞相互冲突的多重重试循环；</li>
+  <li><strong>详实错误归因</strong>：禁止模糊报错，必须明确输出是数据库连接超时、tmux pane 进程退出还是平台鉴权失败。</li>
+</ul>
+
+<hr />
+
+<h3 id="阶段四统一-rust-内核与环境割裂治理10-月-2425-日">阶段四：统一 Rust 内核与环境割裂治理（10 月 24～25 日）</h3>
+
+<p><strong>【现场现象】</strong><br />
+用户发现任务启动后，桌面端总是显示“会话缺失 / 任务未启动”，而后台 Python 实际在正常跑；同时，删除任务时弹窗卡死或报错“共享 TaskControl delete 未确认”。</p>
+
+<p><strong>【排查与根因】</strong></p>
+<ol>
+  <li><strong>Tmux 与 Rmux 的环境割裂</strong>：Pi 的 Agent 工具链为了环境隔离，使用了定制的 <code class="language-plaintext highlighter-rouge">rmux</code> Socket（端口 <code class="language-plaintext highlighter-rouge">$3521</code>），而用户的桌面端和系统命令行查询的是操作系统的默认 <code class="language-plaintext highlighter-rouge">tmux</code>！任务明明在 rmux 里活得好好的，前端在默认 tmux 里根本查不到，形成典型的“盲人摸象”；</li>
+  <li><strong>两套生命周期逻辑</strong>：前端与 CLI 各写了一套任务启停与归档逻辑，代码严重分化；</li>
+  <li><strong>构建包与开发环境脱节</strong>：前端日常使用 <code class="language-plaintext highlighter-rouge">npm run tauri dev</code> 启动，底层依赖的 Rust 动态链接与系统安装的 CLI 存在版本错位。</li>
+</ol>
+
+<p><strong>【治理方案】</strong></p>
+<ul>
+  <li><strong>坚决剔除 rmux</strong>：用户明确决策——“统一用系统的 tmux，而不是 pi 的这个 rmux，不用做 rmux 适配，没必要，只保留一套”；</li>
+  <li><strong>全量收敛至 Rust <code class="language-plaintext highlighter-rouge">task-core</code></strong>：统一用 Rust 实现所有任务控制逻辑，前端与命令行共享同一套二进制与库，彻底解决两套实现的语义漂移；</li>
+  <li><strong>优化删除交互</strong>：针对“未停止任务删除失败”的问题，改造为“未停止状态直接自动暂停并归档删除”，移除多余阻碍。</li>
+</ul>
+
+<hr />
+
+<h3 id="阶段五回测凭证恢复与-slot-阻塞死锁10-月-2628-日">阶段五：回测凭证恢复与 Slot 阻塞死锁（10 月 26～28 日）</h3>
+
+<p><strong>【现场现象】</strong><br />
+在恢复历史任务时，控制台频繁抛出 <code class="language-plaintext highlighter-rouge">Simulation receipt recovery failed backend=...</code> 和 <code class="language-plaintext highlighter-rouge">simulation_capacity_acquire: operation timeout</code>，回测槽位被永久锁定，后续批次无法推进。</p>
+
+<p><strong>【排查与根因】</strong></p>
+<ol>
+  <li><strong>过期回执（Receipt 404）卡死恢复</strong>：WorldQuant Brain 平台上的临时回测 ID（Simulation ID）生命周期极短，几小时至几天后查询即返回 HTTP 404；</li>
+  <li><strong>过度防御的代码阻碍</strong>：恢复代码遇到 404 后，由于不敢轻举妄动，竟选择“持锁等待人工处理（hold for manual correction）”，既不继续回测，也不释放占用的并发槽位（Slot），导致系统死锁。</li>
+</ol>
+
+<p><strong>【用户红线与修复】</strong></p>
+<blockquote>
+  <p><strong>用户指令：“缺少了任何回执都不应该阻挡正常使用，这是你没有 fallback 的问题不是我的问题！恢复失败就直接当成没回测处理，我强调过 simulation id 本来保存时间就不长吧？只要平台正常返回结果就是成功，不要自己乱加校验阻碍回测！”</strong></p>
+</blockquote>
+
+<ul>
+  <li><strong>过期回执 Fail-open 策略</strong>：回执返回 404 时，确认为平台临时凭证已过期，立即将其定性为“未回测 / 回测失效”，释放槽位，允许重新派发或跳过，坚决不阻塞并发容量；</li>
+  <li><strong>消除人工干预假象</strong>：去除所谓的“人工处理”等待黑洞，所有异常分支均具备明确的程序自愈或丢弃路径；</li>
+  <li><strong>确立“修改前行为披露”红线</strong>：禁止 Agent 擅自添加防御性前置校验。修改前必须先说明旧→新行为影响，经明确同意后方可实施。</li>
+</ul>
+
+<hr />
+
+<h3 id="阶段六generating-假死与-20s-vs-900s-认知偏差10-月-30-日">阶段六：Generating 假死与 20s vs 900s 认知偏差（10 月 30 日）</h3>
+
+<p><strong>【现场现象】</strong><br />
+任务 <code class="language-plaintext highlighter-rouge">chn_d1_notown_20261005_trade_frontier_r13</code> 在前端长时间停留在 <code class="language-plaintext highlighter-rouge">generating</code>，随后报错生成中断，界面未能自愈恢复。</p>
+
+<p><strong>【排查与根因】</strong></p>
+<ol>
+  <li><strong>超时时限的认知冲突</strong>：外层工具调用设有一个 20 秒的短暂超时检查，而实际的 Alpha 策略生成（依赖模型深度思考与 AST 组合）耗时往往长达数分钟（上至 900 秒）。外层检查过早认为任务失联；</li>
+  <li><strong>状态机单向死锁</strong>：一旦生成进程异常退出，任务状态永远死在 <code class="language-plaintext highlighter-rouge">generating</code>，无法再次触发生成。</li>
+</ol>
+
+<p><strong>【修复方案】</strong></p>
+<ul>
+  <li><strong>状态流转回退</strong>：将超时或进程失联的任务定性为 <code class="language-plaintext highlighter-rouge">generation_failed</code>，并<strong>自动回退为 <code class="language-plaintext highlighter-rouge">pending</code> 状态</strong>，允许重新派发；</li>
+  <li><strong>详细信息收纳</strong>：在折叠详情中记录 <code class="language-plaintext highlighter-rouge">generation_interrupted: original owner absent</code>，不在主界面制造突兀的错误红斑；</li>
+  <li><strong>前端增加手动刷新入口</strong>：在界面右上角增加与 UI 风格一致的刷新按钮，主动触发轻量健康对齐。</li>
+</ul>
+
+<hr />
+
+<h3 id="阶段七系统级并发控制原理的落地10-月-31-日深度探讨">阶段七：系统级并发控制原理的落地（10 月 31 日深度探讨）</h3>
+
+<p>在解决并发冲突时，用户与 Agent 针对底层并发哲学展开了极其精彩的技术思辨，明确了 <strong>Flock、Mission 锁与 CAS</strong> 的分工边界：</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌─────────────────────────────────────────────────────────────┐
+│                    GUI 与 CLI 并发操作                       │
+└──────────────┬──────────────────────────────┬───────────────┘
+               │                              │
+        【Mission 锁】                 【Mission 锁】
+       (flock 文件排他)                (flock 文件排他)
+               │                              │
+         抢到锁 → 执行操作              未抢到锁 → 直接非阻塞跳过
+               │
+               ▼
+     [异步执行业务 / 回测]
+               │
+               ▼
+       【CAS 状态写回校验】
+ (DB核对: status==generating &amp;&amp; epoch==A ?)
+        ├─ 是 → 写入新状态 (成功)
+        └─ 否 (已有轮次B在跑) → 拒绝覆盖 (保证一致性)
+</code></pre></div></div>
+
+<ol>
+  <li><strong><code class="language-plaintext highlighter-rouge">flock</code>（操作系统级文件锁）</strong>：
+    <ul>
+      <li>实现载体：<code class="language-plaintext highlighter-rouge">.quantnight/mutators/&lt;task_id&gt;.lock</code>；</li>
+      <li>机制：<strong>非阻塞互斥</strong>。文件本身永久存在（删除文件会导致锁属主割裂），锁的占用由操作系统内核记账。GUI 和 CLI 同时操作时，未拿锁者直接返回，防止并发修改同一任务。</li>
+    </ul>
+  </li>
+  <li><strong>Mission 锁</strong>：
+    <ul>
+      <li>业务含义：任务操作互斥锁，基于 <code class="language-plaintext highlighter-rouge">flock</code> 封装。保证“同一时刻只有一个操作者能对该任务执行生命周期流转”。</li>
+    </ul>
+  </li>
+  <li><strong>CAS（Compare-And-Swap，比较后再更新）</strong>：
+    <ul>
+      <li>为什么有了锁还需要 CAS？</li>
+      <li><strong>核心权衡（Trade-off）</strong>：量化系统是<strong>高度异步</strong>的。为了“不让回执阻碍后续操作”，系统允许后续操作继续推进。但当迟到的旧回执（例如第 1 轮 A）返回时，任务可能已经在进行第 2 轮 B。</li>
+      <li><strong>CAS 的作用</strong>：在写回数据库时，原子性确认 <code class="language-plaintext highlighter-rouge">status == generating &amp;&amp; generation_epoch == epoch_A</code>。如果数据库已步入轮次 B，则拒绝旧结果写入，<strong>防止旧检查覆盖新状态</strong>。</li>
+    </ul>
+  </li>
+</ol>
+
+<hr />
+
+<h3 id="阶段八macos-底层-selectkqueue-崩溃与通知链修复10-月-31-日">阶段八：macOS 底层 select.kqueue 崩溃与通知链修复（10 月 31 日）</h3>
+
+<p><strong>【现场现象】</strong><br />
+任务 R13 已有 17 个回测完成、4 个错误，已无任何待执行项。但整个系统静止卡死，Agent 检查点停滞近 3 小时未更新。</p>
+
+<p><strong>【排查与根因】</strong></p>
+<ul>
+  <li><strong>macOS 底层系统调用缺陷</strong>：监控进程 <code class="language-plaintext highlighter-rouge">watch_quant_task</code> 在 macOS 上使用了 <code class="language-plaintext highlighter-rouge">select.kqueue</code> 监听事件，代码中写了 <code class="language-plaintext highlighter-rouge">with select.kqueue() as kq:</code>；</li>
+  <li><strong>致命崩溃</strong>：Python 在 macOS 上的 <code class="language-plaintext highlighter-rouge">select.kqueue</code> 对象<strong>并未实现上下文管理器协议（Context Manager Protocol）</strong>！执行到该行时立即抛出 <code class="language-plaintext highlighter-rouge">TypeError: 'select.kqueue' object does not support the context manager protocol</code>；</li>
+  <li><strong>静默挂起</strong>：监控进程瞬间暴毙，未能发出任何 <code class="language-plaintext highlighter-rouge">watch_error</code> 告警事件；而等待通知的 Agent 会话一直在等待通知事件，导致整个无人值守链路静止 3 小时。</li>
+</ul>
+
+<p><strong>【修复方案】</strong></p>
+<ul>
+  <li>修复 Python kqueue 资源管理，采用显式 <code class="language-plaintext highlighter-rouge">kq = select.kqueue()</code> / <code class="language-plaintext highlighter-rouge">try ... finally: kq.close()</code> 生命周期；</li>
+  <li>为监控器补全顶级未捕获异常捕获，确保进程退出前必然向管道投递 <code class="language-plaintext highlighter-rouge">watch_error</code> 事件，绝对禁止“静默暴毙”；</li>
+  <li>编写离线回归测试用例，验证 kqueue 异常下的通知兜底。</li>
+</ul>
+
+<hr />
+
+<h2 id="4-关键架构设计与并发保护机制">4. 关键架构设计与并发保护机制</h2>
+
+<h3 id="41-进程与会话管理规范">4.1 进程与会话管理规范</h3>
+
+<ul>
+  <li><strong>单一事实源</strong>：全系统仅认操作系统默认的 <code class="language-plaintext highlighter-rouge">tmux</code> 实例，严禁引入私有 socket 旁路；</li>
+  <li><strong>Pane 级健康探测</strong>：判断任务是否在跑，不仅看 tmux 会话是否存在，更要探测 Pane 内真实运行的是 Python 回测进程还是残留的 <code class="language-plaintext highlighter-rouge">sleep</code> / <code class="language-plaintext highlighter-rouge">shell</code>；</li>
+  <li><strong>平飞退场</strong>：任务暂停或结束时，优雅关闭子进程，不留孤儿进程。</li>
+</ul>
+
+<h3 id="42-乐观并发控制与非阻塞防崩">4.2 乐观并发控制与非阻塞防崩</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>控制层级</th>
+      <th>采用技术</th>
+      <th>保护目标</th>
+      <th>典型行为</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>进程操作级</strong></td>
+      <td><code class="language-plaintext highlighter-rouge">flock</code> 文件锁（Mission Lock）</td>
+      <td>防止 CLI、GUI、Watcher 同时启停同一任务</td>
+      <td>非阻塞尝试，拿不到锁立即跳过，绝不卡死界面</td>
+    </tr>
+    <tr>
+      <td><strong>数据库更新级</strong></td>
+      <td>MongoDB 原子更新 + CAS 条件</td>
+      <td>防止异步迟到结果覆盖最新状态</td>
+      <td>校验 <code class="language-plaintext highlighter-rouge">status</code> 与 <code class="language-plaintext highlighter-rouge">epoch</code>，不匹配则静默放弃写入</td>
+    </tr>
+    <tr>
+      <td><strong>回测资源级</strong></td>
+      <td>Capacity Acquire 令牌桶</td>
+      <td>防止向 WorldQuant Brain 发送超额并发请求</td>
+      <td>有界等待，超时则单批优雅退避，绝不掀翻系统</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="43-诊断透明度三原则">4.3 诊断透明度三原则</h3>
+
+<ol>
+  <li><strong>绝对消灭 <code class="language-plaintext highlighter-rouge">unknown</code></strong>：任何未知状态都是代码懒惰的表现，必须具体到是由于“网络不可达”、“tmux 无进程”还是“凭证过期”；</li>
+  <li><strong>区分业务状态与物理状态</strong>：<code class="language-plaintext highlighter-rouge">paused</code> 下没有进程是正常的物理表现，严禁上报虚警；</li>
+  <li><strong>详情折叠，主干清晰</strong>：人类与 Agent 首先需要看到宏观进度与定性；底层 100 行的 JSON 堆栈与回执证据放在二级详情，供深度排障使用。</li>
+</ol>
+
+<hr />
+
+<h2 id="5-quantnight-业务执行技术栈">5. QuantNight 业务执行技术栈</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>环节</th>
+      <th>技术 / 工具</th>
+      <th>本案例用途与限制</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>桌面交互</strong></td>
+      <td>Tauri + Vue/React、Rust FFI</td>
+      <td>跨平台桌面端，直观查看任务队列、策略指标与启停控制</td>
+    </tr>
+    <tr>
+      <td><strong>底层任务控制</strong></td>
+      <td>Rust <code class="language-plaintext highlighter-rouge">task-core</code>、<code class="language-plaintext highlighter-rouge">taskctl</code> CLI</td>
+      <td>统领任务生命周期的唯一权威核心，保证 GUI 与 CLI 行为完全一致</td>
+    </tr>
+    <tr>
+      <td><strong>进程运行沙箱</strong></td>
+      <td>macOS 系统原生 <code class="language-plaintext highlighter-rouge">tmux</code></td>
+      <td>守护长耗时 Python 回测消费者，与外部调用环境彻底解耦</td>
+    </tr>
+    <tr>
+      <td><strong>平台 API 通信</strong></td>
+      <td>Python <code class="language-plaintext highlighter-rouge">aiohttp</code>、<code class="language-plaintext highlighter-rouge">network_util</code>、MCP</td>
+      <td>对接 WorldQuant Brain，负责模拟派发、结果获取与相关性计算</td>
+    </tr>
+    <tr>
+      <td><strong>状态持久化</strong></td>
+      <td>本地 MongoDB、<code class="language-plaintext highlighter-rouge">alpha_results</code> 集合</td>
+      <td>存储数万量级 Alpha 历史指标与回测数据；WiredTiger 限制 2GB 内存</td>
+    </tr>
+    <tr>
+      <td><strong>并发与互斥</strong></td>
+      <td>macOS <code class="language-plaintext highlighter-rouge">flock</code>、原子条件更新（CAS）</td>
+      <td>任务级非阻塞操作排他，防止旧异步回执覆盖新轮次状态</td>
+    </tr>
+    <tr>
+      <td><strong>事件监控</strong></td>
+      <td>Python <code class="language-plaintext highlighter-rouge">select.kqueue</code>、文件系统探针</td>
+      <td>低开销监测任务输出，杜绝轮询；必须显式管理 kqueue 资源句柄</td>
+    </tr>
+    <tr>
+      <td><strong>Agent 通知</strong></td>
+      <td><code class="language-plaintext highlighter-rouge">notify_agent.py</code>、<code class="language-plaintext highlighter-rouge">pi-agent-notify</code></td>
+      <td>结构化 JSON 事件投递，实现 Worker 与主 Session 的定向非阻塞唤醒</td>
+    </tr>
+    <tr>
+      <td><strong>工程交付门禁</strong></td>
+      <td><code class="language-plaintext highlighter-rouge">check_architecture.sh</code>、架构门禁测试</td>
+      <td>本地自动执行架构约束校验，防止引入未经披露的行为变更与私有旁路</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="6-状态证据与知识落盘">6. 状态、证据与知识落盘</h2>
+
+<h3 id="61-三层持久化架构">6.1 三层持久化架构</h3>
+
+<ol>
+  <li><strong>全局业务面（MongoDB）</strong>：记录任务定义、当前业务阶段（<code class="language-plaintext highlighter-rouge">status</code>）、生成轮次（<code class="language-plaintext highlighter-rouge">generation_epoch</code>）与回测结果；</li>
+  <li><strong>本地执行面（<code class="language-plaintext highlighter-rouge">.quantnight/</code>）</strong>：
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">mutators/&lt;task&gt;.lock</code>：用于 <code class="language-plaintext highlighter-rouge">flock</code> 互斥保护；</li>
+      <li><code class="language-plaintext highlighter-rouge">watchers/&lt;task&gt;.log</code>：记录监听器运行轨迹与 PID；</li>
+      <li><code class="language-plaintext highlighter-rouge">checkpoints/</code>：存储任务断点，支持机器重启后可追溯恢复；</li>
+    </ul>
+  </li>
+  <li><strong>缺陷与复盘台账（<code class="language-plaintext highlighter-rouge">artifacts/bugs/</code>）</strong>：
+    <ul>
+      <li>每个线上缺陷建立独立目录与 <code class="language-plaintext highlighter-rouge">bug.yaml</code>，包含环境快照、复现证据、根本原因、修复补丁与回归测试记录（如 <code class="language-plaintext highlighter-rouge">chn-super-kqueue-watch-exit-and-stale-lease-20261031</code>）。</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="62-结构化生命周期文档">6.2 结构化生命周期文档</h3>
+
+<p>系统的每一次重大调整均强制同步至文档：</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">docs/task_control_lifecycle.md</code>：记录状态转移矩阵与命令行调用规范；</li>
+  <li><code class="language-plaintext highlighter-rouge">docs/engineering_delivery.md</code>：确立“修改前行为披露”与工程交付纪律；</li>
+  <li><code class="language-plaintext highlighter-rouge">ARCHITECTURE.md</code>：维护核心通路与架构验收门禁。</li>
+</ul>
+
+<hr />
+
+<h2 id="7-关键经验教训与人机协作思辨">7. 关键经验教训与人机协作思辨</h2>
+
+<p>回顾这段高强度的调教与开发历程，最深刻的收获不仅在于修好了多少个 Bug，更在于理清了<strong>智能代理（Agent）参与复杂软件工程时的协作边界与系统设计哲学</strong>：</p>
+
+<h3 id="71-不要为了防御而阻碍业务反过度工程">7.1 “不要为了防御而阻碍业务”（反过度工程）</h3>
+
+<p>在排障过程中，Agent 多次犯下<strong>“过度防御”</strong>的错误：</p>
+<ul>
+  <li>看到回执 404 就惊慌失措地停机等待“人工干预”；</li>
+  <li>看到一个任务超时就自杀式地执行“全局 shutdown”；</li>
+  <li>看到子进程退出就拒绝删除任务。</li>
+</ul>
+
+<p><strong>真实世界的工程哲学是：“容错降级，保障主线”。</strong><br />
+量化平台的回执本来就会过期，单次模拟失败本来就是常态。系统的核心使命是持续回测产出 Alpha，而不是为了维持所谓的“绝对纯洁”把整条流水线停掉。<strong>“回执缺失绝不阻碍正常流程”、“平台返回即事实”</strong> 成为后来不可动摇的第一红线。</p>
+
+<h3 id="72-统一上下文绝不留两套执行体系">7.2 统一上下文，绝不留两套执行体系</h3>
+
+<p><code class="language-plaintext highlighter-rouge">rmux</code> 与 <code class="language-plaintext highlighter-rouge">tmux</code> 的分离教训极其深刻：一个系统如果存在两套平行的执行上下文或两套生命周期实现，任何上层的监控与自治都会退化为谎言。坚决将核心逻辑下沉到 Rust <code class="language-plaintext highlighter-rouge">task-core</code>，全系统只认一套系统原生 <code class="language-plaintext highlighter-rouge">tmux</code>，才彻底扫清了虚警与状态分裂。</p>
+
+<h3 id="73-修改前行为披露建立可信的协作契约">7.3 修改前行为披露：建立可信的协作契约</h3>
+
+<p>在长任务中，Agent 最容易在修复一个 Bug 时“顺手”加了一堆防御性校验，导致用户在后续运行中莫名其妙踩雷。项目最终沉淀出的硬规则是：</p>
+<blockquote>
+  <p><strong>任何修改，先说清楚旧行为是什么、新行为是什么、可能带来什么副作用；严禁包装成普通修复偷运私货。</strong><br />
+这一纪律极大提升了后续复杂任务交付的确定性。</p>
+</blockquote>
+
+<hr />
+
+<h2 id="8-案例结论与成熟度评估">8. 案例结论与成熟度评估</h2>
+
+<p>QuantNight 展现了量化回测场景下典型的<strong>重系统、长异步、强状态</strong>特征。对照整个无人值守自动化成熟度模型，<strong>本项目当前正扎实处于 L1～L2 阶段，正在向 L3 跨越</strong>：</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>级别</th>
+      <th>标志性能力</th>
+      <th>QuantNight 的实际落地现状</th>
+      <th>状态定性</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>L1 脚本化</strong></td>
+      <td>具备基础的批量参数回测、表达式生成、API 交互与数据库写入</td>
+      <td>已完全跑通，支撑了数万次 Alpha 模拟与底层入库</td>
+      <td>✅ <strong>已完成</strong></td>
+    </tr>
+    <tr>
+      <td><strong>L2 可观察与强健壮</strong></td>
+      <td>统一 Rust <code class="language-plaintext highlighter-rouge">task-core</code> 内核、系统原生 <code class="language-plaintext highlighter-rouge">tmux</code> 守护、Mission 锁互斥、CAS 状态防旧覆新、透明折叠诊断、局部故障隔离（切断全局 shutdown）</td>
+      <td><strong>当前核心成果</strong>：整个回测与桌面控制底座已具备高度的抗崩溃能力与并发安全性</td>
+      <td>🎯 <strong>当前所处阶段（已基本稳固）</strong></td>
+    </tr>
+    <tr>
+      <td><strong>L3 事件闭环</strong></td>
+      <td>Watcher 自动监听回测进展，通过 <code class="language-plaintext highlighter-rouge">agent-notify</code> 定向唤醒对应 Agent 会话，实现无人值守多轮收割</td>
+      <td>⚠️ <strong>尚未接通</strong>：虽然底层 kqueue 探针与通知管道已修复测试，但<strong>尚未作为日常调度闭环接进业务</strong>；目前仍依赖人工在前端/CLI 触发与阶段决策</td>
+      <td>🚧 <strong>下一步核心攻坚（演进目标）</strong></td>
+    </tr>
+    <tr>
+      <td><strong>L4 自愈自治 / Goal 驱动</strong></td>
+      <td>基于全局 Goal（目标系统）自主拆解数据缺口、自主探索数据集、自主跨轮次自愈与调度</td>
+      <td>⚠️ <strong>尚未接入</strong>：Session 级别的长期 Goal（如 <code class="language-plaintext highlighter-rouge">current_goal.json</code>）尚未接管日常任务流，目前仍是单次任务/批次派发模式</td>
+      <td>📋 <strong>远期规划蓝图</strong></td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="81-现阶段的核心价值打牢最硬的-l2-地基">8.1 现阶段的核心价值：打牢最硬的 L2 地基</h3>
+
+<p>很多自动化项目急于接入智能体（Agent）事件闭环，却在底层基础设施极度脆弱时频频遭遇“鬼魂进程”、“锁死并发槽位”、“全局自杀式崩溃”和“两套环境（rmux vs tmux）”的折磨。</p>
+
+<p>QuantNight 在 10 月下旬的密集演进，本质上是在<strong>补齐最关键的 L2 工程底座</strong>：</p>
+<ul>
+  <li>把分裂的 Python 脚本与前端逻辑收敛为<strong>统一的 Rust <code class="language-plaintext highlighter-rouge">task-core</code> 内核</strong>；</li>
+  <li>把脆弱的“查无进程即报错”纠正为<strong>精确的状态机契约与透明折叠诊断</strong>；</li>
+  <li>把容易造成死锁的并发操作纳入 <strong>Mission 锁（flock）与 CAS 原子校验</strong>；</li>
+  <li>把“单点超时引发全局停机”的自杀式容错彻底改造为<strong>局部隔离与退避降级</strong>。</li>
+</ul>
+
+<h3 id="82-迈向-l3l4-的最后两块拼图">8.2 迈向 L3/L4 的最后两块拼图</h3>
+
+<p>随着底层任务控制和并发安全底座的筑牢，QuantNight 接下来要真正实现“放手让 Agent 跑几天几夜”的无人值守，只需补齐最后两步：</p>
+
+<ol>
+  <li><strong>接通事件通知闭环（<code class="language-plaintext highlighter-rouge">agent-notify</code>）</strong>：将已修复的 watcher 事件真正挂接到 Agent 会话中，当一批次回测结束或发生异常时，由系统直接“拍醒”对应的 Agent 继续推进，彻底告别前台盯梢；</li>
+  <li><strong>接入 Goal 目标编排体系</strong>：将任务管理从“人工下达单一批次（如 R13、R27）”升级为“由 Goal 驱动全流程”。Agent 自行对照平台 Genius Pyramid 缺口，自主选定数据集、自主生成并派发任务、自主评估结果，形成真正的端到端量化无人值守闭环。</li>
+</ol>
+
+<hr />
+
+        </div>
+
+        
+
+        
+        
+  <div class="page-comments">
+    <div id="disqus_thread"></div>
+    <script>
+      var disqus_config = function () {
+        this.page.url = 'https://roshameow.github.io//personal_homepage/tool/agent-example3/';
+        this.page.identifier = 'https://roshameow.github.io//personal_homepage/tool/agent-example3/';
+      };
+
+      (function() {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://https-roshameow-github-io-personal-homepage.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+  </div>
+
+
+        
+
+        <nav class="page-pagination" role="navigation">
+  
+    <a class="page-previous" href="/personal_homepage/tool/agent-example2/">
+      <h4 class="page-pagination-label">Previous</h4>
+      <span class="page-pagination-title">
+        <i class="fas fa-arrow-left"></i> pi agent无人值守工作案例二(xpert)
+
+      </span>
+    </a>
+  
+
+  
+    <a class="page-next" href="/personal_homepage/tool/alpha20/">
+      <h4 class="page-pagination-label">Next</h4>
+      <span class="page-pagination-title">
+        回测系统任务控制生命周期：入口、证据、故障分支与行为验收
+ <i class="fas fa-arrow-right"></i>
+      </span>
+    </a>
+  
+</nav>
+
+      </div>
+
+    </div>
+  </article>
+</main>
+
+    <footer id="footer" class="site-footer">
+  <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+<div class="social-icons"><a class="social-icon" href="/personal_homepage/atom.xml"><i class="fas fa-rss-square fa-2x" title="Feed"></i></a><a class="social-icon" href="https://github.com/roshameow"><i class="fab fa-github-square fa-2x" title="GitHub"></i></a><a class="social-icon" href="https://www.linkedin.com/in/wen-liu-06503a7b/"><i class="fab fa-linkedin fa-2x" title="LinkedIn"></i></a><a class="social-icon" href="mailto:w.liuatnk@gmail.com"><i class="fas fa-envelope-square fa-2x" title="e-mail"></i></a></div><div class="copyright">
+    
+      <p>&copy; 2026 Liu, Wen's Home Page. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://github.com/mmistakes/so-simple-theme" rel="nofollow">So Simple</a>.</p>
+    
+  </div>
+</footer>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="/personal_homepage/assets/js/main.min.js"></script>
+<script src="https://use.fontawesome.com/releases/v5.0.12/js/all.js"></script><script src="/personal_homepage/assets/js/content-tables.js" defer></script>
+
+<script>
+(function () {
+  'use strict';
+
+  var types = {
+    NOTE: 'note', INFO: 'note', ABSTRACT: 'note', SUMMARY: 'note', TLDR: 'note',
+    EXAMPLE: 'note', QUOTE: 'note', CITE: 'note',
+    TIP: 'tip', HINT: 'tip', IMPORTANT: 'tip', SUCCESS: 'tip', CHECK: 'tip', DONE: 'tip',
+    QUESTION: 'warning', HELP: 'warning', FAQ: 'warning',
+    WARNING: 'warning', CAUTION: 'warning', ATTENTION: 'warning',
+    DANGER: 'danger', ERROR: 'danger', BUG: 'danger',
+    FAILURE: 'danger', FAIL: 'danger', MISSING: 'danger'
+  };
+  var icons = {
+    note: 'M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z M12 11v6 M12 7h.01',
+    tip: 'M9 18h6 M10 21h4 M9 15a6 6 0 1 1 6 0v3H9z',
+    warning: 'M12 3L2 21h20z M12 9v5 M12 17h.01',
+    danger: 'M7 3h10l4 4v10l-4 4H7l-4-4V7z M9 9l6 6 M15 9l-6 6'
+  };
+
+  function makeIcon(type) {
+    var namespace = 'http://www.w3.org/2000/svg';
+    var svg = document.createElementNS(namespace, 'svg');
+    svg.setAttribute('class', 'callout-icon');
+    svg.setAttribute('viewBox', '0 0 24 24');
+    svg.setAttribute('width', '20');
+    svg.setAttribute('height', '20');
+    svg.setAttribute('fill', 'none');
+    svg.setAttribute('stroke', 'currentColor');
+    svg.setAttribute('stroke-width', '2');
+    svg.setAttribute('stroke-linecap', 'round');
+    svg.setAttribute('stroke-linejoin', 'round');
+    svg.setAttribute('aria-hidden', 'true');
+    svg.setAttribute('focusable', 'false');
+    var path = document.createElementNS(namespace, 'path');
+    path.setAttribute('d', icons[type]);
+    svg.appendChild(path);
+    return svg;
+  }
+
+  // A soft break is a text newline; a Markdown hard break is a <br>.
+  // Do not split newlines inside inline code or other literal content.
+  function firstBreak(parent) {
+    for (var node = parent.firstChild; node; node = node.nextSibling) {
+      if (node.nodeType === 3) {
+        var offset = node.data.search(/[\r\n]/);
+        if (offset !== -1) return { node: node, offset: offset };
+      } else if (node.nodeType === 1) {
+        if (node.tagName === 'BR') return { node: node };
+        if (/^(CODE|PRE|SCRIPT|STYLE|TEXTAREA)$/.test(node.tagName)) continue;
+        var result = firstBreak(node);
+        if (result) return result;
+      }
+    }
+    return null;
+  }
+
+  function transformCallouts() {
+    document.querySelectorAll('.page-content blockquote').forEach(function (quote) {
+      if (quote.closest('pre, code, .highlight, .highlighter-rouge')) return;
+      var paragraph = quote.firstElementChild;
+      if (!paragraph || paragraph.tagName !== 'P') return;
+
+      // Require the marker in a direct text node: <code>[!WARNING]</code>
+      // (and markers merely mentioned later in a quote) must remain literal.
+      var markerNode = paragraph.firstChild;
+      if (!markerNode || markerNode.nodeType !== 3) return;
+      var marker = markerNode.data.match(/^[\t \r\n]*\[!([a-z][a-z0-9-]*)\]([+-])?(?=[\t \r\n]|$)[\t ]*/i);
+      if (!marker) return;
+      var name = marker[1].toUpperCase();
+      if (!Object.prototype.hasOwnProperty.call(types, name)) return;
+      var type = types[name];
+      var label = name === 'TLDR' ? 'TL;DR' : name.charAt(0) + name.slice(1).toLowerCase();
+      markerNode.deleteData(0, marker[0].length);
+
+      var boundary = firstBreak(paragraph);
+      var range = document.createRange();
+      range.selectNodeContents(paragraph);
+      if (boundary) {
+        if (boundary.node.nodeType === 3) range.setEnd(boundary.node, boundary.offset);
+        else range.setEndBefore(boundary.node);
+      }
+      var titleContent = range.extractContents();
+      if (boundary) {
+        if (boundary.node.nodeType === 3) {
+          var breakLength = boundary.node.data.slice(0, 2) === '\r\n' ? 2 : 1;
+          boundary.node.deleteData(0, breakLength);
+        } else {
+          boundary.node.parentNode.removeChild(boundary.node);
+        }
+      }
+      if (!paragraph.textContent.trim() && !paragraph.children.length) {
+        quote.removeChild(paragraph);
+      }
+
+      var folding = !!marker[2];
+      var callout = document.createElement(folding ? 'details' : 'div');
+      // Keep author-provided IDs, language, direction, and classes.
+      Array.prototype.forEach.call(quote.attributes, function (attribute) {
+        callout.setAttribute(attribute.name, attribute.value);
+      });
+      callout.classList.add('callout', 'callout--' + type);
+      callout.setAttribute('data-callout', name.toLowerCase());
+      callout.setAttribute('aria-label', label);
+      if (folding) {
+        callout.removeAttribute('role');
+        if (marker[2] === '+') callout.setAttribute('open', '');
+        else callout.removeAttribute('open');
+      } else {
+        callout.setAttribute('role', 'note');
+      }
+
+      var title = document.createElement(folding ? 'summary' : 'div');
+      title.className = 'callout-title';
+      title.appendChild(makeIcon(type));
+      var titleText = document.createElement('span');
+      titleText.className = 'callout-title-text';
+      if (titleContent.textContent.trim() || titleContent.childElementCount) {
+        titleText.appendChild(titleContent);
+      } else {
+        titleText.textContent = label;
+      }
+      title.appendChild(titleText);
+      callout.appendChild(title);
+
+      var body = document.createElement('div');
+      body.className = 'callout-body';
+      while (quote.firstChild) body.appendChild(quote.firstChild);
+      callout.appendChild(body);
+      quote.parentNode.replaceChild(callout, quote);
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', transformCallouts);
+  } else {
+    transformCallouts();
+  }
+})();
+</script>
+<!-- <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'G-9TMSCDTBGN', 'auto');
+  ga('send', 'pageview');
+</script> -->
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9TMSCDTBGN"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-9TMSCDTBGN');
+</script>
+
+
+
+<!-- MathJax -->
+<style>
+    /* Only oversized equations get this wrapper; ordinary inline math stays inline. */
+    .math-scroll {
+        display: block;
+        max-width: 100%;
+        overflow-x: auto;
+        overflow-y: hidden;
+        padding-block: 0.5em;
+        scrollbar-width: thin;
+    }
+    .math-scroll > mjx-container[jax] {
+        display: inline-block;
+        margin: 0;
+    }
+    .math-scroll:focus-visible {
+        outline: 2px solid currentColor;
+        outline-offset: 2px;
+    }
+</style>
+<script>
+    function fitMathToColumn() {
+        document.querySelectorAll('mjx-container').forEach(function (container) {
+            var wrapper = container.parentElement.classList.contains('math-scroll') ? container.parentElement : null;
+            var column = wrapper ? wrapper.parentElement : container.parentElement;
+            while (column && ['inline', 'contents'].includes(getComputedStyle(column).display)) {
+                column = column.parentElement;
+            }
+            if (!column) return;
+            var style = getComputedStyle(column);
+            var available = column.clientWidth - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight);
+            var ink = container.querySelector('mjx-math, svg');
+            var width = (ink || container).getBoundingClientRect().width;
+            if (width > available + 1) {
+                if (!wrapper) {
+                    wrapper = document.createElement('span');
+                    wrapper.className = 'math-scroll';
+                    wrapper.tabIndex = 0;
+                    wrapper.setAttribute('role', 'region');
+                    wrapper.setAttribute('aria-label', 'Mathematical formula; scroll horizontally to read all');
+                    wrapper.title = 'Scroll horizontally to read the full formula';
+                    container.before(wrapper);
+                    wrapper.appendChild(container);
+                }
+            } else if (wrapper) {
+                wrapper.replaceWith(container);
+            }
+        });
+    }
+    // Pin the engine, autoloaded TeX extensions, menu and fonts to local assets.
+    window.MathJax = {
+        loader: {
+            paths: { mathjax: "/personal_homepage/assets/js/vendor/mathjax/es5" },
+            load: ['[tex]/textmacros']
+        },
+        tex: {
+            tags: "ams",
+            packages: { '[+]': ['textmacros'] },
+            inlineMath: [['$', '$'], ['\\(', '\\)']],
+            displayMath: [['$$', '$$'], ['\\[', '\\]']]
+        },
+        chtml: {
+            fontURL: "/personal_homepage/assets/js/vendor/mathjax/es5/output/chtml/fonts/woff-v2"
+        },
+        startup: {
+            pageReady: function () {
+                return MathJax.startup.defaultPageReady().then(function () {
+                    return document.fonts ? document.fonts.ready : undefined;
+                }).then(function () {
+                    fitMathToColumn();
+                    var scheduled = false;
+                    window.addEventListener('resize', function () {
+                        if (scheduled) return;
+                        scheduled = true;
+                        requestAnimationFrame(function () {
+                            scheduled = false;
+                            fitMathToColumn();
+                        });
+                    });
+                });
+            }
+        },
+        options: {
+            // Keep examples (including literal dollar signs) out of the typesetter.
+            skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code', 'annotation', 'annotation-xml']
+        }
+    };
+</script>
+<script id="MathJax-script" async src="/personal_homepage/assets/js/vendor/mathjax/es5/tex-mml-chtml.js"></script>
+
+
+
+
+<!-- Mermaid -->
+<style>
+  .mermaid-diagram {
+    max-width: 100%;
+    margin: 0.85rem 0;
+    overflow-x: auto;
+  }
+  .mermaid-diagram:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+  }
+  .page-content pre.mermaid {
+    margin: 0;
+    padding: 0.25rem 0;
+    text-align: center;
+    background: transparent;
+    overflow: visible;
+    font-family: inherit;
+  }
+  .page-content pre.mermaid[data-processed] {
+    white-space: normal;
+  }
+  pre.mermaid svg {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    height: auto;
+  }
+  .mermaid-diagram .cluster-label {
+    font-weight: 700;
+  }
+  .mermaid-error {
+    font-size: 0.85em;
+    color: #9a3412;
+  }
+</style>
+<script src="/personal_homepage/assets/js/vendor/mermaid-11.17.2.min.js"></script>
+<script>
+(function () {
+  'use strict';
+
+  function normalizeMermaidSource(source) {
+    // Mermaid 11 accepts A <-- "label" --- B but creates an INVALID edge.
+    // Render the equivalent B -->|"label"| A, without editing the Markdown.
+    var body = source.trimStart()
+      .replace(/^---\r?\n[\s\S]*?\r?\n---(?:\r?\n|$)/, '')
+      .replace(/%%\{[\s\S]*?\}%%/g, '')
+      .replace(/^[\t ]*%%.*$/gm, '').trimStart();
+    if (!/^(?:flowchart|graph)\b/.test(body)) return source;
+
+    var started = false;
+    var quoted = false;
+    return source.replace(/[^\r\n]+/g, function (line) {
+      if (!started && !/^\s*(?:flowchart|graph)\b/.test(line)) return line;
+      started = true;
+      var normalized = quoted ? line : line.replace(
+        /^([\t ]*)([A-Za-z_][\w-]*)[\t ]*<--[\t ]*("[^"\r\n]*")[\t ]*---[\t ]*([A-Za-z_][\w-]*)([\t ]*;?[\t ]*(?:%%.*)?)$/,
+        function (_, indent, left, label, right, suffix) {
+          return indent + right + ' -->|' + label + '| ' + left + suffix;
+        }
+      );
+      // Never rewrite an example inside a multiline quoted node label, and
+      // never let quotes inside a %% comment affect the following lines.
+      for (var i = 0; i < line.length; i++) {
+        if (!quoted && line[i] === '%' && line[i + 1] === '%') break;
+        if (line[i] === '"') quoted = !quoted;
+      }
+      return normalized;
+    });
+  }
+
+  async function renderDiagrams() {
+    var blocks = document.querySelectorAll('code.language-mermaid');
+    if (!blocks.length) return;
+    if (typeof mermaid === 'undefined') {
+      blocks.forEach(function (code) {
+        var original = code.closest('.highlighter-rouge') || code.closest('pre');
+        if (!original) return;
+        var message = document.createElement('p');
+        message.className = 'mermaid-error';
+        message.setAttribute('role', 'status');
+        message.textContent = '图表组件加载失败，请刷新页面重试。Mermaid 源码已保留。';
+        original.after(message);
+      });
+      return;
+    }
+
+    // Render every diagram as Mermaid, including diagrams with multiple subgraphs.
+    // Disable the automatic pass so it cannot race with our explicit rendering.
+    var skin = getComputedStyle(document.documentElement);
+    function color(name, fallback) {
+      return skin.getPropertyValue('--mermaid-' + name).trim() || fallback;
+    }
+    var background = color('background', '#ffffff');
+    var text = color('text', '#000000');
+    var border = color('border', '#cccccc');
+    var nodeBorder = color('node-border', '#b8b9c0');
+    var cluster = color('cluster-background', '#f9f9fa');
+    var line = color('line', '#858795');
+    var palettes = [
+      ['#e4eaf0', '#f4f6f9', '#a5b3c2'], // slate blue
+      ['#e8f0ea', '#f5f8f5', '#a8bcae'], // sage
+      ['#f3ede3', '#faf7f2', '#c6b69c'], // sand
+      ['#ebe8f1', '#f7f5fa', '#b5adc5'], // lavender
+      ['#e4eeee', '#f3f8f8', '#a0baba']  // muted teal
+    ].map(function (fallbacks, index) {
+      return {
+        node: color('palette-' + index + '-node', fallbacks[0]),
+        cluster: color('palette-' + index + '-cluster', index === 0 ? cluster : fallbacks[1]),
+        border: color('palette-' + index + '-border', fallbacks[2])
+      };
+    });
+    var fontFamily = getComputedStyle(document.body).fontFamily ||
+      '"Source Sans Pro", sans-serif';
+    // Mermaid fixes label dimensions during layout. Wait for web fonts so a
+    // later font swap cannot make the measured label box too small.
+    if (document.fonts) await document.fonts.ready;
+
+    var theme = "default";
+    // The site's default follows its active skin. Explicit forest/dark/etc.
+    // choices remain available for sites that deliberately select them.
+    if (theme === 'default') theme = 'base';
+
+    var config = {
+      startOnLoad: false,
+      securityLevel: 'strict',
+      fontFamily: fontFamily,
+      // Native SVG text avoids foreignObject clipping and article paragraph CSS.
+      htmlLabels: false,
+      flowchart: {
+        inheritDir: true,
+        curve: 'linear',
+        nodeSpacing: 24,
+        rankSpacing: 28,
+        padding: 8,
+        diagramPadding: 8,
+        wrappingWidth: 180,
+        // Nested cluster borders must start below the parent's full title line.
+        subGraphTitleMargin: { top: 4, bottom: 12 }
+      },
+      theme: theme,
+      themeVariables: theme === 'base' ? {
+        fontFamily: fontFamily,
+        fontSize: '14px',
+        background: background,
+        primaryColor: palettes[0].node,
+        primaryTextColor: text,
+        primaryBorderColor: nodeBorder,
+        secondaryColor: palettes[1].node,
+        secondaryTextColor: text,
+        secondaryBorderColor: border,
+        tertiaryColor: palettes[2].node,
+        tertiaryTextColor: text,
+        tertiaryBorderColor: border,
+        lineColor: line,
+        textColor: text,
+        mainBkg: palettes[0].node,
+        nodeBorder: nodeBorder,
+        nodeTextColor: text,
+        clusterBkg: palettes[0].cluster,
+        clusterBorder: border,
+        titleColor: text,
+        defaultLinkColor: line,
+        edgeLabelBackground: background,
+        noteBkgColor: palettes[2].node,
+        noteTextColor: text,
+        noteBorderColor: border,
+        actorBkg: palettes[0].node,
+        actorBorder: nodeBorder,
+        actorTextColor: text,
+        actorLineColor: border,
+        signalColor: line,
+        signalTextColor: text
+      } : { fontFamily: fontFamily }
+    };
+
+    function applyFlowchartPalette(svg) {
+      if (theme !== 'base' || !/^flowchart/.test(svg.getAttribute('aria-roledescription') || '')) return;
+
+      function tint(group, shapes, index, kind) {
+        // Author-supplied classDef/style colors take precedence over auto accents.
+        var customClass = Array.from(group.classList).some(function (name) {
+          return !['node', 'default', 'cluster', 'clickable'].includes(name);
+        });
+        if (customClass || !shapes.length || shapes.some(function (shape) {
+          return shape.style.getPropertyValue('fill') || shape.style.getPropertyValue('stroke');
+        })) return;
+        group.setAttribute('data-mermaid-palette', index);
+        shapes.forEach(function (shape) {
+          // Keep fallbacks in the SVG so exported diagrams retain their colors.
+          if (shape.getAttribute('fill') !== 'none') {
+            shape.style.fill = 'var(--mermaid-palette-' + index + '-' + kind + ', ' + palettes[index][kind] + ')';
+          }
+          shape.style.stroke = 'var(--mermaid-palette-' + index + '-border, ' + palettes[index].border + ')';
+        });
+      }
+
+      var groups = Array.from(svg.querySelectorAll('g.cluster')).map(function (group, index) {
+        var rect = group.querySelector('rect');
+        return { group: group, rect: rect, bounds: rect && rect.getBoundingClientRect(), index: index % palettes.length };
+      }).filter(function (entry) { return entry.rect; });
+      // Mermaid's SVG stores clusters flat. Match by the actual layout so nodes
+      // inherit their smallest enclosing group, including nested schedulers.
+      var nodes = Array.from(svg.querySelectorAll('g.node')).map(function (node) {
+        return { node: node, bounds: node.getBoundingClientRect() };
+      });
+      groups.forEach(function (entry) { tint(entry.group, [entry.rect], entry.index, 'cluster'); });
+      groups.sort(function (a, b) { return a.bounds.width * a.bounds.height - b.bounds.width * b.bounds.height; });
+      nodes.forEach(function (entry) {
+        var box = entry.bounds;
+        var parent = groups.find(function (group) {
+          var bounds = group.bounds;
+          return box.left >= bounds.left - 1 && box.right <= bounds.right + 1 &&
+            box.top >= bounds.top - 1 && box.bottom <= bounds.bottom + 1;
+        });
+        var shapes = [];
+        entry.node.querySelectorAll(':scope > .label-container').forEach(function (container) {
+          // Rounded/hand-drawn shapes wrap paths in a group. Include the
+          // container in the author-style check, then tint the actual paths.
+          shapes.push(container);
+          shapes.push.apply(shapes, container.querySelectorAll('path, rect, circle, ellipse, polygon, polyline'));
+        });
+        tint(entry.node, shapes, parent ? parent.index : 0, 'node');
+      });
+    }
+
+    function hasNestedSubgraphs(source) {
+      var depth = 0;
+      return source.split(/\r?\n/).some(function (line) {
+        if (/^\s*subgraph\b/.test(line)) return ++depth > 1;
+        if (/^\s*end\s*(?:;|%%.*)?$/.test(line)) depth = Math.max(0, depth - 1);
+        return false;
+      });
+    }
+
+    for (var code of blocks) {
+      var original = code.closest('.highlighter-rouge') || code.closest('pre');
+      if (!original) continue;
+
+      var wrapper = document.createElement('div');
+      wrapper.className = 'mermaid-diagram';
+      wrapper.tabIndex = 0;
+      wrapper.setAttribute('role', 'region');
+      wrapper.setAttribute('aria-label', 'Mermaid diagram (scroll horizontally)');
+
+      var pre = document.createElement('pre');
+      pre.className = 'mermaid';
+      pre.textContent = normalizeMermaidSource(code.textContent);
+      wrapper.appendChild(pre);
+      original.replaceWith(wrapper);
+
+      try {
+        // Dagre reserves only half rankSpacing above a nested cluster. Keep
+        // that space taller than its parent's title, without spreading out
+        // the ordinary (non-nested) compact flowcharts.
+        mermaid.initialize(Object.assign({}, config, {
+          flowchart: Object.assign({}, config.flowchart, {
+            rankSpacing: hasNestedSubgraphs(code.textContent) ? 56 : config.flowchart.rankSpacing
+          })
+        }));
+        await mermaid.run({ nodes: [pre] });
+        var svg = pre.querySelector('svg');
+        if (svg && svg.viewBox.baseVal.width) {
+          // Do not shrink labels to illegible text on narrow screens;
+          // keep at least 90% of the natural size and scroll the diagram instead.
+          svg.style.minWidth = (svg.viewBox.baseVal.width * 0.9) + 'px';
+        }
+        if (svg) applyFlowchartPalette(svg);
+      } catch (error) {
+        // A malformed diagram must not prevent other diagrams from rendering
+        // or make the original source disappear.
+        wrapper.replaceChildren(original);
+        var message = document.createElement('p');
+        message.className = 'mermaid-error';
+        message.setAttribute('role', 'status');
+        message.textContent = '图表渲染失败，已保留 Mermaid 源码。';
+        wrapper.appendChild(message);
+        console.warn('Mermaid diagram could not be rendered:', error);
+      }
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', renderDiagrams);
+  } else {
+    renderDiagrams();
+  }
+})();
+</script>
+
+
+  </body>
+
+</html>

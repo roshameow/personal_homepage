@@ -157,15 +157,15 @@
   <div class="toc-content">
     <ul>
       
-      <li><a href="/personal_homepage/tool/pi-runtime-attribution/">Pi Desktop的开发难点: “会话的状态”</a></li>
+      <li><a href="/personal_homepage/data/alpha29/">News & Social Media 新闻流、社交媒体情绪与文本事件数据体系</a></li>
       
-      <li><a href="/personal_homepage/tool/pi-desktop/">Pi Desktop：从会话浏览器到跨机器工作台</a></li>
+      <li><a href="/personal_homepage/data/alpha28/">日内 PV 统计量与市场微结构衍生指标体系</a></li>
       
-      <li><a href="/personal_homepage/daily/sticker/">用AI做了一套微信表情包:从微信头像缓存到提交上架</a></li>
+      <li><a href="/personal_homepage/tool/alpha27/">从过度防御的歪路纠偏：GUI/CLI 6 态极简控制面、数据面板统一与工程收口</a></li>
       
-      <li><a href="/personal_homepage/daily/agent-blog-writing/">用AI agent复现我的博客风格</a></li>
+      <li><a href="/personal_homepage/thought/agent-infrastructure-pitfalls-2/">用 AI 维护复杂控制面基础设施：为什么越修越死？从补丁膨胀到 6 态收敛的六大工程陷阱</a></li>
       
-      <li><a href="/personal_homepage/tool/lesson/">听课app开发调研</a></li>
+      <li><a href="/personal_homepage/tool/pi-subagent-durable/">pi-subagent-durable：后台子代理的持久化、生命周期与故障自愈</a></li>
       
     </ul>
   </div>
@@ -240,7 +240,8 @@
       <li>\(dC = \frac{\partial y}{\partial C}=\sum_{A_{ij}} \frac{\partial y}{\partial A_{ij}}\cdot \frac{\partial A_{ij}}{\partial C}=B^{T}dA\) , 类似的 \(dB=dA\ C^T\)</li>
     </ul>
   </li>
-  <li>softmax计算: \(P=softmax(S)\), \(P_{j}=\frac{e^{S_{j}}}{\sum_{x\in S} e^x}\)  , 下面矩阵都是eltwise乘法\(\downarrow\)  \(\begin{align}dS&amp;=\sum_{P_{j}} dP_{j}\frac{\partial P_{j}}{\partial S}&amp;=\sum_{P_{j}} (P_{k}\mathbb 1_{j=k}-P_{j}P_{k})dP_{j}&amp;\ (\text{根据乘除法求导法则}\frac{\partial P_j}{\partial S_k}=P_j\mathbb 1_{k=j}-\frac{e^{s_{j}}e^{s_k}}{(\sum_{x\in S} e^x)^2}=diag(P)-PP^T\text{是softmax的Jacobian})\\ &amp;&amp;=P_{k}dP_{k}+(\sum_{P_{j}}P_{j}dP_{j})P_{k}&amp;=P(dP+\sum_{P_{j}}P_{j}dP_{j})\\ &amp;&amp;&amp;=P(dP+ \sum_{j} P_j(\sum_i V_{ij} dO_{j}))\  (\text{因为}PV=O)\\ &amp;&amp;&amp;=P(dP+ \sum_{j}O_{j}dO_{j})\ (\text{其中}\sum_j \text{就是rowsum})\end{align}\)</li>
+  <li>softmax计算: \(P=softmax(S)\), \(P_{j}=\frac{e^{S_{j}}}{\sum_{x\in S} e^x}\)  , 下面矩阵都是eltwise乘法\(\downarrow\)  \[\begin{align}dS&amp;=\sum_{P_{j}} dP_{j}\frac{\partial P_{j}}{\partial S}&amp;=\sum_{P_{j}} (P_{k}\mathbb 1_{j=k}-P_{j}P_{k})dP_{j}&amp;\ (\text{根据乘除法求导法则}\frac{\partial P_j}{\partial S_k}=P_j\mathbb 1_{k=j}-\frac{e^{s_{j}}e^{s_k}}{(\sum_{x\in S} e^x)^2}=diag(P)-PP^T\text{是softmax的Jacobian})\\ &amp;&amp;=P_{k}dP_{k}+(\sum_{P_{j}}P_{j}dP_{j})P_{k}&amp;=P(dP+\sum_{P_{j}}P_{j}dP_{j})\\ &amp;&amp;&amp;=P(dP+ \sum_{j} P_j(\sum_i V_{ij} dO_{j}))\  (\text{因为}PV=O)\\ &amp;&amp;&amp;=P(dP+ \sum_{j}O_{j}dO_{j})\ (\text{其中}\sum_j \text{就是rowsum})\end{align}\]
+  </li>
   <li>backward采用和forward相同的分块</li>
 </ul>
 

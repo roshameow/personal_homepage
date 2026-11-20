@@ -157,15 +157,15 @@
   <div class="toc-content">
     <ul>
       
-      <li><a href="/personal_homepage/tool/pi-runtime-attribution/">Pi Desktop的开发难点: “会话的状态”</a></li>
+      <li><a href="/personal_homepage/data/alpha29/">News & Social Media 新闻流、社交媒体情绪与文本事件数据体系</a></li>
       
-      <li><a href="/personal_homepage/tool/pi-desktop/">Pi Desktop：从会话浏览器到跨机器工作台</a></li>
+      <li><a href="/personal_homepage/data/alpha28/">日内 PV 统计量与市场微结构衍生指标体系</a></li>
       
-      <li><a href="/personal_homepage/daily/sticker/">用AI做了一套微信表情包:从微信头像缓存到提交上架</a></li>
+      <li><a href="/personal_homepage/tool/alpha27/">从过度防御的歪路纠偏：GUI/CLI 6 态极简控制面、数据面板统一与工程收口</a></li>
       
-      <li><a href="/personal_homepage/daily/agent-blog-writing/">用AI agent复现我的博客风格</a></li>
+      <li><a href="/personal_homepage/thought/agent-infrastructure-pitfalls-2/">用 AI 维护复杂控制面基础设施：为什么越修越死？从补丁膨胀到 6 态收敛的六大工程陷阱</a></li>
       
-      <li><a href="/personal_homepage/tool/lesson/">听课app开发调研</a></li>
+      <li><a href="/personal_homepage/tool/pi-subagent-durable/">pi-subagent-durable：后台子代理的持久化、生命周期与故障自愈</a></li>
       
     </ul>
   </div>
@@ -297,9 +297,11 @@
 <ul>
   <li>
     <p>能量函数 \(E(S)\):
- \(E(S) = \sum_{k=1}^{N-1} C_k^2\)
+ \[E(S) = \sum_{k=1}^{N-1} C_k^2\]
+
  其中 \(C_k\) 是滞后为 \(k\) 时的自相关系数：
- \(C_k = \sum_{i=1}^{N-k} s_i s_{i+k}\)</p>
+ \[C_k = \sum_{i=1}^{N-k} s_i s_{i+k}\]
+</p>
   </li>
   <li>目标: 最小化 \(E(S)\)。</li>
   <li>Merit Factor (品质因数): \(F = \frac{N^2}{2E}\)。\(E\) 越小，\(F\) 越大。这是通信领域常用的指标。</li>
@@ -339,12 +341,15 @@
   <li>
     <p>构建哈密顿量:
  我们需要将 \(E(S)\) 转化为算符形式。
- \(E = \sum_{k=1}^{N-1} (\sum_{i=1}^{N-k} s_i s_{i+k})^2\)
+ \[E = \sum_{k=1}^{N-1} (\sum_{i=1}^{N-k} s_i s_{i+k})^2\]
+
  展开平方项：
- \((\sum_{i} s_i s_{i+k})^2 = \sum_{i} \sum_{j} (s_i s_{i+k}) (s_j s_{j+k})\)</p>
+ \[(\sum_{i} s_i s_{i+k})^2 = \sum_{i} \sum_{j} (s_i s_{i+k}) (s_j s_{j+k})\]
+</p>
 
     <p>这意味着哈密顿量主要由 四体相互作用项 (4-body terms) 组成：
- \(H = \sum_{k} \sum_{i, j} Z_i Z_{i+k} Z_j Z_{j+k}\)</p>
+ \[H = \sum_{k} \sum_{i, j} Z_i Z_{i+k} Z_j Z_{j+k}\]
+</p>
 
     <ul>
       <li>特殊情况: 当 \(i=j\) 时，\(Z_i Z_{i+k} Z_i Z_{i+k} = Z_i^2 Z_{i+k}^2 = I \cdot I = I\)。这些是常数项，对优化没有影响，但在计算绝对能量值时需要考虑。</li>

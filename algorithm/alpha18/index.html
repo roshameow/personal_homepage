@@ -1,0 +1,1213 @@
+<!DOCTYPE html>
+<!--
+    So Simple Jekyll Theme 3.2.0
+    Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+    Free for personal and commercial use under the MIT license
+    https://github.com/mmistakes/so-simple-theme/blob/master/LICENSE
+-->
+<html lang="en-US" class="no-js">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  
+
+  
+  
+  <!-- Begin Jekyll SEO tag v2.9.1 -->
+<title>大量探索优化异步任务调度–代码实现 | Liu, Wen’s Home Page</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="大量探索优化异步任务调度–代码实现" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="本文档详细阐述 QuantNight 的整体异步回测流水线（Asynchronous Simulation Pipeline），以及构建在该流水线之上的两大智能调度与进化子系统：Priority Task（基于实测反馈的多源 Per-Root 三阶段自动精炼编排） 与 Adaptive Task（基于结构特征与在线 LightGBM 的探索-利用自适应采样调度）。" />
+<meta name="twitter:description" property="og:description" content="本文档详细阐述 QuantNight 的整体异步回测流水线（Asynchronous Simulation Pipeline），以及构建在该流水线之上的两大智能调度与进化子系统：Priority Task（基于实测反馈的多源 Per-Root 三阶段自动精炼编排） 与 Adaptive Task（基于结构特征与在线 LightGBM 的探索-利用自适应采样调度）。" />
+<link rel="canonical" href="https://roshameow.github.io//personal_homepage/algorithm/alpha18/" />
+<meta property="og:url" content="https://roshameow.github.io//personal_homepage/algorithm/alpha18/" />
+<meta property="og:site_name" content="Liu, Wen’s Home Page" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2026-05-14T00:00:00+00:00" />
+<meta property="article:modified_time" content="2026-11-08T20:05:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="大量探索优化异步任务调度–代码实现" />
+<meta name="twitter:site" content="@" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2026-11-08T20:05:00+00:00","datePublished":"2026-05-14T00:00:00+00:00","description":"本文档详细阐述 QuantNight 的整体异步回测流水线（Asynchronous Simulation Pipeline），以及构建在该流水线之上的两大智能调度与进化子系统：Priority Task（基于实测反馈的多源 Per-Root 三阶段自动精炼编排） 与 Adaptive Task（基于结构特征与在线 LightGBM 的探索-利用自适应采样调度）。","headline":"大量探索优化异步任务调度–代码实现","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/algorithm/alpha18/"},"url":"https://roshameow.github.io//personal_homepage/algorithm/alpha18/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  
+
+  <script>
+    /* Cut the mustard */
+    if ('querySelector' in document && 'addEventListener' in window) {
+      document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + 'js';
+    }
+  </script>
+
+  <link rel="stylesheet" href="/personal_homepage/assets/css/main.css">
+  <link rel="stylesheet" href="/personal_homepage/assets/css/skins/default.css">
+  
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,700,700i|Lora:400,400i,700,700i">
+  <link rel="alternate" type="application/atom+xml" title="Liu, Wen&#39;s Home Page" href="/personal_homepage/atom.xml">
+<!-- start custom head snippets -->
+
+<!-- insert favicons. use http://realfavicongenerator.net/ -->
+<link rel="shortcut icon" type="image/x-icon" href="/personal_homepage/docs/images/logo.ico">
+<!-- end custom head snippets -->
+
+</head>
+
+  <body class="layout--post  大量探索优化异步任务调度-代码实现">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#primary-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+  <div class="navigation-wrapper">
+    <a href="#menu-toggle" id="menu-toggle">Menu</a>
+    <nav id="primary-nav" class="site-nav animated drop">
+      <ul><li><a href="/personal_homepage/">Home</a></li><li><a href="/personal_homepage/posts/">Posts</a></li><li><a href="/personal_homepage/categories/">Categories</a></li><li><a href="/personal_homepage/tags/">Tags</a></li><li><a href="/personal_homepage/family/">Family</a></li><li><a href="/personal_homepage/search/">Search</a></li></ul>
+    </nav>
+  </div><!-- /.navigation-wrapper -->
+
+
+    <header class="masthead">
+  <div class="wrap">
+    
+    
+    
+      
+        <div class="site-title animated fadeIn"><a href="/personal_homepage/">Liu, Wen's Home Page</a></div>
+      
+      <p class="site-description animated fadeIn" itemprop="description">Work, Experiments and Ideas.</p>
+    
+  </div>
+</header><!-- /.masthead -->
+
+
+    <main id="main" class="main-content" aria-label="Content">
+  <article class="h-entry">
+    
+
+    <div class="page-wrapper">
+      <header class="page-header">
+        
+        
+        <h1 id="page-title" class="page-title p-name">大量探索优化异步任务调度–代码实现
+</h1>
+        
+      </header>
+
+      <div class="page-sidebar">
+        <div class="page-author h-card p-author"><img src="/personal_homepage/docs/images/logo.svg" class="author-avatar u-photo" alt=""><div class="author-info">
+
+<span class="read-time">6 min read</span>
+
+    <time class="page-date dt-published" datetime="2026-05-14T00:00:00+00:00"><a class="u-url" href="">May 14, 2026</a>
+</time>
+
+  </div>
+</div>
+
+        
+  <h3 class="page-taxonomies-title">Categories</h3>
+  
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a class="p-category" href="/personal_homepage/categories/#algorithm" title="Pages filed under algorithm">algorithm</a></li>
+  </ul>
+
+
+        
+  <h3 class="page-taxonomies-title">Tags</h3>
+  
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a href="/personal_homepage/tags/#content" title="Pages tagged content" rel="tag">content</a></li>
+  </ul>
+
+
+        <details id="entry-table-of-contents" class="toc-wrapper" open>
+  <summary>
+    <h2 class="no_toc">
+      Table of Contents
+      <svg class="toc-toggle-icon" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true" focusable="false">
+        <path d="m4 6 4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+      </svg>
+    </h2>
+  </summary>
+  <div class="toc-content">
+    <ul class="inline_toc" id="my_toc"><li><a href="#0-三类任务模式全景对比表">0. 三类任务模式全景对比表</a></li><li><a href="#1-整体异步回测架构全景end-to-end-async-simulation">1. 整体异步回测架构全景（End-to-End Async Simulation）</a><ul><li><a href="#11-全局架构与数据流图">1.1 全局架构与数据流图</a></li><li><a href="#13-并发槽共享simulationslots与配额状态机simulationquotaguard">1.3 并发槽共享（SimulationSlots）与配额状态机（SimulationQuotaGuard）</a></li></ul></li><li><a href="#2-priority-task-架构详解多源-per-root-三阶段自动精炼">2. Priority Task 架构详解（多源 Per-Root 三阶段自动精炼）</a><ul><li><a href="#21-核心模块组成">2.1 核心模块组成</a></li><li><a href="#22-per-root-三阶段生命周期与交互时序图">2.2 Per-Root 三阶段生命周期与交互时序图</a></li><li><a href="#23-priority-核心调度与学习法则">2.3 Priority 核心调度与学习法则</a></li></ul></li><li><a href="#3-adaptive-task-架构详解基于结构特征与-lightgbm-的自适应回测">3. Adaptive Task 架构详解（基于结构特征与 LightGBM 的自适应回测）</a><ul><li><a href="#31-核心设计哲学动静分离">3.1 核心设计哲学：动静分离</a></li><li><a href="#32-adaptive-三大并发协程闭环图">3.2 Adaptive 三大并发协程闭环图</a></li><li><a href="#33-特征工程模型打分与防坍缩机制">3.3 特征工程、模型打分与防坍缩机制</a></li></ul></li></ul>
+  </div>
+</details>
+
+        
+<details id="entry-related-posts" class="toc-wrapper" open>
+  <summary>
+    <h2 class="no_toc">
+      Related Posts
+      <svg class="toc-toggle-icon" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true" focusable="false">
+        <path d="m4 6 4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+      </svg>
+    </h2>
+  </summary>
+  <div class="toc-content">
+    <ul>
+      
+      <li><a href="/personal_homepage/data/alpha29/">News & Social Media 新闻流、社交媒体情绪与文本事件数据体系</a></li>
+      
+      <li><a href="/personal_homepage/data/alpha28/">日内 PV 统计量与市场微结构衍生指标体系</a></li>
+      
+      <li><a href="/personal_homepage/tool/alpha27/">从过度防御的歪路纠偏：GUI/CLI 6 态极简控制面、数据面板统一与工程收口</a></li>
+      
+      <li><a href="/personal_homepage/thought/agent-infrastructure-pitfalls-2/">用 AI 维护复杂控制面基础设施：为什么越修越死？从补丁膨胀到 6 态收敛的六大工程陷阱</a></li>
+      
+      <li><a href="/personal_homepage/tool/pi-subagent-durable/">pi-subagent-durable：后台子代理的持久化、生命周期与故障自愈</a></li>
+      
+    </ul>
+  </div>
+</details>
+
+
+
+      </div>
+
+      <div class="page-content">
+        <div class="e-content">
+          <p>本文档详细阐述 QuantNight 的<strong>整体异步回测流水线（Asynchronous Simulation Pipeline）</strong>，以及构建在该流水线之上的两大智能调度与进化子系统：<strong>Priority Task（基于实测反馈的多源 Per-Root 三阶段自动精炼编排）</strong> 与 <strong>Adaptive Task（基于结构特征与在线 LightGBM 的探索-利用自适应采样调度）</strong>。</p>
+
+<h2 id="0-三类任务模式全景对比表">0. 三类任务模式全景对比表</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>特性维度</th>
+      <th>普通任务 (Regular)</th>
+      <th>自适应任务 (Adaptive Task)</th>
+      <th>精炼优先任务 (Priority Task)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>核心目标</strong></td>
+      <td>按既定列表测完模板展开的候选池</td>
+      <td>在超大待测池中<strong>被动优选</strong>高潜结构先测</td>
+      <td>基于实测好 Alpha <strong>主动生成并迭代</strong> 3 轮精炼变体</td>
+    </tr>
+    <tr>
+      <td><strong>是否生成新表达式</strong></td>
+      <td>仅启动前生成一次</td>
+      <td>否（只对已有 <code class="language-plaintext highlighter-rouge">pending</code> 池动态排序）</td>
+      <td><strong>是</strong>（根据实测反馈动态生成 R1/R2/R3 变体）</td>
+    </tr>
+    <tr>
+      <td><strong>驱动Runner进程</strong></td>
+      <td><code class="language-plaintext highlighter-rouge">scripts/alpha_simulate_param.py</code></td>
+      <td><code class="language-plaintext highlighter-rouge">scripts/alpha_simulate_param.py</code>（开启 <code class="language-plaintext highlighter-rouge">adaptive.enabled</code>）</td>
+      <td>控制器：<code class="language-plaintext highlighter-rouge">scripts/refine_simulate_param.py</code><br />执行器：<strong>借用原任务的 <code class="language-plaintext highlighter-rouge">alpha_simulate_param.py</code></strong></td>
+    </tr>
+    <tr>
+      <td><strong>与其它队列的关系</strong></td>
+      <td>与同集合的 Priority 共享 <code class="language-plaintext highlighter-rouge">SimulationSlots</code></td>
+      <td>在 <code class="language-plaintext highlighter-rouge">SimulationSlots.normal</code> 槽位内替代纯随机采样，与 Priority 无缝共存</td>
+      <td>写入原任务集合（<code class="language-plaintext highlighter-rouge">priority=2</code>），占用原任务 <code class="language-plaintext highlighter-rouge">SimulationSlots.priority</code>（\(\le 50\%\) 槽位）</td>
+    </tr>
+    <tr>
+      <td><strong>学习模型 / 算法</strong></td>
+      <td>无（随机或顺序）</td>
+      <td>进程内 4 分类 LightGBM + 数据集饱和度惩罚 + 20% 探索保底</td>
+      <td>Per-Root 同 Scope 父子实测 Fitness 相对增益（Gain）+ Top-5 晋级</td>
+    </tr>
+    <tr>
+      <td><strong>持久化状态与账本</strong></td>
+      <td><code class="language-plaintext highlighter-rouge">simulation_db.&lt;task&gt;</code></td>
+      <td><code class="language-plaintext highlighter-rouge">simulation_db.&lt;task&gt;</code> 中的静态 <code class="language-plaintext highlighter-rouge">feat</code> + 实测 <code class="language-plaintext highlighter-rouge">grade</code>/<code class="language-plaintext highlighter-rouge">good</code>（模型全在内存）</td>
+      <td>本地 <code class="language-plaintext highlighter-rouge">pool.json</code> (v3) + MongoDB <code class="language-plaintext highlighter-rouge">priority_root_limits / stages / pools</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="1-整体异步回测架构全景end-to-end-async-simulation">1. 整体异步回测架构全景（End-to-End Async Simulation）</h2>
+
+<p>QuantNight 的异步回测体系采用<strong>“生产者与消费者解耦、单原任务消费者（Source Consumer）统一持有并发槽与配额门禁、回执先落库后发包”</strong>的架构设计。</p>
+
+<h3 id="11-全局架构与数据流图">1.1 全局架构与数据流图</h3>
+
+<pre><code class="language-mermaid">flowchart TB
+    subgraph Producers ["候选生成与生产层 (Producers)"]
+        TmplGen["普通模板生成 (templates/)&lt;br/&gt;make_simulation_datum()&lt;br/&gt;写入时调 extract_feat() 存静态 feat"]
+        PrioCtrl["Priority 控制器 (scripts/refine_simulate_param.py)&lt;br/&gt;RootPool.tick() + RoundPlanner + RefinePipeline&lt;br/&gt;动态发现活跃原任务成功 Root → 生成 R1/R2/R3 变体"]
+        SuperGen["SUPER 模板生成 (super_templates/)&lt;br/&gt;Selection + Combo 单变体冻结"]
+    end
+
+    subgraph Storage ["MongoDB 持久化与控制面 (simulation_db &amp; simulation_mission)"]
+        TaskColl[("simulation_db.&amp;lt;task&amp;gt;&lt;br/&gt;普通待测项 (priority=1, 含 feat)&lt;br/&gt;Priority 待测项 (priority=2, refine_campaign_id)")]
+        RootLedgers[("simulation_mission&lt;br/&gt;priority_root_limits / stages / pools&lt;br/&gt;priority_task_scheduling&lt;br/&gt;priority_consumer_capabilities")]
+        TaskMeta[("simulation_mission.tasks&lt;br/&gt;任务配置 / simulatorRuntime 心跳&lt;br/&gt;startupRecovery / superActiveSlots")]
+    end
+
+    subgraph Consumer ["原任务异步消费者核心 (scripts/alpha_simulate_param.py)"]
+        direction TB
+        subgraph Schedulers ["双轨候选调度器"]
+            NormalFetch["普通 / Adaptive 采样协程&lt;br/&gt;AdaptiveModel ($sample → 惰性打分 → 加权采样)&lt;br/&gt;Learner 协程 (攒够新结果后台重训 LightGBM)"]
+            PrioFetch["Priority 认领与本地堆调度&lt;br/&gt;util/priority_scheduling.py + PriorityTaskQueue&lt;br/&gt;按 权重 → R3/R2/R1 → 已开始 Root 连续性 排序&lt;br/&gt;_child_batch_key 同源组批"]
+        end
+
+        SlotGate["SimulationSlots (util/simulation_slots.py)&lt;br/&gt;总槽位 max_concurrent&lt;br/&gt;Priority 上限 ≤ floor(max_concurrent / 2)&lt;br/&gt;空闲槽双向借用 + Priority 等待优先获槽"]
+        QuotaGate["SimulationQuotaGuard + _PrioritySubmissionGuard&lt;br/&gt;4,500 日预算门禁 + 账号 429 冷却检查&lt;br/&gt;【HTTP 前】原子持久化 campaign_post_attempted=True"]
+    end
+
+    subgraph Transport ["HTTP 传输与回执采集 (api/simulation.py &amp; util/network_util.py)"]
+        SubmitPOST["_submit_with_receipt_policy()&lt;br/&gt;POST /simulations (单条或 Multi-Sim Batch)&lt;br/&gt;拿到 Location 立即刷盘 ACCEPTED"]
+        PollGET["check_simulation_progress()&lt;br/&gt;按 Retry-After 异步轮询 GET Location&lt;br/&gt;COMPLETE 后拉取 /alphas/{id} 逐 child 落库"]
+        StartupRec["启动恢复与未知回执对账&lt;br/&gt;util/mission_recovery.py &amp; util/super_recovery.py&lt;br/&gt;只读 GET 回收 ACCEPTED/UNKNOWN，绝不盲目重发 POST"]
+    end
+
+    TmplGen --&gt;|"写入普通待测项"| TaskColl
+    PrioCtrl &lt;--&gt;|"1. 校验能力心跳 &amp; 写阶段账本"| RootLedgers
+    PrioCtrl --&gt;|"2. $setOnInsert 注入 priority=2 变体"| TaskColl
+    PrioCtrl &lt;-- "6. 读取真实回测反馈晋级下一阶段" --- TaskColl
+
+    TaskColl --&gt; NormalFetch
+    TaskColl --&gt; PrioFetch
+    RootLedgers --&gt;|"读取任务权重与能力租约"| PrioFetch
+
+    NormalFetch --&gt;|"申请 normal 槽"| SlotGate
+    PrioFetch --&gt;|"申请 priority 槽"| SlotGate
+    SlotGate --&gt; QuotaGate
+    QuotaGate --&gt; SubmitPOST
+    SubmitPOST --&gt; PollGET
+    PollGET --&gt;|"3. 写回实测 is / grade / good / alphaId"| TaskColl
+    Consumer --&gt;|"发布 15s 运行时与能力心跳"| TaskMeta
+    Consumer --&gt;|"发布 protocol_version=3 心跳"| RootLedgers
+    StartupRec &lt;--&gt;|"启动时只读对账"| TaskColl
+</code></pre>
+
+<hr />
+
+<h3 id="13-并发槽共享simulationslots与配额状态机simulationquotaguard">1.3 并发槽共享（<code class="language-plaintext highlighter-rouge">SimulationSlots</code>）与配额状态机（<code class="language-plaintext highlighter-rouge">SimulationQuotaGuard</code>）</h3>
+
+<h4 id="1simulationslots普通adaptive-与-priority-的公平共享与借用">（1）<code class="language-plaintext highlighter-rouge">SimulationSlots</code>：普通/Adaptive 与 Priority 的公平共享与借用</h4>
+<p>位于 <a href="../../util/simulation_slots.py"><code class="language-plaintext highlighter-rouge">util/simulation_slots.py</code></a>：</p>
+<ul>
+  <li><strong>单一控制器</strong>：每个 <code class="language-plaintext highlighter-rouge">alpha_simulate_param.py</code> 消费者进程实例化唯一一个 <code class="language-plaintext highlighter-rouge">SimulationSlots(total=max_concurrent, priority_limit=priority_max_concurrent)</code>。</li>
+  <li><strong>硬上限与双向借用</strong>：
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">priority_limit</code> 默认等于 <code class="language-plaintext highlighter-rouge">floor(max_concurrent / 2)</code>（可在顶层配置显式调低为 <code class="language-plaintext highlighter-rouge">0..floor(max_concurrent / 2)</code>；当 <code class="language-plaintext highlighter-rouge">max_concurrent == 1</code> 时 <code class="language-plaintext highlighter-rouge">priority_limit == 0</code>，自动禁用 Priority 认领）。</li>
+      <li><strong>Priority 不空占槽位</strong>：当没有 Priority 候选或 Priority 活跃数未用满时，普通/Adaptive 队列可以借用<strong>全部剩余槽位</strong>（最高跑满 <code class="language-plaintext highlighter-rouge">max_concurrent</code>）。</li>
+      <li><strong>Priority 等待防饥饿</strong>：当有 Priority 协程正在等待（<code class="language-plaintext highlighter-rouge">_priority_waiting &gt; 0</code>）且当前 <code class="language-plaintext highlighter-rouge">_priority_active &lt; priority_limit</code> 时，下一个释放的槽位<strong>优先分配给 Priority</strong>，<strong>普通协程在 <code class="language-plaintext highlighter-rouge">Condition.wait_for</code> 中礼让，但绝不抢占已在运行中的普通模拟</strong>。</li>
+    </ul>
+  </li>
+</ul>
+
+<pre><code class="language-mermaid">stateDiagram-v2
+    [*] --&gt; Idle: 初始化 SimulationSlots(total=4, priority_limit=2)
+    Idle --&gt; NormalFull: 无 Priority 待测 (Normal 借用全部 4 槽: N=4, P=0)
+    NormalFull --&gt; PriorityArrives: Priority 候选到达 (_priority_waiting &gt; 0)
+    PriorityArrives --&gt; Balanced: 任意 2 个 Normal 完成释放槽位&lt;br/&gt;Priority 优先接管 (N=2, P=2)
+    Balanced --&gt; NormalFull: Priority 全部完成 (Normal 重新跑满 N=4, P=0)
+</code></pre>
+
+<h4 id="2回执安全与冷启动恢复no-replay-iron-rule">（2）回执安全与冷启动恢复（No-Replay Iron Rule）</h4>
+
+<ul>
+  <li><strong>先写意图后发 HTTP</strong>：<code class="language-plaintext highlighter-rouge">_PrioritySubmissionGuard.before_submit</code> 在发出任何网络字节前，先将 <code class="language-plaintext highlighter-rouge">campaign_post_attempted = True</code> 与 <code class="language-plaintext highlighter-rouge">batchBackendIds</code> 写入 MongoDB。</li>
+  <li><strong>拿到 Location 立即刷盘</strong>：<code class="language-plaintext highlighter-rouge">_PriorityReceipt</code> 一旦捕获 <code class="language-plaintext highlighter-rouge">progress_url</code>（<code class="language-plaintext highlighter-rouge">Location</code> 头），立即异步刷入 <code class="language-plaintext highlighter-rouge">progressUrl</code> 与 <code class="language-plaintext highlighter-rouge">acceptance = "ACCEPTED"</code>。</li>
+  <li><strong>故障分类不串味</strong>：
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">request_not_sent == True</code>（发包前在本地门禁/锁阶段被拒）→→ 标记 <code class="language-plaintext highlighter-rouge">_not_posted_ = True</code> / <code class="language-plaintext highlighter-rouge">NOT_POSTED</code>，可安全退回 <code class="language-plaintext highlighter-rouge">pending</code>。</li>
+      <li>HTTP 已尝试但超时/断网且无 <code class="language-plaintext highlighter-rouge">Location</code> →→ 原API保留具体error/errorClass、发送意图与 <code class="language-plaintext highlighter-rouge">acceptance=None</code>；历史 <code class="language-plaintext highlighter-rouge">UNKNOWN</code> 仍兼容读取，<strong>不因额度ready而自动重投 POST</strong>。</li>
+      <li>启动恢复（<a href="https://file+.vscode-resource.vscode-cdn.net/Users/wenliu/Code/python/quantnight/util/mission_recovery.py"><code class="language-plaintext highlighter-rouge">util/mission_recovery.py</code></a>）按原payload/hash/身份绑定和唯一可信回执决定GET-only观察，不单凭acceptance枚举。缺少可信回执时保留具体错误与防重投证据，不能凭UNKNOWN构造GET或重发POST；只有核验后的真实结果才写回。</li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<h2 id="2-priority-task-架构详解多源-per-root-三阶段自动精炼">2. Priority Task 架构详解（多源 Per-Root 三阶段自动精炼）</h2>
+
+<p>Priority Task 是 QuantNight 的<strong>闭环 Alpha 自动进化引擎</strong>。它本身<strong>不启动独立的回测消费进程</strong>，而是作为轻量级编排控制器（Producer），动态监控活跃的原任务（Source Tasks），将高表现的实测 Alpha 纳为研究根（Root），分三阶段（R1 \(\rightarrow\) R2 \(\rightarrow\) R3）生成精炼变体并注入回<strong>原任务自己的集合</strong>，交由原任务的 <code class="language-plaintext highlighter-rouge">alpha_simulate_param.py</code> 消费执行。</p>
+
+<h3 id="21-核心模块组成">2.1 核心模块组成</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>模块文件</th>
+      <th>核心类 / 函数</th>
+      <th>职责说明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><a href="../../scripts/refine_simulate_param.py"><code class="language-plaintext highlighter-rouge">scripts/refine_simulate_param.py</code></a></td>
+      <td><code class="language-plaintext highlighter-rouge">RefineSimulator</code></td>
+      <td>Priority 主控循环：管理配置热重载、发现活跃来源、校验证书/能力心跳、驱动 <code class="language-plaintext highlighter-rouge">RootPool.tick()</code>、执行未知回执只读补读与 MongoDB 账本持久化</td>
+    </tr>
+    <tr>
+      <td><a href="../../refine_templates/root_pool.py"><code class="language-plaintext highlighter-rouge">refine_templates/root_pool.py</code></a></td>
+      <td><code class="language-plaintext highlighter-rouge">RootPool</code></td>
+      <td>Per-Root 动态来源池状态机：维护 v3 检查点 <code class="language-plaintext highlighter-rouge">pool.json</code>，管理每个 Root 的冻结配方（<code class="language-plaintext highlighter-rouge">recipe</code>）、阶段保留计划、实测反馈对账与晋级</td>
+    </tr>
+    <tr>
+      <td><a href="../../refine_templates/rounds.py"><code class="language-plaintext highlighter-rouge">refine_templates/rounds.py</code></a></td>
+      <td><code class="language-plaintext highlighter-rouge">RoundPlanner</code></td>
+      <td>单 Root 内阶段规划器：计算各精炼方向的实测效用增益（Gain），按探索比例（20%）+ 利用权重分配每阶段最多 60 条预算，选出 <code class="language-plaintext highlighter-rouge">promote_top_k=5</code> 晋级下一阶段</td>
+    </tr>
+    <tr>
+      <td><a href="../../refine_templates/pipeline.py"><code class="language-plaintext highlighter-rouge">refine_templates/pipeline.py</code></a></td>
+      <td><code class="language-plaintext highlighter-rouge">RefinePipeline</code></td>
+      <td>多模板独立扇出与门禁校验：调用 15 种精炼模板（<code class="language-plaintext highlighter-rouge">ablation</code>, <code class="language-plaintext highlighter-rouge">turnover_adjust</code>, <code class="language-plaintext highlighter-rouge">operator_transfer</code>, <code class="language-plaintext highlighter-rouge">group_op_add</code>, <code class="language-plaintext highlighter-rouge">event_op_add</code> 等），执行字段数 \(\le 3\)、禁用字段、Python MATRIX/GROUP 校验与去重</td>
+    </tr>
+    <tr>
+      <td><a href="../../refine_templates/direction.py"><code class="language-plaintext highlighter-rouge">refine_templates/direction.py</code></a></td>
+      <td><code class="language-plaintext highlighter-rouge">normalize_direction</code></td>
+      <td>负 Sharpe 方向免费前置规范化：在进入精炼前免费修正反向信号，不消耗独立模拟预算、不篡改源实测指标</td>
+    </tr>
+    <tr>
+      <td><a href="../../util/priority_scheduling.py"><code class="language-plaintext highlighter-rouge">util/priority_scheduling.py</code></a> &amp; <a href="../../util/priority_queue.py"><code class="language-plaintext highlighter-rouge">util/priority_queue.py</code></a></td>
+      <td><code class="language-plaintext highlighter-rouge">scheduling_key</code>, <code class="language-plaintext highlighter-rouge">PriorityTaskQueue</code></td>
+      <td>原任务消费者侧的确定性调度器：按 <code class="language-plaintext highlighter-rouge">(-weight, -stage, is_started, order, owner, root, _id)</code> 7 元组对本地预取堆实时重排（<code class="language-plaintext highlighter-rouge">rerank</code>）</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="数据结构和存储位置">数据结构和存储位置</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>存放位置</th>
+      <th>具体内容</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>MongoDB：<code class="language-plaintext highlighter-rouge">simulation_mission</code></strong></td>
+      <td><strong><code class="language-plaintext highlighter-rouge">tasks</code></strong>：任务 ID、名称、账号、类型、控制状态、执行位置、保存的启动配置。<br /><strong><code class="language-plaintext highlighter-rouge">priority_root_limits</code></strong>：root 归属声明，包含 root ID、来源任务、来源执行位置、账号、campaign ID、配置摘要。<br /><strong><code class="language-plaintext highlighter-rouge">priority_root_stages</code></strong>：阶段预留账本，包含阶段号、保留数量、计划摘要，以及候选的集合名、精确 item ID、payload hash。<br /><strong><code class="language-plaintext highlighter-rouge">priority_root_pools</code></strong>：池监控汇总，包含 root 数量、阶段分布、等待/阻塞/完成数量、来源统计、原因及更新时间。<br /><strong><code class="language-plaintext highlighter-rouge">priority_consumer_capabilities</code></strong>：原 consumer 的协议版本、实例标识、来源任务 ID、执行位置、能力心跳、冷却及提交闸门诊断。<br /><strong><code class="language-plaintext highlighter-rouge">priority_task_scheduling</code></strong>：Priority 任务的调度权重、账号、任务名及更新时间。</td>
+    </tr>
+    <tr>
+      <td><strong>MongoDB：<code class="language-plaintext highlighter-rouge">simulation_db.&lt;source_task&gt;</code></strong></td>
+      <td><strong>候选内容</strong>：源码 <code class="language-plaintext highlighter-rouge">regular</code>、完整 <code class="language-plaintext highlighter-rouge">settings</code>、稳定 <code class="language-plaintext highlighter-rouge">_id</code>、<code class="language-plaintext highlighter-rouge">refinePayloadHash</code>。<br /><strong>研究归属</strong>：直接父 ID、root ID、campaign/pool ID、阶段、模板、冻结来源字段及父响应 <code class="language-plaintext highlighter-rouge">refine_source</code>。<br /><strong>执行状态</strong>：pending/processing/success 等状态、领取次数、提交意图、心跳。<br /><strong>平台回执</strong>：接受状态、HTTP 回执、<code class="language-plaintext highlighter-rouge">progressUrl</code>、冷却/重试信息、终态及错误证据。<br /><strong>实测结果</strong>：<code class="language-plaintext highlighter-rouge">alphaId</code>、完整实际响应 <code class="language-plaintext highlighter-rouge">refine_result</code>、指标摘要 <code class="language-plaintext highlighter-rouge">result</code>。<br />以上均写在对应候选文档中，不是分别存放的队列或结果集合。</td>
+    </tr>
+    <tr>
+      <td><strong>文件：<code class="language-plaintext highlighter-rouge">artifacts/alpha_optimization/priority_roots/&lt;priority_task&gt;/&lt;auth_profile&gt;/pool.json</code></strong></td>
+      <td><strong>池身份</strong>：版本、模式、Priority 任务、账号、运行目标。<br /><strong>root 来源</strong>：root ID、来源任务名、原任务 ID、来源执行位置、原始响应；原模拟 item ID 位于 <code class="language-plaintext highlighter-rouge">roots[root_id].initial_source.refine_origin_item_id</code>。<br /><strong>冻结 recipe</strong>：该 root 的阶段参数、模板及模板参数、配置摘要。<br /><strong>阶段计划</strong>：当前阶段、完整候选源码/settings、精确 item ID/hash、实际父响应。<br /><strong>预算分配记录</strong>：每个 parent×方向的生成数、合法候选数、选中数、探索/利用数和方向得分等 <code class="language-plaintext highlighter-rouge">decisions</code>。<br /><strong>反馈与历史</strong>：实测结果、失败记录、未解决条目、实际效用、历史父子关系、反馈复用标记。<br /><strong>恢复状态</strong>：已见 payload、阶段状态、等待原因、开始时间、截止期限、更新时间。</td>
+    </tr>
+    <tr>
+      <td><strong>文件：配置文件，通常为 <code class="language-plaintext highlighter-rouge">tmp/tmp_config_&lt;priority_task&gt;.json</code></strong></td>
+      <td>启动账号、来源筛选。<br />启用模板、模板参数、候选数量限制。<br />阶段上限、每阶段预算、晋级数、探索比例。<br />等待期限、轮询间隔、任务权重等。<br />这是启动/更新配置，不是既有 root 冻结计划的替代品。</td>
+    </tr>
+    <tr>
+      <td><strong>文件：配置目录内的 <code class="language-plaintext highlighter-rouge">reload_trigger_&lt;priority_task&gt;</code></strong></td>
+      <td>文件存在表示请求重载配置。<br />检测后删除文件，并设置进程内的重载标志。<br />它不保存回测进度，也不证明重载已经成功。</td>
+    </tr>
+    <tr>
+      <td><strong>文件及操作系统锁：checkpoint 同目录的 <code class="language-plaintext highlighter-rouge">pool.lock</code></strong></td>
+      <td><code class="language-plaintext highlighter-rouge">flock</code> 排他锁用于防止多个 producer 同时执行同一个池的 tick。<br />锁占用由操作系统管理；文件存在不代表进程仍在运行。</td>
+    </tr>
+    <tr>
+      <td><strong>进程内存</strong></td>
+      <td><strong>Priority 临时规划数据</strong>：父响应、各 parent×方向候选池、校验结果、预算选择过程、checkpoint 的工作副本 <code class="language-plaintext highlighter-rouge">RootPool.state</code>。<br /><strong>Priority 读取辅助状态</strong>：扫描分页游标、receipt 轮转位置、结果缓存、读取退避时间、发布缓存。<br /><strong>原 consumer 内部调度</strong>：普通/优先异步队列、预取 payload、结果采集队列、运行中协程、semaphore 等槽位状态。<br />进程退出会丢失这些内存对象；已落盘的计划、候选及执行证据仍从文件/MongoDB 恢复。</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h3 id="22-per-root-三阶段生命周期与交互时序图">2.2 Per-Root 三阶段生命周期与交互时序图</h3>
+
+<pre><code class="language-mermaid">sequenceDiagram
+    autonumber
+    participant SrcConsumer as 原任务 Consumer&lt;br/&gt;(alpha_simulate_param.py)
+    participant Mongo as 原任务执行库&lt;br/&gt;(simulation_db &amp; simulation_mission)
+    participant PrioCtrl as Priority 控制器&lt;br/&gt;(refine_simulate_param.py / RootPool)
+
+    Note over SrcConsumer,Mongo: 阶段 0：原任务运行并发布协议 v3 能力心跳
+    SrcConsumer-&gt;&gt;Mongo: 每 15s 更新 priority_consumer_capabilities&lt;br/&gt;(_id: "&lt;auth&gt;:&lt;source_task&gt;", protocol_version: 3, heartbeatAt: UTC)
+    SrcConsumer-&gt;&gt;Mongo: 普通/Adaptive 回测完成，写入 status="success" + 真实 alphaId &amp; IS 指标
+
+    Note over PrioCtrl,Mongo: 阶段 1：来源发现与 Root 准入 (Tick 循环)
+    PrioCtrl-&gt;&gt;Mongo: 扫描同账号活跃 Regular 任务 &amp; 核验新鮮 capability 心跳 (≤120s)
+    PrioCtrl-&gt;&gt;Mongo: 轮转扫描 simulation_db.&lt;source_task&gt; 成功记录 (排除含 refine_campaign_id 的后代)
+    PrioCtrl-&gt;&gt;PrioCtrl: 过滤 |Sharpe| ≥ sharpe_th 且 |Fitness| ≥ fitness_th&lt;br/&gt;冻结 Root Recipe (source_task, source_remote, steps, config_digest)
+    PrioCtrl-&gt;&gt;Mongo: 原子写入 priority_root_limits &amp; 保存本地 v3 pool.json 检查点
+
+    Note over PrioCtrl,Mongo: 阶段 2：Stage 1 (R1) 候选规划与注入 (≤60 条)
+    PrioCtrl-&gt;&gt;PrioCtrl: 免费前置 normalize_direction() → RoundPlanner 向各启用模板扇出&lt;br/&gt;字段门禁 (≤3 字段) + 内存/Hash 去重 → 选出 ≤60 条 R1 变体
+    PrioCtrl-&gt;&gt;Mongo: 1. 写入 priority_root_stages 阶段账本 &amp; 更新 priority_root_pools 汇总
+    PrioCtrl-&gt;&gt;Mongo: 2. $setOnInsert 写入 simulation_db.&lt;source_task&gt; (priority=2, refine_root_stage=1)
+
+    Note over SrcConsumer,Mongo: 阶段 3：原任务 Consumer 确定性认领与按 Root 组批回测
+    SrcConsumer-&gt;&gt;Mongo: 聚合扫描 candidate_pipeline &amp; started_pipeline + 读取 priority_task_scheduling 权重
+    SrcConsumer-&gt;&gt;SrcConsumer: 按 (-weight, -stage, is_started, root_order) 选定最高优 Root+Stage&lt;br/&gt;CAS 认领 (attemptCounter += 1) &amp; 按 _child_batch_key 同源组批
+    SrcConsumer-&gt;&gt;Mongo: 通过 SimulationSlots.priority 与 QuotaGuard 发送回测，写回真实结果
+
+    Note over PrioCtrl,Mongo: 阶段 4：实测反馈对账、方向效用学习与 R2/R3 晋级
+    PrioCtrl-&gt;&gt;Mongo: RootPool.tick() 按 exact ID/hash 读取 R1 条目真实状态
+    PrioCtrl-&gt;&gt;PrioCtrl: 全部终态后：计算各模板方向 gain 得分&lt;br/&gt;按 (|Fitness|, |Sharpe|) 选出 Top 5 实测 children 作为 R2 父信号
+    PrioCtrl-&gt;&gt;Mongo: 规划并注入 Stage 2 (≤60 条) → 完成后晋级 Stage 3 (≤60 条)&lt;br/&gt;单 Root 累计 ≤180 条；若最佳效用未提升则提前结束该 Root
+</code></pre>
+
+<hr />
+
+<h3 id="23-priority-核心调度与学习法则">2.3 Priority 核心调度与学习法则</h3>
+
+<h4 id="1per-root-独立预算无全池阶段屏障">（1）Per-Root 独立预算（无全池阶段屏障）</h4>
+<ul>
+  <li><strong>单根上限</strong>：每个 Root 最多运行 <strong>3 个阶段（R1、R2、R3）</strong>，每阶段最多保留 <strong>60 个候选</strong>，单 Root 终身累计最多 <strong>180 个候选</strong>。</li>
+  <li><strong>池级无上限、无屏障</strong>：整个 Priority 任务池没有 60 或 180 的总分母限制；<code class="language-plaintext highlighter-rouge">root-A1</code> 可以正在跑 R3，而刚发现的 <code class="language-plaintext highlighter-rouge">root-B1</code> 正在跑 R1，互不阻塞。</li>
+</ul>
+
+<h4 id="2方向效用在线学习direction-utility-gain">（2）方向效用在线学习（Direction Utility Gain）</h4>
+<p>当某个 Root 的第 \(k\) 阶段全部完成真实回测对账后，<a href="../../refine_templates/rounds.py"><code class="language-plaintext highlighter-rouge">refine_templates/rounds.py</code></a> 仅利用<strong>该 Root 自己同 Scope 的真实父子实测记录</strong>计算每个精炼方向（Template）的收益得分：
+\[\text{gain} = \frac{|\text{child.Fitness}| - |\text{parent.Fitness}|}{\max(|\text{parent.Fitness}|, |\text{child.Fitness}|, 1)}\]
+
+\[\text{score}(\text{direction}) = 1 + \frac{\sum \text{gain}}{\text{有效样本数} + 2}\]
+</p>
+<ul>
+  <li><strong>平滑先验</strong>：分母 \(+2\) 的零收益先验防止单次偶然高分垄断后续阶段全部预算。</li>
+  <li><strong>探索与利用分配</strong>：下一阶段预算（60 条）中，\(\lceil 60 \times \text{exploration\_fraction} \rceil\)（默认 20%，即 12 条）固定均匀分配给所有可用方向保底探索，其余 80% 按 \(\text{score}(\text{direction})\) 比例分配给高收益精炼方向。</li>
+</ul>
+
+<h4 id="3原任务-consumer-内的-7-元组确定性排序">（3）原任务 Consumer 内的 7 元组确定性排序</h4>
+<p>在 <a href="../../util/priority_scheduling.py#L42-L57"><code class="language-plaintext highlighter-rouge">util/priority_scheduling.py</code></a> 中，Consumer 每次从 MongoDB 预取或对本地 <a href="../../util/priority_queue.py"><code class="language-plaintext highlighter-rouge">PriorityTaskQueue</code></a> 重排时，使用如下最小堆键（越小越优先）：</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">scheduling_key</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="o">-</span><span class="n">weight</span><span class="p">,</span>                      <span class="c1"># 1. Priority 任务调度权重 (越大越优先，默认 1.0)
+</span>    <span class="o">-</span><span class="nf">stage</span><span class="p">(</span><span class="n">row</span><span class="p">),</span>                  <span class="c1"># 2. 阶段号：R3 (-3) 优先于 R2 (-2) 优先于 R1 (-1)
+</span>    <span class="mi">0</span> <span class="k">if</span> <span class="n">is_started</span> <span class="k">else</span> <span class="mi">1</span><span class="p">,</span>       <span class="c1"># 3. 同阶段已开始 (已认领/已模拟) 的 Root 优先连续跑完！
+</span>    <span class="n">order</span><span class="p">,</span>                        <span class="c1"># 4. 本地首次认领序号 (未开始则按 root_id 字典序)
+</span>    <span class="n">owner</span><span class="p">,</span>                        <span class="c1"># 5. refine_pool_id / refine_campaign_id
+</span>    <span class="n">root</span><span class="p">,</span>                         <span class="c1"># 6. refine_root_alpha_id
+</span>    <span class="nf">str</span><span class="p">(</span><span class="n">row</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">_id</span><span class="sh">'</span><span class="p">,</span> <span class="sh">''</span><span class="p">))</span>       <span class="c1"># 7. 文档 ObjectId 兜底稳定序
+</span><span class="p">)</span>
+</code></pre></div></div>
+<ul>
+  <li><strong>为什么这样设计</strong>：通过 <code class="language-plaintext highlighter-rouge">(-stage, 0 if is_started else 1)</code>，Consumer 会<strong>集中火力把一个已经开始的 Root 从 R1 迅速推到 R3 完结</strong>，快速产出可提交的终极变体，而不是在几百个 Root 之间雨露均沾地随机打散。</li>
+  <li><strong>同源安全组批（<code class="language-plaintext highlighter-rouge">_child_batch_key</code>）</strong>：在组 Multi-Simulation 批次时，<a href="../../scripts/alpha_simulate_param.py#L54-L70"><code class="language-plaintext highlighter-rouge">_child_batch_key</code></a> 严格保证只有属于<strong>同一 <code class="language-plaintext highlighter-rouge">owner</code>、同一 <code class="language-plaintext highlighter-rouge">root</code>、同一 <code class="language-plaintext highlighter-rouge">stage</code>、同一 <code class="language-plaintext highlighter-rouge">source_task</code> 且平台 <code class="language-plaintext highlighter-rouge">region/delay/language/instrumentType</code> 完全一致</strong>的候选才会被打包进同一个父请求，绝不跨 Root 拼凑批次。</li>
+</ul>
+
+<hr />
+
+<h2 id="3-adaptive-task-架构详解基于结构特征与-lightgbm-的自适应回测">3. Adaptive Task 架构详解（基于结构特征与 LightGBM 的自适应回测）</h2>
+
+<p>当一个普通回测任务包含数万至数十万条展开的待测表达式时，纯随机抽样会浪费大量配额在低效算子或饱和数据集上。<a href="../../adaptive/"><code class="language-plaintext highlighter-rouge">adaptive/</code></a> 子系统在不生成新表达式的前提下，通过<strong>“静态特征入库 + 内存动态模型在线重训 + 惰性打分加权采样”</strong>实现越测越聪明的调度。</p>
+
+<h3 id="31-核心设计哲学动静分离">3.1 核心设计哲学：动静分离</h3>
+
+<blockquote>
+  <p><strong>静态入库（Write-Once <code class="language-plaintext highlighter-rouge">feat</code>）</strong>：表达式写入 MongoDB 时提取一次原始结构标识字典 <code class="language-plaintext highlighter-rouge">feat</code>，此后永不修改数据库中的待测项。<br />
+<strong>动态内存（In-Memory <code class="language-plaintext highlighter-rouge">AdaptiveModel</code>）</strong>：模型参数与瞬时预测分数完全驻留在 <code class="language-plaintext highlighter-rouge">alpha_simulate_param.py</code> 进程内存中，每次拉取候选批次时现场算分，<strong>彻底避免对几十万条 MongoDB 记录做全表优先级更新</strong>。</p>
+</blockquote>
+
+<h3 id="32-adaptive-三大并发协程闭环图">3.2 Adaptive 三大并发协程闭环图</h3>
+
+<pre><code class="language-mermaid">flowchart LR
+    subgraph GenPhase ["1. 模板生成阶段 (一次性)"]
+        Code["Alpha Code + Settings"] --&gt; Extract["adaptive/features.py&lt;br/&gt;extract_feat()"]
+        MetaDB[("data_db.operators&lt;br/&gt;data_db.&amp;lt;region&amp;gt;_&amp;lt;delay&amp;gt;_&amp;lt;universe&amp;gt;")] --&gt;|"进程内弱引用缓存&lt;br/&gt;OperatorCategoryMap&lt;br/&gt;DatafieldMetaCache"| Extract
+        Extract --&gt;|"写入静态 feat 字段"| SimColl[("simulation_db.&amp;lt;task&amp;gt;&lt;br/&gt;pending 池 + 已测池")]
+    end
+
+    subgraph ExecPhase ["2. 执行阶段三大协同循环 (scripts/alpha_simulate_param.py)"]
+        direction TB
+        subgraph Loop1 ["循环 A：惰性打分与采样消费"]
+            Sample["MongoDB $sample&lt;br/&gt;随机抽取 cand_batch (10,000) 条安全 pending"]
+            Score["AdaptiveModel.score(feats)&lt;br/&gt;展开为 DataFrame → LightGBM 预测 4 档概率&lt;br/&gt;计算期望得分 E[grade] = Σ g · P(grade=g)"]
+            Weights["AdaptiveModel.sampling_weights()&lt;br/&gt;1. 数据集饱和惩罚: × (1 - sat_power · sat)&lt;br/&gt;2. 探索保底: explore_ratio (20%) 置为均匀权重 1.0"]
+            Diversity["加权随机抽样 + 多样性过滤&lt;br/&gt;同批次内单 datafield 出现次数 ≤ max_same_df (5)"]
+            Sample --&gt; Score --&gt; Weights --&gt; Diversity
+        end
+
+        subgraph Loop2 ["循环 B：回测执行与结果回写"]
+            SimExec["通过 SimulationSlots.normal&lt;br/&gt;发送回测并采集实测 Sharpe / Fitness"]
+            ComputeLabel["计算训练标签:&lt;br/&gt;grade = compute_grade(|sharpe|) ∈ {0,1,2,3}&lt;br/&gt;good = (sharpe ≥ 1.25 and fitness ≥ 0.8)"]
+            UpdateCounters["实时累加内存计数器:&lt;br/&gt;model.dataset_tested[ds] += 1&lt;br/&gt;model.total_tested += 1"]
+            Diversity --&gt; SimExec --&gt; ComputeLabel --&gt; UpdateCounters
+        end
+
+        subgraph Loop3 ["循环 C：后台在线学习协程 (Learner)"]
+            CheckTrigger{"已测样本 ≥ min_train (100)&lt;br/&gt;且新增 ≥ train_interval (500)?"}
+            PullTrain["从集合拉取至多 sample_size (50,000) 条&lt;br/&gt;已完成记录的 (feat, grade)"]
+            TrainLGB["AdaptiveModel.train(feats, grades)&lt;br/&gt;锁定/更新 feat_columns&lt;br/&gt;训练 4 分类 LightGBM (200 rounds)&lt;br/&gt;原子替换内存 self.model"]
+            CheckTrigger -- "是" --&gt; PullTrain --&gt; TrainLGB
+        end
+
+        TrainLGB -.-&gt;|"无锁更新内存模型引用"| Score
+        UpdateCounters -.-&gt;|"反馈数据集饱和度"| Weights
+    end
+
+    SimColl --&gt; Sample
+    ComputeLabel --&gt;|"写回 result / grade / good"| SimColl
+    SimColl --&gt; PullTrain
+</code></pre>
+
+<hr />
+
+<h3 id="33-特征工程模型打分与防坍缩机制">3.3 特征工程、模型打分与防坍缩机制</h3>
+
+<h4 id="1结构特征字典-featadaptivefeaturespy">（1）结构特征字典 <code class="language-plaintext highlighter-rouge">feat</code>（<a href="../../adaptive/features.py"><code class="language-plaintext highlighter-rouge">adaptive/features.py</code></a>）</h4>
+<p><code class="language-plaintext highlighter-rouge">extract_feat(code, settings, client)</code> 利用 <code class="language-plaintext highlighter-rouge">expression.alpha_parse.parse_alpha</code> 解析 AST（自动剔除 <code class="language-plaintext highlighter-rouge">sector/industry/subindustry/country</code> 等分组关键字防止误判为字段），提取以下原始特征：</p>
+<ul>
+  <li><strong>数据字段层级</strong>：<code class="language-plaintext highlighter-rouge">df</code>（字段 ID 列表）、<code class="language-plaintext highlighter-rouge">df_dataset</code>（所属数据集 ID）、<code class="language-plaintext highlighter-rouge">df_cat</code>（大类）、<code class="language-plaintext highlighter-rouge">df_sub</code>（子类）。</li>
+  <li><strong>算子与拓扑层级</strong>：<code class="language-plaintext highlighter-rouge">ops</code>（算子名列表）、<code class="language-plaintext highlighter-rouge">op_cnt</code>（按 <code class="language-plaintext highlighter-rouge">Time Series</code> / <code class="language-plaintext highlighter-rouge">Cross Sectional</code> / <code class="language-plaintext highlighter-rouge">Group</code> 等算子大类统计频次）、<code class="language-plaintext highlighter-rouge">chain_len</code>（算子链总长度）、<code class="language-plaintext highlighter-rouge">has_backfill</code>（是否包含 <code class="language-plaintext highlighter-rouge">ts_backfill</code>）。</li>
+  <li><strong>分组与设置层级</strong>：<code class="language-plaintext highlighter-rouge">group</code>（使用的 grouping 名）、<code class="language-plaintext highlighter-rouge">settings</code>（<code class="language-plaintext highlighter-rouge">neutralization</code>, <code class="language-plaintext highlighter-rouge">region</code>, <code class="language-plaintext highlighter-rouge">universe</code>, <code class="language-plaintext highlighter-rouge">delay</code>, <code class="language-plaintext highlighter-rouge">decay</code>, <code class="language-plaintext highlighter-rouge">language</code>）。</li>
+</ul>
+
+<h4 id="2四档有序多分类目标与期望效用打分adaptivemodelpy">（2）四档有序多分类目标与期望效用打分（<a href="../../adaptive/model.py"><code class="language-plaintext highlighter-rouge">adaptive/model.py</code></a>）</h4>
+<ul>
+  <li><strong>标签分级（<code class="language-plaintext highlighter-rouge">compute_grade</code>）</strong>：默认按 <code class="language-plaintext highlighter-rouge">grade_bounds = [0.5, 1.25, 2.0]</code> 将实测 Sharpe 划分为 4 个等级（<code class="language-plaintext highlighter-rouge">0: &lt;0.5</code>, <code class="language-plaintext highlighter-rouge">1: [0.5, 1.25)</code>, <code class="language-plaintext highlighter-rouge">2: [1.25, 2.0)</code>, <code class="language-plaintext highlighter-rouge">3: &gt;=2.0</code>）。相比直接回归容易被极端离群值带偏，分级多分类对噪声极度稳健。</li>
+  <li><strong>期望分数（<code class="language-plaintext highlighter-rouge">score</code>）</strong>：LightGBM 输出 4 个等级的概率分布 \((p_0, p_1, p_2, p_3)\)，计算期望等级：
+\[S_i = \sum_{g=0}^{3} g \cdot p_{i,g} \in [0, 3]\]
+  </li>
+</ul>
+
+<h4 id="3三重防模式坍缩anti-mode-collapse机制">（3）三重防模式坍缩（Anti-Mode-Collapse）机制</h4>
+<p>为了防止模型过早收敛到某一个局部最优的数据集或单一字段，Adaptive 设计了三道保险：</p>
+<ol>
+  <li><strong>数据集饱和惩罚（Dataset Saturation Penalty）</strong>：
+    <ul>
+      <li>实时统计每个 <code class="language-plaintext highlighter-rouge">dataset</code> 已回测的样本数占比 \(\text{sat}_i = \min\left(\frac{\sum_{ds \in \text{item}_i} \text{dataset\_tested}[ds]}{\text{total\_tested}}, 1.0\right)\)。</li>
+      <li>对基础权重乘以衰减因子：\(w_i = (S_i + 10^{-6}) \times (1 - \text{sat\_power} \cdot \text{sat}_i)\)（默认 <code class="language-plaintext highlighter-rouge">sat_power = 0.5</code>），测得越多的数据集自动降权。</li>
+    </ul>
+  </li>
+  <li><strong>保底随机探索（\(\epsilon\)-Exploration，<code class="language-plaintext highlighter-rouge">explore_ratio = 0.2</code>）</strong>：
+    <ul>
+      <li>每个候选以 <code class="language-plaintext highlighter-rouge">20%</code> 的概率直接忽略模型打分与饱和惩罚，强制将采样权重重置为 <code class="language-plaintext highlighter-rouge">1.0</code>，确保持续给未知结构提供训练样本。</li>
+    </ul>
+  </li>
+  <li><strong>批次内字段多样性硬约束（<code class="language-plaintext highlighter-rouge">max_same_df = 5</code>）</strong>：
+    <ul>
+      <li>在加权抽样组装本轮执行批次时，如果某个具体 <code class="language-plaintext highlighter-rouge">datafield</code> 在当前批次中已出现满 5 次，后续含该字段的候选在本批次中直接跳过。</li>
+    </ul>
+  </li>
+</ol>
+
+<hr />
+
+
+        </div>
+
+        
+
+        
+        
+  <div class="page-comments">
+    <div id="disqus_thread"></div>
+    <script>
+      var disqus_config = function () {
+        this.page.url = 'https://roshameow.github.io//personal_homepage/algorithm/alpha18/';
+        this.page.identifier = 'https://roshameow.github.io//personal_homepage/algorithm/alpha18/';
+      };
+
+      (function() {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://https-roshameow-github-io-personal-homepage.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+  </div>
+
+
+        
+
+        <nav class="page-pagination" role="navigation">
+  
+    <a class="page-previous" href="/personal_homepage/algorithm/alpha17/">
+      <h4 class="page-pagination-label">Previous</h4>
+      <span class="page-pagination-title">
+        <i class="fas fa-arrow-left"></i> 时序上的参数优化和神经网络
+
+      </span>
+    </a>
+  
+
+  
+    <a class="page-next" href="/personal_homepage/code/alpha19/">
+      <h4 class="page-pagination-label">Next</h4>
+      <span class="page-pagination-title">
+        回测系统核心网络层架构与全模块调用
+ <i class="fas fa-arrow-right"></i>
+      </span>
+    </a>
+  
+</nav>
+
+      </div>
+
+    </div>
+  </article>
+</main>
+
+    <footer id="footer" class="site-footer">
+  <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+<div class="social-icons"><a class="social-icon" href="/personal_homepage/atom.xml"><i class="fas fa-rss-square fa-2x" title="Feed"></i></a><a class="social-icon" href="https://github.com/roshameow"><i class="fab fa-github-square fa-2x" title="GitHub"></i></a><a class="social-icon" href="https://www.linkedin.com/in/wen-liu-06503a7b/"><i class="fab fa-linkedin fa-2x" title="LinkedIn"></i></a><a class="social-icon" href="mailto:w.liuatnk@gmail.com"><i class="fas fa-envelope-square fa-2x" title="e-mail"></i></a></div><div class="copyright">
+    
+      <p>&copy; 2026 Liu, Wen's Home Page. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://github.com/mmistakes/so-simple-theme" rel="nofollow">So Simple</a>.</p>
+    
+  </div>
+</footer>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="/personal_homepage/assets/js/main.min.js"></script>
+<script src="https://use.fontawesome.com/releases/v5.0.12/js/all.js"></script><script src="/personal_homepage/assets/js/content-tables.js" defer></script>
+
+<script>
+(function () {
+  'use strict';
+
+  var types = {
+    NOTE: 'note', INFO: 'note', ABSTRACT: 'note', SUMMARY: 'note', TLDR: 'note',
+    EXAMPLE: 'note', QUOTE: 'note', CITE: 'note',
+    TIP: 'tip', HINT: 'tip', IMPORTANT: 'tip', SUCCESS: 'tip', CHECK: 'tip', DONE: 'tip',
+    QUESTION: 'warning', HELP: 'warning', FAQ: 'warning',
+    WARNING: 'warning', CAUTION: 'warning', ATTENTION: 'warning',
+    DANGER: 'danger', ERROR: 'danger', BUG: 'danger',
+    FAILURE: 'danger', FAIL: 'danger', MISSING: 'danger'
+  };
+  var icons = {
+    note: 'M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z M12 11v6 M12 7h.01',
+    tip: 'M9 18h6 M10 21h4 M9 15a6 6 0 1 1 6 0v3H9z',
+    warning: 'M12 3L2 21h20z M12 9v5 M12 17h.01',
+    danger: 'M7 3h10l4 4v10l-4 4H7l-4-4V7z M9 9l6 6 M15 9l-6 6'
+  };
+
+  function makeIcon(type) {
+    var namespace = 'http://www.w3.org/2000/svg';
+    var svg = document.createElementNS(namespace, 'svg');
+    svg.setAttribute('class', 'callout-icon');
+    svg.setAttribute('viewBox', '0 0 24 24');
+    svg.setAttribute('width', '20');
+    svg.setAttribute('height', '20');
+    svg.setAttribute('fill', 'none');
+    svg.setAttribute('stroke', 'currentColor');
+    svg.setAttribute('stroke-width', '2');
+    svg.setAttribute('stroke-linecap', 'round');
+    svg.setAttribute('stroke-linejoin', 'round');
+    svg.setAttribute('aria-hidden', 'true');
+    svg.setAttribute('focusable', 'false');
+    var path = document.createElementNS(namespace, 'path');
+    path.setAttribute('d', icons[type]);
+    svg.appendChild(path);
+    return svg;
+  }
+
+  // A soft break is a text newline; a Markdown hard break is a <br>.
+  // Do not split newlines inside inline code or other literal content.
+  function firstBreak(parent) {
+    for (var node = parent.firstChild; node; node = node.nextSibling) {
+      if (node.nodeType === 3) {
+        var offset = node.data.search(/[\r\n]/);
+        if (offset !== -1) return { node: node, offset: offset };
+      } else if (node.nodeType === 1) {
+        if (node.tagName === 'BR') return { node: node };
+        if (/^(CODE|PRE|SCRIPT|STYLE|TEXTAREA)$/.test(node.tagName)) continue;
+        var result = firstBreak(node);
+        if (result) return result;
+      }
+    }
+    return null;
+  }
+
+  function transformCallouts() {
+    document.querySelectorAll('.page-content blockquote').forEach(function (quote) {
+      if (quote.closest('pre, code, .highlight, .highlighter-rouge')) return;
+      var paragraph = quote.firstElementChild;
+      if (!paragraph || paragraph.tagName !== 'P') return;
+
+      // Require the marker in a direct text node: <code>[!WARNING]</code>
+      // (and markers merely mentioned later in a quote) must remain literal.
+      var markerNode = paragraph.firstChild;
+      if (!markerNode || markerNode.nodeType !== 3) return;
+      var marker = markerNode.data.match(/^[\t \r\n]*\[!([a-z][a-z0-9-]*)\]([+-])?(?=[\t \r\n]|$)[\t ]*/i);
+      if (!marker) return;
+      var name = marker[1].toUpperCase();
+      if (!Object.prototype.hasOwnProperty.call(types, name)) return;
+      var type = types[name];
+      var label = name === 'TLDR' ? 'TL;DR' : name.charAt(0) + name.slice(1).toLowerCase();
+      markerNode.deleteData(0, marker[0].length);
+
+      var boundary = firstBreak(paragraph);
+      var range = document.createRange();
+      range.selectNodeContents(paragraph);
+      if (boundary) {
+        if (boundary.node.nodeType === 3) range.setEnd(boundary.node, boundary.offset);
+        else range.setEndBefore(boundary.node);
+      }
+      var titleContent = range.extractContents();
+      if (boundary) {
+        if (boundary.node.nodeType === 3) {
+          var breakLength = boundary.node.data.slice(0, 2) === '\r\n' ? 2 : 1;
+          boundary.node.deleteData(0, breakLength);
+        } else {
+          boundary.node.parentNode.removeChild(boundary.node);
+        }
+      }
+      if (!paragraph.textContent.trim() && !paragraph.children.length) {
+        quote.removeChild(paragraph);
+      }
+
+      var folding = !!marker[2];
+      var callout = document.createElement(folding ? 'details' : 'div');
+      // Keep author-provided IDs, language, direction, and classes.
+      Array.prototype.forEach.call(quote.attributes, function (attribute) {
+        callout.setAttribute(attribute.name, attribute.value);
+      });
+      callout.classList.add('callout', 'callout--' + type);
+      callout.setAttribute('data-callout', name.toLowerCase());
+      callout.setAttribute('aria-label', label);
+      if (folding) {
+        callout.removeAttribute('role');
+        if (marker[2] === '+') callout.setAttribute('open', '');
+        else callout.removeAttribute('open');
+      } else {
+        callout.setAttribute('role', 'note');
+      }
+
+      var title = document.createElement(folding ? 'summary' : 'div');
+      title.className = 'callout-title';
+      title.appendChild(makeIcon(type));
+      var titleText = document.createElement('span');
+      titleText.className = 'callout-title-text';
+      if (titleContent.textContent.trim() || titleContent.childElementCount) {
+        titleText.appendChild(titleContent);
+      } else {
+        titleText.textContent = label;
+      }
+      title.appendChild(titleText);
+      callout.appendChild(title);
+
+      var body = document.createElement('div');
+      body.className = 'callout-body';
+      while (quote.firstChild) body.appendChild(quote.firstChild);
+      callout.appendChild(body);
+      quote.parentNode.replaceChild(callout, quote);
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', transformCallouts);
+  } else {
+    transformCallouts();
+  }
+})();
+</script>
+<!-- <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'G-9TMSCDTBGN', 'auto');
+  ga('send', 'pageview');
+</script> -->
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9TMSCDTBGN"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-9TMSCDTBGN');
+</script>
+
+
+
+<!-- MathJax -->
+<style>
+    /* Only oversized equations get this wrapper; ordinary inline math stays inline. */
+    .math-scroll {
+        display: block;
+        max-width: 100%;
+        overflow-x: auto;
+        overflow-y: hidden;
+        padding-block: 0.5em;
+        scrollbar-width: thin;
+    }
+    .math-scroll > mjx-container[jax] {
+        display: inline-block;
+        margin: 0;
+    }
+    .math-scroll:focus-visible {
+        outline: 2px solid currentColor;
+        outline-offset: 2px;
+    }
+</style>
+<script>
+    function fitMathToColumn() {
+        document.querySelectorAll('mjx-container').forEach(function (container) {
+            var wrapper = container.parentElement.classList.contains('math-scroll') ? container.parentElement : null;
+            var column = wrapper ? wrapper.parentElement : container.parentElement;
+            while (column && ['inline', 'contents'].includes(getComputedStyle(column).display)) {
+                column = column.parentElement;
+            }
+            if (!column) return;
+            var style = getComputedStyle(column);
+            var available = column.clientWidth - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight);
+            var ink = container.querySelector('mjx-math, svg');
+            var width = (ink || container).getBoundingClientRect().width;
+            if (width > available + 1) {
+                if (!wrapper) {
+                    wrapper = document.createElement('span');
+                    wrapper.className = 'math-scroll';
+                    wrapper.tabIndex = 0;
+                    wrapper.setAttribute('role', 'region');
+                    wrapper.setAttribute('aria-label', 'Mathematical formula; scroll horizontally to read all');
+                    wrapper.title = 'Scroll horizontally to read the full formula';
+                    container.before(wrapper);
+                    wrapper.appendChild(container);
+                }
+            } else if (wrapper) {
+                wrapper.replaceWith(container);
+            }
+        });
+    }
+    // Pin the engine, autoloaded TeX extensions, menu and fonts to local assets.
+    window.MathJax = {
+        loader: {
+            paths: { mathjax: "/personal_homepage/assets/js/vendor/mathjax/es5" },
+            load: ['[tex]/textmacros']
+        },
+        tex: {
+            tags: "ams",
+            packages: { '[+]': ['textmacros'] },
+            inlineMath: [['$', '$'], ['\\(', '\\)']],
+            displayMath: [['$$', '$$'], ['\\[', '\\]']]
+        },
+        chtml: {
+            fontURL: "/personal_homepage/assets/js/vendor/mathjax/es5/output/chtml/fonts/woff-v2"
+        },
+        startup: {
+            pageReady: function () {
+                return MathJax.startup.defaultPageReady().then(function () {
+                    return document.fonts ? document.fonts.ready : undefined;
+                }).then(function () {
+                    fitMathToColumn();
+                    var scheduled = false;
+                    window.addEventListener('resize', function () {
+                        if (scheduled) return;
+                        scheduled = true;
+                        requestAnimationFrame(function () {
+                            scheduled = false;
+                            fitMathToColumn();
+                        });
+                    });
+                });
+            }
+        },
+        options: {
+            // Keep examples (including literal dollar signs) out of the typesetter.
+            skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code', 'annotation', 'annotation-xml']
+        }
+    };
+</script>
+<script id="MathJax-script" async src="/personal_homepage/assets/js/vendor/mathjax/es5/tex-mml-chtml.js"></script>
+
+
+
+
+<!-- Mermaid -->
+<style>
+  .mermaid-diagram {
+    max-width: 100%;
+    margin: 0.85rem 0;
+    overflow-x: auto;
+  }
+  .mermaid-diagram:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+  }
+  .page-content pre.mermaid {
+    margin: 0;
+    padding: 0.25rem 0;
+    text-align: center;
+    background: transparent;
+    overflow: visible;
+    font-family: inherit;
+  }
+  .page-content pre.mermaid[data-processed] {
+    white-space: normal;
+  }
+  pre.mermaid svg {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    height: auto;
+  }
+  .mermaid-diagram .cluster-label {
+    font-weight: 700;
+  }
+  .mermaid-error {
+    font-size: 0.85em;
+    color: #9a3412;
+  }
+</style>
+<script src="/personal_homepage/assets/js/vendor/mermaid-11.17.2.min.js"></script>
+<script>
+(function () {
+  'use strict';
+
+  function normalizeMermaidSource(source) {
+    // Mermaid 11 accepts A <-- "label" --- B but creates an INVALID edge.
+    // Render the equivalent B -->|"label"| A, without editing the Markdown.
+    var body = source.trimStart()
+      .replace(/^---\r?\n[\s\S]*?\r?\n---(?:\r?\n|$)/, '')
+      .replace(/%%\{[\s\S]*?\}%%/g, '')
+      .replace(/^[\t ]*%%.*$/gm, '').trimStart();
+    if (!/^(?:flowchart|graph)\b/.test(body)) return source;
+
+    var started = false;
+    var quoted = false;
+    return source.replace(/[^\r\n]+/g, function (line) {
+      if (!started && !/^\s*(?:flowchart|graph)\b/.test(line)) return line;
+      started = true;
+      var normalized = quoted ? line : line.replace(
+        /^([\t ]*)([A-Za-z_][\w-]*)[\t ]*<--[\t ]*("[^"\r\n]*")[\t ]*---[\t ]*([A-Za-z_][\w-]*)([\t ]*;?[\t ]*(?:%%.*)?)$/,
+        function (_, indent, left, label, right, suffix) {
+          return indent + right + ' -->|' + label + '| ' + left + suffix;
+        }
+      );
+      // Never rewrite an example inside a multiline quoted node label, and
+      // never let quotes inside a %% comment affect the following lines.
+      for (var i = 0; i < line.length; i++) {
+        if (!quoted && line[i] === '%' && line[i + 1] === '%') break;
+        if (line[i] === '"') quoted = !quoted;
+      }
+      return normalized;
+    });
+  }
+
+  async function renderDiagrams() {
+    var blocks = document.querySelectorAll('code.language-mermaid');
+    if (!blocks.length) return;
+    if (typeof mermaid === 'undefined') {
+      blocks.forEach(function (code) {
+        var original = code.closest('.highlighter-rouge') || code.closest('pre');
+        if (!original) return;
+        var message = document.createElement('p');
+        message.className = 'mermaid-error';
+        message.setAttribute('role', 'status');
+        message.textContent = '图表组件加载失败，请刷新页面重试。Mermaid 源码已保留。';
+        original.after(message);
+      });
+      return;
+    }
+
+    // Render every diagram as Mermaid, including diagrams with multiple subgraphs.
+    // Disable the automatic pass so it cannot race with our explicit rendering.
+    var skin = getComputedStyle(document.documentElement);
+    function color(name, fallback) {
+      return skin.getPropertyValue('--mermaid-' + name).trim() || fallback;
+    }
+    var background = color('background', '#ffffff');
+    var text = color('text', '#000000');
+    var border = color('border', '#cccccc');
+    var nodeBorder = color('node-border', '#b8b9c0');
+    var cluster = color('cluster-background', '#f9f9fa');
+    var line = color('line', '#858795');
+    var palettes = [
+      ['#e4eaf0', '#f4f6f9', '#a5b3c2'], // slate blue
+      ['#e8f0ea', '#f5f8f5', '#a8bcae'], // sage
+      ['#f3ede3', '#faf7f2', '#c6b69c'], // sand
+      ['#ebe8f1', '#f7f5fa', '#b5adc5'], // lavender
+      ['#e4eeee', '#f3f8f8', '#a0baba']  // muted teal
+    ].map(function (fallbacks, index) {
+      return {
+        node: color('palette-' + index + '-node', fallbacks[0]),
+        cluster: color('palette-' + index + '-cluster', index === 0 ? cluster : fallbacks[1]),
+        border: color('palette-' + index + '-border', fallbacks[2])
+      };
+    });
+    var fontFamily = getComputedStyle(document.body).fontFamily ||
+      '"Source Sans Pro", sans-serif';
+    // Mermaid fixes label dimensions during layout. Wait for web fonts so a
+    // later font swap cannot make the measured label box too small.
+    if (document.fonts) await document.fonts.ready;
+
+    var theme = "default";
+    // The site's default follows its active skin. Explicit forest/dark/etc.
+    // choices remain available for sites that deliberately select them.
+    if (theme === 'default') theme = 'base';
+
+    var config = {
+      startOnLoad: false,
+      securityLevel: 'strict',
+      fontFamily: fontFamily,
+      // Native SVG text avoids foreignObject clipping and article paragraph CSS.
+      htmlLabels: false,
+      flowchart: {
+        inheritDir: true,
+        curve: 'linear',
+        nodeSpacing: 24,
+        rankSpacing: 28,
+        padding: 8,
+        diagramPadding: 8,
+        wrappingWidth: 180,
+        // Nested cluster borders must start below the parent's full title line.
+        subGraphTitleMargin: { top: 4, bottom: 12 }
+      },
+      theme: theme,
+      themeVariables: theme === 'base' ? {
+        fontFamily: fontFamily,
+        fontSize: '14px',
+        background: background,
+        primaryColor: palettes[0].node,
+        primaryTextColor: text,
+        primaryBorderColor: nodeBorder,
+        secondaryColor: palettes[1].node,
+        secondaryTextColor: text,
+        secondaryBorderColor: border,
+        tertiaryColor: palettes[2].node,
+        tertiaryTextColor: text,
+        tertiaryBorderColor: border,
+        lineColor: line,
+        textColor: text,
+        mainBkg: palettes[0].node,
+        nodeBorder: nodeBorder,
+        nodeTextColor: text,
+        clusterBkg: palettes[0].cluster,
+        clusterBorder: border,
+        titleColor: text,
+        defaultLinkColor: line,
+        edgeLabelBackground: background,
+        noteBkgColor: palettes[2].node,
+        noteTextColor: text,
+        noteBorderColor: border,
+        actorBkg: palettes[0].node,
+        actorBorder: nodeBorder,
+        actorTextColor: text,
+        actorLineColor: border,
+        signalColor: line,
+        signalTextColor: text
+      } : { fontFamily: fontFamily }
+    };
+
+    function applyFlowchartPalette(svg) {
+      if (theme !== 'base' || !/^flowchart/.test(svg.getAttribute('aria-roledescription') || '')) return;
+
+      function tint(group, shapes, index, kind) {
+        // Author-supplied classDef/style colors take precedence over auto accents.
+        var customClass = Array.from(group.classList).some(function (name) {
+          return !['node', 'default', 'cluster', 'clickable'].includes(name);
+        });
+        if (customClass || !shapes.length || shapes.some(function (shape) {
+          return shape.style.getPropertyValue('fill') || shape.style.getPropertyValue('stroke');
+        })) return;
+        group.setAttribute('data-mermaid-palette', index);
+        shapes.forEach(function (shape) {
+          // Keep fallbacks in the SVG so exported diagrams retain their colors.
+          if (shape.getAttribute('fill') !== 'none') {
+            shape.style.fill = 'var(--mermaid-palette-' + index + '-' + kind + ', ' + palettes[index][kind] + ')';
+          }
+          shape.style.stroke = 'var(--mermaid-palette-' + index + '-border, ' + palettes[index].border + ')';
+        });
+      }
+
+      var groups = Array.from(svg.querySelectorAll('g.cluster')).map(function (group, index) {
+        var rect = group.querySelector('rect');
+        return { group: group, rect: rect, bounds: rect && rect.getBoundingClientRect(), index: index % palettes.length };
+      }).filter(function (entry) { return entry.rect; });
+      // Mermaid's SVG stores clusters flat. Match by the actual layout so nodes
+      // inherit their smallest enclosing group, including nested schedulers.
+      var nodes = Array.from(svg.querySelectorAll('g.node')).map(function (node) {
+        return { node: node, bounds: node.getBoundingClientRect() };
+      });
+      groups.forEach(function (entry) { tint(entry.group, [entry.rect], entry.index, 'cluster'); });
+      groups.sort(function (a, b) { return a.bounds.width * a.bounds.height - b.bounds.width * b.bounds.height; });
+      nodes.forEach(function (entry) {
+        var box = entry.bounds;
+        var parent = groups.find(function (group) {
+          var bounds = group.bounds;
+          return box.left >= bounds.left - 1 && box.right <= bounds.right + 1 &&
+            box.top >= bounds.top - 1 && box.bottom <= bounds.bottom + 1;
+        });
+        var shapes = [];
+        entry.node.querySelectorAll(':scope > .label-container').forEach(function (container) {
+          // Rounded/hand-drawn shapes wrap paths in a group. Include the
+          // container in the author-style check, then tint the actual paths.
+          shapes.push(container);
+          shapes.push.apply(shapes, container.querySelectorAll('path, rect, circle, ellipse, polygon, polyline'));
+        });
+        tint(entry.node, shapes, parent ? parent.index : 0, 'node');
+      });
+    }
+
+    function hasNestedSubgraphs(source) {
+      var depth = 0;
+      return source.split(/\r?\n/).some(function (line) {
+        if (/^\s*subgraph\b/.test(line)) return ++depth > 1;
+        if (/^\s*end\s*(?:;|%%.*)?$/.test(line)) depth = Math.max(0, depth - 1);
+        return false;
+      });
+    }
+
+    for (var code of blocks) {
+      var original = code.closest('.highlighter-rouge') || code.closest('pre');
+      if (!original) continue;
+
+      var wrapper = document.createElement('div');
+      wrapper.className = 'mermaid-diagram';
+      wrapper.tabIndex = 0;
+      wrapper.setAttribute('role', 'region');
+      wrapper.setAttribute('aria-label', 'Mermaid diagram (scroll horizontally)');
+
+      var pre = document.createElement('pre');
+      pre.className = 'mermaid';
+      pre.textContent = normalizeMermaidSource(code.textContent);
+      wrapper.appendChild(pre);
+      original.replaceWith(wrapper);
+
+      try {
+        // Dagre reserves only half rankSpacing above a nested cluster. Keep
+        // that space taller than its parent's title, without spreading out
+        // the ordinary (non-nested) compact flowcharts.
+        mermaid.initialize(Object.assign({}, config, {
+          flowchart: Object.assign({}, config.flowchart, {
+            rankSpacing: hasNestedSubgraphs(code.textContent) ? 56 : config.flowchart.rankSpacing
+          })
+        }));
+        await mermaid.run({ nodes: [pre] });
+        var svg = pre.querySelector('svg');
+        if (svg && svg.viewBox.baseVal.width) {
+          // Do not shrink labels to illegible text on narrow screens;
+          // keep at least 90% of the natural size and scroll the diagram instead.
+          svg.style.minWidth = (svg.viewBox.baseVal.width * 0.9) + 'px';
+        }
+        if (svg) applyFlowchartPalette(svg);
+      } catch (error) {
+        // A malformed diagram must not prevent other diagrams from rendering
+        // or make the original source disappear.
+        wrapper.replaceChildren(original);
+        var message = document.createElement('p');
+        message.className = 'mermaid-error';
+        message.setAttribute('role', 'status');
+        message.textContent = '图表渲染失败，已保留 Mermaid 源码。';
+        wrapper.appendChild(message);
+        console.warn('Mermaid diagram could not be rendered:', error);
+      }
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', renderDiagrams);
+  } else {
+    renderDiagrams();
+  }
+})();
+</script>
+
+
+  </body>
+
+</html>

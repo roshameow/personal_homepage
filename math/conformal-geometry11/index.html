@@ -157,15 +157,15 @@
   <div class="toc-content">
     <ul>
       
-      <li><a href="/personal_homepage/tool/pi-runtime-attribution/">Pi Desktop的开发难点: “会话的状态”</a></li>
+      <li><a href="/personal_homepage/data/alpha29/">News & Social Media 新闻流、社交媒体情绪与文本事件数据体系</a></li>
       
-      <li><a href="/personal_homepage/tool/pi-desktop/">Pi Desktop：从会话浏览器到跨机器工作台</a></li>
+      <li><a href="/personal_homepage/data/alpha28/">日内 PV 统计量与市场微结构衍生指标体系</a></li>
       
-      <li><a href="/personal_homepage/daily/sticker/">用AI做了一套微信表情包:从微信头像缓存到提交上架</a></li>
+      <li><a href="/personal_homepage/tool/alpha27/">从过度防御的歪路纠偏：GUI/CLI 6 态极简控制面、数据面板统一与工程收口</a></li>
       
-      <li><a href="/personal_homepage/daily/agent-blog-writing/">用AI agent复现我的博客风格</a></li>
+      <li><a href="/personal_homepage/thought/agent-infrastructure-pitfalls-2/">用 AI 维护复杂控制面基础设施：为什么越修越死？从补丁膨胀到 6 态收敛的六大工程陷阱</a></li>
       
-      <li><a href="/personal_homepage/tool/lesson/">听课app开发调研</a></li>
+      <li><a href="/personal_homepage/tool/pi-subagent-durable/">pi-subagent-durable：后台子代理的持久化、生命周期与故障自愈</a></li>
       
     </ul>
   </div>
@@ -212,8 +212,10 @@
     </tr>
     <tr>
       <td>\(\Omega^k\) 上的dual inner product</td>
-      <td><br />\(\langle dx_{i_1}\wedge \cdots \wedge dx_{i_k}, dx_{j_1}\wedge\cdots \wedge dx_{j_k}\rangle=\delta^{j_1 \cdots j_k}_{i_1\cdots i_k}\)</td>
-      <td><br />\(\langle \omega, \eta\rangle_g\)<br /><br />\(\langle dx_{i_1}\wedge \cdots \wedge dx_{i_k}, dx_{j_1}\wedge\cdots \wedge dx_{j_k}\rangle=\delta^{j_1 \cdots j_k}_{i_1\cdots i_k}\cdot g^{i_1j_1}\cdots g^{i_kj_k}\)</td>
+      <td><br />\[\langle dx_{i_1}\wedge \cdots \wedge dx_{i_k}, dx_{j_1}\wedge\cdots \wedge dx_{j_k}\rangle=\delta^{j_1 \cdots j_k}_{i_1\cdots i_k}\]
+</td>
+      <td><br />\(\langle \omega, \eta\rangle_g\)<br /><br />\[\langle dx_{i_1}\wedge \cdots \wedge dx_{i_k}, dx_{j_1}\wedge\cdots \wedge dx_{j_k}\rangle=\delta^{j_1 \cdots j_k}_{i_1\cdots i_k}\cdot g^{i_1j_1}\cdots g^{i_kj_k}\]
+</td>
     </tr>
     <tr>
       <td> </td>
@@ -223,7 +225,8 @@
     <tr>
       <td>Hodge star operator<br />\(\ast: \Omega^k(M)\rightarrow \Omega^{n-k}(M)\)</td>
       <td><br />\((dx_{i_1}\wedge dx_{i_2}\wedge \cdots \wedge dx_{i_k})\overset{\ast} \mapsto (-1)^\sigma dx_{i_{k+1}}\wedge dx_{i_{k+2}}\wedge\cdots\wedge dx_{i_n}\)<br />其中, \(\sigma=(i_1,i_2,\cdots, i_n)\) 是一个permutation</td>
-      <td><strong>待定系数法</strong><br />对于一般\(\omega\in\Omega^k\) 和\(\tau\in\Omega^{n-k}\) 比较以下体元的系数<br />1. \(\omega\wedge^\ast \xi=\langle\omega,\xi\rangle_g\omega_g\)  <br />2. \(\omega\wedge\tau\) <br />解出\(^\ast \xi\) 的系数<br /><br /><strong>指标记法</strong><br />即,<br />\((dx^{i_1}\wedge dx^{i_2}\wedge \cdots \wedge dx^{i_k})\overset{\ast} \mapsto \sum_{(j_{k+1},\cdots,j_n)}\frac{\sqrt{det(g_{ij})}}{(n-k)!}\delta^{j_1 \cdots j_k}_{i_1\cdots i_k}\cdot g^{i_1j_1}\cdots g^{i_kj_k} \cdot dx^{j_{k+1}}\wedge dx^{j_{k+2}}\wedge\cdots\wedge dx^{j_n}\) <br /></td>
+      <td><strong>待定系数法</strong><br />对于一般\(\omega\in\Omega^k\) 和\(\tau\in\Omega^{n-k}\) 比较以下体元的系数<br />1. \(\omega\wedge^\ast \xi=\langle\omega,\xi\rangle_g\omega_g\)  <br />2. \(\omega\wedge\tau\) <br />解出\(^\ast \xi\) 的系数<br /><br /><strong>指标记法</strong><br />即,<br />\[(dx^{i_1}\wedge dx^{i_2}\wedge \cdots \wedge dx^{i_k})\overset{\ast} \mapsto \sum_{(j_{k+1},\cdots,j_n)}\frac{\sqrt{det(g_{ij})}}{(n-k)!}\delta^{j_1 \cdots j_k}_{i_1\cdots i_k}\cdot g^{i_1j_1}\cdots g^{i_kj_k} \cdot dx^{j_{k+1}}\wedge dx^{j_{k+2}}\wedge\cdots\wedge dx^{j_n}\]
+ <br /></td>
     </tr>
     <tr>
       <td>例子<br /><br />体元和单位元</td>
@@ -249,7 +252,8 @@
       <li>比较 \(\omega\wedge\tau\) 和 \(\omega\wedge^\ast \xi=\langle\omega,\xi\rangle_g \omega_g\) 的系. : 即非零参数 \(\omega_{(j_{1},\cdots,j_k)}\) 的系数
         <ul>
           <li>左侧为: \((n-k)!\cdot \tau_{(j_{k+1},\cdots,j_n)}\)</li>
-          <li>右侧为: \(\delta^{j_1 \cdots j_k}_{i_1\cdots i_k}\cdot g^{i_1j_1}\cdots g^{i_kj_k}\cdot \sqrt{det(g_{ij})}\)</li>
+          <li>右侧为: \[\delta^{j_1 \cdots j_k}_{i_1\cdots i_k}\cdot g^{i_1j_1}\cdots g^{i_kj_k}\cdot \sqrt{det(g_{ij})}\]
+          </li>
         </ul>
       </li>
     </ul>

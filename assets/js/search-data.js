@@ -499,25 +499,25 @@ var store = [{
         "tags": ["content","stock","alpha","simulation"],
         "url": "https://roshameow.github.io//personal_homepage/finance/alphas/"
       },{
-        "title": "worldquant BRAIN 股票因子 (二) -- 因子思路",
-        "excerpt":"一些因子的来源和原理 对公司经营状况的预估(基本数据) fundamental datasets 运营盈利: 只对大型公司有效 盈利/支出 -rank(ebit/capex) 投入更多到运营盈利上的公司不怎么样 0.3*group_rank(ebit/assets,subindustry)- 0.7*group_neutralize(ts_mean(ebit,210)/ts_mean(capex,210),subindustry) -rank((ebit+assets)/capex) 资产估值/盈利 alpha = -group_rank(fnd2_ebitdm, industry)-group_rank(fnd2_ebitfr, industry); group_rank(fn_assets_fair_val_a,industry)&gt;0.5?alpha*2 : alpha fnd2_ebitdm domestic ebit, fnd2_ebitfr foreign ebit fn_assets_fair_val_a 资产估值 留存收益: 未分配给股东的利润 rank(ts_delta(retained_earnings / sharesout, 66)) 留存收益/股本=每股留存收益: 不受公司规模影响 -ts_rank(retained_earnings,250) 留存收益比历史减少, 可能是分红给股东了 营业收入: ts_rank(operating_income,252) 营业收入越高越好, 结合相对股价看(operating_income/close), 如果营业收入增长而股价未能跟上，可能意味着市场尚未充分定价公司改善的前景 结合市值(operating_income/cap) ts_rank(fnd6_fopo/debt_lt,252) 和长期负债的比值 负债 短期债务:...","categories": ["finance"],
-        "tags": ["content","stock","alpha"],
-        "url": "https://roshameow.github.io//personal_homepage/finance/alphas2/"
+        "title": "Fundamental 基本面衍生数据体系、PIT 时钟原理与在 analyze-dataset 中的应用",
+        "excerpt":"本文为基本面（Fundamental）财务与企业经营因子谱系篇（日频量价 OHLCV 衍生体系见 《PV 量价衍生数据体系、复权数学原理与在 analyze-dataset 中的应用》（alpha11），日内与盘口微结构统计量见 《日内 PV 统计量与市场微结构衍生指标体系》（alpha28））。本文所有表达式均对齐 WorldQuant FASTEXPR 算子规范，表格仅使用通用会计科目与基础市场参照字段，确保脱离特定数据库编号即可自解释。 一、Fundamental 基本面衍生数据三阶谱系（0→1→2 阶 + WorldQuant FASTEXPR 对齐） 相较于日频量价存在明显的多层滚动统计嵌套，基本面数据多由 0 阶原生财务科目经单步比率或直接时序重标演化而来，因此合并为三阶谱系边界最清晰：0 阶为三张财务报表及附注的原生会计科目（加基础股价/市值参照）；1 阶为直接围绕 0 阶科目展开的财务比率、市场估值锚、应计/回款质量检验与历史自我重标（含 ts_backfill 填充）；2 阶为多因子质量共振、风险残差剥离、经典经济学定价模型（杜邦、戈登、PEG）及基本面状态门控角色。 图例说明：在一至二阶衍生指标中，绿色加粗条目表示已在本地平台实测记录中检索到达标信号（非 SUPER，fitness &gt;= 1.0 且 sharpe &gt;= 1.2；除 CHN 地区外，fitness &lt;= -1.0 且 sharpe &lt;= -1.2 的反向可取负信号亦计为达标）；红色加粗条目表示库中已有实测记录但未达上述门槛；默认颜色为尚未在库中检索到独立测试记录的理论或扩展方向。 0 阶数据（原生财务科目与市场参照） 一阶数据（财务比率、估值锚、质量检验与历史重标）...","categories": ["data"],
+        "tags": ["content","fundamental","feature_engineering","analyze_dataset","quant"],
+        "url": "https://roshameow.github.io//personal_homepage/data/alphas2/"
       },{
         "title": "协程的用法",
         "excerpt":"协程就是单线程多任务, 在一个任务等待的时候干点别的其他的任务. 所以包含等待的函数都要用协程的版本: 在需要时交出event loop的控制权. python 协程的用法 在python里把一个协程函数也叫coroutine yield(生成器): 会把当前函数挂起, 保留当前执行状态, 交出event loop的控制权给调用方, 再次调用函数时从暂停处继续. 包含yield的函数会变成一个coroutine next()会激活coroutine 一个主要用法是用于创建超大的list, 不会直接创建好占用内存. 缺点是无法直接得到list的size yield from: 交出控制权 可以自动循环可迭代对象 future asyncio async 函数不会马上执行其中代码, 而是返回coroutine await 相当于yield from: 捕获StopIteration异常, 把StopIteration的value属性的值变为yield from表达式的值 后面可以是task/coroutine/future task: 可以被执行的函数 create_task 可以生成task await 也会 asyncio.run() 的时候会执行task aiohttp 特点: 需要每个子任务结束主动告知(运行结束, return) 可以用inspect 的getgeneratorstate 查看协程(coroutine)的状态javascript的用法...","categories": ["tool"],
         "tags": ["content","python","async","异步"],
         "url": "https://roshameow.github.io//personal_homepage/tool/asyncio/"
       },{
-        "title": "worldquant BRAIN 股票因子 (三) -- API使用和代码",
-        "excerpt":"仿真流程 API功能 登陆: https://api.worldquantbrain.com/authentication 获得数据字段: https://api.worldquantbrain.com/data-fields? 发起仿真测试: https://api.worldquantbrain.com/simulations 查询结果, 打标签: https://api.worldquantbrain.com/alphas/{alpha_id}批量仿真流程 开启异步session 尝试登陆 生成仿真数据, 把仿真数据存入csv文件, 计算任务数量 批量开启仿真回测, 处理可能出现的任何异常(登陆超时,发送过快,回测被拒绝) 发起请求 发起回测成功(response中包含Location) -&gt; 获得回测状态(得到simulation id) 🔄 不断请求回测状态 回测状态变为结束(response中Retry-After=0, status=[COMPLETE,WARNING]) -&gt; 获得结果(得到alpha id) 几种网络问题处理 用工具函数统一的封装get, patch, post请求. time-out: cancel 任务 退出登陆(401): 重新登陆 + 重试 超出发送限制(429): sleep + 重试 Gateway time-out(504): sleep + 重试...","categories": ["code"],
+        "title": "普通异步回测流水线架构与调度实现",
+        "excerpt":"本文档系统性剖析 QuantNight 的普通异步回测流水线（Regular Asynchronous Simulation Pipeline）核心调度与执行架构。该流水线是整个仓库吞吐量最大、并发度最高的基础生产底座，负责将模板展开的数十万级候选表达式高可靠地推送到 WorldQuant Brain 平台完成回测，并为上层智能调度（Adaptive 采样与 Priority 进化精炼）提供不可动摇的并发管理、配额控制、回执安全与断点自愈能力。 0. 核心定位与设计哲学 普通异步回测流水线并非简单的“for 循环发请求”，而是基于生产级分布式环境设计的高并发、强反压、防重放、可恢复状态机。其核心设计哲学包含以下四条基本原则： 生产者与消费者解耦、单原任务消费者统一控盘： 候选生成（模板展开）一次性写入 MongoDB 集合，标记 status=\"pending\"。 每一个任务由单一的 alpha_simulate_param.py 原任务消费者（Source Consumer）独占运行，统一持有并发槽、账号级限流冷却与日配额状态，彻底杜绝多个进程竞争发包导致的 429 封禁与配额浪费。 全局分段打乱与有界队列反压（Backpressure）： 面对数十万候选，通过基于 _id 游标的分段分页与内存打乱，规避 MongoDB skip 的性能塌陷与 5 分钟游标超时。 生产者与消费者之间通过有界队列（maxsize = max_concurrent * 4）连接，形成天然反压：当网络波动或平台排队时，消费减速自然阻塞生产，杜绝内存无限暴涨。 Multi-Simulation 同源聚合组批（Batching）： 将相同模拟参数（Region, Delay, Universe, Neutralization 等）的至多 10 个候选聚合为一个父请求發往平台，显著分摊...","categories": ["code"],
         "tags": ["content","python","async","worldquant"],
         "url": "https://roshameow.github.io//personal_homepage/code/alphas3/"
       },{
-        "title": "worldquant BRAIN 股票因子 (四) -- 因子思路",
-        "excerpt":"事件 并购(M&amp;A)分析师数据 employee anl4_adjusted_netincome_ft 本身就是个很好的指标 各种变形group_netralize, ts_mean, winsorize , +其他alpha 也都可以 anl4_flag_erbfintax anl4_totassets_number一些优化alpha的通用技巧 双重中性化: 让alpha对两个group都做中性化, 即在group (A x B) 上中性化. group=densify((group_B + 1)*1000 + group_A) 把两个group编码到一个group里. 没想到两个group可以相加. 类似于transformer中常用的, 把position embedding和text embedding用sum编码到一起. 双重排序: 和双重中性化类似. 给主要datafield A 一个很大的权重. 得到字典排序的效果. 设置“止盈止损”: 原来的写法好像有问题. close_at_event = trade_when(event1, close, -1); alpha = trade_when(event2, signal, abs(close -...","categories": ["finance"],
-        "tags": ["content"],
-        "url": "https://roshameow.github.io//personal_homepage/finance/alphas4/"
+        "title": "Analyst 分析师预期、修订动量与业绩超预期（PEAD）数据体系",
+        "excerpt":"本文为分析师预期与业绩发布（Analyst &amp; Earnings）专题篇（日频量价见 alpha11，日内微结构见 alpha28，基本面三表见 alphas2，新闻与社媒情绪见 alpha29）。全表算子严格对齐 WorldQuant FASTEXPR 规范，仅使用通用卖方预期与财报字段概念，脱离具体数据库编号即可自解释。 一、Analyst &amp; Earnings 衍生数据三阶谱系（0→1→2 阶 + WorldQuant FASTEXPR 对齐） 与基本面类似，分析师数据核心围绕“一致预期中枢、分析师分歧、上调/下调修订节奏、业绩实际超预期差（PEAD）”展开，按结构分为三阶：0 阶为原生卖方预测、评级、实际业绩与财报日历字段；1 阶为单步标准化、前瞻估值、修订广度比、实际 vs 预期差与单层 ts_* / vec_* 脉冲；2 阶为跨维度复合（如财报倒计时加权、风险回归残差、行业逆风突围与基本面联合门控）。 图例说明：在一至二阶衍生指标中，绿色加粗条目表示已在本地平台实测记录中检索到达标信号（非 SUPER，fitness &gt;= 1.0 且 sharpe &gt;= 1.2；除 CHN 地区外，fitness &lt;= -1.0 且 sharpe &lt;= -1.2 的反向可取负信号亦计为达标）；红色加粗条目表示库中已有实测记录但未达上述门槛；默认颜色为尚未在库中检索到独立测试记录的理论或扩展方向。 0 阶数据（原生预期、修订计数、业绩与日历） 一阶数据（vec_* 归约、预期估值、修订比与单层...","categories": ["data"],
+        "tags": ["content","analyst","earnings","feature_engineering","analyze_dataset","quant"],
+        "url": "https://roshameow.github.io//personal_homepage/data/alphas4/"
       },{
         "title": "切菜板成分",
         "excerpt":"材质 自身硬度和使用的适用性矛盾.             材质      耐高温      洗碗机      开裂发霉      碎屑      适用性      建议                  不锈钢/陶瓷/石材      ✔️      ✔️      x      x      打滑, 伤刀                     塑料麦秸秆(内含塑料)      ✔️      ✔️      不容易      PE材质高温下对人体有害             不切需要烹饪的生食              木质                    ✔️      不会产生有害物质                            楠竹                    ✔️      不容易                    ","categories": ["daily"],
@@ -624,24 +624,24 @@ var store = [{
         "tags": ["content"],
         "url": "https://roshameow.github.io//personal_homepage/tool/mac/dictionary/"
       },{
-        "title": "nano-banana 效果: 常用的作图功能",
-        "excerpt":"换背景(inpaint) 修改局部 ","categories": ["photo"],
-        "tags": ["content"],
+        "title": "AI作图效果: 常用的作图功能",
+        "excerpt":"在之前的笔记中（参见 [[2024-02-18-stable-diffusion3]] 与 [[2024-02-24-stable-diffusion4]]），我们详细梳理了在 ComfyUI 体系下利用 SD1.5 / SDXL 搭建各类局部修图与增强工作流的工程方案（如 GroundingDINO + SAM 语义抠图、LaMa + Fooocus Inpaint、IP-Adapter 风格约束、ControlNet Tile、UltimateSDUpscale 等）。当时的核心痛点很突出：节点连线极其复杂、显存极易爆满（16G 跑多模型捉襟见肘）、边缘融合生硬、毛发边缘发灰发虚、需要反复抽卡和人工修图补漏。 随着现代原生多模态生成模型与原生图像编辑能力的成熟，图像的局部编辑、重绘、消除与增强进入了“语义理解与光影一致性”的新阶段。本文以过去的经典例图为基准，对照评测当前 AI 生图在各核心场景下的实际表现。 1. 换背景 (Inpaint Background) 输入原图 原例图为相机拍摄的自家玳瑁猫特写（DSC07535.JPG），胸前佩戴红色条纹领结： 场景诉求 保留核心前景主体（猫咪表情、毛色斑块、领结与神态完全一致），将杂乱或单一的室内背景替换为自然生机勃勃的森林背景（cat in forest），考验主体边缘毛发抠取、景深光影一致性以及前景与背景的融合自然度。 2024年 SDXL + ComfyUI 方案回溯 在 stable-diffusion3 中，我们使用的是 SAM + Fooocus Inpaint 工作流： 依赖 GroundingDINO 识别...","categories": ["photo"],
+        "tags": ["content","AI","inpaint","sdxl","ComfyUI"],
         "url": "https://roshameow.github.io//personal_homepage/photo/stable-diffusion10/"
       },{
-        "title": "pv 衍生数据",
-        "excerpt":"pv数据 0阶数据 (原始) 一阶数据 (派生) 二阶数据 (高阶特征 &amp; 技术指标) 三阶数据 (组合/因子) open   cumret:prod(1+returns)-1excess_ret:returns - rffear:ts_mean(abs(returns - market_return)/(abs(returns)+abs(market_return)), 20) liquidity-adjusted return:returns / (1+Illiquidity) close returns:(close - close[-1]) / close[-1]—vwap:sum(close*volume)/sum(volume) volatility:ts_std(returns, 20)RSI (relative strength index)MACD (EMA_diff(close))ROC:(close_t/close_{t-n} - 1) risk-adjusted momentum:momentum / volatility high   maxdrawdown:(peak(close) - trough(close)) / peak(close)Williams %R:(HH_n - close)/(HH_n-LL_n) volume-adjusted...","categories": ["data"],
-        "tags": ["content"],
+        "title": "PV 量价衍生数据体系、复权数学原理与在 analyze-dataset 中的应用",
+        "excerpt":"一、PV 量价衍生数据四阶谱系（严格 0→1→2→3 阶 + WorldQuant FASTEXPR 对齐） 量价（Price-Volume，简称 PV）严格按算子演化层级（对 0 阶直接运算 vs 在 1 阶之上嵌套/复合）分为四阶：0 阶为平台原生字段；1 阶为直接作用于 0 阶原生字段的单步跨字段算术或单层时序变换/标准化（含 ts_zscore、ts_std_dev、ts_mean、ts_max_diff 等直出单层算子）；2 阶为在 1 阶衍生量之上再做窗口统计/高阶矩（波动率的波动、偏度信息比、换手高阶能量）、跨字段复合技术指标、截面基准或双变量相关性/回归；3 阶为多个 1/2 阶特征的交叉组合及实战中性化/分桶/门控结构角色。 图例说明：在一至三阶衍生指标中，绿色加粗条目表示已在本地平台实测记录中检索到达标信号（非 SUPER，fitness &gt;= 1.0 且 sharpe &gt;= 1.2；除 CHN 地区外，fitness &lt;= -1.0 且 sharpe &lt;= -1.2 的反向可取负信号亦计为达标）；红色加粗条目表示库中已有实测记录但未达上述门槛；默认颜色为尚未在库中检索到测试记录的理论或扩展方向。 0 阶数据（平台原生字段） 一阶数据（直接作用于 0 阶的单步算术与单层变换）...","categories": ["data"],
+        "tags": ["content","pv","feature_engineering","analyze_dataset","quant"],
         "url": "https://roshameow.github.io//personal_homepage/data/alpha11/"
       },{
         "title": "hash映射",
-        "excerpt":"估算alpha id 和什么有关 有些hash会非常相似. 目的, 得到alpha id的全部编码信息: 秒级的timestamp+machine id 44/s. 2640/min. 1w consultant. 每人回测100/ 5min. 44x3600x24/10000 = 380 次/天. 这和实际结果很不符合. 1天5w. 假设1: 可能的方案 做法 特点 输入 输出 密码学hash函数(SHA-256 / SHA-1 / MD5) 碎纸机:→ 生成和输出相同的初始值加入输入的内容进行各种非线性混合重复多次 1. 相近的输入会输出完全不同的结果2. 可以人为制造hash冲突 任意长度二进制文本 md5: 128bit/32hexSHA-256: 256bit 多项式除法的校验码(CRC32) 把输入的任意长度看成(mod2)多项式\\(M(x)\\)→ 指定生成多项式\\(G(x)\\) 得到输出为 residue \\(R(x)\\)实际中通过移位+XOR实现 1. 常见的变化, 输出可预测(单比特错、双比特错、突发错)...","categories": ["algorithm"],
+        "excerpt":"常用哈希与编码方案比对 可能的方案 做法 特点 输入 输出 密码学 hash 函数(SHA-256 / SHA-1 / MD5) 碎纸机：→ 生成和输出相同的初始值加入输入的内容进行各种非线性混合重复多次 1. 相近的输入会输出完全不同的结果2. 可以人为制造 hash 冲突 任意长度二进制文本 md5: 128bit / 32hexSHA-256: 256bit 多项式除法的校验码(CRC32) 把输入的任意长度看成 (mod 2) 多项式 \\(M(x)\\)→ 指定生成多项式 \\(G(x)\\)得到输出为 residue \\(R(x)\\)实际中通过移位 + XOR 实现 1. 常见的变化，输出可预测(单比特错、双比特错、突发错) 任意长度二进制文本 CRC32: 32bit / 8hex 文本去重，片段匹配Rolling Hash 把字符串看成 B...","categories": ["algorithm"],
         "tags": ["content"],
         "url": "https://roshameow.github.io//personal_homepage/algorithm/alpha12/"
       },{
-        "title": "服务器发送消息通知",
-        "excerpt":"发送文字/表格/图片的混合消息   飞书: 支持富文本和卡片          普通消息      消息卡片                  打开 飞书开放平台。          在企业自建应用, 创建机器人                          获得机器人的App ID, App Secret              在权限管理, 给机器人添加上传图片的权限: im:message                                  图片需要先上传到平台, 在消息里用链接                  每次token只能保存两个小时.                                                              在开放平台的开发文档里搜发送卡片的各种示例                          llm没法知道专用格式. 可能需要可以上网的agent                                            邮件: 支持html渲染          在gmail开启两步验证, 然后开启 https://myaccount.google.com/apppasswords 就可以      ","categories": ["tool"],
-        "tags": ["content"],
+        "title": "服务端通知与自动化错误台账系统：发消息（飞书/Log/邮件）与整合消息（三路同级台账）",
+        "excerpt":"现代后台与量化回测服务必须严格解耦并协同两套平级体系： 实时消息发送体系（发消息）：负责对外的主动触达与状态广播。涵盖飞书自建应用凭证与群机器人搭建、系统 Logging 日志分流、自定义 PROGRESS 级别、ContextVar 死循环切断机制、定时日志轮转维护，以及通过 blocks 块协议驱动飞书交互卡片 2.0 与 Gmail SMTP 图文邮件。 消息整合与错误台账系统（整合消息）：负责对内的故障留痕与质量治理。将来自 Agent 事实报告、Runtime 运行时捕获与 Log 文件增量摄入三路同级通道的错误与诊断信息，统一整合并持久化到 artifacts/bugs/，通过 AST 指纹聚合去重与绝对安全脱敏，交由独立维护 Session 闭环修复。flowchart TD subgraph Part1[\"第一大板块：实时消息发送体系 (发消息)\"] direction TB subgraph S1[\"1-2. 凭证配置 (飞书 / Gmail)\"] Cred[\"credentials.yaml\\n(飞书自建应用/Webhook + Gmail SMTP 专用密码)\"] end subgraph S2[\"3. Logging 引擎与路由\"] LogEmit[\"FeishuLoggingHandler.emit()\"] Filter{\"日志级别\"} LogEmit...","categories": ["tool"],
+        "tags": ["python","notification","feishu","logging","architecture"],
         "url": "https://roshameow.github.io//personal_homepage/tool/message/"
       },{
         "title": "代码模块的多维索引",
@@ -655,7 +655,7 @@ var store = [{
         "url": "https://roshameow.github.io//personal_homepage/daily/disinfectant/"
       },{
         "title": "组合交易 (二)",
-        "excerpt":"单个alpha的性能 维度 指标名称 描述 计算公式 特点 表现和未来一天returns的关系 daily pnl   \\(S_t\\cdot R_{t+1}=\\sum_i S_{i,t}R_{i,t+1}\\) 最直接   Quintile Long–Short Strategy（五分位多空策略）   \\(R_{Q5}-R_{Q1}\\) 常用投资研究方法   Information Coefficient(IC) 计算alpha值和未来一天returns的Pearson相关性 \\(IC_t = \\rho(S_t,R_{t+1}) = \\frac{\\sum_{i=1}^N (S_{i,t} - \\bar{S}_t)(R_{i,t+1} - \\bar{R}_{t+1})}{\\sqrt{\\sum_{i=1}^N (S_{i,t} - \\bar{S}_t)^2 \\sum_{i=1}^N (R_{i,t+1} - \\bar{R}_{t+1})^2}}\\) 容易受到极端值影响   Fama-MacBeth Regression 计算alpha值对未来returns的beta系数 Linear Regression Model:\\(R_{i,t+1}...","categories": ["finance"],
+        "excerpt":"单个alpha的性能 维度 指标名称 描述 计算公式 特点 表现和未来一天returns的关系 daily pnl   \\(S_t\\cdot R_{t+1}=\\sum_i S_{i,t}R_{i,t+1}\\) 最直接   Quintile Long–Short Strategy（五分位多空策略）   \\(R_{Q5}-R_{Q1}\\) 常用投资研究方法   Information Coefficient(IC) 计算alpha值和未来一天returns的Pearson相关性 \\[IC_t = \\rho(S_t,R_{t+1}) = \\frac{\\sum_{i=1}^N (S_{i,t} - \\bar{S}_t)(R_{i,t+1} - \\bar{R}_{t+1})}{\\sqrt{\\sum_{i=1}^N (S_{i,t} - \\bar{S}_t)^2 \\sum_{i=1}^N (R_{i,t+1} - \\bar{R}_{t+1})^2}}\\] 容易受到极端值影响   Fama-MacBeth Regression 计算alpha值对未来returns的beta系数 Linear Regression Model:\\(R_{i,t+1}...","categories": ["finance"],
         "tags": ["content"],
         "url": "https://roshameow.github.io//personal_homepage/finance/alpha13/"
       },{
@@ -694,15 +694,25 @@ var store = [{
         "tags": ["AI","llm","蒸馏"],
         "url": "https://roshameow.github.io//personal_homepage/general/person-skill/"
       },{
-        "title": "动态调整搜索优先级：从 PROSAC 到 Alpha 实战演进",
-        "excerpt":"在量化回测中，Alpha 搜索不仅仅是一个算力问题，更是一个资源分配问题。传统的 RANSAC（随机采样一致性）在面对海量 Datafields 时效率极低，而 PROSAC 提供了一种渐进式（Progressive）的思考框架。 1. Alpha 搜索的三个核心难点 在尝试自动化挖掘 Alpha 时，我们面临的挑战远比几何模型拟合复杂： 搜索范围极广 (Dimensionality Curse)：Datafields 数量庞大，加上算子组合、参数空间，理论搜索空间呈指数级爆炸。 有效 Alpha 极稀疏 (Sparse Signals)：在数亿种组合中，真正能通过过拟合测试、具有预测能力的信号寥寥无几。(尾部识别) 协同效应与相关性 (Synergy &amp; Correlation)：单一字段的优劣并不代表全部。Alpha 的最终效果往往取决于字段间的组合正交性，而单纯的线性排序无法捕捉这种“1+1&gt;2”的化学反应。2. PROSAC 的策略关键：\\(T_n\\) 的本质 PROSAC 引入 \\(T_n\\)（增长函数）的核心目的不是为了“等待”，而是为了在有限预算内建立先验知识与随机探索的桥梁。 \\[T_n = T_{max} \\frac{\\binom{n}{m}}{\\binom{N}{m}}\\]其关键点在于： 模拟进度：\\(T_n\\) 模拟了如果使用完全随机搜索，此时你应该触达的“高质量子集”深度。 确定性覆盖：它保证了即使先验排序完全错误，算法在 \\(T_{max}\\) 结束时也能退化为全空间扫描，不留盲区。 非线性偏置：对于组合搜索 (\\(m&gt;1\\))，\\(T_n\\) 强制算法在早期极度聚焦于高潜力字段的深度挖掘。3. Progressive 策略在 Alpha 领域真的有意义吗？ 直白地说，死板的“线性披露”在...","categories": ["algorithm"],
-        "tags": ["Alpha","Search","PROSAC","Optimization"],
+        "title": "从问题特点出发：Alpha 搜索算法体系的诚实复盘与演进",
+        "excerpt":"在量化回测中，Alpha 搜索本质上是一个受限配额下的黑箱资源分配问题。 1. Alpha 搜索的三个核心难点与局部特点 在尝试自动化挖掘 Alpha 时，我们面临的挑战远比普通模型拟合复杂： 搜索范围极广 (Dimensionality Curse)：Datafields 数量庞大，加上算子组合、参数空间，理论搜索空间呈指数级爆炸。 有效 Alpha 极稀疏 (Sparse Signals)：在数亿种组合中，真正能通过过拟合测试、具有预测能力的信号寥寥无几（尾部识别）。 协同效应与相关性 (Synergy &amp; Correlation)：单一字段的优劣并不代表全部。Alpha 的最终效果往往取决于字段间的组合正交性，而单纯的线性排序无法捕捉这种“1+1&gt;2”的化学反应。Alpha 搜索的局部特点 难以直接求解：缺少可用梯度、解析解或可靠的精确优化器，需要依靠黑箱反馈推进。 存在共享规律：某些数据类型适合某类处理，某些算子结构容易产生高换手或集中持仓。 存在局部改进：平滑、中性化、异常值处理等，有时能改善已有信号。2. 算法选型 先验特征引导 从历史回测结果提出的特征冷启动 引入外部世界先验：论文 / AI 数据集分析 / 经济 Idea 为长尾深处的稀疏信号保留无偏探索通道 闭环在线反思 局部探索优化为什么不用渐进披露 怎么移植：alpha之间的组合关系并不是同一公式的投影. 考虑 PROSAC 算法，只选取一个特征 字段, 假设总回测预算 5000 次、总字段数 1000 个，均匀随机下每个字段被选中的期望次数为 \\(5000...","categories": ["algorithm"],
+        "tags": ["Alpha","Search","Adaptive","Priority","LightGBM","Optimization"],
         "url": "https://roshameow.github.io//personal_homepage/algorithm/alpha16/"
       },{
         "title": "时序上的参数优化和神经网络",
         "excerpt":"问题: 对给出的固定字段和feature, 怎么连续的调参 特征: pv原始数据 已知有信号的现成特征 loss: -sharpe 可以用的样本数很少. 66为周期的话, 5年的样本数只有 5x512/66=17 个 样本少其实就是约束少, 容易过拟合的意思 模型容量 把mu和sigma拆开成线性的 activation demean, L1 优化 SGD普通 Adam: 解决各个特征大小不均衡的问题 方案一：横截面分组算 Loss（Cross-Sectional Sub-Portfolio Sharpe） 这是量化因子投资中解决 Sharpe 样本数不足最经典的办法。 • 具体做法：不要把 3000 只股票聚合成一个全市场组合去算 Sharpe。而是将这 3000 只股票在横截面上切分成 K 个互不重叠的子组合（例如：按行业分成 11 个板块组合，或者随机均匀分成 10个子组合，每个组合约 300 只股票）。• Loss 函数改写：对每一个 66 天的 Batch，分别计算这...","categories": ["algorithm"],
         "tags": ["content"],
         "url": "https://roshameow.github.io//personal_homepage/algorithm/alpha17/"
+      },{
+        "title": "大量探索优化异步任务调度--代码实现",
+        "excerpt":"本文档详细阐述 QuantNight 的整体异步回测流水线（Asynchronous Simulation Pipeline），以及构建在该流水线之上的两大智能调度与进化子系统：Priority Task（基于实测反馈的多源 Per-Root 三阶段自动精炼编排） 与 Adaptive Task（基于结构特征与在线 LightGBM 的探索-利用自适应采样调度）。 0. 三类任务模式全景对比表 特性维度 普通任务 (Regular) 自适应任务 (Adaptive Task) 精炼优先任务 (Priority Task) 核心目标 按既定列表测完模板展开的候选池 在超大待测池中被动优选高潜结构先测 基于实测好 Alpha 主动生成并迭代 3 轮精炼变体 是否生成新表达式 仅启动前生成一次 否（只对已有 pending 池动态排序） 是（根据实测反馈动态生成 R1/R2/R3 变体） 驱动Runner进程 scripts/alpha_simulate_param.py scripts/alpha_simulate_param.py（开启 adaptive.enabled） 控制器：scripts/refine_simulate_param.py执行器：借用原任务的 alpha_simulate_param.py 与其它队列的关系 与同集合的 Priority 共享...","categories": ["algorithm"],
+        "tags": ["content"],
+        "url": "https://roshameow.github.io//personal_homepage/algorithm/alpha18/"
+      },{
+        "title": "回测系统核心网络层架构与全模块调用",
+        "excerpt":"本文档深入剖析 QuantNight 的统一 HTTP 传输与容错底座 util/network_util.py，涵盖其内部 9 阶段请求流水线、回调契约（ResponseDecision）、Location 回执硬门禁、同账号 401 世代去重自愈、限流与分页原语，以及全仓各业务模块（回测引擎、Native MCP、数据同步、恢复器）如何组装并调用该模块。 1. 模块定位与核心原语一览 util/network_util.py 是整个仓库访问 WorldQuant Brain 平台 API 的唯一底层 HTTP 执行与重试底座。任何上层模块均不得绕过它直接裸调 session.get/post 自行拼装重试或私自重连。 核心原语 / 类 代码位置 职责定位 _request_with_retry(...) util/network_util.py 核心单请求状态机：信号量、滑动窗口限流、前置门禁、HTTP 传输、自定义响应策略、Location 防重放硬门禁、同账号 401 世代自愈、指数退避重试与异常打标 request_with_response_policy(...) util/network_util.py _request_with_retry 的泛型策略包装器，强制使用 ResponseDecision[T] 回调接口 ResponseDecision[T] util/network_util.py 响应分类决策数据类：value（返回值）、retry429（是否按限流退避重试）、retry401（是否触发同账号重登后重试）、wait_seconds（指定等待秒数） RateLimiter util/network_util.py 多维自适应限流器：最小发包间隔（1/rate）+ 60...","categories": ["code"],
+        "tags": ["content"],
+        "url": "https://roshameow.github.io//personal_homepage/code/alpha19/"
       },{
         "title": "LLM接口协议梳理",
         "excerpt":"梳理一下主流 LLM 接口的请求/响应结构、调用模式，以及各协议的差异，方便选型和对接时快速对照。 flowchart LRsubgraph req[\"请求侧 — 客户端发什么\"]direction TBR1[\"输入 prompt / input / messages\"]R2[\"历史 messages[] 或 state ID\"]R3[\"system / instructions\"]R4[\"工具声明 tools[]\"]R5[\"stream / 其他配置\"]R1 --- R2 --- R3 --- R4 --- R5end subgraph model[\"模型执行\"]direction TBM1[\"组装上下文\"]M2[\"推理\"]M3[\"决定输出\"]M1 --- M2 --- M3end subgraph resp[\"响应侧 — 模型返回什么\"]direction TBS1[\"文本输出\"]S2[\"工具调用 tool call\"]S3[\"停止原因 stop / finish reason\"]S4[\"usage token...","categories": ["tool"],
@@ -743,4 +753,114 @@ var store = [{
         "excerpt":"Pi Desktop 里最难修的功能，是侧边栏那枚很小的状态 chip：这个会话现在的运行状态？ 它可能在普通终端、RMUX pane、远程主机，也可能进程已经退出，只剩 remain-on-exit 保存的死画面。更麻烦的是，显示错位置不会立即报错；界面仍然完整，只是把操作发给了错误的会话。这类“看起来合理”的错误最危险。 下面讲下原理和迭代过程. 1. 会话和pid绑定(who) 为什么会话和pid绑定是个难题?? 根本原因在于生命周期与操作系统抽象的深层错配： 生命周期的断层： Session JSONL（业务实体）：具有长持久性。它记录了完整的思维链与执行树，寿命跨越数天、数月，支持反复暂停与 resume。 PID（内核资源）：具有极短的易逝性与复用性。它只是内核进程表里循环利用的一个整数标签。进程退出后，内核下一秒就可能把相同的 PID 赋予一个无关的临时脚本。 关系基数是时序上的 1 对多： 同一个session，昨天是 PID 1024 在跑，今天是 PID 5088 在跑； 用户在两个终端同时打开同一会话的并发多对一。 进程执行 /new，PID 没变，但它脱钩了旧 session，指向了新 session。 追踪维度 操作系统理论能力 (Textbook) 真实 CLI 场景失效细节 (Physical Failure) 早期妥协尝试及致命漏洞 (Early Flaws) 正向：进程参数PID → argv...","categories": ["tool"],
         "tags": ["pi","tauri","rmux","macOS","debugging"],
         "url": "https://roshameow.github.io//personal_homepage/tool/pi-runtime-attribution/"
+      },{
+        "title": "深入理解 TUN 模式：网卡识别命令与直连/代理判定全景对照",
+        "excerpt":"一、查看物理网卡（en0）与虚拟网卡（utun）的常用命令 在 macOS 终端中，可以通过以下命令快速识别当前生效的物理网卡、TUN 虚拟网卡以及系统默认路由。 1. 快速列出本机所有网卡接口 ifconfig -l 输出示例：lo0 en0 en1 bridge0 utun0 utun1 utun7 ... 含义： en0（或 en1）：物理网卡（Wi-Fi 或有线网卡）。 utunX（如 utun7）：虚拟隧道网卡（VPN 或 Clash Verge 开启 TUN 模式后创建）。 lo0：本地环回接口（127.0.0.1）。 2. 查看网卡与硬件设备的对应关系（最直观） networksetup -listallhardwareports 作用：会明确标注出 Hardware Port: Wi-Fi -&gt; Device: en0、Ethernet -&gt; Device: en4 等，方便确认哪块是真实物理网卡。3. 查看特定网卡详细信息 # 查看物理网卡状态与 IPifconfig en0#...","categories": ["daily"],
+        "tags": ["network","clash","macos"],
+        "url": "https://roshameow.github.io//personal_homepage/daily/%E7%BD%91%E7%BB%9C%E9%97%AE%E9%A2%98/"
+      },{
+        "title": "pi agent无人值守工作总体架构与事件闭环",
+        "excerpt":"从长期 Agent 运维经验中抽象通用方法，面向任意长耗时、多阶段、依赖外部系统的任务，例如构建部署、模型训练、数据管线、文档交付、仿真和异步审批。 1. agent项目成熟度判断 可以把项目成熟度分为四级： 级别 能力 L1 脚本化 能自动填表、调 API、上传文件 L2 可观察 有 watcher、日志、通知和状态台账 L3 事件闭环 watcher 能唤醒正确 Agent，Agent 自动继续 L4 自愈自治 多账号隔离、幂等、安全门禁、重启恢复、异常才找人 L4的目标是建立一套 事件驱动、所有权明确、状态可恢复、动作可审计的 Agent 工作流系统： 主 session 负责全局调度、事件路由和异常决策； durable worker 负责一个明确任务及其资源的执行与续作； 外部 watcher 负责低成本观察长流程，不让模型在前台反复轮询； 通知总线把变化送回正确的主 session 或 worker； 浏览器、CLI、API、版本库、存储和验证工具构成执行面； ledger、checkpoint、iteration ledger 和版本证据构成状态与审计面； 人只处理必须授权、无法自动判断或涉及重大不可逆取舍的异常。因此，准确目标是：正常路径自动闭环，异常路径按处理能力分级升级，人处于 on-call 状态，而不是完全取消人工。 这套方法适合任意长任务类型，但迁移至少需要：可查询的权威状态、稳定资源身份、可定义的阶段和交付契约、明确授权范围，以及可回读的动作结果。...","categories": ["tool"],
+        "tags": ["content"],
+        "url": "https://roshameow.github.io//personal_homepage/tool/resumable-work/"
+      },{
+        "title": "pi agent无人值守工作案例一(talentsai)",
+        "excerpt":"本文是 TalentsAI 项目的业务案例，重点说明领题、Coding/长文/Office 制作、录屏、评测、质检、返修、提交和审核如何接入无人值守系统。网页上有足够的状态接口和事件通知接口. 且流程简单, 适合测试工作流. 1. 案例概览 这个项目并不是一个单体爬虫，而是一套运行在 Mac mini 上的 LLM Agent 运维与出题流水线： Pi 主 session 负责全局调度、任务路由和异常决策； 每道题由一个可持久化的独立 subagent/worker 负责； Python watcher 监控平台状态、评测、审核、通知和录屏； pi-agent-notify 把脚本事件直接注入对应 Pi session； pi-subagent-durable 让 worker 可长期运行、等待、重启和原会话续作； Playwright/CDP、平台 API、Web IDE、Git/OSS、Harbor/Docker 组成实际执行面； JSON 台账、checkpoint、哈希、transaction/request 证据组成状态与审计面； 只有原生录屏授权、登录失效、验证码、真实性/合规疑问及重大不可逆决策才升级给人。1.1 通用机制在本案例中的映射 通用机制 TalentsAI 的具体对象与实现 任务所有权 一道题（item）对应唯一 worker taskId 外部状态观察...","categories": ["tool"],
+        "tags": ["content","pi","agent","auto"],
+        "url": "https://roshameow.github.io//personal_homepage/tool/agent-example1/"
+      },{
+        "title": "pi agent无人值守工作案例二(xpert)",
+        "excerpt":"本文是 eXpert 无人值守案例, 重点说明如何把网页操作、文件处理、模型运行和飞书通知封装成工具。 eXpert项目相对接口来源更丰富, 状态更复杂. 但是流程更简单. 用于测试我们工作流的移植难度. 1. 读取、撰写与上传技术栈 1.1 读取问题：文件 飞书网页版和浏览器混用 环节 技术 / 工具 本案例用途与限制 飞书 Doc / Wiki 正文 CDP、页面 DOM、内部滚动容器；feishu_doc_dump.py 提取已打开文档的正文并落盘；逐段滚动文档内部容器，不能只滚动 window 或读取当前可见段落 按链接读取文档 CDP 临时标签页；feishu_doc_fetch.py 打开指定链接、等待加载、调用正文提取，再关闭自己创建的标签页；不关闭用户原有页面，不修改文档 引用文件链接提取 页面导航 hook、真实点击；feishu_doc_links.py 提取没有普通 href 的引用文档链接；可能点击条目并新开标签页，不是完全无页面副作用，只清理本次创建的页面 飞书多维表格 页面 SSR 数据、页面内 fetch、gzip/base64 解码；feishu_base_read.py 读取字段、视图和记录；canvas 网格不能靠 body.innerText 获取，权限不足或数据源缺失须明确返回失败 canvas 字段与视图读取：已实现的解决路径...","categories": ["tool"],
+        "tags": ["content"],
+        "url": "https://roshameow.github.io//personal_homepage/tool/agent-example2/"
+      },{
+        "title": "pi agent无人值守工作案例三(quantnight)",
+        "excerpt":"本文是 QuantNight 项目的量化回测自动化搭建与工程调教案例，重点记录如何将复杂的 WorldQuant Brain 量化平台交互、Tauri 桌面端、Rust/taskctl 底层进程守护、长耗时回测状态机与并发防崩体系跑通。相比纯 Web/API 任务，量化回测系统面临平台回测延迟大、并发配额限制、系统级进程监控、数据库与文件锁竞争等多重挑战。本项目当前处于 L1~L2 阶段（强工具化与高可观察性）：底层任务控制内核与鲁棒性门禁已搭建完毕，而 Session 级 Goal 驱动与 Agent 事件通知闭环尚未正式接通。本文结合实际会话中的排障历程，沉淀系统工程底座的建设经验。 1. 案例概览 QuantNight 不是简单的自动化脚本合集，而是一套运行在 Mac 环境上的 量化回测、Alpha 挖掘与桌面端交互协同的自动化流水线： Pi 会话与运维：主要用于全局架构重构、排障定位与阶段性维护（如维护 session 01a16328-d448-72d8-b75b-0552e1d06a4e）； 任务目标管理（Goal）：【演进中 / 尚未接入】 当前任务仍由人工或独立指令派发，长期自主 Goal 状态机尚未挂接到日常回测循环； 底层 CLI（taskctl / task-core）：由 Rust 编写的原生任务控制核心，统领任务生命周期（创建、生成、启动、暂停、恢复、归档、删除）与并发排他； 桌面端（quantnight-frontend）：基于 Tauri + 前端构建的桌面管理界面，为主控提供直观的状态卡片、折叠详情、诊断与手动控制； 回测执行后端与 MCP（quant_night_mcp）：对接 WorldQuant Brain...","categories": ["tool"],
+        "tags": ["content","pi","agent","auto","quant"],
+        "url": "https://roshameow.github.io//personal_homepage/tool/agent-example3/"
+      },{
+        "title": "回测系统任务控制生命周期：入口、证据、故障分支与行为验收",
+        "excerpt":"为什么必须设计成gui/cli统一架构？为什么不能直接操作底层脚本? 1. gui的操作比想象中复杂: 终结双脑分叉（Split-Brain），消除破坏性操作隐患 历史痛点：GUI 由 Tauri (Rust) 直连 MongoDB 编写，CLI 由 Python taskctl.py 编写。两套代码、两套边界判定。正如会话中发现的，GUI 的删除直接执行物理 drop，而 CLI 走的是带有停止证明、未决回执保护和原子重命名的安全归档。如果使用者或 Agent 在不同端操作，会导致数据不一致甚至毁灭性误删。 架构方案：将所有任务管理动作（创建、生成、同步、启动、暂停、删除、对账）的权威业务逻辑全部收拢到单一的 Rust 核心 crate：quantnight-task-core。两端不再各自解释状态。2. 人工和agent需要互不干扰: 人工操作（GUI）与 Agent 自治（CLI）的“平权控制” 定位对齐： 人（Human） 习惯使用桌面端 GUI（Tauri + Vue），依赖可视化大屏、图表、直观的运行/停止折叠详情和按钮手动恢复； 智能体（Agent / Worker / Coordinator） 没有图形界面，必须依赖结构化、非阻塞、具备确定退出码和 JSON 回执的 CLI 命令。 平权一致性：如果 GUI 和 CLI 是两套逻辑，Agent...","categories": ["tool"],
+        "tags": ["content"],
+        "url": "https://roshameow.github.io//personal_homepage/tool/alpha20/"
+      },{
+        "title": "从U-Net到DiT: 现代多模态大模型与Stable Diffusion的架构演进",
+        "excerpt":"在三年前的两篇笔记中（参见 [[2024-02-04-attention]] 与 [[2024-02-29-stable-diffusion6]]），我们曾对注意力机制的底层映射、SD（Stable Diffusion）经典 U-Net 结构以及 ControlNet / IP-Adapter / GLIGEN 等微调补丁进行过系统的梳理。 时隔三年，生成式与多模态 AI 经历了一场彻底的“地壳运动”：骨干网络从卷积 U-Net 全面转向 DiT（Diffusion Transformer），交互机制从外挂式单向交叉注意力走向文本与图像平权的联合注意力，扩散数学范式从复杂的曲折 SDE 采样走向直连的流匹配（Flow Matching），而图像编码与多模态表征更是从割裂走向理解与生成的终极合流。 本文以三年前的认知为基准，深入剖析这三年间架构层面的本质跃迁。 1. 架构底座的更迭：从 U-Net 到 DiT / MMDiT 三年前的经典 SD（SD 1.5 / SDXL）架构，本质上是一个以卷积为主体的宏大工程架构：VAE + 带跳跃连接的 2D U-Net + 嵌在 ResNetBlock 之间的 SpatialTransformer（Cross-Attention）。 而今天以 Flux.1、Stable Diffusion 3、Midjourney v6/v7...","categories": ["deeplearning"],
+        "tags": ["content","attention","stable-diffusion","DiT","multimodal","FlowMatching"],
+        "url": "https://roshameow.github.io//personal_homepage/deeplearning/stable-diffusion11/"
+      },{
+        "title": "复杂长期任务的多Session分权与Goal治理",
+        "excerpt":"本文是 QuantNight 项目的智能体治理与多 Session 协同架构案例，重点剖析在量化回测底座跑通后，如何建立严密的 Agent 分权约束、集中式 Goal 目标管理、热加载插件（pi-goal-feedback）以及端到端自治研究闭环。很多自动化项目在跑通底层执行后，往往陷入“放手就失控、收紧就瘫痪”的治理困境。本文结合真实调教历程，详细阐述为什么必须设计这套多 Session 权责硬隔离体系与 Goal 热加载机制，为复杂工程场景下的多 Agent 协作提供可落地的治理范式。 1. 案例概览与治理挑战 在完成底层 Runtime 合并（Rust task-core、Headless Host、Unix IPC、系统 tmux 守护与 CAS 防覆）之后，QuantNight 的单机执行底座已坚如磐石，回测不会掉线、不会锁死、更不会因为前台断开而异常终止。 然而，当系统从“单任务脚本化”迈向“多 Agent 自主协作”时，立刻撞上了智能体层面的组织混乱： 高危动作越权失控：平台每日提交配额极其稀缺且不可逆。执行端 Agent 容易产生盲目拟合的幻觉，一旦持有提交权，极易擅自消耗宝贵配额提交次品； 私自篡改系统底座：执行端 Agent 在回测受阻或门禁报错时，倾向于“走捷径”去魔改底层 Python 脚本、放宽测试断言或修改长期 Skill； 目标（Goal）漂移与管理僵化：没有明确、可执行的 Goal 约束，Agent 容易在会话中越跑越偏；而传统的 /goal 命令必须停机重启，无法适应盘面与战术策略的动态微调； 角色过度碎片化（流水线空转）：试图把“数据分析”与“回测实验”拆成两个独立 Session，导致 Agent 之间整天在“发消息、等消息、解释消息”，真正干活的时间全被高昂的“跨会话等待税”吞噬。为了终结这些乱象，系统确立了“三权分立、目标集中、热加载驱动、闭环内自治”的多...","categories": ["tool"],
+        "tags": ["content","pi","agent","auto","quant"],
+        "url": "https://roshameow.github.io//personal_homepage/tool/alpha21/"
+      },{
+        "title": "深入理解 macOS 动态链接：dyld、@rpath 陷阱与 Conda/系统库冲突全景对照",
+        "excerpt":"背景：关于 libiconv 与本次依赖引入 核心功能：libiconv 是 POSIX 标准的跨字符集转码库（负责 GBK / Latin-1 ↔ UTF-8 等互转，避免乱码与解析崩溃）。 为什么被链接：taskctl 虽为纯 Rust 编写，但其依赖的 MongoDB 驱动（mongodb / bson）在执行 SCRAM 认证与国际化文本处理（stringprep 协议）时需要该转码符号；编译期链接器捕获了 Miniforge 环境的 -liconv，从而动态挂载了该库。 一、macOS 动态链接路径前缀本质区别 在 Mach-O 体系中，有三种特殊的动态加载宏路径： 动态路径宏 展开基准点 (Anchor Point) 设计初衷 典型应用场景与优劣 @executable_path 当前主进程可执行文件所在的物理绝对目录 保证独立可分发应用程序自身内部组件的相对稳定 macOS App Bundle 黄金标准。例如指向 .app/Contents/MacOS/../Frameworks。即便 App 被移动到任何文件夹，内部相对寻址始终有效。 @loader_path 当前正在发起加载的...","categories": ["daily"],
+        "tags": ["macos","rust","dev"],
+        "url": "https://roshameow.github.io//personal_homepage/daily/macos-rpath-dyld/"
+      },{
+        "title": "从免责复读到二元决断：长期自治Session的Goal失灵病理与重构实战",
+        "excerpt":"本文是 QuantNight 智能体架构系列的续篇（接前篇 《复杂长期任务的多Session分权与Goal治理》（alpha21））。在前篇中，我们建立了“三权分立、提交独占、名册收敛与 Goal 动态加载”的基础治理骨架。然而，当统筹 Session（Coordinator）真正投入无人值守的长周期运行后，系统却陷入了一种极其荒诞的瘫痪状态：Agent 拥有最高裁量权与唯一的提交工具，却在几千轮交互中化身“免责律师”，疯狂复读法律声明拒绝提交，而 /goal 监督器却因它“没有违规动作”持续为其判定正确。本文基于数千轮真实运行的审计数据，深度剖析统筹 Session 典型的三大失灵现场与四大底层病灶，并给出彻底重构 Goal 契约的工程解法。 1. 令人窒息的运行审计：/goal 判定统计 在对近期统筹 Session（01a199d6）的数千步执行日志进行量化回溯后，我们得到了一组极具讽刺意味的监督器判定统计数据： /goal 判定类型 次数 占比 典型行为模式 correct（正确） 208 次 54.6% 其中 no_action（无行动）高达 182 次，off_goal（偏离目标）22 次，真正产生业务推进的极少 waiting（等待） 126 次 33.1% 针对执行 Session 的底层报错撰写防御性免责声明后立即挂起停机 continue（继续行动） 47 次 12.3% 真正调用工具主动推进业务目标的回合不足一成半 在全部 381 次重要状态判定中，不作为与挂起状态（no_action + waiting）高达...","categories": ["tool"],
+        "tags": ["content","pi","agent","auto","quant"],
+        "url": "https://roshameow.github.io//personal_homepage/tool/alpha22/"
+      },{
+        "title": "QuantNight MongoDB 存储拓扑、数据流架构与生产运维基线",
+        "excerpt":"本文档系统性剖析 QuantNight 量化系统的 MongoDB 存储拓扑、逻辑库/集合职责划分、数据流平面、quantnight-task-core 对 Alpha 仓储与数据面板的权威读取体系、PnL 双覆盖索引优化、定时采集调度体系与只读分层运维基线。 在量化研究与大规模高并发回测体系中，MongoDB 既承担着控制面任务状态机与数百任务数十万待测项的高频并发读写，又承载着全量 Alpha 详情、年度统计、高维时序 PnL、相关性矩阵与字段字典的海量仓储。若存储层边界模糊、索引失效或网络拓扑混乱，系统极易陷入“前端列表卡死、WiredTiger 内存耗尽持续换页、远端隧道超时、任务状态死锁”的泥潭。 1. 双端存储拓扑与业务角色分离 QuantNight 在物理部署上采用“本机主控 + 远端执行机（mac-mini）”的混合架构。二者通过安全 SSH 隧道连接，在逻辑上严格解耦为 local 与 remote 两大业务角色。 1.1 核心拓扑架构图 flowchart TB subgraph LocalHost [\"本机环境 (MacBook Pro 主控端)\"] direction TB subgraph UnifiedCore [\"统一核心层 (quantnight-task-core)\"] TaskEngine[\"Task Control 引擎&lt;br/&gt;task_control / lifecycle_policy / task_store\"]...","categories": ["tool"],
+        "tags": ["content","mongodb","architecture","database","quant"],
+        "url": "https://roshameow.github.io//personal_homepage/tool/alpha23/"
+      },{
+        "title": "WorldQuant Brain 平台通信与认证架构：Cookie-First、204/401 恢复时序与单真源安全门禁",
+        "excerpt":"本文系统性剖析 QuantNight 量化系统的底层平台通信与认证安全架构，深入拆解 Cookie-First 优先认证、204/401 两阶段有效性探测与恢复流程、代际防惊群会话锁治理、同账号身份强绑定机制、网络重试与回测回执保护解耦，以及 AST 机器门禁单真源约束。 实际搭建时遇到的问题： 多 Worker 并发重登惊群（Thundering Herd）：瞬时并发请求遭遇 401 时同时发起账号密码登录，瞬时击穿平台频控（429）或触发安全风控（2FA/CAPTCHA 封号）； 204 语义混淆与盲目覆盖：平台认证端点在携带 Cookie 时常返回 204 No Content，若盲目视为成功或失败，会导致无用户身份或无意义的凭据反复刷新； 跨账号凭据与 Cookie 漂移：多 profile（如 user1、user2）切换或并发时，Cookie 与凭据混乱，导致回测与资产归属污染； 认证刷新破坏写操作幂等：网络中断或 401 恢复时盲目重试，将已提交成功的 POST /simulations 再次重复提交，耗尽每日回测配额； 架构旁路丛生：各业务脚本私建 HTTP 客户端或硬编码 BasicAuth，导致日志泄漏密码、代理规则失灵。QuantNight 通过 api/login.py 与 util/network_util.py 的精细分层协作，彻底解决了上述工程隐患。 1. 认证安全威胁模型与单真源（SSOT）门禁 在 QuantNight 架构中，通信与认证层确立了绝对的单真源（Single Source...","categories": ["tool"],
+        "tags": ["content","architecture","network","auth","quant"],
+        "url": "https://roshameow.github.io//personal_homepage/tool/alpha24/"
+      },{
+        "title": "用 AI 开发 Agent 基础设施：真实生产环境中 AI 最易犯的六类系统性错误",
+        "excerpt":"现在很多关于 AI 编程（Coding Agent）的讨论，往往集中在写算法题、写纯函数逻辑、或者快速搭建一个全栈 CRUD 玩具上。在这些场景里，LLM 确实表现得像一个无所不知的高级工程师。 但在写完 pi-subagent-durable 和 pi-agent-notify 这两个扩展后，我的感受完全不同：这两个基础设施插件，全部是在真实的多会话并发、跨机器长任务运行环境中，直接让 AI Agent 迭代开发出来的。 当 Agent 的任务从“写一段无状态的逻辑”变成“为自己搭建底层并发、持久化恢复、进程挂起和外部事件总线”时，现实狠狠揭开了 LLM 的底牌：Agent 生成的代码语法极其工整、Mock 单元测试秒过、给出的逻辑自洽圆滑；但一旦扔进长时间断网、多终端并发、进程崩溃或操作系统底层机制的现实物理世界里，它埋下的地雷一个接一个被引爆。 从 331MB 日志爆炸、300s 误杀、会话双写损坏，到 18.6 万个文件的点文件自吞噬、argv 自杀开关、幽灵进程无限续期和 Node ESM 缓存失效，我们几乎踩遍了所有能踩的坑。 这篇文章不谈玄学 Prompt，而是从系统级视角复盘：在真实的生产环境下让 AI Agent 编写底层系统软件，它究竟最容易犯哪些系统性错误？ 1. 虚拟成功偏差：把“API 调用成功”错当成“物理落盘交付” 这是 AI Agent 最深层、最普遍的心智模型缺陷。在 LLM 的纯符号世界里，调用了一个 api.send() 没有抛出异常，它在认知上就认为“这件事已经完成了”。 典型现场 Notify...","categories": ["thought"],
+        "tags": ["pi","agent","architecture","debugging","reflection"],
+        "url": "https://roshameow.github.io//personal_homepage/thought/agent-infrastructure-pitfalls/"
+      },{
+        "title": "文字与专业评测实战全景：AI Agent 出题易犯的错、做题易犯的错，以及究竟如何出题才能难住它",
+        "excerpt":"在这套体系中，AI Agent 既被用来作为“出题人（Author/Designer）”构建评测基准，又被作为“做题人（Solver/Candidate）”执行高难度业务任务。而令人惊叹的是：出题 Agent 的盲区、做题 Agent 的弱点，以及如何真正设计出一道能难住它的工业级好题，三者构成了一个严丝合缝的认知闭环。 本文将这数千小时沉淀的第一手实战经验，系统性梳理为上、中、下三篇。 上篇：命题构建端（出题 Agent）易犯的七大系统性错误 当让 AI Agent 负责“设计题目、构造长文素材、编写评分规则与金标准”时，它最容易陷入以下七大陷阱： 1. “消歧义 vs 难度”的结构性死锁：把“消除歧义”做成“答案外泄”，把“追求难度”做成“故意模糊” 消歧义导致难度瞬间崩塌：当平台质检打回要求“消除附件核对范围歧义、明确口径”时，Agent 的第一反应是把所有核对要点直接做成清单写进题面 Prompt。题面瞬间变成了保姆级操作清单（SOP），做题模型按清单顺藤摸瓜逐项抄写，得分率从 50% 暴涨到 90%+，直接击穿 ≤60% 的难度天花板导致题目废弃（如谛听 178801 申诉修改惨案）。 故意依赖题面歧义压分：反过来，当 Agent 发现模型得分过高想要“加难”时，它的本能是在题干里挖语言陷阱——故意漏写范围、混淆术语、给出互相矛盾的指令。平台专家对此的终裁是：“禁止依赖题面歧义制造难度；消除歧义后模型分数必然上升，说明此前失分纯粹是因为题面瑕疵而非专业难度”（如谛听 167160 终裁）。 根因：无法区分“任务说明的清晰度（Specification Clarity）”与“内在决策的深层复杂性（Cognitive Complexity）”。2. 拟真幻觉与脱敏自欺：用概率生成冒充客观事实，用格式改动伪装材料脱敏 凭空捏造公文与实体：为了制造核对冲突，Agent 凭空撰写了多份看似极规范的材料，甚至编造了“上证公函〔2025〕1426号关于衡达智能的问询函”。联网核验发现 A 股根本没有这家上市公司，文号纯属捏造，被质检以“虚构材料、缺乏真实业务来源”一票否决。 “形式脱敏”的形式主义自欺：以为只要修改 Word/Excel 的 core.xml 属性、换表头底色、将姓名改成“张某某/XX公司”，就叫“真实材料脱敏”。然而内容缺乏实际业务自然沉淀的脏数据与时序摩擦。“清除痕迹≠修改内容，脱敏≠重制”，AI 合成材料永远无法满足真实工作原件要求。 “抽空输入”的主观脑补（Xpert L20）：Agent 宣称“已将附件中的关键人日排班数据全部抽空以增加难度”，但人工复查原件第...","categories": ["thought"],
+        "tags": ["agent","prompt-engineering","evaluation","benchmark","debugging","reflection"],
+        "url": "https://roshameow.github.io//personal_homepage/thought/agent-text-benchmark-pitfalls/"
+      },{
+        "title": "WorldQuant Brain Base Payment 算法逆向与假说证伪链",
+        "excerpt":"一、系统输入输出与固定基准公式 1.1 系统输入与输出规格表 类别 变量名称 字段 / 代码符号 物理含义与取值范围 数据源渠道 输入 (Alpha 指标) Production Correlation prod_corr / \\(p_i\\) 与平台池相关性，取值 \\([-1.0, 1.0]\\)，及格线 \\(&lt; 0.70\\) 平台回测 / alpha_submitted   Fitness fitness / \\(f_i\\) 适应度，有限实数，及格线 \\(\\ge 1.0\\) 平台回测 / alpha_submitted   Pyramid Multiplier pyramid_mult / \\(P_i\\) 金字塔活动倍数 (已内化至 Final Multiplier) 平台提交元数据   Theme...","categories": ["algorithm"],
+        "tags": ["content","worldquant","reverse_engineering","base_payment"],
+        "url": "https://roshameow.github.io//personal_homepage/algorithm/alpha25/"
+      },{
+        "title": "量化工程交付与架构防护：修改前行为披露、三级本地门禁、运行态生效与 SPC 安全守卫",
+        "excerpt":"本文档系统性剖析 QuantNight 量化系统中如何具体约束 AI Agent 进行安全可靠的代码工程交付。深入拆解由“修改前行为披露（Before-Change Disclosure）双真源契约、单真源 AST 架构机器门禁（architecture_contract.json）、三级分层测试时间预算（Quick / Domain / Full）、Headless Host 跨代优雅排空与采用核对（Drain-and-Reload）、以及独立 SPC Git 约束（SPC_NO_GIT）与精确暂存守卫”构成的全链路防线。 在由 AI Agent 参与深度协同的量化系统与高并发回测底座中，代码交付面临着与传统纯人工开发截然不同的全新威胁： 隐式破坏性变更与静默越权（Silent Behavioral Shift）：Agent 为了解决局部的超时或异常，往往出于“解决当前单点”的冲动，自作聪明地在底层塞入全局阻塞等待（如 time.sleep）、或收紧业务放行条件，把本应由人类业务方决定的破坏性语义变更包装成“普通 Bug 修复”； 架构旁路私建与代码腐化（Leaky Bypasses）：Agent 在遭遇公共库约束或鉴权失败时，极易产生“绕过原入口、私建一套临时 HTTP/Mongo 函数来刷绿测试”的投机倾向，导致全局架构快速腐化； “测试全绿”的虚假安全感（The Green Test Illusion）：Agent 误以为单元测试通过就代表架构合规、误以为磁盘存盘就代表运行态生效、误以为环境提供的临时变量就是生产标准； 版本控制的静默渗透（Unauthorized Git Pollution）：Agent 往往将“会话自动执行（auto_execute）”误判为版本控制授权，无脑执行 git add . 将未测试代码或敏感调试产物卷入主干。1. 交付威胁模型与标准交付六步法 为了将 Agent...","categories": ["tool"],
+        "tags": ["content","architecture","engineering","quant","testing"],
+        "url": "https://roshameow.github.io//personal_homepage/tool/alpha26/"
+      },{
+        "title": "pi-agent-notify：Coding Agent 的事件总线、非阻塞等待与可靠投递",
+        "excerpt":"在上一篇聊 pi-subagent-durable 的笔记中，我们确立了一条生死攸关的铁律（D2）：严禁让 Agent 在前台执行 sleep 或死循环轮询等待外部任务。必须采用“一次权威确认 + 启动进程外有界 Watcher + 结束当前 Turn 静息等待”的模式。 但这里立刻浮现出一个核心系统问题：Turn 结束后，Agent 处于静息状态，当几十分钟甚至数小时后外部任务（CI 构建、长跑测试、仿真或异步 API）结束时，事件到底该怎么唤醒 Agent？ 这就是开源扩展 pi-agent-notify 解决的事情。 给 LLM 投递外部通知，听起来似乎只是“读个文件、调一下 sendUserMessage”。但当它真正运行在复杂的真实开发环境时，你面对的是一系列残酷的系统级难题： 多会话冲突：同一台机器甚至同一个项目目录下开着多个 Pi 终端，外部事件究竟发给谁？发错会话等于瞬间污染别的上下文； 进程挂起与资源浪费：如何让 Worker 在没有前台代码执行的前提下维持进程存活，等事件一到毫秒级唤醒，超时又能自动兜底？ 假确认与数据丢失：LLM 内存队列接收了消息，并不代表它已经落盘；进程若在推理前崩溃，事件就永久丢了； 离线交接与防脑裂：主代理冷重启或升级版本时，外部事件如何安全排队并在恢复后重放？同一会话如何防止两个终端进程同时写入？这篇文章记录 pi-agent-notify 的架构设计、踩坑演进与可靠性闭环。 1. 架构总览：外部事件总线与四平面解耦 pi-agent-notify 是一个完全通用的 Pi coding agent 扩展，它将外部世界的“观察”与内部 Agent 的“执行”彻底剥离： 外部世界 (CI...","categories": ["tool"],
+        "tags": ["pi","notify","architecture","debugging","macOS"],
+        "url": "https://roshameow.github.io//personal_homepage/tool/pi-agent-notify/"
+      },{
+        "title": "pi-subagent-durable：后台子代理的持久化、生命周期与故障自愈",
+        "excerpt":"面对真实的复杂长任务时，子代理可能需要执行几十分钟乃至数小时的连续命令、多步排错、或者等待外部异步系统的结果。一次性子进程模型在长任务面前瞬间溃不成军： 会话易逝：没有真实 session JSONL，进程崩溃或终端中断后，几十轮探索的思考链和执行记录全丢； 黑盒运行：无法像 tmux 那样直接 attach 进去看它卡在哪一步、当前正在执行什么命令； 父死子亡（SIGKILL 级联惨剧）：主会话一旦超时或被用户打断，子进程连同正在跑的编译、训练或长跑任务被直接 exit 137 抹杀； 无法热维护：修改了 MCP 工具、更新了技能或扩展，运行中的长任务无法在保留上下文的前提下重载代码。为了让子代理成为能在后台独立生存、可观察、可恢复、抗意外击杀的“长效数字员工”，我把它做成了基于 RMUX 的通用持久化后台子代理架构。中间踩遍了日志爆炸、自杀误杀、热重载幽灵、跨机器租约竞争和 Node ESM 缓存等各种系统级暗坑。 这篇文章把这套架构的设计演进、真实生产事故与故障自愈机制完整复盘一遍。 1. 架构总览：从“派发即忘”到“有界自治” pi-subagent-durable 的核心设计哲学只有一条：Worker 不是临时子进程，而是一个拥有独立生命周期、独立存储、且与终端复用器强绑定的完整 Session。 主会话 (Parent Pi Session) │ ├─ subagent({ tasks, async: true }) ──────────────────────────────────┐ │ │ ▼ [RMUX 终端复用器] ▼ [持久化存储 &amp; 注册表]┌────────────────────────────────────────────────────────┐...","categories": ["tool"],
+        "tags": ["pi","rmux","subagent","debugging","architecture","macOS"],
+        "url": "https://roshameow.github.io//personal_homepage/tool/pi-subagent-durable/"
+      },{
+        "title": "用 AI 维护复杂控制面基础设施：为什么越修越死？从补丁膨胀到 6 态收敛的六大工程陷阱",
+        "excerpt":"本文是 AI 开发基础设施复盘系列的第二篇（接前篇 《用 AI 开发 Agent 基础设施：真实生产环境中 AI 最易犯的六类系统性错误》；对应的控制面纠偏总结见 《从过度防御的歪路纠偏：GUI/CLI 6 态极简控制面、数据面板统一与工程收口》（alpha27））。 在上一篇里，我们复盘了从零搭建插件基础设施时 AI 最容易犯的底层物理盲区。而这一次，问题发生在已经上线并统一了核心的 QuantNight 任务控制面（Rust task-core + taskctl + Python/Shell 执行链）的长期维护阶段。 在 alpha20 之后的一个多月、十几次提交里，这套系统反复出现“任务删不掉、停不下、重拉卡死”的故障。每次出事，Agent 都能头头是道地定位异常、加上一道防御条件并跑绿单元测试；但过几天，新的卡死又在另一个角落爆发，代码和文档膨胀到连人类开发者都彻底看不懂。 2026 年 11 月 17 日至 19 日，我们通过三段连续会话（初轮 AGY 诊断 → Pi 中段重构 → AGY 最终收口）对这轮长达一个月的历史失控做了彻底审计与重构。下面总结在复杂跨语言控制面的长期演进中，AI Agent 最容易踩中的六大工程陷阱。 1. 补丁叠罗汉：用“数据库历史证明链”替代“真实物理事实核验” 这是长达一个多月反复复发的总病根。 典型现场...","categories": ["thought"],
+        "tags": ["pi","agent","architecture","debugging","reflection","rust"],
+        "url": "https://roshameow.github.io//personal_homepage/thought/agent-infrastructure-pitfalls-2/"
+      },{
+        "title": "从过度防御的歪路纠偏：GUI/CLI 6 态极简控制面、数据面板统一与工程收口",
+        "excerpt":"本文是 QuantNight GUI/CLI 统一架构系列的第二篇（接前篇 《回测系统任务控制生命周期：入口、证据、故障分支与行为验收》（alpha20））。前篇确立了“GUI 与 CLI 共用 quantnight-task-core + 常驻 headless host + Unix IPC”的基础拓扑，方向本身是对的；但在随后由 GPT 主导的多轮维护中，系统逐步走偏——堆出了 9+ 状态、20+ 历史证明字段、27 字段快照比对和满篇防御性八股的 SKILL.md，反而造成任务频繁卡死。与其说这是一次“架构进化”，不如说是一次把控制面从 GPT 过度防御的歪路上拉回正轨的纠偏与大扫除（2026-11-17–19：初轮 AGY 诊断 → Pi 失败的重构尝试 → AGY 推倒收口），同时顺带将只读数据面板统一进 task-core::data_panel。关于开发与 AI 维护过程中暴露出的工程陷阱，详见配套复盘 《用 AI 维护复杂控制面基础设施：六大工程陷阱》。 1. 纠偏动因：从“走偏的防御体系”拉回正轨 在 alpha20 之后，GUI 与 CLI 虽然已经接到了同一个 Rust 核心，但长期由 GPT...","categories": ["tool"],
+        "tags": ["content","architecture","rust","cli","gui","quant"],
+        "url": "https://roshameow.github.io//personal_homepage/tool/alpha27/"
+      },{
+        "title": "日内 PV 统计量与市场微结构衍生指标体系",
+        "excerpt":"本文为量价特征谱系的日内扩展篇（日频 OHLCV 衍生体系与复权数学原理见前篇 《PV 量价衍生数据体系、复权数学原理与在 analyze-dataset 中的应用》（alpha11））。相较于仅刻画“日终结果”的开高低收，日内统计量与市场微结构数据直接刻画盘中交易路径、流动性供需与买卖盘口博弈；下方算子均严格对齐 WorldQuant FASTEXPR 语法（如矢量聚合 vec_avg / vec_sum / vec_max / vec_powersum / vec_stddev / vec_range / vec_choose 与时序算子 ts_entropy / ts_kurtosis / ts_decay_linear 等）。 一、日内 PV 与市场微结构四阶谱系（0→1→2→3 阶） 沿用与日频 PV 完全一致的演化层级划分：0 阶为盘中切片矢量、逐笔快照及平台原生直接提供的日内预汇总字段（未经用户表达式加工）；1 阶为直接作用于 0 阶字段的 vec_* 矢量归约、单步跨字段算术或单层 ts_* 时序变换；2 阶为在 1 阶衍生量之上再做跨日滚动聚合、截面归一化或方差拆分的嵌套特征；3 阶为日内微结构指标与基本面/事件/换手限制的跨特征组合。 图例说明：在零至三阶条目中（不含纯矢量占位符），绿色加粗条目表示已在本地平台实测记录中检索到达标信号（非...","categories": ["data"],
+        "tags": ["content","pv","intraday","microstructure","feature_engineering","quant"],
+        "url": "https://roshameow.github.io//personal_homepage/data/alpha28/"
+      },{
+        "title": "News & Social Media 新闻流、社交媒体情绪与文本事件数据体系",
+        "excerpt":"本文为非结构化舆情、新闻流、社交媒体与财报电话会文本专题篇（与日频 PV alpha11、日内微结构 alpha28、基本面 alphas2 及分析师预期 alphas4 共同构成多源数据谱系）。表格仅采用通用舆情/文本语义概念与 WorldQuant FASTEXPR 算子，具体数据库字段名与实测指标见独立调查文档。 一、News &amp; Social Media 衍生数据三阶谱系（0→1→2 阶 + WorldQuant FASTEXPR 对齐） 舆情类数据更新快、信噪比低、高度非对称且常带事件稀疏性，严格按三阶结构拆解：0 阶为媒体新闻流、NLP 情绪分、社交热度与电话会语调原始字段；1 阶为单步矢量归约（vec_avg / vec_sum / vec_count）、流÷存量强度（密度比）、正负极端净额及单层 ts_* 注意力脉冲/平滑；2 阶为利用高信噪比舆情事件驱动门控（trade_when）、事件锚定止损、热度过滤反转及对系统风险正交剥离。 图例说明：在一至二阶衍生指标中，绿色加粗条目表示已在本地平台实测记录中检索到达标信号（非 SUPER，fitness &gt;= 1.0 且 sharpe &gt;= 1.2；除 CHN 地区外，fitness &lt;= -1.0 且 sharpe &lt;= -1.2 的反向可取负信号亦计为达标）；红色加粗条目表示库中已有实测记录但未达上述门槛；默认颜色为尚未在库中检索到独立测试记录的理论或扩展方向。 0...","categories": ["data"],
+        "tags": ["content","news","sentiment","socialmedia","nlp","analyze_dataset","quant"],
+        "url": "https://roshameow.github.io//personal_homepage/data/alpha29/"
       }]
