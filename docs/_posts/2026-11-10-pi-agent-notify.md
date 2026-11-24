@@ -9,10 +9,10 @@ tags:
   - architecture
   - debugging
   - macOS
-last_modified_at: 2026-11-10T07:46
+last_modified_at: 2026-11-23T17:47
 created: 2026-11-10T07:00
 date: 2026-11-10
-theme: agent/pi
+theme: agent/extension
 theme_subtitle: agent-notify
 ---
 
@@ -28,11 +28,64 @@ theme_subtitle: agent-notify
 3. **假确认与数据丢失**：LLM 内存队列接收了消息，并不代表它已经落盘；进程若在推理前崩溃，事件就永久丢了；
 4. **离线交接与防脑裂**：主代理冷重启或升级版本时，外部事件如何安全排队并在恢复后重放？同一会话如何防止两个终端进程同时写入？
 
-这篇文章记录 `pi-agent-notify` 的架构设计、踩坑演进与可靠性闭环。
+这篇文章记录 `pi-agent-notify` 的典型使用场景、架构设计、踩坑演进与可靠性闭环。
 
 ---
 
-## 1. 架构总览：外部事件总线与四平面解耦
+## 1. 典型使用场景
+
+结合当前 `pi-agent-notify` 的能力矩阵（外部 Watcher 投递、`notify_subagent`、`notify_heartbeat`、离线恢复与分级路由），日常使用主要有五类典型场景：
+
+### 1.1 长时间后台作业与异步外部任务（Worker + `arm_notification_wait`）
+
+这是最核心的设计场景：CI/CD 构建、多小时模型训练/仿真、大规模测试矩阵或长耗时异步 API。
+
+- **典型做法**：Worker 启动一个**有界的进程外 Watcher**，在仓库内落盘 producer marker（记录 `pid`、`itemKey`、`notifyTo`），随后调用 `arm_notification_wait` 声明领域 `itemKey`、唤醒条件和租约时长（`30s`–`24h`，默认 `6` 小时），最后直接结束当前 Turn。
+- **实际效果**：Worker 进入 `agent_end` 零 CPU 挂起；外部作业结束或异常时，Watcher 通过 `notify_agent.py send --event-file ... --require-lease` 投递定向事件，毫秒级唤醒**同一个 Worker 会话**读取结果继续后续工作。
+
+### 1.2 自主定时巡检与长周期自唤醒（`notify_heartbeat`）
+
+有时没有现成的外部推模式回调（或者需要会话自己每隔一段时间抬头看一眼全局进度、多路日志、配额/实验指标再决定下一步），每次都手写外部 Watcher 脚本会比较重。
+
+- **典型做法**：主会话或 Worker 直接调用内置工具 `notify_heartbeat`：
+  ```json
+  {
+    "action": "start",
+    "intervalSeconds": 1800,
+    "message": "巡检当前后台任务与实验进度；若全部完成请调用 notify_heartbeat(action=\"stop\")"
+  }
+  ```
+  之后即可结束当前 Turn，等待自动唤醒；默认间隔为 **1800 秒（30 分钟）**，持续循环直到会话主动调用 `action: "stop"`（也可通过可选 `maxTicks` 设置自动封顶次数）。
+- **关键保护**：
+  - **有活动时不打扰**：到达心跳点时，若会话正在跑 Turn、处于非空闲状态，或已有待处理的 `followUp`/pending 消息/待刷新外部事件，本次心跳会**直接跳过不发送**，保持固定周期不重置、不堆积；
+  - **跨 `/reload` 与重启延续**：调度状态原子写入 `~/.pi/agent/agent-notify/heartbeats/`，`/reload` 或同一 canonical 会话恢复后自动接续；Worker 在存在活动心跳时也会在 `agent_end` 自动保持存活等待下一次心跳。
+
+### 1.3 多 Agent 协作下的动态指令追加（`notify_subagent`）
+
+主控会话同时协调多个异步 Durable Worker 时，经常遇到需求微调、约束变更或另一条支线产出关键上下文，需要中途补充给正在运行或静息等待中的某个 Worker。
+
+- **典型做法**：主会话直接调用 `notify_subagent`，传入 `taskId` 与 `message`。默认使用每个 Worker 自带的专属控制键 `worker:<taskId>`；若该 Worker 当前正被领域 `wait lease` 锁住，则必须传入对应的领域 `itemKey` 并按需开启 `requireLease: true`。
+- **实际效果**：忙碌中的 Worker 会在不中断当前工具链的前提下收到 `followUp`；静息中的 Worker 无需经历进程重启（避免 `subagent_reload` 丢失上下文/重建成本）即可继续推进。
+
+### 1.4 主会话版本升级、崩溃恢复与离线通知接力
+
+长跑工程任务跨越数小时甚至跨天时，常会遇到需要重启升级 Pi / 扩展版本，或者终端意外断开的情况，但外部任务并不会停下。
+
+- **典型做法**：主会话依赖持久化的精确身份（`main-identities/<hash>.json` 内的 `runId` + `nonce` + canonical session 路径/cwd）与 `session_controller.py` 的私有管道 `flock` 防脑裂守护；外部脚本通过 `--session-id <EXACT_SESSION_ID>` 精确指定主会话发布通知。
+- **实际效果**：只要在主会话最后一次心跳后的 **24 小时恢复窗口**内（且事件自身 TTL ≤ 1 小时），即使主进程暂时退出，事件也能在持久 Outbox 安全排队；重启恢复同一 canonical session 时，扩展结合 Inflight Journal 与 JSONL `fsync` Receipt ACK 自动完成确认或无损重放，不漏消息、不重投。
+
+### 1.5 过程静默观测与异常分级告警（`green` / `yellow` / `red`）
+
+外部流水线往往既会产生频繁的进度心电图，也会产生真正需要决策的节点事件。
+
+- **典型做法**：外部发送方按事件等级区分级别：
+  - `green`（进度备忘）：仅以 `agent-notify` custom entry 记录到会话并更新状态栏，不打断推理；若定向绑定了已武装 lease 的 Worker，仍可按需唤醒；
+  - `yellow`（可执行更新）：经过 14 天事件 ID 去重与可配置冷却（默认 30 分钟语义去重）后合并通知，推入当前会话或作为 `followUp` 推动下一步处理；
+  - `red`（阻断/人工决策）：绕过普通批处理等待立即触发，有 UI 时同步弹出错误级提示请求人工关注。
+
+---
+
+## 2. 架构总览：外部事件总线与四平面解耦
 
 `pi-agent-notify` 是一个完全通用的 Pi coding agent 扩展，它将外部世界的“观察”与内部 Agent 的“执行”彻底剥离：
 
@@ -56,7 +109,7 @@ theme_subtitle: agent-notify
     └─ 唤醒子代理 (Durable Worker) ──> 解除 agent_end 挂起，续跑同一 Session
 ```
 
-### 1.1 关键概念契约
+### 2.1 关键概念契约
 
 - **ItemKey（领域所有权）**：领域无关的事项标识，如 `ci:run-42`、`task:build-108`；每个 Worker 自动拥有默认控制键 `worker:<taskId>`。
 - **Fail-Closed（无法验证就拒绝）**：目标身份存疑、存在多个匹配会话、时间戳超前或过期、Nonce 错误，一律拒绝并退出，绝不猜测“挑最新”。
@@ -65,7 +118,7 @@ theme_subtitle: agent-notify
 
 ---
 
-## 2. 迭代踩坑全景：按时间顺序的系统演进
+## 3. 迭代踩坑全景：按时间顺序的系统演进
 
 从最原始的目录扫描脚本，到最终支持主会话离线恢复、排他 Controller 与 Transcript 级落盘确认，以下按时间线梳理 `pi-agent-notify` 的踩坑与演进记录：
 
@@ -83,12 +136,13 @@ theme_subtitle: agent-notify
 | **10-02**<br>`e28223c` | **主会话多终端并发双写与竞争**<br>用户在两个终端打开了同一个主会话，通知到达时两个进程同时抢着注入消息。 | **缺乏跨进程排他互斥**：<br>仅靠读取 PID 文件无法可靠锁定会话所有权，遇到僵尸进程极易误锁或脑裂。 | **Python flock Guardian 守护者**：<br>• 引入 `session_controller.py`，通过私有 Pipe 维持 POSIX `flock`；<br>• 父进程崩溃时内核自动关 Pipe 触发 EOF 释放锁，竞争进程请求 Pi 优雅 shutdown。 |
 | **10-02**<br>`e28223c` | **父进程升级期间离线事件无法投递**<br>主会话因版本升级退出，外部 Watcher 认为主会话已死，丢弃所有后续完成通知。 | **强依赖主进程活跃心跳**：<br>没有持久化主会话身份机制，进程退出即代表会话终结。 | **24 小时精确 ID 离线恢复路由**：<br>• 持久化主身份至 `main-identities/<hash>.json`；<br>• 允许 24 小时内向离线主会话投递（事件 TTL 严格限制 ≤1h），冷重启恢复时自动重放。 |
 | **10-05**<br>`1f0370b` | **Outbox 堆积陈旧事件拖死空闲 CPU**<br>长期运行后，大量已过期的事件留在扫描目录，导致定时器轮询 CPU 占用升高。 | **缺乏过期条目归档策略**：<br>扫描器每次轮询都要对成百上千个历史过期文件进行反序列化和过滤。 | **自动归档与生命周期清理**：<br>• 过期且无需确认的事件自动迁移至归档区；<br>• 保持活跃 Outbox 文件数有界，降低空闲扫描开销。 |
+| **11-23**<br>`7c5e2f4` | **Worker 遇 502/超时后卡死数小时不重试**<br>Worker 被事件唤醒后遭遇上游 `502` 或 `Request timed out`，日志停在 `turn_end` 不再前进，Pi 的 `auto_retry` 迟迟不触发，只能靠人工 `subagent_reload` 救回。 | **`agent_end` 钩子早于 `auto_retry` 且无视错误终态**：<br>Pi 核心先 `await` 扩展的 `agent_end` 再执行 `_handlePostAgentRun()` 的自动重试与压缩；旧版 `agent_end` 未检查最后一条助手消息的 `stopReason`，当共享 producer PID 仍存活时直接触发 `rearmReleasedLeaseIfProducerAlive()` 或继续挂起活动租约/心跳，把重试逻辑堵死数小时。 | **错误/中止回合跳过挂起并保留现场**：<br>• `agent_end` 检查 `willRetry === true` 与 `lastAssistantStopReason(event)`（`"error"` / `"aborted"`）；<br>• 命中时立即返回，不阻塞 `auto_retry`/compaction，也不触发自动重挂；同时完整保留既有租约与心跳状态，待重试成功回到正常回合再无缝接续，不可恢复错误则走 `session_shutdown` 清晰上报。 |
 
 ---
 
-## 3. 核心机制深水区
+## 4. 核心机制深水区
 
-### 3.1 零消耗挂起：`arm_notification_wait` 如何工作
+### 4.1 零消耗挂起：`arm_notification_wait` 如何工作
 
 让 LLM Worker 等待外部事件，最致命的误区就是用脚本 `while true; do sleep 5; done`。
 
@@ -107,7 +161,7 @@ Worker 发起长任务 ──> 写 marker ──> arm_notification_wait ──> 
 └── [超过租约期限] ────> 触发 setTimeout ─────────────> resolve() ──> 注入超时提醒
 ```
 
-### 3.2 基于私有管道的排他控制器（`session_controller.py`）
+### 4.2 基于私有管道的排他控制器（`session_controller.py`）
 
 如何保证同一份主会话文件不会被两个终端进程同时打开并互相踩踏？传统的 `.pid` 文件极不可靠：进程被 `kill -9` 后不会清理文件，新进程启动时又难以区分是死锁还是真实运行。
 
@@ -124,7 +178,7 @@ Notify 采用了一个极其优雅的 Unix 模式：
 
 **锁属于内核文件描述符，而非磁盘上的静态文本。** 杜绝了僵尸锁，也禁止了任何尝试通过“删 lock 文件”绕过锁争用的危险操作。
 
-### 3.3 从“内存入队”到“磁盘转录 Receipt ACK”
+### 4.3 从“内存入队”到“磁盘转录 Receipt ACK”
 
 分布式系统里最忌讳的就是把“消息发送成功”当成“处理成功”。早期版本中，只要 `sendUserMessage` 没有报错，事件就从 Outbox 删除了。但在宿主进程崩溃测试中，发现大量消息根本还没落盘，重启后彻底失联。
 
@@ -139,12 +193,12 @@ Notify 采用了一个极其优雅的 Unix 模式：
 
 ---
 
-## 4. 核心经验与架构哲学
+## 5. 核心经验与架构哲学
 
 1. **绝对的 Fail-Closed 优于自作聪明的推测**：
    在多会话、多 Worker 的复杂环境里，只要有一丁点歧义（例如同目录两个会话、Nonce 不匹配、租约超前），**直接报错拒绝是唯一正确的做法**。任何“选最近修改的一个”之类的启发式后门，最终都会在生产里演变成不可逆的数据污染。
 2. **进程外状态高于进程内状态**：
-   不要相信内存变量能挺过风暴。无论是 Watcher、Inflight 日志、Controller 锁还是任务租约，全都要有明确的磁盘表象和内核所有权机制。
+   不要相信内存变量能挺过风暴。无论是 Watcher、Inflight 日志、Controller 锁、心跳调度还是任务租约，全都要有明确的磁盘表象和内核所有权机制。
 3. **退役比注册更危险**：
    就像那个著名的点文件自吞噬 Bug 一样，自动清理和垃圾回收逻辑如果缺乏严格的身份边界，不仅清理不了垃圾，还会把系统的“心脏”（身份文件）当成垃圾消灭掉。
 4. **特殊格式优先零依赖**：
@@ -159,4 +213,6 @@ Notify 采用了一个极其优雅的 Unix 模式：
 > - **09-24**：废除纯数字 Item 正则，引入通用领域 ItemKey 与 `worker:<taskId>` 默认控制通道；
 > - **10-02**：落地 Python Pipe flock Guardian、Inflight Journal 与会话磁盘 Receipt ACK 投递屏障；
 > - **10-02**：实现持久化主会话身份与 24 小时离线恢复通道，支持主代理冷升级不丢事件；
-> - **10-05**：实现 Outbox 过期事件自动归档，压降长期后台轮询 CPU 消耗。
+> - **10-05**：实现 Outbox 过期事件自动归档，压降长期后台轮询 CPU 消耗；
+> - **11-23**：新增 `notify_heartbeat` 工具，支持主会话与 Worker 自主设置周期性自唤醒心跳（默认 30 分钟，有活动时跳过不发送，调度持久化跨 reload 恢复）。
+> - **11-23**：修复 worker 在 `error`/`aborted`/`willRetry` 回合被 `agent_end` 租约挂起或自动重挂阻塞 `auto_retry` 的卡死故障。

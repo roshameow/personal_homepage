@@ -10,10 +10,10 @@ tags:
   - debugging
   - architecture
   - macOS
-last_modified_at: 2026-11-10T07:46
+last_modified_at: 2026-11-23T17:40
 created: 2026-11-10T06:30
 date: 2026-11-10
-theme: agent/pi
+theme: agent/extension
 theme_subtitle: subagent
 ---
 面对真实的复杂长任务时，子代理可能需要执行几十分钟乃至数小时的连续命令、多步排错、或者等待外部异步系统的结果。**一次性子进程模型在长任务面前瞬间溃不成军**：
@@ -81,6 +81,7 @@ theme_subtitle: subagent
 | **10-07**<br>`1f55393` | **Node 原生 ESM 不可变缓存导致 `/reload` 无效**<br>在磁盘上更新了 `recovery.mjs`，在终端输入 `/reload`，新加的导出函数在主会话中依然报错 `undefined`。 | **Node.js 运行时 ESM 命名空间缓存**：<br>Pi 的 `/reload` 仅重置扩展 factory，而 Node.js 底层对原生 `.mjs` 模块实行生命周期内不可变缓存，已加载的 module namespace 无法被垃圾回收或热更新。 | **显式版本化模块入口架构**：<br>• 采用物理版本化文件命名（`recovery-v2/v3/v4`, `dead-window-v3/v4/v5`, `ownership-registry-v2/v3`）；<br>• 新代码直接 import 最新物理版本文件，老入口仅作兼容重导出，彻底穿透 Node 僵尸缓存。 |
 | **10-10**<br>`e336880` | **RMUX 0.9.1 选择器混淆导致清理失败**<br>调用 `subagent_gc` 清理已死窗口时部分 Pane 报错无效选择器，无法被销毁。 | **协议选择器前缀混淆**：<br>RMUX 0.9.1 严格定义：窗口是 `@数字`，Pane 是 `%数字`，Session 是 `$数字`。历史清理模块误将 `$session` 形式的选择器作为窗口参数传给了 RMUX API。 | **选择器强门禁校验**：<br>• 重写清理与绑定模块（`dead-window-v5.mjs`, `window-binding-v4.mjs`）；<br>• 启动捕获、绑定与 kill 门禁只接受 `@` 开头的 window ID，其余一律拒绝，杜绝格式歧义。 |
 | **10-10**<br>`52fbd50` | **历史缺失 Launch ID 的死窗引发维护死锁**<br>遇到早期崩溃留下的无 launch ID 遗留窗口时，控制器清理维护陷入无限重试死循环，拖死自动化检查。 | **不可推断身份的死局**：<br>对缺少 launch identity 的死窗，系统反复尝试通过启发式推测领用身份，导致冲突和租约争用。 | **持久化人工停放（`blocked_manual`）**：<br>• 在权威全 dead 快照确认且结果已落盘后，将状态持久化标记为 `cleanupState: blocked_manual`；<br>• 优雅释放 maintenance lease，保留现场证据供显式 `/agent:gc` 处理，阻断自动重试死锁。 |
+| **11-23**<br>`abeade6`<br>`worker-exit-guard-v1` | **Worker 已结束却卡死不退出，必须 reload 才释放**<br>偶发在长任务结束后，worker 日志已落盘 `agent_settled` 且已执行 `session_shutdown`（身份文件已被删导致 `notify_subagent` 失败），但 `pi` 进程与 RMUX Pane 仍存活——有的卡 33 分钟才自然退出，有的只能靠 `subagent_reload` 杀掉恢复。 | **`undici` 半开 WebSocket 泄漏 ref 句柄 + 无强制退出**：<br>`pi --mode json -p` 返回后不调用 `process.exit()`，完全依赖 Node 事件循环自然排空；而 `openai-codex` 遭遇 `WebSocket idle timeout (300s)` 并回退 SSE 时，`undici@8.12.3` 的 `ws.close()` 仅发 Close 帧进入 `CLOSING (2)`，没有握手超时也不 `destroy()`/`unref()` 底层 TCP `Socket`，半开连接持续拉住 libuv 事件循环直至代理/OS 超时断开。 | **有界 `.unref()` 退出守卫（`worker-exit-guard-v1.mjs`）**：<br>• 仅对 durable worker（`PI_SUBAGENT_TASK_ID`）在 `session_shutdown(reason="quit")` 的 `finally` 中挂载默认 15s（`PI_SUBAGENT_WORKER_EXIT_GRACE_MS` 可配或 `0`/`off` 关闭）的 `.unref()` 定时器；<br>• 正常 worker 零延迟自然退出；若被泄漏句柄挂住，等待待写 `stdout` drain 后向 `extension-diag.log` 记录存活句柄并按原 `process.exitCode` 退出，不影响主会话与 `/reload`。 |
 
 ---
 
@@ -130,3 +131,4 @@ theme_subtitle: subagent
 > - **10-02**：引入 Controller Lease 与 Fencing Generation，支持主代理离线升级与 24h Keeper；
 > - **10-07**：mac-mini 幽灵任务排查，建立版本化终态对账器与 Node ESM 缓存穿透架构；
 > - **10-10**：实现 Outbox fsync + Transcript ACK 投递屏障，交付双语完整规范。
+> - **11-23**：定位 `WebSocket idle timeout` 后 `undici` 半开 `CLOSING` socket 阻断事件循环排空的偶发卡死，引入有界 `.unref()` post-`quit` 退出守卫（`worker-exit-guard-v1.mjs`）根治 worker 结束后不退出问题。

@@ -6,8 +6,10 @@ categories:
   - mac
 tags:
   - content
-last_modified_at: 2025-08-19T18:47
+last_modified_at: 2026-11-23T14:37
 created: 2025-08-16T22:52
+theme: worldquant/extension
+theme_subtitle: "mac: datafields-dictionary"
 ---
 目标是把 MongoDB 里存放的术语和定义，打包成可以在 **macOS 自带“字典”应用**中查询的本地词典。  
 

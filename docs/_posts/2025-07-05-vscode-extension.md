@@ -8,8 +8,10 @@ tags:
   - typescript
   - vscode
   - dsl
-last_modified_at: 2026-06-04T07:50
+last_modified_at: 2026-11-23T14:37
 created: 2025-07-05T15:59
+theme: worldquant/extension
+theme_subtitle: "vscode: wq-completion"
 ---
 ![Pasted image 20250706064758.png]({{ '/docs/attachment/Pasted%20image%2020250706064758.png' | relative_url }}){:width="600"}
 

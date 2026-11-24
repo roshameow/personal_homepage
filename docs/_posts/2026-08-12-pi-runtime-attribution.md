@@ -9,10 +9,10 @@ tags:
   - rmux
   - macOS
   - debugging
-last_modified_at: 2026-11-10T07:47
+last_modified_at: 2026-11-23T01:58
 created: 2026-08-12T10:30
 date: 2026-08-12
-theme: agent/pi
+theme: agent/extension
 theme_subtitle: gui (2)
 ---
 
