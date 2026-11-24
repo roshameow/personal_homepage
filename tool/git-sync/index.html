@@ -1,0 +1,1024 @@
+<!DOCTYPE html>
+<!--
+    So Simple Jekyll Theme 3.2.0
+    Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+    Free for personal and commercial use under the MIT license
+    https://github.com/mmistakes/so-simple-theme/blob/master/LICENSE
+-->
+<html lang="en-US" class="no-js">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  
+
+  
+  
+  <!-- Begin Jekyll SEO tag v2.9.1 -->
+<title>git-sync：双机多 Agent 开发的确定性同步与 Guardian 事件驱动工作流 | Liu, Wen’s Home Page</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="git-sync：双机多 Agent 开发的确定性同步与 Guardian 事件驱动工作流" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="写作定位：本文属于 agent/extension 工程实践系列，结合 Mac mini 开发主会话（01a0c650）、git-sync 与 pi-git-sync-bridge 源码，以及 Guardian 持久会话 01a0e057 跨越两个月（2026-09-27 ~ 2026-11-23）的真实线上运行日志，完整梳理这套双机 + 上游 Git 协同工作流的设计收敛、底层架构与实战经验。" />
+<meta name="twitter:description" property="og:description" content="写作定位：本文属于 agent/extension 工程实践系列，结合 Mac mini 开发主会话（01a0c650）、git-sync 与 pi-git-sync-bridge 源码，以及 Guardian 持久会话 01a0e057 跨越两个月（2026-09-27 ~ 2026-11-23）的真实线上运行日志，完整梳理这套双机 + 上游 Git 协同工作流的设计收敛、底层架构与实战经验。" />
+<link rel="canonical" href="https://roshameow.github.io//personal_homepage/tool/git-sync/" />
+<meta property="og:url" content="https://roshameow.github.io//personal_homepage/tool/git-sync/" />
+<meta property="og:site_name" content="Liu, Wen’s Home Page" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2026-11-23T00:00:00+00:00" />
+<meta property="article:modified_time" content="2026-11-23T16:41:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="git-sync：双机多 Agent 开发的确定性同步与 Guardian 事件驱动工作流" />
+<meta name="twitter:site" content="@" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2026-11-23T16:41:00+00:00","datePublished":"2026-11-23T00:00:00+00:00","description":"写作定位：本文属于 agent/extension 工程实践系列，结合 Mac mini 开发主会话（01a0c650）、git-sync 与 pi-git-sync-bridge 源码，以及 Guardian 持久会话 01a0e057 跨越两个月（2026-09-27 ~ 2026-11-23）的真实线上运行日志，完整梳理这套双机 + 上游 Git 协同工作流的设计收敛、底层架构与实战经验。","headline":"git-sync：双机多 Agent 开发的确定性同步与 Guardian 事件驱动工作流","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/tool/git-sync/"},"url":"https://roshameow.github.io//personal_homepage/tool/git-sync/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  
+
+  <script>
+    /* Cut the mustard */
+    if ('querySelector' in document && 'addEventListener' in window) {
+      document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + 'js';
+    }
+  </script>
+
+  <link rel="stylesheet" href="/personal_homepage/assets/css/main.css">
+  <link rel="stylesheet" href="/personal_homepage/assets/css/skins/default.css">
+  
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,700,700i|Lora:400,400i,700,700i">
+  <link rel="alternate" type="application/atom+xml" title="Liu, Wen&#39;s Home Page" href="/personal_homepage/atom.xml">
+<!-- start custom head snippets -->
+
+<!-- insert favicons. use http://realfavicongenerator.net/ -->
+<link rel="shortcut icon" type="image/x-icon" href="/personal_homepage/docs/images/logo.ico">
+<!-- end custom head snippets -->
+
+</head>
+
+  <body class="layout--post  git-sync-双机多-agent-开发的确定性同步与-guardian-事件驱动工作流">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#primary-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+  <div class="navigation-wrapper">
+    <a href="#menu-toggle" id="menu-toggle">Menu</a>
+    <nav id="primary-nav" class="site-nav animated drop">
+      <ul><li><a href="/personal_homepage/">Home</a></li><li><a href="/personal_homepage/posts/">Posts</a></li><li><a href="/personal_homepage/categories/">Categories</a></li><li><a href="/personal_homepage/tags/">Tags</a></li><li><a href="/personal_homepage/family/">Family</a></li><li><a href="/personal_homepage/search/">Search</a></li></ul>
+    </nav>
+  </div><!-- /.navigation-wrapper -->
+
+
+    <header class="masthead">
+  <div class="wrap">
+    
+    
+    
+      
+        <div class="site-title animated fadeIn"><a href="/personal_homepage/">Liu, Wen's Home Page</a></div>
+      
+      <p class="site-description animated fadeIn" itemprop="description">Work, Experiments and Ideas.</p>
+    
+  </div>
+</header><!-- /.masthead -->
+
+
+    <main id="main" class="main-content" aria-label="Content">
+  <article class="h-entry">
+    
+
+    <div class="page-wrapper">
+      <header class="page-header">
+        
+        
+        <h1 id="page-title" class="page-title p-name">git-sync：双机多 Agent 开发的确定性同步与 Guardian 事件驱动工作流
+</h1>
+        
+      </header>
+
+      <div class="page-sidebar">
+        <div class="page-author h-card p-author"><img src="/personal_homepage/docs/images/logo.svg" class="author-avatar u-photo" alt=""><div class="author-info">
+
+<span class="read-time">5 min read</span>
+
+    <time class="page-date dt-published" datetime="2026-11-23T00:00:00+00:00"><a class="u-url" href="">November 23, 2026</a>
+</time>
+
+  </div>
+</div>
+
+        
+  <h3 class="page-taxonomies-title">Categories</h3>
+  
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a class="p-category" href="/personal_homepage/categories/#tool" title="Pages filed under tool">tool</a></li>
+  </ul>
+
+
+        
+  <h3 class="page-taxonomies-title">Tags</h3>
+  
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a href="/personal_homepage/tags/#agent" title="Pages tagged agent" rel="tag">agent</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#architecture" title="Pages tagged architecture" rel="tag">architecture</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#debugging" title="Pages tagged debugging" rel="tag">debugging</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#git-sync" title="Pages tagged git-sync" rel="tag">git-sync</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#macos" title="Pages tagged macOS" rel="tag">macOS</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#pi" title="Pages tagged pi" rel="tag">pi</a></li>
+  </ul>
+
+
+        <details id="entry-table-of-contents" class="toc-wrapper" open>
+  <summary>
+    <h2 class="no_toc">
+      Table of Contents
+      <svg class="toc-toggle-icon" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true" focusable="false">
+        <path d="m4 6 4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+      </svg>
+    </h2>
+  </summary>
+  <div class="toc-content">
+    <ul class="inline_toc" id="my_toc"><li><a href="#一源码架构拆解四平面解耦与安全边界">一、源码架构拆解：四平面解耦与安全边界</a><ul><li><a href="#11-状态隔离与防劫持基线safetyjs--direct-sync-servicejs">1.1 状态隔离与防劫持基线（safety.js / direct-sync-service.js）</a></li><li><a href="#12-传输transfer与落盘apply严格解耦">1.2 传输（Transfer）与落盘（Apply）严格解耦</a></li><li><a href="#13-pi-git-sync-bridge只做事实观察不抢做唯一归因">1.3 pi-git-sync-bridge：只做事实观察，不抢做唯一归因</a></li><li><a href="#14-guardian-派发门禁guardianjs">1.4 Guardian 派发门禁（guardian.js）</a></li></ul></li><li><a href="#二典型调用例子示例图">二、典型调用例子示例图</a><ul><li><a href="#21-双机提交同步与异常唤醒时序">2.1 双机提交同步与异常唤醒时序</a></li><li><a href="#22-三类高频运维与接入调用路径">2.2 三类高频运维与接入调用路径</a></li></ul></li><li><a href="#三线上运行实录mac-mini-guardian-会话-01a0e0572026-09-27--2026-11-23">三、线上运行实录：Mac mini Guardian 会话 01a0e057（2026-09-27 ~ 2026-11-23）</a><ul><li><a href="#case-109-27--调整未跟踪文件拦截规则支持无碰撞原位快进">Case 1：09-27 — 调整未跟踪文件拦截规则，支持无碰撞原位快进</a></li><li><a href="#case-209-28--历史分叉-blocked-diverged隔离-worktree-派发一次性-resolver">Case 2：09-28 — 历史分叉 blocked-diverged：隔离 Worktree 派发一次性 Resolver</a></li><li><a href="#case-310-14--10-21--通知队列修复与-apiloginpy-语义冲突决断">Case 3：10-14 ~ 10-21 — 通知队列修复与 api/login.py 语义冲突决断</a></li><li><a href="#case-410-11--11-07--多轮路径审计与-pyc-目录改符号链接的处理">Case 4：10-11 &amp; 11-07 — 多轮路径审计与 .pyc 目录改符号链接的处理</a></li><li><a href="#case-509-28--11-23--区分网络波动凭据失效与服务停止不误判为代码冲突">Case 5：09-28 ~ 11-23 — 区分网络波动、凭据失效与服务停止，不误判为代码冲突</a></li></ul></li><li><a href="#四可复用的-agent-扩展与协同方法论">四、可复用的 Agent 扩展与协同方法论</a></li></ul>
+  </div>
+</details>
+
+        
+<details id="entry-related-posts" class="toc-wrapper" open>
+  <summary>
+    <h2 class="no_toc">
+      Related Posts
+      <svg class="toc-toggle-icon" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true" focusable="false">
+        <path d="m4 6 4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+      </svg>
+    </h2>
+  </summary>
+  <div class="toc-content">
+    <ul>
+      
+      <li><a href="/personal_homepage/tool/quantnight-daemons/">QuantNight 守护进程与定时调度体系全景</a></li>
+      
+      <li><a href="/personal_homepage/tool/mcp-dev-pitfalls/">生产级 MCP 开发演进复盘：以 QuantNight MCP 为例谈踩坑、弯路与架构取舍</a></li>
+      
+      <li><a href="/personal_homepage/tool/alpha30/">QuantNight 原生 MCP 共享底座架构：单守护进程、事件通知、跨重启续跑与双端职责边界</a></li>
+      
+      <li><a href="/personal_homepage/finance/operators/">WorldQuant FASTEXPR 核心算子解析、分布整形与线性回归推导</a></li>
+      
+      <li><a href="/personal_homepage/data/alpha29/">News & Social Media 新闻流、社交媒体情绪与文本事件数据体系</a></li>
+      
+    </ul>
+  </div>
+</details>
+
+
+
+      </div>
+
+      <div class="page-content">
+        <div class="e-content">
+          <blockquote>
+  <p><strong>写作定位</strong>：本文属于 <code class="language-plaintext highlighter-rouge">agent/extension</code> 工程实践系列，结合 <strong>Mac mini 开发主会话（<code class="language-plaintext highlighter-rouge">01a0c650</code>）</strong>、<strong><code class="language-plaintext highlighter-rouge">git-sync</code> 与 <code class="language-plaintext highlighter-rouge">pi-git-sync-bridge</code> 源码</strong>，以及 <strong>Guardian 持久会话 <code class="language-plaintext highlighter-rouge">01a0e057</code> 跨越两个月（2026-09-27 ~ 2026-11-23）的真实线上运行日志</strong>，完整梳理这套双机 + 上游 Git 协同工作流的设计收敛、底层架构与实战经验。</p>
+</blockquote>
+
+<p>在 Vibe Coding 和多端协同常态化后，一个越来越明显的痛点是：<strong>同一套本地工具与业务仓库，会被不同机器、不同编程上下文同时修改和维护</strong>——MacBook Pro 上外出写功能，Mac mini 上常驻跑定时/量化任务，外加 ChatGPT/Codex 往 GitHub 分支推提交、本地多个 Pi session 并行改代码、甚至偶尔直接手改提交。如果不加协调，两边代码很快就会版本滞后、各自修补或静默覆盖未提交工作。</p>
+
+<p><code class="language-plaintext highlighter-rouge">git-sync</code> 要解决的就是这个问题，并且从设计第一天起就确立了一条底线：<strong>常规同步不依赖大模型，LLM 只作为异常分诊、隔离合并且零覆盖兜底的最后一道防线</strong>。</p>
+
+<hr />
+
+<h2 id="一源码架构拆解四平面解耦与安全边界">一、源码架构拆解：四平面解耦与安全边界</h2>
+
+<p>从当前运行的源码（<code class="language-plaintext highlighter-rouge">~/.local/share/git-sync-runtime/.../src/</code> 与 <code class="language-plaintext highlighter-rouge">~/.pi/agent/git/github.com/roshameow/pi-git-sync-bridge/</code>）来看，整个系统分为四个严格解耦的平面：</p>
+
+<pre><code class="language-mermaid">flowchart TB
+    subgraph Bridge["1. 会话溯源层 (pi-git-sync-bridge)"]
+        direction LR
+        B1["Pi Hooks&lt;br/&gt;session_start · before_agent_start&lt;br/&gt;tool_execution_end · agent_settled · shutdown"]
+        B2["只读 Git 探测&lt;br/&gt;GIT_NO_LAZY_FETCH=1&lt;br/&gt;GIT_OPTIONAL_LOCKS=0"]
+        B3["原子写 Outbox&lt;br/&gt;~/.config/git-sync/bridge-outbox/*.json&lt;br/&gt;(0700 dir · .tmp -&gt; fsync -&gt; rename)"]
+        B1 --&gt; B2 --&gt; B3
+    end
+
+    subgraph Daemon["2. 常驻守护与状态机层 (daemon.js · bridge.js · provenance.js)"]
+        direction LR
+        D1["事件消费与归因&lt;br/&gt;认领 *.json -&gt; 校验 repoRoot/OID&lt;br/&gt;更新 sessions.json &amp; provenance.json"]
+        D2["双模态同步调度&lt;br/&gt;direct-peer (两机 SSH)&lt;br/&gt;upstream (单机 GitHub)"]
+        D3["状态互斥锁&lt;br/&gt;withStateMutationLock&lt;br/&gt;(配置/状态严禁落在 Git 仓库内)"]
+        D1 --- D2 --- D3
+    end
+
+    subgraph DataPlane["3. 零污染传输与安全应用层 (direct-sync-service · apply)"]
+        direction LR
+        DP1["Transfer 阶段&lt;br/&gt;固定 ED25519 SSH / HTTPS&lt;br/&gt;仅写入私有 bare store&lt;br/&gt;refs/received/&amp;lt;branchHash&amp;gt;/&amp;lt;oid&amp;gt;"]
+        DP2["五重安全门禁 gate()&lt;br/&gt;分支 · 锁文件/shallow/submodule&lt;br/&gt;tracked 脏污 · 目标路径碰撞"]
+        DP3["Apply 阶段&lt;br/&gt;写 intent 凭证 -&gt; recheck()&lt;br/&gt;仅 git merge --ff-only"]
+        DP1 --&gt; DP2 --&gt; DP3
+    end
+
+    subgraph Guardian["4. 异常分诊与唤醒层 (sync-attention · guardian.js)"]
+        direction LR
+        G1["异常分类&lt;br/&gt;blocked-dirty / blocked-diverged&lt;br/&gt;repeated-error / needs-recovery"]
+        G2["强校验派发&lt;br/&gt;校验 live session &amp; SHA-256 sender&lt;br/&gt;每轮上限 100 · 生成 dispatch receipt"]
+        G3["持久 Guardian Pi 会话&lt;br/&gt;pi-agent-notify 唤醒&lt;br/&gt;隔离 worktree 派发一次性 resolver"]
+        G1 --&gt; G2 --&gt; G3
+    end
+
+    Bridge --&gt;|"bridge-outbox/*.json"| Daemon
+    Daemon --&gt; DataPlane
+    DataPlane --&gt;|"异常/阻塞事件 (日常成功零唤醒)"| Guardian
+</code></pre>
+
+<h3 id="11-状态隔离与防劫持基线safetyjs--direct-sync-servicejs">1.1 状态隔离与防劫持基线（<code class="language-plaintext highlighter-rouge">safety.js</code> / <code class="language-plaintext highlighter-rouge">direct-sync-service.js</code>）</h3>
+<ul>
+  <li><strong>路径物理隔离</strong>：所有配置文件（<code class="language-plaintext highlighter-rouge">~/.config/git-sync</code>）与状态库（<code class="language-plaintext highlighter-rouge">~/.local/state/git-sync</code>）在启动及 CLI 入口都会经过 <code class="language-plaintext highlighter-rouge">assertAppPathsOutsideGitRepositories</code> 检查，绝不允许位于任何被管仓库内部或使用符号链接。</li>
+  <li><strong>描述符级防篡改读取（<code class="language-plaintext highlighter-rouge">ownerText</code>）</strong>：读取 <code class="language-plaintext highlighter-rouge">direct-sync.json</code>、<code class="language-plaintext highlighter-rouge">upstream-sync.json</code>、<code class="language-plaintext highlighter-rouge">known_hosts</code> 和发送脚本时，使用 <code class="language-plaintext highlighter-rouge">O_RDONLY | O_NOFOLLOW | O_NONBLOCK</code> 打开句柄，校验属主 UID、权限模式（私有文件 <code class="language-plaintext highlighter-rouge">0600</code>，私有目录 <code class="language-plaintext highlighter-rouge">0700</code>）、<code class="language-plaintext highlighter-rouge">nlink === 1</code> 及读取前后两次 <code class="language-plaintext highlighter-rouge">lstat</code>/<code class="language-plaintext highlighter-rouge">fstat</code> 文件指纹，防止 TOCTOU 竞争与越权读取。</li>
+  <li><strong>固定对端 SSH（<code class="language-plaintext highlighter-rouge">pinnedSsh</code>）</strong>：不读取用户的 <code class="language-plaintext highlighter-rouge">~/.ssh/config</code> 别名猜测地址，而是校验 <code class="language-plaintext highlighter-rouge">known_hosts</code> 中精确的非通配/非散列 <code class="language-plaintext highlighter-rouge">ssh-ed25519</code> 公钥及 SHA-256 指纹后，拼出强制参数 <code class="language-plaintext highlighter-rouge">/usr/bin/ssh -F /dev/null -T -p 22 -o BatchMode=yes -o StrictHostKeyChecking=yes -o ProxyCommand=none -o ClearAllForwardings=yes</code>。</li>
+</ul>
+
+<h3 id="12-传输transfer与落盘apply严格解耦">1.2 传输（Transfer）与落盘（Apply）严格解耦</h3>
+<p>这是整个系统能长期在两台开发机同时脏改工作区的情况下不丢提交、不毁现场的核心：</p>
+<ol>
+  <li><strong>Transfer 只写私有 bare store，永不碰工作目录</strong>：
+<code class="language-plaintext highlighter-rouge">receiveCommittedBranch</code> 通过固定 SSH（<code class="language-plaintext highlighter-rouge">direct-peer</code>）或受控 HTTPS（<code class="language-plaintext highlighter-rouge">upstream</code>）把对端已提交历史拉入 <code class="language-plaintext highlighter-rouge">~/.local/state/git-sync/direct-sync-stores/&lt;key&gt;.git</code> 的不可变引用 <code class="language-plaintext highlighter-rouge">refs/received/&lt;sha256(branch)&gt;/&lt;oid&gt;</code>。哪怕接收端工作区有上千个未提交修改，远端已提交的代码依然先安全落地到了本地对象库。</li>
+  <li><strong>Apply 的五重安全门禁（<code class="language-plaintext highlighter-rouge">direct-sync-apply.js</code>）</strong>：
+只有在 <code class="language-plaintext highlighter-rouge">applyCleanFastForward: true</code> 且依次通过以下全部门禁后，才会执行一次标准 <code class="language-plaintext highlighter-rouge">git merge --ff-only</code>：
+    <ul>
+      <li>必须处于目标分支，非 detached HEAD；</li>
+      <li>Git 目录内不得存在 <code class="language-plaintext highlighter-rouge">index.lock</code>、<code class="language-plaintext highlighter-rouge">MERGE_HEAD</code>、<code class="language-plaintext highlighter-rouge">CHERRY_PICK_HEAD</code>、<code class="language-plaintext highlighter-rouge">rebase-merge</code> 等 12 类在途操作状态，不支持 shallow 仓库、submodule、<code class="language-plaintext highlighter-rouge">skip-worktree</code> 及 <code class="language-plaintext highlighter-rouge">filter.*</code> clean 过滤器（特意把 <code class="language-plaintext highlighter-rouge">config</code> 检查排在 <code class="language-plaintext highlighter-rouge">git status</code> 之前，因为连 <code class="language-plaintext highlighter-rouge">status</code> 都可能触发 clean filter）；</li>
+      <li>不允许有 tracked 或 staged 未提交改动（<code class="language-plaintext highlighter-rouge">git status --porcelain=v1 -z --untracked-files=no</code>）；</li>
+      <li><strong>仅在路径冲突时拦截未跟踪/忽略文件</strong>：用 <code class="language-plaintext highlighter-rouge">git ls-tree -r --name-only HEAD/target</code> 精确比对目标提交新增路径及其父目录是否与工作区现存未跟踪路径发生碰撞。既避免去全量枚举 <code class="language-plaintext highlighter-rouge">node_modules</code> 导致缓冲区溢出，又让不冲突的调试脚本和日志能够原位保留；</li>
+      <li>在 <code class="language-plaintext highlighter-rouge">withStateMutationLock</code> 内再次 <code class="language-plaintext highlighter-rouge">recheck()</code> 配置快照、<code class="language-plaintext highlighter-rouge">dev:ino</code> 身份与分支，先写持久化 <code class="language-plaintext highlighter-rouge">direct-sync-apply-&lt;key&gt;.json</code> intent 文件再合并；一旦执行中被信号打断或部分写入，intent 不会被静默清理或重放，而是进入显式 <code class="language-plaintext highlighter-rouge">needs-recovery</code> 状态等待人工/Guardian 核查。</li>
+    </ul>
+  </li>
+  <li><strong>单双模式互斥</strong>：<code class="language-plaintext highlighter-rouge">upstream-sync-service.js</code> 会读取 <code class="language-plaintext highlighter-rouge">direct-sync.json</code> 执行 <code class="language-plaintext highlighter-rouge">excludeDirect</code> 检查，确保同一仓库不会同时启用双机互传与单机上游自动应用。</li>
+</ol>
+
+<h3 id="13-pi-git-sync-bridge只做事实观察不抢做唯一归因">1.3 <code class="language-plaintext highlighter-rouge">pi-git-sync-bridge</code>：只做事实观察，不抢做唯一归因</h3>
+<p><a href="file:///Users/wenliu/.pi/agent/git/github.com/roshameow/pi-git-sync-bridge/extensions/index.ts"><code class="language-plaintext highlighter-rouge">extensions/index.ts</code></a> 共 350 行、零第三方运行时依赖，不注册任何 LLM tool 或命令，只挂接 5 个 Pi 生命周期钩子：</p>
+<ul>
+  <li><strong><code class="language-plaintext highlighter-rouge">session_start</code></strong>：读取 <code class="language-plaintext highlighter-rouge">hostId</code>（读不到则 fail-closed 静默退出），写 <code class="language-plaintext highlighter-rouge">session.registered</code>（<code class="language-plaintext highlighter-rouge">confidence: "high"</code>）。同时用 <code class="language-plaintext highlighter-rouge">git status --porcelain=v2 --branch</code> 检查 <code class="language-plaintext highlighter-rouge"># branch.oid (initial)</code> 来精确区分合法的 unborn 空仓库与损坏的 <code class="language-plaintext highlighter-rouge">HEAD</code>；</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">before_agent_start</code></strong>：刷新当前 <code class="language-plaintext highlighter-rouge">HEAD</code> 作为本轮基线；</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">tool_execution_end</code> / <code class="language-plaintext highlighter-rouge">agent_settled</code></strong>：检查 <code class="language-plaintext highlighter-rouge">HEAD</code> 是否发生跃迁，若变化则用 <code class="language-plaintext highlighter-rouge">git rev-list --reverse &lt;after&gt; --not &lt;before&gt;</code> 列出新可达 commit，并记录 <code class="language-plaintext highlighter-rouge">toolCallId</code>、<code class="language-plaintext highlighter-rouge">toolName</code>、<code class="language-plaintext highlighter-rouge">toolError</code>，写入 <code class="language-plaintext highlighter-rouge">commit.observed</code>；同一跃迁在后续 <code class="language-plaintext highlighter-rouge">agent_settled</code> 不重复落盘；</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">session_shutdown</code></strong>：做最后一次兜底检查后写 <code class="language-plaintext highlighter-rouge">session.unregistered</code>。</li>
+</ul>
+
+<p>设计上最克制的一点是：<strong><code class="language-plaintext highlighter-rouge">commit.observed</code> 的 <code class="language-plaintext highlighter-rouge">confidence</code> 永远标为 <code class="language-plaintext highlighter-rouge">"medium"</code>，且 <code class="language-plaintext highlighter-rouge">provenance.js</code> 中所有归因记录都强制标记 <code class="language-plaintext highlighter-rouge">nonExclusive: true</code></strong>。如果一台机器上同时开着三个 Pi 会话和手动终端，bridge 绝不独断宣称“就是某个会话写的”，而是把原始观测留给 <code class="language-plaintext highlighter-rouge">daemon</code> 与后续人工/Guardian 结合上下文判断。所有内部 Git 读取一律带 <code class="language-plaintext highlighter-rouge">GIT_NO_LAZY_FETCH=1</code>、<code class="language-plaintext highlighter-rouge">GIT_OPTIONAL_LOCKS=0</code>、<code class="language-plaintext highlighter-rouge">GIT_TERMINAL_PROMPT=0</code>，既不会在 partial clone 上偷偷触发网络请求，也不会因只读检查顺便刷新 Git index。</p>
+
+<h3 id="14-guardian-派发门禁guardianjs">1.4 Guardian 派发门禁（<code class="language-plaintext highlighter-rouge">guardian.js</code>）</h3>
+<p><code class="language-plaintext highlighter-rouge">daemon.js</code> 在收到事件后，通过 <code class="language-plaintext highlighter-rouge">recordSyncAttention</code> / <code class="language-plaintext highlighter-rouge">recordUpstreamSyncAttention</code> 对长时间阻塞、分叉或连续失败生成 incident，并走 <code class="language-plaintext highlighter-rouge">dispatchGuardianIncidents</code>：</p>
+<ol>
+  <li>调用 <code class="language-plaintext highlighter-rouge">guardianCandidates</code> 与 <code class="language-plaintext highlighter-rouge">guardianDesktopStatus</code>，核实目标 <code class="language-plaintext highlighter-rouge">sessionId</code> 对应的进程 PID、transcript 文件路径、<code class="language-plaintext highlighter-rouge">cwd</code> 与 <code class="language-plaintext highlighter-rouge">rmuxTarget</code> 仍真实存活；</li>
+  <li>校验预先 pin 住的 <code class="language-plaintext highlighter-rouge">notify_agent.py</code> 发送脚本 SHA-256 哈希未被篡改；</li>
+  <li>按生成事件与回执文件（<code class="language-plaintext highlighter-rouge">dispatchReceipt</code>）做幂等去重：已经成功派发过的 incident 会直接跳过，<strong>不消耗每轮 <code class="language-plaintext highlighter-rouge">MAX_DISPATCH_PER_RUN = 100</code> 的实际发送配额</strong>，避免历史回执把新告警饿死在队列尾部。</li>
+</ol>
+
+<hr />
+
+<h2 id="二典型调用例子示例图">二、典型调用例子示例图</h2>
+
+<p>下面用两张图把日常运行中最典型的调用链路串联起来：第一张展示<strong>“正常提交自动快进（零 LLM）”与“遇到脏污/分叉后唤醒 Guardian 隔离合并”</strong>的完整时序；第二张对照日常排障、单机 GitHub 上游接入与服务恢复时的 <strong>CLI 实际调用路径</strong>。</p>
+
+<h3 id="21-双机提交同步与异常唤醒时序">2.1 双机提交同步与异常唤醒时序</h3>
+
+<pre><code class="language-mermaid">sequenceDiagram
+    autonumber
+    participant Book as MacBook Pi + Bridge
+    participant Outbox as Book bridge-outbox
+    participant Daemon as Mini git-sync daemon
+    participant Store as Mini Bare Store &amp; Worktree
+    participant Guardian as Mini Guardian Pi 会话
+    participant Worker as 隔离 Worktree Worker
+
+    Book-&gt;&gt;Book: tool_execution_end / agent_settled 检测到 HEAD 变化
+    Book-&gt;&gt;Outbox: 原子写入 commit.observed (.tmp -&gt; fsync -&gt; rename)
+    Daemon-&gt;&gt;Book: pinnedSsh 拉取已提交对象 (GIT_NO_LAZY_FETCH=1)
+    Daemon-&gt;&gt;Store: 写入不可变引用 refs/received/{branchHash}/{oid}
+    Daemon-&gt;&gt;Store: 执行 gate() 五重门禁检查
+
+    alt 情况 A：分支可快进、无 tracked/staged 改动、无路径碰撞
+        Daemon-&gt;&gt;Store: 写 intent -&gt; git merge --ff-only -&gt; 清 intent
+        Note over Daemon,Guardian: 常规路径完成，Guardian 保持静息，零 LLM 消耗
+    else 情况 B：blocked-dirty 或 blocked-diverged (如真实分叉)
+        Daemon-&gt;&gt;Daemon: sync-attention 生成 incident 并校验 sender SHA-256
+        Daemon-&gt;&gt;Guardian: pi-agent-notify 定向唤醒 (附 dispatch receipt)
+        Guardian-&gt;&gt;Daemon: git-sync incidents show {id} + guardian inspect
+        Guardian-&gt;&gt;Store: git-sync guardian preview {remote} (git merge-tree)
+        Guardian-&gt;&gt;Worker: 派发一次性 subagent 到 guardian-resolvers/{task}
+        Worker-&gt;&gt;Worker: 解决合并 + 跑 git diff --check / 测试套件
+        Worker--&gt;&gt;Guardian: 返回候选 OID 与验证证据
+        Guardian-&gt;&gt;Store: 核验父提交未漂移后推进分支并更新远端
+        Guardian-&gt;&gt;Daemon: git-sync incidents acknowledge {id}
+    end
+</code></pre>
+
+<h3 id="22-三类高频运维与接入调用路径">2.2 三类高频运维与接入调用路径</h3>
+
+<pre><code class="language-mermaid">flowchart TB
+    subgraph S1["场景 1：双机状态核查与来源溯源 (日常排查)"]
+        direction LR
+        A1["git-sync sync status&lt;br/&gt;看双端 transfer / apply 缓存"] --&gt; A2["git-sync guardian inspect &amp;lt;remote&amp;gt;&lt;br/&gt;实时核验两端 HEAD 与脏路径"]
+        A2 --&gt; A3["git-sync provenance show &amp;lt;repo&amp;gt; &amp;lt;oid&amp;gt;&lt;br/&gt;查提交归属 Pi session 或 manual/chatgpt-work"]
+    end
+
+    subgraph S2["场景 2：单机跟踪 GitHub 上游 (如 ChatGPT / Codex 推送)"]
+        direction LR
+        B1["git-sync discover --root &amp;lt;path&amp;gt;&lt;br/&gt;将本地已有目录纳入清单 (不自动 clone)"] --&gt; B2["git-sync sync upstream enable &amp;lt;remote&amp;gt; &amp;lt;branch&amp;gt;&lt;br/&gt;登记并校验与 direct-peer 互斥"]
+        B2 --&gt; B3["daemon 周期拉取 GitHub tip&lt;br/&gt;干净可快进时自动更新本地分支"]
+    end
+
+    subgraph S3["场景 3：Guardian 上线注册、故障分诊与服务恢复"]
+        direction LR
+        C1["git-sync guardian candidates&lt;br/&gt;获取 live 交互会话 exact sessionId"] --&gt; C2["git-sync guardian configure --session-id &amp;lt;id&amp;gt; --sender &amp;lt;notify_agent.py&amp;gt;&lt;br/&gt;绑定会话并 pin 发送脚本 SHA-256"]
+        C2 --&gt; C3["收到告警后查 git-sync incidents show &amp;lt;id&amp;gt;&lt;br/&gt;服务异常时核对 daemon status / install-status 再恢复"]
+    end
+</code></pre>
+
+<hr />
+
+<h2 id="三线上运行实录mac-mini-guardian-会话-01a0e0572026-09-27--2026-11-23">三、线上运行实录：Mac mini Guardian 会话 <code class="language-plaintext highlighter-rouge">01a0e057</code>（2026-09-27 ~ 2026-11-23）</h2>
+
+<p>把 MacBook Pro 侧的后台运行状态与 Mac mini 持久 Guardian 会话 <code class="language-plaintext highlighter-rouge">01a0e057-23be-75f0-be9c-ac9a11ad65e5</code>（<code class="language-plaintext highlighter-rouge">2026-09-27T00:50Z</code> ~ <code class="language-plaintext highlighter-rouge">2026-11-23T06:15Z</code>）结合起来看，可以看到这套流程在实际开发环境里的表现：</p>
+
+<ul>
+  <li><strong>双端运行规模</strong>：MacBook Pro 侧后台 daemon 自 10-25 重启后截至 11-23 已完成 <strong>50,216 轮同步 Pass</strong>（<code class="language-plaintext highlighter-rouge">wakeups: 390,401</code>），追踪 <strong>7 个仓库</strong>（5 个 <code class="language-plaintext highlighter-rouge">direct-peer</code>：<code class="language-plaintext highlighter-rouge">quantnight</code>、<code class="language-plaintext highlighter-rouge">agy-vision-websearch</code>、<code class="language-plaintext highlighter-rouge">pi-agent-notify</code>、<code class="language-plaintext highlighter-rouge">pi-minimal-mode</code>、<code class="language-plaintext highlighter-rouge">pi-subagent-durable</code>；2 个仅本机跟踪上游 <code class="language-plaintext highlighter-rouge">upstream</code>：<code class="language-plaintext highlighter-rouge">pi-session-viewer</code>、<code class="language-plaintext highlighter-rouge">melonverse</code>），本地 <code class="language-plaintext highlighter-rouge">provenance.json</code> 记录了 <strong>667 个提交归因</strong>、<code class="language-plaintext highlighter-rouge">sessions.json</code> 记录了 <strong>2,952 条会话生命周期</strong>、<code class="language-plaintext highlighter-rouge">incidents/</code> 累计记录 <strong>383 份事件单</strong>。</li>
+  <li><strong>Guardian 唤醒分布</strong>：<code class="language-plaintext highlighter-rouge">01a0e057</code> 单条持久会话在近两个月里共处理了 <strong>43 次人工指令</strong> 与 <strong>244 次 <code class="language-plaintext highlighter-rouge">agent-notify</code> 外部唤醒</strong>（其中 <code class="language-plaintext highlighter-rouge">repeated-error</code> 104 次、<code class="language-plaintext highlighter-rouge">blocked-dirty</code> 92 次、<code class="language-plaintext highlighter-rouge">needs-recovery</code> 31 次、<code class="language-plaintext highlighter-rouge">local-ahead</code> 7 次、<code class="language-plaintext highlighter-rouge">guardian.*</code> 运维验证 7 次、<code class="language-plaintext highlighter-rouge">blocked-diverged</code> 分叉 1 次）。日常快进静默完成，Guardian 只在阻塞、分叉或连续失败时被唤醒。</li>
+</ul>
+
+<p>以下五个实际处理案例展示了不同异常场景下的应对方式：</p>
+
+<h3 id="case-109-27--调整未跟踪文件拦截规则支持无碰撞原位快进">Case 1：09-27 — 调整未跟踪文件拦截规则，支持无碰撞原位快进</h3>
+<ul>
+  <li><strong>现象</strong>：上线第一天，Mac mini 上的 <code class="language-plaintext highlighter-rouge">quantnight</code> 因存在两个未跟踪文件（<code class="language-plaintext highlighter-rouge">debug_login.py</code> 与 <code class="language-plaintext highlighter-rouge">logs/spc_recheck_20260923.out</code>），后台快进持续被 <code class="language-plaintext highlighter-rouge">blocked-dirty</code> 拦住；旧规范还让 Guardian 建议先归档这两个文件再同步。</li>
+  <li><strong>处理与调整</strong>：按实际使用需求取消了“无差别归档未跟踪文件”的做法，同步修改 <code class="language-plaintext highlighter-rouge">direct-sync-apply.js</code> 的路径检查与 Guardian 的 <code class="language-plaintext highlighter-rouge">AGENTS.md</code>：只要目标树新增路径及其父目录不与未跟踪/忽略文件发生路径、类型、大小写或符号链接冲突，就直接原位保留并放行快进。当天 <code class="language-plaintext highlighter-rouge">09:04Z</code> Mini 从 <code class="language-plaintext highlighter-rouge">04e0035</code> 快进至 <code class="language-plaintext highlighter-rouge">ea7bfd0</code>，两个文件前后的 inode 与 SHA-256 保持一致。</li>
+</ul>
+
+<h3 id="case-209-28--历史分叉-blocked-diverged隔离-worktree-派发一次性-resolver">Case 2：09-28 — 历史分叉 <code class="language-plaintext highlighter-rouge">blocked-diverged</code>：隔离 Worktree 派发一次性 Resolver</h3>
+<ul>
+  <li><strong>现象</strong>：<code class="language-plaintext highlighter-rouge">00:21Z</code> 收到 <code class="language-plaintext highlighter-rouge">pi-subagent-durable</code> 的历史分叉告警（Mini <code class="language-plaintext highlighter-rouge">2351b78</code> vs Book <code class="language-plaintext highlighter-rouge">2aab3ce</code>）。</li>
+  <li><strong>处理</strong>：Guardian 先在裸仓库预览确认无文本冲突（<code class="language-plaintext highlighter-rouge">clean</code>），随后派发一次性 <code class="language-plaintext highlighter-rouge">_worker</code> 到独立临时目录 <code class="language-plaintext highlighter-rouge">guardian-resolvers/pi-subagent-durable-20260928T010703Z</code>，生成合并提交 <code class="language-plaintext highlighter-rouge">4545ffa</code> 并跑通 <code class="language-plaintext highlighter-rouge">git diff --check</code> 与 8 组 <code class="language-plaintext highlighter-rouge">npm run check</code> 测试，确认双亲提交未变化后推送远端并让两端同步。此后用户明确授予“核验无冲突且检查通过的候选直接推进，无需每次请示”的授权。</li>
+</ul>
+
+<h3 id="case-310-14--10-21--通知队列修复与-apiloginpy-语义冲突决断">Case 3：10-14 ~ 10-21 — 通知队列修复与 <code class="language-plaintext highlighter-rouge">api/login.py</code> 语义冲突决断</h3>
+<ul>
+  <li><strong>通知队列修复（10-14）</strong>：排查为何阻塞未收到提醒时，Guardian 派发只读子代理查出两个问题：一是 <code class="language-plaintext highlighter-rouge">guardian-desktop.json</code> 中记录的旧 PID <code class="language-plaintext highlighter-rouge">73506</code> 与 live 会话 PID <code class="language-plaintext highlighter-rouge">38796</code> 不匹配；二是 <code class="language-plaintext highlighter-rouge">guardian.js</code> 在跳过已发送回执前就按前 100 条截断队列，导致第 132 位的新告警被饿死。随后修改为跳过有效回执后再计每轮 100 次实际发送上限，补齐 4 个回归测试（全量 211 通过）并补发了积压提醒。</li>
+  <li><strong>语义冲突决断（10-21）</strong>：<code class="language-plaintext highlighter-rouge">quantnight</code> 的 <code class="language-plaintext highlighter-rouge">api/login.py</code> 出现真实文本冲突——Mini 留有“HTTP 204 回退密码登录”的本地修改，Book 新版则改为“204 后先核验账户身份再决定是否复用 Cookie”。Guardian 未自行覆盖，而是派隔离 worker 构造候选并跑通 <strong>160 项离线测试</strong>，再把行为取舍交给用户确认（“以 Book 提交为主合并”），合并时原样保留了 Mini 其余 9 个本地修改与运行产物。</li>
+</ul>
+
+<h3 id="case-410-11--11-07--多轮路径审计与-pyc-目录改符号链接的处理">Case 4：10-11 &amp; 11-07 — 多轮路径审计与 <code class="language-plaintext highlighter-rouge">.pyc</code> 目录改符号链接的处理</h3>
+<ul>
+  <li><strong>避免 <code class="language-plaintext highlighter-rouge">.gitignore</code> 误清理决策文件（10-11）</strong>：清理 <code class="language-plaintext highlighter-rouge">quantnight</code> 中 SPC 每日产物时，子代理经过三轮路径审计（754 → 624/619 → 574），从忽略清单中筛出包含策略记录的 <code class="language-plaintext highlighter-rouge">OPTIMIZE-REPORT.md</code>、<code class="language-plaintext highlighter-rouge">BREADTH-KEEP-DROP.json</code> 及 5 份带说明的 JSON 并恢复跟踪，只停止跟踪纯生成产物。</li>
+  <li><strong>目录改符号链接时的缓存迁移（11-07）</strong>：Book 提交把 <code class="language-plaintext highlighter-rouge">.agents/skills/submit-alpha/scripts/</code> 从目录改为符号链接，Mini 原目录下残留 3 个被忽略的 <code class="language-plaintext highlighter-rouge">.pyc</code> 缓存阻断快进。获准仅备份移出这 3 个缓存后，Guardian 先通过两轮只读审查（修正了备份权限从 <code class="language-plaintext highlighter-rouge">0644</code> 变为 <code class="language-plaintext highlighter-rouge">0600</code>、目录 <code class="language-plaintext highlighter-rouge">fsync</code> 与 TOCTOU 检查等问题），并在隔离环境演练通过后完成更新，其余 391 个受保护文件与 11 个 SPC 修改均保持不变。</li>
+</ul>
+
+<h3 id="case-509-28--11-23--区分网络波动凭据失效与服务停止不误判为代码冲突">Case 5：09-28 ~ 11-23 — 区分网络波动、凭据失效与服务停止，不误判为代码冲突</h3>
+<ul>
+  <li>在近百次 <code class="language-plaintext highlighter-rouge">upstream</code> 告警中，<code class="language-plaintext highlighter-rouge">pi-session-viewer</code> 与 <code class="language-plaintext highlighter-rouge">melonverse</code> 多次出现 <code class="language-plaintext highlighter-rouge">repeated-error</code> / <code class="language-plaintext highlighter-rouge">needs-recovery</code>。Guardian 每次重新读取 <code class="language-plaintext highlighter-rouge">incidents show</code> 与实时网络/Git 状态后，分别定位到 <strong>Book <code class="language-plaintext highlighter-rouge">gh</code> token 失效</strong>、<strong><code class="language-plaintext highlighter-rouge">198.18.0.20</code> 代理/TUN 链路引发的 LibreSSL <code class="language-plaintext highlighter-rouge">SSL_ERROR_SYSCALL</code> (<code class="language-plaintext highlighter-rouge">tls-io</code>)</strong>、<strong>本地锁竞争被外围归入通用错误</strong>，以及<strong>相同 HEAD 应用仍会执行本地 fetch</strong> 等原因，过程中不以推测代替核验，也不擅自删锁或 <code class="language-plaintext highlighter-rouge">reset</code>。</li>
+  <li><strong>2026-11-23</strong> 尾声，一个自 11 月 11 日挂起的 3 小时观测子代理唤醒回报后，Guardian 没有沿用历史记录中的运行状态，而是实时查出本机 daemon 已于 <code class="language-plaintext highlighter-rouge">11-11T23:26Z</code> 停止（launchd 上次退出码 1）；先核对配置未被停用、Node <code class="language-plaintext highlighter-rouge">v25.8.2</code> 与五仓身份完好后，才单次恢复服务并核验 <code class="language-plaintext highlighter-rouge">completedPasses: 1</code>。</li>
+</ul>
+
+<hr />
+
+<h2 id="四可复用的-agent-扩展与协同方法论">四、可复用的 Agent 扩展与协同方法论</h2>
+
+<p>从 <code class="language-plaintext highlighter-rouge">git-sync</code> 的设计与近两个月实际运行来看，有四条经验可直接复用在其他 <code class="language-plaintext highlighter-rouge">agent/extension</code> 项目中：</p>
+
+<ol>
+  <li><strong>将确定性同步与异常研判分层</strong>：扫目录、拉取 bare refs 和执行 clean fast-forward 属于高频确定性操作，应由常驻守护进程零 token 完成；LLM 会话只在分叉、冲突预览和故障定位时接入。</li>
+  <li><strong>用确定性门禁和隔离演练做安全边界，而不是限制基础工具</strong>：去掉 <code class="language-plaintext highlighter-rouge">bash</code>/<code class="language-plaintext highlighter-rouge">read</code> 的只读 Guardian 无法排查现场问题；真正避免误操作的是应用前的 <code class="language-plaintext highlighter-rouge">gate()</code>、不可变 <code class="language-plaintext highlighter-rouge">refs/received/*</code> 对象库，以及在 <code class="language-plaintext highlighter-rouge">detached worktree</code> 中的隔离合并验证。</li>
+  <li><strong>区分传输态、应用态与环境故障</strong>：<code class="language-plaintext highlighter-rouge">received</code> 不等于 <code class="language-plaintext highlighter-rouge">applied</code>，<code class="language-plaintext highlighter-rouge">HEAD=unknown</code> 也不代表分支损坏。状态机把 <code class="language-plaintext highlighter-rouge">transfer</code>、<code class="language-plaintext highlighter-rouge">apply</code> 与诊断拆开后，才能避免把 SSH 断连或 TLS 波动误判为代码冲突。</li>
+  <li><strong>以端到端可用闭环作为收敛标准</strong>：设计阶段很容易不断叠加签名协议、跨机事务与虚拟验证层，却迟迟没有完成基础传输；先交付边界清晰的最小可用版本，再根据实际运维痛点逐步补全（如单机 <code class="language-plaintext highlighter-rouge">upstream-sync</code> 与无碰撞保留快进），整体可控性高得多。</li>
+</ol>
+
+<blockquote>
+  <p>[!SUMMARY] 演进里程碑</p>
+  <ul>
+    <li><strong>09-22（<code class="language-plaintext highlighter-rouge">01a0c650</code>）</strong>：确立去插件化方案，<code class="language-plaintext highlighter-rouge">git-sync</code> 作为独立 macOS CLI/Daemon 运行，仅通过轻量 <code class="language-plaintext highlighter-rouge">pi-git-sync-bridge</code> 上报会话与 commit 观测事件，并兼容 <code class="language-plaintext highlighter-rouge">manual</code>、<code class="language-plaintext highlighter-rouge">vscode</code>、<code class="language-plaintext highlighter-rouge">chatgpt-work</code> 等非 Pi 来源；确立多根自动发现、双机共有才纳管、缺失不自动 <code class="language-plaintext highlighter-rouge">clone</code> 的边界。</li>
+    <li><strong>09-23 ~ 09-25（<code class="language-plaintext highlighter-rouge">01a0c650</code>）</strong>：前期扩展出私有控制面、签名续期、分角色 ACL 与容器证明，累计 857 项测试但生产入口仍无法写入工作区；09-25 晚停止继续扩建复杂控制面，回归标准 Git 传输 + Pin ED25519 SSH + bare store 路线。</li>
+    <li><strong>09-26 ~ 09-27（<code class="language-plaintext highlighter-rouge">01a0c650</code>）</strong>：明确授权“工作区干净且可快进时自动更新活动分支”，完成两机五仓真实部署；随后撤销 Guardian 的专用扩展与受限工具白名单，将其还原为可在 <code class="language-plaintext highlighter-rouge">pi-session-viewer</code> Desktop 打开与交互的标准持久 Pi 会话。</li>
+    <li><strong>09-27（<code class="language-plaintext highlighter-rouge">01a0e057</code>）</strong>：修正“无差别拦截未跟踪文件”规则，改为仅在目标路径存在真实碰撞时阻塞，非碰撞文件原位保留。</li>
+    <li><strong>09-28（<code class="language-plaintext highlighter-rouge">01a0c650</code> &amp; <code class="language-plaintext highlighter-rouge">01a0e057</code>）</strong>：新增单机 GitHub <code class="language-plaintext highlighter-rouge">upstream-sync</code> 模式以接收外部工具/ChatGPT 推送的提交，并将源码收敛至单一公开仓库；同期验证完成隔离 worktree 分叉合并与“无冲突候选免逐次请示”机制。</li>
+    <li><strong>10-14 ~ 11-23（<code class="language-plaintext highlighter-rouge">01a0e057</code>）</strong>：修复 Guardian 队列头部分片截断导致的告警饥饿与 PID 漂移检测问题，并在多次 <code class="language-plaintext highlighter-rouge">blocked-dirty</code>、语义冲突与上游 TLS 故障中持续迭代路径审计和隔离演练流程。</li>
+  </ul>
+</blockquote>
+
+        </div>
+
+        
+
+        
+        
+  <div class="page-comments">
+    <div id="disqus_thread"></div>
+    <script>
+      var disqus_config = function () {
+        this.page.url = 'https://roshameow.github.io//personal_homepage/tool/git-sync/';
+        this.page.identifier = 'https://roshameow.github.io//personal_homepage/tool/git-sync/';
+      };
+
+      (function() {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://https-roshameow-github-io-personal-homepage.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+  </div>
+
+
+        
+
+        <nav class="page-pagination" role="navigation">
+  
+    <a class="page-previous" href="/personal_homepage/tool/alpha30/">
+      <h4 class="page-pagination-label">Previous</h4>
+      <span class="page-pagination-title">
+        <i class="fas fa-arrow-left"></i> QuantNight 原生 MCP 共享底座架构：单守护进程、事件通知、跨重启续跑与双端职责边界
+
+      </span>
+    </a>
+  
+
+  
+    <a class="page-next" href="/personal_homepage/tool/mcp-dev-pitfalls/">
+      <h4 class="page-pagination-label">Next</h4>
+      <span class="page-pagination-title">
+        生产级 MCP 开发演进复盘：以 QuantNight MCP 为例谈踩坑、弯路与架构取舍
+ <i class="fas fa-arrow-right"></i>
+      </span>
+    </a>
+  
+</nav>
+
+      </div>
+
+    </div>
+  </article>
+</main>
+
+    <footer id="footer" class="site-footer">
+  <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+<div class="social-icons"><a class="social-icon" href="/personal_homepage/atom.xml"><i class="fas fa-rss-square fa-2x" title="Feed"></i></a><a class="social-icon" href="https://github.com/roshameow"><i class="fab fa-github-square fa-2x" title="GitHub"></i></a><a class="social-icon" href="https://www.linkedin.com/in/wen-liu-06503a7b/"><i class="fab fa-linkedin fa-2x" title="LinkedIn"></i></a><a class="social-icon" href="mailto:w.liuatnk@gmail.com"><i class="fas fa-envelope-square fa-2x" title="e-mail"></i></a></div><div class="copyright">
+    
+      <p>&copy; 2026 Liu, Wen's Home Page. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://github.com/mmistakes/so-simple-theme" rel="nofollow">So Simple</a>.</p>
+    
+  </div>
+</footer>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="/personal_homepage/assets/js/main.min.js"></script>
+<script src="https://use.fontawesome.com/releases/v5.0.12/js/all.js"></script><script src="/personal_homepage/assets/js/content-tables.js" defer></script>
+
+<script>
+(function () {
+  'use strict';
+
+  var types = {
+    NOTE: 'note', INFO: 'note', ABSTRACT: 'note', SUMMARY: 'note', TLDR: 'note',
+    EXAMPLE: 'note', QUOTE: 'note', CITE: 'note',
+    TIP: 'tip', HINT: 'tip', IMPORTANT: 'tip', SUCCESS: 'tip', CHECK: 'tip', DONE: 'tip',
+    QUESTION: 'warning', HELP: 'warning', FAQ: 'warning',
+    WARNING: 'warning', CAUTION: 'warning', ATTENTION: 'warning',
+    DANGER: 'danger', ERROR: 'danger', BUG: 'danger',
+    FAILURE: 'danger', FAIL: 'danger', MISSING: 'danger'
+  };
+  var icons = {
+    note: 'M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z M12 11v6 M12 7h.01',
+    tip: 'M9 18h6 M10 21h4 M9 15a6 6 0 1 1 6 0v3H9z',
+    warning: 'M12 3L2 21h20z M12 9v5 M12 17h.01',
+    danger: 'M7 3h10l4 4v10l-4 4H7l-4-4V7z M9 9l6 6 M15 9l-6 6'
+  };
+
+  function makeIcon(type) {
+    var namespace = 'http://www.w3.org/2000/svg';
+    var svg = document.createElementNS(namespace, 'svg');
+    svg.setAttribute('class', 'callout-icon');
+    svg.setAttribute('viewBox', '0 0 24 24');
+    svg.setAttribute('width', '20');
+    svg.setAttribute('height', '20');
+    svg.setAttribute('fill', 'none');
+    svg.setAttribute('stroke', 'currentColor');
+    svg.setAttribute('stroke-width', '2');
+    svg.setAttribute('stroke-linecap', 'round');
+    svg.setAttribute('stroke-linejoin', 'round');
+    svg.setAttribute('aria-hidden', 'true');
+    svg.setAttribute('focusable', 'false');
+    var path = document.createElementNS(namespace, 'path');
+    path.setAttribute('d', icons[type]);
+    svg.appendChild(path);
+    return svg;
+  }
+
+  // A soft break is a text newline; a Markdown hard break is a <br>.
+  // Do not split newlines inside inline code or other literal content.
+  function firstBreak(parent) {
+    for (var node = parent.firstChild; node; node = node.nextSibling) {
+      if (node.nodeType === 3) {
+        var offset = node.data.search(/[\r\n]/);
+        if (offset !== -1) return { node: node, offset: offset };
+      } else if (node.nodeType === 1) {
+        if (node.tagName === 'BR') return { node: node };
+        if (/^(CODE|PRE|SCRIPT|STYLE|TEXTAREA)$/.test(node.tagName)) continue;
+        var result = firstBreak(node);
+        if (result) return result;
+      }
+    }
+    return null;
+  }
+
+  function transformCallouts() {
+    document.querySelectorAll('.page-content blockquote').forEach(function (quote) {
+      if (quote.closest('pre, code, .highlight, .highlighter-rouge')) return;
+      var paragraph = quote.firstElementChild;
+      if (!paragraph || paragraph.tagName !== 'P') return;
+
+      // Require the marker in a direct text node: <code>[!WARNING]</code>
+      // (and markers merely mentioned later in a quote) must remain literal.
+      var markerNode = paragraph.firstChild;
+      if (!markerNode || markerNode.nodeType !== 3) return;
+      var marker = markerNode.data.match(/^[\t \r\n]*\[!([a-z][a-z0-9-]*)\]([+-])?(?=[\t \r\n]|$)[\t ]*/i);
+      if (!marker) return;
+      var name = marker[1].toUpperCase();
+      if (!Object.prototype.hasOwnProperty.call(types, name)) return;
+      var type = types[name];
+      var label = name === 'TLDR' ? 'TL;DR' : name.charAt(0) + name.slice(1).toLowerCase();
+      markerNode.deleteData(0, marker[0].length);
+
+      var boundary = firstBreak(paragraph);
+      var range = document.createRange();
+      range.selectNodeContents(paragraph);
+      if (boundary) {
+        if (boundary.node.nodeType === 3) range.setEnd(boundary.node, boundary.offset);
+        else range.setEndBefore(boundary.node);
+      }
+      var titleContent = range.extractContents();
+      if (boundary) {
+        if (boundary.node.nodeType === 3) {
+          var breakLength = boundary.node.data.slice(0, 2) === '\r\n' ? 2 : 1;
+          boundary.node.deleteData(0, breakLength);
+        } else {
+          boundary.node.parentNode.removeChild(boundary.node);
+        }
+      }
+      if (!paragraph.textContent.trim() && !paragraph.children.length) {
+        quote.removeChild(paragraph);
+      }
+
+      var folding = !!marker[2];
+      var callout = document.createElement(folding ? 'details' : 'div');
+      // Keep author-provided IDs, language, direction, and classes.
+      Array.prototype.forEach.call(quote.attributes, function (attribute) {
+        callout.setAttribute(attribute.name, attribute.value);
+      });
+      callout.classList.add('callout', 'callout--' + type);
+      callout.setAttribute('data-callout', name.toLowerCase());
+      callout.setAttribute('aria-label', label);
+      if (folding) {
+        callout.removeAttribute('role');
+        if (marker[2] === '+') callout.setAttribute('open', '');
+        else callout.removeAttribute('open');
+      } else {
+        callout.setAttribute('role', 'note');
+      }
+
+      var title = document.createElement(folding ? 'summary' : 'div');
+      title.className = 'callout-title';
+      title.appendChild(makeIcon(type));
+      var titleText = document.createElement('span');
+      titleText.className = 'callout-title-text';
+      if (titleContent.textContent.trim() || titleContent.childElementCount) {
+        titleText.appendChild(titleContent);
+      } else {
+        titleText.textContent = label;
+      }
+      title.appendChild(titleText);
+      callout.appendChild(title);
+
+      var body = document.createElement('div');
+      body.className = 'callout-body';
+      while (quote.firstChild) body.appendChild(quote.firstChild);
+      callout.appendChild(body);
+      quote.parentNode.replaceChild(callout, quote);
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', transformCallouts);
+  } else {
+    transformCallouts();
+  }
+})();
+</script>
+<!-- <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'G-9TMSCDTBGN', 'auto');
+  ga('send', 'pageview');
+</script> -->
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9TMSCDTBGN"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-9TMSCDTBGN');
+</script>
+
+
+
+<!-- MathJax -->
+<style>
+    /* Only oversized equations get this wrapper; ordinary inline math stays inline. */
+    .math-scroll {
+        display: block;
+        max-width: 100%;
+        overflow-x: auto;
+        overflow-y: hidden;
+        padding-block: 0.5em;
+        scrollbar-width: thin;
+    }
+    .math-scroll > mjx-container[jax] {
+        display: inline-block;
+        margin: 0;
+    }
+    .math-scroll:focus-visible {
+        outline: 2px solid currentColor;
+        outline-offset: 2px;
+    }
+</style>
+<script>
+    function fitMathToColumn() {
+        document.querySelectorAll('mjx-container').forEach(function (container) {
+            var wrapper = container.parentElement.classList.contains('math-scroll') ? container.parentElement : null;
+            var column = wrapper ? wrapper.parentElement : container.parentElement;
+            while (column && ['inline', 'contents'].includes(getComputedStyle(column).display)) {
+                column = column.parentElement;
+            }
+            if (!column) return;
+            var style = getComputedStyle(column);
+            var available = column.clientWidth - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight);
+            var ink = container.querySelector('mjx-math, svg');
+            var width = (ink || container).getBoundingClientRect().width;
+            if (width > available + 1) {
+                if (!wrapper) {
+                    wrapper = document.createElement('span');
+                    wrapper.className = 'math-scroll';
+                    wrapper.tabIndex = 0;
+                    wrapper.setAttribute('role', 'region');
+                    wrapper.setAttribute('aria-label', 'Mathematical formula; scroll horizontally to read all');
+                    wrapper.title = 'Scroll horizontally to read the full formula';
+                    container.before(wrapper);
+                    wrapper.appendChild(container);
+                }
+            } else if (wrapper) {
+                wrapper.replaceWith(container);
+            }
+        });
+    }
+    // Pin the engine, autoloaded TeX extensions, menu and fonts to local assets.
+    window.MathJax = {
+        loader: {
+            paths: { mathjax: "/personal_homepage/assets/js/vendor/mathjax/es5" },
+            load: ['[tex]/textmacros']
+        },
+        tex: {
+            tags: "ams",
+            packages: { '[+]': ['textmacros'] },
+            inlineMath: [['$', '$'], ['\\(', '\\)']],
+            displayMath: [['$$', '$$'], ['\\[', '\\]']]
+        },
+        chtml: {
+            fontURL: "/personal_homepage/assets/js/vendor/mathjax/es5/output/chtml/fonts/woff-v2"
+        },
+        startup: {
+            pageReady: function () {
+                return MathJax.startup.defaultPageReady().then(function () {
+                    return document.fonts ? document.fonts.ready : undefined;
+                }).then(function () {
+                    fitMathToColumn();
+                    var scheduled = false;
+                    window.addEventListener('resize', function () {
+                        if (scheduled) return;
+                        scheduled = true;
+                        requestAnimationFrame(function () {
+                            scheduled = false;
+                            fitMathToColumn();
+                        });
+                    });
+                });
+            }
+        },
+        options: {
+            // Keep examples (including literal dollar signs) out of the typesetter.
+            skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code', 'annotation', 'annotation-xml']
+        }
+    };
+</script>
+<script id="MathJax-script" async src="/personal_homepage/assets/js/vendor/mathjax/es5/tex-mml-chtml.js"></script>
+
+
+
+
+<!-- Mermaid -->
+<style>
+  .mermaid-diagram {
+    max-width: 100%;
+    margin: 0.85rem 0;
+    overflow-x: auto;
+  }
+  .mermaid-diagram:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+  }
+  .page-content pre.mermaid {
+    margin: 0;
+    padding: 0.25rem 0;
+    text-align: center;
+    background: transparent;
+    overflow: visible;
+    font-family: inherit;
+  }
+  .page-content pre.mermaid[data-processed] {
+    white-space: normal;
+  }
+  pre.mermaid svg {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    height: auto;
+  }
+  .mermaid-diagram .cluster-label {
+    font-weight: 700;
+  }
+  .mermaid-error {
+    font-size: 0.85em;
+    color: #9a3412;
+  }
+</style>
+<script src="/personal_homepage/assets/js/vendor/mermaid-11.17.2.min.js"></script>
+<script>
+(function () {
+  'use strict';
+
+  function normalizeMermaidSource(source) {
+    // Mermaid 11 accepts A <-- "label" --- B but creates an INVALID edge.
+    // Render the equivalent B -->|"label"| A, without editing the Markdown.
+    var body = source.trimStart()
+      .replace(/^---\r?\n[\s\S]*?\r?\n---(?:\r?\n|$)/, '')
+      .replace(/%%\{[\s\S]*?\}%%/g, '')
+      .replace(/^[\t ]*%%.*$/gm, '').trimStart();
+    if (!/^(?:flowchart|graph)\b/.test(body)) return source;
+
+    var started = false;
+    var quoted = false;
+    return source.replace(/[^\r\n]+/g, function (line) {
+      if (!started && !/^\s*(?:flowchart|graph)\b/.test(line)) return line;
+      started = true;
+      var normalized = quoted ? line : line.replace(
+        /^([\t ]*)([A-Za-z_][\w-]*)[\t ]*<--[\t ]*("[^"\r\n]*")[\t ]*---[\t ]*([A-Za-z_][\w-]*)([\t ]*;?[\t ]*(?:%%.*)?)$/,
+        function (_, indent, left, label, right, suffix) {
+          return indent + right + ' -->|' + label + '| ' + left + suffix;
+        }
+      );
+      // Never rewrite an example inside a multiline quoted node label, and
+      // never let quotes inside a %% comment affect the following lines.
+      for (var i = 0; i < line.length; i++) {
+        if (!quoted && line[i] === '%' && line[i + 1] === '%') break;
+        if (line[i] === '"') quoted = !quoted;
+      }
+      return normalized;
+    });
+  }
+
+  async function renderDiagrams() {
+    var blocks = document.querySelectorAll('code.language-mermaid');
+    if (!blocks.length) return;
+    if (typeof mermaid === 'undefined') {
+      blocks.forEach(function (code) {
+        var original = code.closest('.highlighter-rouge') || code.closest('pre');
+        if (!original) return;
+        var message = document.createElement('p');
+        message.className = 'mermaid-error';
+        message.setAttribute('role', 'status');
+        message.textContent = '图表组件加载失败，请刷新页面重试。Mermaid 源码已保留。';
+        original.after(message);
+      });
+      return;
+    }
+
+    // Render every diagram as Mermaid, including diagrams with multiple subgraphs.
+    // Disable the automatic pass so it cannot race with our explicit rendering.
+    var skin = getComputedStyle(document.documentElement);
+    function color(name, fallback) {
+      return skin.getPropertyValue('--mermaid-' + name).trim() || fallback;
+    }
+    var background = color('background', '#ffffff');
+    var text = color('text', '#000000');
+    var border = color('border', '#cccccc');
+    var nodeBorder = color('node-border', '#b8b9c0');
+    var cluster = color('cluster-background', '#f9f9fa');
+    var line = color('line', '#858795');
+    var palettes = [
+      ['#e4eaf0', '#f4f6f9', '#a5b3c2'], // slate blue
+      ['#e8f0ea', '#f5f8f5', '#a8bcae'], // sage
+      ['#f3ede3', '#faf7f2', '#c6b69c'], // sand
+      ['#ebe8f1', '#f7f5fa', '#b5adc5'], // lavender
+      ['#e4eeee', '#f3f8f8', '#a0baba']  // muted teal
+    ].map(function (fallbacks, index) {
+      return {
+        node: color('palette-' + index + '-node', fallbacks[0]),
+        cluster: color('palette-' + index + '-cluster', index === 0 ? cluster : fallbacks[1]),
+        border: color('palette-' + index + '-border', fallbacks[2])
+      };
+    });
+    var fontFamily = getComputedStyle(document.body).fontFamily ||
+      '"Source Sans Pro", sans-serif';
+    // Mermaid fixes label dimensions during layout. Wait for web fonts so a
+    // later font swap cannot make the measured label box too small.
+    if (document.fonts) await document.fonts.ready;
+
+    var theme = "default";
+    // The site's default follows its active skin. Explicit forest/dark/etc.
+    // choices remain available for sites that deliberately select them.
+    if (theme === 'default') theme = 'base';
+
+    var config = {
+      startOnLoad: false,
+      securityLevel: 'strict',
+      fontFamily: fontFamily,
+      // Native SVG text avoids foreignObject clipping and article paragraph CSS.
+      htmlLabels: false,
+      flowchart: {
+        inheritDir: true,
+        curve: 'linear',
+        nodeSpacing: 24,
+        rankSpacing: 28,
+        padding: 8,
+        diagramPadding: 8,
+        wrappingWidth: 180,
+        // Nested cluster borders must start below the parent's full title line.
+        subGraphTitleMargin: { top: 4, bottom: 12 }
+      },
+      theme: theme,
+      themeVariables: theme === 'base' ? {
+        fontFamily: fontFamily,
+        fontSize: '14px',
+        background: background,
+        primaryColor: palettes[0].node,
+        primaryTextColor: text,
+        primaryBorderColor: nodeBorder,
+        secondaryColor: palettes[1].node,
+        secondaryTextColor: text,
+        secondaryBorderColor: border,
+        tertiaryColor: palettes[2].node,
+        tertiaryTextColor: text,
+        tertiaryBorderColor: border,
+        lineColor: line,
+        textColor: text,
+        mainBkg: palettes[0].node,
+        nodeBorder: nodeBorder,
+        nodeTextColor: text,
+        clusterBkg: palettes[0].cluster,
+        clusterBorder: border,
+        titleColor: text,
+        defaultLinkColor: line,
+        edgeLabelBackground: background,
+        noteBkgColor: palettes[2].node,
+        noteTextColor: text,
+        noteBorderColor: border,
+        actorBkg: palettes[0].node,
+        actorBorder: nodeBorder,
+        actorTextColor: text,
+        actorLineColor: border,
+        signalColor: line,
+        signalTextColor: text
+      } : { fontFamily: fontFamily }
+    };
+
+    function applyFlowchartPalette(svg) {
+      if (theme !== 'base' || !/^flowchart/.test(svg.getAttribute('aria-roledescription') || '')) return;
+
+      function tint(group, shapes, index, kind) {
+        // Author-supplied classDef/style colors take precedence over auto accents.
+        var customClass = Array.from(group.classList).some(function (name) {
+          return !['node', 'default', 'cluster', 'clickable'].includes(name);
+        });
+        if (customClass || !shapes.length || shapes.some(function (shape) {
+          return shape.style.getPropertyValue('fill') || shape.style.getPropertyValue('stroke');
+        })) return;
+        group.setAttribute('data-mermaid-palette', index);
+        shapes.forEach(function (shape) {
+          // Keep fallbacks in the SVG so exported diagrams retain their colors.
+          if (shape.getAttribute('fill') !== 'none') {
+            shape.style.fill = 'var(--mermaid-palette-' + index + '-' + kind + ', ' + palettes[index][kind] + ')';
+          }
+          shape.style.stroke = 'var(--mermaid-palette-' + index + '-border, ' + palettes[index].border + ')';
+        });
+      }
+
+      var groups = Array.from(svg.querySelectorAll('g.cluster')).map(function (group, index) {
+        var rect = group.querySelector('rect');
+        return { group: group, rect: rect, bounds: rect && rect.getBoundingClientRect(), index: index % palettes.length };
+      }).filter(function (entry) { return entry.rect; });
+      // Mermaid's SVG stores clusters flat. Match by the actual layout so nodes
+      // inherit their smallest enclosing group, including nested schedulers.
+      var nodes = Array.from(svg.querySelectorAll('g.node')).map(function (node) {
+        return { node: node, bounds: node.getBoundingClientRect() };
+      });
+      groups.forEach(function (entry) { tint(entry.group, [entry.rect], entry.index, 'cluster'); });
+      groups.sort(function (a, b) { return a.bounds.width * a.bounds.height - b.bounds.width * b.bounds.height; });
+      nodes.forEach(function (entry) {
+        var box = entry.bounds;
+        var parent = groups.find(function (group) {
+          var bounds = group.bounds;
+          return box.left >= bounds.left - 1 && box.right <= bounds.right + 1 &&
+            box.top >= bounds.top - 1 && box.bottom <= bounds.bottom + 1;
+        });
+        var shapes = [];
+        entry.node.querySelectorAll(':scope > .label-container').forEach(function (container) {
+          // Rounded/hand-drawn shapes wrap paths in a group. Include the
+          // container in the author-style check, then tint the actual paths.
+          shapes.push(container);
+          shapes.push.apply(shapes, container.querySelectorAll('path, rect, circle, ellipse, polygon, polyline'));
+        });
+        tint(entry.node, shapes, parent ? parent.index : 0, 'node');
+      });
+    }
+
+    function hasNestedSubgraphs(source) {
+      var depth = 0;
+      return source.split(/\r?\n/).some(function (line) {
+        if (/^\s*subgraph\b/.test(line)) return ++depth > 1;
+        if (/^\s*end\s*(?:;|%%.*)?$/.test(line)) depth = Math.max(0, depth - 1);
+        return false;
+      });
+    }
+
+    for (var code of blocks) {
+      var original = code.closest('.highlighter-rouge') || code.closest('pre');
+      if (!original) continue;
+
+      var wrapper = document.createElement('div');
+      wrapper.className = 'mermaid-diagram';
+      wrapper.tabIndex = 0;
+      wrapper.setAttribute('role', 'region');
+      wrapper.setAttribute('aria-label', 'Mermaid diagram (scroll horizontally)');
+
+      var pre = document.createElement('pre');
+      pre.className = 'mermaid';
+      pre.textContent = normalizeMermaidSource(code.textContent);
+      wrapper.appendChild(pre);
+      original.replaceWith(wrapper);
+
+      try {
+        // Dagre reserves only half rankSpacing above a nested cluster. Keep
+        // that space taller than its parent's title, without spreading out
+        // the ordinary (non-nested) compact flowcharts.
+        mermaid.initialize(Object.assign({}, config, {
+          flowchart: Object.assign({}, config.flowchart, {
+            rankSpacing: hasNestedSubgraphs(code.textContent) ? 56 : config.flowchart.rankSpacing
+          })
+        }));
+        await mermaid.run({ nodes: [pre] });
+        var svg = pre.querySelector('svg');
+        if (svg && svg.viewBox.baseVal.width) {
+          // Do not shrink labels to illegible text on narrow screens;
+          // keep at least 90% of the natural size and scroll the diagram instead.
+          svg.style.minWidth = (svg.viewBox.baseVal.width * 0.9) + 'px';
+        }
+        if (svg) applyFlowchartPalette(svg);
+      } catch (error) {
+        // A malformed diagram must not prevent other diagrams from rendering
+        // or make the original source disappear.
+        wrapper.replaceChildren(original);
+        var message = document.createElement('p');
+        message.className = 'mermaid-error';
+        message.setAttribute('role', 'status');
+        message.textContent = '图表渲染失败，已保留 Mermaid 源码。';
+        wrapper.appendChild(message);
+        console.warn('Mermaid diagram could not be rendered:', error);
+      }
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', renderDiagrams);
+  } else {
+    renderDiagrams();
+  }
+})();
+</script>
+
+
+  </body>
+
+</html>

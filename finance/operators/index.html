@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<!--
+    So Simple Jekyll Theme 3.2.0
+    Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+    Free for personal and commercial use under the MIT license
+    https://github.com/mmistakes/so-simple-theme/blob/master/LICENSE
+-->
+<html lang="en-US" class="no-js">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  
+
+  
+  
+  <!-- Begin Jekyll SEO tag v2.9.1 -->
+<title>WorldQuant FASTEXPR 核心算子解析、分布整形与线性回归推导 | Liu, Wen’s Home Page</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="WorldQuant FASTEXPR 核心算子解析、分布整形与线性回归推导" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="本文由原 BRAIN 仿真总览笔记（2025-01-07-alphas.md）中的“常用算子与回归推导”模块独立拆分整理而成，与跨数据集关系总纲 alpha5 互为补充。表达式遵循 WorldQuant Expression Language 规范：仅可使用平台原生算子与数据字段，多行赋值时每条语句以分号 ; 结尾。 本文的“项目复现备注”仅取自 QuantNight expression/operator_docs/ 的历史平台实证与校准记录：FASTEXPR 是唯一真值，本地 Python 复现只是近似；文中凡标为“未定案”的口径不能当作已值级确认。" />
+<meta name="twitter:description" property="og:description" content="本文由原 BRAIN 仿真总览笔记（2025-01-07-alphas.md）中的“常用算子与回归推导”模块独立拆分整理而成，与跨数据集关系总纲 alpha5 互为补充。表达式遵循 WorldQuant Expression Language 规范：仅可使用平台原生算子与数据字段，多行赋值时每条语句以分号 ; 结尾。 本文的“项目复现备注”仅取自 QuantNight expression/operator_docs/ 的历史平台实证与校准记录：FASTEXPR 是唯一真值，本地 Python 复现只是近似；文中凡标为“未定案”的口径不能当作已值级确认。" />
+<link rel="canonical" href="https://roshameow.github.io//personal_homepage/finance/operators/" />
+<meta property="og:url" content="https://roshameow.github.io//personal_homepage/finance/operators/" />
+<meta property="og:site_name" content="Liu, Wen’s Home Page" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2026-11-21T00:00:00+00:00" />
+<meta property="article:modified_time" content="2026-11-21T16:04:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="WorldQuant FASTEXPR 核心算子解析、分布整形与线性回归推导" />
+<meta name="twitter:site" content="@" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2026-11-21T16:04:00+00:00","datePublished":"2026-11-21T00:00:00+00:00","description":"本文由原 BRAIN 仿真总览笔记（2025-01-07-alphas.md）中的“常用算子与回归推导”模块独立拆分整理而成，与跨数据集关系总纲 alpha5 互为补充。表达式遵循 WorldQuant Expression Language 规范：仅可使用平台原生算子与数据字段，多行赋值时每条语句以分号 ; 结尾。 本文的“项目复现备注”仅取自 QuantNight expression/operator_docs/ 的历史平台实证与校准记录：FASTEXPR 是唯一真值，本地 Python 复现只是近似；文中凡标为“未定案”的口径不能当作已值级确认。","headline":"WorldQuant FASTEXPR 核心算子解析、分布整形与线性回归推导","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/finance/operators/"},"url":"https://roshameow.github.io//personal_homepage/finance/operators/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  
+
+  <script>
+    /* Cut the mustard */
+    if ('querySelector' in document && 'addEventListener' in window) {
+      document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + 'js';
+    }
+  </script>
+
+  <link rel="stylesheet" href="/personal_homepage/assets/css/main.css">
+  <link rel="stylesheet" href="/personal_homepage/assets/css/skins/default.css">
+  
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,700,700i|Lora:400,400i,700,700i">
+  <link rel="alternate" type="application/atom+xml" title="Liu, Wen&#39;s Home Page" href="/personal_homepage/atom.xml">
+<!-- start custom head snippets -->
+
+<!-- insert favicons. use http://realfavicongenerator.net/ -->
+<link rel="shortcut icon" type="image/x-icon" href="/personal_homepage/docs/images/logo.ico">
+<!-- end custom head snippets -->
+
+</head>
+
+  <body class="layout--post  worldquant-fastexpr-核心算子解析-分布整形与线性回归推导">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#primary-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+  <div class="navigation-wrapper">
+    <a href="#menu-toggle" id="menu-toggle">Menu</a>
+    <nav id="primary-nav" class="site-nav animated drop">
+      <ul><li><a href="/personal_homepage/">Home</a></li><li><a href="/personal_homepage/posts/">Posts</a></li><li><a href="/personal_homepage/categories/">Categories</a></li><li><a href="/personal_homepage/tags/">Tags</a></li><li><a href="/personal_homepage/family/">Family</a></li><li><a href="/personal_homepage/search/">Search</a></li></ul>
+    </nav>
+  </div><!-- /.navigation-wrapper -->
+
+
+    <header class="masthead">
+  <div class="wrap">
+    
+    
+    
+      
+        <div class="site-title animated fadeIn"><a href="/personal_homepage/">Liu, Wen's Home Page</a></div>
+      
+      <p class="site-description animated fadeIn" itemprop="description">Work, Experiments and Ideas.</p>
+    
+  </div>
+</header><!-- /.masthead -->
+
+
+    <main id="main" class="main-content" aria-label="Content">
+  <article class="h-entry">
+    
+
+    <div class="page-wrapper">
+      <header class="page-header">
+        
+        
+        <h1 id="page-title" class="page-title p-name">WorldQuant FASTEXPR 核心算子解析、分布整形与线性回归推导
+</h1>
+        
+      </header>
+
+      <div class="page-sidebar">
+        <div class="page-author h-card p-author"><img src="/personal_homepage/docs/images/logo.svg" class="author-avatar u-photo" alt=""><div class="author-info">
+
+<span class="read-time">4 min read</span>
+
+    <time class="page-date dt-published" datetime="2026-11-21T00:00:00+00:00"><a class="u-url" href="">November 21, 2026</a>
+</time>
+
+  </div>
+</div>
+
+        
+  <h3 class="page-taxonomies-title">Categories</h3>
+  
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a class="p-category" href="/personal_homepage/categories/#finance" title="Pages filed under finance">finance</a></li>
+  </ul>
+
+
+        
+  <h3 class="page-taxonomies-title">Tags</h3>
+  
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a href="/personal_homepage/tags/#content" title="Pages tagged content" rel="tag">content</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#fastexpr" title="Pages tagged fastexpr" rel="tag">fastexpr</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#operators" title="Pages tagged operators" rel="tag">operators</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#quant" title="Pages tagged quant" rel="tag">quant</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#regression" title="Pages tagged regression" rel="tag">regression</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#worldquant" title="Pages tagged worldquant" rel="tag">worldquant</a></li>
+  </ul>
+
+
+        <details id="entry-table-of-contents" class="toc-wrapper" open>
+  <summary>
+    <h2 class="no_toc">
+      Table of Contents
+      <svg class="toc-toggle-icon" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true" focusable="false">
+        <path d="m4 6 4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+      </svg>
+    </h2>
+  </summary>
+  <div class="toc-content">
+    <ul class="inline_toc" id="my_toc"><li><a href="#一核心算子总览缺失值填补--基础统计--分布整形">一、核心算子总览：缺失值填补 / 基础统计 / 分布整形</a></li><li><a href="#二相关性时序回归ts_regression与投影正交推导">二、相关性、时序回归（ts_regression）与投影正交推导</a><ul><li><a href="#21-滚动相关与时序线性回归的数学本质">2.1 滚动相关与时序线性回归的数学本质</a></li><li><a href="#22-横截面回归regression_vs-向量投影vector_核心差异">2.2 横截面回归（regression_*）vs 向量投影（vector_*）核心差异</a></li></ul></li><li><a href="#三离散分桶与换手抑制grouping--turnover-control">三、离散分桶与换手抑制（Grouping &amp; Turnover Control）</a></li><li><a href="#四项目-python-复现的校准备入仅据-expressionoperator_docs">四、项目 Python 复现的校准备入（仅据 expression/operator_docs/）</a></li></ul>
+  </div>
+</details>
+
+        
+<details id="entry-related-posts" class="toc-wrapper" open>
+  <summary>
+    <h2 class="no_toc">
+      Related Posts
+      <svg class="toc-toggle-icon" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true" focusable="false">
+        <path d="m4 6 4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+      </svg>
+    </h2>
+  </summary>
+  <div class="toc-content">
+    <ul>
+      
+      <li><a href="/personal_homepage/tool/quantnight-daemons/">QuantNight 守护进程与定时调度体系全景</a></li>
+      
+      <li><a href="/personal_homepage/tool/mcp-dev-pitfalls/">生产级 MCP 开发演进复盘：以 QuantNight MCP 为例谈踩坑、弯路与架构取舍</a></li>
+      
+      <li><a href="/personal_homepage/tool/git-sync/">git-sync：双机多 Agent 开发的确定性同步与 Guardian 事件驱动工作流</a></li>
+      
+      <li><a href="/personal_homepage/tool/alpha30/">QuantNight 原生 MCP 共享底座架构：单守护进程、事件通知、跨重启续跑与双端职责边界</a></li>
+      
+      <li><a href="/personal_homepage/data/alpha29/">News & Social Media 新闻流、社交媒体情绪与文本事件数据体系</a></li>
+      
+    </ul>
+  </div>
+</details>
+
+
+
+      </div>
+
+      <div class="page-content">
+        <div class="e-content">
+          <blockquote>
+  <p>本文由原 BRAIN 仿真总览笔记（<a href="2025-01-07-alphas.md">2025-01-07-alphas.md</a>）中的“常用算子与回归推导”模块独立拆分整理而成，与跨数据集关系总纲 <a href="2025-02-26-alpha5.md">alpha5</a> 互为补充。表达式遵循 <a href="https://platform.worldquantbrain.com/learn/documentation/discover-brain/introduction-brain-expression-language">WorldQuant Expression Language</a> 规范：仅可使用平台原生算子与数据字段，多行赋值时每条语句以分号 <code class="language-plaintext highlighter-rouge">;</code> 结尾。</p>
+
+  <p>本文的“项目复现备注”仅取自 QuantNight <code class="language-plaintext highlighter-rouge">expression/operator_docs/</code> 的历史平台实证与校准记录：FASTEXPR 是唯一真值，本地 Python 复现只是近似；文中凡标为“未定案”的口径不能当作已值级确认。</p>
+</blockquote>
+
+<hr />
+
+<h2 id="一核心算子总览缺失值填补--基础统计--分布整形">一、核心算子总览：缺失值填补 / 基础统计 / 分布整形</h2>
+
+<p>三类操作是 FASTEXPR 信号预处理的并列工序：<strong>缺失值填补</strong>解决低频字段覆盖率，<strong>基础统计</strong>给出组内/时序基准与覆盖度，<strong>分布整形</strong>控制量纲、尾部权重和异常值影响。下表按类别并列列出。</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>类别</th>
+      <th>处理目标</th>
+      <th>代表 FASTEXPR 算子</th>
+      <th>数学本质 / 统计含义</th>
+      <th>适用场景与关键注意</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>缺失值填补</strong></td>
+      <td>时间序列回填</td>
+      <td><code class="language-plaintext highlighter-rouge">ts_backfill(x, lookback=d, k=1)</code></td>
+      <td>在最近 <code class="language-plaintext highlighter-rouge">d</code> 个交易日内取最近一次有效非空值填补当前 <code class="language-plaintext highlighter-rouge">NaN</code>；窗口内无有效值则保持 <code class="language-plaintext highlighter-rouge">NaN</code></td>
+      <td>适合季报/年报与低频公告，提升覆盖率；项目实证 <code class="language-plaintext highlighter-rouge">d=20</code>↔<code class="language-plaintext highlighter-rouge">d=60</code> corr=0.9806&lt;1，确认 <code class="language-plaintext highlighter-rouge">d</code> 是<strong>有限窗口</strong>而非无限 forward-fill</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>组内横向回填</td>
+      <td><code class="language-plaintext highlighter-rouge">group_backfill(x, group, d, std=4.0)</code></td>
+      <td>当日 <code class="language-plaintext highlighter-rouge">NaN</code> 由同 <code class="language-plaintext highlighter-rouge">group</code> 过去 <code class="language-plaintext highlighter-rouge">d</code> 日所有非空值的 Winsorized 均值回填，不要求该股票自身过去 <code class="language-plaintext highlighter-rouge">d</code> 日全空</td>
+      <td>适合同行业低频字段；项目实证 <code class="language-plaintext highlighter-rouge">d=20</code>↔<code class="language-plaintext highlighter-rouge">d=60</code> corr=0.9895&lt;1，窗口端点、池化顺序与 universe 过滤仍未完全定案</td>
+    </tr>
+    <tr>
+      <td><strong>基础统计</strong></td>
+      <td>组内聚合</td>
+      <td><code class="language-plaintext highlighter-rouge">group_mean(x, weight, group)</code><br /><code class="language-plaintext highlighter-rouge">group_sum(x, group)</code><br /><code class="language-plaintext highlighter-rouge">group_std_dev(x, group)</code></td>
+      <td>按权重计算组内基准均值（无效配对 omit）、组内求和、组内标准差；<code class="language-plaintext highlighter-rouge">weight</code> 可为 <code class="language-plaintext highlighter-rouge">cap</code>/<code class="language-plaintext highlighter-rouge">log(cap)</code> 或等权 <code class="language-plaintext highlighter-rouge">1</code></td>
+      <td>构造行业基准或汇总统计；项目确认权重生效（<code class="language-plaintext highlighter-rouge">volume</code> vs <code class="language-plaintext highlighter-rouge">close</code> corr=0.6041），<code class="language-plaintext highlighter-rouge">group_std_dev</code> 的 ddof 口径未定案</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>覆盖度检测</td>
+      <td><code class="language-plaintext highlighter-rouge">group_count(x, group)</code></td>
+      <td>统计同组有效非 <code class="language-plaintext highlighter-rouge">NaN</code> 标的数；等价于 <code class="language-plaintext highlighter-rouge">group_sum(if_else(is_nan(x), 0, 1), group)</code>，传常量 <code class="language-plaintext highlighter-rouge">1</code> 得组内家数</td>
+      <td>检验有效覆盖度；项目复现按 <code class="language-plaintext highlighter-rouge">data.universe</code> 过滤，非成员不计入且输出 <code class="language-plaintext highlighter-rouge">NaN</code>，校准 corr=0.9983</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>时序统计</td>
+      <td><code class="language-plaintext highlighter-rouge">ts_ir(x, d)</code><br /><code class="language-plaintext highlighter-rouge">ts_kurtosis(x, d)</code><br /><code class="language-plaintext highlighter-rouge">ts_max_diff(x, d)</code></td>
+      <td>信息比 <code class="language-plaintext highlighter-rouge">ts_mean/ts_std_dev</code>；四阶峰度；当前值相对过去 <code class="language-plaintext highlighter-rouge">d</code> 日高点的回撤 <code class="language-plaintext highlighter-rouge">x_t − max(x)</code></td>
+      <td><code class="language-plaintext highlighter-rouge">ts_std_dev</code> 已定案 <code class="language-plaintext highlighter-rouge">ddof=1</code>；<code class="language-plaintext highlighter-rouge">ts_kurtosis</code> 本地用 excess kurtosis 但仍待值级定案；<code class="language-plaintext highlighter-rouge">ts_max_diff</code> 方向锁定为 <code class="language-plaintext highlighter-rouge">current − ts_max</code></td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>时间自变量</td>
+      <td><code class="language-plaintext highlighter-rouge">ts_step(1)</code></td>
+      <td>每日递增 <code class="language-plaintext highlighter-rouge">1</code> 的 day counter，常作 <code class="language-plaintext highlighter-rouge">ts_regression</code> 的 \(x\) 提取趋势斜率</td>
+      <td>平台语义明确，但项目文档将本地 Python 复现标为“常量（错）/修复中”，回归探针 corr 仅 0.42，不能把平台语义等同于当前本地输出</td>
+    </tr>
+    <tr>
+      <td><strong>分布整形</strong></td>
+      <td>均值归零（去中心化）</td>
+      <td><code class="language-plaintext highlighter-rouge">normalize(x, useStd=false, limit=0.0)</code><br /><code class="language-plaintext highlighter-rouge">group_neutralize(x, group)</code><br /><code class="language-plaintext highlighter-rouge">ts_av_diff(x, d)</code></td>
+      <td>让截面/组内/时间窗内信号均值 \(\mu = 0\)（如 <code class="language-plaintext highlighter-rouge">ts_av_diff(x, d) = x - ts_mean(x, d)</code>），<strong>不改变方差尺度</strong></td>
+      <td>保留信号相对强度幅度的同时消除市场/行业/长周期均值漂移；<code class="language-plaintext highlighter-rouge">normalize</code> 的 <code class="language-plaintext highlighter-rouge">useStd/limit</code> 参数尚未单测，默认路径已校准</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>Z-Score 标准化</td>
+      <td><code class="language-plaintext highlighter-rouge">zscore(x)</code><br /><code class="language-plaintext highlighter-rouge">group_zscore(x, group)</code><br /><code class="language-plaintext highlighter-rouge">ts_zscore(x, d)</code></td>
+      <td>\(\frac{x - \mu}{\sigma}\)，使均值 \(\mu = 0\)、方差 \(\sigma^2 = 1\)</td>
+      <td><strong>隐含近似高斯分布假设</strong>；极端异常值会拉大 \(\sigma\) 并压缩其余正常样本区分度，常先配缩尾。<code class="language-plaintext highlighter-rouge">ts_zscore</code> 精确展开为 <code class="language-plaintext highlighter-rouge">(x−ts_mean)/ts_std_dev</code>（corr 0.9973），继承 <code class="language-plaintext highlighter-rouge">ddof=1</code>；横截面 <code class="language-plaintext highlighter-rouge">zscore/group_zscore</code> 仍在各自路径校准，不混用口径</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>均匀分位排名</td>
+      <td><code class="language-plaintext highlighter-rouge">rank(x, rate=2)</code><br /><code class="language-plaintext highlighter-rouge">group_rank(x, group)</code><br /><code class="language-plaintext highlighter-rouge">ts_rank(x, d, constant=0)</code></td>
+      <td>不改变横截面单调性，将输入严格映射至 \([0, 1]\) 区间内的均匀分布</td>
+      <td>对异常值完全免疫、权重分配最均匀；代价是<strong>丢弃极值倍数幅度信息</strong>。<code class="language-plaintext highlighter-rouge">ts_rank</code> 已确认 ON≡OFF；排名类算子输出保持 <code class="language-plaintext highlighter-rouge">NaN</code>，不被 ON 回填</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>概率分布映射（Quantile）</td>
+      <td><code class="language-plaintext highlighter-rouge">quantile(x, driver="gaussian", sigma=1.0)</code><br /><code class="language-plaintext highlighter-rouge">ts_quantile(x, d, driver="gaussian")</code></td>
+      <td>① 先做 <code class="language-plaintext highlighter-rouge">rank</code> 至 \((0, 1)\) 并线性收缩到 \((\frac{1}{N}, 1 - \frac{1}{N})\) 防边界无穷大；<br />② 再经逆累积分布函数 \(F^{-1}\) 映射至目标分布</td>
+      <td>支持 <code class="language-plaintext highlighter-rouge">gaussian</code>（正态）、<code class="language-plaintext highlighter-rouge">cauchy</code>（柯西重尾，显著放大两翼极端选股权重）或 <code class="language-plaintext highlighter-rouge">uniform</code>；借由目标分布转换控制尾部分配。<code class="language-plaintext highlighter-rouge">driver</code> 字符串必须带引号；<code class="language-plaintext highlighter-rouge">quantile</code> 裸对 corr=0.9946，<code class="language-plaintext highlighter-rouge">ts_quantile</code> 按 <code class="language-plaintext highlighter-rouge">ts_rank</code> 同机制 + <code class="language-plaintext highlighter-rouge">inv_norm_cdf</code> 实现，ON 未单测</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>区间归一化 / 缩放</td>
+      <td><code class="language-plaintext highlighter-rouge">scale(x, scale=1, longscale=1, shortscale=1)</code><br /><code class="language-plaintext highlighter-rouge">group_normalize(x, group, ...)</code><br /><code class="language-plaintext highlighter-rouge">group_scale(x, group)</code> / <code class="language-plaintext highlighter-rouge">ts_scale(x, d)</code></td>
+      <td><code class="language-plaintext highlighter-rouge">scale</code> / <code class="language-plaintext highlighter-rouge">group_normalize</code>：<strong>L1 归一化</strong>（\(\sum \lvert w_i \rvert = 1\)）；<code class="language-plaintext highlighter-rouge">group_scale</code> / <code class="language-plaintext highlighter-rouge">ts_scale</code>：Min-Max 线性缩放至 \([0, 1]\)</td>
+      <td><code class="language-plaintext highlighter-rouge">scale</code> 对应交易引擎 <code class="language-plaintext highlighter-rouge">booksize</code> 分配；多信号相加前宜先同尺度缩放。<code class="language-plaintext highlighter-rouge">scale</code> 的 <code class="language-plaintext highlighter-rouge">longscale/shortscale</code> 与 <code class="language-plaintext highlighter-rouge">group_normalize</code> 完整参数语义尚未值级确认</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>缩尾与分段裁剪</td>
+      <td><code class="language-plaintext highlighter-rouge">winsorize(x, std=4)</code><br /><code class="language-plaintext highlighter-rouge">tail(x, lower=0, upper=0, newval=0)</code></td>
+      <td><code class="language-plaintext highlighter-rouge">winsorize</code>：将超出 \(\mu \pm k\sigma\) 的值截断回边界；<code class="language-plaintext highlighter-rouge">tail</code>：将落入严格开区间 <code class="language-plaintext highlighter-rouge">(lower, upper)</code> 的值替换为 <code class="language-plaintext highlighter-rouge">newval</code>，边界与两端尾部保留</td>
+      <td>长尾指标做 <code class="language-plaintext highlighter-rouge">zscore</code> 或回归前的标准预处理；<code class="language-plaintext highlighter-rouge">tail</code> 可“砍掉中间噪音只交易两头”。<code class="language-plaintext highlighter-rouge">tail</code> 默认 <code class="language-plaintext highlighter-rouge">newval=0</code>；<code class="language-plaintext highlighter-rouge">winsorize</code> 的 ddof 口径未单测</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>分段与非线性整形</td>
+      <td>三元表达式 <code class="language-plaintext highlighter-rouge">? :</code> / <code class="language-plaintext highlighter-rouge">if_else</code><br /><code class="language-plaintext highlighter-rouge">power</code>、<code class="language-plaintext highlighter-rouge">log(x+1)</code>、<code class="language-plaintext highlighter-rouge">-1 / x</code>、<code class="language-plaintext highlighter-rouge">arc_tan</code></td>
+      <td>用分段条件（如 <code class="language-plaintext highlighter-rouge">a &lt; 0.1 ? (1.1 - a) : (a &gt; 0.8 ? 1.8 - a : 1)</code>）构造非单调 U 型或双峰分布；非线性函数压缩右偏长尾或反号</td>
+      <td>适合“中间最优、两端衰减”或对数尺度压缩（如市值/成交额）</td>
+    </tr>
+  </tbody>
+</table>
+
+<blockquote>
+  <p><strong>项目复现备注（NaN 口径）</strong>：OFF 下横截面算子（<code class="language-plaintext highlighter-rouge">rank/zscore/normalize/scale/winsorize</code>）与组统计均 omit 输入 <code class="language-plaintext highlighter-rouge">NaN</code>，自身输出保持 <code class="language-plaintext highlighter-rouge">NaN</code>；<code class="language-plaintext highlighter-rouge">nanHandling=ON</code> 时横截面仍不回填，只有“每组单值”类组算子会把输入 <code class="language-plaintext highlighter-rouge">NaN</code> 回填为组值，group classifier 为 <code class="language-plaintext highlighter-rouge">NaN</code> 时始终不属于任何组。<code class="language-plaintext highlighter-rouge">ts_*</code> 聚合在 ON 下改为 <code class="language-plaintext highlighter-rouge">nansum/d</code>、全缺输出 0，但 <code class="language-plaintext highlighter-rouge">ts_rank</code>、<code class="language-plaintext highlighter-rouge">ts_backfill</code> 等透传类 ON≡OFF。残留 <code class="language-plaintext highlighter-rouge">NaN</code> 没有最外层兜底，会直接导致该股票零权重，不应人为改成 0。</p>
+</blockquote>
+
+<hr />
+
+<h2 id="二相关性时序回归ts_regression与投影正交推导">二、相关性、时序回归（<code class="language-plaintext highlighter-rouge">ts_regression</code>）与投影正交推导</h2>
+
+<h3 id="21-滚动相关与时序线性回归的数学本质">2.1 滚动相关与时序线性回归的数学本质</h3>
+
+<p>记滚动窗口 \(d\) 内目标序列为 \(y\)、解释变量为 \(x\)，窗口样本均值为 \(\bar{y}, \bar{x}\)。时序线性回归拟合模型为：</p>
+
+\[y = \alpha + \beta x + \epsilon\]
+
+<ol>
+  <li>
+    <p><strong>斜率与协方差、相关性的精确联系</strong>：
+\[\text{ts\_covariance}(y, x, d) \propto \sum (x - \bar{x})(y - \bar{y}), \qquad \text{ts\_corr}(x, y, d) = \frac{\sum (x - \bar{x})(y - \bar{y})}{\sqrt{\sum (x - \bar{x})^2 \sum (y - \bar{y})^2}}\]
+
+\[\beta = \frac{\sum (x - \bar{x})(y - \bar{y})}{\sum (x - \bar{x})^2}\]
+
+注意：<strong>斜率 \(\beta\) 反映的是“单位 \(x\) 变动引起的 \(y\) 变动倍率”（\(y\) 在 \(x\) 上的方向弹性），其量级直接受 \(y\) 与 \(x\) 相对尺度影响</strong>，而非拟合结果曲线自身的增长斜率；在剥离尺度影响的意义上，与 <code class="language-plaintext highlighter-rouge">ts_corr</code> / <code class="language-plaintext highlighter-rouge">ts_covariance</code> 高度相通。</p>
+
+    <blockquote>
+      <p><strong><code class="language-plaintext highlighter-rouge">lag</code> 语义（项目已定案）</strong>：平台只滞后解释变量 \(x\)，配对为 \((y_j, x_{j-\text{lag}})\)，\(y\) 的窗口仍止于今日；因此需要 \(d+\text{lag}\) 行历史。项目同语言实证 <code class="language-plaintext highlighter-rouge">lag=1 ≡ ts_delay(x,1)</code> corr=0.9990，整体右移假设 0.9248 被排除。回归只使用两变量均有效的 tuple（listwise），零填假设在 <code class="language-plaintext highlighter-rouge">ts_regression</code>/<code class="language-plaintext highlighter-rouge">ts_vector_neut</code> 中均被强排除。</p>
+    </blockquote>
+  </li>
+  <li>
+    <p><strong><code class="language-plaintext highlighter-rouge">ts_regression(y, x, d, lag = 0, rettype = ...)</code> 参数全解</strong>：</p>
+  </li>
+</ol>
+
+<table>
+  <thead>
+    <tr>
+      <th><code class="language-plaintext highlighter-rouge">rettype</code></th>
+      <th>返回物理量</th>
+      <th>数学公式与语义理解</th>
+      <th>典型实战用法</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong><code class="language-plaintext highlighter-rouge">0</code>（默认）</strong></td>
+      <td><strong>残差项 \(\epsilon\)（Error Term）</strong></td>
+      <td>\(\epsilon = y - (\alpha + \beta x) = (y - \bar{y}) - \beta(x - \bar{x})\)</td>
+      <td><strong>\(y\) 是主信号</strong>：用 \(x\) 作为风险/行业基准或趋势基线，剥离线性解释部分后提取纯净残差</td>
+    </tr>
+    <tr>
+      <td><strong><code class="language-plaintext highlighter-rouge">1</code></strong></td>
+      <td><strong>截距项 \(\alpha\)（Intercept）</strong></td>
+      <td>\(\alpha = \bar{y} - \beta \bar{x}\)</td>
+      <td>当 \(x\) 为市场收益时即个股在窗口内的超额截距（Jensen’s Alpha）</td>
+    </tr>
+    <tr>
+      <td><strong><code class="language-plaintext highlighter-rouge">2</code></strong></td>
+      <td><strong>回归斜率 \(\beta\)（Slope）</strong></td>
+      <td>\(\beta = \frac{\sum (x - \bar{x})(y - \bar{y})}{\sum (x - \bar{x})^2}\)</td>
+      <td>① 度量个股对宏观/大盘的暴露灵敏度；<br />② 令 \(x = \text{ts\_step}(1)\) 直接提取 \(y\) 关于时间轴的线性趋势斜率；<br />③ 与多项 \(\beta \cdot x\) 搭配拆分 \(y\)</td>
+    </tr>
+    <tr>
+      <td><strong><code class="language-plaintext highlighter-rouge">3</code></strong></td>
+      <td><strong>线性拟合估计值 \(\hat{y}\)</strong></td>
+      <td>用 \(x\) 的线性变换重构逼近目标 \(y\) 的拟合序列</td>
+      <td><strong>\(x\) 是主信号</strong>（在参数上向更平滑/更具经济含义的目标 \(y\) 对齐重构，近似于“投影估计”）</td>
+    </tr>
+    <tr>
+      <td><strong><code class="language-plaintext highlighter-rouge">6</code></strong></td>
+      <td><strong>决定系数 \(R^2\)</strong></td>
+      <td>\(R^2 = 1 - \frac{SSE}{SST} \in [0, 1]\)（<code class="language-plaintext highlighter-rouge">SSE</code> 为残差平方和，<code class="language-plaintext highlighter-rouge">SST</code> 为均值总离差平方和）</td>
+      <td>度量线性模型相对于“直接用样本均值预测 \(y\)”有多大提升；在同一有效样本、<code class="language-plaintext highlighter-rouge">lag=0</code> 且分母约定一致时才等于 <code class="language-plaintext highlighter-rouge">ts_corr^2</code>，可作体制门控阈值</td>
+    </tr>
+    <tr>
+      <td><strong><code class="language-plaintext highlighter-rouge">8</code></strong></td>
+      <td><strong>斜率 \(\beta\) 的标准误类度量</strong></td>
+      <td>与 \(\beta\) / 残差尺度相关的标准误量，不是 \(t\) 统计量本身</td>
+      <td>需配合 <code class="language-plaintext highlighter-rouge">rettype=2</code> 的 \(\beta\) 自行构造斜率信噪比；项目文档把 \(\beta\)/残差内部口径列为部分未定案，不应把此行当成已值级确认</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h3 id="22-横截面回归regression_vs-向量投影vector_核心差异">2.2 横截面回归（<code class="language-plaintext highlighter-rouge">regression_*</code>）vs 向量投影（<code class="language-plaintext highlighter-rouge">vector_*</code>）核心差异</h3>
+
+<p>在截面同一日内做两因子正交化时，BRAIN 提供两组易混淆但数学假设不同的算子：</p>
+
+<ul>
+  <li><strong>是否中心化（去均值）的根本区别</strong>：
+    <ul>
+      <li><strong><code class="language-plaintext highlighter-rouge">regression_proj(y, x)</code> / <code class="language-plaintext highlighter-rouge">regression_neut(y, x)</code></strong>：等价于带截距项的横截面最小二乘回归 \(y = \alpha + \beta x + \epsilon\)（即<strong>先对 \(y\) 和 \(x\) 做截面去均值中心化</strong>）。<code class="language-plaintext highlighter-rouge">regression_neut(y, x)</code> 返回的残差同时与常数向量 \(1\) 和 \(x\) 正交（天然保证截面均值为 <code class="language-plaintext highlighter-rouge">0</code>）。</li>
+      <li><strong><code class="language-plaintext highlighter-rouge">vector_proj(x, y)</code> / <code class="language-plaintext highlighter-rouge">vector_neut(x, y)</code></strong>：直接把两列截面特征视作 \(N\) 维欧氏向量，<strong>不做中心化</strong>直接作过原点的正交投影：
+\[\text{vector\_proj}(x, y) = \frac{\sum_i x_i y_i}{\sum_i y_i^2} \cdot y, \qquad \text{vector\_neut}(x, y) = x - \text{vector\_proj}(x, y)\]
+      </li>
+      <li>共同关系：两组均严格满足 <strong>中性化结果 = 原输入 − 投影分量（\(\text{neut} = \text{input} - \text{proj}\)）</strong>；若两个输入之前已经过 <code class="language-plaintext highlighter-rouge">zscore</code> / <code class="language-plaintext highlighter-rouge">group_neutralize</code> 均值归零且无需引入新截距偏移，直接使用 <code class="language-plaintext highlighter-rouge">vector_neut</code> 往往更简洁稳定。</li>
+    </ul>
+  </li>
+</ul>
+
+<blockquote>
+  <p><strong>边界补充</strong>：<code class="language-plaintext highlighter-rouge">regression_neut</code> 的“截面均值为 0”严格成立于参与回归的有效样本；<code class="language-plaintext highlighter-rouge">vector_*</code> 的不中心化、过原点投影已由平台示例 <code class="language-plaintext highlighter-rouge">(1,2,3)</code> / <code class="language-plaintext highlighter-rouge">(3,4,5)</code> 与项目同语言证据支持。项目校准仍保留若干未定案：<code class="language-plaintext highlighter-rouge">ts_corr</code>/<code class="language-plaintext highlighter-rouge">ts_covariance</code> 的 NaN 配对口径、<code class="language-plaintext highlighter-rouge">ts_regression</code> 包裹 <code class="language-plaintext highlighter-rouge">rank</code> 后 β/残差内部口径（FE↔PY corr=0.84）、<code class="language-plaintext highlighter-rouge">vector_proj</code> 残差约 0.2、<code class="language-plaintext highlighter-rouge">multi_regression</code> 返回分量。公式推导可用于理解信号结构，但不等于逐值平台复现已定案。</p>
+</blockquote>
+
+<hr />
+
+<h2 id="三离散分桶与换手抑制grouping--turnover-control">三、离散分桶与换手抑制（Grouping &amp; Turnover Control）</h2>
+
+<ol>
+  <li><strong>连续变量动态分组（<code class="language-plaintext highlighter-rouge">floor</code> 与 <code class="language-plaintext highlighter-rouge">bucket</code>）</strong>
+    <ul>
+      <li><strong><code class="language-plaintext highlighter-rouge">floor(x)</code></strong> 与 <strong><code class="language-plaintext highlighter-rouge">bucket(rank(x), range='0,1,0.1')</code></strong>：均用于把连续因子（如市值 <code class="language-plaintext highlighter-rouge">cap</code>、成交额 <code class="language-plaintext highlighter-rouge">close * volume</code>、波动率）离散切成 \(n\) 个区间标签作为动态 <code class="language-plaintext highlighter-rouge">Group</code>。例如 <code class="language-plaintext highlighter-rouge">floor(rank(cap) * 4.99)</code>（加极小微调避免 <code class="language-plaintext highlighter-rouge">1.0</code> 边界越界成第 6 桶）与 <code class="language-plaintext highlighter-rouge">bucket(rank(cap), range='0,1,0.2')</code> 等价地构造出 5 分位市值组；使用 <code class="language-plaintext highlighter-rouge">bucket</code> 时建议外层配合 <code class="language-plaintext highlighter-rouge">densify</code> 压缩空桶编号。项目实证平台仅接受 <code class="language-plaintext highlighter-rouge">range=</code>，<code class="language-plaintext highlighter-rouge">buckets=</code> 会被拒绝；<code class="language-plaintext highlighter-rouge">bucket</code> 边界归属与 <code class="language-plaintext highlighter-rouge">densify</code> 编码顺序尚未值级定案，上述“等价”应理解为构造意图而非逐值恒等。</li>
+    </ul>
+  </li>
+  <li><strong>低换手与调仓步长抑制（<code class="language-plaintext highlighter-rouge">hump</code> 与限速器）</strong>
+    <ul>
+      <li><strong><code class="language-plaintext highlighter-rouge">hump(x, hump = 0.01)</code></strong>：滞后缓冲过滤（只存在“保留昨日持仓不变”与“跨越 <code class="language-plaintext highlighter-rouge">hump</code> 阈值后调仓”两种动作），对季频更新的基本面数据或高波动高频微调极其有效，可大幅削减无效碎单换手。项目本地复现采用 <code class="language-plaintext highlighter-rouge">np.clip(x, -hump, hump)</code> 作为工作近似（pn corr=0.978 达标、bm 0.928 在系统噪声内），不是逐日持仓状态机的值级证明。</li>
+      <li><strong><code class="language-plaintext highlighter-rouge">ts_target_tvr_delta_limit(x, y, lambda_min=0, lambda_max=1, target_tvr=0.1)</code></strong>：以日均成交量等流动性锚 <code class="language-plaintext highlighter-rouge">y</code> 为尺，在参数范围内自动求解满足目标换手率（如 <code class="language-plaintext highlighter-rouge">10%</code>）的权重步长约束。项目 Python 复现当前取 <code class="language-plaintext highlighter-rouge">lambda_min/lambda_max</code> 中点作步长近似（bm corr=0.89/0.97），不应理解为本地已实现完整求解器。</li>
+    </ul>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="四项目-python-复现的校准备入仅据-expressionoperator_docs">四、项目 Python 复现的校准备入（仅据 <code class="language-plaintext highlighter-rouge">expression/operator_docs/</code>）</h2>
+
+<ul>
+  <li><strong>判等口径</strong>：FASTEXPR 是唯一真值；跨语言日度 PnL corr ≥ 0.97 是工作判据，跨语言天花板约 0.9706（恒等式 <code class="language-plaintext highlighter-rouge">-close</code> 实测），不是逐标的逐日数值等价。真恒等一般 0.997–1.0000，近似重构 0.93–0.98，政策性错误 0.42–0.75。</li>
+  <li><strong>校准方法坑</strong>：<code class="language-plaintext highlighter-rouge">vwap</code> 跨语言数据管道不一致（恒等 <code class="language-plaintext highlighter-rouge">-vwap</code> corr 仅 0.9339）；用 <code class="language-plaintext highlighter-rouge">rank(volume)&lt;k</code> 作掩码会因分母/ties 微差伪造崩塌，校准一律用裸对或慢变算术掩码；平台单表达式 ≤64 个算子（<code class="language-plaintext highlighter-rouge">validate_alpha</code> 不查）；同表达式+settings 会复用 <code class="language-plaintext highlighter-rouge">alpha_id</code>，对照需扰动；PYTHON 返回矩阵任一行全 <code class="language-plaintext highlighter-rouge">NaN</code> 会让模拟 FAIL；残留 <code class="language-plaintext highlighter-rouge">NaN</code> 没有最外层兜底。</li>
+  <li><strong>已定案、可直接引用的本地口径</strong>：<code class="language-plaintext highlighter-rouge">ts_std_dev</code> 为 <code class="language-plaintext highlighter-rouge">ddof=1</code>；<code class="language-plaintext highlighter-rouge">ts_backfill</code> 的 <code class="language-plaintext highlighter-rouge">d</code> 是有限窗口；<code class="language-plaintext highlighter-rouge">ts_regression</code> 只滞后 <code class="language-plaintext highlighter-rouge">x</code> 且 listwise；<code class="language-plaintext highlighter-rouge">ts_vector_neut/proj</code> 无截距+listwise，<code class="language-plaintext highlighter-rouge">regression_neut</code> 有截距；<code class="language-plaintext highlighter-rouge">group_count</code> 按 universe 过滤；<code class="language-plaintext highlighter-rouge">tail</code> 严格开区间且默认 <code class="language-plaintext highlighter-rouge">newval=0</code>；<code class="language-plaintext highlighter-rouge">nan_mask</code> 按 <code class="language-plaintext highlighter-rouge">&lt;=0</code> 掩码；<code class="language-plaintext highlighter-rouge">group_mean</code> 权重生效；<code class="language-plaintext highlighter-rouge">group_backfill</code> 的 <code class="language-plaintext highlighter-rouge">d</code> 是时间窗口；<code class="language-plaintext highlighter-rouge">log</code> 非正输入需域保护。</li>
+  <li><strong>未定案或当前仅为工作近似，不要把本地逐值输出当平台真值</strong>：<code class="language-plaintext highlighter-rouge">ts_step</code> 本地复现仍标为“常量（错）/修复中”；<code class="language-plaintext highlighter-rouge">ts_kurtosis</code> 四阶口径、<code class="language-plaintext highlighter-rouge">group_std_dev</code> 的 ddof、<code class="language-plaintext highlighter-rouge">bucket</code> 边界归属、<code class="language-plaintext highlighter-rouge">densify</code> 编码顺序、<code class="language-plaintext highlighter-rouge">round</code> 平局、比较算子 NaN 分支均未值级定案；<code class="language-plaintext highlighter-rouge">ts_corr</code>/<code class="language-plaintext highlighter-rouge">ts_covariance</code> 的 NaN 配对口径、<code class="language-plaintext highlighter-rouge">ts_regression</code> 包裹 <code class="language-plaintext highlighter-rouge">rank</code> 后的 β/残差内部口径、<code class="language-plaintext highlighter-rouge">vector_proj</code> 残差约 0.2、<code class="language-plaintext highlighter-rouge">multi_regression</code> 返回分量仍待 BrainLab 对照；<code class="language-plaintext highlighter-rouge">group_backfill</code> 的窗口端点/池化顺序/universe 掩码、<code class="language-plaintext highlighter-rouge">hump</code>、<code class="language-plaintext highlighter-rouge">ts_target_tvr_*</code> 均为工作近似。</li>
+  <li><strong>结论</strong>：平台编译、模拟通过或 PnL 相关达标，都不等于 FASTEXPR↔PYTHON 逐值一致；若某个未定案口径进入关键信号，应单独做一次值级对齐，而不是用本地复现反推平台定义。</li>
+</ul>
+
+        </div>
+
+        
+
+        
+        
+  <div class="page-comments">
+    <div id="disqus_thread"></div>
+    <script>
+      var disqus_config = function () {
+        this.page.url = 'https://roshameow.github.io//personal_homepage/finance/operators/';
+        this.page.identifier = 'https://roshameow.github.io//personal_homepage/finance/operators/';
+      };
+
+      (function() {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://https-roshameow-github-io-personal-homepage.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+  </div>
+
+
+        
+
+        <nav class="page-pagination" role="navigation">
+  
+    <a class="page-previous" href="/personal_homepage/data/alpha29/">
+      <h4 class="page-pagination-label">Previous</h4>
+      <span class="page-pagination-title">
+        <i class="fas fa-arrow-left"></i> News &amp; Social Media 新闻流、社交媒体情绪与文本事件数据体系
+
+      </span>
+    </a>
+  
+
+  
+    <a class="page-next" href="/personal_homepage/tool/alpha30/">
+      <h4 class="page-pagination-label">Next</h4>
+      <span class="page-pagination-title">
+        QuantNight 原生 MCP 共享底座架构：单守护进程、事件通知、跨重启续跑与双端职责边界
+ <i class="fas fa-arrow-right"></i>
+      </span>
+    </a>
+  
+</nav>
+
+      </div>
+
+    </div>
+  </article>
+</main>
+
+    <footer id="footer" class="site-footer">
+  <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+<div class="social-icons"><a class="social-icon" href="/personal_homepage/atom.xml"><i class="fas fa-rss-square fa-2x" title="Feed"></i></a><a class="social-icon" href="https://github.com/roshameow"><i class="fab fa-github-square fa-2x" title="GitHub"></i></a><a class="social-icon" href="https://www.linkedin.com/in/wen-liu-06503a7b/"><i class="fab fa-linkedin fa-2x" title="LinkedIn"></i></a><a class="social-icon" href="mailto:w.liuatnk@gmail.com"><i class="fas fa-envelope-square fa-2x" title="e-mail"></i></a></div><div class="copyright">
+    
+      <p>&copy; 2026 Liu, Wen's Home Page. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://github.com/mmistakes/so-simple-theme" rel="nofollow">So Simple</a>.</p>
+    
+  </div>
+</footer>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="/personal_homepage/assets/js/main.min.js"></script>
+<script src="https://use.fontawesome.com/releases/v5.0.12/js/all.js"></script><script src="/personal_homepage/assets/js/content-tables.js" defer></script>
+
+<script>
+(function () {
+  'use strict';
+
+  var types = {
+    NOTE: 'note', INFO: 'note', ABSTRACT: 'note', SUMMARY: 'note', TLDR: 'note',
+    EXAMPLE: 'note', QUOTE: 'note', CITE: 'note',
+    TIP: 'tip', HINT: 'tip', IMPORTANT: 'tip', SUCCESS: 'tip', CHECK: 'tip', DONE: 'tip',
+    QUESTION: 'warning', HELP: 'warning', FAQ: 'warning',
+    WARNING: 'warning', CAUTION: 'warning', ATTENTION: 'warning',
+    DANGER: 'danger', ERROR: 'danger', BUG: 'danger',
+    FAILURE: 'danger', FAIL: 'danger', MISSING: 'danger'
+  };
+  var icons = {
+    note: 'M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z M12 11v6 M12 7h.01',
+    tip: 'M9 18h6 M10 21h4 M9 15a6 6 0 1 1 6 0v3H9z',
+    warning: 'M12 3L2 21h20z M12 9v5 M12 17h.01',
+    danger: 'M7 3h10l4 4v10l-4 4H7l-4-4V7z M9 9l6 6 M15 9l-6 6'
+  };
+
+  function makeIcon(type) {
+    var namespace = 'http://www.w3.org/2000/svg';
+    var svg = document.createElementNS(namespace, 'svg');
+    svg.setAttribute('class', 'callout-icon');
+    svg.setAttribute('viewBox', '0 0 24 24');
+    svg.setAttribute('width', '20');
+    svg.setAttribute('height', '20');
+    svg.setAttribute('fill', 'none');
+    svg.setAttribute('stroke', 'currentColor');
+    svg.setAttribute('stroke-width', '2');
+    svg.setAttribute('stroke-linecap', 'round');
+    svg.setAttribute('stroke-linejoin', 'round');
+    svg.setAttribute('aria-hidden', 'true');
+    svg.setAttribute('focusable', 'false');
+    var path = document.createElementNS(namespace, 'path');
+    path.setAttribute('d', icons[type]);
+    svg.appendChild(path);
+    return svg;
+  }
+
+  // A soft break is a text newline; a Markdown hard break is a <br>.
+  // Do not split newlines inside inline code or other literal content.
+  function firstBreak(parent) {
+    for (var node = parent.firstChild; node; node = node.nextSibling) {
+      if (node.nodeType === 3) {
+        var offset = node.data.search(/[\r\n]/);
+        if (offset !== -1) return { node: node, offset: offset };
+      } else if (node.nodeType === 1) {
+        if (node.tagName === 'BR') return { node: node };
+        if (/^(CODE|PRE|SCRIPT|STYLE|TEXTAREA)$/.test(node.tagName)) continue;
+        var result = firstBreak(node);
+        if (result) return result;
+      }
+    }
+    return null;
+  }
+
+  function transformCallouts() {
+    document.querySelectorAll('.page-content blockquote').forEach(function (quote) {
+      if (quote.closest('pre, code, .highlight, .highlighter-rouge')) return;
+      var paragraph = quote.firstElementChild;
+      if (!paragraph || paragraph.tagName !== 'P') return;
+
+      // Require the marker in a direct text node: <code>[!WARNING]</code>
+      // (and markers merely mentioned later in a quote) must remain literal.
+      var markerNode = paragraph.firstChild;
+      if (!markerNode || markerNode.nodeType !== 3) return;
+      var marker = markerNode.data.match(/^[\t \r\n]*\[!([a-z][a-z0-9-]*)\]([+-])?(?=[\t \r\n]|$)[\t ]*/i);
+      if (!marker) return;
+      var name = marker[1].toUpperCase();
+      if (!Object.prototype.hasOwnProperty.call(types, name)) return;
+      var type = types[name];
+      var label = name === 'TLDR' ? 'TL;DR' : name.charAt(0) + name.slice(1).toLowerCase();
+      markerNode.deleteData(0, marker[0].length);
+
+      var boundary = firstBreak(paragraph);
+      var range = document.createRange();
+      range.selectNodeContents(paragraph);
+      if (boundary) {
+        if (boundary.node.nodeType === 3) range.setEnd(boundary.node, boundary.offset);
+        else range.setEndBefore(boundary.node);
+      }
+      var titleContent = range.extractContents();
+      if (boundary) {
+        if (boundary.node.nodeType === 3) {
+          var breakLength = boundary.node.data.slice(0, 2) === '\r\n' ? 2 : 1;
+          boundary.node.deleteData(0, breakLength);
+        } else {
+          boundary.node.parentNode.removeChild(boundary.node);
+        }
+      }
+      if (!paragraph.textContent.trim() && !paragraph.children.length) {
+        quote.removeChild(paragraph);
+      }
+
+      var folding = !!marker[2];
+      var callout = document.createElement(folding ? 'details' : 'div');
+      // Keep author-provided IDs, language, direction, and classes.
+      Array.prototype.forEach.call(quote.attributes, function (attribute) {
+        callout.setAttribute(attribute.name, attribute.value);
+      });
+      callout.classList.add('callout', 'callout--' + type);
+      callout.setAttribute('data-callout', name.toLowerCase());
+      callout.setAttribute('aria-label', label);
+      if (folding) {
+        callout.removeAttribute('role');
+        if (marker[2] === '+') callout.setAttribute('open', '');
+        else callout.removeAttribute('open');
+      } else {
+        callout.setAttribute('role', 'note');
+      }
+
+      var title = document.createElement(folding ? 'summary' : 'div');
+      title.className = 'callout-title';
+      title.appendChild(makeIcon(type));
+      var titleText = document.createElement('span');
+      titleText.className = 'callout-title-text';
+      if (titleContent.textContent.trim() || titleContent.childElementCount) {
+        titleText.appendChild(titleContent);
+      } else {
+        titleText.textContent = label;
+      }
+      title.appendChild(titleText);
+      callout.appendChild(title);
+
+      var body = document.createElement('div');
+      body.className = 'callout-body';
+      while (quote.firstChild) body.appendChild(quote.firstChild);
+      callout.appendChild(body);
+      quote.parentNode.replaceChild(callout, quote);
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', transformCallouts);
+  } else {
+    transformCallouts();
+  }
+})();
+</script>
+<!-- <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'G-9TMSCDTBGN', 'auto');
+  ga('send', 'pageview');
+</script> -->
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9TMSCDTBGN"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-9TMSCDTBGN');
+</script>
+
+
+
+<!-- MathJax -->
+<style>
+    /* Only oversized equations get this wrapper; ordinary inline math stays inline. */
+    .math-scroll {
+        display: block;
+        max-width: 100%;
+        overflow-x: auto;
+        overflow-y: hidden;
+        padding-block: 0.5em;
+        scrollbar-width: thin;
+    }
+    .math-scroll > mjx-container[jax] {
+        display: inline-block;
+        margin: 0;
+    }
+    .math-scroll:focus-visible {
+        outline: 2px solid currentColor;
+        outline-offset: 2px;
+    }
+</style>
+<script>
+    function fitMathToColumn() {
+        document.querySelectorAll('mjx-container').forEach(function (container) {
+            var wrapper = container.parentElement.classList.contains('math-scroll') ? container.parentElement : null;
+            var column = wrapper ? wrapper.parentElement : container.parentElement;
+            while (column && ['inline', 'contents'].includes(getComputedStyle(column).display)) {
+                column = column.parentElement;
+            }
+            if (!column) return;
+            var style = getComputedStyle(column);
+            var available = column.clientWidth - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight);
+            var ink = container.querySelector('mjx-math, svg');
+            var width = (ink || container).getBoundingClientRect().width;
+            if (width > available + 1) {
+                if (!wrapper) {
+                    wrapper = document.createElement('span');
+                    wrapper.className = 'math-scroll';
+                    wrapper.tabIndex = 0;
+                    wrapper.setAttribute('role', 'region');
+                    wrapper.setAttribute('aria-label', 'Mathematical formula; scroll horizontally to read all');
+                    wrapper.title = 'Scroll horizontally to read the full formula';
+                    container.before(wrapper);
+                    wrapper.appendChild(container);
+                }
+            } else if (wrapper) {
+                wrapper.replaceWith(container);
+            }
+        });
+    }
+    // Pin the engine, autoloaded TeX extensions, menu and fonts to local assets.
+    window.MathJax = {
+        loader: {
+            paths: { mathjax: "/personal_homepage/assets/js/vendor/mathjax/es5" },
+            load: ['[tex]/textmacros']
+        },
+        tex: {
+            tags: "ams",
+            packages: { '[+]': ['textmacros'] },
+            inlineMath: [['$', '$'], ['\\(', '\\)']],
+            displayMath: [['$$', '$$'], ['\\[', '\\]']]
+        },
+        chtml: {
+            fontURL: "/personal_homepage/assets/js/vendor/mathjax/es5/output/chtml/fonts/woff-v2"
+        },
+        startup: {
+            pageReady: function () {
+                return MathJax.startup.defaultPageReady().then(function () {
+                    return document.fonts ? document.fonts.ready : undefined;
+                }).then(function () {
+                    fitMathToColumn();
+                    var scheduled = false;
+                    window.addEventListener('resize', function () {
+                        if (scheduled) return;
+                        scheduled = true;
+                        requestAnimationFrame(function () {
+                            scheduled = false;
+                            fitMathToColumn();
+                        });
+                    });
+                });
+            }
+        },
+        options: {
+            // Keep examples (including literal dollar signs) out of the typesetter.
+            skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code', 'annotation', 'annotation-xml']
+        }
+    };
+</script>
+<script id="MathJax-script" async src="/personal_homepage/assets/js/vendor/mathjax/es5/tex-mml-chtml.js"></script>
+
+
+
+
+<!-- Mermaid -->
+<style>
+  .mermaid-diagram {
+    max-width: 100%;
+    margin: 0.85rem 0;
+    overflow-x: auto;
+  }
+  .mermaid-diagram:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+  }
+  .page-content pre.mermaid {
+    margin: 0;
+    padding: 0.25rem 0;
+    text-align: center;
+    background: transparent;
+    overflow: visible;
+    font-family: inherit;
+  }
+  .page-content pre.mermaid[data-processed] {
+    white-space: normal;
+  }
+  pre.mermaid svg {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    height: auto;
+  }
+  .mermaid-diagram .cluster-label {
+    font-weight: 700;
+  }
+  .mermaid-error {
+    font-size: 0.85em;
+    color: #9a3412;
+  }
+</style>
+<script src="/personal_homepage/assets/js/vendor/mermaid-11.17.2.min.js"></script>
+<script>
+(function () {
+  'use strict';
+
+  function normalizeMermaidSource(source) {
+    // Mermaid 11 accepts A <-- "label" --- B but creates an INVALID edge.
+    // Render the equivalent B -->|"label"| A, without editing the Markdown.
+    var body = source.trimStart()
+      .replace(/^---\r?\n[\s\S]*?\r?\n---(?:\r?\n|$)/, '')
+      .replace(/%%\{[\s\S]*?\}%%/g, '')
+      .replace(/^[\t ]*%%.*$/gm, '').trimStart();
+    if (!/^(?:flowchart|graph)\b/.test(body)) return source;
+
+    var started = false;
+    var quoted = false;
+    return source.replace(/[^\r\n]+/g, function (line) {
+      if (!started && !/^\s*(?:flowchart|graph)\b/.test(line)) return line;
+      started = true;
+      var normalized = quoted ? line : line.replace(
+        /^([\t ]*)([A-Za-z_][\w-]*)[\t ]*<--[\t ]*("[^"\r\n]*")[\t ]*---[\t ]*([A-Za-z_][\w-]*)([\t ]*;?[\t ]*(?:%%.*)?)$/,
+        function (_, indent, left, label, right, suffix) {
+          return indent + right + ' -->|' + label + '| ' + left + suffix;
+        }
+      );
+      // Never rewrite an example inside a multiline quoted node label, and
+      // never let quotes inside a %% comment affect the following lines.
+      for (var i = 0; i < line.length; i++) {
+        if (!quoted && line[i] === '%' && line[i + 1] === '%') break;
+        if (line[i] === '"') quoted = !quoted;
+      }
+      return normalized;
+    });
+  }
+
+  async function renderDiagrams() {
+    var blocks = document.querySelectorAll('code.language-mermaid');
+    if (!blocks.length) return;
+    if (typeof mermaid === 'undefined') {
+      blocks.forEach(function (code) {
+        var original = code.closest('.highlighter-rouge') || code.closest('pre');
+        if (!original) return;
+        var message = document.createElement('p');
+        message.className = 'mermaid-error';
+        message.setAttribute('role', 'status');
+        message.textContent = '图表组件加载失败，请刷新页面重试。Mermaid 源码已保留。';
+        original.after(message);
+      });
+      return;
+    }
+
+    // Render every diagram as Mermaid, including diagrams with multiple subgraphs.
+    // Disable the automatic pass so it cannot race with our explicit rendering.
+    var skin = getComputedStyle(document.documentElement);
+    function color(name, fallback) {
+      return skin.getPropertyValue('--mermaid-' + name).trim() || fallback;
+    }
+    var background = color('background', '#ffffff');
+    var text = color('text', '#000000');
+    var border = color('border', '#cccccc');
+    var nodeBorder = color('node-border', '#b8b9c0');
+    var cluster = color('cluster-background', '#f9f9fa');
+    var line = color('line', '#858795');
+    var palettes = [
+      ['#e4eaf0', '#f4f6f9', '#a5b3c2'], // slate blue
+      ['#e8f0ea', '#f5f8f5', '#a8bcae'], // sage
+      ['#f3ede3', '#faf7f2', '#c6b69c'], // sand
+      ['#ebe8f1', '#f7f5fa', '#b5adc5'], // lavender
+      ['#e4eeee', '#f3f8f8', '#a0baba']  // muted teal
+    ].map(function (fallbacks, index) {
+      return {
+        node: color('palette-' + index + '-node', fallbacks[0]),
+        cluster: color('palette-' + index + '-cluster', index === 0 ? cluster : fallbacks[1]),
+        border: color('palette-' + index + '-border', fallbacks[2])
+      };
+    });
+    var fontFamily = getComputedStyle(document.body).fontFamily ||
+      '"Source Sans Pro", sans-serif';
+    // Mermaid fixes label dimensions during layout. Wait for web fonts so a
+    // later font swap cannot make the measured label box too small.
+    if (document.fonts) await document.fonts.ready;
+
+    var theme = "default";
+    // The site's default follows its active skin. Explicit forest/dark/etc.
+    // choices remain available for sites that deliberately select them.
+    if (theme === 'default') theme = 'base';
+
+    var config = {
+      startOnLoad: false,
+      securityLevel: 'strict',
+      fontFamily: fontFamily,
+      // Native SVG text avoids foreignObject clipping and article paragraph CSS.
+      htmlLabels: false,
+      flowchart: {
+        inheritDir: true,
+        curve: 'linear',
+        nodeSpacing: 24,
+        rankSpacing: 28,
+        padding: 8,
+        diagramPadding: 8,
+        wrappingWidth: 180,
+        // Nested cluster borders must start below the parent's full title line.
+        subGraphTitleMargin: { top: 4, bottom: 12 }
+      },
+      theme: theme,
+      themeVariables: theme === 'base' ? {
+        fontFamily: fontFamily,
+        fontSize: '14px',
+        background: background,
+        primaryColor: palettes[0].node,
+        primaryTextColor: text,
+        primaryBorderColor: nodeBorder,
+        secondaryColor: palettes[1].node,
+        secondaryTextColor: text,
+        secondaryBorderColor: border,
+        tertiaryColor: palettes[2].node,
+        tertiaryTextColor: text,
+        tertiaryBorderColor: border,
+        lineColor: line,
+        textColor: text,
+        mainBkg: palettes[0].node,
+        nodeBorder: nodeBorder,
+        nodeTextColor: text,
+        clusterBkg: palettes[0].cluster,
+        clusterBorder: border,
+        titleColor: text,
+        defaultLinkColor: line,
+        edgeLabelBackground: background,
+        noteBkgColor: palettes[2].node,
+        noteTextColor: text,
+        noteBorderColor: border,
+        actorBkg: palettes[0].node,
+        actorBorder: nodeBorder,
+        actorTextColor: text,
+        actorLineColor: border,
+        signalColor: line,
+        signalTextColor: text
+      } : { fontFamily: fontFamily }
+    };
+
+    function applyFlowchartPalette(svg) {
+      if (theme !== 'base' || !/^flowchart/.test(svg.getAttribute('aria-roledescription') || '')) return;
+
+      function tint(group, shapes, index, kind) {
+        // Author-supplied classDef/style colors take precedence over auto accents.
+        var customClass = Array.from(group.classList).some(function (name) {
+          return !['node', 'default', 'cluster', 'clickable'].includes(name);
+        });
+        if (customClass || !shapes.length || shapes.some(function (shape) {
+          return shape.style.getPropertyValue('fill') || shape.style.getPropertyValue('stroke');
+        })) return;
+        group.setAttribute('data-mermaid-palette', index);
+        shapes.forEach(function (shape) {
+          // Keep fallbacks in the SVG so exported diagrams retain their colors.
+          if (shape.getAttribute('fill') !== 'none') {
+            shape.style.fill = 'var(--mermaid-palette-' + index + '-' + kind + ', ' + palettes[index][kind] + ')';
+          }
+          shape.style.stroke = 'var(--mermaid-palette-' + index + '-border, ' + palettes[index].border + ')';
+        });
+      }
+
+      var groups = Array.from(svg.querySelectorAll('g.cluster')).map(function (group, index) {
+        var rect = group.querySelector('rect');
+        return { group: group, rect: rect, bounds: rect && rect.getBoundingClientRect(), index: index % palettes.length };
+      }).filter(function (entry) { return entry.rect; });
+      // Mermaid's SVG stores clusters flat. Match by the actual layout so nodes
+      // inherit their smallest enclosing group, including nested schedulers.
+      var nodes = Array.from(svg.querySelectorAll('g.node')).map(function (node) {
+        return { node: node, bounds: node.getBoundingClientRect() };
+      });
+      groups.forEach(function (entry) { tint(entry.group, [entry.rect], entry.index, 'cluster'); });
+      groups.sort(function (a, b) { return a.bounds.width * a.bounds.height - b.bounds.width * b.bounds.height; });
+      nodes.forEach(function (entry) {
+        var box = entry.bounds;
+        var parent = groups.find(function (group) {
+          var bounds = group.bounds;
+          return box.left >= bounds.left - 1 && box.right <= bounds.right + 1 &&
+            box.top >= bounds.top - 1 && box.bottom <= bounds.bottom + 1;
+        });
+        var shapes = [];
+        entry.node.querySelectorAll(':scope > .label-container').forEach(function (container) {
+          // Rounded/hand-drawn shapes wrap paths in a group. Include the
+          // container in the author-style check, then tint the actual paths.
+          shapes.push(container);
+          shapes.push.apply(shapes, container.querySelectorAll('path, rect, circle, ellipse, polygon, polyline'));
+        });
+        tint(entry.node, shapes, parent ? parent.index : 0, 'node');
+      });
+    }
+
+    function hasNestedSubgraphs(source) {
+      var depth = 0;
+      return source.split(/\r?\n/).some(function (line) {
+        if (/^\s*subgraph\b/.test(line)) return ++depth > 1;
+        if (/^\s*end\s*(?:;|%%.*)?$/.test(line)) depth = Math.max(0, depth - 1);
+        return false;
+      });
+    }
+
+    for (var code of blocks) {
+      var original = code.closest('.highlighter-rouge') || code.closest('pre');
+      if (!original) continue;
+
+      var wrapper = document.createElement('div');
+      wrapper.className = 'mermaid-diagram';
+      wrapper.tabIndex = 0;
+      wrapper.setAttribute('role', 'region');
+      wrapper.setAttribute('aria-label', 'Mermaid diagram (scroll horizontally)');
+
+      var pre = document.createElement('pre');
+      pre.className = 'mermaid';
+      pre.textContent = normalizeMermaidSource(code.textContent);
+      wrapper.appendChild(pre);
+      original.replaceWith(wrapper);
+
+      try {
+        // Dagre reserves only half rankSpacing above a nested cluster. Keep
+        // that space taller than its parent's title, without spreading out
+        // the ordinary (non-nested) compact flowcharts.
+        mermaid.initialize(Object.assign({}, config, {
+          flowchart: Object.assign({}, config.flowchart, {
+            rankSpacing: hasNestedSubgraphs(code.textContent) ? 56 : config.flowchart.rankSpacing
+          })
+        }));
+        await mermaid.run({ nodes: [pre] });
+        var svg = pre.querySelector('svg');
+        if (svg && svg.viewBox.baseVal.width) {
+          // Do not shrink labels to illegible text on narrow screens;
+          // keep at least 90% of the natural size and scroll the diagram instead.
+          svg.style.minWidth = (svg.viewBox.baseVal.width * 0.9) + 'px';
+        }
+        if (svg) applyFlowchartPalette(svg);
+      } catch (error) {
+        // A malformed diagram must not prevent other diagrams from rendering
+        // or make the original source disappear.
+        wrapper.replaceChildren(original);
+        var message = document.createElement('p');
+        message.className = 'mermaid-error';
+        message.setAttribute('role', 'status');
+        message.textContent = '图表渲染失败，已保留 Mermaid 源码。';
+        wrapper.appendChild(message);
+        console.warn('Mermaid diagram could not be rendered:', error);
+      }
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', renderDiagrams);
+  } else {
+    renderDiagrams();
+  }
+})();
+</script>
+
+
+  </body>
+
+</html>

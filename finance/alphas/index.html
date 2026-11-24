@@ -16,23 +16,23 @@
   
   
   <!-- Begin Jekyll SEO tag v2.9.1 -->
-<title>worldquant BRAIN 股票因子 (一) – 仿真测试 | Liu, Wen’s Home Page</title>
+<title>WorldQuant BRAIN 股票因子总览：仿真机制、评测指标与全系列索引 | Liu, Wen’s Home Page</title>
 <meta name="generator" content="Jekyll v4.4.1" />
-<meta property="og:title" content="worldquant BRAIN 股票因子 (一) – 仿真测试" />
+<meta property="og:title" content="WorldQuant BRAIN 股票因子总览：仿真机制、评测指标与全系列索引" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="选择在模拟盘中表现好的因子投资" />
-<meta name="twitter:description" property="og:description" content="选择在模拟盘中表现好的因子投资" />
+<meta name="description" content="本文为 WorldQuant BRAIN 量化研究体系的系列总览与仿真基座篇（原笔记中的算子数学原理与表达细节已独立拆分至 《WorldQuant FASTEXPR 核心算子解析与线性回归推导》（operators））。目标是在统一的无前视偏差、资金中性回测框架下，筛选在样本内外稳定表现的 Alpha 因子。" />
+<meta name="twitter:description" property="og:description" content="本文为 WorldQuant BRAIN 量化研究体系的系列总览与仿真基座篇（原笔记中的算子数学原理与表达细节已独立拆分至 《WorldQuant FASTEXPR 核心算子解析与线性回归推导》（operators））。目标是在统一的无前视偏差、资金中性回测框架下，筛选在样本内外稳定表现的 Alpha 因子。" />
 <link rel="canonical" href="https://roshameow.github.io//personal_homepage/finance/alphas/" />
 <meta property="og:url" content="https://roshameow.github.io//personal_homepage/finance/alphas/" />
 <meta property="og:site_name" content="Liu, Wen’s Home Page" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2025-01-07T00:00:00+00:00" />
-<meta property="article:modified_time" content="2026-11-05T07:02:00+00:00" />
+<meta property="article:modified_time" content="2026-11-21T12:36:00+00:00" />
 <meta name="twitter:card" content="summary" />
-<meta name="twitter:title" content="worldquant BRAIN 股票因子 (一) – 仿真测试" />
+<meta name="twitter:title" content="WorldQuant BRAIN 股票因子总览：仿真机制、评测指标与全系列索引" />
 <meta name="twitter:site" content="@" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2026-11-05T07:02:00+00:00","datePublished":"2025-01-07T00:00:00+00:00","description":"选择在模拟盘中表现好的因子投资","headline":"worldquant BRAIN 股票因子 (一) – 仿真测试","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/finance/alphas/"},"url":"https://roshameow.github.io//personal_homepage/finance/alphas/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2026-11-21T12:36:00+00:00","datePublished":"2025-01-07T00:00:00+00:00","description":"本文为 WorldQuant BRAIN 量化研究体系的系列总览与仿真基座篇（原笔记中的算子数学原理与表达细节已独立拆分至 《WorldQuant FASTEXPR 核心算子解析与线性回归推导》（operators））。目标是在统一的无前视偏差、资金中性回测框架下，筛选在样本内外稳定表现的 Alpha 因子。","headline":"WorldQuant BRAIN 股票因子总览：仿真机制、评测指标与全系列索引","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/finance/alphas/"},"url":"https://roshameow.github.io//personal_homepage/finance/alphas/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -59,7 +59,7 @@
 
 </head>
 
-  <body class="layout--post  worldquant-brain-股票因子-一-仿真测试">
+  <body class="layout--post  worldquant-brain-股票因子总览-仿真机制-评测指标与全系列索引">
     <nav class="skip-links">
   <h2 class="screen-reader-text">Skip links</h2>
   <ul>
@@ -100,7 +100,7 @@
       <header class="page-header">
         
         
-        <h1 id="page-title" class="page-title p-name">worldquant BRAIN 股票因子 (一) – 仿真测试
+        <h1 id="page-title" class="page-title p-name">WorldQuant BRAIN 股票因子总览：仿真机制、评测指标与全系列索引
 </h1>
         
       </header>
@@ -126,7 +126,7 @@
         
   <h3 class="page-taxonomies-title">Tags</h3>
   
-  <ul class="page-taxonomies"><li class="page-taxonomy"><a href="/personal_homepage/tags/#alpha" title="Pages tagged alpha" rel="tag">alpha</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#content" title="Pages tagged content" rel="tag">content</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#simulation" title="Pages tagged simulation" rel="tag">simulation</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#stock" title="Pages tagged stock" rel="tag">stock</a></li>
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a href="/personal_homepage/tags/#alpha" title="Pages tagged alpha" rel="tag">alpha</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#content" title="Pages tagged content" rel="tag">content</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#index" title="Pages tagged index" rel="tag">index</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#simulation" title="Pages tagged simulation" rel="tag">simulation</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#stock" title="Pages tagged stock" rel="tag">stock</a></li>
   </ul>
 
 
@@ -140,7 +140,7 @@
     </h2>
   </summary>
   <div class="toc-content">
-    <ul class="inline_toc" id="my_toc"><li><a href="#仿真">仿真</a><ul><li><a href="#仿真参数">仿真参数</a></li></ul></li><li><a href="#仿真交易流程">仿真交易流程</a></li><li><a href="#数据">数据</a></li><li><a href="#测试结果">测试结果</a><ul><li><a href="#术语">术语</a></li><li><a href="#通过指标">通过指标</a></li></ul></li><li><a href="#操作">操作</a></li><li><a href="#参考资料">参考资料</a></li></ul>
+    <ul class="inline_toc" id="my_toc"><li><a href="#一worldquant-研究体系全系列索引index">一、WorldQuant 研究体系全系列索引（Index）</a></li><li><a href="#二brain-仿真参数与数据形态">二、BRAIN 仿真参数与数据形态</a><ul><li><a href="#21-核心仿真参数">2.1 核心仿真参数</a></li><li><a href="#22-三大原生数据结构">2.2 三大原生数据结构</a></li></ul></li><li><a href="#三仿真交易执行流程从-matrix-到-pnl">三、仿真交易执行流程（从 Matrix 到 PnL）</a></li><li><a href="#四评测术语与-alpha-通关提交指标体系">四、评测术语与 Alpha 通关/提交指标体系</a><ul><li><a href="#41-基础金融术语">4.1 基础金融术语</a></li><li><a href="#42-核心提交指标要求与优化抓手">4.2 核心提交指标要求与优化抓手</a></li></ul></li></ul>
   </div>
 </details>
 
@@ -157,15 +157,15 @@
   <div class="toc-content">
     <ul>
       
-      <li><a href="/personal_homepage/data/alpha29/">News & Social Media 新闻流、社交媒体情绪与文本事件数据体系</a></li>
+      <li><a href="/personal_homepage/tool/quantnight-daemons/">QuantNight 守护进程与定时调度体系全景</a></li>
       
-      <li><a href="/personal_homepage/data/alpha28/">日内 PV 统计量与市场微结构衍生指标体系</a></li>
+      <li><a href="/personal_homepage/tool/mcp-dev-pitfalls/">生产级 MCP 开发演进复盘：以 QuantNight MCP 为例谈踩坑、弯路与架构取舍</a></li>
       
-      <li><a href="/personal_homepage/tool/alpha27/">从过度防御的歪路纠偏：GUI/CLI 6 态极简控制面、数据面板统一与工程收口</a></li>
+      <li><a href="/personal_homepage/tool/git-sync/">git-sync：双机多 Agent 开发的确定性同步与 Guardian 事件驱动工作流</a></li>
       
-      <li><a href="/personal_homepage/thought/agent-infrastructure-pitfalls-2/">用 AI 维护复杂控制面基础设施：为什么越修越死？从补丁膨胀到 6 态收敛的六大工程陷阱</a></li>
+      <li><a href="/personal_homepage/tool/alpha30/">QuantNight 原生 MCP 共享底座架构：单守护进程、事件通知、跨重启续跑与双端职责边界</a></li>
       
-      <li><a href="/personal_homepage/tool/pi-subagent-durable/">pi-subagent-durable：后台子代理的持久化、生命周期与故障自愈</a></li>
+      <li><a href="/personal_homepage/finance/operators/">WorldQuant FASTEXPR 核心算子解析、分布整形与线性回归推导</a></li>
       
     </ul>
   </div>
@@ -177,300 +177,284 @@
 
       <div class="page-content">
         <div class="e-content">
-          <p>选择在模拟盘中表现好的因子投资</p>
+          <blockquote>
+  <p>本文为 WorldQuant BRAIN 量化研究体系的<strong>系列总览与仿真基座篇</strong>（原笔记中的算子数学原理与表达细节已独立拆分至 <a href="2026-11-21-operators.md">《WorldQuant FASTEXPR 核心算子解析与线性回归推导》（operators）</a>）。目标是在统一的无前视偏差、资金中性回测框架下，筛选在样本内外稳定表现的 Alpha 因子。</p>
+</blockquote>
 
-<h2 id="仿真">仿真</h2>
+<hr />
 
-<h3 id="仿真参数">仿真参数</h3>
-
-<p>分为数据库选择, 和后处理两部分</p>
-
-<ul>
-  <li>Delay: 当天(在当天closed前根据当天数据交易), 或+1天(早上交易, 根据昨天的数据)</li>
-  <li>Test Period: 把仿真的5年时间分出一部分作为test, PnL图上orange的部分</li>
-  <li>
-    <p>Universe(股票范围): Top3000指日平均 <code class="language-plaintext highlighter-rouge">volume</code> 最大的3000支</p>
-  </li>
-  <li>Decay: 自带的一个linear decay(前n天), 是在最后的normalized weight上进行decay</li>
-  <li>pasteurized: ? 只考虑universe以内的alpha?</li>
-  <li>Nan Handling: 操作不可控? OFF的话, 有Nan的值会被平仓(全部卖出)</li>
-  <li>Unit Handling: 单位不匹配时报warning</li>
-  <li>truncation: 设置maximum weight上限: 建议设置0.05~0.1 (entailing 5-10%)之间</li>
-  <li>neutralize(标准化): 让mean(alpha)=0,
-    <ul>
-      <li>时间(<code class="language-plaintext highlighter-rouge">ts_neutralize</code>)上做neutralize避免长期趋势. (多空中性化).</li>
-      <li>同期(<code class="language-plaintext highlighter-rouge">group_neutralize</code>)的做避免不同类型股票的不公平比较.</li>
-    </ul>
-  </li>
-</ul>
-
-<h2 id="仿真交易流程">仿真交易流程</h2>
-
-<ul>
-  <li>输入为  <code class="language-plaintext highlighter-rouge">Matrix</code>, 按照时间顺序交易</li>
-  <li><a href="https://platform.worldquantbrain.com/learn/documentation/create-alphas/how-brain-platform-works">仿真交易规则</a>:
-    <ul>
-      <li>每天用恒定的账面规模(<code class="language-plaintext highlighter-rouge">book size</code>)交易,
-        <ul>
-          <li>book size 为$20 million. 有$10 million现金, 投资上限为$20million.</li>
-        </ul>
-      </li>
-      <li>alpha apply到每只股票上得到alpha value</li>
-      <li><strong>L1 归一化</strong>,  得到每只股票的<code class="language-plaintext highlighter-rouge">weight</code>
-        <ul>
-          <li>不同neutralize组的booksize是分别计算的? 比如有两个sector, 每个sector scale到 0.5/abs(sector_sum)?</li>
-        </ul>
-      </li>
-      <li>每天在每只股票上投资 <code class="language-plaintext highlighter-rouge">weight*booksize</code></li>
-      <li>计算<code class="language-plaintext highlighter-rouge">PnL</code></li>
-    </ul>
-  </li>
-</ul>
-
-<h2 id="数据">数据</h2>
-
-<p>有<code class="language-plaintext highlighter-rouge">Matrix</code>, <code class="language-plaintext highlighter-rouge">Vector</code>, <code class="language-plaintext highlighter-rouge">Group</code> 三种</p>
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">Matrix</code> : 天数 x 股票的2d array. 普通的alpha可以用</li>
-  <li><code class="language-plaintext highlighter-rouge">Vector</code>: 每天每只股票可能有0-n个数值, 比如新闻. 需要用vector_operator处理</li>
-  <li><code class="language-plaintext highlighter-rouge">Group</code>: 每只股票一个group_id. 用于group_operator的group参数</li>
-</ul>
-
-<h2 id="测试结果">测试结果</h2>
-
-<h3 id="术语">术语</h3>
-
-<ul>
-  <li>PnL(profit and loss): <code class="language-plaintext highlighter-rouge">daily_PnL = sum(size of position * daily_return)</code>
-    <ul>
-      <li>每个股票的 <code class="language-plaintext highlighter-rouge">daily_return= (today’s close / yesterday’s close) – 1.0 </code></li>
-    </ul>
-  </li>
-  <li>Returns: <code class="language-plaintext highlighter-rouge">Return = annualized PnL / Half of Book Size</code></li>
-  <li>Drowndown: PnL最大的一次下降, 用half of booksize归一化为百分比</li>
-  <li>Long/Short(做多, 做空): 在这里就指买入/卖出
-    <ul>
-      <li>Long/short Count: 做多/做空 股票的数量</li>
-    </ul>
-  </li>
-  <li><a href="https://www.investopedia.com/terms/v/volume.asp#:~:text=Volume%20is%20the%20amount%20of,its%20daily%20open%20and%20close">Volume(成交量)</a> : 一段时间的交易数量</li>
-  <li>Margin(边缘收益): <code class="language-plaintext highlighter-rouge">Margin=PnL/TotalDollarsTraded</code>
-    <ul>
-      <li>一段时间内每个dollor的收益, 和可能会用到的手续费有关.</li>
-    </ul>
-  </li>
-  <li>cap(市值)</li>
-  <li>Call/Put(看涨/看跌)</li>
-</ul>
-
-<h3 id="通过指标">通过指标</h3>
+<h2 id="一worldquant-研究体系全系列索引index">一、WorldQuant 研究体系全系列索引（Index）</h2>
 
 <table>
   <thead>
     <tr>
-      <th><a href="https://platform.worldquantbrain.com/learn/documentation/interpret-results/alpha-submission">指标</a></th>
-      <th>要求</th>
-      <th>公式</th>
-      <th>优化方向</th>
+      <th>主题分组</th>
+      <th>笔记子标题</th>
+      <th>覆盖核心内容</th>
+      <th>笔记链接</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td><a href="https://en.wikipedia.org/wiki/Sharpe_ratio">Sharpe(夏普率, related metric, information ratio, IR)</a></td>
-      <td>Delay-0: <code class="language-plaintext highlighter-rouge">Sharpe &gt; 2</code><br />Delay-1: <code class="language-plaintext highlighter-rouge">Sharpe &gt; 1.58</code></td>
-      <td><code class="language-plaintext highlighter-rouge">Sharpe=mean(PnL)/stdev(PnL)*sqrt(252)</code><br /><br /><code class="language-plaintext highlighter-rouge">*sqrt(252)</code> 年化</td>
+      <td><strong>算法与仿真<br />(<code class="language-plaintext highlighter-rouge">worldquant/algorithm</code>)</strong></td>
+      <td><strong><code class="language-plaintext highlighter-rouge">index &amp; simulation</code></strong></td>
+      <td>BRAIN 仿真参数、交易归一化流程、三大数据结构与提交通关指标总览</td>
+      <td>本文</td>
+    </tr>
+    <tr>
       <td> </td>
+      <td><code class="language-plaintext highlighter-rouge">ast grammar</code></td>
+      <td>DSL 表达式与三元运算符 <code class="language-plaintext highlighter-rouge">? :</code> 的 AST 与 Pratt Parser 语法解析</td>
+      <td><a href="2025-08-10-string.md">2025-08-10-string.md</a></td>
     </tr>
     <tr>
-      <td>Sub-universe Sharpe</td>
-      <td>建议 <code class="language-plaintext highlighter-rouge">subuniverse_sharpe &gt; 0.7*sharpe</code></td>
-      <td><code class="language-plaintext highlighter-rouge">subuniverse_sharpe &gt;= 0.75 * sqrt(subuniverse_size / alpha_universe_size) * alpha_sharpe</code><br /><br />不在sub-universe 的股票赋NaN, 自动加上market neutralization, 并乘上scale?<br /><br /></td>
-      <td>让alpha少受公司规模, 流动性的影响<br />避免使用<code class="language-plaintext highlighter-rouge">1-rank(cap), rank(-assets)</code><br />对<code class="language-plaintext highlighter-rouge">volume*close</code> 不在一个水平的stock,</td>
-    </tr>
-    <tr>
-      <td>IS Ladder Sharpe(阶梯测试)</td>
-      <td>FAIL_THRESHOLD=Sharpe<br />PASS_THRESHOLD<br />时间段越长越会降低</td>
-      <td>从近两年, 3年 -…-&gt; 10年测试<br />如果通过FAIL_THRESHOLD只是进入下一阶段测试, <br />如果通过PASS_THRESHOLD则可以立即通过</td>
-      <td>控制drawback</td>
-    </tr>
-    <tr>
-      <td><a href="https://support.worldquantbrain.com/hc/en-us/articles/20251419309719-How-to-improve-Turnover">Turnover(换手率)</a></td>
-      <td><code class="language-plaintext highlighter-rouge">1% &lt; Turnover &lt; 70%</code><br />建议 <code class="language-plaintext highlighter-rouge">Turnover &lt; 25%</code></td>
-      <td><code class="language-plaintext highlighter-rouge">avg(daily trading volume/Booksize)</code></td>
-      <td>减少turnover: <br />1. 增加滤波(decay, ts_mean)<br />2. 用trade_when设置交易条件<br />3. 用<code class="language-plaintext highlighter-rouge">hump</code> operator</td>
-    </tr>
-    <tr>
-      <td><strong><a href="https://support.worldquantbrain.com/hc/en-us/articles/20251386376471-How-to-increase-fitness-of-alphas?">Fitness(健康度)</a></strong><br />评价alpha优劣的指标</td>
-      <td>Delay-0: <code class="language-plaintext highlighter-rouge">fitness &gt; 1.3</code><br />Delay-1: <code class="language-plaintext highlighter-rouge">fitness &gt; 1</code></td>
-      <td><code class="language-plaintext highlighter-rouge">Fitness = Sharpe*sqrt(abs(Returns)/Max(Turnover,0.125))</code></td>
-      <td>降低turnover</td>
-    </tr>
-    <tr>
-      <td>Margin</td>
-      <td>建议 <code class="language-plaintext highlighter-rouge">margin &gt; 4bps</code><br />USA 5<br />EUR 10<br />ASI 15</td>
-      <td><code class="language-plaintext highlighter-rouge">avg(PnL/total traded dollars)</code></td>
-      <td>降低turnover<br />提高return</td>
-    </tr>
-    <tr>
-      <td>Weight test</td>
-      <td>1. 在长时间内, non-zero weight的股票数不能太少<br />2. 某一个股票的weight不能占比太大<br /><code class="language-plaintext highlighter-rouge">max(weight) &lt; 10%</code> <br />随股票范围变动</td>
       <td> </td>
-      <td>- truncation: 设置maximum weight上限: 建议设置0.05~0.1 (entailing 5-10%)之间<br />- 调整weight 分布: rank<br />- <a href="https://support.worldquantbrain.com/hc/en-us/articles/19248385997719-Weight-Coverage-common-issues-and-advice?">解决coverage不够的问题</a>:1. 用<code class="language-plaintext highlighter-rouge">ts_backfill</code>填补一些更新频率不够的 2. 用<code class="language-plaintext highlighter-rouge">group_count</code>检测当天的覆盖率</td>
+      <td><code class="language-plaintext highlighter-rouge">ast generation rl</code></td>
+      <td>基于抽象语法树（AST）与 MDP 建模的表达式自动生成</td>
+      <td><a href="2025-06-25-alpha10.md">2025-06-25-alpha10.md</a></td>
     </tr>
     <tr>
-      <td>Self Correlation</td>
-      <td>和现有alpha不相关:<br /><code class="language-plaintext highlighter-rouge">&lt; 0.7 PnL correlation</code><br />, 或优化现有alpha:<br /><code class="language-plaintext highlighter-rouge">Sharpe &gt; 110% * correlated Sharpe</code></td>
       <td> </td>
-      <td> </td>
+      <td><code class="language-plaintext highlighter-rouge">搜索</code> / <code class="language-plaintext highlighter-rouge">优化</code></td>
+      <td>候选表达式搜索策略与多维度优化框架</td>
+      <td><a href="2026-04-20-alpha16.md">2026-04-20-alpha16.md</a> / <a href="2026-05-13-alpha17.md">2026-05-13-alpha17.md</a></td>
     </tr>
     <tr>
-      <td><a href="https://platform.worldquantbrain.com/learn/documentation/interpret-results/parameters-simulation-results#is-semi-os-os">Out-of-sample(OS)</a></td>
-      <td>提交后在真实市场测试</td>
       <td> </td>
+      <td><code class="language-plaintext highlighter-rouge">组合portfolio</code> / <code class="language-plaintext highlighter-rouge">combo</code></td>
+      <td>Greedy Boost 与遗传算法筛选组合、组合交易加权与 <code class="language-plaintext highlighter-rouge">RankIC</code> / 稳定性指标</td>
+      <td><a href="2025-05-26-alpha7.md">alpha7</a> / <a href="2025-05-27-alpha8.md">alpha8</a> / <a href="2025-06-22-alpha9.md">alpha9</a> / <a href="2025-12-24-alpha13.md">alpha13</a></td>
+    </tr>
+    <tr>
+      <td><strong>数据与金融理论<br />(<code class="language-plaintext highlighter-rouge">worldquant/theory</code>)</strong></td>
+      <td><code class="language-plaintext highlighter-rouge">relationships</code></td>
+      <td><strong>总纲</strong>：十类数据集路由、五大关系键（<code class="language-plaintext highlighter-rouge">spread/exceed/projection/correlation/combine</code>）与四大定价模型</td>
+      <td><a href="2025-02-26-alpha5.md">2025-02-26-alpha5.md</a></td>
+    </tr>
+    <tr>
       <td> </td>
+      <td><code class="language-plaintext highlighter-rouge">pv</code> / <code class="language-plaintext highlighter-rouge">intraday_pv</code></td>
+      <td>日频 OHLCV 衍生四阶谱系、复权数学原理与日内微结构统计量</td>
+      <td><a href="2025-09-19-alpha11.md">2025-09-19-alpha11.md</a> / <a href="2026-11-20-alpha28.md">2026-11-20-alpha28.md</a></td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td><code class="language-plaintext highlighter-rouge">fundamental</code></td>
+      <td>财务三表 PIT 时钟防未来函数与盈利质量/估值/杠杆三阶谱系</td>
+      <td><a href="2025-01-15-alphas2.md">2025-01-15-alphas2.md</a></td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td><code class="language-plaintext highlighter-rouge">analyst</code> / <code class="language-plaintext highlighter-rouge">news_social</code></td>
+      <td>卖方一致预期修订与 PEAD 漂移；新闻流、社媒喧嚣反转与事件门控</td>
+      <td><a href="2025-01-22-alphas4.md">2025-01-22-alphas4.md</a> / <a href="2026-11-20-alpha29.md">2026-11-20-alpha29.md</a></td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td><code class="language-plaintext highlighter-rouge">options_bond</code></td>
+      <td>利率债/信用债/可转债/CDS、期权 BSM 定价与 Greeks、衍生品三阶因子谱系</td>
+      <td><a href="2024-10-01-bond.md">2024-10-01-bond.md</a></td>
+    </tr>
+    <tr>
+      <td><strong>工程架构<br />(<code class="language-plaintext highlighter-rouge">worldquant/architecture</code>)</strong></td>
+      <td><code class="language-plaintext highlighter-rouge">回测流水线</code> / <code class="language-plaintext highlighter-rouge">gui/cli</code> / <code class="language-plaintext highlighter-rouge">自治session</code></td>
+      <td>高并发异步回测状态机、桌面控制面统一、数据同步与自治 Agent 调度架构</td>
+      <td><a href="2025-01-18-alphas3.md">alphas3</a> / <a href="2026-05-14-alpha18.md">alpha18</a> / <a href="2026-11-06-alpha21.md">alpha21</a> / <a href="2026-11-08-alpha22.md">alpha22</a></td>
+    </tr>
+    <tr>
+      <td><strong>平台机制与算子<br />(<code class="language-plaintext highlighter-rouge">worldquant/platform</code>)</strong></td>
+      <td><strong><code class="language-plaintext highlighter-rouge">operators</code></strong></td>
+      <td>FASTEXPR 缺失值填补、分布整形、<code class="language-plaintext highlighter-rouge">ts_regression</code> 全 <code class="language-plaintext highlighter-rouge">rettype</code> 推导与投影正交对比</td>
+      <td><a href="2026-11-21-operators.md">2026-11-21-operators.md</a></td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td><code class="language-plaintext highlighter-rouge">platform</code> 研究</td>
+      <td><code class="language-plaintext highlighter-rouge">IS Score</code> 黑盒公式逆向、<code class="language-plaintext highlighter-rouge">base_payment</code> 基准建模、<code class="language-plaintext highlighter-rouge">alpha id</code> 与数据聚类</td>
+      <td><a href="2026-03-23-alpha14.md">alpha14</a> / <a href="2026-11-10-alpha25.md">alpha25</a> / <a href="2025-09-25-alpha12.md">alpha12</a> / <a href="2025-03-18-cluster.md">cluster</a></td>
     </tr>
   </tbody>
 </table>
 
-<h2 id="操作">操作</h2>
+<hr />
+
+<h2 id="二brain-仿真参数与数据形态">二、BRAIN 仿真参数与数据形态</h2>
+
+<h3 id="21-核心仿真参数">2.1 核心仿真参数</h3>
+
+<p>仿真参数决定因子回测的信号输入范围与仓位后处理边界，分为<strong>数据库与时点选择</strong>和<strong>持仓权重后处理</strong>两类：</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>参数类别</th>
+      <th>参数名</th>
+      <th>核心含义与工程设置建议</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>数据与时点</strong></td>
+      <td><code class="language-plaintext highlighter-rouge">Delay</code></td>
+      <td>信号滞后天数：<code class="language-plaintext highlighter-rouge">Delay-0</code> 为当日收盘前依据当日数据调仓；<code class="language-plaintext highlighter-rouge">Delay-1</code> 为次日开盘/日间依据前一交易日收后数据调仓（门槛要求差异明显）</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td><code class="language-plaintext highlighter-rouge">Test Period</code></td>
+      <td>从历史样本中保留一段作为样本内测试区间（对应 PnL 曲线中橙色区间，用于检验参数过拟合）</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td><code class="language-plaintext highlighter-rouge">Universe</code></td>
+      <td>选股股票池（例如 <code class="language-plaintext highlighter-rouge">TOP3000</code> 指按日均成交额/成交量排序流动性最高的 3000 只股票）</td>
+    </tr>
+    <tr>
+      <td><strong>权重后处理</strong></td>
+      <td><code class="language-plaintext highlighter-rouge">Neutralize</code></td>
+      <td>均值归零中性化：截面按 <code class="language-plaintext highlighter-rouge">group_neutralize</code> 消除市场/行业/板块暴露（避免不同类型股票不公平对比）；时序可通过多空结构或 <code class="language-plaintext highlighter-rouge">ts_*</code> 消除长期漂移</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td><code class="language-plaintext highlighter-rouge">Decay</code></td>
+      <td>在最终 <strong>L1 归一化权重之后</strong> 施加的线性衰减平滑（把过去 <code class="language-plaintext highlighter-rouge">n</code> 天目标权重按线性递减权重混合），用于压降换手率</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td><code class="language-plaintext highlighter-rouge">Truncation</code></td>
+      <td>单只股票最大权重上限：建议设置在 <code class="language-plaintext highlighter-rouge">0.05 ~ 0.1</code>（<code class="language-plaintext highlighter-rouge">5% ~ 10%</code>）之间，防止少数异常标的主导组合风险</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td><code class="language-plaintext highlighter-rouge">Pasteurization</code></td>
+      <td><strong>池外过滤</strong>：只保留处于当前 <code class="language-plaintext highlighter-rouge">Universe</code> 之内的股票数值，对池外股票赋 <code class="language-plaintext highlighter-rouge">NaN</code>，避免非流动性小盘股干扰均值与归一化</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td><code class="language-plaintext highlighter-rouge">NaN Handling</code></td>
+      <td>缺失值处理：<code class="language-plaintext highlighter-rouge">OFF</code> 模式下当某只股票出现 <code class="language-plaintext highlighter-rouge">NaN</code> 时会强制平仓卖出</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td><code class="language-plaintext highlighter-rouge">Unit Handling</code></td>
+      <td>单位一致性校验开关：若表达式出现跨量纲直接相加减（如价格加市值），触发单位不匹配告警</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="22-三大原生数据结构">2.2 三大原生数据结构</h3>
 
 <ul>
-  <li>数据接口: https://platform.worldquantbrain.com/data
-    <ul>
-      <li>datafield是变量名</li>
-      <li>dataset是数据集</li>
-    </ul>
-  </li>
-  <li>支持运算: https://platform.worldquantbrain.com/learn/operators</li>
-  <li><a href="https://platform.worldquantbrain.com/learn/documentation/discover-brain/introduction-brain-expression-language">代码语法</a>:
-    <ul>
-      <li>只用给出的运算符</li>
-      <li>每行用 <code class="language-plaintext highlighter-rouge">;</code> 结尾
-常用的operator</li>
-    </ul>
-  </li>
-  <li>填空(<code class="language-plaintext highlighter-rouge">ts_backfill</code>,  <code class="language-plaintext highlighter-rouge">group_backfill</code>): 把数据里的nan用有效值补上
-    <ul>
-      <li><code class="language-plaintext highlighter-rouge">group_backfill</code> 是在d天, group里取所有的有效值, 做winsorized mean</li>
-    </ul>
-  </li>
-  <li>统计
-    <ul>
-      <li>mean(<code class="language-plaintext highlighter-rouge">group_mean,</code>)
-        <ul>
-          <li><code class="language-plaintext highlighter-rouge">group_sum</code></li>
-          <li><code class="language-plaintext highlighter-rouge">group_count</code> : 统计valid value. 和 group_sum(is_nan ) 一样吗?</li>
-        </ul>
-      </li>
-      <li>std_dev(<code class="language-plaintext highlighter-rouge">group_std_dev</code>)</li>
-      <li>ir(<code class="language-plaintext highlighter-rouge">ts_ir</code>): 信噪比, mean/std</li>
-      <li>kurt(<code class="language-plaintext highlighter-rouge">ts_kurtosis</code>):</li>
-      <li>max (<code class="language-plaintext highlighter-rouge">ts_max_diff</code>)</li>
-    </ul>
-  </li>
-  <li>调整分布
-    <ul>
-      <li>neutralize(<code class="language-plaintext highlighter-rouge">normalize, group_neutralize,ts_av_diff</code>): 让数据 mean=0</li>
-      <li>zscore(<code class="language-plaintext highlighter-rouge">zscore, group_zscore, ts_zsore</code>): 让数据 mean=0, var=1. 假设数据是高斯分布的情况下标准化.</li>
-      <li>rank(<code class="language-plaintext highlighter-rouge">rank, group_rank, ts_rank</code>): 不改变单调性, 把数据调整成0-1之间的均匀分布</li>
-      <li>quantile(<code class="language-plaintext highlighter-rouge">quantile, ts_quantile</code>) 把数据调整成某个分布
-        <ul>
-          <li>会先做一个rank把数据调整到0-1, 再做线性变换到 (1/n)-(1-1/n), 然后再用三种分布调整</li>
-          <li>支持均匀分布, gaussian分布和<a href="https://en.wikipedia.org/wiki/Cauchy_distribution">Cauchy分布</a>
-            <ul>
-              <li><strong>把输入调整成return, 可以用来做随机采样?</strong></li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-      <li>normalize(<code class="language-plaintext highlighter-rouge">scale, group_normalize</code>): 相当于L1 normalize</li>
-      <li>缩尾: 中间部分数据不变, 用来处理长尾分布.
-        <ul>
-          <li><code class="language-plaintext highlighter-rouge">tail</code> : 手动设置lower, upper bound</li>
-          <li><code class="language-plaintext highlighter-rouge">winsorize</code>:  离群数据的截断的范围由std确定</li>
-        </ul>
-      </li>
-      <li>scale(<code class="language-plaintext highlighter-rouge">group_scale, ts_scale</code>): 让数据在0-1之间. 线性scale</li>
-      <li>线性分段函数改变数据分布: 比如<code class="language-plaintext highlighter-rouge">a&lt;0.1? (1.1-a):(a&gt;0.8? 1.8-a:1)</code> , 可以构造任何分布.</li>
-      <li>非线性的改变数据分布(<code class="language-plaintext highlighter-rouge">power, -inverse, log(x+1),arctan</code>)</li>
-    </ul>
-  </li>
-  <li>计算相关关系
-    <ul>
-      <li>ts_regression(y,x): 用一个数据线性拟合另一个数据. 调节rettype 获得对应参数
-        <ul>
-          <li>error_term(\(\epsilon\) ,rettype=0): <del>相当于用x数据做y的baseline_wander</del> (y信号是主信号)
-            <ul>
-              <li>\(\epsilon = y-(\alpha + \beta x)=(y-\bar y)-\beta(x-\bar x)\)</li>
-            </ul>
-          </li>
-          <li>interception(\(\alpha\), rettype=1):
-            <ul>
-              <li>\(\alpha=\bar y-\beta \bar x\)</li>
-            </ul>
-          </li>
-          <li>slope(\(\beta\) , rettype=2): 得到数据x关于数据y的系数
-            <ul>
-              <li>\(\beta=\frac{\sum(x-\bar x)(y-\bar y)}{\sum(x-\bar x)^2}\) , 是\(y=\beta \cdot x+ \epsilon\) 做最小二乘法的解, 也是 y 在x方向的投影系数. <em>这个所谓的斜率是y关于x的斜率, 不是拟合之后的结果的斜率, 体现的是相关性而不是信号本身</em> . 和ts_corr, ts_covariance某种程度上可以相互替换
-                <ul>
-                  <li>ts_corr 是\(\frac{\sum(x-\bar x)(y-\bar y)}{\sqrt(\sum(x-\bar x)^2\sum(y-\bar y)^2)}\)</li>
-                  <li>ts_covariance 相当于 \(\sum xy - (\sum x)(\sum y)\)  \(\sum(x-\bar x)(y-\bar y)\)</li>
-                </ul>
-              </li>
-              <li>可以用这个信号作为一个阈值</li>
-              <li>得到的 <code class="language-plaintext highlighter-rouge">slope * x</code> 可以用做把y对多个x做分解, 得到的分解量. 和rettype=3 类似.</li>
-              <li>让 x 是<code class="language-plaintext highlighter-rouge">ts_step(1)</code> , 得到y关于时间的斜率.</li>
-            </ul>
-          </li>
-          <li>std(rettype=8): 和\(\beta\) 相关的error term?
-            <ul>
-              <li>和rettype2配合, 计算ir</li>
-            </ul>
-          </li>
-          <li>y-estimate(rettype=3): 相当于用x数据线性构建信号, 调节出一个和y 距离最近的参数. (x信号是主信号)
-            <ul>
-              <li>用<code class="language-plaintext highlighter-rouge">ts_regression(y,x)*x</code></li>
-            </ul>
-          </li>
-          <li>\(R^2=1-\frac{SSE}{SST}\) (决定系数, rettype=6): 表示线性模型的有用程度.(比直接取均值好的程度.). (反应了x对y的预测能力.)
-            <ul>
-              <li>SSE是模型预测值与实际值 \(y_i\) 的平方和. SST是均值与实际值 \(y_i\) 的平方和. 这两个越接近, 即\(R^2\) 越小, 说明模型和直接取均值效果差不多.</li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-      <li>regression_proj 和 vector_proj 的关系: vector_proj是没有中心化的, \(\frac{\sum xy}{\sum x^2}\cdot x\)</li>
-      <li>regression/vector_proj 和 regression/vector_neut的关系: neut 是 y - proj(y)</li>
-    </ul>
-  </li>
-  <li>分组
-    <ul>
-      <li>floor: 用整数量化成n个区间.</li>
-      <li>bucket: 把0-1的值平均分为n个区间.
-        <ul>
-          <li><code class="language-plaintext highlighter-rouge">floor(rank(cap)*4.99)</code> 和<code class="language-plaintext highlighter-rouge">bucket(rank(cap),range="0.1,1,0.2")</code> 是差不多的效果.</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li>控制
-    <ul>
-      <li>hump: 根据数据变动, 只有两种action(不动, 移动hump threshold)
-        <ul>
-          <li>对周期比较长的数据(比如基本面数据)可以这样做</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
+  <li><strong><code class="language-plaintext highlighter-rouge">Matrix</code>（时间 × 股票二维矩阵）</strong>：每个交易日、每只股票严格对应单一标量值，绝大多数标准算子与回测输出均以 <code class="language-plaintext highlighter-rouge">Matrix</code> 形态流入交易引擎。</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">Vector</code>（不等长事件/明细矢量）</strong>：同一交易日内单只股票可能对应 <code class="language-plaintext highlighter-rouge">0 ~ N</code> 条明细记录（如盘中分钟切片、新闻条数、债券存续列表、分析师明细）；<strong>必须先经 <code class="language-plaintext highlighter-rouge">vec_avg</code> / <code class="language-plaintext highlighter-rouge">vec_sum</code> / <code class="language-plaintext highlighter-rouge">vec_max</code> / <code class="language-plaintext highlighter-rouge">vec_count</code> 等矢量算子归约为 <code class="language-plaintext highlighter-rouge">Matrix</code></strong> 才可参与下游运算。</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">Group</code>（离散分组编号）</strong>：每只股票所属的类别标签（如 <code class="language-plaintext highlighter-rouge">country</code>、<code class="language-plaintext highlighter-rouge">sector</code>、<code class="language-plaintext highlighter-rouge">industry</code>、<code class="language-plaintext highlighter-rouge">subindustry</code>，或由 <code class="language-plaintext highlighter-rouge">bucket</code> 动态生成的分箱标签），专供 <code class="language-plaintext highlighter-rouge">group_*</code> 系列算子在组内求均值、排名或中性化。</li>
 </ul>
 
-<h2 id="参考资料">参考资料</h2>
+<hr />
 
-<p>[1]   https://support.worldquantbrain.com/hc/en-us/community/posts/28643095649943–新人科普-一文助你成为BRAIN兼职研究顾问</p>
+<h2 id="三仿真交易执行流程从-matrix-到-pnl">三、仿真交易执行流程（从 <code class="language-plaintext highlighter-rouge">Matrix</code> 到 <code class="language-plaintext highlighter-rouge">PnL</code>）</h2>
 
-<p>[2]  https://support.worldquantbrain.com/hc/en-us/community/posts/19273239621399–Alpha灵感启示录-合集-持续更新收录中</p>
+<p>BRAIN 的日频调仓与收益核算遵循严谨的资金中性规则（参考 <a href="https://platform.worldquantbrain.com/learn/documentation/create-alphas/how-brain-platform-works">How BRAIN Platform Works</a>）：</p>
 
-<p>[3]  https://support.worldquantbrain.com/hc/en-us/community/posts/22863075241623–学习资料-BRAIN平台自学路径图推荐</p>
+<ol>
+  <li><strong>恒定账面资金规模（Book Size）</strong>：每日以固定名义总头寸 <strong><code class="language-plaintext highlighter-rouge">$20M</code>（<code class="language-plaintext highlighter-rouge">Book Size = $20 million</code>）</strong> 进行多空双边交易（由 <code class="language-plaintext highlighter-rouge">$10M</code> 多头与 <code class="language-plaintext highlighter-rouge">$10M</code> 空头合计构成 <code class="language-plaintext highlighter-rouge">$20M</code> 总敞口）。</li>
+  <li><strong>中性化与 L1 权重归一化</strong>：
+    <ul>
+      <li>将表达式逐日计算在所有候选股票上得到原始 Alpha 评分矩阵 \(\alpha_{t,i}\)；</li>
+      <li>按设置的 <code class="language-plaintext highlighter-rouge">Neutralize</code> 分组在组内去均值，并执行 <strong>L1 归一化</strong> 使当日截面所有股票权重绝对值之和等于 <code class="language-plaintext highlighter-rouge">1</code>（若按多分组独立中性化并各自缩放到对应资金比例，则每组拥有独立子组合资金上限，总和仍守恒为全市场 <code class="language-plaintext highlighter-rouge">Book Size</code>）：
+\[w_{t,i} = \frac{\tilde{\alpha}_{t,i}}{\sum_j \lvert \tilde{\alpha}_{t,j} \rvert}\]
+      </li>
+    </ul>
+  </li>
+  <li><strong>每日资金分配与损益核算</strong>：
+    <ul>
+      <li>当日向股票 \(i\) 分配的名义头寸为 \(w_{t,i} \times \text{Book Size}\)；</li>
+      <li>若后续施加 <code class="language-plaintext highlighter-rouge">Decay</code> 与 <code class="language-plaintext highlighter-rouge">Truncation</code>，权重经线性历史平滑与单票截断并再次满足资金约束后，乘以下期标的日收益率得出组合每日 <code class="language-plaintext highlighter-rouge">PnL</code>。</li>
+    </ul>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="四评测术语与-alpha-通关提交指标体系">四、评测术语与 Alpha 通关/提交指标体系</h2>
+
+<h3 id="41-基础金融术语">4.1 基础金融术语</h3>
+
+<ul>
+  <li><strong><code class="language-plaintext highlighter-rouge">PnL</code>（Profit &amp; Loss）</strong>：每日组合盈亏 \(\text{daily PnL}_t = \sum_i \text{Position}_{t,i} \times r_{t+1,i}\)，其中单股日收益 \(r = \frac{\text{close}_t}{\text{close}_{t-1}} - 1\)。</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">Returns</code>（年化收益率）</strong>：\(\text{Returns} = \frac{\text{Annualized PnL}}{\frac{1}{2}\text{Book Size}}\)（BRAIN 以单边资金 <code class="language-plaintext highlighter-rouge">$10M</code>，即 <code class="language-plaintext highlighter-rouge">Half of Book Size</code> 为分母计算回报率）。</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">Drawdown</code>（最大回撤）</strong>：PnL 曲线从历史高点到低谷的最大回落幅度，同样以 <code class="language-plaintext highlighter-rouge">Half of Book Size</code> 归一化为百分比。</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">Margin</code>（交易边际收益，bps）</strong>：\(\text{Margin} = \frac{\text{PnL}}{\text{Total Dollars Traded}}\)，衡量每一美元换手金额创造的收益空间，直接决定策略抵御冲击成本与手续费的能力。</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">Long / Short Count</code></strong>：多头与空头持仓股票家数；与 <code class="language-plaintext highlighter-rouge">Volume</code>（成交量）、<code class="language-plaintext highlighter-rouge">Cap</code>（总市值）共同检验信号广度与容量。</li>
+</ul>
+
+<h3 id="42-核心提交指标要求与优化抓手">4.2 核心提交指标要求与优化抓手</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>评估维度 (<a href="https://platform.worldquantbrain.com/learn/documentation/interpret-results/alpha-submission">官方文档</a>)</th>
+      <th>通关 / 建议门槛</th>
+      <th>核心计算与判定逻辑</th>
+      <th>常见瓶颈与优化抓手</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Sharpe（年化夏普率）</strong></td>
+      <td><code class="language-plaintext highlighter-rouge">Delay-0</code>: <code class="language-plaintext highlighter-rouge">Sharpe &gt; 2.0</code><br /><code class="language-plaintext highlighter-rouge">Delay-1</code>: <code class="language-plaintext highlighter-rouge">Sharpe &gt; 1.58</code></td>
+      <td>\(\text{Sharpe} = \frac{\text{mean}(\text{PnL})}{\text{stdev}(\text{PnL})} \times \sqrt{252}\)</td>
+      <td>提升多空截面单调性、消除未对冲的行业/宏观风格波动</td>
+    </tr>
+    <tr>
+      <td><strong>Sub-universe Sharpe</strong></td>
+      <td><code class="language-plaintext highlighter-rouge">sub_sharpe &gt;= 0.75 * sqrt(N_sub / N_univ) * alpha_sharpe</code><br />（通常建议 <code class="language-plaintext highlighter-rouge">&gt; 0.7 * Sharpe</code>）</td>
+      <td>仅保留流动性更核心的子集股票（其余赋 <code class="language-plaintext highlighter-rouge">NaN</code>），自动加市场中性化后重测夏普</td>
+      <td>排查 Alpha 是否过度依赖小盘股/极低流动性股；避免变相写出 <code class="language-plaintext highlighter-rouge">1 - rank(cap)</code> 或 <code class="language-plaintext highlighter-rouge">rank(-assets)</code></td>
+    </tr>
+    <tr>
+      <td><strong>IS Ladder Sharpe</strong></td>
+      <td>各阶梯窗口需高于 <code class="language-plaintext highlighter-rouge">FAIL_THRESHOLD</code>；若直接超越 <code class="language-plaintext highlighter-rouge">PASS_THRESHOLD</code> 可加速通关</td>
+      <td>按近 2 年、3 年……直至 10 年逐步拉长样本内周期检验稳健性（长窗口通常自然回落）</td>
+      <td>重点控制中期大回撤（Drawdown）与特定年份失效（如风格切换期崩盘）</td>
+    </tr>
+    <tr>
+      <td><strong>Turnover（换手率）</strong></td>
+      <td>硬性区间 <code class="language-plaintext highlighter-rouge">1% &lt; Turnover &lt; 70%</code><br />实战建议 <code class="language-plaintext highlighter-rouge">&lt; 25%</code></td>
+      <td>日均双边成交金额占 <code class="language-plaintext highlighter-rouge">Book Size</code> 比例的均值</td>
+      <td>① 增加衰减 <code class="language-plaintext highlighter-rouge">Decay</code> / <code class="language-plaintext highlighter-rouge">ts_mean</code> / <code class="language-plaintext highlighter-rouge">ts_decay_linear</code>；<br />② 用 <code class="language-plaintext highlighter-rouge">trade_when</code> 设置条件触发锁仓；<br />③ 用 <code class="language-plaintext highlighter-rouge">hump</code> / <code class="language-plaintext highlighter-rouge">ts_target_tvr_delta_limit</code> 限制权重变化步长</td>
+    </tr>
+    <tr>
+      <td><strong>Fitness（综合健康度）</strong></td>
+      <td><code class="language-plaintext highlighter-rouge">Delay-0</code>: <code class="language-plaintext highlighter-rouge">Fitness &gt; 1.3</code><br /><code class="language-plaintext highlighter-rouge">Delay-1</code>: <code class="language-plaintext highlighter-rouge">Fitness &gt; 1.0</code></td>
+      <td>\(\text{Fitness} = \text{Sharpe} \times \sqrt{\frac{\lvert \text{Returns} \rvert}{\max(\text{Turnover}, 0.125)}}\)</td>
+      <td><code class="language-plaintext highlighter-rouge">0.125</code>（即 <code class="language-plaintext highlighter-rouge">12.5%</code>）为换手惩罚下限：同时提高 <code class="language-plaintext highlighter-rouge">Sharpe</code> / <code class="language-plaintext highlighter-rouge">Returns</code> 并压低换手率是提升 Fitness 的主路径</td>
+    </tr>
+    <tr>
+      <td><strong>Margin（千分之基点）</strong></td>
+      <td>常见建议 <code class="language-plaintext highlighter-rouge">&gt; 4 bps</code>：<br />USA <code class="language-plaintext highlighter-rouge">&gt;= 5</code>、EUR <code class="language-plaintext highlighter-rouge">&gt;= 10</code>、ASI <code class="language-plaintext highlighter-rouge">&gt;= 15 bps</code></td>
+      <td>\(\text{avg}\left(\frac{\text{PnL}}{\text{Total Traded Dollars}}\right)\)</td>
+      <td>在保证净收益前提下显著降低日均无效换手</td>
+    </tr>
+    <tr>
+      <td><strong>Weight Test（权重与覆盖率）</strong></td>
+      <td>单股最大权重 <code class="language-plaintext highlighter-rouge">max(weight) &lt; 10%</code>；<br />长期非零持仓股票数充足</td>
+      <td>检查组合集中度与长期有效覆盖度，防黑天鹅单票暴雷与信号断流</td>
+      <td>① <code class="language-plaintext highlighter-rouge">Truncation</code> 限制在 <code class="language-plaintext highlighter-rouge">0.05 ~ 0.1</code>；<br />② 外层包 <code class="language-plaintext highlighter-rouge">rank</code> / <code class="language-plaintext highlighter-rouge">quantile</code> 均匀化权重；<br />③ 用 <code class="language-plaintext highlighter-rouge">ts_backfill</code> 补全低频空窗，并用 <code class="language-plaintext highlighter-rouge">group_count</code> 排查当日有效覆盖率</td>
+    </tr>
+    <tr>
+      <td><strong>Self Correlation（自相关性）</strong></td>
+      <td>与已提交库内 Alpha 的 PnL 相关性 <code class="language-plaintext highlighter-rouge">&lt; 0.7</code>；或相对高相关老 Alpha 提升至 <code class="language-plaintext highlighter-rouge">&gt; 110%</code> 夏普</td>
+      <td>防止在同一逻辑/数据集上重复提交同质化因子</td>
+      <td>从数据源类别、关系键类型与中性化维度三层拉开差异化</td>
+    </tr>
+    <tr>
+      <td><strong>Out-of-Sample（OS 样本外）</strong></td>
+      <td>提交后持续接受未来真实市场检验</td>
+      <td>实时追踪样本外 PnL、回撤与相关性衰减</td>
+      <td>拒绝无经济学依据的多层嵌套参数过拟合</td>
+    </tr>
+  </tbody>
+</table>
 
         </div>
 

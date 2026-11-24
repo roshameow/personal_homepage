@@ -110,13 +110,13 @@
   
   <li>
     <a href="#2026">
-      <strong>2026</strong> <span class="taxonomy-count">41</span>
+      <strong>2026</strong> <span class="taxonomy-count">46</span>
     </a>
   </li>
   
   <li>
     <a href="#2025">
-      <strong>2025</strong> <span class="taxonomy-count">36</span>
+      <strong>2025</strong> <span class="taxonomy-count">35</span>
     </a>
   </li>
   
@@ -139,6 +139,199 @@
 <section id="2026" class="taxonomy-section">
   <h2 class="taxonomy-title">2026</h2>
   <div class="entries-list">
+    
+    
+
+
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
+        <a href="/personal_homepage/tool/quantnight-daemons/" rel="bookmark">QuantNight 守护进程与定时调度体系全景
+</a>
+      
+    </h3>
+    
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <blockquote>
+  <p><strong>写作定位</strong>：整理 QuantNight 当前实际使用的 macOS 常驻守护进程（Daemons）、<code class="language-plaintext highlighter-rouge">launchd</code> 周期/日历任务、调度并发锁机制，以及面向持久 Agent 会话的定时唤醒入口（替代早年单条 plist 示例旧笔记）。MCP 服务内部机制详见 <a href="2026-11-23-alpha30.md">《QuantNight 原生 MCP 共享底座架构》（alpha30）</a>；<code class="language-plaintext highlighter-rouge">rotatelogs</code> 轮转、<code class="language-plaintext highlighter-rouge">ingest_error_logs</code> 报错入账与 30 天日志留存清理细节统一见 <a href="2025-10-23-message.md">《服务端通知与自动化错误台账系统》（error &amp; log）</a>，本文不重复展开。</p>
+</blockquote>
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">2 min read</span>
+
+      <time class="entry-date dt-published" datetime="2026-11-23T00:00:00+00:00">November 23, 2026
+  </time>
+    </footer>
+  
+</article>
+
+    
+    
+
+
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
+        <a href="/personal_homepage/tool/mcp-dev-pitfalls/" rel="bookmark">生产级 MCP 开发演进复盘：以 QuantNight MCP 为例谈踩坑、弯路与架构取舍
+</a>
+      
+    </h3>
+    
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <blockquote>
+  <p><strong>阅读定位</strong>：本文属于 <code class="language-plaintext highlighter-rouge">agent/extension</code> 工程实践系列，讨论的是<strong>如何把一个 MCP Server 从玩具原型打磨成多 Agent 并发可用的常驻基础设施</strong>。文中的 <strong><code class="language-plaintext highlighter-rouge">quant_night_mcp</code> 仅作为这套方法论的落地示例（Case Study）</strong>——它从 2026 年 1 月 12 日首次提交起步，历经 60+ 次迭代，几乎踩遍了“工具暴露设计、传输层选型、认证与状态持久化、OS 进程身份校验、热更新不中断在途任务”这五大关。希望这份复盘能为其他 MCP/Agent 扩展开发省掉同类弯路。</p>
+</blockquote>
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">4 min read</span>
+
+      <time class="entry-date dt-published" datetime="2026-11-23T00:00:00+00:00">November 23, 2026
+  </time>
+    </footer>
+  
+</article>
+
+    
+    
+
+
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
+        <a href="/personal_homepage/tool/git-sync/" rel="bookmark">git-sync：双机多 Agent 开发的确定性同步与 Guardian 事件驱动工作流
+</a>
+      
+    </h3>
+    
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <blockquote>
+  <p><strong>写作定位</strong>：本文属于 <code class="language-plaintext highlighter-rouge">agent/extension</code> 工程实践系列，结合 <strong>Mac mini 开发主会话（<code class="language-plaintext highlighter-rouge">01a0c650</code>）</strong>、<strong><code class="language-plaintext highlighter-rouge">git-sync</code> 与 <code class="language-plaintext highlighter-rouge">pi-git-sync-bridge</code> 源码</strong>，以及 <strong>Guardian 持久会话 <code class="language-plaintext highlighter-rouge">01a0e057</code> 跨越两个月（2026-09-27 ~ 2026-11-23）的真实线上运行日志</strong>，完整梳理这套双机 + 上游 Git 协同工作流的设计收敛、底层架构与实战经验。</p>
+</blockquote>
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">5 min read</span>
+
+      <time class="entry-date dt-published" datetime="2026-11-23T00:00:00+00:00">November 23, 2026
+  </time>
+    </footer>
+  
+</article>
+
+    
+    
+
+
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
+        <a href="/personal_homepage/tool/alpha30/" rel="bookmark">QuantNight 原生 MCP 共享底座架构：单守护进程、事件通知、跨重启续跑与双端职责边界
+</a>
+      
+    </h3>
+    
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <blockquote>
+  <p>本文是 QuantNight 工程架构系列的 MCP 专题篇（与 GUI/CLI 控制面专题 <a href="2026-10-31-alpha20.md">《任务控制生命周期》（alpha20）</a> 及 <a href="2026-11-19-alpha27.md">《6 态极简控制面与数据面板统一》（alpha27）</a> 共同构成系统全貌）。<br />
+<code class="language-plaintext highlighter-rouge">task-core</code> 统一了桌面 GUI 与 <code class="language-plaintext highlighter-rouge">taskctl</code> CLI 的本地批处理控制面和只读数据面板，而 <strong><code class="language-plaintext highlighter-rouge">quant_night_mcp</code> 承担的则是平台在线交互网关 + Python 向量/AST 语义层 + Agent 事件驱动异步执行底座</strong>。本文记录其定型后的整体架构、通知握手、跨重启无缝续跑机制，以及与 <code class="language-plaintext highlighter-rouge">task-core</code> 的职责分界。</p>
+</blockquote>
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">5 min read</span>
+
+      <time class="entry-date dt-published" datetime="2026-11-23T00:00:00+00:00">November 23, 2026
+  </time>
+    </footer>
+  
+</article>
+
+    
+    
+
+
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
+        <a href="/personal_homepage/finance/operators/" rel="bookmark">WorldQuant FASTEXPR 核心算子解析、分布整形与线性回归推导
+</a>
+      
+    </h3>
+    
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <blockquote>
+  <p>本文由原 BRAIN 仿真总览笔记（<a href="2025-01-07-alphas.md">2025-01-07-alphas.md</a>）中的“常用算子与回归推导”模块独立拆分整理而成，与跨数据集关系总纲 <a href="2025-02-26-alpha5.md">alpha5</a> 互为补充。表达式遵循 <a href="https://platform.worldquantbrain.com/learn/documentation/discover-brain/introduction-brain-expression-language">WorldQuant Expression Language</a> 规范：仅可使用平台原生算子与数据字段，多行赋值时每条语句以分号 <code class="language-plaintext highlighter-rouge">;</code> 结尾。</p>
+
+  <p>本文的“项目复现备注”仅取自 QuantNight <code class="language-plaintext highlighter-rouge">expression/operator_docs/</code> 的历史平台实证与校准记录：FASTEXPR 是唯一真值，本地 Python 复现只是近似；文中凡标为“未定案”的口径不能当作已值级确认。</p>
+</blockquote>
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">4 min read</span>
+
+      <time class="entry-date dt-published" datetime="2026-11-21T00:00:00+00:00">November 21, 2026
+  </time>
+    </footer>
+  
+</article>
+
     
     
 
@@ -357,7 +550,7 @@
     <footer class="entry-meta">
       
 
-<span class="read-time">3 min read</span>
+<span class="read-time">4 min read</span>
 
       <time class="entry-date dt-published" datetime="2026-11-10T00:00:00+00:00">November 10, 2026
   </time>
@@ -1235,7 +1428,7 @@
   
     <div class="entry-excerpt p-summary">
       
-        <p>梳理一下主流 LLM 接口的请求/响应结构、调用模式，以及各协议的差异，方便选型和对接时快速对照。</p>
+        <p>梳理主流 LLM HTTP/SSE 线上接口（Wire Protocol）的请求/响应结构、调用模式，以及各厂商与自托管引擎的协议差异，方便选型和自研 Harness 对接时快速对照。（关于工具执行层与 Harness / Function Calling / MCP / CLI / Skills 的分层协作，见同专题 <a href="2025-04-04-agent-tools.md">Agent 工具体系与接入规范</a>。）</p>
 
       
     </div>
@@ -1244,7 +1437,7 @@
     <footer class="entry-meta">
       
 
-<span class="read-time">2 min read</span>
+<span class="read-time">3 min read</span>
 
       <time class="entry-date dt-published" datetime="2026-05-16T00:00:00+00:00">May 16, 2026
   </time>
@@ -2284,42 +2477,6 @@
   <header class="entry-header">
     <h3 class="entry-title p-name">
       
-        <a href="/personal_homepage/tool/auto-code/" rel="bookmark">设置开机自启动自运行程序
-</a>
-      
-    </h3>
-    
-    
-  </header>
-  
-    <div class="entry-excerpt p-summary">
-      
-        <h2 id="macos">macos</h2>
-
-      
-    </div>
-  
-  
-    <footer class="entry-meta">
-      
-
-<span class="read-time">~1 min read</span>
-
-      <time class="entry-date dt-published" datetime="2025-04-30T00:00:00+00:00">April 30, 2025
-  </time>
-    </footer>
-  
-</article>
-
-    
-    
-
-
-
-<article class="entry h-entry">
-  <header class="entry-header">
-    <h3 class="entry-title p-name">
-      
         <a href="/personal_homepage/tool/alpha6/" rel="bookmark">worldquant BRAIN 股票因子 (六 ) – 代码优化
 </a>
       
@@ -2356,7 +2513,7 @@
   <header class="entry-header">
     <h3 class="entry-title p-name">
       
-        <a href="/personal_homepage/tool/MCP/" rel="bookmark">MCP协议理解
+        <a href="/personal_homepage/tool/agent-tools/" rel="bookmark">Agent 工具体系与接入规范
 </a>
       
     </h3>
@@ -2366,7 +2523,7 @@
   
     <div class="entry-excerpt p-summary">
       
-        <p>MCP(Model Context Protocol)</p>
+        <h1 id="一agent-工具体系核心概念对比">一、Agent 工具体系核心概念对比</h1>
 
       
     </div>
@@ -2375,7 +2532,7 @@
     <footer class="entry-meta">
       
 
-<span class="read-time">~1 min read</span>
+<span class="read-time">2 min read</span>
 
       <time class="entry-date dt-published" datetime="2025-04-04T00:00:00+00:00">April 4, 2025
   </time>
@@ -2575,7 +2732,7 @@
   <header class="entry-header">
     <h3 class="entry-title p-name">
       
-        <a href="/personal_homepage/finance/alpha5/" rel="bookmark">worldquant BRAIN 股票因子 (五 ) – 数据集理解
+        <a href="/personal_homepage/data/alpha5/" rel="bookmark">跨数据集信号范式、五大关系算子族与多维协同谱系
 </a>
       
     </h3>
@@ -2585,67 +2742,9 @@
   
     <div class="entry-excerpt p-summary">
       
-        <table>
-  <thead>
-    <tr>
-      <th>数据集</th>
-      <th>特点</th>
-      <th>信号</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>模型数据集(model)</td>
-      <td>大多是分数形式</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>基本面数据</td>
-      <td> </td>
-      <td>1. <code class="language-plaintext highlighter-rouge">PE(市盈率) = eps/close</code><br />2. <code class="language-plaintext highlighter-rouge">PS(市销率) = close*sharesout/revenue</code><br />3. cashflow/price<br />4. cashflow/sales<br />5. margin, pretax margin, operating margin <br />6. enterprise value<br />7. long term debt/operating income</td>
-    </tr>
-    <tr>
-      <td>风险数据</td>
-      <td> </td>
-      <td>1. 用risk factor做neutralize<br />2. 用risk-return 代替returns<br />3.</td>
-    </tr>
-    <tr>
-      <td>量价数据</td>
-      <td>完整, 所有市场都有</td>
-      <td>1. 交易量激增(volume spike) <br />2. -returns</td>
-    </tr>
-    <tr>
-      <td>社交媒体数据</td>
-      <td>更新频率高<br />有时效性: 尽量不要超过1季度</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>期权数据集(Options)</td>
-      <td> </td>
-      <td>1. IV_call, IV_put配对</td>
-    </tr>
-    <tr>
-      <td>分析师数据<br /></td>
-      <td>很多是vector数据<br />更新频率低<br />有很多异常值</td>
-      <td>1. 预测和当前值的差异<br />2. 预测值随时间变化<br />3. 分析师修订模型数据</td>
-    </tr>
-    <tr>
-      <td>宏观数据(Macro)</td>
-      <td> </td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>other数据</td>
-      <td> </td>
-      <td>1. group分类数据<br />2. 用matrix 特征数据自己制作group</td>
-    </tr>
-    <tr>
-      <td>期权数据</td>
-      <td> </td>
-      <td>1. O/S volume ratio=期权未平仓量/volume</td>
-    </tr>
-  </tbody>
-</table>
+        <blockquote>
+  <p>本文为量化特征工程的“<strong>数据关系与跨维度配对总纲</strong>”：各单一领域的深度谱系见前序专题（日频量价 <a href="2025-09-19-alpha11.md">alpha11</a>、日内微结构 <a href="2026-11-20-alpha28.md">alpha28</a>、基本面 <a href="2025-01-15-alphas2.md">alphas2</a>、分析师预期 <a href="2025-01-22-alphas4.md">alphas4</a>、新闻与社媒 <a href="2026-11-20-alpha29.md">alpha29</a>）；本文专门系统回答三个核心问题——<strong>拿到一类数据集往哪里切入（类型路由）、两列数据之间如何建立可解释的数学关系（五大关系键）、以及如何避免多算子组合退化</strong>。所有表达式均对齐 WorldQuant FASTEXPR 规范。</p>
+</blockquote>
 
       
     </div>
@@ -2654,7 +2753,7 @@
     <footer class="entry-meta">
       
 
-<span class="read-time">1 min read</span>
+<span class="read-time">3 min read</span>
 
       <time class="entry-date dt-published" datetime="2025-02-26T00:00:00+00:00">February 26, 2025
   </time>
@@ -2964,7 +3063,7 @@
   <header class="entry-header">
     <h3 class="entry-title p-name">
       
-        <a href="/personal_homepage/finance/alphas/" rel="bookmark">worldquant BRAIN 股票因子 (一) – 仿真测试
+        <a href="/personal_homepage/finance/alphas/" rel="bookmark">WorldQuant BRAIN 股票因子总览：仿真机制、评测指标与全系列索引
 </a>
       
     </h3>
@@ -2974,7 +3073,9 @@
   
     <div class="entry-excerpt p-summary">
       
-        <p>选择在模拟盘中表现好的因子投资</p>
+        <blockquote>
+  <p>本文为 WorldQuant BRAIN 量化研究体系的<strong>系列总览与仿真基座篇</strong>（原笔记中的算子数学原理与表达细节已独立拆分至 <a href="2026-11-21-operators.md">《WorldQuant FASTEXPR 核心算子解析与线性回归推导》（operators）</a>）。目标是在统一的无前视偏差、资金中性回测框架下，筛选在样本内外稳定表现的 Alpha 因子。</p>
+</blockquote>
 
       
     </div>
@@ -3742,7 +3843,7 @@
   <header class="entry-header">
     <h3 class="entry-title p-name">
       
-        <a href="/personal_homepage/bond/" rel="bookmark">金融衍生品
+        <a href="/personal_homepage/data/bond/" rel="bookmark">债券、信用利差与期权衍生品：定价理论、希腊字母与量化因子体系
 </a>
       
     </h3>
@@ -3752,7 +3853,9 @@
   
     <div class="entry-excerpt p-summary">
       
-        <h2 id="债券">债券</h2>
+        <blockquote>
+  <p>本文由原金融衍生品笔记重构升级，打通<strong>固收/信用债基础、期权定价与希腊字母（Greeks）、以及 WorldQuant FASTEXPR 三阶衍生因子体系</strong>（系列专题见日频 PV <a href="2025-09-19-alpha11.md">alpha11</a>、基本面 <a href="2025-01-15-alphas2.md">alphas2</a>、分析师 <a href="2025-01-22-alphas4.md">alphas4</a> 与跨数据关系总纲 <a href="2025-02-26-alpha5.md">alpha5</a>）。全篇只使用通用金融与衍生品字段概念，脱离具体数据库编码即可自解释。</p>
+</blockquote>
 
       
     </div>
@@ -3761,7 +3864,7 @@
     <footer class="entry-meta">
       
 
-<span class="read-time">~1 min read</span>
+<span class="read-time">4 min read</span>
 
       <time class="entry-date dt-published" datetime="2024-10-01T00:00:00+00:00">October 1, 2024
   </time>

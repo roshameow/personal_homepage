@@ -16,23 +16,23 @@
   
   
   <!-- Begin Jekyll SEO tag v2.9.1 -->
-<title>worldquant BRAIN 股票因子 (五 ) – 数据集理解 | Liu, Wen’s Home Page</title>
+<title>Agent 工具体系与接入规范 | Liu, Wen’s Home Page</title>
 <meta name="generator" content="Jekyll v4.4.1" />
-<meta property="og:title" content="worldquant BRAIN 股票因子 (五 ) – 数据集理解" />
+<meta property="og:title" content="Agent 工具体系与接入规范" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="数据集 特点 信号 模型数据集(model) 大多是分数形式   基本面数据   1. PE(市盈率) = eps/close2. PS(市销率) = close*sharesout/revenue3. cashflow/price4. cashflow/sales5. margin, pretax margin, operating margin 6. enterprise value7. long term debt/operating income 风险数据   1. 用risk factor做neutralize2. 用risk-return 代替returns3. 量价数据 完整, 所有市场都有 1. 交易量激增(volume spike) 2. -returns 社交媒体数据 更新频率高有时效性: 尽量不要超过1季度   期权数据集(Options)   1. IV_call, IV_put配对 分析师数据 很多是vector数据更新频率低有很多异常值 1. 预测和当前值的差异2. 预测值随时间变化3. 分析师修订模型数据 宏观数据(Macro)     other数据   1. group分类数据2. 用matrix 特征数据自己制作group 期权数据   1. O/S volume ratio=期权未平仓量/volume" />
-<meta name="twitter:description" property="og:description" content="数据集 特点 信号 模型数据集(model) 大多是分数形式   基本面数据   1. PE(市盈率) = eps/close2. PS(市销率) = close*sharesout/revenue3. cashflow/price4. cashflow/sales5. margin, pretax margin, operating margin 6. enterprise value7. long term debt/operating income 风险数据   1. 用risk factor做neutralize2. 用risk-return 代替returns3. 量价数据 完整, 所有市场都有 1. 交易量激增(volume spike) 2. -returns 社交媒体数据 更新频率高有时效性: 尽量不要超过1季度   期权数据集(Options)   1. IV_call, IV_put配对 分析师数据 很多是vector数据更新频率低有很多异常值 1. 预测和当前值的差异2. 预测值随时间变化3. 分析师修订模型数据 宏观数据(Macro)     other数据   1. group分类数据2. 用matrix 特征数据自己制作group 期权数据   1. O/S volume ratio=期权未平仓量/volume" />
-<link rel="canonical" href="https://roshameow.github.io//personal_homepage/finance/alpha5/" />
-<meta property="og:url" content="https://roshameow.github.io//personal_homepage/finance/alpha5/" />
+<meta name="description" content="一、Agent 工具体系核心概念对比" />
+<meta name="twitter:description" property="og:description" content="一、Agent 工具体系核心概念对比" />
+<link rel="canonical" href="https://roshameow.github.io//personal_homepage/tool/agent-tools/" />
+<meta property="og:url" content="https://roshameow.github.io//personal_homepage/tool/agent-tools/" />
 <meta property="og:site_name" content="Liu, Wen’s Home Page" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2025-02-26T00:00:00+00:00" />
-<meta property="article:modified_time" content="2026-11-05T06:59:00+00:00" />
+<meta property="article:published_time" content="2025-04-04T00:00:00+00:00" />
+<meta property="article:modified_time" content="2026-11-23T12:03:00+00:00" />
 <meta name="twitter:card" content="summary" />
-<meta name="twitter:title" content="worldquant BRAIN 股票因子 (五 ) – 数据集理解" />
+<meta name="twitter:title" content="Agent 工具体系与接入规范" />
 <meta name="twitter:site" content="@" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2026-11-05T06:59:00+00:00","datePublished":"2025-02-26T00:00:00+00:00","description":"数据集 特点 信号 模型数据集(model) 大多是分数形式   基本面数据   1. PE(市盈率) = eps/close2. PS(市销率) = close*sharesout/revenue3. cashflow/price4. cashflow/sales5. margin, pretax margin, operating margin 6. enterprise value7. long term debt/operating income 风险数据   1. 用risk factor做neutralize2. 用risk-return 代替returns3. 量价数据 完整, 所有市场都有 1. 交易量激增(volume spike) 2. -returns 社交媒体数据 更新频率高有时效性: 尽量不要超过1季度   期权数据集(Options)   1. IV_call, IV_put配对 分析师数据 很多是vector数据更新频率低有很多异常值 1. 预测和当前值的差异2. 预测值随时间变化3. 分析师修订模型数据 宏观数据(Macro)     other数据   1. group分类数据2. 用matrix 特征数据自己制作group 期权数据   1. O/S volume ratio=期权未平仓量/volume","headline":"worldquant BRAIN 股票因子 (五 ) – 数据集理解","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/finance/alpha5/"},"url":"https://roshameow.github.io//personal_homepage/finance/alpha5/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2026-11-23T12:03:00+00:00","datePublished":"2025-04-04T00:00:00+00:00","description":"一、Agent 工具体系核心概念对比","headline":"Agent 工具体系与接入规范","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/tool/agent-tools/"},"url":"https://roshameow.github.io//personal_homepage/tool/agent-tools/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -59,7 +59,7 @@
 
 </head>
 
-  <body class="layout--post  worldquant-brain-股票因子-五-数据集理解">
+  <body class="layout--post  agent-工具体系与接入规范">
     <nav class="skip-links">
   <h2 class="screen-reader-text">Skip links</h2>
   <ul>
@@ -100,7 +100,7 @@
       <header class="page-header">
         
         
-        <h1 id="page-title" class="page-title p-name">worldquant BRAIN 股票因子 (五 ) – 数据集理解
+        <h1 id="page-title" class="page-title p-name">Agent 工具体系与接入规范
 </h1>
         
       </header>
@@ -108,9 +108,9 @@
       <div class="page-sidebar">
         <div class="page-author h-card p-author"><img src="/personal_homepage/docs/images/logo.svg" class="author-avatar u-photo" alt=""><div class="author-info">
 
-<span class="read-time">1 min read</span>
+<span class="read-time">2 min read</span>
 
-    <time class="page-date dt-published" datetime="2025-02-26T00:00:00+00:00"><a class="u-url" href="">February 26, 2025</a>
+    <time class="page-date dt-published" datetime="2025-04-04T00:00:00+00:00"><a class="u-url" href="">April 4, 2025</a>
 </time>
 
   </div>
@@ -119,14 +119,14 @@
         
   <h3 class="page-taxonomies-title">Categories</h3>
   
-  <ul class="page-taxonomies"><li class="page-taxonomy"><a class="p-category" href="/personal_homepage/categories/#finance" title="Pages filed under finance">finance</a></li>
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a class="p-category" href="/personal_homepage/categories/#tool" title="Pages filed under tool">tool</a></li>
   </ul>
 
 
         
   <h3 class="page-taxonomies-title">Tags</h3>
   
-  <ul class="page-taxonomies"><li class="page-taxonomy"><a href="/personal_homepage/tags/#content" title="Pages tagged content" rel="tag">content</a></li>
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a href="/personal_homepage/tags/#agent" title="Pages tagged agent" rel="tag">agent</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#cli" title="Pages tagged cli" rel="tag">cli</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#content" title="Pages tagged content" rel="tag">content</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#mcp" title="Pages tagged mcp" rel="tag">mcp</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#skills" title="Pages tagged skills" rel="tag">skills</a></li>
   </ul>
 
 
@@ -140,7 +140,7 @@
     </h2>
   </summary>
   <div class="toc-content">
-    
+    <ul class="inline_toc" id="my_toc"><li><a href="#1-架构定位与协作关系">1. 架构定位与协作关系</a><ul><li><a href="#各组件定位选型边界与设计原则总表">各组件定位、选型边界与设计原则总表</a></li></ul></li></ul>
   </div>
 </details>
 
@@ -157,15 +157,15 @@
   <div class="toc-content">
     <ul>
       
-      <li><a href="/personal_homepage/data/alpha29/">News & Social Media 新闻流、社交媒体情绪与文本事件数据体系</a></li>
+      <li><a href="/personal_homepage/tool/quantnight-daemons/">QuantNight 守护进程与定时调度体系全景</a></li>
       
-      <li><a href="/personal_homepage/data/alpha28/">日内 PV 统计量与市场微结构衍生指标体系</a></li>
+      <li><a href="/personal_homepage/tool/mcp-dev-pitfalls/">生产级 MCP 开发演进复盘：以 QuantNight MCP 为例谈踩坑、弯路与架构取舍</a></li>
       
-      <li><a href="/personal_homepage/tool/alpha27/">从过度防御的歪路纠偏：GUI/CLI 6 态极简控制面、数据面板统一与工程收口</a></li>
+      <li><a href="/personal_homepage/tool/git-sync/">git-sync：双机多 Agent 开发的确定性同步与 Guardian 事件驱动工作流</a></li>
       
-      <li><a href="/personal_homepage/thought/agent-infrastructure-pitfalls-2/">用 AI 维护复杂控制面基础设施：为什么越修越死？从补丁膨胀到 6 态收敛的六大工程陷阱</a></li>
+      <li><a href="/personal_homepage/tool/alpha30/">QuantNight 原生 MCP 共享底座架构：单守护进程、事件通知、跨重启续跑与双端职责边界</a></li>
       
-      <li><a href="/personal_homepage/tool/pi-subagent-durable/">pi-subagent-durable：后台子代理的持久化、生命周期与故障自愈</a></li>
+      <li><a href="/personal_homepage/finance/operators/">WorldQuant FASTEXPR 核心算子解析、分布整形与线性回归推导</a></li>
       
     </ul>
   </div>
@@ -177,204 +177,180 @@
 
       <div class="page-content">
         <div class="e-content">
-          <table>
-  <thead>
-    <tr>
-      <th>数据集</th>
-      <th>特点</th>
-      <th>信号</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>模型数据集(model)</td>
-      <td>大多是分数形式</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>基本面数据</td>
-      <td> </td>
-      <td>1. <code class="language-plaintext highlighter-rouge">PE(市盈率) = eps/close</code><br />2. <code class="language-plaintext highlighter-rouge">PS(市销率) = close*sharesout/revenue</code><br />3. cashflow/price<br />4. cashflow/sales<br />5. margin, pretax margin, operating margin <br />6. enterprise value<br />7. long term debt/operating income</td>
-    </tr>
-    <tr>
-      <td>风险数据</td>
-      <td> </td>
-      <td>1. 用risk factor做neutralize<br />2. 用risk-return 代替returns<br />3.</td>
-    </tr>
-    <tr>
-      <td>量价数据</td>
-      <td>完整, 所有市场都有</td>
-      <td>1. 交易量激增(volume spike) <br />2. -returns</td>
-    </tr>
-    <tr>
-      <td>社交媒体数据</td>
-      <td>更新频率高<br />有时效性: 尽量不要超过1季度</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>期权数据集(Options)</td>
-      <td> </td>
-      <td>1. IV_call, IV_put配对</td>
-    </tr>
-    <tr>
-      <td>分析师数据<br /></td>
-      <td>很多是vector数据<br />更新频率低<br />有很多异常值</td>
-      <td>1. 预测和当前值的差异<br />2. 预测值随时间变化<br />3. 分析师修订模型数据</td>
-    </tr>
-    <tr>
-      <td>宏观数据(Macro)</td>
-      <td> </td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>other数据</td>
-      <td> </td>
-      <td>1. group分类数据<br />2. 用matrix 特征数据自己制作group</td>
-    </tr>
-    <tr>
-      <td>期权数据</td>
-      <td> </td>
-      <td>1. O/S volume ratio=期权未平仓量/volume</td>
-    </tr>
-  </tbody>
-</table>
+          <h1 id="一agent-工具体系核心概念对比">一、Agent 工具体系核心概念对比</h1>
 
-<ul>
-  <li>risk, analyst, model里和基本面, 量价类似字段可以用</li>
-</ul>
+<p>在构建能与本地环境、数据库、远端 API 强交互的 Agent 系统时，不同抽象层各司其职。以本地强交互场景为例（如读取终端历史总结常用命令并结合项目文件生成 README，或快速配置环境跑通一个开源项目），需要理清各个组件的协作边界。</p>
+
+<h2 id="1-架构定位与协作关系">1. 架构定位与协作关系</h2>
+
+<p>这八个概念并非简单的“大盒子套小盒子”或单向串联，而是分处<strong>底层接口（API/SDK）、模型能力（Function Calling）、运行时宿主（Harness）、知识引导（Skills）、运行期工具通道（CLI/MCP）与决策主体（Agent）</strong>的正交协作组件：</p>
+
+<pre><code class="language-mermaid">flowchart TB
+    Skills["经验规范：Skills&lt;br/&gt;(可选 SOP / 红线 / 工具组合指南，按需注入上下文)"]
+
+    subgraph Runtime["运行时宿主：Harness (Pi / Claude Code / Codex / Antigravity)"]
+        Agent["决策闭环：Agent Loop&lt;br/&gt;(规划 · 记忆 · 反思 · 容错)"]
+        FC["模型原语：Function Calling&lt;br/&gt;(LLM 输出结构化工具调用意图)"]
+        Exec["路由与执行器&lt;br/&gt;(权限沙箱 · Bash/Coding Mode · 异步唤醒)"]
+        Agent &lt;--&gt;|"驱动推理与多轮迭代"| FC
+        FC --&gt;|"触发调用"| Exec
+    end
+
+    SDK["代码集成封装：SDK&lt;br/&gt;(面向开发者编程调用 Client / Agent / 业务库)"]
+    LLMAPI["模型接口：LLM API&lt;br/&gt;(无状态推理与 FC 输出端点)"]
+    CLI["本地通道：CLI&lt;br/&gt;(扁平参数 · 大结果落盘 · 管道)"]
+    MCP["标准协议：MCP&lt;br/&gt;(复杂 JSON · 常驻会话/模型)"]
+    BizAPI["外部服务接口：业务 API&lt;br/&gt;(REST / GraphQL / RPC 底层能力)"]
+
+    Skills -.-&gt;|"按需加载指导决策"| Agent
+    Runtime -.-&gt;|"调用模型"| LLMAPI
+    SDK --&gt;|"代码封装调用"| LLMAPI
+    SDK --&gt;|"或嵌入控制流"| Runtime
+    Exec --&gt;|"Shell / 脚本"| CLI
+    Exec --&gt;|"JSON-RPC / HTTP"| MCP
+    CLI --&gt;|"直接请求"| BizAPI
+    MCP --&gt;|"统一鉴权/限流请求"| BizAPI
+    CLI -.-&gt;|"Coding Mode 下脚本亦可直接组合"| MCP
+</code></pre>
+
+<blockquote>
+  <p><strong>为什么不是严格包含关系？</strong></p>
+  <ul>
+    <li><strong>API 是最底层的服务边界（分 LLM API 与业务 API）</strong>：无论是 Harness 调大模型，还是 CLI / MCP 调外部平台，最终都落到网络 API。</li>
+    <li><strong>SDK 面向“写代码集成”，CLI / MCP 面向“运行期 Agent 调用”</strong>：开发者用 SDK 把 LLM API 或 Harness 嵌入自己的服务端程序；而运行起来的 Agent 则是通过 CLI 或 MCP 去消费能力。</li>
+    <li><strong>Skills 不是 Harness 的下级</strong>：它是按需读取的规范文档，没有 Skill，Agent 也能工作；有了 Skill，Agent 才知道在具体业务里该怎么选 CLI 还是 MCP。</li>
+    <li><strong>CLI / MCP 不依赖 Function Calling</strong>：它们本身是独立可运行的程序或协议服务（人类和普通脚本也能直接调）；只是当 LLM 参与决策时，需要通过 Function Calling（或 Harness 的 Bash/Coding Mode 执行器）去触发它们。</li>
+  </ul>
+</blockquote>
+
+<h3 id="各组件定位选型边界与设计原则总表">各组件定位、选型边界与设计原则总表</h3>
 
 <table>
   <thead>
     <tr>
-      <th>exceed pair</th>
-      <th> </th>
-      <th> </th>
-      <th>operator</th>
+      <th>维度 / 概念</th>
+      <th>角色定位</th>
+      <th>LLM 调用方式与上下文加载</th>
+      <th>什么时候用（适用场合与选型边界）</th>
+      <th>核心设计原则与规范</th>
+      <th>真实选型越级 / 用错层反例</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>突变的部分</td>
-      <td>data</td>
-      <td>mean_data<br /><code class="language-plaintext highlighter-rouge">group_mean(.,ts_mean(cap,21))</code></td>
-      <td>ts_regression(rettype=0)<br />ts_regression(rettype=2)</td>
+      <td><strong>决策闭环</strong><br /><strong>Agent</strong></td>
+      <td>自主干活的<strong>“员工”</strong></td>
+      <td>由 Harness 持续维护多轮 <code class="language-plaintext highlighter-rouge">messages</code> 循环（含 Compaction 压缩与事件唤醒注入）；LLM 每轮自主决定继续调工具或收尾回复。</td>
+      <td><strong>步骤无法预先写死、依赖中间反馈动态决策的长周期任务</strong>。</td>
+      <td>拆分职责边界、借助 Harness 异步事件驱动推进闭环。</td>
+      <td>把定时数据采集、日志脱敏入库、固定规则的门禁扫描交给多轮自主 Agent 调度，而不是用确定性的 <code class="language-plaintext highlighter-rouge">launchd</code>/Python 脚本直接跑完。</td>
     </tr>
     <tr>
-      <td>ir</td>
-      <td>mean</td>
-      <td>stddev</td>
-      <td> </td>
+      <td><strong>经验规范</strong><br /><strong>Skills</strong></td>
+      <td>按需加载的<strong>“作业指导书 / SOP”</strong></td>
+      <td>平时仅在系统提示词里占极短的“名称 + 触发描述”索引；命中场景后 LLM 用 <code class="language-plaintext highlighter-rouge">read_file</code> <strong>按需加载</strong> <code class="language-plaintext highlighter-rouge">SKILL.md</code> 及 <code class="language-plaintext highlighter-rouge">references/</code> 进入上下文。</td>
+      <td><strong>跨会话复用的领域工作流、判断标准、红线与多工具组合顺序</strong>。</td>
+      <td><strong>入口精简、细节外置</strong>：主 <code class="language-plaintext highlighter-rouge">SKILL.md</code> 只保留核心流程、红线与路由，大段字典与参考样例拆入 <code class="language-plaintext highlighter-rouge">references/</code> 按需读取。</td>
+      <td>试图在 <code class="language-plaintext highlighter-rouge">SKILL.md</code> 里堆砌几百行防御性八股文（如要求“绝不并发写”“必须检查锁”）去堵控制面漏洞，而不是在 <strong>CLI/MCP/Harness</strong> 里用代码锁和 Schema 直接拦截。</td>
     </tr>
     <tr>
-      <td>数据去风险相关/<br />实际数据和市场认知偏离</td>
-      <td>data</td>
-      <td>risk</td>
+      <td><strong>运行时宿主</strong><br /><strong>Harness</strong></td>
+      <td>Agent 的<strong>“操作系统 / 底盘”</strong></td>
       <td> </td>
+      <td><strong>需要跑多轮长任务、防上下文爆炸、派发 Subagent 与控制权限沙箱的运行时环境</strong>。</td>
+      <td>1. <strong>严禁前台阻塞死等</strong>：长耗时任务靠外部有界观察器 + 异步事件唤醒（Reactive Wakeup）解耦；<br />2. <strong>可控上下文</strong>：支持 <code class="language-plaintext highlighter-rouge">hidden</code>/<code class="language-plaintext highlighter-rouge">codemode</code> 按需暴露低频工具，配合自动 Compaction 控制长会话窗口。</td>
+      <td>只是一次性文档摘要、批量文本打标或固定几步评测，直接脚本并发调 <strong>API/SDK</strong> 即可，硬拉起完整 <strong>Harness</strong> + Subagent 只会徒增调度和上下文维护开销。</td>
     </tr>
     <tr>
-      <td> </td>
-      <td>positive data</td>
-      <td>negative data</td>
-      <td> </td>
+      <td><strong>运行期通道</strong><br /><strong>CLI</strong></td>
+      <td>原生<strong>“命令行与数据管道”</strong></td>
+      <td><strong>0 常驻 Schema 开销</strong>；LLM 通过 Harness 的 <code class="language-plaintext highlighter-rouge">bash</code>/<code class="language-plaintext highlighter-rouge">exec</code> 工具拼命令调用（未知参数现跑 <code class="language-plaintext highlighter-rouge">--help</code> 读入上下文），大结果可通过 <code class="language-plaintext highlighter-rouge">--output</code> 落盘不进上下文。</td>
+      <td><strong>参数扁平但返回结果庞大，或需要配合本地文件系统/Git/批处理流水线编排时</strong>（Coding Mode 之前即具备零 Schema 驻留与管道优势）。</td>
+      <td>1. <strong><code class="language-plaintext highlighter-rouge">stdout</code> 纯净机器 JSON</strong>（含 <code class="language-plaintext highlighter-rouge">ok</code>、<code class="language-plaintext highlighter-rouge">status</code>、<code class="language-plaintext highlighter-rouge">errorType</code>、<code class="language-plaintext highlighter-rouge">error</code>），进度日志与诊断全走 <code class="language-plaintext highlighter-rouge">stderr</code>；<br />2. <strong>支持 <code class="language-plaintext highlighter-rouge">--output &lt;path&gt;</code> 落盘与分页</strong>：大结果只回传文件路径与摘要（<code class="language-plaintext highlighter-rouge">count</code>/<code class="language-plaintext highlighter-rouge">total</code>/<code class="language-plaintext highlighter-rouge">page</code>）；<br />3. <strong>参数扁平自解释 + 高质量 <code class="language-plaintext highlighter-rouge">--help</code></strong>（复杂嵌套走 <code class="language-plaintext highlighter-rouge">--config &lt;file&gt;</code>）；<br />4. <strong>确定性非 0 退出码 + <code class="language-plaintext highlighter-rouge">--dry-run</code> / <code class="language-plaintext highlighter-rouge">--confirm &lt;name&gt;</code></strong> 门禁；<br />5. 高频并发写用极薄客户端 + 本地 <code class="language-plaintext highlighter-rouge">flock</code>（+ 最小字段 CAS）或常驻 <code class="language-plaintext highlighter-rouge">headless host</code> 复用连接池。</td>
+      <td>用 Bash 命令行直接拼接几十行带单双引号、换行的策略代码或深层配置 JSON（极易因 Shell 转义翻车，该走 <strong>MCP</strong>）；或在 <code class="language-plaintext highlighter-rouge">stdout</code> 打人类彩色表格破坏管道解析。</td>
     </tr>
     <tr>
-      <td>时间</td>
-      <td>long-term data</td>
-      <td>short-term data</td>
-      <td> </td>
+      <td><strong>运行期协议</strong><br /><strong>MCP</strong></td>
+      <td>标准化的<strong>“常驻服务接口”</strong></td>
+      <td>连接时通过 <code class="language-plaintext highlighter-rouge">tools/list</code> 把完整 JSON Schema <strong>常驻注入系统提示词</strong>（设为 <code class="language-plaintext highlighter-rouge">hidden</code>/<code class="language-plaintext highlighter-rouge">codemode</code> 时则隐藏 Schema，仅按需在代码中调用）；返回值直接写回对话上下文。</td>
+      <td>1. <strong>输入参数复杂</strong>：传多行代码、嵌套数组/配置对象，需要 JSON Schema 严格校验；<br />2. <strong>依赖常驻在线状态</strong>：共享单账号登录锁、限流退避窗口、常驻内存的向量索引/模型；<br />3. <strong>跨多个 Harness 客户端复用</strong>且需细粒度权限隔离（Coding Mode 下可用 <code class="language-plaintext highlighter-rouge">codemode</code> 简化调用并消除全量 Schema 负担）。</td>
+      <td>1. <strong>按工作流内聚而非“调用频率”或 1:1 透传 API</strong>：即使低频但涉凭证隔离/不可逆副作用也绝不让 Agent 现场读源码拼脚本；反之高频大列表查询适合 CLI；控制暴露数量并配合 <code class="language-plaintext highlighter-rouge">hidden</code>/<code class="language-plaintext highlighter-rouge">codemode</code>；<br />2. <strong>Schema 强约束与 <code class="language-plaintext highlighter-rouge">default</code> 二分</strong>：无风险便利参数（<code class="language-plaintext highlighter-rouge">limit=10</code>/<code class="language-plaintext highlighter-rouge">offset=0</code>）可留默认，<strong>危险语义/风控/路由参数全删默认并设必填</strong>，配合 <code class="language-plaintext highlighter-rouge">enum</code>/<code class="language-plaintext highlighter-rouge">oneOf</code>/<code class="language-plaintext highlighter-rouge">additionalProperties: false</code>；<br />3. <strong>内部代码显式 <code class="language-plaintext highlighter-rouge">raise</code> 异常映射为可自愈报错（<code class="language-plaintext highlighter-rouge">isError=True</code>）</strong>：校验失败或依赖不可用时在内部代码直接 <code class="language-plaintext highlighter-rouge">raise</code> 明确异常（由外层调度器统一脱敏密钥并转为 <code class="language-plaintext highlighter-rouge">isError=True</code> + 修正提示，如 <code class="language-plaintext highlighter-rouge">METADATA_UNAVAILABLE</code>），严禁吞异常、静默降级或假通过；<br />4. <strong><code class="language-plaintext highlighter-rouge">description</code> 写明边界 + 成对发现工具</strong>：明写 <code class="language-plaintext highlighter-rouge">Do NOT guess parameters</code> 并配对只读检索工具做到“先查后用”；<br />5. <strong>Token 预算 + <code class="language-plaintext highlighter-rouge">structuredContent</code> 双通道</strong>：裁剪大字段（如 embedding），强制分页并返回 <code class="language-plaintext highlighter-rouge">total</code>/<code class="language-plaintext highlighter-rouge">has_more</code>/<code class="language-plaintext highlighter-rouge">truncated</code> 防误判不存在，同时返回强类型 JSON；<br />6. <strong>幂等护栏与 <code class="language-plaintext highlighter-rouge">ToolAnnotations</code></strong>：代码确定 ≠ 生产并发/断线可靠，写操作先落 Intent 回执；如实标注 <code class="language-plaintext highlighter-rouge">readOnlyHint</code>/<code class="language-plaintext highlighter-rouge">destructiveHint</code>/<code class="language-plaintext highlighter-rouge">idempotentHint</code>/<code class="language-plaintext highlighter-rouge">openWorldHint</code>。</td>
+      <td>1. 把本地 Git/文件读写、建索引、启停本地 shell 脚本（如 <code class="language-plaintext highlighter-rouge">scripts_tools</code> / <code class="language-plaintext highlighter-rouge">backend_tools</code>）包装成 MCP，其实原生 Bash + <strong>CLI/Skill</strong> 更直接；<br />2. 把本地库大列表查询（如 <code class="language-plaintext highlighter-rouge">find_history_alphas</code>、千行分页结果）做成 MCP，既重复建设又把大段 JSON 塞爆上下文（该走 <strong>CLI <code class="language-plaintext highlighter-rouge">--output</code></strong>）。</td>
     </tr>
     <tr>
-      <td> </td>
-      <td>current data</td>
-      <td>delay data</td>
-      <td> </td>
+      <td><strong>模型原语</strong><br /><strong>Function Calling</strong></td>
+      <td>LLM 的<strong>“手和眼”</strong></td>
+      <td>请求参数 <code class="language-plaintext highlighter-rouge">tools</code> 将工具 Schema 注入模型上下文；LLM 在输出层生成结构化 <code class="language-plaintext highlighter-rouge">tool_call</code> token，宿主执行后以 <code class="language-plaintext highlighter-rouge">tool_result</code> 消息回填上下文。</td>
+      <td><strong>单步确定性结构化输出与动作触发</strong>。</td>
+      <td>Schema 紧凑清晰、字段名与枚举无歧义。</td>
+      <td>试图靠一次 Function Calling 嵌套深层分支 DSL 代替 <strong>Harness</strong> 的多轮控制与失败重试。</td>
     </tr>
     <tr>
+      <td><strong>代码集成层</strong><br /><strong>SDK</strong></td>
+      <td>面向程序员的<strong>“编程封装库”</strong></td>
       <td> </td>
-      <td>estimate data<br />- 分析师预测<br />- 模型预测</td>
-      <td>actural data</td>
-      <td> </td>
+      <td><strong>把模型推理、Agent 循环或平台能力确定性地写进应用代码里</strong>。</td>
+      <td>统一收口<strong>单一认证锁与重试/超时策略</strong>；非幂等写操作<strong>先持久化 Intent 回执再发请求</strong>，超时未知走只读核验。</td>
+      <td>在各业务脚本里各写一套 HTTP 重试、Cookie 刷新或数据库直连，导致限流失控与并发踩踏。</td>
     </tr>
     <tr>
+      <td><strong>底层接口</strong><br /><strong>API</strong></td>
+      <td>无状态<strong>“网络能力端点”</strong></td>
       <td> </td>
-      <td>pv<br />- returns<br />- close</td>
-      <td>data</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>影响因子</td>
-      <td>data</td>
-      <td>part_data</td>
-      <td> </td>
+      <td><strong>一切远端模型推理与外部平台服务的最底层协议出口</strong>。</td>
+      <td>接口契约稳定、状态码与错误语义清晰明确。</td>
+      <td>让 Agent 自己拼 <code class="language-plaintext highlighter-rouge">curl</code> 或手写 HTTP 调带副作用的平台提交/回测接口（漏掉防重投回执与登录锁，极易重复提交）。</td>
     </tr>
   </tbody>
 </table>
+
+<hr />
+
+<h1 id="二agent-工具通用方法分类与特征矩阵">二、Agent 工具通用方法分类与特征矩阵</h1>
+
+<p>无论通过 MCP 还是 CLI 暴露能力，生产级方法都应按物理特征拆分为四类，避免全部套用同一种“同步阻塞等待”模型：</p>
 
 <table>
   <thead>
     <tr>
-      <th>correlation pair</th>
-      <th> </th>
-      <th> </th>
-      <th>operator</th>
+      <th>方法类别</th>
+      <th>典型特征</th>
+      <th>输入 / Schema 特征</th>
+      <th>执行与超时特征</th>
+      <th>返回与容错特征</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td> </td>
-      <td>pv</td>
-      <td>news</td>
-      <td> </td>
+      <td><strong>1. 轻量同步只读型</strong><br />（健康检查、本地字典/算子文档、参数枚举）</td>
+      <td>无副作用、毫秒级响应、可并发</td>
+      <td>扁平参数或明确互斥选择器（如 <code class="language-plaintext highlighter-rouge">oneOf</code> 限制只传一种查询条件），严禁隐式正则放大 DoS 风险</td>
+      <td>同步返回；绕过重型初始化锁实现极速冷路径；对 DB 查询设置明确超时上界</td>
+      <td>返回分页元数据（<code class="language-plaintext highlighter-rouge">total</code>、<code class="language-plaintext highlighter-rouge">has_more</code>、<code class="language-plaintext highlighter-rouge">truncated</code>），<strong>数据库不可用时必须明确报 <code class="language-plaintext highlighter-rouge">METADATA_UNAVAILABLE</code> 而非假通过</strong></td>
     </tr>
     <tr>
-      <td> </td>
-      <td>pv</td>
-      <td>pv</td>
-      <td> </td>
+      <td><strong>2. 常驻状态 / 模型计算型</strong><br />（向量语义检索、本地相关性评分）</td>
+      <td>依赖百兆级本地模型/索引或共享连接池</td>
+      <td>结构化过滤 <code class="language-plaintext highlighter-rouge">params</code> + 自然语言 <code class="language-plaintext highlighter-rouge">query</code>，禁止猜测枚举值</td>
+      <td>常驻守护进程内<strong>冷加载一次长期复用</strong>，耗时操作放到线程池避免阻塞异步事件循环</td>
+      <td>裁剪体积过大的内部字段（如原始 embedding 向量、<code class="language-plaintext highlighter-rouge">_id</code>），只返回得分与精简摘要</td>
+    </tr>
+    <tr>
+      <td><strong>3. 异步长任务提交与追踪型</strong><br />（远端批量计算、长时间 API 轮询）</td>
+      <td>远端耗时数分钟到数小时，必须跨断线与进程重启存活</td>
+      <td>复杂嵌套对象/数组 + 显式通知/轮询模式契约（<code class="language-plaintext highlighter-rouge">notification</code> 或 <code class="language-plaintext highlighter-rouge">{"mode":"poll"}</code>）</td>
+      <td><strong>立即返回 <code class="language-plaintext highlighter-rouge">task_id</code></strong>，严禁阻塞等待；关键回执（Intent / <code class="language-plaintext highlighter-rouge">Location</code>）同步原子落盘，定时写检查点</td>
+      <td>配套独立的只读进度查询与安全重启恢复（仅对已获可信回执做 GET-only 续查，<strong>绝不自动重发 POST</strong>）</td>
+    </tr>
+    <tr>
+      <td><strong>4. 破坏性 / 敏感写操作型</strong><br />（外部提交、远端任务取消）</td>
+      <td>不可逆或高权限影响</td>
+      <td>严格最小白名单字段（<code class="language-plaintext highlighter-rouge">additionalProperties: false</code>），禁止混用本地 ID 与远端 ID；强制客户端按角色隔离权限</td>
+      <td>前置身份/状态核验 + 单次有界执行 + 二次状态确认</td>
+      <td><strong>确认受理 ≠ 确认成功</strong>；严格区分明确拒收、确认完成与超时未知（<code class="language-plaintext highlighter-rouge">UNKNOWN</code>），绝不静默重试</td>
     </tr>
   </tbody>
 </table>
-
-<p>模型</p>
-<ul>
-  <li>资本定价模型(CAMP):
-    <ul>
-      <li>return预测</li>
-      <li>actural data: returns</li>
-      <li>mean data: group_mean(returns, ts_mean(cap, 21)</li>
-    </ul>
-  </li>
-  <li>戈登增长率(Gordon Growth Model): 假设股息以恒定增长率永久增长 -&gt; 只适用于稳定、成熟且股息增长可预测的公司
-    <ul>
-      <li>股价预测 pair(量价)</li>
-      <li>actural data: <code class="language-plaintext highlighter-rouge">ts_mean(close,21)</code></li>
-      <li>model data: \(\frac{D(预期下一年度股息)}{r(预期回报率)-g(估算的股息增长率)}\)
-        <ul>
-          <li>r : 可以由CAPM(资本定价模型) 优化
-            <ul>
-              <li>\(r=R_f + beta\cdot(R_m-R_f)\) \(R_m\) 是原始预期市场回报率 \(R_f\) 是无风险利率(可以忽略)</li>
-            </ul>
-          </li>
-          <li>g: 由 \(g=b\cdot ROE\)  留存率和股本回报率计算</li>
-          <li>D: 可以由 \(D(t=1)=D(t=0)\cdot (1+g)\) 当前股息(dividend), 和估算的股息增长率计算</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li>PEG比率: 默认增长率恒定，适用于盈利可预测的行业（如消费、科技），但对周期性行业需调整预期
-    <ul>
-      <li>actural data: \(PE(市盈率)=\frac{close}{eps(每股收益)}\)</li>
-      <li>model data: \(G=\frac{E(t=1)-E(t=0)}{E(t=0)}\)  预期盈利增长率, 预期下一年盈利对本年盈利的returns</li>
-    </ul>
-  </li>
-  <li>杜邦分析(DuPont Analysis Framework):
-    <ul>
-      <li>影响因子</li>
-      <li>actural data: ProfitMargin(利润率)= 净利润 / 销售额</li>
-      <li>model data: ROE=净利润/股东权益</li>
-    </ul>
-  </li>
-</ul>
 
         </div>
 
@@ -386,8 +362,8 @@
     <div id="disqus_thread"></div>
     <script>
       var disqus_config = function () {
-        this.page.url = 'https://roshameow.github.io//personal_homepage/finance/alpha5/';
-        this.page.identifier = 'https://roshameow.github.io//personal_homepage/finance/alpha5/';
+        this.page.url = 'https://roshameow.github.io//personal_homepage/tool/agent-tools/';
+        this.page.identifier = 'https://roshameow.github.io//personal_homepage/tool/agent-tools/';
       };
 
       (function() {
@@ -405,20 +381,20 @@
 
         <nav class="page-pagination" role="navigation">
   
-    <a class="page-previous" href="/personal_homepage/blender/blender-learning20/">
+    <a class="page-previous" href="/personal_homepage/blender/blender-learning22/">
       <h4 class="page-pagination-label">Previous</h4>
       <span class="page-pagination-title">
-        <i class="fas fa-arrow-left"></i> blender学习:  制作随音乐律动的视频
+        <i class="fas fa-arrow-left"></i> blender学习:  几何节点花瓣
 
       </span>
     </a>
   
 
   
-    <a class="page-next" href="/personal_homepage/tool/papers/">
+    <a class="page-next" href="/personal_homepage/tool/alpha6/">
       <h4 class="page-pagination-label">Next</h4>
       <span class="page-pagination-title">
-        筛选适合阅读的论文
+        worldquant BRAIN 股票因子 (六 ) – 代码优化
  <i class="fas fa-arrow-right"></i>
       </span>
     </a>

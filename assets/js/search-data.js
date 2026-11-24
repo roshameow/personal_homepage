@@ -389,10 +389,10 @@ var store = [{
         "tags": ["content","raycast"],
         "url": "https://roshameow.github.io//personal_homepage/tool/raycast-script/"
       },{
-        "title": "金融衍生品",
-        "excerpt":"债券 政府和企业发行的借款, 债券本身 = 票面价值 + 利息 + 到期时间 + 债券发行方价格 : 可能高于/低于 票面价值 分类 可转债 上市公司发行的, 可以转成股票 和股票大盘正相关 有些公司发行的有回售条款, 转股后也可以保证拿回本金(约定股价过低时回售) 纯债 利率债: 国债, 政策性金融债 和利率负相关 信用债 期权 是金融市场交易中自然产生的一种交易需求, 由期权清算公司(如美国的 OCC) 负责. 支付权利金(Premium), 可以买入或卖出很多股票, 最多只亏损权利金. 波动率高的时期, 权利金会更贵. 美式期权: 可以在到期前任何时间行权(exercise) 欧式期权: 必须到期日行权用法: 对冲风险: 买股票的同时, 买看跌期权(put) 对冲风险: 损失权利金, 保证股票亏损不会超过 put 的执行价（Strike Price） 定价模型:...","categories": [],
-        "tags": ["content"],
-        "url": "https://roshameow.github.io//personal_homepage/bond/"
+        "title": "债券、信用利差与期权衍生品：定价理论、希腊字母与量化因子体系",
+        "excerpt":"本文由原金融衍生品笔记重构升级，打通固收/信用债基础、期权定价与希腊字母（Greeks）、以及 WorldQuant FASTEXPR 三阶衍生因子体系（系列专题见日频 PV alpha11、基本面 alphas2、分析师 alphas4 与跨数据关系总纲 alpha5）。全篇只使用通用金融与衍生品字段概念，脱离具体数据库编码即可自解释。 一、债券与信用市场（Bonds, Convertibles &amp; Credit Spread） 债券本质上是政府或企业发行的标准化借据，一张债券的核心合约要素包括：票面价值（Par Value）、票面利率与利息（Coupon）、到期时间（Maturity）与发行主体（Issuer）。其二级市场交易价格随市场无风险利率与发行人信用资质实时波动，可能高于面值（溢价交易）或低于面值（折价交易）——债券价格与到期收益率（YTM）严格成反比，价格对利率变化的灵敏度由久期（Duration）和二阶曲率凸性（Convexity）刻画。 1.1 债券与信用工具核心分类 品种类别 发行主体与定价锚 核心收益与风险特性 与股票大盘的关系 利率债（Rates Bond） 国债、政策性金融债、准主权债 几乎无违约风险，价格主要由无风险基准利率与通胀预期驱动，与市场利率呈严格负相关（长久期利率债弹性更大） 危机时负相关（股债跷跷板）；经济衰退或股市恐慌期受益于避险资金涌入与降息预期，但在高通胀/紧缩周期易转为正相关（股债双杀） 信用债（Credit Bond） 各类企业/公司发行的债务工具 收益率 = 无风险利率 + 信用利差（Credit Spread / Z-Spread）；同时暴露利率风险与发行人违约/流动性风险 温和正相关（高收益债更强）；经济走弱、大盘下跌时信用利差走阔压制债价——投资级（IG）偏近利率债，高收益债（HY）与股票大盘高度同向 可转债（Convertible Bond） 上市公司发行的股债混合品种 下有债底、上有股性：正股上涨时随正股大盘正相关上行；常附带回售条款（Put Provision）在股价长期低于约定阈值时保护本金回收，也常带强赎条款促使转股 非对称强正相关；牛市/高平价区间紧跟正股与大盘上行，大盘深跌时受纯债底与回售条款托底，相关性显著钝化 信用违约互换（CDS） 机构间对单一发行人违约风险的信用衍生合约 买方定期支付 CDS...","categories": ["data"],
+        "tags": ["content","derivatives","options","bond","credit","cds","warrant","feature_engineering","quant"],
+        "url": "https://roshameow.github.io//personal_homepage/data/bond/"
       },{
         "title": "conformal geometry学习 (十 ) -- 举例: 球面上的unit tangent bundle manifold",
         "excerpt":"atlas 结构 条件 manifold \\(U_\\alpha\\) homeomorphism to \\(\\mathbb R^n\\), smooth manifold(differential manifold) transition map \\(\\phi_{\\alpha\\beta}\\in C^\\infty(\\mathbb R^n)\\) smooth Riemann surface 每片是 2-dimtransition map 是biholomorphic(conformal)atlas \\(\\lbrace(U_\\alpha,z_\\alpha)\\rbrace\\) 叫conformal structure 有T-juction的graph(比如“日” 字形的graph)是一个单纯复形, 但不是1-manifold球面上的unit tangent bundle manifold(UTM)参数化构造 球面上的unit tangent bundle \\(UTM(\\mathbb S^2)\\) 是一个3流型: 在一块上是\\(\\mathbb D^1\\times \\mathbb S^1\\) solid torus, 两块沿torus的边界粘在一起. 球面的atlas表示 球面的atlas表示: 把sphere \\(\\mathbb...","categories": ["math"],
@@ -494,9 +494,9 @@ var store = [{
         "tags": ["content","geometry_node"],
         "url": "https://roshameow.github.io//personal_homepage/blender/blender-learning18/"
       },{
-        "title": "worldquant BRAIN 股票因子 (一) -- 仿真测试",
-        "excerpt":"选择在模拟盘中表现好的因子投资 仿真 仿真参数 分为数据库选择, 和后处理两部分 Delay: 当天(在当天closed前根据当天数据交易), 或+1天(早上交易, 根据昨天的数据) Test Period: 把仿真的5年时间分出一部分作为test, PnL图上orange的部分 Universe(股票范围): Top3000指日平均 volume 最大的3000支 Decay: 自带的一个linear decay(前n天), 是在最后的normalized weight上进行decay pasteurized: ? 只考虑universe以内的alpha? Nan Handling: 操作不可控? OFF的话, 有Nan的值会被平仓(全部卖出) Unit Handling: 单位不匹配时报warning truncation: 设置maximum weight上限: 建议设置0.05~0.1 (entailing 5-10%)之间 neutralize(标准化): 让mean(alpha)=0, 时间(ts_neutralize)上做neutralize避免长期趋势. (多空中性化). 同期(group_neutralize)的做避免不同类型股票的不公平比较. 仿真交易流程 输入为 Matrix, 按照时间顺序交易 仿真交易规则: 每天用恒定的账面规模(book size)交易,...","categories": ["finance"],
-        "tags": ["content","stock","alpha","simulation"],
+        "title": "WorldQuant BRAIN 股票因子总览：仿真机制、评测指标与全系列索引",
+        "excerpt":"本文为 WorldQuant BRAIN 量化研究体系的系列总览与仿真基座篇（原笔记中的算子数学原理与表达细节已独立拆分至 《WorldQuant FASTEXPR 核心算子解析与线性回归推导》（operators））。目标是在统一的无前视偏差、资金中性回测框架下，筛选在样本内外稳定表现的 Alpha 因子。 一、WorldQuant 研究体系全系列索引（Index） 主题分组 笔记子标题 覆盖核心内容 笔记链接 算法与仿真(worldquant/algorithm) index &amp; simulation BRAIN 仿真参数、交易归一化流程、三大数据结构与提交通关指标总览 本文   ast grammar DSL 表达式与三元运算符 ? : 的 AST 与 Pratt Parser 语法解析 2025-08-10-string.md   ast generation rl 基于抽象语法树（AST）与 MDP 建模的表达式自动生成 2025-06-25-alpha10.md   搜索 / 优化 候选表达式搜索策略与多维度优化框架 2026-04-20-alpha16.md...","categories": ["finance"],
+        "tags": ["content","stock","alpha","simulation","index"],
         "url": "https://roshameow.github.io//personal_homepage/finance/alphas/"
       },{
         "title": "Fundamental 基本面衍生数据体系、PIT 时钟原理与在 analyze-dataset 中的应用",
@@ -539,10 +539,10 @@ var store = [{
         "tags": ["content","music","geometry_node","video_editor"],
         "url": "https://roshameow.github.io//personal_homepage/blender/blender-learning20/"
       },{
-        "title": "worldquant BRAIN 股票因子 (五 ) -- 数据集理解",
-        "excerpt":"数据集 特点 信号 模型数据集(model) 大多是分数形式   基本面数据   1. PE(市盈率) = eps/close2. PS(市销率) = close*sharesout/revenue3. cashflow/price4. cashflow/sales5. margin, pretax margin, operating margin 6. enterprise value7. long term debt/operating income 风险数据   1. 用risk factor做neutralize2. 用risk-return 代替returns3. 量价数据 完整, 所有市场都有 1. 交易量激增(volume spike) 2. -returns 社交媒体数据 更新频率高有时效性: 尽量不要超过1季度   期权数据集(Options)  ...","categories": ["finance"],
-        "tags": ["content"],
-        "url": "https://roshameow.github.io//personal_homepage/finance/alpha5/"
+        "title": "跨数据集信号范式、五大关系算子族与多维协同谱系",
+        "excerpt":"本文为量化特征工程的“数据关系与跨维度配对总纲”：各单一领域的深度谱系见前序专题（日频量价 alpha11、日内微结构 alpha28、基本面 alphas2、分析师预期 alphas4、新闻与社媒 alpha29）；本文专门系统回答三个核心问题——拿到一类数据集往哪里切入（类型路由）、两列数据之间如何建立可解释的数学关系（五大关系键）、以及如何避免多算子组合退化。所有表达式均对齐 WorldQuant FASTEXPR 规范。 一、十类数据集类型与优先信号路由 拿到一个陌生数据集时，先判别其数据类型与原始/合成程度，再决定是“直接找双字段关系配对”，还是“必须先构造中间比率（流÷存量、跨量纲加权、比率化）”： 数据集类型 核心数据特征 优先信号方向与 FASTEXPR 切入点 工程注意事项 量价数据 (PV) 全市场高覆盖、日频连续或日内微结构切片 • 短期反转（-returns、(high + low) / 2 - close）• 量价协同与流动性冲击（ts_corr(close, volume, 20)、abs(returns) / (close * volume)）• 非对称波动率与高阶换手能量 基础行情字段（close、cap、returns、volume）既可独立构造因子，更常作为其它内容数据集的估值/锚定参照系 基本面数据 (Fundamental) 低频季报/年报、NaN 空窗多、跨行业口径差异大 • 若只有分列科目，须先构造盈利质量/估值/杠杆中间字段（ebit / assets、eps / close、free_cashflow / enterprise_value、liabilities /...","categories": ["data"],
+        "tags": ["content","relationships","feature_engineering","analyze_dataset","quant"],
+        "url": "https://roshameow.github.io//personal_homepage/data/alpha5/"
       },{
         "title": "筛选适合阅读的论文",
         "excerpt":"搜索步骤 目的 输入-&gt;输出 一级搜索 按时间, 类别, 标题搜索文章 获取标题, 作者, 文章链接, summary 二级搜索 判断summary是否对主题有用 summary + prompt -&gt; yes/no 三级搜索 判断文章内容   一级搜索(按时间, 类别, 标题搜索文章) —&gt; 获取标题, 作者, 文章链接, summary arxiv搜索: arxiv api调用, 或者可以直接用avxiv的python包 二级搜索: 判断summary是否对主题有用 -&gt; summary + prompt Does this paper describe how to find abnormal returns in stocks?...","categories": ["tool"],
@@ -564,20 +564,15 @@ var store = [{
         "tags": ["content"],
         "url": "https://roshameow.github.io//personal_homepage/blender/blender-learning22/"
       },{
-        "title": "MCP协议理解",
-        "excerpt":"MCP(Model Context Protocol) 功能: 和本地环境有强交互需要的, 需要修改文件的 读取我电脑的terminal history, 总结常用功能, 结合项目文件, 给项目写readme 快速配置环境, 跑通一个开源项目概念对比：Function Calling vs Agent vs MCP vs Skills 1. 核心定义 Function Calling (函数调用) 定义: LLM 的一种基础能力。模型不直接执行代码，而是输出一个结构化数据（通常是 JSON），声明“我想调用这个函数，参数是这些”。宿主程序捕获这个请求，执行实际代码，并将结果传回给 LLM。 角色: LLM 的“手”和“眼”。它是实现工具使用的底层机制。 Agent (智能体) 定义: 一个拥有自主性的系统架构。它利用 LLM 进行感知、规划（Planning）、记忆（Memory），并主动使用工具（Tool Use）来完成复杂的、多步骤的目标。 角色: 独立工作的“员工”。它是上层的逻辑编排者。 Skills (技能/插件) 定义: 通常指一组特定领域能力的打包封装（在 Semantic Kernel 等框架中常见）。它将相关的 Prompts...","categories": ["tool"],
-        "tags": ["content"],
-        "url": "https://roshameow.github.io//personal_homepage/tool/MCP/"
+        "title": "Agent 工具体系与接入规范",
+        "excerpt":"一、Agent 工具体系核心概念对比 在构建能与本地环境、数据库、远端 API 强交互的 Agent 系统时，不同抽象层各司其职。以本地强交互场景为例（如读取终端历史总结常用命令并结合项目文件生成 README，或快速配置环境跑通一个开源项目），需要理清各个组件的协作边界。 1. 架构定位与协作关系 这八个概念并非简单的“大盒子套小盒子”或单向串联，而是分处底层接口（API/SDK）、模型能力（Function Calling）、运行时宿主（Harness）、知识引导（Skills）、运行期工具通道（CLI/MCP）与决策主体（Agent）的正交协作组件： flowchart TB Skills[\"经验规范：Skills&lt;br/&gt;(可选 SOP / 红线 / 工具组合指南，按需注入上下文)\"] subgraph Runtime[\"运行时宿主：Harness (Pi / Claude Code / Codex / Antigravity)\"] Agent[\"决策闭环：Agent Loop&lt;br/&gt;(规划 · 记忆 · 反思 · 容错)\"] FC[\"模型原语：Function Calling&lt;br/&gt;(LLM 输出结构化工具调用意图)\"] Exec[\"路由与执行器&lt;br/&gt;(权限沙箱 · Bash/Coding Mode · 异步唤醒)\"] Agent &lt;--&gt;|\"驱动推理与多轮迭代\"| FC...","categories": ["tool"],
+        "tags": ["content","mcp","agent","skills","cli"],
+        "url": "https://roshameow.github.io//personal_homepage/tool/agent-tools/"
       },{
         "title": "worldquant BRAIN 股票因子 (六 ) -- 代码优化",
         "excerpt":"我最终选择了使用 Tauri 来构建我的桌面回测应用。本文记录了开发过程中需求梳理、初始化步骤、遇到的坑以及一些性能优化技巧。 需求梳理 核心功能 跨平台运行 触发 Python 脚本执行 与 MongoDB 后端数据库交互 前端展示任务管理卡片（Card）、结果表格（Table）、收益图表（Chart）任务流程设计 在本地生成待回测任务列表 将任务列表推送到远程 远程启动任务 支持中途暂停任务执行 任务的执行要求是：异步限流 + 分组并发 这类任务需要数据库分页管理，适合使用“生产者-消费者”模型来处理。 在代码中循环(或监听)数据库的更新, 适应随时插入priority任务. 初始化与开发环境搭建 工具/依赖 说明 node.js + npm包管理 https://nodejs.org/ 下载与安装 Rust工具链 安装命令: curl https://sh.rustup.rs -sSf | sh Rust 依赖（macOS） 安装命令: xcode-select –install Tauri CLI 命令：npm create tauri-app，可自动创建 Tauri 2...","categories": ["tool"],
         "tags": ["content","Mongodb","tauri","vue","worldquant"],
         "url": "https://roshameow.github.io//personal_homepage/tool/alpha6/"
-      },{
-        "title": "设置开机自启动自运行程序",
-        "excerpt":"macos 用系统自带的LaunchAgents是最方便的   LaunchAgents 的配置文件是一个 .plist 文件（Property List），放在以下路径: ~/Library/LaunchAgents/com.alpha.fetcher.plist          文件名推荐以项目的命名空间命名，保持唯一性        💡 注意事项:          命令行参数分开写：在 &lt;ProgramArguments&gt; 中，命令行每一项(空格分开的)都必须单独写成一个 &lt;string&gt; 元素，包括脚本路径和参数。      日志路径要存在：StandardOutPath 和 StandardErrorPath 指定的目录必须事先存在，否则任务无法运行。        加载与卸载脚本          launchctl load 加载自动脚本, lauchctl unload 卸载脚本      例子 com.pnl.fetcher.plist ","categories": ["tool"],
-        "tags": ["content","macos"],
-        "url": "https://roshameow.github.io//personal_homepage/tool/auto-code/"
       },{
         "title": "因子组合优化",
         "excerpt":"问题: 从 \\(N\\) 个候选集中挑选出 \\(K\\) 个，构建一个能够最大化综合得分的组合。得分计算复杂, 所以我们考虑启发式的算法. 1. greedy boost算法的优化 A. 精准种子筛选 (Precise Seed Selection) 增量正交过滤：结合单因子的 predict_score 计算 seed_priority, 按优先级排序后，只有与已选种子集最大相关性 &lt; 0.7 的因子才能入选。这保证了搜索起点的逻辑多样性。B. 双阶段呼吸逻辑 (Expansion &amp; Purging) 扩张阶段 (Expansion) - 带 Top-K 随机化： Top-K 采样(非绝对贪心)：从能提升分数的 Top-K（默认 3）个候选者中随机抽取一个加入组合。 清理阶段 (Purging) - 呼吸机制：扩张停止后，尝试移除组合中的每一个因子。只要移除后分数能提升 &gt;0.001，就将其剔除。 振荡收敛：上述两个阶段在 while True 中交替，直到没有任何变动。2. 遗传算法的优化 A. 初始化组合 启发式权重初始化：利用...","categories": ["algorithm"],
@@ -715,7 +710,7 @@ var store = [{
         "url": "https://roshameow.github.io//personal_homepage/code/alpha19/"
       },{
         "title": "LLM接口协议梳理",
-        "excerpt":"梳理一下主流 LLM 接口的请求/响应结构、调用模式，以及各协议的差异，方便选型和对接时快速对照。 flowchart LRsubgraph req[\"请求侧 — 客户端发什么\"]direction TBR1[\"输入 prompt / input / messages\"]R2[\"历史 messages[] 或 state ID\"]R3[\"system / instructions\"]R4[\"工具声明 tools[]\"]R5[\"stream / 其他配置\"]R1 --- R2 --- R3 --- R4 --- R5end subgraph model[\"模型执行\"]direction TBM1[\"组装上下文\"]M2[\"推理\"]M3[\"决定输出\"]M1 --- M2 --- M3end subgraph resp[\"响应侧 — 模型返回什么\"]direction TBS1[\"文本输出\"]S2[\"工具调用 tool call\"]S3[\"停止原因 stop / finish reason\"]S4[\"usage token...","categories": ["tool"],
+        "excerpt":"梳理主流 LLM HTTP/SSE 线上接口（Wire Protocol）的请求/响应结构、调用模式，以及各厂商与自托管引擎的协议差异，方便选型和自研 Harness 对接时快速对照。（关于工具执行层与 Harness / Function Calling / MCP / CLI / Skills 的分层协作，见同专题 Agent 工具体系与接入规范。） flowchart TB subgraph req[\"请求侧 — 客户端发什么\"] direction LR R1[\"输入与上下文&lt;br/&gt;prompt / input / messages[]&lt;br/&gt;历史或 state ID\"] R2[\"系统与工具&lt;br/&gt;system / instructions&lt;br/&gt;tools[] / 远程 MCP\"] R3[\"配置与前缀缓存&lt;br/&gt;stream · json_schema · effort&lt;br/&gt;cache_control / prompt_cache_key\"] R1 ~~~...","categories": ["tool"],
         "tags": ["content","llm"],
         "url": "https://roshameow.github.io//personal_homepage/tool/llm-protocal/"
       },{
@@ -835,7 +830,7 @@ var store = [{
         "url": "https://roshameow.github.io//personal_homepage/tool/alpha26/"
       },{
         "title": "pi-agent-notify：Coding Agent 的事件总线、非阻塞等待与可靠投递",
-        "excerpt":"在上一篇聊 pi-subagent-durable 的笔记中，我们确立了一条生死攸关的铁律（D2）：严禁让 Agent 在前台执行 sleep 或死循环轮询等待外部任务。必须采用“一次权威确认 + 启动进程外有界 Watcher + 结束当前 Turn 静息等待”的模式。 但这里立刻浮现出一个核心系统问题：Turn 结束后，Agent 处于静息状态，当几十分钟甚至数小时后外部任务（CI 构建、长跑测试、仿真或异步 API）结束时，事件到底该怎么唤醒 Agent？ 这就是开源扩展 pi-agent-notify 解决的事情。 给 LLM 投递外部通知，听起来似乎只是“读个文件、调一下 sendUserMessage”。但当它真正运行在复杂的真实开发环境时，你面对的是一系列残酷的系统级难题： 多会话冲突：同一台机器甚至同一个项目目录下开着多个 Pi 终端，外部事件究竟发给谁？发错会话等于瞬间污染别的上下文； 进程挂起与资源浪费：如何让 Worker 在没有前台代码执行的前提下维持进程存活，等事件一到毫秒级唤醒，超时又能自动兜底？ 假确认与数据丢失：LLM 内存队列接收了消息，并不代表它已经落盘；进程若在推理前崩溃，事件就永久丢了； 离线交接与防脑裂：主代理冷重启或升级版本时，外部事件如何安全排队并在恢复后重放？同一会话如何防止两个终端进程同时写入？这篇文章记录 pi-agent-notify 的架构设计、踩坑演进与可靠性闭环。 1. 架构总览：外部事件总线与四平面解耦 pi-agent-notify 是一个完全通用的 Pi coding agent 扩展，它将外部世界的“观察”与内部 Agent 的“执行”彻底剥离： 外部世界 (CI...","categories": ["tool"],
+        "excerpt":"在上一篇聊 pi-subagent-durable 的笔记中，我们确立了一条生死攸关的铁律（D2）：严禁让 Agent 在前台执行 sleep 或死循环轮询等待外部任务。必须采用“一次权威确认 + 启动进程外有界 Watcher + 结束当前 Turn 静息等待”的模式。 但这里立刻浮现出一个核心系统问题：Turn 结束后，Agent 处于静息状态，当几十分钟甚至数小时后外部任务（CI 构建、长跑测试、仿真或异步 API）结束时，事件到底该怎么唤醒 Agent？ 这就是开源扩展 pi-agent-notify 解决的事情。 给 LLM 投递外部通知，听起来似乎只是“读个文件、调一下 sendUserMessage”。但当它真正运行在复杂的真实开发环境时，你面对的是一系列残酷的系统级难题： 多会话冲突：同一台机器甚至同一个项目目录下开着多个 Pi 终端，外部事件究竟发给谁？发错会话等于瞬间污染别的上下文； 进程挂起与资源浪费：如何让 Worker 在没有前台代码执行的前提下维持进程存活，等事件一到毫秒级唤醒，超时又能自动兜底？ 假确认与数据丢失：LLM 内存队列接收了消息，并不代表它已经落盘；进程若在推理前崩溃，事件就永久丢了； 离线交接与防脑裂：主代理冷重启或升级版本时，外部事件如何安全排队并在恢复后重放？同一会话如何防止两个终端进程同时写入？这篇文章记录 pi-agent-notify 的典型使用场景、架构设计、踩坑演进与可靠性闭环。 1. 典型使用场景 结合当前 pi-agent-notify 的能力矩阵（外部 Watcher 投递、notify_subagent、notify_heartbeat、离线恢复与分级路由），日常使用主要有五类典型场景： 1.1 长时间后台作业与异步外部任务（Worker + arm_notification_wait） 这是最核心的设计场景：CI/CD...","categories": ["tool"],
         "tags": ["pi","notify","architecture","debugging","macOS"],
         "url": "https://roshameow.github.io//personal_homepage/tool/pi-agent-notify/"
       },{
@@ -863,4 +858,29 @@ var store = [{
         "excerpt":"本文为非结构化舆情、新闻流、社交媒体与财报电话会文本专题篇（与日频 PV alpha11、日内微结构 alpha28、基本面 alphas2 及分析师预期 alphas4 共同构成多源数据谱系）。表格仅采用通用舆情/文本语义概念与 WorldQuant FASTEXPR 算子，具体数据库字段名与实测指标见独立调查文档。 一、News &amp; Social Media 衍生数据三阶谱系（0→1→2 阶 + WorldQuant FASTEXPR 对齐） 舆情类数据更新快、信噪比低、高度非对称且常带事件稀疏性，严格按三阶结构拆解：0 阶为媒体新闻流、NLP 情绪分、社交热度与电话会语调原始字段；1 阶为单步矢量归约（vec_avg / vec_sum / vec_count）、流÷存量强度（密度比）、正负极端净额及单层 ts_* 注意力脉冲/平滑；2 阶为利用高信噪比舆情事件驱动门控（trade_when）、事件锚定止损、热度过滤反转及对系统风险正交剥离。 图例说明：在一至二阶衍生指标中，绿色加粗条目表示已在本地平台实测记录中检索到达标信号（非 SUPER，fitness &gt;= 1.0 且 sharpe &gt;= 1.2；除 CHN 地区外，fitness &lt;= -1.0 且 sharpe &lt;= -1.2 的反向可取负信号亦计为达标）；红色加粗条目表示库中已有实测记录但未达上述门槛；默认颜色为尚未在库中检索到独立测试记录的理论或扩展方向。 0...","categories": ["data"],
         "tags": ["content","news","sentiment","socialmedia","nlp","analyze_dataset","quant"],
         "url": "https://roshameow.github.io//personal_homepage/data/alpha29/"
+      },{
+        "title": "WorldQuant FASTEXPR 核心算子解析、分布整形与线性回归推导",
+        "excerpt":"本文由原 BRAIN 仿真总览笔记（2025-01-07-alphas.md）中的“常用算子与回归推导”模块独立拆分整理而成，与跨数据集关系总纲 alpha5 互为补充。表达式遵循 WorldQuant Expression Language 规范：仅可使用平台原生算子与数据字段，多行赋值时每条语句以分号 ; 结尾。 本文的“项目复现备注”仅取自 QuantNight expression/operator_docs/ 的历史平台实证与校准记录：FASTEXPR 是唯一真值，本地 Python 复现只是近似；文中凡标为“未定案”的口径不能当作已值级确认。 一、核心算子总览：缺失值填补 / 基础统计 / 分布整形 三类操作是 FASTEXPR 信号预处理的并列工序：缺失值填补解决低频字段覆盖率，基础统计给出组内/时序基准与覆盖度，分布整形控制量纲、尾部权重和异常值影响。下表按类别并列列出。 类别 处理目标 代表 FASTEXPR 算子 数学本质 / 统计含义 适用场景与关键注意 缺失值填补 时间序列回填 ts_backfill(x, lookback=d, k=1) 在最近 d 个交易日内取最近一次有效非空值填补当前 NaN；窗口内无有效值则保持 NaN 适合季报/年报与低频公告，提升覆盖率；项目实证 d=20↔d=60 corr=0.9806&lt;1，确认 d 是有限窗口而非无限...","categories": ["finance"],
+        "tags": ["content","worldquant","operators","fastexpr","regression","quant"],
+        "url": "https://roshameow.github.io//personal_homepage/finance/operators/"
+      },{
+        "title": "QuantNight 原生 MCP 共享底座架构：单守护进程、事件通知、跨重启续跑与双端职责边界",
+        "excerpt":"本文是 QuantNight 工程架构系列的 MCP 专题篇（与 GUI/CLI 控制面专题 《任务控制生命周期》（alpha20） 及 《6 态极简控制面与数据面板统一》（alpha27） 共同构成系统全貌）。task-core 统一了桌面 GUI 与 taskctl CLI 的本地批处理控制面和只读数据面板，而 quant_night_mcp 承担的则是平台在线交互网关 + Python 向量/AST 语义层 + Agent 事件驱动异步执行底座。本文记录其定型后的整体架构、通知握手、跨重启无缝续跑机制，以及与 task-core 的职责分界。 1. 总体拓扑：为什么需要单一共享 MCP 守护进程 早期如果让每个 Pi 会话或 subagent 按需拉起独立 stdio MCP Server，会同时引发四个问题：每个进程加载 Python + SentenceTransformer + FAISS 占用大量内存、多个进程并发读写同一账号 Cookie 产生认证竞态、429 限流退避状态无法跨会话共享、以及会话退出后在途后台观察直接丢失。...","categories": ["tool"],
+        "tags": ["content","architecture","mcp","python","agent","quant"],
+        "url": "https://roshameow.github.io//personal_homepage/tool/alpha30/"
+      },{
+        "title": "git-sync：双机多 Agent 开发的确定性同步与 Guardian 事件驱动工作流",
+        "excerpt":"写作定位：本文属于 agent/extension 工程实践系列，结合 Mac mini 开发主会话（01a0c650）、git-sync 与 pi-git-sync-bridge 源码，以及 Guardian 持久会话 01a0e057 跨越两个月（2026-09-27 ~ 2026-11-23）的真实线上运行日志，完整梳理这套双机 + 上游 Git 协同工作流的设计收敛、底层架构与实战经验。 在 Vibe Coding 和多端协同常态化后，一个越来越明显的痛点是：同一套本地工具与业务仓库，会被不同机器、不同编程上下文同时修改和维护——MacBook Pro 上外出写功能，Mac mini 上常驻跑定时/量化任务，外加 ChatGPT/Codex 往 GitHub 分支推提交、本地多个 Pi session 并行改代码、甚至偶尔直接手改提交。如果不加协调，两边代码很快就会版本滞后、各自修补或静默覆盖未提交工作。 git-sync 要解决的就是这个问题，并且从设计第一天起就确立了一条底线：常规同步不依赖大模型，LLM 只作为异常分诊、隔离合并且零覆盖兜底的最后一道防线。 一、源码架构拆解：四平面解耦与安全边界 从当前运行的源码（~/.local/share/git-sync-runtime/.../src/ 与 ~/.pi/agent/git/github.com/roshameow/pi-git-sync-bridge/）来看，整个系统分为四个严格解耦的平面： flowchart TB subgraph Bridge[\"1. 会话溯源层 (pi-git-sync-bridge)\"] direction LR B1[\"Pi...","categories": ["tool"],
+        "tags": ["git-sync","pi","agent","architecture","debugging","macOS"],
+        "url": "https://roshameow.github.io//personal_homepage/tool/git-sync/"
+      },{
+        "title": "生产级 MCP 开发演进复盘：以 QuantNight MCP 为例谈踩坑、弯路与架构取舍",
+        "excerpt":"阅读定位：本文属于 agent/extension 工程实践系列，讨论的是如何把一个 MCP Server 从玩具原型打磨成多 Agent 并发可用的常驻基础设施。文中的 quant_night_mcp 仅作为这套方法论的落地示例（Case Study）——它从 2026 年 1 月 12 日首次提交起步，历经 60+ 次迭代，几乎踩遍了“工具暴露设计、传输层选型、认证与状态持久化、OS 进程身份校验、热更新不中断在途任务”这五大关。希望这份复盘能为其他 MCP/Agent 扩展开发省掉同类弯路。 一、行业演进坐标系：Agent 形态与 MCP 协议史 vs 个人项目演化 要把 quant_night_mcp 踩过的坑看透，必须把它放进外部 Agent 与 MCP 协议本身的演进史里并排对照——很多弯路，本质上是“个人项目的工具链惯性，慢了行业协议与 Agent 形态演化半拍”造成的： flowchart LR subgraph Industry[\"行业轨迹：Agent 形态与 MCP 官方协议\"] direction LR I1[\"2024-11: MCP 初版发布&lt;br/&gt;stdio +...","categories": ["tool"],
+        "tags": ["mcp","agent","architecture","debugging","macOS"],
+        "url": "https://roshameow.github.io//personal_homepage/tool/mcp-dev-pitfalls/"
+      },{
+        "title": "QuantNight 守护进程与定时调度体系全景",
+        "excerpt":"写作定位：整理 QuantNight 当前实际使用的 macOS 常驻守护进程（Daemons）、launchd 周期/日历任务、调度并发锁机制，以及面向持久 Agent 会话的定时唤醒入口（替代早年单条 plist 示例旧笔记）。MCP 服务内部机制详见 《QuantNight 原生 MCP 共享底座架构》（alpha30）；rotatelogs 轮转、ingest_error_logs 报错入账与 30 天日志留存清理细节统一见 《服务端通知与自动化错误台账系统》（error &amp; log），本文不重复展开。 一、Daemon 与定时调度全景总表 各后台任务按职责相互独立运行，下面按“常驻 Daemon → 周期任务（StartInterval）→ 日历任务（StartCalendarInterval）→ Agent 定时唤醒”汇总当前全量配置与入口： 类别 服务 / 任务 Label 定义位置与载体 调度 / 保活方式 实际执行入口 / 命令 核心职责与部署范围 常驻 Daemon com.quantnight.mongod 本机 ~/Library/LaunchAgents/ KeepAlive:...","categories": ["tool"],
+        "tags": ["quantnight","launchd","daemon","scheduler","architecture","macOS"],
+        "url": "https://roshameow.github.io//personal_homepage/tool/quantnight-daemons/"
       }]

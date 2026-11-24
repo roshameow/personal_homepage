@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<!--
+    So Simple Jekyll Theme 3.2.0
+    Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+    Free for personal and commercial use under the MIT license
+    https://github.com/mmistakes/so-simple-theme/blob/master/LICENSE
+-->
+<html lang="en-US" class="no-js">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  
+
+  
+  
+  <!-- Begin Jekyll SEO tag v2.9.1 -->
+<title>生产级 MCP 开发演进复盘：以 QuantNight MCP 为例谈踩坑、弯路与架构取舍 | Liu, Wen’s Home Page</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="生产级 MCP 开发演进复盘：以 QuantNight MCP 为例谈踩坑、弯路与架构取舍" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="阅读定位：本文属于 agent/extension 工程实践系列，讨论的是如何把一个 MCP Server 从玩具原型打磨成多 Agent 并发可用的常驻基础设施。文中的 quant_night_mcp 仅作为这套方法论的落地示例（Case Study）——它从 2026 年 1 月 12 日首次提交起步，历经 60+ 次迭代，几乎踩遍了“工具暴露设计、传输层选型、认证与状态持久化、OS 进程身份校验、热更新不中断在途任务”这五大关。希望这份复盘能为其他 MCP/Agent 扩展开发省掉同类弯路。" />
+<meta name="twitter:description" property="og:description" content="阅读定位：本文属于 agent/extension 工程实践系列，讨论的是如何把一个 MCP Server 从玩具原型打磨成多 Agent 并发可用的常驻基础设施。文中的 quant_night_mcp 仅作为这套方法论的落地示例（Case Study）——它从 2026 年 1 月 12 日首次提交起步，历经 60+ 次迭代，几乎踩遍了“工具暴露设计、传输层选型、认证与状态持久化、OS 进程身份校验、热更新不中断在途任务”这五大关。希望这份复盘能为其他 MCP/Agent 扩展开发省掉同类弯路。" />
+<link rel="canonical" href="https://roshameow.github.io//personal_homepage/tool/mcp-dev-pitfalls/" />
+<meta property="og:url" content="https://roshameow.github.io//personal_homepage/tool/mcp-dev-pitfalls/" />
+<meta property="og:site_name" content="Liu, Wen’s Home Page" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2026-11-23T00:00:00+00:00" />
+<meta property="article:modified_time" content="2026-11-23T03:10:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="生产级 MCP 开发演进复盘：以 QuantNight MCP 为例谈踩坑、弯路与架构取舍" />
+<meta name="twitter:site" content="@" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2026-11-23T03:10:00+00:00","datePublished":"2026-11-23T00:00:00+00:00","description":"阅读定位：本文属于 agent/extension 工程实践系列，讨论的是如何把一个 MCP Server 从玩具原型打磨成多 Agent 并发可用的常驻基础设施。文中的 quant_night_mcp 仅作为这套方法论的落地示例（Case Study）——它从 2026 年 1 月 12 日首次提交起步，历经 60+ 次迭代，几乎踩遍了“工具暴露设计、传输层选型、认证与状态持久化、OS 进程身份校验、热更新不中断在途任务”这五大关。希望这份复盘能为其他 MCP/Agent 扩展开发省掉同类弯路。","headline":"生产级 MCP 开发演进复盘：以 QuantNight MCP 为例谈踩坑、弯路与架构取舍","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/tool/mcp-dev-pitfalls/"},"url":"https://roshameow.github.io//personal_homepage/tool/mcp-dev-pitfalls/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  
+
+  <script>
+    /* Cut the mustard */
+    if ('querySelector' in document && 'addEventListener' in window) {
+      document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + 'js';
+    }
+  </script>
+
+  <link rel="stylesheet" href="/personal_homepage/assets/css/main.css">
+  <link rel="stylesheet" href="/personal_homepage/assets/css/skins/default.css">
+  
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,700,700i|Lora:400,400i,700,700i">
+  <link rel="alternate" type="application/atom+xml" title="Liu, Wen&#39;s Home Page" href="/personal_homepage/atom.xml">
+<!-- start custom head snippets -->
+
+<!-- insert favicons. use http://realfavicongenerator.net/ -->
+<link rel="shortcut icon" type="image/x-icon" href="/personal_homepage/docs/images/logo.ico">
+<!-- end custom head snippets -->
+
+</head>
+
+  <body class="layout--post  生产级-mcp-开发演进复盘-以-quantnight-mcp-为例谈踩坑-弯路与架构取舍">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#primary-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+  <div class="navigation-wrapper">
+    <a href="#menu-toggle" id="menu-toggle">Menu</a>
+    <nav id="primary-nav" class="site-nav animated drop">
+      <ul><li><a href="/personal_homepage/">Home</a></li><li><a href="/personal_homepage/posts/">Posts</a></li><li><a href="/personal_homepage/categories/">Categories</a></li><li><a href="/personal_homepage/tags/">Tags</a></li><li><a href="/personal_homepage/family/">Family</a></li><li><a href="/personal_homepage/search/">Search</a></li></ul>
+    </nav>
+  </div><!-- /.navigation-wrapper -->
+
+
+    <header class="masthead">
+  <div class="wrap">
+    
+    
+    
+      
+        <div class="site-title animated fadeIn"><a href="/personal_homepage/">Liu, Wen's Home Page</a></div>
+      
+      <p class="site-description animated fadeIn" itemprop="description">Work, Experiments and Ideas.</p>
+    
+  </div>
+</header><!-- /.masthead -->
+
+
+    <main id="main" class="main-content" aria-label="Content">
+  <article class="h-entry">
+    
+
+    <div class="page-wrapper">
+      <header class="page-header">
+        
+        
+        <h1 id="page-title" class="page-title p-name">生产级 MCP 开发演进复盘：以 QuantNight MCP 为例谈踩坑、弯路与架构取舍
+</h1>
+        
+      </header>
+
+      <div class="page-sidebar">
+        <div class="page-author h-card p-author"><img src="/personal_homepage/docs/images/logo.svg" class="author-avatar u-photo" alt=""><div class="author-info">
+
+<span class="read-time">4 min read</span>
+
+    <time class="page-date dt-published" datetime="2026-11-23T00:00:00+00:00"><a class="u-url" href="">November 23, 2026</a>
+</time>
+
+  </div>
+</div>
+
+        
+  <h3 class="page-taxonomies-title">Categories</h3>
+  
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a class="p-category" href="/personal_homepage/categories/#tool" title="Pages filed under tool">tool</a></li>
+  </ul>
+
+
+        
+  <h3 class="page-taxonomies-title">Tags</h3>
+  
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a href="/personal_homepage/tags/#agent" title="Pages tagged agent" rel="tag">agent</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#architecture" title="Pages tagged architecture" rel="tag">architecture</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#debugging" title="Pages tagged debugging" rel="tag">debugging</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#macos" title="Pages tagged macOS" rel="tag">macOS</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#mcp" title="Pages tagged mcp" rel="tag">mcp</a></li>
+  </ul>
+
+
+        <details id="entry-table-of-contents" class="toc-wrapper" open>
+  <summary>
+    <h2 class="no_toc">
+      Table of Contents
+      <svg class="toc-toggle-icon" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true" focusable="false">
+        <path d="m4 6 4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+      </svg>
+    </h2>
+  </summary>
+  <div class="toc-content">
+    <ul class="inline_toc" id="my_toc"><li><a href="#一行业演进坐标系agent-形态与-mcp-协议史-vs-个人项目演化">一、行业演进坐标系：Agent 形态与 MCP 协议史 vs 个人项目演化</a></li><li><a href="#二早期滞后与工具设计弯路2026-01--2026-04">二、早期滞后与工具设计弯路（2026-01 ~ 2026-04）</a></li><li><a href="#三传输层四次迁徙为什么绕了一大圈还是回到-streamable-http">三、传输层四次迁徙：为什么绕了一大圈还是回到 Streamable HTTP？</a></li><li><a href="#四长驻运行的工程深坑检查点膨胀门禁自锁与进程身份漂移">四、长驻运行的工程深坑：检查点膨胀、门禁自锁与进程身份漂移</a><ul><li><a href="#坑一68mb-单文件注册表拖垮事件循环">坑一：68MB 单文件注册表拖垮事件循环</a></li><li><a href="#坑二24472-个检查点把维护重启拖到-50-秒且历史拒收记录永久卡死门禁">坑二：24,472 个检查点把维护重启拖到 50 秒，且历史拒收记录永久卡死门禁</a></li><li><a href="#坑三长驻进程在-macos-下的-psutil-init_boot_time-漂移导致-watcher-握手误杀">坑三：长驻进程在 macOS 下的 psutil INIT_BOOT_TIME 漂移导致 Watcher 握手误杀</a></li></ul></li><li><a href="#五如何让-mcp-重启时在途任务不断不误报失败">五、如何让 MCP 重启时“在途任务不断、不误报失败”？</a></li><li><a href="#六通用边界取舍当系统同时拥有-mcp-与-cli-时什么该合什么不该迁">六、通用边界取舍：当系统同时拥有 MCP 与 CLI 时，什么该合、什么不该迁？</a></li></ul>
+  </div>
+</details>
+
+        
+<details id="entry-related-posts" class="toc-wrapper" open>
+  <summary>
+    <h2 class="no_toc">
+      Related Posts
+      <svg class="toc-toggle-icon" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true" focusable="false">
+        <path d="m4 6 4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+      </svg>
+    </h2>
+  </summary>
+  <div class="toc-content">
+    <ul>
+      
+      <li><a href="/personal_homepage/tool/quantnight-daemons/">QuantNight 守护进程与定时调度体系全景</a></li>
+      
+      <li><a href="/personal_homepage/tool/git-sync/">git-sync：双机多 Agent 开发的确定性同步与 Guardian 事件驱动工作流</a></li>
+      
+      <li><a href="/personal_homepage/tool/alpha30/">QuantNight 原生 MCP 共享底座架构：单守护进程、事件通知、跨重启续跑与双端职责边界</a></li>
+      
+      <li><a href="/personal_homepage/finance/operators/">WorldQuant FASTEXPR 核心算子解析、分布整形与线性回归推导</a></li>
+      
+      <li><a href="/personal_homepage/data/alpha29/">News & Social Media 新闻流、社交媒体情绪与文本事件数据体系</a></li>
+      
+    </ul>
+  </div>
+</details>
+
+
+
+      </div>
+
+      <div class="page-content">
+        <div class="e-content">
+          <blockquote>
+  <p><strong>阅读定位</strong>：本文属于 <code class="language-plaintext highlighter-rouge">agent/extension</code> 工程实践系列，讨论的是<strong>如何把一个 MCP Server 从玩具原型打磨成多 Agent 并发可用的常驻基础设施</strong>。文中的 <strong><code class="language-plaintext highlighter-rouge">quant_night_mcp</code> 仅作为这套方法论的落地示例（Case Study）</strong>——它从 2026 年 1 月 12 日首次提交起步，历经 60+ 次迭代，几乎踩遍了“工具暴露设计、传输层选型、认证与状态持久化、OS 进程身份校验、热更新不中断在途任务”这五大关。希望这份复盘能为其他 MCP/Agent 扩展开发省掉同类弯路。</p>
+</blockquote>
+
+<hr />
+
+<h2 id="一行业演进坐标系agent-形态与-mcp-协议史-vs-个人项目演化">一、行业演进坐标系：Agent 形态与 MCP 协议史 vs 个人项目演化</h2>
+
+<p>要把 <code class="language-plaintext highlighter-rouge">quant_night_mcp</code> 踩过的坑看透，必须把它放进<strong>外部 Agent 与 MCP 协议本身的演进史</strong>里并排对照——很多弯路，本质上是<strong>“个人项目的工具链惯性，慢了行业协议与 Agent 形态演化半拍”</strong>造成的：</p>
+
+<pre><code class="language-mermaid">flowchart LR
+    subgraph Industry["行业轨迹：Agent 形态与 MCP 官方协议"]
+        direction LR
+        I1["2024-11: MCP 初版发布&lt;br/&gt;stdio + HTTP/SSE&lt;br/&gt;桌面单会话 Copilot"] --&gt; I2["2025-03: 官方 Streamable HTTP&lt;br/&gt;单端点有状态规范取代 SSE"]
+        I2 --&gt; I3["2025 下半年: CLI + Coding Mode&lt;br/&gt;CLI 管道优势凸显 · codemode 简化 MCP 调用"]
+        I3 --&gt; I4["2026: 多 Subagent 并行编排&lt;br/&gt;客户端全面支持 Streamable HTTP"]
+    end
+
+    subgraph Project["个人项目轨迹：QuantNight MCP 实践"]
+        direction LR
+        P1["2025-04: 协议调研笔记&lt;br/&gt;本地强交互接口认知"] --&gt; P2["2026-01~04: stdio 起步&lt;br/&gt;全量函数套壳 / 踩中歧义与串号"]
+        P2 --&gt; P3["2026-05~08: 接入 Pi 多 Subagent&lt;br/&gt;绕道旧 SSE 与 Unix Socket"]
+        P3 --&gt; P4["2026-10~11: 回归 Streamable HTTP&lt;br/&gt;补齐通知/门禁/跨重启续跑/CLI 边界"]
+    end
+
+    I1 -.-&gt;|"生态惯性滞后"| P2
+    I2 -.-&gt;|"新标准已出但先走了弯路"| P3
+    I4 -.-&gt;|"并发与长任务倒逼对齐"| P4
+</code></pre>
+
+<table>
+  <thead>
+    <tr>
+      <th>时期</th>
+      <th>行业 Agent 形态 &amp; MCP 官方协议演进</th>
+      <th>QuantNight MCP 个人项目演化与真实体感</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>2024-11 ~ 2025 上半年</strong><br />萌芽与 <code class="language-plaintext highlighter-rouge">stdio</code> 主导期</td>
+      <td>• <strong>2024-11-25</strong>：Anthropic 发布 MCP（初版规范 <code class="language-plaintext highlighter-rouge">2024-11-05</code>），主打本地 <code class="language-plaintext highlighter-rouge">stdio</code> 子进程与早期双端点 <code class="language-plaintext highlighter-rouge">HTTP+SSE</code>。<br />• 当时主流客户端是 <strong>Claude Desktop / Cursor</strong> 等<strong>单会话桌面 Copilot</strong>，一个窗口一个用户，<code class="language-plaintext highlighter-rouge">stdio</code> 零配置即插即用。<br />• <strong>2025-03-26</strong>：MCP 官方发布 <code class="language-plaintext highlighter-rouge">2025-03-26</code> 规范，推出单端点 <strong><code class="language-plaintext highlighter-rouge">Streamable HTTP</code></strong> 正式取代旧 <code class="language-plaintext highlighter-rouge">HTTP+SSE</code>，但当时大部分本地客户端生态尚未跟进。</td>
+      <td>• <strong>2025-04</strong>：停留在协议调研期（<a href="2025-04-04-agent-tools.md">2025-04-04-agent-tools.md</a>），把 MCP 理解为本地强交互的“AI USB 接口”，重点关注 Schema 约束、Function Calling 与 Skills 的概念切分，尚未在项目落地。</td>
+    </tr>
+    <tr>
+      <td><strong>2025 下半年 ~ 2026-04</strong><br />CLI 成熟与 Coding Mode 引入</td>
+      <td>• <strong>CLI 本身已具备天然优势</strong>：零 Schema 驻留开销、<code class="language-plaintext highlighter-rouge">--output</code> 落盘与 Shell 管道过滤，天然适合大批量查询与本地编排。<br />• 随后 <strong>Coding Mode（<code class="language-plaintext highlighter-rouge">codemode</code>）</strong> 引入后，进一步<strong>简化了 MCP 的调用方式</strong>（工具可设为 <code class="language-plaintext highlighter-rouge">hidden</code>/<code class="language-plaintext highlighter-rouge">codemode</code>，Agent 用代码直接串联调用、过滤结果，不再受限于全量 Schema 驻留和一问一答的 Tool Call），进而促使开发者重新审视“既然 MCP 调用也变简单了，什么该放 MCP、什么仍留 CLI”。</td>
+      <td>• <strong>2026-01 ~ 04</strong>：项目正式落地 <code class="language-plaintext highlighter-rouge">quant_night_mcp</code>（<code class="language-plaintext highlighter-rouge">4d57297</code>），但初期仍沿用了早期“把内部函数全包成 MCP”的惯性，很快在 <code class="language-plaintext highlighter-rouge">parse_alpha_expression</code> 混淆、默认参数猜错、各自建连串号上连续踩坑（§二）。</td>
+    </tr>
+    <tr>
+      <td><strong>2026-05 ~ 09</strong><br />多 Subagent 并发撞墙期</td>
+      <td>• Agent 形态彻底从“单窗口 Copilot”跳变到<strong>主会话派生多个 Subagent 并行跑长任务</strong>。<br />• 单机多 Agent 下，行业早期的“按需 spawn <code class="language-plaintext highlighter-rouge">stdio</code>”模型彻底失效。</td>
+      <td>• <strong>2026-05 底</strong>接入 Pi 多 Subagent（<code class="language-plaintext highlighter-rouge">b27701f</code>）后，<code class="language-plaintext highlighter-rouge">stdio</code> 瞬间撞墙（N 份百兆向量模型 + Cookie 互踢）。<br />• 虽然官方早在 2025-03 已发布 Streamable HTTP，但项目先绕道试了<strong>早期 <code class="language-plaintext highlighter-rouge">HTTP+SSE</code></strong>（05-02），8 月又自己造了一套 <strong><code class="language-plaintext highlighter-rouge">Unix Socket + launchd</code></strong> 本地共享方案（§三）。</td>
+    </tr>
+    <tr>
+      <td><strong>2026-10 ~ 11</strong><br />协议对齐与长任务深水区</td>
+      <td>• 客户端适配层普遍成熟支持 <strong><code class="language-plaintext highlighter-rouge">Streamable HTTP</code></strong>（<code class="language-plaintext highlighter-rouge">Mcp-Session-Id</code> 断线重建）；Agent 进入 <strong>Durable Worker + 事件驱动异步唤醒</strong> 的常驻运行阶段。</td>
+      <td>• <strong>2026-10-05</strong> 正式收口至 <strong><code class="language-plaintext highlighter-rouge">Streamable HTTP</code> 单守护进程</strong>，对齐官方规范；11 月进一步解决 MCP 协议本身不管的深水区：<strong>事件通知身份漂移、68MB/2.4 万检查点阻塞、跨重启无缝续跑、以及与 Rust <code class="language-plaintext highlighter-rouge">task-core</code> CLI 的对称分工</strong>。</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="二早期滞后与工具设计弯路2026-01--2026-04">二、早期滞后与工具设计弯路（2026-01 ~ 2026-04）</h2>
+
+<p>如上表所示，当个人项目在 2026 年初动手写第一个 MCP Server 时，虽然行业已经开始反思工具膨胀，但自己还是完整踩了一遍“全量函数直接暴露 + <code class="language-plaintext highlighter-rouge">stdio</code> 单会话假设”的初期坑：</p>
+
+<ol>
+  <li><strong>工具粒度与命名歧义直接搞乱 Agent 决策</strong>
+    <ul>
+      <li>早期暴露过一个 <code class="language-plaintext highlighter-rouge">parse_alpha_expression</code> 工具，结果 Agent 经常在“校验表达式”还是“解析表达式”之间反复横跳、传错参数；最终在 <code class="language-plaintext highlighter-rouge">3428318</code>（02-12）果断把它从 MCP 中直接删掉。</li>
+      <li><strong>教训</strong>：MCP 的 <code class="language-plaintext highlighter-rouge">tools/list</code> 不是传统后端 SDK 文档，每个多余或语义重叠的工具都在稀释 LLM 的路由准确率。<strong>宁可少而边界清晰，不要大而全。</strong></li>
+    </ul>
+  </li>
+  <li><strong>隐式默认值与“静默容错”是 LLM 调用的毒药</strong>
+    <ul>
+      <li>早期不少工具给参数写了隐式 <code class="language-plaintext highlighter-rouge">default</code>，或者校验不严就放行去请求远端。结果 LLM 一旦没看清就瞎猜参数，把错误配置带进耗时数十分钟的远端任务。</li>
+      <li><strong>教训（<code class="language-plaintext highlighter-rouge">1ffe2ca</code> / <code class="language-plaintext highlighter-rouge">ec9b8e6</code>）</strong>：对高风险或强语义参数去掉危险默认值（例如 Python 策略必须显式提供 <code class="language-plaintext highlighter-rouge">lookback</code>），在 JSON Schema 里加死必填与枚举，在 <code class="language-plaintext highlighter-rouge">description</code> 里明写 <code class="language-plaintext highlighter-rouge">Do NOT guess parameters</code>，并在服务端入口做即时校验报错（<code class="language-plaintext highlighter-rouge">instant feedback</code>）。</li>
+    </ul>
+  </li>
+  <li><strong>多工具各自维护数据库连接与登录会话导致“串号/互踢”</strong>
+    <ul>
+      <li>在单会话 <code class="language-plaintext highlighter-rouge">stdio</code> 串行测试下问题被掩盖；但随着 Agent 开始在单轮内并发调多个工具，早期每个工具文件自己 <code class="language-plaintext highlighter-rouge">MongoClient()</code>、自己调登录函数的写法立刻引发 Cookie 覆盖和连接泄露。</li>
+      <li><strong>教训（<code class="language-plaintext highlighter-rouge">07484ec</code> / <code class="language-plaintext highlighter-rouge">b97b6dc</code>）</strong>：在进入高并发多 Agent 协作前，必须先把<strong>认证 Owner（单把 <code class="language-plaintext highlighter-rouge">_brain_login_lock</code> + 同账号校验）</strong>和<strong>统一 DB 配置工厂</strong>收口成唯一底层入口，禁止业务工具私建客户端。</li>
+    </ul>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="三传输层四次迁徙为什么绕了一大圈还是回到-streamable-http">三、传输层四次迁徙：为什么绕了一大圈还是回到 Streamable HTTP？</h2>
+
+<p>对照前面的行业坐标系就会发现一件很有意思的事：<strong>MCP 官方早在 2025 年 3 月就发布了 <code class="language-plaintext highlighter-rouge">Streamable HTTP</code> 规范，为什么个人项目直到 2026 年 10 月才定型到它，中间还要先经历 <code class="language-plaintext highlighter-rouge">stdio</code> → <code class="language-plaintext highlighter-rouge">SSE</code> → <code class="language-plaintext highlighter-rouge">Unix Socket</code> 这一大圈？</strong></p>
+
+<p>原因非常真实：</p>
+
+<ol>
+  <li><strong>第一代：<code class="language-plaintext highlighter-rouge">stdio</code> 按需子进程（2026-01 ~ 04，延续桌面 Copilot 时代惯性）</strong>
+    <ul>
+      <li><strong>当时心态</strong>：所有开源 MCP 教程都教 <code class="language-plaintext highlighter-rouge">stdio</code>，零端口配置最省事。</li>
+      <li><strong>撞墙点</strong>：5 月接入 Pi 并启动多 Subagent 后，<code class="language-plaintext highlighter-rouge">pi-mcp-adapter</code> 默认按需给每个 Pi 进程各自 spawn 一个 <code class="language-plaintext highlighter-rouge">stdio</code> Server。开 N 个 Worker 就要同时常驻 N 份百兆级 <code class="language-plaintext highlighter-rouge">SentenceTransformer</code> + FAISS 向量索引；更致命的是 N 个独立进程拿着同一个账户并发读写 Cookie、各自算各自的 429 限流退避，直接触发平台会话互踢。</li>
+    </ul>
+  </li>
+  <li><strong>第二代：早期 <code class="language-plaintext highlighter-rouge">HTTP + SSE</code> 双端点（2026-05 <code class="language-plaintext highlighter-rouge">1a29dcf</code>，旧远程规范惯性）</strong>
+    <ul>
+      <li><strong>当时心态</strong>：发现 <code class="language-plaintext highlighter-rouge">stdio</code> 不能共享后，第一反应是按 MCP 初版远程文档搭 <code class="language-plaintext highlighter-rouge">/sse</code> + <code class="language-plaintext highlighter-rouge">/messages</code>。</li>
+      <li><strong>撞墙点</strong>：虽然把 Server 独立常驻了出来，但旧版 SSE 双端点协议在长连接断线重连、反向代理兼容以及服务端会话状态清理上都非常脆弱。</li>
+    </ul>
+  </li>
+  <li><strong>第三代：定制 <code class="language-plaintext highlighter-rouge">Unix Socket (/tmp/quant-night.sock)</code> + <code class="language-plaintext highlighter-rouge">launchd</code>（2026-08 <code class="language-plaintext highlighter-rouge">4999731</code>，工程洁癖绕路）</strong>
+    <ul>
+      <li><strong>当时心态</strong>：觉得“都在同一台 Mac 上跑，HTTP 太重了，不如直接走 Unix Domain Socket 既快又不用管端口”。</li>
+      <li><strong>撞墙点</strong>：Unix Socket 不在 MCP 官方标准传输规范里——客户端适配器必须打非标补丁，守护进程异常退出时还会残留 <code class="language-plaintext highlighter-rouge">.sock</code> 文件锁死下次启动，也缺少标准 HTTP 的 <code class="language-plaintext highlighter-rouge">Host/Origin</code> 检查与 Bearer Token 鉴权边界，属于典型的“为了局部省事引入长期非标维护债”。</li>
+    </ul>
+  </li>
+  <li><strong>第四代：标准 <code class="language-plaintext highlighter-rouge">Streamable HTTP</code> 单守护进程（2026-10 <code class="language-plaintext highlighter-rouge">44f48ce</code> 正式收口）</strong>
+    <ul>
+      <li><strong>回归原因</strong>：绕了一圈后发现，<strong>MCP <code class="language-plaintext highlighter-rouge">2025-03-26</code> 官方确立的 <code class="language-plaintext highlighter-rouge">Streamable HTTP</code> 本身就是为这个场景设计的</strong>——单端点 <code class="language-plaintext highlighter-rouge">/mcp</code> 兼顾短请求与流式响应，支持 <code class="language-plaintext highlighter-rouge">Mcp-Session-Id</code> 会话重建，原生兼容 Pi 与 AGY 等多客户端，且天然具备 <code class="language-plaintext highlighter-rouge">Host/Origin</code> 与 Bearer Token 安全边界。</li>
+      <li><strong>最终形态</strong>：唯一守护进程固定监听 <code class="language-plaintext highlighter-rouge">127.0.0.1:8765/mcp</code>，由系统 <code class="language-plaintext highlighter-rouge">tmux</code> 会话 <code class="language-plaintext highlighter-rouge">mcp_shared</code> 托管，彻底淘汰多进程 <code class="language-plaintext highlighter-rouge">stdio</code> 与非标 Unix Socket。</li>
+    </ul>
+  </li>
+</ol>
+
+<p><strong>采用 Streamable HTTP 带来的热更新红利</strong>：只要<strong>没增删工具、没改参数 Schema</strong>，改完服务端源码重启 <code class="language-plaintext highlighter-rouge">mcp_shared</code>，Pi 客户端（<code class="language-plaintext highlighter-rouge">pi-mcp-adapter</code>）与 AGY 在下次调用发现旧 <code class="language-plaintext highlighter-rouge">mcp-session-id</code> 失效后会自动重建 HTTP session 并路由到新代码，<strong>无需 <code class="language-plaintext highlighter-rouge">/reload</code> 或重开客户端</strong>；只有在工具列表或 Schema 变化时才需要通知客户端重载刷新工具定义。</p>
+
+<hr />
+
+<h2 id="四长驻运行的工程深坑检查点膨胀门禁自锁与进程身份漂移">四、长驻运行的工程深坑：检查点膨胀、门禁自锁与进程身份漂移</h2>
+
+<p>MCP 工具一旦作为常驻进程长期在线运行并承接长耗时异步任务（10 分钟 ~ 数小时），状态持久化、安全门禁与长驻进程对子进程的身份校验就会连续暴露出单次短跑测试根本测不出来的工程坑：</p>
+
+<h3 id="坑一68mb-单文件注册表拖垮事件循环">坑一：68MB 单文件注册表拖垮事件循环</h3>
+<ul>
+  <li>早期把所有异步任务进度全塞进一个 <code class="language-plaintext highlighter-rouge">tmp/mcp_task_registry.json</code>。跑了几个月后膨胀到 <strong>68MB</strong>——每次任意一个后台任务做 15 秒心跳保存，都要把 68MB JSON 全量序列化并刷盘，直接卡死整个异步事件循环。</li>
+  <li><strong>解法（<code class="language-plaintext highlighter-rouge">44f48ce</code>）</strong>：拆成<strong>单任务独立检查点</strong> <code class="language-plaintext highlighter-rouge">tmp/mcp_tasks/&lt;task_id&gt;.json</code>，采用“写临时文件 + <code class="language-plaintext highlighter-rouge">fsync</code> + <code class="language-plaintext highlighter-rouge">os.replace</code> 原子替换 + <code class="language-plaintext highlighter-rouge">0600</code> 权限”，仅在收到远端回执（<code class="language-plaintext highlighter-rouge">Location</code>）等关键边界强制同步刷盘。</li>
+</ul>
+
+<h3 id="坑二24472-个检查点把维护重启拖到-50-秒且历史拒收记录永久卡死门禁">坑二：24,472 个检查点把维护重启拖到 50 秒，且历史拒收记录永久卡死门禁</h3>
+<p>单文件拆分解决单次写入性能后，过了几个月目录下又积攒了 <strong>24,472 个文件</strong>（其中仅单次查详情的 <code class="language-plaintext highlighter-rouge">fetch-*</code> 缓存就占了 7,716 个），在 2026 年 11 月做维护重启时直接炸出连环死锁：</p>
+<ol>
+  <li><strong>50 秒备份撞上 15 秒心跳</strong>：重启安全门禁 <code class="language-plaintext highlighter-rouge">--prepare-maintenance</code> 在停服前要对所有文件逐一校验目录权限、拷贝并 <code class="language-plaintext highlighter-rouge">os.fsync</code> 做 SHA-256 备份。2.4 万个 <code class="language-plaintext highlighter-rouge">fsync</code> 耗时近 <strong>50 秒</strong>，而活跃任务每 <strong>15 秒</strong>写一次心跳，导致备份结束前最后一次一致性校验必报 <code class="language-plaintext highlighter-rouge">checkpoint_changed_during_backup</code> 失败。</li>
+  <li><strong>历史拒收记录永久锁死普通重启</strong>：4,868 条早期因平台限流被拒收（<code class="language-plaintext highlighter-rouge">status="failed"</code>, <code class="language-plaintext highlighter-rouge">acceptance="NOT_ACCEPTED"</code>, <code class="language-plaintext highlighter-rouge">rejection_evidence_received=True</code>）且结束时清零了 <code class="language-plaintext highlighter-rouge">ownerPid</code> 的记录，因为没有平台终态字段 <code class="language-plaintext highlighter-rouge">terminal_status</code>，被门禁代码一律判成 <code class="language-plaintext highlighter-rouge">unresolved_nonterminal</code>，把正常重启与源码热重载全部永久挡在门外。</li>
+</ol>
+
+<ul>
+  <li><strong>解法（<code class="language-plaintext highlighter-rouge">c80fe36</code>）</strong>：
+    <ul>
+      <li>修复门禁逻辑，明确将 <code class="language-plaintext highlighter-rouge">recoveryRequired=False</code> 终态记录和“有拒收证据且无回执 URL”的记录判为<strong>已结算（settled）</strong>；</li>
+      <li>对 2.4 万+历史结算文件做一次归档，并在 <code class="language-plaintext highlighter-rouge">APITools._load_tasks()</code> 启动阶段加入<strong>超过 24 小时已结算文件自动移入 <code class="language-plaintext highlighter-rouge">tmp/mcp_tasks_archive/</code></strong>，同时维护脚本按唯一父目录去重校验，把日常预检与备份压缩回 <strong>&lt; 1 秒</strong>。</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="坑三长驻进程在-macos-下的-psutil-init_boot_time-漂移导致-watcher-握手误杀">坑三：长驻进程在 macOS 下的 <code class="language-plaintext highlighter-rouge">psutil</code> <code class="language-plaintext highlighter-rouge">INIT_BOOT_TIME</code> 漂移导致 Watcher 握手误杀</h3>
+<ul>
+  <li><strong>现象（2026-11-21）</strong>：所有新拉起的外部通知进程（<code class="language-plaintext highlighter-rouge">watch_mcp_task.py</code>）都在握手期报错退出。追进 <code class="language-plaintext highlighter-rouge">psutil</code> macOS 底层源码（<code class="language-plaintext highlighter-rouge">_psosx</code>）发现，<code class="language-plaintext highlighter-rouge">psutil</code> 会在首次 <code class="language-plaintext highlighter-rouge">import</code> 时将系统开机时间截断为整数秒缓存成 <code class="language-plaintext highlighter-rouge">INIT_BOOT_TIME</code>；长驻了数天的 MCP 守护进程在系统发生微小 NTP 时钟校准后，计算出的子进程创建时间与子进程自己写入 <code class="language-plaintext highlighter-rouge">.lock</code> 的 <code class="language-plaintext highlighter-rouge">processCreatedAt</code> 恰好相差 <code class="language-plaintext highlighter-rouge">+1.0s</code>，外加原先 <code class="language-plaintext highlighter-rouge">3s</code> 墙钟死线在冷负载下偶发超时，引发全盘握手误杀。</li>
+  <li><strong>取舍</strong>：删掉脆弱的系统 <code class="language-plaintext highlighter-rouge">create_time()</code> 比对，防 PID 复用改由 <strong><code class="language-plaintext highlighter-rouge">PID 存活 + </code>.lock<code class="language-plaintext highlighter-rouge"> 独占绑定（</code>taskId<code class="language-plaintext highlighter-rouge"> / </code>itemKey<code class="language-plaintext highlighter-rouge"> / </code>target<code class="language-plaintext highlighter-rouge">）+ 完整 </code>cmdline<code class="language-plaintext highlighter-rouge"> 含任务 UUID</code></strong> 共同承担；握手等待改用单调时钟 <code class="language-plaintext highlighter-rouge">time.monotonic() + 10</code>，失败时透出具体 <code class="language-plaintext highlighter-rouge">(reason=...)</code>。</li>
+</ul>
+
+<hr />
+
+<h2 id="五如何让-mcp-重启时在途任务不断不误报失败">五、如何让 MCP 重启时“在途任务不断、不误报失败”？</h2>
+
+<p>早期的重启动作是一刀切：只要 <code class="language-plaintext highlighter-rouge">mcp_shared</code> 重启，<code class="language-plaintext highlighter-rouge">APITools._load_tasks()</code> 就把运行中的回测全标为 <code class="language-plaintext highlighter-rouge">status="failed"</code>（<code class="language-plaintext highlighter-rouge">errorClass="mcp_server_restart"</code>），甚至还会把属于相关性模块的 <code class="language-plaintext highlighter-rouge">corr-prod-*.json</code> 一并扫进去覆写成 <code class="language-plaintext highlighter-rouge">status="error"</code>。这导致外部正在轮询的 <code class="language-plaintext highlighter-rouge">watch_mcp_task.py</code> 一看到 <code class="language-plaintext highlighter-rouge">status="failed"</code>，<strong>瞬间向等待中的 Agent 发送“任务失败”通知，大量正常执行中的 Worker 被错误中止</strong>。</p>
+
+<p><strong>最终通过三处解耦实现了跨重启无感续跑</strong>：</p>
+<ol>
+  <li><strong>检查点边界隔离</strong>：回测加载器启动时跳过 <code class="language-plaintext highlighter-rouge">corr-*</code> 文件，交由相关性模块独立读取与恢复。</li>
+  <li><strong>Watcher 瞬态保活</strong>：<code class="language-plaintext highlighter-rouge">watch_mcp_task.py</code> 遇到 <code class="language-plaintext highlighter-rouge">errorClass="mcp_server_restart"</code> 且 <code class="language-plaintext highlighter-rouge">recoveryRequired=True</code> 时，判定为重启过渡态，<strong>不触发终态失败通知</strong>，继续等待后续更新。</li>
+  <li><strong>启动后自动后台续跑（同时保持测试纯洁性）</strong>：把自动续跑逻辑放在延迟初始化 <code class="language-plaintext highlighter-rouge">_ensure_initialized()</code> <strong>之后</strong>的独立异步阶段 <code class="language-plaintext highlighter-rouge">_resume_restarted_tasks()</code> 中执行（既不破坏无网络冷启动单测契约，又能在真实服务启动后第一时间接管）：
+    <ul>
+      <li>对持有有效平台 <code class="language-plaintext highlighter-rouge">progress_url</code> 的在途回测，自动拉起 <strong>GET-only</strong> 观察直至平台终态（绝不重发 <code class="language-plaintext highlighter-rouge">POST</code>）；</li>
+      <li>对未过截止期的 <code class="language-plaintext highlighter-rouge">corr-prod-*</code> 任务，保留重启前已完成的 <code class="language-plaintext highlighter-rouge">correlations</code> 字典并续跑剩余 Alpha 轮询。</li>
+    </ul>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="六通用边界取舍当系统同时拥有-mcp-与-cli-时什么该合什么不该迁">六、通用边界取舍：当系统同时拥有 MCP 与 CLI 时，什么该合、什么不该迁？</h2>
+
+<p>当一个工程项目同时拥有 <strong>MCP（常驻服务入口）</strong> 与 <strong>CLI（原生命令行 / 本地控制面）</strong> 时，开发者很容易陷入“非此即彼”的洁癖——要么想把所有 CLI 命令全塞进 MCP，要么想把 MCP 工具全改成 CLI。经过多轮演化后，真正可复用的跨项目架构取舍有四条：</p>
+
+<ol>
+  <li><strong>淘汰功能完全重合的越界入口</strong>：如果某项纯本地查询或控制操作已经收口到权威 CLI 控制面，就应果断下线 MCP 中语义重复或绕过统一锁的旧工具，避免同一件事维护两套状态机（例如示例项目中下线与 <code class="language-plaintext highlighter-rouge">taskctl</code> 重复的 <code class="language-plaintext highlighter-rouge">find_history_alphas</code> 与旧任务包装器）。</li>
+  <li><strong>不要为了“复用查库代码”破坏单个 MCP 工具的 Schema 一致性</strong>：如果某个 MCP 工具的本地查库实质上是远端 API 的 <strong>Read-Through 省流缓存</strong>（用来拦截高频重复请求、防止打爆平台限流），它就必须与穿透远端 API 返回<strong>同一套原始 Schema</strong>；如果硬把它转去复用面向前端表格的扁平化 CLI 输出，同一个工具在不同命中路径下吐出两套结构，会直接导致 Agent 解析崩溃。</li>
+  <li><strong>不要为了“技术栈统一”把重模型/常驻状态强迁进短命 CLI</strong>：很多看似“只是查一下本地库”的工具，底层其实依赖百兆级 Embedding 模型、内存向量索引或常驻连接池。把它们留在常驻 MCP 守护进程内<strong>冷加载一次即可长期复用</strong>，远比强塞进每次运行都要冷启动的短命 CLI 更高效。</li>
+  <li><strong>引入 Coding Mode（<code class="language-plaintext highlighter-rouge">codemode</code>）后重新对齐的 MCP vs CLI 边界</strong>：
+    <ul>
+      <li>在 Coding Mode 出现之前，CLI 本身就已经具备不占系统提示词 Schema、<code class="language-plaintext highlighter-rouge">--output</code> 落盘以及配合 Shell 管道过滤的天然优势；</li>
+      <li><strong>Coding Mode（<code class="language-plaintext highlighter-rouge">codemode</code>）真正改变的是 MCP 的调用体验</strong>：它让 MCP 工具可以隐藏在 <code class="language-plaintext highlighter-rouge">hidden</code> / <code class="language-plaintext highlighter-rouge">codemode</code> 后按需以代码形式直接调用与循环批处理，大幅简化了 MCP 调用复杂度并消除了直接暴露全量 Schema 的上下文负担。正因两者在“好不好调”上拉平了，分工才彻底回归数据流与状态本质：
+        <ul>
+          <li><strong>输入复杂（多行代码/嵌套 JSON）、需要常驻在线 Session/模型、需要按角色隔离敏感权限</strong> 👉 <strong>走 MCP</strong>；</li>
+          <li><strong>参数扁平但输出庞大（百条列表/大时序）、本地直连大查询与多步批处理编排</strong> 👉 <strong>走 CLI</strong>。</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ol>
+
+<hr />
+
+<blockquote>
+  <p>[!SUMMARY] 示例项目 MCP 演进关键时间轴（2026-01 → 2026-11，60+ 次提交）</p>
+  <ul>
+    <li><strong>2026-01-12 (<code class="language-plaintext highlighter-rouge">4d57297</code>)</strong>：首次提交引入 <code class="language-plaintext highlighter-rouge">quant_night_mcp</code>，跑通基础 MCP 工具调用；</li>
+    <li><strong>2026-02-06 ~ 02-17 (<code class="language-plaintext highlighter-rouge">b0836aa</code> / <code class="language-plaintext highlighter-rouge">3428318</code> / <code class="language-plaintext highlighter-rouge">0f0d153</code>)</strong>：接入字段搜索并清理易混淆的 <code class="language-plaintext highlighter-rouge">parse_alpha_expression</code>，开启工具收敛；</li>
+    <li><strong>2026-02-28 ~ 04-21 (<code class="language-plaintext highlighter-rouge">23f43d7</code> / <code class="language-plaintext highlighter-rouge">d9777b8</code> / <code class="language-plaintext highlighter-rouge">07484ec</code> / <code class="language-plaintext highlighter-rouge">b97b6dc</code>)</strong>：修复早期异步 fetch bug，收口同账号 <code class="language-plaintext highlighter-rouge">auth_profile</code> 登录锁与共享 Mongo 客户端；</li>
+    <li><strong>2026-04-28 ~ 04-29 (<code class="language-plaintext highlighter-rouge">1ffe2ca</code> / <code class="language-plaintext highlighter-rouge">ec9b8e6</code> / <code class="language-plaintext highlighter-rouge">2ccbe58</code>)</strong>：强化参数 Schema 校验、禁止猜测参数，引入任务持久化与回测前置校验；</li>
+    <li><strong>2026-05-02 ~ 06-23 (<code class="language-plaintext highlighter-rouge">1a29dcf</code> / <code class="language-plaintext highlighter-rouge">f26ac30</code> / <code class="language-plaintext highlighter-rouge">1faec0e</code>)</strong>：从 <code class="language-plaintext highlighter-rouge">stdio</code> 迁向 HTTP 协议，新增相关性工具与批量多 ID 查询；</li>
+    <li><strong>2026-08-04 ~ 08-08 (<code class="language-plaintext highlighter-rouge">4999731</code>)</strong>：尝试 Unix Socket (<code class="language-plaintext highlighter-rouge">/tmp/quant-night.sock</code>) 共享方案以消除多进程内存与 Cookie 踩踏；</li>
+    <li><strong>2026-09-14 (<code class="language-plaintext highlighter-rouge">7198bcf</code> / <code class="language-plaintext highlighter-rouge">3a9b045</code>)</strong>：落地基于 <code class="language-plaintext highlighter-rouge">pi-agent-notify</code> + <code class="language-plaintext highlighter-rouge">watch_mcp_task.py</code> 的事件驱动通知，并加入重启状态围栏；</li>
+    <li><strong>2026-10-05 (<code class="language-plaintext highlighter-rouge">44f48ce</code>)</strong>：淘汰 Unix Socket 与 68MB 单文件注册表，收口为单一 Streamable HTTP 守护进程（<code class="language-plaintext highlighter-rouge">127.0.0.1:8765/mcp</code>）、<code class="language-plaintext highlighter-rouge">0600</code> Bearer 鉴权、单任务检查点与结果直传；</li>
+    <li><strong>2026-11-19 (<code class="language-plaintext highlighter-rouge">b9f6854</code>)</strong>：打通异步提交闭环，退役冗余的 <code class="language-plaintext highlighter-rouge">find_history_alphas</code>，明确与 <code class="language-plaintext highlighter-rouge">task-core</code> 的双端边界；</li>
+    <li><strong>2026-11-22 (<code class="language-plaintext highlighter-rouge">c80fe36</code>)</strong>：移除 macOS <code class="language-plaintext highlighter-rouge">create_time()</code> 校验并改为 10s 单调时钟握手，修复重启门禁历史误阻断，落地 Simulation 与 <code class="language-plaintext highlighter-rouge">corr-prod-*</code> 跨重启无缝续跑及 &gt;24h 过期检查点自动归档。</li>
+  </ul>
+</blockquote>
+
+        </div>
+
+        
+
+        
+        
+  <div class="page-comments">
+    <div id="disqus_thread"></div>
+    <script>
+      var disqus_config = function () {
+        this.page.url = 'https://roshameow.github.io//personal_homepage/tool/mcp-dev-pitfalls/';
+        this.page.identifier = 'https://roshameow.github.io//personal_homepage/tool/mcp-dev-pitfalls/';
+      };
+
+      (function() {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://https-roshameow-github-io-personal-homepage.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+  </div>
+
+
+        
+
+        <nav class="page-pagination" role="navigation">
+  
+    <a class="page-previous" href="/personal_homepage/tool/git-sync/">
+      <h4 class="page-pagination-label">Previous</h4>
+      <span class="page-pagination-title">
+        <i class="fas fa-arrow-left"></i> git-sync：双机多 Agent 开发的确定性同步与 Guardian 事件驱动工作流
+
+      </span>
+    </a>
+  
+
+  
+    <a class="page-next" href="/personal_homepage/tool/quantnight-daemons/">
+      <h4 class="page-pagination-label">Next</h4>
+      <span class="page-pagination-title">
+        QuantNight 守护进程与定时调度体系全景
+ <i class="fas fa-arrow-right"></i>
+      </span>
+    </a>
+  
+</nav>
+
+      </div>
+
+    </div>
+  </article>
+</main>
+
+    <footer id="footer" class="site-footer">
+  <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+<div class="social-icons"><a class="social-icon" href="/personal_homepage/atom.xml"><i class="fas fa-rss-square fa-2x" title="Feed"></i></a><a class="social-icon" href="https://github.com/roshameow"><i class="fab fa-github-square fa-2x" title="GitHub"></i></a><a class="social-icon" href="https://www.linkedin.com/in/wen-liu-06503a7b/"><i class="fab fa-linkedin fa-2x" title="LinkedIn"></i></a><a class="social-icon" href="mailto:w.liuatnk@gmail.com"><i class="fas fa-envelope-square fa-2x" title="e-mail"></i></a></div><div class="copyright">
+    
+      <p>&copy; 2026 Liu, Wen's Home Page. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://github.com/mmistakes/so-simple-theme" rel="nofollow">So Simple</a>.</p>
+    
+  </div>
+</footer>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="/personal_homepage/assets/js/main.min.js"></script>
+<script src="https://use.fontawesome.com/releases/v5.0.12/js/all.js"></script><script src="/personal_homepage/assets/js/content-tables.js" defer></script>
+
+<script>
+(function () {
+  'use strict';
+
+  var types = {
+    NOTE: 'note', INFO: 'note', ABSTRACT: 'note', SUMMARY: 'note', TLDR: 'note',
+    EXAMPLE: 'note', QUOTE: 'note', CITE: 'note',
+    TIP: 'tip', HINT: 'tip', IMPORTANT: 'tip', SUCCESS: 'tip', CHECK: 'tip', DONE: 'tip',
+    QUESTION: 'warning', HELP: 'warning', FAQ: 'warning',
+    WARNING: 'warning', CAUTION: 'warning', ATTENTION: 'warning',
+    DANGER: 'danger', ERROR: 'danger', BUG: 'danger',
+    FAILURE: 'danger', FAIL: 'danger', MISSING: 'danger'
+  };
+  var icons = {
+    note: 'M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z M12 11v6 M12 7h.01',
+    tip: 'M9 18h6 M10 21h4 M9 15a6 6 0 1 1 6 0v3H9z',
+    warning: 'M12 3L2 21h20z M12 9v5 M12 17h.01',
+    danger: 'M7 3h10l4 4v10l-4 4H7l-4-4V7z M9 9l6 6 M15 9l-6 6'
+  };
+
+  function makeIcon(type) {
+    var namespace = 'http://www.w3.org/2000/svg';
+    var svg = document.createElementNS(namespace, 'svg');
+    svg.setAttribute('class', 'callout-icon');
+    svg.setAttribute('viewBox', '0 0 24 24');
+    svg.setAttribute('width', '20');
+    svg.setAttribute('height', '20');
+    svg.setAttribute('fill', 'none');
+    svg.setAttribute('stroke', 'currentColor');
+    svg.setAttribute('stroke-width', '2');
+    svg.setAttribute('stroke-linecap', 'round');
+    svg.setAttribute('stroke-linejoin', 'round');
+    svg.setAttribute('aria-hidden', 'true');
+    svg.setAttribute('focusable', 'false');
+    var path = document.createElementNS(namespace, 'path');
+    path.setAttribute('d', icons[type]);
+    svg.appendChild(path);
+    return svg;
+  }
+
+  // A soft break is a text newline; a Markdown hard break is a <br>.
+  // Do not split newlines inside inline code or other literal content.
+  function firstBreak(parent) {
+    for (var node = parent.firstChild; node; node = node.nextSibling) {
+      if (node.nodeType === 3) {
+        var offset = node.data.search(/[\r\n]/);
+        if (offset !== -1) return { node: node, offset: offset };
+      } else if (node.nodeType === 1) {
+        if (node.tagName === 'BR') return { node: node };
+        if (/^(CODE|PRE|SCRIPT|STYLE|TEXTAREA)$/.test(node.tagName)) continue;
+        var result = firstBreak(node);
+        if (result) return result;
+      }
+    }
+    return null;
+  }
+
+  function transformCallouts() {
+    document.querySelectorAll('.page-content blockquote').forEach(function (quote) {
+      if (quote.closest('pre, code, .highlight, .highlighter-rouge')) return;
+      var paragraph = quote.firstElementChild;
+      if (!paragraph || paragraph.tagName !== 'P') return;
+
+      // Require the marker in a direct text node: <code>[!WARNING]</code>
+      // (and markers merely mentioned later in a quote) must remain literal.
+      var markerNode = paragraph.firstChild;
+      if (!markerNode || markerNode.nodeType !== 3) return;
+      var marker = markerNode.data.match(/^[\t \r\n]*\[!([a-z][a-z0-9-]*)\]([+-])?(?=[\t \r\n]|$)[\t ]*/i);
+      if (!marker) return;
+      var name = marker[1].toUpperCase();
+      if (!Object.prototype.hasOwnProperty.call(types, name)) return;
+      var type = types[name];
+      var label = name === 'TLDR' ? 'TL;DR' : name.charAt(0) + name.slice(1).toLowerCase();
+      markerNode.deleteData(0, marker[0].length);
+
+      var boundary = firstBreak(paragraph);
+      var range = document.createRange();
+      range.selectNodeContents(paragraph);
+      if (boundary) {
+        if (boundary.node.nodeType === 3) range.setEnd(boundary.node, boundary.offset);
+        else range.setEndBefore(boundary.node);
+      }
+      var titleContent = range.extractContents();
+      if (boundary) {
+        if (boundary.node.nodeType === 3) {
+          var breakLength = boundary.node.data.slice(0, 2) === '\r\n' ? 2 : 1;
+          boundary.node.deleteData(0, breakLength);
+        } else {
+          boundary.node.parentNode.removeChild(boundary.node);
+        }
+      }
+      if (!paragraph.textContent.trim() && !paragraph.children.length) {
+        quote.removeChild(paragraph);
+      }
+
+      var folding = !!marker[2];
+      var callout = document.createElement(folding ? 'details' : 'div');
+      // Keep author-provided IDs, language, direction, and classes.
+      Array.prototype.forEach.call(quote.attributes, function (attribute) {
+        callout.setAttribute(attribute.name, attribute.value);
+      });
+      callout.classList.add('callout', 'callout--' + type);
+      callout.setAttribute('data-callout', name.toLowerCase());
+      callout.setAttribute('aria-label', label);
+      if (folding) {
+        callout.removeAttribute('role');
+        if (marker[2] === '+') callout.setAttribute('open', '');
+        else callout.removeAttribute('open');
+      } else {
+        callout.setAttribute('role', 'note');
+      }
+
+      var title = document.createElement(folding ? 'summary' : 'div');
+      title.className = 'callout-title';
+      title.appendChild(makeIcon(type));
+      var titleText = document.createElement('span');
+      titleText.className = 'callout-title-text';
+      if (titleContent.textContent.trim() || titleContent.childElementCount) {
+        titleText.appendChild(titleContent);
+      } else {
+        titleText.textContent = label;
+      }
+      title.appendChild(titleText);
+      callout.appendChild(title);
+
+      var body = document.createElement('div');
+      body.className = 'callout-body';
+      while (quote.firstChild) body.appendChild(quote.firstChild);
+      callout.appendChild(body);
+      quote.parentNode.replaceChild(callout, quote);
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', transformCallouts);
+  } else {
+    transformCallouts();
+  }
+})();
+</script>
+<!-- <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'G-9TMSCDTBGN', 'auto');
+  ga('send', 'pageview');
+</script> -->
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9TMSCDTBGN"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-9TMSCDTBGN');
+</script>
+
+
+
+<!-- MathJax -->
+<style>
+    /* Only oversized equations get this wrapper; ordinary inline math stays inline. */
+    .math-scroll {
+        display: block;
+        max-width: 100%;
+        overflow-x: auto;
+        overflow-y: hidden;
+        padding-block: 0.5em;
+        scrollbar-width: thin;
+    }
+    .math-scroll > mjx-container[jax] {
+        display: inline-block;
+        margin: 0;
+    }
+    .math-scroll:focus-visible {
+        outline: 2px solid currentColor;
+        outline-offset: 2px;
+    }
+</style>
+<script>
+    function fitMathToColumn() {
+        document.querySelectorAll('mjx-container').forEach(function (container) {
+            var wrapper = container.parentElement.classList.contains('math-scroll') ? container.parentElement : null;
+            var column = wrapper ? wrapper.parentElement : container.parentElement;
+            while (column && ['inline', 'contents'].includes(getComputedStyle(column).display)) {
+                column = column.parentElement;
+            }
+            if (!column) return;
+            var style = getComputedStyle(column);
+            var available = column.clientWidth - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight);
+            var ink = container.querySelector('mjx-math, svg');
+            var width = (ink || container).getBoundingClientRect().width;
+            if (width > available + 1) {
+                if (!wrapper) {
+                    wrapper = document.createElement('span');
+                    wrapper.className = 'math-scroll';
+                    wrapper.tabIndex = 0;
+                    wrapper.setAttribute('role', 'region');
+                    wrapper.setAttribute('aria-label', 'Mathematical formula; scroll horizontally to read all');
+                    wrapper.title = 'Scroll horizontally to read the full formula';
+                    container.before(wrapper);
+                    wrapper.appendChild(container);
+                }
+            } else if (wrapper) {
+                wrapper.replaceWith(container);
+            }
+        });
+    }
+    // Pin the engine, autoloaded TeX extensions, menu and fonts to local assets.
+    window.MathJax = {
+        loader: {
+            paths: { mathjax: "/personal_homepage/assets/js/vendor/mathjax/es5" },
+            load: ['[tex]/textmacros']
+        },
+        tex: {
+            tags: "ams",
+            packages: { '[+]': ['textmacros'] },
+            inlineMath: [['$', '$'], ['\\(', '\\)']],
+            displayMath: [['$$', '$$'], ['\\[', '\\]']]
+        },
+        chtml: {
+            fontURL: "/personal_homepage/assets/js/vendor/mathjax/es5/output/chtml/fonts/woff-v2"
+        },
+        startup: {
+            pageReady: function () {
+                return MathJax.startup.defaultPageReady().then(function () {
+                    return document.fonts ? document.fonts.ready : undefined;
+                }).then(function () {
+                    fitMathToColumn();
+                    var scheduled = false;
+                    window.addEventListener('resize', function () {
+                        if (scheduled) return;
+                        scheduled = true;
+                        requestAnimationFrame(function () {
+                            scheduled = false;
+                            fitMathToColumn();
+                        });
+                    });
+                });
+            }
+        },
+        options: {
+            // Keep examples (including literal dollar signs) out of the typesetter.
+            skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code', 'annotation', 'annotation-xml']
+        }
+    };
+</script>
+<script id="MathJax-script" async src="/personal_homepage/assets/js/vendor/mathjax/es5/tex-mml-chtml.js"></script>
+
+
+
+
+<!-- Mermaid -->
+<style>
+  .mermaid-diagram {
+    max-width: 100%;
+    margin: 0.85rem 0;
+    overflow-x: auto;
+  }
+  .mermaid-diagram:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+  }
+  .page-content pre.mermaid {
+    margin: 0;
+    padding: 0.25rem 0;
+    text-align: center;
+    background: transparent;
+    overflow: visible;
+    font-family: inherit;
+  }
+  .page-content pre.mermaid[data-processed] {
+    white-space: normal;
+  }
+  pre.mermaid svg {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    height: auto;
+  }
+  .mermaid-diagram .cluster-label {
+    font-weight: 700;
+  }
+  .mermaid-error {
+    font-size: 0.85em;
+    color: #9a3412;
+  }
+</style>
+<script src="/personal_homepage/assets/js/vendor/mermaid-11.17.2.min.js"></script>
+<script>
+(function () {
+  'use strict';
+
+  function normalizeMermaidSource(source) {
+    // Mermaid 11 accepts A <-- "label" --- B but creates an INVALID edge.
+    // Render the equivalent B -->|"label"| A, without editing the Markdown.
+    var body = source.trimStart()
+      .replace(/^---\r?\n[\s\S]*?\r?\n---(?:\r?\n|$)/, '')
+      .replace(/%%\{[\s\S]*?\}%%/g, '')
+      .replace(/^[\t ]*%%.*$/gm, '').trimStart();
+    if (!/^(?:flowchart|graph)\b/.test(body)) return source;
+
+    var started = false;
+    var quoted = false;
+    return source.replace(/[^\r\n]+/g, function (line) {
+      if (!started && !/^\s*(?:flowchart|graph)\b/.test(line)) return line;
+      started = true;
+      var normalized = quoted ? line : line.replace(
+        /^([\t ]*)([A-Za-z_][\w-]*)[\t ]*<--[\t ]*("[^"\r\n]*")[\t ]*---[\t ]*([A-Za-z_][\w-]*)([\t ]*;?[\t ]*(?:%%.*)?)$/,
+        function (_, indent, left, label, right, suffix) {
+          return indent + right + ' -->|' + label + '| ' + left + suffix;
+        }
+      );
+      // Never rewrite an example inside a multiline quoted node label, and
+      // never let quotes inside a %% comment affect the following lines.
+      for (var i = 0; i < line.length; i++) {
+        if (!quoted && line[i] === '%' && line[i + 1] === '%') break;
+        if (line[i] === '"') quoted = !quoted;
+      }
+      return normalized;
+    });
+  }
+
+  async function renderDiagrams() {
+    var blocks = document.querySelectorAll('code.language-mermaid');
+    if (!blocks.length) return;
+    if (typeof mermaid === 'undefined') {
+      blocks.forEach(function (code) {
+        var original = code.closest('.highlighter-rouge') || code.closest('pre');
+        if (!original) return;
+        var message = document.createElement('p');
+        message.className = 'mermaid-error';
+        message.setAttribute('role', 'status');
+        message.textContent = '图表组件加载失败，请刷新页面重试。Mermaid 源码已保留。';
+        original.after(message);
+      });
+      return;
+    }
+
+    // Render every diagram as Mermaid, including diagrams with multiple subgraphs.
+    // Disable the automatic pass so it cannot race with our explicit rendering.
+    var skin = getComputedStyle(document.documentElement);
+    function color(name, fallback) {
+      return skin.getPropertyValue('--mermaid-' + name).trim() || fallback;
+    }
+    var background = color('background', '#ffffff');
+    var text = color('text', '#000000');
+    var border = color('border', '#cccccc');
+    var nodeBorder = color('node-border', '#b8b9c0');
+    var cluster = color('cluster-background', '#f9f9fa');
+    var line = color('line', '#858795');
+    var palettes = [
+      ['#e4eaf0', '#f4f6f9', '#a5b3c2'], // slate blue
+      ['#e8f0ea', '#f5f8f5', '#a8bcae'], // sage
+      ['#f3ede3', '#faf7f2', '#c6b69c'], // sand
+      ['#ebe8f1', '#f7f5fa', '#b5adc5'], // lavender
+      ['#e4eeee', '#f3f8f8', '#a0baba']  // muted teal
+    ].map(function (fallbacks, index) {
+      return {
+        node: color('palette-' + index + '-node', fallbacks[0]),
+        cluster: color('palette-' + index + '-cluster', index === 0 ? cluster : fallbacks[1]),
+        border: color('palette-' + index + '-border', fallbacks[2])
+      };
+    });
+    var fontFamily = getComputedStyle(document.body).fontFamily ||
+      '"Source Sans Pro", sans-serif';
+    // Mermaid fixes label dimensions during layout. Wait for web fonts so a
+    // later font swap cannot make the measured label box too small.
+    if (document.fonts) await document.fonts.ready;
+
+    var theme = "default";
+    // The site's default follows its active skin. Explicit forest/dark/etc.
+    // choices remain available for sites that deliberately select them.
+    if (theme === 'default') theme = 'base';
+
+    var config = {
+      startOnLoad: false,
+      securityLevel: 'strict',
+      fontFamily: fontFamily,
+      // Native SVG text avoids foreignObject clipping and article paragraph CSS.
+      htmlLabels: false,
+      flowchart: {
+        inheritDir: true,
+        curve: 'linear',
+        nodeSpacing: 24,
+        rankSpacing: 28,
+        padding: 8,
+        diagramPadding: 8,
+        wrappingWidth: 180,
+        // Nested cluster borders must start below the parent's full title line.
+        subGraphTitleMargin: { top: 4, bottom: 12 }
+      },
+      theme: theme,
+      themeVariables: theme === 'base' ? {
+        fontFamily: fontFamily,
+        fontSize: '14px',
+        background: background,
+        primaryColor: palettes[0].node,
+        primaryTextColor: text,
+        primaryBorderColor: nodeBorder,
+        secondaryColor: palettes[1].node,
+        secondaryTextColor: text,
+        secondaryBorderColor: border,
+        tertiaryColor: palettes[2].node,
+        tertiaryTextColor: text,
+        tertiaryBorderColor: border,
+        lineColor: line,
+        textColor: text,
+        mainBkg: palettes[0].node,
+        nodeBorder: nodeBorder,
+        nodeTextColor: text,
+        clusterBkg: palettes[0].cluster,
+        clusterBorder: border,
+        titleColor: text,
+        defaultLinkColor: line,
+        edgeLabelBackground: background,
+        noteBkgColor: palettes[2].node,
+        noteTextColor: text,
+        noteBorderColor: border,
+        actorBkg: palettes[0].node,
+        actorBorder: nodeBorder,
+        actorTextColor: text,
+        actorLineColor: border,
+        signalColor: line,
+        signalTextColor: text
+      } : { fontFamily: fontFamily }
+    };
+
+    function applyFlowchartPalette(svg) {
+      if (theme !== 'base' || !/^flowchart/.test(svg.getAttribute('aria-roledescription') || '')) return;
+
+      function tint(group, shapes, index, kind) {
+        // Author-supplied classDef/style colors take precedence over auto accents.
+        var customClass = Array.from(group.classList).some(function (name) {
+          return !['node', 'default', 'cluster', 'clickable'].includes(name);
+        });
+        if (customClass || !shapes.length || shapes.some(function (shape) {
+          return shape.style.getPropertyValue('fill') || shape.style.getPropertyValue('stroke');
+        })) return;
+        group.setAttribute('data-mermaid-palette', index);
+        shapes.forEach(function (shape) {
+          // Keep fallbacks in the SVG so exported diagrams retain their colors.
+          if (shape.getAttribute('fill') !== 'none') {
+            shape.style.fill = 'var(--mermaid-palette-' + index + '-' + kind + ', ' + palettes[index][kind] + ')';
+          }
+          shape.style.stroke = 'var(--mermaid-palette-' + index + '-border, ' + palettes[index].border + ')';
+        });
+      }
+
+      var groups = Array.from(svg.querySelectorAll('g.cluster')).map(function (group, index) {
+        var rect = group.querySelector('rect');
+        return { group: group, rect: rect, bounds: rect && rect.getBoundingClientRect(), index: index % palettes.length };
+      }).filter(function (entry) { return entry.rect; });
+      // Mermaid's SVG stores clusters flat. Match by the actual layout so nodes
+      // inherit their smallest enclosing group, including nested schedulers.
+      var nodes = Array.from(svg.querySelectorAll('g.node')).map(function (node) {
+        return { node: node, bounds: node.getBoundingClientRect() };
+      });
+      groups.forEach(function (entry) { tint(entry.group, [entry.rect], entry.index, 'cluster'); });
+      groups.sort(function (a, b) { return a.bounds.width * a.bounds.height - b.bounds.width * b.bounds.height; });
+      nodes.forEach(function (entry) {
+        var box = entry.bounds;
+        var parent = groups.find(function (group) {
+          var bounds = group.bounds;
+          return box.left >= bounds.left - 1 && box.right <= bounds.right + 1 &&
+            box.top >= bounds.top - 1 && box.bottom <= bounds.bottom + 1;
+        });
+        var shapes = [];
+        entry.node.querySelectorAll(':scope > .label-container').forEach(function (container) {
+          // Rounded/hand-drawn shapes wrap paths in a group. Include the
+          // container in the author-style check, then tint the actual paths.
+          shapes.push(container);
+          shapes.push.apply(shapes, container.querySelectorAll('path, rect, circle, ellipse, polygon, polyline'));
+        });
+        tint(entry.node, shapes, parent ? parent.index : 0, 'node');
+      });
+    }
+
+    function hasNestedSubgraphs(source) {
+      var depth = 0;
+      return source.split(/\r?\n/).some(function (line) {
+        if (/^\s*subgraph\b/.test(line)) return ++depth > 1;
+        if (/^\s*end\s*(?:;|%%.*)?$/.test(line)) depth = Math.max(0, depth - 1);
+        return false;
+      });
+    }
+
+    for (var code of blocks) {
+      var original = code.closest('.highlighter-rouge') || code.closest('pre');
+      if (!original) continue;
+
+      var wrapper = document.createElement('div');
+      wrapper.className = 'mermaid-diagram';
+      wrapper.tabIndex = 0;
+      wrapper.setAttribute('role', 'region');
+      wrapper.setAttribute('aria-label', 'Mermaid diagram (scroll horizontally)');
+
+      var pre = document.createElement('pre');
+      pre.className = 'mermaid';
+      pre.textContent = normalizeMermaidSource(code.textContent);
+      wrapper.appendChild(pre);
+      original.replaceWith(wrapper);
+
+      try {
+        // Dagre reserves only half rankSpacing above a nested cluster. Keep
+        // that space taller than its parent's title, without spreading out
+        // the ordinary (non-nested) compact flowcharts.
+        mermaid.initialize(Object.assign({}, config, {
+          flowchart: Object.assign({}, config.flowchart, {
+            rankSpacing: hasNestedSubgraphs(code.textContent) ? 56 : config.flowchart.rankSpacing
+          })
+        }));
+        await mermaid.run({ nodes: [pre] });
+        var svg = pre.querySelector('svg');
+        if (svg && svg.viewBox.baseVal.width) {
+          // Do not shrink labels to illegible text on narrow screens;
+          // keep at least 90% of the natural size and scroll the diagram instead.
+          svg.style.minWidth = (svg.viewBox.baseVal.width * 0.9) + 'px';
+        }
+        if (svg) applyFlowchartPalette(svg);
+      } catch (error) {
+        // A malformed diagram must not prevent other diagrams from rendering
+        // or make the original source disappear.
+        wrapper.replaceChildren(original);
+        var message = document.createElement('p');
+        message.className = 'mermaid-error';
+        message.setAttribute('role', 'status');
+        message.textContent = '图表渲染失败，已保留 Mermaid 源码。';
+        wrapper.appendChild(message);
+        console.warn('Mermaid diagram could not be rendered:', error);
+      }
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', renderDiagrams);
+  } else {
+    renderDiagrams();
+  }
+})();
+</script>
+
+
+  </body>
+
+</html>

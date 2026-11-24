@@ -20,19 +20,19 @@
 <meta name="generator" content="Jekyll v4.4.1" />
 <meta property="og:title" content="LLM接口协议梳理" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="梳理一下主流 LLM 接口的请求/响应结构、调用模式，以及各协议的差异，方便选型和对接时快速对照。" />
-<meta name="twitter:description" property="og:description" content="梳理一下主流 LLM 接口的请求/响应结构、调用模式，以及各协议的差异，方便选型和对接时快速对照。" />
+<meta name="description" content="梳理主流 LLM HTTP/SSE 线上接口（Wire Protocol）的请求/响应结构、调用模式，以及各厂商与自托管引擎的协议差异，方便选型和自研 Harness 对接时快速对照。（关于工具执行层与 Harness / Function Calling / MCP / CLI / Skills 的分层协作，见同专题 Agent 工具体系与接入规范。）" />
+<meta name="twitter:description" property="og:description" content="梳理主流 LLM HTTP/SSE 线上接口（Wire Protocol）的请求/响应结构、调用模式，以及各厂商与自托管引擎的协议差异，方便选型和自研 Harness 对接时快速对照。（关于工具执行层与 Harness / Function Calling / MCP / CLI / Skills 的分层协作，见同专题 Agent 工具体系与接入规范。）" />
 <link rel="canonical" href="https://roshameow.github.io//personal_homepage/tool/llm-protocal/" />
 <meta property="og:url" content="https://roshameow.github.io//personal_homepage/tool/llm-protocal/" />
 <meta property="og:site_name" content="Liu, Wen’s Home Page" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2026-05-16T00:00:00+00:00" />
-<meta property="article:modified_time" content="2026-05-28T18:26:00+00:00" />
+<meta property="article:modified_time" content="2026-11-23T12:30:00+00:00" />
 <meta name="twitter:card" content="summary" />
 <meta name="twitter:title" content="LLM接口协议梳理" />
 <meta name="twitter:site" content="@" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2026-05-28T18:26:00+00:00","datePublished":"2026-05-16T00:00:00+00:00","description":"梳理一下主流 LLM 接口的请求/响应结构、调用模式，以及各协议的差异，方便选型和对接时快速对照。","headline":"LLM接口协议梳理","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/tool/llm-protocal/"},"url":"https://roshameow.github.io//personal_homepage/tool/llm-protocal/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2026-11-23T12:30:00+00:00","datePublished":"2026-05-16T00:00:00+00:00","description":"梳理主流 LLM HTTP/SSE 线上接口（Wire Protocol）的请求/响应结构、调用模式，以及各厂商与自托管引擎的协议差异，方便选型和自研 Harness 对接时快速对照。（关于工具执行层与 Harness / Function Calling / MCP / CLI / Skills 的分层协作，见同专题 Agent 工具体系与接入规范。）","headline":"LLM接口协议梳理","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/tool/llm-protocal/"},"url":"https://roshameow.github.io//personal_homepage/tool/llm-protocal/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -108,7 +108,7 @@
       <div class="page-sidebar">
         <div class="page-author h-card p-author"><img src="/personal_homepage/docs/images/logo.svg" class="author-avatar u-photo" alt=""><div class="author-info">
 
-<span class="read-time">2 min read</span>
+<span class="read-time">3 min read</span>
 
     <time class="page-date dt-published" datetime="2026-05-16T00:00:00+00:00"><a class="u-url" href="">May 16, 2026</a>
 </time>
@@ -140,7 +140,7 @@
     </h2>
   </summary>
   <div class="toc-content">
-    <ul class="inline_toc" id="my_toc"><li><a href="#不同-api-对照表--云端-llm-厂商原生接口">不同 API 对照表 — 云端 LLM 厂商原生接口</a></li><li><a href="#五种基本调用模式">五种基本调用模式</a><ul><li><a href="#单轮文本生成">单轮文本生成</a></li><li><a href="#多轮对话客户端维护历史">多轮对话（客户端维护历史）</a></li><li><a href="#多轮对话服务端维护状态">多轮对话（服务端维护状态）</a></li><li><a href="#工具调用闭环">工具调用闭环</a></li><li><a href="#流式生成">流式生成</a></li></ul></li><li><a href="#本地托管协议支持">本地/托管协议支持</a></li></ul>
+    <ul class="inline_toc" id="my_toc"><li><a href="#不同-api-对照表--云端-llm-厂商原生接口">不同 API 对照表 — 云端 LLM 厂商原生接口</a></li><li><a href="#五种基本调用模式">五种基本调用模式</a><ul><li><a href="#单轮文本生成">单轮文本生成</a></li><li><a href="#多轮对话客户端维护历史">多轮对话（客户端维护历史）</a></li><li><a href="#多轮对话服务端维护状态">多轮对话（服务端维护状态）</a></li><li><a href="#工具调用闭环">工具调用闭环</a></li><li><a href="#流式生成">流式生成</a></li></ul></li><li><a href="#协议对接避坑补充">协议对接避坑补充</a></li><li><a href="#本地托管协议支持">本地/托管协议支持</a></li></ul>
   </div>
 </details>
 
@@ -157,15 +157,15 @@
   <div class="toc-content">
     <ul>
       
-      <li><a href="/personal_homepage/data/alpha29/">News & Social Media 新闻流、社交媒体情绪与文本事件数据体系</a></li>
+      <li><a href="/personal_homepage/tool/quantnight-daemons/">QuantNight 守护进程与定时调度体系全景</a></li>
       
-      <li><a href="/personal_homepage/data/alpha28/">日内 PV 统计量与市场微结构衍生指标体系</a></li>
+      <li><a href="/personal_homepage/tool/mcp-dev-pitfalls/">生产级 MCP 开发演进复盘：以 QuantNight MCP 为例谈踩坑、弯路与架构取舍</a></li>
       
-      <li><a href="/personal_homepage/tool/alpha27/">从过度防御的歪路纠偏：GUI/CLI 6 态极简控制面、数据面板统一与工程收口</a></li>
+      <li><a href="/personal_homepage/tool/git-sync/">git-sync：双机多 Agent 开发的确定性同步与 Guardian 事件驱动工作流</a></li>
       
-      <li><a href="/personal_homepage/thought/agent-infrastructure-pitfalls-2/">用 AI 维护复杂控制面基础设施：为什么越修越死？从补丁膨胀到 6 态收敛的六大工程陷阱</a></li>
+      <li><a href="/personal_homepage/tool/alpha30/">QuantNight 原生 MCP 共享底座架构：单守护进程、事件通知、跨重启续跑与双端职责边界</a></li>
       
-      <li><a href="/personal_homepage/tool/pi-subagent-durable/">pi-subagent-durable：后台子代理的持久化、生命周期与故障自愈</a></li>
+      <li><a href="/personal_homepage/finance/operators/">WorldQuant FASTEXPR 核心算子解析、分布整形与线性回归推导</a></li>
       
     </ul>
   </div>
@@ -177,71 +177,34 @@
 
       <div class="page-content">
         <div class="e-content">
-          <p>梳理一下主流 LLM 接口的请求/响应结构、调用模式，以及各协议的差异，方便选型和对接时快速对照。</p>
+          <p>梳理主流 LLM HTTP/SSE 线上接口（Wire Protocol）的请求/响应结构、调用模式，以及各厂商与自托管引擎的协议差异，方便选型和自研 Harness 对接时快速对照。（关于工具执行层与 Harness / Function Calling / MCP / CLI / Skills 的分层协作，见同专题 <a href="2025-04-04-agent-tools.md">Agent 工具体系与接入规范</a>。）</p>
 
-<pre><code class="language-mermaid">
-flowchart LR
+<pre><code class="language-mermaid">flowchart TB
+    subgraph req["请求侧 — 客户端发什么"]
+        direction LR
+        R1["输入与上下文&lt;br/&gt;prompt / input / messages[]&lt;br/&gt;历史或 state ID"]
+        R2["系统与工具&lt;br/&gt;system / instructions&lt;br/&gt;tools[] / 远程 MCP"]
+        R3["配置与前缀缓存&lt;br/&gt;stream · json_schema · effort&lt;br/&gt;cache_control / prompt_cache_key"]
+        R1 ~~~ R2 ~~~ R3
+    end
 
-subgraph req["请求侧 — 客户端发什么"]
+    subgraph model["模型执行"]
+        direction LR
+        M1["1. 命中前缀缓存&lt;br/&gt;组装上下文"]
+        M2["2. 内部推理&lt;br/&gt;Thinking / Reasoning"]
+        M3["3. 生成文本或&lt;br/&gt;工具调用意图"]
+        M1 --&gt; M2 --&gt; M3
+    end
 
-direction TB
+    subgraph resp["响应侧 — 模型返回什么"]
+        direction LR
+        S1["输出与工具调用&lt;br/&gt;文本 / 结构化 JSON&lt;br/&gt;tool call 意图"]
+        S2["推理块与签名&lt;br/&gt;thinking + signature&lt;br/&gt;thoughtSignature&lt;br/&gt;encrypted_content"]
+        S3["状态与统计&lt;br/&gt;stop reason · SSE&lt;br/&gt;state ID · cached usage"]
+        S1 ~~~ S2 ~~~ S3
+    end
 
-R1["输入 prompt / input / messages"]
-
-R2["历史 messages[] 或 state ID"]
-
-R3["system / instructions"]
-
-R4["工具声明 tools[]"]
-
-R5["stream / 其他配置"]
-
-R1 --- R2 --- R3 --- R4 --- R5
-
-end
-
-  
-
-subgraph model["模型执行"]
-
-direction TB
-
-M1["组装上下文"]
-
-M2["推理"]
-
-M3["决定输出"]
-
-M1 --- M2 --- M3
-
-end
-
-  
-
-subgraph resp["响应侧 — 模型返回什么"]
-
-direction TB
-
-S1["文本输出"]
-
-S2["工具调用 tool call"]
-
-S3["停止原因 stop / finish reason"]
-
-S4["usage token 统计"]
-
-S5["状态 ID response / interaction id"]
-
-S6["流式事件 stream events"]
-
-S1 --- S2 --- S3 --- S4 --- S5 --- S6
-
-end
-
-  
-
-req ~~~ model ~~~ resp
-
+    req --&gt; model --&gt; resp
 </code></pre>
 
 <h2 id="不同-api-对照表--云端-llm-厂商原生接口">不同 API 对照表 — 云端 LLM 厂商原生接口</h2>
@@ -329,14 +292,14 @@ req ~~~ model ~~~ resp
     </tr>
     <tr>
       <td>结构化输出</td>
-      <td>schema / response format</td>
-      <td>JSON text / parsed object</td>
+      <td><code class="language-plaintext highlighter-rouge">json_schema</code> / format</td>
+      <td>严格匹配 schema 的 JSON</td>
       <td>弱<br />靠 prompt</td>
-      <td><code class="language-plaintext highlighter-rouge">response_format</code></td>
-      <td>structured output</td>
-      <td>JSON/tool 方式</td>
-      <td><code class="language-plaintext highlighter-rouge">response_schema</code></td>
-      <td>支持结构化输出能力</td>
+      <td><code class="language-plaintext highlighter-rouge">response_format</code> (<code class="language-plaintext highlighter-rouge">json_schema</code>, <code class="language-plaintext highlighter-rouge">strict</code>)</td>
+      <td><code class="language-plaintext highlighter-rouge">text.format</code> (<code class="language-plaintext highlighter-rouge">json_schema</code>, <code class="language-plaintext highlighter-rouge">strict</code>)</td>
+      <td><code class="language-plaintext highlighter-rouge">output_config.format</code> (<code class="language-plaintext highlighter-rouge">json_schema</code>)</td>
+      <td><code class="language-plaintext highlighter-rouge">response_mime_type</code> + <code class="language-plaintext highlighter-rouge">response_schema</code></td>
+      <td>支持结构化输出配置</td>
     </tr>
     <tr>
       <td>流式生成</td>
@@ -350,15 +313,26 @@ req ~~~ model ~~~ resp
       <td>interaction streaming</td>
     </tr>
     <tr>
-      <td>工具声明</td>
+      <td>工具声明（客户端函数）</td>
       <td><code class="language-plaintext highlighter-rouge">tools[]</code> / declarations</td>
       <td>模型可见工具 schema</td>
       <td>✗</td>
+      <td><code class="language-plaintext highlighter-rouge">tools</code> (<code class="language-plaintext highlighter-rouge">type: "function"</code>)</td>
+      <td><code class="language-plaintext highlighter-rouge">tools</code> (<code class="language-plaintext highlighter-rouge">type: "function"</code>)</td>
       <td><code class="language-plaintext highlighter-rouge">tools</code></td>
+      <td><code class="language-plaintext highlighter-rouge">functionDeclarations</code></td>
       <td><code class="language-plaintext highlighter-rouge">tools</code></td>
-      <td><code class="language-plaintext highlighter-rouge">tools</code></td>
-      <td>function declarations</td>
-      <td>tools / MCP</td>
+    </tr>
+    <tr>
+      <td>服务端工具 / 原生 MCP</td>
+      <td>远程 MCP / 内置工具配置</td>
+      <td>模型端直连执行或返回调用轨迹</td>
+      <td>✗</td>
+      <td>✗（通常客户端接 MCP 后转 <code class="language-plaintext highlighter-rouge">tools</code>）</td>
+      <td>内置工具 + 远程 MCP（<code class="language-plaintext highlighter-rouge">tools</code> 中 <code class="language-plaintext highlighter-rouge">type: "mcp"</code>）</td>
+      <td>顶层 <code class="language-plaintext highlighter-rouge">mcp_servers</code> + <code class="language-plaintext highlighter-rouge">tools</code> 中 <code class="language-plaintext highlighter-rouge">mcp_toolset</code></td>
+      <td>部分内置工具；远程 MCP 多由客户端接</td>
+      <td>原生支持 MCP / 服务端工具</td>
     </tr>
     <tr>
       <td>工具调用</td>
@@ -381,6 +355,28 @@ req ~~~ model ~~~ resp
       <td><code class="language-plaintext highlighter-rouge">tool_result</code></td>
       <td><code class="language-plaintext highlighter-rouge">functionResponse</code></td>
       <td>tool result/input item</td>
+    </tr>
+    <tr>
+      <td>推理块与状态回传</td>
+      <td>reasoning/thinking 配置 + 原块回传</td>
+      <td>思维内容 / 加密签名</td>
+      <td>✗</td>
+      <td>多仅返回摘要或隐藏，不回传原始思维链</td>
+      <td><code class="language-plaintext highlighter-rouge">reasoning</code> 配置；无状态（<code class="language-plaintext highlighter-rouge">store: false</code>）通过 <code class="language-plaintext highlighter-rouge">include: ["reasoning.encrypted_content"]</code> 取回并回传</td>
+      <td><code class="language-plaintext highlighter-rouge">thinking</code> + <code class="language-plaintext highlighter-rouge">output_config.effort</code>；多轮须原样回传 <code class="language-plaintext highlighter-rouge">thinking</code> 块及 <code class="language-plaintext highlighter-rouge">signature</code></td>
+      <td>thinking 配置；响应带 <code class="language-plaintext highlighter-rouge">thoughtSignature</code>，多轮 tool call 丢失会报错</td>
+      <td><code class="language-plaintext highlighter-rouge">thinking</code> 项随交互状态流转</td>
+    </tr>
+    <tr>
+      <td>前缀缓存 &amp; Token 计数</td>
+      <td>cache key / 缓存断点 / count 接口</td>
+      <td>usage 中 cached tokens 统计</td>
+      <td>✗</td>
+      <td>自动前缀缓存 + <code class="language-plaintext highlighter-rouge">prompt_cache_key</code> 路由粘性</td>
+      <td>自动前缀缓存 + <code class="language-plaintext highlighter-rouge">prompt_cache_key</code> 路由粘性</td>
+      <td>显式 <code class="language-plaintext highlighter-rouge">cache_control: {"type": "ephemeral"}</code> / 自动缓存 + <code class="language-plaintext highlighter-rouge">/v1/messages/count_tokens</code></td>
+      <td>显式 <code class="language-plaintext highlighter-rouge">cachedContent</code>（带 TTL）+ Gemini 2.5+ 隐式缓存</td>
+      <td>复用后端上下文/隐式缓存机制</td>
     </tr>
     <tr>
       <td>服务端状态</td>
@@ -475,27 +471,46 @@ LLM Server
 Client 边收边显示
 </code></pre></div></div>
 
+<h2 id="协议对接避坑补充">协议对接避坑补充</h2>
+
+<ul>
+  <li><strong>多轮推理签名不可丢弃</strong>：自研 Harness 或多模型路由层如果在入库/裁剪历史时把 <code class="language-plaintext highlighter-rouge">thinking</code> 块剥掉，Anthropic（<code class="language-plaintext highlighter-rouge">signature</code> 校验失败）、Gemini（缺 <code class="language-plaintext highlighter-rouge">thoughtSignature</code> 报 <code class="language-plaintext highlighter-rouge">400</code>）和 OpenAI 无状态模式（<code class="language-plaintext highlighter-rouge">reasoning.encrypted_content</code>）都会中断推理连贯性或直接报错。</li>
+  <li><strong>前缀缓存要求字节级稳定</strong>：无论依赖显式断点（<code class="language-plaintext highlighter-rouge">cache_control</code> / <code class="language-plaintext highlighter-rouge">cachedContent</code>）还是自动前缀缓存（<code class="language-plaintext highlighter-rouge">prompt_cache_key</code>），动态时间戳、随机排序的工具定义只要插在前面，整段 KV cache 就会失效。</li>
+</ul>
+
 <h2 id="本地托管协议支持">本地/托管协议支持</h2>
 
 <table>
   <thead>
     <tr>
-      <th>框架</th>
-      <th>支持的 API 类型</th>
+      <th>引擎 / 托管层</th>
+      <th>支持的 API 类型与注意点</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>Bedrock Converse</td>
-      <td>AWS 统一 Converse 协议（兼容 messages / tool use 模式）</td>
+      <td><strong>vLLM</strong></td>
+      <td>原生支持 OpenAI <code class="language-plaintext highlighter-rouge">/v1/chat/completions</code>、<code class="language-plaintext highlighter-rouge">/v1/responses</code>，以及 Anthropic <code class="language-plaintext highlighter-rouge">/v1/messages</code> + <code class="language-plaintext highlighter-rouge">/v1/messages/count_tokens</code>；Anthropic SDK / Claude Code 可直接改 <code class="language-plaintext highlighter-rouge">base_url</code> 接入，引擎层内置前缀缓存与 tool-call parser</td>
     </tr>
     <tr>
-      <td>Ollama native</td>
-      <td>自有 <code class="language-plaintext highlighter-rouge">/api/generate</code>（单轮）+ <code class="language-plaintext highlighter-rouge">/api/chat</code>（多轮）</td>
+      <td><strong>SGLang</strong></td>
+      <td>原生支持 OpenAI <code class="language-plaintext highlighter-rouge">/v1/chat/completions</code>、<code class="language-plaintext highlighter-rouge">/v1/responses</code>，以及 Anthropic <code class="language-plaintext highlighter-rouge">/v1/messages</code> + <code class="language-plaintext highlighter-rouge">/v1/messages/count_tokens</code>；自动复用底层 chat template、reasoning parser 与 tool-call parser</td>
     </tr>
     <tr>
-      <td>llama.cpp</td>
-      <td>OpenAI-compatible <code class="language-plaintext highlighter-rouge">/v1/chat/completions</code> / <code class="language-plaintext highlighter-rouge">/v1/completions</code>（通过中间层如 Litellm 可兼容 Anthropic 等格式）</td>
+      <td><strong>llama.cpp (<code class="language-plaintext highlighter-rouge">llama-server</code>)</strong></td>
+      <td>原生支持 OpenAI <code class="language-plaintext highlighter-rouge">/v1/chat/completions</code>（含 structured outputs、tool use、vision）及 Anthropic <code class="language-plaintext highlighter-rouge">/v1/messages</code> + <code class="language-plaintext highlighter-rouge">/v1/messages/count_tokens</code>，可直接指向本地 GGUF 模型</td>
+    </tr>
+    <tr>
+      <td><strong>Ollama</strong></td>
+      <td>自有 <code class="language-plaintext highlighter-rouge">/api/generate</code>（单轮）+ <code class="language-plaintext highlighter-rouge">/api/chat</code>（多轮），并兼容 OpenAI 及 Anthropic <code class="language-plaintext highlighter-rouge">/v1/messages</code> 子集（注：不支持 <code class="language-plaintext highlighter-rouge">/v1/messages/count_tokens</code> 与强制 <code class="language-plaintext highlighter-rouge">tool_choice</code>）</td>
+    </tr>
+    <tr>
+      <td><strong>AWS Bedrock Converse</strong></td>
+      <td>AWS 统一 Converse 协议，向上兼容 messages / tool use / structured output 等多厂商模型</td>
+    </tr>
+    <tr>
+      <td><strong>多协议网关（LiteLLM / OpenRouter 等）</strong></td>
+      <td>在 OpenAI / Anthropic / Gemini 协议之间做双向 schema 转换，适合需要跨厂商统一 SDK 或按状态/费用路由兜底的场景</td>
     </tr>
   </tbody>
 </table>

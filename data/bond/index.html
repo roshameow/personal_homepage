@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<!--
+    So Simple Jekyll Theme 3.2.0
+    Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+    Free for personal and commercial use under the MIT license
+    https://github.com/mmistakes/so-simple-theme/blob/master/LICENSE
+-->
+<html lang="en-US" class="no-js">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  
+
+  
+  
+  <!-- Begin Jekyll SEO tag v2.9.1 -->
+<title>债券、信用利差与期权衍生品：定价理论、希腊字母与量化因子体系 | Liu, Wen’s Home Page</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="债券、信用利差与期权衍生品：定价理论、希腊字母与量化因子体系" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="本文由原金融衍生品笔记重构升级，打通固收/信用债基础、期权定价与希腊字母（Greeks）、以及 WorldQuant FASTEXPR 三阶衍生因子体系（系列专题见日频 PV alpha11、基本面 alphas2、分析师 alphas4 与跨数据关系总纲 alpha5）。全篇只使用通用金融与衍生品字段概念，脱离具体数据库编码即可自解释。" />
+<meta name="twitter:description" property="og:description" content="本文由原金融衍生品笔记重构升级，打通固收/信用债基础、期权定价与希腊字母（Greeks）、以及 WorldQuant FASTEXPR 三阶衍生因子体系（系列专题见日频 PV alpha11、基本面 alphas2、分析师 alphas4 与跨数据关系总纲 alpha5）。全篇只使用通用金融与衍生品字段概念，脱离具体数据库编码即可自解释。" />
+<link rel="canonical" href="https://roshameow.github.io//personal_homepage/data/bond/" />
+<meta property="og:url" content="https://roshameow.github.io//personal_homepage/data/bond/" />
+<meta property="og:site_name" content="Liu, Wen’s Home Page" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2024-10-01T00:00:00+00:00" />
+<meta property="article:modified_time" content="2026-11-22T06:16:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="债券、信用利差与期权衍生品：定价理论、希腊字母与量化因子体系" />
+<meta name="twitter:site" content="@" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2026-11-22T06:16:00+00:00","datePublished":"2024-10-01T00:00:00+00:00","description":"本文由原金融衍生品笔记重构升级，打通固收/信用债基础、期权定价与希腊字母（Greeks）、以及 WorldQuant FASTEXPR 三阶衍生因子体系（系列专题见日频 PV alpha11、基本面 alphas2、分析师 alphas4 与跨数据关系总纲 alpha5）。全篇只使用通用金融与衍生品字段概念，脱离具体数据库编码即可自解释。","headline":"债券、信用利差与期权衍生品：定价理论、希腊字母与量化因子体系","mainEntityOfPage":{"@type":"WebPage","@id":"https://roshameow.github.io//personal_homepage/data/bond/"},"url":"https://roshameow.github.io//personal_homepage/data/bond/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  
+
+  <script>
+    /* Cut the mustard */
+    if ('querySelector' in document && 'addEventListener' in window) {
+      document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + 'js';
+    }
+  </script>
+
+  <link rel="stylesheet" href="/personal_homepage/assets/css/main.css">
+  <link rel="stylesheet" href="/personal_homepage/assets/css/skins/default.css">
+  
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,700,700i|Lora:400,400i,700,700i">
+  <link rel="alternate" type="application/atom+xml" title="Liu, Wen&#39;s Home Page" href="/personal_homepage/atom.xml">
+<!-- start custom head snippets -->
+
+<!-- insert favicons. use http://realfavicongenerator.net/ -->
+<link rel="shortcut icon" type="image/x-icon" href="/personal_homepage/docs/images/logo.ico">
+<!-- end custom head snippets -->
+
+</head>
+
+  <body class="layout--post  债券-信用利差与期权衍生品-定价理论-希腊字母与量化因子体系">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#primary-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+  <div class="navigation-wrapper">
+    <a href="#menu-toggle" id="menu-toggle">Menu</a>
+    <nav id="primary-nav" class="site-nav animated drop">
+      <ul><li><a href="/personal_homepage/">Home</a></li><li><a href="/personal_homepage/posts/">Posts</a></li><li><a href="/personal_homepage/categories/">Categories</a></li><li><a href="/personal_homepage/tags/">Tags</a></li><li><a href="/personal_homepage/family/">Family</a></li><li><a href="/personal_homepage/search/">Search</a></li></ul>
+    </nav>
+  </div><!-- /.navigation-wrapper -->
+
+
+    <header class="masthead">
+  <div class="wrap">
+    
+    
+    
+      
+        <div class="site-title animated fadeIn"><a href="/personal_homepage/">Liu, Wen's Home Page</a></div>
+      
+      <p class="site-description animated fadeIn" itemprop="description">Work, Experiments and Ideas.</p>
+    
+  </div>
+</header><!-- /.masthead -->
+
+
+    <main id="main" class="main-content" aria-label="Content">
+  <article class="h-entry">
+    
+
+    <div class="page-wrapper">
+      <header class="page-header">
+        
+        
+        <h1 id="page-title" class="page-title p-name">债券、信用利差与期权衍生品：定价理论、希腊字母与量化因子体系
+</h1>
+        
+      </header>
+
+      <div class="page-sidebar">
+        <div class="page-author h-card p-author"><img src="/personal_homepage/docs/images/logo.svg" class="author-avatar u-photo" alt=""><div class="author-info">
+
+<span class="read-time">4 min read</span>
+
+    <time class="page-date dt-published" datetime="2024-10-01T00:00:00+00:00"><a class="u-url" href="">October 1, 2024</a>
+</time>
+
+  </div>
+</div>
+
+        
+  <h3 class="page-taxonomies-title">Categories</h3>
+  
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a class="p-category" href="/personal_homepage/categories/#data" title="Pages filed under data">data</a></li>
+  </ul>
+
+
+        
+  <h3 class="page-taxonomies-title">Tags</h3>
+  
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a href="/personal_homepage/tags/#bond" title="Pages tagged bond" rel="tag">bond</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#cds" title="Pages tagged cds" rel="tag">cds</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#content" title="Pages tagged content" rel="tag">content</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#credit" title="Pages tagged credit" rel="tag">credit</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#derivatives" title="Pages tagged derivatives" rel="tag">derivatives</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#feature-engineering" title="Pages tagged feature_engineering" rel="tag">feature_engineering</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#options" title="Pages tagged options" rel="tag">options</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#quant" title="Pages tagged quant" rel="tag">quant</a></li><li class="page-taxonomy"><a href="/personal_homepage/tags/#warrant" title="Pages tagged warrant" rel="tag">warrant</a></li>
+  </ul>
+
+
+        <details id="entry-table-of-contents" class="toc-wrapper" open>
+  <summary>
+    <h2 class="no_toc">
+      Table of Contents
+      <svg class="toc-toggle-icon" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true" focusable="false">
+        <path d="m4 6 4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+      </svg>
+    </h2>
+  </summary>
+  <div class="toc-content">
+    <ul class="inline_toc" id="my_toc"><li><a href="#一债券与信用市场bonds-convertibles--credit-spread">一、债券与信用市场（Bonds, Convertibles &amp; Credit Spread）</a><ul><li><a href="#11-债券与信用工具核心分类">1.1 债券与信用工具核心分类</a></li><li><a href="#12-为什么债券与信用数据能用于股票-alphamerton-结构化视角">1.2 为什么债券与信用数据能用于股票 Alpha？（Merton 结构化视角）</a></li></ul></li><li><a href="#二期权理论定价框架与五大希腊字母options-bsm--greeks">二、期权理论、定价框架与五大希腊字母（Options, BSM &amp; Greeks）</a><ul><li><a href="#21-行权方式货币性moneyness与典型对冲用法">2.1 行权方式、货币性（Moneyness）与典型对冲用法</a></li><li><a href="#22-四大期权定价模型对照">2.2 四大期权定价模型对照</a></li><li><a href="#23-五大希腊字母greeks完备谱系">2.3 五大希腊字母（Greeks）完备谱系</a></li></ul></li><li><a href="#三期权权证与债券信用衍生数据三阶量化谱系012-阶--worldquant-fastexpr-对齐">三、期权、权证与债券信用衍生数据三阶量化谱系（0→1→2 阶 + WorldQuant FASTEXPR 对齐）</a></li><li><a href="#四期权与债券信用数据在量化因子构建中的六大工程要点">四、期权与债券信用数据在量化因子构建中的六大工程要点</a></li></ul>
+  </div>
+</details>
+
+        
+<details id="entry-related-posts" class="toc-wrapper" open>
+  <summary>
+    <h2 class="no_toc">
+      Related Posts
+      <svg class="toc-toggle-icon" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true" focusable="false">
+        <path d="m4 6 4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+      </svg>
+    </h2>
+  </summary>
+  <div class="toc-content">
+    <ul>
+      
+      <li><a href="/personal_homepage/tool/quantnight-daemons/">QuantNight 守护进程与定时调度体系全景</a></li>
+      
+      <li><a href="/personal_homepage/tool/mcp-dev-pitfalls/">生产级 MCP 开发演进复盘：以 QuantNight MCP 为例谈踩坑、弯路与架构取舍</a></li>
+      
+      <li><a href="/personal_homepage/tool/git-sync/">git-sync：双机多 Agent 开发的确定性同步与 Guardian 事件驱动工作流</a></li>
+      
+      <li><a href="/personal_homepage/tool/alpha30/">QuantNight 原生 MCP 共享底座架构：单守护进程、事件通知、跨重启续跑与双端职责边界</a></li>
+      
+      <li><a href="/personal_homepage/finance/operators/">WorldQuant FASTEXPR 核心算子解析、分布整形与线性回归推导</a></li>
+      
+    </ul>
+  </div>
+</details>
+
+
+
+      </div>
+
+      <div class="page-content">
+        <div class="e-content">
+          <blockquote>
+  <p>本文由原金融衍生品笔记重构升级，打通<strong>固收/信用债基础、期权定价与希腊字母（Greeks）、以及 WorldQuant FASTEXPR 三阶衍生因子体系</strong>（系列专题见日频 PV <a href="2025-09-19-alpha11.md">alpha11</a>、基本面 <a href="2025-01-15-alphas2.md">alphas2</a>、分析师 <a href="2025-01-22-alphas4.md">alphas4</a> 与跨数据关系总纲 <a href="2025-02-26-alpha5.md">alpha5</a>）。全篇只使用通用金融与衍生品字段概念，脱离具体数据库编码即可自解释。</p>
+</blockquote>
+
+<hr />
+
+<h2 id="一债券与信用市场bonds-convertibles--credit-spread">一、债券与信用市场（Bonds, Convertibles &amp; Credit Spread）</h2>
+
+<p>债券本质上是政府或企业发行的标准化借据，一张债券的核心合约要素包括：<strong>票面价值（Par Value）</strong>、<strong>票面利率与利息（Coupon）</strong>、<strong>到期时间（Maturity）</strong>与<strong>发行主体（Issuer）</strong>。其二级市场交易价格随市场无风险利率与发行人信用资质实时波动，可能<strong>高于面值（溢价交易）</strong>或<strong>低于面值（折价交易）</strong>——债券价格与到期收益率（YTM）严格成<strong>反比</strong>，价格对利率变化的灵敏度由<strong>久期（Duration）</strong>和二阶曲率<strong>凸性（Convexity）</strong>刻画。</p>
+
+<h3 id="11-债券与信用工具核心分类">1.1 债券与信用工具核心分类</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>品种类别</th>
+      <th>发行主体与定价锚</th>
+      <th>核心收益与风险特性</th>
+      <th>与股票大盘的关系</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>利率债（Rates Bond）</strong></td>
+      <td>国债、政策性金融债、准主权债</td>
+      <td>几乎无违约风险，价格主要由<strong>无风险基准利率</strong>与通胀预期驱动，与市场利率呈严格<strong>负相关</strong>（长久期利率债弹性更大）</td>
+      <td><strong>危机时负相关（股债跷跷板）</strong>；经济衰退或股市恐慌期受益于避险资金涌入与降息预期，但在高通胀/紧缩周期易转为正相关（股债双杀）</td>
+    </tr>
+    <tr>
+      <td><strong>信用债（Credit Bond）</strong></td>
+      <td>各类企业/公司发行的债务工具</td>
+      <td>收益率 = 无风险利率 + <strong>信用利差（Credit Spread / Z-Spread）</strong>；同时暴露利率风险与发行人违约/流动性风险</td>
+      <td><strong>温和正相关（高收益债更强）</strong>；经济走弱、大盘下跌时信用利差走阔压制债价——投资级（IG）偏近利率债，高收益债（HY）与股票大盘高度同向</td>
+    </tr>
+    <tr>
+      <td><strong>可转债（Convertible Bond）</strong></td>
+      <td>上市公司发行的股债混合品种</td>
+      <td><strong>下有债底、上有股性</strong>：正股上涨时随正股大盘正相关上行；常附带<strong>回售条款（Put Provision）</strong>在股价长期低于约定阈值时保护本金回收，也常带强赎条款促使转股</td>
+      <td><strong>非对称强正相关</strong>；牛市/高平价区间紧跟正股与大盘上行，大盘深跌时受纯债底与回售条款托底，相关性显著钝化</td>
+    </tr>
+    <tr>
+      <td><strong>信用违约互换（CDS）</strong></td>
+      <td>机构间对单一发行人违约风险的信用衍生合约</td>
+      <td>买方定期支付 <strong>CDS 利差（Par Spread）</strong>对冲违约风险；CDS 利差往往比股票和财务报表<strong>更早、更敏感地反映信用恶化</strong></td>
+      <td><strong>利差与大盘强负相关</strong>；股市下跌与信用收紧期违约风险抬升导致 CDS 利差急剧走阔，常作为股票尾部风险的领先预警与对冲工具</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="12-为什么债券与信用数据能用于股票-alphamerton-结构化视角">1.2 为什么债券与信用数据能用于股票 Alpha？（Merton 结构化视角）</h3>
+
+<p>按默顿（Merton）结构化信用模型直觉：公司总资产由股权和债权共同索取，<strong>股权等价于公司资产的看涨期权，债权等价于“无风险债券 − 资产看跌期权”</strong>。当企业现金流恶化或资产波动率飙升时，债券持有者承担了下行尾部风险却无法分享上行超额收益，因此债券与 CDS 市场（多为大型机构主导）往往会率先抬升信用利差。将发债主体的 <code class="language-plaintext highlighter-rouge">Z-Spread</code> 走阔、债券收益下行或股债相对价差映射回正股横截面，是典型的跨资产领先信号来源。</p>
+
+<hr />
+
+<h2 id="二期权理论定价框架与五大希腊字母options-bsm--greeks">二、期权理论、定价框架与五大希腊字母（Options, BSM &amp; Greeks）</h2>
+
+<p>期权是在金融市场风险转移与杠杆交易需求中自然演化的非对称合约，场内标准股票期权由集中清算机构（如美国的 <strong>OCC</strong>）提供履约担保。买方通过支付一笔确定的<strong>权利金（Premium）</strong>获得在未来买入或卖出大量标的股票的权利，<strong>最大亏损锁定为权利金</strong>；当市场隐含波动率上升时，不确定性溢价推高期权时间价值，权利金随之变贵。</p>
+
+<h3 id="21-行权方式货币性moneyness与典型对冲用法">2.1 行权方式、货币性（Moneyness）与典型对冲用法</h3>
+
+<ul>
+  <li><strong>按行权时间分类</strong>：
+    <ul>
+      <li><strong>美式期权（American Option）</strong>：可在到期日前<strong>任意交易日</strong>提前行权（美股个股期权的主流形式，深度实值看涨期权在除息日前或高利率下的实值看跌期权可能产生提前行权溢价）；</li>
+      <li><strong>欧式期权（European Option）</strong>：仅限<strong>到期日当天</strong>行权，无提前行权边界复杂性，可直接套用经典 BSM 解析解。</li>
+    </ul>
+  </li>
+  <li><strong>三大货币性状态（Moneyness，以现价 \(S\) 与执行价 \(K\) 对比）</strong>：
+    <ul>
+      <li><strong>实值（ITM, In-The-Money）</strong>：立即行权即可获利（看涨 \(S &gt; K\)，看跌 \(S &lt; K\)），含<strong>内在价值 + 时间价值</strong>，Delta 接近 \(\pm 1\)；</li>
+      <li><strong>平值（ATM, At-The-Money）</strong>：\(S \approx K\)，<strong>时间价值、Gamma (\(\Gamma\)) 与 Vega (\(\mathcal{V}\)) 均达峰值</strong>，对标的波动最敏感；</li>
+      <li><strong>虚值（OTM, Out-of-The-Money）</strong>：立即行权无内在价值（看涨 \(S &lt; K\)，看跌 \(S &gt; K\)），完全由时间价值构成，权利金便宜但杠杆极高，<strong>深度 OTM Put 是机构最常用的尾部暴跌保险</strong>。</li>
+    </ul>
+  </li>
+  <li><strong>核心对冲与交易用法</strong>：
+    <ul>
+      <li><strong>保护性看跌期权（Protective Put）</strong>：买入或持有股票的同时买入看跌期权（Put），以固定的权利金成本，将股票组合的最大下行底线锁定在执行价 \(K\) 附近，换取保留全部上行空间；</li>
+      <li><strong>备兑开仓（Covered Call）与波动率交易</strong>：持有现货的同时卖出虚值 Call 增厚现金流，或通过跨式（Straddle）/ 宽跨式（Strangle）纯粹交易隐含波动率与未来真实波动率的偏差。</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="22-四大期权定价模型对照">2.2 四大期权定价模型对照</h3>
+
+<ol>
+  <li><strong>Black-Scholes-Merton (BSM) 模型（欧式期权闭式基准解）</strong>
+    <ul>
+      <li>核心假设：无套利、连续可对冲、无风险利率 \(r\) 与波动率 \(\sigma\) 恒定、<strong>标的资产对数收益率服从正态分布（即股价服从对数正态分布）</strong>。</li>
+      <li>看涨期权（Call）定价公式：
+\[C(S_t, t) = S_t N(d_1) - K e^{-r(T-t)} N(d_2)\]
+
+（直观意义：\(S_t N(d_1)\) 为条件期望收回的标的价值，\(K e^{-r(T-t)} N(d_2)\) 为按行权概率折现后的预期行权成本；看跌期权由平价关系 \(P = K e^{-r(T-t)} N(-d_2) - S_t N(-d_1)\) 给出，其中 \(S_t\) 为当前股价，\(K\) 为执行价，\(T-t\) 为剩余到期时间，\(N(\cdot)\) 为标准正态累积分布函数）。</li>
+    </ul>
+  </li>
+  <li><strong>随机波动率模型（如 Heston 模型）</strong>：放开 BSM 常波动率假设，将波动率自身建模为均值回归随机过程并与收益负相关，用于刻画真实市场中的<strong>波动率微笑 / 左偏斜（Volatility Skew）</strong>。</li>
+  <li><strong>二叉树模型（Binomial Tree）</strong>：用离散时间多叉格点逼近标的演化并逐层倒推折现，天然支持每一步比较“继续持有 vs 立即行权”，适合<strong>美式期权</strong>与离散分红定价。</li>
+  <li><strong>蒙特卡洛模拟（Monte Carlo Simulation）</strong>：大量随机抽样标的未来路径并取折现期望，适合<strong>路径依赖、多资产耦合</strong>的复杂奇异期权（如障碍期权、亚式期权）。</li>
+</ol>
+
+<h3 id="23-五大希腊字母greeks完备谱系">2.3 五大希腊字母（Greeks）完备谱系</h3>
+
+<p>希腊字母把非线性的期权价格拆解为对五个风险因子的局部偏导数，既用于做市商精细对冲，也是构建期权因子链条的底层特征（下表按欧式无分红期权价值 \(V\) 对各要素求偏导，其中 \(\tau = T - t\) 为剩余时间）：</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>希腊字母</th>
+      <th>核心物理意义</th>
+      <th>数学定义</th>
+      <th>多头特性与交易直觉</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Delta (\(\Delta\))</strong></td>
+      <td><strong>方向灵敏度</strong>：标的上涨 1 单位时，期权价格的近似变动；也等价于对冲所需标的股数比率</td>
+      <td>\(\Delta = \frac{\partial V}{\partial S}\)</td>
+      <td>Call \(\in (0, 1)\)，Put \(\in (-1, 0)\)；平值附近 \(\lvert\Delta\rvert \approx 0.5\)，越实值越趋近 \(\pm 1\)</td>
+    </tr>
+    <tr>
+      <td><strong>Gamma (\(\Gamma\))</strong></td>
+      <td><strong>Delta 的稳定性（二阶曲率）</strong>：标的变动 1 单位时，Delta 自身的变化速率</td>
+      <td>\(\Gamma = \frac{\partial^2 V}{\partial S^2} = \frac{\partial \Delta}{\partial S}\)</td>
+      <td>期权买方 \(\Gamma &gt; 0\)（涨多赚、跌少亏的<strong>凸性红利</strong>），临近到期的平值期权 \(\Gamma\) 极高，导致 Delta 对冲调仓压力剧增</td>
+    </tr>
+    <tr>
+      <td><strong>Theta (\(\Theta\))</strong></td>
+      <td><strong>时间损耗率（Time Decay）</strong>：随着流逝时间 \(t\) 推进（或剩余期限 \(\tau\) 缩短），期权每日的自然价值衰减</td>
+      <td>\(\Theta = \frac{\partial V}{\partial t} = -\frac{\partial V}{\partial \tau}\)</td>
+      <td>期权买方通常 \(\Theta &lt; 0\)，即每天支付“时间租金”；临近到期前 30 天平值期权的时间价值衰减急剧加速（<strong>买 \(\Gamma\) 往往伴随付 \(\Theta\) 的权衡</strong>）</td>
+    </tr>
+    <tr>
+      <td><strong>Vega (\(\mathcal{V}\))</strong></td>
+      <td><strong>波动率敏感度</strong>：隐含波动率 \(\sigma\) 变动 1% 时，期权价格的变化</td>
+      <td>\(\mathcal{V} = \frac{\partial V}{\partial \sigma}\)</td>
+      <td>买方恒正（做多波动率），<strong>期限越长且越接近平值时 Vega 越大</strong>；事件公布前买跨式赚的是隐含波动率上升与实际跳跃</td>
+    </tr>
+    <tr>
+      <td><strong>Rho (\(\rho\))</strong></td>
+      <td><strong>利率敏感度</strong>：无风险利率 \(r\) 变动 1% 时，期权价格的变化</td>
+      <td>\(\rho = \frac{\partial V}{\partial r}\)</td>
+      <td>对短期平值股票期权影响较小，但在长周期深度实值期权及利率敏感型资产中不可忽视</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="三期权权证与债券信用衍生数据三阶量化谱系012-阶--worldquant-fastexpr-对齐">三、期权、权证与债券信用衍生数据三阶量化谱系（0→1→2 阶 + WorldQuant FASTEXPR 对齐）</h2>
+
+<p>在股票横截面 Alpha 研究中，期权隐含波动率曲面、希腊字母、权证与互换合约要素、以及发债主体的信用利差、CDS 与违约概率曲线常被映射至对应上市公司的股票代码上，严格按<strong>三阶结构</strong>演化：<strong>0 阶</strong>为原生期权链、希腊字母、权证、债券定价、CDS 与结构化信用原始字段；<strong>1 阶</strong>为 <code class="language-plaintext highlighter-rouge">vec_*</code> 归约、同行权/期限看涨看跌隐含波动率偏斜、方差偏斜、VRP 溢价、期限斜率、Gamma/离散度对比、CDS 敏感度与违约概率曲线动态及单层 <code class="language-plaintext highlighter-rouge">ts_*</code> 变换；<strong>2 阶</strong>为情绪/波动率/相关性门控、VRP 正交剥离、期权成交量或价差加权行业锚、波动率分桶中性化与 CDS×前瞻估值跨资产协同。</p>
+
+<blockquote>
+  <p>图例说明：在一至二阶衍生指标中，<span style="color: #059669; font-weight: 600;">绿色加粗条目</span>表示已在本地平台实测记录中检索到达标信号（非 SUPER，<code class="language-plaintext highlighter-rouge">fitness &gt;= 1.0</code> 且 <code class="language-plaintext highlighter-rouge">sharpe &gt;= 1.2</code>；除 CHN 地区外，<code class="language-plaintext highlighter-rouge">fitness &lt;= -1.0</code> 且 <code class="language-plaintext highlighter-rouge">sharpe &lt;= -1.2</code> 的反向可取负信号亦计为达标）；<span style="color: #dc2626; font-weight: 600;">红色加粗条目</span>表示库中已有实测记录但未达上述门槛；默认颜色为尚未在库中检索到独立测试记录的理论或扩展方向。</p>
+</blockquote>
+
+<table>
+  <thead>
+    <tr>
+      <th>0 阶数据（原生期权、权证、债券与信用字段）</th>
+      <th>一阶数据（<code class="language-plaintext highlighter-rouge">vec_*</code> 归约、偏斜/期限差、VRP、Greeks 与信用曲线）</th>
+      <th>二阶数据（门控耦合、正交剥离、权重锚、分桶与跨资产协同）</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>期权隐含波动率曲面、定价与远期</strong><br />• 固定期限与 Delta 曲面：<code class="language-plaintext highlighter-rouge">iv_call</code>、<code class="language-plaintext highlighter-rouge">iv_put</code>、<code class="language-plaintext highlighter-rouge">iv_atm</code>、<code class="language-plaintext highlighter-rouge">iv_call_delta</code>、<code class="language-plaintext highlighter-rouge">iv_put_delta</code>、<code class="language-plaintext highlighter-rouge">iv_mean_skew</code>（按 10d–730d 期限与 Delta 档位插值）<br />• 成交量/OI 加权 IV：<code class="language-plaintext highlighter-rouge">iv_var_call</code>、<code class="language-plaintext highlighter-rouge">iv_var_put</code>、<code class="language-plaintext highlighter-rouge">iv_oi_call_put</code>（按成交量或未平仓加权的期权链 IV）<br />• 期权报价与行权要素：<code class="language-plaintext highlighter-rouge">opt_strike_delta</code>（等 Delta 执行价）、<code class="language-plaintext highlighter-rouge">opt_pre_delta</code>（期权溢价）、<code class="language-plaintext highlighter-rouge">opt_disp_delta</code>（隐波定价离散度）、<code class="language-plaintext highlighter-rouge">opt_bid</code>、<code class="language-plaintext highlighter-rouge">opt_ask</code>、<code class="language-plaintext highlighter-rouge">opt_price_close</code>、<code class="language-plaintext highlighter-rouge">opt_return</code><br />• 盈亏边界与远期：<code class="language-plaintext highlighter-rouge">call_breakeven</code>、<code class="language-plaintext highlighter-rouge">put_breakeven</code>、<code class="language-plaintext highlighter-rouge">fwd_price</code>（合成远期价）、<code class="language-plaintext highlighter-rouge">parity_gap</code>（平价价差）<br /><br /><strong>期权量仓、希腊字母、风险分解与权证</strong><br />• 持仓与成交流：<code class="language-plaintext highlighter-rouge">pcr_oi</code>、<code class="language-plaintext highlighter-rouge">pcr_vol</code>、<code class="language-plaintext highlighter-rouge">put_call_erlanger</code>（Put-Call 多空极值分档）、<code class="language-plaintext highlighter-rouge">opt_volume</code>、<code class="language-plaintext highlighter-rouge">opt_exch_vol</code>、<code class="language-plaintext highlighter-rouge">open_buy_calls/puts</code>、<code class="language-plaintext highlighter-rouge">close_sell_calls</code><br />• 希腊字母与风险分解：<code class="language-plaintext highlighter-rouge">opt_gamma_call/put</code>、<code class="language-plaintext highlighter-rouge">opt_vega_call/put</code>、<code class="language-plaintext highlighter-rouge">opt_theta_call/put</code>、<code class="language-plaintext highlighter-rouge">opt_spy_corr</code> / <code class="language-plaintext highlighter-rouge">opt_spy_beta</code>（与大盘相关性/Beta）、<code class="language-plaintext highlighter-rouge">opt_idio_risk</code>（短中长特异风险分解）、<code class="language-plaintext highlighter-rouge">iv_crush_rate</code>、<code class="language-plaintext highlighter-rouge">implied_borrow_rate</code><br />• 权证合约（多为 <code class="language-plaintext highlighter-rouge">VECTOR</code>）：<code class="language-plaintext highlighter-rouge">warrant_price</code>、<code class="language-plaintext highlighter-rouge">warrant_bid_ask_mid</code>、<code class="language-plaintext highlighter-rouge">warrant_vol</code>、<code class="language-plaintext highlighter-rouge">warrant_strike</code><br /><br /><strong>债券定价、信用曲线、CDS 与违约概率</strong><br />• 公司债利差、收益与收益率（多为 <code class="language-plaintext highlighter-rouge">VECTOR</code>）：<code class="language-plaintext highlighter-rouge">bond_zspread</code>、<code class="language-plaintext highlighter-rouge">bond_zspread_chg</code>、<code class="language-plaintext highlighter-rouge">bond_ret</code>、<code class="language-plaintext highlighter-rouge">eq_bond_diff</code>、<code class="language-plaintext highlighter-rouge">bond_rel_term_spread</code>、<code class="language-plaintext highlighter-rouge">bond_curve_shift</code> / <code class="language-plaintext highlighter-rouge">bond_curve_tilt</code> / <code class="language-plaintext highlighter-rouge">bond_curve_twist</code>（信用曲线 PCA 因子）、<code class="language-plaintext highlighter-rouge">bond_ytm_bid/ask</code>、<code class="language-plaintext highlighter-rouge">bond_coupon</code>、<code class="language-plaintext highlighter-rouge">amt_outstanding</code><br />• 单名 CDS 与因子（<code class="language-plaintext highlighter-rouge">VECTOR</code> / <code class="language-plaintext highlighter-rouge">MATRIX</code>）：<code class="language-plaintext highlighter-rouge">cds_rec_risk</code>（违约回收率敏感度）、<code class="language-plaintext highlighter-rouge">cds_ir_dv01</code>（利率平行移动 DV01）、<code class="language-plaintext highlighter-rouge">cds_par_spread</code>、<code class="language-plaintext highlighter-rouge">cds_upfront</code>、<code class="language-plaintext highlighter-rouge">cds_obs_score</code>（报价质量分）、<code class="language-plaintext highlighter-rouge">cds_fx_sens</code> / <code class="language-plaintext highlighter-rouge">cds_oil_sens</code>（CDS 宏观敏感度）<br />• 结构化信用、违约概率与互换：<code class="language-plaintext highlighter-rouge">pd_term_1m..10y</code>（多期限年化违约概率曲线）、<code class="language-plaintext highlighter-rouge">credit_rank</code>、<code class="language-plaintext highlighter-rouge">credit_rating</code>、<code class="language-plaintext highlighter-rouge">merton_asset_vol</code>、<code class="language-plaintext highlighter-rouge">swap_pay_period</code>（权益互换固定端付息周期）、<code class="language-plaintext highlighter-rouge">ir_sens_beta</code><br /><br /><strong>已实现波动率与基本面/现货参照</strong><br />• <code class="language-plaintext highlighter-rouge">parkinson_vol</code>（极值波动率）、<code class="language-plaintext highlighter-rouge">hist_vol</code>、<code class="language-plaintext highlighter-rouge">orhv</code>（OHLC 日内已实现波动率）、<code class="language-plaintext highlighter-rouge">forward_ep</code>、<code class="language-plaintext highlighter-rouge">book_value_ps</code>、<code class="language-plaintext highlighter-rouge">idio_ret</code>、<code class="language-plaintext highlighter-rouge">earn_growth</code>、<code class="language-plaintext highlighter-rouge">short_lasso</code>、<code class="language-plaintext highlighter-rouge">close</code>、<code class="language-plaintext highlighter-rouge">returns</code>、<code class="language-plaintext highlighter-rouge">volume</code>、<code class="language-plaintext highlighter-rouge">adv20</code>、<code class="language-plaintext highlighter-rouge">cap</code>、<code class="language-plaintext highlighter-rouge">country</code> / <code class="language-plaintext highlighter-rouge">sector</code> / <code class="language-plaintext highlighter-rouge">industry</code> / <code class="language-plaintext highlighter-rouge">subindustry</code></td>
+      <td><strong>波动率偏斜、方差偏斜、VRP 与期限结构</strong><br />• <span style="color: #059669; font-weight: 600;">看涨-看跌隐含波动率偏斜 (<code class="language-plaintext highlighter-rouge">iv_skew</code>)</span>：<code class="language-plaintext highlighter-rouge">iv_call - iv_put</code>、<code class="language-plaintext highlighter-rouge">1 / iv_put - 1 / iv_call</code>、<code class="language-plaintext highlighter-rouge">ts_mean(iv_put_delta / iv_call_delta, 22)</code>、<code class="language-plaintext highlighter-rouge">-ts_std_dev(iv_put_delta / iv_call_delta, 66)</code>（捕捉 Put 尾部避险买盘与 Call 上行投机之间的定价不对称及其时序稳定度）<br />• <span style="color: #059669; font-weight: 600;">成交量/OI 加权方差偏斜 (<code class="language-plaintext highlighter-rouge">iv_var_skew</code>)</span>：<code class="language-plaintext highlighter-rouge">power(iv_var_call, 2) - power(iv_var_put, 2)</code>、<code class="language-plaintext highlighter-rouge">ts_mean(iv_oi_call_put / vec_avg(iv_chain), 66)</code>（用期权成交量或持仓加权放大知情资金集中档位的方差偏斜）<br />• <span style="color: #059669; font-weight: 600;">隐含 vs 已实现波动率溢价 (<code class="language-plaintext highlighter-rouge">vrp</code>)</span>：<code class="language-plaintext highlighter-rouge">(-1 / iv_call + 1 / iv_put) / (1 / parkinson_vol)</code>、<code class="language-plaintext highlighter-rouge">(hist_vol - iv_put) / iv_put - (hist_vol - iv_call) / iv_call</code>、<code class="language-plaintext highlighter-rouge">orhv / iv_put - orhv / iv_call</code>（用 Parkinson、收盘 HV 或 OHLC 日内波动率锚定 IV 偏斜，剥离纯绝对波动水平噪声）<br />• <span style="color: #059669; font-weight: 600;">IV 期限结构斜率 (<code class="language-plaintext highlighter-rouge">iv_term_slope</code>)</span>：<code class="language-plaintext highlighter-rouge">signed_power(ts_median(log(iv_call_long / iv_call_short), 50), 2)</code>（远月与近月平值 IV 对数比高次幂；短端反超长端时往往预示事件跳跃或恐慌定价过度）<br />• <span style="color: #059669; font-weight: 600;">IV 偏斜高阶矩与自身基线残差 (<code class="language-plaintext highlighter-rouge">iv_skew_kurt</code>)</span>：<code class="language-plaintext highlighter-rouge">ts_kurtosis(rank(iv_mean_skew), 240)</code>、<code class="language-plaintext highlighter-rouge">group_rank(regression_neut(iv_call_delta, ts_median(iv_call_delta, 60)), sector)</code>（度量偏斜分布的尾部峰度突变与相对自身两月均值的回归残差）<br /><br /><strong>希腊字母、定价要素、量仓流与权证</strong><br />• <span style="color: #059669; font-weight: 600;">Gamma 非对称偏斜 (<code class="language-plaintext highlighter-rouge">gamma_skew</code>)</span>：<code class="language-plaintext highlighter-rouge">ts_mean((opt_gamma_call - opt_gamma_put) / ((opt_gamma_call + opt_gamma_put) / 2), 66)</code>、<code class="language-plaintext highlighter-rouge">ts_mean(opt_gamma_call / opt_gamma_put, 120)</code>（直接衡量多空凸性分布差异，做市商 Gamma 暴露极值显著影响现货短期均值回归）<br />• <span style="color: #059669; font-weight: 600;">等 Delta 行权价与溢价偏离 (<code class="language-plaintext highlighter-rouge">strike_prem_dev</code>)</span>：<code class="language-plaintext highlighter-rouge">ts_quantile(group_zscore(-opt_strike_delta, industry), 20)</code>、<code class="language-plaintext highlighter-rouge">opt_pre_delta - opt_strike_delta</code>（反映固定 Delta 档位隐含的相对股价与权利金溢价空间）<br />• <span style="color: #059669; font-weight: 600;">期权基线价偏离与多空情绪极值 (<code class="language-plaintext highlighter-rouge">opt_px_rev</code>)</span>：<code class="language-plaintext highlighter-rouge">ts_rank(vec_avg(opt_price_close), 63) - ts_rank(group_neutralize(vec_avg(opt_price_close), industry), 63)</code>、<code class="language-plaintext highlighter-rouge">ts_arg_max(put_call_erlanger, 240)</code>（期权结算锚定价相对行业偏移及极值情绪距今天数）<br />• <span style="color: #dc2626; font-weight: 600;">Vega / Theta 暴露与比值 (<code class="language-plaintext highlighter-rouge">vega_theta_ratio</code>)</span>：<code class="language-plaintext highlighter-rouge">max(opt_theta, 0) / (max(opt_vega, 0) + 1e-6)</code>、<code class="language-plaintext highlighter-rouge">ts_mean(opt_vega_put - opt_vega_call, 22)</code>（单位波动率敏感度承受的时间衰减比，单腿受高换手与尾部极端值干扰暂未过门）<br />• <span style="color: #dc2626; font-weight: 600;">期权定价模型离散度偏斜 (<code class="language-plaintext highlighter-rouge">opt_disp_skew</code>)</span>：<code class="language-plaintext highlighter-rouge">ts_ir((opt_disp_put - opt_disp_call) / ((opt_disp_put + opt_disp_call) / 2), 22)</code>（衡量看跌与看涨期权定价模型分歧度的相对信噪比）<br />• <span style="color: #dc2626; font-weight: 600;">隐含远期残差 &amp; 交易所成交量 (<code class="language-plaintext highlighter-rouge">fwd_price_reg</code> / <code class="language-plaintext highlighter-rouge">opt_exch_vol</code>)</span>：<code class="language-plaintext highlighter-rouge">ts_regression(fwd_price, vwap, 66, rettype=2)</code>、<code class="language-plaintext highlighter-rouge">group_scale(ts_sum(opt_exch_vol, 22), sector)</code>（合成远期相对现货 VWAP 的基差残差及分交易所成交量累积）<br />• <span style="color: #dc2626; font-weight: 600;">权证价格动量与换手缩放 (<code class="language-plaintext highlighter-rouge">warrant_mom</code>)</span>：<code class="language-plaintext highlighter-rouge">ts_delta(vec_avg(warrant_bid_ask_mid), 120)</code>、<code class="language-plaintext highlighter-rouge">-ts_scale(ts_backfill(vec_avg(warrant_vol), 22), 66)</code>（权证矢量价量变化与量能缩放；受多合约混杂与覆盖稀疏限制单腿偏弱）<br />• <strong>终端净开仓买入意愿 (<code class="language-plaintext highlighter-rouge">net_open_buy</code>)</strong>：<code class="language-plaintext highlighter-rouge">(open_buy_calls - open_buy_puts) / (open_buy_calls + open_buy_puts + 1e-4)</code>（剥离做市商对冲与平仓噪音，跟踪终端客户主动看多/看空新开仓流）<br />• <strong>财报 IV 压缩、隐含借贷利率与平价价差</strong>：<code class="language-plaintext highlighter-rouge">iv_crush_rate</code>、<code class="language-plaintext highlighter-rouge">implied_borrow_rate</code>、<code class="language-plaintext highlighter-rouge">ts_backfill(parity_gap, 120)</code>（捕捉财报后波动率回落预期、隐含融券稀缺度与期权平价结构性偏离）<br /><br /><strong>CDS、违约概率曲线与债券信用归约</strong><br />• <span style="color: #059669; font-weight: 600;">单名 CDS 回收率风险、利率 DV01 与点差 (<code class="language-plaintext highlighter-rouge">cds_rec_dv01_spread</code>)</span>：<code class="language-plaintext highlighter-rouge">ts_mean(group_neutralize(sigmoid(group_rank(filter(ts_backfill(vec_avg(cds_rec_risk), 22)), subindustry)) * group_rank(...), country), 160)</code>、<code class="language-plaintext highlighter-rouge">vec_avg(cds_ir_dv01)</code>、<code class="language-plaintext highlighter-rouge">vec_avg(cds_par_spread)</code>（通过滤波与行业内非线性平方排序提纯机构主导的 CDS 信用与久期风险定价，再跨国中性化平滑）<br />• <span style="color: #059669; font-weight: 600;">CDS 宏观敏感度与报价质量稳定度 (<code class="language-plaintext highlighter-rouge">cds_macro_sens</code>)</span>：<code class="language-plaintext highlighter-rouge">-cds_fx_sens</code>、<code class="language-plaintext highlighter-rouge">rank(ts_ir(1 + vec_stddev(cds_obs_score), 20) - 1)</code>（CDS 点差对汇率/商品的暴露及报价覆盖稳定性信息比）<br />• <span style="color: #059669; font-weight: 600;">多期限违约概率曲线动态与信用分位波动 (<code class="language-plaintext highlighter-rouge">pd_term_dynamics</code>)</span>：<code class="language-plaintext highlighter-rouge">ts_av_diff(ts_min_max_diff(rank(ts_backfill(pd_term_1y, 120)), 240, f=0.5), 22)</code>、<code class="language-plaintext highlighter-rouge">ts_std_dev(group_neutralize(log(ts_backfill(credit_rank, 120)), country), 66)</code>（一年期违约概率的极差偏离脉冲与国家中性化信用安全分位波动率）<br />• <span style="color: #dc2626; font-weight: 600;">公司债 Z-Spread、收益与股债背离 (<code class="language-plaintext highlighter-rouge">bond_zspread_ret</code>)</span>：<code class="language-plaintext highlighter-rouge">ts_backfill(vec_avg(bond_zspread_chg), 120)</code>、<code class="language-plaintext highlighter-rouge">ts_backfill(vec_avg(bond_ret), 120)</code>、<code class="language-plaintext highlighter-rouge">ts_backfill(vec_avg(eq_bond_diff), 120)</code>（多只存续债通过 <code class="language-plaintext highlighter-rouge">vec_avg</code> 聚合至股票层并回填；易受不同到期期限混杂影响）<br />• <span style="color: #dc2626; font-weight: 600;">信用曲线 PCA 平移/倾斜/扭曲 (<code class="language-plaintext highlighter-rouge">bond_curve_pca</code>)</span>：<code class="language-plaintext highlighter-rouge">ts_delta(vec_avg(bond_curve_twist), 60)</code>、<code class="language-plaintext highlighter-rouge">ts_zscore(group_neutralize(vec_norm(bond_curve_tilt), bucket_grp), 66)</code>（提取信用曲线整体平移、期限倾斜与曲率载荷变化；单腿测试受区域失衡与换手拖累）<br />• <span style="color: #dc2626; font-weight: 600;">Merton 结构化违约分位与信用评级趋势 (<code class="language-plaintext highlighter-rouge">merton_pd_rating</code>)</span>：<code class="language-plaintext highlighter-rouge">ts_max_diff(ts_backfill(merton_pd_pct, 120), 240)</code>、<code class="language-plaintext highlighter-rouge">ts_regression(ts_zscore(credit_rating, 252), ts_zscore(cap, 252), 252, rettype=0)</code>（剔除市值偏差后的 Merton 违约风险与评级趋势）<br />• <strong>公司债到期收益率、票息与存续留存比 (<code class="language-plaintext highlighter-rouge">bond_ytm_coupon</code>)</strong>：<code class="language-plaintext highlighter-rouge">vec_avg(bond_ytm_ask) - vec_avg(bond_ytm_bid)</code>、<code class="language-plaintext highlighter-rouge">vec_sum(amt_outstanding) / (vec_sum(amt_issued) + 1e-6)</code>（信用债流动性买卖价差与债券存续收缩比例）</td>
+      <td><strong>波动率/PCR/事件门控与正交剥离</strong><br />• <span style="color: #059669; font-weight: 600;">高波 / PCR 区间门控 × 波动率或方差偏斜 (<code class="language-plaintext highlighter-rouge">vol_pcr_skew_gate</code>)</span>：<code class="language-plaintext highlighter-rouge">if_else(or(pcr_oi &gt; 1.1, pcr_oi &lt; 0.9), parkinson_vol * (1 / iv_put - 1 / iv_call), nan)</code>、<code class="language-plaintext highlighter-rouge">trade_when(pcr_oi &lt; 1, iv_call - iv_put, -1)</code>、<code class="language-plaintext highlighter-rouge">trade_when(parkinson_vol &gt; 0.3, power(iv_var_call, 2) - power(iv_var_put, 2), -1)</code>（在高波动状态或 PCR 偏离均衡时激活偏斜头寸，大幅提高信噪比与换手稳定性）<br />• <span style="color: #059669; font-weight: 600;">VRP 向量/回归正交剥离 (<code class="language-plaintext highlighter-rouge">vrp_orth_neut</code>)</span>：<code class="language-plaintext highlighter-rouge">if_else(parkinson_vol &gt; 0.3, vector_neut(parkinson_vol, iv_put) - parkinson_vol / iv_call, nan)</code>（将已实现波动率对 Put IV 做向量或截面回归正交，剥离共线性波动基准后放大看涨/看跌不对称溢价）<br />• <span style="color: #059669; font-weight: 600;">盈亏平衡倒挂 &amp; 收益波动门控 (<code class="language-plaintext highlighter-rouge">be_retvol_gate</code>)</span>：<code class="language-plaintext highlighter-rouge">trade_when(call_breakeven_60 &lt; call_breakeven_30, iv_call_120 - iv_put_60, -1)</code>、<code class="language-plaintext highlighter-rouge">if_else(ts_std_dev(ts_backfill(opt_return, 120), 20) &gt; 0.02, iv_call_atm - iv_put_atm, nan)</code>（当短期限盈亏平衡反超远期限或期权自身收益波动抬升时激活 ATM 偏斜）<br />• <span style="color: #059669; font-weight: 600;">期权大盘低相关性/低 Beta 门控 (<code class="language-plaintext highlighter-rouge">opt_spy_lowcorr_gate</code>)</span>：<code class="language-plaintext highlighter-rouge">trade_when(opt_spy_corr &lt; 0.4, ts_scale(earn_growth, 240), -1)</code>（在期权市场定价与大盘相关性较低、特异信息主导的股票上启用基本面成长信号）<br />• <span style="color: #dc2626; font-weight: 600;">期权特异风险/离散度与权证波动门控 (<code class="language-plaintext highlighter-rouge">opt_idio_gate</code>)</span>：<code class="language-plaintext highlighter-rouge">trade_when(opt_idio_risk &lt; 0.4, ts_scale(earn_growth, 240), -1)</code>、<code class="language-plaintext highlighter-rouge">if_else(ts_std_dev(vec_avg(warrant_price), 7) &gt; 0.02, -ts_zscore(idio_ret, 3), 0)</code>（用期权特异风险、定价离散度或权证短期波动率过滤股票特异收益/盈利信号，Sharpe 高但 Fitness 受低收益或覆盖拖累）<br />• <strong>做市商 Gamma 暴露反转调制 (<code class="language-plaintext highlighter-rouge">gamma_regime_mod</code>)</strong>：<code class="language-plaintext highlighter-rouge">if_else(opt_gamma_call &gt; group_median(opt_gamma_call, industry), -ts_mean(returns, 5), returns)</code>（根据期权正/负 Gamma 集中区调节现货短期反转或趋势追随强度）<br /><br /><strong>期权权重锚、波动率分桶与估值缩放</strong><br />• <span style="color: #059669; font-weight: 600;">期权成交量/价差加权特异收益正交 (<code class="language-plaintext highlighter-rouge">opt_vol_spread_weight</code>)</span>：<code class="language-plaintext highlighter-rouge">signed_power(-ts_std_dev(vector_neut(idio_ret, group_mean(idio_ret, ts_rank(opt_volume, 60), industry)), 252), 5)</code>（用期权成交量或 <code class="language-plaintext highlighter-rouge">opt_ask - opt_bid</code> 作行业均值权重，正交剥离板块期权流动性共同冲击后再取特异收益波动倒数）<br />• <span style="color: #059669; font-weight: 600;">期权 IV / 历史波动率十分位分桶中性化 (<code class="language-plaintext highlighter-rouge">iv_hv_bucket_neut</code>)</span>：<code class="language-plaintext highlighter-rouge">group_zscore(vec_avg(short_lasso), densify(bucket(rank(iv_var_call), range='0.1, 1, 0.1')))</code>（按期权加权 IV 或历史波动率将全市场分为 10 桶组内比较，剥离“高波 vs 低波”风格错配）<br />• <span style="color: #059669; font-weight: 600;">波动率/期权锚定价对基本面估值缩放 (<code class="language-plaintext highlighter-rouge">opt_book_val_scale</code>)</span>：<code class="language-plaintext highlighter-rouge">ts_zscore(ts_delta(book_value_ps / vec_avg(opt_price_close), 60), 252)</code>、<code class="language-plaintext highlighter-rouge">ts_rank(operating_income / hist_vol, 252)</code>（用未复权期权锚定价或历史波动率标准化每股净资产与营业利润）<br /><br /><strong>CDS 跨资产协同、互换与信用去偏</strong><br />• <span style="color: #059669; font-weight: 600;">CDS 风险 × 前瞻估值乘性桥接 (<code class="language-plaintext highlighter-rouge">cds_ep_bridge</code>)</span>：<code class="language-plaintext highlighter-rouge">group_rank(forward_ep, subindustry) * sigmoid(group_rank(vec_avg(cds_ir_dv01), subindustry))</code>（把 CDS 利率 DV01 或回收率风险与分析师前瞻 EP 估值在子行业内乘性共振，兼顾信用安全边际与盈利性价比）<br />• <span style="color: #059669; font-weight: 600;">CDS 衍生因子对前瞻盈利回归残差 (<code class="language-plaintext highlighter-rouge">cds_factor_ep_reg</code>)</span>：<code class="language-plaintext highlighter-rouge">group_rank(ts_regression(ts_zscore(cds_rein_rate, 252), forward_ep, 252), industry)</code>（从 CDS 信用体系衍生因子中时序回归剥离前瞻盈利估值，提取纯信用边际信息）<br />• <span style="color: #059669; font-weight: 600;">权益互换付息周期 × 风险滞后差 (<code class="language-plaintext highlighter-rouge">swap_risk_diff</code>)</span>：<code class="language-plaintext highlighter-rouge">-ts_delay(vec_avg(risk_factor) - vec_avg(swap_pay_period), 22)</code>（结合权益互换固定付息周期结构与风险/融券利用率构建滞后相对差）<br />• <span style="color: #dc2626; font-weight: 600;">信用利差分桶中性化 &amp; 曲线相对曲率残差 (<code class="language-plaintext highlighter-rouge">bond_bucket_curve_rel</code>)</span>：<code class="language-plaintext highlighter-rouge">group_neutralize(ts_backfill(vec_max(bond_zspread_chg), 120), densify(bucket(rank(cap), range='0.1, 1, 0.1')))</code>、<code class="language-plaintext highlighter-rouge">regression_neut(ts_delta(vec_avg(bond_curve_twist_short), 60), ts_delta(vec_avg(bond_curve_twist_wide), 60))</code>（剥离发债大盘偏差与宽端共同曲线变动，但非发债缺失与区域覆盖失衡仍限制稳健性）<br />• <span style="color: #dc2626; font-weight: 600;">利率敏感度宏观门控 (<code class="language-plaintext highlighter-rouge">ir_macro_gate</code>)</span>：<code class="language-plaintext highlighter-rouge">trade_when(rank(ir_oil_macro_beta) &lt; 0.5, -rank(ts_decay_linear(idio_ret, 6)), nan)</code>（限制在利率/商品宏观敏感度较低的标的池内交易短期特异收益反转）<br />• <strong>股债预期背离与信用风险正交 (<code class="language-plaintext highlighter-rouge">credit_equity_neut</code>)</strong>：<code class="language-plaintext highlighter-rouge">regression_neut(zscore(vec_avg(eq_bond_diff)), ts_zscore(bond_zspread, 120))</code>（从股债收益率差中正交剥离信用风险等级本身，提纯跨资产相对错误定价）</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="四期权与债券信用数据在量化因子构建中的六大工程要点">四、期权与债券信用数据在量化因子构建中的六大工程要点</h2>
+
+<ol>
+  <li><strong>期权必须“对齐期限与执行价”，看相对偏斜而非裸波动率</strong>：
+    <ul>
+      <li>单看一只股票的隐含波动率高低往往只是在押注“低波/小盘风格”。真正含金量高的是<strong>同剩余期限、同平值/等 Delta 档位的 <code class="language-plaintext highlighter-rouge">Call vs Put</code> 偏斜（<code class="language-plaintext highlighter-rouge">spread</code> 或方差差关系）</strong>、<strong>近月 vs 远月期限倒挂</strong>，以及<strong>隐含波动率相对近期 <code class="language-plaintext highlighter-rouge">Parkinson</code> / OHLC 日内 / 历史已实现波动率的 VRP 差价</strong>（必要时再用 <code class="language-plaintext highlighter-rouge">vector_neut</code> 剥离共线性基准）。</li>
+    </ul>
+  </li>
+  <li><strong>用 <code class="language-plaintext highlighter-rouge">PCR</code>、高波动阈值或大盘相关性做门控，往往强于直接做线性排序</strong>：
+    <ul>
+      <li>期权成交与持仓指标信噪比呈阵发性——在多空持仓均衡（如 <code class="language-plaintext highlighter-rouge">pcr_oi</code> 处于 <code class="language-plaintext highlighter-rouge">0.9~1.1</code>）或低波动时期噪音较大；当 <code class="language-plaintext highlighter-rouge">pcr_oi</code> 突破阈值、短期盈亏平衡出现期限倒挂、或期权与大盘相关性处于低位（<code class="language-plaintext highlighter-rouge">&lt; 0.4</code>）时，通过 <code class="language-plaintext highlighter-rouge">trade_when</code> / <code class="language-plaintext highlighter-rouge">if_else</code> 激活偏斜或基本面信号，换手更稳、信噪比更高。</li>
+    </ul>
+  </li>
+  <li><strong>衍生品更强的实战角色常在于“权重锚”与“分桶尺度”</strong>：
+    <ul>
+      <li>除了直接构造 Call-Put 差价，把期权成交量或期权买卖价差作为 <code class="language-plaintext highlighter-rouge">group_mean</code> 权重去构造行业基准并对股票特异收益做 <code class="language-plaintext highlighter-rouge">vector_neut</code> 正交，或者按期权加权 IV / 历史波动率做十分位 <code class="language-plaintext highlighter-rouge">bucket</code> 分桶中性化，往往能稳定剥离行业流动性冲击与波动率风格暴露。</li>
+    </ul>
+  </li>
+  <li><strong>债券/CDS 数据天然带有极强的大市值与高杠杆选样偏差（Selection Bias）</strong>：
+    <ul>
+      <li>只有发行过公开公司债或存在活跃 CDS 报价的上市公司才有记录（全球全市场横截面覆盖率通常仅 <strong>70%–80%</strong>）。直接对 <code class="language-plaintext highlighter-rouge">Z-Spread</code> 或 <code class="language-plaintext highlighter-rouge">bond_ret</code> 做全市场排名极易退化为“大小盘/高杠杆因子”，因此实战中必须配合<strong>市值或成交额分桶中性化（<code class="language-plaintext highlighter-rouge">bucket</code>）</strong>或对杠杆率做正交回归剥离。</li>
+    </ul>
+  </li>
+  <li><strong>多券 <code class="language-plaintext highlighter-rouge">VECTOR</code> 归约中的信息模糊陷阱</strong>：
+    <ul>
+      <li>一家大型发债主体可能同时有数十只不同久期、含权条款或货币计价的存续债券，直接对整个 <code class="language-plaintext highlighter-rouge">VECTOR</code> 做 <code class="language-plaintext highlighter-rouge">vec_avg</code> 会把短期债与长期债、普通债与可转债混为一谈。优先使用平台已按统一期限（如 5 年期）校准过的利差/变化字段，或搭配 <code class="language-plaintext highlighter-rouge">vec_max</code> / <code class="language-plaintext highlighter-rouge">vec_stddev</code> 观察债券内部分化与极端违约压力。</li>
+    </ul>
+  </li>
+  <li><strong>CDS 敏感度 &amp; 标准期限违约概率曲线 vs 公司债原始利差的实测分化</strong>：
+    <ul>
+      <li>单名 CDS 的回收率敏感度（<code class="language-plaintext highlighter-rouge">cds_rec_risk</code>）、利率平行移动 DV01（<code class="language-plaintext highlighter-rouge">cds_ir_dv01</code>）以及结构化多期限违约概率曲线（1M–10Y）口径统一、机构定价集中，经过滤波与行业内非线性排序后，极易与前瞻估值（如 <code class="language-plaintext highlighter-rouge">forward_ep</code>）乘性桥接出稳健信号；相比之下，公司债多券原始 <code class="language-plaintext highlighter-rouge">VECTOR</code>（含 PCA 曲率 <code class="language-plaintext highlighter-rouge">twist</code>/<code class="language-plaintext highlighter-rouge">tilt</code>）与权证单腿信号受发行人覆盖偏差与多合约混杂影响更重，需要更精细的期限匹配与跨区域平衡处理。</li>
+    </ul>
+  </li>
+</ol>
+
+        </div>
+
+        
+
+        
+        
+  <div class="page-comments">
+    <div id="disqus_thread"></div>
+    <script>
+      var disqus_config = function () {
+        this.page.url = 'https://roshameow.github.io//personal_homepage/data/bond/';
+        this.page.identifier = 'https://roshameow.github.io//personal_homepage/data/bond/';
+      };
+
+      (function() {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://https-roshameow-github-io-personal-homepage.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+  </div>
+
+
+        
+
+        <nav class="page-pagination" role="navigation">
+  
+    <a class="page-previous" href="/personal_homepage/tool/raycast-script/">
+      <h4 class="page-pagination-label">Previous</h4>
+      <span class="page-pagination-title">
+        <i class="fas fa-arrow-left"></i> raycast脚本
+
+      </span>
+    </a>
+  
+
+  
+    <a class="page-next" href="/personal_homepage/math/conformal-geometry10/">
+      <h4 class="page-pagination-label">Next</h4>
+      <span class="page-pagination-title">
+        conformal geometry学习 (十 ) – 举例: 球面上的unit tangent bundle manifold
+ <i class="fas fa-arrow-right"></i>
+      </span>
+    </a>
+  
+</nav>
+
+      </div>
+
+    </div>
+  </article>
+</main>
+
+    <footer id="footer" class="site-footer">
+  <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+<div class="social-icons"><a class="social-icon" href="/personal_homepage/atom.xml"><i class="fas fa-rss-square fa-2x" title="Feed"></i></a><a class="social-icon" href="https://github.com/roshameow"><i class="fab fa-github-square fa-2x" title="GitHub"></i></a><a class="social-icon" href="https://www.linkedin.com/in/wen-liu-06503a7b/"><i class="fab fa-linkedin fa-2x" title="LinkedIn"></i></a><a class="social-icon" href="mailto:w.liuatnk@gmail.com"><i class="fas fa-envelope-square fa-2x" title="e-mail"></i></a></div><div class="copyright">
+    
+      <p>&copy; 2026 Liu, Wen's Home Page. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://github.com/mmistakes/so-simple-theme" rel="nofollow">So Simple</a>.</p>
+    
+  </div>
+</footer>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="/personal_homepage/assets/js/main.min.js"></script>
+<script src="https://use.fontawesome.com/releases/v5.0.12/js/all.js"></script><script src="/personal_homepage/assets/js/content-tables.js" defer></script>
+
+<script>
+(function () {
+  'use strict';
+
+  var types = {
+    NOTE: 'note', INFO: 'note', ABSTRACT: 'note', SUMMARY: 'note', TLDR: 'note',
+    EXAMPLE: 'note', QUOTE: 'note', CITE: 'note',
+    TIP: 'tip', HINT: 'tip', IMPORTANT: 'tip', SUCCESS: 'tip', CHECK: 'tip', DONE: 'tip',
+    QUESTION: 'warning', HELP: 'warning', FAQ: 'warning',
+    WARNING: 'warning', CAUTION: 'warning', ATTENTION: 'warning',
+    DANGER: 'danger', ERROR: 'danger', BUG: 'danger',
+    FAILURE: 'danger', FAIL: 'danger', MISSING: 'danger'
+  };
+  var icons = {
+    note: 'M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z M12 11v6 M12 7h.01',
+    tip: 'M9 18h6 M10 21h4 M9 15a6 6 0 1 1 6 0v3H9z',
+    warning: 'M12 3L2 21h20z M12 9v5 M12 17h.01',
+    danger: 'M7 3h10l4 4v10l-4 4H7l-4-4V7z M9 9l6 6 M15 9l-6 6'
+  };
+
+  function makeIcon(type) {
+    var namespace = 'http://www.w3.org/2000/svg';
+    var svg = document.createElementNS(namespace, 'svg');
+    svg.setAttribute('class', 'callout-icon');
+    svg.setAttribute('viewBox', '0 0 24 24');
+    svg.setAttribute('width', '20');
+    svg.setAttribute('height', '20');
+    svg.setAttribute('fill', 'none');
+    svg.setAttribute('stroke', 'currentColor');
+    svg.setAttribute('stroke-width', '2');
+    svg.setAttribute('stroke-linecap', 'round');
+    svg.setAttribute('stroke-linejoin', 'round');
+    svg.setAttribute('aria-hidden', 'true');
+    svg.setAttribute('focusable', 'false');
+    var path = document.createElementNS(namespace, 'path');
+    path.setAttribute('d', icons[type]);
+    svg.appendChild(path);
+    return svg;
+  }
+
+  // A soft break is a text newline; a Markdown hard break is a <br>.
+  // Do not split newlines inside inline code or other literal content.
+  function firstBreak(parent) {
+    for (var node = parent.firstChild; node; node = node.nextSibling) {
+      if (node.nodeType === 3) {
+        var offset = node.data.search(/[\r\n]/);
+        if (offset !== -1) return { node: node, offset: offset };
+      } else if (node.nodeType === 1) {
+        if (node.tagName === 'BR') return { node: node };
+        if (/^(CODE|PRE|SCRIPT|STYLE|TEXTAREA)$/.test(node.tagName)) continue;
+        var result = firstBreak(node);
+        if (result) return result;
+      }
+    }
+    return null;
+  }
+
+  function transformCallouts() {
+    document.querySelectorAll('.page-content blockquote').forEach(function (quote) {
+      if (quote.closest('pre, code, .highlight, .highlighter-rouge')) return;
+      var paragraph = quote.firstElementChild;
+      if (!paragraph || paragraph.tagName !== 'P') return;
+
+      // Require the marker in a direct text node: <code>[!WARNING]</code>
+      // (and markers merely mentioned later in a quote) must remain literal.
+      var markerNode = paragraph.firstChild;
+      if (!markerNode || markerNode.nodeType !== 3) return;
+      var marker = markerNode.data.match(/^[\t \r\n]*\[!([a-z][a-z0-9-]*)\]([+-])?(?=[\t \r\n]|$)[\t ]*/i);
+      if (!marker) return;
+      var name = marker[1].toUpperCase();
+      if (!Object.prototype.hasOwnProperty.call(types, name)) return;
+      var type = types[name];
+      var label = name === 'TLDR' ? 'TL;DR' : name.charAt(0) + name.slice(1).toLowerCase();
+      markerNode.deleteData(0, marker[0].length);
+
+      var boundary = firstBreak(paragraph);
+      var range = document.createRange();
+      range.selectNodeContents(paragraph);
+      if (boundary) {
+        if (boundary.node.nodeType === 3) range.setEnd(boundary.node, boundary.offset);
+        else range.setEndBefore(boundary.node);
+      }
+      var titleContent = range.extractContents();
+      if (boundary) {
+        if (boundary.node.nodeType === 3) {
+          var breakLength = boundary.node.data.slice(0, 2) === '\r\n' ? 2 : 1;
+          boundary.node.deleteData(0, breakLength);
+        } else {
+          boundary.node.parentNode.removeChild(boundary.node);
+        }
+      }
+      if (!paragraph.textContent.trim() && !paragraph.children.length) {
+        quote.removeChild(paragraph);
+      }
+
+      var folding = !!marker[2];
+      var callout = document.createElement(folding ? 'details' : 'div');
+      // Keep author-provided IDs, language, direction, and classes.
+      Array.prototype.forEach.call(quote.attributes, function (attribute) {
+        callout.setAttribute(attribute.name, attribute.value);
+      });
+      callout.classList.add('callout', 'callout--' + type);
+      callout.setAttribute('data-callout', name.toLowerCase());
+      callout.setAttribute('aria-label', label);
+      if (folding) {
+        callout.removeAttribute('role');
+        if (marker[2] === '+') callout.setAttribute('open', '');
+        else callout.removeAttribute('open');
+      } else {
+        callout.setAttribute('role', 'note');
+      }
+
+      var title = document.createElement(folding ? 'summary' : 'div');
+      title.className = 'callout-title';
+      title.appendChild(makeIcon(type));
+      var titleText = document.createElement('span');
+      titleText.className = 'callout-title-text';
+      if (titleContent.textContent.trim() || titleContent.childElementCount) {
+        titleText.appendChild(titleContent);
+      } else {
+        titleText.textContent = label;
+      }
+      title.appendChild(titleText);
+      callout.appendChild(title);
+
+      var body = document.createElement('div');
+      body.className = 'callout-body';
+      while (quote.firstChild) body.appendChild(quote.firstChild);
+      callout.appendChild(body);
+      quote.parentNode.replaceChild(callout, quote);
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', transformCallouts);
+  } else {
+    transformCallouts();
+  }
+})();
+</script>
+<!-- <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'G-9TMSCDTBGN', 'auto');
+  ga('send', 'pageview');
+</script> -->
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9TMSCDTBGN"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-9TMSCDTBGN');
+</script>
+
+
+
+<!-- MathJax -->
+<style>
+    /* Only oversized equations get this wrapper; ordinary inline math stays inline. */
+    .math-scroll {
+        display: block;
+        max-width: 100%;
+        overflow-x: auto;
+        overflow-y: hidden;
+        padding-block: 0.5em;
+        scrollbar-width: thin;
+    }
+    .math-scroll > mjx-container[jax] {
+        display: inline-block;
+        margin: 0;
+    }
+    .math-scroll:focus-visible {
+        outline: 2px solid currentColor;
+        outline-offset: 2px;
+    }
+</style>
+<script>
+    function fitMathToColumn() {
+        document.querySelectorAll('mjx-container').forEach(function (container) {
+            var wrapper = container.parentElement.classList.contains('math-scroll') ? container.parentElement : null;
+            var column = wrapper ? wrapper.parentElement : container.parentElement;
+            while (column && ['inline', 'contents'].includes(getComputedStyle(column).display)) {
+                column = column.parentElement;
+            }
+            if (!column) return;
+            var style = getComputedStyle(column);
+            var available = column.clientWidth - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight);
+            var ink = container.querySelector('mjx-math, svg');
+            var width = (ink || container).getBoundingClientRect().width;
+            if (width > available + 1) {
+                if (!wrapper) {
+                    wrapper = document.createElement('span');
+                    wrapper.className = 'math-scroll';
+                    wrapper.tabIndex = 0;
+                    wrapper.setAttribute('role', 'region');
+                    wrapper.setAttribute('aria-label', 'Mathematical formula; scroll horizontally to read all');
+                    wrapper.title = 'Scroll horizontally to read the full formula';
+                    container.before(wrapper);
+                    wrapper.appendChild(container);
+                }
+            } else if (wrapper) {
+                wrapper.replaceWith(container);
+            }
+        });
+    }
+    // Pin the engine, autoloaded TeX extensions, menu and fonts to local assets.
+    window.MathJax = {
+        loader: {
+            paths: { mathjax: "/personal_homepage/assets/js/vendor/mathjax/es5" },
+            load: ['[tex]/textmacros']
+        },
+        tex: {
+            tags: "ams",
+            packages: { '[+]': ['textmacros'] },
+            inlineMath: [['$', '$'], ['\\(', '\\)']],
+            displayMath: [['$$', '$$'], ['\\[', '\\]']]
+        },
+        chtml: {
+            fontURL: "/personal_homepage/assets/js/vendor/mathjax/es5/output/chtml/fonts/woff-v2"
+        },
+        startup: {
+            pageReady: function () {
+                return MathJax.startup.defaultPageReady().then(function () {
+                    return document.fonts ? document.fonts.ready : undefined;
+                }).then(function () {
+                    fitMathToColumn();
+                    var scheduled = false;
+                    window.addEventListener('resize', function () {
+                        if (scheduled) return;
+                        scheduled = true;
+                        requestAnimationFrame(function () {
+                            scheduled = false;
+                            fitMathToColumn();
+                        });
+                    });
+                });
+            }
+        },
+        options: {
+            // Keep examples (including literal dollar signs) out of the typesetter.
+            skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code', 'annotation', 'annotation-xml']
+        }
+    };
+</script>
+<script id="MathJax-script" async src="/personal_homepage/assets/js/vendor/mathjax/es5/tex-mml-chtml.js"></script>
+
+
+
+
+<!-- Mermaid -->
+<style>
+  .mermaid-diagram {
+    max-width: 100%;
+    margin: 0.85rem 0;
+    overflow-x: auto;
+  }
+  .mermaid-diagram:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+  }
+  .page-content pre.mermaid {
+    margin: 0;
+    padding: 0.25rem 0;
+    text-align: center;
+    background: transparent;
+    overflow: visible;
+    font-family: inherit;
+  }
+  .page-content pre.mermaid[data-processed] {
+    white-space: normal;
+  }
+  pre.mermaid svg {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    height: auto;
+  }
+  .mermaid-diagram .cluster-label {
+    font-weight: 700;
+  }
+  .mermaid-error {
+    font-size: 0.85em;
+    color: #9a3412;
+  }
+</style>
+<script src="/personal_homepage/assets/js/vendor/mermaid-11.17.2.min.js"></script>
+<script>
+(function () {
+  'use strict';
+
+  function normalizeMermaidSource(source) {
+    // Mermaid 11 accepts A <-- "label" --- B but creates an INVALID edge.
+    // Render the equivalent B -->|"label"| A, without editing the Markdown.
+    var body = source.trimStart()
+      .replace(/^---\r?\n[\s\S]*?\r?\n---(?:\r?\n|$)/, '')
+      .replace(/%%\{[\s\S]*?\}%%/g, '')
+      .replace(/^[\t ]*%%.*$/gm, '').trimStart();
+    if (!/^(?:flowchart|graph)\b/.test(body)) return source;
+
+    var started = false;
+    var quoted = false;
+    return source.replace(/[^\r\n]+/g, function (line) {
+      if (!started && !/^\s*(?:flowchart|graph)\b/.test(line)) return line;
+      started = true;
+      var normalized = quoted ? line : line.replace(
+        /^([\t ]*)([A-Za-z_][\w-]*)[\t ]*<--[\t ]*("[^"\r\n]*")[\t ]*---[\t ]*([A-Za-z_][\w-]*)([\t ]*;?[\t ]*(?:%%.*)?)$/,
+        function (_, indent, left, label, right, suffix) {
+          return indent + right + ' -->|' + label + '| ' + left + suffix;
+        }
+      );
+      // Never rewrite an example inside a multiline quoted node label, and
+      // never let quotes inside a %% comment affect the following lines.
+      for (var i = 0; i < line.length; i++) {
+        if (!quoted && line[i] === '%' && line[i + 1] === '%') break;
+        if (line[i] === '"') quoted = !quoted;
+      }
+      return normalized;
+    });
+  }
+
+  async function renderDiagrams() {
+    var blocks = document.querySelectorAll('code.language-mermaid');
+    if (!blocks.length) return;
+    if (typeof mermaid === 'undefined') {
+      blocks.forEach(function (code) {
+        var original = code.closest('.highlighter-rouge') || code.closest('pre');
+        if (!original) return;
+        var message = document.createElement('p');
+        message.className = 'mermaid-error';
+        message.setAttribute('role', 'status');
+        message.textContent = '图表组件加载失败，请刷新页面重试。Mermaid 源码已保留。';
+        original.after(message);
+      });
+      return;
+    }
+
+    // Render every diagram as Mermaid, including diagrams with multiple subgraphs.
+    // Disable the automatic pass so it cannot race with our explicit rendering.
+    var skin = getComputedStyle(document.documentElement);
+    function color(name, fallback) {
+      return skin.getPropertyValue('--mermaid-' + name).trim() || fallback;
+    }
+    var background = color('background', '#ffffff');
+    var text = color('text', '#000000');
+    var border = color('border', '#cccccc');
+    var nodeBorder = color('node-border', '#b8b9c0');
+    var cluster = color('cluster-background', '#f9f9fa');
+    var line = color('line', '#858795');
+    var palettes = [
+      ['#e4eaf0', '#f4f6f9', '#a5b3c2'], // slate blue
+      ['#e8f0ea', '#f5f8f5', '#a8bcae'], // sage
+      ['#f3ede3', '#faf7f2', '#c6b69c'], // sand
+      ['#ebe8f1', '#f7f5fa', '#b5adc5'], // lavender
+      ['#e4eeee', '#f3f8f8', '#a0baba']  // muted teal
+    ].map(function (fallbacks, index) {
+      return {
+        node: color('palette-' + index + '-node', fallbacks[0]),
+        cluster: color('palette-' + index + '-cluster', index === 0 ? cluster : fallbacks[1]),
+        border: color('palette-' + index + '-border', fallbacks[2])
+      };
+    });
+    var fontFamily = getComputedStyle(document.body).fontFamily ||
+      '"Source Sans Pro", sans-serif';
+    // Mermaid fixes label dimensions during layout. Wait for web fonts so a
+    // later font swap cannot make the measured label box too small.
+    if (document.fonts) await document.fonts.ready;
+
+    var theme = "default";
+    // The site's default follows its active skin. Explicit forest/dark/etc.
+    // choices remain available for sites that deliberately select them.
+    if (theme === 'default') theme = 'base';
+
+    var config = {
+      startOnLoad: false,
+      securityLevel: 'strict',
+      fontFamily: fontFamily,
+      // Native SVG text avoids foreignObject clipping and article paragraph CSS.
+      htmlLabels: false,
+      flowchart: {
+        inheritDir: true,
+        curve: 'linear',
+        nodeSpacing: 24,
+        rankSpacing: 28,
+        padding: 8,
+        diagramPadding: 8,
+        wrappingWidth: 180,
+        // Nested cluster borders must start below the parent's full title line.
+        subGraphTitleMargin: { top: 4, bottom: 12 }
+      },
+      theme: theme,
+      themeVariables: theme === 'base' ? {
+        fontFamily: fontFamily,
+        fontSize: '14px',
+        background: background,
+        primaryColor: palettes[0].node,
+        primaryTextColor: text,
+        primaryBorderColor: nodeBorder,
+        secondaryColor: palettes[1].node,
+        secondaryTextColor: text,
+        secondaryBorderColor: border,
+        tertiaryColor: palettes[2].node,
+        tertiaryTextColor: text,
+        tertiaryBorderColor: border,
+        lineColor: line,
+        textColor: text,
+        mainBkg: palettes[0].node,
+        nodeBorder: nodeBorder,
+        nodeTextColor: text,
+        clusterBkg: palettes[0].cluster,
+        clusterBorder: border,
+        titleColor: text,
+        defaultLinkColor: line,
+        edgeLabelBackground: background,
+        noteBkgColor: palettes[2].node,
+        noteTextColor: text,
+        noteBorderColor: border,
+        actorBkg: palettes[0].node,
+        actorBorder: nodeBorder,
+        actorTextColor: text,
+        actorLineColor: border,
+        signalColor: line,
+        signalTextColor: text
+      } : { fontFamily: fontFamily }
+    };
+
+    function applyFlowchartPalette(svg) {
+      if (theme !== 'base' || !/^flowchart/.test(svg.getAttribute('aria-roledescription') || '')) return;
+
+      function tint(group, shapes, index, kind) {
+        // Author-supplied classDef/style colors take precedence over auto accents.
+        var customClass = Array.from(group.classList).some(function (name) {
+          return !['node', 'default', 'cluster', 'clickable'].includes(name);
+        });
+        if (customClass || !shapes.length || shapes.some(function (shape) {
+          return shape.style.getPropertyValue('fill') || shape.style.getPropertyValue('stroke');
+        })) return;
+        group.setAttribute('data-mermaid-palette', index);
+        shapes.forEach(function (shape) {
+          // Keep fallbacks in the SVG so exported diagrams retain their colors.
+          if (shape.getAttribute('fill') !== 'none') {
+            shape.style.fill = 'var(--mermaid-palette-' + index + '-' + kind + ', ' + palettes[index][kind] + ')';
+          }
+          shape.style.stroke = 'var(--mermaid-palette-' + index + '-border, ' + palettes[index].border + ')';
+        });
+      }
+
+      var groups = Array.from(svg.querySelectorAll('g.cluster')).map(function (group, index) {
+        var rect = group.querySelector('rect');
+        return { group: group, rect: rect, bounds: rect && rect.getBoundingClientRect(), index: index % palettes.length };
+      }).filter(function (entry) { return entry.rect; });
+      // Mermaid's SVG stores clusters flat. Match by the actual layout so nodes
+      // inherit their smallest enclosing group, including nested schedulers.
+      var nodes = Array.from(svg.querySelectorAll('g.node')).map(function (node) {
+        return { node: node, bounds: node.getBoundingClientRect() };
+      });
+      groups.forEach(function (entry) { tint(entry.group, [entry.rect], entry.index, 'cluster'); });
+      groups.sort(function (a, b) { return a.bounds.width * a.bounds.height - b.bounds.width * b.bounds.height; });
+      nodes.forEach(function (entry) {
+        var box = entry.bounds;
+        var parent = groups.find(function (group) {
+          var bounds = group.bounds;
+          return box.left >= bounds.left - 1 && box.right <= bounds.right + 1 &&
+            box.top >= bounds.top - 1 && box.bottom <= bounds.bottom + 1;
+        });
+        var shapes = [];
+        entry.node.querySelectorAll(':scope > .label-container').forEach(function (container) {
+          // Rounded/hand-drawn shapes wrap paths in a group. Include the
+          // container in the author-style check, then tint the actual paths.
+          shapes.push(container);
+          shapes.push.apply(shapes, container.querySelectorAll('path, rect, circle, ellipse, polygon, polyline'));
+        });
+        tint(entry.node, shapes, parent ? parent.index : 0, 'node');
+      });
+    }
+
+    function hasNestedSubgraphs(source) {
+      var depth = 0;
+      return source.split(/\r?\n/).some(function (line) {
+        if (/^\s*subgraph\b/.test(line)) return ++depth > 1;
+        if (/^\s*end\s*(?:;|%%.*)?$/.test(line)) depth = Math.max(0, depth - 1);
+        return false;
+      });
+    }
+
+    for (var code of blocks) {
+      var original = code.closest('.highlighter-rouge') || code.closest('pre');
+      if (!original) continue;
+
+      var wrapper = document.createElement('div');
+      wrapper.className = 'mermaid-diagram';
+      wrapper.tabIndex = 0;
+      wrapper.setAttribute('role', 'region');
+      wrapper.setAttribute('aria-label', 'Mermaid diagram (scroll horizontally)');
+
+      var pre = document.createElement('pre');
+      pre.className = 'mermaid';
+      pre.textContent = normalizeMermaidSource(code.textContent);
+      wrapper.appendChild(pre);
+      original.replaceWith(wrapper);
+
+      try {
+        // Dagre reserves only half rankSpacing above a nested cluster. Keep
+        // that space taller than its parent's title, without spreading out
+        // the ordinary (non-nested) compact flowcharts.
+        mermaid.initialize(Object.assign({}, config, {
+          flowchart: Object.assign({}, config.flowchart, {
+            rankSpacing: hasNestedSubgraphs(code.textContent) ? 56 : config.flowchart.rankSpacing
+          })
+        }));
+        await mermaid.run({ nodes: [pre] });
+        var svg = pre.querySelector('svg');
+        if (svg && svg.viewBox.baseVal.width) {
+          // Do not shrink labels to illegible text on narrow screens;
+          // keep at least 90% of the natural size and scroll the diagram instead.
+          svg.style.minWidth = (svg.viewBox.baseVal.width * 0.9) + 'px';
+        }
+        if (svg) applyFlowchartPalette(svg);
+      } catch (error) {
+        // A malformed diagram must not prevent other diagrams from rendering
+        // or make the original source disappear.
+        wrapper.replaceChildren(original);
+        var message = document.createElement('p');
+        message.className = 'mermaid-error';
+        message.setAttribute('role', 'status');
+        message.textContent = '图表渲染失败，已保留 Mermaid 源码。';
+        wrapper.appendChild(message);
+        console.warn('Mermaid diagram could not be rendered:', error);
+      }
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', renderDiagrams);
+  } else {
+    renderDiagrams();
+  }
+})();
+</script>
+
+
+  </body>
+
+</html>

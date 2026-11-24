@@ -115,6 +115,159 @@
   <header class="entry-header">
     <h3 class="entry-title p-name">
       
+        <a href="/personal_homepage/tool/quantnight-daemons/" rel="bookmark">QuantNight 守护进程与定时调度体系全景
+</a>
+      
+    </h3>
+    
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <blockquote>
+  <p><strong>写作定位</strong>：整理 QuantNight 当前实际使用的 macOS 常驻守护进程（Daemons）、<code class="language-plaintext highlighter-rouge">launchd</code> 周期/日历任务、调度并发锁机制，以及面向持久 Agent 会话的定时唤醒入口（替代早年单条 plist 示例旧笔记）。MCP 服务内部机制详见 <a href="2026-11-23-alpha30.md">《QuantNight 原生 MCP 共享底座架构》（alpha30）</a>；<code class="language-plaintext highlighter-rouge">rotatelogs</code> 轮转、<code class="language-plaintext highlighter-rouge">ingest_error_logs</code> 报错入账与 30 天日志留存清理细节统一见 <a href="2025-10-23-message.md">《服务端通知与自动化错误台账系统》（error &amp; log）</a>，本文不重复展开。</p>
+</blockquote>
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">2 min read</span>
+
+      <time class="entry-date dt-published" datetime="2026-11-23T00:00:00+00:00">November 23, 2026
+  </time>
+    </footer>
+  
+</article>
+
+    
+      
+
+
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
+        <a href="/personal_homepage/tool/mcp-dev-pitfalls/" rel="bookmark">生产级 MCP 开发演进复盘：以 QuantNight MCP 为例谈踩坑、弯路与架构取舍
+</a>
+      
+    </h3>
+    
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <blockquote>
+  <p><strong>阅读定位</strong>：本文属于 <code class="language-plaintext highlighter-rouge">agent/extension</code> 工程实践系列，讨论的是<strong>如何把一个 MCP Server 从玩具原型打磨成多 Agent 并发可用的常驻基础设施</strong>。文中的 <strong><code class="language-plaintext highlighter-rouge">quant_night_mcp</code> 仅作为这套方法论的落地示例（Case Study）</strong>——它从 2026 年 1 月 12 日首次提交起步，历经 60+ 次迭代，几乎踩遍了“工具暴露设计、传输层选型、认证与状态持久化、OS 进程身份校验、热更新不中断在途任务”这五大关。希望这份复盘能为其他 MCP/Agent 扩展开发省掉同类弯路。</p>
+</blockquote>
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">4 min read</span>
+
+      <time class="entry-date dt-published" datetime="2026-11-23T00:00:00+00:00">November 23, 2026
+  </time>
+    </footer>
+  
+</article>
+
+    
+      
+
+
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
+        <a href="/personal_homepage/tool/git-sync/" rel="bookmark">git-sync：双机多 Agent 开发的确定性同步与 Guardian 事件驱动工作流
+</a>
+      
+    </h3>
+    
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <blockquote>
+  <p><strong>写作定位</strong>：本文属于 <code class="language-plaintext highlighter-rouge">agent/extension</code> 工程实践系列，结合 <strong>Mac mini 开发主会话（<code class="language-plaintext highlighter-rouge">01a0c650</code>）</strong>、<strong><code class="language-plaintext highlighter-rouge">git-sync</code> 与 <code class="language-plaintext highlighter-rouge">pi-git-sync-bridge</code> 源码</strong>，以及 <strong>Guardian 持久会话 <code class="language-plaintext highlighter-rouge">01a0e057</code> 跨越两个月（2026-09-27 ~ 2026-11-23）的真实线上运行日志</strong>，完整梳理这套双机 + 上游 Git 协同工作流的设计收敛、底层架构与实战经验。</p>
+</blockquote>
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">5 min read</span>
+
+      <time class="entry-date dt-published" datetime="2026-11-23T00:00:00+00:00">November 23, 2026
+  </time>
+    </footer>
+  
+</article>
+
+    
+      
+
+
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
+        <a href="/personal_homepage/tool/alpha30/" rel="bookmark">QuantNight 原生 MCP 共享底座架构：单守护进程、事件通知、跨重启续跑与双端职责边界
+</a>
+      
+    </h3>
+    
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <blockquote>
+  <p>本文是 QuantNight 工程架构系列的 MCP 专题篇（与 GUI/CLI 控制面专题 <a href="2026-10-31-alpha20.md">《任务控制生命周期》（alpha20）</a> 及 <a href="2026-11-19-alpha27.md">《6 态极简控制面与数据面板统一》（alpha27）</a> 共同构成系统全貌）。<br />
+<code class="language-plaintext highlighter-rouge">task-core</code> 统一了桌面 GUI 与 <code class="language-plaintext highlighter-rouge">taskctl</code> CLI 的本地批处理控制面和只读数据面板，而 <strong><code class="language-plaintext highlighter-rouge">quant_night_mcp</code> 承担的则是平台在线交互网关 + Python 向量/AST 语义层 + Agent 事件驱动异步执行底座</strong>。本文记录其定型后的整体架构、通知握手、跨重启无缝续跑机制，以及与 <code class="language-plaintext highlighter-rouge">task-core</code> 的职责分界。</p>
+</blockquote>
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">5 min read</span>
+
+      <time class="entry-date dt-published" datetime="2026-11-23T00:00:00+00:00">November 23, 2026
+  </time>
+    </footer>
+  
+</article>
+
+    
+      
+
+
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
         <a href="/personal_homepage/tool/alpha27/" rel="bookmark">从过度防御的歪路纠偏：GUI/CLI 6 态极简控制面、数据面板统一与工程收口
 </a>
       
@@ -210,7 +363,7 @@
     <footer class="entry-meta">
       
 
-<span class="read-time">3 min read</span>
+<span class="read-time">4 min read</span>
 
       <time class="entry-date dt-published" datetime="2026-11-10T00:00:00+00:00">November 10, 2026
   </time>
@@ -758,7 +911,7 @@
   
     <div class="entry-excerpt p-summary">
       
-        <p>梳理一下主流 LLM 接口的请求/响应结构、调用模式，以及各协议的差异，方便选型和对接时快速对照。</p>
+        <p>梳理主流 LLM HTTP/SSE 线上接口（Wire Protocol）的请求/响应结构、调用模式，以及各厂商与自托管引擎的协议差异，方便选型和自研 Harness 对接时快速对照。（关于工具执行层与 Harness / Function Calling / MCP / CLI / Skills 的分层协作，见同专题 <a href="2025-04-04-agent-tools.md">Agent 工具体系与接入规范</a>。）</p>
 
       
     </div>
@@ -767,7 +920,7 @@
     <footer class="entry-meta">
       
 
-<span class="read-time">2 min read</span>
+<span class="read-time">3 min read</span>
 
       <time class="entry-date dt-published" datetime="2026-05-16T00:00:00+00:00">May 16, 2026
   </time>
@@ -1005,42 +1158,6 @@
   <header class="entry-header">
     <h3 class="entry-title p-name">
       
-        <a href="/personal_homepage/tool/auto-code/" rel="bookmark">设置开机自启动自运行程序
-</a>
-      
-    </h3>
-    
-    
-  </header>
-  
-    <div class="entry-excerpt p-summary">
-      
-        <h2 id="macos">macos</h2>
-
-      
-    </div>
-  
-  
-    <footer class="entry-meta">
-      
-
-<span class="read-time">~1 min read</span>
-
-      <time class="entry-date dt-published" datetime="2025-04-30T00:00:00+00:00">April 30, 2025
-  </time>
-    </footer>
-  
-</article>
-
-    
-      
-
-
-
-<article class="entry h-entry">
-  <header class="entry-header">
-    <h3 class="entry-title p-name">
-      
         <a href="/personal_homepage/tool/alpha6/" rel="bookmark">worldquant BRAIN 股票因子 (六 ) – 代码优化
 </a>
       
@@ -1077,7 +1194,7 @@
   <header class="entry-header">
     <h3 class="entry-title p-name">
       
-        <a href="/personal_homepage/tool/MCP/" rel="bookmark">MCP协议理解
+        <a href="/personal_homepage/tool/agent-tools/" rel="bookmark">Agent 工具体系与接入规范
 </a>
       
     </h3>
@@ -1087,7 +1204,7 @@
   
     <div class="entry-excerpt p-summary">
       
-        <p>MCP(Model Context Protocol)</p>
+        <h1 id="一agent-工具体系核心概念对比">一、Agent 工具体系核心概念对比</h1>
 
       
     </div>
@@ -1096,7 +1213,7 @@
     <footer class="entry-meta">
       
 
-<span class="read-time">~1 min read</span>
+<span class="read-time">2 min read</span>
 
       <time class="entry-date dt-published" datetime="2025-04-04T00:00:00+00:00">April 4, 2025
   </time>

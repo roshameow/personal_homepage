@@ -115,6 +115,46 @@
   <header class="entry-header">
     <h3 class="entry-title p-name">
       
+        <a href="/personal_homepage/finance/operators/" rel="bookmark">WorldQuant FASTEXPR 核心算子解析、分布整形与线性回归推导
+</a>
+      
+    </h3>
+    
+    
+  </header>
+  
+    <div class="entry-excerpt p-summary">
+      
+        <blockquote>
+  <p>本文由原 BRAIN 仿真总览笔记（<a href="2025-01-07-alphas.md">2025-01-07-alphas.md</a>）中的“常用算子与回归推导”模块独立拆分整理而成，与跨数据集关系总纲 <a href="2025-02-26-alpha5.md">alpha5</a> 互为补充。表达式遵循 <a href="https://platform.worldquantbrain.com/learn/documentation/discover-brain/introduction-brain-expression-language">WorldQuant Expression Language</a> 规范：仅可使用平台原生算子与数据字段，多行赋值时每条语句以分号 <code class="language-plaintext highlighter-rouge">;</code> 结尾。</p>
+
+  <p>本文的“项目复现备注”仅取自 QuantNight <code class="language-plaintext highlighter-rouge">expression/operator_docs/</code> 的历史平台实证与校准记录：FASTEXPR 是唯一真值，本地 Python 复现只是近似；文中凡标为“未定案”的口径不能当作已值级确认。</p>
+</blockquote>
+
+      
+    </div>
+  
+  
+    <footer class="entry-meta">
+      
+
+<span class="read-time">4 min read</span>
+
+      <time class="entry-date dt-published" datetime="2026-11-21T00:00:00+00:00">November 21, 2026
+  </time>
+    </footer>
+  
+</article>
+
+    
+      
+
+
+
+<article class="entry h-entry">
+  <header class="entry-header">
+    <h3 class="entry-title p-name">
+      
         <a href="/personal_homepage/data/finance/alpha15/" rel="bookmark">处理新闻数据
 </a>
       
@@ -223,7 +263,7 @@
   <header class="entry-header">
     <h3 class="entry-title p-name">
       
-        <a href="/personal_homepage/finance/alpha5/" rel="bookmark">worldquant BRAIN 股票因子 (五 ) – 数据集理解
+        <a href="/personal_homepage/finance/alphas/" rel="bookmark">WorldQuant BRAIN 股票因子总览：仿真机制、评测指标与全系列索引
 </a>
       
     </h3>
@@ -233,103 +273,9 @@
   
     <div class="entry-excerpt p-summary">
       
-        <table>
-  <thead>
-    <tr>
-      <th>数据集</th>
-      <th>特点</th>
-      <th>信号</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>模型数据集(model)</td>
-      <td>大多是分数形式</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>基本面数据</td>
-      <td> </td>
-      <td>1. <code class="language-plaintext highlighter-rouge">PE(市盈率) = eps/close</code><br />2. <code class="language-plaintext highlighter-rouge">PS(市销率) = close*sharesout/revenue</code><br />3. cashflow/price<br />4. cashflow/sales<br />5. margin, pretax margin, operating margin <br />6. enterprise value<br />7. long term debt/operating income</td>
-    </tr>
-    <tr>
-      <td>风险数据</td>
-      <td> </td>
-      <td>1. 用risk factor做neutralize<br />2. 用risk-return 代替returns<br />3.</td>
-    </tr>
-    <tr>
-      <td>量价数据</td>
-      <td>完整, 所有市场都有</td>
-      <td>1. 交易量激增(volume spike) <br />2. -returns</td>
-    </tr>
-    <tr>
-      <td>社交媒体数据</td>
-      <td>更新频率高<br />有时效性: 尽量不要超过1季度</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>期权数据集(Options)</td>
-      <td> </td>
-      <td>1. IV_call, IV_put配对</td>
-    </tr>
-    <tr>
-      <td>分析师数据<br /></td>
-      <td>很多是vector数据<br />更新频率低<br />有很多异常值</td>
-      <td>1. 预测和当前值的差异<br />2. 预测值随时间变化<br />3. 分析师修订模型数据</td>
-    </tr>
-    <tr>
-      <td>宏观数据(Macro)</td>
-      <td> </td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>other数据</td>
-      <td> </td>
-      <td>1. group分类数据<br />2. 用matrix 特征数据自己制作group</td>
-    </tr>
-    <tr>
-      <td>期权数据</td>
-      <td> </td>
-      <td>1. O/S volume ratio=期权未平仓量/volume</td>
-    </tr>
-  </tbody>
-</table>
-
-      
-    </div>
-  
-  
-    <footer class="entry-meta">
-      
-
-<span class="read-time">1 min read</span>
-
-      <time class="entry-date dt-published" datetime="2025-02-26T00:00:00+00:00">February 26, 2025
-  </time>
-    </footer>
-  
-</article>
-
-    
-      
-
-
-
-<article class="entry h-entry">
-  <header class="entry-header">
-    <h3 class="entry-title p-name">
-      
-        <a href="/personal_homepage/finance/alphas/" rel="bookmark">worldquant BRAIN 股票因子 (一) – 仿真测试
-</a>
-      
-    </h3>
-    
-    
-  </header>
-  
-    <div class="entry-excerpt p-summary">
-      
-        <p>选择在模拟盘中表现好的因子投资</p>
+        <blockquote>
+  <p>本文为 WorldQuant BRAIN 量化研究体系的<strong>系列总览与仿真基座篇</strong>（原笔记中的算子数学原理与表达细节已独立拆分至 <a href="2026-11-21-operators.md">《WorldQuant FASTEXPR 核心算子解析与线性回归推导》（operators）</a>）。目标是在统一的无前视偏差、资金中性回测框架下，筛选在样本内外稳定表现的 Alpha 因子。</p>
+</blockquote>
 
       
     </div>
